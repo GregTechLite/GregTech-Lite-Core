@@ -237,6 +237,9 @@ dependencies {
     // StreamEx 0.8.3
     compileOnly("one.util:streamex:0.8.3")
 
+    // JHeaps 0.14
+    compileOnly("org.jheaps:jheaps:0.14")
+
     // Kotson 2.5.0
     compileOnly("com.github.salomonbrys.kotson:kotson:2.5.0")
 
