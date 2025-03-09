@@ -5,6 +5,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.core.module.GTLiteModules
 import magicbook.gtlitecore.core.module.ModuleContainerRegistryEvent
 import magicbook.gtlitecore.core.module.ModuleManager
+import net.minecraftforge.common.ForgeVersion
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.Mod
@@ -24,7 +25,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
 @Mod(modid = GTLiteValues.MODID,
      name = GTLiteValues.NAME,
      version = GTLiteValues.VERSION,
-     acceptedMinecraftVersions = "[1.12.2]",
+     acceptedMinecraftVersions = "[${ForgeVersion.mcVersion}]",
      dependencies = "required:forge@[14.23.5.2847,);" +
                     "required:forgelin_continuous@[2.1.0.0,);" +
                     "required:modularui@[2.5.0-rc4,);",
