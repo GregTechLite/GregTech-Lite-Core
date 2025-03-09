@@ -3,11 +3,19 @@ import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
 
+// This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
+// as language mixed programming support (Java and Kotlin), some annotation processors and packages,
+// like JetBrains Annotation and Lombok.
+
+// The author of this TemplateEnvDevKt port version is Magic_Sweepy, and this gradle template is only
+// used for this project, thanks for Kyle Lin make the original gradle template.
+
 buildscript { 
     repositories {
         mavenCentral()
     }
-    
+
+    // Used Kotlin 2.1.0 as default setting.
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlinVersion}")
     }
@@ -24,40 +32,69 @@ plugins {
     id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
-@Suppress("PropertyName")
-val mod_version: String by project
-@Suppress("PropertyName")
-val maven_group: String by project
-@Suppress("PropertyName")
-val mod_id: String by project
-@Suppress("PropertyName")
-val archives_base_name: String by project
+// The grouping mod name of project, like "org.authorname.examplemod", and the folder structure
+// of the mod will be: folder "org" -> folder "authorname" -> folder "examplemod" -> mod files.
+val modGroup: String by project
 
-@Suppress("PropertyName")
-val forgelin_continuous_version: String by project
+// The id of mod, used to generate the mod files (dev, source and jar file), different with the
+// modId setting of the main class of mod, but ensure two setting be same otherwise you know
+// what you want to do in this setting.
+val modId: String by project
 
-@Suppress("PropertyName")
-val use_access_transformer: String by project
+// The version of mod, used to generate the mod files (dev, source and jar file), different with
+// the modVersion setting of the main class of mod, but ensure two setting be same otherwise you
+// know what you want to do in this setting.
+val modVersion: String by project
 
-@Suppress("PropertyName")
-val use_mixins: String by project
-@Suppress("PropertyName")
-val use_coremod: String by project
-@Suppress("PropertyName")
-val use_assetmover: String by project
+// The archive base name of mod, warning: this is not same as the modName setting in main class
+// completely, do not confuse two settings.
+val modName: String by project
 
-@Suppress("PropertyName")
-val include_mod: String by project
-@Suppress("PropertyName")
-val coremod_plugin_class_name: String by project
+// The version of Minecraft in develop environment, this setting cannot control FML version.
+val minecraftVersion: String by project
+
+// The userName setting of develop environment, the UUID will be looked up automatically.
+val userName: String by project
+
+// The kotlinVersion setting is only writable in settings.gradle.kts.
+
+// The forgeVersion setting, this option control the supported lib version of Kotlin in Minecraft.
+val forgelinVersion: String by project
+
+// The generateTokenPath setting, this option is the path of RFG Tags class.
+val generateTokenPath: String by project
+
+// The usesMixins setting.
+val usesMixins: String by project
+
+// The mixinBooterVersion setting.
+val mixinBooterVersion: String by project
+
+// The usesAccessTransformer setting.
+val usesAccessTransformer: String by project
+
+// The usesAssetMover setting, AssetMover is a mod used to downland resources.
+val usesAssetMover: String by project
+
+// The assetMoverVersion setting.
+val assetMoverVersion: String by project
+
+// The usesCoreMod setting.
+val usesCoreMod: String by project
+
+// The includeMod setting.
+val includeMod: String by project
+
+// The coreModPluginPath setting.
+val coreModPluginPath: String by project
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
-        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64.
         vendor.set(JvmVendorSpec.AZUL)
     }
-    // Generate sources and javadocs jars when building and publishing
+    // Generate sources and Javadocs jars when building and publishing.
     withSourcesJar()
     // withJavadocJar()
 }
@@ -73,25 +110,40 @@ configurations {
     }
 }
 
-minecraft {
-    mcVersion.set("1.12.2")
+// These sourceSet settings allowed javaCompiler read Kotlin source,
+// but kotlinCompiler cannot read Java source. As default, we build
+// programming structures in Kotlin source.
+sourceSets {
+    main {
+        java {
+            srcDirs("src/main/java", "src/main/kotlin")
+        }
+        kotlin {
+            srcDir("src/main/kotlin")
+        }
+    }
+}
 
-    // MCP Mappings
+minecraft {
+    // Set minecraftVersion to mcVersion setting.
+    mcVersion.set(minecraftVersion)
+
+    // MCP Mappings.
     mcpMappingChannel.set("stable")
     mcpMappingVersion.set("39")
 
-    // Set username here, the UUID will be looked up automatically
-    username.set("Developer")
+    // Set username here, the UUID will be looked up automatically.
+    username.set(userName)
 
-    // Add any additional tweaker classes here
+    // Add any additional tweaker classes here.
     // extraTweakClasses.add("org.spongepowered.asm.launch.MixinTweaker")
 
     // Add various JVM arguments here for runtime
     val args = mutableListOf("-ea:${group}")
-    if (use_coremod.toBoolean()) {
-        args += "-Dfml.coreMods.load=$coremod_plugin_class_name"
+    if (usesCoreMod.toBoolean()) {
+        args += "-Dfml.coreMods.load=$coreModPluginPath"
     }
-    if (use_mixins.toBoolean()) {
+    if (usesMixins.toBoolean()) {
         args += "-Dmixin.hotSwap=true"
         args += "-Dmixin.checks.interfaces=true"
         args += "-Dmixin.debug.export=true"
@@ -101,18 +153,17 @@ minecraft {
     // Include and use dependencies' Access Transformer files
     useDependencyAccessTransformers.set(true)
 
-    // Add any properties you want to swap out for a dynamic value at build time here
-    // Any properties here will be added to a class at build time, the name can be configured below
-    // Example:
+    // Add any properties you want to swap out for a dynamic value at build time here.
+    // Any properties here will be added to a class at build time, the name can be configured below.
+
     injectedTags.put("VERSION", project.version)
-    injectedTags.put("MOD_ID", mod_id)
-    injectedTags.put("MOD_NAME", archives_base_name)
+    injectedTags.put("MOD_ID", modId)
+    injectedTags.put("MOD_NAME", modName)
 }
 
-// Generate a group.archives_base_name.Tags class
+// Generate a RFG Tags class.
 tasks.injectTags.configure {
-    // Change Tags class' name here:
-    outputClassName.set("${maven_group}.${archives_base_name}.Tags")
+    outputClassName.set(generateTokenPath)
 }
 
 repositories {
@@ -131,28 +182,21 @@ repositories {
             includeGroup("curse.maven")
         }
     }
-    mavenLocal() // Must be last for caching to work
+    mavenLocal() // Must be last for caching to work.
 }
 
 dependencies {
-    implementation("io.github.chaosunity.forgelin:Forgelin-Continuous:${forgelin_continuous_version}") {
+
+    // Before the dependencies.gradle script loading, add Forgelin to the dependencies.
+    implementation("io.github.chaosunity.forgelin:Forgelin-Continuous:${forgelinVersion}") {
         exclude("net.minecraftforge")
     }
-    
-    if (use_assetmover.toBoolean()) {
-        implementation("com.cleanroommc:assetmover:2.5")
-    }
-    if (use_mixins.toBoolean()) {
-        implementation("zone.rong:mixinbooter:7.1")
-    }
 
-    // Example of deobfuscating a dependency
-    // implementation rfg.deobf("curse.maven:had-enough-items-557549:4543375")
+    // Mixins dependency settings.
+    if (usesMixins.toBoolean()) {
+        implementation("zone.rong:mixinbooter:9.1")
 
-    if (use_mixins.toBoolean()) {
-        // Change your mixin refmap name here:
-        val mixin =
-            modUtils.enableMixins("org.spongepowered:mixin:0.8.3", "mixins.${archives_base_name}.refmap.json") as String
+        val mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixinBooterVersion}", "mixins.${modName}.refmap.json") as String
         api(mixin) {
             isTransitive = true
         }
@@ -163,11 +207,20 @@ dependencies {
             isTransitive = false
         }
     }
+
+    // AssetMover settings.
+    if (usesAssetMover.toBoolean()) {
+        implementation("com.cleanroommc:assetmover:${assetMoverVersion}")
+    }
+
+    // Apply dependencies from gradle scripts.
+    apply("gradle/script/dependencies.gradle.kts")
+
 }
 
-// Adds Access Transformer files to tasks
+// Adds Access Transformer files to tasks.
 @Suppress("Deprecation")
-if (use_access_transformer.toBoolean()) {
+if (usesAccessTransformer.toBoolean()) {
     for (at in sourceSets.getByName("main").resources.files) {
         if (at.name.toLowerCase().endsWith("_at.cfg")) {
             tasks.deobfuscateMergedJarToSrg.get().accessTransformerFiles.from(at)
@@ -178,39 +231,39 @@ if (use_access_transformer.toBoolean()) {
 
 @Suppress("UnstableApiUsage")
 tasks.withType<ProcessResources> {
-    // This will ensure that this task is redone when the versions change
-    inputs.property("version", mod_version)
+    // This will ensure that this task is redone when the versions change.
+    inputs.property("version", modVersion)
     inputs.property("mcversion", minecraft.mcVersion)
 
-    // Replace various properties in mcmod.info and pack.mcmeta if applicable
+    // Replace various properties in mcmod.info and pack.mcmeta if applicable.
     filesMatching(arrayListOf("mcmod.info", "pack.mcmeta")) {
         expand(
-            "version" to mod_version,
+            "version" to modVersion,
             "mcversion" to minecraft.mcVersion
         )
     }
 
-    if (use_access_transformer.toBoolean()) {
-        rename("(.+_at.cfg)", "META-INF/$1") // Make sure Access Transformer files are in META-INF folder
+    if (usesAccessTransformer.toBoolean()) {
+        rename("(.+_at.cfg)", "META-INF/$1") // Make sure Access Transformer files are in META-INF folder.
     }
 }
 
 tasks.withType<Jar> {
     manifest {
         val attributeMap = mutableMapOf<String, String>()
-        if (use_coremod.toBoolean()) {
-            attributeMap["FMLCorePlugin"] = coremod_plugin_class_name
-            if (include_mod.toBoolean()) {
+        if (usesCoreMod.toBoolean()) {
+            attributeMap["FMLCorePlugin"] = coreModPluginPath
+            if (includeMod.toBoolean()) {
                 attributeMap["FMLCorePluginContainsFMLMod"] = true.toString()
                 attributeMap["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames[0] == "build").toString()
             }
         }
-        if (use_access_transformer.toBoolean()) {
-            attributeMap["FMLAT"] = archives_base_name + "_at.cfg"
+        if (usesAccessTransformer.toBoolean()) {
+            attributeMap["FMLAT"] = modName + "_at.cfg"
         }
         attributes(attributeMap)
     }
-    // Add all embedded dependencies into the jar
+    // Add all embedded dependencies into the jar.
     from(provider {
         configurations.getByName("embed").map {
             if (it.isDirectory()) it else zipTree(it)
