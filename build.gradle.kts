@@ -234,6 +234,12 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 
+    // StreamEx 0.8.3
+    compileOnly("one.util:streamex:0.8.3")
+
+    // Kotson 2.5.0
+    compileOnly("com.github.salomonbrys.kotson:kotson:2.5.0")
+
 }
 
 // Adds Access Transformer files to tasks.
