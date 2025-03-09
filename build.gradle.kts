@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
@@ -33,6 +34,7 @@ plugins {
     id("com.gtnewhorizons.retrofuturagradle") version "1.3.27"
     id("com.matthewprenger.cursegradle") version "1.4.0"
     id("org.jetbrains.dokka") version "1.9.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 }
 
 // The grouping mod name of project, like "org.authorname.examplemod", and the folder structure
@@ -91,6 +93,18 @@ val includeMod: String by project
 // The coreModPluginPath setting.
 val coreModPluginPath: String by project
 
+// The shadowJar settings.
+val usesShadowJar: String by project
+
+// Shadow implementation const.
+val shadowImplementation = "shadowImplementation"
+
+// Apply shadowJar plugin.
+if (usesShadowJar.toBoolean()) {
+    apply(plugin = "com.github.johnrengelman.shadow")
+}
+
+// Java settings.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
@@ -111,6 +125,13 @@ configurations {
     implementation.configure {
         extendsFrom(embed)
     }
+    // Process shadowJar implementations.
+    if (usesShadowJar.toBoolean()) {
+        val shadowImplementation = create(shadowImplementation)
+        implementation.configure {
+            extendsFrom(shadowImplementation)
+        }
+    }
 }
 
 // These sourceSet settings allowed javaCompiler read Kotlin source,
@@ -127,6 +148,7 @@ sourceSets {
     }
 }
 
+// Starting to initialize Minecraft settings.
 minecraft {
     // Set minecraftVersion to mcVersion setting.
     mcVersion.set(minecraftVersion)
@@ -197,7 +219,6 @@ repositories {
 }
 
 dependencies {
-
     // Before the dependencies.gradle script loading, add Forgelin to the dependencies.
     implementation("io.github.chaosunity.forgelin:Forgelin-Continuous:${forgelinVersion}") {
         exclude("net.minecraftforge")
@@ -246,6 +267,14 @@ dependencies {
     // Kotson 2.5.0
     compileOnly("com.github.salomonbrys.kotson:kotson:2.5.0")
 
+    // Processing shadowJar dependencies.
+    if (usesShadowJar.toBoolean()) {
+        // Hint: if usesShadowJar setting is enabled, please modify the shadowJar implementation
+        // at dependencies part.
+        shadowImplementation("one.util:streamex:0.8.3") {
+            isTransitive = false
+        }
+    }
 }
 
 // Adds Access Transformer files to tasks.
@@ -299,6 +328,31 @@ tasks.withType<Jar> {
             if (it.isDirectory()) it else zipTree(it)
         }
     })
+}
+
+// Shadowed external packages to internal packages to resolved class not found when
+// the mod is running at other environments.
+if (usesShadowJar.toBoolean()) {
+    tasks.withType<ShadowJar> {
+        // Add shadowJar dependencies include and minimize settings at there.
+        dependencies {
+            include(dependency("one.util:streamex:.*"))
+        }
+
+        mergeServiceFiles()
+        mergeGroovyExtensionModules()
+
+        minimize {
+            exclude(dependency("one.util:streamex.*"))
+        }
+    }
+}
+
+// Add shadowJar to processing assemble of the mod process.
+if (usesShadowJar.toBoolean()) {
+    tasks.assemble {
+        dependsOn(tasks.shadowJar)
+    }
 }
 
 idea {
