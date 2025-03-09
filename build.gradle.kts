@@ -1,7 +1,9 @@
+import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
+import java.net.URI
 
 // This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
 // as language mixed programming support (Java and Kotlin), some annotation processors and packages,
@@ -30,6 +32,7 @@ plugins {
     id("eclipse")
     id("com.gtnewhorizons.retrofuturagradle") version "1.3.27"
     id("com.matthewprenger.cursegradle") version "1.4.0"
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 // The grouping mod name of project, like "org.authorname.examplemod", and the folder structure
@@ -332,4 +335,21 @@ idea {
 
 tasks.named("processIdeaSettings").configure {
     dependsOn("injectTags")
+}
+
+// Add JavaDocs/KDocs generate merger in Java/Kotlin mixed programming environment.
+tasks.withType<DokkaTask>().configureEach {
+    outputDirectory.set(buildDir.resolve("docs"))
+    dokkaSourceSets {
+        configureEach {
+            // Allowed Dokka read two sourceSets.
+            sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
+            // Java 8 External Docs.
+            externalDocumentationLink(
+                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL())
+            // Kotlin StdLib External Docs.
+            externalDocumentationLink(
+                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL())
+        }
+    }
 }
