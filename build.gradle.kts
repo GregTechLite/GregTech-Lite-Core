@@ -182,6 +182,14 @@ repositories {
             includeGroup("curse.maven")
         }
     }
+    maven {
+        name = "BlameJared Maven"
+        url = uri("https://maven.blamejared.com")
+    }
+    maven {
+        name = "GTCEu Maven"
+        url = uri("https://maven.gtceu.com")
+    }
     mavenLocal() // Must be last for caching to work.
 }
 
@@ -214,7 +222,17 @@ dependencies {
     }
 
     // Apply dependencies from gradle scripts.
-    apply("gradle/script/dependencies.gradle.kts")
+    apply("gradle/script/dependencies.gradle")
+
+    // Several global dependencies.
+
+    // JetBrains Annotations 24.1.0
+    compileOnlyApi("org.jetbrains:annotations:24.1.0")
+    annotationProcessor("org.jetbrains:annotations:24.1.0")
+
+    // Lombok 1.18.24
+    compileOnly("org.projectlombok:lombok:1.18.24")
+    annotationProcessor("org.projectlombok:lombok:1.18.24")
 
 }
 

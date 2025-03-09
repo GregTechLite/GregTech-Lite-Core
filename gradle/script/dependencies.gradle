@@ -1,0 +1,12 @@
+dependencies {
+
+    // Modular UI 2.5.0-rc4
+    api('com.cleanroommc:modularui:2.5.0-rc4')
+
+    // Transformed JEI dependencies from buildscripts option.
+    implementation("mezz.jei:jei_1.12.2:4.16.1.302") // JustEnoughItems 4.16.1.302
+
+    // Transformed TOP dependencies from buildscripts option.
+    implementation("curse.maven:top-245211:2667280") // TheOneProbe 1.4.28
+
+}
