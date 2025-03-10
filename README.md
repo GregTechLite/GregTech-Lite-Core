@@ -1,20 +1,19 @@
-## TemplateDevEnv for Kotlin
+### License
 
-Template workspace for modding Minecraft 1.12.2 in Kotlin. Licensed under MIT, it is made for public use.
+- GregTech Lite Core
+  - Copyright (c) Magic_Sweepy
+  - [![License](https://img.shields.io/badge/License-Apache2.0-red.svg?style=flat-square)](http://www.apache.org/licenses/)
+- GregTech Lite Modpack
+  - Copyright (c) Magic_Sweepy
+  - [![License](https://img.shields.io/badge/License-AGPLv3-blue.svg?style=flat-square)](https://gitlab.com/gregtech-lite/gregtech-lite/-/blob/main/license)
+- Texts, Translations and Questbook contents
+  - Copyright (c) Magic_Sweepy
+  - [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
+- Independently copyrighted Textures and Models
+  - Copyright (c) Magic_Sweepy and U.M.T
+  - [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%203.0-yellow.svg?style=flat-square)](https://creativecommons.org/licenses/by-nc-sa/3.0/)
 
-This template currently utilizies **Gradle 8.1.1** + **[RetroFuturaGradle](https://github.com/GTNewHorizons/RetroFuturaGradle) 1.3.27** + **Forge 14.23.5.2847**.
+### Credits
 
-With **coremod and mixin support** that is easy to configure.
-
-### Instructions:
-
-1. Click `use this template` at the top.
-2. Clone the repository you have created with this template.
-3. In the local repository, run the command `gradlew setupDecompWorkspace`
-4. Open the project folder in IDEA.
-5. Right-click in IDEA `build.gradle` of your project, and select `Link Gradle Project`, after completion, hit `Refresh All` in the gradle tab on the right.
-6. Run `gradlew runClient` and `gradlew runServer`, or use the auto-imported run configurations in IntelliJ like `1. Run Client`.
-
-### Mixins:
-
-- When writing Mixins on IntelliJ, it is advisable to use latest [MinecraftDev Fork for RetroFuturaGradle](https://github.com/eigenraven/MinecraftDev/releases).
+- Some textures and codes are from [GregTech 6](https://github.com/GregTech6/gregtech6) on [GNU GPL-3.0 License](https://github.com/GregTech6/gregtech6/blob/master/LICENSE).
+- Some textures are from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry) on [GNU LGPL-3.0 License](https://github.com/SymmetricDevs/Supersymmetry/blob/master-ceu/LICENSE).
