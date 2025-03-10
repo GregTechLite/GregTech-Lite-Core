@@ -6,6 +6,8 @@
   "minVersion": "0.8.3",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "gregtech.PartsRecipeHandlerMixin",
+    "gregtech.MaterialRecipeHandlerMixin"
   ],
   "server": [],
   "client": []

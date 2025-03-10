@@ -9,6 +9,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.loader.recipe.RecipeManager
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
+import magicbook.gtlitecore.loader.recipe.handler.RecipeHandlers
 import net.minecraft.item.crafting.IRecipe
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
@@ -42,6 +43,12 @@ class EventHandlers
     fun registerRecipes(event: RegistryEvent.Register<IRecipe>)
     {
         RecipeManager.init()
+    }
+
+    @SubscribeEvent
+    fun registerRecipeHandlers(event: RegistryEvent.Register<IRecipe>)
+    {
+        RecipeHandlers.init()
     }
 
 }
