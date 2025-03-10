@@ -1,7 +1,26 @@
+//file: noinspection DependencyNotationArgument
 dependencies {
 
     // Modular UI 2.5.0-rc4
     api('com.cleanroommc:modularui:2.5.0-rc4')
+
+    // Code Chicken Lib 3.2.3.358
+    // Schedule removal this dependencies when GTCEu update next version.
+    api("codechicken:codechickenlib:3.2.3.358")
+
+    // Groovy Script 1.2.0-hotfix-1
+    api("com.cleanroommc:groovyscript:1.2.0-hotfix1") {
+        transitive = false
+    }
+
+    // CraftTweaker2 API 4.1.20.700
+    api("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.700")
+
+    // CTM 1.0.2.31
+    api rfg.deobf("curse.maven:ctm-267602:2915363")
+
+    // GregTech CEu (master branch last updated ver.)
+    implementation(files("libs/gregtech-1.12.2-master.jar"))
 
     // Transformed JEI dependencies from buildscripts option.
     implementation("mezz.jei:jei_1.12.2:4.16.1.302") // JustEnoughItems 4.16.1.302
