@@ -1,0 +1,47 @@
+package magicbook.gtlitecore.common
+
+import gregtech.api.GregTechAPI
+import gregtech.api.metatileentity.registry.MTEManager.MTERegistryEvent
+import gregtech.api.unification.material.event.MaterialEvent
+import gregtech.api.unification.material.event.MaterialRegistryEvent
+import gregtech.loaders.recipe.CraftingComponent
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.utils.GTLiteValues
+import magicbook.gtlitecore.loader.recipe.RecipeManager
+import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
+import net.minecraft.item.crafting.IRecipe
+import net.minecraftforge.event.RegistryEvent
+import net.minecraftforge.fml.common.eventhandler.EventPriority
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+
+class EventHandlers
+{
+
+    @SubscribeEvent
+    fun createMaterialRegistry(event: MaterialRegistryEvent)
+        = GregTechAPI.materialManager.createRegistry(GTLiteValues.MODID)
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    fun registerMaterials(event: MaterialEvent)
+    {
+        GTLiteMaterials.setMaterialProperties()
+        GTLiteMaterials.setMaterialFlags()
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    fun registerMaterialComponents(event: GregTechAPI.RegisterEvent<CraftingComponent>)
+    {
+        CraftingComponents.setCraftingComponents()
+    }
+
+    @SubscribeEvent
+    fun createMetaTileEntityRegistry(event: MTERegistryEvent)
+        = GregTechAPI.mteManager.createRegistry(GTLiteValues.MODID)
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    fun registerRecipes(event: RegistryEvent.Register<IRecipe>)
+    {
+        RecipeManager.init()
+    }
+
+}

@@ -1,0 +1,61 @@
+package magicbook.gtlitecore.common.metatileentity
+
+import gregtech.api.GTValues
+import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.util.GTUtility
+import gregtech.common.metatileentities.MetaTileEntities
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.utils.GTLiteLog
+import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.client.GTLiteTextures
+
+class MetaTileEntityManager
+{
+
+    companion object
+    {
+
+        // ======================================= GREGTECH METATILEENTITIES ID LIST =======================================
+
+        // - Gregtech (Vanilla)                           1     - 1999
+        // - Gregicality (Multiblocks & Science)          2000  - 3999
+        // - Integration Modules of GregTech              4000  - 4499
+        // - Gregic Addition CEu                          4500  - 8499
+        // - GregTech Food Option                         8500  - 8999
+        // - HtmlTech                                     9000  - 9499
+        // - PCM's Ore Addon                              9500  - 9999
+        // - GCM                                          10000 - 10099
+        // - MechTech                                     10100 - 10499
+        // - MultiblockTweaker                            10500 - 10999
+        // - Gregtech Lite Core (THIS)                    14000 - 20000
+        // - Integration Modules of Gregtech Lite Core    20001 - 25000
+        // - CraftTweaker (MultiblockTweaker)             32000 - 32767
+
+        // =================================================================================================================
+
+        // Single machines.
+        val POLISHER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+
+        // Multiblock machines.
+
+        @JvmStatic
+        fun init()
+        {
+            // 14001-14015: Polisher
+            MetaTileEntities.registerSimpleMetaTileEntity(POLISHER, 14003, // 14001-14002 for Steam Machines.
+                "polisher", GTLiteRecipeMaps.POLISHER_RECIPES,
+                GTLiteTextures.POLISHER_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.hvCappedTankSizeFunction)
+
+            // 14016-14030: Slicer
+            MetaTileEntities.registerSimpleMetaTileEntity(SLICER, 14018, // 14016-14017 for Steam Machines.
+                "slicer", GTLiteRecipeMaps.SLICER_RECIPES,
+                GTLiteTextures.SLICER_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.hvCappedTankSizeFunction)
+
+        }
+
+    }
+
+}

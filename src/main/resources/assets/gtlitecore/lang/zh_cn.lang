@@ -1,0 +1,68 @@
+# Blocks
+
+# Items
+metaitem.shape.slicer_blade.flat.name=切片机刀片（片）
+metaitem.shape.slicer_blade.flat.tooltip=用来以片状切分材料
+metaitem.shape.slicer_blade.stripes.name=切片机刀片（条）
+metaitem.shape.slicer_blade.stripes.tooltip=用来以条状切分材料
+metaitem.shape.slicer_blade.octagonal.name=切片机刀片（八等分）
+metaitem.shape.slicer_blade.octagonal.tooltip=用来以八等分切分材料
+
+# Recipe Maps
+recipemap.polisher.name=抛光机
+recipemap.slicer.name=切片机
+
+# Machines
+gtlitecore.machine.polisher.lv.name=基础抛光机
+gtlitecore.machine.polisher.lv.tooltip=电动切石机
+gtlitecore.machine.polisher.mv.name=进阶抛光机
+gtlitecore.machine.polisher.mv.tooltip=电动切石机
+gtlitecore.machine.polisher.hv.name=进阶抛光机 II
+gtlitecore.machine.polisher.hv.tooltip=电动切石机
+gtlitecore.machine.polisher.ev.name=进阶抛光机 III
+gtlitecore.machine.polisher.ev.tooltip=电动切石机
+gtlitecore.machine.polisher.iv.name=精英抛光机
+gtlitecore.machine.polisher.iv.tooltip=精细抛光床
+gtlitecore.machine.polisher.luv.name=精英抛光机 II
+gtlitecore.machine.polisher.luv.tooltip=精细抛光床
+gtlitecore.machine.polisher.zpm.name=精英抛光机 III
+gtlitecore.machine.polisher.zpm.tooltip=精细抛光床
+gtlitecore.machine.polisher.uv.name=终极抛光机
+gtlitecore.machine.polisher.uv.tooltip=表面光滑化器
+gtlitecore.machine.polisher.uhv.name=史诗抛光机
+gtlitecore.machine.polisher.uhv.tooltip=表面光滑化器
+gtlitecore.machine.polisher.uev.name=史诗抛光机 II
+gtlitecore.machine.polisher.uev.tooltip=表面光滑化器
+gtlitecore.machine.polisher.uiv.name=史诗抛光机 III
+gtlitecore.machine.polisher.uiv.tooltip=表面光滑化器
+gtlitecore.machine.polisher.uxv.name=史诗抛光机 IV
+gtlitecore.machine.polisher.uxv.tooltip=表面光滑化器
+gtlitecore.machine.polisher.opv.name=传奇抛光机
+gtlitecore.machine.polisher.opv.tooltip=表面光滑化器
+
+gtlitecore.machine.slicer.lv.name=基础切片机
+gtlitecore.machine.slicer.lv.tooltip=拍拍刀
+gtlitecore.machine.slicer.mv.name=进阶切片机
+gtlitecore.machine.slicer.mv.tooltip=拍拍刀
+gtlitecore.machine.slicer.hv.name=进阶切片机 II
+gtlitecore.machine.slicer.hv.tooltip=拍拍刀
+gtlitecore.machine.slicer.ev.name=进阶切片机 III
+gtlitecore.machine.slicer.ev.tooltip=拍拍刀
+gtlitecore.machine.slicer.iv.name=精英切片机
+gtlitecore.machine.slicer.iv.tooltip=把这些家伙打碎！
+gtlitecore.machine.slicer.luv.name=精英切片机 II
+gtlitecore.machine.slicer.luv.tooltip=把这些家伙打碎！
+gtlitecore.machine.slicer.zpm.name=精英切片机 III
+gtlitecore.machine.slicer.zpm.tooltip=把这些家伙打碎！
+gtlitecore.machine.slicer.uv.name=终极切片机
+gtlitecore.machine.slicer.uv.tooltip=片材转换器
+gtlitecore.machine.slicer.uhv.name=史诗切片机
+gtlitecore.machine.slicer.uhv.tooltip=片材转换器
+gtlitecore.machine.slicer.uev.name=史诗切片机 II
+gtlitecore.machine.slicer.uev.tooltip=片材转换器
+gtlitecore.machine.slicer.uiv.name=史诗切片机 III
+gtlitecore.machine.slicer.uiv.tooltip=片材转换器
+gtlitecore.machine.slicer.uxv.name=史诗切片机 IV
+gtlitecore.machine.slicer.uxv.tooltip=片材转换器
+gtlitecore.machine.slicer.opv.name=传奇切片机
+gtlitecore.machine.slicer.opv.tooltip=片材转换器

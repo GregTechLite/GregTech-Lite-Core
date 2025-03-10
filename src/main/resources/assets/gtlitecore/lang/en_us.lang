@@ -1,0 +1,68 @@
+# Blocks
+
+# Items
+metaitem.shape.slicer_blade.flat.name=Slicer Blade (Flat)
+metaitem.shape.slicer_blade.flat.tooltip=Slicer Blade for making sheet
+metaitem.shape.slicer_blade.stripes.name=Slicer Blade (Stripes)
+metaitem.shape.slicer_blade.stripes.tooltip=Slicer Blade for making stripes
+metaitem.shape.slicer_blade.octagonal.name=Slicer Blade (Octagonal)
+metaitem.shape.slicer_blade.octagonal.tooltip=Slicer Blade for slicing octagonal
+
+# Recipe Maps
+recipemap.polisher.name=Polisher
+recipemap.slicer.name=Slicer
+
+# Machines
+gtlitecore.machine.polisher.lv.name=Basic Polisher
+gtlitecore.machine.polisher.lv.tooltip=Electric Stonecutter
+gtlitecore.machine.polisher.mv.name=Advanced Polisher
+gtlitecore.machine.polisher.mv.tooltip=Electric Stonecutter
+gtlitecore.machine.polisher.hv.name=Advanced Polisher II
+gtlitecore.machine.polisher.hv.tooltip=Electric Stonecutter
+gtlitecore.machine.polisher.ev.name=Advanced Polisher III
+gtlitecore.machine.polisher.ev.tooltip=Electric Stonecutter
+gtlitecore.machine.polisher.iv.name=Elite Polisher
+gtlitecore.machine.polisher.iv.tooltip=Fine Polishing Bed
+gtlitecore.machine.polisher.luv.name=Elite Polisher II
+gtlitecore.machine.polisher.luv.tooltip=Fine Polishing Bed
+gtlitecore.machine.polisher.zpm.name=Elite Polisher III
+gtlitecore.machine.polisher.zpm.tooltip=Fine Polishing Bed
+gtlitecore.machine.polisher.uv.name=Ultimate Polisher
+gtlitecore.machine.polisher.uv.tooltip=Surface Smoother
+gtlitecore.machine.polisher.uhv.name=Epic Polisher
+gtlitecore.machine.polisher.uhv.tooltip=Surface Smoother
+gtlitecore.machine.polisher.uev.name=Epic Polisher II
+gtlitecore.machine.polisher.uev.tooltip=Surface Smoother
+gtlitecore.machine.polisher.uiv.name=Epic Polisher III
+gtlitecore.machine.polisher.uiv.tooltip=Surface Smoother
+gtlitecore.machine.polisher.uxv.name=Epic Polisher IV
+gtlitecore.machine.polisher.uxv.tooltip=Surface Smoother
+gtlitecore.machine.polisher.opv.name=Legendary Polisher
+gtlitecore.machine.polisher.opv.tooltip=Surface Smoother
+
+gtlitecore.machine.slicer.lv.name=Basic Slicer
+gtlitecore.machine.slicer.lv.tooltip=Slap-Chop
+gtlitecore.machine.slicer.mv.name=Advanced Slicer
+gtlitecore.machine.slicer.mv.tooltip=Slap-Chop
+gtlitecore.machine.slicer.hv.name=Advanced Slicer II
+gtlitecore.machine.slicer.hv.tooltip=Slap-Chop
+gtlitecore.machine.slicer.ev.name=Advanced Slicer III
+gtlitecore.machine.slicer.ev.tooltip=Slap-Chop
+gtlitecore.machine.slicer.iv.name=Elite Slicer
+gtlitecore.machine.slicer.iv.tooltip=Slaps those nuts into pieces!
+gtlitecore.machine.slicer.luv.name=Elite Slicer II
+gtlitecore.machine.slicer.luv.tooltip=Slaps those nuts into pieces!
+gtlitecore.machine.slicer.zpm.name=Elite Slicer III
+gtlitecore.machine.slicer.zpm.tooltip=Slaps those nuts into pieces!
+gtlitecore.machine.slicer.uv.name=Ultimate Slicer
+gtlitecore.machine.slicer.uv.tooltip=Sheet Transformer
+gtlitecore.machine.slicer.uhv.name=Epic Slicer
+gtlitecore.machine.slicer.uhv.tooltip=Sheet Transformer
+gtlitecore.machine.slicer.uev.name=Epic Slicer II
+gtlitecore.machine.slicer.uev.tooltip=Sheet Transformer
+gtlitecore.machine.slicer.uiv.name=Epic Slicer III
+gtlitecore.machine.slicer.uiv.tooltip=Sheet Transformer
+gtlitecore.machine.slicer.uxv.name=Epic Slicer IV
+gtlitecore.machine.slicer.uxv.tooltip=Sheet Transformer
+gtlitecore.machine.slicer.opv.name=Legendary Slicer
+gtlitecore.machine.slicer.opv.tooltip=Sheet Transformer

@@ -9,4 +9,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+
+    @Override
+    public void preLoad()
+    {
+        super.preLoad();
+    }
+
 }
