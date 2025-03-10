@@ -20,7 +20,7 @@ dependencies {
     api rfg.deobf("curse.maven:ctm-267602:2915363")
 
     // GregTech CEu (master branch last updated ver.)
-    implementation(files("libs/gregtech-1.12.2-master.jar"))
+    implementation rfg.deobf(files("libs/gregtech-1.12.2-master.jar"))
 
     // Transformed JEI dependencies from buildscripts option.
     implementation("mezz.jei:jei_1.12.2:4.16.1.302") // JustEnoughItems 4.16.1.302
