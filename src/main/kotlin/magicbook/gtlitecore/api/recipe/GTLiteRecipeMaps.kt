@@ -3,7 +3,6 @@ package magicbook.gtlitecore.api.recipe
 import crafttweaker.annotations.ZenRegister
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
-import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
@@ -12,7 +11,6 @@ import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.utils.GTLiteUtility
-import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
 import stanhebben.zenscript.annotations.ZenProperty
 import kotlin.math.max

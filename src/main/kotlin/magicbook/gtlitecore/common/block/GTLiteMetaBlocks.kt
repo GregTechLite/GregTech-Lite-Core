@@ -4,7 +4,7 @@ import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.EnumMap
+import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaBlocks
