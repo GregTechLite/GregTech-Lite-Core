@@ -9,6 +9,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.common.item.GTLiteToolItems
+import magicbook.gtlitecore.loader.MaterialInfoLoader
+import magicbook.gtlitecore.loader.OreDictionaryLoader
 import magicbook.gtlitecore.loader.recipe.RecipeManager
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 import magicbook.gtlitecore.loader.recipe.handler.RecipeHandlers
@@ -48,6 +50,8 @@ class EventHandlers
     @SubscribeEvent(priority = EventPriority.LOW)
     fun registerRecipes(event: RegistryEvent.Register<IRecipe>)
     {
+        MaterialInfoLoader.init()
+        OreDictionaryLoader.init()
         RecipeManager.init()
     }
 

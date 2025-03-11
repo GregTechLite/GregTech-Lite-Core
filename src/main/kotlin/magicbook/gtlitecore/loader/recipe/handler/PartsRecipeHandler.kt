@@ -97,7 +97,7 @@ class PartsRecipeHandler
             if (material.hasProperty(PropertyKey.INGOT))
             {
                 // For common hard materials, the processing is same as gem.
-                if (!material.hasFlags(MaterialFlags.NO_SMASHING))
+                if (!material.hasFlag(MaterialFlags.NO_SMASHING))
                 {
                     val builder = RecipeMaps.LATHE_RECIPES.recipeBuilder()
                         .input(OrePrefix.ingot, material)
@@ -138,7 +138,7 @@ class PartsRecipeHandler
             if (material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW))
             {
                 val boltStack = OreDictUnifier.get(OrePrefix.bolt, material);
-                if (!material.hasFlags(MaterialFlags.NO_SMASHING))
+                if (!material.hasFlag(MaterialFlags.NO_SMASHING))
                 {
                     RecipeMaps.CUTTER_RECIPES.recipeBuilder()
                         .input(stickPrefix, material)
@@ -370,7 +370,7 @@ class PartsRecipeHandler
         private fun processDrillHead(drillHeadPrefix: OrePrefix, material: Material, property: IngotProperty)
         {
             val workingTier = material.workingTier
-            if (material.hasFlags())
+            if (material.hasFluid())
             {
                 RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
                     .notConsumable(SHAPE_MOLD_DRILL_HEAD)

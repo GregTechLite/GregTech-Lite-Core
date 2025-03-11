@@ -74,7 +74,7 @@ class MaterialRecipeHandler
         private fun processIngot(ingotPrefix: OrePrefix, material: Material, property: IngotProperty)
         {
             val workingTier = material.workingTier
-            if (material.hasFlags(MaterialFlags.MORTAR_GRINDABLE) && workingTier <= HV)
+            if (material.hasFlag(MaterialFlags.MORTAR_GRINDABLE) && workingTier <= HV)
             {
                 ModHandler.addShapedRecipe(String.format("mortar_grind_%s", material),
                     OreDictUnifier.get(OrePrefix.dust, material),
@@ -82,7 +82,7 @@ class MaterialRecipeHandler
                     'X', UnificationEntry(ingotPrefix, material))
             }
 
-            if (material.hasFlags(MaterialFlags.GENERATE_ROD))
+            if (material.hasFlag(MaterialFlags.GENERATE_ROD))
             {
                 // Common hand-crafting recipes.
                 if (workingTier <= HV)
@@ -92,7 +92,7 @@ class MaterialRecipeHandler
                         "f ", " X",
                         'X', UnificationEntry(ingotPrefix, material))
                 }
-                if (!material.hasFlags(MaterialFlags.NO_WORKING))
+                if (!material.hasFlag(MaterialFlags.NO_WORKING))
                 {
                     // Confirm extruder can process any materials.
                     RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
@@ -104,7 +104,7 @@ class MaterialRecipeHandler
                         .buildAndRegister()
 
                     // ingotX -> stickX (soft: slicer, hard: cutting machine).
-                    if (material.hasFlags(MaterialFlags.NO_SMASHING))
+                    if (material.hasFlag(MaterialFlags.NO_SMASHING))
                     {
                         GTLiteRecipeMaps.SLICER_RECIPES.recipeBuilder()
                             .notConsumable(SLICER_BLADE_STRIPES)
@@ -163,10 +163,10 @@ class MaterialRecipeHandler
                     .buildAndRegister()
             }
             // Bending ingotX -> plateX.
-            if (material.hasFlags(MaterialFlags.GENERATE_PLATE) && !material.hasFlags(MaterialFlags.NO_WORKING))
+            if (material.hasFlag(MaterialFlags.GENERATE_PLATE) && !material.hasFlag(MaterialFlags.NO_WORKING))
             {
                 // Common bending processing for hard materials.
-                if (!material.hasFlags(MaterialFlags.NO_SMASHING))
+                if (!material.hasFlag(MaterialFlags.NO_SMASHING))
                 {
                     val plateStack = OreDictUnifier.get(OrePrefix.plate, material)
                     if (!(plateStack as? ItemStack)!!.isEmpty)
@@ -199,7 +199,7 @@ class MaterialRecipeHandler
                 // Another safety filtered checking for filter all gem materials.
                 if (!(OreDictUnifier.get(OrePrefix.plate, material) as? ItemStack)!!.isEmpty)
                 {
-                    if (material.hasFlags(MaterialFlags.NO_SMASHING))
+                    if (material.hasFlag(MaterialFlags.NO_SMASHING))
                     {
                         // Slicing ingotX -> plateX.
                         GTLiteRecipeMaps.SLICER_RECIPES.recipeBuilder()
@@ -254,13 +254,13 @@ class MaterialRecipeHandler
                     .buildAndRegister()
             }
             // blockX -> plateX.
-            if (material.hasFlags(MaterialFlags.GENERATE_PLATE))
+            if (material.hasFlag(MaterialFlags.GENERATE_PLATE))
             {
                 val plateStack = OreDictUnifier.get(OrePrefix.plate, material)
                 if (!(plateStack as? ItemStack)!!.isEmpty)
                 {
                     // Plastic blockX -> plateX.
-                    if (material.hasFlags(MaterialFlags.NO_SMASHING) && !material.hasProperty(PropertyKey.GEM))
+                    if (material.hasFlag(MaterialFlags.NO_SMASHING) && !material.hasProperty(PropertyKey.GEM))
                     {
                         GTLiteRecipeMaps.SLICER_RECIPES.recipeBuilder()
                             .notConsumable(SLICER_BLADE_OCTAGONAL)
