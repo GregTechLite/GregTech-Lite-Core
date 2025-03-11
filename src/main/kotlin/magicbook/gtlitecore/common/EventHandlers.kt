@@ -8,6 +8,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues
+import magicbook.gtlitecore.common.item.GTLiteToolItems
 import magicbook.gtlitecore.loader.recipe.RecipeManager
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 import magicbook.gtlitecore.loader.recipe.handler.RecipeHandlers
@@ -30,6 +31,8 @@ class EventHandlers
         GTLiteOrePrefix.setOrePrefixInfos()
         GTLiteMaterials.setMaterialProperties()
         GTLiteMaterials.setMaterialFlags()
+        GTLiteToolItems.registerTools()
+        GTLiteToolItems.addToolSymbols()
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

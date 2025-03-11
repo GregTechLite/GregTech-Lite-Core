@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "gtlitecore:items/void",
+    "layer1": "gtlitecore:items/tools/rolling_pin"
+  }
+}

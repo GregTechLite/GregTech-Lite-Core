@@ -8,6 +8,11 @@ metaitem.shape.slicer_blade.stripes.tooltip=用来以条状切分材料
 metaitem.shape.slicer_blade.octagonal.name=切片机刀片（八等分）
 metaitem.shape.slicer_blade.octagonal.tooltip=用来以八等分切分材料
 
+# Tools
+item.gt.tool.rolling_pin.name=%s擀面杖
+
+gt.tool.class.rolling_pin=擀面杖
+
 # Recipe Maps
 recipemap.polisher.name=抛光机
 recipemap.slicer.name=切片机

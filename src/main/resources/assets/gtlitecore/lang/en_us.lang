@@ -8,6 +8,11 @@ metaitem.shape.slicer_blade.stripes.tooltip=Slicer Blade for making stripes
 metaitem.shape.slicer_blade.octagonal.name=Slicer Blade (Octagonal)
 metaitem.shape.slicer_blade.octagonal.tooltip=Slicer Blade for slicing octagonal
 
+# Tools
+item.gt.tool.rolling_pin.name=%s Rolling Pin
+
+gt.tool.class.rolling_pin=Rolling Pin
+
 # Recipe Maps
 recipemap.polisher.name=Polisher
 recipemap.slicer.name=Slicer
