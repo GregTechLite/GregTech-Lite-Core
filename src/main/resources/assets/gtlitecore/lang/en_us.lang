@@ -237,6 +237,15 @@ gtlitecore.material.muscovite=Muscovite
 gtlitecore.material.clinochlore=Clinochlore
 gtlitecore.material.albite=Albite
 gtlitecore.material.fluorite=Fluorite
+gtlitecore.material.anorthite=Anorthite
+gtlitecore.material.oligoclase=Oligoclase
+gtlitecore.material.labradorite=Labradorite
+gtlitecore.material.bytownite=Bytownite
+gtlitecore.material.tenorite=Tenorite
+gtlitecore.material.cuprite=Cuprite
+gtlitecore.material.wollastonite=Wollastonite
+gtlitecore.material.fluorapatite=Fluorapatite
+gtlitecore.material.kaolinite=Kaolinite
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -245,3 +254,21 @@ gtlitecore.material.blue_schist=Blue Schist
 gtlitecore.material.kimberlite=Kimberlite
 gtlitecore.material.slate=Slate
 gtlitecore.material.shale=Shale
+
+# Veins
+gtlitecore.veins.ore.limestone_sphere=Limestone Sphere
+gtlitecore.veins.ore.komatiite_sphere=Komatiite Sphere
+gtlitecore.veins.ore.green_schist_sphere=Green Schist Sphere
+gtlitecore.veins.ore.blue_schist_sphere=Blue Schist Sphere
+gtlitecore.veins.ore.kimberlite_sphere=Kimberlite Sphere
+gtlitecore.veins.ore.quartzite_sphere=Quartzite Sphere
+gtlitecore.veins.ore.slate_sphere=Slate Sphere
+gtlitecore.veins.ore.shale_sphere=Shale Sphere
+
+gtlitecore.veins.ore.feldspar=Feldspar Vein
+gtlitecore.veins.ore.tanzanite=Tanzanite Vein
+gtlitecore.veins.ore.tenorite=Tenorite Vein
+gtlitecore.veins.ore.dolomite=Dolomite Vein
+gtlitecore.veins.ore.olivine_vein_2=Forsterite Vein
+gtlitecore.veins.ore.kaolinite=Kaolinite Vein
+gtlitecore.veins.ore.fluorite=Fluorite Vein

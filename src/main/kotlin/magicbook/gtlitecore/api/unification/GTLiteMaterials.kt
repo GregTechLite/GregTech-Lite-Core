@@ -33,6 +33,7 @@ import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
@@ -68,7 +69,11 @@ import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
+import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
+import gregtech.api.unification.material.info.MaterialIconSet.RUBY
+import gregtech.api.unification.material.properties.OreProperty
+import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -188,6 +193,97 @@ class GTLiteMaterials
             .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
             .build()
 
+        // 2011 Anorthite
+        @JvmField
+        val Anorthite: Material = Material.Builder(2011, gtliteId("anorthite"))
+            .gem()
+            .ore()
+            .color(0x595853).iconSet(CERTUS)
+            .components(Calcium, 1, Aluminium, 2, Silicon, 2, Oxygen, 8)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .build()
+
+        // 2012 Oligoclase
+        @JvmField
+        val Oligoclase: Material = Material.Builder(2012, gtliteId("oligoclase"))
+            .gem()
+            .ore()
+            .color(0xC4A997).iconSet(CERTUS)
+            .components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .build()
+
+        // 2013 Labradorite
+        @JvmField
+        val Labradorite: Material = Material.Builder(2013, gtliteId("labradorite"))
+            .gem()
+            .ore()
+            .color(0x5C7181).iconSet(RUBY)
+            .components(Albite, 2, Anorthite, 3)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .build()
+
+        // 2014 Bytownite
+        @JvmField
+        val Bytownite: Material = Material.Builder(2014, gtliteId("bytownite"))
+            .gem()
+            .ore()
+            .color(0xC99C67).iconSet(LAPIS)
+            .components(Albite, 1, Anorthite, 4)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .build()
+
+        // 2015 Tenorite
+        @JvmField
+        val Tenorite: Material = Material.Builder(2015, gtliteId("tenorite"))
+            .dust()
+            .ore()
+            .color(0x443744).iconSet(DULL)
+            .components(Copper, 1, Oxygen, 1)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+
+        // 2016 Cuprite
+        @JvmField
+        val Cuprite: Material = Material.Builder(2016, gtliteId("cuprite"))
+            .dust()
+            .ore()
+            .color(0x99292E).iconSet(DULL)
+            .components(Copper, 2, Oxygen, 1)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+
+        // 2017 Wollastonite
+        @JvmField
+        val Wollastonite: Material = Material.Builder(2017, gtliteId("wollastonite"))
+            .dust()
+            .ore()
+            .color(0xDFDFDF).iconSet(ROUGH)
+            .components(Calcium, 1, Silicon, 1, Oxygen, 3)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+
+        // 2018 Fluorapatite
+        @JvmField
+        val Fluorapatite: Material = Material.Builder(2018, gtliteId("fluorapatite"))
+            .gem()
+            .ore()
+            .color(0x4FB3D8).iconSet(QUARTZ)
+            .components(Calcium, 5, Phosphate, 3, Fluorine, 1)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING, HIGH_SIFTER_OUTPUT, GENERATE_LENS)
+            .build()
+            .setFormula("Ca5(PO4)3F", true)
+
+        // 2019 Kaolinite
+        @JvmField
+        val Kaolinite: Material = Material.Builder(2019, gtliteId("kaolinite"))
+            .dust()
+            .ore()
+            .color(0xDBCAC6).iconSet(DULL)
+            .components(Aluminium, 2, Silicon, 2, Hydrogen, 4, Oxygen, 9)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -273,7 +369,10 @@ class GTLiteMaterials
 
         fun setMaterialProperties()
         {
-
+            // Let andradite can generate in world natural.
+            Andradite.setProperty(PropertyKey.ORE, OreProperty())
+            val oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Andradite, Andradite, Calcium)
         }
 
         fun setMaterialFlags()

@@ -237,6 +237,15 @@ gtlitecore.material.muscovite=白云母
 gtlitecore.material.clinochlore=斜绿泥石
 gtlitecore.material.albite=钠长石
 gtlitecore.material.fluorite=氟石
+gtlitecore.material.anorthite=钙长石
+gtlitecore.material.oligoclase=奥长石
+gtlitecore.material.labradorite=拉长石
+gtlitecore.material.bytownite=培长石
+gtlitecore.material.tenorite=黑铜矿
+gtlitecore.material.cuprite=赤铜矿
+gtlitecore.material.wollastonite=硅灰石
+gtlitecore.material.fluorapatite=氟磷灰石
+gtlitecore.material.kaolinite=高岭石
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
@@ -245,3 +254,21 @@ gtlitecore.material.blue_schist=蓝片岩
 gtlitecore.material.kimberlite=金伯利岩
 gtlitecore.material.slate=板岩
 gtlitecore.material.shale=页岩
+
+# Veins
+gtlitecore.veins.ore.limestone_sphere=石灰岩球
+gtlitecore.veins.ore.komatiite_sphere=科马提岩球
+gtlitecore.veins.ore.green_schist_sphere=绿片岩球
+gtlitecore.veins.ore.blue_schist_sphere=蓝片岩球
+gtlitecore.veins.ore.kimberlite_sphere=金伯利岩球
+gtlitecore.veins.ore.quartzite_sphere=石英岩球
+gtlitecore.veins.ore.slate_sphere=板岩球
+gtlitecore.veins.ore.shale_sphere=页岩球
+
+gtlitecore.veins.ore.feldspar=长石矿脉
+gtlitecore.veins.ore.tanzanite=坦桑石矿脉
+gtlitecore.veins.ore.tenorite=黑铜矿脉
+gtlitecore.veins.ore.dolomite=白云石矿脉
+gtlitecore.veins.ore.olivine_2=镁橄榄石矿脉
+gtlitecore.veins.ore.kaolinite=高岭石矿脉
+gtlitecore.veins.ore.fluorite=氟石矿脉
