@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all"
+  },
+  "variants": {
+    "variant": {
+      "limestone": {
+        "textures": {
+          "all": "gregtech:blocks/stones/limestone_polished"
+        }
+      },
+      "komatiite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/komatiite_polished"
+        }
+      },
+      "green_schist": {
+        "textures": {
+          "all": "gregtech:blocks/stones/green_schist_polished"
+        }
+      },
+      "blue_schist": {
+        "textures": {
+          "all": "gregtech:blocks/stones/blue_schist_polished"
+        }
+      },
+      "kimberlite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/kimberlite_polished"
+        }
+      },
+      "quartzite": {
+        "textures": {
+          "all": "gregtech:blocks/stones/quartzite_polished"
+        }
+      },
+      "slate": {
+        "textures": {
+          "all": "gregtech:blocks/stones/slate_polished"
+        }
+      },
+      "shale": {
+        "textures": {
+          "all": "gregtech:blocks/stones/shale_polished"
+        }
+      }
+    }
+  }
+}

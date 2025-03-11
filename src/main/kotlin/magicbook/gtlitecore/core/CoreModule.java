@@ -3,11 +3,13 @@ package magicbook.gtlitecore.core;
 import lombok.NoArgsConstructor;
 import magicbook.gtlitecore.api.module.IModule;
 import magicbook.gtlitecore.api.module.Module;
+import magicbook.gtlitecore.api.unification.ore.GTLiteStoneTypes;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.CommonProxy;
 import magicbook.gtlitecore.common.EventHandlers;
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
-import magicbook.gtlitecore.common.metatileentity.MetaTileEntityManager;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.module.GTLiteModules;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -48,8 +50,10 @@ public class CoreModule implements IModule
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
+        GTLiteStoneTypes.init();
         GTLiteMetaItems.init();
-        MetaTileEntityManager.init();
+        GTLiteMetaBlocks.init();
+        GTLiteMetaTileEntities.init();
         proxy.preLoad();
     }
 

@@ -11,6 +11,7 @@ import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.ConfigHolder
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -29,6 +30,27 @@ class OreRecipeHandler
             // from new recipe handler container.
             OrePrefix.crushedPurified.addProcessingHandler(PropertyKey.ORE, this::processCrushedPurified)
             // ===========================================================================================
+            if (ConfigHolder.worldgen.allUniqueStoneTypes)
+            {
+                GTLiteOrePrefix.oreLimestone.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreKomatiite.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreGreenSchist.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreBlueSchist.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreKimberlite.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                // TODO Do we need to change the output prefix of Quartzite?
+                //      For now, the secondary outputs of recipes are Quartzite gem.
+                GTLiteOrePrefix.oreQuartzite.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreSlate.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+                GTLiteOrePrefix.oreShale.addProcessingHandler(PropertyKey.ORE,
+                    gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
+            }
         }
 
         private fun processCrushedPurified(purifiedPrefix: OrePrefix, material: Material, property: OreProperty)

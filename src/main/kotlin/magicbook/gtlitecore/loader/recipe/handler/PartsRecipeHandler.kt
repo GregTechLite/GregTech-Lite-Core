@@ -24,6 +24,7 @@ import gregtech.api.util.DyeUtil
 import gregtech.api.util.GTUtility
 import gregtech.common.ConfigHolder
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -242,7 +243,18 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens.name() + material.toCamelCaseString())
                 }
                 // Addition gem colored lens in gtlitecore.
-                // ...
+                GTLiteMaterials.Tanzanite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Purple)
+                }
+                GTLiteMaterials.Albite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Pink)
+                }
+                GTLiteMaterials.Fluorite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Green)
+                }
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.
                     val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)

@@ -2,8 +2,8 @@ package magicbook.gtlitecore.loader.recipe
 
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
-import magicbook.gtlitecore.common.metatileentity.MetaTileEntityManager.Companion.POLISHER
-import magicbook.gtlitecore.common.metatileentity.MetaTileEntityManager.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 
 class MachineRecipeLoader

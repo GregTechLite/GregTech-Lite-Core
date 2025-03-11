@@ -1,4 +1,123 @@
 # Blocks
+tile.stone_smooth.limestone.name=Limestone
+tile.stone_cobble.limestone.name=Limestone Cobblestone
+tile.stone_cobble_mossy.limestone.name=Mossy Limestone Cobblestone
+tile.stone_polished.limestone.name=Polished Limestone
+tile.stone_bricks.limestone.name=Limestone Bricks
+tile.stone_bricks_cracked.limestone.name=Cracked Limestone Bricks
+tile.stone_bricks_mossy.limestone.name=Mossy Limestone Bricks
+tile.stone_chiseled.limestone.name=Chiseled Limestone
+tile.stone_tiled.limestone.name=Limestone Tiles
+tile.stone_tiled_small.limestone.name=Small Limestone Tiles
+tile.stone_bricks_small.limestone.name=Small Limestone Bricks
+tile.stone_bricks_windmill_a.limestone.name=Limestone Windmill Tiles A
+tile.stone_bricks_windmill_b.limestone.name=Limestone Windmill Tiles B
+tile.stone_bricks_square.limestone.name=Square Limestone Bricks
+
+tile.stone_smooth.komatiite.name=Komatiite
+tile.stone_cobble.komatiite.name=Komatiite Cobblestone
+tile.stone_cobble_mossy.komatiite.name=Mossy Komatiite Cobblestone
+tile.stone_polished.komatiite.name=Polished Komatiite
+tile.stone_bricks.komatiite.name=Komatiite Bricks
+tile.stone_bricks_cracked.komatiite.name=Cracked Komatiite Bricks
+tile.stone_bricks_mossy.komatiite.name=Mossy Komatiite Bricks
+tile.stone_chiseled.komatiite.name=Chiseled Komatiite
+tile.stone_tiled.komatiite.name=Komatiite Tiles
+tile.stone_tiled_small.komatiite.name=Small Komatiite Tiles
+tile.stone_bricks_small.komatiite.name=Small Komatiite Bricks
+tile.stone_bricks_windmill_a.komatiite.name=Komatiite Windmill Tiles A
+tile.stone_bricks_windmill_b.komatiite.name=Komatiite Windmill Tiles B
+tile.stone_bricks_square.komatiite.name=Square Komatiite Bricks
+
+tile.stone_smooth.green_schist.name=Green Schist
+tile.stone_cobble.green_schist.name=Green Schist Cobblestone
+tile.stone_cobble_mossy.green_schist.name=Mossy Green Schist Cobblestone
+tile.stone_polished.green_schist.name=Polished Green Schist
+tile.stone_bricks.green_schist.name=Green Schist Bricks
+tile.stone_bricks_cracked.green_schist.name=Cracked Green Schist Bricks
+tile.stone_bricks_mossy.green_schist.name=Mossy Green Schist Bricks
+tile.stone_chiseled.green_schist.name=Chiseled Green Schist
+tile.stone_tiled.green_schist.name=Green Schist Tiles
+tile.stone_tiled_small.green_schist.name=Small Green Schist Tiles
+tile.stone_bricks_small.green_schist.name=Small Green Schist Bricks
+tile.stone_bricks_windmill_a.green_schist.name=Green Schist Windmill Tiles A
+tile.stone_bricks_windmill_b.green_schist.name=Green Schist Windmill Tiles B
+tile.stone_bricks_square.green_schist.name=Square Green Schist Bricks
+
+tile.stone_smooth.blue_schist.name=Blue Schist
+tile.stone_cobble.blue_schist.name=Blue Schist Cobblestone
+tile.stone_cobble_mossy.blue_schist.name=Mossy Blue Schist Cobblestone
+tile.stone_polished.blue_schist.name=Polished Blue Schist
+tile.stone_bricks.blue_schist.name=Blue Schist Bricks
+tile.stone_bricks_cracked.blue_schist.name=Cracked Blue Schist Bricks
+tile.stone_bricks_mossy.blue_schist.name=Mossy Blue Schist Bricks
+tile.stone_chiseled.blue_schist.name=Chiseled Blue Schist
+tile.stone_tiled.blue_schist.name=Blue Schist Tiles
+tile.stone_tiled_small.blue_schist.name=Small Blue Schist Tiles
+tile.stone_bricks_small.blue_schist.name=Small Blue Schist Bricks
+tile.stone_bricks_windmill_a.blue_schist.name=Blue Schist Windmill Tiles A
+tile.stone_bricks_windmill_b.blue_schist.name=Blue Schist Windmill Tiles B
+tile.stone_bricks_square.blue_schist.name=Square Blue Schist Bricks
+
+tile.stone_smooth.kimberlite.name=Kimberlite
+tile.stone_cobble.kimberlite.name=Kimberlite Cobblestone
+tile.stone_cobble_mossy.kimberlite.name=Mossy Kimberlite Cobblestone
+tile.stone_polished.kimberlite.name=Polished Kimberlite
+tile.stone_bricks.kimberlite.name=Kimberlite Bricks
+tile.stone_bricks_cracked.kimberlite.name=Cracked Kimberlite Bricks
+tile.stone_bricks_mossy.kimberlite.name=Mossy Kimberlite Bricks
+tile.stone_chiseled.kimberlite.name=Chiseled Kimberlite
+tile.stone_tiled.kimberlite.name=Kimberlite Tiles
+tile.stone_tiled_small.kimberlite.name=Small Kimberlite Tiles
+tile.stone_bricks_small.kimberlite.name=Small Kimberlite Bricks
+tile.stone_bricks_windmill_a.kimberlite.name=Kimberlite Windmill Tiles A
+tile.stone_bricks_windmill_b.kimberlite.name=Kimberlite Windmill Tiles B
+tile.stone_bricks_square.kimberlite.name=Square Kimberlite Bricks
+
+tile.stone_smooth.quartzite.name=Quartzite
+tile.stone_cobble.quartzite.name=Quartzite Cobblestone
+tile.stone_cobble_mossy.quartzite.name=Mossy Quartzite Cobblestone
+tile.stone_polished.quartzite.name=Polished Quartzite
+tile.stone_bricks.quartzite.name=Quartzite Bricks
+tile.stone_bricks_cracked.quartzite.name=Cracked Quartzite Bricks
+tile.stone_bricks_mossy.quartzite.name=Mossy Quartzite Bricks
+tile.stone_chiseled.quartzite.name=Chiseled Quartzite
+tile.stone_tiled.quartzite.name=Quartzite Tiles
+tile.stone_tiled_small.quartzite.name=Small Quartzite Tiles
+tile.stone_bricks_small.quartzite.name=Small Quartzite Bricks
+tile.stone_bricks_windmill_a.quartzite.name=Quartzite Windmill Tiles A
+tile.stone_bricks_windmill_b.quartzite.name=Quartzite Windmill Tiles B
+tile.stone_bricks_square.quartzite.name=Square Quartzite Bricks
+
+tile.stone_smooth.slate.name=Slate
+tile.stone_cobble.slate.name=Slate Cobblestone
+tile.stone_cobble_mossy.slate.name=Mossy Slate Cobblestone
+tile.stone_polished.slate.name=Polished Slate
+tile.stone_bricks.slate.name=Slate Bricks
+tile.stone_bricks_cracked.slate.name=Cracked Slate Bricks
+tile.stone_bricks_mossy.slate.name=Mossy Slate Bricks
+tile.stone_chiseled.slate.name=Chiseled Slate
+tile.stone_tiled.slate.name=Slate Tiles
+tile.stone_tiled_small.slate.name=Small Slate Tiles
+tile.stone_bricks_small.slate.name=Small Slate Bricks
+tile.stone_bricks_windmill_a.slate.name=Slate Windmill Tiles A
+tile.stone_bricks_windmill_b.slate.name=Slate Windmill Tiles B
+tile.stone_bricks_square.slate.name=Square Slate Bricks
+
+tile.stone_smooth.shale.name=Shale
+tile.stone_cobble.shale.name=Shale Cobblestone
+tile.stone_cobble_mossy.shale.name=Mossy Shale Cobble
+tile.stone_polished.shale.name=Polished Shale
+tile.stone_bricks.shale.name=Shale Bricks
+tile.stone_bricks_cracked.shale.name=Cracked Shale Bricks
+tile.stone_bricks_mossy.shale.name=Mossy Shale Bricks
+tile.stone_chiseled.shale.name=Chiseled Shale
+tile.stone_tiled.shale.name=Shale Tiles
+tile.stone_tiled_small.shale.name=Small Shale Tiles
+tile.stone_bricks_small.shale.name=Small Shale Bricks
+tile.stone_bricks_windmill_a.shale.name=Shale Windmill Tiles A
+tile.stone_bricks_windmill_b.shale.name=Shale Windmill Tiles B
+tile.stone_bricks_square.shale.name=Square Shale Bricks
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
@@ -98,3 +217,31 @@ gtlitecore.machine.slicer.opv.tooltip=Sheet Transformer
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
+item.material.oreprefix.oreLimestone=Limestone %s Ore
+item.material.oreprefix.oreKomatiite=Komatiite %s Ore
+item.material.oreprefix.oreGreenSchist=Green Schist %s Ore
+item.material.oreprefix.oreBlueSchist=Blue Schist %s Ore
+item.material.oreprefix.oreKimberlite=Kimberlite %s Ore
+item.material.oreprefix.oreQuartzite=Quartzite %s Ore
+item.material.oreprefix.oreSlate=Slate %s Ore
+item.material.oreprefix.oreShale=Shale %s Ore
+
+# Materials
+gtlitecore.material.dolomite=Dolomite
+gtlitecore.material.tanzanite=Tanzanite
+gtlitecore.material.azurite=Azurite
+gtlitecore.material.forsterite=Forsterite
+gtlitecore.material.augite=Augite
+gtlitecore.material.lizardite=Lizardite
+gtlitecore.material.muscovite=Muscovite
+gtlitecore.material.clinochlore=Clinochlore
+gtlitecore.material.albite=Albite
+gtlitecore.material.fluorite=Fluorite
+
+gtlitecore.material.limestone=Limestone
+gtlitecore.material.komatiite=Komatiite
+gtlitecore.material.green_schist=Green Schist
+gtlitecore.material.blue_schist=Blue Schist
+gtlitecore.material.kimberlite=Kimberlite
+gtlitecore.material.slate=Slate
+gtlitecore.material.shale=Shale

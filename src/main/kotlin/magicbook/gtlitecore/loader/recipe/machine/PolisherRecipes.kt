@@ -2,7 +2,6 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.V
-import gregtech.api.GTValues.VA
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
@@ -16,10 +15,18 @@ import gregtech.api.unification.material.Materials.Granite
 import gregtech.api.unification.material.Materials.GraniteBlack
 import gregtech.api.unification.material.Materials.GraniteRed
 import gregtech.api.unification.material.Materials.Marble
+import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.POLISHER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlueSchist
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSchist
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kimberlite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Komatiite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Limestone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
@@ -119,6 +126,78 @@ class PolisherRecipes
                 .inputs(Mods.GregTech.getMetaItem("stone_smooth", 5))
                 .outputs(Mods.GregTech.getMetaItem("stone_polished", 5))
                 .output(dust, Concrete, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Limestone.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 0, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 0, 1))
+                .output(dust, Limestone, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Komatiite.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 1, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 1, 1))
+                .output(dust, Komatiite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Green Schist.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 2, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 2, 1))
+                .output(dust, GreenSchist, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Blue Schist.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 3, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 3, 1))
+                .output(dust, BlueSchist, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Kimberlite.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 4, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 4, 1))
+                .output(dust, Kimberlite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Quartzite.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 5, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 5, 1))
+                .output(dust, Quartzite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Slate.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 6, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 6, 1))
+                .output(dust, Slate, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Polished Shale.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTechLiteCore.getMetaItem("stone_smooth", 7, 1))
+                .outputs(Mods.GregTechLiteCore.getMetaItem("stone_polished", 7, 1))
+                .output(dust, Shale, 2)
                 .EUt(V[ULV])
                 .duration(1 * SECOND + 4 * TICK)
                 .buildAndRegister()

@@ -1,4 +1,123 @@
 # Blocks
+tile.stone_smooth.limestone.name=石灰岩
+tile.stone_cobble.limestone.name=石灰岩圆石
+tile.stone_cobble_mossy.limestone.name=覆苔石灰岩圆石
+tile.stone_polished.limestone.name=磨制石灰岩
+tile.stone_bricks.limestone.name=石灰岩砖
+tile.stone_bricks_cracked.limestone.name=裂纹石灰岩砖
+tile.stone_bricks_mossy.limestone.name=覆苔石灰岩砖
+tile.stone_chiseled.limestone.name=錾制石灰岩
+tile.stone_tiled.limestone.name=石灰岩瓦
+tile.stone_tiled_small.limestone.name=石灰岩小片瓦
+tile.stone_bricks_small.limestone.name=石灰岩小块砖
+tile.stone_bricks_windmill_a.limestone.name=石灰岩风车形瓦 A
+tile.stone_bricks_windmill_b.limestone.name=石灰岩风车形瓦 B
+tile.stone_bricks_square.limestone.name=石灰岩方形砖
+
+tile.stone_smooth.komatiite.name=科马提岩
+tile.stone_cobble.komatiite.name=科马提岩圆石
+tile.stone_cobble_mossy.komatiite.name=覆苔科马提岩圆石
+tile.stone_polished.komatiite.name=磨制科马提岩
+tile.stone_bricks.komatiite.name=科马提岩砖
+tile.stone_bricks_cracked.komatiite.name=裂纹科马提岩砖
+tile.stone_bricks_mossy.komatiite.name=覆苔科马提岩砖
+tile.stone_chiseled.komatiite.name=錾制科马提岩
+tile.stone_tiled.komatiite.name=科马提岩瓦
+tile.stone_tiled_small.komatiite.name=科马提岩小片瓦
+tile.stone_bricks_small.komatiite.name=科马提岩小块砖
+tile.stone_bricks_windmill_a.komatiite.name=科马提岩风车形瓦 A
+tile.stone_bricks_windmill_b.komatiite.name=科马提岩风车形瓦 B
+tile.stone_bricks_square.komatiite.name=科马提岩方形砖
+
+tile.stone_smooth.green_schist.name=绿片岩
+tile.stone_cobble.green_schist.name=绿片岩圆石
+tile.stone_cobble_mossy.green_schist.name=覆苔绿片岩圆石
+tile.stone_polished.green_schist.name=磨制绿片岩
+tile.stone_bricks.green_schist.name=绿片岩砖
+tile.stone_bricks_cracked.green_schist.name=裂纹绿片岩砖
+tile.stone_bricks_mossy.green_schist.name=覆苔绿片岩砖
+tile.stone_chiseled.green_schist.name=錾制绿片岩砖
+tile.stone_tiled.green_schist.name=绿片岩瓦
+tile.stone_tiled_small.green_schist.name=绿片岩小片瓦
+tile.stone_bricks_small.green_schist.name=绿片岩小块砖
+tile.stone_bricks_windmill_a.green_schist.name=绿片岩风车形瓦 A
+tile.stone_bricks_windmill_b.green_schist.name=绿片岩风车形瓦 B
+tile.stone_bricks_square.green_schist.name=绿片岩方形砖
+
+tile.stone_smooth.blue_schist.name=蓝片岩
+tile.stone_cobble.blue_schist.name=蓝片岩圆石
+tile.stone_cobble_mossy.blue_schist.name=覆苔蓝片岩圆石
+tile.stone_polished.blue_schist.name=磨制蓝片岩
+tile.stone_bricks.blue_schist.name=蓝片岩砖
+tile.stone_bricks_cracked.blue_schist.name=裂纹蓝片岩砖
+tile.stone_bricks_mossy.blue_schist.name=覆苔蓝片岩砖
+tile.stone_chiseled.blue_schist.name=錾制蓝片岩砖
+tile.stone_tiled.blue_schist.name=蓝片岩瓦
+tile.stone_tiled_small.blue_schist.name=蓝片岩小片瓦
+tile.stone_bricks_small.blue_schist.name=蓝片岩小块砖
+tile.stone_bricks_windmill_a.blue_schist.name=蓝片岩风车形瓦 A
+tile.stone_bricks_windmill_b.blue_schist.name=蓝片岩风车形瓦 B
+tile.stone_bricks_square.blue_schist.name=蓝片岩方形砖
+
+tile.stone_smooth.kimberlite.name=金伯利岩
+tile.stone_cobble.kimberlite.name=金伯利岩圆石
+tile.stone_cobble_mossy.kimberlite.name=覆苔金伯利岩圆石
+tile.stone_polished.kimberlite.name=磨制金伯利岩
+tile.stone_bricks.kimberlite.name=金伯利岩砖
+tile.stone_bricks_cracked.kimberlite.name=裂纹金伯利岩砖
+tile.stone_bricks_mossy.kimberlite.name=覆苔金伯利岩砖
+tile.stone_chiseled.kimberlite.name=錾制金伯利岩
+tile.stone_tiled.kimberlite.name=金伯利岩瓦
+tile.stone_tiled_small.kimberlite.name=金伯利岩小片瓦
+tile.stone_bricks_small.kimberlite.name=金伯利岩小块砖
+tile.stone_bricks_windmill_a.kimberlite.name=金伯利岩风车形瓦 A
+tile.stone_bricks_windmill_b.kimberlite.name=金伯利岩风车形瓦 B
+tile.stone_bricks_square.kimberlite.name=金伯利岩方形砖
+
+tile.stone_smooth.quartzite.name=石英岩
+tile.stone_cobble.quartzite.name=石英岩圆石
+tile.stone_cobble_mossy.quartzite.name=覆苔石英岩圆石
+tile.stone_polished.quartzite.name=磨制石英岩
+tile.stone_bricks.quartzite.name=石英岩砖
+tile.stone_bricks_cracked.quartzite.name=裂纹石英岩砖
+tile.stone_bricks_mossy.quartzite.name=覆苔石英岩砖
+tile.stone_chiseled.quartzite.name=錾制石英岩
+tile.stone_tiled.quartzite.name=石英岩瓦
+tile.stone_tiled_small.quartzite.name=石英岩小片瓦
+tile.stone_bricks_small.quartzite.name=石英岩小块砖
+tile.stone_bricks_windmill_a.quartzite.name=石英岩风车形瓦 A
+tile.stone_bricks_windmill_b.quartzite.name=石英岩风车形瓦 B
+tile.stone_bricks_square.quartzite.name=石英岩方形砖
+
+tile.stone_smooth.slate.name=板岩
+tile.stone_cobble.slate.name=板岩圆石
+tile.stone_cobble_mossy.slate.name=覆苔板岩圆石
+tile.stone_polished.slate.name=磨制板岩
+tile.stone_bricks.slate.name=板岩砖
+tile.stone_bricks_cracked.slate.name=裂纹板岩砖
+tile.stone_bricks_mossy.slate.name=覆苔板岩砖
+tile.stone_chiseled.slate.name=錾制板岩
+tile.stone_tiled.slate.name=板岩瓦
+tile.stone_tiled_small.slate.name=板岩小片瓦
+tile.stone_bricks_small.slate.name=板岩小块砖
+tile.stone_bricks_windmill_a.slate.name=板岩风车形瓦 A
+tile.stone_bricks_windmill_b.slate.name=板岩风车形瓦 B
+tile.stone_bricks_square.slate.name=板岩方形砖
+
+tile.stone_smooth.shale.name=页岩
+tile.stone_cobble.shale.name=页岩圆石
+tile.stone_cobble_mossy.shale.name=覆苔页岩圆石
+tile.stone_polished.shale.name=磨制页岩
+tile.stone_bricks.shale.name=页岩砖
+tile.stone_bricks_cracked.shale.name=裂纹页岩砖
+tile.stone_bricks_mossy.shale.name=覆苔页岩砖
+tile.stone_chiseled.shale.name=錾制页岩
+tile.stone_tiled.shale.name=页岩瓦
+tile.stone_tiled_small.shale.name=页岩小片瓦
+tile.stone_bricks_small.shale.name=页岩小块砖
+tile.stone_bricks_windmill_a.shale.name=页岩风车形瓦 A
+tile.stone_bricks_windmill_b.shale.name=页岩风车形瓦 B
+tile.stone_bricks_square.shale.name=页岩方形砖
 
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
@@ -98,3 +217,31 @@ gtlitecore.machine.slicer.opv.tooltip=片材转换器
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
+item.material.oreprefix.oreLimestone=石灰岩%s矿石
+item.material.oreprefix.oreKomatiite=科马提岩%s矿石
+item.material.oreprefix.oreGreenSchist=绿片岩%s矿石
+item.material.oreprefix.oreBlueSchist=蓝片岩%s矿石
+item.material.oreprefix.oreKimberlite=金伯利岩%s矿石
+item.material.oreprefix.oreQuartzite=石英岩%s矿石
+item.material.oreprefix.oreSlate=板岩%s矿石
+item.material.oreprefix.oreShale=页岩%s矿石
+
+# Materials
+gtlitecore.material.dolomite=白云石
+gtlitecore.material.tanzanite=坦桑石
+gtlitecore.material.azurite=蓝铜矿
+gtlitecore.material.forsterite=镁橄榄石
+gtlitecore.material.augite=辉石
+gtlitecore.material.lizardite=利蛇纹石
+gtlitecore.material.muscovite=白云母
+gtlitecore.material.clinochlore=斜绿泥石
+gtlitecore.material.albite=钠长石
+gtlitecore.material.fluorite=氟石
+
+gtlitecore.material.limestone=石灰岩
+gtlitecore.material.komatiite=科马提岩
+gtlitecore.material.green_schist=绿片岩
+gtlitecore.material.blue_schist=蓝片岩
+gtlitecore.material.kimberlite=金伯利岩
+gtlitecore.material.slate=板岩
+gtlitecore.material.shale=页岩

@@ -5,11 +5,10 @@ import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.util.GTUtility
 import gregtech.common.metatileentities.MetaTileEntities
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
-import magicbook.gtlitecore.api.utils.GTLiteLog
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.GTLiteTextures
 
-class MetaTileEntityManager
+class GTLiteMetaTileEntities
 {
 
     companion object
