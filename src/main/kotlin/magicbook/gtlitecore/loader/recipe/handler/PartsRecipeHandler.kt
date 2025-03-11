@@ -1,8 +1,10 @@
 package magicbook.gtlitecore.loader.recipe.handler
 
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
@@ -14,6 +16,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.GemProperty
+import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.stack.UnificationEntry
@@ -23,6 +26,19 @@ import gregtech.common.ConfigHolder
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_ROUND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_TURBINE_BLADE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_BOLT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_DRILL_HEAD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_RING
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_ROD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_ROD_LONG
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_ROUND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_SCREW
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TURBINE_BLADE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
 import net.minecraft.item.ItemStack
@@ -42,6 +58,13 @@ class PartsRecipeHandler
             OrePrefix.stick.addProcessingHandler(PropertyKey.DUST, this::processStick)
             OrePrefix.lens.addProcessingHandler(PropertyKey.GEM, this::processLens)
             // ===========================================================================================
+            OrePrefix.stickLong.addProcessingHandler(PropertyKey.DUST, this::processStickLong)
+            OrePrefix.bolt.addProcessingHandler(PropertyKey.DUST, this::processBolt)
+            OrePrefix.screw.addProcessingHandler(PropertyKey.DUST, this::processScrew)
+            OrePrefix.ring.addProcessingHandler(PropertyKey.DUST, this::processRing)
+            OrePrefix.round.addProcessingHandler(PropertyKey.INGOT, this::processRound)
+            OrePrefix.toolHeadDrill.addProcessingHandler(PropertyKey.INGOT, this::processDrillHead)
+            OrePrefix.turbineBlade.addProcessingHandler(PropertyKey.INGOT, this::processTurbineBlade)
         }
 
         /**
@@ -143,6 +166,18 @@ class PartsRecipeHandler
                         'X', UnificationEntry(OrePrefix.stick, material))
                 }
             }
+
+            // Add fluid solidification recipes to rod via GTLiteMetaItems#SHAPE_MOLD_ROD.
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_ROD)
+                    .fluidInputs(material.getFluid(L / 2))
+                    .output(stickPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                    .duration(7 * SECOND + 5 * TICK)
+                    .buildAndRegister()
+            }
         }
 
         /**
@@ -216,6 +251,171 @@ class PartsRecipeHandler
                 }
             }
         }
+
+        /**
+         * Add fluid solidification processing via [SHAPE_MOLD_ROD_LONG].
+         */
+        private fun processStickLong(stickLongPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_ROD_LONG)
+                    .fluidInputs(material.getFluid(L))
+                    .output(stickLongPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 16 * getVoltageMultiplier(material)), workingTier))
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+        }
+
+        /**
+         * Add fluid solidification processing via [SHAPE_MOLD_BOLT].
+         */
+        private fun processBolt(boltPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_BOLT)
+                    .fluidInputs(material.getFluid(L / 8))
+                    .output(boltPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                    .duration(2 * SECOND + 5 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        /**
+         * Add fluid solidification processing via [SHAPE_MOLD_SCREW].
+         */
+        private fun processScrew(screwPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_SCREW)
+                    .fluidInputs(material.getFluid(L / 8))
+                    .output(screwPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                    .duration(2 * SECOND + 5 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        /**
+         * Add fluid solidification processing via [SHAPE_MOLD_RING].
+         */
+        private fun processRing(ringPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_RING)
+                    .fluidInputs(material.getFluid(L / 4))
+                    .output(ringPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                    .duration(5 * SECOND)
+                    .buildAndRegister()
+            }
+        }
+
+        /**
+         * Add fluid solidification and extruding processing via [SHAPE_MOLD_ROUND]
+         * and [SHAPE_EXTRUDER_ROUND].
+         */
+        private fun processRound(roundPrefix: OrePrefix, material: Material, property: IngotProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_ROUND)
+                    .fluidInputs(material.getFluid(L / 8))
+                    .output(roundPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                    .duration(2 * SECOND + 5 * TICK)
+                    .buildAndRegister()
+            }
+            if (!(OreDictUnifier.get(OrePrefix.ingot, material) as? ItemStack)!!.isEmpty)
+            {
+                RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_EXTRUDER_ROUND)
+                    .input(OrePrefix.ingot, material)
+                    .output(roundPrefix, material, 4)
+                    .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                    .duration(2 * SECOND)
+                    .buildAndRegister()
+            }
+            else // TODO Should there needs a extra checking of dustStack not null?
+            {
+                RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_EXTRUDER_ROUND)
+                    .input(OrePrefix.dust, material)
+                    .output(roundPrefix, material, 4)
+                    .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                    .duration(2 * SECOND)
+                    .buildAndRegister()
+            }
+        }
+
+        /**
+         * Add fluid solidification and extruding processing via [SHAPE_MOLD_DRILL_HEAD]
+         * and [SHAPE_EXTRUDER_DRILL_HEAD].
+         */
+        private fun processDrillHead(drillHeadPrefix: OrePrefix, material: Material, property: IngotProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFlags())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_DRILL_HEAD)
+                    .fluidInputs(material.getFluid(L * 4)) // Cost less material than hand-crafting recipes.
+                    .output(drillHeadPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                    .duration(5 * SECOND)
+                    .buildAndRegister()
+            }
+            RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_EXTRUDER_DRILL_HEAD)
+                .input(OrePrefix.ingot, material, 4) // Cost less material than hand-crafting recipes.
+                .output(drillHeadPrefix, material, 1)
+                .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                .duration(5 * SECOND)
+                .buildAndRegister()
+        }
+
+        /**
+         * Add fluid solidification and extruding processing via [SHAPE_MOLD_TURBINE_BLADE]
+         * and [SHAPE_EXTRUDER_TURBINE_BLADE].
+         */
+        private fun processTurbineBlade(turbineBladePrefix: OrePrefix, material: Material, property: IngotProperty)
+        {
+            val workingTier = material.workingTier
+            if (material.hasFluid())
+            {
+                RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                    .notConsumable(SHAPE_MOLD_TURBINE_BLADE)
+                    .fluidInputs(material.getFluid(L * 6))
+                    .output(turbineBladePrefix, material)
+                    .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 6 * getVoltageMultiplier(material)), workingTier))
+                    .duration(20 * SECOND)
+                    .buildAndRegister()
+            }
+            RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_EXTRUDER_TURBINE_BLADE)
+                .input(OrePrefix.ingot, material, 6)
+                .output(turbineBladePrefix, material)
+                .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                .duration(20 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()
 
     }
 

@@ -1,6 +1,30 @@
 # Blocks
 
 # Items
+metaitem.shape.mold.rod.name=模具（杆）
+metaitem.shape.mold.rod.tooltip=用来制作杆的模具
+metaitem.shape.mold.bolt.name=模具（螺栓）
+metaitem.shape.mold.bolt.tooltip=用来制作螺栓的模具
+metaitem.shape.mold.round.name=模具（滚珠）
+metaitem.shape.mold.round.tooltip=用来制作滚珠的模具
+metaitem.shape.mold.screw.name=模具（螺丝）
+metaitem.shape.mold.screw.tooltip=用来制作螺丝的模具
+metaitem.shape.mold.ring.name=模具（环）
+metaitem.shape.mold.ring.tooltip=用来制作环的模具
+metaitem.shape.mold.rod_long.name=模具（长杆）
+metaitem.shape.mold.rod_long.tooltip=用来制作长杆的模具
+metaitem.shape.mold.turbine_blade.name=模具（涡轮扇叶）
+metaitem.shape.mold.turbine_blade.tooltip=用来制作涡轮扇叶的模具
+metaitem.shape.mold.drill_head.name=模具（钻头）
+metaitem.shape.mold.drill_head.tooltip=用来制作钻头的模具
+
+metaitem.shape.extruder.round.name=模头（滚珠）
+metaitem.shape.extruder.round.tooltip=用来制作滚珠的模头
+metaitem.shape.extruder.turbine_blade.name=模头（涡轮扇叶）
+metaitem.shape.extruder.turbine_blade.tooltip=用来制作涡轮扇叶的模头
+metaitem.shape.extruder.drill_head.name=模头（钻头）
+metaitem.shape.extruder.drill_head.tooltip=用来制作钻头的模头
+
 metaitem.shape.slicer_blade.flat.name=切片机刀片（片）
 metaitem.shape.slicer_blade.flat.tooltip=用来以片状切分材料
 metaitem.shape.slicer_blade.stripes.name=切片机刀片（条）

@@ -1,6 +1,30 @@
 # Blocks
 
 # Items
+metaitem.shape.mold.rod.name=Mold (Rod)
+metaitem.shape.mold.rod.tooltip=Mold for making Rods
+metaitem.shape.mold.bolt.name=Mold (Bolt)
+metaitem.shape.mold.bolt.tooltip=Mold for making Bolts.
+metaitem.shape.mold.round.name=Mold (Round)
+metaitem.shape.mold.round.tooltip=Mold for making Rounds.
+metaitem.shape.mold.screw.name=Mold (Screw)
+metaitem.shape.mold.screw.tooltip=Mold for making Screws.
+metaitem.shape.mold.ring.name=Mold (Ring)
+metaitem.shape.mold.ring.tooltip=Mold for making Rings.
+metaitem.shape.mold.rod_long.name=Mold (Long Rod)
+metaitem.shape.mold.rod_long.tooltip=Mold for making Long Rods.
+metaitem.shape.mold.turbine_blade.name=Mold (Turbine Blade)
+metaitem.shape.mold.turbine_blade.tooltip=Mold for making Turbine Blades.
+metaitem.shape.mold.drill_head.name=Mold (Drill Head)
+metaitem.shape.mold.drill_head.tooltip=Mold for making Drill Heads.
+
+metaitem.shape.extruder.round.name=Extruder Shape (Round)
+metaitem.shape.extruder.round.tooltip=Extruder Shape for making Rounds.
+metaitem.shape.extruder.turbine_blade.name=Extruder Shape (Turbine Blade)
+metaitem.shape.extruder.turbine_blade.tooltip=Extruder Shape for making Turbine Blades.
+metaitem.shape.extruder.drill_head.name=Extruder Shape (Drill Head)
+metaitem.shape.extruder.drill_head.tooltip=Extruder Shape for making Drill Heads.
+
 metaitem.shape.slicer_blade.flat.name=Slicer Blade (Flat)
 metaitem.shape.slicer_blade.flat.tooltip=Slicer Blade for making sheet
 metaitem.shape.slicer_blade.stripes.name=Slicer Blade (Stripes)
