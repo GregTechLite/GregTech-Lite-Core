@@ -7,9 +7,11 @@ import gregtech.api.GTValues.M
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.DustProperty
@@ -27,6 +29,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
@@ -34,8 +37,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_O
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.Fluid
-import java.util.ArrayList
-
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class MaterialRecipeHandler
@@ -44,12 +45,25 @@ class MaterialRecipeHandler
     companion object
     {
 
+        private val GEM_ORDER = listOf(OrePrefix.gemChipped, OrePrefix.gemFlawed, OrePrefix.gem,
+            OrePrefix.gemFlawless, OrePrefix.gemExquisite, GTLiteOrePrefix.gemSolitary)
+
         fun init()
         {
             // Callback original registrate of material processing handler and post new processing handler
             // from new recipe handler container.
             OrePrefix.ingot.addProcessingHandler(PropertyKey.INGOT, this::processIngot)
             OrePrefix.block.addProcessingHandler(PropertyKey.DUST, this::processBlock)
+            // Rewrite gem conversions with new gem orders, this is hard dependency with
+            // the new gem quality ore prefix and enabled GregTech settings in modifier.
+            for (i in GEM_ORDER.indices)
+            {
+                val gemPrefix = GEM_ORDER[i]
+                val prevGemPrefix = if (i == 0) null else GEM_ORDER[i - 1]
+                gemPrefix.addProcessingHandler(PropertyKey.GEM) { p, m, _ ->
+                    processGemConversion(p, prevGemPrefix, m)
+                }
+            }
             // ===========================================================================================
         }
 
@@ -329,6 +343,47 @@ class MaterialRecipeHandler
                 }
 
             }
+        }
+
+        /**
+         * Transformed from [gregtech.loaders.recipe.handlers.MaterialRecipeHandler.processGemConversion],
+         * required [magicbook.gtlitecore.mixin.gregtech.MaterialRecipeHandlerMixin.callbackRegistrate].
+         */
+        private fun processGemConversion(gemPrefix: OrePrefix, prevPrefix: OrePrefix?, material: Material)
+        {
+            val materialAmount = gemPrefix.getMaterialAmount(material)
+            val workingTier = material.workingTier
+            val crushedStack = OreDictUnifier.getDust(material, materialAmount)
+
+            if (material.hasFlag(MaterialFlags.MORTAR_GRINDABLE) && workingTier <= HV)
+            {
+                ModHandler.addShapedRecipe(String.format("gem_to_dust_%s_%s", material, gemPrefix), crushedStack,
+                    "X", "m",
+                    'X', UnificationEntry(gemPrefix, material))
+            }
+            val prevStack = if (prevPrefix == null) ItemStack.EMPTY else OreDictUnifier.get(prevPrefix, material, 2)
+            if (!prevStack.isEmpty)
+            {
+                ModHandler.addShapelessRecipe(String.format("gem_to_gem_%s_%s", prevPrefix, material), prevStack,
+                    "h",
+                    UnificationEntry(gemPrefix, material))
+
+                RecipeMaps.CUTTER_RECIPES.recipeBuilder()
+                    .input(gemPrefix, material)
+                    .outputs(prevStack)
+                    .EUt(VH[LV].toLong())
+                    .duration(1 * SECOND)
+                    .buildAndRegister()
+
+                RecipeMaps.LASER_ENGRAVER_RECIPES.recipeBuilder()
+                    .notConsumable(OrePrefix.craftingLens, MarkerMaterials.Color.White)
+                    .inputs(prevStack)
+                    .output(gemPrefix, material)
+                    .EUt(GTUtility.scaleVoltage(VHA[HV].toLong(), workingTier))
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+
         }
 
         private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()

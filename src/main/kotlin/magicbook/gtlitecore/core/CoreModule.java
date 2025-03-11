@@ -42,6 +42,7 @@ public class CoreModule implements IModule
     public void construction(FMLConstructionEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new EventHandlers());
+        GTLiteConfigModifier.init();
     }
 
     @Override

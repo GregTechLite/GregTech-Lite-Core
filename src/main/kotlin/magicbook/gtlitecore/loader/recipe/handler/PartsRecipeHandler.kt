@@ -21,6 +21,7 @@ import gregtech.api.util.DyeUtil
 import gregtech.api.util.GTUtility
 import gregtech.common.ConfigHolder
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
@@ -173,6 +174,18 @@ class PartsRecipeHandler
                     .duration(2 * MINUTE)
                     .buildAndRegister()
             }
+            // gemSolitaryX -> craftingLensX.
+            if (!(OreDictUnifier.get(GTLiteOrePrefix.gemSolitary, material) as? ItemStack)!!.isEmpty)
+            {
+                GTLiteRecipeMaps.POLISHER_RECIPES.recipeBuilder()
+                    .input(GTLiteOrePrefix.gemSolitary, material)
+                    .output(lensPrefix, material, 2)
+                    .output(OrePrefix.dust, material, 4)
+                    .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
+            }
+
             // MarkerMaterials#Color processing.
             val lensStack = OreDictUnifier.get(lensPrefix, material)
             when (material)

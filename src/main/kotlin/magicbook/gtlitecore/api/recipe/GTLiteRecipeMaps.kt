@@ -145,7 +145,10 @@ class GTLiteRecipeMaps
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {
-
+            // (1,6,0,0) -> (1,9,2,2)
+            RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
+            RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
+            RecipeMaps.SIFTER_RECIPES.maxFluidOutputs = 2
         }
 
     }

@@ -66,3 +66,6 @@ gtlitecore.machine.slicer.uxv.name=史诗切片机 IV
 gtlitecore.machine.slicer.uxv.tooltip=片材转换器
 gtlitecore.machine.slicer.opv.name=传奇切片机
 gtlitecore.machine.slicer.opv.tooltip=片材转换器
+
+# Ore Prefixes
+item.material.oreprefix.gemSolitary=稀世的%s

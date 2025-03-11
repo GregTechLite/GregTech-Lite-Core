@@ -66,3 +66,6 @@ gtlitecore.machine.slicer.uxv.name=Epic Slicer IV
 gtlitecore.machine.slicer.uxv.tooltip=Sheet Transformer
 gtlitecore.machine.slicer.opv.name=Legendary Slicer
 gtlitecore.machine.slicer.opv.tooltip=Sheet Transformer
+
+# Ore Prefixes
+item.material.oreprefix.gemSolitary=Solitary %s

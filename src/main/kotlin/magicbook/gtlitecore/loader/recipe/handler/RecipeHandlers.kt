@@ -10,6 +10,7 @@ class RecipeHandlers
         {
             MaterialRecipeHandler.init()
             PartsRecipeHandler.init()
+            OreRecipeHandler.init()
         }
 
     }

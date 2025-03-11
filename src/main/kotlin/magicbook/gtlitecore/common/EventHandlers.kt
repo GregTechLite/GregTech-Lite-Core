@@ -6,6 +6,7 @@ import gregtech.api.unification.material.event.MaterialEvent
 import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.loader.recipe.RecipeManager
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
@@ -25,6 +26,8 @@ class EventHandlers
     @SubscribeEvent(priority = EventPriority.HIGH)
     fun registerMaterials(event: MaterialEvent)
     {
+        GTLiteOrePrefix.addToMetaItem()
+        GTLiteOrePrefix.setOrePrefixInfos()
         GTLiteMaterials.setMaterialProperties()
         GTLiteMaterials.setMaterialFlags()
     }
