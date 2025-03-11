@@ -151,6 +151,58 @@ metaitem.shape.slicer_blade.stripes.tooltip=Slicer Blade for making stripes
 metaitem.shape.slicer_blade.octagonal.name=Slicer Blade (Octagonal)
 metaitem.shape.slicer_blade.octagonal.tooltip=Slicer Blade for slicing octagonal
 
+metaitem.shape.mold.vanadium_steel.empty.name=Empty Casting Mold
+metaitem.shape.mold.vanadium_steel.empty.tooltip=Mold for making Casting Molds
+metaitem.shape.mold.vanadium_steel.saw.name=Casting Mold (Saw)
+metaitem.shape.mold.vanadium_steel.saw.tooltip=Mold for making Disposable Saw
+metaitem.shape.mold.vanadium_steel.hard_hammer.name=Casting Mold (Hard Hammer)
+metaitem.shape.mold.vanadium_steel.hard_hammer.tooltip=Mold for making Disposable Hard Hammer
+metaitem.shape.mold.vanadium_steel.soft_mallet.name=Casting Mold (Soft Mallet)
+metaitem.shape.mold.vanadium_steel.soft_mallet.tooltip=Mold for making Disposable Soft Mallet
+metaitem.shape.mold.vanadium_steel.wrench.name=Casting Mold (Wrench)
+metaitem.shape.mold.vanadium_steel.wrench.tooltip=Mold for making Disposable Wrench
+metaitem.shape.mold.vanadium_steel.file.name=Casting Mold (File)
+metaitem.shape.mold.vanadium_steel.file.tooltip=Mold for making Disposable File
+metaitem.shape.mold.vanadium_steel.crowbar.name=Casting Mold (Crowbar)
+metaitem.shape.mold.vanadium_steel.crowbar.tooltip=Mold for making Disposable Crowbar
+metaitem.shape.mold.vanadium_steel.screwdriver.name=Casting Mold (Screwdriver)
+metaitem.shape.mold.vanadium_steel.screwdriver.tooltip=Mold for making Disposable Screwdriver
+metaitem.shape.mold.vanadium_steel.mortar.name=Casting Mold (Mortar)
+metaitem.shape.mold.vanadium_steel.mortar.tooltip=Mold for making Disposable Mortar
+metaitem.shape.mold.vanadium_steel.wire_cutter.name=Casting Mold (Wire Cutter)
+metaitem.shape.mold.vanadium_steel.wire_cutter.tooltip=Mold for making Disposable Wire Cutter
+metaitem.shape.mold.vanadium_steel.knife.name=Casting Mold (Knife)
+metaitem.shape.mold.vanadium_steel.knife.tooltip=Mold for making Disposable Knife
+metaitem.shape.mold.vanadium_steel.butchery_knife.name=Casting Mold (Butchery Knife)
+metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=Mold for making Disposable Butchery Knife
+metaitem.shape.mold.vanadium_steel.rolling_pin.name=Casting Mold (Rolling Pin)
+metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=Mold for making Disposable Rolling Pin
+
+metaitem.tool.disposable.saw.name=Disposable Saw
+metaitem.tool.disposable.saw.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.hard_hammer.name=Disposable Hard Hammer
+metaitem.tool.disposable.hard_hammer.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.soft_mallet.name=Disposable Soft mallet
+metaitem.tool.disposable.soft_mallet.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.wrench.name=Disposable Wrench
+metaitem.tool.disposable.wrench.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.file.name=Disposable File
+metaitem.tool.disposable.file.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.crowbar.name=Disposable Crowbar
+metaitem.tool.disposable.crowbar.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.screwdriver.name=Disposable Screwdriver
+metaitem.tool.disposable.screwdriver.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.mortar.name=Disposable Mortar
+metaitem.tool.disposable.mortar.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.wire_cutter.name=Disposable Wire Cutter
+metaitem.tool.disposable.wire_cutter.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.knife.name=Disposable Knife
+metaitem.tool.disposable.knife.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.butchery_knife.name=Disposable Butchery Knife
+metaitem.tool.disposable.butchery_knife.tooltip=Disposable Tool for crafting recipes
+metaitem.tool.disposable.rolling_pin.name=Disposable Rolling Pin
+metaitem.tool.disposable.rolling_pin.tooltip=Disposable Tool for crafting recipes
+
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
 
@@ -159,6 +211,7 @@ gt.tool.class.rolling_pin=Rolling Pin
 # Recipe Maps
 recipemap.polisher.name=Polisher
 recipemap.slicer.name=Slicer
+recipemap.tool_caster.name=Tool Caster
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -214,6 +267,17 @@ gtlitecore.machine.slicer.uxv.name=Epic Slicer IV
 gtlitecore.machine.slicer.uxv.tooltip=Sheet Transformer
 gtlitecore.machine.slicer.opv.name=Legendary Slicer
 gtlitecore.machine.slicer.opv.tooltip=Sheet Transformer
+
+gtlitecore.machine.tool_caster.lv.name=Basic Tool Caster
+gtlitecore.machine.tool_caster.lv.tooltip=Craftsman Workshop
+gtlitecore.machine.tool_caster.mv.name=Advanced Tool Caster
+gtlitecore.machine.tool_caster.mv.tooltip=Craftsman Workshop
+gtlitecore.machine.tool_caster.hv.name=Advanced Tool Caster II
+gtlitecore.machine.tool_caster.hv.tooltip=Craftsman Workshop
+gtlitecore.machine.tool_caster.ev.name=Advanced Tool Caster III
+gtlitecore.machine.tool_caster.ev.tooltip=Craftsman Workshop
+gtlitecore.machine.tool_caster.iv.name=Elite Tool Caster
+gtlitecore.machine.tool_caster.iv.tooltip=Master Workstation
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s

@@ -8,6 +8,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.GTLiteTextures
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
 {
 
@@ -35,6 +36,7 @@ class GTLiteMetaTileEntities
         // Single machines.
         val POLISHER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
 
         // Multiblock machines.
 
@@ -52,6 +54,32 @@ class GTLiteMetaTileEntities
                 "slicer", GTLiteRecipeMaps.SLICER_RECIPES,
                 GTLiteTextures.SLICER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.hvCappedTankSizeFunction)
+
+            // 14031-14045: Tool Caster
+            TOOL_CASTER[0] = MetaTileEntities.registerMetaTileEntity(14033,
+                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.lv"),
+                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                    GTValues.LV, true, GTUtility.defaultTankSizeFunction))
+
+            TOOL_CASTER[1] = MetaTileEntities.registerMetaTileEntity(14034,
+                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.mv"),
+                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                    GTValues.MV, true, GTUtility.defaultTankSizeFunction))
+
+            TOOL_CASTER[2] = MetaTileEntities.registerMetaTileEntity(14035,
+                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.hv"),
+                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                    GTValues.HV, true, GTUtility.defaultTankSizeFunction))
+
+            TOOL_CASTER[3] = MetaTileEntities.registerMetaTileEntity(14036,
+                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.ev"),
+                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                    GTValues.EV, true, GTUtility.defaultTankSizeFunction))
+
+            TOOL_CASTER[4] = MetaTileEntities.registerMetaTileEntity(14037,
+                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.iv"),
+                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                    GTValues.IV, true, GTUtility.defaultTankSizeFunction))
 
         }
 

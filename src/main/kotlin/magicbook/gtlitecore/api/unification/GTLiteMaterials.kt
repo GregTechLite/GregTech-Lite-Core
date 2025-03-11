@@ -60,6 +60,7 @@ import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITIO
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
@@ -406,6 +407,9 @@ class GTLiteMaterials
             GarnetRed.addFlags(GENERATE_LENS)
             GarnetYellow.addFlags(GENERATE_LENS)
             Monazite.addFlags(GENERATE_LENS)
+
+            // plate
+            Clay.addFlags(GENERATE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)

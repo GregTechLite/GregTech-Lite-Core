@@ -151,6 +151,58 @@ metaitem.shape.slicer_blade.stripes.tooltip=用来以条状切分材料
 metaitem.shape.slicer_blade.octagonal.name=切片机刀片（八等分）
 metaitem.shape.slicer_blade.octagonal.tooltip=用来以八等分切分材料
 
+metaitem.shape.mold.vanadium_steel.empty.name=空铸造模具
+metaitem.shape.mold.vanadium_steel.empty.tooltip=用以制作一次性工具的模具
+metaitem.shape.mold.vanadium_steel.saw.name=铸造模具（锯）
+metaitem.shape.mold.vanadium_steel.saw.tooltip=用来制作一次性锯的模具
+metaitem.shape.mold.vanadium_steel.hard_hammer.name=铸造模具（锤）
+metaitem.shape.mold.vanadium_steel.hard_hammer.tooltip=用来制作一次性锤的模具
+metaitem.shape.mold.vanadium_steel.soft_mallet.name=铸造模具（软锤）
+metaitem.shape.mold.vanadium_steel.soft_mallet.tooltip=用来制作一次性软锤的模具
+metaitem.shape.mold.vanadium_steel.wrench.name=铸造模具（扳手）
+metaitem.shape.mold.vanadium_steel.wrench.tooltip=用来制作一次性扳手的模具
+metaitem.shape.mold.vanadium_steel.file.name=铸造模具（锉）
+metaitem.shape.mold.vanadium_steel.file.tooltip=用来制作一次性锉的模具
+metaitem.shape.mold.vanadium_steel.crowbar.name=铸造模具（撬棍）
+metaitem.shape.mold.vanadium_steel.crowbar.tooltip=用来制作一次性撬棍的模具
+metaitem.shape.mold.vanadium_steel.screwdriver.name=铸造模具（螺丝刀）
+metaitem.shape.mold.vanadium_steel.screwdriver.tooltip=用来制作一次性螺丝刀的模具
+metaitem.shape.mold.vanadium_steel.mortar.name=铸造模具（研钵）
+metaitem.shape.mold.vanadium_steel.mortar.tooltip=用来制作一次性研钵的模具
+metaitem.shape.mold.vanadium_steel.wire_cutter.name=铸造模具（剪线钳）
+metaitem.shape.mold.vanadium_steel.wire_cutter.tooltip=用来制作一次性剪线钳的模具
+metaitem.shape.mold.vanadium_steel.knife.name=铸造模具（刀）
+metaitem.shape.mold.vanadium_steel.knife.tooltip=用来制作一次性刀的模具
+metaitem.shape.mold.vanadium_steel.butchery_knife.name=铸造模具（屠刀）
+metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=用来制作一次性屠刀的模具
+metaitem.shape.mold.vanadium_steel.rolling_pin.name=铸造模具（擀面杖）
+metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=用来制作一次性擀面杖的模具
+
+metaitem.tool.disposable.saw.name=一次性锯
+metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.hard_hammer.name=一次性锤
+metaitem.tool.disposable.hard_hammer.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.soft_mallet.name=一次性软锤
+metaitem.tool.disposable.soft_mallet.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.wrench.name=一次性扳手
+metaitem.tool.disposable.wrench.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.file.name=一次性锉
+metaitem.tool.disposable.file.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.crowbar.name=一次性撬棍
+metaitem.tool.disposable.crowbar.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.screwdriver.name=一次性螺丝刀
+metaitem.tool.disposable.screwdriver.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.mortar.name=一次性研钵
+metaitem.tool.disposable.mortar.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.wire_cutter.name=一次性剪线钳
+metaitem.tool.disposable.wire_cutter.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.knife.name=一次性刀
+metaitem.tool.disposable.knife.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.butchery_knife.name=一次性屠刀
+metaitem.tool.disposable.butchery_knife.tooltip=仅用于合成的一次性工具
+metaitem.tool.disposable.rolling_pin.name=一次性擀面杖
+metaitem.tool.disposable.rolling_pin.tooltip=仅用于合成的一次性工具
+
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
 
@@ -159,6 +211,7 @@ gt.tool.class.rolling_pin=擀面杖
 # Recipe Maps
 recipemap.polisher.name=抛光机
 recipemap.slicer.name=切片机
+recipemap.tool_caster.name=工具铸造机
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -214,6 +267,17 @@ gtlitecore.machine.slicer.uxv.name=史诗切片机 IV
 gtlitecore.machine.slicer.uxv.tooltip=片材转换器
 gtlitecore.machine.slicer.opv.name=传奇切片机
 gtlitecore.machine.slicer.opv.tooltip=片材转换器
+
+gtlitecore.machine.tool_caster.lv.name=基础工具铸造机
+gtlitecore.machine.tool_caster.lv.tooltip=工匠作坊
+gtlitecore.machine.tool_caster.mv.name=进阶工具铸造机
+gtlitecore.machine.tool_caster.mv.tooltip=工匠作坊
+gtlitecore.machine.tool_caster.hv.name=进阶工具铸造机 II
+gtlitecore.machine.tool_caster.hv.tooltip=工匠作坊
+gtlitecore.machine.tool_caster.ev.name=进阶工具铸造机 III
+gtlitecore.machine.tool_caster.ev.tooltip=工匠作坊
+gtlitecore.machine.tool_caster.iv.name=精英工具铸造机
+gtlitecore.machine.tool_caster.iv.tooltip=大师匠台
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s

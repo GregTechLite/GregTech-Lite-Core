@@ -35,6 +35,33 @@ class GTLiteMetaItems
         lateinit var SLICER_BLADE_STRIPES: MetaItem<*>.MetaValueItem
         lateinit var SLICER_BLADE_OCTAGONAL: MetaItem<*>.MetaValueItem
 
+        lateinit var CASTING_MOLD_EMPTY: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_SAW: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_HARD_HAMMER: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_SOFT_MALLET: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_WRENCH: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_FILE: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_CROWBAR: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_SCREWDRIVER: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_MORTAR: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_WIRE_CUTTER: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_KNIFE: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
+        lateinit var CASTING_MOLD_ROLLING_PIN: MetaItem<*>.MetaValueItem
+
+        lateinit var DISPOSABLE_SAW: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_HARD_HAMMER: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_SOFT_MALLET: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_WRENCH: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_FILE: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_CROWBAR: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_SCREWDRIVER: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_MORTAR: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_WIRE_CUTTER: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_KNIFE: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
+        lateinit var DISPOSABLE_ROLLING_PIN: MetaItem<*>.MetaValueItem
+
         @JvmStatic
         fun init()
         {
@@ -90,7 +117,99 @@ class GTLiteMetaItems
             SLICER_BLADE_OCTAGONAL = GTLITE_ITEMS.addItem(43, "shape.slicer_blade.octagonal")
 
             // 51-70: Vanadium Steel Molds & Extruders.
+            CASTING_MOLD_EMPTY = GTLITE_ITEMS.addItem(51, "shape.mold.vanadium_steel.empty")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
 
+            CASTING_MOLD_SAW = GTLITE_ITEMS.addItem(52, "shape.mold.vanadium_steel.saw")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_HARD_HAMMER = GTLITE_ITEMS.addItem(53, "shape.mold.vanadium_steel.hard_hammer")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_SOFT_MALLET = GTLITE_ITEMS.addItem(54, "shape.mold.vanadium_steel.soft_mallet")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_WRENCH = GTLITE_ITEMS.addItem(55, "shape.mold.vanadium_steel.wrench")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_FILE = GTLITE_ITEMS.addItem(56, "shape.mold.vanadium_steel.file")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_CROWBAR = GTLITE_ITEMS.addItem(57, "shape.mold.vanadium_steel.crowbar")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_SCREWDRIVER = GTLITE_ITEMS.addItem(58, "shape.mold.vanadium_steel.screwdriver")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_MORTAR = GTLITE_ITEMS.addItem(59, "shape.mold.vanadium_steel.mortar")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_WIRE_CUTTER = GTLITE_ITEMS.addItem(60, "shape.mold.vanadium_steel.wire_cutter")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_KNIFE = GTLITE_ITEMS.addItem(61, "shape.mold.vanadium_steel.knife")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_BUTCHERY_KNIFE = GTLITE_ITEMS.addItem(62, "shape.mold.vanadium_steel.butchery_knife")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            CASTING_MOLD_ROLLING_PIN = GTLITE_ITEMS.addItem(63, "shape.mold.vanadium_steel.rolling_pin")
+                .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            // 101-200:....
+
+            // 501-600: Tool Components.
+
+            // 601-700: Tools.
+            DISPOSABLE_SAW = GTLITE_ITEMS.addItem(601, "tool.disposable.saw")
+                .addOreDict("toolSaw")
+                .addOreDict("craftingToolSaw")
+
+            DISPOSABLE_HARD_HAMMER = GTLITE_ITEMS.addItem(602, "tool.disposable.hard_hammer")
+                .addOreDict("toolHammer")
+                .addOreDict("craftingToolHardHammer")
+
+            DISPOSABLE_SOFT_MALLET = GTLITE_ITEMS.addItem(603, "tool.disposable.soft_mallet")
+                .addOreDict("toolMallet")
+                .addOreDict("craftingToolSoftHammer")
+
+            DISPOSABLE_WRENCH = GTLITE_ITEMS.addItem(604, "tool.disposable.wrench")
+                .addOreDict("toolWrench")
+                .addOreDict("craftingToolWrench")
+
+            DISPOSABLE_FILE = GTLITE_ITEMS.addItem(605, "tool.disposable.file")
+                .addOreDict("toolFile")
+                .addOreDict("craftingToolFile")
+
+            DISPOSABLE_CROWBAR = GTLITE_ITEMS.addItem(606, "tool.disposable.crowbar")
+                .addOreDict("toolCrowbar")
+                .addOreDict("craftingToolCrowbar")
+
+            DISPOSABLE_SCREWDRIVER = GTLITE_ITEMS.addItem(607, "tool.disposable.screwdriver")
+                .addOreDict("toolScrewdriver")
+                .addOreDict("craftingToolScrewdriver")
+
+            DISPOSABLE_MORTAR = GTLITE_ITEMS.addItem(608, "tool.disposable.mortar")
+                .addOreDict("toolMortar")
+                .addOreDict("craftingToolMortar")
+
+            DISPOSABLE_WIRE_CUTTER = GTLITE_ITEMS.addItem(609, "tool.disposable.wire_cutter")
+                .addOreDict("toolWireCutter")
+                .addOreDict("craftingToolWireCutter")
+
+            DISPOSABLE_KNIFE = GTLITE_ITEMS.addItem(610, "tool.disposable.knife")
+                .addOreDict("toolKnife")
+                .addOreDict("craftingToolKnife")
+
+            DISPOSABLE_BUTCHERY_KNIFE = GTLITE_ITEMS.addItem(611, "tool.disposable.butchery_knife")
+                .addOreDict("toolButcheryKnife")
+                .addOreDict("craftingToolButcheryKnife")
+
+            DISPOSABLE_ROLLING_PIN = GTLITE_ITEMS.addItem(612, "tool.disposable.rolling_pin")
+                .addOreDict("toolRollingPin")
+                .addOreDict("craftingToolRollingPin")
+
+            // 701-800: Batteries.
 
         }
 

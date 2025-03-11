@@ -140,6 +140,26 @@ class GTLiteRecipeMaps
             }
             .build()
 
+        /**
+         * @apiNote At first, the function of this recipe maps is designed in forge hammer
+         *          recipe map, and this we find this is not a good choice to build these
+         *          producer for disposable tools, so we create a new machine and its recipe
+         *          map for these producer. The original idea of this machine is from
+         *          GT:NH modpack, but we redo logic part to let these recipes look finely.
+         * @zenProp tool_caster
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("TOOL_CASTER_RECIPES")
+        val TOOL_CASTER_RECIPES = RecipeMapBuilder("tool_caster", SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(9)
+            .fluidInputs(1)
+            .itemSlotOverlay(GuiTextures.MOLD_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_UNPACKER)
+            .sound(GTSoundEvents.FORGE_HAMMER)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

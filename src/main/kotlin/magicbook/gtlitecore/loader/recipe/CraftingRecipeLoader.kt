@@ -2,8 +2,10 @@ package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
+import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.stack.UnificationEntry
@@ -25,7 +27,19 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NAME
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_FILE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_HARD_HAMMER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_KNIFE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_MORTAR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_ROLLING_PIN
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SAW
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SCREWDRIVER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SOFT_MALLET
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_ROUND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_TURBINE_BLADE
@@ -40,6 +54,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TUR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
+import net.minecraft.init.Items
+import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CraftingRecipeLoader
@@ -139,104 +155,40 @@ class CraftingRecipeLoader
                 "   ", " Mh", "f  ",
                 'M', SHAPE_EMPTY)
 
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_ROD)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_ROD)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
             // Shape Mold (Bolt)
             ModHandler.addShapedRecipe(true, "shape_mold.bolt", SHAPE_MOLD_BOLT.stackForm,
                 "   ", "fMh", "   ",
                 'M', SHAPE_EMPTY)
-
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_BOLT)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_BOLT)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
 
             // Shape Mold (Round)
             ModHandler.addShapedRecipe(true, "shape_mold.round", SHAPE_MOLD_ROUND.stackForm,
                 "f  ", " Mh", "   ",
                 'M', SHAPE_EMPTY)
 
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_ROUND)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_ROUND)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
             // Shape Mold (Screw)
             ModHandler.addShapedRecipe(true, "shape_mold.screw", SHAPE_MOLD_SCREW.stackForm,
                 " f ", " Mh", "   ",
                 'M', SHAPE_EMPTY)
-
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_SCREW)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_SCREW)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
 
             // Shape Mold (Ring)
             ModHandler.addShapedRecipe(true, "shape_mold.ring", SHAPE_MOLD_RING.stackForm,
                 "  f", " Mh", "   ",
                 'M', SHAPE_EMPTY)
 
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_RING)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_RING)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
             // Shape Mold (Long Rod)
             ModHandler.addShapedRecipe(true, "shape_mold.rod_long", SHAPE_MOLD_ROD_LONG.stackForm,
                 "   ", " M ", " fh",
                 'M', SHAPE_EMPTY)
-
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_ROD_LONG)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_ROD_LONG)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
 
             // Shape Mold (Turbine Blade)
             ModHandler.addShapedRecipe(true, "shape_mold.turbine_blade", SHAPE_MOLD_TURBINE_BLADE.stackForm,
                 "   ", "fM ", "  h",
                 'M', SHAPE_EMPTY)
 
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_TURBINE_BLADE)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_TURBINE_BLADE)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
             // Shape Mold (Drill Head)
             ModHandler.addShapedRecipe(true, "shape_mold.drill_head", SHAPE_MOLD_DRILL_HEAD.stackForm,
                 "   ", " M ", " hf",
                 'M', SHAPE_EMPTY)
-
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_DRILL_HEAD)
-                .input(SHAPE_EMPTY)
-                .output(SHAPE_MOLD_DRILL_HEAD)
-                .EUt(22) // LV
-                .duration(6 * SECOND)
-                .buildAndRegister()
 
             // Add recipes to additional shape extruders, should ensure there are not
             // any conflicts with original extruders.
@@ -276,6 +228,89 @@ class CraftingRecipeLoader
                 'P', UnificationEntry(plate, Iron),
                 'S', UnificationEntry(screw, Iron),
                 'M', SHAPE_EXTRUDER_BLOCK)
+
+            // Add recipes to casting molds, we need add clay plate recipe at first.
+            ModHandler.addShapedRecipe(true, "plate_clay", OreDictUnifier.get(plate, Clay),
+                "pC ",
+                'C', ItemStack(Items.CLAY_BALL))
+
+            // Casting Mold (Empty)
+            ModHandler.addShapedRecipe(true, "casting_mold.empty", CASTING_MOLD_EMPTY.stackForm,
+                "hf ", "PP ", "PP ",
+                'P', UnificationEntry(plate, VanadiumSteel))
+
+            // Casting Mold (Saw)
+            ModHandler.addShapedRecipe(true, "casting_mold.saw", CASTING_MOLD_SAW.stackForm,
+                "rs ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Hard Hammer)
+            ModHandler.addShapedRecipe(true, "casting_mold.hard_hammer", CASTING_MOLD_HARD_HAMMER.stackForm,
+                "rh ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Soft Mallet)
+            ModHandler.addShapedRecipe(true, "casting_mold.soft_mallet", CASTING_MOLD_SOFT_MALLET.stackForm,
+                " r ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Wrench)
+            ModHandler.addShapedRecipe(true, "casting_mold.wrench", CASTING_MOLD_WRENCH.stackForm,
+                "rw ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (File)
+            ModHandler.addShapedRecipe(true, "casting_mold.file", CASTING_MOLD_FILE.stackForm,
+                "rf ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Crowbar)
+            ModHandler.addShapedRecipe(true, "casting_mold.crowbar", CASTING_MOLD_CROWBAR.stackForm,
+                "rc ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Screwdriver)
+            ModHandler.addShapedRecipe(true, "casting_mold.screwdriver", CASTING_MOLD_SCREWDRIVER.stackForm,
+                "rd ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Mortar)
+            ModHandler.addShapedRecipe(true, "casting_mold.mortar", CASTING_MOLD_MORTAR.stackForm,
+                "rm ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Wire Cutter)
+            ModHandler.addShapedRecipe(true, "casting_mold.wire_cutter", CASTING_MOLD_WIRE_CUTTER.stackForm,
+                "rx ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Knife)
+            ModHandler.addShapedRecipe(true, "casting_mold.knife", CASTING_MOLD_KNIFE.stackForm,
+                "rk ", " P ", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Butchery Knife)
+            ModHandler.addShapedRecipe(true, "casting_mold.butchery_knife", CASTING_MOLD_BUTCHERY_KNIFE.stackForm,
+                "rB ", " Pk", " M ",
+                'B', "toolButcheryKnife", // Safety usage before GTLiteToolItems#addToolSymbols().
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
+
+            // Casting Mold (Rolling Pin)
+            ModHandler.addShapedRecipe(true, "casting_mold.rolling_pin", CASTING_MOLD_ROLLING_PIN.stackForm,
+                "rp ", " Pk", " M ",
+                'P', UnificationEntry(plate, Clay),
+                'M', CASTING_MOLD_EMPTY)
 
         }
 

@@ -16,4 +16,5 @@
 ### Credits
 
 - Some textures and codes are from [GregTech 6](https://github.com/GregTech6/gregtech6) on [GNU GPL-3.0 License](https://github.com/GregTech6/gregtech6/blob/master/LICENSE).
+- Some textures and codes are from [GT:NH](https://github.com/GTNewHorizons/GT-New-Horizons-Modpack) on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GT5-Unofficial/blob/master/LICENSE.txt).
 - Some textures are from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry) on [GNU LGPL-3.0 License](https://github.com/SymmetricDevs/Supersymmetry/blob/master-ceu/LICENSE).
