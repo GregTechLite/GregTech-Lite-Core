@@ -1,0 +1,130 @@
+package magicbook.gtlitecore.loader.recipe.machine
+
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.V
+import gregtech.api.GTValues.VA
+import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.ModHandler
+import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
+import gregtech.api.unification.material.Materials.Andesite
+import gregtech.api.unification.material.Materials.Basalt
+import gregtech.api.unification.material.Materials.Concrete
+import gregtech.api.unification.material.Materials.Diorite
+import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Granite
+import gregtech.api.unification.material.Materials.GraniteBlack
+import gregtech.api.unification.material.Materials.GraniteRed
+import gregtech.api.unification.material.Materials.Marble
+import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.POLISHER_RECIPES
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.Mods
+
+@Suppress("MISSING_DEPENDENCY_CLASS")
+class PolisherRecipes
+{
+
+    companion object
+    {
+
+        fun init()
+        {
+            // Change vanilla smooth stone -> polished stone recipes from autoclave to polisher.
+            listOf(1, 3, 5).forEach { m -> // (1, 3, 5) => (Granite, Diorite, Andesite).
+                listOf(Pair(Water, 200), Pair(DistilledWater, 36)).forEach { (f, c) ->
+                    GTRecipeHandler.removeRecipesByInputs(AUTOCLAVE_RECIPES,
+                        arrayOf(Mods.Minecraft.getMetaItem("stone", m)),
+                        arrayOf(f.getFluid(c)))
+                }
+            }
+            // Add polisher recipes to polished stones.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.Minecraft.getMetaItem("stone", 1))
+                .outputs(Mods.Minecraft.getMetaItem("stone", 2))
+                .output(dust, Granite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.Minecraft.getMetaItem("stone", 3))
+                .outputs(Mods.Minecraft.getMetaItem("stone", 4))
+                .output(dust, Diorite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.Minecraft.getMetaItem("stone", 4))
+                .outputs(Mods.Minecraft.getMetaItem("stone", 5))
+                .output(dust, Andesite, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Modified recipes of GregTech StoneVariantBlock conversions.
+            for (m in 0 .. 5)
+            {
+                ModHandler.removeFurnaceSmelting(Mods.GregTech.getMetaItem("stone_smooth", m))
+                GTRecipeHandler.removeRecipesByInputs(EXTRUDER_RECIPES,
+                    Mods.GregTech.getMetaItem("stone_smooth", m),
+                    SHAPE_EXTRUDER_BLOCK.stackForm)
+            }
+            // Add polisher recipes to gregtech polished stones.
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 0))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 0))
+                .output(dust, GraniteBlack, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 1))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 1))
+                .output(dust, GraniteRed, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 2))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 2))
+                .output(dust, Marble, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 3))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 3))
+                .output(dust, Basalt, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 4))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 4))
+                .output(dust, Concrete, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            POLISHER_RECIPES.recipeBuilder()
+                .inputs(Mods.GregTech.getMetaItem("stone_smooth", 5))
+                .outputs(Mods.GregTech.getMetaItem("stone_polished", 5))
+                .output(dust, Concrete, 2)
+                .EUt(V[ULV])
+                .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+        }
+
+    }
+
+}
