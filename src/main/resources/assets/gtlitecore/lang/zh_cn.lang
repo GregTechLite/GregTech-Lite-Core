@@ -335,6 +335,17 @@ gtlitecore.machine.laminator.uxv.tooltip=超级粘性附着器
 gtlitecore.machine.laminator.opv.name=传奇过胶机
 gtlitecore.machine.laminator.opv.tooltip=超级粘性附着器
 
+gtlitecore.machine.drum.iron.name=铁桶
+gtlitecore.machine.drum.copper.name=铜桶
+gtlitecore.machine.drum.lead.name=铅桶
+gtlitecore.machine.drum.chrome.name=铬桶
+gtlitecore.machine.drum.tungsten.name=钨桶
+gtlitecore.machine.drum.iridium.name=铱桶
+
+gtlitecore.machine.plastic_can.polyethylene.name=聚乙烯塑料桶
+gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=聚四氟乙烯塑料桶
+gtlitecore.machine.plastic_can.polybenzimidazole.name=聚苯并咪唑塑料桶
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
 item.material.oreprefix.oreLimestone=石灰岩%s矿石

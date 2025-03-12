@@ -1,12 +1,16 @@
 package magicbook.gtlitecore.common.metatileentity
 
 import gregtech.api.GTValues
+import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
@@ -39,6 +43,17 @@ class GTLiteMetaTileEntities
         val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
         val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val LAMINATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+
+        lateinit var IRON_DRUM: MetaTileEntityDrum
+        lateinit var COPPER_DRUM: MetaTileEntityDrum
+        lateinit var LEAD_DRUM: MetaTileEntityDrum
+        lateinit var CHROME_DRUM: MetaTileEntityDrum
+        lateinit var TUNGSTEN_DRUM: MetaTileEntityDrum
+        lateinit var IRIDIUM_DRUM: MetaTileEntityDrum
+        // TODO More higher drum like Naquadah, Duranium and Neutronium?
+        lateinit var PE_CAN: MetaTileEntityPlasticCan
+        lateinit var PTFE_CAN: MetaTileEntityPlasticCan
+        lateinit var PBI_CAN: MetaTileEntityPlasticCan
 
         // Multiblock machines.
 
@@ -95,6 +110,45 @@ class GTLiteMetaTileEntities
                 GTLiteTextures.LAMINATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
+            // ...
+
+            // 15001-15050: Drums and Crates.
+            IRON_DRUM = MetaTileEntities.registerMetaTileEntity(15001,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.iron"),
+                    PropertyFluidFilter(1811, true, true, false, false),
+                    false, Materials.Iron.materialRGB, 12000))
+
+            COPPER_DRUM = MetaTileEntities.registerMetaTileEntity(15002,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.copper"), Materials.Copper, 16000))
+
+            LEAD_DRUM = MetaTileEntities.registerMetaTileEntity(15003,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.lead"), Materials.Lead, 24000))
+
+            CHROME_DRUM = MetaTileEntities.registerMetaTileEntity(15004,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.chrome"), Materials.Chrome, 96000))
+
+            TUNGSTEN_DRUM = MetaTileEntities.registerMetaTileEntity(15005,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.tungsten"), Materials.Tungsten, 768000))
+
+            IRIDIUM_DRUM = MetaTileEntities.registerMetaTileEntity(15006,
+                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.iridium"), Materials.Iridium, 1536000))
+
+            // ...
+
+            PE_CAN = MetaTileEntities.registerMetaTileEntity(15015,
+                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polyethylene"), Materials.Polyethylene, 64000))
+
+            PTFE_CAN = MetaTileEntities.registerMetaTileEntity(15016,
+                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polytetrafluoroethylene"), Materials.Polytetrafluoroethylene, 128000))
+
+            PBI_CAN = MetaTileEntities.registerMetaTileEntity(15017,
+                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polybenzimidazole"), Materials.Polybenzimidazole, 256000))
+
+            // ...
+
+            // 15051-...
+
+            // ...
         }
 
     }

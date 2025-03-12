@@ -11,7 +11,8 @@
     "gregtech.MaterialRecipeHandlerMixin",
     "gregtech.OreRecipeHandlerMixin",
     "gregtech.WireCombiningHandlerMixin",
-    "gregtech.WireRecipeHandlerMixin"
+    "gregtech.WireRecipeHandlerMixin",
+    "gregtech.MetaTileEntityDrumAccessor"
   ],
   "server": [],
   "client": []

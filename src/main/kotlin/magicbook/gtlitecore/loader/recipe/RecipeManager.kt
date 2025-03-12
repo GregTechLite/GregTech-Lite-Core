@@ -1,7 +1,9 @@
 package magicbook.gtlitecore.loader.recipe
 
+import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
+import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
@@ -24,8 +26,10 @@ class RecipeManager
             DisposableToolRecipeProducer.init()
 
             // Original GregTech Machine Recipes.
+            AssemblerRecipes.init()
             BenderRecipes.init()
             CentrifugeRecipes.init()
+            ExtruderRecipes.init()
             FormingPressRecipes.init()
             // Additional Machine Recipes.
             LoomRecipes.init()

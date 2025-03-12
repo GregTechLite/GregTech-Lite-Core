@@ -3,11 +3,17 @@ package magicbook.gtlitecore.loader.recipe
 import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
@@ -54,6 +60,12 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TUR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -311,6 +323,56 @@ class CraftingRecipeLoader
                 "rp ", " Pk", " M ",
                 'P', UnificationEntry(plate, Clay),
                 'M', CASTING_MOLD_EMPTY)
+
+            // Add recipes to additional drums and plastic cans.
+
+            // Iron Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_iron",
+                IRON_DRUM.stackForm, IRON_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "iron_drum", IRON_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Iron),
+                'S', UnificationEntry(stickLong, Iron))
+
+            // Copper Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_copper",
+                COPPER_DRUM.stackForm, COPPER_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "copper_drum", COPPER_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Copper),
+                'S', UnificationEntry(stickLong, Copper))
+
+            // Lead Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_lead",
+                LEAD_DRUM.stackForm, LEAD_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "lead_drum", LEAD_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Lead),
+                'S', UnificationEntry(stickLong, Lead))
+
+            // Chrome Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_chrome",
+                CHROME_DRUM.stackForm, CHROME_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "chrome_drum", CHROME_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Chrome),
+                'S', UnificationEntry(stickLong, Chrome))
+
+            // Tungsten Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_tungsten",
+                TUNGSTEN_DRUM.stackForm, TUNGSTEN_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "tungsten_drum", TUNGSTEN_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Tungsten),
+                'S', UnificationEntry(stickLong, Tungsten))
+
+            // Iridium Drum
+            ModHandler.addShapelessNBTClearingRecipe("drum_nbt_iridium",
+                IRIDIUM_DRUM.stackForm, IRIDIUM_DRUM.stackForm)
+            ModHandler.addShapedRecipe(true, "iridium_drum", IRIDIUM_DRUM.stackForm,
+                " h ", "PSP", "PSP",
+                'P', UnificationEntry(plate, Iridium),
+                'S', UnificationEntry(stickLong, Iridium))
 
         }
 

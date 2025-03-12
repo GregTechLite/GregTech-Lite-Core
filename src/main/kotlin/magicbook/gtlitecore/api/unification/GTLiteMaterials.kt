@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CertusQuartz
+import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
@@ -60,6 +61,7 @@ import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITIO
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
@@ -418,6 +420,11 @@ class GTLiteMaterials
             StainlessSteel.addFlags(GENERATE_DENSE)
             Titanium.addFlags(GENERATE_DENSE)
             Neutronium.addFlags(GENERATE_DENSE)
+
+            // stick
+
+            // stickLong
+            Chrome.addFlags(GENERATE_LONG_ROD)
         }
 
     }

@@ -335,6 +335,17 @@ gtlitecore.machine.laminator.uxv.tooltip=Superstick Attacher
 gtlitecore.machine.laminator.opv.name=Legendary Laminator
 gtlitecore.machine.laminator.opv.tooltip=Superstick Attacher
 
+gtlitecore.machine.drum.iron.name=Iron Drum
+gtlitecore.machine.drum.copper.name=Copper Drum
+gtlitecore.machine.drum.lead.name=Lead Drum
+gtlitecore.machine.drum.chrome.name=Chrome Drum
+gtlitecore.machine.drum.tungsten.name=Tungsten Drum
+gtlitecore.machine.drum.iridium.name=Iridium Drum
+
+gtlitecore.machine.plastic_can.polyethylene.name=Polyethylene Plastic Can
+gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=Polytetrafluoroethylene Plastic Can
+gtlitecore.machine.plastic_can.polybenzimidazole.name=Polybenzimidazole Plastic Can
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
 item.material.oreprefix.oreLimestone=Limestone %s Ore
