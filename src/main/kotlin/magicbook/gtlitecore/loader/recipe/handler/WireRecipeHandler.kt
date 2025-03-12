@@ -10,17 +10,13 @@ import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.ModHandler
-import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.material.properties.WireProperties
 import gregtech.api.unification.ore.OrePrefix
-import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility
-import gregtech.loaders.recipe.handlers.WireRecipeHandler
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import kotlin.reflect.full.declaredFunctions
