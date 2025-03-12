@@ -153,8 +153,14 @@ public class ModuleManager implements IModuleManager
         StreamEx.of(this.loadedModules)
                 .peek(module -> this.currentContainer = this.containers.get(getContainerId(module)))
                 .peek(module -> module.getLogger().debug("Registering Event Handlers"))
-                .flatMap(module -> module.getEventBusSubscribers().stream())
-                .forEach(MinecraftForge.EVENT_BUS::register);
+                .forEach(module -> {
+                    StreamEx.of(module.getEventBusSubscribers())
+                            .forEach(MinecraftForge.EVENT_BUS::register);
+                    StreamEx.of(module.getTerrainGenBusSubscribers())
+                            .forEach(MinecraftForge.TERRAIN_GEN_BUS::register);
+                    StreamEx.of(module.getOreGenBusSubscribers())
+                            .forEach(MinecraftForge.ORE_GEN_BUS::register);
+                });
     }
 
     /* -------------------------------- FML Life cycle Events -------------------------------- */

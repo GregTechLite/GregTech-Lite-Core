@@ -13,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 
 @Module(moduleId = GTLiteModules.MODULE_WORLDGEN,
         containerId = GTLiteValues.MODID,
@@ -24,6 +26,20 @@ public class WorldGenModule extends BaseModule
     public static final Logger logger = LogManager.getLogger(GTLiteValues.NAME + " World Generator");
 
     private static final String resourceWorldGenPath = "/assets/gregtech/worldgen/";
+
+    @NotNull
+    @Override
+    public List<Class<?>> getTerrainGenBusSubscribers()
+    {
+        return Collections.singletonList(WorldGenModule.class);
+    }
+
+    @NotNull
+    @Override
+    public List<Class<?>> getOreGenBusSubscribers()
+    {
+        return Collections.singletonList(WorldGenModule.class);
+    }
 
     @Override
     public void preInit(FMLPreInitializationEvent event)

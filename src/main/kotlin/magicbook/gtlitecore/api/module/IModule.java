@@ -21,7 +21,12 @@ import java.util.Set;
 
 public interface IModule
 {
-
+    /**
+     * What other modules this module depends on.
+     * <p>
+     * For example, {@code new ResourceLocation("gtlitecore", "module_name")}
+     * represents a dependency on the module "module_name" in the container "gtlitecore".
+     */
     default Set<ResourceLocation> getDependencyUids()
     {
         return Collections.emptySet();
@@ -61,19 +66,60 @@ public interface IModule
     default void serverStopped(FMLServerStoppedEvent event) {}
     /* --------------------------------------------------------------------------------------- */
 
+    /**
+     * Register packets using packet handling API here.
+     */
     default void registerPackets() {}
 
+    /**
+     * The class itself gets subscribed, instead of a class instance, so event
+     * handlers <strong>must</strong> be {@code static}.
+     *
+     * @return A list of classes to subscribe to the Forge Event Bus.
+     */
     @NotNull
     default List<Class<?>> getEventBusSubscribers()
     {
         return Collections.emptyList();
     }
 
+    /**
+     * The class itself gets subscribed, instead of a class instance, so event
+     * handlers <strong>must</strong> be {@code static}.
+     *
+     * @return A list of classes to subscribe to the Forge Terrain Gen Bus.
+     */
+    @NotNull
+    default List<Class<?>> getTerrainGenBusSubscribers()
+    {
+        return Collections.emptyList();
+    }
+
+    /**
+     * The class itself gets subscribed, instead of a class instance, so event
+     * handlers <strong>must</strong> be {@code static}.
+     *
+     * @return A list of classes to subscribe to the Forge Ore Gen Bus.
+     */
+    @NotNull
+    default List<Class<?>> getOreGenBusSubscribers()
+    {
+        return Collections.emptyList();
+    }
+
+    /**
+     * @param message The message to process.
+     * @return        If the message was processed, stopping all other modules from
+     *                processing it.
+     */
     default boolean processIMC(FMLInterModComms.IMCMessage message)
     {
         return false;
     }
 
+    /**
+     * @return A logger to use for this module.
+     */
     @NotNull
     Logger getLogger();
 
