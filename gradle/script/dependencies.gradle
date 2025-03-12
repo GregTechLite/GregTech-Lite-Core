@@ -22,6 +22,9 @@ dependencies {
     // GregTech CEu (master branch last updated ver.)
     implementation rfg.deobf(files("libs/gregtech-1.12.2-master.jar"))
 
+    // Applied Energistics 2 Extended Life 0.56.4
+    implementation rfg.deobf("curse.maven:ae2-extended-life-570458:5147702")
+
     // Transformed JEI dependencies from buildscripts option.
     implementation("mezz.jei:jei_1.12.2:4.16.1.302") // JustEnoughItems 4.16.1.302
 
