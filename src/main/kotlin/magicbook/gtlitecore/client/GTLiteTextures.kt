@@ -14,6 +14,8 @@ class GTLiteTextures
 
         val TOOL_CASTER_OVERLAY = OrientedOverlayRenderer("machines/tool_caster")
 
+        val LOOM_OVERLAY = OrientedOverlayRenderer("machines/loom")
+
     }
 
 }

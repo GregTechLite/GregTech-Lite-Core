@@ -1,13 +1,16 @@
 package magicbook.gtlitecore.loader.recipe
 
+import gregtech.common.items.MetaItems
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class MachineRecipeLoader
 {
 
@@ -48,6 +51,16 @@ class MachineRecipeLoader
                 'P', CraftingComponent.PUMP,
                 'Q', CraftingComponent.PISTON,
                 'W', CraftingComponent.CABLE)
+
+            // Loom
+            MetaTileEntityLoader.registerMachineRecipe(true, LOOM,
+                "xSM", "CSI", "WHW",
+                'H', CraftingComponent.HULL,
+                'W', CraftingComponent.CABLE,
+                'S', CraftingComponents.STICK_LONG,
+                'C', CraftingComponent.CONVEYOR,
+                'M', CraftingComponent.MOTOR,
+                'I', MetaItems.ITEM_FILTER.stackForm)
 
         }
 

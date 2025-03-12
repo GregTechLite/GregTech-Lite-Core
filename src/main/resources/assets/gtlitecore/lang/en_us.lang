@@ -212,6 +212,7 @@ gt.tool.class.rolling_pin=Rolling Pin
 recipemap.polisher.name=Polisher
 recipemap.slicer.name=Slicer
 recipemap.tool_caster.name=Tool Caster
+recipemap.loom.name=Loom
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -278,6 +279,33 @@ gtlitecore.machine.tool_caster.ev.name=Advanced Tool Caster III
 gtlitecore.machine.tool_caster.ev.tooltip=Craftsman Workshop
 gtlitecore.machine.tool_caster.iv.name=Elite Tool Caster
 gtlitecore.machine.tool_caster.iv.tooltip=Master Workstation
+
+gtlitecore.machine.loom.lv.name=Basic Loom
+gtlitecore.machine.loom.lv.tooltip=Automatic Loom
+gtlitecore.machine.loom.mv.name=Advanced Loom
+gtlitecore.machine.loom.mv.tooltip=Automatic Loom
+gtlitecore.machine.loom.hv.name=Advanced Loom II
+gtlitecore.machine.loom.hv.tooltip=Automatic Loom
+gtlitecore.machine.loom.ev.name=Advanced Loom III
+gtlitecore.machine.loom.ev.tooltip=Automatic Loom
+gtlitecore.machine.loom.iv.name=Elite Loom
+gtlitecore.machine.loom.iv.tooltip=Wire Fabricator
+gtlitecore.machine.loom.luv.name=Elite Loom II
+gtlitecore.machine.loom.luv.tooltip=Wire Fabricator
+gtlitecore.machine.loom.zpm.name=Elite Loom III
+gtlitecore.machine.loom.zpm.tooltip=Wire Fabricator
+gtlitecore.machine.loom.uv.name=Ultimate Loom
+gtlitecore.machine.loom.uv.tooltip=Silk Song
+gtlitecore.machine.loom.uhv.name=Epic Loom
+gtlitecore.machine.loom.uhv.tooltip=Silk Song
+gtlitecore.machine.loom.uev.name=Epic Loom II
+gtlitecore.machine.loom.uev.tooltip=Silk Song
+gtlitecore.machine.loom.uiv.name=Epic Loom III
+gtlitecore.machine.loom.uiv.tooltip=Silk Song
+gtlitecore.machine.loom.uxv.name=Epic Loom IV
+gtlitecore.machine.loom.uxv.tooltip=Silk Song
+gtlitecore.machine.loom.opv.name=Legendary Loom
+gtlitecore.machine.loom.opv.tooltip=Silk Song
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s

@@ -37,6 +37,7 @@ class GTLiteMetaTileEntities
         val POLISHER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
+        val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         // Multiblock machines.
 
@@ -80,6 +81,12 @@ class GTLiteMetaTileEntities
                 SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.iv"),
                     GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
                     GTValues.IV, true, GTUtility.defaultTankSizeFunction))
+
+            // 14046-14060: Loom
+            MetaTileEntities.registerSimpleMetaTileEntity(LOOM, 14048, // 14046-14047 for Steam Machines.
+                "loom", GTLiteRecipeMaps.LOOM_RECIPES,
+                GTLiteTextures.LOOM_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
         }
 

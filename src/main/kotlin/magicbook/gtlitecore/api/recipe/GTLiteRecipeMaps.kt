@@ -160,6 +160,28 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.FORGE_HAMMER)
             .build()
 
+        /**
+         * @apiNote Loom is a steam age romantic style machine which will contain some works
+         *          from hand-crafting wire combination, packer and wiremill. This machine can
+         *          also make plant ball to vanilla grasses, like grass and tall grass,
+         *          make string to net, e.t.c. Loom and laminator split wiremill related
+         *          recipes, just like slicer and polisher.
+         * @zenProp loom
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("LOOM_RECIPES")
+        val LOOM_RECIPES = RecipeMapBuilder("loom", SimpleRecipeBuilder())
+            .itemInputs(3)
+            .itemOutputs(2)
+            .fluidInputs(1)
+            .fluidOutputs(0)
+            .itemSlotOverlay(GuiTextures.STRING_SLOT_OVERLAY, false)
+            .fluidSlotOverlay(GTLiteGuiTextures.STRING_SLOT_OVERLAY_2, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_MAGNET, ProgressWidget.MoveType.HORIZONTAL)
+            .sound(GTSoundEvents.COMPRESSOR)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

@@ -212,6 +212,7 @@ gt.tool.class.rolling_pin=擀面杖
 recipemap.polisher.name=抛光机
 recipemap.slicer.name=切片机
 recipemap.tool_caster.name=工具铸造机
+recipemap.loom.name=纺织机
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -278,6 +279,33 @@ gtlitecore.machine.tool_caster.ev.name=进阶工具铸造机 III
 gtlitecore.machine.tool_caster.ev.tooltip=工匠作坊
 gtlitecore.machine.tool_caster.iv.name=精英工具铸造机
 gtlitecore.machine.tool_caster.iv.tooltip=大师匠台
+
+gtlitecore.machine.loom.lv.name=基础纺织机
+gtlitecore.machine.loom.lv.tooltip=自动化织布机
+gtlitecore.machine.loom.mv.name=进阶纺织机
+gtlitecore.machine.loom.mv.tooltip=自动化织布机
+gtlitecore.machine.loom.hv.name=进阶纺织机 II
+gtlitecore.machine.loom.hv.tooltip=自动化织布机
+gtlitecore.machine.loom.ev.name=进阶纺织机 III
+gtlitecore.machine.loom.ev.tooltip=自动化织布机
+gtlitecore.machine.loom.iv.name=精英纺织机
+gtlitecore.machine.loom.iv.tooltip=线材编织者
+gtlitecore.machine.loom.luv.name=精英纺织机 II
+gtlitecore.machine.loom.luv.tooltip=线材编织者
+gtlitecore.machine.loom.zpm.name=精英纺织机 III
+gtlitecore.machine.loom.zpm.tooltip=线材编织者
+gtlitecore.machine.loom.uv.name=终极纺织机
+gtlitecore.machine.loom.uv.tooltip=丝线之歌
+gtlitecore.machine.loom.uhv.name=史诗纺织机
+gtlitecore.machine.loom.uhv.tooltip=丝线之歌
+gtlitecore.machine.loom.uev.name=史诗纺织机 II
+gtlitecore.machine.loom.uev.tooltip=丝线之歌
+gtlitecore.machine.loom.uiv.name=史诗纺织机 III
+gtlitecore.machine.loom.uiv.tooltip=丝线之歌
+gtlitecore.machine.loom.uxv.name=史诗纺织机 IV
+gtlitecore.machine.loom.uxv.tooltip=丝线之歌
+gtlitecore.machine.loom.opv.name=传奇纺织机
+gtlitecore.machine.loom.opv.tooltip=丝线之歌
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s

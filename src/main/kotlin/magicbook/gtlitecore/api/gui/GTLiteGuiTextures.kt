@@ -31,6 +31,10 @@ class GTLiteGuiTextures
         val INT_CIRCUIT_OVERLAY_STEAM = SteamTexture.fullImage(
             "textures/gui/overlay/int_circuit_overlay_%s.png")
 
+        @JvmField /* GuiTextures#STRING_SLOT_OVERLAY for fluid slots. */
+        val STRING_SLOT_OVERLAY_2: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/string_slot_overlay_2.png")
+
         // Progress Bars
         @JvmField
         val PROGRESS_BAR_SLICING = TextureArea.fullImage(
