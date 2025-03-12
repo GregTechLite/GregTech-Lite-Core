@@ -13,6 +13,7 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
@@ -28,8 +29,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VULCANIZING_PRESS
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 import net.minecraft.init.Blocks
@@ -135,6 +138,31 @@ class MachineRecipeLoader
                 'S', CraftingComponents.SPRING_SMALL,
                 'C', CraftingComponent.CONVEYOR,
                 'R', CraftingComponent.PIPE_REACTOR)
+
+            // Steam Vacuum Chamber
+            ModHandler.addShapedRecipe(true, "vacuum_chamber.bronze", STEAM_VACUUM_CHAMBER[0]!!.stackForm,
+                "SGS", "PHP", "QQQ",
+                'H', MetaBlocks.STEAM_CASING.getItemVariant(BlockSteamCasing.SteamCasingType.BRONZE_HULL),
+                'P', UnificationEntry(pipeNormalFluid, Bronze),
+                'Q', UnificationEntry(plate, WroughtIron),
+                'S', UnificationEntry(spring, Iron),
+                'G', UnificationEntry(gearSmall, Bronze))
+
+            ModHandler.addShapedRecipe(true, "vacuum_chamber.steel", STEAM_VACUUM_CHAMBER[1]!!.stackForm,
+                "GGG", "SHS", "PPP",
+                'H', STEAM_VACUUM_CHAMBER[0]!!.stackForm,
+                'S', UnificationEntry(spring, TinAlloy),
+                'P', UnificationEntry(plate, Steel),
+                'G', ItemStack(Blocks.GLASS))
+
+            // Vacuum Chamber
+            MetaTileEntityLoader.registerMachineRecipe(true, VACUUM_CHAMBER,
+                "GCG", "PHP", "GWG",
+                'W', CraftingComponent.CABLE,
+                'C', CraftingComponent.CIRCUIT,
+                'P', CraftingComponent.PUMP,
+                'G', CraftingComponent.GLASS,
+                'H', CraftingComponent.HULL)
 
         }
 

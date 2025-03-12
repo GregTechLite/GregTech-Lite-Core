@@ -216,6 +216,7 @@ recipemap.loom.name=纺织机
 recipemap.laminator.name=过胶机
 recipemap.chemical_dehydrator.name=化学脱水机
 recipemap.vulcanizing_press.name=硫化机
+recipemap.vacuum_chamber.name=真空室
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -395,6 +396,37 @@ gtlitecore.machine.vulcanizing_press.uxv.tooltip=化合转换者
 gtlitecore.machine.vulcanizing_press.opv.name=传奇硫化机
 gtlitecore.machine.vulcanizing_press.opv.tooltip=化合转换者
 
+gtlitecore.machine.vacuum_chamber.bronze.name=蒸汽真空室
+gtlitecore.machine.vacuum_chamber.bronze.tooltip=你的第一片真空
+gtlitecore.machine.vacuum_chamber.steel.name=高压蒸汽真空室
+gtlitecore.machine.vacuum_chamber.steel.tooltip=小小真空
+gtlitecore.machine.vacuum_chamber.lv.name=基础真空室
+gtlitecore.machine.vacuum_chamber.lv.tooltip=空气驱逐者
+gtlitecore.machine.vacuum_chamber.mv.name=进阶真空室
+gtlitecore.machine.vacuum_chamber.mv.tooltip=空气驱逐者
+gtlitecore.machine.vacuum_chamber.hv.name=进阶真空室 II
+gtlitecore.machine.vacuum_chamber.hv.tooltip=空气驱逐者
+gtlitecore.machine.vacuum_chamber.ev.name=进阶真空室 III
+gtlitecore.machine.vacuum_chamber.ev.tooltip=空气驱逐者
+gtlitecore.machine.vacuum_chamber.iv.name=精英真空室
+gtlitecore.machine.vacuum_chamber.iv.tooltip=空气隔绝者
+gtlitecore.machine.vacuum_chamber.luv.name=精英真空室 II
+gtlitecore.machine.vacuum_chamber.luv.tooltip=空气隔绝者
+gtlitecore.machine.vacuum_chamber.zpm.name=精英真空室 III
+gtlitecore.machine.vacuum_chamber.zpm.tooltip=空气隔绝者
+gtlitecore.machine.vacuum_chamber.uv.name=终极真空室
+gtlitecore.machine.vacuum_chamber.uv.tooltip=完美真空
+gtlitecore.machine.vacuum_chamber.uhv.name=史诗真空室
+gtlitecore.machine.vacuum_chamber.uhv.tooltip=完美真空
+gtlitecore.machine.vacuum_chamber.uev.name=史诗真空室 II
+gtlitecore.machine.vacuum_chamber.uev.tooltip=完美真空
+gtlitecore.machine.vacuum_chamber.uiv.name=史诗真空室 III
+gtlitecore.machine.vacuum_chamber.uiv.tooltip=完美真空
+gtlitecore.machine.vacuum_chamber.uxv.name=史诗真空室 IV
+gtlitecore.machine.vacuum_chamber.uxv.tooltip=完美真空
+gtlitecore.machine.vacuum_chamber.opv.name=传奇真空室
+gtlitecore.machine.vacuum_chamber.opv.tooltip=完美真空
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -445,6 +477,8 @@ gtlitecore.material.blue_schist=蓝片岩
 gtlitecore.material.kimberlite=金伯利岩
 gtlitecore.material.slate=板岩
 gtlitecore.material.shale=页岩
+
+gtlitecore.material.latex=胶乳
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

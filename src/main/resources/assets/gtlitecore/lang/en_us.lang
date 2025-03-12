@@ -216,6 +216,7 @@ recipemap.loom.name=Loom
 recipemap.laminator.name=Laminator
 recipemap.chemical_dehydrator.name=Chemical Dehydrator
 recipemap.vulcanizing_press.name=Vulcanizing Press
+recipemap.vacuum_chamber.name=Vacuum Chamber
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -395,6 +396,37 @@ gtlitecore.machine.vulcanizing_press.uxv.tooltip=Chemistry Transformer
 gtlitecore.machine.vulcanizing_press.opv.name=Legendary Vulcanizing Press
 gtlitecore.machine.vulcanizing_press.opv.tooltip=Chemistry Transformer
 
+gtlitecore.machine.vacuum_chamber.bronze.name=Steam Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.bronze.tooltip=Your first vacuum
+gtlitecore.machine.vacuum_chamber.steel.name=High Pressure Steam Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.steel.tooltip=Little tiny vacuum
+gtlitecore.machine.vacuum_chamber.lv.name=Basic Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.lv.tooltip=Air Destroyer
+gtlitecore.machine.vacuum_chamber.mv.name=Advanced Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.mv.tooltip=Air Destroyer
+gtlitecore.machine.vacuum_chamber.hv.name=Advanced Vacuum Chamber II
+gtlitecore.machine.vacuum_chamber.hv.tooltip=Air Destroyer
+gtlitecore.machine.vacuum_chamber.ev.name=Advanced Vacuum Chamber III
+gtlitecore.machine.vacuum_chamber.ev.tooltip=Air Destroyer
+gtlitecore.machine.vacuum_chamber.iv.name=Elite Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.iv.tooltip=Air Isolator
+gtlitecore.machine.vacuum_chamber.luv.name=Elite Vacuum Chamber II
+gtlitecore.machine.vacuum_chamber.luv.tooltip=Air Isolator
+gtlitecore.machine.vacuum_chamber.zpm.name=Elite Vacuum Chamber III
+gtlitecore.machine.vacuum_chamber.zpm.tooltip=Air Isolator
+gtlitecore.machine.vacuum_chamber.uv.name=Ultimate Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.uv.tooltip=Perfect vacuum
+gtlitecore.machine.vacuum_chamber.uhv.name=Epic Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.uhv.tooltip=Perfect vacuum
+gtlitecore.machine.vacuum_chamber.uev.name=Epic Vacuum Chamber II
+gtlitecore.machine.vacuum_chamber.uev.tooltip=Perfect vacuum
+gtlitecore.machine.vacuum_chamber.uiv.name=Epic Vacuum Chamber III
+gtlitecore.machine.vacuum_chamber.uiv.tooltip=Perfect vacuum
+gtlitecore.machine.vacuum_chamber.uxv.name=Epic Vacuum Chamber IV
+gtlitecore.machine.vacuum_chamber.uxv.tooltip=Perfect vacuum
+gtlitecore.machine.vacuum_chamber.opv.name=Legendary Vacuum Chamber
+gtlitecore.machine.vacuum_chamber.opv.tooltip=Perfect vacuum
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -445,6 +477,8 @@ gtlitecore.material.blue_schist=Blue Schist
 gtlitecore.material.kimberlite=Kimberlite
 gtlitecore.material.slate=Slate
 gtlitecore.material.shale=Shale
+
+gtlitecore.material.latex=Latex
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

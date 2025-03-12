@@ -7,6 +7,7 @@ import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.BlueTopaz
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Carbon
@@ -50,6 +51,7 @@ import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Talc
+import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Uvarovite
@@ -63,6 +65,8 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
@@ -371,6 +375,14 @@ class GTLiteMaterials
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
+        // 12001 Latex
+        @JvmField
+        val Latex: Material = Material.Builder(12001, gtliteId("latex"))
+            .dust()
+            .liquid()
+            .color(0xFFFADA)
+            .build()
+
         fun setMaterialProperties()
         {
             // Let andradite can generate in world natural.
@@ -384,6 +396,8 @@ class GTLiteMaterials
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
             Darmstadtium.addFlags(GENERATE_GEAR)
+
+            // gearSmall
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -428,9 +442,11 @@ class GTLiteMaterials
             Chrome.addFlags(GENERATE_LONG_ROD)
 
             // spring
+            TinAlloy.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
+
         }
 
     }

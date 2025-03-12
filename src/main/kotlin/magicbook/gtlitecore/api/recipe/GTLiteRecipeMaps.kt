@@ -245,6 +245,27 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COMBUSTION)
             .build()
 
+        /**
+         * @apiNote Vacuum Chamber can be a chemical reactor, also can be an assembler,
+         *          this is a very simple container of chemistry in reality world which
+         *          will called by vacuum generate processing yet. This machine has steam
+         *          machines, it is the prepare work of vacuum tube, which is your first
+         *          circuits in total GregTech circuits.
+         * @zenProp
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("VACUUM_CHAMBER_RECIPES")
+        val VACUUM_CHAMBER_RECIPES = RecipeMapBuilder("vacuum_chamber", SimpleRecipeBuilder())
+            .itemInputs(4)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_COMPRESS)
+            .sound(GTSoundEvents.ASSEMBLER)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

@@ -7,6 +7,7 @@ import gregtech.api.recipes.RecipeMap
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
@@ -51,6 +52,8 @@ class GTLiteMetaTileEntities
         val CHEMICAL_DEHYDRATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val STEAM_VULCANIZING_PRESS = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
         val VULCANIZING_PRESS = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val STEAM_VACUUM_CHAMBER = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
+        val VACUUM_CHAMBER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -133,6 +136,17 @@ class GTLiteMetaTileEntities
             MetaTileEntities.registerSimpleMetaTileEntity(VULCANIZING_PRESS, 14093,
                 "vulcanizing_press", GTLiteRecipeMaps.VULCANIZATION_RECIPES,
                 GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
+            // 14106-14120: Vacuum Chamber
+            registerSteamMetaTileEntity(STEAM_VACUUM_CHAMBER, 14106,
+                "vacuum_chamber", GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES,
+                SteamProgressBarIndicators.COMPRESS,
+                Textures.GAS_COLLECTOR_OVERLAY, false)
+
+            MetaTileEntities.registerSimpleMetaTileEntity(VACUUM_CHAMBER, 14108,
+                "vacuum_chamber", GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES,
+                Textures.GAS_COLLECTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
             // ...
