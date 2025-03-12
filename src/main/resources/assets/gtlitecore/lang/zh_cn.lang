@@ -217,6 +217,12 @@ recipemap.laminator.name=过胶机
 recipemap.chemical_dehydrator.name=化学脱水机
 recipemap.vulcanizing_press.name=硫化机
 recipemap.vacuum_chamber.name=真空室
+recipemap.sap_collector.name=树液收集器
+
+# Recipe Properties
+gtlitecore.recipe.blocks=有效方块：%s
+gtlitecore.recipe.block_group_members.common.name=任意原版树木
+gtlitecore.recipe.block_group_members.rubber.name=橡胶木
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -426,6 +432,16 @@ gtlitecore.machine.vacuum_chamber.uxv.name=史诗真空室 IV
 gtlitecore.machine.vacuum_chamber.uxv.tooltip=完美真空
 gtlitecore.machine.vacuum_chamber.opv.name=传奇真空室
 gtlitecore.machine.vacuum_chamber.opv.tooltip=完美真空
+
+gtlitecore.machine.sap_collector.bronze.name=蒸汽树液收集器
+gtlitecore.machine.sap_collector.steel.name=高压蒸汽树液收集器
+gtlitecore.machine.sap_collector.lv.name=基础树液收集器
+gtlitecore.machine.sap_collector.mv.name=进阶树液收集器
+gtlitecore.machine.sap_collector.hv.name=进阶树液收集器 II
+gtlitecore.machine.sap_collector.ev.name=进阶树液收集器 III
+gtlitecore.machine.sap_collector.iv.name=精英树液收集器
+gtlitecore.machine.sap_collector.sap_collection=从相邻的原木中提取树液。
+gtlitecore.machine.sap_collector.sap_collection_amount=§f提取速率：§a%s L/t
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

@@ -21,6 +21,10 @@ class SteamProgressBarIndicators
         val COMPRESS = SteamProgressBarIndicator(GuiTextures.PROGRESS_BAR_COMPRESS_STEAM,
             ProgressWidget.MoveType.HORIZONTAL, 20, 16)
 
+        @JvmField
+        val EXTRACTION = SteamProgressBarIndicator(GTLiteGuiTextures.PROGRESS_BAR_EXTRACTION_STEAM,
+            ProgressWidget.MoveType.VERTICAL_DOWNWARDS, 20, 20)
+
     }
 
 }

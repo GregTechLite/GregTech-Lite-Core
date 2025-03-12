@@ -31,6 +31,9 @@ class GTLiteTextures
         @JvmField
         val VULCANIZING_PRESS_OVERLAY = OrientedOverlayRenderer("machines/vulcanizing_press")
 
+        @JvmField
+        val SAP_COLLECTOR_OVERLAY = OrientedOverlayRenderer("machines/sap_collector")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

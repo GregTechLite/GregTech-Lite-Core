@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.recipes.ModHandler
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
@@ -12,10 +13,14 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
@@ -28,7 +33,9 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
@@ -163,6 +170,37 @@ class MachineRecipeLoader
                 'P', CraftingComponent.PUMP,
                 'G', CraftingComponent.GLASS,
                 'H', CraftingComponent.HULL)
+
+            // Steam Sap Collector
+            ModHandler.addShapedRecipe(true, "sap_collector.bronze", STEAM_SAP_COLLECTOR[0]!!.stackForm,
+                "SDX", "TRT", "WHW",
+                'H', MetaBlocks.STEAM_CASING.getItemVariant(BlockSteamCasing.SteamCasingType.BRONZE_HULL),
+                'W', UnificationEntry(pipeTinyFluid, Bronze),
+                'T', ItemStack(Blocks.GLASS),
+                'R', UnificationEntry(rotor, WroughtIron),
+                'S', UnificationEntry(springSmall, Iron),
+                'D', OreDictUnifier.get(toolHeadDrill, Steel),
+                'X', UnificationEntry(gem, Diamond))
+
+            ModHandler.addShapedRecipe(true, "sap_collector.steel", STEAM_SAP_COLLECTOR[1]!!.stackForm,
+                "SQS", "GRG", "PHP",
+                'H', STEAM_SAP_COLLECTOR[0]!!.stackForm,
+                'P', UnificationEntry(plateDouble, WroughtIron),
+                'R', UnificationEntry(rotor, TinAlloy),
+                'G', ItemStack(Blocks.GLASS),
+                'S', UnificationEntry(springSmall, WroughtIron),
+                'Q', UnificationEntry(pipeNormalFluid, TinAlloy))
+
+            // Sap Collector
+            MetaTileEntityLoader.registerMachineRecipe(true, SAP_COLLECTOR,
+                "SDX", "TRT", "WHW",
+                'H', CraftingComponent.HULL,
+                'W', CraftingComponent.CABLE,
+                'T', CraftingComponent.PIPE_REACTOR,
+                'R', CraftingComponent.ROTOR,
+                'D', OreDictUnifier.get(toolHeadDrill, Steel),
+                'S', CraftingComponents.SPRING_SMALL,
+                'X', CraftingComponent.CIRCUIT)
 
         }
 

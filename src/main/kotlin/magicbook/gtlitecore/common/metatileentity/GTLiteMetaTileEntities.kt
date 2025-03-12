@@ -12,10 +12,14 @@ import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
+import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -54,6 +58,8 @@ class GTLiteMetaTileEntities
         val VULCANIZING_PRESS = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val STEAM_VACUUM_CHAMBER = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
         val VACUUM_CHAMBER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val STEAM_SAP_COLLECTOR = arrayOfNulls<PseudoMultiSteamMachineMetaTileEntity>(2)
+        val SAP_COLLECTOR = arrayOfNulls<PseudoMultiMachineMetaTileEntity>(5)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -148,6 +154,28 @@ class GTLiteMetaTileEntities
                 "vacuum_chamber", GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES,
                 Textures.GAS_COLLECTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
+            // 14121-14135: Sap Collector
+            STEAM_SAP_COLLECTOR[0] = MetaTileEntities.registerMetaTileEntity(14121,
+                MetaTileEntitySteamSapCollector(GTLiteUtility.gtliteId("sap_collector.bronze"), false))
+
+            STEAM_SAP_COLLECTOR[1] = MetaTileEntities.registerMetaTileEntity(14122,
+                MetaTileEntitySteamSapCollector(GTLiteUtility.gtliteId("sap_collector.steel"), true))
+
+            SAP_COLLECTOR[0] = MetaTileEntities.registerMetaTileEntity(14123,
+                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.lv"), GTValues.LV))
+
+            SAP_COLLECTOR[1] = MetaTileEntities.registerMetaTileEntity(14124,
+                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.mv"), GTValues.MV))
+
+            SAP_COLLECTOR[2] = MetaTileEntities.registerMetaTileEntity(14125,
+                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.hv"), GTValues.HV))
+
+            SAP_COLLECTOR[3] = MetaTileEntities.registerMetaTileEntity(14126,
+                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.ev"), GTValues.EV))
+
+            SAP_COLLECTOR[4] = MetaTileEntities.registerMetaTileEntity(14127,
+                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.iv"), GTValues.IV))
 
             // ...
 

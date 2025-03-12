@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import stanhebben.zenscript.annotations.ZenClass
 import stanhebben.zenscript.annotations.ZenProperty
@@ -251,7 +252,7 @@ class GTLiteRecipeMaps
          *          will called by vacuum generate processing yet. This machine has steam
          *          machines, it is the prepare work of vacuum tube, which is your first
          *          circuits in total GregTech circuits.
-         * @zenProp
+         * @zenProp vacuum_chamber
          */
         @ZenProperty
         @JvmStatic
@@ -264,6 +265,20 @@ class GTLiteRecipeMaps
             .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
             .progressBar(GuiTextures.PROGRESS_BAR_COMPRESS)
             .sound(GTSoundEvents.ASSEMBLER)
+            .build()
+
+        /**
+         * @zenProp sap_collector
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("SAP_COLLECTOR_RECIPES")
+        val SAP_COLLECTOR_RECIPES = RecipeMapBuilder("sap_collector", PseudoMultiRecipeBuilder())
+            .itemOutputs(2)
+            .fluidInputs(1)
+            .fluidOutputs(2)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_EXTRACTION, ProgressWidget.MoveType.VERTICAL_DOWNWARDS)
+            .sound(GTSoundEvents.DRILL_TOOL)
             .build()
 
         @JvmStatic

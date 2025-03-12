@@ -217,6 +217,12 @@ recipemap.laminator.name=Laminator
 recipemap.chemical_dehydrator.name=Chemical Dehydrator
 recipemap.vulcanizing_press.name=Vulcanizing Press
 recipemap.vacuum_chamber.name=Vacuum Chamber
+recipemap.sap_collector.name=Sap Collector
+
+# Recipe Properties
+gtlitecore.recipe.blocks=Effective Blocks: %s
+gtlitecore.recipe.block_group_members.common.name=Any vanilla logs
+gtlitecore.recipe.block_group_members.rubber.name=Rubber logs
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -426,6 +432,16 @@ gtlitecore.machine.vacuum_chamber.uxv.name=Epic Vacuum Chamber IV
 gtlitecore.machine.vacuum_chamber.uxv.tooltip=Perfect vacuum
 gtlitecore.machine.vacuum_chamber.opv.name=Legendary Vacuum Chamber
 gtlitecore.machine.vacuum_chamber.opv.tooltip=Perfect vacuum
+
+gtlitecore.machine.sap_collector.bronze.name=Steam Sap Collector
+gtlitecore.machine.sap_collector.steel.name=High Pressure Steam Sap Collector
+gtlitecore.machine.sap_collector.lv.name=Basic Sap Collector
+gtlitecore.machine.sap_collector.mv.name=Advanced Sap Collector
+gtlitecore.machine.sap_collector.hv.name=Advanced Sap Collector II
+gtlitecore.machine.sap_collector.ev.name=Advanced Sap Collector III
+gtlitecore.machine.sap_collector.iv.name=Elite Sap Collector
+gtlitecore.machine.sap_collector.sap_collection=Extracts liquids from adjacent logs.
+gtlitecore.machine.sap_collector.sap_collection_amount=§fExtraction Rate: §a%s L/t
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
