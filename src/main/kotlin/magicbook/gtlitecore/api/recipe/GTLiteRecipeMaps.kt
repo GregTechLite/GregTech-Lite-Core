@@ -203,6 +203,48 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COOLING)
             .build()
 
+        /**
+         * @apiNote This recipe map merged dryer and chemical dehydrator two recipe maps
+         *          actually, so it can also call by chemical dryer or food dryer; similar
+         *          to this, coagulate processing is also used this recipe map (means
+         *          it contained some functions of autoclave yet).
+         * @zenProp chemical_dehydrator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CHEMICAL_DEHYDRATOR_RECIPES")
+        val CHEMICAL_DEHYDRATOR_RECIPES = RecipeMapBuilder("chemical_dehydrator", SimpleRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(6)
+            .fluidInputs(2)
+            .fluidOutputs(3)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_SIFT)
+            .sound(GTSoundEvents.FURNACE)
+            .build()
+
+        /**
+         * @apiNote Vulcanization processing used to process rubber with sulfur or other
+         *          fluids, for some synthetic rubber, this recipe needs other chemistry
+         *          components. This machine has steam version, the first rubber is from
+         *          this recipe map.
+         * @zenProp vulcanizing_press
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("VULCANIZATION_RECIPES")
+        val VULCANIZATION_RECIPES = RecipeMapBuilder("vulcanizing_press", SimpleRecipeBuilder())
+            .itemInputs(4)
+            .itemOutputs(2)
+            .fluidInputs(2)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.MOLD_OVERLAY, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.COMBUSTION)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

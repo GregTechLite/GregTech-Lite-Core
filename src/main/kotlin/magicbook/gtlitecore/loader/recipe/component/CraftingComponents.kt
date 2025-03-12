@@ -1,18 +1,28 @@
 package magicbook.gtlitecore.loader.recipe.component
 
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
@@ -87,6 +97,19 @@ class CraftingComponents
             7 to UnificationEntry(stickLong, NaquadahAlloy),
             8 to UnificationEntry(stickLong, Darmstadtium),
             9 to UnificationEntry(stickLong, Neutronium)
+        ).toMap())
+
+        val SPRING_SMALL = CraftingComponent.Component(sequenceOf(
+            0 to UnificationEntry(springSmall, Lead),
+            1 to UnificationEntry(springSmall, Tin),
+            2 to UnificationEntry(springSmall, Copper),
+            3 to UnificationEntry(springSmall, Gold),
+            4 to UnificationEntry(springSmall, Aluminium),
+            5 to UnificationEntry(springSmall, Tungsten),
+            6 to UnificationEntry(springSmall, NiobiumTitanium),
+            7 to UnificationEntry(springSmall, VanadiumGallium),
+            8 to UnificationEntry(springSmall, YttriumBariumCuprate),
+            9 to UnificationEntry(springSmall, Europium)
         ).toMap())
 
         fun setCraftingComponents()

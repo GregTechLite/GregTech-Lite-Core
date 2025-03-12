@@ -63,6 +63,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
@@ -425,6 +426,11 @@ class GTLiteMaterials
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
+
+            // spring
+
+            // springSmall
+            WroughtIron.addFlags(GENERATE_SPRING_SMALL)
         }
 
     }

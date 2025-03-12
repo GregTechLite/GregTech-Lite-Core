@@ -1,65 +1,58 @@
-package magicbook.gtlitecore.common.metatileentity.storage;
+package magicbook.gtlitecore.common.metatileentity.storage
 
-import codechicken.lib.colour.ColourRGBA;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.ColourMultiplier;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.IPropertyFluidFilter;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.unification.material.Material;
-import gregtech.api.util.GTUtility;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.metatileentities.storage.MetaTileEntityDrum;
-import magicbook.gtlitecore.client.GTLiteTextures;
-import magicbook.gtlitecore.mixin.gregtech.MetaTileEntityDrumAccessor;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.ArrayUtils;
-import org.jetbrains.annotations.NotNull;
+import codechicken.lib.colour.ColourRGBA
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.ColourMultiplier
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
+import gregtech.api.capability.IPropertyFluidFilter
+import gregtech.api.metatileentity.MetaTileEntity
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.unification.material.Material
+import gregtech.api.util.GTUtility
+import gregtech.client.renderer.texture.Textures
+import gregtech.common.metatileentities.storage.MetaTileEntityDrum
+import magicbook.gtlitecore.client.GTLiteTextures
+import magicbook.gtlitecore.mixin.gregtech.MetaTileEntityDrumAccessor
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.ResourceLocation
+import org.apache.commons.lang3.ArrayUtils
 
-public class MetaTileEntityPlasticCan extends MetaTileEntityDrum
+@Suppress("MISSING_DEPENDENCY_CLASS")
+class MetaTileEntityPlasticCan : MetaTileEntityDrum
 {
 
-    private final MetaTileEntityDrumAccessor inner;
+    private val inner: MetaTileEntityDrumAccessor
 
-    public MetaTileEntityPlasticCan(ResourceLocation metaTileEntityId,
-                                    @NotNull Material material, int tankSize)
+    constructor(metaTileEntityId: ResourceLocation?, material: Material,
+                tankSize: Int) : super(metaTileEntityId, material, tankSize)
     {
-        super(metaTileEntityId, material, tankSize);
-        this.inner = (MetaTileEntityDrumAccessor) this;
+        this.inner = this as MetaTileEntityDrumAccessor
     }
 
-    public MetaTileEntityPlasticCan(ResourceLocation metaTileEntityId,
-                                    @NotNull IPropertyFluidFilter fluidFilter,
-                                    int color, int tankSize)
+    constructor(metaTileEntityId: ResourceLocation?, fluidFilter: IPropertyFluidFilter,
+                color: Int, tankSize: Int) : super(metaTileEntityId, fluidFilter, false, color, tankSize)
     {
-        super(metaTileEntityId, fluidFilter, false, color, tankSize);
-        this.inner = (MetaTileEntityDrumAccessor) this;
+        this.inner = this as MetaTileEntityDrumAccessor
     }
 
-    @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
-    {
-        return new MetaTileEntityPlasticCan(this.metaTileEntityId, this.inner.getFluidFilter(),
-                this.inner.getColor(), this.inner.getTankSize());
-    }
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): MetaTileEntity
+        = MetaTileEntityPlasticCan(this.metaTileEntityId, this.inner.fluidFilter,
+                this.inner.color, this.inner.tankSize)
 
-    @Override
-    public void renderMetaTileEntity(CCRenderState renderState,
-                                     Matrix4 translation,
-                                     IVertexOperation[] pipeline)
+
+    override fun renderMetaTileEntity(renderState: CCRenderState,
+                                      translation: Matrix4,
+                                      pipeline: Array<IVertexOperation>)
     {
-        ColourMultiplier multiplier = new ColourMultiplier(ColourRGBA.multiply(
-                GTUtility.convertRGBtoOpaqueRGBA_CL(this.inner.getColor()),
-                GTUtility.convertRGBtoOpaqueRGBA_CL(this.getPaintingColorForRendering())));
-        GTLiteTextures.PLASTIC_CAN.render(renderState, translation, ArrayUtils.add(pipeline, multiplier), this.getFrontFacing());
-        GTLiteTextures.PLASTIC_CAN_OVERLAY.render(renderState, translation, pipeline);
-        if (this.inner.isAutoOutput())
-        {
-            Textures.STEAM_VENT_OVERLAY.renderSided(EnumFacing.DOWN, renderState, translation, pipeline);
-        }
+        val multiplier = ColourMultiplier(ColourRGBA.multiply(
+                GTUtility.convertRGBtoOpaqueRGBA_CL(inner.color),
+                GTUtility.convertRGBtoOpaqueRGBA_CL(this.paintingColorForRendering)))
+        GTLiteTextures.PLASTIC_CAN.render(renderState, translation,
+            ArrayUtils.add(pipeline, multiplier), this.getFrontFacing())
+        GTLiteTextures.PLASTIC_CAN_OVERLAY.render(renderState, translation, pipeline)
+        if (inner.isAutoOutput)
+            Textures.STEAM_VENT_OVERLAY.renderSided(EnumFacing.DOWN, renderState, translation, pipeline)
     }
 
 }

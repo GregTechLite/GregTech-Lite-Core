@@ -3,10 +3,15 @@ package magicbook.gtlitecore.common.metatileentity
 import gregtech.api.GTValues
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.recipes.RecipeMap
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
+import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
+import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
+import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators
+import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.GTLiteTextures
@@ -43,6 +48,9 @@ class GTLiteMetaTileEntities
         val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
         val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val LAMINATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val CHEMICAL_DEHYDRATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val STEAM_VULCANIZING_PRESS = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
+        val VULCANIZING_PRESS = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -110,6 +118,23 @@ class GTLiteMetaTileEntities
                 GTLiteTextures.LAMINATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
+            // 14076-14090: Chemical Dehydrator
+            MetaTileEntities.registerSimpleMetaTileEntity(CHEMICAL_DEHYDRATOR, 14078, // 14076-14077 for Steam Machines.
+                "chemical_dehydrator", GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES,
+                GTLiteTextures.CHEMICAL_DEHYDRATOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
+
+            // 14091-14105: Vulcanizing Press
+            registerSteamMetaTileEntity(STEAM_VULCANIZING_PRESS, 14091,
+                "vulcanizing_press", GTLiteRecipeMaps.VULCANIZATION_RECIPES,
+                SteamProgressBarIndicators.ARROW_MULTIPLE,
+                GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true)
+
+            MetaTileEntities.registerSimpleMetaTileEntity(VULCANIZING_PRESS, 14093,
+                "vulcanizing_press", GTLiteRecipeMaps.VULCANIZATION_RECIPES,
+                GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
             // ...
 
             // 15001-15050: Drums and Crates.
@@ -146,9 +171,22 @@ class GTLiteMetaTileEntities
 
             // ...
 
-            // 15051-...
+            // 15051-15060: I/O hatch proxies.
 
             // ...
+        }
+
+        private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,
+                                                name: String, recipeMap: RecipeMap<*>,
+                                                progressBarIndicator: SteamProgressBarIndicator,
+                                                texture: ICubeRenderer, isBricked: Boolean)
+        {
+            machines[0] = MetaTileEntities.registerMetaTileEntity(startId,
+                SimpleSteamMachineMetaTileEntity(GTLiteUtility.gtliteId(String.format("%s.bronze", name)),
+                    recipeMap, progressBarIndicator, texture, isBricked, false))
+            machines[1] = MetaTileEntities.registerMetaTileEntity(startId + 1,
+                SimpleSteamMachineMetaTileEntity(GTLiteUtility.gtliteId(String.format("%s.steel", name)),
+                    recipeMap, progressBarIndicator, texture, isBricked, true))
         }
 
     }

@@ -40,6 +40,10 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_SLICING = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_slicing.png")
 
+        @JvmField
+        val PROGRESS_BAR_ARROW_MULTIPLE_STEAM = SteamTexture.fullImage(
+            "textures/gui/progress_bar/progress_bar_arrow_multiple_%s.png")
+
         // Widgets
         @JvmField
         val BUTTON_INT_CIRCUIT_PLUS_STEAM = SteamTexture.fullImage(

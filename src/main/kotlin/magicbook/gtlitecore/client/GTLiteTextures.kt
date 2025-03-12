@@ -25,6 +25,12 @@ class GTLiteTextures
         @JvmField
         val LAMINATOR_OVERLAY = OrientedOverlayRenderer("machines/laminator")
 
+        @JvmField
+        val CHEMICAL_DEHYDRATOR_OVERLAY = OrientedOverlayRenderer("machines/chemical_dehydrator")
+
+        @JvmField
+        val VULCANIZING_PRESS_OVERLAY = OrientedOverlayRenderer("machines/vulcanizing_press")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")
