@@ -16,6 +16,8 @@ class GTLiteTextures
 
         val LOOM_OVERLAY = OrientedOverlayRenderer("machines/loom")
 
+        val LAMINATOR_OVERLAY = OrientedOverlayRenderer("machines/laminator")
+
     }
 
 }

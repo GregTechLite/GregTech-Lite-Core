@@ -10,7 +10,8 @@
     "gregtech.PartsRecipeHandlerMixin",
     "gregtech.MaterialRecipeHandlerMixin",
     "gregtech.OreRecipeHandlerMixin",
-    "gregtech.WireCombiningHandlerMixin"
+    "gregtech.WireCombiningHandlerMixin",
+    "gregtech.WireRecipeHandlerMixin"
   ],
   "server": [],
   "client": []

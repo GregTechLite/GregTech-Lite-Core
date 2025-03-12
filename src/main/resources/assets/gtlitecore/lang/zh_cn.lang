@@ -213,6 +213,7 @@ recipemap.polisher.name=抛光机
 recipemap.slicer.name=切片机
 recipemap.tool_caster.name=工具铸造机
 recipemap.loom.name=纺织机
+recipemap.laminator.name=过胶机
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -306,6 +307,33 @@ gtlitecore.machine.loom.uxv.name=史诗纺织机 IV
 gtlitecore.machine.loom.uxv.tooltip=丝线之歌
 gtlitecore.machine.loom.opv.name=传奇纺织机
 gtlitecore.machine.loom.opv.tooltip=丝线之歌
+
+gtlitecore.machine.laminator.lv.name=基础过胶机
+gtlitecore.machine.laminator.lv.tooltip=防腐蚀助手
+gtlitecore.machine.laminator.mv.name=进阶过胶机
+gtlitecore.machine.laminator.mv.tooltip=防腐蚀助手
+gtlitecore.machine.laminator.hv.name=进阶过胶机 II
+gtlitecore.machine.laminator.hv.tooltip=防腐蚀助手
+gtlitecore.machine.laminator.ev.name=进阶过胶机 III
+gtlitecore.machine.laminator.ev.tooltip=防腐蚀助手
+gtlitecore.machine.laminator.iv.name=精英过胶机
+gtlitecore.machine.laminator.iv.tooltip=线材密封者
+gtlitecore.machine.laminator.luv.name=精英过胶机 II
+gtlitecore.machine.laminator.luv.tooltip=线材密封者
+gtlitecore.machine.laminator.zpm.name=精英过胶机 III
+gtlitecore.machine.laminator.zpm.tooltip=线材密封者
+gtlitecore.machine.laminator.uv.name=终极过胶机
+gtlitecore.machine.laminator.uv.tooltip=超级粘性附着器
+gtlitecore.machine.laminator.uhv.name=史诗过胶机
+gtlitecore.machine.laminator.uhv.tooltip=超级粘性附着器
+gtlitecore.machine.laminator.uev.name=史诗过胶机 II
+gtlitecore.machine.laminator.uev.tooltip=超级粘性附着器
+gtlitecore.machine.laminator.uiv.name=史诗过胶机 III
+gtlitecore.machine.laminator.uiv.tooltip=超级粘性附着器
+gtlitecore.machine.laminator.uxv.name=史诗过胶机 IV
+gtlitecore.machine.laminator.uxv.tooltip=超级粘性附着器
+gtlitecore.machine.laminator.opv.name=传奇过胶机
+gtlitecore.machine.laminator.opv.tooltip=超级粘性附着器
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s

@@ -213,6 +213,7 @@ recipemap.polisher.name=Polisher
 recipemap.slicer.name=Slicer
 recipemap.tool_caster.name=Tool Caster
 recipemap.loom.name=Loom
+recipemap.laminator.name=Laminator
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -306,6 +307,33 @@ gtlitecore.machine.loom.uxv.name=Epic Loom IV
 gtlitecore.machine.loom.uxv.tooltip=Silk Song
 gtlitecore.machine.loom.opv.name=Legendary Loom
 gtlitecore.machine.loom.opv.tooltip=Silk Song
+
+gtlitecore.machine.laminator.lv.name=Basic Laminator
+gtlitecore.machine.laminator.lv.tooltip=Corrosionproof Helper
+gtlitecore.machine.laminator.mv.name=Advanced Laminator
+gtlitecore.machine.laminator.mv.tooltip=Corrosionproof Helper
+gtlitecore.machine.laminator.hv.name=Advanced Laminator II
+gtlitecore.machine.laminator.hv.tooltip=Corrosionproof Helper
+gtlitecore.machine.laminator.ev.name=Advanced Laminator III
+gtlitecore.machine.laminator.ev.tooltip=Corrosionproof Helper
+gtlitecore.machine.laminator.iv.name=Elite Laminator
+gtlitecore.machine.laminator.iv.tooltip=Wire Sealer
+gtlitecore.machine.laminator.luv.name=Elite Laminator II
+gtlitecore.machine.laminator.luv.tooltip=Wire Sealer
+gtlitecore.machine.laminator.zpm.name=Elite Laminator III
+gtlitecore.machine.laminator.zpm.tooltip=Wire Sealer
+gtlitecore.machine.laminator.uv.name=Ultimate Laminator
+gtlitecore.machine.laminator.uv.tooltip=Superstick Attacher
+gtlitecore.machine.laminator.uhv.name=Epic Laminator
+gtlitecore.machine.laminator.uhv.tooltip=Superstick Attacher
+gtlitecore.machine.laminator.uev.name=Epic Laminator II
+gtlitecore.machine.laminator.uev.tooltip=Superstick Attacher
+gtlitecore.machine.laminator.uiv.name=Epic Laminator III
+gtlitecore.machine.laminator.uiv.tooltip=Superstick Attacher
+gtlitecore.machine.laminator.uxv.name=Epic Laminator IV
+gtlitecore.machine.laminator.uxv.tooltip=Superstick Attacher
+gtlitecore.machine.laminator.opv.name=Legendary Laminator
+gtlitecore.machine.laminator.opv.tooltip=Superstick Attacher
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s

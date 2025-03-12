@@ -38,6 +38,7 @@ class GTLiteMetaTileEntities
         val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
         val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val LAMINATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         // Multiblock machines.
 
@@ -87,6 +88,12 @@ class GTLiteMetaTileEntities
                 "loom", GTLiteRecipeMaps.LOOM_RECIPES,
                 GTLiteTextures.LOOM_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
+            // 14061-14075: Laminator
+            MetaTileEntities.registerSimpleMetaTileEntity(LAMINATOR, 14063, // 14061-14062 for Steam Machines.
+                "laminator", GTLiteRecipeMaps.LAMINATOR_RECIPES,
+                GTLiteTextures.LAMINATOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
         }
 

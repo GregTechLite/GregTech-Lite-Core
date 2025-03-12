@@ -4,6 +4,7 @@ import gregtech.common.items.MetaItems
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
@@ -61,6 +62,17 @@ class MachineRecipeLoader
                 'C', CraftingComponent.CONVEYOR,
                 'M', CraftingComponent.MOTOR,
                 'I', MetaItems.ITEM_FILTER.stackForm)
+
+            // Laminator
+            MetaTileEntityLoader.registerMachineRecipe(true, LAMINATOR,
+                "XGW", "PCS", "WHX",
+                'H', CraftingComponent.HULL,
+                'X', CraftingComponent.CIRCUIT,
+                'W', CraftingComponent.CABLE,
+                'P', CraftingComponent.PUMP,
+                'C', CraftingComponent.CONVEYOR,
+                'S', CraftingComponents.STICK,
+                'G', CraftingComponents.GEAR_SMALL)
 
         }
 

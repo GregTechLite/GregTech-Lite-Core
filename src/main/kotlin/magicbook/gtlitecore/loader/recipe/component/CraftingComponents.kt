@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.loaders.recipe.CraftingComponent
@@ -60,6 +61,19 @@ class CraftingComponents
             7 to UnificationEntry(plateDense, NaquadahAlloy),
             8 to UnificationEntry(plateDense, Darmstadtium),
             9 to UnificationEntry(plateDense, Neutronium)
+        ).toMap())
+
+        val STICK = CraftingComponent.Component(sequenceOf(
+            0 to UnificationEntry(stick, WroughtIron),
+            1 to UnificationEntry(stick, Steel),
+            2 to UnificationEntry(stick, Aluminium),
+            3 to UnificationEntry(stick, StainlessSteel),
+            4 to UnificationEntry(stick, Titanium),
+            5 to UnificationEntry(stick, TungstenSteel),
+            6 to UnificationEntry(stick, RhodiumPlatedPalladium),
+            7 to UnificationEntry(stick, NaquadahAlloy),
+            8 to UnificationEntry(stick, Darmstadtium),
+            9 to UnificationEntry(stick, Neutronium)
         ).toMap())
 
         val STICK_LONG = CraftingComponent.Component(sequenceOf(

@@ -182,6 +182,27 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COMPRESSOR)
             .build()
 
+        /**
+         * @apiNote Just like assembler, laminator used to wrap wire with rubbers, it is
+         *          separated from assembler recipes (this is useful for resolved conflicts
+         *          in assembler). Laminator and loom is the container of original wiremill
+         *          recipes both. The original idea of this machine is from GregTech6, and
+         *          vulcanizing press is another rubber industry machine.
+         * @zenProp laminator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("LAMINATOR_RECIPES")
+        val LAMINATOR_RECIPES = RecipeMapBuilder("laminator", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .fluidOutputs(0)
+            .itemSlotOverlay(GTLiteGuiTextures.CHOPPING_BLOCK_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

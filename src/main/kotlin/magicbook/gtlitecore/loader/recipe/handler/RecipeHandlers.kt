@@ -13,6 +13,7 @@ class RecipeHandlers
             OreRecipeHandler.init()
             ToolRecipeHandler.init()
             WireCombinationHandler.init()
+            WireRecipeHandler.init()
         }
 
     }
