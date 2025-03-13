@@ -19,6 +19,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
@@ -72,6 +73,19 @@ class GTLiteMetaTileEntities
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+
+        @get:JvmName("ENERGY_HATCH_4A")
+        val ENERGY_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
+        @get:JvmName("DYNAMO_HATCH_4A")
+        val DYNAMO_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
+        @get:JvmName("ENERGY_HATCH_16A")
+        val ENERGY_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
+        @get:JvmName("DYNAMO_HATCH_16A")
+        val DYNAMO_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
+        @get:JvmName("SUBSTATION_ENERGY_HATCH_64A")
+        val SUBSTATION_ENERGY_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
+        @get:JvmName("SUBSTATION_DYNAMO_HATCH_64A")
+        val SUBSTATION_DYNAMO_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
 
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
 
@@ -220,7 +234,77 @@ class GTLiteMetaTileEntities
 
             // ...
 
-            // 18001-... Multiblocks
+            // 16001-17000: Energy/Dynamo Hatches.
+
+            // 16001-16004: LV-HV 4A Energy Hatches.
+            ENERGY_HATCH_4A[0] = MetaTileEntities.registerMetaTileEntity(16001,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.ulv"), GTValues.ULV, 4, false))
+            ENERGY_HATCH_4A[1] = MetaTileEntities.registerMetaTileEntity(16002,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.lv"), GTValues.LV, 4, false))
+            ENERGY_HATCH_4A[2] = MetaTileEntities.registerMetaTileEntity(16003,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.mv"), GTValues.MV, 4, false))
+            ENERGY_HATCH_4A[3] = MetaTileEntities.registerMetaTileEntity(16004,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.hv"), GTValues.HV, 4, false))
+
+            // 16005-16008: LV-HV 4A Dynamo Hatches.
+            DYNAMO_HATCH_4A[0] = MetaTileEntities.registerMetaTileEntity(16005,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.ulv"), GTValues.ULV, 4, true))
+            DYNAMO_HATCH_4A[1] = MetaTileEntities.registerMetaTileEntity(16006,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.lv"), GTValues.LV, 4, true))
+            DYNAMO_HATCH_4A[2] = MetaTileEntities.registerMetaTileEntity(16007,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.mv"), GTValues.MV, 4, true))
+            DYNAMO_HATCH_4A[3] = MetaTileEntities.registerMetaTileEntity(16008,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.hv"), GTValues.HV, 4, true))
+
+            // 16009-16013: LV-EV 16A Energy Hatches.
+            ENERGY_HATCH_16A[0] = MetaTileEntities.registerMetaTileEntity(16009,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.ulv"), GTValues.ULV, 16, false))
+            ENERGY_HATCH_16A[1] = MetaTileEntities.registerMetaTileEntity(16010,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.lv"), GTValues.LV, 16, false))
+            ENERGY_HATCH_16A[2] = MetaTileEntities.registerMetaTileEntity(16011,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.mv"), GTValues.MV, 16, false))
+            ENERGY_HATCH_16A[3] = MetaTileEntities.registerMetaTileEntity(16012,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.hv"), GTValues.HV, 16, false))
+            ENERGY_HATCH_16A[4] = MetaTileEntities.registerMetaTileEntity(16013,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.ev"), GTValues.EV, 16, false))
+
+            // 16014-16018: LV-EV 16A Dynamo Hatches.
+            DYNAMO_HATCH_16A[0] = MetaTileEntities.registerMetaTileEntity(16014,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.ulv"), GTValues.ULV, 16, true))
+            DYNAMO_HATCH_16A[1] = MetaTileEntities.registerMetaTileEntity(16015,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.lv"), GTValues.LV, 16, true))
+            DYNAMO_HATCH_16A[2] = MetaTileEntities.registerMetaTileEntity(16016,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.mv"), GTValues.MV, 16, true))
+            DYNAMO_HATCH_16A[3] = MetaTileEntities.registerMetaTileEntity(16017,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.hv"), GTValues.HV, 16, true))
+            DYNAMO_HATCH_16A[4] = MetaTileEntities.registerMetaTileEntity(16018,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.ev"), GTValues.EV, 16, true))
+
+            // 16019-16023 : LV-EV 64A Substation Energy Hatches.
+            SUBSTATION_ENERGY_HATCH_64A[0] = MetaTileEntities.registerMetaTileEntity(16019,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.ulv"), GTValues.ULV, 64, false))
+            SUBSTATION_ENERGY_HATCH_64A[1] = MetaTileEntities.registerMetaTileEntity(16020,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.lv"), GTValues.LV, 64, false))
+            SUBSTATION_ENERGY_HATCH_64A[2] = MetaTileEntities.registerMetaTileEntity(16021,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.mv"), GTValues.MV, 64, false))
+            SUBSTATION_ENERGY_HATCH_64A[3] = MetaTileEntities.registerMetaTileEntity(16022,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.hv"), GTValues.HV, 64, false))
+            SUBSTATION_ENERGY_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16023,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.ev"), GTValues.EV, 64, false))
+
+            // 16024-16028: LV-EV 64A Substation Dynamo Hatches.
+            SUBSTATION_DYNAMO_HATCH_64A[0] = MetaTileEntities.registerMetaTileEntity(16024,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ulv"), GTValues.ULV, 64, true))
+            SUBSTATION_DYNAMO_HATCH_64A[1] = MetaTileEntities.registerMetaTileEntity(16025,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.lv"), GTValues.LV, 64, true))
+            SUBSTATION_DYNAMO_HATCH_64A[2] = MetaTileEntities.registerMetaTileEntity(16026,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.mv"), GTValues.MV, 64, true))
+            SUBSTATION_DYNAMO_HATCH_64A[3] = MetaTileEntities.registerMetaTileEntity(16027,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.hv"), GTValues.HV, 64, true))
+            SUBSTATION_DYNAMO_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16028,
+                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ev"), GTValues.EV, 64, true))
+
+            // 18001-20000 Multiblocks
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
                 MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
 
