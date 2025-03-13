@@ -239,6 +239,21 @@ tile.field_gen_casing.uxv.name=§eUXV§r Field Generator Casing
 tile.field_gen_casing.opv.name=§9OpV§r Field Generator Casing
 tile.field_gen_casing.max.name=§c§lMAX§r Field Generator Casing
 
+tile.processor_casing.lv.name=§7LV§r Processor Casing
+tile.processor_casing.mv.name=§bMV§r Processor Casing
+tile.processor_casing.hv.name=§6HV§r Processor Casing
+tile.processor_casing.ev.name=§5EV§r Processor Casing
+tile.processor_casing.iv.name=§1IV§r Processor Casing
+tile.processor_casing.luv.name=§dLuV§r Processor Casing
+tile.processor_casing.zpm.name=§cZPM§r Processor Casing
+tile.processor_casing.uv.name=§3UV§r Processor Casing
+tile.processor_casing.uhv.name=§4UHV§r Processor Casing
+tile.processor_casing.uev.name=§aUEV§r Processor Casing
+tile.processor_casing.uiv.name=§2UIV§r Processor Casing
+tile.processor_casing.uxv.name=§eUXV§r Processor Casing
+tile.processor_casing.opv.name=§9OpV§r Processor Casing
+tile.processor_casing.max.name=§c§lMAX§r Processor Casing
+
 tile.primitive_casing.reinforced_treated_wood_wall.name=Reinforced Treated Wood Wall
 
 # Items

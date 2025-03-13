@@ -8,6 +8,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
+import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
@@ -38,6 +39,7 @@ class GTLiteMetaBlocks
         lateinit var EMITTER_CASING: BlockEmitterCasing
         lateinit var SENSOR_CASING: BlockSensorCasing
         lateinit var FIELD_GEN_CASING: BlockFieldGenCasing
+        lateinit var PROCESSOR_CASING: BlockProcessorCasing
 
         lateinit var PRIMITIVE_CASING: BlockPrimitiveCasing
 
@@ -80,6 +82,10 @@ class GTLiteMetaBlocks
             (FIELD_GEN_CASING as? Block)?.setRegistryName("field_gen_casing")
             (FIELD_GEN_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            PROCESSOR_CASING = BlockProcessorCasing()
+            (PROCESSOR_CASING as? Block)?.setRegistryName("processor_casing")
+            (PROCESSOR_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             PRIMITIVE_CASING = BlockPrimitiveCasing()
             (PRIMITIVE_CASING as? Block)?.setRegistryName("primitive_casing")
             (PRIMITIVE_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -100,6 +106,7 @@ class GTLiteMetaBlocks
             registerItemModel(EMITTER_CASING)
             registerItemModel(SENSOR_CASING)
             registerItemModel(FIELD_GEN_CASING)
+            registerItemModel(PROCESSOR_CASING)
             registerItemModel(PRIMITIVE_CASING)
         }
 

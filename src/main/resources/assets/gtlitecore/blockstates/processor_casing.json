@@ -1,0 +1,83 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:processor_casing",
+    "textures": {
+      "all": "gtlitecore:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "lv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/lv"
+        }
+      },
+      "mv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/mv"
+        }
+      },
+      "hv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/hv"
+        }
+      },
+      "ev": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/ev"
+        }
+      },
+      "iv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/iv"
+        }
+      },
+      "luv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/luv"
+        }
+      },
+      "zpm": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/zpm"
+        }
+      },
+      "uv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uv"
+        }
+      },
+      "uhv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uhv"
+        }
+      },
+      "uev": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uev"
+        }
+      },
+      "uiv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uiv"
+        }
+      },
+      "uxv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uxv"
+        }
+      },
+      "opv": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/opv"
+        }
+      },
+      "max": {
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/max"
+        }
+      }
+    }
+  }
+}

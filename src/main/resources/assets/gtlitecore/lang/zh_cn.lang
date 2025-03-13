@@ -239,6 +239,21 @@ tile.field_gen_casing.uxv.name=力场发生器方块（§eUXV§r）
 tile.field_gen_casing.opv.name=力场发生器方块（§9OpV§r）
 tile.field_gen_casing.max.name=力场发生器方块（§c§lMAX§r）
 
+tile.processor_casing.lv.name=处理器方块（§7LV§r）
+tile.processor_casing.mv.name=处理器方块（§bMV§r）
+tile.processor_casing.hv.name=处理器方块（§6HV§r）
+tile.processor_casing.ev.name=处理器方块（§5EV§r）
+tile.processor_casing.iv.name=处理器方块（§1IV§r）
+tile.processor_casing.luv.name=处理器方块（§dLuV§r）
+tile.processor_casing.zpm.name=处理器方块（§cZPM§r）
+tile.processor_casing.uv.name=处理器方块（§3UV§r）
+tile.processor_casing.uhv.name=处理器方块（§4UHV§r）
+tile.processor_casing.uev.name=处理器方块（§aUEV§r）
+tile.processor_casing.uiv.name=处理器方块（§2UIV§r）
+tile.processor_casing.uxv.name=处理器方块（§eUXV§r）
+tile.processor_casing.opv.name=处理器方块（§9OpV§r）
+tile.processor_casing.max.name=处理器方块（§c§lMAX§r）
+
 tile.primitive_casing.reinforced_treated_wood_wall.name=加固防腐木缸壁
 
 # Items
