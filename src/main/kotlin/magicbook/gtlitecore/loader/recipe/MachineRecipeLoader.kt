@@ -179,7 +179,7 @@ class MachineRecipeLoader
                 'T', ItemStack(Blocks.GLASS),
                 'R', UnificationEntry(rotor, WroughtIron),
                 'S', UnificationEntry(springSmall, Iron),
-                'D', OreDictUnifier.get(toolHeadDrill, Steel),
+                'D', OreDictUnifier.get(toolHeadDrill, WroughtIron),
                 'X', UnificationEntry(gem, Diamond))
 
             ModHandler.addShapedRecipe(true, "sap_collector.steel", STEAM_SAP_COLLECTOR[1]!!.stackForm,
