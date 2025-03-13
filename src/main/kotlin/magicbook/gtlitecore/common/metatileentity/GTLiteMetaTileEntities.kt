@@ -20,6 +20,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
+import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
@@ -86,6 +87,15 @@ class GTLiteMetaTileEntities
         val SUBSTATION_ENERGY_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
         @get:JvmName("SUBSTATION_DYNAMO_HATCH_64A")
         val SUBSTATION_DYNAMO_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
+
+        @get:JvmName("QUADRUPLE_FLUID_IMPORT_HATCH")
+        val QUADRUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
+        @get:JvmName("QUADRUPLE_FLUID_EXPORT_HATCH")
+        val QUADRUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
+        @get:JvmName("NONUPLE_FLUID_IMPORT_HATCH")
+        val NONUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
+        @get:JvmName("NONUPLE_FLUID_EXPORT_HATCH")
+        val NONUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
 
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
 
@@ -303,6 +313,43 @@ class GTLiteMetaTileEntities
                 MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.hv"), GTValues.HV, 64, true))
             SUBSTATION_DYNAMO_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16028,
                 MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ev"), GTValues.EV, 64, true))
+
+            // 17001-17100: Item/Fluid Hatches.
+            QUADRUPLE_FLUID_IMPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17001,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.ulv"), GTValues.ULV, 4, false))
+            QUADRUPLE_FLUID_IMPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17002,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.lv"), GTValues.LV, 4, false))
+            QUADRUPLE_FLUID_IMPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17003,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.mv"), GTValues.MV, 4, false))
+            QUADRUPLE_FLUID_IMPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17004,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.hv"), GTValues.HV, 4, false))
+
+            QUADRUPLE_FLUID_EXPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17005,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.ulv"), GTValues.ULV, 4, true))
+            QUADRUPLE_FLUID_EXPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17006,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.lv"), GTValues.LV, 4, true))
+            QUADRUPLE_FLUID_EXPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17007,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.mv"), GTValues.MV, 4, true))
+            QUADRUPLE_FLUID_EXPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17008,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.hv"), GTValues.HV, 4, true))
+
+            NONUPLE_FLUID_IMPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17009,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.ulv"), GTValues.ULV, 9, false))
+            NONUPLE_FLUID_IMPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17010,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.lv"), GTValues.LV, 9, false))
+            NONUPLE_FLUID_IMPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17011,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.mv"), GTValues.MV, 9, false))
+            NONUPLE_FLUID_IMPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17012,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.hv"), GTValues.HV, 9, false))
+
+            NONUPLE_FLUID_EXPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17013,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.ulv"), GTValues.ULV, 9, true))
+            NONUPLE_FLUID_EXPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17014,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.lv"), GTValues.LV, 9, true))
+            NONUPLE_FLUID_EXPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17015,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.mv"), GTValues.MV, 9, true))
+            NONUPLE_FLUID_EXPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17016,
+                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.hv"), GTValues.HV, 9, true))
 
             // 18001-20000 Multiblocks
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,

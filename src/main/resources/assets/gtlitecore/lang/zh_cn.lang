@@ -632,6 +632,26 @@ gtlitecore.machine.substation_hatch.output_64a.mv.name=64安变电动力仓（§
 gtlitecore.machine.substation_hatch.output_64a.hv.name=64安变电动力仓（§6HV§r）
 gtlitecore.machine.substation_hatch.output_64a.ev.name=64安变电动力仓（§5EV§r）
 
+gtlitecore.machine.fluid_hatch.import_4x.ulv.name=四重输入仓（§8ULV§r）
+gtlitecore.machine.fluid_hatch.import_4x.lv.name=四重输入仓（§7LV§r）
+gtlitecore.machine.fluid_hatch.import_4x.mv.name=四重输入仓（§bMV§r）
+gtlitecore.machine.fluid_hatch.import_4x.hv.name=四重输入仓（§6HV§r）
+
+gtlitecore.machine.fluid_hatch.export_4x.ulv.name=四重输出仓（§8ULV§r）
+gtlitecore.machine.fluid_hatch.export_4x.lv.name=四重输出仓（§7LV§r）
+gtlitecore.machine.fluid_hatch.export_4x.mv.name=四重输出仓（§bMV§r）
+gtlitecore.machine.fluid_hatch.export_4x.hv.name=四重输出仓（§6HV§r）
+
+gtlitecore.machine.fluid_hatch.import_9x.ulv.name=九重输入仓（§8ULV§r）
+gtlitecore.machine.fluid_hatch.import_9x.lv.name=九重输入仓（§7LV§r）
+gtlitecore.machine.fluid_hatch.import_9x.mv.name=九重输入仓（§bMV§r）
+gtlitecore.machine.fluid_hatch.import_9x.hv.name=九重输入仓（§6HV§r）
+
+gtlitecore.machine.fluid_hatch.export_9x.ulv.name=九重输出仓（§8ULV§r）
+gtlitecore.machine.fluid_hatch.export_9x.lv.name=九重输出仓（§7LV§r）
+gtlitecore.machine.fluid_hatch.export_9x.mv.name=九重输出仓（§bMV§r）
+gtlitecore.machine.fluid_hatch.export_9x.hv.name=九重输出仓（§6HV§r）
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
 item.material.oreprefix.oreLimestone=石灰岩%s矿石

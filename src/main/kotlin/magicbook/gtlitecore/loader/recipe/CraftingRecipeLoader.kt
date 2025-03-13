@@ -65,6 +65,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -373,6 +377,24 @@ class CraftingRecipeLoader
                 " h ", "PSP", "PSP",
                 'P', UnificationEntry(plate, Iridium),
                 'S', UnificationEntry(stickLong, Iridium))
+
+            // Additional Quadruple/Nonuple Input Hatch converts.
+            for (i in 0..3)
+            {
+                ModHandler.addShapedRecipe("quadruple_fluid_hatch_output_to_input_${QUADRUPLE_FLUID_IMPORT_HATCH[i]!!.tier}",
+                    QUADRUPLE_FLUID_IMPORT_HATCH[i]!!.stackForm, "d", "B",
+                    'B', QUADRUPLE_FLUID_EXPORT_HATCH[i]!!.stackForm)
+                ModHandler.addShapedRecipe("quadruple_fluid_hatch_input_to_output_${QUADRUPLE_FLUID_EXPORT_HATCH[i]!!.tier}",
+                    QUADRUPLE_FLUID_EXPORT_HATCH[i]!!.stackForm, "d", "B",
+                    'B', QUADRUPLE_FLUID_IMPORT_HATCH[i]!!.stackForm)
+
+                ModHandler.addShapedRecipe("nonuple_fluid_hatch_output_to_input_${NONUPLE_FLUID_IMPORT_HATCH[i]!!.tier}",
+                    NONUPLE_FLUID_IMPORT_HATCH[i]!!.stackForm, "d", "B",
+                    'B', NONUPLE_FLUID_EXPORT_HATCH[i]!!.stackForm)
+                ModHandler.addShapedRecipe("nonuple_fluid_hatch_input_to_output_${NONUPLE_FLUID_EXPORT_HATCH[i]!!.tier}",
+                    NONUPLE_FLUID_EXPORT_HATCH[i]!!.stackForm, "d", "B",
+                    'B', NONUPLE_FLUID_IMPORT_HATCH[i]!!.stackForm)
+            }
 
         }
 

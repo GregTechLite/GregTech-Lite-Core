@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
@@ -12,14 +13,17 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -28,6 +32,8 @@ import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
+import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
@@ -43,6 +49,8 @@ import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -67,6 +75,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_DYNAMO_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_ENERGY_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
@@ -808,6 +820,182 @@ class AssemblerRecipes
                 .output(SUBSTATION_DYNAMO_HATCH_64A[4])
                 .EUt(VA[MV].toLong())
                 .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // ULV Quadruple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_IMPORT_HATCH[ULV])
+                .input(pipeQuadrupleFluid, TinAlloy)
+                .fluidInputs(Glue.getFluid(1000))
+                .output(QUADRUPLE_FLUID_IMPORT_HATCH[0])
+                .EUt(VA[ULV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // LV Quadruple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_IMPORT_HATCH[LV])
+                .input(pipeQuadrupleFluid, Copper)
+                .fluidInputs(Glue.getFluid(2000))
+                .output(QUADRUPLE_FLUID_IMPORT_HATCH[1])
+                .EUt(VA[LV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // MV Quadruple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_IMPORT_HATCH[MV])
+                .input(pipeQuadrupleFluid, Steel)
+                .fluidInputs(Polyethylene.getFluid(L * 4))
+                .output(QUADRUPLE_FLUID_IMPORT_HATCH[2])
+                .EUt(VA[MV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // HV Quadruple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_IMPORT_HATCH[HV])
+                .input(pipeQuadrupleFluid, StainlessSteel)
+                .fluidInputs(Polyethylene.getFluid(L * 4))
+                .output(QUADRUPLE_FLUID_IMPORT_HATCH[3])
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // ULV Quadruple Output Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_EXPORT_HATCH[ULV])
+                .input(pipeQuadrupleFluid, TinAlloy)
+                .fluidInputs(Glue.getFluid(1000))
+                .output(QUADRUPLE_FLUID_EXPORT_HATCH[0])
+                .EUt(VA[ULV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // LV Quadruple Output Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_EXPORT_HATCH[LV])
+                .input(pipeQuadrupleFluid, Copper)
+                .fluidInputs(Glue.getFluid(2000))
+                .output(QUADRUPLE_FLUID_EXPORT_HATCH[1])
+                .EUt(VA[LV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // MV Quadruple Output Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_EXPORT_HATCH[MV])
+                .input(pipeQuadrupleFluid, Steel)
+                .fluidInputs(Polyethylene.getFluid(L * 4))
+                .output(QUADRUPLE_FLUID_EXPORT_HATCH[2])
+                .EUt(VA[MV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // HV Quadruple Output Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_EXPORT_HATCH[HV])
+                .input(pipeQuadrupleFluid, StainlessSteel)
+                .fluidInputs(Polyethylene.getFluid(L * 4))
+                .output(QUADRUPLE_FLUID_EXPORT_HATCH[3])
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // ULV Nonuple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_IMPORT_HATCH[ULV])
+                .input(pipeNonupleFluid, TinAlloy)
+                .fluidInputs(Glue.getFluid(2250))
+                .output(NONUPLE_FLUID_IMPORT_HATCH[0])
+                .EUt(VA[ULV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // LV Nonuple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_IMPORT_HATCH[LV])
+                .input(pipeNonupleFluid, Copper)
+                .fluidInputs(Glue.getFluid(4500))
+                .output(NONUPLE_FLUID_IMPORT_HATCH[1])
+                .EUt(VA[LV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // MV Nonuple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_IMPORT_HATCH[MV])
+                .input(pipeNonupleFluid, Steel)
+                .fluidInputs(Polyethylene.getFluid(L * 9))
+                .output(NONUPLE_FLUID_IMPORT_HATCH[2])
+                .EUt(VA[MV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // HV Nonuple Input Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_IMPORT_HATCH[HV])
+                .input(pipeNonupleFluid, StainlessSteel)
+                .fluidInputs(Polyethylene.getFluid(L * 9))
+                .output(NONUPLE_FLUID_IMPORT_HATCH[3])
+                .EUt(VA[HV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // ULV Nonuple Export Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_EXPORT_HATCH[ULV])
+                .input(pipeNonupleFluid, TinAlloy)
+                .fluidInputs(Glue.getFluid(2250))
+                .output(NONUPLE_FLUID_EXPORT_HATCH[0])
+                .EUt(VA[ULV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // LV Nonuple Export Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_EXPORT_HATCH[LV])
+                .input(pipeNonupleFluid, Copper)
+                .fluidInputs(Glue.getFluid(4500))
+                .output(NONUPLE_FLUID_EXPORT_HATCH[1])
+                .EUt(VA[LV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // MV Nonuple Export Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_EXPORT_HATCH[MV])
+                .input(pipeNonupleFluid, Steel)
+                .fluidInputs(Polyethylene.getFluid(L * 9))
+                .output(NONUPLE_FLUID_EXPORT_HATCH[2])
+                .EUt(VA[MV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // HV Nonuple Export Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_EXPORT_HATCH[HV])
+                .input(pipeNonupleFluid, StainlessSteel)
+                .fluidInputs(Polyethylene.getFluid(L * 9))
+                .output(NONUPLE_FLUID_EXPORT_HATCH[3])
+                .EUt(VA[HV].toLong())
+                .duration(30 * SECOND)
                 .buildAndRegister()
 
         }

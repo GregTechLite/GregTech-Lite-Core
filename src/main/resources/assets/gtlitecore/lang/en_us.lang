@@ -632,6 +632,26 @@ gtlitecore.machine.substation_hatch.output_64a.mv.name=§bMV§r 64A Substation D
 gtlitecore.machine.substation_hatch.output_64a.hv.name=§6HV§r 64A Substation Dynamo Hatch
 gtlitecore.machine.substation_hatch.output_64a.ev.name=§5EV§r 64A Substation Dynamo Hatch
 
+gtlitecore.machine.fluid_hatch.import_4x.ulv.name=§8ULV§r Quadruple Input Hatch
+gtlitecore.machine.fluid_hatch.import_4x.lv.name=§7LV§r Quadruple Input Hatch
+gtlitecore.machine.fluid_hatch.import_4x.mv.name=§bMV§r Quadruple Input Hatch
+gtlitecore.machine.fluid_hatch.import_4x.hv.name=§6HV§r Quadruple Input Hatch
+
+gtlitecore.machine.fluid_hatch.export_4x.ulv.name=§8ULV§r Quadruple Output Hatch
+gtlitecore.machine.fluid_hatch.export_4x.lv.name=§7LV§r Quadruple Output Hatch
+gtlitecore.machine.fluid_hatch.export_4x.mv.name=§bMV§r Quadruple Output Hatch
+gtlitecore.machine.fluid_hatch.export_4x.hv.name=§6HV§r Quadruple Output Hatch
+
+gtlitecore.machine.fluid_hatch.import_9x.ulv.name=§8ULV§r Nonuple Input Hatch
+gtlitecore.machine.fluid_hatch.import_9x.lv.name=§7LV§r Nonuple Input Hatch
+gtlitecore.machine.fluid_hatch.import_9x.mv.name=§bMV§r Nonuple Input Hatch
+gtlitecore.machine.fluid_hatch.import_9x.hv.name=§6HV§r Nonuple Input Hatch
+
+gtlitecore.machine.fluid_hatch.export_9x.ulv.name=§8ULV§r Nonuple Output Hatch
+gtlitecore.machine.fluid_hatch.export_9x.lv.name=§7LV§r Nonuple Output Hatch
+gtlitecore.machine.fluid_hatch.export_9x.mv.name=§bMV§r Nonuple Output Hatch
+gtlitecore.machine.fluid_hatch.export_9x.hv.name=§6HV§r Nonuple Output Hatch
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
 item.material.oreprefix.oreLimestone=Limestone %s Ore
