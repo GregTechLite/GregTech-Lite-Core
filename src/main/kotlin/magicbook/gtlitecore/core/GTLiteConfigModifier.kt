@@ -14,6 +14,8 @@ class GTLiteConfigModifier
         {
             // GregTech configurations.
 
+            // Basic configuration for high tier contents.
+            ConfigHolder.machines.highTierContent = true
             // Add low quality gems because we add a high quality gems, this is a fine
             // balancing about gem sifting outputs.
             ConfigHolder.recipes.generateLowQualityGems = true

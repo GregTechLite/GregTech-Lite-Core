@@ -67,6 +67,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
@@ -449,6 +450,9 @@ class GTLiteMaterials
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)
             TinAlloy.addFlags(GENERATE_ROTOR)
+
+            // round
+            Steel.addFlags(GENERATE_ROUND)
 
             // stick
 
