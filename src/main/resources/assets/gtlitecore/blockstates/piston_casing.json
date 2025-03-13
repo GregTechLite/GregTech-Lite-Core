@@ -1,0 +1,97 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:piston_casing",
+    "textures": {
+      "all": "gtlitecore:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "lv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/lv"
+        }
+      },
+      "mv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/mv"
+        }
+      },
+      "hv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/hv"
+        }
+      },
+      "ev": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/ev"
+        }
+      },
+      "iv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/iv"
+        }
+      },
+      "luv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/luv"
+        }
+      },
+      "zpm": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/zpm"
+        }
+      },
+      "uv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uv"
+        }
+      },
+      "uhv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uhv"
+        }
+      },
+      "uev": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uev"
+        }
+      },
+      "uiv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uiv"
+        }
+      },
+      "uxv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uxv"
+        }
+      },
+      "opv": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/opv"
+        }
+      },
+      "max": {
+        "model": "gtlitecore:piston_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/max"
+        }
+      }
+    }
+  }
+}

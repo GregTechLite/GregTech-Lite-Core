@@ -1,0 +1,97 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:field_gen_casing",
+    "textures": {
+      "all": "gtlitecore:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "lv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/lv"
+        }
+      },
+      "mv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/mv"
+        }
+      },
+      "hv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/hv"
+        }
+      },
+      "ev": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/ev"
+        }
+      },
+      "iv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/iv"
+        }
+      },
+      "luv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/luv"
+        }
+      },
+      "zpm": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/zpm"
+        }
+      },
+      "uv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uv"
+        }
+      },
+      "uhv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uhv"
+        }
+      },
+      "uev": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uev"
+        }
+      },
+      "uiv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uiv"
+        }
+      },
+      "uxv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/uxv"
+        }
+      },
+      "opv": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/opv"
+        }
+      },
+      "max": {
+        "model": "gtlitecore:field_gen_casing",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/max"
+        }
+      }
+    }
+  }
+}

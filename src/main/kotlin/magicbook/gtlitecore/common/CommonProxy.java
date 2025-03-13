@@ -36,6 +36,15 @@ public class CommonProxy
         // Register all stones in GTLiteStoneVariant.
         for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
             registry.register(stone);
+        registry.register(GTLiteMetaBlocks.MOTOR_CASING);
+        registry.register(GTLiteMetaBlocks.PISTON_CASING);
+        registry.register(GTLiteMetaBlocks.PUMP_CASING);
+        registry.register(GTLiteMetaBlocks.CONVEYOR_CASING);
+        registry.register(GTLiteMetaBlocks.ROBOT_ARM_CASING);
+        registry.register(GTLiteMetaBlocks.EMITTER_CASING);
+        registry.register(GTLiteMetaBlocks.SENSOR_CASING);
+        registry.register(GTLiteMetaBlocks.FIELD_GEN_CASING);
+        registry.register(GTLiteMetaBlocks.PRIMITIVE_CASING);
     }
 
     @SubscribeEvent
@@ -48,6 +57,15 @@ public class CommonProxy
         // Register all item blocks.
         for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
             registry.register(createItemBlock(stone, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.PISTON_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.PUMP_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.CONVEYOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.ROBOT_ARM_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.EMITTER_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.SENSOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.FIELD_GEN_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.PRIMITIVE_CASING, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,
