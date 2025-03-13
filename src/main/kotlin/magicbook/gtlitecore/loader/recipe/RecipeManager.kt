@@ -21,6 +21,7 @@ class RecipeManager
         {
             CraftingRecipeLoader.init()
             MachineRecipeLoader.init()
+            WoodRecipeLoader.init()
 
             // Loading recipe producers.
             StoneVariantRecipeProducer.init()

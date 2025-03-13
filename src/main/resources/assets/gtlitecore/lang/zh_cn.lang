@@ -495,6 +495,7 @@ gtlitecore.material.slate=板岩
 gtlitecore.material.shale=页岩
 
 gtlitecore.material.latex=胶乳
+gtlitecore.material.resin=树脂
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

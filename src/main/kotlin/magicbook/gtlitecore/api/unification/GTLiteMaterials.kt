@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api.unification
 
+import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
@@ -60,6 +61,7 @@ import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
@@ -380,9 +382,18 @@ class GTLiteMaterials
         @JvmField
         val Latex: Material = Material.Builder(12001, gtliteId("latex"))
             .dust()
-            .liquid()
+            .liquid(FluidBuilder().temperature(293))
             .color(0xFFFADA)
             .build()
+
+        // 12002 Resin
+        @JvmField
+        val Resin: Material = Material.Builder(12002, gtliteId("resin"))
+            .liquid()
+            .color(0xB5803A)
+            .flags(FLAMMABLE)
+            .build()
+
 
         fun setMaterialProperties()
         {
