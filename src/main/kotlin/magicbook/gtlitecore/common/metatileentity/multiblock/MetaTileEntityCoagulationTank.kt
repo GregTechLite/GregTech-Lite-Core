@@ -40,7 +40,6 @@ import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextComponentTranslation
@@ -52,7 +51,6 @@ import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemStackHandler
 import java.lang.String.valueOf
-import java.util.*
 import kotlin.math.min
 
 @Suppress("MISSING_DEPENDENCY_CLASS")

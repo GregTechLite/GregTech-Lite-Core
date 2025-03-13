@@ -13,8 +13,6 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import net.minecraft.block.BlockLog
-import net.minecraft.block.BlockPlanks
 import net.minecraft.init.Blocks
 
 @Suppress("MISSING_DEPENDENCY_CLASS")

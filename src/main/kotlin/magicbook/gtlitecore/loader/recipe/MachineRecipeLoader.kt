@@ -5,7 +5,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Iron
@@ -13,7 +12,6 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.WroughtIron
-import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
@@ -36,7 +34,6 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
