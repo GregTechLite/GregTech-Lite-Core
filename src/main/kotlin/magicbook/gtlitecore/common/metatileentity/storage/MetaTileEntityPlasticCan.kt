@@ -12,7 +12,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
-import magicbook.gtlitecore.client.GTLiteTextures
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.mixin.gregtech.MetaTileEntityDrumAccessor
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation

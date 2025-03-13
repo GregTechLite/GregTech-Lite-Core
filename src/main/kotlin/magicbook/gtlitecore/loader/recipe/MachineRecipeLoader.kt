@@ -1,6 +1,9 @@
 package magicbook.gtlitecore.loader.recipe
 
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bronze
@@ -8,15 +11,19 @@ import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
+import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
+import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
@@ -27,9 +34,14 @@ import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -201,6 +213,33 @@ class MachineRecipeLoader
                 'D', OreDictUnifier.get(toolHeadDrill, Steel),
                 'S', CraftingComponents.SPRING_SMALL,
                 'X', CraftingComponent.CIRCUIT)
+
+            // =========================================================================================================
+
+            // Coagulation Tank
+            ModHandler.addShapedRecipe(true, "coagulation_tank", COAGULATION_TANK.stackForm,
+                "PRP", "sQh", "PSP",
+                'P', UnificationEntry(plate, TreatedWood),
+                'Q', UnificationEntry(pipeLargeFluid, TreatedWood),
+                'R', UnificationEntry(rotor, Steel),
+                'S', UnificationEntry(screw, Steel))
+
+            // Reinforced Treated Wood Wall
+            ModHandler.addShapedRecipe(true, "reinforced_treated_wood_wall", GTLiteMetaBlocks.PRIMITIVE_CASING.getItemVariant(BlockPrimitiveCasing.PrimitiveCasingType.REINFORCED_TREATED_WOOD_WALL, 2),
+                "PhP", "QFQ", "PwP",
+                'P', UnificationEntry(plate, TreatedWood),
+                'Q', UnificationEntry(plate, Steel),
+                'F', UnificationEntry(frameGt, TreatedWood))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(plate, TreatedWood, 4)
+                .input(plate, Steel, 2)
+                .input(frameGt, TreatedWood)
+                .outputs(GTLiteMetaBlocks.PRIMITIVE_CASING.getItemVariant(BlockPrimitiveCasing.PrimitiveCasingType.REINFORCED_TREATED_WOOD_WALL, 2))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
 
         }
 

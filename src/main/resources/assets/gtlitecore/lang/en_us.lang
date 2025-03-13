@@ -340,6 +340,7 @@ recipemap.chemical_dehydrator.name=Chemical Dehydrator
 recipemap.vulcanizing_press.name=Vulcanizing Press
 recipemap.vacuum_chamber.name=Vacuum Chamber
 recipemap.sap_collector.name=Sap Collector
+recipemap.coagulation_tank.name=Coagulation Tank
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -564,6 +565,12 @@ gtlitecore.machine.sap_collector.ev.name=Advanced Sap Collector III
 gtlitecore.machine.sap_collector.iv.name=Elite Sap Collector
 gtlitecore.machine.sap_collector.sap_collection=Extracts liquids from adjacent logs.
 gtlitecore.machine.sap_collector.sap_collection_amount=§fExtraction Rate: §a%s L/t
+
+gtlitecore.machine.coagulation_tank.name=Coagulation Tank
+gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
+gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
+gtlitecore.machine.coagulation_tank.tooltip.3=The vertical middle layer can expand/contract, each 1 extra layer increase §e1 parallel.
+gtlitecore.machine.coagulation_tank.tooltip.4=Need to placed Iron Stick as a frame to support latex, otherwise cannot proceed.
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

@@ -340,6 +340,7 @@ recipemap.chemical_dehydrator.name=化学脱水机
 recipemap.vulcanizing_press.name=硫化机
 recipemap.vacuum_chamber.name=真空室
 recipemap.sap_collector.name=树液收集器
+recipemap.coagulation_tank.name=凝固缸
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -564,6 +565,12 @@ gtlitecore.machine.sap_collector.ev.name=进阶树液收集器 III
 gtlitecore.machine.sap_collector.iv.name=精英树液收集器
 gtlitecore.machine.sap_collector.sap_collection=从相邻的原木中提取树液。
 gtlitecore.machine.sap_collector.sap_collection_amount=§f提取速率：§a%s L/t
+
+gtlitecore.machine.coagulation_tank.name=凝固缸
+gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
+gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
+gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
+gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

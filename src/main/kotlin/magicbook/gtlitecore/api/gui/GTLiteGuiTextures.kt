@@ -14,6 +14,10 @@ class GTLiteGuiTextures
         val FLUID_SLOT_STEAM = SteamTexture.fullImage(
             "textures/gui/base/fluid_slot_%s.png")
 
+        @JvmField /* GuiTextures#PRIMITIVE_SLOT for fluid slots. */
+        val PRIMITIVE_FLUID_SLOT = TextureArea.fullImage(
+            "textures/gui/primitive/primitive_fluid_slot.png")
+
         // Overlays
         @JvmField
         val CHOPPING_BLOCK_OVERLAY = TextureArea.fullImage(
@@ -60,6 +64,15 @@ class GTLiteGuiTextures
         @JvmField
         val BUTTON_INT_CIRCUIT_MINUS_STEAM = SteamTexture.fullImage(
             "textures/gui/widget/button_circuit_minus_%s.png")
+
+        @JvmField
+        val BUTTON_INT_CIRCUIT_PLUS_PRIMITIVE = TextureArea.fullImage(
+            "textures/gui/primitive/button_circuit_plus_primitive.png")
+
+        @JvmField
+        val BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE = TextureArea.fullImage(
+            "textures/gui/primitive/button_circuit_minus_primitive.png")
+
         // -------------------------------------------- ModularUI2 Textures --------------------------------------------
 
         // -------------------------------------------------------------------------------------------------------------

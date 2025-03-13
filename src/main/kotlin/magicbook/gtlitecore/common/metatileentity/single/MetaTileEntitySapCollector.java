@@ -10,7 +10,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import magicbook.gtlitecore.api.utils.GTLiteUtility;
-import magicbook.gtlitecore.client.GTLiteTextures;
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

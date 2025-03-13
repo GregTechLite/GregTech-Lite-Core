@@ -1,8 +1,14 @@
-package magicbook.gtlitecore.client
+package magicbook.gtlitecore.client.renderer.texture
 
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer
+import gregtech.client.renderer.texture.cube.SidedCubeRenderer
+import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtech.client.renderer.texture.custom.DrumRenderer
+import magicbook.gtlitecore.api.utils.GTLiteValues
+import magicbook.gtlitecore.client.renderer.texture.cube.GTLiteSimpleOverlayRenderer
+import kotlin.reflect.full.declaredFunctions
+import kotlin.reflect.jvm.isAccessible
 
 class GTLiteTextures
 {
@@ -36,11 +42,18 @@ class GTLiteTextures
 
         // =============================================================================================================
         @JvmField
+        val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
+
+        // =============================================================================================================
+        @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")
 
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN = DrumRenderer("storage/drums/plastic_can")
+
+        // =============================================================================================================
+
     }
 
 }

@@ -6,10 +6,14 @@ import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ALLOY_SMELTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.AceticAcid
+import gregtech.api.unification.material.Materials.CalciumChloride
+import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.RawRubber
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.ore.OrePrefix.bolt
@@ -28,10 +32,12 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_PLATE
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_RING
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COAGULATION_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VULCANIZATION_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
 import net.minecraft.block.BlockLog
 
@@ -61,9 +67,40 @@ class RubbersChain
                 .blockStates("rubber", arrayListOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
                 .buildAndRegister()
 
-            // TODO Add a steam age drying machine (as ULV Chemical Dehydrator).
+            // Coagulation processing of liquid latex.
             GTRecipeHandler.removeRecipesByInputs(EXTRACTOR_RECIPES,
                 OreDictUnifier.get(dust, Latex))
+
+            COAGULATION_RECIPES.recipeBuilder()
+                .notConsumable(stick, Iron)
+                .fluidInputs(Latex.getFluid(1000))
+                .output(dust, Latex)
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            COAGULATION_RECIPES.recipeBuilder()
+                .notConsumable(stick, Iron)
+                .notConsumable(dust, CalciumChloride)
+                .fluidInputs(Latex.getFluid(1000))
+                .output(dust, Latex)
+                .duration(2 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            COAGULATION_RECIPES.recipeBuilder()
+                .notConsumable(stick, Iron)
+                .fluidInputs(Latex.getFluid(1000))
+                .notConsumable(SulfuricAcid.getFluid(1))
+                .output(dust, Latex)
+                .duration(1 * SECOND)
+                .buildAndRegister()
+
+            COAGULATION_RECIPES.recipeBuilder()
+                .notConsumable(stick, Iron)
+                .fluidInputs(Latex.getFluid(1000))
+                .notConsumable(AceticAcid.getFluid(1))
+                .output(dust, Latex)
+                .duration(5 * TICK)
+                .buildAndRegister()
 
             // Disabled vanilla Alloy Smelter recipes of Rubber ingot, only allowed used
             // vulcanization processing to get rubbers, same as this, chemical reactor is

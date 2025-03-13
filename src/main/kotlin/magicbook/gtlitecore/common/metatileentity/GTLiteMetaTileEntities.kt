@@ -17,7 +17,8 @@ import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEn
 import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
-import magicbook.gtlitecore.client.GTLiteTextures
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
@@ -71,6 +72,8 @@ class GTLiteMetaTileEntities
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+
+        lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
 
         // Multiblock machines.
 
@@ -216,6 +219,11 @@ class GTLiteMetaTileEntities
             // 15051-15060: I/O hatch proxies.
 
             // ...
+
+            // 18001-... Multiblocks
+            COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
+                MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
+
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

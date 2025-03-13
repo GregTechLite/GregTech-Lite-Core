@@ -5,6 +5,7 @@ import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
@@ -279,6 +280,19 @@ class GTLiteRecipeMaps
             .fluidOutputs(2)
             .progressBar(GTLiteGuiTextures.PROGRESS_BAR_EXTRACTION, ProgressWidget.MoveType.VERTICAL_DOWNWARDS)
             .sound(GTSoundEvents.DRILL_TOOL)
+            .build()
+
+        /**
+         * @zenProp coagulation_tank
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("COAGULATION_RECIPES")
+        val COAGULATION_RECIPES = RecipeMapBuilder("coagulation_tank", PrimitiveRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .sound(GTSoundEvents.COOLING)
             .build()
 
         @JvmStatic
