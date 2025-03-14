@@ -82,6 +82,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
 import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
+import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -374,6 +375,32 @@ class GTLiteMaterials
         // =======================================================================
         // 8001-12000: Organic Chemistry Materials
 
+        // 8001 Dicyclopentadiene
+        @JvmField
+        val Dicyclopentadiene: Material = Material.Builder(8001, gtliteId("dicyclopentadiene"))
+            .liquid(FluidBuilder().temperature(306))
+            .color(0x9C388B)
+            .components(Carbon, 10, Hydrogen, 12)
+            .build()
+
+        // 8002 Pentane
+        @JvmField
+        val Pentane: Material = Material.Builder(8002, gtliteId("pentane"))
+            .liquid()
+            .color(0xE8E7BE)
+            .components(Carbon, 5, Hydrogen, 12)
+            .build()
+
+        // 8003 Polyisoprene
+        @JvmField
+        val Polyisoprene: Material = Material.Builder(8003, gtliteId("polyisoprene"))
+            .polymer()
+            .liquid()
+            .color(0x575757).iconSet(SHINY)
+            .components(Carbon, 5, Hydrogen, 8)
+            .flags(NO_SMASHING, NO_SMELTING)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -393,6 +420,21 @@ class GTLiteMaterials
             .flags(FLAMMABLE)
             .build()
 
+        // 12050 Carbon 5 Fraction
+        @JvmField
+        val Carbon5Fraction: Material = Material.Builder(12050, gtliteId("carbon_5_fraction"))
+            .liquid()
+            .color(0x9C8638)
+            .flags(FLAMMABLE)
+            .build()
+
+        // 12051 Dimerized Carbon 5 Fraction
+        @JvmField
+        val DimerizedCarbon5Fraction: Material = Material.Builder(12051, gtliteId("dimerized_carbon_5_fraction"))
+            .liquid()
+            .color(0x9C9538)
+            .flags(FLAMMABLE)
+            .build()
 
         fun setMaterialProperties()
         {

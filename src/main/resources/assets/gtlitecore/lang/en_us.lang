@@ -692,8 +692,15 @@ gtlitecore.material.kimberlite=Kimberlite
 gtlitecore.material.slate=Slate
 gtlitecore.material.shale=Shale
 
+gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
+gtlitecore.material.pentane=Pentane
+gtlitecore.material.polyisoprene=Polyisoprene (PI)
+
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
+
+gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
+gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

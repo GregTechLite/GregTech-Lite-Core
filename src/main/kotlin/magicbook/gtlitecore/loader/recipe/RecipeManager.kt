@@ -1,5 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
+import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
+import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
@@ -28,7 +30,9 @@ class RecipeManager
             DisposableToolRecipeProducer.init()
 
             // Loading chains and ore processings.
+            OilCrackingChain.init()
             RubbersChain.init()
+            PolymersChain.init()
 
             // Original GregTech machine recipes.
             AssemblerRecipes.init()

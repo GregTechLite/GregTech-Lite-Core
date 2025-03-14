@@ -36,6 +36,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COAGULATION_RE
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VULCANIZATION_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyisoprene
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
@@ -128,6 +129,16 @@ class RubbersChain
                     .duration(20 * SECOND)
                     .buildAndRegister()
 
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_INGOT)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(ingot, Rubber, 8)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
+                    .buildAndRegister()
+
                 // Rubber Plate
                 VULCANIZATION_RECIPES.recipeBuilder()
                     .notConsumable(dust, catalyst, 1)
@@ -137,6 +148,16 @@ class RubbersChain
                     .output(plate, Rubber, 4)
                     .EUt(VA[ULV].toLong())
                     .duration(20 * SECOND)
+                    .buildAndRegister()
+
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_PLATE)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(plate, Rubber, 8)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
                     .buildAndRegister()
 
                 // Rubber Rod
@@ -150,6 +171,16 @@ class RubbersChain
                     .duration(20 * SECOND)
                     .buildAndRegister()
 
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_ROD)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(stick, Rubber, 16)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
+                    .buildAndRegister()
+
                 // Rubber Ring
                 VULCANIZATION_RECIPES.recipeBuilder()
                     .notConsumable(dust, catalyst, 1)
@@ -159,6 +190,16 @@ class RubbersChain
                     .output(ring, Rubber, 16)
                     .EUt(VA[ULV].toLong())
                     .duration(20 * SECOND)
+                    .buildAndRegister()
+
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_RING)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(ring, Rubber, 32)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
                     .buildAndRegister()
 
                 // Rubber Foil
@@ -172,6 +213,16 @@ class RubbersChain
                     .duration(20 * SECOND)
                     .buildAndRegister()
 
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_FOIL)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(foil, Rubber, 32)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
+                    .buildAndRegister()
+
                 // Rubber Bolt
                 VULCANIZATION_RECIPES.recipeBuilder()
                     .notConsumable(dust, catalyst, 1)
@@ -181,6 +232,16 @@ class RubbersChain
                     .output(bolt, Rubber, 32)
                     .EUt(VA[ULV].toLong())
                     .duration(20 * SECOND)
+                    .buildAndRegister()
+
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_BOLT)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(bolt, Rubber, 64)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
                     .buildAndRegister()
 
                 // Rubber Gear
@@ -193,11 +254,18 @@ class RubbersChain
                     .EUt(VA[ULV].toLong())
                     .duration(20 * SECOND)
                     .buildAndRegister()
-            }
 
-            // TODO Add higher raw materials to replace latex in high tier,
-            //      because sap collector hasn't large machine or high tier machines,
-            //      so we should add buff recipes to these vulcanizing press recipes.
+                VULCANIZATION_RECIPES.recipeBuilder()
+                    .notConsumable(dust, catalyst, 1)
+                    .notConsumable(SHAPE_EXTRUDER_GEAR)
+                    .input(dust, Polyisoprene, 2)
+                    .input(dust, Sulfur, 1)
+                    .output(gear, Rubber, 8)
+                    .EUt(VA[ULV].toLong())
+                    .duration(10 * SECOND)
+                    .buildAndRegister()
+
+            }
 
         }
 
