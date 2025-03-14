@@ -28,16 +28,16 @@ class PolymersChain
         {
 
             CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(Isoprene.getFluid(L))
                 .fluidInputs(Air.getFluid(1000))
+                .fluidInputs(Isoprene.getFluid(L))
                 .fluidOutputs(Polyisoprene.getFluid(L))
                 .EUt(VA[MV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
             CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(Isoprene.getFluid(L))
                 .fluidInputs(Oxygen.getFluid(1000))
+                .fluidInputs(Isoprene.getFluid(L))
                 .fluidOutputs(Polyisoprene.getFluid(L + L / 2))
                 .EUt(VA[MV].toLong())
                 .duration(10 * SECOND)
@@ -45,9 +45,9 @@ class PolymersChain
 
             LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .circuitMeta(3)
-                .fluidInputs(TitaniumTetrachloride.getFluid(100))
-                .fluidInputs(Isoprene.getFluid(L * 15))
                 .fluidInputs(Air.getFluid(7500))
+                .fluidInputs(Isoprene.getFluid(L * 15))
+                .fluidInputs(TitaniumTetrachloride.getFluid(100))
                 .fluidOutputs(Polyisoprene.getFluid(L * 22 + L / 2))
                 .EUt(VA[MV].toLong())
                 .duration(50 * SECOND)
@@ -55,9 +55,9 @@ class PolymersChain
 
             LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .circuitMeta(3)
-                .fluidInputs(TitaniumTetrachloride.getFluid(100))
-                .fluidInputs(Isoprene.getFluid(L * 15))
                 .fluidInputs(Oxygen.getFluid(7500))
+                .fluidInputs(Isoprene.getFluid(L * 15))
+                .fluidInputs(TitaniumTetrachloride.getFluid(100))
                 .fluidOutputs(Polyisoprene.getFluid(L * 30))
                 .EUt(VA[MV].toLong())
                 .duration(50 * SECOND)
