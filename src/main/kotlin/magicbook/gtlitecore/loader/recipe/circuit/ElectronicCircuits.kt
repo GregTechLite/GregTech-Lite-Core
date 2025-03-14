@@ -92,6 +92,7 @@ class ElectronicCircuits
 
             // Coagulate resin liquid to dust.
             COAGULATION_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .notConsumable(stick, Iron)
                 .fluidInputs(Resin.getFluid(1000))
                 .output(dust, Resin)
@@ -108,16 +109,16 @@ class ElectronicCircuits
 
             COAGULATION_RECIPES.recipeBuilder()
                 .notConsumable(stick, Iron)
-                .fluidInputs(Resin.getFluid(1000))
                 .notConsumable(SulfuricAcid.getFluid(1))
+                .fluidInputs(Resin.getFluid(1000))
                 .output(dust, Resin)
                 .duration(1 * SECOND)
                 .buildAndRegister()
 
             COAGULATION_RECIPES.recipeBuilder()
                 .notConsumable(stick, Iron)
-                .fluidInputs(Resin.getFluid(1000))
                 .notConsumable(AceticAcid.getFluid(1))
+                .fluidInputs(Resin.getFluid(1000))
                 .output(dust, Resin)
                 .duration(5 * TICK)
                 .buildAndRegister()

@@ -73,6 +73,7 @@ class RubbersChain
                 OreDictUnifier.get(dust, Latex))
 
             COAGULATION_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .notConsumable(stick, Iron)
                 .fluidInputs(Latex.getFluid(1000))
                 .output(dust, Latex)
@@ -89,16 +90,16 @@ class RubbersChain
 
             COAGULATION_RECIPES.recipeBuilder()
                 .notConsumable(stick, Iron)
-                .fluidInputs(Latex.getFluid(1000))
                 .notConsumable(SulfuricAcid.getFluid(1))
+                .fluidInputs(Latex.getFluid(1000))
                 .output(dust, Latex)
                 .duration(1 * SECOND)
                 .buildAndRegister()
 
             COAGULATION_RECIPES.recipeBuilder()
                 .notConsumable(stick, Iron)
-                .fluidInputs(Latex.getFluid(1000))
                 .notConsumable(AceticAcid.getFluid(1))
+                .fluidInputs(Latex.getFluid(1000))
                 .output(dust, Latex)
                 .duration(5 * TICK)
                 .buildAndRegister()
