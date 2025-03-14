@@ -31,4 +31,7 @@ dependencies {
     // Transformed TOP dependencies from buildscripts option.
     implementation("curse.maven:top-245211:2667280") // TheOneProbe 1.4.28
 
+    // SmoothFonts 2.1.4
+    runtimeOnly rfg.deobf("curse.maven:smooth-font-285742:3944565")
+
 }
