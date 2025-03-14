@@ -61,6 +61,8 @@ class WoodRecipeLoader
                 .EUt(2) // ULV
                 .duration(1 * SECOND)
                 .buildAndRegister()
+
+            // other processing see: magicbook.gtlitecore.loaders.recipe.circuit.ElectronicCircuits#circuitBoardRecipes().
         }
 
     }

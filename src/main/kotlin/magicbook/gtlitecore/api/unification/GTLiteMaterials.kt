@@ -408,13 +408,14 @@ class GTLiteMaterials
         @JvmField
         val Latex: Material = Material.Builder(12001, gtliteId("latex"))
             .dust()
-            .liquid(FluidBuilder().temperature(293))
+            .liquid()
             .color(0xFFFADA)
             .build()
 
         // 12002 Resin
         @JvmField
         val Resin: Material = Material.Builder(12002, gtliteId("resin"))
+            .dust()
             .liquid()
             .color(0xB5803A)
             .flags(FLAMMABLE)

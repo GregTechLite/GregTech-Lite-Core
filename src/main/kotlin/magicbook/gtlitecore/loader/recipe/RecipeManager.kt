@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
+import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
@@ -33,6 +34,9 @@ class RecipeManager
             OilCrackingChain.init()
             RubbersChain.init()
             PolymersChain.init()
+
+            // Circuit recipes.
+            ElectronicCircuits.init()
 
             // Original GregTech machine recipes.
             AssemblerRecipes.init()

@@ -2,8 +2,10 @@ package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.COMBUSTION_GENERATOR_FUELS
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
@@ -35,6 +37,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dicyclopen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimerizedCarbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pentane
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -53,6 +56,7 @@ class OilCrackingChain
             butaneCrackProcessing()
             butadieneCrackProcessing()
             carbon5FractionProcessing()
+            oilFuelRecipes()
         }
 
         private fun ethaneCrackProcessing()
@@ -373,6 +377,18 @@ class OilCrackingChain
                 .fluidOutputs(Isoprene.getFluid(2000))
                 .EUt(VA[LV].toLong())
                 .duration(3 * SECOND)
+                .buildAndRegister()
+
+        }
+
+        private fun oilFuelRecipes()
+        {
+
+            // Pentane
+            COMBUSTION_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Pentane.getFluid(1))
+                .EUt(V[LV])
+                .duration(2 * TICK)
                 .buildAndRegister()
 
         }
