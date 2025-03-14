@@ -340,6 +340,8 @@ metaitem.tool.disposable.butchery_knife.tooltip=Disposable Tool for crafting rec
 metaitem.tool.disposable.rolling_pin.name=Disposable Rolling Pin
 metaitem.tool.disposable.rolling_pin.tooltip=Disposable Tool for crafting recipes
 
+metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
+
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
 
@@ -683,6 +685,8 @@ gtlitecore.material.cuprite=Cuprite
 gtlitecore.material.wollastonite=Wollastonite
 gtlitecore.material.fluorapatite=Fluorapatite
 gtlitecore.material.kaolinite=Kaolinite
+
+gtlitecore.material.kovar=Kovar
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

@@ -10,6 +10,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
+import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
@@ -44,6 +45,7 @@ class RecipeManager
             CentrifugeRecipes.init()
             ExtruderRecipes.init()
             FormingPressRecipes.init()
+            MixerRecipes.init()
             // Additional machine recipes.
             LoomRecipes.init()
             PolisherRecipes.init()

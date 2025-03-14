@@ -62,6 +62,8 @@ class GTLiteMetaItems
         lateinit var DISPOSABLE_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_ROLLING_PIN: MetaItem<*>.MetaValueItem
 
+        lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
+
         @JvmStatic
         fun init()
         {
@@ -210,6 +212,13 @@ class GTLiteMetaItems
                 .addOreDict("craftingToolRollingPin")
 
             // 701-800: Batteries.
+
+            // 1001-1100: Circuits.
+
+            // 1101-2000: Circuit Components.
+            VACUUM_TUBE_COMPONENT = GTLITE_ITEMS.addItem(1101, "circuit.component.vacuum_tube_component")
+
+            // 2001-2500: Boules and Wafers.
 
         }
 

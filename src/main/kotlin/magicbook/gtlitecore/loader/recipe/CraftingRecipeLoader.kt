@@ -5,12 +5,16 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
@@ -33,6 +37,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NAME
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -395,6 +400,15 @@ class CraftingRecipeLoader
                     NONUPLE_FLUID_EXPORT_HATCH[i]!!.stackForm, "d", "B",
                     'B', NONUPLE_FLUID_IMPORT_HATCH[i]!!.stackForm)
             }
+
+            // Make kovar dust be craftable in early game.
+            ModHandler.addShapelessRecipe("dust_kovar_1", OreDictUnifier.get(dust, Kovar, 4),
+                OreDictUnifier.get(dust, Iron), OreDictUnifier.get(dust, Iron),
+                OreDictUnifier.get(dust, Nickel), OreDictUnifier.get(dust, Cobalt))
+
+            ModHandler.addShapelessRecipe("dust_kovar_2", OreDictUnifier.get(dust, Kovar, 4),
+                OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Invar),
+                OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Cobalt))
 
         }
 

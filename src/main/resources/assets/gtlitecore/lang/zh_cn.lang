@@ -340,6 +340,8 @@ metaitem.tool.disposable.butchery_knife.tooltip=仅用于合成的一次性工�
 metaitem.tool.disposable.rolling_pin.name=一次性擀面杖
 metaitem.tool.disposable.rolling_pin.tooltip=仅用于合成的一次性工具
 
+metaitem.circuit.component.vacuum_tube_component.name=真空管组件
+
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
 
@@ -683,6 +685,8 @@ gtlitecore.material.cuprite=赤铜矿
 gtlitecore.material.wollastonite=硅灰石
 gtlitecore.material.fluorapatite=氟磷灰石
 gtlitecore.material.kaolinite=高岭石
+
+gtlitecore.material.kovar=柯伐合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

@@ -1,5 +1,7 @@
 package magicbook.gtlitecore.api.unification
 
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Almandine
@@ -14,6 +16,7 @@ import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Darmstadtium
@@ -32,6 +35,7 @@ import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
@@ -62,10 +66,13 @@ import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELE
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
@@ -83,9 +90,12 @@ import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
+import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMaterials
@@ -298,6 +308,16 @@ class GTLiteMaterials
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
+        // 4001 Kovar
+        @JvmField
+        val Kovar: Material = Material.Builder(4001, gtliteId("kovar"))
+            .ingot()
+            .colorAverage().iconSet(SHINY)
+            .components(Iron, 2, Nickel, 1, Cobalt, 1)
+            .flags(GENERATE_ROD, GENERATE_RING)
+            .build()
+            .setFormula("Fe10Ni5Co3", true)
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 
@@ -447,6 +467,9 @@ class GTLiteMaterials
 
         fun setMaterialFlags()
         {
+            // foil
+            Nickel.addFlags(GENERATE_FOIL)
+
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
             Darmstadtium.addFlags(GENERATE_GEAR)
