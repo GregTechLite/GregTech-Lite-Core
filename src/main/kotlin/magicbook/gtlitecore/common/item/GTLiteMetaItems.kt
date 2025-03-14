@@ -64,6 +64,11 @@ class GTLiteMetaItems
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
 
+        lateinit var MICA_PULP: MetaItem<*>.MetaValueItem
+        lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
+        lateinit var MICA_INSULATOR_PLATE: MetaItem<*>.MetaValueItem
+        lateinit var MICA_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
+
         @JvmStatic
         fun init()
         {
@@ -219,6 +224,20 @@ class GTLiteMetaItems
             VACUUM_TUBE_COMPONENT = GTLITE_ITEMS.addItem(1101, "circuit.component.vacuum_tube_component")
 
             // 2001-2500: Boules and Wafers.
+
+            // ...
+
+            // 10001-20000: Miscellaneous Materials.
+            MICA_PULP = GTLITE_ITEMS.addItem(10001, "material.dust.gelatinous_mica_pulp")
+                .addOreDict("dustMicaGelatinous")
+
+            MICA_PLATE = GTLITE_ITEMS.addItem(10002, "material.plate.mica_mineral_wool")
+                .addOreDict("plateMicaMineralWool")
+
+            MICA_INSULATOR_PLATE = GTLITE_ITEMS.addItem(10003, "material.plate.mica_insulator")
+                .addOreDict("plateMicaInsulator")
+
+            MICA_INSULATOR_FOIL = GTLITE_ITEMS.addItem(10004, "material.foil.mica_insulator")
 
         }
 

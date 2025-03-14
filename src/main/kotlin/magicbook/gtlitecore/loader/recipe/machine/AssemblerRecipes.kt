@@ -2,29 +2,50 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Nichrome
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Trinium
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenCarbide
+import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -40,10 +61,13 @@ import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
+import gregtech.common.blocks.BlockWireCoil
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
@@ -65,6 +89,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.DYNAMO_HATCH_16A
@@ -996,6 +1021,139 @@ class AssemblerRecipes
                 .EUt(VA[HV].toLong())
                 .duration(30 * SECOND)
                 .buildAndRegister()
+
+            // Make wire coils easier than original recipes, these new recipes do not
+            // need metal foils and instead of mica insulator foils.
+
+            // Cupronickel Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Cupronickel, 8),
+                        OreDictUnifier.get(foil, Bronze, 8)),
+                arrayOf(TinAlloy.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Cupronickel, 8)
+                .input(MICA_INSULATOR_FOIL, 8)
+                .fluidInputs(TinAlloy.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.CUPRONICKEL, 1))
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Kanthal Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Kanthal, 8),
+                    OreDictUnifier.get(foil, Aluminium, 8)),
+                arrayOf(Copper.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Kanthal, 8)
+                .input(MICA_INSULATOR_FOIL, 12)
+                .fluidInputs(Copper.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.KANTHAL, 1))
+                .EUt(VA[MV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Nichrome Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Nichrome, 8),
+                    OreDictUnifier.get(foil, StainlessSteel, 8)),
+                arrayOf(Aluminium.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Nichrome, 8)
+                .input(MICA_INSULATOR_FOIL, 16)
+                .fluidInputs(Aluminium.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.NICHROME, 1))
+                .EUt(VA[HV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // RTM Alloy Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, RTMAlloy, 8),
+                    OreDictUnifier.get(foil, VanadiumSteel, 8)),
+                arrayOf(Nichrome.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, RTMAlloy, 8)
+                .input(MICA_INSULATOR_FOIL, 20)
+                .fluidInputs(Titanium.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.RTM_ALLOY, 1))
+                .EUt(VA[EV].toLong())
+                .duration(25 * SECOND)
+                .buildAndRegister()
+
+            // HSS-G Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, HSSG, 8),
+                    OreDictUnifier.get(foil, TungstenCarbide, 8)),
+                arrayOf(Tungsten.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, HSSG, 8)
+                .input(MICA_INSULATOR_FOIL, 24)
+                .fluidInputs(Tungsten.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.HSS_G, 1))
+                .EUt(VA[IV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // Naquadah Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Naquadah, 8),
+                    OreDictUnifier.get(foil, Osmium, 8)),
+                arrayOf(TungstenSteel.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Naquadah, 8)
+                .input(MICA_INSULATOR_FOIL, 28)
+                .fluidInputs(TungstenSteel.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.NAQUADAH, 1))
+                .EUt(VA[LuV].toLong())
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Trinium Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Trinium, 8),
+                    OreDictUnifier.get(foil, NaquadahEnriched, 8)),
+                arrayOf(Naquadah.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Trinium, 8)
+                .input(MICA_INSULATOR_FOIL, 32)
+                .fluidInputs(Naquadah.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.TRINIUM, 1))
+                .EUt(VA[ZPM].toLong())
+                .duration(40 * SECOND)
+                .buildAndRegister()
+
+            // Tritanium Wire Coil
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(wireGtDouble, Tritanium, 8),
+                    OreDictUnifier.get(foil, Naquadria, 8)),
+                arrayOf(Trinium.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Tritanium, 8)
+                .input(MICA_INSULATOR_FOIL, 36)
+                .fluidInputs(NaquadahEnriched.getFluid(L))
+                .outputs(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.TRITANIUM, 1))
+                .EUt(VA[UV].toLong())
+                .duration(45 * SECOND)
+                .buildAndRegister()
+
+            // TODO UHV-MAX Wire Coils.
 
         }
 

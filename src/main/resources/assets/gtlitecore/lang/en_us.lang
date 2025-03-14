@@ -342,6 +342,11 @@ metaitem.tool.disposable.rolling_pin.tooltip=Disposable Tool for crafting recipe
 
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 
+metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
+metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate
+metaitem.material.plate.mica_insulator.name=Mica Insulator Plate
+metaitem.material.foil.mica_insulator.name=Mica Insulator Foil
+
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
 

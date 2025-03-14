@@ -342,6 +342,11 @@ metaitem.tool.disposable.rolling_pin.tooltip=仅用于合成的一次性工具
 
 metaitem.circuit.component.vacuum_tube_component.name=真空管组件
 
+metaitem.material.dust.gelatinous_mica_pulp.name=胶质云母粉
+metaitem.material.plate.mica_mineral_wool.name=云母矿棉片
+metaitem.material.plate.mica_insulator.name=绝缘云母板
+metaitem.material.foil.mica_insulator.name=绝缘云母箔
+
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
 
