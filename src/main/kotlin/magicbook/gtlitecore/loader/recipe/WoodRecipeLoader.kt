@@ -13,11 +13,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import net.minecraft.block.BlockLog
-import net.minecraft.block.BlockNewLog
-import net.minecraft.block.BlockOldLog
 import net.minecraft.init.Blocks
-import net.minecraft.item.Item
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class WoodRecipeLoader

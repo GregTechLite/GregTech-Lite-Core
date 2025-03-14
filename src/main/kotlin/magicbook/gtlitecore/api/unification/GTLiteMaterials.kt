@@ -1,7 +1,5 @@
 package magicbook.gtlitecore.api.unification
 
-import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Almandine
@@ -90,12 +88,9 @@ import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
-import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMaterials
