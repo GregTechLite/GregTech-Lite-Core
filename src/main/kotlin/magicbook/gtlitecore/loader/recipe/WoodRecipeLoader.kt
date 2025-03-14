@@ -13,7 +13,11 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import net.minecraft.block.BlockLog
+import net.minecraft.block.BlockNewLog
+import net.minecraft.block.BlockOldLog
 import net.minecraft.init.Blocks
+import net.minecraft.item.Item
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class WoodRecipeLoader
@@ -37,7 +41,13 @@ class WoodRecipeLoader
                 .fluidOutputs(Resin.getFluid(100))
                 .EUt(VA[ULV].toLong())
                 .duration(1 * SECOND)
-                .blockStates("common", arrayListOf(Blocks.LOG.defaultState, Blocks.LOG2.defaultState))
+                .blockStates("common",
+                    arrayListOf(Blocks.LOG.getStateFromMeta(0),
+                                Blocks.LOG.getStateFromMeta(1),
+                                Blocks.LOG.getStateFromMeta(2),
+                                Blocks.LOG.getStateFromMeta(3),
+                                Blocks.LOG2.getStateFromMeta(0),
+                                Blocks.LOG2.getStateFromMeta(1)))
                 .buildAndRegister()
         }
 
