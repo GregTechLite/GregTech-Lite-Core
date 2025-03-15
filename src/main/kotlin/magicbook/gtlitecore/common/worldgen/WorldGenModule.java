@@ -3,7 +3,6 @@ package magicbook.gtlitecore.common.worldgen;
 import gregtech.api.GTValues;
 import gregtech.api.util.FileUtility;
 import magicbook.gtlitecore.api.module.Module;
-import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.core.module.BaseModule;

@@ -3,11 +3,7 @@ package magicbook.gtlitecore.api.utils
 import gregtech.api.GTValues
 import net.minecraft.client.Minecraft
 import net.minecraft.client.resources.I18n
-import net.minecraft.client.resources.Language
-import net.minecraftforge.fml.relauncher.FMLLaunchHandler
-import net.minecraftforge.fml.relauncher.Side
-import java.util.IllegalFormatException
-import java.util.Locale
+import java.util.*
 
 class TranslateUtility
 {
