@@ -591,6 +591,7 @@ recipemap.greenhouse.name=温室
 gtlitecore.recipe.blocks=有效方块：%s
 gtlitecore.recipe.block_group_members.common.name=任意原版树木
 gtlitecore.recipe.block_group_members.rubber.name=橡胶木
+gtlitecore.recipe.block_group_members.rainbow.name=彩虹木
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机

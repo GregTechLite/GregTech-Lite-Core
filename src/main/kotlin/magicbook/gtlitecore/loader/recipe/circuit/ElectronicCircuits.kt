@@ -19,12 +19,14 @@ import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.CalciumChloride
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
+import gregtech.api.unification.material.Materials.Epoxy
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.RedAlloy
+import gregtech.api.unification.material.Materials.ReinforcedEpoxyResin
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SulfuricAcid
@@ -124,6 +126,25 @@ class ElectronicCircuits
                 .input(dust, Resin)
                 .fluidInputs(Glue.getFluid(50))
                 .output(PHENOLIC_BOARD)
+                .EUt(VA[LV].toLong())
+                .duration(7 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add advanced recipes of phenolic board.
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Epoxy)
+                .fluidInputs(Glue.getFluid(50))
+                .output(PHENOLIC_BOARD, 8)
+                .EUt(VA[LV].toLong())
+                .duration(7 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, ReinforcedEpoxyResin)
+                .fluidInputs(Glue.getFluid(50))
+                .output(PHENOLIC_BOARD, 16)
                 .EUt(VA[LV].toLong())
                 .duration(7 * SECOND + 10 * TICK)
                 .buildAndRegister()

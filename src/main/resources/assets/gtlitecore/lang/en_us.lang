@@ -591,6 +591,7 @@ recipemap.greenhouse.name=Greenhouse
 gtlitecore.recipe.blocks=Effective Blocks: %s
 gtlitecore.recipe.block_group_members.common.name=Any vanilla logs
 gtlitecore.recipe.block_group_members.rubber.name=Rubber logs
+gtlitecore.recipe.block_group_members.rainbow.name=Rainbow logs
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
