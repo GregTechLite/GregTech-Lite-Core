@@ -6,6 +6,7 @@ import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
+import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Calcite
@@ -18,6 +19,7 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.GarnetRed
@@ -25,12 +27,14 @@ import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
+import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
@@ -39,6 +43,7 @@ import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
@@ -49,6 +54,7 @@ import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
@@ -57,13 +63,16 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
@@ -73,9 +82,11 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
+import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
 import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
@@ -84,10 +95,12 @@ import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
+import gregtech.api.unification.material.info.MaterialIconSet.LIGNITE
 import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
+import gregtech.api.unification.material.properties.FluidPipeProperties
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -300,6 +313,30 @@ class GTLiteMaterials
             .flags(DECOMPOSITION_BY_ELECTROLYZING)
             .build()
 
+        // 2020 Lignite
+        @JvmField
+        val Lignite: Material = Material.Builder(2020, gtliteId("lignite"))
+            .gem(0, 1600)
+            .ore()
+            .color(6571590)
+            .iconSet(LIGNITE)
+            .flags(FLAMMABLE, DISABLE_DECOMPOSITION, NO_SMELTING, NO_SMASHING, MORTAR_GRINDABLE)
+            .components(Carbon, 3, Water, 1)
+            .build()
+            .setFormula("C3(H2O)", true);
+
+        // 2021 Firestone
+        @JvmField
+        val Firestone: Material = Material.Builder(2021, gtliteId("firestone"))
+            .gem(1, 3200)
+            .ore()
+            .color(0xC81400)
+            .iconSet(QUARTZ)
+            .flags(NO_SMASHING, NO_SMELTING)
+            .components(SiliconDioxide, 2, Flint, 1, Pyrite, 1)
+            .build()
+            .setFormula("(SiO2)3(FeS2)?", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -469,8 +506,62 @@ class GTLiteMaterials
         {
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
-            val oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
+            var oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Andradite, Andradite, Calcium)
+
+            oreProp = Dolomite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Dolomite, Calcium, Magnesium)
+
+            oreProp = Tanzanite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Tanzanite, Opal, Aluminium)
+
+            oreProp = Azurite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Iron, Copper, Malachite)
+            oreProp.setWashedIn(SodiumPersulfate)
+
+            oreProp = Forsterite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Forsterite, Magnesium, Manganese)
+
+            oreProp = Augite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Calcite, SiliconDioxide, Kaolinite)
+
+            oreProp = Albite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Albite, Sodium, Silicon)
+
+            oreProp = Fluorite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Fluorite, Calcium, Calcium)
+
+            oreProp = Anorthite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Calcium, Silicon, Aluminium)
+
+            oreProp = Oligoclase.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Anorthite, Oligoclase, Aluminium)
+
+            oreProp = Labradorite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Albite, Silicon, Aluminium)
+
+            oreProp = Bytownite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Anorthite, Calcium, Aluminium)
+
+            oreProp = Tenorite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Iron, Manganese, Malachite)
+
+            oreProp = Cuprite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Iron, Antimony, Malachite)
+
+            oreProp = Wollastonite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Wollastonite, Calcium, Silicon)
+
+            oreProp = Fluorapatite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Fluorapatite, Apatite, Phosphate)
+
+            oreProp = Kaolinite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Clay, Clay, SiliconDioxide)
+
+            // Add fluid pipe properties.
+            Inconel718.setProperty(PropertyKey.FLUID_PIPE,
+                FluidPipeProperties(2010, 175,
+                    true, true, true, false))
         }
 
         fun setMaterialFlags()
@@ -483,6 +574,7 @@ class GTLiteMaterials
             Darmstadtium.addFlags(GENERATE_GEAR)
 
             // gearSmall
+            Neutronium.addFlags(GENERATE_SMALL_GEAR)
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -509,9 +601,14 @@ class GTLiteMaterials
             GarnetRed.addFlags(GENERATE_LENS)
             GarnetYellow.addFlags(GENERATE_LENS)
             Monazite.addFlags(GENERATE_LENS)
+            Zircon.addFlags(GENERATE_LENS)
 
             // plate
             Clay.addFlags(GENERATE_PLATE)
+            Inconel718.addFlags(GENERATE_PLATE)
+
+            // plateDouble
+            Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -538,6 +635,7 @@ class GTLiteMaterials
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
+            Europium.addFlags(GENERATE_SPRING_SMALL)
 
         }
 

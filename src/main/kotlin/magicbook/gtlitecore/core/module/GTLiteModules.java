@@ -12,6 +12,8 @@ public class GTLiteModules implements IModuleContainer
     public static final String MODULE_INTEGRATION = "integration";
     public static final String MODULE_WORLDGEN = "worldgen";
 
+    public static final String MODULE_JEI = "jei";
+
     /**
      * {@inheritDoc}
      */

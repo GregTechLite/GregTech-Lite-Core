@@ -587,6 +587,7 @@ recipemap.sap_collector.name=树液收集器
 recipemap.coagulation_tank.name=凝固缸
 recipemap.greenhouse.name=温室
 recipemap.bio_reactor.name=生物反应室
+recipemap.roaster.name=焙烧炉
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -867,6 +868,37 @@ gtlitecore.machine.bio_reactor.uxv.tooltip=基因编辑器
 gtlitecore.machine.bio_reactor.opv.name=传奇生物反应室
 gtlitecore.machine.bio_reactor.opv.tooltip=基因编辑器
 
+gtlitecore.machine.roaster.bronze.name=蒸汽焙烧炉
+gtlitecore.machine.roaster.bronze.tooltip=并不能用来烤面包
+gtlitecore.machine.roaster.steel.name=高压蒸汽焙烧炉
+gtlitecore.machine.roaster.steel.tooltip=从零开始的矿物处理
+gtlitecore.machine.roaster.lv.name=基础焙烧炉
+gtlitecore.machine.roaster.lv.tooltip=尾渣重精炼
+gtlitecore.machine.roaster.mv.name=进阶焙烧炉
+gtlitecore.machine.roaster.mv.tooltip=尾渣重精炼
+gtlitecore.machine.roaster.hv.name=进阶焙烧炉 II
+gtlitecore.machine.roaster.hv.tooltip=尾渣重精炼
+gtlitecore.machine.roaster.ev.name=进阶焙烧炉 III
+gtlitecore.machine.roaster.ev.tooltip=尾渣重精炼
+gtlitecore.machine.roaster.iv.name=精英焙烧炉
+gtlitecore.machine.roaster.iv.tooltip=精粹提取器
+gtlitecore.machine.roaster.luv.name=精英焙烧炉 II
+gtlitecore.machine.roaster.luv.tooltip=精粹提取器
+gtlitecore.machine.roaster.zpm.name=精英焙烧炉 III
+gtlitecore.machine.roaster.zpm.tooltip=精粹提取器
+gtlitecore.machine.roaster.uv.name=终极焙烧炉
+gtlitecore.machine.roaster.uv.tooltip=精粹提取器
+gtlitecore.machine.roaster.uhv.name=史诗焙烧炉
+gtlitecore.machine.roaster.uhv.tooltip=矿石解离者
+gtlitecore.machine.roaster.uev.name=史诗焙烧炉 II
+gtlitecore.machine.roaster.uev.tooltip=矿石解离者
+gtlitecore.machine.roaster.uiv.name=史诗焙烧炉 III
+gtlitecore.machine.roaster.uiv.tooltip=矿石解离者
+gtlitecore.machine.roaster.uxv.name=史诗焙烧炉 IV
+gtlitecore.machine.roaster.uxv.tooltip=矿石解离者
+gtlitecore.machine.roaster.opv.name=传奇焙烧炉
+gtlitecore.machine.roaster.opv.tooltip=矿石解离者
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -972,6 +1004,8 @@ gtlitecore.material.cuprite=赤铜矿
 gtlitecore.material.wollastonite=硅灰石
 gtlitecore.material.fluorapatite=氟磷灰石
 gtlitecore.material.kaolinite=高岭石
+gtlitecore.material.lignite=褐煤
+gtlitecore.material.firestone=火石
 
 gtlitecore.material.kovar=柯伐合金
 
@@ -1013,6 +1047,8 @@ gtlitecore.veins.ore.dolomite=白云石矿脉
 gtlitecore.veins.ore.olivine_2=镁橄榄石矿脉
 gtlitecore.veins.ore.kaolinite=高岭石矿脉
 gtlitecore.veins.ore.fluorite=氟石矿脉
+gtlitecore.veins.ore.lignite=褐煤矿脉
+gtlitecore.veins.ore.firestone=火石矿脉
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）

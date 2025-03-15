@@ -4,6 +4,9 @@ import gregtech.api.GTValues.M
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
@@ -76,6 +79,12 @@ class GTLiteOrePrefix
                 oreSlate.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Slate, M))
                 oreShale.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Shale, M))
             }
+
+            // Because we add Tenorite (CuO ore) to change CuO dust, so this material is deprecated.
+            // This material is ensured to remove all related recipes yet. Ignored all ore prefixes of CuO ^^.
+            dust.setIgnored(Materials.CupricOxide)
+            dustSmall.setIgnored(Materials.CupricOxide)
+            dustTiny.setIgnored(Materials.CupricOxide)
 
         }
 

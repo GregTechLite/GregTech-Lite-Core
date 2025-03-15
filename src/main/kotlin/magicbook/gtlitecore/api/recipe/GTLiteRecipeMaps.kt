@@ -332,6 +332,24 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.CHEMICAL_REACTOR)
             .build()
 
+        /**
+         * @zenProp roaster
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ROASTER_RECIPES")
+        val ROASTER_RECIPES = RecipeMapBuilder("roaster", SimpleRecipeBuilder())
+            .itemInputs(3)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(3)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, true)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
+            .sound(GTSoundEvents.FURNACE)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

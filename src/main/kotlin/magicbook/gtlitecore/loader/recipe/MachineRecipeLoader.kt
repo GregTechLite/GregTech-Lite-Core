@@ -17,6 +17,7 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
@@ -44,8 +45,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
@@ -231,6 +234,31 @@ class MachineRecipeLoader
                 'Q', CraftingComponent.PIPE_NORMAL,
                 'X', CraftingComponent.CIRCUIT,
                 'W', CraftingComponent.CABLE,
+                'M', CraftingComponent.MOTOR)
+
+            // Steam Roaster
+            ModHandler.addShapedRecipe(true, "roaster.bronze", STEAM_ROASTER[0]!!.stackForm,
+                "PRP", "PQP", "PHP",
+                'H', MetaBlocks.STEAM_CASING.getItemVariant(BlockSteamCasing.SteamCasingType.BRONZE_BRICKS_HULL),
+                'P', UnificationEntry(pipeSmallFluid, Bronze),
+                'Q', UnificationEntry(plate, Bronze),
+                'R', UnificationEntry(rotor, Bronze))
+
+            ModHandler.addShapedRecipe(true, "roaster.steel", STEAM_ROASTER[1]!!.stackForm,
+                "AAA", "QHQ", "PPP",
+                'H', STEAM_ROASTER[0]!!.stackForm,
+                'P', UnificationEntry(pipeSmallFluid, TinAlloy),
+                'Q', UnificationEntry(plate, Steel),
+                'A', UnificationEntry(plate, WroughtIron))
+
+            // Roaster
+            MetaTileEntityLoader.registerMachineRecipe(true, ROASTER,
+                "SRS", "CHC", "KMK",
+                'K', CraftingComponent.CABLE,
+                'S', CraftingComponent.SPRING,
+                'C', CraftingComponent.CIRCUIT,
+                'H', CraftingComponent.HULL,
+                'R', CraftingComponent.ROTOR,
                 'M', CraftingComponent.MOTOR)
 
             // =========================================================================================================

@@ -587,6 +587,7 @@ recipemap.sap_collector.name=Sap Collector
 recipemap.coagulation_tank.name=Coagulation Tank
 recipemap.greenhouse.name=Greenhouse
 recipemap.bio_reactor.name=Bio Reactor
+recipemap.roaster.name=Roaster
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -867,6 +868,37 @@ gtlitecore.machine.bio_reactor.uxv.tooltip=Gene editor
 gtlitecore.machine.bio_reactor.opv.name=Legendary Bio Reactor
 gtlitecore.machine.bio_reactor.opv.tooltip=Gene editor
 
+gtlitecore.machine.roaster.bronze.name=Steam Roaster
+gtlitecore.machine.roaster.bronze.tooltip=Cannot used to bake bread
+gtlitecore.machine.roaster.steel.name=High Pressure Steam Roaster
+gtlitecore.machine.roaster.steel.tooltip=Introduction to ore processing
+gtlitecore.machine.roaster.lv.name=Basic Roaster
+gtlitecore.machine.roaster.lv.tooltip=Slag refiner
+gtlitecore.machine.roaster.mv.name=Advanced Roaster
+gtlitecore.machine.roaster.mv.tooltip=Slag refiner
+gtlitecore.machine.roaster.hv.name=Advanced Roaster II
+gtlitecore.machine.roaster.hv.tooltip=Slag refiner
+gtlitecore.machine.roaster.ev.name=Advanced Roaster III
+gtlitecore.machine.roaster.ev.tooltip=Slag refiner
+gtlitecore.machine.roaster.iv.name=Elite Roaster
+gtlitecore.machine.roaster.iv.tooltip=Essence extractor
+gtlitecore.machine.roaster.luv.name=Elite Roaster II
+gtlitecore.machine.roaster.luv.tooltip=Essence extractor
+gtlitecore.machine.roaster.zpm.name=Elite Roaster III
+gtlitecore.machine.roaster.zpm.tooltip=Essence extractor
+gtlitecore.machine.roaster.uv.name=Ultimate Roaster
+gtlitecore.machine.roaster.uv.tooltip=Essence extractor
+gtlitecore.machine.roaster.uhv.name=Epic Roaster
+gtlitecore.machine.roaster.uhv.tooltip=Ore dissociater
+gtlitecore.machine.roaster.uev.name=Epic Roaster II
+gtlitecore.machine.roaster.uev.tooltip=Ore dissociater
+gtlitecore.machine.roaster.uiv.name=Epic Roaster III
+gtlitecore.machine.roaster.uiv.tooltip=Ore dissociater
+gtlitecore.machine.roaster.uxv.name=Epic Roaster IV
+gtlitecore.machine.roaster.uxv.tooltip=Ore dissociater
+gtlitecore.machine.roaster.opv.name=Legendary Roaster
+gtlitecore.machine.roaster.opv.tooltip=Ore dissociater
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -972,6 +1004,8 @@ gtlitecore.material.cuprite=Cuprite
 gtlitecore.material.wollastonite=Wollastonite
 gtlitecore.material.fluorapatite=Fluorapatite
 gtlitecore.material.kaolinite=Kaolinite
+gtlitecore.material.lignite=Lignite
+gtlitecore.material.firestone=Firestone
 
 gtlitecore.material.kovar=Kovar
 
@@ -1013,6 +1047,8 @@ gtlitecore.veins.ore.dolomite=Dolomite Vein
 gtlitecore.veins.ore.olivine_2=Forsterite Vein
 gtlitecore.veins.ore.kaolinite=Kaolinite Vein
 gtlitecore.veins.ore.fluorite=Fluorite Vein
+gtlitecore.veins.ore.lignite=Lignite Vein
+gtlitecore.veins.ore.firestone=Firestone Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)
