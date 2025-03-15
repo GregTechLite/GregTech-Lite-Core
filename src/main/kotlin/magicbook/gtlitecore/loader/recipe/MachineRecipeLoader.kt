@@ -39,6 +39,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -210,6 +211,16 @@ class MachineRecipeLoader
                 'D', OreDictUnifier.get(toolHeadDrill, Steel),
                 'S', CraftingComponents.SPRING_SMALL,
                 'X', CraftingComponent.CIRCUIT)
+
+            // Greenhouse
+            MetaTileEntityLoader.registerMachineRecipe(true, GREENHOUSE,
+                "GGG", "PHR", "WXW",
+                'G', CraftingComponent.GLASS,
+                'H', CraftingComponent.HULL,
+                'P', CraftingComponent.PUMP,
+                'R', CraftingComponent.ROBOT_ARM,
+                'X', CraftingComponent.CIRCUIT,
+                'W', CraftingComponent.CABLE)
 
             // =========================================================================================================
 

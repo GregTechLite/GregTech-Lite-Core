@@ -585,6 +585,7 @@ recipemap.vulcanizing_press.name=Vulcanizing Press
 recipemap.vacuum_chamber.name=Vacuum Chamber
 recipemap.sap_collector.name=Sap Collector
 recipemap.coagulation_tank.name=Coagulation Tank
+recipemap.greenhouse.name=Greenhouse
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -810,6 +811,33 @@ gtlitecore.machine.sap_collector.iv.name=Elite Sap Collector
 gtlitecore.machine.sap_collector.sap_collection=Extracts liquids from adjacent logs.
 gtlitecore.machine.sap_collector.sap_collection_amount=§fExtraction Rate: §a%s L/t
 
+gtlitecore.machine.greenhouse.lv.name=Basic Greenhouse
+gtlitecore.machine.greenhouse.lv.tooltip=Introduction to hydroponics
+gtlitecore.machine.greenhouse.mv.name=Advanced Greenhouse
+gtlitecore.machine.greenhouse.mv.tooltip=Introduction to hydroponics
+gtlitecore.machine.greenhouse.hv.name=Advanced Greenhouse II
+gtlitecore.machine.greenhouse.hv.tooltip=Introduction to hydroponics
+gtlitecore.machine.greenhouse.ev.name=Advanced Greenhouse III
+gtlitecore.machine.greenhouse.ev.tooltip=Introduction to hydroponics
+gtlitecore.machine.greenhouse.iv.name=Elite Greenhouse
+gtlitecore.machine.greenhouse.iv.tooltip=Eutrophication cultivation
+gtlitecore.machine.greenhouse.luv.name=Elite Greenhouse II
+gtlitecore.machine.greenhouse.luv.tooltip=Eutrophication cultivation
+gtlitecore.machine.greenhouse.zpm.name=Elite Greenhouse III
+gtlitecore.machine.greenhouse.zpm.tooltip=Eutrophication cultivation
+gtlitecore.machine.greenhouse.uv.name=Ultimate Greenhouse
+gtlitecore.machine.greenhouse.uv.tooltip=Autoecosystem
+gtlitecore.machine.greenhouse.uhv.name=Epic Greenhouse
+gtlitecore.machine.greenhouse.uhv.tooltip=Autoecosystem
+gtlitecore.machine.greenhouse.uev.name=Epic Greenhouse II
+gtlitecore.machine.greenhouse.uev.tooltip=Autoecosystem
+gtlitecore.machine.greenhouse.uiv.name=Epic Greenhouse III
+gtlitecore.machine.greenhouse.uiv.tooltip=Autoecosystem
+gtlitecore.machine.greenhouse.uxv.name=Epic Greenhouse IV
+gtlitecore.machine.greenhouse.uxv.tooltip=Autoecosystem
+gtlitecore.machine.greenhouse.opv.name=Legendary Greenhouse
+gtlitecore.machine.greenhouse.opv.tooltip=Autoecosystem
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -930,6 +958,8 @@ gtlitecore.material.polyisoprene=Polyisoprene (PI)
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
 gtlitecore.material.rainbow_sap=Rainbow Sap
+
+gtlitecore.material.greenhouse_gas=Greenhouse Gas
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction

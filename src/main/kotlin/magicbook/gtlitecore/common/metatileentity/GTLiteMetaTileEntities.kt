@@ -63,6 +63,7 @@ class GTLiteMetaTileEntities
         val VACUUM_CHAMBER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val STEAM_SAP_COLLECTOR = arrayOfNulls<PseudoMultiSteamMachineMetaTileEntity>(2)
         val SAP_COLLECTOR = arrayOfNulls<PseudoMultiMachineMetaTileEntity>(5)
+        val GREENHOUSE = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -203,6 +204,12 @@ class GTLiteMetaTileEntities
 
             SAP_COLLECTOR[4] = MetaTileEntities.registerMetaTileEntity(14127,
                 MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.iv"), GTValues.IV))
+
+            // 14136-14150: Greenhouse
+            MetaTileEntities.registerSimpleMetaTileEntity(GREENHOUSE, 14138, // 14136-14137 for Steam Machines.
+                "greenhouse", GTLiteRecipeMaps.GREENHOUSE_RECIPES,
+                Textures.FERMENTER_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
             // ...
 

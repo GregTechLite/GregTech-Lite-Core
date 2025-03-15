@@ -41,6 +41,49 @@ class GTLiteUtility
         fun getId(namespace: String, path: String) = ResourceLocation(namespace, path)
 
         /**
+         * Copies the [ItemStack].
+         *
+         * @param stack ItemStack for copying.
+         * @return      A copy of ItemStack, or [ItemStack.EMPTY] if the ItemStack is empty.
+         */
+        @JvmStatic
+        fun copy(stack: ItemStack) = if (stack.isEmpty) ItemStack.EMPTY else stack.copy()
+
+        /**
+         * Copies the [ItemStack] with new stack size.
+         *
+         * @param stack ItemStack for copying.
+         * @param count New stack size of copying ItemStack.
+         * @return      A copy of ItemStack or [ItemStack.EMPTY] if the ItemSTack is empty.
+         */
+        @JvmStatic
+        fun copy(stack: ItemStack, count: Int): ItemStack
+        {
+            if (stack.isEmpty) return ItemStack.EMPTY
+            val copyStack = stack.copy()
+            copyStack.count = count
+            return copyStack
+        }
+
+        /**
+         * Copies the [ItemStack] with new stack size.
+         *
+         * @param stack ItemStack for copying.
+         * @param meta  Metadata of ItemStack.
+         * @param count New stack size of copying ItemStack.
+         * @return      A copy of ItemStack or [ItemStack.EMPTY] if the ItemSTack is empty.
+         */
+        @JvmStatic
+        fun copy(stack: ItemStack, meta: Int, count: Int): ItemStack
+        {
+            if (stack.isEmpty) return ItemStack.EMPTY
+            val copyStack = stack.copy()
+            copyStack.itemDamage = meta
+            copyStack.count = count
+            return copyStack
+        }
+
+        /**
          * Copies the [BlockPos] to [BlockPos.MutableBlockPos].
          *
          * @param blockPos BlockPos for copying.

@@ -585,6 +585,7 @@ recipemap.vulcanizing_press.name=硫化机
 recipemap.vacuum_chamber.name=真空室
 recipemap.sap_collector.name=树液收集器
 recipemap.coagulation_tank.name=凝固缸
+recipemap.greenhouse.name=温室
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -810,6 +811,33 @@ gtlitecore.machine.sap_collector.iv.name=精英树液收集器
 gtlitecore.machine.sap_collector.sap_collection=从相邻的原木中提取树液。
 gtlitecore.machine.sap_collector.sap_collection_amount=§f提取速率：§a%s L/t
 
+gtlitecore.machine.greenhouse.lv.name=基础温室
+gtlitecore.machine.greenhouse.lv.tooltip=水培技术初步
+gtlitecore.machine.greenhouse.mv.name=进阶温室
+gtlitecore.machine.greenhouse.mv.tooltip=水培技术初步
+gtlitecore.machine.greenhouse.hv.name=进阶温室 II
+gtlitecore.machine.greenhouse.hv.tooltip=水培技术初步
+gtlitecore.machine.greenhouse.ev.name=进阶温室 III
+gtlitecore.machine.greenhouse.ev.tooltip=水培技术初步
+gtlitecore.machine.greenhouse.iv.name=精英温室
+gtlitecore.machine.greenhouse.iv.tooltip=富营养培植
+gtlitecore.machine.greenhouse.luv.name=精英温室 II
+gtlitecore.machine.greenhouse.luv.tooltip=富营养培植
+gtlitecore.machine.greenhouse.zpm.name=精英温室 III
+gtlitecore.machine.greenhouse.zpm.tooltip=富营养培植
+gtlitecore.machine.greenhouse.uv.name=终极温室
+gtlitecore.machine.greenhouse.uv.tooltip=自体生态圈
+gtlitecore.machine.greenhouse.uhv.name=史诗温室
+gtlitecore.machine.greenhouse.uhv.tooltip=自体生态圈
+gtlitecore.machine.greenhouse.uev.name=史诗温室 II
+gtlitecore.machine.greenhouse.uev.tooltip=自体生态圈
+gtlitecore.machine.greenhouse.uiv.name=史诗温室 III
+gtlitecore.machine.greenhouse.uiv.tooltip=自体生态圈
+gtlitecore.machine.greenhouse.uxv.name=史诗温室 IV
+gtlitecore.machine.greenhouse.uxv.tooltip=自体生态圈
+gtlitecore.machine.greenhouse.opv.name=传奇温室
+gtlitecore.machine.greenhouse.opv.tooltip=自体生态圈
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -930,6 +958,8 @@ gtlitecore.material.polyisoprene=聚异戊二烯（PI）
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
 gtlitecore.material.rainbow_sap=彩虹树液
+
+gtlitecore.material.greenhouse_gas=温室气体
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分

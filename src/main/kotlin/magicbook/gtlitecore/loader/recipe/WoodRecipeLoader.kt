@@ -8,16 +8,19 @@ import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Glue
+import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.STICKY_RESIN
 import gregtech.loaders.WoodTypeEntry
 import gregtech.loaders.recipe.WoodRecipeLoader
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RainbowSap
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import net.minecraft.init.Blocks
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -106,6 +109,16 @@ class WoodRecipeLoader
                                 Blocks.LOG.getStateFromMeta(3),
                                 Blocks.LOG2.getStateFromMeta(0),
                                 Blocks.LOG2.getStateFromMeta(1)))
+                .buildAndRegister()
+
+            // Rainbow logs.
+            SAP_COLLECTOR_RECIPES.recipeBuilder()
+                .notConsumable(Lubricant.getFluid(10))
+                .fluidOutputs(RainbowSap.getFluid(100))
+                .EUt(VA[ULV].toLong())
+                .duration(1 * SECOND)
+                .blockStates("rainbow",
+                    arrayListOf(GTLiteMetaBlocks.LOGS[2].getStateFromMeta(5)))
                 .buildAndRegister()
         }
 

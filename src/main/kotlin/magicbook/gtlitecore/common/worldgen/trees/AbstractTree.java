@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.common.worldgen.trees;
 
+import lombok.Getter;
 import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.api.utils.functions.TriConsumer;
 import magicbook.gtlitecore.api.worldgen.AbstractWorldGen;
@@ -32,8 +33,11 @@ public abstract class AbstractTree extends AbstractFeature
     public final String name;
     private final int seed;
 
+    @Getter
     public IBlockState logState;
+    @Getter
     public IBlockState leaveState;
+    @Getter
     public IBlockState saplingState;
 
     public static final List<AbstractTree> trees = new ArrayList<>();

@@ -442,6 +442,13 @@ class GTLiteMaterials
             .liquid(FluidBuilder().customStill())
             .build()
 
+        // 12040 Greenhouse Gas
+        @JvmField
+        val GreenhouseGas: Material = Material.Builder(12040, gtliteId("greenhouse_gas"))
+            .gas(FluidBuilder().temperature(313))
+            .build()
+            .setFormula("N78O21Ar9?", true)
+
         // 12050 Carbon 5 Fraction
         @JvmField
         val Carbon5Fraction: Material = Material.Builder(12050, gtliteId("carbon_5_fraction"))

@@ -13,6 +13,7 @@ import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.utils.GTLiteUtility
+import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
 import stanhebben.zenscript.annotations.ZenProperty
 import kotlin.math.max
@@ -293,6 +294,21 @@ class GTLiteRecipeMaps
             .itemOutputs(1)
             .fluidInputs(2)
             .sound(GTSoundEvents.COOLING)
+            .build()
+
+        /**
+         * @zenProp greenhouse
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("GREENHOUSE_RECIPES")
+        val GREENHOUSE_RECIPES = RecipeMapBuilder("greenhouse", SimpleRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(4)
+            .fluidInputs(2)
+            .fluidOutputs(1)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(SoundEvents.BLOCK_CHORUS_FLOWER_GROW)
             .build()
 
         @JvmStatic
