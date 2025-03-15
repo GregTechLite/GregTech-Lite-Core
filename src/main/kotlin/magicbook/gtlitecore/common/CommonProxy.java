@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.common;
 
 import gregtech.api.block.VariantItemBlock;
+import magicbook.gtlitecore.api.block.impl.TranslatableVariantItemBlock;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import magicbook.gtlitecore.api.utils.GTLiteLog;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
@@ -36,6 +37,12 @@ public class CommonProxy
         // Register all stones in GTLiteStoneVariant.
         for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
             registry.register(stone);
+        // Register all tree components.
+        GTLiteMetaBlocks.LEAVES.forEach(registry::register);
+        GTLiteMetaBlocks.LOGS.forEach(registry::register);
+        GTLiteMetaBlocks.PLANKS.forEach(registry::register);
+        GTLiteMetaBlocks.SAPLINGS.forEach(registry::register);
+        // Register all common variant blocks.
         registry.register(GTLiteMetaBlocks.MOTOR_CASING);
         registry.register(GTLiteMetaBlocks.PISTON_CASING);
         registry.register(GTLiteMetaBlocks.PUMP_CASING);
@@ -58,6 +65,15 @@ public class CommonProxy
         // Register all item blocks.
         for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
             registry.register(createItemBlock(stone, VariantItemBlock::new));
+        GTLiteMetaBlocks.LEAVES.forEach(t ->
+                registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
+        GTLiteMetaBlocks.LOGS.forEach(t ->
+                registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
+        GTLiteMetaBlocks.SAPLINGS.forEach(t ->
+                registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
+        GTLiteMetaBlocks.PLANKS.forEach(t ->
+                registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
+
         registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.PISTON_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.PUMP_CASING, VariantItemBlock::new));

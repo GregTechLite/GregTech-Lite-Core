@@ -436,6 +436,12 @@ class GTLiteMaterials
             .flags(FLAMMABLE)
             .build()
 
+        // 12003 Rainbow Sap
+        @JvmField
+        val RainbowSap: Material = Material.Builder(12003, gtliteId("rainbow_sap"))
+            .liquid(FluidBuilder().customStill())
+            .build()
+
         // 12050 Carbon 5 Fraction
         @JvmField
         val Carbon5Fraction: Material = Material.Builder(12050, gtliteId("carbon_5_fraction"))

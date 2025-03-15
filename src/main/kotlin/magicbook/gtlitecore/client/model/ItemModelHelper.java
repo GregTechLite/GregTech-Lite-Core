@@ -1,7 +1,9 @@
 package magicbook.gtlitecore.client.model;
 
+import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -9,6 +11,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import one.util.streamex.StreamEx;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
@@ -31,6 +35,22 @@ public class ItemModelHelper
                 .forKeyValue((state, modelResourceLocation) -> ModelLoader.setCustomModelResourceLocation(
                         Item.getItemFromBlock(block), block.getMetaFromState(state), modelResourceLocation
                 ));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerItemModelWithOverride(Block block,
+                                                     Map<IProperty<?>, Comparable<?>> stateOverrides)
+    {
+        for (IBlockState state : block.getBlockState().getValidStates())
+        {
+            HashMap<IProperty<?>, Comparable<?>> stringProperties = new HashMap<>(state.getProperties());
+            stringProperties.putAll(stateOverrides);
+            // noinspection ConstantConditions
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
+                    block.getMetaFromState(state),
+                    new ModelResourceLocation(block.getRegistryName(),
+                            MetaBlocks.statePropertiesToString(stringProperties)));
+        }
     }
 
     @SuppressWarnings("unchecked")

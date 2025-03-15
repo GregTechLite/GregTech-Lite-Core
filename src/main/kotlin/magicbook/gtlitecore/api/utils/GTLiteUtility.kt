@@ -5,9 +5,16 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
 import net.minecraft.item.ItemStack
+import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.text.TextComponentTranslation
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.function.Consumer
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteUtility
@@ -32,6 +39,26 @@ class GTLiteUtility
 
         @JvmStatic
         fun getId(namespace: String, path: String) = ResourceLocation(namespace, path)
+
+        /**
+         * Copies the [BlockPos] to [BlockPos.MutableBlockPos].
+         *
+         * @param blockPos BlockPos for copying.
+         * @return         A MutableBlockPos copy of BlockPos.
+         */
+        @JvmStatic
+        fun copy(blockPos: BlockPos) = BlockPos.MutableBlockPos(blockPos.toImmutable())
+
+        /**
+         * Safety copies the [BlockPos] to [BlockPos.MutableBlockPos].
+         *
+         * @param blockPos        BlockPos for copying.
+         * @param defaultBlockPos Default value of BlockPos which be copied.
+         * @return                A MutableBlockPos copy of BlockPos.
+         */
+        @JvmStatic
+        fun copyOrDefault(blockPos: BlockPos?, defaultBlockPos: BlockPos)
+            = if (blockPos == null) copy(defaultBlockPos) else copy(blockPos)
 
         @JvmStatic
         fun getMotorByTier(tier: Int): MetaItem<*>.MetaValueItem
@@ -253,6 +280,19 @@ class GTLiteUtility
                 GTValues.OpV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.OpV)
                 else -> MetaItems.LOGO.stackForm // TODO MAX Field Gen
             }
+        }
+
+        @SideOnly(Side.CLIENT)
+        @JvmStatic
+        fun addPotionEffectTooltip(effects: List<RandomPotionEffect>,
+                                   lines: MutableList<String>?)
+        {
+            lines!!.add(TextComponentTranslation("${GTLiteValues.MODID}.tooltip.potion.header").formattedText)
+            effects.forEach(Consumer { effect: RandomPotionEffect ->
+                lines.add(TextComponentTranslation("${GTLiteValues.MODID}.tooltip.potion.each",
+                    TextComponentTranslation((effect.effect as PotionEffect).effectName).formattedText,
+                    TextComponentTranslation("enchantment.level." + (effect.effect.getAmplifier() + 1)),
+                    effect.effect.getDuration(), 100 - effect.chance).formattedText) })
         }
 
     }

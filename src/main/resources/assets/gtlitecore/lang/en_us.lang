@@ -119,6 +119,56 @@ tile.stone_bricks_windmill_a.shale.name=Shale Windmill Tiles A
 tile.stone_bricks_windmill_b.shale.name=Shale Windmill Tiles B
 tile.stone_bricks_square.shale.name=Square Shale Bricks
 
+gtlitecore.leaves.banana.name=Banana Leaves
+gtlitecore.log.banana.name=Banana Pseudostem
+gtlitecore.sapling.banana.name=Banana Sapling
+gtlitecore.planks.banana.name=Banana Planks
+
+gtlitecore.leaves.orange.name=Orange Leaves
+gtlitecore.log.orange.name=Orange Wood
+gtlitecore.sapling.orange.name=Orange Sapling
+gtlitecore.planks.orange.name=Orange Planks
+
+gtlitecore.leaves.mango.name=Mango Leaves
+gtlitecore.log.mango.name=Mango Wood
+gtlitecore.sapling.mango.name=Mango Sapling
+gtlitecore.planks.mango.name=Mango Planks
+
+gtlitecore.leaves.apricot.name=Apricot Leaves
+gtlitecore.log.apricot.name=Apricot Wood
+gtlitecore.sapling.apricot.name=Apricot Sapling
+gtlitecore.planks.apricot.name=Apricot Planks
+
+gtlitecore.leaves.lemon.name=Lemon Leaves
+gtlitecore.log.lemon.name=Lemon Log
+gtlitecore.sapling.lemon.name=Lemon Sapling
+gtlitecore.planks.lemon.name=Lemon Planks
+
+gtlitecore.leaves.lime.name=Lime Leaves
+gtlitecore.log.lime.name=Lime Log
+gtlitecore.sapling.lime.name=Lime Sapling
+gtlitecore.planks.lime.name=Lime Planks
+
+gtlitecore.leaves.olive.name=Olive Leaves
+gtlitecore.log.olive.name=Olive Log
+gtlitecore.sapling.olive.name=Olive Sapling
+gtlitecore.planks.olive.name=Olive Planks
+
+gtlitecore.leaves.nutmeg.name=Nutmeg Leaves
+gtlitecore.log.nutmeg.name=Nutmeg Log
+gtlitecore.sapling.nutmeg.name=Nutmeg Sapling
+gtlitecore.planks.nutmeg.name=Nutmeg Planks
+
+gtlitecore.leaves.coconut.name=Coconut Leaves
+gtlitecore.log.coconut.name=Coconut Log
+gtlitecore.sapling.coconut.name=Coconut Sapling
+gtlitecore.planks.coconut.name=Coconut Planks
+
+gtlitecore.leaves.rainbow.name=Rainbow Leaves
+gtlitecore.log.rainbow.name=Rainbow Log
+gtlitecore.sapling.rainbow.name=Rainbow Sapling
+gtlitecore.planks.rainbow.name=Rainbow Planks
+
 tile.motor_casing.lv.name=§7LV§r Electric Motor Casing
 tile.motor_casing.mv.name=§bMV§r Electric Motor Casing
 tile.motor_casing.hv.name=§6HV§r Electric Motor Casing
@@ -346,6 +396,16 @@ metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
 metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate
 metaitem.material.plate.mica_insulator.name=Mica Insulator Plate
 metaitem.material.foil.mica_insulator.name=Mica Insulator Foil
+
+metaitem.food.fruit.banana.name=Banana
+metaitem.food.fruit.orange.name=Orange
+metaitem.food.fruit.mango.name=Mango
+metaitem.food.fruit.apricot.name=Apricot
+metaitem.food.fruit.lemon.name=Lemon
+metaitem.food.fruit.lime.name=Lime
+metaitem.food.fruit.olive.name=Olive
+metaitem.food.fruit.nutmeg.name=Nutmeg
+metaitem.food.fruit.coconut.name=Coconut
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -707,6 +767,7 @@ gtlitecore.material.polyisoprene=Polyisoprene (PI)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
+gtlitecore.material.rainbow_sap=Rainbow Sap
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
@@ -728,3 +789,10 @@ gtlitecore.veins.ore.dolomite=Dolomite Vein
 gtlitecore.veins.ore.olivine_2=Forsterite Vein
 gtlitecore.veins.ore.kaolinite=Kaolinite Vein
 gtlitecore.veins.ore.fluorite=Fluorite Vein
+
+# Tooltips
+gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)
+gtlitecore.tooltip.food.common_duration=§aTakes §f32§a Ticks to eat
+
+gtlitecore.tooltip.potion.header=§6Contains effects:
+gtlitecore.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%§r chance of happening

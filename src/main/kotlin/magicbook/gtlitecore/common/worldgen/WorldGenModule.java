@@ -3,11 +3,15 @@ package magicbook.gtlitecore.common.worldgen;
 import gregtech.api.GTValues;
 import gregtech.api.util.FileUtility;
 import magicbook.gtlitecore.api.module.Module;
+import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.core.module.BaseModule;
 import magicbook.gtlitecore.core.module.GTLiteModules;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
@@ -48,6 +52,14 @@ public class WorldGenModule extends BaseModule
         // to original GregTech folders, and then when WorldGenRegistry working,
         // new veins can be added finely.
         FileUtility.extractJarFiles(resourceWorldGenPath, getWorldGenPath(GTValues.MODID).toFile(), false);
+    }
+
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
+        GameRegistry.registerWorldGenerator(GTLiteWorldGenerator.INSTANCE, 1);
+        if (GTValues.isClientSide())
+            GTLiteMetaBlocks.registerColors();
     }
 
     private static Path getWorldGenPath(String modId)

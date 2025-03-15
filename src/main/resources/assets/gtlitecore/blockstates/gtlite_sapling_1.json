@@ -1,0 +1,54 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gregtech:rubber_sapling"
+  },
+  "variants": {
+    "stage": {
+      "0": {},
+      "1": {}
+    },
+    "variant": {
+      "0": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/coconut"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/rainbow"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/banana"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/orange"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/mango"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/apricot"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/lemon"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gtlitecore:blocks/saplings/lime"
+        }
+      }
+    }
+  }
+}

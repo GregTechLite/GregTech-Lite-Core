@@ -119,6 +119,56 @@ tile.stone_bricks_windmill_a.shale.name=页岩风车形瓦 A
 tile.stone_bricks_windmill_b.shale.name=页岩风车形瓦 B
 tile.stone_bricks_square.shale.name=页岩方形砖
 
+gtlitecore.leaves.banana.name=香蕉树叶
+gtlitecore.log.banana.name=香蕉树假茎
+gtlitecore.sapling.banana.name=香蕉树苗
+gtlitecore.planks.banana.name=香蕉木板
+
+gtlitecore.leaves.orange.name=橙子树叶
+gtlitecore.log.orange.name=橙子树木
+gtlitecore.sapling.orange.name=橙子树苗
+gtlitecore.planks.orange.name=橙子木板
+
+gtlitecore.leaves.mango.name=芒果树叶
+gtlitecore.log.mango.name=芒果树木
+gtlitecore.sapling.mango.name=芒果树苗
+gtlitecore.planks.mango.name=芒果木板
+
+gtlitecore.leaves.apricot.name=杏树叶
+gtlitecore.log.apricot.name=杏树木
+gtlitecore.sapling.apricot.name=杏树苗
+gtlitecore.planks.apricot.name=杏木板
+
+gtlitecore.leaves.lemon.name=柠檬树叶
+gtlitecore.log.lemon.name=柠檬树木
+gtlitecore.sapling.lemon.name=柠檬树苗
+gtlitecore.planks.lemon.name=柠檬木板
+
+gtlitecore.leaves.lime.name=酸橙树叶
+gtlitecore.log.lime.name=酸橙树木
+gtlitecore.sapling.lime.name=酸橙树苗
+gtlitecore.planks.lime.name=酸橙木板
+
+gtlitecore.leaves.olive.name=橄榄树叶
+gtlitecore.log.olive.name=橄榄树木
+gtlitecore.sapling.olive.name=橄榄树苗
+gtlitecore.planks.olive.name=橄榄木板
+
+gtlitecore.leaves.nutmeg.name=肉桂树叶
+gtlitecore.log.nutmeg.name=肉桂树木
+gtlitecore.sapling.nutmeg.name=肉桂树苗
+gtlitecore.planks.nutmeg.name=肉桂木板
+
+gtlitecore.leaves.coconut.name=椰子树叶
+gtlitecore.log.coconut.name=椰子树木
+gtlitecore.sapling.coconut.name=椰子树苗
+gtlitecore.planks.coconut.name=椰子木板
+
+gtlitecore.leaves.rainbow.name=彩虹树叶
+gtlitecore.log.rainbow.name=彩虹树木
+gtlitecore.sapling.rainbow.name=彩虹树苗
+gtlitecore.planks.rainbow.name=彩虹木板
+
 tile.motor_casing.lv.name=电动马达方块（§7LV§r）
 tile.motor_casing.mv.name=电动马达方块（§bMV§r）
 tile.motor_casing.hv.name=电动马达方块（§6HV§r）
@@ -346,6 +396,16 @@ metaitem.material.dust.gelatinous_mica_pulp.name=胶质云母粉
 metaitem.material.plate.mica_mineral_wool.name=云母矿棉片
 metaitem.material.plate.mica_insulator.name=绝缘云母板
 metaitem.material.foil.mica_insulator.name=绝缘云母箔
+
+metaitem.food.fruit.banana.name=香蕉
+metaitem.food.fruit.orange.name=橙子
+metaitem.food.fruit.mango.name=芒果
+metaitem.food.fruit.apricot.name=杏
+metaitem.food.fruit.lemon.name=柠檬
+metaitem.food.fruit.lime.name=酸橙
+metaitem.food.fruit.olive.name=橄榄
+metaitem.food.fruit.nutmeg.name=肉桂
+metaitem.food.fruit.coconut.name=椰子
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -707,6 +767,7 @@ gtlitecore.material.polyisoprene=聚异戊二烯（PI）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
+gtlitecore.material.rainbow_sap=彩虹树液
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
@@ -728,3 +789,10 @@ gtlitecore.veins.ore.dolomite=白云石矿脉
 gtlitecore.veins.ore.olivine_2=镁橄榄石矿脉
 gtlitecore.veins.ore.kaolinite=高岭石矿脉
 gtlitecore.veins.ore.fluorite=氟石矿脉
+
+# Tooltips
+gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）
+gtlitecore.tooltip.food.common_duration=§a需要 §f32§a 刻来吃下
+
+gtlitecore.tooltip.potion.header=§6食用后:
+gtlitecore.tooltip.potion.each=   §a%4$s%%§r 概率获得 §c%3$s§r 刻的§e%1$s %2$s§r 效果

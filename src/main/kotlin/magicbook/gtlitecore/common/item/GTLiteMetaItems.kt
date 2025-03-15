@@ -7,6 +7,9 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.stack.ItemMaterialInfo
 import gregtech.api.unification.stack.MaterialStack
 import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.behavior.FoodBehavior
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 
@@ -68,6 +71,16 @@ class GTLiteMetaItems
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
+
+        lateinit var BANANA: MetaItem<*>.MetaValueItem
+        lateinit var ORANGE: MetaItem<*>.MetaValueItem
+        lateinit var MANGO: MetaItem<*>.MetaValueItem
+        lateinit var APRICOT: MetaItem<*>.MetaValueItem
+        lateinit var LEMON: MetaItem<*>.MetaValueItem
+        lateinit var LIME: MetaItem<*>.MetaValueItem
+        lateinit var OLIVE: MetaItem<*>.MetaValueItem
+        lateinit var NUTMEG: MetaItem<*>.MetaValueItem
+        lateinit var COCONUT: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -227,17 +240,75 @@ class GTLiteMetaItems
 
             // ...
 
-            // 10001-20000: Miscellaneous Materials.
-            MICA_PULP = GTLITE_ITEMS.addItem(10001, "material.dust.gelatinous_mica_pulp")
+            // 5001-8000: Miscellaneous Materials.
+            MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")
                 .addOreDict("dustMicaGelatinous")
 
-            MICA_PLATE = GTLITE_ITEMS.addItem(10002, "material.plate.mica_mineral_wool")
+            MICA_PLATE = GTLITE_ITEMS.addItem(5002, "material.plate.mica_mineral_wool")
                 .addOreDict("plateMicaMineralWool")
 
-            MICA_INSULATOR_PLATE = GTLITE_ITEMS.addItem(10003, "material.plate.mica_insulator")
+            MICA_INSULATOR_PLATE = GTLITE_ITEMS.addItem(5003, "material.plate.mica_insulator")
                 .addOreDict("plateMicaInsulator")
 
-            MICA_INSULATOR_FOIL = GTLITE_ITEMS.addItem(10004, "material.foil.mica_insulator")
+            MICA_INSULATOR_FOIL = GTLITE_ITEMS.addItem(5004, "material.foil.mica_insulator")
+
+            // 9001-10000: Miscellaneous Foods.
+            BANANA = GTLITE_ITEMS.addItem(9001, "food.fruit.banana")
+                .addComponents(FoodBehavior(2, 1f)
+                    .setEatingDuration(3 * SECOND))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBanana")
+                .addOreDict("cropBanana")
+
+            ORANGE = GTLITE_ITEMS.addItem(9002, "food.fruit.orange")
+                .addComponents(FoodBehavior(2, 1f)
+                    .setEatingDuration(2 * SECOND + 10 * TICK))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitOrange")
+                .addOreDict("cropOrange")
+
+            MANGO = GTLITE_ITEMS.addItem(9003, "food.fruit.mango")
+                .addComponents(FoodBehavior(2, 1f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitMango")
+                .addOreDict("cropMango")
+
+            APRICOT = GTLITE_ITEMS.addItem(9004, "food.fruit.apricot")
+                .addComponents(FoodBehavior(2, 1f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitApricot")
+                .addOreDict("cropApricot")
+
+            LEMON = GTLITE_ITEMS.addItem(9005, "food.fruit.lemon")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitLemon")
+                .addOreDict("cropLemon")
+
+            LIME = GTLITE_ITEMS.addItem(9006, "food.fruit.lime")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitLime")
+                .addOreDict("cropLime")
+
+            OLIVE = GTLITE_ITEMS.addItem(9007, "food.fruit.olive")
+                .addComponents(FoodBehavior(2, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitOlive")
+                .addOreDict("cropOlive")
+
+            NUTMEG = GTLITE_ITEMS.addItem(9008, "food.fruit.nutmeg")
+                .addOreDict("cropNutmeg")
+
+            COCONUT = GTLITE_ITEMS.addItem(9009, "food.fruit.coconut")
+                .addOreDict("cropCoconut")
 
         }
 
