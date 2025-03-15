@@ -1,0 +1,59 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "banana": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/planks/banana"
+        }
+      },
+      "orange": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/planks/orange"
+        }
+      },
+      "mango": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/mango"
+        }
+      },
+      "apricot": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/apricot"
+        }
+      },
+      "lemon": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/lemon"
+        }
+      },
+      "lime": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/lime"
+        }
+      },
+      "olive": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/olive"
+        }
+      },
+      "nutmeg": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/nutmeg"
+        }
+      },
+      "coconut": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/coconut"
+        }
+      },
+      "rainbow": {
+        "textures": {
+          "all": "gtlitecore:blocks/planks/rainbow"
+        }
+      }
+    }
+  }
+}

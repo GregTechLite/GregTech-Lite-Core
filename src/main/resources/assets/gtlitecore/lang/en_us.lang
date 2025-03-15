@@ -169,6 +169,50 @@ gtlitecore.log.rainbow.name=Rainbow Log
 gtlitecore.sapling.rainbow.name=Rainbow Sapling
 gtlitecore.planks.rainbow.name=Rainbow Planks
 
+tile.gtlite_wood_slab.banana.name=Banana Wood Slab
+tile.gtlite_wood_slab.orange.name=Orange Wood Slab
+tile.gtlite_wood_slab.mango.name=Mango Wood Slab
+tile.gtlite_wood_slab.apricot.name=Apricot Wood Slab
+tile.gtlite_wood_slab.lemon.name=Lemon Wood Slab
+tile.gtlite_wood_slab.lime.name=Lime Wood Slab
+tile.gtlite_wood_slab.olive.name=Olive Wood Slab
+tile.gtlite_wood_slab.nutmeg.name=Nutmeg Wood Slab
+tile.gtlite_wood_slab.coconut.name=Coconut Wood Slab
+tile.gtlite_wood_slab.rainbow.name=Rainbow Wood Slab
+
+tile.gtlite_wood_stair.banana.name=Banana Wood Stair
+tile.gtlite_wood_stair.orange.name=Orange Wood Stair
+tile.gtlite_wood_stair.mango.name=Mango Wood Stair
+tile.gtlite_wood_stair.apricot.name=Apricot Wood Stair
+tile.gtlite_wood_stair.lemon.name=Lemon Wood Stair
+tile.gtlite_wood_stair.lime.name=Lime Wood Stair
+tile.gtlite_wood_stair.olive.name=Olive Wood Stair
+tile.gtlite_wood_stair.nutmeg.name=Nutmeg Wood Stair
+tile.gtlite_wood_stair.coconut.name=Coconut Wood Stair
+tile.gtlite_wood_stair.rainbow.name=Rainbow Wood Stair
+
+tile.gtlite_wood_fence.banana.name=Banana Wood Fence
+tile.gtlite_wood_fence.orange.name=Orange Wood Fence
+tile.gtlite_wood_fence.mango.name=Mango Wood Fence
+tile.gtlite_wood_fence.apricot.name=Apricot Wood Fence
+tile.gtlite_wood_fence.lemon.name=Lemon Wood Fence
+tile.gtlite_wood_fence.lime.name=Lime Wood Fence
+tile.gtlite_wood_fence.olive.name=Olive Wood Fence
+tile.gtlite_wood_fence.nutmeg.name=Nutmeg Wood Fence
+tile.gtlite_wood_fence.coconut.name=Coconut Wood Fence
+tile.gtlite_wood_fence.rainbow.name=Rainbow Wood Fence
+
+tile.gtlite_wood_fence_gate.banana.name=Banana Wood Fence Gate
+tile.gtlite_wood_fence_gate.orange.name=Orange Wood Fence Gate
+tile.gtlite_wood_fence_gate.mango.name=Mango Wood Fence Gate
+tile.gtlite_wood_fence_gate.apricot.name=Apricot Wood Fence Gate
+tile.gtlite_wood_fence_gate.lemon.name=Lemon Wood Fence Gate
+tile.gtlite_wood_fence_gate.lime.name=Lime Wood Fence Gate
+tile.gtlite_wood_fence_gate.olive.name=Olive Wood Fence Gate
+tile.gtlite_wood_fence_gate.nutmeg.name=Nutmeg Wood Fence Gate
+tile.gtlite_wood_fence_gate.coconut.name=Coconut Wood Fence Gate
+tile.gtlite_wood_fence_gate.rainbow.name=Rainbow Wood Fence Gate
+
 tile.motor_casing.lv.name=§7LV§r Electric Motor Casing
 tile.motor_casing.mv.name=§bMV§r Electric Motor Casing
 tile.motor_casing.hv.name=§6HV§r Electric Motor Casing

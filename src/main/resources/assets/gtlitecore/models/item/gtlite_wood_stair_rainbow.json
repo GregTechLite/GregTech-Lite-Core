@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "gtlitecore:blocks/planks/rainbow",
+    "top": "gtlitecore:blocks/planks/rainbow",
+    "side": "gtlitecore:blocks/planks/rainbow"
+  }
+}

@@ -11,6 +11,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +43,42 @@ public class CommonProxy
         GTLiteMetaBlocks.LOGS.forEach(registry::register);
         GTLiteMetaBlocks.PLANKS.forEach(registry::register);
         GTLiteMetaBlocks.SAPLINGS.forEach(registry::register);
+        // Wooden slabs.
+        registry.register(GTLiteMetaBlocks.WOOD_SLABS);
+        registry.register(GTLiteMetaBlocks.DOUBLE_WOOD_SLABS);
+        // Wooden stairs.
+        registry.register(GTLiteMetaBlocks.BANANA_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.MANGO_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.LEMON_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.LIME_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_STAIR);
+        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_STAIR);
+        // Wooden fences.
+        registry.register(GTLiteMetaBlocks.BANANA_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.MANGO_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.LEMON_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.LIME_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE);
+        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE);
+        // Wooden fence gates.
+        registry.register(GTLiteMetaBlocks.BANANA_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.MANGO_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.LEMON_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.LIME_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE);
+        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE);
         // Register all common variant blocks.
         registry.register(GTLiteMetaBlocks.MOTOR_CASING);
         registry.register(GTLiteMetaBlocks.PISTON_CASING);
@@ -73,6 +110,42 @@ public class CommonProxy
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
         GTLiteMetaBlocks.PLANKS.forEach(t ->
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.WOOD_SLABS,
+                t -> new ItemSlab(t, t, GTLiteMetaBlocks.DOUBLE_WOOD_SLABS)));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_STAIR, ItemBlock::new));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE, ItemBlock::new));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
 
         registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.PISTON_CASING, VariantItemBlock::new));

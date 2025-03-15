@@ -1,0 +1,165 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "half=top,variant=banana": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/banana",
+        "top": "gtlitecore:blocks/planks/banana",
+        "side": "gtlitecore:blocks/planks/banana"
+      }
+    },
+    "half=bottom,variant=banana": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/banana",
+        "top": "gtlitecore:blocks/planks/banana",
+        "side": "gtlitecore:blocks/planks/banana"
+      }
+    },
+    "half=top,variant=orange": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/orange",
+        "top": "gtlitecore:blocks/planks/orange",
+        "side": "gtlitecore:blocks/planks/orange"
+      }
+    },
+    "half=bottom,variant=orange": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/orange",
+        "top": "gtlitecore:blocks/planks/orange",
+        "side": "gtlitecore:blocks/planks/orange"
+      }
+    },
+    "half=top,variant=mango": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/mango",
+        "top": "gtlitecore:blocks/planks/mango",
+        "side": "gtlitecore:blocks/planks/mango"
+      }
+    },
+    "half=bottom,variant=mango": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/mango",
+        "top": "gtlitecore:blocks/planks/mango",
+        "side": "gtlitecore:blocks/planks/mango"
+      }
+    },
+    "half=top,variant=apricot": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/apricot",
+        "top": "gtlitecore:blocks/planks/apricot",
+        "side": "gtlitecore:blocks/planks/apricot"
+      }
+    },
+    "half=bottom,variant=apricot": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/apricot",
+        "top": "gtlitecore:blocks/planks/apricot",
+        "side": "gtlitecore:blocks/planks/apricot"
+      }
+    },
+    "half=top,variant=lemon": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/lemon",
+        "top": "gtlitecore:blocks/planks/lemon",
+        "side": "gtlitecore:blocks/planks/lemon"
+      }
+    },
+    "half=bottom,variant=lemon": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/lemon",
+        "top": "gtlitecore:blocks/planks/lemon",
+        "side": "gtlitecore:blocks/planks/lemon"
+      }
+    },
+    "half=top,variant=lime": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/lime",
+        "top": "gtlitecore:blocks/planks/lime",
+        "side": "gtlitecore:blocks/planks/lime"
+      }
+    },
+    "half=bottom,variant=lime": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/lime",
+        "top": "gtlitecore:blocks/planks/lime",
+        "side": "gtlitecore:blocks/planks/lime"
+      }
+    },
+    "half=top,variant=olive": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/olive",
+        "top": "gtlitecore:blocks/planks/olive",
+        "side": "gtlitecore:blocks/planks/olive"
+      }
+    },
+    "half=bottom,variant=olive": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/olive",
+        "top": "gtlitecore:blocks/planks/olive",
+        "side": "gtlitecore:blocks/planks/olive"
+      }
+    },
+    "half=top,variant=nutmeg": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/nutmeg",
+        "top": "gtlitecore:blocks/planks/nutmeg",
+        "side": "gtlitecore:blocks/planks/nutmeg"
+      }
+    },
+    "half=bottom,variant=nutmeg": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/nutmeg",
+        "top": "gtlitecore:blocks/planks/nutmeg",
+        "side": "gtlitecore:blocks/planks/nutmeg"
+      }
+    },
+    "half=top,variant=coconut": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/coconut",
+        "top": "gtlitecore:blocks/planks/coconut",
+        "side": "gtlitecore:blocks/planks/coconut"
+      }
+    },
+    "half=bottom,variant=coconut": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/coconut",
+        "top": "gtlitecore:blocks/planks/coconut",
+        "side": "gtlitecore:blocks/planks/coconut"
+      }
+    },
+    "half=top,variant=rainbow": {
+      "model": "upper_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/rainbow",
+        "top": "gtlitecore:blocks/planks/rainbow",
+        "side": "gtlitecore:blocks/planks/rainbow"
+      }
+    },
+    "half=bottom,variant=rainbow": {
+      "model": "half_slab",
+      "textures": {
+        "bottom": "gtlitecore:blocks/planks/rainbow",
+        "top": "gtlitecore:blocks/planks/rainbow",
+        "side": "gtlitecore:blocks/planks/rainbow"
+      }
+    }
+  }
+}

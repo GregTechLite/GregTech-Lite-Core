@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "gtlitecore:blocks/planks/nutmeg",
+    "top": "gtlitecore:blocks/planks/nutmeg",
+    "side": "gtlitecore:blocks/planks/nutmeg"
+  }
+}

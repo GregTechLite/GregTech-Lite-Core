@@ -1,5 +1,7 @@
 package magicbook.gtlitecore.loader
 
+import magicbook.gtlitecore.loader.recipe.WoodRecipeLoader
+
 class MaterialInfoLoader
 {
 
@@ -8,7 +10,7 @@ class MaterialInfoLoader
 
         fun init()
         {
-
+            WoodRecipeLoader.initUnificationInfos()
         }
 
     }
