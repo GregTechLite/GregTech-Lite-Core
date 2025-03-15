@@ -586,6 +586,7 @@ recipemap.vacuum_chamber.name=Vacuum Chamber
 recipemap.sap_collector.name=Sap Collector
 recipemap.coagulation_tank.name=Coagulation Tank
 recipemap.greenhouse.name=Greenhouse
+recipemap.bio_reactor.name=Bio Reactor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -838,6 +839,33 @@ gtlitecore.machine.greenhouse.uxv.name=Epic Greenhouse IV
 gtlitecore.machine.greenhouse.uxv.tooltip=Autoecosystem
 gtlitecore.machine.greenhouse.opv.name=Legendary Greenhouse
 gtlitecore.machine.greenhouse.opv.tooltip=Autoecosystem
+
+gtlitecore.machine.bio_reactor.lv.name=Basic Bio Reactor
+gtlitecore.machine.bio_reactor.lv.tooltip=Sugar factory
+gtlitecore.machine.bio_reactor.mv.name=Advanced Bio Reactor
+gtlitecore.machine.bio_reactor.mv.tooltip=Sugar factory
+gtlitecore.machine.bio_reactor.hv.name=Advanced Bio Reactor II
+gtlitecore.machine.bio_reactor.hv.tooltip=Sugar factory
+gtlitecore.machine.bio_reactor.ev.name=Advanced Bio Reactor III
+gtlitecore.machine.bio_reactor.ev.tooltip=Sugar factory
+gtlitecore.machine.bio_reactor.iv.name=Elite Bio Reactor
+gtlitecore.machine.bio_reactor.iv.tooltip=Bacterial cultivation tank
+gtlitecore.machine.bio_reactor.luv.name=Elite Bio Reactor II
+gtlitecore.machine.bio_reactor.luv.tooltip=Bacterial cultivation tank
+gtlitecore.machine.bio_reactor.zpm.name=Elite Bio Reactor III
+gtlitecore.machine.bio_reactor.zpm.tooltip=Bacterial cultivation tank
+gtlitecore.machine.bio_reactor.uv.name=Ultimate Bio Reactor
+gtlitecore.machine.bio_reactor.uv.tooltip=Gene editor
+gtlitecore.machine.bio_reactor.uhv.name=Epic Bio Reactor
+gtlitecore.machine.bio_reactor.uhv.tooltip=Gene editor
+gtlitecore.machine.bio_reactor.uev.name=Epic Bio Reactor II
+gtlitecore.machine.bio_reactor.uev.tooltip=Gene editor
+gtlitecore.machine.bio_reactor.uiv.name=Epic Bio Reactor III
+gtlitecore.machine.bio_reactor.uiv.tooltip=Gene editor
+gtlitecore.machine.bio_reactor.uxv.name=Epic Bio Reactor IV
+gtlitecore.machine.bio_reactor.uxv.tooltip=Gene editor
+gtlitecore.machine.bio_reactor.opv.name=Legendary Bio Reactor
+gtlitecore.machine.bio_reactor.opv.tooltip=Gene editor
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!

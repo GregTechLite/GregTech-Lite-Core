@@ -35,6 +35,9 @@ class GTLiteTextures
         @JvmField
         val SAP_COLLECTOR_OVERLAY = OrientedOverlayRenderer("machines/sap_collector")
 
+        @JvmField
+        val BIO_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/bio_reactor")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

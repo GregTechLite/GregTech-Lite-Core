@@ -243,6 +243,7 @@ class GTLiteRecipeMaps
             .itemOutputs(2)
             .fluidInputs(2)
             .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false, false)
             .itemSlotOverlay(GuiTextures.MOLD_OVERLAY, false, true)
             .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
             .sound(GTSoundEvents.COMBUSTION)
@@ -309,6 +310,26 @@ class GTLiteRecipeMaps
             .fluidOutputs(1)
             .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
             .sound(SoundEvents.BLOCK_CHORUS_FLOWER_GROW)
+            .build()
+
+        /**
+         * @zenProp bio_reactor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("BIO_REACTOR_RECIPES")
+        val BIO_REACTOR_RECIPES = RecipeMapBuilder("bio_reactor", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(1)
+            .fluidInputs(3)
+            .fluidOutputs(2)
+            .itemSlotOverlay(GTLiteGuiTextures.DISH_OVERLAY, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, false, false)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_4, false, true)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.CHEMICAL_REACTOR)
             .build()
 
         @JvmStatic

@@ -37,6 +37,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
@@ -221,6 +222,16 @@ class MachineRecipeLoader
                 'R', CraftingComponent.ROBOT_ARM,
                 'X', CraftingComponent.CIRCUIT,
                 'W', CraftingComponent.CABLE)
+
+            // Bio Reactor
+            MetaTileEntityLoader.registerMachineRecipe(true, BIO_REACTOR,
+                "PXX", "QHQ", "PMW",
+                'H', CraftingComponent.HULL,
+                'P', CraftingComponent.PUMP,
+                'Q', CraftingComponent.PIPE_NORMAL,
+                'X', CraftingComponent.CIRCUIT,
+                'W', CraftingComponent.CABLE,
+                'M', CraftingComponent.MOTOR)
 
             // =========================================================================================================
 

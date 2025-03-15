@@ -586,6 +586,7 @@ recipemap.vacuum_chamber.name=真空室
 recipemap.sap_collector.name=树液收集器
 recipemap.coagulation_tank.name=凝固缸
 recipemap.greenhouse.name=温室
+recipemap.bio_reactor.name=生物反应室
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -838,6 +839,33 @@ gtlitecore.machine.greenhouse.uxv.name=史诗温室 IV
 gtlitecore.machine.greenhouse.uxv.tooltip=自体生态圈
 gtlitecore.machine.greenhouse.opv.name=传奇温室
 gtlitecore.machine.greenhouse.opv.tooltip=自体生态圈
+
+gtlitecore.machine.bio_reactor.lv.name=基础生物反应室
+gtlitecore.machine.bio_reactor.lv.tooltip=制糖厂
+gtlitecore.machine.bio_reactor.mv.name=进阶生物反应室
+gtlitecore.machine.bio_reactor.mv.tooltip=制糖厂
+gtlitecore.machine.bio_reactor.hv.name=进阶生物反应室 II
+gtlitecore.machine.bio_reactor.hv.tooltip=制糖厂
+gtlitecore.machine.bio_reactor.ev.name=进阶生物反应室 III
+gtlitecore.machine.bio_reactor.ev.tooltip=制糖厂
+gtlitecore.machine.bio_reactor.iv.name=精英生物反应室
+gtlitecore.machine.bio_reactor.iv.tooltip=细菌培养缸
+gtlitecore.machine.bio_reactor.luv.name=精英生物反应室 II
+gtlitecore.machine.bio_reactor.luv.tooltip=细菌培养缸
+gtlitecore.machine.bio_reactor.zpm.name=精英生物反应室 III
+gtlitecore.machine.bio_reactor.zpm.tooltip=细菌培养缸
+gtlitecore.machine.bio_reactor.uv.name=终极生物反应室
+gtlitecore.machine.bio_reactor.uv.tooltip=基因编辑器
+gtlitecore.machine.bio_reactor.uhv.name=史诗生物反应室
+gtlitecore.machine.bio_reactor.uhv.tooltip=基因编辑器
+gtlitecore.machine.bio_reactor.uev.name=史诗生物反应室 II
+gtlitecore.machine.bio_reactor.uev.tooltip=基因编辑器
+gtlitecore.machine.bio_reactor.uiv.name=史诗生物反应室 III
+gtlitecore.machine.bio_reactor.uiv.tooltip=基因编辑器
+gtlitecore.machine.bio_reactor.uxv.name=史诗生物反应室 IV
+gtlitecore.machine.bio_reactor.uxv.tooltip=基因编辑器
+gtlitecore.machine.bio_reactor.opv.name=传奇生物反应室
+gtlitecore.machine.bio_reactor.opv.tooltip=基因编辑器
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
