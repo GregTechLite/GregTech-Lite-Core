@@ -36,9 +36,11 @@ import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.Tetrahedrite
+import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconia
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -181,6 +183,23 @@ class OxidesChain
                 .EUt(VA[HV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
+
+            // ZnS -> ZnO
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, Sphalerite)),
+                arrayOf(Oxygen.getFluid(3000)))
+
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Sphalerite)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, Zincite)
+                .chancedOutput(dust, Ash, 1000, 0)
+                .fluidOutputs(SulfurDioxide.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // TODO FeS2? Ni9S8? PbS?
 
             // Si + 2O -> SiO2
             ROASTER_RECIPES.recipeBuilder()
