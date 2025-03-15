@@ -544,7 +544,65 @@ class AssemblerRecipes
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
 
-            // TODO UEV-MAX
+            // UEV Processor Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(frameGt, Steel)
+                .input(plate, Steel, 4)
+                .input(spring, Steel, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .outputs(processorCasings[9])
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // UIV Processor Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(frameGt, Steel)
+                .input(plate, Steel, 4)
+                .input(spring, Steel, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .outputs(processorCasings[10])
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // UXV Processor Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(frameGt, Steel)
+                .input(plate, Steel, 4)
+                .input(spring, Steel, 2)
+                .input(circuit, MarkerMaterials.Tier.UXV)
+                .outputs(processorCasings[11])
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // OpV Processor Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(frameGt, Steel)
+                .input(plate, Steel, 4)
+                .input(spring, Steel, 2)
+                .input(circuit, MarkerMaterials.Tier.OpV)
+                .outputs(processorCasings[12])
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // MAX Processor Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(frameGt, Steel)
+                .input(plate, Steel, 4)
+                .input(spring, Steel, 2)
+                .input(circuit, MarkerMaterials.Tier.MAX)
+                .outputs(processorCasings[13])
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
 
             // ULV 4A Energy Hatch
             ASSEMBLER_RECIPES.recipeBuilder()

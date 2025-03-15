@@ -1,5 +1,20 @@
 package magicbook.gtlitecore.loader.recipe.component
 
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
@@ -27,93 +42,112 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.loaders.recipe.CraftingComponent
+import magicbook.gtlitecore.common.item.GTLiteMetaItems
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class CraftingComponents
 {
 
     companion object
     {
 
+        // Gears.
         val GEAR = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(gear, WroughtIron),
-            1 to UnificationEntry(gear, Steel),
-            2 to UnificationEntry(gear, Aluminium),
-            3 to UnificationEntry(gear, StainlessSteel),
-            4 to UnificationEntry(gear, Titanium),
-            5 to UnificationEntry(gear, TungstenSteel),
-            6 to UnificationEntry(gear, RhodiumPlatedPalladium),
-            7 to UnificationEntry(gear, NaquadahAlloy),
-            8 to UnificationEntry(gear, Darmstadtium),
-            9 to UnificationEntry(gear, Neutronium)
+            ULV to UnificationEntry(gear, WroughtIron),
+            LV  to UnificationEntry(gear, Steel),
+            MV  to UnificationEntry(gear, Aluminium),
+            HV  to UnificationEntry(gear, StainlessSteel),
+            EV  to UnificationEntry(gear, Titanium),
+            IV  to UnificationEntry(gear, TungstenSteel),
+            LuV to UnificationEntry(gear, RhodiumPlatedPalladium),
+            ZPM to UnificationEntry(gear, NaquadahAlloy),
+            UV  to UnificationEntry(gear, Darmstadtium),
+            UHV to UnificationEntry(gear, Neutronium)
         ).toMap())
 
+        // Small Gears.
         val GEAR_SMALL = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(gearSmall, WroughtIron),
-            1 to UnificationEntry(gearSmall, Steel),
-            2 to UnificationEntry(gearSmall, Aluminium),
-            3 to UnificationEntry(gearSmall, StainlessSteel),
-            4 to UnificationEntry(gearSmall, Titanium),
-            5 to UnificationEntry(gearSmall, TungstenSteel),
-            6 to UnificationEntry(gearSmall, RhodiumPlatedPalladium),
-            7 to UnificationEntry(gearSmall, NaquadahAlloy),
-            8 to UnificationEntry(gearSmall, Darmstadtium),
-            9 to UnificationEntry(gearSmall, Neutronium)
+            ULV to UnificationEntry(gearSmall, WroughtIron),
+            LV  to UnificationEntry(gearSmall, Steel),
+            MV  to UnificationEntry(gearSmall, Aluminium),
+            HV  to UnificationEntry(gearSmall, StainlessSteel),
+            EV  to UnificationEntry(gearSmall, Titanium),
+            IV  to UnificationEntry(gearSmall, TungstenSteel),
+            LuV to UnificationEntry(gearSmall, RhodiumPlatedPalladium),
+            ZPM to UnificationEntry(gearSmall, NaquadahAlloy),
+            UV  to UnificationEntry(gearSmall, Darmstadtium),
+            UHV to UnificationEntry(gearSmall, Neutronium)
         ).toMap())
 
+        // Dense Plates.
         val PLATE_DENSE = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(plateDense, WroughtIron),
-            1 to UnificationEntry(plateDense, Steel),
-            2 to UnificationEntry(plateDense, Aluminium),
-            3 to UnificationEntry(plateDense, StainlessSteel),
-            4 to UnificationEntry(plateDense, Titanium),
-            5 to UnificationEntry(plateDense, TungstenSteel),
-            6 to UnificationEntry(plateDense, RhodiumPlatedPalladium),
-            7 to UnificationEntry(plateDense, NaquadahAlloy),
-            8 to UnificationEntry(plateDense, Darmstadtium),
-            9 to UnificationEntry(plateDense, Neutronium)
+            ULV to UnificationEntry(plateDense, WroughtIron),
+            LV  to UnificationEntry(plateDense, Steel),
+            MV  to UnificationEntry(plateDense, Aluminium),
+            HV  to UnificationEntry(plateDense, StainlessSteel),
+            EV  to UnificationEntry(plateDense, Titanium),
+            IV  to UnificationEntry(plateDense, TungstenSteel),
+            LuV to UnificationEntry(plateDense, RhodiumPlatedPalladium),
+            ZPM to UnificationEntry(plateDense, NaquadahAlloy),
+            UV  to UnificationEntry(plateDense, Darmstadtium),
+            UHV to UnificationEntry(plateDense, Neutronium)
         ).toMap())
 
+        // Sticks.
         val STICK = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(stick, WroughtIron),
-            1 to UnificationEntry(stick, Steel),
-            2 to UnificationEntry(stick, Aluminium),
-            3 to UnificationEntry(stick, StainlessSteel),
-            4 to UnificationEntry(stick, Titanium),
-            5 to UnificationEntry(stick, TungstenSteel),
-            6 to UnificationEntry(stick, RhodiumPlatedPalladium),
-            7 to UnificationEntry(stick, NaquadahAlloy),
-            8 to UnificationEntry(stick, Darmstadtium),
-            9 to UnificationEntry(stick, Neutronium)
+            ULV to UnificationEntry(stick, WroughtIron),
+            LV  to UnificationEntry(stick, Steel),
+            MV  to UnificationEntry(stick, Aluminium),
+            HV  to UnificationEntry(stick, StainlessSteel),
+            EV  to UnificationEntry(stick, Titanium),
+            IV  to UnificationEntry(stick, TungstenSteel),
+            LuV to UnificationEntry(stick, RhodiumPlatedPalladium),
+            ZPM to UnificationEntry(stick, NaquadahAlloy),
+            UV  to UnificationEntry(stick, Darmstadtium),
+            UHV to UnificationEntry(stick, Neutronium)
         ).toMap())
 
+        // Long Sticks.
         val STICK_LONG = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(stickLong, WroughtIron),
-            1 to UnificationEntry(stickLong, Steel),
-            2 to UnificationEntry(stickLong, Aluminium),
-            3 to UnificationEntry(stickLong, StainlessSteel),
-            4 to UnificationEntry(stickLong, Titanium),
-            5 to UnificationEntry(stickLong, TungstenSteel),
-            6 to UnificationEntry(stickLong, RhodiumPlatedPalladium),
-            7 to UnificationEntry(stickLong, NaquadahAlloy),
-            8 to UnificationEntry(stickLong, Darmstadtium),
-            9 to UnificationEntry(stickLong, Neutronium)
+            ULV to UnificationEntry(stickLong, WroughtIron),
+            LV  to UnificationEntry(stickLong, Steel),
+            MV  to UnificationEntry(stickLong, Aluminium),
+            HV  to UnificationEntry(stickLong, StainlessSteel),
+            EV  to UnificationEntry(stickLong, Titanium),
+            IV  to UnificationEntry(stickLong, TungstenSteel),
+            LuV to UnificationEntry(stickLong, RhodiumPlatedPalladium),
+            ZPM to UnificationEntry(stickLong, NaquadahAlloy),
+            UV  to UnificationEntry(stickLong, Darmstadtium),
+            UHV to UnificationEntry(stickLong, Neutronium)
         ).toMap())
 
+        // Small Springs.
         val SPRING_SMALL = CraftingComponent.Component(sequenceOf(
-            0 to UnificationEntry(springSmall, Lead),
-            1 to UnificationEntry(springSmall, Tin),
-            2 to UnificationEntry(springSmall, Copper),
-            3 to UnificationEntry(springSmall, Gold),
-            4 to UnificationEntry(springSmall, Aluminium),
-            5 to UnificationEntry(springSmall, Tungsten),
-            6 to UnificationEntry(springSmall, NiobiumTitanium),
-            7 to UnificationEntry(springSmall, VanadiumGallium),
-            8 to UnificationEntry(springSmall, YttriumBariumCuprate),
-            9 to UnificationEntry(springSmall, Europium)
+            ULV to UnificationEntry(springSmall, Lead),
+            LV  to UnificationEntry(springSmall, Tin),
+            MV  to UnificationEntry(springSmall, Copper),
+            HV  to UnificationEntry(springSmall, Gold),
+            EV  to UnificationEntry(springSmall, Aluminium),
+            IV  to UnificationEntry(springSmall, Tungsten),
+            LuV to UnificationEntry(springSmall, NiobiumTitanium),
+            ZPM to UnificationEntry(springSmall, VanadiumGallium),
+            UV  to UnificationEntry(springSmall, YttriumBariumCuprate),
+            UHV to UnificationEntry(springSmall, Europium)
         ).toMap())
 
         fun setCraftingComponents()
         {
+
+            // Voltage Coils.
+            CraftingComponent.VOLTAGE_COIL.appendIngredients(sequenceOf(
+                UHV to GTLiteMetaItems.VOLTAGE_COIL_UHV.stackForm,
+                UEV to GTLiteMetaItems.VOLTAGE_COIL_UEV.stackForm,
+                UIV to GTLiteMetaItems.VOLTAGE_COIL_UIV.stackForm,
+                UXV to GTLiteMetaItems.VOLTAGE_COIL_UXV.stackForm,
+                OpV to GTLiteMetaItems.VOLTAGE_COIL_OpV.stackForm,
+                MAX to GTLiteMetaItems.VOLTAGE_COIL_MAX.stackForm
+            ).toMap())
+
         }
 
     }
