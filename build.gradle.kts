@@ -337,6 +337,7 @@ if (usesShadowJar.toBoolean()) {
         // Add shadowJar dependencies include and minimize settings at there.
         dependencies {
             include(dependency("one.util:streamex:.*"))
+            exclude(dependency(files("libs/gregtech-1.12.2-master.jar")))
         }
 
         mergeServiceFiles()
