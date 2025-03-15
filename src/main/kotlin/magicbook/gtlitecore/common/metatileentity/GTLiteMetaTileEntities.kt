@@ -9,6 +9,7 @@ import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators
@@ -75,6 +76,9 @@ class GTLiteMetaTileEntities
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+
+        @get:JvmName("BUFFER")
+        val BUFFER = arrayOfNulls<MetaTileEntityBuffer>(3)
 
         @get:JvmName("ENERGY_HATCH_4A")
         val ENERGY_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
@@ -248,6 +252,12 @@ class GTLiteMetaTileEntities
             // ...
 
             // 15051-15060: I/O hatch proxies.
+
+            // 15061-15075: Advanced buffers.
+            BUFFER[0] = MetaTileEntities.registerMetaTileEntity(15061,
+                MetaTileEntityBuffer(GTLiteUtility.gtliteId("buffer.ev"), GTValues.EV))
+            BUFFER[1] = MetaTileEntities.registerMetaTileEntity(15062,
+                MetaTileEntityBuffer(GTLiteUtility.gtliteId("buffer.iv"), GTValues.IV))
 
             // ...
 

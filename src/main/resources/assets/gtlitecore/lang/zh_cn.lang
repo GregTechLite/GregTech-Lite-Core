@@ -856,6 +856,9 @@ gtlitecore.machine.plastic_can.polyethylene.name=聚乙烯塑料桶
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=聚四氟乙烯塑料桶
 gtlitecore.machine.plastic_can.polybenzimidazole.name=聚苯并咪唑塑料桶
 
+gtlitecore.machine.buffer.ev.name=进阶缓存器 III
+gtlitecore.machine.buffer.iv.name=精英缓存器
+
 gtlitecore.machine.energy_hatch.input_4a.ulv.name=4安能源仓（§8ULV§r）
 gtlitecore.machine.energy_hatch.input_4a.lv.name=4安能源仓（§7LV§r）
 gtlitecore.machine.energy_hatch.input_4a.mv.name=4安能源仓（§bMV§r）

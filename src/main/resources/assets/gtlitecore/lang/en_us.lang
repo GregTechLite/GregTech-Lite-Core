@@ -856,6 +856,9 @@ gtlitecore.machine.plastic_can.polyethylene.name=Polyethylene Plastic Can
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=Polytetrafluoroethylene Plastic Can
 gtlitecore.machine.plastic_can.polybenzimidazole.name=Polybenzimidazole Plastic Can
 
+gtlitecore.machine.buffer.ev.name=Advanced Buffer III
+gtlitecore.machine.buffer.iv.name=Elite Buffer
+
 gtlitecore.machine.energy_hatch.input_4a.ulv.name=§8ULV§r 4A Energy Hatch
 gtlitecore.machine.energy_hatch.input_4a.lv.name=§7LV§r 4A Energy Hatch
 gtlitecore.machine.energy_hatch.input_4a.mv.name=§bMV§r 4A Energy Hatch
