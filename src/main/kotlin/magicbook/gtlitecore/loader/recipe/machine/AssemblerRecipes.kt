@@ -10,6 +10,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
@@ -33,8 +34,10 @@ import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RedAlloy
+import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tin
@@ -106,6 +109,8 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_DYNAMO_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_ENERGY_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
+import net.minecraft.init.Items
+import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class AssemblerRecipes
@@ -1212,6 +1217,17 @@ class AssemblerRecipes
                 .buildAndRegister()
 
             // TODO UHV-MAX Wire Coils.
+
+            // Elytra (vanilla)
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Polytetrafluoroethylene, 2)
+                .input(plate, StainlessSteel)
+                .input(ring, StainlessSteel, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .outputs(ItemStack(Items.ELYTRA))
+                .EUt(VH[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
 
         }
 

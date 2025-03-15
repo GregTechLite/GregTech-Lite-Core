@@ -7,6 +7,7 @@ import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
+import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
@@ -45,6 +46,7 @@ class RecipeManager
             // Original GregTech machine recipes.
             AssemblerRecipes.init()
             BenderRecipes.init()
+            CannerRecipes.init()
             CentrifugeRecipes.init()
             ExtruderRecipes.init()
             FormingPressRecipes.init()
