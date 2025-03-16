@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.AntimonyTrioxide
 import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.Ash
+import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
@@ -28,17 +29,25 @@ import gregtech.api.unification.material.Materials.CobaltOxide
 import gregtech.api.unification.material.Materials.Cobaltite
 import gregtech.api.unification.material.Materials.CupricOxide
 import gregtech.api.unification.material.Materials.Ferrosilite
+import gregtech.api.unification.material.Materials.Galena
+import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Hafnia
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
+import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
+import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Stibnite
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
+import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tetrahedrite
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
@@ -47,6 +56,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gem
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -199,7 +209,58 @@ class OxidesChain
                 .duration(6 * SECOND)
                 .buildAndRegister()
 
-            // TODO FeS2? Ni9S8? PbS?
+            // FeS2 -> Fe2(SO4)3 + S
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, Pyrite)),
+                arrayOf(Oxygen.getFluid(3000)))
+
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Pyrite, 2)
+                .output(dust, Iron3Sulfate)
+                .output(dust, Sulfur)
+                .EUt(VA[ULV].toLong())
+                .duration(4 * SECOND)
+                .buildAndRegister()
+
+            // Fe2(SO4)3 -> Fe2O3 + 3SO3
+            // This is another choice in early game for provide raw material to H2SO4.
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Iron3Sulfate)
+                .output(dust, BandedIron)
+                .fluidOutputs(SulfurTrioxide.getFluid(3000))
+                .EUt(VA[ULV].toLong())
+                .duration(8 * SECOND)
+                .buildAndRegister()
+
+            // Ni9S8
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, Pentlandite)),
+                arrayOf(Oxygen.getFluid(3000)))
+
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Pentlandite)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, Garnierite)
+                .chancedOutput(dust, Ash, 1000, 0)
+                .fluidOutputs(SulfurDioxide.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // PbS
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, Galena)),
+                arrayOf(Oxygen.getFluid(3000)))
+
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Galena)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, Massicot)
+                .output(dustTiny, Silver, 6)
+                .fluidOutputs(SulfurDioxide.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
 
             // Si + 2O -> SiO2
             ROASTER_RECIPES.recipeBuilder()

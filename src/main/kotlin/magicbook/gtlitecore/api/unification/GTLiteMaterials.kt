@@ -58,6 +58,7 @@ import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -336,6 +337,16 @@ class GTLiteMaterials
             .components(SiliconDioxide, 2, Flint, 1, Pyrite, 1)
             .build()
             .setFormula("(SiO2)3(FeS2)?", true)
+
+        // 2022 Iron (III) Sulfate
+        @JvmField
+        val Iron3Sulfate: Material = Material.Builder(2022, gtliteId("iron_sulfate"))
+            .dust()
+            .colorAverage()
+            .components(Iron, 2, Sulfur, 3, Oxygen, 12)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Fe2(SO4)3", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
