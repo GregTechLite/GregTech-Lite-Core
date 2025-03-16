@@ -11,7 +11,6 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
-import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import net.minecraft.init.SoundEvents

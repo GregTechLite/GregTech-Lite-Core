@@ -16,15 +16,11 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.BismuthBronze
-import gregtech.api.unification.material.Materials.BlackBronze
-import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
@@ -33,7 +29,6 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tin
-import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenSteel
@@ -43,7 +38,6 @@ import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
-import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick

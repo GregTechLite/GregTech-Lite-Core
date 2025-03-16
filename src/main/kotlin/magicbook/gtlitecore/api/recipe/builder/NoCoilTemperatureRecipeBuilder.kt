@@ -3,9 +3,7 @@ package magicbook.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
-import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.EnumValidationResult
-import gregtech.api.util.ValidationResult
 import magicbook.gtlitecore.api.recipe.property.NoCoilTemperatureProperty
 import magicbook.gtlitecore.api.utils.GTLiteLog
 import org.apache.commons.lang3.builder.ToStringBuilder
