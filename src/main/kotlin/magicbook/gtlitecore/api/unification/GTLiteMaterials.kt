@@ -445,6 +445,7 @@ class GTLiteMaterials
             .ore()
             .color(0x4ACA3B).iconSet(EMERALD)
             .components(Sodium, 1, Iron, 1, Silicon, 2, Oxygen, 6)
+            .flags(GENERATE_PLATE, GENERATE_LENS)
             .build()
 
         // =======================================================================
