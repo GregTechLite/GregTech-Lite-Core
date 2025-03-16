@@ -588,12 +588,15 @@ recipemap.coagulation_tank.name=凝固缸
 recipemap.greenhouse.name=温室
 recipemap.bio_reactor.name=生物反应室
 recipemap.roaster.name=焙烧炉
+recipemap.burner_reactor.name=燃烧反应室
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
 gtlitecore.recipe.block_group_members.common.name=任意原版树木
 gtlitecore.recipe.block_group_members.rubber.name=橡胶木
 gtlitecore.recipe.block_group_members.rainbow.name=彩虹木
+
+gtlitecore.recipe.temperature=温度：%sK
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -899,6 +902,33 @@ gtlitecore.machine.roaster.uxv.tooltip=矿石解离者
 gtlitecore.machine.roaster.opv.name=传奇焙烧炉
 gtlitecore.machine.roaster.opv.tooltip=矿石解离者
 
+gtlitecore.machine.burner_reactor.lv.name=基础燃烧反应室
+gtlitecore.machine.burner_reactor.lv.tooltip=热力反应釜
+gtlitecore.machine.burner_reactor.mv.name=进阶燃烧反应室
+gtlitecore.machine.burner_reactor.mv.tooltip=热力反应釜
+gtlitecore.machine.burner_reactor.hv.name=进阶燃烧反应室 II
+gtlitecore.machine.burner_reactor.hv.tooltip=热力反应釜
+gtlitecore.machine.burner_reactor.ev.name=进阶燃烧反应室 III
+gtlitecore.machine.burner_reactor.ev.tooltip=热力反应釜
+gtlitecore.machine.burner_reactor.iv.name=精英燃烧反应室
+gtlitecore.machine.burner_reactor.iv.tooltip=高温燃烧室
+gtlitecore.machine.burner_reactor.luv.name=精英燃烧反应室 II
+gtlitecore.machine.burner_reactor.luv.tooltip=高温燃烧室
+gtlitecore.machine.burner_reactor.zpm.name=精英燃烧反应室 III
+gtlitecore.machine.burner_reactor.zpm.tooltip=高温燃烧室
+gtlitecore.machine.burner_reactor.uv.name=终极燃烧反应室
+gtlitecore.machine.burner_reactor.uv.tooltip=赫菲斯托斯之舌
+gtlitecore.machine.burner_reactor.uhv.name=史诗燃烧反应室
+gtlitecore.machine.burner_reactor.uhv.tooltip=赫菲斯托斯之舌
+gtlitecore.machine.burner_reactor.uev.name=史诗燃烧反应室 II
+gtlitecore.machine.burner_reactor.uev.tooltip=赫菲斯托斯之舌
+gtlitecore.machine.burner_reactor.uiv.name=史诗燃烧反应室 III
+gtlitecore.machine.burner_reactor.uiv.tooltip=赫菲斯托斯之舌
+gtlitecore.machine.burner_reactor.uxv.name=史诗燃烧反应室 IV
+gtlitecore.machine.burner_reactor.uxv.tooltip=赫菲斯托斯之舌
+gtlitecore.machine.burner_reactor.opv.name=传奇燃烧反应室
+gtlitecore.machine.burner_reactor.opv.tooltip=赫菲斯托斯之舌
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -1007,6 +1037,11 @@ gtlitecore.material.kaolinite=高岭石
 gtlitecore.material.lignite=褐煤
 gtlitecore.material.firestone=火石
 gtlitecore.material.iron_sulfate=硫酸铁
+gtlitecore.material.celestine=天青石
+gtlitecore.material.strontianite=菱锶矿
+gtlitecore.material.strontium_oxide=氧化锶
+gtlitecore.material.strontium_sulfide=硫化锶
+gtlitecore.material.alumina=三氧化二铝
 
 gtlitecore.material.kovar=柯伐合金
 
@@ -1050,6 +1085,7 @@ gtlitecore.veins.ore.kaolinite=高岭石矿脉
 gtlitecore.veins.ore.fluorite=氟石矿脉
 gtlitecore.veins.ore.lignite=褐煤矿脉
 gtlitecore.veins.ore.firestone=火石矿脉
+gtlitecore.veins.ore.strontianite=菱锶矿矿脉
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）

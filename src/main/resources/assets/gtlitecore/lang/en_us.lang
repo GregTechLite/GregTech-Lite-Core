@@ -588,12 +588,15 @@ recipemap.coagulation_tank.name=Coagulation Tank
 recipemap.greenhouse.name=Greenhouse
 recipemap.bio_reactor.name=Bio Reactor
 recipemap.roaster.name=Roaster
+recipemap.burner_reactor.name=Burner Reactor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
 gtlitecore.recipe.block_group_members.common.name=Any vanilla logs
 gtlitecore.recipe.block_group_members.rubber.name=Rubber logs
 gtlitecore.recipe.block_group_members.rainbow.name=Rainbow logs
+
+gtlitecore.recipe.temperature=Temperature: %sK
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -899,6 +902,33 @@ gtlitecore.machine.roaster.uxv.tooltip=Ore dissociater
 gtlitecore.machine.roaster.opv.name=Legendary Roaster
 gtlitecore.machine.roaster.opv.tooltip=Ore dissociater
 
+gtlitecore.machine.burner_reactor.lv.name=Basic Burner Reactor
+gtlitecore.machine.burner_reactor.lv.tooltip=Thermal Reactor
+gtlitecore.machine.burner_reactor.mv.name=Advanced Burner Reactor
+gtlitecore.machine.burner_reactor.mv.tooltip=Thermal Reactor
+gtlitecore.machine.burner_reactor.hv.name=Advanced Burner Reactor II
+gtlitecore.machine.burner_reactor.hv.tooltip=Thermal Reactor
+gtlitecore.machine.burner_reactor.ev.name=Advanced Burner Reactor III
+gtlitecore.machine.burner_reactor.ev.tooltip=Thermal Reactor
+gtlitecore.machine.burner_reactor.iv.name=Elite Burner Reactor
+gtlitecore.machine.burner_reactor.iv.tooltip=High Temperature Firebox
+gtlitecore.machine.burner_reactor.luv.name=Elite Burner Reactor II
+gtlitecore.machine.burner_reactor.luv.tooltip=High Temperature Firebox
+gtlitecore.machine.burner_reactor.zpm.name=Elite Burner Reactor III
+gtlitecore.machine.burner_reactor.zpm.tooltip=High Temperature Firebox
+gtlitecore.machine.burner_reactor.uv.name=Ultimate Burner Reactor
+gtlitecore.machine.burner_reactor.uv.tooltip=Hephaestus' Tongue
+gtlitecore.machine.burner_reactor.uhv.name=Epic Burner Reactor
+gtlitecore.machine.burner_reactor.uhv.tooltip=Hephaestus' Tongue
+gtlitecore.machine.burner_reactor.uev.name=Epic Burner Reactor II
+gtlitecore.machine.burner_reactor.uev.tooltip=Hephaestus' Tongue
+gtlitecore.machine.burner_reactor.uiv.name=Epic Burner Reactor III
+gtlitecore.machine.burner_reactor.uiv.tooltip=Hephaestus' Tongue
+gtlitecore.machine.burner_reactor.uxv.name=Epic Burner Reactor IV
+gtlitecore.machine.burner_reactor.uxv.tooltip=Hephaestus' Tongue
+gtlitecore.machine.burner_reactor.opv.name=Legendary Burner Reactor
+gtlitecore.machine.burner_reactor.opv.tooltip=Hephaestus' Tongue
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -1007,6 +1037,11 @@ gtlitecore.material.kaolinite=Kaolinite
 gtlitecore.material.lignite=Lignite
 gtlitecore.material.firestone=Firestone
 gtlitecore.material.iron_sulfate=Iron Sulfate
+gtlitecore.material.celestine=Celestine
+gtlitecore.material.strontianite=Strontianite
+gtlitecore.material.strontium_oxide=Strontium Oxide
+gtlitecore.material.strontium_sulfide=Strontium Sulfide
+gtlitecore.material.alumina=Alumina
 
 gtlitecore.material.kovar=Kovar
 
@@ -1050,6 +1085,7 @@ gtlitecore.veins.ore.kaolinite=Kaolinite Vein
 gtlitecore.veins.ore.fluorite=Fluorite Vein
 gtlitecore.veins.ore.lignite=Lignite Vein
 gtlitecore.veins.ore.firestone=Firestone Vein
+gtlitecore.veins.ore.strontianite=Strontianite Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)

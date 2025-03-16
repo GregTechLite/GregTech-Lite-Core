@@ -18,7 +18,6 @@ class PseudoMultiRecipeBuilder : RecipeBuilder<PseudoMultiRecipeBuilder>
 
     constructor(recipeBuilder: RecipeBuilder<PseudoMultiRecipeBuilder>) : super(recipeBuilder)
 
-
     override fun copy(): PseudoMultiRecipeBuilder = PseudoMultiRecipeBuilder(this)
 
     // Registrate via RecipeBuilder. e.g. AnyThisBuilder.recipeBuilder().blockStates("name", blockStateArrayList)

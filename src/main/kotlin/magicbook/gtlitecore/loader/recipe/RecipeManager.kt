@@ -16,6 +16,7 @@ import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
+import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
 
@@ -41,6 +42,8 @@ class RecipeManager
             PolymersChain.init()
             MicaInsulatorChain.init()
             OxidesChain.init()
+
+            StrontiumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

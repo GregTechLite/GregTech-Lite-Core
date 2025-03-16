@@ -58,6 +58,7 @@ import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -97,11 +98,17 @@ import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
 import gregtech.api.unification.material.info.MaterialIconSet.LIGNITE
+import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
+import gregtech.api.unification.material.info.MaterialIconSet.OPAL
 import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
+import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
+import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidPipeProperties
+import gregtech.api.unification.material.properties.GemProperty
+import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -348,6 +355,52 @@ class GTLiteMaterials
             .build()
             .setFormula("Fe2(SO4)3", true)
 
+        // 2023 Celestine
+        @JvmField
+        val Celestine: Material = Material.Builder(2023, gtliteId("celestine"))
+            .gem(2)
+            .ore()
+            .color(0x4AE3E6).iconSet(OPAL)
+            .components(Strontium, 1, Sulfur, 1, Oxygen, 4)
+            .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
+        // 2024 Strontianite
+        @JvmField
+        val Strontianite: Material = Material.Builder(2024, gtliteId("strontianite"))
+            .dust()
+            .ore()
+            .color(0x1DAFD3).iconSet(SAND)
+            .components(Strontium, 1, Carbon, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2025 Strontium Oxide
+        @JvmField
+        val StrontiumOxide: Material = Material.Builder(2025, gtliteId("strontium_oxide"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Strontium, 1, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2026 Strontium Sulfide
+        @JvmField
+        val StrontiumSulfide: Material = Material.Builder(2026, gtliteId("strontium_sulfide"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Strontium, 1, Sulfur, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2027 Alumina
+        @JvmField
+        val Alumina: Material = Material.Builder(2027, gtliteId("alumina"))
+            .dust()
+            .color(0x78C3EB).iconSet(METALLIC)
+            .components(Aluminium, 2, Oxygen, 3)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -515,6 +568,10 @@ class GTLiteMaterials
 
         fun setMaterialProperties()
         {
+            // DustProperty can be overridden to IngotProperty or GemProperty yet,
+            // please see: MaterialPropertiesMixin#setProperty().
+            sequenceOf(Strontium).forEach { addIngot(it) }
+
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
             var oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
@@ -568,6 +625,12 @@ class GTLiteMaterials
 
             oreProp = Kaolinite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Clay, Clay, SiliconDioxide)
+
+            oreProp = Celestine.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Celestine, Celestine, StrontiumOxide)
+
+            oreProp = Strontianite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Strontianite, Calcite, StrontiumOxide)
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
@@ -649,6 +712,11 @@ class GTLiteMaterials
             Europium.addFlags(GENERATE_SPRING_SMALL)
 
         }
+
+        // Quick-path of add MaterialProperty to a material.
+        private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
+        private fun addGem(material: Material) = material.setProperty(PropertyKey.GEM, GemProperty())
+        private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
 
     }
 

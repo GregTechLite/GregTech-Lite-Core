@@ -39,6 +39,7 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
@@ -260,6 +261,16 @@ class MachineRecipeLoader
                 'H', CraftingComponent.HULL,
                 'R', CraftingComponent.ROTOR,
                 'M', CraftingComponent.MOTOR)
+
+            // Burner Reactor
+            MetaTileEntityLoader.registerMachineRecipe(true, BURNER_REACTOR,
+                "XMX", "RIR", "WHW",
+                'H', CraftingComponent.HULL,
+                'W', CraftingComponent.CABLE,
+                'I', CraftingComponent.PIPE_LARGE,
+                'R', CraftingComponent.ROTOR,
+                'M', CraftingComponent.MOTOR,
+                'X', CraftingComponent.CIRCUIT)
 
             // =========================================================================================================
 

@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import net.minecraft.init.SoundEvents
@@ -348,6 +349,26 @@ class GTLiteRecipeMaps
             .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
             .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
             .sound(GTSoundEvents.FURNACE)
+            .build()
+
+        /**
+         * @zenProp burner_reactor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("BURNER_REACTOR_RECIPES")
+        val BURNER_REACTOR_RECIPES = RecipeMapBuilder("burner_reactor", SimpleRecipeBuilder())
+            .itemInputs(3)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(3)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_1, false, false)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_2, false, true)
+            .itemSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARC_FURNACE)
+            .sound(GTSoundEvents.ARC)
             .build()
 
         @JvmStatic
