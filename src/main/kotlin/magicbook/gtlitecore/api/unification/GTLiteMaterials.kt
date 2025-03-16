@@ -8,6 +8,7 @@ import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
@@ -35,6 +36,7 @@ import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
@@ -192,6 +194,7 @@ class GTLiteMaterials
         // 2007 Muscovite
         @JvmField
         val Muscovite: Material = Material.Builder(2007, gtliteId("muscovite"))
+            .ore()
             .dust()
             .color(0x8B876A)
             .components(Potassium, 1, Aluminium, 3, Silicon, 3, Hydrogen, 10, Oxygen, 12)
@@ -401,6 +404,17 @@ class GTLiteMaterials
             .components(Aluminium, 2, Oxygen, 3)
             .build()
 
+        // 2028 Phlogopite
+        @JvmField
+        val Phlogopite: Material = Material.Builder(2028, gtliteId("phlogopite"))
+            .ore()
+            .dust()
+            .color(0xDCDD0D)
+            .components(Potassium, 1, Magnesium, 3, Aluminium, 1, Silicon, 3, Oxygen, 10, Fluorine, 2)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+            .setFormula("KMg3(AlSi3O10)F2", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -486,7 +500,6 @@ class GTLiteMaterials
             .flags(NO_SMASHING, DECOMPOSITION_BY_CENTRIFUGING) // Add Centrifuging recipe at CentrifugeRecipes#init().
             .build()
             .setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
-
 
         // =======================================================================
         // 8001-12000: Organic Chemistry Materials
@@ -631,6 +644,19 @@ class GTLiteMaterials
 
             oreProp = Strontianite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Strontianite, Calcite, StrontiumOxide)
+
+            oreProp = Muscovite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Mica, Muscovite, Phlogopite)
+
+            oreProp = Phlogopite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Muscovite, Phlogopite, Mica)
+
+            // Modified Biotite and Mica properties.
+            Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
+            Biotite.setProperty(PropertyKey.ORE, OreProperty())
+            Biotite.getProperty(PropertyKey.ORE).setOreByProducts(Phlogopite, Muscovite, Biotite)
+
+            Mica.setFormula("KAl2(AlSi3O10)F2", true)
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,

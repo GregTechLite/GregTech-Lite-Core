@@ -1098,6 +1098,7 @@ gtlitecore.material.strontianite=Strontianite
 gtlitecore.material.strontium_oxide=Strontium Oxide
 gtlitecore.material.strontium_sulfide=Strontium Sulfide
 gtlitecore.material.alumina=Alumina
+gtlitecore.material.phlogopite=Phlogopite
 
 gtlitecore.material.kovar=Kovar
 
@@ -1142,6 +1143,7 @@ gtlitecore.veins.ore.fluorite=Fluorite Vein
 gtlitecore.veins.ore.lignite=Lignite Vein
 gtlitecore.veins.ore.firestone=Firestone Vein
 gtlitecore.veins.ore.strontianite=Strontianite Vein
+gtlitecore.veins.ore.mica_group=Miscellaneous Mica Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)

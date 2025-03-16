@@ -24,6 +24,7 @@ import gregtech.common.items.MetaItems.STICKY_RESIN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
@@ -42,12 +43,12 @@ class MicaInsulatorChain
         {
 
             // Mica pulp.
-
             for (micaStack in arrayOf(
                 OreDictUnifier.get(dust, Mica, 3),
                 OreDictUnifier.get(dust, Biotite, 3),
                 OreDictUnifier.get(dust, Lepidolite, 3),
-                OreDictUnifier.get(dust, Muscovite, 3)))
+                OreDictUnifier.get(dust, Muscovite, 3),
+                OreDictUnifier.get(dust, Phlogopite, 3)))
             {
                 for (gelStack in arrayOf(
                     OreDictUnifier.get(dust, Latex),
