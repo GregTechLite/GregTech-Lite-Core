@@ -388,6 +388,24 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COOLING)
             .build()
 
+        /**
+         * @zenProp cryogenic_reactor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CRYOGENIC_REACTOR_RECIPES")
+        val CRYOGENIC_REACTOR_RECIPES = RecipeMapBuilder("cryogenic_reactor", SimpleRecipeBuilder())
+            .itemInputs(3)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(3)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_1, false, false)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_2, false, true)
+            .itemSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true, false)
+            .itemSlotOverlay(GuiTextures.VIAL_OVERLAY_2, true, true)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

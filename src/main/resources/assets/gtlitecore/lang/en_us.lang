@@ -590,6 +590,7 @@ recipemap.bio_reactor.name=Bio Reactor
 recipemap.roaster.name=Roaster
 recipemap.burner_reactor.name=Burner Reactor
 recipemap.bath_condenser.name=Bath Condenser
+recipemap.cryogenic_reactor.name=Cryogenic Reactor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -956,6 +957,33 @@ gtlitecore.machine.bath_condenser.uxv.name=Epic Bath Condenser IV
 gtlitecore.machine.bath_condenser.uxv.tooltip=Absolutely Zero
 gtlitecore.machine.bath_condenser.opv.name=Legendary Bath Condenser
 gtlitecore.machine.bath_condenser.opv.tooltip=Absolutely Zero
+
+gtlitecore.machine.cryogenic_reactor.lv.name=Basic Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.lv.tooltip=Cannot be used to cooling drink
+gtlitecore.machine.cryogenic_reactor.mv.name=Advanced Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.mv.tooltip=Cannot be used to cooling drink
+gtlitecore.machine.cryogenic_reactor.hv.name=Advanced Cryogenic Reactor II
+gtlitecore.machine.cryogenic_reactor.hv.tooltip=Cannot be used to cooling drink
+gtlitecore.machine.cryogenic_reactor.ev.name=Advanced Cryogenic Reactor III
+gtlitecore.machine.cryogenic_reactor.ev.tooltip=Cannot be used to cooling drink
+gtlitecore.machine.cryogenic_reactor.iv.name=Elite Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.iv.tooltip=Cryogenic Chemical Reaction
+gtlitecore.machine.cryogenic_reactor.luv.name=Elite Cryogenic Reactor II
+gtlitecore.machine.cryogenic_reactor.luv.tooltip=Cryogenic Chemical Reaction
+gtlitecore.machine.cryogenic_reactor.zpm.name=Elite Cryogenic Reactor III
+gtlitecore.machine.cryogenic_reactor.zpm.tooltip=Cryogenic Chemical Reaction
+gtlitecore.machine.cryogenic_reactor.uv.name=Ultimate Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.uv.tooltip=Boreas' Teeth
+gtlitecore.machine.cryogenic_reactor.uhv.name=Epic Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.uhv.tooltip=Boreas' Teeth
+gtlitecore.machine.cryogenic_reactor.uev.name=Epic Cryogenic Reactor II
+gtlitecore.machine.cryogenic_reactor.uev.tooltip=Boreas' Teeth
+gtlitecore.machine.cryogenic_reactor.uiv.name=Epic Cryogenic Reactor III
+gtlitecore.machine.cryogenic_reactor.uiv.tooltip=Boreas' Teeth
+gtlitecore.machine.cryogenic_reactor.uxv.name=Epic Cryogenic Reactor IV
+gtlitecore.machine.cryogenic_reactor.uxv.tooltip=Boreas' Teeth
+gtlitecore.machine.cryogenic_reactor.opv.name=Legendary Cryogenic Reactor
+gtlitecore.machine.cryogenic_reactor.opv.tooltip=Boreas' Teeth
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!

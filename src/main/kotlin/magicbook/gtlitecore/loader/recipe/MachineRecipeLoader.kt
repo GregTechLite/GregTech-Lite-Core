@@ -43,6 +43,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
@@ -282,6 +283,16 @@ class MachineRecipeLoader
                 'W', CraftingComponent.CABLE,
                 'X', CraftingComponent.CIRCUIT,
                 'F', CraftingComponents.FLUID_REGULATOR)
+
+            // Cryogenic Reactor
+            MetaTileEntityLoader.registerMachineRecipe(true, CRYOGENIC_REACTOR,
+                "DXP", "RHR", "WXD",
+                'H', CraftingComponent.HULL,
+                'R', CraftingComponent.PIPE_REACTOR,
+                'D', CraftingComponent.DOUBLE_PLATE,
+                'W', CraftingComponent.CABLE,
+                'X', CraftingComponent.CIRCUIT,
+                'P', CraftingComponent.PUMP)
 
             // =========================================================================================================
 

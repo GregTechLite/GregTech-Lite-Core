@@ -590,6 +590,7 @@ recipemap.bio_reactor.name=生物反应室
 recipemap.roaster.name=焙烧炉
 recipemap.burner_reactor.name=燃烧反应室
 recipemap.bath_condenser.name=水浴冷凝槽
+recipemap.cryogenic_reactor.name=低温反应室
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -956,6 +957,33 @@ gtlitecore.machine.bath_condenser.uxv.name=史诗水浴冷凝槽 IV
 gtlitecore.machine.bath_condenser.uxv.tooltip=绝对零度
 gtlitecore.machine.bath_condenser.opv.name=传奇水浴冷凝槽
 gtlitecore.machine.bath_condenser.opv.tooltip=绝对零度
+
+gtlitecore.machine.cryogenic_reactor.lv.name=基础低温反应室
+gtlitecore.machine.cryogenic_reactor.lv.tooltip=并不能用来冷冻饮品
+gtlitecore.machine.cryogenic_reactor.mv.name=进阶低温反应室
+gtlitecore.machine.cryogenic_reactor.mv.tooltip=并不能用来冷冻饮品
+gtlitecore.machine.cryogenic_reactor.hv.name=进阶低温反应室 II
+gtlitecore.machine.cryogenic_reactor.hv.tooltip=并不能用来冷冻饮品
+gtlitecore.machine.cryogenic_reactor.ev.name=进阶低温反应室 III
+gtlitecore.machine.cryogenic_reactor.ev.tooltip=并不能用来冷冻饮品
+gtlitecore.machine.cryogenic_reactor.iv.name=精英低温反应室
+gtlitecore.machine.cryogenic_reactor.iv.tooltip=冷冻化学反应
+gtlitecore.machine.cryogenic_reactor.luv.name=精英低温反应室 II
+gtlitecore.machine.cryogenic_reactor.luv.tooltip=冷冻化学反应
+gtlitecore.machine.cryogenic_reactor.zpm.name=精英低温反应室 III
+gtlitecore.machine.cryogenic_reactor.zpm.tooltip=冷冻化学反应
+gtlitecore.machine.cryogenic_reactor.uv.name=终极低温反应室
+gtlitecore.machine.cryogenic_reactor.uv.tooltip=冷冻化学反应
+gtlitecore.machine.cryogenic_reactor.uhv.name=史诗低温反应室
+gtlitecore.machine.cryogenic_reactor.uhv.tooltip=波瑞阿斯之牙
+gtlitecore.machine.cryogenic_reactor.uev.name=史诗低温反应室 II
+gtlitecore.machine.cryogenic_reactor.uev.tooltip=波瑞阿斯之牙
+gtlitecore.machine.cryogenic_reactor.uiv.name=史诗低温反应室 III
+gtlitecore.machine.cryogenic_reactor.uiv.tooltip=波瑞阿斯之牙
+gtlitecore.machine.cryogenic_reactor.uxv.name=史诗低温反应室 IV
+gtlitecore.machine.cryogenic_reactor.uxv.tooltip=波瑞阿斯之牙
+gtlitecore.machine.cryogenic_reactor.opv.name=传奇低温反应室
+gtlitecore.machine.cryogenic_reactor.opv.tooltip=波瑞阿斯之牙
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
