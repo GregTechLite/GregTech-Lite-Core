@@ -6,6 +6,9 @@ import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BathCondenserRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
@@ -48,6 +51,9 @@ class RecipeManager
 
             // Circuit recipes.
             ElectronicCircuits.init()
+            IntegratedCircuits.init()
+            ProcessorCircuits.init()
+            NanoCircuits.init()
 
             // Original GregTech machine recipes.
             AssemblerRecipes.init()

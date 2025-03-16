@@ -28,9 +28,11 @@ import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
+import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Magnesite
@@ -41,6 +43,7 @@ import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
@@ -52,6 +55,7 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -67,6 +71,7 @@ import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -79,6 +84,7 @@ import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITIO
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
@@ -714,6 +720,10 @@ class GTLiteMaterials
         {
             // foil
             Nickel.addFlags(GENERATE_FOIL)
+            Niobium.addFlags(GENERATE_FOIL)
+            Zirconium.addFlags(GENERATE_FOIL)
+            Hafnium.addFlags(GENERATE_FOIL)
+            Kanthal.addFlags(GENERATE_FOIL)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -752,6 +762,9 @@ class GTLiteMaterials
             // plate
             Clay.addFlags(GENERATE_PLATE)
             Inconel718.addFlags(GENERATE_PLATE)
+            Niobium.addFlags(GENERATE_PLATE)
+            Zirconium.addFlags(GENERATE_PLATE)
+            Hafnium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -783,6 +796,13 @@ class GTLiteMaterials
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
             Europium.addFlags(GENERATE_SPRING_SMALL)
 
+            // wireFine
+            Titanium.addFlags(GENERATE_FINE_WIRE)
+            Niobium.addFlags(GENERATE_FINE_WIRE)
+            Tungsten.addFlags(GENERATE_FINE_WIRE)
+            Ruthenium.addFlags(GENERATE_FINE_WIRE)
+            Hafnium.addFlags(GENERATE_FINE_WIRE)
+            Kanthal.addFlags(GENERATE_FINE_WIRE)
         }
 
         // Quick-path of add MaterialProperty to a material.
