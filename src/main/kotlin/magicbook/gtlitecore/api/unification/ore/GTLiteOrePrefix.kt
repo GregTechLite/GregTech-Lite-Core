@@ -86,6 +86,13 @@ class GTLiteOrePrefix
             dustSmall.setIgnored(Materials.CupricOxide)
             dustTiny.setIgnored(Materials.CupricOxide)
 
+            // Because we add Baddeleyite (ZrO2 ore) to change ZrO2 dust, so this material is
+            // deprecated. This material is ensured to remove all related recipes yet. Ignored all
+            // ore prefixes of ZrO2 ^^.
+            dust.setIgnored(Materials.Zirconia)
+            dustSmall.setIgnored(Materials.Zirconia)
+            dustTiny.setIgnored(Materials.Zirconia)
+
         }
 
         fun addToMetaItem()

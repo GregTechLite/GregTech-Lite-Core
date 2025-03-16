@@ -259,6 +259,10 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Cyan)
                 }
+                // GTLiteMaterials.Baddeleyite -> {
+                //     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                //         MarkerMaterials.Color.Black)
+                // }
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.
                     val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)

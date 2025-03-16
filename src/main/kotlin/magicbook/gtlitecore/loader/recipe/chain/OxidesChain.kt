@@ -22,6 +22,7 @@ import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Chalcopyrite
 import gregtech.api.unification.material.Materials.Charcoal
+import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.ChromiumTrioxide
 import gregtech.api.unification.material.Materials.Coal
@@ -52,10 +53,12 @@ import gregtech.api.unification.material.Materials.Tetrahedrite
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconia
+import gregtech.api.unification.material.Materials.ZirconiumTetrachloride
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gem
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
@@ -176,7 +179,7 @@ class OxidesChain
             ROASTER_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(dust, Zircon, 6)
-                .output(dust, Zirconia, 3)
+                .output(dust, Baddeleyite, 3)
                 .output(dust, SiliconDioxide, 3)
                 .chancedOutput(dust, Hafnia, 3333, 0)
                 .EUt(VA[MV].toLong())
@@ -187,9 +190,26 @@ class OxidesChain
                 .circuitMeta(2)
                 .input(dust, Zircon, 6)
                 .fluidInputs(Oxygen.getFluid(2000))
-                .output(dust, Zirconia, 3)
+                .output(dust, Baddeleyite, 3)
                 .output(dust, Hafnia, 3)
                 .output(dust, SiliconDioxide, 3)
+                .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Hint: we removed Zirconia (ZrO2) and add an ore to simplified processing,
+            // so we should remove all related recipes.
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(OreDictUnifier.get(dust, Zirconia, 3),
+                    OreDictUnifier.get(dust, Carbon)),
+                arrayOf(Chlorine.getFluid(4000)))
+
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, Baddeleyite, 3)
+                .input(dust, Carbon)
+                .fluidInputs(Chlorine.getFluid(4000))
+                .output(dust, ZirconiumTetrachloride, 5)
+                .fluidOutputs(CarbonDioxide.getFluid(1000))
                 .EUt(VA[HV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()

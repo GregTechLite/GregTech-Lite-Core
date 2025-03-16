@@ -70,6 +70,7 @@ import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Zircon
+import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
@@ -414,6 +415,16 @@ class GTLiteMaterials
             .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
             .build()
             .setFormula("KMg3(AlSi3O10)F2", true)
+
+        // 2029 Baddeleyite
+        @JvmField
+        val Baddeleyite: Material = Material.Builder(2029, gtliteId("baddeleyite"))
+            .ore()
+            .gem()
+            .color(0x689F9F).iconSet(GEM_HORIZONTAL)
+            .components(Zirconium, 1, Oxygen, 2)
+            .flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
