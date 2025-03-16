@@ -44,6 +44,9 @@ class GTLiteTextures
         @JvmField
         val BURNER_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/burner_reactor")
 
+        @JvmField
+        val BATH_CONDENSER_OVERLAY = OrientedOverlayRenderer("machines/bath_condenser")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

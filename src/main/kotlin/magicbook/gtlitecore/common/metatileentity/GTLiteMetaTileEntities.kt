@@ -69,6 +69,7 @@ class GTLiteMetaTileEntities
         val STEAM_ROASTER = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
         val ROASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val BURNER_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val BATH_CONDENSER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -240,6 +241,12 @@ class GTLiteMetaTileEntities
             MetaTileEntities.registerSimpleMetaTileEntity(BURNER_REACTOR, 14183, // 14181-14182 for Steam Machines.
                 "burner_reactor", GTLiteRecipeMaps.BURNER_REACTOR_RECIPES,
                 GTLiteTextures.BURNER_REACTOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
+
+            // 14196-14210: Bath Condenser
+            MetaTileEntities.registerSimpleMetaTileEntity(BATH_CONDENSER, 14198, // 14196-14197 for Steam Machines.
+                "bath_condenser", GTLiteRecipeMaps.BATH_CONDENSER_RECIPES,
+                GTLiteTextures.BATH_CONDENSER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
             // ...

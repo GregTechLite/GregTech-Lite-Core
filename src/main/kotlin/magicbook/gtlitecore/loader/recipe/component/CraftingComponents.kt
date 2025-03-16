@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlackBronze
 import gregtech.api.unification.material.Materials.Brass
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Europium
@@ -41,12 +42,21 @@ import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_EV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_HV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_IV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_LUV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_LV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_MV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
+import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 
@@ -56,6 +66,25 @@ class CraftingComponents
 
     companion object
     {
+
+        // Fluid Regulators.
+        val FLUID_REGULATOR = CraftingComponent.Component(sequenceOf(
+            ULV to UnificationEntry(pipeTinyFluid, Bronze),
+            LV  to FLUID_REGULATOR_LV.stackForm,
+            MV  to FLUID_REGULATOR_MV.stackForm,
+            HV  to FLUID_REGULATOR_HV.stackForm,
+            EV  to FLUID_REGULATOR_EV.stackForm,
+            IV  to FLUID_REGULATOR_IV.stackForm,
+            LuV to FLUID_REGULATOR_LUV.stackForm,
+            ZPM to FLUID_REGULATOR_ZPM.stackForm,
+            UV  to FLUID_REGULATOR_UV.stackForm,
+            UHV to FLUID_REGULATOR_UV.stackForm,
+            UEV to FLUID_REGULATOR_UV.stackForm,
+            UIV to FLUID_REGULATOR_UV.stackForm,
+            UXV to FLUID_REGULATOR_UV.stackForm,
+            OpV to FLUID_REGULATOR_UV.stackForm,
+            MAX to FLUID_REGULATOR_UV.stackForm,
+        ).toMap())
 
         // Gears.
         val GEAR = CraftingComponent.Component(sequenceOf(

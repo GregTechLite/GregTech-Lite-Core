@@ -38,6 +38,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
@@ -271,6 +272,16 @@ class MachineRecipeLoader
                 'R', CraftingComponent.ROTOR,
                 'M', CraftingComponent.MOTOR,
                 'X', CraftingComponent.CIRCUIT)
+
+            // Bath Condenser
+            MetaTileEntityLoader.registerMachineRecipe(true, BATH_CONDENSER,
+                "GXG", "PHF", "GWG",
+                'H', CraftingComponent.HULL,
+                'G', CraftingComponent.GLASS,
+                'P', CraftingComponent.PUMP,
+                'W', CraftingComponent.CABLE,
+                'X', CraftingComponent.CIRCUIT,
+                'F', CraftingComponents.FLUID_REGULATOR)
 
             // =========================================================================================================
 

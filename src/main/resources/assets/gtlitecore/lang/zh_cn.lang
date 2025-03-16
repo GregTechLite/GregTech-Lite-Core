@@ -589,6 +589,7 @@ recipemap.greenhouse.name=温室
 recipemap.bio_reactor.name=生物反应室
 recipemap.roaster.name=焙烧炉
 recipemap.burner_reactor.name=燃烧反应室
+recipemap.bath_condenser.name=水浴冷凝槽
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -928,6 +929,33 @@ gtlitecore.machine.burner_reactor.uxv.name=史诗燃烧反应室 IV
 gtlitecore.machine.burner_reactor.uxv.tooltip=赫菲斯托斯之舌
 gtlitecore.machine.burner_reactor.opv.name=传奇燃烧反应室
 gtlitecore.machine.burner_reactor.opv.tooltip=赫菲斯托斯之舌
+
+gtlitecore.machine.bath_condenser.lv.name=基础水浴冷凝槽
+gtlitecore.machine.bath_condenser.lv.tooltip=冷却浸洗槽
+gtlitecore.machine.bath_condenser.mv.name=进阶水浴冷凝槽
+gtlitecore.machine.bath_condenser.mv.tooltip=冷却浸洗槽
+gtlitecore.machine.bath_condenser.hv.name=进阶水浴冷凝槽 II
+gtlitecore.machine.bath_condenser.hv.tooltip=冷却浸洗槽
+gtlitecore.machine.bath_condenser.ev.name=进阶水浴冷凝槽 III
+gtlitecore.machine.bath_condenser.ev.tooltip=冷却浸洗槽
+gtlitecore.machine.bath_condenser.iv.name=精英水浴冷凝槽
+gtlitecore.machine.bath_condenser.iv.tooltip=低温冷凝仓
+gtlitecore.machine.bath_condenser.luv.name=精英水浴冷凝槽 II
+gtlitecore.machine.bath_condenser.luv.tooltip=低温冷凝仓
+gtlitecore.machine.bath_condenser.zpm.name=精英水浴冷凝槽 III
+gtlitecore.machine.bath_condenser.zpm.tooltip=低温冷凝仓
+gtlitecore.machine.bath_condenser.uv.name=终极水浴冷凝槽
+gtlitecore.machine.bath_condenser.uv.tooltip=绝对零度
+gtlitecore.machine.bath_condenser.uhv.name=史诗水浴冷凝槽
+gtlitecore.machine.bath_condenser.uhv.tooltip=绝对零度
+gtlitecore.machine.bath_condenser.uev.name=史诗水浴冷凝槽 II
+gtlitecore.machine.bath_condenser.uev.tooltip=绝对零度
+gtlitecore.machine.bath_condenser.uiv.name=史诗水浴冷凝槽 III
+gtlitecore.machine.bath_condenser.uiv.tooltip=绝对零度
+gtlitecore.machine.bath_condenser.uxv.name=史诗水浴冷凝槽 IV
+gtlitecore.machine.bath_condenser.uxv.tooltip=绝对零度
+gtlitecore.machine.bath_condenser.opv.name=传奇水浴冷凝槽
+gtlitecore.machine.bath_condenser.opv.tooltip=绝对零度
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！

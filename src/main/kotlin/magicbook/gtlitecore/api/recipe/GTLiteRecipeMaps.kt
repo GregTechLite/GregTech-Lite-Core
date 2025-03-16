@@ -371,6 +371,23 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ARC)
             .build()
 
+        /**
+         * @zenProp bath_condenser
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("BATH_CONDENSER_RECIPES")
+        val BATH_CONDENSER_RECIPES = RecipeMapBuilder("bath_condenser", SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

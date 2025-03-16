@@ -7,6 +7,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
+import magicbook.gtlitecore.loader.recipe.machine.BathCondenserRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
@@ -57,6 +58,7 @@ class RecipeManager
             FormingPressRecipes.init()
             MixerRecipes.init()
             // Additional machine recipes.
+            BathCondenserRecipes.init()
             GreenhouseRecipes.init()
             LoomRecipes.init()
             PolisherRecipes.init()
