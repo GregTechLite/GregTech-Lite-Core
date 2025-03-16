@@ -19,7 +19,6 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.APRICOT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BANANA
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COCONUT
@@ -33,13 +32,29 @@ import net.minecraft.block.Block
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
+import net.minecraftforge.fluids.FluidStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GreenhouseRecipes
 {
+    // Frontend data class of all greenhouse recipes.
+    // One recipe of greenhouse has four recipe type:
+    // (1) Air; (2) Greenhouse Gas;
+    // (3) Air + Fertilizer; (4) Greenhouse Gas + Fertilizer.
 
     companion object
     {
+
+        sealed class RecipeFrontend(open val gas: FluidStack, open val fertilizer: Int,
+            open val log: Int, open val leaves: Int, open val saplings: Int, open val duration: Int)
+        {
+
+            data object AirBasic : RecipeFrontend(Air.getFluid(1000), 0, 4, 8, 1, 12)
+            data object GreenhouseGasBasic : RecipeFrontend(GreenhouseGas.getFluid(1000), 0, 6, 12, 2, 6)
+            data object AirFertilized : RecipeFrontend(Air.getFluid(1000), 4, 6, 12, 2, 6)
+            data object GreenhouseGasFertilized : RecipeFrontend(GreenhouseGas.getFluid(1000), 4, 8, 16, 4, 3)
+
+        }
 
         fun init()
         {
@@ -53,337 +68,138 @@ class GreenhouseRecipes
                 .buildAndRegister()
 
             // =========================================================================================================
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 0), // Oak Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 0), // Oak Sapling
                 ItemStack(Blocks.LOG, 1, 0), // Oak Logs
                 ItemStack(Blocks.LEAVES, 1, 0), // Oak Leaves
                 ItemStack(Items.APPLE), // Apple
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 1), // Spruce Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 1), // Spruce Sapling
                 ItemStack(Blocks.LOG, 1, 1), // Spruce Logs
                 ItemStack(Blocks.LEAVES, 1, 1), // Spruce Leaves
                 ItemStack(Items.APPLE), // Apple
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 2), // Birch Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 2), // Birch Sapling
                 ItemStack(Blocks.LOG, 1, 2), // Birch Logs
                 ItemStack(Blocks.LEAVES, 1, 2), // Birch Leaves
                 ItemStack(Items.APPLE), // Apple
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 3), // Jungle Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 3), // Jungle Sapling
                 ItemStack(Blocks.LOG, 1, 3), // Jungle Logs
                 ItemStack(Blocks.LEAVES, 1, 3), // Jungle Leaves
                 ItemStack(Items.DYE, 1, 3), // Coco
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 4), // Acacia Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 4), // Acacia Sapling
                 ItemStack(Blocks.LOG2, 1, 0), // Acacia Logs
                 ItemStack(Blocks.LEAVES2, 1, 0), // Acacia Leaves
                 ItemStack(Items.APPLE), // Apple
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(Blocks.SAPLING, 1, 5), // Dark Oak Sapling
+            addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 5), // Dark Oak Sapling
                 ItemStack(Blocks.LOG2, 1, 1), // Dark Oak Logs
                 ItemStack(Blocks.LEAVES2, 1, 1), // Dark Oak Leaves
                 ItemStack(Items.APPLE), // Apple
                 Resin)
 
-            addGreenhouseGrowthing(
-                ItemStack(MetaBlocks.RUBBER_SAPLING as Block, 1, 0), // Rubber Sapling
+            addGreenhouseRecipes(ItemStack(MetaBlocks.RUBBER_SAPLING as Block, 1, 0), // Rubber Sapling
                 ItemStack(MetaBlocks.RUBBER_LOG as Block, 1, 0), // Rubber Logs
                 ItemStack(MetaBlocks.RUBBER_LEAVES as Block, 1, 0), // Rubber Leaves
                 STICKY_RESIN.stackForm, // Sticky Resin
                 Latex)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getItem("gtlite_sapling_0"), // Banana Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getItem("gtlite_sapling_0"), // Banana Sapling
                 Mods.GregTechLiteCore.getItem("gtlite_log_0"), // Banana Logs
                 Mods.GregTechLiteCore.getItem("gtlite_leaves_0"), // Banana Leaves
                 BANANA.stackForm) // Banana
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 2, 1), // Orange Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 2, 1), // Orange Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_0", 4, 1), // Orange Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_0", 4, 1), // Orange Leaves
                 ORANGE.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 4, 1), // Mango Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 4, 1), // Mango Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_0", 8, 1), // Mango Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_0", 8, 1), // Mango Leaves
                 MANGO.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 6, 1), // Apricot Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 6, 1), // Apricot Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_0", 12, 1), // Apricot Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_0", 12, 1), // Apricot Leaves
                 APRICOT.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 8, 1), // Lemon Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 8, 1), // Lemon Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_1", 0, 1), // Lemon Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_1", 0, 1), // Lemon Leaves
                 LEMON.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 10, 1), // Lime Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 10, 1), // Lime Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_1", 4, 1), // Lime Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_1", 4, 1), // Lime Leaves
                 LIME.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 12, 1), // Olive Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 12, 1), // Olive Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_1", 8, 1), // Olive Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_1", 8, 1), // Olive Leaves
                 OLIVE.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 14, 1), // Nutmeg Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 14, 1), // Nutmeg Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_1", 12, 1), // Nutmeg Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_1", 12, 1), // Nutmeg Leaves
                 NUTMEG.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 0, 1), // Coconut Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 0, 1), // Coconut Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_2", 0, 1), // Coconut Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_2", 0, 1), // Coconut Leaves
                 COCONUT.stackForm)
 
-            addGreenhouseGrowthing(
-                Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 2, 1), // Rainbow Sapling
+            addGreenhouseRecipes(Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 2, 1), // Rainbow Sapling
                 Mods.GregTechLiteCore.getMetaItem("gtlite_log_2", 4, 1), // Rainbow Logs
                 Mods.GregTechLiteCore.getMetaItem("gtlite_leaves_2", 4, 1), // Coconut Leaves
-                RainbowSap)
+                null, RainbowSap) // Rainbow wood doesn't have any apple stack products.
 
             // =========================================================================================================
             // TODO Crops
 
         }
 
-        private fun addGreenhouseGrowthing(saplingStack: ItemStack, logStack: ItemStack,
-                                           leaveStack: ItemStack)
+        private fun addGreenhouseRecipes(saplingStack: ItemStack, logStack: ItemStack, leavesStack: ItemStack, appleStack: ItemStack? = null,
+                                         sap: Material? = null)
         {
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 4))
-                .outputs(GTLiteUtility.copy(leaveStack, 8))
-                .outputs(saplingStack)
-                .EUt(VA[LV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
+            listOf(RecipeFrontend.AirBasic, RecipeFrontend.GreenhouseGasBasic, RecipeFrontend.AirFertilized,
+                RecipeFrontend.GreenhouseGasFertilized).forEach { t ->
+                val builder = GREENHOUSE_RECIPES.recipeBuilder()
+                    .notConsumable(saplingStack)
+                    .notConsumable(t.gas)
+                    .fluidInputs(Water.getFluid(1000))
+                    .EUt(VA[LV].toLong())
+                    .duration(t.duration * SECOND)
 
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
+                if (t.fertilizer > 0)
+                    builder.input(FERTILIZER, t.fertilizer)
 
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
+                builder.outputs(GTLiteUtility.copy(logStack, t.log),
+                    GTLiteUtility.copy(leavesStack, t.leaves),
+                    GTLiteUtility.copy(saplingStack, t.saplings))
 
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 8))
-                .outputs(GTLiteUtility.copy(leaveStack, 16))
-                .outputs(GTLiteUtility.copy(saplingStack, 4))
-                .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
-                .buildAndRegister()
+                appleStack?.let { stack ->
+                    when (t) {
+                        is RecipeFrontend.AirBasic -> builder.chancedOutput(stack, 2500, 250)
+                        else -> builder.outputs(GTLiteUtility.copy(stack, t.leaves / 8))
+                    }
+                }
+
+                sap?.let {
+                    builder.fluidOutputs(it.getFluid(250))
+                }
+
+                builder.buildAndRegister()
+
+            }
         }
-
-        private fun addGreenhouseGrowthing(saplingStack: ItemStack, logStack: ItemStack,
-                                           leaveStack: ItemStack, appleStack: ItemStack)
-        {
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 4))
-                .outputs(GTLiteUtility.copy(leaveStack, 8))
-                .outputs(saplingStack)
-                .chancedOutput(appleStack, 2500, 250)
-                .EUt(VA[LV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .outputs(appleStack)
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .outputs(GTLiteUtility.copy(appleStack, 2))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 8))
-                .outputs(GTLiteUtility.copy(leaveStack, 16))
-                .outputs(GTLiteUtility.copy(saplingStack, 4))
-                .outputs(GTLiteUtility.copy(appleStack, 4))
-                .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
-                .buildAndRegister()
-        }
-
-        private fun addGreenhouseGrowthing(saplingStack: ItemStack, logStack: ItemStack,
-                                           leaveStack: ItemStack, sap: Material)
-        {
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 4))
-                .outputs(GTLiteUtility.copy(leaveStack, 8))
-                .outputs(saplingStack)
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 8))
-                .outputs(GTLiteUtility.copy(leaveStack, 16))
-                .outputs(GTLiteUtility.copy(saplingStack, 4))
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
-                .buildAndRegister()
-        }
-
-        private fun addGreenhouseGrowthing(saplingStack: ItemStack, logStack: ItemStack,
-                                           leaveStack: ItemStack, appleStack: ItemStack,
-                                           sap: Material)
-        {
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 4))
-                .outputs(GTLiteUtility.copy(leaveStack, 8))
-                .outputs(saplingStack)
-                .chancedOutput(appleStack, 2500, 250)
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .outputs(appleStack)
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(Air.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 6))
-                .outputs(GTLiteUtility.copy(leaveStack, 12))
-                .outputs(GTLiteUtility.copy(saplingStack, 2))
-                .outputs(GTLiteUtility.copy(appleStack, 2))
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            GREENHOUSE_RECIPES.recipeBuilder()
-                .notConsumable(saplingStack)
-                .input(FERTILIZER, 4)
-                .notConsumable(GreenhouseGas.getFluid(1000))
-                .fluidInputs(Water.getFluid(1000))
-                .outputs(GTLiteUtility.copy(logStack, 8))
-                .outputs(GTLiteUtility.copy(leaveStack, 16))
-                .outputs(GTLiteUtility.copy(saplingStack, 4))
-                .outputs(GTLiteUtility.copy(appleStack, 4))
-                .fluidOutputs(sap.getFluid(250))
-                .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
-                .buildAndRegister()
-        }
-
+        
     }
 
 }
