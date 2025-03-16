@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.GarnetRed
@@ -408,8 +409,8 @@ class GTLiteMaterials
         // 2028 Phlogopite
         @JvmField
         val Phlogopite: Material = Material.Builder(2028, gtliteId("phlogopite"))
-            .ore()
             .dust()
+            .ore()
             .color(0xDCDD0D)
             .components(Potassium, 1, Magnesium, 3, Aluminium, 1, Silicon, 3, Oxygen, 10, Fluorine, 2)
             .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
@@ -419,11 +420,31 @@ class GTLiteMaterials
         // 2029 Baddeleyite
         @JvmField
         val Baddeleyite: Material = Material.Builder(2029, gtliteId("baddeleyite"))
-            .ore()
             .gem()
+            .ore()
             .color(0x689F9F).iconSet(GEM_HORIZONTAL)
             .components(Zirconium, 1, Oxygen, 2)
             .flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
+        // 2030 Nephelite
+        @JvmField
+        val Nephelite: Material = Material.Builder(2030, gtliteId("nephelite"))
+            .gem()
+            .ore()
+            .color(0xE56842).iconSet(CERTUS)
+            .components(Potassium, 1, Sodium, 3, Aluminium, 4, Silicon, 4, Oxygen, 16)
+            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .build()
+            .setFormula("KNa3(AlSiO4)4", true)
+
+        // 2031 Aegirine
+        @JvmField
+        val Aegirine: Material = Material.Builder(2031, gtliteId("aegirine"))
+            .gem()
+            .ore()
+            .color(0x4ACA3B).iconSet(EMERALD)
+            .components(Sodium, 1, Iron, 1, Silicon, 2, Oxygen, 6)
             .build()
 
         // =======================================================================
@@ -662,12 +683,25 @@ class GTLiteMaterials
             oreProp = Phlogopite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Muscovite, Phlogopite, Mica)
 
+            oreProp = Baddeleyite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Baddeleyite, Baddeleyite, Zircon)
+
+            oreProp = Nephelite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Nephelite, Albite, Silicon)
+
+            oreProp = Aegirine.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Aegirine, Ferrosilite, Iron)
+
             // Modified Biotite and Mica properties.
             Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
             Biotite.setProperty(PropertyKey.ORE, OreProperty())
             Biotite.getProperty(PropertyKey.ORE).setOreByProducts(Phlogopite, Muscovite, Biotite)
 
             Mica.setFormula("KAl2(AlSi3O10)F2", true)
+
+            // Modified Ferrosilite properties.
+            Ferrosilite.setProperty(PropertyKey.ORE, OreProperty())
+            Ferrosilite.getProperty(PropertyKey.ORE).setOreByProducts(Ferrosilite, SiliconDioxide, Iron)
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
