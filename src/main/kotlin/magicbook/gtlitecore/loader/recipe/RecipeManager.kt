@@ -25,6 +25,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.MetalCasingRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
 
 class RecipeManager
@@ -42,6 +43,7 @@ class RecipeManager
             // Loading recipe producers.
             StoneVariantRecipeProducer.init()
             DisposableToolRecipeProducer.init()
+            MetalCasingRecipeProducer.init()
 
             // Loading chains and ore processings.
             OilCrackingChain.init()

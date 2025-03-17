@@ -350,6 +350,23 @@ tile.processor_casing.max.name=处理器方块（§c§lMAX§r）
 
 tile.primitive_casing.reinforced_treated_wood_wall.name=加固防腐木缸壁
 
+tile.metal_casing_01.maraging_steel_250.name=高耐久马氏体时效钢250机器外壳
+tile.metal_casing_01.inconel_625.name=高应力镍铬基合金-625机器外壳
+tile.metal_casing_01.blue_steel.name=耐压蓝钢机器外壳
+tile.metal_casing_01.staballoy.name=多功能贫铀合金机器外壳
+tile.metal_casing_01.talonite.name=低摩擦铬钴磷酸盐机器外壳
+tile.metal_casing_01.iridium.name=强化镀铱机器外壳
+tile.metal_casing_01.zeron_100.name=稳定赛龙-100机器外壳
+tile.metal_casing_01.watertight_steel.name=耐腐蚀防水钢机器外壳
+tile.metal_casing_01.stellite.name=优质司太立合金机器外壳
+tile.metal_casing_01.tumbaga.name=可塑性铜金合金机器外壳
+tile.metal_casing_01.eglin_steel.name=高强度埃格林钢机器外壳
+tile.metal_casing_01.potin.name=抗震粗青铜合金机器外壳
+tile.metal_casing_01.grisium.name=防水灰钛合金机器外壳
+tile.metal_casing_01.babbit_alloy.name=抗瘿巴氏合金机器外壳
+tile.metal_casing_01.silicon_carbide.name=坚固耐用碳化硅机器外壳
+tile.metal_casing_01.red_steel.name=绝缘红钢机器外壳
+
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
 metaitem.shape.mold.rod.tooltip=用来制作杆的模具
@@ -1003,6 +1020,12 @@ gtlitecore.machine.large_bender.tooltip.2=当电压等级大于等于§3UV§7时
 gtlitecore.machine.large_bender.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.large_bender.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_cutter.name=大型切割机
+gtlitecore.machine.large_cutter.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_cutter.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_cutter.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_cutter.tooltip.4=每提高1个§a传送带外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1129,6 +1152,7 @@ gtlitecore.material.sodium_aluminate=铝酸钠
 gtlitecore.material.sodium_carbonate=碳酸钠
 
 gtlitecore.material.kovar=柯伐合金
+gtlitecore.material.maraging_steel_250=马氏体时效钢250
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

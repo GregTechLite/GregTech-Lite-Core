@@ -4,6 +4,7 @@ import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer
 import gregtech.client.renderer.texture.cube.SidedCubeRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtech.client.renderer.texture.custom.DrumRenderer
+import magicbook.gtlitecore.client.renderer.texture.cube.GTLiteSimpleOverlayRenderer
 
 class GTLiteTextures
 {
@@ -53,6 +54,9 @@ class GTLiteTextures
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
+
+        @JvmField
+        val MARAGING_STEEL_250_CASING = GTLiteSimpleOverlayRenderer("casings/metal/maraging_steel_250")
 
         // =============================================================================================================
         @JvmField

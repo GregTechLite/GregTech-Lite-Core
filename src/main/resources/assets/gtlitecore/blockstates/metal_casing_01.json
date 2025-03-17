@@ -1,0 +1,103 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "maraging_steel_250": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/maraging_steel_250"
+        }
+      },
+      "inconel_625": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/inconel_625"
+        }
+      },
+      "blue_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/blue_steel"
+        }
+      },
+      "staballoy": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/staballoy"
+        }
+      },
+      "talonite": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/talonite"
+        }
+      },
+      "iridium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/iridium"
+        }
+      },
+      "zeron_100": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/zeron_100"
+        }
+      },
+      "watertight_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/watertight_steel"
+        }
+      },
+      "stellite": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/stellite"
+        }
+      },
+      "tumbaga": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/tumbaga"
+        }
+      },
+      "eglin_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/eglin_steel"
+        }
+      },
+      "potin": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/potin"
+        }
+      },
+      "grisium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/grisium"
+        }
+      },
+      "babbit_alloy": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/babbit_alloy"
+        }
+      },
+      "silicon_carbide": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/silicon_carbide"
+        }
+      },
+      "red_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/red_steel"
+        }
+      }
+    }
+  }
+}

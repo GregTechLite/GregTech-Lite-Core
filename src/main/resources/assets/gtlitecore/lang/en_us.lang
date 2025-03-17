@@ -350,6 +350,23 @@ tile.processor_casing.max.name=§c§lMAX§r Processor Casing
 
 tile.primitive_casing.reinforced_treated_wood_wall.name=Reinforced Treated Wood Wall
 
+tile.metal_casing_01.maraging_steel_250.name=Long-Lasting Maraging Steel 250 Machine Casing
+tile.metal_casing_01.inconel_625.name=High-Stress Inconel-625 Machine Casing
+tile.metal_casing_01.blue_steel.name=Pressure Resistant Blue Steel Machine Casing
+tile.metal_casing_01.staballoy.name=Versatile Staballoy Machine Casing
+tile.metal_casing_01.talonite.name=Low Friction Talonite Machine Casing
+tile.metal_casing_01.iridium.name=Reinforced Iridium Machine Casing
+tile.metal_casing_01.zeron_100.name=Stable Zeron-100 Machine Casing
+tile.metal_casing_01.watertight_steel.name=Corrosion Proof Watertight Steel Machine Casing
+tile.metal_casing_01.stellite.name=Optimal Stellite Machine Casing
+tile.metal_casing_01.tumbaga.name=Malleable Tumbaga Machine Casing
+tile.metal_casing_01.eglin_steel.name=High-Impact Eglin Steel Machine Casing
+tile.metal_casing_01.potin.name=Vibration Tolerant Potin Machine Casing
+tile.metal_casing_01.grisium.name=Watertight Grisium Machine Casing
+tile.metal_casing_01.babbit_alloy.name=Gall Resistant Babbit Alloy Machine Casing
+tile.metal_casing_01.silicon_carbide.name=Rugged Silicon Carbide Machine Casing
+tile.metal_casing_01.red_steel.name=Insulating Red Steel Machine Casing
+
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
 metaitem.shape.mold.rod.tooltip=Mold for making Rods
@@ -1003,6 +1020,12 @@ gtlitecore.machine.large_bender.tooltip.2=When Voltage tier >= §3UV§7 tier, th
 gtlitecore.machine.large_bender.tooltip.3=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_bender.tooltip.4=Each §aPiston Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_cutter.name=Large Cutter
+gtlitecore.machine.large_cutter.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_cutter.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_cutter.tooltip.3=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_cutter.tooltip.4=Each §aConveyor Casing tier§7 +1, processing +§l16§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1128,6 +1151,7 @@ gtlitecore.material.sodium_aluminate=Sodium Aluminate
 gtlitecore.material.sodium_carbonate=Sodium Carbonate
 
 gtlitecore.material.kovar=Kovar
+gtlitecore.material.maraging_steel_250=Maraging Steel 250
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

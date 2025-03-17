@@ -41,11 +41,14 @@ import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
+import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -60,6 +63,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -354,7 +358,17 @@ class MachineRecipeLoader
                 'H', HULL[EV].stackForm,
                 'P', UnificationEntry(plate, Titanium),
                 'W', UnificationEntry(cableGtSingle, Aluminium),
-                'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV));
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV))
+
+            // Large Cutter
+            ModHandler.addShapedRecipe(true, "large_cutter", LARGE_CUTTER.stackForm,
+                "WGW", "CHL", "WXW",
+                'C', CUTTER[EV].stackForm,
+                'G', UnificationEntry(gear, MaragingSteel250),
+                'H', HULL[EV].stackForm,
+                'L', LATHE[EV].stackForm,
+                'W', UnificationEntry(cableGtSingle, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }
 
