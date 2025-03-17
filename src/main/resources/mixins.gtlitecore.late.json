@@ -16,5 +16,8 @@
     "gregtech.MetaTileEntityDrumAccessor"
   ],
   "server": [],
-  "client": []
+  "client": [
+    "gregtech.BlockGlassCasingMixin",
+    "gregtech.BlockGlassCasingTypeMixin"
+  ]
 }

@@ -8,5 +8,7 @@
   "mixins": [
   ],
   "server": [],
-  "client": []
+  "client": [
+    "minecraft.BlockGlassMixin"
+  ]
 }

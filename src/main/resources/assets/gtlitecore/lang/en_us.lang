@@ -1155,3 +1155,5 @@ gtlitecore.tooltip.food.common_duration=§aTakes §f32§a Ticks to eat
 
 gtlitecore.tooltip.potion.header=§6Contains effects:
 gtlitecore.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%§r chance of happening
+
+gtlitecore.tooltip.glass_tier=Glass Tier: %s

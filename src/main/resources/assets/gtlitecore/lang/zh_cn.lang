@@ -1155,3 +1155,5 @@ gtlitecore.tooltip.food.common_duration=§a需要 §f32§a 刻来吃下
 
 gtlitecore.tooltip.potion.header=§6食用后:
 gtlitecore.tooltip.potion.each=   §a%4$s%%§r 概率获得 §c%3$s§r 刻的§e%1$s %2$s§r 效果
+
+gtlitecore.tooltip.glass_tier=玻璃等级：%s
