@@ -1164,6 +1164,7 @@ gtlitecore.veins.ore.firestone=Firestone Vein
 gtlitecore.veins.ore.strontianite=Strontianite Vein
 gtlitecore.veins.ore.mica_group=Miscellaneous Mica Vein
 gtlitecore.veins.ore.baddeleyite=Baddeleyite Vein
+gtlitecore.veins.ore.uvarovite=Uvarovite Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)

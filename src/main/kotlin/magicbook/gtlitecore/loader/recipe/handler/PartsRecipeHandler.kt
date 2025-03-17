@@ -242,6 +242,10 @@ class PartsRecipeHandler
                 Materials.Glass -> {
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens.name() + material.toCamelCaseString())
                 }
+                Materials.Uvarovite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Lime)
+                }
                 // Addition gem colored lens in gtlitecore.
                 GTLiteMaterials.Tanzanite -> {
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
@@ -266,6 +270,10 @@ class PartsRecipeHandler
                 GTLiteMaterials.Nephelite -> {
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Red)
+                }
+                GTLiteMaterials.Cryolite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.LightBlue)
                 }
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.

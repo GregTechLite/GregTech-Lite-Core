@@ -204,6 +204,7 @@ class GTLiteMaterials
         @JvmField
         val Lizardite: Material = Material.Builder(2006, gtliteId("lizardite"))
             .dust()
+            .ore()
             .color(0xA79E42).iconSet(DULL)
             .components(Magnesium, 3, Silicon, 2, Oxygen, 9, Hydrogen, 4)
             .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
@@ -866,6 +867,10 @@ class GTLiteMaterials
 
             // Modified Bauxite formulas.
             Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
+
+            // Modified Uvarovite properties.
+            Uvarovite.setProperty(PropertyKey.ORE, OreProperty())
+            Uvarovite.getProperty(PropertyKey.ORE).setOreByProducts(Quartzite, Uvarovite, Lizardite)
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
