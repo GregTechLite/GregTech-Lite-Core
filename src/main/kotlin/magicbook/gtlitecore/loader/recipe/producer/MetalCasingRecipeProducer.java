@@ -15,6 +15,7 @@ import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
@@ -28,6 +29,12 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.MARAGING_STEEL_250,
                 MaragingSteel250);
+
+        // Inconel-625
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.INCONEL_625,
+                Inconel625);
+
     }
 
     private static <T extends Enum<T> & IStringSerializable> void addCasingRecipe(VariantBlock<T> outputCasingType,

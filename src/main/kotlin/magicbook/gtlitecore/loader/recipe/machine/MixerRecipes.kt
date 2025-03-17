@@ -5,13 +5,16 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.ore.OrePrefix.dust
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -55,6 +58,19 @@ class MixerRecipes
                 .output(dust, MaragingSteel250, 24)
                 .EUt(VA[EV].toLong())
                 .duration(25 * SECOND)
+                .buildAndRegister()
+
+            // Inconel-625
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Nickel, 3)
+                .input(dust, Chrome, 7)
+                .input(dust, Molybdenum, 10)
+                .input(dust, Invar, 10)
+                .input(dust, Nichrome, 13)
+                .output(dust, Inconel625, 48)
+                .EUt(VA[EV].toLong())
+                .duration(20 * SECOND)
                 .buildAndRegister()
 
         }

@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
@@ -38,16 +39,19 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
+import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -64,6 +68,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -368,6 +373,14 @@ class MachineRecipeLoader
                 'H', HULL[EV].stackForm,
                 'L', LATHE[EV].stackForm,
                 'W', UnificationEntry(cableGtSingle, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Extruder
+            ModHandler.addShapedRecipe(true, "large_extruder", LARGE_EXTRUDER.stackForm,
+                "AXA", "PEP", "AXA",
+                'A', UnificationEntry(plate, Inconel625),
+                'E', EXTRUDER[IV].stackForm,
+                'P', ELECTRIC_PISTON_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }

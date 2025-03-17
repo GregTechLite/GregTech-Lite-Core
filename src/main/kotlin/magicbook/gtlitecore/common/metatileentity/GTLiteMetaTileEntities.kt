@@ -22,6 +22,7 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
@@ -117,6 +118,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
         lateinit var LARGE_CUTTER: MetaTileEntityLargeCutter
+        lateinit var LARGE_EXTRUDER: MetaTileEntityLargeExtruder
 
         @JvmStatic
         fun init()
@@ -427,6 +429,9 @@ class GTLiteMetaTileEntities
 
             LARGE_CUTTER = MetaTileEntities.registerMetaTileEntity(18103,
                 MetaTileEntityLargeCutter(GTLiteUtility.gtliteId("large_cutter")))
+
+            LARGE_EXTRUDER = MetaTileEntities.registerMetaTileEntity(18104,
+                MetaTileEntityLargeExtruder(GTLiteUtility.gtliteId("large_extruder")))
 
         }
 

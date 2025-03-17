@@ -38,6 +38,7 @@ import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Inconel718
+import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
@@ -50,6 +51,7 @@ import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Olivine
@@ -611,6 +613,21 @@ class GTLiteMaterials
                 b.temp(2413, BlastProperty.GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 20 * SECOND)
                     .vacuumStats(VA[MV], 2 * SECOND + 2 * TICK)
+            }
+            .build()
+
+        // 4003 Inconel-625
+        @JvmField
+        val Inconel625: Material = Material.Builder(4003, gtliteId("inconel_625"))
+            .ingot()
+            .fluid()
+            .color(0x80C880).iconSet(METALLIC)
+            .components(Nickel, 3, Chrome, 7, Molybdenum, 10, Invar, 10, Nichrome, 13)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(2425, BlastProperty.GasTier.LOW) // Kanthal
+                    .blastStats(VA[HV], 25 * SECOND)
+                    .vacuumStats(VA[MV], 4 * SECOND + 4 * TICK)
             }
             .build()
 
