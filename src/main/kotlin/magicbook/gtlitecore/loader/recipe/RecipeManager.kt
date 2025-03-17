@@ -20,6 +20,7 @@ import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
+import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
@@ -49,6 +50,7 @@ class RecipeManager
             MicaInsulatorChain.init()
             OxidesChain.init()
 
+            AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
             NiobiumTantalumProcessing.init()
             CaesiumRubidiumProcessing.init()

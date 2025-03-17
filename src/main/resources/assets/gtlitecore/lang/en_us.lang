@@ -1110,6 +1110,10 @@ gtlitecore.material.heavy_alkali_chlorides_solution=Heavy Alkali Chlorides Solut
 gtlitecore.material.tin_dichloride=Tin Dichloride
 gtlitecore.material.tin_tetrachloride=Tin Tetrachloride
 gtlitecore.material.caesium_hexachlorotinate=Caesium Hexachlorotinate
+gtlitecore.material.cryolite=Cryolite
+gtlitecore.material.aluminium_hydroxide=Aluminium Hydroxide
+gtlitecore.material.sodium_aluminate=Sodium Aluminate
+gtlitecore.material.sodium_carbonate=Sodium Carbonate
 
 gtlitecore.material.kovar=Kovar
 
@@ -1128,6 +1132,10 @@ gtlitecore.material.polyisoprene=Polyisoprene (PI)
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
 gtlitecore.material.rainbow_sap=Rainbow Sap
+
+gtlitecore.material.green_sapphire_juice=Green Sapphire Juice
+gtlitecore.material.sapphire_juice=Sapphire Juice
+gtlitecore.material.ruby_juice=Ruby Juice
 
 gtlitecore.material.greenhouse_gas=Greenhouse Gas
 

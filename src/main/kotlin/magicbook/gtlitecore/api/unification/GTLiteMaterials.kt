@@ -8,6 +8,7 @@ import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Caesium
@@ -59,10 +60,13 @@ import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Rubidium
+import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumPersulfate
@@ -535,6 +539,43 @@ class GTLiteMaterials
             .components(Rubidium, 2, Tin, 1, Chlorine, 6)
             .build()
 
+        // 2041 Cryolite
+        @JvmField
+        val Cryolite: Material = Material.Builder(2041, gtliteId("cryolite"))
+            .gem()
+            .ore()
+            .color(0xBFEFFF).iconSet(QUARTZ)
+            .components(Sodium, 3, Aluminium, 1, Fluorine, 6)
+            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
+        // 2042 Aluminium Hydroxide
+        @JvmField
+        val AluminiumHydroxide: Material = Material.Builder(2042, gtliteId("aluminium_hydroxide"))
+            .dust()
+            .color(0xBEBEC8)
+            .components(Aluminium, 1, Oxygen, 3, Hydrogen, 3)
+            .build()
+            .setFormula("Al(OH)3", true)
+
+        // 2043 Sodium Aluminate
+        @JvmField
+        val SodiumAluminate: Material = Material.Builder(2043, gtliteId("sodium_aluminate"))
+            .dust()
+            .colorAverage()
+            .components(Sodium, 1, Aluminium, 1, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2044 Sodium Carbonate
+        @JvmField
+        val SodiumCarbonate: Material = Material.Builder(2044, gtliteId("sodium_carbonate"))
+            .dust()
+            .colorAverage()
+            .components(SodaAsh, 1, Water, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -676,6 +717,33 @@ class GTLiteMaterials
             .liquid(FluidBuilder().customStill())
             .build()
 
+        // 12031 Green Sapphire Juice
+        @JvmField
+        val GreenSapphireJuice: Material = Material.Builder(12031, gtliteId("green_sapphire_juice"))
+            .liquid()
+            .color(GreenSapphire.materialRGB)
+            .components(GreenSapphire.materialComponents)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 12032 Sapphire Juice
+        @JvmField
+        val SapphireJuice: Material = Material.Builder(12032, gtliteId("sapphire_juice"))
+            .liquid()
+            .color(Sapphire.materialRGB)
+            .components(Sapphire.materialComponents)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 12033 Ruby Juice
+        @JvmField
+        val RubyJuice: Material = Material.Builder(12033, gtliteId("ruby_juice"))
+            .liquid()
+            .color(Ruby.materialRGB)
+            .components(Ruby.materialComponents)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // 12040 Greenhouse Gas
         @JvmField
         val GreenhouseGas: Material = Material.Builder(12040, gtliteId("greenhouse_gas"))
@@ -782,6 +850,9 @@ class GTLiteMaterials
             oreProp = Aegirine.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Aegirine, Ferrosilite, Iron)
 
+            oreProp = Cryolite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Alumina, Alumina, Sodium)
+
             // Modified Biotite and Mica properties.
             Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
             Biotite.setProperty(PropertyKey.ORE, OreProperty())
@@ -792,6 +863,9 @@ class GTLiteMaterials
             // Modified Ferrosilite properties.
             Ferrosilite.setProperty(PropertyKey.ORE, OreProperty())
             Ferrosilite.getProperty(PropertyKey.ORE).setOreByProducts(Ferrosilite, SiliconDioxide, Iron)
+
+            // Modified Bauxite formulas.
+            Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,

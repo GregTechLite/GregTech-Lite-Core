@@ -1111,6 +1111,10 @@ gtlitecore.material.tin_dichloride=二氯化锡
 gtlitecore.material.tin_tetrachloride=四氯化锡
 gtlitecore.material.caesium_hexachlorotinate=六氯锡酸铯
 gtlitecore.material.rubidium_hexachlorotinate=六氯锡酸铷
+gtlitecore.material.cryolite=冰晶石
+gtlitecore.material.aluminium_hydroxide=氢氧化铝
+gtlitecore.material.sodium_aluminate=铝酸钠
+gtlitecore.material.sodium_carbonate=碳酸钠
 
 gtlitecore.material.kovar=柯伐合金
 
@@ -1129,6 +1133,10 @@ gtlitecore.material.polyisoprene=聚异戊二烯（PI）
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
 gtlitecore.material.rainbow_sap=彩虹树液
+
+gtlitecore.material.green_sapphire_juice=绿色蓝宝石汁
+gtlitecore.material.sapphire_juice=蓝宝石汁
+gtlitecore.material.ruby_juice=红宝石汁
 
 gtlitecore.material.greenhouse_gas=温室气体
 
