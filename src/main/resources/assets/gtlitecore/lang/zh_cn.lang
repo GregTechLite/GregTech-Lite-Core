@@ -1166,6 +1166,7 @@ gtlitecore.veins.ore.strontianite=菱锶矿矿脉
 gtlitecore.veins.ore.mica_group=杂云母矿脉
 gtlitecore.veins.ore.baddeleyite=斜锆石矿脉
 gtlitecore.veins.ore.uvarovite=钙铬榴石矿脉
+gtlitecore.veins.ore.cryolite=冰晶石矿脉
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）
