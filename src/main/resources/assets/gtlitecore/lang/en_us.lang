@@ -1102,6 +1102,10 @@ gtlitecore.material.phlogopite=Phlogopite
 gtlitecore.material.baddeleyite=Baddeleyite
 gtlitecore.material.nephelite=Nephelite
 gtlitecore.material.aegirine=Aegirine
+gtlitecore.material.niobium_pentoxide=Niobium Pentoxide
+gtlitecore.material.tantalum_pentoxide=Tantalum Pentoxide
+gtlitecore.material.calcium_difluoride=Calcium Difluoride
+gtlitecore.material.manganese_difluoride=Manganese Difluoride
 
 gtlitecore.material.kovar=Kovar
 

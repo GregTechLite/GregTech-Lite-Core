@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Pyrite
+import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
@@ -68,6 +69,8 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
+import gregtech.api.unification.material.Materials.Tantalite
+import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
@@ -454,6 +457,38 @@ class GTLiteMaterials
             .flags(GENERATE_PLATE, GENERATE_LENS)
             .build()
 
+        // 2032 Niobium Pentoxide
+        @JvmField
+        val NiobiumPentoxide: Material = Material.Builder(2032, gtliteId("niobium_pentoxide"))
+            .dust()
+            .color(0xBAB0C3).iconSet(ROUGH)
+            .components(Niobium, 2, Oxygen, 5)
+            .build()
+
+        // 2033 Tantalum Pentoxide
+        @JvmField
+        val TantalumPentoxide: Material = Material.Builder(2033, gtliteId("tantalum_pentoxide"))
+            .dust()
+            .color(0x72728A).iconSet(ROUGH)
+            .components(Tantalum, 2, Oxygen, 5)
+            .build()
+
+        // 2034 Calcium Difluoride
+        @JvmField
+        val CalciumDifluoride: Material = Material.Builder(2034, gtliteId("calcium_difluoride"))
+            .dust()
+            .color(0xFFFC9E).iconSet(ROUGH)
+            .components(Calcium, 1, Fluorine, 2)
+            .build()
+
+        // 2035 Manganese Difluoride
+        @JvmField
+        val ManganeseDifluoride: Material = Material.Builder(2035, gtliteId("manganese_difluoride"))
+            .dust()
+            .color(0xEF4B3D).iconSet(ROUGH)
+            .components(Manganese, 1, Fluorine, 2)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -803,6 +838,10 @@ class GTLiteMaterials
             Ruthenium.addFlags(GENERATE_FINE_WIRE)
             Hafnium.addFlags(GENERATE_FINE_WIRE)
             Kanthal.addFlags(GENERATE_FINE_WIRE)
+
+            // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
+            Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
+            Tantalite.addFlags(DISABLE_DECOMPOSITION)
         }
 
         // Quick-path of add MaterialProperty to a material.
