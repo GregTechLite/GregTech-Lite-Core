@@ -2,7 +2,21 @@ package magicbook.gtlitecore.api;
 
 import gregtech.api.creativetab.BaseCreativeTab;
 import gregtech.api.unification.OreDictUnifier;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import magicbook.gtlitecore.api.block.IBlockTier;
+import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.module.IModuleManager;
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
+import net.minecraft.block.state.IBlockState;
 
 import static gregtech.api.unification.material.Materials.Diamond;
 import static gregtech.api.unification.ore.OrePrefix.gear;
@@ -22,9 +36,72 @@ public class GTLiteAPI
     public static final BaseCreativeTab TAB_GTLITE = new BaseCreativeTab("gtlite",
             () -> OreDictUnifier.get(gear, Diamond), false);
 
+    /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PISTON_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PUMP_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CONVEYOR_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_ROBOT_ARM_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_EMITTER_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_SENSOR_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_FIELD_GEN_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PROCESSOR_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
+    public static void init()
+    {
+        for (BlockMotorCasing.MotorCasingTier tier : BlockMotorCasing.MotorCasingTier.values())
+        {
+            MAP_MOTOR_CASING.put(GTLiteMetaBlocks.MOTOR_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
 
+        for (BlockPistonCasing.PistonCasingTier tier : BlockPistonCasing.PistonCasingTier.values())
+        {
+            MAP_PISTON_CASING.put(GTLiteMetaBlocks.PISTON_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
 
+        for (BlockPumpCasing.PumpCasingTier tier : BlockPumpCasing.PumpCasingTier.values())
+        {
+            MAP_PUMP_CASING.put(GTLiteMetaBlocks.PUMP_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
 
+        for (BlockConveyorCasing.ConveyorCasingTier tier : BlockConveyorCasing.ConveyorCasingTier.values())
+        {
+            MAP_CONVEYOR_CASING.put(GTLiteMetaBlocks.CONVEYOR_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockRobotArmCasing.RobotArmCasingTier tier : BlockRobotArmCasing.RobotArmCasingTier.values())
+        {
+            MAP_ROBOT_ARM_CASING.put(GTLiteMetaBlocks.ROBOT_ARM_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockEmitterCasing.EmitterCasingTier tier : BlockEmitterCasing.EmitterCasingTier.values())
+        {
+            MAP_EMITTER_CASING.put(GTLiteMetaBlocks.EMITTER_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockSensorCasing.SensorCasingTier tier : BlockSensorCasing.SensorCasingTier.values())
+        {
+            MAP_SENSOR_CASING.put(GTLiteMetaBlocks.SENSOR_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockFieldGenCasing.FieldGenCasingTier tier : BlockFieldGenCasing.FieldGenCasingTier.values())
+        {
+            MAP_FIELD_GEN_CASING.put(GTLiteMetaBlocks.FIELD_GEN_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockProcessorCasing.ProcessorCasingTier tier : BlockProcessorCasing.ProcessorCasingTier.values())
+        {
+            MAP_PROCESSOR_CASING.put(GTLiteMetaBlocks.PROCESSOR_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+    }
 
 }

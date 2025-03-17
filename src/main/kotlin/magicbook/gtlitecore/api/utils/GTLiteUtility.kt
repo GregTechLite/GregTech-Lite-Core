@@ -8,13 +8,17 @@ import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import one.util.streamex.StreamEx
+import java.util.function.BooleanSupplier
 import java.util.function.Consumer
+import java.util.function.Supplier
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteUtility
@@ -102,6 +106,46 @@ class GTLiteUtility
         @JvmStatic
         fun copyOrDefault(blockPos: BlockPos?, defaultBlockPos: BlockPos)
             = if (blockPos == null) copy(defaultBlockPos) else copy(blockPos)
+
+        /**
+         * Get int value from [nbt] data or return [defaultValue].
+         */
+        @JvmStatic
+        fun getOrDefault(nbt: NBTTagCompound, key: String, defaultValue: Int): Int
+        {
+            if (nbt.hasKey(key)) return nbt.getInteger(key)
+            return defaultValue
+        }
+
+        /**
+         * Universal version of [getOrDefault].
+         */
+        @JvmStatic
+        fun <T> getOrDefault(canGet: BooleanSupplier, getter: Supplier<T>, defaultValue: T): T
+            = if (canGet.asBoolean) getter.get() else defaultValue
+
+        /**
+         * Get max length of [lists].
+         */
+        @JvmStatic
+        fun <T> maxLength(lists: List<List<T>>): Int = StreamEx.of(lists)
+            .mapToInt { obj: List<T> -> obj.size }
+            .max()
+            .orElse(0)
+
+        /**
+         * Consistent a new list with [list] and generate its length with default list.
+         */
+        @JvmStatic
+        fun <T> consistent(list: List<T>, length: Int): List<T>
+        {
+            if (list.size >= length) return list
+            val finalList = ArrayList(list)
+            val last = list[list.size - 1]
+            for (i in 0 until length - list.size)
+                finalList.add(last)
+            return finalList
+        }
 
         @JvmStatic
         fun getMotorByTier(tier: Int): MetaItem<*>.MetaValueItem

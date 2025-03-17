@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.core;
 
 import lombok.NoArgsConstructor;
+import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.module.IModule;
 import magicbook.gtlitecore.api.module.Module;
 import magicbook.gtlitecore.api.unification.ore.GTLiteStoneTypes;
@@ -53,6 +54,7 @@ public class CoreModule implements IModule
         GTLiteStoneTypes.init();
         GTLiteMetaItems.init();
         GTLiteMetaBlocks.init();
+        GTLiteAPI.init();
         GTLiteMetaTileEntities.init();
         proxy.preLoad();
     }
