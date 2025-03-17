@@ -4,14 +4,29 @@ class GTLiteDataCodes
 {
     companion object
     {
-        val INITIALIZE_TIERED_MACHINE: Int = 9900
-        val UPDATE_TIERED_MACHINE: Int = 9901
-        val INITIALIZE_SUB_TIERED_MACHINE: Int = 9902
-        val UPDATE_SUB_TIERED_MACHINE: Int = 9903
-        val INITIALIZE_MINOR_TIERED_MACHINE: Int = 9904
-        val UPDATE_MINOR_TIERED_MACHINE: Int = 9905
-        val INITIALIZE_LAST_TIERED_MACHINE: Int = 9906
-        val UPDATE_LAST_TIERED_MACHINE: Int = 9907
+        @JvmField
+        var INITIALIZE_TIERED_MACHINE: Int = 9900
+
+        @JvmField
+        var UPDATE_TIERED_MACHINE: Int = 9901
+
+        @JvmField
+        var INITIALIZE_SUB_TIERED_MACHINE: Int = 9902
+
+        @JvmField
+        var UPDATE_SUB_TIERED_MACHINE: Int = 9903
+
+        @JvmField
+        var INITIALIZE_MINOR_TIERED_MACHINE: Int = 9904
+
+        @JvmField
+        var UPDATE_MINOR_TIERED_MACHINE: Int = 9905
+
+        @JvmField
+        var INITIALIZE_LAST_TIERED_MACHINE: Int = 9906
+
+        @JvmField
+        var UPDATE_LAST_TIERED_MACHINE: Int = 9907
     }
 
 }

@@ -991,6 +991,12 @@ gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f�
 gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
 gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
+gtlitecore.machine.large_forge_hammer.name=大型锻造锤
+gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_forge_hammer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_forge_hammer.tooltip.4=每提高1个§a外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶

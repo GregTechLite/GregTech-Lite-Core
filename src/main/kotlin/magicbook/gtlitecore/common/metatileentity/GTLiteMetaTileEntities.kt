@@ -20,6 +20,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
@@ -109,6 +110,8 @@ class GTLiteMetaTileEntities
         val NONUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
 
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
+
+        lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
 
         // Multiblock machines.
 
@@ -412,6 +415,9 @@ class GTLiteMetaTileEntities
             // 18001-20000 Multiblocks
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
                 MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
+
+            LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
+                MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
         }
 

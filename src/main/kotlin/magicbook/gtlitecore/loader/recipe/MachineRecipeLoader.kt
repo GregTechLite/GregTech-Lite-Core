@@ -5,6 +5,7 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Iron
@@ -12,6 +13,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
@@ -31,6 +33,10 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
+import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
+import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -46,6 +52,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -320,6 +327,15 @@ class MachineRecipeLoader
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // Large Forge Hammer
+            ModHandler.addShapedRecipe(true, "large_forge_hammer", LARGE_FORGE_HAMMER.stackForm,
+                "PXP", "FHC", "PXP",
+                'C', COMPRESSOR[LV].stackForm,
+                'F', FORGE_HAMMER[LV].stackForm,
+                'H', HULL[LV].stackForm,
+                'P', ELECTRIC_PISTON_LV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
 
         }
 
