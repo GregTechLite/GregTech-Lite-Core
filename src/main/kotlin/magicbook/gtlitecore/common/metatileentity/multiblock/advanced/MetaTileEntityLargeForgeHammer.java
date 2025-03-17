@@ -42,7 +42,8 @@ public class MetaTileEntityLargeForgeHammer extends MultiMapMultiblockController
     private int casingTier;
 
     /* ------------------------------- MetaTileEntity constructors ------------------------------- */
-    public MetaTileEntityLargeForgeHammer(ResourceLocation metaTileEntityId) {
+    public MetaTileEntityLargeForgeHammer(ResourceLocation metaTileEntityId)
+    {
         super(metaTileEntityId, new RecipeMap[] {
                 RecipeMaps.FORGE_HAMMER_RECIPES,
                 RecipeMaps.COMPRESSOR_RECIPES
@@ -51,7 +52,8 @@ public class MetaTileEntityLargeForgeHammer extends MultiMapMultiblockController
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
+    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
+    {
         return new MetaTileEntityLargeForgeHammer(metaTileEntityId);
     }
 
@@ -80,7 +82,7 @@ public class MetaTileEntityLargeForgeHammer extends MultiMapMultiblockController
         return FactoryBlockPattern.start()
                 .aisle("SCC", "C#C", "CPC", "CCC")
                 .where('S', selfPredicate())
-                .where('C', states(this.getCasingState())
+                .where('C', states(getCasingState())
                         .setMinGlobalLimited(2)
                         .or(this.autoAbilities(true, true, true, true, true, true, false)))
                 .where('P', pistonCasings())
@@ -88,7 +90,7 @@ public class MetaTileEntityLargeForgeHammer extends MultiMapMultiblockController
                 .build();
     }
 
-    private IBlockState getCasingState()
+    private static IBlockState getCasingState()
     {
         return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID);
     }

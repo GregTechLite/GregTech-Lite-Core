@@ -20,6 +20,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
@@ -112,6 +113,7 @@ class GTLiteMetaTileEntities
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
+        lateinit var LARGE_BENDER: MetaTileEntityLargeBender
 
         // Multiblock machines.
 
@@ -418,6 +420,9 @@ class GTLiteMetaTileEntities
 
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
+
+            LARGE_BENDER = MetaTileEntities.registerMetaTileEntity(18102,
+                MetaTileEntityLargeBender(GTLiteUtility.gtliteId("large_bender")))
 
         }
 

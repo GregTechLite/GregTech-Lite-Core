@@ -1,20 +1,25 @@
 package magicbook.gtlitecore.loader.recipe
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
+import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
@@ -34,8 +39,10 @@ import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
+import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
@@ -52,6 +59,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -336,6 +344,17 @@ class MachineRecipeLoader
                 'H', HULL[LV].stackForm,
                 'P', ELECTRIC_PISTON_LV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
+
+            // Large Bender
+            ModHandler.addShapedRecipe(true, "large_bender", LARGE_BENDER.stackForm,
+                "GXG", "BHF", "PWP",
+                'B', BENDER[EV].stackForm,
+                'F', FORMING_PRESS[EV].stackForm,
+                'G', UnificationEntry(gear, Titanium),
+                'H', HULL[EV].stackForm,
+                'P', UnificationEntry(plate, Titanium),
+                'W', UnificationEntry(cableGtSingle, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV));
 
         }
 
