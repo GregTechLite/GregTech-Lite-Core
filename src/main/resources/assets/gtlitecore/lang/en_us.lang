@@ -1106,6 +1106,10 @@ gtlitecore.material.niobium_pentoxide=Niobium Pentoxide
 gtlitecore.material.tantalum_pentoxide=Tantalum Pentoxide
 gtlitecore.material.calcium_difluoride=Calcium Difluoride
 gtlitecore.material.manganese_difluoride=Manganese Difluoride
+gtlitecore.material.heavy_alkali_chlorides_solution=Heavy Alkali Chlorides Solution
+gtlitecore.material.tin_dichloride=Tin Dichloride
+gtlitecore.material.tin_tetrachloride=Tin Tetrachloride
+gtlitecore.material.caesium_hexachlorotinate=Caesium Hexachlorotinate
 
 gtlitecore.material.kovar=Kovar
 

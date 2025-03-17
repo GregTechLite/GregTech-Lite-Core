@@ -10,10 +10,12 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BlueTopaz
+import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CertusQuartz
+import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
@@ -56,6 +58,7 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Silicon
@@ -71,6 +74,7 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
@@ -489,6 +493,48 @@ class GTLiteMaterials
             .components(Manganese, 1, Fluorine, 2)
             .build()
 
+        // 2036 Heavy Alkali Chlorides Solution
+        @JvmField
+        val HeavyAlkaliChloridesSolution: Material = Material.Builder(2036, gtliteId("heavy_alkali_chlorides_solution"))
+            .liquid()
+            .color(0x8F5353)
+            .components(Rubidium, 1, Caesium, 2, Chlorine, 6, Water, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(RbCl)(CsCl)2Cl3(H2O)2", true)
+
+        // 2037 Tin Dichloride
+        @JvmField
+        val TinDichloride: Material = Material.Builder(2037, gtliteId("tin_dichloride"))
+            .dust()
+            .color(0xDBDBDB).iconSet(METALLIC)
+            .components(Tin, 1, Chlorine, 2)
+            .build()
+
+        // 2038 Tin Tetrachloride
+        @JvmField
+        val TinTetrachloride: Material = Material.Builder(2038, gtliteId("tin_tetrachloride"))
+            .dust()
+            .color(0x33BBF5).iconSet(METALLIC)
+            .components(Tin, 1, Chlorine, 4)
+            .build()
+
+        // 2039 Caesium Hexachlorotinate
+        @JvmField
+        val CaesiumHexachlorotinate: Material = Material.Builder(2039, gtliteId("caesium_hexachlorotinate"))
+            .dust()
+            .color(0xBDAD88).iconSet(SHINY)
+            .components(Caesium, 2, Tin, 1, Chlorine, 6)
+            .build()
+
+        // 2040 Rubidium Hexachlorotinate
+        @JvmField
+        val RubidiumHexachlorotinate: Material = Material.Builder(2040, gtliteId("rubidium_hexachlorotinate"))
+            .dust()
+            .color(0xBD888A).iconSet(METALLIC)
+            .components(Rubidium, 2, Tin, 1, Chlorine, 6)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -658,6 +704,8 @@ class GTLiteMaterials
             // DustProperty can be overridden to IngotProperty or GemProperty yet,
             // please see: MaterialPropertiesMixin#setProperty().
             sequenceOf(Strontium).forEach { addIngot(it) }
+
+            sequenceOf(Rubidium).forEach { addDust(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
