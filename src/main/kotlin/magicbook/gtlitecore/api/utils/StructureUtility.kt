@@ -2,13 +2,11 @@ package magicbook.gtlitecore.api.utils
 
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntityHolder
-import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.util.BlockInfo
 import magicbook.gtlitecore.api.pattern.GTLiteTraceabilityPredicate
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.EnumFacing
-import java.util.*
 import java.util.function.Supplier
 
 

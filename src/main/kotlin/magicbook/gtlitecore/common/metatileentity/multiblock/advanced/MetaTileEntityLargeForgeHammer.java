@@ -8,7 +8,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;;
+import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
@@ -34,6 +34,8 @@ import java.util.List;
 
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.StructureUtility.pistonCasings;
+
+;
 
 public class MetaTileEntityLargeForgeHammer extends MultiMapMultiblockController
 {
