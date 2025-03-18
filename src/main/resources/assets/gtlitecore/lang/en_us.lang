@@ -608,6 +608,7 @@ recipemap.roaster.name=Roaster
 recipemap.burner_reactor.name=Burner Reactor
 recipemap.bath_condenser.name=Bath Condenser
 recipemap.cryogenic_reactor.name=Cryogenic Reactor
+recipemap.large_mixer.name=Large Mixer
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1038,6 +1039,12 @@ gtlitecore.machine.large_wiremill.tooltip.2=When Voltage tier >= §3UV§7 tier, 
 gtlitecore.machine.large_wiremill.tooltip.3=Each §eCasing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_wiremill.tooltip.4=Each §aVoltage tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_mixer.name=Large Mixer
+gtlitecore.machine.large_mixer.tooltip.1=Compatible all §2Mixer§7 recipes, and has some special recipes.
+gtlitecore.machine.large_mixer.tooltip.2=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_mixer.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_mixer.tooltip.4=Each §aCasing tier§7 +1, processing +§l16§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1165,6 +1172,7 @@ gtlitecore.material.sodium_carbonate=Sodium Carbonate
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
 gtlitecore.material.inconel_625=Inconel-625
+gtlitecore.material.staballoy=Staballoy
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

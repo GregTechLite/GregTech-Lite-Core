@@ -608,6 +608,7 @@ recipemap.roaster.name=焙烧炉
 recipemap.burner_reactor.name=燃烧反应室
 recipemap.bath_condenser.name=水浴冷凝槽
 recipemap.cryogenic_reactor.name=低温反应室
+recipemap.large_mixer.name=大型搅拌机
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1038,6 +1039,12 @@ gtlitecore.machine.large_wiremill.tooltip.2=当电压等级大于等于§3UV§7�
 gtlitecore.machine.large_wiremill.tooltip.3=每提高1个§e外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.large_wiremill.tooltip.4=每提高1个§a电压等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_mixer.name=大型搅拌机
+gtlitecore.machine.large_mixer.tooltip.1=兼容所有§2搅拌机§7配方，且具有一部分独占配方
+gtlitecore.machine.large_mixer.tooltip.2=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_mixer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_mixer.tooltip.4=每提高1个§a外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1166,6 +1173,7 @@ gtlitecore.material.sodium_carbonate=碳酸钠
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
 gtlitecore.material.inconel_625=镍铬基合金-625
+gtlitecore.material.staballoy=贫铀合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

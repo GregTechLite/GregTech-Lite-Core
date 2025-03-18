@@ -52,11 +52,13 @@ import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
+import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -74,6 +76,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -395,6 +398,16 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, BlueSteel),
                 'M', ELECTRIC_MOTOR_IV,
                 'W', WIREMILL[IV].stackForm,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Mixer
+            ModHandler.addShapedRecipe(true, "large_mixer", LARGE_MIXER.stackForm,
+                "PGP", "MHM", "WXW",
+                'G', UnificationEntry(gear, Staballoy),
+                'H', HULL[EV].stackForm,
+                'M', MIXER[EV].stackForm,
+                'P', UnificationEntry(plate, Staballoy),
+                'W', UnificationEntry(cableGtSingle, Aluminium),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }

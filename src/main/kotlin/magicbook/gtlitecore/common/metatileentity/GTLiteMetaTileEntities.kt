@@ -24,6 +24,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMixer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
@@ -121,6 +122,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_CUTTER: MetaTileEntityLargeCutter
         lateinit var LARGE_EXTRUDER: MetaTileEntityLargeExtruder
         lateinit var LARGE_WIREMILL: MetaTileEntityLargeWiremill
+        lateinit var LARGE_MIXER: MetaTileEntityLargeMixer
 
         @JvmStatic
         fun init()
@@ -437,6 +439,9 @@ class GTLiteMetaTileEntities
 
             LARGE_WIREMILL = MetaTileEntities.registerMetaTileEntity(18105,
                 MetaTileEntityLargeWiremill(GTLiteUtility.gtliteId("large_wiremill")))
+
+            LARGE_MIXER = MetaTileEntities.registerMetaTileEntity(18106,
+                MetaTileEntityLargeMixer(GTLiteUtility.gtliteId("large_mixer")))
 
         }
 

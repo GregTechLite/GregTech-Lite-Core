@@ -7,11 +7,13 @@ import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
+import gregtech.api.recipes.ui.RecipeMapUIFunction
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
+import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
@@ -405,9 +407,41 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COOLING)
             .build()
 
+        /**
+         * @zenProp large_mixer
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("LARGE_MIXER_RECIPES")
+        val LARGE_MIXER_RECIPES = RecipeMapBuilder("large_mixer", SimpleRecipeBuilder())
+            .ui { LargeMixerUI(it) }
+            .itemInputs(9)
+            .itemOutputs(1)
+            .fluidInputs(6)
+            .fluidOutputs(1)
+            .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
+            .sound(GTSoundEvents.MIXER)
+            .build()
+            .setSmallRecipeMap(RecipeMaps.MIXER_RECIPES)
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {
+            // Copying mixer recipes to large mixer recipe map.
+            RecipeMaps.MIXER_RECIPES.onRecipeBuild(GTLiteUtility.gtliteId("mixer_copy")) { recipeBuilder ->
+                LARGE_MIXER_RECIPES.recipeBuilder()
+                    .inputs(*recipeBuilder.inputs.toTypedArray())
+                    .fluidInputs(recipeBuilder.fluidInputs)
+                    .outputs(recipeBuilder.outputs)
+                    .chancedOutputs(recipeBuilder.chancedOutputs)
+                    .fluidOutputs(recipeBuilder.fluidOutputs)
+                    .chancedFluidOutputs(recipeBuilder.chancedFluidOutputs)
+                    .cleanroom(recipeBuilder.cleanroom)
+                    .duration(recipeBuilder.duration)
+                    .EUt(recipeBuilder.eUt)
+                    .buildAndRegister()
+            }
+
             // (1,6,0,0) -> (1,9,2,2)
             RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
             RecipeMaps.SIFTER_RECIPES.maxOutputs = 9

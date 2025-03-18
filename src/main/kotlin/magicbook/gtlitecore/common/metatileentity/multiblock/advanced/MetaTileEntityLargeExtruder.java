@@ -83,21 +83,21 @@ public class MetaTileEntityLargeExtruder extends RecipeMapMultiblockController
                 .aisle("CCCC", "CQPC", "CCC ")
                 .aisle("CCCC", "CSCC", "CCC ")
                 .where('S', this.selfPredicate())
-                .where('C', states(this.getCasingState())
+                .where('C', states(getCasingState())
                         .setMinGlobalLimited(6)
                         .or(this.autoAbilities(true, true, true, true, false, false, false)))
-                .where('Q', states(this.getPipeCasingState()))
+                .where('Q', states(getPipeCasingState()))
                 .where('P', pistonCasings())
                 .where(' ', any())
                 .build();
     }
 
-    private IBlockState getCasingState()
+    private static IBlockState getCasingState()
     {
         return GTLiteMetaBlocks.METAL_CASING_01.getState(BlockMetalCasing01.MetalCasingType.INCONEL_625);
     }
 
-    private IBlockState getPipeCasingState()
+    private static IBlockState getPipeCasingState()
     {
         return MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE);
     }

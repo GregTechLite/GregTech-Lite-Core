@@ -1,20 +1,17 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.advanced;
 
-import gregtech.api.GTValues;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.client.utils.TooltipHelper;
 import gregtech.common.blocks.BlockTurbineCasing;
 import gregtech.common.blocks.MetaBlocks;
 import lombok.Getter;
@@ -40,26 +37,23 @@ import java.util.List;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.StructureUtility.motorCasings;
 
-public class MetaTileEntityLargeWiremill extends MultiMapMultiblockController
+public class MetaTileEntityLargeMixer extends RecipeMapMultiblockController
 {
 
     @Getter
     private int casingTier;
 
     // =================================================================================================================
-    public MetaTileEntityLargeWiremill(ResourceLocation metaTileEntityId)
+    public MetaTileEntityLargeMixer(ResourceLocation metaTileEntityId)
     {
-        super(metaTileEntityId, new RecipeMap[] {
-                RecipeMaps.WIREMILL_RECIPES,
-                GTLiteRecipeMaps.LOOM_RECIPES()
-        });
-        this.recipeMapWorkable = new LargeWiremillRecipeLogic(this);
+        super(metaTileEntityId, GTLiteRecipeMaps.LARGE_MIXER_RECIPES());
+        this.recipeMapWorkable = new LargeMixerRecipeLogic(this);
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
-        return new MetaTileEntityLargeWiremill(metaTileEntityId);
+        return new MetaTileEntityLargeMixer(metaTileEntityId);
     }
 
     // =================================================================================================================
@@ -85,35 +79,37 @@ public class MetaTileEntityLargeWiremill extends MultiMapMultiblockController
     protected BlockPattern createStructurePattern()
     {
         return FactoryBlockPattern.start()
-                .aisle("CCCCC", "CCCCC", "CCCCC")
-                .aisle("CCCCC", "CMGMC", "CCCCC")
-                .aisle("CCCCC", "CMGMC", "CCCCC")
-                .aisle("CCC  ", "CSC  ", "CCC  ")
+                .aisle(" CCC ", " CCC ", " CCC ")
+                .aisle("CCCCC", "C#G#C", " CCC ")
+                .aisle("CCMCC", "C#M#C", " CCC ")
+                .aisle("CCCCC", "C#G#C", " CCC ")
+                .aisle(" CCC ", " CSC ", " CCC ")
                 .where('S', this.selfPredicate())
-                .where('C', states(this.getCasingState())
-                        .setMinGlobalLimited(8)
-                        .or(this.autoAbilities(true, true, true, true, true, false, false)))
-                .where('G', states(this.getGearboxCasingState()))
+                .where('C', states(getCasingState())
+                        .setMinGlobalLimited(6)
+                        .or(this.autoAbilities(true, true, true, true, true, true, false)))
+                .where('G', states(getGearboxCasingState()))
                 .where('M', motorCasings())
+                .where('#', air())
                 .where(' ', any())
                 .build();
     }
 
-    private IBlockState getCasingState()
+    private static IBlockState getCasingState()
     {
-        return GTLiteMetaBlocks.METAL_CASING_01.getState(BlockMetalCasing01.MetalCasingType.BLUE_STEEL);
+        return GTLiteMetaBlocks.METAL_CASING_01.getState(BlockMetalCasing01.MetalCasingType.STABALLOY);
     }
 
-    private IBlockState getGearboxCasingState()
+    private static IBlockState getGearboxCasingState()
     {
         return MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_GEARBOX);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public ICubeRenderer getBaseTexture(IMultiblockPart texture)
+    public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart)
     {
-        return GTLiteTextures.BLUE_STEEL_CASING;
+        return GTLiteTextures.STABALLOY_CASING;
     }
 
     @SideOnly(Side.CLIENT)
@@ -164,10 +160,11 @@ public class MetaTileEntityLargeWiremill extends MultiMapMultiblockController
                                @NotNull List<String> tooltip,
                                boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.large_wiremill.tooltip.1"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_wiremill.tooltip.2"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_wiremill.tooltip.3"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_wiremill.tooltip.4"));
+        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.1"));
+        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.2"));
+        tooltip.add(TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"));
+        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.3"));
+        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.4"));
     }
 
     // =================================================================================================================
@@ -177,30 +174,23 @@ public class MetaTileEntityLargeWiremill extends MultiMapMultiblockController
         return true;
     }
 
-    protected class LargeWiremillRecipeLogic extends MultiblockRecipeLogic
+    protected class LargeMixerRecipeLogic extends MultiblockRecipeLogic
     {
 
-        public LargeWiremillRecipeLogic(RecipeMapMultiblockController tileEntity)
+        public LargeMixerRecipeLogic(RecipeMapMultiblockController tileEntity)
         {
-            super(tileEntity);
+            super(tileEntity, true);
         }
 
         @Override
-        protected double getOverclockingDurationFactor()
-        {
-            return getMaxVoltage() >= GTValues.V[GTValues.UV] ? 0.25 : 0.5;
-        }
-
-        @Override
-        public void setMaxProgress(int maxProgress)
-        {
-            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.8, getCasingTier()))));
+        public void setMaxProgress(int maxProgress) {
+            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.8, GTUtility.getTierByVoltage(this.getMaxVoltage())))));
         }
 
         @Override
         public int getParallelLimit()
         {
-            return 16 * GTUtility.getTierByVoltage(this.getMaxVoltage());
+            return 8 * getCasingTier();
         }
 
     }

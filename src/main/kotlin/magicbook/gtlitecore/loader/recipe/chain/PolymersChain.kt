@@ -49,7 +49,6 @@ class PolymersChain
                 .EUt(VA[MV].toLong())
                 .duration(7 * SECOND + 10 * TICK)
                 .buildAndRegister()
-
         }
 
         private fun polyisopreneProcess()

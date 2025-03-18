@@ -90,6 +90,7 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -628,6 +629,21 @@ class GTLiteMaterials
                 b.temp(2425, BlastProperty.GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 25 * SECOND)
                     .vacuumStats(VA[MV], 4 * SECOND + 4 * TICK)
+            }
+            .build()
+
+        // 4004 Staballoy
+        @JvmField
+        val Staballoy: Material = Material.Builder(4004, gtliteId("staballoy"))
+            .ingot()
+            .fluid()
+            .color(0x444B42).iconSet(METALLIC)
+            .components(Uranium, 9, Titanium, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(3450, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[HV], 37 * SECOND + 10 * TICK)
+                    .vacuumStats(VA[MV], 21 * SECOND + 9 * TICK)
             }
             .build()
 

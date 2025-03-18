@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -13,10 +14,12 @@ import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 class MixerRecipes
@@ -73,6 +76,15 @@ class MixerRecipes
                 .duration(20 * SECOND)
                 .buildAndRegister()
 
+            // Staballoy
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Uranium, 9)
+                .input(dust, Titanium, 1)
+                .output(dust, Staballoy, 10)
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
         }
 
     }
