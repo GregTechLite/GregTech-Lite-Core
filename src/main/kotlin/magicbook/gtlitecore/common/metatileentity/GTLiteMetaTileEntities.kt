@@ -23,6 +23,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAutoclave
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBrewery
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
@@ -136,6 +137,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_LASER_ENGRAVER: MetaTileEntityLargeLaserEngraver
         lateinit var LARGE_FLUID_SOLIDIFIER: MetaTileEntityLargeFluidSolidifier
         lateinit var LARGE_BREWERY: MetaTileEntityLargeBrewery
+        lateinit var LARGE_AUTOCLAVE: MetaTileEntityLargeAutoclave
 
         @JvmStatic
         fun preInit()
@@ -477,6 +479,9 @@ class GTLiteMetaTileEntities
             LARGE_BREWERY = MetaTileEntities.registerMetaTileEntity(18111,
                 MetaTileEntityLargeBrewery(GTLiteUtility.gtliteId("large_brewery")))
 
+            LARGE_AUTOCLAVE = MetaTileEntities.registerMetaTileEntity(18112,
+                MetaTileEntityLargeAutoclave(GTLiteUtility.gtliteId("large_autoclave")))
+
         }
 
         @JvmStatic
@@ -540,6 +545,7 @@ class GTLiteMetaTileEntities
             LARGE_LASER_ENGRAVER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_FLUID_SOLIDIFIER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BREWERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_AUTOCLAVE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

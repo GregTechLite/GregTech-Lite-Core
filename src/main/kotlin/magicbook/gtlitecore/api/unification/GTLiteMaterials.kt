@@ -687,7 +687,7 @@ class GTLiteMaterials
             .fluid()
             .color(0x7878B4).iconSet(METALLIC)
             .components(Iron, 7, Aluminium, 4, Nickel, 2, Chrome, 1, Sulfur, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b -> b
                 .temp(3850, BlastProperty.GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
                 .blastStats(VA[HV], 24 * SECOND)
