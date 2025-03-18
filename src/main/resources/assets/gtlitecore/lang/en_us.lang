@@ -1063,6 +1063,11 @@ gtlitecore.machine.large_laser_engraver.tooltip.2=When Voltage tier >= §3UV§7 
 gtlitecore.machine.large_laser_engraver.tooltip.3=Each §eConveyor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_laser_engraver.tooltip.4=Each §aEmitter Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_fluid_solidifier.name=Large Fluid Solidifier
+gtlitecore.machine.large_fluid_solidifier.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_fluid_solidifier.tooltip.2=Each §ePump Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_fluid_solidifier.tooltip.3=Each §aVoltage tier§7 +1, processing +§l4§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum

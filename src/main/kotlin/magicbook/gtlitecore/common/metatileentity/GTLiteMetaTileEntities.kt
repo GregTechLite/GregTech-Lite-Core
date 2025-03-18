@@ -27,6 +27,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtractor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeFluidSolidifier
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeLaserEngraver
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMixer
@@ -132,6 +133,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_EXTRACTOR: MetaTileEntityLargeExtractor
         lateinit var LARGE_ASSEMBLER: MetaTileEntityLargeAssembler
         lateinit var LARGE_LASER_ENGRAVER: MetaTileEntityLargeLaserEngraver
+        lateinit var LARGE_FLUID_SOLIDIFIER: MetaTileEntityLargeFluidSolidifier
 
         @JvmStatic
         fun preInit()
@@ -467,6 +469,9 @@ class GTLiteMetaTileEntities
             LARGE_LASER_ENGRAVER = MetaTileEntities.registerMetaTileEntity(18109,
                 MetaTileEntityLargeLaserEngraver(GTLiteUtility.gtliteId("large_laser_engraver")))
 
+            LARGE_FLUID_SOLIDIFIER = MetaTileEntities.registerMetaTileEntity(18110,
+                MetaTileEntityLargeFluidSolidifier(GTLiteUtility.gtliteId("large_fluid_solidifier")))
+
         }
 
         @JvmStatic
@@ -528,6 +533,7 @@ class GTLiteMetaTileEntities
             LARGE_EXTRACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_ASSEMBLER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_LASER_ENGRAVER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_FLUID_SOLIDIFIER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

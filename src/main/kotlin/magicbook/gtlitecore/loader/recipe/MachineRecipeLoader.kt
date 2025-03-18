@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
@@ -46,6 +47,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.SENSOR_IV
@@ -55,6 +57,7 @@ import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
@@ -86,6 +89,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
@@ -450,6 +454,15 @@ class MachineRecipeLoader
                 'L',LASER_ENGRAVER[IV].stackForm,
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Fluid Solidifier
+            ModHandler.addShapedRecipe(true, "large_fluid_solidifier", LARGE_FLUID_SOLIDIFIER.stackForm,
+                "AXA", "PFP", "GXG",
+                'A', UnificationEntry(plate, Steel),
+                'F', FLUID_SOLIDIFIER[MV].stackForm,
+                'G', UnificationEntry(gear, Steel),
+                'P', ELECTRIC_PUMP_MV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
 
         }
 
