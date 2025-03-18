@@ -1051,6 +1051,12 @@ gtlitecore.machine.large_extractor.tooltip.2=When Voltage tier >= §3UV§7 tier,
 gtlitecore.machine.large_extractor.tooltip.3=Each §eMotor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_extractor.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_assembler.name=Large Assembler
+gtlitecore.machine.large_assembler.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_assembler.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_assembler.tooltip.3=Each §eConveyor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_assembler.tooltip.4=Each §aRobot Arm Casing tier§7 +1, processing +§l16§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum

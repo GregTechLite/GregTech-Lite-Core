@@ -70,6 +70,9 @@ class GTLiteTextures
         @JvmField
         val TALONITE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/talonite")
 
+        @JvmField
+        val IRIDIUM_CASING = GTLiteSimpleOverlayRenderer("casings/metal/iridium")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

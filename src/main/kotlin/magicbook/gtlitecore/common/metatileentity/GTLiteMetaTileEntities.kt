@@ -22,6 +22,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtractor
@@ -128,6 +129,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_WIREMILL: MetaTileEntityLargeWiremill
         lateinit var LARGE_MIXER: MetaTileEntityLargeMixer
         lateinit var LARGE_EXTRACTOR: MetaTileEntityLargeExtractor
+        lateinit var LARGE_ASSEMBLER: MetaTileEntityLargeAssembler
 
         @JvmStatic
         fun preInit()
@@ -457,6 +459,9 @@ class GTLiteMetaTileEntities
             LARGE_EXTRACTOR = MetaTileEntities.registerMetaTileEntity(18107,
                 MetaTileEntityLargeExtractor(GTLiteUtility.gtliteId("large_extractor")))
 
+            LARGE_ASSEMBLER = MetaTileEntities.registerMetaTileEntity(18108,
+                MetaTileEntityLargeAssembler(GTLiteUtility.gtliteId("large_assembler")))
+
         }
 
         @JvmStatic
@@ -516,6 +521,7 @@ class GTLiteMetaTileEntities
             LARGE_WIREMILL.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_MIXER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_EXTRACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_ASSEMBLER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

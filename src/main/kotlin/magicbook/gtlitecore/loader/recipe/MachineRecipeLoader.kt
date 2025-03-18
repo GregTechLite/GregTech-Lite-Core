@@ -41,10 +41,15 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.EMITTER_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_IV
+import gregtech.common.items.MetaItems.SENSOR_IV
+import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
@@ -75,6 +80,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ASSEMBLER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
@@ -422,6 +428,16 @@ class MachineRecipeLoader
                 'H', HULL[IV].stackForm,
                 'I', ELECTRIC_PUMP_IV,
                 'P', ELECTRIC_PISTON_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Assembler
+            ModHandler.addShapedRecipe(true, "large_assembler", LARGE_ASSEMBLER.stackForm,
+                "EXS", "RAR", "CXC",
+                'A', ASSEMBLER[IV].stackForm,
+                'C', CONVEYOR_MODULE_IV,
+                'E', EMITTER_IV,
+                'R', ROBOT_ARM_IV,
+                'S', SENSOR_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }
