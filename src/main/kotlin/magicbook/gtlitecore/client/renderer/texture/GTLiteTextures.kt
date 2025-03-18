@@ -60,6 +60,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_ARC_FURNACE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_arc_furnace")
 
+        @JvmField
+        val LARGE_MACERATOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_macerator")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -87,6 +90,9 @@ class GTLiteTextures
 
         @JvmField
         val WATERTIGHT_STEEL_CASING = GTLiteSimpleOverlayRenderer("casings/metal/watertight_steel")
+
+        @JvmField
+        val STELLITE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/stellite")
 
         // =============================================================================================================
         @JvmField

@@ -1086,6 +1086,12 @@ gtlitecore.machine.large_arc_furnace.tooltip.2=When Voltage tier >= §3UV§7 tie
 gtlitecore.machine.large_arc_furnace.tooltip.3=Each §eCoil tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_arc_furnace.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
 
+gtlitecore.machine.large_macerator.name=Large Macerator
+gtlitecore.machine.large_macerator.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_macerator.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_macerator.tooltip.3=Each §eMotor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_macerator.tooltip.4=Each §aPiston Casing tier§7 +1, processing +§l8§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1217,6 +1223,7 @@ gtlitecore.material.staballoy=Staballoy
 gtlitecore.material.talonite=Talonite
 gtlitecore.material.zeron_100=Zeron-100
 gtlitecore.material.watertight_steel=Watertight Steel
+gtlitecore.material.stellite=Stellite
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

@@ -23,6 +23,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -50,6 +51,7 @@ import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
@@ -76,6 +78,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
+import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
@@ -109,6 +112,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
@@ -511,6 +515,16 @@ class MachineRecipeLoader
                 'A', ALLOY_SMELTER[HV].stackForm,
                 'U', ELECTRIC_PUMP_HV,
                 'W', UnificationEntry(cableGtSingle, Gold),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV))
+
+            // Large Macerator
+            ModHandler.addShapedRecipe(true, "large_macerator", LARGE_MACERATOR.stackForm,
+                "PXP", "CMC", "DWD",
+                'C', ELECTRIC_MOTOR_EV,
+                'D', UnificationEntry(plate, TungstenCarbide),
+                'M', MACERATOR[EV].stackForm,
+                'P', ELECTRIC_PISTON_EV,
+                'W', UnificationEntry(cableGtSingle, Aluminium),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV))
 
         }

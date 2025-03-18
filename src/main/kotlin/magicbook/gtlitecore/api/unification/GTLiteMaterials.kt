@@ -696,6 +696,21 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4008 Stellite
+        @JvmField
+        val Stellite: Material = Material.Builder(4008, gtliteId("stellite"))
+            .ingot()
+            .fluid()
+            .color(0x9991A5).iconSet(SHINY)
+            .components(Cobalt, 9, Chrome, 9, Manganese, 5, Titanium, 2)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(3310, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[EV], 30 * SECOND)
+                    .vacuumStats(VA[MV], 6 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 
