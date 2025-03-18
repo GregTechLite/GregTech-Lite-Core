@@ -33,6 +33,11 @@ public class GTLiteAPI
     public static final BaseCreativeTab TAB_GTLITE = new BaseCreativeTab("gtlite",
             () -> GTLiteMetaTileEntities.PE_CAN.getStackForm(), false);
 
+    // Machines (consists of single machines and multiblock machines) for gtlitecore,
+    // which copied from gregtech's machine creative tabs.
+    public static final BaseCreativeTab TAB_GTLITE_MACHINE = new BaseCreativeTab("gtlite.machine",
+            () -> GTLiteMetaTileEntities.LARGE_CUTTER.getStackForm(), false);
+
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PISTON_CASING = new Object2ObjectOpenHashMap<>();

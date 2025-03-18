@@ -47,6 +47,7 @@ public class CoreModule implements IModule
     {
         MinecraftForge.EVENT_BUS.register(new EventHandlers());
         GTLiteConfigModifier.init();
+        GTLiteMetaTileEntities.preInit();
     }
 
     @Override
@@ -64,6 +65,7 @@ public class CoreModule implements IModule
     public void init(FMLInitializationEvent event)
     {
         DungeonLootLoader.init();
+        GTLiteMetaTileEntities.postInit();
     }
 
     @Override

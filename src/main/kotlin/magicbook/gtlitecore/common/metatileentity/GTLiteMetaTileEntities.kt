@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.common.metatileentity
 
 import gregtech.api.GTValues
+import gregtech.api.block.machines.MachineItemBlock
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.recipes.RecipeMap
@@ -11,6 +12,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
+import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
@@ -31,6 +33,7 @@ import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMul
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
+import net.minecraft.creativetab.CreativeTabs
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
@@ -123,6 +126,12 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_EXTRUDER: MetaTileEntityLargeExtruder
         lateinit var LARGE_WIREMILL: MetaTileEntityLargeWiremill
         lateinit var LARGE_MIXER: MetaTileEntityLargeMixer
+
+        @JvmStatic
+        fun preInit()
+        {
+            MachineItemBlock.addCreativeTab(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+        }
 
         @JvmStatic
         fun init()
@@ -443,6 +452,64 @@ class GTLiteMetaTileEntities
             LARGE_MIXER = MetaTileEntities.registerMetaTileEntity(18106,
                 MetaTileEntityLargeMixer(GTLiteUtility.gtliteId("large_mixer")))
 
+        }
+
+        @JvmStatic
+        fun postInit()
+        {
+            POLISHER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            SLICER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            TOOL_CASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LOOM.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LAMINATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            CHEMICAL_DEHYDRATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            STEAM_VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            STEAM_VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            STEAM_SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            GREENHOUSE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            BIO_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            STEAM_ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            BURNER_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            BATH_CONDENSER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            CRYOGENIC_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+
+            IRON_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            COPPER_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LEAD_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CHROME_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            TUNGSTEN_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            IRIDIUM_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+
+            PE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            PTFE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            PBI_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+
+            BUFFER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+
+            ENERGY_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            DYNAMO_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            ENERGY_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            DYNAMO_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            SUBSTATION_ENERGY_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            SUBSTATION_DYNAMO_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+
+            QUADRUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            QUADRUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            NONUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+
+            COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+
+            LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_CUTTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_EXTRUDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_WIREMILL.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_MIXER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,
