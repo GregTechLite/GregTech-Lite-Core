@@ -20,6 +20,7 @@ import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
+import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
@@ -71,6 +72,7 @@ class RecipeManager
             ExtruderRecipes.init()
             FormingPressRecipes.init()
             MixerRecipes.init()
+            WiremillRecipes.init()
             // Additional machine recipes.
             BathCondenserRecipes.init()
             GreenhouseRecipes.init()
