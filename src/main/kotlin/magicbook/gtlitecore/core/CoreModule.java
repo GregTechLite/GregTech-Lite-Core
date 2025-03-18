@@ -12,6 +12,7 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.module.GTLiteModules;
+import magicbook.gtlitecore.loader.dungeon.DungeonLootLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
@@ -62,7 +63,7 @@ public class CoreModule implements IModule
     @Override
     public void init(FMLInitializationEvent event)
     {
-
+        DungeonLootLoader.init();
     }
 
     @Override

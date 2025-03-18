@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.api;
 
 import gregtech.api.creativetab.BaseCreativeTab;
-import gregtech.api.unification.OreDictUnifier;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
@@ -16,10 +15,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
-
-import static gregtech.api.unification.material.Materials.Diamond;
-import static gregtech.api.unification.ore.OrePrefix.gear;
 
 public class GTLiteAPI
 {
@@ -34,7 +31,7 @@ public class GTLiteAPI
     // the mod, but if item, block or other contents satisfied descriptions of the
     // following CreativeTabs, then should use consistent CreativeTabs.
     public static final BaseCreativeTab TAB_GTLITE = new BaseCreativeTab("gtlite",
-            () -> OreDictUnifier.get(gear, Diamond), false);
+            () -> GTLiteMetaTileEntities.PE_CAN.getStackForm(), false);
 
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();
