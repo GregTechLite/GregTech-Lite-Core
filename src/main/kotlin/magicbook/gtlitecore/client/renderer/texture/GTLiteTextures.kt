@@ -61,6 +61,9 @@ class GTLiteTextures
         @JvmField
         val INCONEL_625_CASING = GTLiteSimpleOverlayRenderer("casings/metal/inconel_625")
 
+        @JvmField
+        val BLUE_STEEL_CASING = GTLiteSimpleOverlayRenderer("casings/metal/blue_steel")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

@@ -9,9 +9,11 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -39,6 +41,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
@@ -49,6 +52,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
+import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
@@ -70,6 +74,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -381,6 +386,15 @@ class MachineRecipeLoader
                 'A', UnificationEntry(plate, Inconel625),
                 'E', EXTRUDER[IV].stackForm,
                 'P', ELECTRIC_PISTON_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Wiremill
+            ModHandler.addShapedRecipe(true, "large_wiremill", LARGE_WIREMILL.stackForm,
+                "MGM", "XWX", "MCM",
+                'C', UnificationEntry(cableGtSingle, Platinum),
+                'G', UnificationEntry(gear, BlueSteel),
+                'M', ELECTRIC_MOTOR_IV,
+                'W', WIREMILL[IV].stackForm,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }

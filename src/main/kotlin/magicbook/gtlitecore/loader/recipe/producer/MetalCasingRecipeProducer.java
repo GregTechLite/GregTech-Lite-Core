@@ -12,6 +12,7 @@ import net.minecraft.util.IStringSerializable;
 import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.unification.material.Materials.BlueSteel;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
@@ -34,6 +35,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.INCONEL_625,
                 Inconel625);
+
+        // Blue Steel
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.BLUE_STEEL,
+                BlueSteel);
 
     }
 

@@ -24,6 +24,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
@@ -119,6 +120,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
         lateinit var LARGE_CUTTER: MetaTileEntityLargeCutter
         lateinit var LARGE_EXTRUDER: MetaTileEntityLargeExtruder
+        lateinit var LARGE_WIREMILL: MetaTileEntityLargeWiremill
 
         @JvmStatic
         fun init()
@@ -432,6 +434,9 @@ class GTLiteMetaTileEntities
 
             LARGE_EXTRUDER = MetaTileEntities.registerMetaTileEntity(18104,
                 MetaTileEntityLargeExtruder(GTLiteUtility.gtliteId("large_extruder")))
+
+            LARGE_WIREMILL = MetaTileEntities.registerMetaTileEntity(18105,
+                MetaTileEntityLargeWiremill(GTLiteUtility.gtliteId("large_wiremill")))
 
         }
 
