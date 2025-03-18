@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -13,6 +14,9 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Steel
@@ -31,6 +35,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
@@ -48,11 +53,14 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.SENSOR_IV
+import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
+import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.AUTOCLAVE
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
@@ -90,6 +98,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ARC_FURNACE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ASSEMBLER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_AUTOCLAVE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
@@ -492,6 +501,17 @@ class MachineRecipeLoader
                 'V', VACUUM_CHAMBER[IV]!!.stackForm,
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Arc Furnace
+            ModHandler.addShapedRecipe(true, "large_arc_furnace", LARGE_ARC_FURNACE.stackForm,
+                "PXP", "FUA", "GWG",
+                'P', UnificationEntry(plateDense, Invar),
+                'G', UnificationEntry(plate, Graphite),
+                'F', ARC_FURNACE[HV].stackForm,
+                'A', ALLOY_SMELTER[HV].stackForm,
+                'U', ELECTRIC_PUMP_HV,
+                'W', UnificationEntry(cableGtSingle, Gold),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV))
 
         }
 

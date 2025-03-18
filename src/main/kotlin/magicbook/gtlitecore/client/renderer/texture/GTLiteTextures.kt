@@ -57,6 +57,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_AUTOCLAVE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_autoclave")
 
+        @JvmField
+        val LARGE_ARC_FURNACE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_arc_furnace")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

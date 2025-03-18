@@ -22,6 +22,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAutoclave
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
@@ -138,6 +139,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_FLUID_SOLIDIFIER: MetaTileEntityLargeFluidSolidifier
         lateinit var LARGE_BREWERY: MetaTileEntityLargeBrewery
         lateinit var LARGE_AUTOCLAVE: MetaTileEntityLargeAutoclave
+        lateinit var LARGE_ARC_FURNACE: MetaTileEntityLargeArcFurnace
 
         @JvmStatic
         fun preInit()
@@ -482,6 +484,9 @@ class GTLiteMetaTileEntities
             LARGE_AUTOCLAVE = MetaTileEntities.registerMetaTileEntity(18112,
                 MetaTileEntityLargeAutoclave(GTLiteUtility.gtliteId("large_autoclave")))
 
+            LARGE_ARC_FURNACE = MetaTileEntities.registerMetaTileEntity(18113,
+                MetaTileEntityLargeArcFurnace(GTLiteUtility.gtliteId("large_arc_furnace")))
+
         }
 
         @JvmStatic
@@ -546,6 +551,7 @@ class GTLiteMetaTileEntities
             LARGE_FLUID_SOLIDIFIER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BREWERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_AUTOCLAVE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_ARC_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

@@ -35,6 +35,7 @@ import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
+import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.Hafnium
@@ -1032,9 +1033,11 @@ class GTLiteMaterials
             Niobium.addFlags(GENERATE_PLATE)
             Zirconium.addFlags(GENERATE_PLATE)
             Hafnium.addFlags(GENERATE_PLATE)
+            Graphite.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
+            Invar.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -1043,6 +1046,7 @@ class GTLiteMaterials
             StainlessSteel.addFlags(GENERATE_DENSE)
             Titanium.addFlags(GENERATE_DENSE)
             Neutronium.addFlags(GENERATE_DENSE)
+            Invar.addFlags(GENERATE_DENSE)
 
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)

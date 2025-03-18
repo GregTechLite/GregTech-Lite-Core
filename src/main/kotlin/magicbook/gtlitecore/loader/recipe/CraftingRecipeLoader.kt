@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
@@ -264,6 +265,11 @@ class CraftingRecipeLoader
             ModHandler.addShapedRecipe(true, "plate_clay", OreDictUnifier.get(plate, Clay),
                 "pC ",
                 'C', ItemStack(Items.CLAY_BALL))
+
+            // Add recipes to graphite plate.
+            ModHandler.addShapedRecipe(true, "plate_graphite", OreDictUnifier.get(plate, Graphite),
+                "pD ",
+                'D', UnificationEntry(dust, Graphite))
 
             // Casting Mold (Empty)
             ModHandler.addShapedRecipe(true, "casting_mold.empty", CASTING_MOLD_EMPTY.stackForm,
