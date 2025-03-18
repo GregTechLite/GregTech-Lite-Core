@@ -49,7 +49,9 @@ public class MetaTileEntityLargeFluidSolidifier extends MultiMapMultiblockContro
     {
         super(metaTileEntityId, new RecipeMap[] {
                 RecipeMaps.FLUID_SOLIDFICATION_RECIPES,
-                GTLiteRecipeMaps.TOOL_CASTER_RECIPES()
+                GTLiteRecipeMaps.TOOL_CASTER_RECIPES(),
+                GTLiteRecipeMaps.LAMINATOR_RECIPES(),
+                GTLiteRecipeMaps.VULCANIZATION_RECIPES()
         });
         this.recipeMapWorkable = new LargeFluidSolidifierRecipeLogic(this);
     }
@@ -90,7 +92,7 @@ public class MetaTileEntityLargeFluidSolidifier extends MultiMapMultiblockContro
                 .where('S', selfPredicate())
                 .where('C', states(getCasingState())
                         .setMinGlobalLimited(2)
-                        .or(autoAbilities(true, true, true, true, true, false, false)))
+                        .or(autoAbilities(true, true, true, true, true, true, false)))
                 .where('Q', states(getPipeCasingState()))
                 .where('P', pumpCasings())
                 .build();

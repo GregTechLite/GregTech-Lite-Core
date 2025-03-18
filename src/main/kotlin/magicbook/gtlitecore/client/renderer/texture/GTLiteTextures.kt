@@ -51,6 +51,9 @@ class GTLiteTextures
         @JvmField
         val CRYOGENIC_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/cryogenic_reactor")
 
+        @JvmField
+        val LARGE_BREWERY_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_brewery")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -75,6 +78,9 @@ class GTLiteTextures
 
         @JvmField
         val ZERON_100_CASING = GTLiteSimpleOverlayRenderer("casings/metal/zeron_100")
+
+        @JvmField
+        val WATERTIGHT_STEEL_CASING = GTLiteSimpleOverlayRenderer("casings/metal/watertight_steel")
 
         // =============================================================================================================
         @JvmField

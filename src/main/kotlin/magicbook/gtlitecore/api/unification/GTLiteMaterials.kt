@@ -680,6 +680,21 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4007 Watertight Steel
+        @JvmField
+        val WatertightSteel: Material = Material.Builder(4007, gtliteId("watertight_steel"))
+            .ingot()
+            .fluid()
+            .color(0x7878B4).iconSet(METALLIC)
+            .components(Iron, 7, Aluminium, 4, Nickel, 2, Chrome, 1, Sulfur, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b -> b
+                .temp(3850, BlastProperty.GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
+                .blastStats(VA[HV], 24 * SECOND)
+                .vacuumStats(VA[MV], 2 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 

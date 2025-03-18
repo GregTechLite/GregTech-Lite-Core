@@ -1068,6 +1068,12 @@ gtlitecore.machine.large_fluid_solidifier.tooltip.1=升级部件外壳或电压�
 gtlitecore.machine.large_fluid_solidifier.tooltip.2=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.large_fluid_solidifier.tooltip.3=每提高1个§a电压等级§7，每次运行可以多处理§l4§r§7个物品。
 
+gtlitecore.machine.large_brewery.name=大型酿造室
+gtlitecore.machine.large_brewery.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_brewery.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_brewery.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_brewery.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1199,6 +1205,7 @@ gtlitecore.material.inconel_625=镍铬基合金-625
 gtlitecore.material.staballoy=贫铀合金
 gtlitecore.material.talonite=铬钴磷酸盐合金
 gtlitecore.material.zeron_100=赛龙-100
+gtlitecore.material.watertight_steel=防水钢
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

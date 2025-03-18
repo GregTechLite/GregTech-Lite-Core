@@ -43,9 +43,11 @@ import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -53,10 +55,12 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
+import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
+import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
@@ -86,6 +90,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ASSEMBLER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
@@ -463,6 +468,17 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, Steel),
                 'P', ELECTRIC_PUMP_MV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
+
+            // Large Brewery
+            ModHandler.addShapedRecipe(true, "large_brewery", LARGE_BREWERY.stackForm,
+                "PXP", "BHF", "MWM",
+                'B', BREWERY[EV].stackForm,
+                'F', FERMENTER[EV].stackForm,
+                'H', HULL[EV].stackForm,
+                'M', ELECTRIC_MOTOR_EV,
+                'P', ELECTRIC_PUMP_EV,
+                'W', UnificationEntry(cableGtSingle, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }
 

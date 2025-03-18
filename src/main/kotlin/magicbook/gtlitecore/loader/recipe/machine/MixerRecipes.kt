@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
@@ -17,6 +18,7 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
@@ -27,6 +29,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
@@ -118,6 +121,19 @@ class MixerRecipes
                 .output(dust, Zeron100, 60)
                 .EUt(VA[IV].toLong())
                 .duration(48 * SECOND)
+                .buildAndRegister()
+
+            // Watertight Steel
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Iron, 7)
+                .input(dust, Aluminium, 4)
+                .input(dust, Nickel, 2)
+                .input(dust, Chrome, 1)
+                .input(dust, Sulfur, 1)
+                .output(dust, WatertightSteel, 15)
+                .EUt(VA[HV].toLong())
+                .duration(25 * SECOND)
                 .buildAndRegister()
 
         }
