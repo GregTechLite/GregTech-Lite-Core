@@ -13,12 +13,14 @@ import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.BlueSteel;
+import static gregtech.api.unification.material.Materials.Iridium;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Talonite;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
 
@@ -46,6 +48,16 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.STABALLOY,
                 Staballoy);
+
+        // Talonite
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.TALONITE,
+                Talonite);
+
+        // Iridium
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.IRIDIUM,
+                Iridium);
 
     }
 

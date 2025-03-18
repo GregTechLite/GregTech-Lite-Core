@@ -24,6 +24,7 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtractor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMixer
@@ -126,6 +127,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_EXTRUDER: MetaTileEntityLargeExtruder
         lateinit var LARGE_WIREMILL: MetaTileEntityLargeWiremill
         lateinit var LARGE_MIXER: MetaTileEntityLargeMixer
+        lateinit var LARGE_EXTRACTOR: MetaTileEntityLargeExtractor
 
         @JvmStatic
         fun preInit()
@@ -452,6 +454,9 @@ class GTLiteMetaTileEntities
             LARGE_MIXER = MetaTileEntities.registerMetaTileEntity(18106,
                 MetaTileEntityLargeMixer(GTLiteUtility.gtliteId("large_mixer")))
 
+            LARGE_EXTRACTOR = MetaTileEntities.registerMetaTileEntity(18107,
+                MetaTileEntityLargeExtractor(GTLiteUtility.gtliteId("large_extractor")))
+
         }
 
         @JvmStatic
@@ -510,6 +515,7 @@ class GTLiteMetaTileEntities
             LARGE_EXTRUDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_WIREMILL.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_MIXER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_EXTRACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

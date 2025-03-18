@@ -44,9 +44,11 @@ import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
+import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
@@ -59,6 +61,7 @@ import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -74,6 +77,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
@@ -408,6 +412,16 @@ class MachineRecipeLoader
                 'M', MIXER[EV].stackForm,
                 'P', UnificationEntry(plate, Staballoy),
                 'W', UnificationEntry(cableGtSingle, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Extractor
+            ModHandler.addShapedRecipe(true, "large_extractor", LARGE_EXTRACTOR.stackForm,
+                "GXG", "PHI", "GEG",
+                'E', EXTRACTOR[IV].stackForm,
+                'G', UnificationEntry(gear, Talonite),
+                'H', HULL[IV].stackForm,
+                'I', ELECTRIC_PUMP_IV,
+                'P', ELECTRIC_PISTON_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }

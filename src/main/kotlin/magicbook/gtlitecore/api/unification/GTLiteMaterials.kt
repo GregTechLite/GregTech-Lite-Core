@@ -58,6 +58,7 @@ import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
+import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Pyrochlore
@@ -644,6 +645,21 @@ class GTLiteMaterials
                 b.temp(3450, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 37 * SECOND + 10 * TICK)
                     .vacuumStats(VA[MV], 21 * SECOND + 9 * TICK)
+            }
+            .build()
+
+        // 4005 Talonite
+        @JvmField
+        val Talonite: Material = Material.Builder(4005, gtliteId("talonite"))
+            .ingot()
+            .fluid()
+            .color(0x9991A5).iconSet(SHINY)
+            .components(Cobalt, 4, Chrome, 3, Phosphorus, 2, Molybdenum, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(3454, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[HV], 28 * SECOND + 10 * TICK)
+                    .vacuumStats(VA[MV], 3 * SECOND + 18 * TICK)
             }
             .build()
 

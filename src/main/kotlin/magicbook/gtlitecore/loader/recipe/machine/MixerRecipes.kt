@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -20,6 +21,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 class MixerRecipes
@@ -85,6 +87,19 @@ class MixerRecipes
                 .EUt(VA[HV].toLong())
                 .duration(15 * SECOND)
                 .buildAndRegister()
+
+            // Talonite
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Cobalt, 4)
+                .input(dust, Chrome, 3)
+                .input(dust, Phosphorus, 2)
+                .input(dust, Molybdenum, 1)
+                .output(dust, Talonite, 10)
+                .EUt(VA[HV].toLong())
+                .duration(24 * SECOND)
+                .buildAndRegister()
+
         }
 
     }
