@@ -58,6 +58,7 @@ import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
@@ -86,6 +87,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
@@ -438,6 +440,15 @@ class MachineRecipeLoader
                 'E', EMITTER_IV,
                 'R', ROBOT_ARM_IV,
                 'S', SENSOR_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
+
+            // Large Laser Engraver
+            ModHandler.addShapedRecipe(true, "large_laser_engraver", LARGE_LASER_ENGRAVER.stackForm,
+                "EXE", "LHL", "WXW",
+                'E', EMITTER_IV,
+                'H',HULL[IV].stackForm,
+                'L',LASER_ENGRAVER[IV].stackForm,
+                'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV))
 
         }

@@ -1,6 +1,8 @@
 package magicbook.gtlitecore.api.unification
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
@@ -660,6 +662,21 @@ class GTLiteMaterials
                 b.temp(3454, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 28 * SECOND + 10 * TICK)
                     .vacuumStats(VA[MV], 3 * SECOND + 18 * TICK)
+            }
+            .build()
+
+        // 4006 Zeron-100
+        @JvmField
+        val Zeron100: Material = Material.Builder(4006, gtliteId("zeron_100"))
+            .ingot()
+            .fluid()
+            .color(0xB4B414).iconSet(SHINY)
+            .components(Chrome, 13, Nickel, 3, Molybdenum, 2, Copper, 10, Tungsten, 2, Steel, 20)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(5400, BlastProperty.GasTier.HIGH) // HSS-G
+                    .blastStats(VA[IV], 48 * SECOND)
+                    .vacuumStats(VA[EV], 5 * SECOND + 8 * TICK)
             }
             .build()
 

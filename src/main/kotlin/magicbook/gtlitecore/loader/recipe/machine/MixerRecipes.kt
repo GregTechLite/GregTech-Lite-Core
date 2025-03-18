@@ -2,26 +2,32 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.ore.OrePrefix.dust
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 class MixerRecipes
@@ -98,6 +104,20 @@ class MixerRecipes
                 .output(dust, Talonite, 10)
                 .EUt(VA[HV].toLong())
                 .duration(24 * SECOND)
+                .buildAndRegister()
+
+            // Zeron-100
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, Chrome, 13)
+                .input(dust, Nickel, 3)
+                .input(dust, Molybdenum, 2)
+                .input(dust, Copper, 10)
+                .input(dust, Tungsten, 2)
+                .input(dust, Steel, 20)
+                .output(dust, Zeron100, 60)
+                .EUt(VA[IV].toLong())
+                .duration(48 * SECOND)
                 .buildAndRegister()
 
         }
