@@ -65,6 +65,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
@@ -1048,6 +1049,9 @@ class GTLiteMaterials
             Hafnium.addFlags(GENERATE_FOIL)
             Kanthal.addFlags(GENERATE_FOIL)
 
+            // frameGt
+            Potin.addFlags(GENERATE_FRAME)
+
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
             Darmstadtium.addFlags(GENERATE_GEAR)
@@ -1102,6 +1106,7 @@ class GTLiteMaterials
             Titanium.addFlags(GENERATE_DENSE)
             Neutronium.addFlags(GENERATE_DENSE)
             Invar.addFlags(GENERATE_DENSE)
+            Potin.addFlags(GENERATE_DENSE)
 
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)

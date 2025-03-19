@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -32,6 +33,7 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
@@ -71,6 +73,7 @@ import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
+import gregtech.common.metatileentities.MetaTileEntities.ELECTROLYZER
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
@@ -114,6 +117,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROLYZER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
@@ -554,6 +558,16 @@ class MachineRecipeLoader
                 'P', UnificationEntry(plate, EglinSteel),
                 'G', UnificationEntry(gear, EglinSteel),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV))
+
+            // Large Electrolyzer
+            ModHandler.addShapedRecipe(true, "large_electrolyzer", LARGE_ELECTROLYZER.stackForm,
+                "DXD", "PEP", "WHW",
+                'E', ELECTROLYZER[HV].stackForm,
+                'H', UnificationEntry(pipeHugeFluid, Potin),
+                'W', UnificationEntry(cableGtSingle, Gold),
+                'P', ELECTRIC_PUMP_HV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'D', UnificationEntry(plateDense, Potin))
 
         }
 
