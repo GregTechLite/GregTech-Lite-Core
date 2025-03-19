@@ -23,6 +23,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Stellite;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Talonite;
@@ -106,6 +107,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.BABBIT_ALLOY,
                 BabbitAlloy);
+
+        // Silicon Carbide
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.SILICON_CARBIDE,
+                SiliconCarbide);
 
     }
 

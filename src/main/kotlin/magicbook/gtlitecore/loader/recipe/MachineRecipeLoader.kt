@@ -78,6 +78,8 @@ import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
+import gregtech.common.metatileentities.MetaTileEntities.DISTILLATION_TOWER
+import gregtech.common.metatileentities.MetaTileEntities.DISTILLERY
 import gregtech.common.metatileentities.MetaTileEntities.ELECTROLYZER
 import gregtech.common.metatileentities.MetaTileEntities.ELECTROMAGNETIC_SEPARATOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
@@ -127,6 +129,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_DISTILLERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROLYZER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROMAGNET
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
@@ -610,6 +613,15 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Copper),
                 'A', UnificationEntry(plate, BabbitAlloy),
                 'G', UnificationEntry(gear, BabbitAlloy))
+
+            // Large Distillery
+            ModHandler.addShapedRecipe(true, "large_distillery", LARGE_DISTILLERY.stackForm,
+                "PXP", "DRD", "WXW",
+                'R', DISTILLERY[IV].stackForm,
+                'D', DISTILLATION_TOWER.stackForm,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'P', ELECTRIC_PUMP_IV)
 
         }
 

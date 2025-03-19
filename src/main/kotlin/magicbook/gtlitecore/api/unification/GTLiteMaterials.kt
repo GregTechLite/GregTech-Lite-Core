@@ -832,7 +832,7 @@ class GTLiteMaterials
             .components(EglinSteelBase, 10, Sulfur, 1, Silicon, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(1048, BlastProperty.GasTier.LOW)
+                b.temp(1048, BlastProperty.GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 1 * SECOND + 4 * TICK)
             }
             .build()
@@ -863,6 +863,21 @@ class GTLiteMaterials
             .blast { b ->
                 b.temp(737, BlastProperty.GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 8 * SECOND)
+            }
+            .build()
+
+        // 4014 Silicon Carbide
+        @JvmField
+        val SiliconCarbide: Material = Material.Builder(4014, gtliteId("silicon_carbide"))
+            .ingot()
+            .fluid()
+            .color(0x404040).iconSet(METALLIC)
+            .components(Silicon, 1, Carbon, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(3850, BlastProperty.GasTier.HIGH) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
+                    .blastStats(VA[IV], 7 * SECOND + 10 * TICK)
+                    .vacuumStats(VA[EV], 3 * SECOND + 5 * TICK)
             }
             .build()
 

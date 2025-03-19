@@ -121,6 +121,8 @@ class GTLiteTextures
         @JvmField
         val BABBIT_ALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/babbit_alloy")
 
+        @JvmField
+        val SILICON_CARBIDE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/silicon_carbide")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

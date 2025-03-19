@@ -30,6 +30,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBrewery
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCentrifuge
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeDistillery
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeElectrolyzer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeElectromagnet
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtractor
@@ -155,6 +156,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_ELECTROLYZER: MetaTileEntityLargeElectrolyzer
         lateinit var LARGE_ORE_WASHER: MetaTileEntityLargeOreWasher
         lateinit var LARGE_ELECTROMAGNET: MetaTileEntityLargeElectromagnet
+        lateinit var LARGE_DISTILLERY: MetaTileEntityLargeDistillery
 
         @JvmStatic
         fun preInit()
@@ -523,6 +525,9 @@ class GTLiteMetaTileEntities
             LARGE_ELECTROMAGNET = MetaTileEntities.registerMetaTileEntity(18119,
                 MetaTileEntityLargeElectromagnet(GTLiteUtility.gtliteId("large_electromagnet")))
 
+            LARGE_DISTILLERY = MetaTileEntities.registerMetaTileEntity(18120,
+                MetaTileEntityLargeDistillery(GTLiteUtility.gtliteId("large_distillery")))
+
         }
 
         @JvmStatic
@@ -596,6 +601,7 @@ class GTLiteMetaTileEntities
             LARGE_ELECTROLYZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_ORE_WASHER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_ELECTROMAGNET.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_DISTILLERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,
