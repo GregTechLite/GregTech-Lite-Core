@@ -10,17 +10,20 @@ import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Titanium
@@ -28,6 +31,8 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -162,6 +167,43 @@ class MixerRecipes
                 .output(dust, Tumbaga, 10)
                 .EUt(VA[MV].toLong())
                 .duration(14 * SECOND)
+                .buildAndRegister()
+
+            // Eglin Steel Base
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Iron, 4)
+                .input(dust, Kanthal, 1)
+                .input(dust, Invar, 5)
+                .output(dust, EglinSteelBase, 10)
+                .EUt(VA[MV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Eglin Steel
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, EglinSteelBase, 10)
+                .input(dust, Sulfur, 1)
+                .input(dust, Silicon, 1)
+                .input(dust, Carbon, 1)
+                .output(dust, EglinSteel, 13)
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // One-Step recipe of Eglin Steel.
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, Iron, 4)
+                .input(dust, Kanthal, 1)
+                .input(dust, Invar, 5)
+                .input(dust, Sulfur, 1)
+                .input(dust, Silicon, 1)
+                .input(dust, Carbon, 1)
+                .output(dust, EglinSteel, 13)
+                .EUt(VA[MV].toLong())
+                .duration(15 * SECOND)
                 .buildAndRegister()
 
         }

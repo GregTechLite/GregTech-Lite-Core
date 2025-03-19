@@ -63,6 +63,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_MACERATOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_macerator")
 
+        @JvmField
+        val LARGE_SIFTER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_sifter")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -96,6 +99,9 @@ class GTLiteTextures
 
         @JvmField
         val TUMBAGA_CASING = GTLiteSimpleOverlayRenderer("casings/metal/tumbaga")
+
+        @JvmField
+        val EGLIN_STEEL_CASING = GTLiteSimpleOverlayRenderer("casings/metal/eglin_steel")
 
         // =============================================================================================================
         @JvmField

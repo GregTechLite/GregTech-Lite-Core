@@ -82,10 +82,12 @@ import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
+import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
@@ -119,6 +121,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -541,6 +544,15 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, RedSteel),
                 'W', UnificationEntry(cableGtSingle, Gold),
                 'D', UnificationEntry(plateDense, Tumbaga),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV))
+
+            // Large Sifter
+            ModHandler.addShapedRecipe(true, "large_sifter", LARGE_SIFTER.stackForm,
+                "PXP", "WSW", "GXG",
+                'S', SIFTER[HV].stackForm,
+                'W', UnificationEntry(cableGtSingle, Gold),
+                'P', UnificationEntry(plate, EglinSteel),
+                'G', UnificationEntry(gear, EglinSteel),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV))
 
         }

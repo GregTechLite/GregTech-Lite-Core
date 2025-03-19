@@ -1098,6 +1098,11 @@ gtlitecore.machine.large_centrifuge.tooltip.2=当电压等级大于等于§3UV§
 gtlitecore.machine.large_centrifuge.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_centrifuge.tooltip.4=每提高1个§a电压外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
+gtlitecore.machine.large_sifter.name=大型筛选器
+gtlitecore.machine.large_sifter.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_sifter.tooltip.2=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_sifter.tooltip.3=每提高1个§a传送带外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1232,6 +1237,8 @@ gtlitecore.material.zeron_100=赛龙-100
 gtlitecore.material.watertight_steel=防水钢
 gtlitecore.material.stellite=司太立合金
 gtlitecore.material.tumbaga=铜金合金
+gtlitecore.material.eglin_steel_base=埃格林钢粗胚
+gtlitecore.material.eglin_steel=埃格林钢
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

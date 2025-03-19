@@ -728,6 +728,29 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4010 Eglin Steel Base
+        @JvmField
+        val EglinSteelBase: Material = Material.Builder(4010, gtliteId("eglin_steel_base"))
+            .dust()
+            .color(0x8B4513).iconSet(SAND)
+            .components(Iron, 4, Kanthal, 1, Invar, 5)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 4011 Eglin Steel
+        @JvmField
+        val EglinSteel: Material = Material.Builder(4011, gtliteId("eglin_steel"))
+            .ingot()
+            .fluid()
+            .color(0x8B4513).iconSet(METALLIC)
+            .components(EglinSteelBase, 10, Sulfur, 1, Silicon, 1, Carbon, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(1048, BlastProperty.GasTier.LOW)
+                    .blastStats(VA[MV], 1 * SECOND + 4 * TICK)
+            }
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 

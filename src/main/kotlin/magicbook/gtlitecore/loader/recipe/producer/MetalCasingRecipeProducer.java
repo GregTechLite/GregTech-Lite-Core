@@ -17,6 +17,7 @@ import static gregtech.api.unification.material.Materials.Iridium;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
@@ -82,6 +83,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.TUMBAGA,
                 Tumbaga);
+
+        // Eglin Steel
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.EGLIN_STEEL,
+                EglinSteel);
 
     }
 
