@@ -69,6 +69,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_ELECTROLYZER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_electrolyzer")
 
+        @JvmField
+        val LARGE_ORE_WASHER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_ore_washer")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -108,6 +111,9 @@ class GTLiteTextures
 
         @JvmField
         val POTIN_CASING = GTLiteSimpleOverlayRenderer("casings/metal/potin")
+
+        @JvmField
+        val GRISIUM_CASING = GTLiteSimpleOverlayRenderer("casings/metal/grisium")
 
         // =============================================================================================================
         @JvmField

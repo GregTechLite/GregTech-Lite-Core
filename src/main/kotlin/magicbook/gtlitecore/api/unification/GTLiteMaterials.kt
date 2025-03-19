@@ -49,6 +49,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
@@ -743,7 +744,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x9991A5).iconSet(SHINY)
             .components(Cobalt, 4, Chrome, 3, Phosphorus, 2, Molybdenum, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_ROTOR)
             .blast { b ->
                 b.temp(3454, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 28 * SECOND + 10 * TICK)
@@ -831,6 +833,21 @@ class GTLiteMaterials
             .blast { b ->
                 b.temp(1048, BlastProperty.GasTier.LOW)
                     .blastStats(VA[MV], 1 * SECOND + 4 * TICK)
+            }
+            .build()
+
+        // 4012 Grisium
+        @JvmField
+        val Grisium: Material = Material.Builder(4012, gtliteId("grisium"))
+            .ingot()
+            .fluid()
+            .color(0x355D6A).iconSet(METALLIC)
+            .components(Titanium, 9, Carbon, 9, Potassium, 9, Lithium, 9, Sulfur, 9, Hydrogen, 5)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(3550, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[EV], 26 * SECOND)
+                    .vacuumStats(VA[HV], 13 * SECOND)
             }
             .build()
 
