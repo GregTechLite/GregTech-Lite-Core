@@ -1118,6 +1118,12 @@ gtlitecore.machine.large_ore_washer.tooltip.2=When Voltage tier >= §3UV§7 tier
 gtlitecore.machine.large_ore_washer.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_ore_washer.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_electromagnet.name=Large Electromagnet
+gtlitecore.machine.large_electromagnet.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_electromagnet.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_electromagnet.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_electromagnet.tooltip.4=Each §aField Generator Casing tier§7 +1, processing +§l8§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1263,6 +1269,7 @@ gtlitecore.material.tumbaga=Tumbaga
 gtlitecore.material.eglin_steel_base=Eglin Steel Base
 gtlitecore.material.eglin_steel=Eglin Steel
 gtlitecore.material.grisium=Grisium
+gtlitecore.material.babbit_alloy=Babbit Alloy
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

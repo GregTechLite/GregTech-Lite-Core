@@ -18,6 +18,7 @@ import static gregtech.api.unification.material.Materials.Potin;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
@@ -100,6 +101,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.GRISIUM,
                 Grisium);
+
+        // Babbit Alloy
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.BABBIT_ALLOY,
+                BabbitAlloy);
 
     }
 

@@ -9,30 +9,39 @@ import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Antimony
+import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -44,6 +53,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Watertight
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class MixerRecipes
 {
 
@@ -204,6 +214,32 @@ class MixerRecipes
                 .output(dust, EglinSteel, 13)
                 .EUt(VA[MV].toLong())
                 .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Grisium
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, Titanium, 9)
+                .input(dust, Carbon, 9)
+                .input(dust, Potassium, 9)
+                .input(dust, Lithium, 9)
+                .input(dust, Sulfur, 9)
+                .fluidInputs(Hydrogen.getFluid(5000))
+                .output(dust, Grisium, 50)
+                .EUt(VA[EV].toLong())
+                .duration(38 * SECOND)
+                .buildAndRegister()
+
+            // Babbit Alloy
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Tin, 5)
+                .input(dust, Lead, 36)
+                .input(dust, Antimony, 8)
+                .input(dust, Arsenic)
+                .output(dust, BabbitAlloy, 50)
+                .EUt(VA[MV].toLong())
+                .duration(40 * SECOND)
                 .buildAndRegister()
 
         }

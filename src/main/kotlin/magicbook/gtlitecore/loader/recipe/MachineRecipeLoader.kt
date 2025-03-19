@@ -13,6 +13,7 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
@@ -55,6 +56,7 @@ import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
@@ -77,6 +79,7 @@ import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.ELECTROLYZER
+import gregtech.common.metatileentities.MetaTileEntities.ELECTROMAGNETIC_SEPARATOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
@@ -89,11 +92,13 @@ import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
+import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -123,6 +128,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROLYZER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROMAGNET
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
@@ -593,6 +599,17 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Aluminium),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV),
                 'G', MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+
+            // Large Electromagnet
+            ModHandler.addShapedRecipe(true, "large_electromagnet", LARGE_ELECTROMAGNET.stackForm,
+                "AGA", "PHE", "WMW",
+                'P', POLARIZER[MV].stackForm,
+                'E', ELECTROMAGNETIC_SEPARATOR[MV].stackForm,
+                'H', HULL[MV].stackForm,
+                'M', CONVEYOR_MODULE_MV,
+                'W', UnificationEntry(cableGtSingle, Copper),
+                'A', UnificationEntry(plate, BabbitAlloy),
+                'G', UnificationEntry(gear, BabbitAlloy))
 
         }
 

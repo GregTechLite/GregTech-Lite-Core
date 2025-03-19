@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BlueTopaz
@@ -848,6 +849,20 @@ class GTLiteMaterials
                 b.temp(3550, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 26 * SECOND)
                     .vacuumStats(VA[HV], 13 * SECOND)
+            }
+            .build()
+
+        // 4013 Babbit Alloy
+        @JvmField
+        val BabbitAlloy: Material = Material.Builder(4013, gtliteId("babbit_alloy"))
+            .ingot()
+            .fluid()
+            .color(0xA19CA4).iconSet(METALLIC)
+            .components(Tin, 5, Lead, 36, Antimony, 8, Arsenic, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(737, BlastProperty.GasTier.LOW) // Cupronickel
+                    .blastStats(VA[MV], 8 * SECOND)
             }
             .build()
 
