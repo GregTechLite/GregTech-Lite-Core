@@ -609,6 +609,7 @@ recipemap.burner_reactor.name=Burner Reactor
 recipemap.bath_condenser.name=Bath Condenser
 recipemap.cryogenic_reactor.name=Cryogenic Reactor
 recipemap.large_mixer.name=Large Mixer
+recipemap.catalytic_reformer.name=Catalytic Reformer
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1009,6 +1010,8 @@ gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOut
 gtlitecore.machine.coagulation_tank.tooltip.3=The vertical middle layer can expand/contract, each 1 extra layer increase §e1 parallel.
 gtlitecore.machine.coagulation_tank.tooltip.4=Need to placed Iron Stick as a frame to support latex, otherwise cannot proceed.
 
+gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
@@ -1232,6 +1235,7 @@ gtlitecore.material.cryolite=Cryolite
 gtlitecore.material.aluminium_hydroxide=Aluminium Hydroxide
 gtlitecore.material.sodium_aluminate=Sodium Aluminate
 gtlitecore.material.sodium_carbonate=Sodium Carbonate
+gtlitecore.material.aluminium_sulfate=Aluminium Sulfate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1252,6 +1256,7 @@ gtlitecore.material.blue_schist=Blue Schist
 gtlitecore.material.kimberlite=Kimberlite
 gtlitecore.material.slate=Slate
 gtlitecore.material.shale=Shale
+gtlitecore.material.para_xylene=Para Xylene
 
 gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane

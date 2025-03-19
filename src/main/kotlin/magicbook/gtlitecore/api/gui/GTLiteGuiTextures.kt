@@ -43,6 +43,10 @@ class GTLiteGuiTextures
         val DISH_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/dish_overlay.png")
 
+        @JvmField
+        val PLATE_OVERLAY: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/plate_overlay.png")
+
         // Progress Bars
         @JvmField
         val PROGRESS_BAR_SLICING = TextureArea.fullImage(

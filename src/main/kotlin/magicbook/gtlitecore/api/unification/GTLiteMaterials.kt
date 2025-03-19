@@ -72,6 +72,7 @@ import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Realgar
+import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
@@ -596,6 +597,25 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 2045 Aluminium Sulfate
+        @JvmField
+        val AluminiumSulfate: Material = Material.Builder(2045, gtliteId("aluminium_sulfate"))
+            .dust()
+            .colorAverage()
+            .components(Aluminium, 2, Sulfur, 3, Oxygen, 12)
+            .build()
+            .setFormula("Al2(SO4)3", true)
+
+        // 2046 ZSM-5
+        @JvmField
+        val ZSM5: Material = Material.Builder(2046, gtliteId("zsm_5"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
+            .components(Sodium, 1, Aluminium, 2, Sulfur, 3, Silicon, 2, Oxygen, 18, Hydrogen, 4)
+            .build()
+            .setFormula("Na(Al2(SO4)3)(SiO2)2(H2O)2", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -854,6 +874,15 @@ class GTLiteMaterials
             .flags(NO_SMASHING, NO_SMELTING)
             .build()
 
+        // 8004 Para Xylene
+        @JvmField
+        val ParaXylene: Material = Material.Builder(8004, gtliteId("para_xylene"))
+            .liquid()
+            .color(0x666040)
+            .components(Carbon, 8, Hydrogen, 10)
+            .build()
+            .setFormula("C6H4(CH3)2", true)
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -934,7 +963,7 @@ class GTLiteMaterials
         {
             // DustProperty can be overridden to IngotProperty or GemProperty yet,
             // please see: MaterialPropertiesMixin#setProperty().
-            sequenceOf(Strontium).forEach { addIngot(it) }
+            sequenceOf(Strontium, Rhenium).forEach { addIngot(it) }
 
             sequenceOf(Rubidium).forEach { addDust(it) }
 
@@ -1093,6 +1122,7 @@ class GTLiteMaterials
             Zirconium.addFlags(GENERATE_PLATE)
             Hafnium.addFlags(GENERATE_PLATE)
             Graphite.addFlags(GENERATE_PLATE)
+            Rhenium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

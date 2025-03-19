@@ -21,6 +21,7 @@ import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
@@ -130,6 +131,8 @@ class GTLiteMetaTileEntities
 
         // Multiblock machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
+
+        lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -456,6 +459,9 @@ class GTLiteMetaTileEntities
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
                 MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
 
+            CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
+                MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -558,6 +564,8 @@ class GTLiteMetaTileEntities
             NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+
+            CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

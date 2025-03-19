@@ -21,12 +21,14 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
+import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
@@ -105,6 +107,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_E
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CATALYTIC_REFORMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
@@ -401,6 +404,15 @@ class MachineRecipeLoader
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // Catalytic Reformer
+            ModHandler.addShapedRecipe(true, "catalytic_reformer", CATALYTIC_REFORMER.stackForm,
+                "MCM", "PHP", "MKM",
+                'M', UnificationEntry(pipeNormalFluid, StainlessSteel),
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'P', ELECTRIC_PUMP_HV,
+                'H', HULL[HV].stackForm,
+                'K', UnificationEntry(cableGtDouble, Gold))
 
             // Large Forge Hammer
             ModHandler.addShapedRecipe(true, "large_forge_hammer", LARGE_FORGE_HAMMER.stackForm,

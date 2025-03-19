@@ -609,6 +609,7 @@ recipemap.burner_reactor.name=燃烧反应室
 recipemap.bath_condenser.name=水浴冷凝槽
 recipemap.cryogenic_reactor.name=低温反应室
 recipemap.large_mixer.name=大型搅拌机
+recipemap.catalytic_reformer.name=催化重整
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1009,6 +1010,8 @@ gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f�
 gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
 gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
+gtlitecore.machine.catalytic_reformer.name=催化重整机
+
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
@@ -1233,6 +1236,9 @@ gtlitecore.material.cryolite=冰晶石
 gtlitecore.material.aluminium_hydroxide=氢氧化铝
 gtlitecore.material.sodium_aluminate=铝酸钠
 gtlitecore.material.sodium_carbonate=碳酸钠
+gtlitecore.material.aluminium_sulfate=硫酸铝
+gtlitecore.material.zsm_5=沸石分子筛
+item.gtlitecore.material.zsm_5.plate=沸石分子筛
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1257,6 +1263,7 @@ gtlitecore.material.shale=页岩
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷
 gtlitecore.material.polyisoprene=聚异戊二烯（PI）
+gtlitecore.material.para_xylene=对二甲苯
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

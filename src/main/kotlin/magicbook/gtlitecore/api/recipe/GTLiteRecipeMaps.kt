@@ -424,6 +424,22 @@ class GTLiteRecipeMaps
             .build()
             .setSmallRecipeMap(RecipeMaps.MIXER_RECIPES)
 
+        /**
+         * @zenProp catalytic_reformer
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CATALYTIC_REFORMER_RECIPES")
+        val CATALYTIC_REFORMER_RECIPES = RecipeMapBuilder("catalytic_reformer", SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(0)
+            .fluidInputs(1)
+            .fluidOutputs(4)
+            .itemSlotOverlay(GTLiteGuiTextures.PLATE_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_CRACKING)
+            .sound(GTSoundEvents.FURNACE)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

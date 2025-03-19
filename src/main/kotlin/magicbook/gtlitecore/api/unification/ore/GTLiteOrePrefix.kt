@@ -93,6 +93,10 @@ class GTLiteOrePrefix
             dustSmall.setIgnored(Materials.Zirconia)
             dustTiny.setIgnored(Materials.Zirconia)
 
+            // Deleted ZSM-5 dusts.
+            dust.setIgnored(GTLiteMaterials.ZSM5)
+            dustSmall.setIgnored(GTLiteMaterials.ZSM5)
+            dustTiny.setIgnored(GTLiteMaterials.ZSM5)
         }
 
         fun addToMetaItem()
