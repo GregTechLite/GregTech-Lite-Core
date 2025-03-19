@@ -48,17 +48,20 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mica
+import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
@@ -66,11 +69,13 @@ import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Potin
+import gregtech.api.unification.material.Materials.Powellite
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
+import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
@@ -102,6 +107,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
@@ -616,6 +622,62 @@ class GTLiteMaterials
             .build()
             .setFormula("Na(Al2(SO4)3)(SiO2)2(H2O)2", true)
 
+        // 2047 Molybdenum Trioxide
+        @JvmField
+        val MolybdenumTrioxide: Material = Material.Builder(2047, gtliteId("molybdenum_trioxide"))
+            .dust()
+            .color(0xCBCFDA)
+            .iconSet(ROUGH)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Molybdenum, 1, Oxygen, 3)
+            .build()
+
+        // 2048 Molybdenum Flue
+        @JvmField
+        val MolybdenumFlue: Material = Material.Builder(2048, gtliteId("molybdenum_flue"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x39194A)
+            .components(Rhenium, 1, Oxygen, 2, RareEarth, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2049 Lead Dichloride
+        @JvmField
+        val LeadDichloride: Material = Material.Builder(2049, gtliteId("lead_dichloride"))
+            .dust()
+            .color(0xF3F3F3).iconSet(ROUGH)
+            .components(Lead, 1, Chlorine, 2)
+            .build()
+
+        // 2050 Trace Rhenium Flue
+        @JvmField
+        val TraceRheniumFlue: Material = Material.Builder(2050, gtliteId("trace_rhenium_flue"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x96D6D5)
+            .components(Rhenium, 1, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2051 Perrhenic Acid
+        @JvmField
+        val PerrhenicAcid: Material = Material.Builder(2051, gtliteId("perrhenic_acid"))
+            .dust()
+            .color(0xE6DC70).iconSet(SHINY)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Hydrogen, 1, Rhenium, 1, Oxygen, 4)
+            .build()
+
+        // 2052 Ammonium Perrhenate
+        @JvmField
+        val AmmoniumPerrhenate: Material = Material.Builder(2052, gtliteId("ammonium_perrhenate"))
+            .dust()
+            .color(0xA69970).iconSet(METALLIC)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1063,10 +1125,18 @@ class GTLiteMaterials
             Uvarovite.setProperty(PropertyKey.ORE, OreProperty())
             Uvarovite.getProperty(PropertyKey.ORE).setOreByProducts(Quartzite, Uvarovite, Lizardite)
 
+            // Modified molybdenite properties.
+            Molybdenite.getProperty(PropertyKey.ORE).directSmeltResult = null
+
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
                 FluidPipeProperties(2010, 175,
                     true, true, true, false))
+
+            // Add blast properties.
+            Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
+            Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
+
         }
 
         fun setMaterialFlags()
@@ -1168,6 +1238,10 @@ class GTLiteMaterials
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
             Tantalite.addFlags(DISABLE_DECOMPOSITION)
+            // Disabled molybdenite, powellite and wulfenite ore composition for Molybdenum-Rhenium chain.
+            Molybdenite.addFlags(DISABLE_DECOMPOSITION)
+            Powellite.addFlags(DISABLE_DECOMPOSITION)
+            Wulfenite.addFlags(DISABLE_DECOMPOSITION)
         }
 
         // Quick-path of add MaterialProperty to a material.

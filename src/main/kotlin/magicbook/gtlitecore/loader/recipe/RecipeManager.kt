@@ -23,6 +23,7 @@ import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
@@ -57,6 +58,7 @@ class RecipeManager
             StrontiumProcessing.init()
             NiobiumTantalumProcessing.init()
             CaesiumRubidiumProcessing.init()
+            MolybdenumRheniumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

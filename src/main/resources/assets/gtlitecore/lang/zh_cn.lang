@@ -1239,6 +1239,12 @@ gtlitecore.material.sodium_carbonate=碳酸钠
 gtlitecore.material.aluminium_sulfate=硫酸铝
 gtlitecore.material.zsm_5=沸石分子筛
 item.gtlitecore.material.zsm_5.plate=沸石分子筛
+gtlitecore.material.molybdenum_trioxide=三氧化钼
+gtlitecore.material.molybdenum_flue=钼烟气
+gtlitecore.material.lead_dichloride=二氯化铅
+gtlitecore.material.trace_rhenium_flue=微量铼烟气
+gtlitecore.material.perrhenic_acid=高铼酸
+gtlitecore.material.ammonium_perrhenate=高铼酸铵
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

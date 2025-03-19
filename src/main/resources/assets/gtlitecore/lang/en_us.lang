@@ -1236,6 +1236,14 @@ gtlitecore.material.aluminium_hydroxide=Aluminium Hydroxide
 gtlitecore.material.sodium_aluminate=Sodium Aluminate
 gtlitecore.material.sodium_carbonate=Sodium Carbonate
 gtlitecore.material.aluminium_sulfate=Aluminium Sulfate
+gtlitecore.material.zsm_5=ZSM-5
+item.gtlitecore.material.zsm_5.plate=ZSM-5
+gtlitecore.material.molybdenum_trioxide=Molybdenum Trioxide
+gtlitecore.material.molybdenum_flue=Molybdenum Flue
+gtlitecore.material.lead_dichloride=Lead Dichloride
+gtlitecore.material.trace_rhenium_flue=Trace Rhenium Flue
+gtlitecore.material.perrhenic_acid=Perrhenic Acid
+gtlitecore.material.ammonium_perrhenate=Ammonium Perrhenate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
