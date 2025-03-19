@@ -4,13 +4,16 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Manganese
@@ -31,6 +34,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -148,6 +152,16 @@ class MixerRecipes
                 .output(dust, Stellite, 25)
                 .EUt(VA[HV].toLong())
                 .duration(18 * SECOND)
+                .buildAndRegister()
+
+            // Tumbaga
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Gold, 7)
+                .input(dust, Bronze, 3)
+                .output(dust, Tumbaga, 10)
+                .EUt(VA[MV].toLong())
+                .duration(14 * SECOND)
                 .buildAndRegister()
 
         }

@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BlueTopaz
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
@@ -35,6 +36,7 @@ import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
+import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
@@ -708,6 +710,21 @@ class GTLiteMaterials
                 b.temp(3310, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 30 * SECOND)
                     .vacuumStats(VA[MV], 6 * SECOND)
+            }
+            .build()
+
+        // 4009 Tumbaga
+        @JvmField
+        val Tumbaga: Material = Material.Builder(4009, gtliteId("tumbaga"))
+            .ingot()
+            .fluid()
+            .color(0xFFB20F).iconSet(SHINY)
+            .components(Gold, 7, Bronze, 3)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
+                GENERATE_DENSE)
+            .blast { b ->
+                b.temp(1200, BlastProperty.GasTier.LOW)
+                    .blastStats(VA[MV], 24 * SECOND)
             }
             .build()
 

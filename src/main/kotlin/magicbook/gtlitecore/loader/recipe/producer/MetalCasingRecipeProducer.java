@@ -22,6 +22,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Stellite;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Talonite;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Tumbaga;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.WatertightSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Zeron100;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
@@ -76,6 +77,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.STELLITE,
                 Stellite);
+
+        // Tumbaga
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
+                BlockMetalCasing01.MetalCasingType.TUMBAGA,
+                Tumbaga);
 
     }
 

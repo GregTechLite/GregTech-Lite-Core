@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -67,6 +68,7 @@ import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.AUTOCLAVE
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.BREWERY
+import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
@@ -80,6 +82,7 @@ import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
+import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
@@ -87,6 +90,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -106,6 +110,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_AUTOCLAVE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
@@ -526,6 +531,17 @@ class MachineRecipeLoader
                 'P', ELECTRIC_PISTON_EV,
                 'W', UnificationEntry(cableGtSingle, Aluminium),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.EV))
+
+            // Large Centrifuge
+            ModHandler.addShapedRecipe(true, "large_centrifuge", LARGE_CENTRIFUGE.stackForm,
+                "DXD", "CHT", "WGW",
+                'C', CENTRIFUGE[HV].stackForm,
+                'T', THERMAL_CENTRIFUGE[HV].stackForm,
+                'H', HULL[HV].stackForm,
+                'G', UnificationEntry(gear, RedSteel),
+                'W', UnificationEntry(cableGtSingle, Gold),
+                'D', UnificationEntry(plateDense, Tumbaga),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV))
 
         }
 

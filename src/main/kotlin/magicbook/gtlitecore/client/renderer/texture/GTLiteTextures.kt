@@ -94,6 +94,9 @@ class GTLiteTextures
         @JvmField
         val STELLITE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/stellite")
 
+        @JvmField
+        val TUMBAGA_CASING = GTLiteSimpleOverlayRenderer("casings/metal/tumbaga")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

@@ -1092,6 +1092,12 @@ gtlitecore.machine.large_macerator.tooltip.2=当电压等级大于等于§3UV§7
 gtlitecore.machine.large_macerator.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_macerator.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
+gtlitecore.machine.large_centrifuge.name=大型离心机
+gtlitecore.machine.large_centrifuge.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_centrifuge.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_centrifuge.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_centrifuge.tooltip.4=每提高1个§a电压外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1225,6 +1231,7 @@ gtlitecore.material.talonite=铬钴磷酸盐合金
 gtlitecore.material.zeron_100=赛龙-100
 gtlitecore.material.watertight_steel=防水钢
 gtlitecore.material.stellite=司太立合金
+gtlitecore.material.tumbaga=铜金合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
