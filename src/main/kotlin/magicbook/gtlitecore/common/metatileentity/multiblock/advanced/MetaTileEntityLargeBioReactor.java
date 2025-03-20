@@ -10,6 +10,7 @@ import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
@@ -18,30 +19,44 @@ import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.utils.TooltipHelper;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import lombok.Getter;
+import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import static gregtech.api.util.RelativeDirection.DOWN;
+import static gregtech.api.util.RelativeDirection.FRONT;
+import static gregtech.api.util.RelativeDirection.LEFT;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.cleanroomCasings;
 import static magicbook.gtlitecore.api.utils.StructureUtility.sensorCasings;
 
@@ -53,6 +68,10 @@ public class MetaTileEntityLargeBioReactor extends MultiMapMultiblockController
     @Getter
     private int cleanroomCasingTier;
 
+    private static boolean hasRegistered = false;
+    private static List<IBlockState> sensorCasings;
+    private static List<IBlockState> cleanroomCasings;
+
     // =================================================================================================================
     public MetaTileEntityLargeBioReactor(ResourceLocation metaTileEntityId)
     {
@@ -61,12 +80,33 @@ public class MetaTileEntityLargeBioReactor extends MultiMapMultiblockController
                 GTLiteRecipeMaps.GREENHOUSE_RECIPES()
         });
         this.recipeMapWorkable = new LargeBioReactorRecipeLogic(this);
+        this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
         return new MetaTileEntityLargeBioReactor(metaTileEntityId);
+    }
+
+    private void registerCasingMaps()
+    {
+        if (hasRegistered) return;
+        List<IBlockState> sensorCasing = StreamEx.of(GTLiteAPI.MAP_SENSOR_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        List<IBlockState> cleanroomCasing = StreamEx.of(GTLiteAPI.MAP_CLEANROOM_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
+            add(sensorCasing);
+            add(cleanroomCasing);
+        }});
+        sensorCasings = consistent(sensorCasing, maxLength);
+        cleanroomCasings = consistent(cleanroomCasing, maxLength);
+        hasRegistered = true;
     }
 
     // =================================================================================================================
@@ -143,6 +183,42 @@ public class MetaTileEntityLargeBioReactor extends MultiMapMultiblockController
     protected ICubeRenderer getFrontOverlay()
     {
         return Textures.PROCESSING_ARRAY_OVERLAY;
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes()
+    {
+        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+                .aisle("ECCCC", "CCCCC", "CCCCC", "     ")
+                .aisle("CCCCC", "D   D", "D   D", "CCCCC")
+                .aisle("CCCCC", "DT TD", "D   D", "CFFFC")
+                .aisle("CCCCC", "D   D", "D   D", "CCNCC")
+                .aisle("IJSKL", "CGGGC", "CGGGC", "     ")
+                .where('S', GTLiteMetaTileEntities.LARGE_BIO_REACTOR, EnumFacing.SOUTH)
+                .where('C', getCasingState())
+                .where('D', getSecondCasingState())
+                .where('G', getGlassState())
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
+                .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
+                .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
+        AtomicInteger count = new AtomicInteger();
+        StreamEx.of(sensorCasings)
+                .map(b -> {
+                    if (builder != null)
+                    {
+                        builder.where('T', b);
+                        builder.where('F', cleanroomCasings.get(count.get()));
+                        count.getAndIncrement();
+                    }
+                    return builder;
+                })
+                .nonNull()
+                .forEach(b -> shapeInfo.add(b.build()));
+        return shapeInfo;
     }
 
     // =================================================================================================================

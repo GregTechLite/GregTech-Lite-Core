@@ -8,33 +8,48 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import lombok.Getter;
+import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import static gregtech.api.util.RelativeDirection.DOWN;
+import static gregtech.api.util.RelativeDirection.FRONT;
+import static gregtech.api.util.RelativeDirection.LEFT;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.conveyorCasings;
 import static magicbook.gtlitecore.api.utils.StructureUtility.robotArmCasings;
 
@@ -46,17 +61,42 @@ public class MetaTileEntityLargeAssembler extends RecipeMapMultiblockController
     @Getter
     private int conveyorCasingTier;
 
+    private static boolean hasRegistered = false;
+    private static List<IBlockState> robotArmCasings;
+    private static List<IBlockState> conveyorCasings;
+
     // =================================================================================================================
     public MetaTileEntityLargeAssembler(ResourceLocation metaTileEntityId)
     {
         super(metaTileEntityId, RecipeMaps.ASSEMBLER_RECIPES);
         this.recipeMapWorkable = new LargeAssemblerRecipeLogic(this);
+        this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
         return new MetaTileEntityLargeAssembler(metaTileEntityId);
+    }
+
+    private void registerCasingMaps()
+    {
+        if (hasRegistered) return;
+        List<IBlockState> robotArmCasing = StreamEx.of(GTLiteAPI.MAP_ROBOT_ARM_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        List<IBlockState> conveyorCasing = StreamEx.of(GTLiteAPI.MAP_CONVEYOR_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
+            add(robotArmCasing);
+            add(conveyorCasing);
+        }});
+        robotArmCasings = consistent(robotArmCasing, maxLength);
+        conveyorCasings = consistent(conveyorCasing, maxLength);
+        hasRegistered = true;
     }
 
     // =================================================================================================================
@@ -131,6 +171,40 @@ public class MetaTileEntityLargeAssembler extends RecipeMapMultiblockController
     protected ICubeRenderer getFrontOverlay()
     {
         return Textures.PROCESSING_ARRAY_OVERLAY;
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes()
+    {
+        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+                .aisle("ECCCCC", "CCCCCC", "CCCCCC", "CCCCCC")
+                .aisle("CCCCCC", "CRPPPC", "CPPPPC", "CCGGGC")
+                .aisle("CCCCCC", "CMMMMC", "CP   C", "CCGGGC")
+                .aisle("CNCCCC", "ISRRRC", "JCGGGC", "KCGGGC")
+                .where('S', GTLiteMetaTileEntities.LARGE_ASSEMBLER, EnumFacing.SOUTH)
+                .where('C', getCasingState())
+                .where('P', getPipeCasingState())
+                .where('G', getGlassCasingState())
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
+                .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH);
+        AtomicInteger count = new AtomicInteger();
+        StreamEx.of(robotArmCasings)
+                .map(b -> {
+                    if (builder != null)
+                    {
+                        builder.where('R', b);
+                        builder.where('M', conveyorCasings.get(count.get()));
+                        count.getAndIncrement();
+                    }
+                    return builder;
+                })
+                .nonNull()
+                .forEach(b -> shapeInfo.add(b.build()));
+        return shapeInfo;
     }
 
     // =================================================================================================================

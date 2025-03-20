@@ -462,6 +462,12 @@ class GTLiteRecipeMaps
             RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
             RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
             RecipeMaps.SIFTER_RECIPES.maxFluidOutputs = 2
+
+            // (1,1,0,0) -> (2,2,2,2)
+            RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2
+            RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidInputs = 2
+            RecipeMaps.FORGE_HAMMER_RECIPES.maxOutputs = 2
+            RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidOutputs = 2
         }
 
     }

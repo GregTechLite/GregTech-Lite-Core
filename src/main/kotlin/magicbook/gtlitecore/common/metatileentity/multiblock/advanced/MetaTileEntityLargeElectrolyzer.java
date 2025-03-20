@@ -8,31 +8,46 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import lombok.Getter;
+import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import static gregtech.api.util.RelativeDirection.DOWN;
+import static gregtech.api.util.RelativeDirection.FRONT;
+import static gregtech.api.util.RelativeDirection.LEFT;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.motorCasings;
 import static magicbook.gtlitecore.api.utils.StructureUtility.pumpCasings;
 
@@ -44,16 +59,41 @@ public class MetaTileEntityLargeElectrolyzer extends RecipeMapMultiblockControll
     @Getter
     private int motorCasingTier;
 
+    private static boolean hasRegistered = false;
+    private static List<IBlockState> pumpCasings;
+    private static List<IBlockState> motorCasings;
+
     // =================================================================================================================
     public MetaTileEntityLargeElectrolyzer(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, RecipeMaps.ELECTROLYZER_RECIPES);
         this.recipeMapWorkable = new LargeElectrolyzerRecipeLogic(this);
+        this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
         return new MetaTileEntityLargeElectrolyzer(metaTileEntityId);
+    }
+
+    private void registerCasingMaps()
+    {
+        if (hasRegistered) return;
+        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        List<IBlockState> motorCasing = StreamEx.of(GTLiteAPI.MAP_MOTOR_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
+            add(pumpCasing);
+            add(motorCasing);
+        }});
+        pumpCasings = consistent(pumpCasing, maxLength);
+        motorCasings = consistent(motorCasing, maxLength);
+        hasRegistered = true;
     }
 
     // =================================================================================================================
@@ -122,6 +162,39 @@ public class MetaTileEntityLargeElectrolyzer extends RecipeMapMultiblockControll
     protected ICubeRenderer getFrontOverlay()
     {
         return GTLiteTextures.LARGE_ELECTROLYZER_OVERLAY;
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes()
+    {
+        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+                .aisle("ECQCC", "CCQCC", "CCQCC", "CC CC")
+                .aisle("CCQCC", "CP MC", "CCQCC", "C   C")
+                .aisle("CKNLC", "CISJC", "CCQCC", "CC CC")
+                .where('S', GTLiteMetaTileEntities.LARGE_ELECTROLYZER, EnumFacing.SOUTH)
+                .where('C', getCasingState())
+                .where('Q', getPipeCasingState())
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
+                .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
+                .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
+        AtomicInteger count = new AtomicInteger();
+        StreamEx.of(pumpCasings)
+                .map(b -> {
+                    if (builder != null)
+                    {
+                        builder.where('P', b);
+                        builder.where('M', motorCasings.get(count.get()));
+                        count.getAndIncrement();
+                    }
+                    return builder;
+                })
+                .nonNull()
+                .forEach(b -> shapeInfo.add(b.build()));
+        return shapeInfo;
     }
 
     // =================================================================================================================

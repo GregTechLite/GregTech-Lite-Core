@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.advanced;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.block.IHeatingCoilBlockStats;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -10,34 +11,49 @@ import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockMultiblockCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.MetaTileEntities;
 import lombok.Getter;
+import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
+import static gregtech.api.util.RelativeDirection.DOWN;
+import static gregtech.api.util.RelativeDirection.FRONT;
+import static gregtech.api.util.RelativeDirection.LEFT;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
+import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.pumpCasings;
 
 public class MetaTileEntityLargeArcFurnace extends MultiMapMultiblockController
@@ -48,6 +64,10 @@ public class MetaTileEntityLargeArcFurnace extends MultiMapMultiblockController
     @Getter
     private int coilTier;
 
+    private static boolean hasRegistered = false;
+    private static List<IBlockState> pumpCasings;
+    private static List<IBlockState> heatingCoils;
+
     // =================================================================================================================
     public MetaTileEntityLargeArcFurnace(ResourceLocation metaTileEntityId)
     {
@@ -56,12 +76,33 @@ public class MetaTileEntityLargeArcFurnace extends MultiMapMultiblockController
                 RecipeMaps.ALLOY_SMELTER_RECIPES
         });
         this.recipeMapWorkable = new LargeArcFurnaceRecipeLogic(this);
+        this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
         return new MetaTileEntityLargeArcFurnace(metaTileEntityId);
+    }
+
+    private void registerCasingMaps()
+    {
+        if (hasRegistered) return;
+        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        List<IBlockState> heatingCoil = StreamEx.of(GregTechAPI.HEATING_COILS.entrySet())
+                .sortedByInt(entry -> entry.getValue().getTier())
+                .map(Map.Entry::getKey)
+                .toList();
+        int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
+            add(pumpCasing);
+            add(heatingCoil);
+        }});
+        pumpCasings = consistent(pumpCasing, maxLength);
+        heatingCoils = consistent(heatingCoil, maxLength);
+        hasRegistered = true;
     }
 
     // =================================================================================================================
@@ -73,8 +114,7 @@ public class MetaTileEntityLargeArcFurnace extends MultiMapMultiblockController
         Object type2 = context.get("CoilType");
         this.pumpCasingTier = getOrDefault(
                 () -> type1 instanceof WrappedIntTier,
-                () -> ((WrappedIntTier) type1).getIntTier(), 0
-        );
+                () -> ((WrappedIntTier) type1).getIntTier(), 0);
         if (type2 instanceof IHeatingCoilBlockStats)
             this.coilTier = ((IHeatingCoilBlockStats) type2).getTier();
         else
@@ -138,6 +178,42 @@ public class MetaTileEntityLargeArcFurnace extends MultiMapMultiblockController
     protected ICubeRenderer getFrontOverlay()
     {
         return GTLiteTextures.LARGE_ARC_FURNACE_OVERLAY;
+    }
+
+    @Override
+    public List<MultiblockShapeInfo> getMatchingShapes()
+    {
+        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
+        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+                .aisle(" CEC ", " CCC ", " CCC ")
+                .aisle("CCCCC", "CHQHC", " CGC ")
+                .aisle("CCCCC", "CHPHC", " CGC ")
+                .aisle("CCCCC", "CHQHC", " CGC ")
+                .aisle(" KNL ", " ISJ ", " CCC ")
+                .where('S', GTLiteMetaTileEntities.LARGE_ARC_FURNACE, EnumFacing.SOUTH)
+                .where('C', getCasingState())
+                .where('G', getSecondCasingState())
+                .where('Q', getPipeCasingState())
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
+                .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
+                .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
+        AtomicInteger count = new AtomicInteger();
+        StreamEx.of(pumpCasings)
+                .map(b -> {
+                    if (builder != null)
+                    {
+                        builder.where('P', b);
+                        builder.where('H', heatingCoils.get(count.get()));
+                        count.getAndIncrement();
+                    }
+                    return builder;
+                })
+                .nonNull()
+                .forEach(b -> shapeInfo.add(b.build()));
+        return shapeInfo;
     }
 
     // =================================================================================================================
