@@ -7,7 +7,6 @@ import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
-import gregtech.api.recipes.ui.RecipeMapUIFunction
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
