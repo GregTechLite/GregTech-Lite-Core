@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -91,6 +92,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
+import gregtech.common.metatileentities.MetaTileEntities.GAS_COLLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
@@ -142,6 +144,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_GAS_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
@@ -649,6 +652,15 @@ class MachineRecipeLoader
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
                 'C', CONVEYOR_MODULE_HV,
                 'R', ROBOT_ARM_HV)
+
+            // Large Gas Collector
+            ModHandler.addShapedRecipe(true, "large_gas_collector", LARGE_GAS_COLLECTOR.stackForm,
+                "SXS", "PGP", "WXW",
+                'G', GAS_COLLECTOR[EV].stackForm,
+                'P', ELECTRIC_PUMP_EV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'S', UnificationEntry(spring, Tungsten),
+                'W', UnificationEntry(cableGtSingle, Aluminium))
 
         }
 

@@ -13,6 +13,7 @@ import net.minecraft.util.IStringSerializable;
 import static gregtech.api.GTValues.LV;
 import static gregtech.api.GTValues.VA;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
+import static gregtech.api.unification.material.Materials.BlackSteel;
 import static gregtech.api.unification.material.Materials.BlueSteel;
 import static gregtech.api.unification.material.Materials.Iridium;
 import static gregtech.api.unification.material.Materials.Potin;
@@ -131,6 +132,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.KOVAR,
                 Kovar);
+
+        // Black Steel
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.BLACK_STEEL,
+                BlackSteel);
 
     }
 

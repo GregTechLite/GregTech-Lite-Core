@@ -130,6 +130,9 @@ class GTLiteTextures
         @JvmField
         val HSLA_STEEL_CASING = GTLiteSimpleOverlayRenderer("casings/metal/hsla_steel")
 
+        @JvmField
+        val KOVAR_CASING = GTLiteSimpleOverlayRenderer("casings/metal/kovar")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

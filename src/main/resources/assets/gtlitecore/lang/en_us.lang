@@ -369,6 +369,7 @@ tile.metal_casing_01.red_steel.name=Insulating Red Steel Machine Casing
 
 tile.metal_casing_02.hsla_steel.name=Secure HSLA Steel Machine Casing
 tile.metal_casing_02.kovar.name=Airtight Kovar Machine Casing
+tile.metal_casing_02.black_steel.name=Rugged Black Steel Machine Casing
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
@@ -613,6 +614,7 @@ recipemap.bath_condenser.name=Bath Condenser
 recipemap.cryogenic_reactor.name=Cryogenic Reactor
 recipemap.large_mixer.name=Large Mixer
 recipemap.catalytic_reformer.name=Catalytic Reformer
+recipemap.large_gas_collector.name=Large Gas Collector
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1146,6 +1148,13 @@ gtlitecore.machine.large_packer.tooltip.1=Update Component Casing or Voltage tie
 gtlitecore.machine.large_packer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.large_packer.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_packer.tooltip.4=Each §aRobot Arm Casing tier§7 +1, processing +§l8§r§7 items.
+
+gtlitecore.machine.large_gas_collector.name=Large Gas Collector
+gtlitecore.machine.large_gas_collector.tooltip.1=Equivalent to §2Gas Collector§7 without dimensions limitation.
+gtlitecore.machine.large_gas_collector.tooltip.2=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_gas_collector.tooltip.3=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_gas_collector.tooltip.4=Each §eVoltage tier§7 + 1，recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_gas_collector.tooltip.5=Each §aPump Casing tier§7 + 1, processing +§l16§r§7 items.
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

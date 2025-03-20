@@ -44,7 +44,8 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
     public enum MetalCasingType implements IStringSerializable
     {
         HSLA_STEEL("hsla_steel"),
-        KOVAR("kovar");
+        KOVAR("kovar"),
+        BLACK_STEEL("black_steel");
 
         private final String name;
     }

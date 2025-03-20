@@ -369,6 +369,7 @@ tile.metal_casing_01.red_steel.name=绝缘红钢机器外壳
 
 tile.metal_casing_02.hsla_steel.name=安全HSLA钢机器外壳
 tile.metal_casing_02.kovar.name=高气密柯伐合金机器外壳
+tile.metal_casing_02.black_steel.name=坚实黑钢机器外壳
 
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
@@ -613,6 +614,7 @@ recipemap.bath_condenser.name=水浴冷凝槽
 recipemap.cryogenic_reactor.name=低温反应室
 recipemap.large_mixer.name=大型搅拌机
 recipemap.catalytic_reformer.name=催化重整
+recipemap.large_gas_collector.name=大型集气室
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1146,6 +1148,13 @@ gtlitecore.machine.large_packer.tooltip.1=升级部件外壳或电压等级以�
 gtlitecore.machine.large_packer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.large_packer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_packer.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
+gtlitecore.machine.large_gas_collector.name=大型集气室
+gtlitecore.machine.large_gas_collector.tooltip.1=相当于§2集气室§7但没有维度限制
+gtlitecore.machine.large_gas_collector.tooltip.2=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_gas_collector.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_gas_collector.tooltip.4=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_gas_collector.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

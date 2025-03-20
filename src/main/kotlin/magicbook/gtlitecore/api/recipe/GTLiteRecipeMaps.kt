@@ -439,6 +439,22 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.FURNACE)
             .build()
 
+        /**
+         * @zenProp large_gas_collector
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("LARGE_GAS_COLLECTOR_RECIPES")
+        val LARGE_GAS_COLLECTOR_RECIPES = RecipeMapBuilder("large_gas_collector", SimpleRecipeBuilder())
+            .itemInputs(2)
+            .fluidOutputs(4)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
+            .fluidSlotOverlay(GuiTextures.CENTRIFUGE_OVERLAY, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+            .setSmallRecipeMap(RecipeMaps.GAS_COLLECTOR_RECIPES)
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

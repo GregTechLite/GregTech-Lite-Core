@@ -37,7 +37,6 @@ public class JustEnoughItemsModule extends IntegrationSubModule implements IModP
     public void onRuntimeAvailable(@NotNull IJeiRuntime runtime)
     {
         JustEnoughItemsModule.runtime = runtime;
-        // ...
     }
 
     @NotNull

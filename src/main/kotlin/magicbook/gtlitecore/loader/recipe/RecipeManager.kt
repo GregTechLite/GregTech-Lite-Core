@@ -16,6 +16,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
+import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
@@ -73,6 +74,7 @@ class RecipeManager
             CentrifugeRecipes.init()
             ExtruderRecipes.init()
             FormingPressRecipes.init()
+            GasCollectorRecipes.init()
             MixerRecipes.init()
             WiremillRecipes.init()
             // Additional machine recipes.

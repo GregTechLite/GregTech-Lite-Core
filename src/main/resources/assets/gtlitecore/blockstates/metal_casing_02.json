@@ -13,6 +13,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/kovar"
         }
+      },
+      "black_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/black_steel"
+        }
       }
     }
   }

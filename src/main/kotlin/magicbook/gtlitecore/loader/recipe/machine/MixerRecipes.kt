@@ -36,12 +36,14 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -251,6 +253,18 @@ class MixerRecipes
                 .output(dust, SiliconCarbide, 2)
                 .EUt(VA[EV].toLong())
                 .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // HSLA Steel
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Invar, 2)
+                .input(dust, Vanadium, 1)
+                .input(dust, Titanium, 1)
+                .input(dust, Molybdenum, 1)
+                .output(dust, HSLASteel, 5)
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
                 .buildAndRegister()
 
         }
