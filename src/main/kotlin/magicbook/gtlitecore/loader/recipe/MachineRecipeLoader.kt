@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
@@ -63,6 +64,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
@@ -101,6 +103,7 @@ import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
 import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
+import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
@@ -120,6 +123,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
@@ -150,6 +154,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ORE_WASHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_PACKER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ROCK_BREAKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
@@ -661,6 +666,15 @@ class MachineRecipeLoader
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'S', UnificationEntry(spring, Tungsten),
                 'W', UnificationEntry(cableGtSingle, Aluminium))
+
+            // Large Rock Breaker
+            ModHandler.addShapedRecipe(true, "large_rock_breaker", LARGE_ROCK_BREAKER.stackForm,
+                "PXP", "RHR", "WXW",
+                'P', ELECTRIC_PISTON_HV,
+                'R', ROCK_BREAKER[HV].stackForm,
+                'H', HULL[HV].stackForm,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'W', UnificationEntry(cableGtDouble, Electrum))
 
         }
 

@@ -1156,6 +1156,12 @@ gtlitecore.machine.large_gas_collector.tooltip.3=当电压等级大于等于§3U
 gtlitecore.machine.large_gas_collector.tooltip.4=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_gas_collector.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_rock_breaker.name=大型碎岩机
+gtlitecore.machine.large_rock_breaker.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_rock_breaker.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_rock_breaker.tooltip.3=每提高1个§e传送带外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_rock_breaker.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
