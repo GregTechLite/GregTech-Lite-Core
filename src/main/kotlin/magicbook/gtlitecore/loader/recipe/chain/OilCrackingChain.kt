@@ -455,7 +455,7 @@ class OilCrackingChain
                 .input(dust, SiliconDioxide, 6)
                 .fluidInputs(Water.getFluid(1000))
                 .notConsumable(Ethanol.getFluid(1))
-                .output(plate, ZSM5, 30)
+                .output(plate, ZSM5) // Actually outputs 30, but this is only useful for some recipes.
                 .EUt(VA[IV].toLong())
                 .duration(30 * SECOND)
                 .buildAndRegister()
