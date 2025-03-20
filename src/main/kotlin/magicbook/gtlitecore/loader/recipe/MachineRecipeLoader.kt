@@ -141,6 +141,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_DISTILLERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ELECTROLYZER
@@ -683,6 +684,17 @@ class MachineRecipeLoader
                 'B', BURNER_REACTOR[IV]!!.stackForm,
                 'R', ROASTER[IV]!!.stackForm,
                 'D', UnificationEntry(plateDense, EglinSteel),
+                'P', ELECTRIC_PISTON_IV,
+                'U', ELECTRIC_PUMP_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'W', UnificationEntry(cableGtSingle, Platinum))
+
+            // Large Cryogenic Reactor
+            ModHandler.addShapedRecipe(true, "large_cryogenic_reactor", LARGE_CRYOGENIC_REACTOR.stackForm,
+                "UPU", "CXA", "WDW",
+                'C', CRYOGENIC_REACTOR[IV]!!.stackForm,
+                'A', BATH_CONDENSER[IV]!!.stackForm,
+                'D', UnificationEntry(plateDense, StainlessSteel),
                 'P', ELECTRIC_PISTON_IV,
                 'U', ELECTRIC_PUMP_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),

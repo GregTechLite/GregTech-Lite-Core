@@ -78,6 +78,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_BURNER_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_burner_reactor")
 
+        @JvmField
+        val LARGE_CRYOGENIC_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_cryogenic_reactor")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -141,6 +144,9 @@ class GTLiteTextures
 
         @JvmField
         val INCOLOY_MA813_CASING = GTLiteSimpleOverlayRenderer("casings/metal/incoloy_ma813")
+
+        @JvmField
+        val MONEL_500_CASING = GTLiteSimpleOverlayRenderer("casings/metal/monel_500")
 
         // =============================================================================================================
         @JvmField
