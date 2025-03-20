@@ -401,10 +401,10 @@ class OilCrackingChain
             // C10H12 -> 2C5H8
             FLUID_HEATER_RECIPES.recipeBuilder()
                 .circuitMeta(1)
-                .fluidInputs(Dicyclopentadiene.getFluid(1000))
-                .fluidOutputs(Isoprene.getFluid(2000))
+                .fluidInputs(Dicyclopentadiene.getFluid(100))
+                .fluidOutputs(Isoprene.getFluid(200))
                 .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
+                .duration(4 * TICK)
                 .buildAndRegister()
 
         }
