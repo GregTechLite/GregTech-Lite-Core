@@ -42,6 +42,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMacerator
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMixer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeOreWasher
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargePacker
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
@@ -159,6 +160,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_ELECTROMAGNET: MetaTileEntityLargeElectromagnet
         lateinit var LARGE_DISTILLERY: MetaTileEntityLargeDistillery
         lateinit var LARGE_BIO_REACTOR: MetaTileEntityLargeBioReactor
+        lateinit var LARGE_PACKER: MetaTileEntityLargePacker
 
         @JvmStatic
         fun preInit()
@@ -533,6 +535,9 @@ class GTLiteMetaTileEntities
             LARGE_BIO_REACTOR = MetaTileEntities.registerMetaTileEntity(18121,
                 MetaTileEntityLargeBioReactor(GTLiteUtility.gtliteId("large_bio_reactor")))
 
+            LARGE_PACKER = MetaTileEntities.registerMetaTileEntity(18122,
+                MetaTileEntityLargePacker(GTLiteUtility.gtliteId("large_packer")))
+
         }
 
         @JvmStatic
@@ -607,6 +612,7 @@ class GTLiteMetaTileEntities
             LARGE_ORE_WASHER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_ELECTROMAGNET.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_DISTILLERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_PACKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

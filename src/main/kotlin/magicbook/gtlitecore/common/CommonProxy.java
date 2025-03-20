@@ -91,6 +91,7 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.PROCESSOR_CASING);
         registry.register(GTLiteMetaBlocks.PRIMITIVE_CASING);
         registry.register(GTLiteMetaBlocks.METAL_CASING_01);
+        registry.register(GTLiteMetaBlocks.METAL_CASING_02);
     }
 
     @SubscribeEvent
@@ -159,6 +160,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.PROCESSOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.PRIMITIVE_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.METAL_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.METAL_CASING_02, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

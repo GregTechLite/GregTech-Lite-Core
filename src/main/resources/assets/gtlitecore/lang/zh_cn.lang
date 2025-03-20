@@ -367,6 +367,9 @@ tile.metal_casing_01.babbit_alloy.name=抗瘿巴氏合金机器外壳
 tile.metal_casing_01.silicon_carbide.name=坚固耐用碳化硅机器外壳
 tile.metal_casing_01.red_steel.name=绝缘红钢机器外壳
 
+tile.metal_casing_02.hsla_steel.name=安全HSLA钢机器外壳
+tile.metal_casing_02.kovar.name=高气密柯伐合金机器外壳
+
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
 metaitem.shape.mold.rod.tooltip=用来制作杆的模具
@@ -1138,6 +1141,12 @@ gtlitecore.machine.large_bio_reactor.tooltip.3=使用§c除菌过滤器外壳§7
 gtlitecore.machine.large_bio_reactor.tooltip.4=每提高1个§e传感器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.large_bio_reactor.tooltip.5=每提高1个§a电压等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_packer.name=大型打包机
+gtlitecore.machine.large_packer.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_packer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_packer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_packer.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1286,6 +1295,7 @@ gtlitecore.material.eglin_steel=埃格林钢
 gtlitecore.material.grisium=灰钛合金
 gtlitecore.material.babbit_alloy=巴氏合金
 gtlitecore.material.silicon_carbide=碳化硅
+gtlitecore.material.hsla_steel=高强度低合金钢（HSLA）
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

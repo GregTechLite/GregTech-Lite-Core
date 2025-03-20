@@ -9,6 +9,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
@@ -113,6 +114,7 @@ class GTLiteMetaBlocks
 
         lateinit var PRIMITIVE_CASING: BlockPrimitiveCasing
         lateinit var METAL_CASING_01: BlockMetalCasing01
+        lateinit var METAL_CASING_02: BlockMetalCasing02
 
         @JvmStatic
         fun init()
@@ -322,6 +324,10 @@ class GTLiteMetaBlocks
             (METAL_CASING_01 as? Block)?.setRegistryName("metal_casing_01")
             (METAL_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            METAL_CASING_02 = BlockMetalCasing02()
+            (METAL_CASING_02 as? Block)?.setRegistryName("metal_casing_02")
+            (METAL_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             // Initialized Blocks.FIRE#setFireInfo().
             setFireInfos()
         }
@@ -434,6 +440,7 @@ class GTLiteMetaBlocks
             registerItemModel(PROCESSOR_CASING)
             registerItemModel(PRIMITIVE_CASING)
             registerItemModel(METAL_CASING_01)
+            registerItemModel(METAL_CASING_02)
         }
 
         @SideOnly(Side.CLIENT)

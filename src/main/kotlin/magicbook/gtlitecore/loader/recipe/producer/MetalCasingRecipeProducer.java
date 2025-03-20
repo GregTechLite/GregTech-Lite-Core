@@ -7,6 +7,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.ConfigHolder;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02;
 import net.minecraft.util.IStringSerializable;
 
 import static gregtech.api.GTValues.LV;
@@ -22,7 +23,9 @@ import static gregtech.api.unification.ore.OrePrefix.plateDouble;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HSLASteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Kovar;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
@@ -118,6 +121,16 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,
                 BlockMetalCasing01.MetalCasingType.RED_STEEL,
                 RedSteel);
+
+        // HSLA Steel
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.HSLA_STEEL,
+                HSLASteel);
+
+        // Kovar
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.KOVAR,
+                Kovar);
 
     }
 

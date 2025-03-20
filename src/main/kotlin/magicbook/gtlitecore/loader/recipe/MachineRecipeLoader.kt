@@ -56,6 +56,7 @@ import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
@@ -68,6 +69,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
@@ -95,6 +97,7 @@ import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
 import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
+import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
@@ -143,6 +146,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ORE_WASHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_PACKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
@@ -635,6 +639,16 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'U', ELECTRIC_PUMP_IV,
                 'G', UnificationEntry(gear, Grisium))
+
+            // Large Packer
+            ModHandler.addShapedRecipe(true, "large_packer", LARGE_PACKER.stackForm,
+                "RCR", "PHP", "WXW",
+                'P', PACKER[HV].stackForm,
+                'H', HULL[HV].stackForm,
+                'W', UnificationEntry(cableGtSingle, Gold),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'C', CONVEYOR_MODULE_HV,
+                'R', ROBOT_ARM_HV)
 
         }
 

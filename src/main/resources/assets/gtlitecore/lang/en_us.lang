@@ -367,6 +367,9 @@ tile.metal_casing_01.babbit_alloy.name=Gall Resistant Babbit Alloy Machine Casin
 tile.metal_casing_01.silicon_carbide.name=Rugged Silicon Carbide Machine Casing
 tile.metal_casing_01.red_steel.name=Insulating Red Steel Machine Casing
 
+tile.metal_casing_02.hsla_steel.name=Secure HSLA Steel Machine Casing
+tile.metal_casing_02.kovar.name=Airtight Kovar Machine Casing
+
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
 metaitem.shape.mold.rod.tooltip=Mold for making Rods
@@ -1138,6 +1141,12 @@ gtlitecore.machine.large_bio_reactor.tooltip.3=When used §cSterilizing Filter C
 gtlitecore.machine.large_bio_reactor.tooltip.4=Each §eSensor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_bio_reactor.tooltip.5=Each §aVoltage tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_packer.name=Large Packer
+gtlitecore.machine.large_packer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_packer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_packer.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_packer.tooltip.4=Each §aRobot Arm Casing tier§7 +1, processing +§l8§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1285,6 +1294,7 @@ gtlitecore.material.eglin_steel=Eglin Steel
 gtlitecore.material.grisium=Grisium
 gtlitecore.material.babbit_alloy=Babbit Alloy
 gtlitecore.material.silicon_carbide=Silicon Carbide
+gtlitecore.material.hsla_steel=High Strength Low Alloy (HSLA)
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

@@ -108,6 +108,7 @@ import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
@@ -690,7 +691,7 @@ class GTLiteMaterials
             .ingot()
             .colorAverage().iconSet(SHINY)
             .components(Iron, 2, Nickel, 1, Cobalt, 1)
-            .flags(GENERATE_ROD, GENERATE_RING)
+            .flags(EXT_METAL, GENERATE_RING, GENERATE_FRAME)
             .build()
             .setFormula("Fe10Ni5Co3", true)
 
@@ -879,6 +880,20 @@ class GTLiteMaterials
                 b.temp(3850, BlastProperty.GasTier.HIGH) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
                     .blastStats(VA[IV], 7 * SECOND + 10 * TICK)
                     .vacuumStats(VA[EV], 3 * SECOND + 5 * TICK)
+            }
+            .build()
+
+        // 4015 HSLA Steel
+        @JvmField
+        val HSLASteel: Material = Material.Builder(4015, gtliteId("hsla_steel"))
+            .ingot()
+            .fluid()
+            .color(0x808080).iconSet(METALLIC)
+            .components(Invar, 2, Vanadium, 1, Titanium, 1, Molybdenum, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(1711, BlastProperty.GasTier.LOW) // Kanthal
+                    .blastStats(VA[HV], 25 * SECOND)
             }
             .build()
 

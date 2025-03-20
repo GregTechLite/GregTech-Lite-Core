@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "hsla_steel": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/hsla_steel"
+        }
+      },
+      "kovar": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/kovar"
+        }
+      }
+    }
+  }
+}
