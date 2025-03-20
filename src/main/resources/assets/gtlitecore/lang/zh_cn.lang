@@ -1131,6 +1131,13 @@ gtlitecore.machine.large_distillery.tooltip.3=运行§6蒸馏塔§7模式时，�
 gtlitecore.machine.large_distillery.tooltip.4=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_distillery.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_bio_reactor.name=大型生物反应室
+gtlitecore.machine.large_bio_reactor.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_bio_reactor.tooltip.2=使用§c除菌过滤器外壳§7时，可以满足配方要求的§a无菌超净间§7环境需求。
+gtlitecore.machine.large_bio_reactor.tooltip.3=使用§c除菌过滤器外壳§7时，
+gtlitecore.machine.large_bio_reactor.tooltip.4=每提高1个§e传感器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_bio_reactor.tooltip.5=每提高1个§a电压等级§7，每次运行可以多处理§l16§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶

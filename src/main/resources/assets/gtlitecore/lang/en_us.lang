@@ -1131,6 +1131,13 @@ gtlitecore.machine.large_distillery.tooltip.3=When used §6Distillation Tower§r
 gtlitecore.machine.large_distillery.tooltip.4=Each §eVoltage tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_distillery.tooltip.5=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_bio_reactor.name=Large Biological Reactor
+gtlitecore.machine.large_bio_reactor.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_bio_reactor.tooltip.2=When used §cSterilizing Filter Casing§7, this machine can run recipes which required §aSterile Cleanroom§7 environment.
+gtlitecore.machine.large_bio_reactor.tooltip.3=When used §cSterilizing Filter Casing§7,
+gtlitecore.machine.large_bio_reactor.tooltip.4=Each §eSensor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_bio_reactor.tooltip.5=Each §aVoltage tier§7 +1, processing +§l16§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum

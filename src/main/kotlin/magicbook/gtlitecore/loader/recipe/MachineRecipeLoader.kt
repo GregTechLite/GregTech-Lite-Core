@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.material.Materials.TungstenCarbide
+import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -102,6 +103,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
@@ -126,6 +128,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ASSEMBLER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_AUTOCLAVE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
@@ -622,6 +625,16 @@ class MachineRecipeLoader
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'P', ELECTRIC_PUMP_IV)
+
+            // Large Bio Reactor
+            ModHandler.addShapedRecipe(true, "large_bio_reactor", LARGE_BIO_REACTOR.stackForm,
+                "UGU", "XRX", "WPW",
+                'R', BIO_REACTOR[IV]!!.stackForm,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'P', UnificationEntry(pipeLargeFluid, TungstenSteel),
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'U', ELECTRIC_PUMP_IV,
+                'G', UnificationEntry(gear, Grisium))
 
         }
 

@@ -75,6 +75,9 @@ class StructureUtility
 
         @JvmStatic
         fun processorCasings() = GTLiteTraceabilityPredicate.PROCESSOR_CASING.get()
+
+        @JvmStatic
+        fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 
 }

@@ -27,6 +27,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAutoclave
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBioReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBrewery
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCentrifuge
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
@@ -157,6 +158,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_ORE_WASHER: MetaTileEntityLargeOreWasher
         lateinit var LARGE_ELECTROMAGNET: MetaTileEntityLargeElectromagnet
         lateinit var LARGE_DISTILLERY: MetaTileEntityLargeDistillery
+        lateinit var LARGE_BIO_REACTOR: MetaTileEntityLargeBioReactor
 
         @JvmStatic
         fun preInit()
@@ -527,6 +529,9 @@ class GTLiteMetaTileEntities
 
             LARGE_DISTILLERY = MetaTileEntities.registerMetaTileEntity(18120,
                 MetaTileEntityLargeDistillery(GTLiteUtility.gtliteId("large_distillery")))
+
+            LARGE_BIO_REACTOR = MetaTileEntities.registerMetaTileEntity(18121,
+                MetaTileEntityLargeBioReactor(GTLiteUtility.gtliteId("large_bio_reactor")))
 
         }
 

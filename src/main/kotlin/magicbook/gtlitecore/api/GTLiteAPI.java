@@ -1,6 +1,8 @@
 package magicbook.gtlitecore.api;
 
 import gregtech.api.creativetab.BaseCreativeTab;
+import gregtech.common.blocks.BlockCleanroomCasing;
+import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
@@ -48,6 +50,8 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_SENSOR_CASING = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_FIELD_GEN_CASING = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PROCESSOR_CASING = new Object2ObjectOpenHashMap<>();
+
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static void init()
     {
@@ -104,6 +108,13 @@ public class GTLiteAPI
             MAP_PROCESSOR_CASING.put(GTLiteMetaBlocks.PROCESSOR_CASING.getState(tier),
                     new WrappedIntTier(tier, tier.ordinal() + 1));
         }
+
+        MAP_CLEANROOM_CASING.put(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING),
+                new WrappedIntTier(BlockCleanroomCasing.CasingType.FILTER_CASING, 1));
+
+        MAP_CLEANROOM_CASING.put(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE),
+                new WrappedIntTier(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE, 2));
+
     }
 
 }

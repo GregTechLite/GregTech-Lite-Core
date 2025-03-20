@@ -79,6 +79,7 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.Realgar
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Rubidium
@@ -844,7 +845,7 @@ class GTLiteMaterials
             .fluid()
             .color(0x355D6A).iconSet(METALLIC)
             .components(Titanium, 9, Carbon, 9, Potassium, 9, Lithium, 9, Sulfur, 9, Hydrogen, 5)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
                 b.temp(3550, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 26 * SECOND)
@@ -1197,6 +1198,7 @@ class GTLiteMaterials
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
+            RedSteel.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
