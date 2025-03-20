@@ -139,6 +139,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BREWERY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CENTRIFUGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_CUTTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_DISTILLERY
@@ -675,6 +676,17 @@ class MachineRecipeLoader
                 'H', HULL[HV].stackForm,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
                 'W', UnificationEntry(cableGtDouble, Electrum))
+
+            // Large Burner Reactor
+            ModHandler.addShapedRecipe(true, "large_burner_reactor", LARGE_BURNER_REACTOR.stackForm,
+                "PUP", "BXR", "WDW",
+                'B', BURNER_REACTOR[IV]!!.stackForm,
+                'R', ROASTER[IV]!!.stackForm,
+                'D', UnificationEntry(plateDense, EglinSteel),
+                'P', ELECTRIC_PISTON_IV,
+                'U', ELECTRIC_PUMP_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'W', UnificationEntry(cableGtSingle, Platinum))
 
         }
 

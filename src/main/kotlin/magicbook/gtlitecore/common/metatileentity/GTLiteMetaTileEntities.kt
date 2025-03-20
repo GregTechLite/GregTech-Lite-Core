@@ -29,6 +29,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBender
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBioReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBrewery
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeBurnerReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCentrifuge
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeCutter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeDistillery
@@ -165,6 +166,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_PACKER: MetaTileEntityLargePacker
         lateinit var LARGE_GAS_COLLECTOR: MetaTileEntityLargeGasCollector
         lateinit var LARGE_ROCK_BREAKER: MetaTileEntityLargeRockBreaker
+        lateinit var LARGE_BURNER_REACTOR: MetaTileEntityLargeBurnerReactor
 
         @JvmStatic
         fun preInit()
@@ -547,6 +549,9 @@ class GTLiteMetaTileEntities
 
             LARGE_ROCK_BREAKER = MetaTileEntities.registerMetaTileEntity(18124,
                 MetaTileEntityLargeRockBreaker(GTLiteUtility.gtliteId("large_rock_breaker")))
+
+            LARGE_BURNER_REACTOR = MetaTileEntities.registerMetaTileEntity(18125,
+                MetaTileEntityLargeBurnerReactor(GTLiteUtility.gtliteId("large_burner_reactor")))
 
         }
 

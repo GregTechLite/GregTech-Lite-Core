@@ -109,6 +109,7 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
@@ -139,6 +140,7 @@ import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
+import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
@@ -832,7 +834,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x8B4513).iconSet(METALLIC)
             .components(EglinSteelBase, 10, Sulfur, 1, Silicon, 1, Carbon, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
                 b.temp(1048, BlastProperty.GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 1 * SECOND + 4 * TICK)
@@ -894,6 +897,36 @@ class GTLiteMaterials
             .blast { b ->
                 b.temp(1711, BlastProperty.GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 25 * SECOND)
+            }
+            .build()
+
+        // 4016 Incoloy-MA813
+        @JvmField
+        val IncoloyMA813: Material = Material.Builder(4016, gtliteId("incoloy_ma_813"))
+            .ingot()
+            .fluid()
+            .color(0x37BF7E).iconSet(SHINY)
+            .components(VanadiumSteel, 4, Niobium, 2, Chrome, 3, Nickel, 4)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b -> b
+                .temp(4800, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
+                .blastStats(VA[IV], 34 * SECOND)
+                .vacuumStats(VA[EV], 17 * SECOND)
+            }
+            .build()
+
+        // 4017 Monel 500
+        @JvmField
+        val Monel500: Material = Material.Builder(4017, gtliteId("monel_500"))
+            .ingot()
+            .fluid()
+            .color(0x7777F1).iconSet(BRIGHT)
+            .components(Nickel, 23, Manganese, 2, Copper, 10, Aluminium, 4, Titanium, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b -> b
+                .temp(4500, BlastProperty.GasTier.MID) // RTM Alloy
+                .blastStats(VA[IV], 27 * SECOND)
+                .vacuumStats(VA[HV], 20 * SECOND)
             }
             .build()
 

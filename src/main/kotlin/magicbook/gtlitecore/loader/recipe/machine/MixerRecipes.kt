@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Silicon
@@ -37,6 +38,7 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
@@ -44,9 +46,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA813
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
@@ -265,6 +269,31 @@ class MixerRecipes
                 .output(dust, HSLASteel, 5)
                 .EUt(VA[HV].toLong())
                 .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Incoloy-MA813
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, VanadiumSteel, 4)
+                .input(dust, Niobium, 2)
+                .input(dust, Chrome, 3)
+                .input(dust, Nickel, 4)
+                .output(dust, IncoloyMA813, 13)
+                .EUt(VA[IV].toLong())
+                .duration(22 * SECOND)
+                .buildAndRegister()
+
+            // Monel-500
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Nickel, 23)
+                .input(dust, Manganese, 2)
+                .input(dust, Copper, 10)
+                .input(dust, Aluminium, 4)
+                .input(dust, Titanium, 1)
+                .output(dust, Monel500, 40)
+                .EUt(VA[IV].toLong())
+                .duration(56 * SECOND)
                 .buildAndRegister()
 
         }

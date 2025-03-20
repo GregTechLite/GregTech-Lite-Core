@@ -19,6 +19,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/black_steel"
         }
+      },
+      "incoloy_ma813": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/incoloy_ma813"
+        }
+      },
+      "monel_500": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/monel_500"
+        }
       }
     }
   }

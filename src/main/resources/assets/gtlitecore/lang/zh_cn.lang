@@ -370,6 +370,8 @@ tile.metal_casing_01.red_steel.name=绝缘红钢机器外壳
 tile.metal_casing_02.hsla_steel.name=安全HSLA钢机器外壳
 tile.metal_casing_02.kovar.name=高气密柯伐合金机器外壳
 tile.metal_casing_02.black_steel.name=坚实黑钢机器外壳
+tile.metal_casing_02.incoloy_ma813.name=热隔离耐热铬铁合金-MA813机器外壳
+tile.metal_casing_02.monel_500.name=耐低温蒙乃尔合金500机器外壳
 
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
@@ -1162,6 +1164,12 @@ gtlitecore.machine.large_rock_breaker.tooltip.2=当电压等级大于等于§3UV
 gtlitecore.machine.large_rock_breaker.tooltip.3=每提高1个§e传送带外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_rock_breaker.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.large_burner_reactor.name=大型燃烧炉
+gtlitecore.machine.large_burner_reactor.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_burner_reactor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_burner_reactor.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_burner_reactor.tooltip.4=每提高1个§a马达外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1311,6 +1319,8 @@ gtlitecore.material.grisium=灰钛合金
 gtlitecore.material.babbit_alloy=巴氏合金
 gtlitecore.material.silicon_carbide=碳化硅
 gtlitecore.material.hsla_steel=高强度低合金钢（HSLA）
+gtlitecore.material.incoloy_ma_813=耐热铬铁合金-MA813
+gtlitecore.material.monel_500=蒙乃尔合金500
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

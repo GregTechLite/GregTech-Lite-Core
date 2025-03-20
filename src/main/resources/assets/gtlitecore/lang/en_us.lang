@@ -370,6 +370,8 @@ tile.metal_casing_01.red_steel.name=Insulating Red Steel Machine Casing
 tile.metal_casing_02.hsla_steel.name=Secure HSLA Steel Machine Casing
 tile.metal_casing_02.kovar.name=Airtight Kovar Machine Casing
 tile.metal_casing_02.black_steel.name=Rugged Black Steel Machine Casing
+tile.metal_casing_02.incoloy_ma813.name=Thermal Isolated Incoloy-MA813 Machine Casing
+tile.metal_casing_02.monel_500.name=Frigostable Monel 500 Machine Casing
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
@@ -1162,6 +1164,12 @@ gtlitecore.machine.large_rock_breaker.tooltip.2=When Voltage tier >= §3UV§7 ti
 gtlitecore.machine.large_rock_breaker.tooltip.3=Each §eConveyor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_rock_breaker.tooltip.4=Each §aPiston Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_burner_reactor.name=Large Burner Reactor
+gtlitecore.machine.large_burner_reactor.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_burner_reactor.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_burner_reactor.tooltip.3=Each §eVoltage tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_burner_reactor.tooltip.4=Each §aMotor Casing tier§7 +1, processing +§l16§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1310,6 +1318,8 @@ gtlitecore.material.grisium=Grisium
 gtlitecore.material.babbit_alloy=Babbit Alloy
 gtlitecore.material.silicon_carbide=Silicon Carbide
 gtlitecore.material.hsla_steel=High Strength Low Alloy (HSLA)
+gtlitecore.material.incoloy_ma_813=Incoloy-MA813
+gtlitecore.material.monel_500=Monel 500
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

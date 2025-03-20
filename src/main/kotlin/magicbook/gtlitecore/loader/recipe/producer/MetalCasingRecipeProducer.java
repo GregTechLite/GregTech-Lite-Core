@@ -25,9 +25,11 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HSLASteel;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Kovar;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Monel500;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Stellite;
@@ -137,6 +139,16 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.BLACK_STEEL,
                 BlackSteel);
+
+        // Incoloy-MA813
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.INCOLOY_MA813,
+                IncoloyMA813);
+
+        // Monel 500
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.MONEL_500,
+                Monel500);
 
     }
 
