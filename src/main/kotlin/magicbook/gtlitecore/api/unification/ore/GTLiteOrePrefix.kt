@@ -71,6 +71,10 @@ class GTLiteOrePrefix
             GTLiteMaterialIconType.sheetedFrame, OrePrefix.Flags.ENABLE_UNIFICATION) { m ->
             m.hasFlag(MaterialFlags.GENERATE_FRAME) }
 
+        @JvmField
+        val wallGt: OrePrefix = OrePrefix("wallGt", (M * 4 + (M / 9) * 4) / 3, null,
+            GTLiteMaterialIconType.wallGt, OrePrefix.Flags.ENABLE_UNIFICATION) { m ->
+            m.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
 
         fun setOrePrefixInfos()
         {

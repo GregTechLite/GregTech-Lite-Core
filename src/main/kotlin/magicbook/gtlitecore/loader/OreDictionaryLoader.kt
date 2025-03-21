@@ -25,6 +25,15 @@ class OreDictionaryLoader
                 }
             }
 
+            GTLiteMetaBlocks.WALLS.entries.forEach { (m, b) ->
+                if (m == Materials.NULL)
+                    return@forEach
+                b.getItem(m).let { stack ->
+                    OreDictUnifier.registerOre(stack, GTLiteOrePrefix.wallGt, m)
+                    OreDictUnifier.registerOre(stack, ItemMaterialInfo(MaterialStack(m, 1)))
+                }
+            }
+
         }
 
     }

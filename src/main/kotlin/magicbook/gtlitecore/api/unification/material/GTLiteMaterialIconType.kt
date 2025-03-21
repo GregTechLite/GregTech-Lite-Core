@@ -15,6 +15,8 @@ class GTLiteMaterialIconType
         @JvmField
         val sheetedFrame = MaterialIconType("sheetedFrame")
 
+        @JvmField
+        val wallGt = MaterialIconType("wallGt")
     }
 
 }

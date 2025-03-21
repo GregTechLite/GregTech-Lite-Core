@@ -67,6 +67,7 @@ class PartsRecipeHandler
             OrePrefix.toolHeadDrill.addProcessingHandler(PropertyKey.INGOT, this::processDrillHead)
             OrePrefix.turbineBlade.addProcessingHandler(PropertyKey.INGOT, this::processTurbineBlade)
             GTLiteOrePrefix.sheetedFrame.addProcessingHandler(PropertyKey.DUST, this::processSheetedFrame)
+            GTLiteOrePrefix.wallGt.addProcessingHandler(PropertyKey.DUST, this::processWall)
         }
 
         /**
@@ -448,25 +449,44 @@ class PartsRecipeHandler
                 .buildAndRegister()
         }
 
-        fun processSheetedFrame(prefix: OrePrefix, material: Material, property: DustProperty)
+        fun processSheetedFrame(sheetedFramePrefix: OrePrefix, material: Material, property: DustProperty)
         {
 
-            if (!material.hasFlags(MaterialFlags.GENERATE_FRAME))
+            if (!material.hasFlag(MaterialFlags.GENERATE_FRAME))
                 return
-            ModHandler.addShapedRecipe(String.format("%s_sheeted_frame", material), OreDictUnifier.get(prefix, material, 12),
+            ModHandler.addShapedRecipe(String.format("%s_sheeted_frame", material), OreDictUnifier.get(sheetedFramePrefix, material, 12),
                 "PFP", "PhP", "PFP",
                 'P', UnificationEntry(OrePrefix.plate, material),
-                'F', UnificationEntry(OrePrefix.frameGt, material),)
+                'F', UnificationEntry(OrePrefix.frameGt, material))
 
             RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(10)
                 .input(OrePrefix.plate, material, 6)
                 .input(OrePrefix.frameGt, material, 2)
-                .output(prefix, material, 12)
+                .output(sheetedFramePrefix, material, 12)
                 .EUt(VA[ULV].toLong())
                 .duration(2 * SECOND + 5 * TICK)
                 .buildAndRegister()
 
+        }
+
+        fun processWall(wallGtPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            if (!material.hasFlag(MaterialFlags.GENERATE_PLATE) || !material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW))
+                return
+            ModHandler.addShapedRecipe(String.format("%s_wall_gt", material), OreDictUnifier.get(wallGtPrefix, material, 6),
+                "hPS", "P P", "SPd",
+                'P', UnificationEntry(OrePrefix.plate, material),
+                'S', UnificationEntry(OrePrefix.screw, material))
+
+            RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(11)
+                .input(OrePrefix.plate, material, 4)
+                .input(OrePrefix.screw, material, 4)
+                .output(wallGtPrefix, material, 6)
+                .EUt(VA[ULV].toLong())
+                .duration(2 * SECOND + 5 * TICK)
+                .buildAndRegister()
         }
 
         private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()

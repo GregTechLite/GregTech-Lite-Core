@@ -1,8 +1,10 @@
 package magicbook.gtlitecore.common;
 
 import gregtech.api.block.VariantItemBlock;
+import gregtech.common.blocks.MaterialItemBlock;
 import magicbook.gtlitecore.api.block.impl.TranslatableVariantItemBlock;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix;
 import magicbook.gtlitecore.api.utils.GTLiteLog;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
@@ -89,6 +91,11 @@ public class CommonProxy
                 .distinct()
                 .forEach(registry::register);
 
+        // Gregtech Walls
+        StreamEx.of(GTLiteMetaBlocks.WALLS.values())
+                .distinct()
+                .forEach(registry::register);
+
         // Register all common variant blocks.
         registry.register(GTLiteMetaBlocks.MOTOR_CASING);
         registry.register(GTLiteMetaBlocks.PISTON_CASING);
@@ -164,6 +171,11 @@ public class CommonProxy
         StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
                 .distinct()
                 .map(b -> createItemBlock(b, SheetedFrameItemBlock::new))
+                .forEach(registry::register);
+
+        StreamEx.of(GTLiteMetaBlocks.WALLS.values())
+                .distinct()
+                .map(b -> createItemBlock(b, d -> new MaterialItemBlock(d, GTLiteOrePrefix.wallGt)))
                 .forEach(registry::register);
 
         registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));

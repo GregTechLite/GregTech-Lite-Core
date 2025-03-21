@@ -16,6 +16,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
+import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
@@ -120,6 +121,12 @@ class GTLiteMetaBlocks
 
         @JvmField
         val SHEETED_FRAME_BLOCKS = arrayListOf<BlockSheetedFrame>()
+
+        @JvmField
+        val WALLS = hashMapOf<Material, BlockGregtechWall>()
+
+        @JvmField
+        val WALL_BLOCKS = arrayListOf<BlockGregtechWall>()
 
         lateinit var MOTOR_CASING: BlockMotorCasing
         lateinit var PISTON_CASING: BlockPistonCasing
@@ -301,8 +308,10 @@ class GTLiteMetaBlocks
             (RAINBOW_WOOD_FENCE_GATE as? Block)?.setTranslationKey("gtlite_wood_fence_gate.rainbow")
 
             // Sheeted frame
-            createGeneratedBlock({ m -> m.hasProperty(PropertyKey.DUST)&& m.hasFlag(MaterialFlags.GENERATE_FRAME) },
+            createGeneratedBlock({ m -> m.hasProperty(PropertyKey.DUST) && m.hasFlag(MaterialFlags.GENERATE_FRAME) },
                 this::createSheetedFrameBlock)
+            createGeneratedBlock({ m -> m.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) },
+                this::createGregtechWallBlock)
 
             // Component casings initialization.
             MOTOR_CASING = BlockMotorCasing()
@@ -473,6 +482,7 @@ class GTLiteMetaBlocks
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
+            WALLS.values.distinct().forEach(BlockGregtechWall::onModelRegister)
         }
 
         @SideOnly(Side.CLIENT)
@@ -489,6 +499,15 @@ class GTLiteMetaBlocks
                 }, block)
                 itemColors.registerItemColorHandler({ stack, _ ->
                     block.getGTMaterial(stack.metadata).materialRGB
+                }, block)
+            }
+
+            WALL_BLOCKS.forEach { block ->
+                blockColors.registerBlockColorHandler({ state, _, _, _ ->
+                    block.getGtMaterial(block.getMetaFromState(state)).materialRGB
+                }, block)
+                itemColors.registerItemColorHandler({ stack, _ ->
+                    block.getGtMaterial(stack.metadata).materialRGB
                 }, block)
             }
 
@@ -562,13 +581,24 @@ class GTLiteMetaBlocks
         /**
          * @see magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
          */
-        fun createSheetedFrameBlock(materials: Array<Material>, index: Int)
+        private fun createSheetedFrameBlock(materials: Array<Material>, index: Int)
         {
             val block = BlockSheetedFrame(materials).apply {
                 this.registryName = GTLiteUtility.gtliteId("meta_block_sheeted_frame_$index")
             }
             materials.forEach { SHEETED_FRAMES[it] = block }
             SHEETED_FRAME_BLOCKS.add(block)
+        }
+
+        /**
+         * @see magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
+         */
+        private fun createGregtechWallBlock(materials: Array<Material>, index: Int)
+        {
+            val block = BlockGregtechWall.create(materials)
+            (block as? Block)?.registryName = GTLiteUtility.gtliteId("meta_block_wall_gt_$index")
+            materials.forEach { WALLS[it] = block }
+            WALL_BLOCKS.add(block)
         }
 
     }

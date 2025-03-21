@@ -1300,6 +1300,7 @@ item.material.oreprefix.oreQuartzite=石英岩%s矿石
 item.material.oreprefix.oreSlate=板岩%s矿石
 item.material.oreprefix.oreShale=页岩%s矿石
 item.material.oreprefix.sheetedFrame=%s板框箱
+item.material.oreprefix.wallGt=%s壁面
 
 # Materials
 gtlitecore.material.dolomite=白云石
