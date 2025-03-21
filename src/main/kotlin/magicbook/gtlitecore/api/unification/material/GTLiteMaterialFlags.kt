@@ -1,6 +1,5 @@
 package magicbook.gtlitecore.api.unification.material
 
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Amethyst
@@ -73,9 +72,6 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
-import gregtech.api.unification.material.properties.DustProperty
-import gregtech.api.unification.material.properties.GemProperty
-import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
 
 class GTLiteMaterialFlags

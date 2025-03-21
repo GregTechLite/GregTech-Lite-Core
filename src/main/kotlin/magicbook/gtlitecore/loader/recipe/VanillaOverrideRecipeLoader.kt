@@ -1,11 +1,8 @@
 package magicbook.gtlitecore.loader.recipe
 
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Paper
-import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.ConfigHolder
 import gregtech.common.items.ToolItems

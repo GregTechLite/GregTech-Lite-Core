@@ -61,7 +61,6 @@ import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticC
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler
 import net.minecraftforge.items.CapabilityItemHandler
-import java.util.function.Predicate
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
