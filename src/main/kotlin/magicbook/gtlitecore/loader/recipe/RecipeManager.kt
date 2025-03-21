@@ -9,6 +9,7 @@ import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
+import magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BathCondenserRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
@@ -78,6 +79,7 @@ class RecipeManager
             MixerRecipes.init()
             WiremillRecipes.init()
             // Additional machine recipes.
+            AlloyBlastSmelterRecipes.init()
             BathCondenserRecipes.init()
             GreenhouseRecipes.init()
             LoomRecipes.init()

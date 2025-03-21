@@ -38,6 +38,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Talonite;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Tumbaga;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.WatertightSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Zeron100;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.ZirconiumCarbide;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
 
@@ -155,6 +156,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.INCOLOY_MA956,
                 IncoloyMA956);
+
+        // Zirconium Carbide
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.ZIRCONIUM_CARBIDE,
+                ZirconiumCarbide);
 
     }
 

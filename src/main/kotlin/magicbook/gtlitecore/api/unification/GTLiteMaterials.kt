@@ -3,6 +3,7 @@ package magicbook.gtlitecore.api.unification
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
@@ -736,7 +737,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x444B42).iconSet(METALLIC)
             .components(Uranium, 9, Titanium, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
                 b.temp(3450, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 37 * SECOND + 10 * TICK)
@@ -944,6 +946,21 @@ class GTLiteMaterials
                 b.temp(5325, BlastProperty.GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 40 * SECOND)
                     .vacuumStats(VA[HV], 25 * SECOND)
+            }
+            .build()
+
+        // 4019 Zirconium Carbide
+        @JvmField
+        val ZirconiumCarbide: Material = Material.Builder(4019, gtliteId("zirconium_carbide"))
+            .ingot()
+            .fluid()
+            .color(0xDECAB4).iconSet(METALLIC)
+            .components(Zirconium, 1, Carbon, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_ROTOR)
+            .blast { b ->
+                b.temp(3250, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[HV], 48 * SECOND)
+                    .vacuumStats(VA[LV], 24 * SECOND)
             }
             .build()
 

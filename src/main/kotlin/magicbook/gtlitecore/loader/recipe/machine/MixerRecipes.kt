@@ -40,6 +40,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Yttrium
+import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
@@ -60,6 +61,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -308,6 +310,16 @@ class MixerRecipes
                 .output(dust, IncoloyMA956, 25)
                 .EUt(VA[IV].toLong())
                 .duration(34 * SECOND)
+                .buildAndRegister()
+
+            // Zirconium Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Zirconium, 1)
+                .input(dust, Carbon, 1)
+                .output(dust, ZirconiumCarbide, 2)
+                .EUt(VA[HV].toLong())
+                .duration(18 * SECOND)
                 .buildAndRegister()
 
         }

@@ -373,6 +373,9 @@ tile.metal_casing_02.black_steel.name=Rugged Black Steel Machine Casing
 tile.metal_casing_02.incoloy_ma813.name=Thermal Isolated Incoloy-MA813 Machine Casing
 tile.metal_casing_02.monel_500.name=Frigostable Monel 500 Machine Casing
 tile.metal_casing_02.incoloy_ma956.name=Spacecraft Grade Incoloy-MA956 Machine Casing
+tile.metal_casing_02.zirconium_carbide.name=Heatproof Zirconium Carbide Machine Casing
+
+tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
@@ -619,6 +622,7 @@ recipemap.large_mixer.name=Large Mixer
 recipemap.catalytic_reformer.name=Catalytic Reformer
 recipemap.large_gas_collector.name=Large Gas Collector
 recipemap.electric_implosion_compressor.name=Electric Implosion Compressor
+recipemap.alloy_blast_smelter.name=Alloy Blast Smelter
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1185,6 +1189,12 @@ gtlitecore.machine.electric_implosion_compressor.tooltip.3=When Voltage tier >= 
 gtlitecore.machine.electric_implosion_compressor.tooltip.4=Each §eEmitter Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.electric_implosion_compressor.tooltip.5=Each §aPiston Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.large_alloy_blast_smelter.name=Alloy Blast Smelter
+gtlitecore.machine.large_alloy_blast_smelter.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_alloy_blast_smelter.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_alloy_blast_smelter.tooltip.3=Each §eCoil tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_alloy_blast_smelter.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1336,6 +1346,7 @@ gtlitecore.material.hsla_steel=High Strength Low Alloy (HSLA)
 gtlitecore.material.incoloy_ma_813=Incoloy-MA813
 gtlitecore.material.monel_500=Monel 500
 gtlitecore.material.incoloy_ma_956=Incoloy-MA956
+gtlitecore.material.zirconium_carbide=Zirconium Carbide
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

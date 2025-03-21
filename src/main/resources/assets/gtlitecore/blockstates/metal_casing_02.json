@@ -37,6 +37,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/incoloy_ma956"
         }
+      },
+      "zirconium_carbide": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/zirconium_carbide"
+        }
       }
     }
   }

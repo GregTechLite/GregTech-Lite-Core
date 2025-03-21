@@ -4,8 +4,11 @@ import gregtech.api.GregTechAPI
 import gregtech.api.metatileentity.registry.MTEManager.MTERegistryEvent
 import gregtech.api.unification.material.event.MaterialEvent
 import gregtech.api.unification.material.event.MaterialRegistryEvent
+import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
+import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.common.item.GTLiteToolItems
@@ -35,6 +38,13 @@ class EventHandlers
         GTLiteMaterials.setMaterialFlags()
         GTLiteToolItems.registerTools()
         GTLiteToolItems.addToolSymbols()
+    }
+
+    @SubscribeEvent
+    fun registerPostMaterials(event: PostMaterialEvent)
+    {
+        AlloyBlastPropertyAdder.preInitABSProperties()
+        AlloyBlastPropertyAdder.initABSProperties()
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

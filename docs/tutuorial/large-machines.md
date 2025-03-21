@@ -26,4 +26,5 @@
 |      | Large Bio Reactor             | Bio Reactor, Greenhouse                                          |
 |      | Large Burner Reactor          | Burner Reactor, Roaster                                          |
 |      | Large Cryogenic Reactor       | Cryogenic Reactor, Bath Condenser                                |
-|      | Electric Implosion Compressor | Electric Implosion Compressor (Implosion Compressor)             | 
+|      | Electric Implosion Compressor | Electric Implosion Compressor (Implosion Compressor)             |
+|      | Large Alloy Blast Smelter     | Alloy Blast Smelter                                              |

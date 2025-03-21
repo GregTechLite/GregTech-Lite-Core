@@ -5,6 +5,7 @@ import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
@@ -472,6 +473,60 @@ class GTLiteRecipeMaps
             .sound(SoundEvents.ENTITY_GENERIC_EXPLODE)
             .build()
             .setSmallRecipeMap(RecipeMaps.IMPLOSION_RECIPES)
+
+        /**
+         * Example:
+         *
+         * ```
+         *     GTLiteRecipeMaps.ALLOY_BLAST_RECIPES.recipeBuilder()
+         *             .circuitMeta(4)
+         *             .input(OrePrefix.dust, Materials.Iridium, 2)
+         *             .input(OrePrefix.dust, Materials.Platinum, 3)
+         *             .input(OrePrefix.dust, Materials.Naquadah, 1)
+         *             .fluidInputs(Materials.Oxygen.getFluid(14000))
+         *             .fluidOutputs(GTLiteMaterials.IridiumPlatinumNaquadate.getFluid(GTValues.L * 20))
+         *             .EUt(GTValues.VA[GTValues.UV].toLong())
+         *             .duration(30 * GTLiteValues.SECOND)
+         *             .blastFurnaceTemp(10800) // Tritanium
+         *             .buildAndRegister()
+         * ```
+         *
+         * Alloy Blast Smelter (ABS) is merged from Gregicality Multiblocks (GCYM), but has many
+         * different. The original idea of this RecipeMap is from same name machine in GregTech++
+         * and Gregicality (Legacy), and ABS recipes. Different with GCYM's ABS recipes, in these
+         * recipes, fluid outputs will be fluid of material but not be molten fluid (which means
+         * player do not need to input molten fluids to Vacuum Freezer again, this is ridiculous
+         * for player experience by I think ^^). Implementation of ABS recipe automatically
+         * generator is too complex, so we just list all classes we used in this step. Pay
+         * attention, this internal API will automatically generate all materials which is allowed
+         * by `AlloyBlastProducer` and do not have `NO_ALLOY_BLAST_RECIPES` flag or `DISABLE_ALLOY
+         * _PROPERTY` for other addition mods.
+         *
+         * @zenProp alloy_blast_smelter
+         *
+         * @see magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.NO_ALLOY_BLAST_RECIPES
+         * @see magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY
+         * @see magicbook.gtlitecore.api.unification.material.GTLitePropertyKey.ALLOY_BLAST
+         * @see magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
+         * @see magicbook.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
+         * @see magicbook.gtlitecore.loader.recipe.producer.AlloyBlastRecipeProducer
+         * @see magicbook.gtlitecore.loader.recipe.producer.CustomAlloyBlastRecipeProducer
+         * @see magicbook.gtlitecore.loader.recipe.handler.MaterialRecipeHandler.generateABSRecipes
+         * @see magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ALLOY_BLAST_RECIPES")
+        val ALLOY_BLAST_RECIPES = RecipeMapBuilder("alloy_blast_smelter", BlastRecipeBuilder())
+            .itemInputs(9)
+            .fluidInputs(3)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, true)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
+            .sound(GTSoundEvents.FURNACE)
+            .build()
 
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.

@@ -81,6 +81,9 @@ class GTLiteTextures
         @JvmField
         val LARGE_CRYOGENIC_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_cryogenic_reactor")
 
+        @JvmField
+        val ALLOY_BLAST_SMELTER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/alloy_blast_smelter")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -150,6 +153,9 @@ class GTLiteTextures
 
         @JvmField
         val INCOLOY_MA956_CASING = GTLiteSimpleOverlayRenderer("casings/metal/incoloy_ma956")
+
+        @JvmField
+        val ZIRCONIUM_CARBIDE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/zirconium_carbide")
 
         // =============================================================================================================
         @JvmField

@@ -23,6 +23,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
@@ -171,6 +172,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_BURNER_REACTOR: MetaTileEntityLargeBurnerReactor
         lateinit var LARGE_CRYOGENIC_REACTOR: MetaTileEntityLargeCryogenicReactor
         lateinit var ELECTRIC_IMPLOSION_COMPRESSOR: MetaTileEntityElectricImplosionCompressor
+        lateinit var ALLOY_BLAST_SMELTER: MetaTileEntityAlloyBlastSmelter
 
         @JvmStatic
         fun preInit()
@@ -563,6 +565,9 @@ class GTLiteMetaTileEntities
             ELECTRIC_IMPLOSION_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18127,
                 MetaTileEntityElectricImplosionCompressor(GTLiteUtility.gtliteId("electric_implosion_compressor")))
 
+            ALLOY_BLAST_SMELTER = MetaTileEntities.registerMetaTileEntity(18128,
+                MetaTileEntityAlloyBlastSmelter(GTLiteUtility.gtliteId("alloy_blast_smelter")))
+
         }
 
         @JvmStatic
@@ -643,6 +648,7 @@ class GTLiteMetaTileEntities
             LARGE_BURNER_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_CRYOGENIC_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ELECTRIC_IMPLOSION_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            ALLOY_BLAST_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

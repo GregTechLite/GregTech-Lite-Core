@@ -121,12 +121,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
@@ -713,6 +715,16 @@ class MachineRecipeLoader
                 'P', ELECTRIC_PISTON_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
                 'W', UnificationEntry(cableGtSingle, TungstenSteel))
+
+            // Alloy Blast Smelter
+            ModHandler.addShapedRecipe(true, "alloy_blast_smelter", ALLOY_BLAST_SMELTER.stackForm,
+                "DBD", "XAX", "GWG",
+                'A', ALLOY_SMELTER[IV].stackForm,
+                'B', UnificationEntry(rotor, ZirconiumCarbide),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'G', UnificationEntry(gear, TungstenCarbide),
+                'D', UnificationEntry(plateDense, Staballoy),
+                'W', UnificationEntry(cableGtSingle, Platinum))
 
         }
 

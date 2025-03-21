@@ -30,6 +30,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.material.GTLitePropertyKey
+import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -68,6 +70,7 @@ class MaterialRecipeHandler
             }
             // ===========================================================================================
             OrePrefix.dust.addProcessingHandler(PropertyKey.DUST, this::processDust)
+            OrePrefix.ingot.addProcessingHandler(GTLitePropertyKey.ALLOY_BLAST, this::generateABSRecipes)
         }
 
         /**
@@ -413,6 +416,12 @@ class MaterialRecipeHandler
 
             }
 
+        }
+
+        private fun generateABSRecipes(ingotPrefix: OrePrefix, material: Material, property: AlloyBlastProperty)
+        {
+            if (material.hasProperty(PropertyKey.BLAST))
+                property.recipeProducer.produce(material, material.getProperty(PropertyKey.BLAST))
         }
 
         private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()
