@@ -76,7 +76,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_F
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
 import magicbook.gtlitecore.common.item.GTLiteToolItems
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BUFFER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
@@ -424,22 +423,6 @@ class CraftingRecipeLoader
             ModHandler.addShapelessRecipe("dust_kovar_2", OreDictUnifier.get(dust, Kovar, 4),
                 OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Invar),
                 OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Cobalt))
-
-            // EV Buffer
-            ModHandler.addShapedRecipe(true, "buffer_ev", BUFFER[0]!!.stackForm,
-                "HP ", "XC ", "   ",
-                'H', HULL[EV].stackForm,
-                'P', ELECTRIC_PUMP_EV,
-                'C', CONVEYOR_MODULE_EV,
-                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
-
-            // IV Buffer
-            ModHandler.addShapedRecipe(true, "buffer_iv", BUFFER[1]!!.stackForm,
-                "HP ", "XC ", "   ",
-                'H', HULL[IV].stackForm,
-                'P', ELECTRIC_PUMP_IV,
-                'C', CONVEYOR_MODULE_IV,
-                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
 
         }
 

@@ -1206,6 +1206,32 @@ gtlitecore.machine.plastic_can.polyethylene.name=Polyethylene Plastic Can
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=Polytetrafluoroethylene Plastic Can
 gtlitecore.machine.plastic_can.polybenzimidazole.name=Polybenzimidazole Plastic Can
 
+gtlitecore.machine.bridge.inventory.name=Inventory Bridge
+gtlitecore.machine.bridge.inventory.tooltip=§bRelays inventories
+gtlitecore.machine.bridge.tank.name=Tank Bridge
+gtlitecore.machine.bridge.tank.tooltip=§bRelays tanks
+gtlitecore.machine.bridge.inventory_tank.name=Inventory/Tank Bridge
+gtlitecore.machine.bridge.inventory_tank.tooltip=§bRelays inventories and fluids
+gtlitecore.machine.bridge.universal.name=Universal Bridge
+gtlitecore.machine.bridge.universal.tooltip=§bRelays everything (even energy!)
+
+gtlitecore.machine.extender.inventory.name=Inventory Extender
+gtlitecore.machine.extender.inventory.tooltip=§bRelays inventories
+gtlitecore.machine.extender.tank.name=Tank Extender
+gtlitecore.machine.extender.tank.tooltip=§bRelays tanks
+gtlitecore.machine.extender.inventory_tank.name=Inventory/Tank Extender
+gtlitecore.machine.extender.inventory_tank.tooltip=§bRelays inventories and fluids
+gtlitecore.machine.extender.universal.name=Universal Extender
+gtlitecore.machine.extender.universal.tooltip=§bRelays everything (even energy!)
+
+gtlitecore.machine.delegator.tooltip.non_recursion=§6Cannot be attached to other Delegators!
+gtlitecore.machine.delegator.delegating_face.north=Delegating Face: North
+gtlitecore.machine.delegator.delegating_face.south=Delegating Face: South
+gtlitecore.machine.delegator.delegating_face.west=Delegating Face: West
+gtlitecore.machine.delegator.delegating_face.east=Delegating Face: East
+gtlitecore.machine.delegator.delegating_face.up=Delegating Face: Up
+gtlitecore.machine.delegator.delegating_face.down=Delegating Face: Down
+
 gtlitecore.machine.buffer.ev.name=Advanced Buffer III
 gtlitecore.machine.buffer.iv.name=Elite Buffer
 

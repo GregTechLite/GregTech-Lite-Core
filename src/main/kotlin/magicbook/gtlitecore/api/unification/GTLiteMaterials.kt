@@ -1375,6 +1375,7 @@ class GTLiteMaterials
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)
             TinAlloy.addFlags(GENERATE_ROTOR)
+            Aluminium.addFlags(GENERATE_ROTOR)
 
             // round
             Steel.addFlags(GENERATE_ROUND)

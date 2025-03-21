@@ -55,8 +55,13 @@ import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEne
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
+import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
+import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityExtender
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler
+import net.minecraftforge.items.CapabilityItemHandler
+import java.util.function.Predicate
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
@@ -114,6 +119,16 @@ class GTLiteMetaTileEntities
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+
+        lateinit var INVENTORY_BRIDGE: MetaTileEntityBridge
+        lateinit var TANK_BRIDGE: MetaTileEntityBridge
+        lateinit var INVENTORY_TANK_BRIDGE: MetaTileEntityBridge
+        lateinit var UNIVERSAL_BRIDGE: MetaTileEntityBridge
+
+        lateinit var INVENTORY_EXTENDER: MetaTileEntityExtender
+        lateinit var TANK_EXTENDER: MetaTileEntityExtender
+        lateinit var INVENTORY_TANK_EXTENDER: MetaTileEntityExtender
+        lateinit var UNIVERSAL_EXTENDER: MetaTileEntityExtender
 
         @get:JvmName("BUFFER")
         val BUFFER = arrayOfNulls<MetaTileEntityBuffer>(3)
@@ -361,6 +376,45 @@ class GTLiteMetaTileEntities
             // ...
 
             // 15051-15060: I/O hatch proxies.
+            INVENTORY_BRIDGE = MetaTileEntities.registerMetaTileEntity(15051,
+                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.inventory"),
+                    { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
+                    GTLiteTextures.INVENTORY_BRIDGE, Materials.Steel))
+
+            TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(15052,
+                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.tank"),
+                    { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
+                    GTLiteTextures.TANK_BRIDGE, Materials.Steel))
+
+            INVENTORY_TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(15053,
+                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.inventory_tank"),
+                    { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
+                    GTLiteTextures.INVENTORY_TANK_BRIDGE, Materials.Steel))
+
+            UNIVERSAL_BRIDGE = MetaTileEntities.registerMetaTileEntity(15054,
+                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.universal"),
+                    { true },
+                    GTLiteTextures.UNIVERSAL_BRIDGE, Materials.Aluminium))
+
+            INVENTORY_EXTENDER = MetaTileEntities.registerMetaTileEntity(15055,
+                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.inventory"),
+                    { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
+                    GTLiteTextures.INVENTORY_EXTENDER, Materials.Steel))
+
+            TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(15056,
+                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.tank"),
+                    { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
+                    GTLiteTextures.TANK_EXTENDER, Materials.Steel))
+
+            INVENTORY_TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(15057,
+                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.inventory_tank"),
+                    { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
+                    GTLiteTextures.INVENTORY_TANK_EXTENDER, Materials.Steel))
+
+            UNIVERSAL_EXTENDER = MetaTileEntities.registerMetaTileEntity(15058,
+                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.universal"),
+                    { true },
+                    GTLiteTextures.UNIVERSAL_EXTENDER, Materials.Aluminium))
 
             // 15061-15075: Advanced buffers.
             BUFFER[0] = MetaTileEntities.registerMetaTileEntity(15061,

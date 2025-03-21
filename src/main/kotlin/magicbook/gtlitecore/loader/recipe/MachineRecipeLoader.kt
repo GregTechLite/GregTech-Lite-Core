@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -20,6 +21,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potin
@@ -44,6 +46,7 @@ import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -62,6 +65,7 @@ import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
@@ -136,6 +140,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BUFFER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CATALYTIC_REFORMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
@@ -143,6 +148,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_EXTENDER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_TANK_BRIDGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_TANK_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ARC_FURNACE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ASSEMBLER
@@ -179,7 +188,11 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_BRIDGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.UNIVERSAL_BRIDGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.UNIVERSAL_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VULCANIZING_PRESS
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
@@ -749,6 +762,166 @@ class MachineRecipeLoader
                 .outputs(GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(BlockActiveUniqueCasing01.UniqueCasingType.HEAT_VENT, ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // EV Buffer
+            ModHandler.addShapedRecipe(true, "buffer_ev", BUFFER[0]!!.stackForm,
+                "HP ", "XC ", "   ",
+                'H', HULL[EV].stackForm,
+                'P', ELECTRIC_PUMP_EV,
+                'C', CONVEYOR_MODULE_EV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
+
+            // IV Buffer
+            ModHandler.addShapedRecipe(true, "buffer_iv", BUFFER[1]!!.stackForm,
+                "HP ", "XC ", "   ",
+                'H', HULL[IV].stackForm,
+                'P', ELECTRIC_PUMP_IV,
+                'C', CONVEYOR_MODULE_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
+
+            // Inventory Bridge
+            ModHandler.addShapedRecipe(true, "inventory_bridge", INVENTORY_BRIDGE.stackForm,
+                "hP ", " H ", " Pw",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalItem, Nickel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(HULL[LV])
+                .input(pipeNormalItem, Nickel, 2)
+                .output(INVENTORY_BRIDGE)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Tank Bridge
+            ModHandler.addShapedRecipe(true, "tank_bridge", TANK_BRIDGE.stackForm,
+                "h  ", "PHP", "  w",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalFluid, Steel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(HULL[LV])
+                .input(pipeNormalFluid, Steel, 2)
+                .output(TANK_BRIDGE)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Inventory Tank Bridge
+            ModHandler.addShapedRecipe(true, "inventory_tank_bridge", INVENTORY_TANK_BRIDGE.stackForm,
+                "hP ", "QHQ", " Pw",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalItem, Nickel),
+                'Q', UnificationEntry(pipeNormalFluid, Steel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(HULL[LV])
+                .input(pipeNormalFluid, Steel, 2)
+                .input(pipeNormalItem, Nickel, 2)
+                .output(INVENTORY_TANK_BRIDGE)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Universal Bridge
+            ModHandler.addShapedRecipe(true, "universal_bridge", UNIVERSAL_BRIDGE.stackForm,
+                "SPR", "QHQ", "XPG",
+                'H', HULL[MV].stackForm,
+                'P', UnificationEntry(pipeNormalItem, Electrum),
+                'Q', UnificationEntry(pipeNormalFluid, Aluminium),
+                'S', UnificationEntry(spring, Aluminium),
+                'R', UnificationEntry(rotor, Aluminium),
+                'G', UnificationEntry(gear, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(HULL[MV])
+                .input(circuit, MarkerMaterials.Tier.LV)
+                .input(rotor, Aluminium)
+                .input(gear, Aluminium)
+                .input(spring, Aluminium)
+                .input(pipeNormalFluid, Aluminium, 2)
+                .input(pipeNormalItem, Electrum, 2)
+                .output(UNIVERSAL_BRIDGE)
+                .EUt(VH[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Inventory Extender
+            ModHandler.addShapedRecipe(true, "inventory_extender", INVENTORY_EXTENDER.stackForm,
+                " hP", " H ", "Pw ",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalItem, Nickel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(HULL[LV])
+                .input(pipeNormalItem, Nickel, 2)
+                .output(INVENTORY_EXTENDER)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Tank Extender
+            ModHandler.addShapedRecipe(true, "tank_extender", TANK_EXTENDER.stackForm,
+                "Ph ", " H ", " wP",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalFluid, Steel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(HULL[LV])
+                .input(pipeNormalFluid, Steel, 2)
+                .output(TANK_EXTENDER)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Inventory Tank Extender
+            ModHandler.addShapedRecipe(true, "inventory_tank_extender", INVENTORY_TANK_EXTENDER.stackForm,
+                "PhQ", " H ", "QwP",
+                'H', HULL[LV].stackForm,
+                'P', UnificationEntry(pipeNormalFluid, Steel),
+                'Q', UnificationEntry(pipeNormalItem, Nickel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(HULL[LV])
+                .input(pipeNormalFluid, Steel, 2)
+                .input(pipeNormalItem, Nickel, 2)
+                .output(INVENTORY_TANK_EXTENDER)
+                .EUt(VH[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Universal Extender
+            ModHandler.addShapedRecipe(true, "universal_extender", UNIVERSAL_EXTENDER.stackForm,
+                "PRQ", "XHG", "QSP",
+                'H', HULL[MV].stackForm,
+                'P', UnificationEntry(pipeNormalFluid, Aluminium),
+                'Q', UnificationEntry(pipeNormalItem, Electrum),
+                'R', UnificationEntry(rotor, Aluminium),
+                'G', UnificationEntry(gear, Aluminium),
+                'S', UnificationEntry(spring, Aluminium),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(HULL[MV])
+                .input(circuit, MarkerMaterials.Tier.LV)
+                .input(rotor, Aluminium)
+                .input(gear, Aluminium)
+                .input(spring, Aluminium)
+                .input(pipeNormalFluid, Aluminium, 2)
+                .input(pipeNormalItem, Electrum, 2)
+                .output(UNIVERSAL_EXTENDER)
+                .EUt(VH[MV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
         }

@@ -5,6 +5,7 @@ import gregtech.client.renderer.texture.cube.SidedCubeRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtech.client.renderer.texture.custom.DrumRenderer
 import magicbook.gtlitecore.client.renderer.texture.cube.GTLiteSimpleOverlayRenderer
+import magicbook.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
 
 class GTLiteTextures
 {
@@ -161,9 +162,32 @@ class GTLiteTextures
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")
 
-        // =============================================================================================================
         @JvmField
         val PLASTIC_CAN = DrumRenderer("storage/drums/plastic_can")
+
+        @JvmField
+        val INVENTORY_BRIDGE = SimpleSidedCubeRenderer("storage/bridges/inventory")
+
+        @JvmField
+        val TANK_BRIDGE = SimpleSidedCubeRenderer("storage/bridges/tank")
+
+        @JvmField
+        val INVENTORY_TANK_BRIDGE = SimpleSidedCubeRenderer("storage/bridges/inventory_tank")
+
+        @JvmField
+        val UNIVERSAL_BRIDGE = SimpleSidedCubeRenderer("storage/bridges/universal")
+
+        @JvmField
+        val INVENTORY_EXTENDER = ExtenderRenderer("storage/extenders/inventory")
+
+        @JvmField
+        val TANK_EXTENDER = ExtenderRenderer("storage/extenders/tank")
+
+        @JvmField
+        val INVENTORY_TANK_EXTENDER = ExtenderRenderer("storage/extenders/inventory_tank")
+
+        @JvmField
+        val UNIVERSAL_EXTENDER = ExtenderRenderer("storage/extenders/universal")
 
         // =============================================================================================================
 

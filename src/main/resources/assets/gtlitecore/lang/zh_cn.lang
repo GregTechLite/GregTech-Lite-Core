@@ -1206,6 +1206,32 @@ gtlitecore.machine.plastic_can.polyethylene.name=聚乙烯塑料桶
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=聚四氟乙烯塑料桶
 gtlitecore.machine.plastic_can.polybenzimidazole.name=聚苯并咪唑塑料桶
 
+gtlitecore.machine.bridge.inventory.name=物品桥接器
+gtlitecore.machine.bridge.inventory.tooltip=§b将物品容器连接
+gtlitecore.machine.bridge.tank.name=流体桥接器
+gtlitecore.machine.bridge.tank.tooltip=§b将流体容器连接
+gtlitecore.machine.bridge.inventory_tank.name=二合一桥接器
+gtlitecore.machine.bridge.inventory_tank.tooltip=§b将物品或流体连接
+gtlitecore.machine.bridge.universal.name=万用桥接器
+gtlitecore.machine.bridge.universal.tooltip=§b连接任意对象（甚至能量！）
+
+gtlitecore.machine.extender.inventory.name=物品拓展器
+gtlitecore.machine.extender.inventory.tooltip=§b将物品容器连接
+gtlitecore.machine.extender.tank.name=流体拓展器
+gtlitecore.machine.extender.tank.tooltip=§b将流体容器连接
+gtlitecore.machine.extender.inventory_tank.name=二合一拓展器
+gtlitecore.machine.extender.inventory_tank.tooltip=§b将物品或流体连接
+gtlitecore.machine.extender.universal.name=万用拓展器
+gtlitecore.machine.extender.universal.tooltip=§b连接任意对象（甚至能量！）
+
+gtlitecore.machine.delegator.tooltip.non_recursion=§6无法与其他路由器相连！
+gtlitecore.machine.delegator.delegating_face.north=路由面：北
+gtlitecore.machine.delegator.delegating_face.south=路由面：南
+gtlitecore.machine.delegator.delegating_face.west=路由面：西
+gtlitecore.machine.delegator.delegating_face.east=路由面：东
+gtlitecore.machine.delegator.delegating_face.up=路由面：上
+gtlitecore.machine.delegator.delegating_face.down=路由面：下
+
 gtlitecore.machine.buffer.ev.name=进阶缓存器 III
 gtlitecore.machine.buffer.iv.name=精英缓存器
 
