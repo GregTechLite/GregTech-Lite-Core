@@ -8,7 +8,6 @@ import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.GTLiteUtility
-import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.client.model.ItemModelHelper
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOverride
@@ -46,7 +45,6 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.init.Blocks
 import net.minecraft.item.Item
-import net.minecraft.util.ResourceLocation
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -495,10 +493,10 @@ class GTLiteMetaBlocks
 
             SHEETED_FRAME_BLOCKS.forEach { block ->
                 blockColors.registerBlockColorHandler({ state, _, _, _ ->
-                    block.getGTMaterial(block.getMetaFromState(state)).materialRGB
+                    block.getGtMaterial(block.getMetaFromState(state)).materialRGB
                 }, block)
                 itemColors.registerItemColorHandler({ stack, _ ->
-                    block.getGTMaterial(stack.metadata).materialRGB
+                    block.getGtMaterial(stack.metadata).materialRGB
                 }, block)
             }
 

@@ -53,7 +53,7 @@ public class SheetedFrameItemBlock extends ItemBlock
     {
         super.addInformation(stack, worldIn, tooltip, flagIn);
         if (ConfigHolder.misc.debug)
-            tooltip.add("MetaItem Id: sheetedFrame" + this.frameBlock.getGTMaterial(stack.getMetadata()).toCamelCaseString());
+            tooltip.add("MetaItem Id: sheetedFrame" + this.frameBlock.getGtMaterial(stack.getMetadata()).toCamelCaseString());
     }
 
 }

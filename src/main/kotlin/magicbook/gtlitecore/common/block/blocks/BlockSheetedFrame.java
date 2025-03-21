@@ -267,14 +267,14 @@ public class BlockSheetedFrame extends Block
     /**
      * Only bottom two bits are relevant for getting material.
      */
-    public Material getGTMaterial(int meta)
+    public Material getGtMaterial(int meta)
     {
         return this.variantProperty.getAllowedValues().get((meta & 3));
     }
 
-    public Material getGTMaterial(IBlockState blockState)
+    public Material getGtMaterial(IBlockState blockState)
     {
-        return this.getGTMaterial(this.getMetaFromState(blockState));
+        return this.getGtMaterial(this.getMetaFromState(blockState));
     }
 
     @SuppressWarnings("deprecation")
@@ -322,7 +322,7 @@ public class BlockSheetedFrame extends Block
         Map<IBlockState, ModelResourceLocation> models = new Object2ObjectOpenHashMap<>();
         for (IBlockState blockState : this.getBlockState().getValidStates())
         {
-            Material material = this.getGTMaterial(blockState);
+            Material material = this.getGtMaterial(blockState);
             models.put(blockState, MaterialBlockModelLoader.loadBlockModel(
                     GTLiteMaterialIconType.sheetedFrame, material.getMaterialIconSet(),
                     "axis=" + blockState.getValue(SHEETED_FRAME_AXIS).getName()));
