@@ -54,8 +54,10 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
@@ -117,14 +119,17 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
@@ -720,11 +725,31 @@ class MachineRecipeLoader
             ModHandler.addShapedRecipe(true, "alloy_blast_smelter", ALLOY_BLAST_SMELTER.stackForm,
                 "DBD", "XAX", "GWG",
                 'A', ALLOY_SMELTER[IV].stackForm,
-                'B', UnificationEntry(rotor, ZirconiumCarbide),
+                'B', UnificationEntry(rotor, TantalumCarbide),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'G', UnificationEntry(gear, TungstenCarbide),
                 'D', UnificationEntry(plateDense, Staballoy),
                 'W', UnificationEntry(cableGtSingle, Platinum))
+
+            // Heat Vent
+            ModHandler.addShapedRecipe(true, "heat_vent", GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(
+                BlockActiveUniqueCasing01.UniqueCasingType.HEAT_VENT, ConfigHolder.recipes.casingsPerCraft),
+                "PDP", "RLR", "PDP",
+                'P', UnificationEntry(plate, TantalumCarbide),
+                'D', UnificationEntry(plateDouble, MolybdenumDisilicide),
+                'R', UnificationEntry(rotor, Titanium),
+                'L', UnificationEntry(stickLong, MolybdenumDisilicide))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(plate, TantalumCarbide, 4)
+                .input(plateDouble, MolybdenumDisilicide, 2)
+                .input(rotor, Titanium, 2)
+                .input(stickLong, MolybdenumDisilicide, 1)
+                .outputs(GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(BlockActiveUniqueCasing01.UniqueCasingType.HEAT_VENT, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
 
         }
 

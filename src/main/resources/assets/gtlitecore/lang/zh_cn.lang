@@ -1348,6 +1348,8 @@ gtlitecore.material.incoloy_ma_813=耐热铬铁合金-MA813
 gtlitecore.material.monel_500=蒙乃尔合金500
 gtlitecore.material.incoloy_ma_956=耐热铬铁合金-MA956
 gtlitecore.material.zirconium_carbide=碳化锆
+gtlitecore.material.tantalum_carbide=碳化钽
+gtlitecore.material.molybdenum_disilicide=二硅化钼
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

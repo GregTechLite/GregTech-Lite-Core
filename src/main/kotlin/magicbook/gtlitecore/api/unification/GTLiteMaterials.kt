@@ -88,6 +88,7 @@ import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -956,11 +957,42 @@ class GTLiteMaterials
             .fluid()
             .color(0xDECAB4).iconSet(METALLIC)
             .components(Zirconium, 1, Carbon, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_ROTOR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
                 b.temp(3250, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 48 * SECOND)
                     .vacuumStats(VA[LV], 24 * SECOND)
+            }
+            .build()
+
+        // 4020 Tantalum Carbide
+        @JvmField
+        val TantalumCarbide: Material = Material.Builder(4020, gtliteId("tantalum_carbide"))
+            .ingot()
+            .fluid()
+            .color(0x56566A).iconSet(METALLIC)
+            .components(Tantalum, 1, Carbon, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR)
+            .blast { b -> b
+                .temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
+                .blastStats(VA[EV], 60 * SECOND)
+                .vacuumStats(VA[HV], 20 * SECOND)
+            }
+            .build()
+
+        // 4021 Molybdenum Disilicide
+        @JvmField
+        val MolybdenumDisilicide: Material = Material.Builder(4021, gtliteId("molybdenum_disilicide"))
+            .ingot()
+            .fluid()
+            .color(0x6A5BA3).iconSet(METALLIC)
+            .components(Molybdenum, 1, Silicon, 2)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
+                GENERATE_LONG_ROD)
+            .blast { b ->
+                b.temp(2300, BlastProperty.GasTier.MID) // Kanthal
+                    .blastStats(VA[EV], 40 * SECOND)
+                    .vacuumStats(12 * SECOND)
             }
             .build()
 

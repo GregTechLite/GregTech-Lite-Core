@@ -33,6 +33,7 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
@@ -53,11 +54,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA9
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
@@ -320,6 +323,26 @@ class MixerRecipes
                 .output(dust, ZirconiumCarbide, 2)
                 .EUt(VA[HV].toLong())
                 .duration(18 * SECOND)
+                .buildAndRegister()
+
+            // Tantalum Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Tantalum, 1)
+                .input(dust, Carbon, 1)
+                .output(dust, TantalumCarbide, 2)
+                .EUt(VA[EV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Molybdenum Disilicide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Molybdenum, 1)
+                .input(dust, Silicon, 2)
+                .output(dust, MolybdenumDisilicide, 3)
+                .EUt(VA[EV].toLong())
+                .duration(16 * SECOND)
                 .buildAndRegister()
 
         }

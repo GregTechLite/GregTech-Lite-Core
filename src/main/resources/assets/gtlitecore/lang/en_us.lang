@@ -1347,6 +1347,8 @@ gtlitecore.material.incoloy_ma_813=Incoloy-MA813
 gtlitecore.material.monel_500=Monel 500
 gtlitecore.material.incoloy_ma_956=Incoloy-MA956
 gtlitecore.material.zirconium_carbide=Zirconium Carbide
+gtlitecore.material.tantalum_carbide=Tantalum Carbide
+gtlitecore.material.molybdenum_disilicide=Molybdenum Disilicide
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
