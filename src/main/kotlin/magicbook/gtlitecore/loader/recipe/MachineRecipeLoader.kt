@@ -20,9 +20,11 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
+import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -96,6 +98,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.GAS_COLLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.IMPLOSION_COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
@@ -131,6 +134,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LAMINATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ARC_FURNACE
@@ -699,6 +703,16 @@ class MachineRecipeLoader
                 'U', ELECTRIC_PUMP_IV,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'W', UnificationEntry(cableGtSingle, Platinum))
+
+            // Electric Implosion Compressor
+            ModHandler.addShapedRecipe(true, "electric_implosion_compressor", ELECTRIC_IMPLOSION_COMPRESSOR.stackForm,
+                "DXD", "PCP", "WSW",
+                'C', IMPLOSION_COMPRESSOR.stackForm,
+                'D', UnificationEntry(plateDense, Osmium),
+                'S', UnificationEntry(screw, Rhodium),
+                'P', ELECTRIC_PISTON_IV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
+                'W', UnificationEntry(cableGtSingle, TungstenSteel))
 
         }
 

@@ -39,6 +39,7 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
@@ -47,6 +48,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA813
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -294,6 +296,18 @@ class MixerRecipes
                 .output(dust, Monel500, 40)
                 .EUt(VA[IV].toLong())
                 .duration(56 * SECOND)
+                .buildAndRegister()
+
+            // Incoloy-MA956
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Iron, 16)
+                .input(dust, Aluminium, 3)
+                .input(dust, Chrome, 5)
+                .input(dust, Yttrium, 1)
+                .output(dust, IncoloyMA956, 25)
+                .EUt(VA[IV].toLong())
+                .duration(34 * SECOND)
                 .buildAndRegister()
 
         }

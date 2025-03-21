@@ -47,7 +47,8 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
         KOVAR("kovar"),
         BLACK_STEEL("black_steel"),
         INCOLOY_MA813("incoloy_ma813"),
-        MONEL_500("monel_500");
+        MONEL_500("monel_500"),
+        INCOLOY_MA956("incoloy_ma956");
 
         private final String name;
     }

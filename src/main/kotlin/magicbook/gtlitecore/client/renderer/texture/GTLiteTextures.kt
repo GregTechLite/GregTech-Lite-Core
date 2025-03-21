@@ -148,6 +148,9 @@ class GTLiteTextures
         @JvmField
         val MONEL_500_CASING = GTLiteSimpleOverlayRenderer("casings/metal/monel_500")
 
+        @JvmField
+        val INCOLOY_MA956_CASING = GTLiteSimpleOverlayRenderer("casings/metal/incoloy_ma956")
+
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

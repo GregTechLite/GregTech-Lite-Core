@@ -66,6 +66,7 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
@@ -113,6 +114,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
+import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
@@ -930,6 +932,21 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4018 Incoloy-MA956
+        @JvmField
+        val IncoloyMA956: Material = Material.Builder(4018, gtliteId("incoloy_ma_956"))
+            .ingot()
+            .fluid()
+            .color(0xAABEBB).iconSet(METALLIC)
+            .components(Iron, 16, Aluminium, 3, Chrome, 5, Yttrium, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(5325, BlastProperty.GasTier.HIGH) // HSS-G
+                    .blastStats(VA[IV], 40 * SECOND)
+                    .vacuumStats(VA[HV], 25 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 
@@ -1304,6 +1321,7 @@ class GTLiteMaterials
             Neutronium.addFlags(GENERATE_DENSE)
             Invar.addFlags(GENERATE_DENSE)
             Potin.addFlags(GENERATE_DENSE)
+            Osmium.addFlags(GENERATE_DENSE)
 
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)

@@ -13,6 +13,7 @@ import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.IngotProperty
@@ -30,6 +31,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
+import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
@@ -65,6 +67,7 @@ class MaterialRecipeHandler
                 }
             }
             // ===========================================================================================
+            OrePrefix.dust.addProcessingHandler(PropertyKey.DUST, this::processDust)
         }
 
         /**
@@ -382,6 +385,32 @@ class MaterialRecipeHandler
                     .EUt(GTUtility.scaleVoltage(VHA[HV].toLong(), workingTier))
                     .duration(15 * SECOND)
                     .buildAndRegister()
+            }
+
+        }
+
+        /**
+         * Add dust explosion to gem recipes to Electric Implosion Compressor. Just like handlers
+         * in [gregtech.loaders.recipe.handlers.MaterialRecipeHandler.processDust].
+         */
+        private fun processDust(dustPrefix: OrePrefix, material: Material, property: DustProperty)
+        {
+            val workingTier = material.workingTier
+            val dustStack = OreDictUnifier.get(dustPrefix, material)
+            if (material.hasProperty(PropertyKey.GEM))
+            {
+                val gemStack = OreDictUnifier.get(OrePrefix.gem, material)
+                if (!material.hasFlag(MaterialFlags.EXPLOSIVE) && !material.hasFlag(MaterialFlags.FLAMMABLE))
+                {
+                    GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
+                        .inputs(GTLiteUtility.copy(dustStack, 4))
+                        .outputs(GTLiteUtility.copy(gemStack, 3))
+                        .chancedOutput(OrePrefix.dust, Materials.DarkAsh, 2500, 0)
+                        .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                        .duration(1 * SECOND)
+                        .buildAndRegister()
+                }
+
             }
 
         }

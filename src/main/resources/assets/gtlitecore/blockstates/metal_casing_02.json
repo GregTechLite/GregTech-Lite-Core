@@ -31,6 +31,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/monel_500"
         }
+      },
+      "incoloy_ma956": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/incoloy_ma956"
+        }
       }
     }
   }

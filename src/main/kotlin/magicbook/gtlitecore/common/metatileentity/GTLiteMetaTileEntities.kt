@@ -23,6 +23,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAutoclave
@@ -169,6 +170,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_ROCK_BREAKER: MetaTileEntityLargeRockBreaker
         lateinit var LARGE_BURNER_REACTOR: MetaTileEntityLargeBurnerReactor
         lateinit var LARGE_CRYOGENIC_REACTOR: MetaTileEntityLargeCryogenicReactor
+        lateinit var ELECTRIC_IMPLOSION_COMPRESSOR: MetaTileEntityElectricImplosionCompressor
 
         @JvmStatic
         fun preInit()
@@ -558,6 +560,9 @@ class GTLiteMetaTileEntities
             LARGE_CRYOGENIC_REACTOR = MetaTileEntities.registerMetaTileEntity(18126,
                 MetaTileEntityLargeCryogenicReactor(GTLiteUtility.gtliteId("large_cryogenic_reactor")))
 
+            ELECTRIC_IMPLOSION_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18127,
+                MetaTileEntityElectricImplosionCompressor(GTLiteUtility.gtliteId("electric_implosion_compressor")))
+
         }
 
         @JvmStatic
@@ -637,6 +642,7 @@ class GTLiteMetaTileEntities
             LARGE_ROCK_BREAKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BURNER_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_CRYOGENIC_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            ELECTRIC_IMPLOSION_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

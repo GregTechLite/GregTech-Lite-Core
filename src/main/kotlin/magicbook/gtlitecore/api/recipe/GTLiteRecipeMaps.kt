@@ -455,6 +455,24 @@ class GTLiteRecipeMaps
             .build()
             .setSmallRecipeMap(RecipeMaps.GAS_COLLECTOR_RECIPES)
 
+        /**
+         * @zenProp electric_implosion_compressor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ELECTRIC_IMPLOSION_RECIPES")
+        val ELECTRIC_IMPLOSION_RECIPES = RecipeMapBuilder("electric_implosion_compressor", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .fluidInputs(1)
+            .itemOutputs(2)
+            .itemSlotOverlay(GuiTextures.IMPLOSION_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+            .fluidSlotOverlay(GuiTextures.IMPLOSION_OVERLAY_2, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(SoundEvents.ENTITY_GENERIC_EXPLODE)
+            .build()
+            .setSmallRecipeMap(RecipeMaps.IMPLOSION_RECIPES)
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {
