@@ -47,7 +47,7 @@ class GTLiteLeaveVariantBlock(private val offset: Int) : BlockLeaves(), IBlockTr
             .withProperty(CHECK_DECAY, true)
             .withProperty(DECAYABLE, true)
             .withProperty(VARIANT, 0)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         // Add to LEAVES pool.
         GTLiteMetaBlocks.LEAVES.add(this)
     }

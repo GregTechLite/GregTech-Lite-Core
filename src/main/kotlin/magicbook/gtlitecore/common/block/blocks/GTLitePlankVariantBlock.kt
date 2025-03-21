@@ -30,7 +30,7 @@ class GTLitePlankVariantBlock(private val offset: Int) : Block(Material.WOOD), I
         this.setHardness(2.0f)
         this.setResistance(5.0f)
         this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         // Add to PLANKS pool.
         GTLiteMetaBlocks.PLANKS.add(this)
     }

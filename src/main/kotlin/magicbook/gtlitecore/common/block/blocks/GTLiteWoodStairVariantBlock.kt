@@ -13,7 +13,7 @@ class GTLiteWoodStairVariantBlock(state: IBlockState) : BlockStairs(state)
     init
     {
         this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         this.useNeighborBrightness = true
     }
 

@@ -42,7 +42,7 @@ class GTLiteSaplingVariantBlock(private val offset: Int) : BlockBush(Material.LE
         this.setHardness(0.0f)
         this.setLightOpacity(1)
         this.setSoundType(SoundType.PLANT)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         // Add to SAPLINGS pool.
         GTLiteMetaBlocks.SAPLINGS.add(this)
     }

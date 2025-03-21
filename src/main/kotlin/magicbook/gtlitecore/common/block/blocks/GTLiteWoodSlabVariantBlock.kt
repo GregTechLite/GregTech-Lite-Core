@@ -36,7 +36,7 @@ abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
         this.setResistance(5.0F)
         this.setSoundType(SoundType.WOOD)
         this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         this.useNeighborBrightness = true
     }
 

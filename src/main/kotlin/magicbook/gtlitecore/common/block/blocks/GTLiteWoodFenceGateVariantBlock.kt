@@ -13,7 +13,7 @@ class GTLiteWoodFenceGateVariantBlock : BlockFenceGate(BlockPlanks.EnumType.OAK)
         this.setHardness(2.0F)
         this.setResistance(5.0F)
         this.setSoundType(SoundType.WOOD)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         this.setHarvestLevel("axe", 0)
     }
 

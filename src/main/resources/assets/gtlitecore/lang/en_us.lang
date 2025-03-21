@@ -1439,3 +1439,4 @@ gtlitecore.tooltip.glass_tier=Glass Tier: %s
 # Creative Tabs
 itemGroup.gtlite=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines
+itemGroup.gtlite.decoration=GregTech Lite | Decorations

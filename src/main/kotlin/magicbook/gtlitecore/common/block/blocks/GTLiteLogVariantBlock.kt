@@ -30,7 +30,7 @@ class GTLiteLogVariantBlock(private val offset: Int) : BlockLog(), IBlockTransla
         this.setHarvestLevel("axe", 0)
         this.defaultState = blockState.baseState
             .withProperty(LOG_AXIS, EnumAxis.Y)
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
         // Add to LOGS pool.
         GTLiteMetaBlocks.LOGS.add(this)
     }

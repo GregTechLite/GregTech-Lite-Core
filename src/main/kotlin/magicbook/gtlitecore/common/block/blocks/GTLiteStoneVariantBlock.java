@@ -46,7 +46,7 @@ public class GTLiteStoneVariantBlock extends VariantBlock<GTLiteStoneVariantBloc
         this.setSoundType(SoundType.STONE);
         this.setHarvestLevel("pickaxe", 0);
         this.setDefaultState(this.getState(StoneType.LIMESTONE));
-        this.setCreativeTab(GTLiteAPI.TAB_GTLITE);
+        this.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION);
     }
 
     @Override

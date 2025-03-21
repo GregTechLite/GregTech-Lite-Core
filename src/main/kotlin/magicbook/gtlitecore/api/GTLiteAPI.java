@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.module.IModuleManager;
+import magicbook.gtlitecore.api.utils.Mods;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
@@ -39,6 +40,11 @@ public class GTLiteAPI
     // which copied from gregtech's machine creative tabs.
     public static final BaseCreativeTab TAB_GTLITE_MACHINE = new BaseCreativeTab("gtlite.machine",
             () -> GTLiteMetaTileEntities.LARGE_CUTTER.getStackForm(), false);
+
+    // Decorations for gtlitecore which consists of all stone blocks and its variants,
+    // trees, planks, logs and other tree related blocks, and decorative blocks.
+    public static final BaseCreativeTab TAB_GTLITE_DECORATION = new BaseCreativeTab("gtlite.decoration",
+            () -> Mods.GregTechLiteCore.getItem("stone_cobble", 1), false);
 
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();
