@@ -12,9 +12,12 @@ magicbook.gtlitecore.api.worldgen
 magicbook.gtlitecore.api.worldgen.feature
 magicbook.gtlitecore.client
 magicbook.gtlitecore.client.model
+magicbook.gtlitecore.client.model.factory
 magicbook.gtlitecore.client.renderer.texture.cube
+magicbook.gtlitecore.client.renderer.texture.custom
 magicbook.gtlitecore.common
 magicbook.gtlitecore.common.block.blocks
+magicbook.gtlitecore.common.block.itemblocks
 magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 magicbook.gtlitecore.common.metatileentity.part
 magicbook.gtlitecore.common.metatileentity.single
@@ -24,6 +27,7 @@ magicbook.gtlitecore.core
 magicbook.gtlitecore.core.module
 magicbook.gtlitecore.integration
 magicbook.gtlitecore.integration.jei
+magicbook.gtlitecore.integration.top
 magicbook.gtlitecore.loader.recipe.producer
 magicbook.gtlitecore.mixin.gregtech
 magicbook.gtlitecore.mixin.minecraft
