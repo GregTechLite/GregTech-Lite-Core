@@ -63,6 +63,7 @@ class EventHandlers
         MaterialInfoLoader.init()
         OreDictionaryLoader.init()
         RecipeManager.init()
+        GTLiteOrePrefix.postSetOrePrefixInfos()
     }
 
     @SubscribeEvent

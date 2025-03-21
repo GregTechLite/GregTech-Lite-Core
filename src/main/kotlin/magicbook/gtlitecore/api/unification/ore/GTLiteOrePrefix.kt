@@ -80,6 +80,18 @@ class GTLiteOrePrefix
                 oreShale.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Shale, M))
             }
 
+            // Deleted ZSM-5 dusts.
+            dust.setIgnored(GTLiteMaterials.ZSM5)
+            dustSmall.setIgnored(GTLiteMaterials.ZSM5)
+            dustTiny.setIgnored(GTLiteMaterials.ZSM5)
+        }
+
+        // Let these setters be later than setOrePrefixInfos() because recipe generated at high
+        // priority is correct, we want it has same priority of RecipeManager (priority = late),
+        // so we add a postSetter which will be loaded after RecipeManager initialized to ensure
+        // that the recipe which be removed do not be generated.
+        fun postSetOrePrefixInfos()
+        {
             // Because we add Tenorite (CuO ore) to change CuO dust, so this material is deprecated.
             // This material is ensured to remove all related recipes yet. Ignored all ore prefixes of CuO ^^.
             dust.setIgnored(Materials.CupricOxide)
@@ -92,11 +104,6 @@ class GTLiteOrePrefix
             dust.setIgnored(Materials.Zirconia)
             dustSmall.setIgnored(Materials.Zirconia)
             dustTiny.setIgnored(Materials.Zirconia)
-
-            // Deleted ZSM-5 dusts.
-            dust.setIgnored(GTLiteMaterials.ZSM5)
-            dustSmall.setIgnored(GTLiteMaterials.ZSM5)
-            dustTiny.setIgnored(GTLiteMaterials.ZSM5)
         }
 
         fun addToMetaItem()
