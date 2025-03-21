@@ -7,6 +7,7 @@ import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
 import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
@@ -35,7 +36,7 @@ class EventHandlers
         GTLiteOrePrefix.addToMetaItem()
         GTLiteOrePrefix.setOrePrefixInfos()
         GTLiteMaterials.setMaterialProperties()
-        GTLiteMaterials.setMaterialFlags()
+        GTLiteMaterialFlags.setMaterialFlags()
         GTLiteToolItems.registerTools()
         GTLiteToolItems.addToolSymbols()
     }
