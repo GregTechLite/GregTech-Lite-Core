@@ -45,7 +45,7 @@ import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
 public class MetalCasingRecipeProducer
 {
 
-    public static void init()
+    public static void produce()
     {
         // Maraging Steel 250
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_01,

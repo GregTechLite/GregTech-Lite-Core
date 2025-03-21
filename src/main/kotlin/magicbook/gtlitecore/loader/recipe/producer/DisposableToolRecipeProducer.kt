@@ -46,7 +46,7 @@ class DisposableToolRecipeProducer
     companion object
     {
 
-        fun init()
+        fun produce()
         {
             for (material in GregTechAPI.materialManager.registeredMaterials)
             {

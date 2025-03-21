@@ -21,6 +21,8 @@ class GTLiteConfigModifier
             ConfigHolder.recipes.generateLowQualityGems = true
             // Disabled universal collection ore settings because we add unique stones.
             ConfigHolder.worldgen.allUniqueStoneTypes = true
+            // Disabled paper recipes nerf.
+            ConfigHolder.recipes.nerfPaperCrafting = false
 
         }
 

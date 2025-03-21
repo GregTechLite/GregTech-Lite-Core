@@ -45,9 +45,9 @@ class RecipeManager
             WoodRecipeLoader.init()
 
             // Loading recipe producers.
-            StoneVariantRecipeProducer.init()
-            DisposableToolRecipeProducer.init()
-            MetalCasingRecipeProducer.init()
+            StoneVariantRecipeProducer.produce()
+            DisposableToolRecipeProducer.produce()
+            MetalCasingRecipeProducer.produce()
 
             // Loading chains and ore processings.
             OilCrackingChain.init()
@@ -84,6 +84,10 @@ class RecipeManager
             GreenhouseRecipes.init()
             LoomRecipes.init()
             PolisherRecipes.init()
+
+            // Loading override recipes.
+            VanillaOverrideRecipeLoader.init()
+            GregtechOverrideRecipeLoader.init()
         }
 
     }

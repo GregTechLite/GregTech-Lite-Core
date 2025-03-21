@@ -75,6 +75,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TUR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
+import magicbook.gtlitecore.common.item.GTLiteToolItems
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BUFFER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
@@ -262,14 +263,12 @@ class CraftingRecipeLoader
                 'M', SHAPE_EXTRUDER_BLOCK)
 
             // Add recipes to casting molds, we need add clay plate recipe at first.
-            ModHandler.addShapedRecipe(true, "plate_clay", OreDictUnifier.get(plate, Clay),
-                "pC ",
-                'C', ItemStack(Items.CLAY_BALL))
+            ModHandler.addShapelessRecipe("plate_clay", OreDictUnifier.get(plate, Clay),
+                GTLiteToolItems.ROLLING_PIN, ItemStack(Items.CLAY_BALL))
 
             // Add recipes to graphite plate.
-            ModHandler.addShapedRecipe(true, "plate_graphite", OreDictUnifier.get(plate, Graphite),
-                "pD ",
-                'D', UnificationEntry(dust, Graphite))
+            ModHandler.addShapelessRecipe("plate_graphite", OreDictUnifier.get(plate, Graphite),
+                GTLiteToolItems.ROLLING_PIN, OreDictUnifier.get(dust, Graphite))
 
             // Casting Mold (Empty)
             ModHandler.addShapedRecipe(true, "casting_mold.empty", CASTING_MOLD_EMPTY.stackForm,

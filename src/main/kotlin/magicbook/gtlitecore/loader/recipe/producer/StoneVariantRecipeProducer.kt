@@ -31,7 +31,7 @@ class StoneVariantRecipeProducer
     companion object
     {
 
-        fun init()
+        fun produce()
         {
             
             for (variant: GTLiteStoneVariantBlock.StoneType in GTLiteStoneVariantBlock.StoneType.entries)
