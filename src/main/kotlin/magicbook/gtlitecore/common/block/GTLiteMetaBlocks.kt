@@ -1,7 +1,14 @@
 package magicbook.gtlitecore.common.block
 
 import com.google.common.collect.ImmutableMap
+import gregtech.api.GregTechAPI
+import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.info.MaterialFlags
+import gregtech.api.unification.material.properties.PropertyKey
 import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.client.model.ItemModelHelper
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOverride
@@ -18,6 +25,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
 import magicbook.gtlitecore.common.block.blocks.GTLiteLeaveVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteLogVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLitePlankVariantBlock
@@ -33,13 +41,17 @@ import net.minecraft.block.Block
 import net.minecraft.block.BlockLog
 import net.minecraft.block.BlockSlab
 import net.minecraft.block.properties.IProperty
+import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.init.Blocks
 import net.minecraft.item.Item
+import net.minecraft.util.ResourceLocation
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
+import java.util.function.BiConsumer
+import java.util.function.Predicate
 
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -102,7 +114,13 @@ class GTLiteMetaBlocks
         lateinit var NUTMEG_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
         lateinit var COCONUT_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
         lateinit var RAINBOW_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-        
+
+        @JvmField
+        val SHEETED_FRAMES = hashMapOf<Material, BlockSheetedFrame>()
+
+        @JvmField
+        val SHEETED_FRAME_BLOCKS = arrayListOf<BlockSheetedFrame>()
+
         lateinit var MOTOR_CASING: BlockMotorCasing
         lateinit var PISTON_CASING: BlockPistonCasing
         lateinit var PUMP_CASING: BlockPumpCasing
@@ -282,6 +300,10 @@ class GTLiteMetaBlocks
             (RAINBOW_WOOD_FENCE_GATE as? Block)?.setRegistryName("gtlite_wood_fence_gate_rainbow")
             (RAINBOW_WOOD_FENCE_GATE as? Block)?.setTranslationKey("gtlite_wood_fence_gate.rainbow")
 
+            // Sheeted frame
+            createGeneratedBlock({ m -> m.hasProperty(PropertyKey.DUST)&& m.hasFlag(MaterialFlags.GENERATE_FRAME) },
+                this::createSheetedFrameBlock)
+
             // Component casings initialization.
             MOTOR_CASING = BlockMotorCasing()
             (MOTOR_CASING as? Block)?.setRegistryName("motor_casing")
@@ -450,6 +472,7 @@ class GTLiteMetaBlocks
             registerItemModel(METAL_CASING_02)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
+            SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
         }
 
         @SideOnly(Side.CLIENT)
@@ -457,6 +480,18 @@ class GTLiteMetaBlocks
         fun registerColors()
         {
             LEAVES.forEach(GTLiteLeaveVariantBlock::registerColors)
+            val blockColors = Minecraft.getMinecraft().blockColors
+            val itemColors = Minecraft.getMinecraft().itemColors
+
+            SHEETED_FRAME_BLOCKS.forEach { block ->
+                blockColors.registerBlockColorHandler({ state, _, _, _ ->
+                    block.getGTMaterial(block.getMetaFromState(state)).materialRGB
+                }, block)
+                itemColors.registerItemColorHandler({ stack, _ ->
+                    block.getGTMaterial(stack.metadata).materialRGB
+                }, block)
+            }
+
         }
 
         @JvmStatic
@@ -502,6 +537,38 @@ class GTLiteMetaBlocks
             Blocks.FIRE.setFireInfo(COCONUT_WOOD_FENCE_GATE, 5, 20)
             Blocks.FIRE.setFireInfo(RAINBOW_WOOD_FENCE_GATE, 5, 20)
 
+        }
+
+        fun createGeneratedBlock(materialPredicate: Predicate<Material>,
+                                 blockGenerator: BiConsumer<Array<Material>, Int>)
+        {
+            val blocksToGenerate = TreeMap<Int, Array<Material>>()
+            GregTechAPI.materialManager.registeredMaterials.forEach { mat ->
+                if (materialPredicate.test(mat))
+                {
+                    val id = mat.id
+                    val metaBlockId = id / 4
+                    val subBlockId = id % 4
+
+                    val materials = blocksToGenerate.getOrPut(metaBlockId) {
+                        Array(4) { Materials.NULL }
+                    }
+                    materials[subBlockId] = mat
+                }
+            }
+            blocksToGenerate.forEach { k, v -> blockGenerator.accept(v, k) }
+        }
+
+        /**
+         * @see magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
+         */
+        fun createSheetedFrameBlock(materials: Array<Material>, index: Int)
+        {
+            val block = BlockSheetedFrame(materials).apply {
+                this.registryName = GTLiteUtility.gtliteId("meta_block_sheeted_frame_$index")
+            }
+            materials.forEach { SHEETED_FRAMES[it] = block }
+            SHEETED_FRAME_BLOCKS.add(block)
         }
 
     }

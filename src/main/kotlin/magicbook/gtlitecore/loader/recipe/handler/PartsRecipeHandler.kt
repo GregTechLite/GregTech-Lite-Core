@@ -66,6 +66,7 @@ class PartsRecipeHandler
             OrePrefix.round.addProcessingHandler(PropertyKey.INGOT, this::processRound)
             OrePrefix.toolHeadDrill.addProcessingHandler(PropertyKey.INGOT, this::processDrillHead)
             OrePrefix.turbineBlade.addProcessingHandler(PropertyKey.INGOT, this::processTurbineBlade)
+            GTLiteOrePrefix.sheetedFrame.addProcessingHandler(PropertyKey.DUST, this::processSheetedFrame)
         }
 
         /**
@@ -445,6 +446,27 @@ class PartsRecipeHandler
                 .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
                 .duration(20 * SECOND)
                 .buildAndRegister()
+        }
+
+        fun processSheetedFrame(prefix: OrePrefix, material: Material, property: DustProperty)
+        {
+
+            if (!material.hasFlags(MaterialFlags.GENERATE_FRAME))
+                return
+            ModHandler.addShapedRecipe(String.format("%s_sheeted_frame", material), OreDictUnifier.get(prefix, material, 12),
+                "PFP", "PhP", "PFP",
+                'P', UnificationEntry(OrePrefix.plate, material),
+                'F', UnificationEntry(OrePrefix.frameGt, material),)
+
+            RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(10)
+                .input(OrePrefix.plate, material, 6)
+                .input(OrePrefix.frameGt, material, 2)
+                .output(prefix, material, 12)
+                .EUt(VA[ULV].toLong())
+                .duration(2 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
         }
 
         private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()

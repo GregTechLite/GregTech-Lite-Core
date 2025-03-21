@@ -2,6 +2,7 @@ package magicbook.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -64,6 +65,12 @@ class GTLiteOrePrefix
         val oreShale: OrePrefix = OrePrefix("oreShale", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
+
+        @JvmField
+        val sheetedFrame: OrePrefix = OrePrefix("sheetedFrame", (M * 5) / 6, null,
+            GTLiteMaterialIconType.sheetedFrame, OrePrefix.Flags.ENABLE_UNIFICATION) { m ->
+            m.hasFlag(MaterialFlags.GENERATE_FRAME) }
+
 
         fun setOrePrefixInfos()
         {

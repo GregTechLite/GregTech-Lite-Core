@@ -7,12 +7,14 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
+import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
+import net.minecraft.world.IBlockAccess
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
@@ -123,6 +125,33 @@ class GTLiteUtility
         @JvmStatic
         fun <T> getOrDefault(canGet: BooleanSupplier, getter: Supplier<T>, defaultValue: T): T
             = if (canGet.asBoolean) getter.get() else defaultValue
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun toItem(blockState: IBlockState) = toItem(blockState, 1)
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun toItem(blockState: IBlockState, amount: Int)
+                = ItemStack(blockState.block, amount, blockState.block.getMetaFromState(blockState))
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun toItem(blockPos: BlockPos, worldIn: IBlockAccess)
+                = toItem(worldIn.getBlockState(blockPos))
+
+        /**
+         *
+         */
+        @JvmStatic
+        fun toItem(blockPos: BlockPos, worldIn: IBlockAccess, amount: Int)
+                = toItem(worldIn.getBlockState(blockPos), amount)
 
         /**
          * Get max length of [lists].

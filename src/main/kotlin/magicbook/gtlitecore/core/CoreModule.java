@@ -1,11 +1,13 @@
 package magicbook.gtlitecore.core;
 
+import gregtech.api.GTValues;
 import lombok.NoArgsConstructor;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.module.IModule;
 import magicbook.gtlitecore.api.module.Module;
 import magicbook.gtlitecore.api.unification.ore.GTLiteStoneTypes;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
+import magicbook.gtlitecore.client.ClientEventHandlers;
 import magicbook.gtlitecore.common.CommonProxy;
 import magicbook.gtlitecore.common.EventHandlers;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
@@ -46,6 +48,9 @@ public class CoreModule implements IModule
     public void construction(FMLConstructionEvent event)
     {
         MinecraftForge.EVENT_BUS.register(new EventHandlers());
+        if (GTValues.isClientSide())
+            MinecraftForge.EVENT_BUS.register(new ClientEventHandlers());
+
         GTLiteConfigModifier.init();
         GTLiteMetaTileEntities.preInit();
     }

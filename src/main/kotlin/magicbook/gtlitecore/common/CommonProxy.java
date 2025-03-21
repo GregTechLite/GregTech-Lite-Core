@@ -7,6 +7,7 @@ import magicbook.gtlitecore.api.utils.GTLiteLog;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock;
+import magicbook.gtlitecore.common.block.itemblocks.SheetedFrameItemBlock;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
@@ -79,6 +81,14 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE);
         registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE);
         registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE);
+
+        // TODO Crops?...
+
+        // Sheeted frames.
+        StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
+                .distinct()
+                .forEach(registry::register);
+
         // Register all common variant blocks.
         registry.register(GTLiteMetaBlocks.MOTOR_CASING);
         registry.register(GTLiteMetaBlocks.PISTON_CASING);
@@ -150,6 +160,11 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
+
+        StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
+                .distinct()
+                .map(b -> createItemBlock(b, SheetedFrameItemBlock::new))
+                .forEach(registry::register);
 
         registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.PISTON_CASING, VariantItemBlock::new));
