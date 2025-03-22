@@ -52,6 +52,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SOFT_MALLET
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_ROUND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_TURBINE_BLADE
@@ -77,6 +78,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
+import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -414,6 +416,14 @@ class CraftingRecipeLoader
             ModHandler.addShapelessRecipe("dust_kovar_2", OreDictUnifier.get(dust, Kovar, 4),
                 OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Invar),
                 OreDictUnifier.get(dust, Invar), OreDictUnifier.get(dust, Cobalt))
+
+            // Sand dust and block recipes.
+            ModHandler.addShapelessRecipe("sand_dust", SAND_DUST.getStackForm(4),
+                ItemStack(Blocks.SAND))
+
+            ModHandler.addShapelessRecipe("sand_dust_to_block", ItemStack(Blocks.SAND),
+                SAND_DUST.stackForm, SAND_DUST.stackForm,
+                SAND_DUST.stackForm, SAND_DUST.stackForm)
 
         }
 

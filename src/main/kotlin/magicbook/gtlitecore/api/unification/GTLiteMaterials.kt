@@ -8,6 +8,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
@@ -15,6 +16,7 @@ import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
+import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcite
@@ -27,12 +29,14 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.EXT_METAL
+import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
@@ -50,6 +54,7 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
+import gregtech.api.unification.material.Materials.Obsidian
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
@@ -60,9 +65,11 @@ import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.RareEarth
+import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -71,6 +78,7 @@ import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
@@ -126,6 +134,10 @@ import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -1025,9 +1037,64 @@ class GTLiteMaterials
             .dust()
             .color(0x3F2E2F).iconSet(ROUGH)
             .components(Calcite, 6, Clay, 2, SiliconDioxide, 1, Fluorite, 1)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_CENTRIFUGING) // Add Centrifuging recipe at CentrifugeRecipes#init().
+            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
             .build()
             .setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
+
+        // 6008-6010 empty now
+
+        // 6011 Blazing Pyrotheum
+        @JvmField
+        val BlazingPyrotheum: Material = Material.Builder(6011, gtliteId("blazing_pyrotheum"))
+            .dust()
+            .liquid(FluidBuilder()
+                .translation("gregtech.fluid.generic")
+                .temperature(4000)
+                .customFlow().customStill())
+            .iconSet(PYROTHEUM)
+            .components(Blaze, 2, Redstone, 1, Sulfur, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 6012 Gelid Cryotheum
+        @JvmField
+        val GelidCryotheum: Material = Material.Builder(6012, gtliteId("gelid_cryotheum"))
+            .dust()
+            .liquid(FluidBuilder()
+                .translation("gregtech.fluid.generic")
+                .temperature(2)
+                .customFlow().customStill())
+            .iconSet(CRYOTHEUM)
+            .components(Ice, 2, Electrotine, 1, Water, 1)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING)
+            .build()
+            .setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+
+        // 6013 Tectonic Petrotheum
+        @JvmField
+        val TectonicPetrotheum: Material = Material.Builder(6013, gtliteId("tectonic_petrotheum"))
+            .dust()
+            .liquid(FluidBuilder()
+                .translation("gregtech.fluid.generic")
+                .temperature(350)
+                .customFlow().customFlow())
+            .iconSet(PETROTHEUM)
+            .components(Clay, 2, Obsidian, 1, Stone, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 6014 Zephyrean Aerotheum
+        @JvmField
+        val ZephyreanAerotheum: Material = Material.Builder(6014, gtliteId("zephyrean_aerotheum"))
+            .dust()
+            .liquid(FluidBuilder()
+                .translation("gregtech.fluid.generic")
+                .temperature(600)
+                .customFlow().customStill())
+            .iconSet(AEROTHEUM)
+            .components(SiliconDioxide, 2, Saltpeter, 1, Air, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
 
         // =======================================================================
         // 8001-12000: Organic Chemistry Materials

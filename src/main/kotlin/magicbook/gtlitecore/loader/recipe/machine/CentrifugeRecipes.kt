@@ -3,8 +3,10 @@ package magicbook.gtlitecore.loader.recipe.machine
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
+import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Calcite
+import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Iron
@@ -12,6 +14,7 @@ import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
+import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Talc
@@ -24,6 +27,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlueSchist
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Clinochlore
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSchist
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kimberlite
@@ -31,11 +35,15 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Komatiite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Limestone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tanzanite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZephyreanAerotheum
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class CentrifugeRecipes
 {
 
@@ -107,6 +115,27 @@ class CentrifugeRecipes
                 .output(dustSmall, Albite, 3)
                 .EUt(VA[LV].toLong())
                 .duration(12 * SECOND + 15 * TICK)
+                .buildAndRegister()
+
+            // Shale decomposition.
+            CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(dust, Shale, 10)
+                .output(dust, Calcite, 6)
+                .output(dust, Clay, 2)
+                .output(dust, SiliconDioxide, 1)
+                .output(dustSmall, Fluorite, 3)
+                .EUt(VA[LV].toLong())
+                .duration(14 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // Zephyrean Aerotheum decomposition.
+            CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(dust, ZephyreanAerotheum, 4)
+                .output(SAND_DUST, 2)
+                .output(dust, Saltpeter)
+                .fluidOutputs(Air.getFluid(1000))
+                .EUt(VA[LV].toLong())
+                .duration(12 * SECOND)
                 .buildAndRegister()
 
         }

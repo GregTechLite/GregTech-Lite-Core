@@ -585,6 +585,7 @@ metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
 metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate
 metaitem.material.plate.mica_insulator.name=Mica Insulator Plate
 metaitem.material.foil.mica_insulator.name=Mica Insulator Foil
+metaitem.material.dust.sand.name=Sand Dust
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
@@ -1385,11 +1386,16 @@ gtlitecore.material.blue_schist=Blue Schist
 gtlitecore.material.kimberlite=Kimberlite
 gtlitecore.material.slate=Slate
 gtlitecore.material.shale=Shale
-gtlitecore.material.para_xylene=Para Xylene
+
+gtlitecore.material.blazing_pyrotheum=Blazing Pyrotheum
+gtlitecore.material.gelid_cryotheum=Gelid Cryotheum
+gtlitecore.material.tectonic_petrotheum=Tectonic Petrotheum
+gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 
 gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane
 gtlitecore.material.polyisoprene=Polyisoprene (PI)
+gtlitecore.material.para_xylene=Para Xylene
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

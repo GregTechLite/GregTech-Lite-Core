@@ -137,6 +137,7 @@ class GTLiteMetaItems
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
+        lateinit var SAND_DUST: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -461,6 +462,9 @@ class GTLiteMetaItems
                 .addOreDict("plateMicaInsulator")
 
             MICA_INSULATOR_FOIL = GTLITE_ITEMS.addItem(5004, "material.foil.mica_insulator")
+
+            SAND_DUST = GTLITE_ITEMS.addItem(5005, "material.dust.sand")
+                .addOreDict("dustSand")
 
             // 9001-10000: Miscellaneous Foods.
             BANANA = GTLITE_ITEMS.addItem(9001, "food.fruit.banana")

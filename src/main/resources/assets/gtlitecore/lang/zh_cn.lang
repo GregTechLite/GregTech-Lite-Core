@@ -585,6 +585,7 @@ metaitem.material.dust.gelatinous_mica_pulp.name=胶质云母粉
 metaitem.material.plate.mica_mineral_wool.name=云母矿棉片
 metaitem.material.plate.mica_insulator.name=绝缘云母板
 metaitem.material.foil.mica_insulator.name=绝缘云母箔
+metaitem.material.dust.sand.name=细沙堆
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -1386,6 +1387,11 @@ gtlitecore.material.blue_schist=蓝片岩
 gtlitecore.material.kimberlite=金伯利岩
 gtlitecore.material.slate=板岩
 gtlitecore.material.shale=页岩
+
+gtlitecore.material.blazing_pyrotheum=烈焰之炽焱
+gtlitecore.material.gelid_cryotheum=极寒之凛冰
+gtlitecore.material.tectonic_petrotheum=板块之层岩
+gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷

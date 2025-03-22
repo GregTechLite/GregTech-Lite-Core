@@ -1,0 +1,27 @@
+package magicbook.gtlitecore.api.unification.material
+
+import gregtech.api.unification.material.info.MaterialIconSet
+
+class GTLiteMaterialIconSet
+{
+
+    companion object
+    {
+        // ======================================== Generalized MaterialIconSets =======================================
+
+        // ========================================== Unified MaterialIconSets =========================================
+        @JvmField
+        val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)
+
+        @JvmField
+        val CRYOTHEUM = MaterialIconSet("cryotheum", null, true)
+
+        @JvmField
+        val PETROTHEUM = MaterialIconSet("petrotheum", null, true)
+
+        @JvmField
+        val AEROTHEUM = MaterialIconSet("aerotheum", null, true)
+
+    }
+
+}

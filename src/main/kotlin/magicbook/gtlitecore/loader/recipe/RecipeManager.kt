@@ -21,6 +21,7 @@ import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
+import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
@@ -77,6 +78,7 @@ class RecipeManager
             FormingPressRecipes.init()
             GasCollectorRecipes.init()
             MixerRecipes.init()
+            PackerRecipes.init()
             WiremillRecipes.init()
             // Additional machine recipes.
             AlloyBlastSmelterRecipes.init()

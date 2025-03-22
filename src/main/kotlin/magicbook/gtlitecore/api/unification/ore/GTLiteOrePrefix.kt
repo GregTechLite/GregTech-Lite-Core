@@ -95,6 +95,22 @@ class GTLiteOrePrefix
             dust.setIgnored(GTLiteMaterials.ZSM5)
             dustSmall.setIgnored(GTLiteMaterials.ZSM5)
             dustTiny.setIgnored(GTLiteMaterials.ZSM5)
+
+            // Deleted Blazing Pyrotheum dusts.
+            dustSmall.setIgnored(GTLiteMaterials.BlazingPyrotheum)
+            dustTiny.setIgnored(GTLiteMaterials.BlazingPyrotheum)
+
+            // Deleted Gelid Cryotheum dusts.
+            dustSmall.setIgnored(GTLiteMaterials.GelidCryotheum)
+            dustTiny.setIgnored(GTLiteMaterials.GelidCryotheum)
+
+            // Deleted Tectonic Petrotheum dusts.
+            dustSmall.setIgnored(GTLiteMaterials.TectonicPetrotheum)
+            dustTiny.setIgnored(GTLiteMaterials.TectonicPetrotheum)
+
+            // Deleted Zephyrean Aerotheum dusts.
+            dustSmall.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
+            dustTiny.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high
