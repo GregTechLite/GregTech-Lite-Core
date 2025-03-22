@@ -54,6 +54,7 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
@@ -402,6 +403,17 @@ class MixerRecipes
                 .output(dust, HastelloyN, 25)
                 .EUt(VA[IV].toLong())
                 .duration(38 * SECOND)
+                .buildAndRegister()
+
+            // Aluminium Bronze
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Aluminium, 2)
+                .input(dust, Manganese)
+                .input(dust, Bronze)
+                .output(dust, AluminiumBronze, 4)
+                .EUt(VA[MV].toLong())
+                .duration(15 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

@@ -9,6 +9,7 @@
 |      | Large Electrolyzer            | Electrolyzer                                                     |
 |      | Large Packer                  | Packer                                                           |
 |      | Large Rock Breaker            | Rock Breaker                                                     |
+|      | Industrial Coke Oven          | Pyrolyse Oven                                                    |
 | EV   | Large Bender                  | Bending Machine, Forming Press                                   |
 |      | Large Cutter                  | Cutting Machine, Lathe, Polisher, Slicer                         |
 |      | Large Brewery                 | Brewery, Fermenter, Fluid Heater, Chemical Dehydrator            |
@@ -28,3 +29,6 @@
 |      | Large Cryogenic Reactor       | Cryogenic Reactor, Bath Condenser                                |
 |      | Electric Implosion Compressor | Electric Implosion Compressor (Implosion Compressor)             |
 |      | Large Alloy Blast Smelter     | Alloy Blast Smelter                                              |
+|      | Volcanus                      | Electric Blast Furnace                                           |
+|      | Cryogenic Freezer             | Vacuum Freezer                                                   |
+|      | Chemical Plant                | Large Chemical Reactor (Chemical Reactor), Chemical Plant        |

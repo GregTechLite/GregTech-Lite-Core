@@ -377,6 +377,7 @@ tile.metal_casing_02.zirconium_carbide.name=Heatproof Zirconium Carbide Machine 
 tile.metal_casing_02.hastelloy_c276.name=Oxidation Proof Hastelloy-C276 Machine Casing
 tile.metal_casing_02.hastelloy_x.name=Inert Hastelloy-X Machine Casing
 tile.metal_casing_02.polybenzimidazole.name=Chemically Protective Polybenzimidazole Machine Casing
+tile.metal_casing_02.aluminium_bronze.name=Thermally Stable Aluminium Bronze Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1228,6 +1229,11 @@ gtlitecore.machine.chemical_plant.tooltip.2=Update Component Casing or Voltage t
 gtlitecore.machine.chemical_plant.tooltip.3=Each §eCoil tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.chemical_plant.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
+gtlitecore.machine.industrial_coke_oven.name=Industrial Coke Oven
+gtlitecore.machine.industrial_coke_oven.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.industrial_coke_oven.tooltip.2=Each §eCoil tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.industrial_coke_oven.tooltip.3=Each §aVoltage tier§7 +1, processing +§l8§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1413,6 +1419,7 @@ gtlitecore.material.molybdenum_disilicide=Molybdenum Disilicide
 gtlitecore.material.hastelloy_c_276=Hastelloy-C276
 gtlitecore.material.hastelloy_x=Hastelloy-X
 gtlitecore.material.hastelloy_n=Hastelloy-N
+gtlitecore.material.aluminium_bronze=Aluminium Bronze
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

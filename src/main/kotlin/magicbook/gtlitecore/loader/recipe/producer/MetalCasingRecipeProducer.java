@@ -22,6 +22,7 @@ import static gregtech.api.unification.material.Materials.RedSteel;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtech.api.unification.ore.OrePrefix.plateDouble;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
@@ -179,6 +180,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.POLYBENZIMIDAZOLE,
                 Polybenzimidazole);
+
+        // Aluminium Bronze
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.ALUMINIUM_BRONZE,
+                AluminiumBronze);
 
     }
 

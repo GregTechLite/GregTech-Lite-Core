@@ -85,6 +85,9 @@ class GTLiteTextures
         @JvmField
         val ALLOY_BLAST_SMELTER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/alloy_blast_smelter")
 
+        @JvmField
+        val INDUSTRIAL_COKE_OVEN_OVERLAY = OrientedOverlayRenderer("machines/multiblock/industrial_coke_oven")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -166,6 +169,9 @@ class GTLiteTextures
 
         @JvmField
         val POLYBENZIMIDAZOLE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/polybenzimidazole")
+
+        @JvmField
+        val ALUMINIUM_BRONZE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/aluminium_bronze")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

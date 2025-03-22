@@ -377,6 +377,7 @@ tile.metal_casing_02.zirconium_carbide.name=耐热碳化锆机器外壳
 tile.metal_casing_02.hastelloy_c276.name=抗氧化哈斯特洛伊合金-C276机器外壳
 tile.metal_casing_02.hastelloy_x.name=惰性哈斯特洛伊合金-X机器外壳
 tile.metal_casing_02.polybenzimidazole.name=化学防护聚苯并咪唑机器外壳
+tile.metal_casing_02.aluminium_bronze.name=热稳定铝青铜机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1228,6 +1229,11 @@ gtlitecore.machine.chemical_plant.tooltip.2=升级部件外壳或电压等级以
 gtlitecore.machine.chemical_plant.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.chemical_plant.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.industrial_coke_oven.name=工业焦炉
+gtlitecore.machine.industrial_coke_oven.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.industrial_coke_oven.tooltip.2=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.industrial_coke_oven.tooltip.3=每提高1个§a电压等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -1414,6 +1420,7 @@ gtlitecore.material.molybdenum_disilicide=二硅化钼
 gtlitecore.material.hastelloy_c_276=哈斯特洛伊合金-C276
 gtlitecore.material.hastelloy_x=哈斯特洛伊合金-X
 gtlitecore.material.hastelloy_n=哈斯特洛伊合金-N
+gtlitecore.material.aluminium_bronze=铝青铜
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

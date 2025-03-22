@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -115,6 +116,7 @@ import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
 import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
+import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
@@ -122,6 +124,7 @@ import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
@@ -155,6 +158,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_TANK_BRIDGE
@@ -957,6 +961,17 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
                 'P', ELECTRIC_PUMP_IV)
+
+            // Industrial Coke Oven
+            ModHandler.addShapedRecipe(true, "industrial_coke_oven", INDUSTRIAL_COKE_OVEN.stackForm,
+                "DXW", "PCQ", "WXS",
+                'P', ELECTRIC_PISTON_HV,
+                'Q', ELECTRIC_PUMP_HV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.HV),
+                'C', PYROLYSE_OVEN.stackForm,
+                'S', UnificationEntry(spring, MolybdenumDisilicide),
+                'D', UnificationEntry(plateDouble, AluminiumBronze),
+                'W', UnificationEntry(cableGtDouble, Silver))
 
         }
 

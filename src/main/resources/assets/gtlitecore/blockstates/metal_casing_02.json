@@ -61,6 +61,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/polybenzimidazole"
         }
+      },
+      "aluminium_bronze": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/aluminium_bronze"
+        }
       }
     }
   }

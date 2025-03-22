@@ -27,6 +27,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCryogenicFreezer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityIndustrialCokeOven
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAutoclave
@@ -193,6 +194,7 @@ class GTLiteMetaTileEntities
         lateinit var VOLCANUS: MetaTileEntityVolcanus
         lateinit var CRYOGENIC_FREEZER: MetaTileEntityCryogenicFreezer
         lateinit var CHEMICAL_PLANT: MetaTileEntityChemicalPlant
+        lateinit var INDUSTRIAL_COKE_OVEN: MetaTileEntityIndustrialCokeOven
 
         @JvmStatic
         fun preInit()
@@ -636,7 +638,9 @@ class GTLiteMetaTileEntities
             CHEMICAL_PLANT = MetaTileEntities.registerMetaTileEntity(18131,
                 MetaTileEntityChemicalPlant(GTLiteUtility.gtliteId("chemical_plant")))
 
-            // 18132 COKING_TOWER
+            INDUSTRIAL_COKE_OVEN = MetaTileEntities.registerMetaTileEntity(18132,
+                MetaTileEntityIndustrialCokeOven(GTLiteUtility.gtliteId("industrial_coke_oven")))
+
             // 18133 LARGE_MASS_FABRICATOR
             // 18134 LARGE_REPLICATOR
             // 18135 CIRCUIT_ASSEMBLY_LINE
@@ -737,6 +741,7 @@ class GTLiteMetaTileEntities
             VOLCANUS.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

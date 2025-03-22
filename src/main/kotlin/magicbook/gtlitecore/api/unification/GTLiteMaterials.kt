@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Ferrosilite
@@ -108,6 +109,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
@@ -959,8 +961,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x6A5BA3).iconSet(METALLIC)
             .components(Molybdenum, 1, Silicon, 2)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
-                GENERATE_LONG_ROD)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
+                GENERATE_SPRING)
             .blast { b ->
                 b.temp(2300, BlastProperty.GasTier.MID) // Kanthal
                     .blastStats(VA[EV], 40 * SECOND)
@@ -1010,6 +1012,21 @@ class GTLiteMaterials
                 b.temp(4625, BlastProperty.GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 50 * SECOND)
                     .vacuumStats(VA[EV], 15 * SECOND)
+            }
+            .build()
+
+        // 4025 Aluminium Bronze
+        @JvmField
+        val AluminiumBronze: Material = Material.Builder(4025, gtliteId("aluminium_bronze"))
+            .ingot()
+            .fluid()
+            .color(0x6CB451).iconSet(METALLIC)
+            .components(Aluminium, 2, Manganese, 1, Bronze, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME,
+                GENERATE_DOUBLE_PLATE)
+            .blast { b ->
+                b.temp(1073, BlastProperty.GasTier.LOW) // Cupronickel
+                    .blastStats(VA[MV], 16 * SECOND)
             }
             .build()
 
