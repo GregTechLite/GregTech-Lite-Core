@@ -1208,6 +1208,16 @@ gtlitecore.machine.volcanus.tooltip.6=Each §aCoil tier§7 +1, processing +§l16
 gtlitecore.machine.volcanus.pyrotheum_amount=Blazing Pyrotheum Amount: %s
 gtlitecore.machine.volcanus.pyrotheum_warning=No Blazing Pyrotheum provided!
 
+gtlitecore.machine.cryogenic_freezer.name=Cryogenic Freezer
+gtlitecore.machine.cryogenic_freezer.tooltip.1=Required provide §bGelid Cryotheum§7 for working.
+gtlitecore.machine.cryogenic_freezer.tooltip.2=If not provide §bGelid Cryotheum§7, then machine will paused.
+gtlitecore.machine.cryogenic_freezer.tooltip.3=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.cryogenic_freezer.tooltip.4=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.cryogenic_freezer.tooltip.5=Each §ePump Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.cryogenic_freezer.tooltip.6=Each §aMotor Casing tier§7 +1, processing +§l16§r§7 items.
+gtlitecore.machine.cryogenic_freezer.cryotheum_amount=Gelid Cryotheum Amount: %s
+gtlitecore.machine.cryogenic_freezer.cryotheum_warning=No Gelid Cryotheum provided!
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum

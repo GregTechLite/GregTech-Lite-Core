@@ -914,7 +914,7 @@ class GTLiteMaterials
             .fluid()
             .color(0xAABEBB).iconSet(METALLIC)
             .components(Iron, 16, Aluminium, 3, Chrome, 5, Yttrium, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
                 b.temp(5325, BlastProperty.GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 40 * SECOND)

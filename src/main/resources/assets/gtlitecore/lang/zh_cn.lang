@@ -1208,6 +1208,16 @@ gtlitecore.machine.volcanus.tooltip.6=每提高1个§a线圈等级§7，每次�
 gtlitecore.machine.volcanus.pyrotheum_amount=炽焱储量：%s
 gtlitecore.machine.volcanus.pyrotheum_warning=烈焰之炽焱不足
 
+gtlitecore.machine.cryogenic_freezer.name=凛冰冷冻机
+gtlitecore.machine.cryogenic_freezer.tooltip.1=需要提供§b极寒之凛冰§7以工作
+gtlitecore.machine.cryogenic_freezer.tooltip.2=未提供§b极寒之凛冰§7时，凛冰冷冻机将会停机
+gtlitecore.machine.cryogenic_freezer.tooltip.3=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.cryogenic_freezer.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.cryogenic_freezer.tooltip.5=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.cryogenic_freezer.tooltip.6=每提高1个§a马达外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.cryogenic_freezer.cryotheum_amount=凛冰储量：%s
+gtlitecore.machine.cryogenic_freezer.cryotheum_warning=极寒之凛冰不足
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶

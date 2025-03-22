@@ -24,6 +24,7 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCryogenicFreezer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeAssembler
@@ -189,6 +190,7 @@ class GTLiteMetaTileEntities
         lateinit var ELECTRIC_IMPLOSION_COMPRESSOR: MetaTileEntityElectricImplosionCompressor
         lateinit var ALLOY_BLAST_SMELTER: MetaTileEntityAlloyBlastSmelter
         lateinit var VOLCANUS: MetaTileEntityVolcanus
+        lateinit var CRYOGENIC_FREEZER: MetaTileEntityCryogenicFreezer
 
         @JvmStatic
         fun preInit()
@@ -626,6 +628,17 @@ class GTLiteMetaTileEntities
             VOLCANUS = MetaTileEntities.registerMetaTileEntity(18129,
                 MetaTileEntityVolcanus(GTLiteUtility.gtliteId("volcanus")))
 
+            CRYOGENIC_FREEZER = MetaTileEntities.registerMetaTileEntity(18130,
+                MetaTileEntityCryogenicFreezer(GTLiteUtility.gtliteId("cryogenic_freezer")))
+
+            // 18131 CHEMICAL_PLANT
+            // 18132 COKING_TOWER
+            // 18133 LARGE_MASS_FABRICATOR
+            // 18134 LARGE_REPLICATOR
+            // 18135 CIRCUIT_ASSEMBLY_LINE
+            // 18136 ADVANCED_ASSEMBLY_LINE
+            // 18137 COMPONENT_ASSEMBLY_LINE
+
         }
 
         @JvmStatic
@@ -718,6 +731,7 @@ class GTLiteMetaTileEntities
             ELECTRIC_IMPLOSION_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ALLOY_BLAST_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             VOLCANUS.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

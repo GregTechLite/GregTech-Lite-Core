@@ -116,6 +116,7 @@ import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
+import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
@@ -123,6 +124,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAllo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
@@ -934,6 +936,15 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'G', UnificationEntry(gear, HastelloyN))
+
+            // Cryogenic Freezer
+            ModHandler.addShapedRecipe(true, "cryogenic_freezer", GTLiteMetaTileEntities.CRYOGENIC_FREEZER.stackForm,
+                "GXG", "VBV", "WXW",
+                'V', VACUUM_FREEZER.stackForm,
+                'B', GTLiteMetaBlocks.METAL_CASING_02.getItemVariant(BlockMetalCasing02.MetalCasingType.HASTELLOY_X),
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'G', UnificationEntry(gear, IncoloyMA956))
 
         }
 

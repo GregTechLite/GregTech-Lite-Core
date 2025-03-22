@@ -1,31 +1,24 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.advanced;
 
 import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.capability.IHeatingCoil;
 import gregtech.api.capability.IMultipleTankHandler;
-import gregtech.api.capability.impl.HeatingCoilRecipeLogic;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.properties.impl.TemperatureProperty;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.api.util.TextFormattingUtil;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.core.sound.GTSoundEvents;
 import lombok.Getter;
@@ -53,6 +46,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.injection.struct.InjectorGroupInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,52 +60,51 @@ import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.motorCasings;
+import static magicbook.gtlitecore.api.utils.StructureUtility.pumpCasings;
 
-public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implements IHeatingCoil
+public class MetaTileEntityCryogenicFreezer extends RecipeMapMultiblockController
 {
 
     @Getter
+    private int pumpCasingTier;
+    @Getter
     private int motorCasingTier;
-    @Getter
-    private int coilTier;
-    @Getter
-    private int temperature;
 
     private static boolean hasRegistered = false;
+    private static List<IBlockState> pumpCasings;
     private static List<IBlockState> motorCasings;
-    private static List<IBlockState> heatingCoils;
 
     // =================================================================================================================
-    public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId)
+    public MetaTileEntityCryogenicFreezer(ResourceLocation metaTileEntityId)
     {
-        super(metaTileEntityId, RecipeMaps.BLAST_RECIPES);
-        this.recipeMapWorkable = new VolcanusRecipeLogic(this);
+        super(metaTileEntityId, RecipeMaps.VACUUM_RECIPES);
+        this.recipeMapWorkable = new CryogenicFreezerRecipeLogic(this);
         this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
-        return new MetaTileEntityVolcanus(metaTileEntityId);
+        return new MetaTileEntityCryogenicFreezer(metaTileEntityId);
     }
 
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
+        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
+                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+                .map(Map.Entry::getKey)
+                .toList();
         List<IBlockState> motorCasing = StreamEx.of(GTLiteAPI.MAP_MOTOR_CASING.entrySet())
                 .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
                 .map(Map.Entry::getKey)
                 .toList();
-        List<IBlockState> heatingCoil = StreamEx.of(GregTechAPI.HEATING_COILS.entrySet())
-                .sortedByInt(entry -> entry.getValue().getTier())
-                .map(Map.Entry::getKey)
-                .toList();
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
+            add(pumpCasing);
             add(motorCasing);
-            add(heatingCoil);
         }});
+        pumpCasings = consistent(pumpCasing, maxLength);
         motorCasings = consistent(motorCasing, maxLength);
-        heatingCoils = consistent(heatingCoil, maxLength);
         hasRegistered = true;
     }
 
@@ -120,32 +113,22 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     protected void formStructure(PatternMatchContext context)
     {
         super.formStructure(context);
-        Object type1 = context.get("MotorCasingTieredStats");
-        Object type2 = context.get("CoilType");
-        this.motorCasingTier = getOrDefault(
+        Object type1 = context.get("PumpCasingTieredStats");
+        Object type2 = context.get("MotorCasingTieredStats");
+        this.pumpCasingTier = getOrDefault(
                 () -> type1 instanceof WrappedIntTier,
                 () -> ((WrappedIntTier) type1).getIntTier(), 0);
-        if (type2 instanceof IHeatingCoilBlockStats)
-        {
-            this.temperature = ((IHeatingCoilBlockStats) type2).getCoilTemperature();
-            this.coilTier = ((IHeatingCoilBlockStats) type2).getTier();
-        }
-        else
-        {
-            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.getCoilTemperature();
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.getTier();
-        }
-        this.temperature += 100 * Math.max(0, GTUtility.getTierByVoltage(
-                getEnergyContainer().getInputVoltage() - GTValues.MV));
+        this.motorCasingTier = getOrDefault(
+                () -> type2 instanceof WrappedIntTier,
+                () -> ((WrappedIntTier) type2).getIntTier(), 0);
     }
 
     @Override
     public void invalidateStructure()
     {
         super.invalidateStructure();
+        this.pumpCasingTier = 0;
         this.motorCasingTier = 0;
-        this.coilTier = 0;
-        this.temperature = 0;
     }
 
     @NotNull
@@ -153,29 +136,28 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     protected BlockPattern createStructurePattern()
     {
         return FactoryBlockPattern.start()
-                .aisle("DDD", "CCC", "CCC", "DDD")
-                .aisle("DDD", "CMC", "CMC", "DOD")
-                .aisle("DSD", "CCC", "CCC", "DDD")
+                .aisle("CCC", "CCC", "CCC")
+                .aisle("CMC", "CPC", "CCC")
+                .aisle("CCC", "CSC", "CCC")
                 .where('S', selfPredicate())
-                .where('D', states(getCasingState())
-                        .setMinGlobalLimited(9)
+                .where('C', states(getCasingState())
+                        .setMinGlobalLimited(4)
                         .or(autoAbilities(true, true, true, true, true, true, false)))
-                .where('O', abilities(MultiblockAbility.MUFFLER_HATCH))
+                .where('P', pumpCasings())
                 .where('M', motorCasings())
-                .where('C', heatingCoils())
                 .build();
     }
 
     private static IBlockState getCasingState()
     {
-        return GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HASTELLOY_C276);
+        return GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HASTELLOY_X);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart)
     {
-        return GTLiteTextures.HASTELLOY_C276_CASING;
+        return GTLiteTextures.HASTELLOY_X_CASING;
     }
 
     @SideOnly(Side.CLIENT)
@@ -183,7 +165,7 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     @Override
     protected ICubeRenderer getFrontOverlay()
     {
-        return Textures.BLAST_FURNACE_OVERLAY;
+        return Textures.VACUUM_FREEZER_OVERLAY;
     }
 
     @Override
@@ -191,12 +173,11 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     {
         List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
         MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
-                .aisle("DED", "CCC", "CCC", "DDD")
-                .aisle("DDD", "CMC", "CMC", "DOD")
-                .aisle("ISJ", "CCC", "CCC", "KNL")
-                .where('S', GTLiteMetaTileEntities.VOLCANUS, EnumFacing.SOUTH)
-                .where('D', getCasingState())
-                .where('O', MetaTileEntities.MUFFLER_HATCH[1], EnumFacing.UP)
+                .aisle("CEC", "CCC", "CCC")
+                .aisle("CMC", "CPC", "CCC")
+                .aisle("KNL", "ISJ", "CCC")
+                .where('S', GTLiteMetaTileEntities.CRYOGENIC_FREEZER, EnumFacing.SOUTH)
+                .where('C', getCasingState())
                 .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
                 .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
@@ -204,12 +185,12 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
                 .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
                 .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
         AtomicInteger count = new AtomicInteger();
-        StreamEx.of(motorCasings)
+        StreamEx.of(pumpCasings)
                 .map(b -> {
                     if (builder != null)
                     {
-                        builder.where('M', b);
-                        builder.where('C', heatingCoils.get(count.get()));
+                        builder.where('P', b);
+                        builder.where('M', motorCasings.get(count.get()));
                         count.getAndIncrement();
                     }
                     return builder;
@@ -226,9 +207,9 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
         super.update();
         if (this.getWorld().isRemote)
         {
-            if (this.motorCasingTier == 0)
+            if (this.pumpCasingTier == 0)
                 this.writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE, buf -> {});
-            if (this.coilTier == 0)
+            if (this.motorCasingTier == 0)
                 this.writeCustomData(GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE, buf -> {});
         }
     }
@@ -238,13 +219,13 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     {
         super.receiveCustomData(dataId, buf);
         if (dataId == GTLiteDataCodes.INITIALIZE_TIERED_MACHINE)
-            this.writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE, b -> b.writeInt(this.motorCasingTier));
+            this.writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE, b -> b.writeInt(this.pumpCasingTier));
         if (dataId == GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE)
-            this.writeCustomData(GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE, b -> b.writeInt(this.coilTier));
+            this.writeCustomData(GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE, b -> b.writeInt(this.motorCasingTier));
         if (dataId == GTLiteDataCodes.UPDATE_TIERED_MACHINE)
-            this.motorCasingTier = buf.readInt();
+            this.pumpCasingTier = buf.readInt();
         if (dataId == GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE)
-            this.coilTier = buf.readInt();
+            this.motorCasingTier = buf.readInt();
     }
 
     // =================================================================================================================
@@ -255,15 +236,12 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
                                boolean advanced)
     {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.1"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.2"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.3"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.4"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.5"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.6"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.1"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.2"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.3"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.4"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.5"));
+        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.6"));
     }
 
     @Override
@@ -279,24 +257,17 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
                 .addCustom(tl -> {
                     if (this.isStructureFormed())
                     {
-                        ITextComponent temperatureInfo = TextComponentUtil.stringWithColor(
-                                TextFormatting.RED,
-                                TextFormattingUtil.formatNumbers(this.temperature));
-                        tl.add(TextComponentUtil.translationWithColor(
-                                TextFormatting.GRAY,
-                                "gregtech.multiblock.blast_furnace.max_temperature",
-                                temperatureInfo));
                         if (this.getInputFluidInventory() != null)
                         {
-                            FluidStack pyrotheumStack = this.getInputFluidInventory()
-                                    .drain(GTLiteMaterials.BlazingPyrotheum.getFluid(Integer.MAX_VALUE), false);
-                            int pyrotheumAmount = pyrotheumStack == null ? 0 : pyrotheumStack.amount;
+                            FluidStack cryotheumStack = this.getInputFluidInventory()
+                                    .drain(GTLiteMaterials.GelidCryotheum.getFluid(Integer.MAX_VALUE), false);
+                            int cryotheumAmount = cryotheumStack == null ? 0 : cryotheumStack.amount;
                             ITextComponent amountInfo = TextComponentUtil.stringWithColor(
                                     TextFormatting.GREEN,
-                                    TextFormattingUtil.formatNumbers(pyrotheumAmount) + " L");
+                                    TextFormattingUtil.formatNumbers(cryotheumAmount) + " L");
                             tl.add(TextComponentUtil.translationWithColor(
                                     TextFormatting.GRAY,
-                                    "gtlitecore.machine.volcanus.pyrotheum_amount",
+                                    "gtlitecore.machine.cryogenic_freezer.cryotheum_amount",
                                     amountInfo)); // TODO Impl of IProgressBarMultiblock to replaced it.
                         }
                     }
@@ -313,32 +284,17 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
                 .addCustom(tl -> {
                     if (this.isStructureFormed())
                     {
-                        FluidStack pyrotheumStack = this.getInputFluidInventory()
-                                .drain(GTLiteMaterials.BlazingPyrotheum.getFluid(Integer.MAX_VALUE), false);
-                        if (pyrotheumStack == null || pyrotheumStack.amount == 0)
+                        FluidStack cryotheumStack = this.getInputFluidInventory()
+                                .drain(GTLiteMaterials.GelidCryotheum.getFluid(Integer.MAX_VALUE), false);
+                        if (cryotheumStack == null || cryotheumStack.amount == 0)
                         {
                             ITextComponent warnInfo = TextComponentUtil.translationWithColor(
                                     TextFormatting.YELLOW,
-                                    "gtlitecore.machine.volcanus.pyrotheum_warning");
+                                    "gtlitecore.machine.cryogenic_freezer_cryotheum_warning");
                             tl.add(warnInfo);
                         }
                     }
                 });
-    }
-
-    @NotNull
-    @Override
-    public  List<ITextComponent> getDataInfo()
-    {
-        List<ITextComponent> textList = super.getDataInfo();
-        ITextComponent temperatureInfo = TextComponentUtil.translationWithColor(
-                TextFormatting.RED,
-                TextFormattingUtil.formatNumbers(this.temperature) + " K");
-        textList.add(TextComponentUtil.translationWithColor(
-                TextFormatting.GRAY,
-                "gregtech.multiblock.blast_furnace.max_temperature",
-                temperatureInfo));
-        return textList;
     }
 
     // =================================================================================================================
@@ -349,38 +305,20 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
     }
 
     @Override
-    public boolean hasMufflerMechanics()
-    {
-        return true;
-    }
-
-    @Override
     public SoundEvent getBreakdownSound()
     {
         return GTSoundEvents.BREAKDOWN_ELECTRICAL;
     }
 
-    @Override
-    public int getCurrentTemperature()
-    {
-        return this.temperature;
-    }
-
-    @Override
-    public boolean checkRecipe(@NotNull Recipe recipe, boolean consumeIfSuccess)
-    {
-        return this.temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0);
-    }
-
-    protected class VolcanusRecipeLogic extends HeatingCoilRecipeLogic
+    protected class CryogenicFreezerRecipeLogic extends MultiblockRecipeLogic
     {
 
-        private final MetaTileEntityVolcanus volcanus;
+        private final MetaTileEntityCryogenicFreezer cryogenicFreezer;
 
-        public VolcanusRecipeLogic(RecipeMapMultiblockController tileEntity)
+        public CryogenicFreezerRecipeLogic(RecipeMapMultiblockController tileEntity)
         {
             super(tileEntity);
-            this.volcanus = (MetaTileEntityVolcanus) tileEntity;
+            this.cryogenicFreezer = (MetaTileEntityCryogenicFreezer) tileEntity;
         }
 
         @Override
@@ -388,11 +326,11 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
         {
             if (this.canRecipeProgress && this.drawEnergy(this.recipeEUt, true))
             {
-                IMultipleTankHandler inputTank = volcanus.getInputFluidInventory();
-                FluidStack pyrotheumStack = GTLiteMaterials.BlazingPyrotheum.getFluid(2);
-                if (pyrotheumStack.isFluidStackIdentical(inputTank.drain(pyrotheumStack, false)))
+                IMultipleTankHandler inputTank = cryogenicFreezer.getInputFluidInventory();
+                FluidStack cryotheumStack = GTLiteMaterials.GelidCryotheum.getFluid(2);
+                if (cryotheumStack.isFluidStackIdentical(inputTank.drain(cryotheumStack, false)))
                 {
-                    inputTank.drain(pyrotheumStack, true);
+                    inputTank.drain(cryotheumStack, true);
                     if (++this.progressTime > this.maxProgressTime)
                         this.completeRecipe();
                 }
@@ -413,13 +351,12 @@ public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implem
         @Override
         public void setMaxProgress(int maxProgress)
         {
-            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.8, getMotorCasingTier()))));
+            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.5, getPumpCasingTier()))));
         }
 
         @Override
-        public int getParallelLimit()
-        {
-            return 16 * getCoilTier();
+        public int getParallelLimit() {
+            return 16 * getMotorCasingTier();
         }
 
     }
