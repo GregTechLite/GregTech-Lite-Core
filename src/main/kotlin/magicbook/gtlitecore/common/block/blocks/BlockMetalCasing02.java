@@ -49,7 +49,9 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
         INCOLOY_MA813("incoloy_ma813"),
         MONEL_500("monel_500"),
         INCOLOY_MA956("incoloy_ma956"),
-        ZIRCONIUM_CARBIDE("zirconium_carbide");
+        ZIRCONIUM_CARBIDE("zirconium_carbide"),
+        HASTELLOY_C276("hastelloy_c276"),
+        HASTELLOY_X("hastelloy_x");
 
         private final String name;
     }

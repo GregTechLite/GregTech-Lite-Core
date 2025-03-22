@@ -374,6 +374,8 @@ tile.metal_casing_02.incoloy_ma813.name=Thermal Isolated Incoloy-MA813 Machine C
 tile.metal_casing_02.monel_500.name=Frigostable Monel 500 Machine Casing
 tile.metal_casing_02.incoloy_ma956.name=Spacecraft Grade Incoloy-MA956 Machine Casing
 tile.metal_casing_02.zirconium_carbide.name=Heatproof Zirconium Carbide Machine Casing
+tile.metal_casing_02.hastelloy_c276.name=Oxidation Proof Hastelloy-C276 Machine Casing
+tile.metal_casing_02.hastelloy_x.name=Inert Hastelloy-X Machine Casing
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -1194,7 +1196,17 @@ gtlitecore.machine.large_alloy_blast_smelter.name=Alloy Blast Smelter
 gtlitecore.machine.large_alloy_blast_smelter.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_alloy_blast_smelter.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.large_alloy_blast_smelter.tooltip.3=Each §eCoil tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
-gtlitecore.machine.large_alloy_blast_smelter.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
+gtlitecore.machine.large_alloy_blast_smelter.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
+
+gtlitecore.machine.volcanus.name=Volcanus
+gtlitecore.machine.volcanus.tooltip.1=Required provide §cBlazing Pyrotheum§7 for working.
+gtlitecore.machine.volcanus.tooltip.2=If not provide §cBlazing Pyrotheum§7, then machine will paused.
+gtlitecore.machine.volcanus.tooltip.3=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.volcanus.tooltip.4=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.volcanus.tooltip.5=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.volcanus.tooltip.6=Each §aCoil tier§7 +1, processing +§l16§r§7 items.
+gtlitecore.machine.volcanus.pyrotheum_amount=Blazing Pyrotheum Amount: %s
+gtlitecore.machine.volcanus.pyrotheum_warning=No Blazing Pyrotheum provided!
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
@@ -1378,6 +1390,9 @@ gtlitecore.material.incoloy_ma_956=Incoloy-MA956
 gtlitecore.material.zirconium_carbide=Zirconium Carbide
 gtlitecore.material.tantalum_carbide=Tantalum Carbide
 gtlitecore.material.molybdenum_disilicide=Molybdenum Disilicide
+gtlitecore.material.hastelloy_c_276=Hastelloy-C276
+gtlitecore.material.hastelloy_x=Hastelloy-X
+gtlitecore.material.hastelloy_n=Hastelloy-N
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

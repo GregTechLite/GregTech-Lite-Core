@@ -968,6 +968,51 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4022 Hastelloy-C276
+        @JvmField
+        val HastelloyC276: Material = Material.Builder(4022, gtliteId("hastelloy_c_276"))
+            .ingot()
+            .fluid()
+            .color(0xA47657).iconSet(METALLIC)
+            .components(Nickel, 12, Molybdenum, 8, Chrome, 7, Tungsten, 1, Cobalt, 1, Copper, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(4625, BlastProperty.GasTier.MID) // RTM Alloy
+                    .blastStats(VA[IV], 38 * SECOND)
+                    .vacuumStats(VA[HV], 14 * SECOND)
+            }
+            .build()
+
+        // 4023 Hastelloy-X
+        @JvmField
+        val HastelloyX: Material = Material.Builder(4023, gtliteId("hastelloy_x"))
+            .ingot()
+            .fluid()
+            .color(0x5785A4).iconSet(METALLIC)
+            .components(Nickel, 8, Iron, 3, Tungsten, 4, Molybdenum, 2, Chrome, 1, Niobium, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(4200, BlastProperty.GasTier.MID) // RTM Alloy
+                    .blastStats(VA[IV], 30 * SECOND)
+                    .vacuumStats(VA[HV], 16 * SECOND)
+            }
+            .build()
+
+        // 4024 Hastelloy-N
+        @JvmField
+        val HastelloyN: Material = Material.Builder(4024, gtliteId("hastelloy_n"))
+            .ingot()
+            .fluid()
+            .color(0xDDDDDD).iconSet(METALLIC)
+            .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(4625, BlastProperty.GasTier.HIGH) // HSS-G
+                    .blastStats(VA[IV], 50 * SECOND)
+                    .vacuumStats(VA[EV], 15 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 

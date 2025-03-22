@@ -43,6 +43,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/zirconium_carbide"
         }
+      },
+      "hastelloy_c276": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/hastelloy_c276"
+        }
+      },
+      "hastelloy_x": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/hastelloy_x"
+        }
       }
     }
   }

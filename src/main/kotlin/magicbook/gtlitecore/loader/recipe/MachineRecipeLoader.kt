@@ -94,6 +94,7 @@ import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.DISTILLATION_TOWER
 import gregtech.common.metatileentities.MetaTileEntities.DISTILLERY
+import gregtech.common.metatileentities.MetaTileEntities.ELECTRIC_BLAST_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ELECTROLYZER
 import gregtech.common.metatileentities.MetaTileEntities.ELECTROMAGNETIC_SEPARATOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
@@ -121,6 +122,7 @@ import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
@@ -133,8 +135,10 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
@@ -921,6 +925,15 @@ class MachineRecipeLoader
                 .EUt(VH[MV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
+
+            // Volcanus
+            ModHandler.addShapedRecipe(true, "volcanus", GTLiteMetaTileEntities.VOLCANUS.stackForm,
+                "GXG", "ECE", "WXW",
+                'E', ELECTRIC_BLAST_FURNACE.stackForm,
+                'C', GTLiteMetaBlocks.METAL_CASING_02.getItemVariant(BlockMetalCasing02.MetalCasingType.HASTELLOY_C276),
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'G', UnificationEntry(gear, HastelloyN))
 
         }
 

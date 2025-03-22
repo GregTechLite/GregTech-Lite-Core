@@ -158,6 +158,11 @@ class GTLiteTextures
         @JvmField
         val ZIRCONIUM_CARBIDE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/zirconium_carbide")
 
+        @JvmField
+        val HASTELLOY_C276_CASING = GTLiteSimpleOverlayRenderer("casings/metal/hastelloy_c276")
+
+        @JvmField
+        val HASTELLOY_X_CASING = GTLiteSimpleOverlayRenderer("casings/metal/hastelloy_x")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

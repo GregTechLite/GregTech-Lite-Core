@@ -374,6 +374,8 @@ tile.metal_casing_02.incoloy_ma813.name=热隔离耐热铬铁合金-MA813机器�
 tile.metal_casing_02.monel_500.name=耐低温蒙乃尔合金500机器外壳
 tile.metal_casing_02.incoloy_ma956.name=航天级耐热铬铁合金-MA956机器外壳
 tile.metal_casing_02.zirconium_carbide.name=耐热碳化锆机器外壳
+tile.metal_casing_02.hastelloy_c276.name=抗氧化哈斯特洛伊合金-C276机器外壳
+tile.metal_casing_02.hastelloy_x.name=惰性哈斯特洛伊合金-X机器外壳
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -1194,7 +1196,17 @@ gtlitecore.machine.alloy_blast_smelter.name=合金冶炼炉
 gtlitecore.machine.alloy_blast_smelter.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.alloy_blast_smelter.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.alloy_blast_smelter.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.alloy_blast_smelter.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+gtlitecore.machine.alloy_blast_smelter.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+
+gtlitecore.machine.volcanus.name=炽焱高炉
+gtlitecore.machine.volcanus.tooltip.1=需要提供§c烈焰之炽焱§7以工作
+gtlitecore.machine.volcanus.tooltip.2=未提供§c烈焰之炽焱§7时，炽焱高炉将会停机
+gtlitecore.machine.volcanus.tooltip.3=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.volcanus.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.volcanus.tooltip.5=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.volcanus.tooltip.6=每提高1个§a线圈等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.volcanus.pyrotheum_amount=炽焱储量：%s
+gtlitecore.machine.volcanus.pyrotheum_warning=烈焰之炽焱不足
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
@@ -1379,6 +1391,9 @@ gtlitecore.material.incoloy_ma_956=耐热铬铁合金-MA956
 gtlitecore.material.zirconium_carbide=碳化锆
 gtlitecore.material.tantalum_carbide=碳化钽
 gtlitecore.material.molybdenum_disilicide=二硅化钼
+gtlitecore.material.hastelloy_c_276=哈斯特洛伊合金-C276
+gtlitecore.material.hastelloy_x=哈斯特洛伊合金-X
+gtlitecore.material.hastelloy_n=哈斯特洛伊合金-N
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

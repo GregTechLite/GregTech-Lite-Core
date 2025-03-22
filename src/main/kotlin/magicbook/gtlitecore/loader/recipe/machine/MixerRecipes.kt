@@ -61,6 +61,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyC276
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA813
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
@@ -358,6 +361,47 @@ class MixerRecipes
                 .output(dust, MolybdenumDisilicide, 3)
                 .EUt(VA[EV].toLong())
                 .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // Hastelloy-C276
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, Nickel, 12)
+                .input(dust, Molybdenum, 8)
+                .input(dust, Chrome, 7)
+                .input(dust, Tungsten)
+                .input(dust, Cobalt)
+                .input(dust, Copper)
+                .output(dust, HastelloyC276, 30)
+                .EUt(VA[IV].toLong())
+                .duration(45 * SECOND)
+                .buildAndRegister()
+
+            // Hastelloy-X
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, Nickel, 8)
+                .input(dust, Iron, 3)
+                .input(dust, Tungsten, 4)
+                .input(dust, Molybdenum, 2)
+                .input(dust, Chrome, 1)
+                .input(dust, Niobium, 1)
+                .output(dust, HastelloyX, 19)
+                .EUt(VA[IV].toLong())
+                .duration(43 * SECOND)
+                .buildAndRegister()
+
+            // Hastelloy-N
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Yttrium, 2)
+                .input(dust, Molybdenum, 4)
+                .input(dust, Chrome, 2)
+                .input(dust, Titanium, 2)
+                .input(dust, Nickel, 15)
+                .output(dust, HastelloyN, 25)
+                .EUt(VA[IV].toLong())
+                .duration(38 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum
