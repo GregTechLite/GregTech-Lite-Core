@@ -492,7 +492,7 @@ public class ModuleManager implements IModuleManager
     {
         return StreamEx.of(dataTable.getAll(Module.class.getCanonicalName()))
                 .map(data -> {
-                    String moduleId = (String) data.getAnnotationInfo().get("moduleID");
+                    String moduleId = (String) data.getAnnotationInfo().get("moduleId");
                     List<String> modDependencies = (List<String>) data.getAnnotationInfo()
                             .get("modDependencies");
                     return new AbstractMap.SimpleEntry<>(data,
