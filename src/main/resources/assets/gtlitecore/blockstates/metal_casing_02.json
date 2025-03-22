@@ -55,6 +55,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/hastelloy_x"
         }
+      },
+      "polybenzimidazole": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/polybenzimidazole"
+        }
       }
     }
   }

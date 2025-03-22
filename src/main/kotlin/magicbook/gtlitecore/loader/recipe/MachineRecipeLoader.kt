@@ -24,6 +24,7 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
@@ -106,6 +107,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
 import gregtech.common.metatileentities.MetaTileEntities.GAS_COLLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.IMPLOSION_COMPRESSOR
+import gregtech.common.metatileentities.MetaTileEntities.LARGE_CHEMICAL_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
@@ -148,6 +150,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CATALYTIC_REFORMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_PLANT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
@@ -945,6 +948,15 @@ class MachineRecipeLoader
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'G', UnificationEntry(gear, IncoloyMA956))
+
+            // Chemical Plant
+            ModHandler.addShapedRecipe(true, "chemical_plant", CHEMICAL_PLANT.stackForm,
+                "PXP", "CFC", "PWP",
+                'F', UnificationEntry(frameGt, Polybenzimidazole),
+                'C', LARGE_CHEMICAL_REACTOR.stackForm,
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
+                'P', ELECTRIC_PUMP_IV)
 
         }
 

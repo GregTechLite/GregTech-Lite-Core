@@ -24,6 +24,7 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCryogenicFreezer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeArcFurnace
@@ -191,6 +192,7 @@ class GTLiteMetaTileEntities
         lateinit var ALLOY_BLAST_SMELTER: MetaTileEntityAlloyBlastSmelter
         lateinit var VOLCANUS: MetaTileEntityVolcanus
         lateinit var CRYOGENIC_FREEZER: MetaTileEntityCryogenicFreezer
+        lateinit var CHEMICAL_PLANT: MetaTileEntityChemicalPlant
 
         @JvmStatic
         fun preInit()
@@ -631,7 +633,9 @@ class GTLiteMetaTileEntities
             CRYOGENIC_FREEZER = MetaTileEntities.registerMetaTileEntity(18130,
                 MetaTileEntityCryogenicFreezer(GTLiteUtility.gtliteId("cryogenic_freezer")))
 
-            // 18131 CHEMICAL_PLANT
+            CHEMICAL_PLANT = MetaTileEntities.registerMetaTileEntity(18131,
+                MetaTileEntityChemicalPlant(GTLiteUtility.gtliteId("chemical_plant")))
+
             // 18132 COKING_TOWER
             // 18133 LARGE_MASS_FABRICATOR
             // 18134 LARGE_REPLICATOR
@@ -732,6 +736,7 @@ class GTLiteMetaTileEntities
             ALLOY_BLAST_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             VOLCANUS.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

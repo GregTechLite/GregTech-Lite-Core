@@ -376,6 +376,9 @@ tile.metal_casing_02.incoloy_ma956.name=航天级耐热铬铁合金-MA956机器�
 tile.metal_casing_02.zirconium_carbide.name=耐热碳化锆机器外壳
 tile.metal_casing_02.hastelloy_c276.name=抗氧化哈斯特洛伊合金-C276机器外壳
 tile.metal_casing_02.hastelloy_x.name=惰性哈斯特洛伊合金-X机器外壳
+tile.metal_casing_02.polybenzimidazole.name=化学防护聚苯并咪唑机器外壳
+
+tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -626,6 +629,7 @@ recipemap.catalytic_reformer.name=催化重整
 recipemap.large_gas_collector.name=大型集气室
 recipemap.electric_implosion_compressor.name=电动聚爆压缩机
 recipemap.alloy_blast_smelter.name=合金冶炼炉
+recipemap.chemical_plant.name=化工厂
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1217,6 +1221,12 @@ gtlitecore.machine.cryogenic_freezer.tooltip.5=每提高1个§e泵外壳等级§
 gtlitecore.machine.cryogenic_freezer.tooltip.6=每提高1个§a马达外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 gtlitecore.machine.cryogenic_freezer.cryotheum_amount=凛冰储量：%s
 gtlitecore.machine.cryogenic_freezer.cryotheum_warning=极寒之凛冰不足
+
+gtlitecore.machine.chemical_plant.name=化工厂
+gtlitecore.machine.chemical_plant.tooltip.1=兼容所有§2化学反应釜§7配方，且具有一部分独占配方
+gtlitecore.machine.chemical_plant.tooltip.2=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.chemical_plant.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.chemical_plant.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

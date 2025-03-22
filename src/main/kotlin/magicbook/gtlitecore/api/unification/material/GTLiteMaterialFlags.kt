@@ -31,6 +31,8 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Powellite
 import gregtech.api.unification.material.Materials.Pyrochlore
@@ -58,6 +60,7 @@ import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlag
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
@@ -67,6 +70,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
@@ -95,6 +99,10 @@ class GTLiteMaterialFlags
 
         fun setMaterialFlags()
         {
+            // bolt & screw
+            Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
+            Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
+
             // foil
             Nickel.addFlags(GENERATE_FOIL)
             Niobium.addFlags(GENERATE_FOIL)
@@ -105,6 +113,7 @@ class GTLiteMaterialFlags
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
             RedSteel.addFlags(GENERATE_FRAME)
+            Polybenzimidazole.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -173,6 +182,7 @@ class GTLiteMaterialFlags
             Steel.addFlags(GENERATE_ROUND)
 
             // stick
+            Polybenzimidazole.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

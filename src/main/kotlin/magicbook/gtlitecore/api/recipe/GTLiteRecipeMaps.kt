@@ -528,6 +528,26 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.FURNACE)
             .build()
 
+        /**
+         * @zenProp chemical_plant
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CHEMICAL_PLANT_RECIPES")
+        val CHEMICAL_PLANT_RECIPES = RecipeMapBuilder("chemical_plant", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(4)
+            .fluidInputs(5)
+            .fluidOutputs(4)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_1, false, false)
+            .itemSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_2, false, true)
+            .itemSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, false)
+            .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_2, true)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_REACTION, ProgressWidget.MoveType.CIRCULAR)
+            .sound(GTSoundEvents.CHEMICAL_REACTOR)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

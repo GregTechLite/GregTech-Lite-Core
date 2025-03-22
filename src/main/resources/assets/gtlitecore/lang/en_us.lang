@@ -376,6 +376,9 @@ tile.metal_casing_02.incoloy_ma956.name=Spacecraft Grade Incoloy-MA956 Machine C
 tile.metal_casing_02.zirconium_carbide.name=Heatproof Zirconium Carbide Machine Casing
 tile.metal_casing_02.hastelloy_c276.name=Oxidation Proof Hastelloy-C276 Machine Casing
 tile.metal_casing_02.hastelloy_x.name=Inert Hastelloy-X Machine Casing
+tile.metal_casing_02.polybenzimidazole.name=Chemically Protective Polybenzimidazole Machine Casing
+
+tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -626,6 +629,7 @@ recipemap.catalytic_reformer.name=Catalytic Reformer
 recipemap.large_gas_collector.name=Large Gas Collector
 recipemap.electric_implosion_compressor.name=Electric Implosion Compressor
 recipemap.alloy_blast_smelter.name=Alloy Blast Smelter
+recipemap.chemical_plant.name=Chemical Plant
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1217,6 +1221,12 @@ gtlitecore.machine.cryogenic_freezer.tooltip.5=Each §ePump Casing tier§7 +1, r
 gtlitecore.machine.cryogenic_freezer.tooltip.6=Each §aMotor Casing tier§7 +1, processing +§l16§r§7 items.
 gtlitecore.machine.cryogenic_freezer.cryotheum_amount=Gelid Cryotheum Amount: %s
 gtlitecore.machine.cryogenic_freezer.cryotheum_warning=No Gelid Cryotheum provided!
+
+gtlitecore.machine.chemical_plant.name=Chemical Plant
+gtlitecore.machine.chemical_plant.tooltip.1=Compatible all §2Chemical Reactor§7 recipes, and has some special recipes.
+gtlitecore.machine.chemical_plant.tooltip.2=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.chemical_plant.tooltip.3=Each §eCoil tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.chemical_plant.tooltip.4=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

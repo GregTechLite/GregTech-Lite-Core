@@ -12,6 +12,7 @@ import magicbook.gtlitecore.client.model.ItemModelHelper
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOverride
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
@@ -139,6 +140,8 @@ class GTLiteMetaBlocks
         lateinit var PRIMITIVE_CASING: BlockPrimitiveCasing
         lateinit var METAL_CASING_01: BlockMetalCasing01
         lateinit var METAL_CASING_02: BlockMetalCasing02
+
+        lateinit var BOILER_CASING_01: BlockBoilerCasing01
 
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
 
@@ -360,6 +363,10 @@ class GTLiteMetaBlocks
             (METAL_CASING_02 as? Block)?.setRegistryName("metal_casing_02")
             (METAL_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            BOILER_CASING_01 = BlockBoilerCasing01()
+            (BOILER_CASING_01 as? Block)?.setRegistryName("boiler_casing_01")
+            (BOILER_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             ACTIVE_UNIQUE_CASING_01 = BlockActiveUniqueCasing01()
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setRegistryName("active_unique_casing_01")
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -477,6 +484,7 @@ class GTLiteMetaBlocks
             registerItemModel(PRIMITIVE_CASING)
             registerItemModel(METAL_CASING_01)
             registerItemModel(METAL_CASING_02)
+            registerItemModel(BOILER_CASING_01)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)

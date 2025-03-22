@@ -16,6 +16,7 @@ import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.BlackSteel;
 import static gregtech.api.unification.material.Materials.BlueSteel;
 import static gregtech.api.unification.material.Materials.Iridium;
+import static gregtech.api.unification.material.Materials.Polybenzimidazole;
 import static gregtech.api.unification.material.Materials.Potin;
 import static gregtech.api.unification.material.Materials.RedSteel;
 import static gregtech.api.unification.ore.OrePrefix.frameGt;
@@ -173,6 +174,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.HASTELLOY_X,
                 HastelloyX);
+
+        // Polybenzimidazole
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.POLYBENZIMIDAZOLE,
+                Polybenzimidazole);
 
     }
 

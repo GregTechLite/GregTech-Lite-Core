@@ -68,6 +68,10 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_EXTRACTION_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/progress_bar/progress_bar_extraction_%s.png")
 
+        @JvmField
+        val PROGRESS_BAR_REACTION: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_reaction.png")
+
         // Widgets
         @JvmField
         val BUTTON_INT_CIRCUIT_PLUS_STEAM = SteamTexture.fullImage(

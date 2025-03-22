@@ -16,18 +16,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCasingType>
+public class BlockBoilerCasing01 extends VariantBlock<BlockBoilerCasing01.BoilerCasingType>
 {
 
-    public BlockMetalCasing02()
+    public BlockBoilerCasing01()
     {
         super(Material.IRON);
-        this.setTranslationKey("metal_casing_02");
+        this.setTranslationKey("boiler_casing_01");
         this.setHardness(5.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("wrench", 2);
-        this.setDefaultState(this.getState(MetalCasingType.HSLA_STEEL));
+        this.setDefaultState(this.getState(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE));
     }
 
     @Override
@@ -41,17 +41,8 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
 
     @Getter
     @AllArgsConstructor
-    public enum MetalCasingType implements IStringSerializable
+    public enum BoilerCasingType implements IStringSerializable
     {
-        HSLA_STEEL("hsla_steel"),
-        KOVAR("kovar"),
-        BLACK_STEEL("black_steel"),
-        INCOLOY_MA813("incoloy_ma813"),
-        MONEL_500("monel_500"),
-        INCOLOY_MA956("incoloy_ma956"),
-        ZIRCONIUM_CARBIDE("zirconium_carbide"),
-        HASTELLOY_C276("hastelloy_c276"),
-        HASTELLOY_X("hastelloy_x"),
         POLYBENZIMIDAZOLE("polybenzimidazole");
 
         private final String name;

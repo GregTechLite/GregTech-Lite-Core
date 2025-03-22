@@ -13,13 +13,17 @@ import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
@@ -39,6 +43,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -424,6 +430,13 @@ class CraftingRecipeLoader
             ModHandler.addShapelessRecipe("sand_dust_to_block", ItemStack(Blocks.SAND),
                 SAND_DUST.stackForm, SAND_DUST.stackForm,
                 SAND_DUST.stackForm, SAND_DUST.stackForm)
+
+            // Polybenzimidazole Pipe Casing
+            ModHandler.addShapedRecipe(true, "polybenzimidazole_pipe_casing", GTLiteMetaBlocks.BOILER_CASING_01.getItemVariant(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE, ConfigHolder.recipes.casingsPerCraft),
+                "PQP", "QFQ", "PQP",
+                'P', UnificationEntry(plate, Polybenzimidazole),
+                'Q', UnificationEntry(pipeNormalFluid, Polybenzimidazole),
+                'F', UnificationEntry(frameGt, Polybenzimidazole))
 
         }
 
