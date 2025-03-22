@@ -3,12 +3,16 @@ package magicbook.gtlitecore.api.gui
 import gregtech.api.gui.resources.SteamTexture
 import gregtech.api.gui.resources.TextureArea
 
+/**
+ * Internal ModularUI Textures
+ *
+ * @see gregtech.api.gui.ModularUI
+ */
 class GTLiteGuiTextures
 {
 
     companion object
     {
-        // ---------------------------------------- Internal ModularUI Textures ----------------------------------------
         // Bases
         @JvmField /* GuiTextures#SLOT_STEAM for fluid slots in Steam Machines.  */
         val FLUID_SLOT_STEAM = SteamTexture.fullImage(
@@ -80,10 +84,6 @@ class GTLiteGuiTextures
         @JvmField
         val BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE = TextureArea.fullImage(
             "textures/gui/primitive/button_circuit_minus_primitive.png")
-
-        // -------------------------------------------- ModularUI2 Textures --------------------------------------------
-
-        // -------------------------------------------------------------------------------------------------------------
     }
 
 }

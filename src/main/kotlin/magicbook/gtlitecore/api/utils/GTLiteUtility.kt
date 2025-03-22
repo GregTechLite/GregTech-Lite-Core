@@ -29,20 +29,37 @@ class GTLiteUtility
     companion object
     {
 
+        /**
+         * Tank capabilities for sap collector machines.
+         *
+         * - For Steam Machines and LV: 16000L
+         * - For MV: 24000L
+         * - For HV: 32000L
+         * - For EV-IV: 64000L
+         *
+         * @see magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
+         * @see magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
+         */
         @JvmField
-        var collectorTankSizeFunction: java.util.function.Function<Int, Int> = java.util.function.Function<Int, Int> { tier ->
-            if (tier <= GTValues.LV)
-                return@Function 16000
-            if (tier === GTValues.MV)
-                return@Function 24000
-            if (tier === GTValues.HV)
-                return@Function 32000
-            64000
+        var collectorTankSizeFunction: java.util.function.Function<Int, Int> = java.util.function.Function { tier ->
+            when
+            {
+                tier <= GTValues.LV -> 16000
+                tier == GTValues.MV -> 24000
+                tier == GTValues.HV -> 32000
+                else -> 64000
+            }
         }
 
+        /**
+         * Get [ResourceLocation] with [GTLiteValues.MODID].
+         */
         @JvmStatic
         fun gtliteId(path: String) = ResourceLocation(GTLiteValues.MODID, path)
 
+        /**
+         * Get [ResourceLocation] with [namespace].
+         */
         @JvmStatic
         fun getId(namespace: String, path: String) = ResourceLocation(namespace, path)
 
@@ -127,31 +144,31 @@ class GTLiteUtility
             = if (canGet.asBoolean) getter.get() else defaultValue
 
         /**
-         *
+         * Transformed a block via [blockState] to [ItemStack].
          */
         @JvmStatic
         fun toItem(blockState: IBlockState) = toItem(blockState, 1)
 
         /**
-         *
-         */
-        @JvmStatic
-        fun toItem(blockState: IBlockState, amount: Int)
-                = ItemStack(blockState.block, amount, blockState.block.getMetaFromState(blockState))
-
-        /**
-         *
+         * Transformed a block on ([blockPos], [worldIn]) to [ItemStack].
          */
         @JvmStatic
         fun toItem(blockPos: BlockPos, worldIn: IBlockAccess)
                 = toItem(worldIn.getBlockState(blockPos))
 
         /**
-         *
+         * Transformed a block on ([blockPos], [worldIn]) to [ItemStack] with [amount].
          */
         @JvmStatic
         fun toItem(blockPos: BlockPos, worldIn: IBlockAccess, amount: Int)
                 = toItem(worldIn.getBlockState(blockPos), amount)
+
+        /**
+         * Transformed a block via [blockState] to [ItemStack] with [amount].
+         */
+        @JvmStatic
+        fun toItem(blockState: IBlockState, amount: Int)
+                = ItemStack(blockState.block, amount, blockState.block.getMetaFromState(blockState))
 
         /**
          * Get max length of [lists].
@@ -398,6 +415,10 @@ class GTLiteUtility
             }
         }
 
+        /**
+         * Add potion effect tooltips which is client-only.
+         * This is useful for [magicbook.gtlitecore.common.item.behavior.FoodBehavior].
+         */
         @SideOnly(Side.CLIENT)
         @JvmStatic
         fun addPotionEffectTooltip(effects: List<RandomPotionEffect>,

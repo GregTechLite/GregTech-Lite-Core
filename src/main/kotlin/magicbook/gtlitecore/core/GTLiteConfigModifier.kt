@@ -1,8 +1,9 @@
 package magicbook.gtlitecore.core
 
 import gregtech.common.ConfigHolder
+import org.jetbrains.annotations.ApiStatus
 
-@Suppress("UnstableApiUsage")
+@ApiStatus.Internal
 class GTLiteConfigModifier
 {
 

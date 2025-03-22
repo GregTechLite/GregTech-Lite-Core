@@ -3,7 +3,7 @@ package magicbook.gtlitecore.api.utils;
 /*
  * Copyright (c) 2022 GTNH Team, glee8e, Code Chicken
  *
- * This file is originally part of NotEnoughtItem by Code Chicken.
+ * This file is originally part of NotEnoughItem by Code Chicken.
  * It is adapted to implement the standard Map interface by glee8e,
  * and I port this class to gtlitecore, so I should show license there.
  *

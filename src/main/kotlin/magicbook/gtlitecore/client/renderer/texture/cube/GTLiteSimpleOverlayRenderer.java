@@ -22,6 +22,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Used for custom casing overlay textures register in gtlitecore namespace.
+ */
 public class GTLiteSimpleOverlayRenderer implements ICubeRenderer
 {
 
