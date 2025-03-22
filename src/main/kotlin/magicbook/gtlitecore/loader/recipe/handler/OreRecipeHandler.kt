@@ -6,12 +6,15 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.api.util.GTUtility
 import gregtech.common.ConfigHolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -51,6 +54,7 @@ class OreRecipeHandler
                 GTLiteOrePrefix.oreShale.addProcessingHandler(PropertyKey.ORE,
                     gregtech.loaders.recipe.handlers.OreRecipeHandler::processOre)
             }
+            OrePrefix.crushed.addProcessingHandler(PropertyKey.ORE, this::processCrushedOre)
         }
 
         private fun processCrushedPurified(purifiedPrefix: OrePrefix, material: Material, property: OreProperty)
@@ -128,6 +132,27 @@ class OreRecipeHandler
                 }
             }
             processMetalSmelting(purifiedPrefix, material, property)
+        }
+
+        /**
+         * Allowed to use Tectonic Petrotheum buff ore washer.
+         */
+        private fun processCrushedOre(crushedPrefix: OrePrefix, material: Material, property: OreProperty)
+        {
+            val byproductMaterial = property.getOreByProduct(0, material)
+            val crushedPurifiedOre = GTUtility.copyFirst(
+                OreDictUnifier.get(OrePrefix.crushedPurified, material),
+                OreDictUnifier.get(OrePrefix.dust, material))
+
+            RecipeMaps.ORE_WASHER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(crushedPrefix, material)
+                .fluidInputs(GTLiteMaterials.TectonicPetrotheum.getFluid(100))
+                .outputs(crushedPurifiedOre)
+                .output(OrePrefix.dust, Materials.Stone)
+                .chancedOutput(OrePrefix.dust, byproductMaterial, 6666, 0)
+                .duration(5 * SECOND)
+                .buildAndRegister()
         }
 
         /**
