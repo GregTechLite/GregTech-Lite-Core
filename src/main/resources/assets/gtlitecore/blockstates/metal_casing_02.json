@@ -67,6 +67,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/aluminium_bronze"
         }
+      },
+      "hastelloy_n": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/hastelloy_n"
+        }
+      },
+      "rene_n5": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/rene_n5"
+        }
       }
     }
   }

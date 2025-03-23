@@ -4,6 +4,7 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
@@ -36,6 +37,7 @@ import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GreenSapphire
+import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Inconel718
@@ -1028,6 +1030,21 @@ class GTLiteMaterials
             .blast { b ->
                 b.temp(1073, BlastProperty.GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 16 * SECOND)
+            }
+            .build()
+
+        // 4026 René N5
+        @JvmField
+        val ReneN5: Material = Material.Builder(4026, gtliteId("rene_n_5"))
+            .ingot()
+            .fluid()
+            .color(0xD599BD).iconSet(SHINY)
+            .components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(6800, BlastProperty.GasTier.HIGH) // Naquadah
+                    .blastStats(VA[LuV], 30 * SECOND)
+                    .vacuumStats(VA[EV], 25 * SECOND)
             }
             .build()
 

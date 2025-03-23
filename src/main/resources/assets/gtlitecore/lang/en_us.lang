@@ -378,6 +378,8 @@ tile.metal_casing_02.hastelloy_c276.name=Oxidation Proof Hastelloy-C276 Machine 
 tile.metal_casing_02.hastelloy_x.name=Inert Hastelloy-X Machine Casing
 tile.metal_casing_02.polybenzimidazole.name=Chemically Protective Polybenzimidazole Machine Casing
 tile.metal_casing_02.aluminium_bronze.name=Thermally Stable Aluminium Bronze Machine Casing
+tile.metal_casing_02.hastelloy_n.name=Heatproof Hastelloy-N Machine Casing
+tile.metal_casing_02.rene_n5.name=Time Hardening René-N5 Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1288,6 +1290,18 @@ gtlitecore.machine.industrial_coke_oven.tooltip.1=Update Component Casing or Vol
 gtlitecore.machine.industrial_coke_oven.tooltip.2=Each §eCoil tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.industrial_coke_oven.tooltip.3=Each §aVoltage tier§7 +1, processing +§l8§r§7 items.
 
+gtlitecore.machine.large_mass_fabricator.name=Large Mass Fabricator
+gtlitecore.machine.large_mass_fabricator.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_mass_fabricator.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_mass_fabricator.tooltip.3=Each §eField Gen Casing tier§7 and §eProcessor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_mass_fabricator.tooltip.4=Each §eEmitter Casing tier§7 and §eSensor Casing tier§7 +1, processing +§l4§r§7 items.
+
+gtlitecore.machine.large_replicator.name=Large Replicator
+gtlitecore.machine.large_replicator.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_replicator.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_replicator.tooltip.3=Each §eEmitter Casing tier§7 and §eSensor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.large_replicator.tooltip.4=Each §eField Gen Casing tier§7 and §eProcessor Casing tier§7 +1, processing +§l4§r§7 items.
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -1474,6 +1488,7 @@ gtlitecore.material.hastelloy_c_276=Hastelloy-C276
 gtlitecore.material.hastelloy_x=Hastelloy-X
 gtlitecore.material.hastelloy_n=Hastelloy-N
 gtlitecore.material.aluminium_bronze=Aluminium Bronze
+gtlitecore.material.rene_n_5=René-N5
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

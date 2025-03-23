@@ -28,6 +28,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HSLASteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HastelloyC276;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HastelloyN;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HastelloyX;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA956;
@@ -35,6 +36,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Kovar;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Monel500;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.ReneN5;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Staballoy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Stellite;
@@ -185,6 +187,16 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.ALUMINIUM_BRONZE,
                 AluminiumBronze);
+
+        // Hastelloy-N
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.HASTELLOY_N,
+                HastelloyN);
+
+        // Rene-N5
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.RENE_N5,
+                ReneN5);
 
     }
 

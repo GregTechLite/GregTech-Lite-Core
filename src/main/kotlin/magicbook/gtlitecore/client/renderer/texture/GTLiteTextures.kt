@@ -172,6 +172,12 @@ class GTLiteTextures
 
         @JvmField
         val ALUMINIUM_BRONZE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/aluminium_bronze")
+
+        @JvmField
+        val HASTELLOY_N_CASING = GTLiteSimpleOverlayRenderer("casings/metal/hastelloy_n")
+
+        @JvmField
+        val RENE_N5_CASING = GTLiteSimpleOverlayRenderer("casings/metal/rene_n5")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

@@ -4,6 +4,7 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -22,6 +23,7 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Invar
@@ -38,6 +40,7 @@ import gregtech.api.unification.material.Materials.Obsidian
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Redstone
+import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
@@ -77,6 +80,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
@@ -419,6 +423,22 @@ class MixerRecipes
                 .output(dust, AluminiumBronze, 4)
                 .EUt(VA[MV].toLong())
                 .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Rene N5
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(dust, Nickel, 22)
+                .input(dust, Cobalt, 4)
+                .input(dust, Chrome, 3)
+                .input(dust, Aluminium, 3)
+                .input(dust, Tungsten, 2)
+                .input(dust, Hafnium)
+                .input(dust, Rhenium, 2)
+                .input(dust, Tantalum, 3)
+                .output(dust, ReneN5, 40)
+                .EUt(VA[LuV].toLong())
+                .duration(40 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

@@ -49,9 +49,11 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeGasCollector
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeLaserEngraver
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMacerator
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMassFabricator
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeMixer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeOreWasher
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargePacker
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeReplicator
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeRockBreaker
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
@@ -198,6 +200,8 @@ class GTLiteMetaTileEntities
         lateinit var CRYOGENIC_FREEZER: MetaTileEntityCryogenicFreezer
         lateinit var CHEMICAL_PLANT: MetaTileEntityChemicalPlant
         lateinit var INDUSTRIAL_COKE_OVEN: MetaTileEntityIndustrialCokeOven
+        lateinit var LARGE_MASS_FABRICATOR: MetaTileEntityLargeMassFabricator
+        lateinit var LARGE_REPLICATOR: MetaTileEntityLargeReplicator
 
         @JvmStatic
         fun preInit()
@@ -656,8 +660,12 @@ class GTLiteMetaTileEntities
             INDUSTRIAL_COKE_OVEN = MetaTileEntities.registerMetaTileEntity(18132,
                 MetaTileEntityIndustrialCokeOven(GTLiteUtility.gtliteId("industrial_coke_oven")))
 
-            // 18133 LARGE_MASS_FABRICATOR
-            // 18134 LARGE_REPLICATOR
+            LARGE_MASS_FABRICATOR = MetaTileEntities.registerMetaTileEntity(18133,
+                MetaTileEntityLargeMassFabricator(GTLiteUtility.gtliteId("large_mass_fabricator")))
+
+            LARGE_REPLICATOR = MetaTileEntities.registerMetaTileEntity(18134,
+                MetaTileEntityLargeReplicator(GTLiteUtility.gtliteId("large_replicator")))
+
             // 18135 CIRCUIT_ASSEMBLY_LINE
             // 18136 ADVANCED_ASSEMBLY_LINE
             // 18137 COMPONENT_ASSEMBLY_LINE
@@ -757,6 +765,7 @@ class GTLiteMetaTileEntities
             CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_MASS_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,
