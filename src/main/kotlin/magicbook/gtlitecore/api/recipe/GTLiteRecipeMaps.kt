@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -546,6 +547,21 @@ class GTLiteRecipeMaps
             .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_2, true)
             .progressBar(GTLiteGuiTextures.PROGRESS_BAR_REACTION, ProgressWidget.MoveType.CIRCULAR)
             .sound(GTSoundEvents.CHEMICAL_REACTOR)
+            .build()
+
+        /**
+         * @zenProp circuit_assembly_line
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CIRCUIT_ASSEMBLY_LINE_RECIPES")
+        val CIRCUIT_ASSEMBLY_LINE_RECIPES = RecipeMapBuilder("circuit_assembly_line", CircuitAssemblyLineRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(6)
+            .fluidInputs(1)
+            .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
+            .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
         @JvmStatic

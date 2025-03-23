@@ -14,6 +14,7 @@ class NoCoilTemperatureProperty : RecipeProperty<Int>(KEY, Int::class.java)
 
         val KEY = "temperature"
 
+        @JvmField
         var INSTANCE = NoCoilTemperatureProperty()
     }
 

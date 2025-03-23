@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.api.recipe.property;
+package magicbook.gtlitecore.api.recipe.property.value;
 
 import lombok.Getter;
 import lombok.Setter;

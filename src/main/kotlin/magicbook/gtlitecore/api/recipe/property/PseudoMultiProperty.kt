@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.api.recipe.property
 
 import gregtech.api.recipes.properties.RecipeProperty
+import magicbook.gtlitecore.api.recipe.property.value.PseudoMultiPropertyValues
 import net.minecraft.client.Minecraft
 import net.minecraft.client.resources.I18n
 import net.minecraft.nbt.NBTBase

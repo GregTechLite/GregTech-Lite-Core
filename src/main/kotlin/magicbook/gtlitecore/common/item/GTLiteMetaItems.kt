@@ -13,6 +13,7 @@ import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import magicbook.gtlitecore.common.item.behavior.FoodBehavior
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
@@ -130,6 +131,8 @@ class GTLiteMetaItems
         lateinit var DISPOSABLE_KNIFE: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_ROLLING_PIN: MetaItem<*>.MetaValueItem
+
+        lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
 
@@ -439,6 +442,11 @@ class GTLiteMetaItems
             DISPOSABLE_ROLLING_PIN = GTLITE_ITEMS.addItem(612, "tool.disposable.rolling_pin")
                 .addOreDict("toolRollingPin")
                 .addOreDict("craftingToolRollingPin")
+
+            // ... (613-620)
+
+            CIRCUIT_PATTERN = GTLITE_ITEMS.addItem(621, "tool.circuit_pattern")
+                .addComponents(CircuitPatternBehavior())
 
             // 701-800: Batteries.
 

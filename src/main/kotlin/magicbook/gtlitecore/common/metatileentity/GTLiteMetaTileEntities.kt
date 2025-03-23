@@ -26,6 +26,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatal
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCircuitAssemblyLine
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCryogenicFreezer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityElectricImplosionCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityIndustrialCokeOven
@@ -202,6 +203,7 @@ class GTLiteMetaTileEntities
         lateinit var INDUSTRIAL_COKE_OVEN: MetaTileEntityIndustrialCokeOven
         lateinit var LARGE_MASS_FABRICATOR: MetaTileEntityLargeMassFabricator
         lateinit var LARGE_REPLICATOR: MetaTileEntityLargeReplicator
+        lateinit var CIRCUIT_ASSEMBLY_LINE: MetaTileEntityCircuitAssemblyLine
 
         @JvmStatic
         fun preInit()
@@ -666,7 +668,9 @@ class GTLiteMetaTileEntities
             LARGE_REPLICATOR = MetaTileEntities.registerMetaTileEntity(18134,
                 MetaTileEntityLargeReplicator(GTLiteUtility.gtliteId("large_replicator")))
 
-            // 18135 CIRCUIT_ASSEMBLY_LINE
+            CIRCUIT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(18135,
+                MetaTileEntityCircuitAssemblyLine(GTLiteUtility.gtliteId("circuit_assembly_line")))
+
             // 18136 ADVANCED_ASSEMBLY_LINE
             // 18137 COMPONENT_ASSEMBLY_LINE
 
@@ -766,6 +770,7 @@ class GTLiteMetaTileEntities
             CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_MASS_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CIRCUIT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

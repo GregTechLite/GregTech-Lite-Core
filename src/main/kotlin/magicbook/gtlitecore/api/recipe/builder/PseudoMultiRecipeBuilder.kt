@@ -4,7 +4,7 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty
-import magicbook.gtlitecore.api.recipe.property.PseudoMultiPropertyValues
+import magicbook.gtlitecore.api.recipe.property.value.PseudoMultiPropertyValues
 import net.minecraft.block.state.IBlockState
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -24,7 +24,8 @@ class PseudoMultiRecipeBuilder : RecipeBuilder<PseudoMultiRecipeBuilder>
     // will register correspondenced translation text and values.
     fun blockStates(blockGroupName: String, blockStates: ArrayList<IBlockState>): PseudoMultiRecipeBuilder
     {
-        this.applyProperty(PseudoMultiProperty.INSTANCE, PseudoMultiPropertyValues(blockGroupName, blockStates))
+        this.applyProperty(PseudoMultiProperty.INSTANCE,
+            PseudoMultiPropertyValues(blockGroupName, blockStates))
         return this
     }
 

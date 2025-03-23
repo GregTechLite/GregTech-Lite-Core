@@ -587,6 +587,59 @@ metaitem.tool.disposable.butchery_knife.tooltip=Disposable Tool for crafting rec
 metaitem.tool.disposable.rolling_pin.name=Disposable Rolling Pin
 metaitem.tool.disposable.rolling_pin.tooltip=Disposable Tool for crafting recipes
 
+metaitem.tool.circuit_pattern.name=Circuit Pattern
+metaitem.tool.circuit_pattern.tooltip=Used to provide etched infos for §6Circuit Assembly Line§7.
+metaitem.tool.circuit_pattern.type=§eEtched Type: §f%s§7
+metaitem.tool.circuit_pattern.type.empty=§eEtched Type: §fEmpty§7
+metaitem.tool.circuit_pattern.type.circuit.vacuum_tube=Vacuum Tube
+metaitem.tool.circuit_pattern.type.circuit.nand_chip=NAND Chip
+metaitem.tool.circuit_pattern.type.circuit.electronic=Electronic Circuit
+metaitem.tool.circuit_pattern.type.circuit.basic_integrated=Integrated Logic Circuit
+metaitem.tool.circuit_pattern.type.circuit.microprocessor=Microprocessor
+metaitem.tool.circuit_pattern.type.circuit.good_electronic=Good Electronic Circuit
+metaitem.tool.circuit_pattern.type.circuit.good_integrated=Good Integrated Circuit
+metaitem.tool.circuit_pattern.type.circuit.processor=Integrated Processor
+metaitem.tool.circuit_pattern.type.circuit.advanced_integrated=Advanced Integrated Circuit
+metaitem.tool.circuit_pattern.type.circuit.assembly=Processor Assembly
+metaitem.tool.circuit_pattern.type.circuit.nano_processor=Nano Processor
+metaitem.tool.circuit_pattern.type.circuit.workstation=Workstation
+metaitem.tool.circuit_pattern.type.circuit.nano_assembly=Nano Assembly
+metaitem.tool.circuit_pattern.type.circuit.quantum_processor=Quantum Processor
+metaitem.tool.circuit_pattern.type.circuit.mainframe=Mainframe
+metaitem.tool.circuit_pattern.type.circuit.nano_computer=Nano Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.quantum_assembly=Quantum Assembly
+metaitem.tool.circuit_pattern.type.circuit.crystal_processor=Crystal Processor
+metaitem.tool.circuit_pattern.type.circuit.nano_mainframe=Nano Mainframe
+metaitem.tool.circuit_pattern.type.circuit.quantum_computer=Quantum Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.crystal_assembly=Crystal Assembly
+metaitem.tool.circuit_pattern.type.circuit.wetware_processor=Wetware Processor
+metaitem.tool.circuit_pattern.type.circuit.quantum_mainframe=Quantum Mainframe
+metaitem.tool.circuit_pattern.type.circuit.crystal_computer=Crystal Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.wetware_assembly=Wetware Assembly
+metaitem.tool.circuit_pattern.type.circuit.gooware_processor=Gooware Processor
+metaitem.tool.circuit_pattern.type.circuit.crystal_mainframe=Crystal Mainframe
+metaitem.tool.circuit_pattern.type.circuit.wetware_computer=Wetware Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.gooware_assembly=Gooware Assembly
+metaitem.tool.circuit_pattern.type.circuit.optical_processor=Optical IMC Processor
+metaitem.tool.circuit_pattern.type.circuit.wetware_mainframe=Wetware Mainframes
+metaitem.tool.circuit_pattern.type.circuit.gooware_computer=Gooware Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.optical_assembly=Optical IMC Assembly
+metaitem.tool.circuit_pattern.type.circuit.spintronic_processor=Spintronic IMC Processor
+metaitem.tool.circuit_pattern.type.circuit.gooware_mainframe=Gooware Mainframes
+metaitem.tool.circuit_pattern.type.circuit.optical_computer=Optical IMC Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.spintronic_assembly=Spintronic IMC Assembly
+metaitem.tool.circuit_pattern.type.circuit.cosmic_processor=Cosmic Planetary Processor Complex
+metaitem.tool.circuit_pattern.type.circuit.optical_mainframe=Optical IMC Mainframes
+metaitem.tool.circuit_pattern.type.circuit.spintronic_computer=Spintronic IMC Supercomputer
+metaitem.tool.circuit_pattern.type.circuit.cosmic_assembly=Cosmic Planetary Assembly Complex
+metaitem.tool.circuit_pattern.type.circuit.supracausal_processor=Supracausal Interstellar Processor Complex
+metaitem.tool.circuit_pattern.type.circuit.spintronic_mainframe=Spintronic IMC Mainframe
+metaitem.tool.circuit_pattern.type.circuit.cosmic_computer=Cosmic Planetary Supercomputer Complex
+metaitem.tool.circuit_pattern.type.circuit.supracausal_assembly=Supracausal Interstellar Assembly Complex
+metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=Cosmic Planetary Mainframe Complex
+metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Interstellar Supercomputer Complex
+metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
+
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 
 metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
@@ -633,6 +686,7 @@ recipemap.large_gas_collector.name=Large Gas Collector
 recipemap.electric_implosion_compressor.name=Electric Implosion Compressor
 recipemap.alloy_blast_smelter.name=Alloy Blast Smelter
 recipemap.chemical_plant.name=Chemical Plant
+recipemap.circuit_assembly_line.name=Circuit Assembly Line
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -641,6 +695,7 @@ gtlitecore.recipe.block_group_members.rubber.name=Rubber logs
 gtlitecore.recipe.block_group_members.rainbow.name=Rainbow logs
 
 gtlitecore.recipe.temperature=Temperature: %sK
+gtlitecore.recipe.circuit_pattern=Required Circuit Pattern Info
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -1301,6 +1356,21 @@ gtlitecore.machine.large_replicator.tooltip.1=Update Component Casing or Voltage
 gtlitecore.machine.large_replicator.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.large_replicator.tooltip.3=Each §eEmitter Casing tier§7 and §eSensor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_replicator.tooltip.4=Each §eField Gen Casing tier§7 and §eProcessor Casing tier§7 +1, processing +§l4§r§7 items.
+
+gtlitecore.machine.circuit_assembly_line.name=电路装配线
+gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
+gtlitecore.machine.circuit_assembly_line.tooltip.2=支持一般的§a电路组装机§7配方与批量化的§d电路装配线§7配方。
+gtlitecore.machine.circuit_assembly_line.tooltip.3=在§d电路装配线§7模式下，需要提供对应种类的§b电路模板§7来识别配方。
+gtlitecore.machine.circuit_assembly_line.tooltip.4=使用对应种类的电路板与空的电路模板在§2扫描仪§7中蚀刻以记入数据。
+gtlitecore.machine.circuit_assembly_line.tooltip.5=将已被蚀刻数据的电路模板放入输入总线中以令电路装配线识别。
+gtlitecore.machine.circuit_assembly_line.tooltip.6=一台§e电路装配线§7可装载的电路模板数量无上限，
+gtlitecore.machine.circuit_assembly_line.tooltip.7=但开启§3总线隔离§7时，电路模板数据不会被隔离。
+gtlitecore.machine.circuit_assembly_line.tooltip.8=允许使用§r任意等级§7的输入/输出仓室且物品/流体均§f§l不需要§7有序输入。
+gtlitecore.machine.circuit_assembly_line.tooltip.9=运行一般的§e电路组装机§7配方时，只需要配方要求时间的一半。
+gtlitecore.machine.circuit_assembly_line.tooltip.10=根据多方块结构中存在的§9片数§7计算机器的最大并行数。
+gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，机器的最大并行数均为§e4×(片数-4)§7。
+gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
+gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

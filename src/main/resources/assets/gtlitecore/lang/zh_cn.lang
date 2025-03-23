@@ -444,6 +444,59 @@ metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=用来制作一次性�
 metaitem.shape.mold.vanadium_steel.rolling_pin.name=铸造模具（擀面杖）
 metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=用来制作一次性擀面杖的模具
 
+metaitem.tool.circuit_pattern.name=电路模板
+metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据
+metaitem.tool.circuit_pattern.type=§e蚀刻类型：§f%s§7
+metaitem.tool.circuit_pattern.type.empty=§e蚀刻类型：§f空§7
+metaitem.tool.circuit_pattern.type.circuit.vacuum_tube=真空管
+metaitem.tool.circuit_pattern.type.circuit.nand_chip=NAND芯片
+metaitem.tool.circuit_pattern.type.circuit.electronic=基础电子电路
+metaitem.tool.circuit_pattern.type.circuit.basic_integrated=集成逻辑电路
+metaitem.tool.circuit_pattern.type.circuit.microprocessor=微型处理器
+metaitem.tool.circuit_pattern.type.circuit.good_electronic=优质电子电路
+metaitem.tool.circuit_pattern.type.circuit.good_integrated=优质集成电路
+metaitem.tool.circuit_pattern.type.circuit.processor=集成处理器
+metaitem.tool.circuit_pattern.type.circuit.advanced_integrated=高级集成电路
+metaitem.tool.circuit_pattern.type.circuit.assembly=集成处理器集群
+metaitem.tool.circuit_pattern.type.circuit.nano_processor=纳米处理器
+metaitem.tool.circuit_pattern.type.circuit.workstation=工作站
+metaitem.tool.circuit_pattern.type.circuit.nano_assembly=纳米处理器集群
+metaitem.tool.circuit_pattern.type.circuit.quantum_processor=量子处理器
+metaitem.tool.circuit_pattern.type.circuit.mainframe=电脑主机
+metaitem.tool.circuit_pattern.type.circuit.nano_computer=纳米超级计算机
+metaitem.tool.circuit_pattern.type.circuit.quantum_assembly=量子处理器集群
+metaitem.tool.circuit_pattern.type.circuit.crystal_processor=晶体处理器
+metaitem.tool.circuit_pattern.type.circuit.nano_mainframe=纳米电脑主机
+metaitem.tool.circuit_pattern.type.circuit.quantum_computer=量子超级计算机
+metaitem.tool.circuit_pattern.type.circuit.crystal_assembly=晶体处理器集群
+metaitem.tool.circuit_pattern.type.circuit.wetware_processor=湿件处理器
+metaitem.tool.circuit_pattern.type.circuit.quantum_mainframe=量子电脑主机
+metaitem.tool.circuit_pattern.type.circuit.crystal_computer=晶体超级计算机
+metaitem.tool.circuit_pattern.type.circuit.wetware_assembly=湿件处理器集群
+metaitem.tool.circuit_pattern.type.circuit.gooware_processor=化学扩散处理器
+metaitem.tool.circuit_pattern.type.circuit.crystal_mainframe=晶体电脑主机
+metaitem.tool.circuit_pattern.type.circuit.wetware_computer=湿件超级计算机
+metaitem.tool.circuit_pattern.type.circuit.gooware_assembly=化学扩散处理器集群
+metaitem.tool.circuit_pattern.type.circuit.optical_processor=光学存算一体处理器
+metaitem.tool.circuit_pattern.type.circuit.wetware_mainframe=湿件电脑主机群
+metaitem.tool.circuit_pattern.type.circuit.gooware_computer=化学扩散超级计算机
+metaitem.tool.circuit_pattern.type.circuit.optical_assembly=光学存算一体处理器集群
+metaitem.tool.circuit_pattern.type.circuit.spintronic_processor=自旋电子存算一体处理器
+metaitem.tool.circuit_pattern.type.circuit.gooware_mainframe=化学扩散电脑主机群
+metaitem.tool.circuit_pattern.type.circuit.optical_computer=光学存算一体超级计算机
+metaitem.tool.circuit_pattern.type.circuit.spintronic_assembly=自旋电子存算一体处理器集群
+metaitem.tool.circuit_pattern.type.circuit.cosmic_processor=寰宇行星级处理器复合体
+metaitem.tool.circuit_pattern.type.circuit.optical_mainframe=光学存算一体电脑主机群
+metaitem.tool.circuit_pattern.type.circuit.spintronic_computer=自旋电子存算一体超级计算机
+metaitem.tool.circuit_pattern.type.circuit.cosmic_assembly=寰宇行星级处理器复合体集群
+metaitem.tool.circuit_pattern.type.circuit.supracausal_processor=超因果星系级处理器复合体
+metaitem.tool.circuit_pattern.type.circuit.spintronic_mainframe=自旋电子存算一体电脑主机群
+metaitem.tool.circuit_pattern.type.circuit.cosmic_computer=寰宇行星级超级计算机复合体
+metaitem.tool.circuit_pattern.type.circuit.supracausal_assembly=超因果星系级处理器复合体集群
+metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=寰宇行星级电脑主机群复合体
+metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=超因果星系级超级计算机复合体
+metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=超因果星系级电脑主机群复合体
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板
@@ -633,6 +686,7 @@ recipemap.large_gas_collector.name=大型集气室
 recipemap.electric_implosion_compressor.name=电动聚爆压缩机
 recipemap.alloy_blast_smelter.name=合金冶炼炉
 recipemap.chemical_plant.name=化工厂
+recipemap.circuit_assembly_line.name=电路装配线
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -641,6 +695,7 @@ gtlitecore.recipe.block_group_members.rubber.name=橡胶木
 gtlitecore.recipe.block_group_members.rainbow.name=彩虹木
 
 gtlitecore.recipe.temperature=温度：%sK
+gtlitecore.recipe.circuit_pattern=需要电路模板信息
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -1301,6 +1356,21 @@ gtlitecore.machine.large_replicator.tooltip.1=升级部件外壳或电压等级�
 gtlitecore.machine.large_replicator.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.large_replicator.tooltip.3=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.large_replicator.tooltip.4=每提高1个§e力场外壳等级§7与§e处理器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+
+gtlitecore.machine.circuit_assembly_line.name=电路装配线
+gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
+gtlitecore.machine.circuit_assembly_line.tooltip.2=支持一般的§a电路组装机§7配方与批量化的§d电路装配线§7配方。
+gtlitecore.machine.circuit_assembly_line.tooltip.3=在§d电路装配线§7模式下，需要提供对应种类的§b电路模板§7来识别配方。
+gtlitecore.machine.circuit_assembly_line.tooltip.4=使用对应种类的电路板与空的电路模板在§2扫描仪§7中蚀刻以记入数据。
+gtlitecore.machine.circuit_assembly_line.tooltip.5=将已被蚀刻数据的电路模板放入输入总线中以令电路装配线识别。
+gtlitecore.machine.circuit_assembly_line.tooltip.6=一台§e电路装配线§7可装载的电路模板数量无上限，
+gtlitecore.machine.circuit_assembly_line.tooltip.7=但开启§3总线隔离§7时，电路模板数据不会被隔离。
+gtlitecore.machine.circuit_assembly_line.tooltip.8=允许使用§r任意等级§7的输入/输出仓室且物品/流体均§f§l不需要§7有序输入。
+gtlitecore.machine.circuit_assembly_line.tooltip.9=运行一般的§e电路组装机§7配方时，只需要配方要求时间的一半。
+gtlitecore.machine.circuit_assembly_line.tooltip.10=根据多方块结构中存在的§9片数§7计算机器的最大并行数。
+gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，机器的最大并行数均为§e4×(片数-4)§7。
+gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
+gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
