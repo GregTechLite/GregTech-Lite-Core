@@ -191,7 +191,9 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
@@ -441,6 +443,23 @@ class MachineRecipeLoader
                 'W', CraftingComponent.CABLE,
                 'X', CraftingComponent.CIRCUIT,
                 'P', CraftingComponent.PUMP)
+
+            // Mass Fabricator
+            MetaTileEntityLoader.registerMachineRecipe(true, MASS_FABRICATOR,
+                "XFX", "WHW", "XFX",
+                'X', CraftingComponent.BETTER_CIRCUIT,
+                'F', CraftingComponent.FIELD_GENERATOR,
+                'H', CraftingComponent.HULL,
+                'W', CraftingComponent.CABLE_QUAD)
+
+            // Replicator
+            MetaTileEntityLoader.registerMachineRecipe(true, REPLICATOR,
+                "EFE", "XHX", "EWE",
+                'E', CraftingComponent.EMITTER,
+                'F', CraftingComponent.FIELD_GENERATOR,
+                'H', CraftingComponent.HULL,
+                'X', CraftingComponent.BETTER_CIRCUIT,
+                'W', CraftingComponent.CABLE_QUAD)
 
             // =========================================================================================================
 

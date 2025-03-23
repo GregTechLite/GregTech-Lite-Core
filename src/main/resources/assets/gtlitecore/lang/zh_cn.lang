@@ -1025,6 +1025,60 @@ gtlitecore.machine.cryogenic_reactor.uxv.tooltip=波瑞阿斯之牙
 gtlitecore.machine.cryogenic_reactor.opv.name=传奇低温反应室
 gtlitecore.machine.cryogenic_reactor.opv.tooltip=波瑞阿斯之牙
 
+gtlitecore.machine.mass_fabricator.lv.name=基础质量发生器
+gtlitecore.machine.mass_fabricator.lv.tooltip=UU物质=质量×制造^2
+gtlitecore.machine.mass_fabricator.mv.name=进阶质量发生器
+gtlitecore.machine.mass_fabricator.mv.tooltip=UU物质=质量×制造^2
+gtlitecore.machine.mass_fabricator.hv.name=进阶质量发生器 II
+gtlitecore.machine.mass_fabricator.hv.tooltip=UU物质=质量×制造^2
+gtlitecore.machine.mass_fabricator.ev.name=进阶质量发生器 III
+gtlitecore.machine.mass_fabricator.ev.tooltip=UU物质=质量×制造^2
+gtlitecore.machine.mass_fabricator.iv.name=精英质量发生器
+gtlitecore.machine.mass_fabricator.iv.tooltip=存在创造者
+gtlitecore.machine.mass_fabricator.luv.name=精英质量发生器 II
+gtlitecore.machine.mass_fabricator.luv.tooltip=存在创造者
+gtlitecore.machine.mass_fabricator.zpm.name=精英质量发生器 III
+gtlitecore.machine.mass_fabricator.zpm.tooltip=存在创造者
+gtlitecore.machine.mass_fabricator.uv.name=终极质量发生器
+gtlitecore.machine.mass_fabricator.uv.tooltip=创世纪
+gtlitecore.machine.mass_fabricator.uhv.name=史诗质量发生器
+gtlitecore.machine.mass_fabricator.uhv.tooltip=创世纪
+gtlitecore.machine.mass_fabricator.uev.name=史诗质量发生器 II
+gtlitecore.machine.mass_fabricator.uev.tooltip=创世纪
+gtlitecore.machine.mass_fabricator.uiv.name=史诗质量发生器 III
+gtlitecore.machine.mass_fabricator.uiv.tooltip=创世纪
+gtlitecore.machine.mass_fabricator.uxv.name=史诗质量发生器 IV
+gtlitecore.machine.mass_fabricator.uxv.tooltip=创世纪
+gtlitecore.machine.mass_fabricator.opv.name=传奇质量发生器
+gtlitecore.machine.mass_fabricator.opv.tooltip=创世纪
+
+gtlitecore.machine.replicator.lv.name=基础复制机
+gtlitecore.machine.replicator.lv.tooltip=单质复制者
+gtlitecore.machine.replicator.mv.name=进阶复制机
+gtlitecore.machine.replicator.mv.tooltip=单质复制者
+gtlitecore.machine.replicator.hv.name=进阶复制机 II
+gtlitecore.machine.replicator.hv.tooltip=单质复制者
+gtlitecore.machine.replicator.ev.name=进阶复制机 III
+gtlitecore.machine.replicator.ev.tooltip=单质复制者
+gtlitecore.machine.replicator.iv.name=精英复制机
+gtlitecore.machine.replicator.iv.tooltip=元素拓印仪
+gtlitecore.machine.replicator.luv.name=精英复制机 II
+gtlitecore.machine.replicator.luv.tooltip=元素拓印仪
+gtlitecore.machine.replicator.zpm.name=精英复制机 III
+gtlitecore.machine.replicator.zpm.tooltip=元素拓印仪
+gtlitecore.machine.replicator.uv.name=终极复制机
+gtlitecore.machine.replicator.uv.tooltip=物质聚合者
+gtlitecore.machine.replicator.uhv.name=史诗复制机
+gtlitecore.machine.replicator.uhv.tooltip=物质聚合者
+gtlitecore.machine.replicator.uev.name=史诗复制机 II
+gtlitecore.machine.replicator.uev.tooltip=物质聚合者
+gtlitecore.machine.replicator.uiv.name=史诗复制机 III
+gtlitecore.machine.replicator.uiv.tooltip=物质聚合者
+gtlitecore.machine.replicator.uxv.name=史诗复制机 IV
+gtlitecore.machine.replicator.uxv.tooltip=物质聚合者
+gtlitecore.machine.replicator.opv.name=传奇复制机
+gtlitecore.machine.replicator.opv.tooltip=物质聚合者
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -1452,6 +1506,10 @@ gtlitecore.material.greenhouse_gas=温室气体
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
+
+gtlitecore.material.free_electron_gas=自由电子气体
+gtlitecore.material.fermionic_uu_matter=费米子UU物质
+gtlitecore.material.bosonic_uu_matter=玻色子UU物质
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

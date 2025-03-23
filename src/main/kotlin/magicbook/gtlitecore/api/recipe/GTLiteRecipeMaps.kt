@@ -26,7 +26,7 @@ import kotlin.math.min
  *
  * @see [gregtech.api.recipes.RecipeMaps]
  */
-@Suppress("MISSING_DEPENDENCY_CLASS")
+@Suppress("MISSING_DEPENDENCY_CLASS", "UnstableApiUsage")
 @ZenClass("mods.gtlitecore.recipe.RecipeMaps")
 @ZenRegister
 class GTLiteRecipeMaps
@@ -576,6 +576,14 @@ class GTLiteRecipeMaps
             RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidInputs = 2
             RecipeMaps.FORGE_HAMMER_RECIPES.maxOutputs = 2
             RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidOutputs = 2
+
+            //
+            RecipeMaps.MASS_FABRICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+
+            //
+            RecipeMaps.REPLICATOR_RECIPES.maxFluidInputs = 3
+            RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+            RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
         }
 
     }

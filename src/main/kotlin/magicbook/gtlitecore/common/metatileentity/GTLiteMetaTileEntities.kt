@@ -5,6 +5,7 @@ import gregtech.api.block.machines.MachineItemBlock
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.recipes.RecipeMap
+import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
@@ -111,6 +112,8 @@ class GTLiteMetaTileEntities
         val BURNER_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val BATH_CONDENSER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val CRYOGENIC_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val MASS_FABRICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val REPLICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -345,6 +348,18 @@ class GTLiteMetaTileEntities
                 "cryogenic_reactor", GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES,
                 GTLiteTextures.CRYOGENIC_REACTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
+
+            // 14226-14240: Mass Fabricator
+            MetaTileEntities.registerSimpleMetaTileEntity(MASS_FABRICATOR, 14228, // 14226-14227 for Steam Machines.
+                "mass_fabricator", RecipeMaps.MASS_FABRICATOR_RECIPES,
+                Textures.MASS_FABRICATOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
+
+            // 14241-14255: Replicator
+            MetaTileEntities.registerSimpleMetaTileEntity(REPLICATOR, 14243, // 14241-14242 for Steam Machines.
+                "replicator", RecipeMaps.REPLICATOR_RECIPES,
+                Textures.REPLICATOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
             // ...
 

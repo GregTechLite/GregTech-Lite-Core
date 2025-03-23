@@ -1025,6 +1025,60 @@ gtlitecore.machine.cryogenic_reactor.uxv.tooltip=Boreas' Teeth
 gtlitecore.machine.cryogenic_reactor.opv.name=Legendary Cryogenic Reactor
 gtlitecore.machine.cryogenic_reactor.opv.tooltip=Boreas' Teeth
 
+gtlitecore.machine.mass_fabricator.lv.name=Basic Mass Fabricator
+gtlitecore.machine.mass_fabricator.lv.tooltip=UU Matter = Mass × Fabricate^2
+gtlitecore.machine.mass_fabricator.mv.name=Advanced Mass Fabricator
+gtlitecore.machine.mass_fabricator.mv.tooltip=UU Matter = Mass × Fabricate^2
+gtlitecore.machine.mass_fabricator.hv.name=Advanced Mass Fabricator II
+gtlitecore.machine.mass_fabricator.hv.tooltip=UU Matter = Mass × Fabricate^2
+gtlitecore.machine.mass_fabricator.ev.name=Advanced Mass Fabricator III
+gtlitecore.machine.mass_fabricator.ev.tooltip=UU Matter = Mass × Fabricate^2
+gtlitecore.machine.mass_fabricator.iv.name=Elite Mass Fabricator
+gtlitecore.machine.mass_fabricator.iv.tooltip=Exist Creator
+gtlitecore.machine.mass_fabricator.luv.name=Elite Mass Fabricator II
+gtlitecore.machine.mass_fabricator.luv.tooltip=Exist Creator
+gtlitecore.machine.mass_fabricator.zpm.name=Elite Mass Fabricator III
+gtlitecore.machine.mass_fabricator.zpm.tooltip=Exist Creator
+gtlitecore.machine.mass_fabricator.uv.name=Ultimate Mass Fabricator
+gtlitecore.machine.mass_fabricator.uv.tooltip=The Creation
+gtlitecore.machine.mass_fabricator.uhv.name=Epic Mass Fabricator
+gtlitecore.machine.mass_fabricator.uhv.tooltip=The Creation
+gtlitecore.machine.mass_fabricator.uev.name=Epic Mass Fabricator II
+gtlitecore.machine.mass_fabricator.uev.tooltip=The Creation
+gtlitecore.machine.mass_fabricator.uiv.name=Epic Mass Fabricator III
+gtlitecore.machine.mass_fabricator.uiv.tooltip=The Creation
+gtlitecore.machine.mass_fabricator.uxv.name=Epic Mass Fabricator IV
+gtlitecore.machine.mass_fabricator.uxv.tooltip=The Creation
+gtlitecore.machine.mass_fabricator.opv.name=Legendary Mass Fabricator
+gtlitecore.machine.mass_fabricator.opv.tooltip=The Creation
+
+gtlitecore.machine.replicator.lv.name=Basic Replicator
+gtlitecore.machine.replicator.lv.tooltip=Elemental Duplicator
+gtlitecore.machine.replicator.mv.name=Advanced Replicator
+gtlitecore.machine.replicator.mv.tooltip=Elemental Duplicator
+gtlitecore.machine.replicator.hv.name=Advanced Replicator II
+gtlitecore.machine.replicator.hv.tooltip=Elemental Duplicator
+gtlitecore.machine.replicator.ev.name=Advanced Replicator III
+gtlitecore.machine.replicator.ev.tooltip=Elemental Duplicator
+gtlitecore.machine.replicator.iv.name=Elite Replicator
+gtlitecore.machine.replicator.iv.tooltip=Element Topographer
+gtlitecore.machine.replicator.luv.name=Elite Replicator II
+gtlitecore.machine.replicator.luv.tooltip=Element Topographer
+gtlitecore.machine.replicator.zpm.name=Elite Replicator III
+gtlitecore.machine.replicator.zpm.tooltip=Element Topographer
+gtlitecore.machine.replicator.uv.name=Ultimate Replicator
+gtlitecore.machine.replicator.uv.tooltip=Matter Aggregator
+gtlitecore.machine.replicator.uhv.name=Epic Replicator
+gtlitecore.machine.replicator.uhv.tooltip=Matter Aggregator
+gtlitecore.machine.replicator.uev.name=Epic Replicator II
+gtlitecore.machine.replicator.uev.tooltip=Matter Aggregator
+gtlitecore.machine.replicator.uiv.name=Epic Replicator III
+gtlitecore.machine.replicator.uiv.tooltip=Matter Aggregator
+gtlitecore.machine.replicator.uxv.name=Epic Replicator IV
+gtlitecore.machine.replicator.uxv.tooltip=Matter Aggregator
+gtlitecore.machine.replicator.opv.name=Legendary Replicator
+gtlitecore.machine.replicator.opv.tooltip=Matter Aggregator
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -1451,6 +1505,10 @@ gtlitecore.material.greenhouse_gas=Greenhouse Gas
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
+
+gtlitecore.material.free_electron_gas=Free Electron Gas
+gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
+gtlitecore.material.bosonic_uu_matter=Bosonic UU Matter
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

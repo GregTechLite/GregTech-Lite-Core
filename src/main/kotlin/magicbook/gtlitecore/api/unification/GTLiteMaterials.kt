@@ -87,6 +87,7 @@ import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
@@ -1256,6 +1257,8 @@ class GTLiteMaterials
             .build()
             .setFormula("N78O21Ar9?", true)
 
+        // ...
+
         // 12050 Carbon 5 Fraction
         @JvmField
         val Carbon5Fraction: Material = Material.Builder(12050, gtliteId("carbon_5_fraction"))
@@ -1270,6 +1273,31 @@ class GTLiteMaterials
             .liquid()
             .color(0x9C9538)
             .flags(FLAMMABLE)
+            .build()
+
+        // ...
+
+        // 12101 Free Electron Gas
+        @JvmField
+        val FreeElectronGas: Material = Material.Builder(12101, gtliteId("free_electron_gas"))
+            .gas(FluidBuilder()
+                .temperature(50)
+                .translation("gregtech.fluid.generic"))
+            .color(0x507BB3)
+            .build()
+
+        // 12102 Fermionic UU Matter
+        @JvmField
+        val FermionicUUMatter: Material = Material.Builder(12102, gtliteId("fermionic_uu_matter"))
+            .liquid(FluidBuilder().temperature(125))
+            .color(UUMatter.materialRGB / 3)
+            .build()
+
+        // 12103 Bosonic UU Matter
+        @JvmField
+        val BosonicUUMatter: Material = Material.Builder(12103, gtliteId("bosonic_uu_matter"))
+            .liquid(FluidBuilder().temperature(125))
+            .color(UUMatter.materialRGB - FermionicUUMatter.materialRGB)
             .build()
 
         fun setMaterialProperties()

@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
@@ -46,6 +47,7 @@ import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -57,8 +59,11 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
@@ -458,6 +463,17 @@ class MixerRecipes
                 .output(dust, ZephyreanAerotheum, 4)
                 .EUt(VA[MV].toLong())
                 .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // UU Matter
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .fluidInputs(BosonicUUMatter.getFluid(1000))
+                .fluidInputs(FermionicUUMatter.getFluid(1000))
+                .fluidInputs(FreeElectronGas.getFluid(2000))
+                .fluidOutputs(UUMatter.getFluid(1000))
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
         }
