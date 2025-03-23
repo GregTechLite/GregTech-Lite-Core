@@ -19,8 +19,6 @@ import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.metatileentities.MetaTileEntities;
 import lombok.Getter;
-import magicbook.gtlitecore.api.GTLiteAPI;
-import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;

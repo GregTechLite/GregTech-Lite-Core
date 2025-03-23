@@ -17,8 +17,6 @@ import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.BASIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.COATED_BOARD
-import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
-import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.EPOXY_BOARD
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD

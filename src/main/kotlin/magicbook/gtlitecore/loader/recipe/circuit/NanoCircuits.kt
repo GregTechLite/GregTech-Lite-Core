@@ -1,22 +1,16 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
-import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.L
-import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.bolt
-import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.wireFine
-import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -26,7 +20,6 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
-import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_HV
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP

@@ -13,8 +13,8 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.util.RelativeDirection.FRONT
-import gregtech.api.util.RelativeDirection.UP
 import gregtech.api.util.RelativeDirection.RIGHT
+import gregtech.api.util.RelativeDirection.UP
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
@@ -26,7 +26,6 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnerg
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.recipe.property.CircuitPatternProperty
-import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
