@@ -5,7 +5,7 @@ magicbook.gtlitecore.api.capability.logic
 magicbook.gtlitecore.api.metatileentity
 magicbook.gtlitecore.api.module
 magicbook.gtlitecore.api.pattern.predicate
-magicbook.gtlitecore.api.recipe.property
+magicbook.gtlitecore.api.recipe.property.value
 magicbook.gtlitecore.api.utils
 magicbook.gtlitecore.api.utils.functions
 magicbook.gtlitecore.api.worldgen
