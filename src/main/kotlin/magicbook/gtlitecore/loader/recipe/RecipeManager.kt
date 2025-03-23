@@ -34,6 +34,7 @@ import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MassReplicationRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MetalCasingRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.WrapItemRecipeProducer
 
 class RecipeManager
 {
@@ -53,6 +54,7 @@ class RecipeManager
             MetalCasingRecipeProducer.produce()
             MassReplicationRecipeProducer.produce()
             CircuitAssemblyLineRecipeProducer.produce()
+            WrapItemRecipeProducer.produce()
 
             // Loading chains and ore processings.
             OilCrackingChain.init()

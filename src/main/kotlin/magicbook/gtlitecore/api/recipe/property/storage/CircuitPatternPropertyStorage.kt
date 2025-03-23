@@ -1,6 +1,10 @@
 package magicbook.gtlitecore.api.recipe.property.storage
 
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_LV
+import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_MV
+import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_HV
+import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_LV
+import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_MV
 import magicbook.gtlitecore.api.recipe.property.CircuitPatternProperty
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer.Companion.getCircuit
 
@@ -14,8 +18,12 @@ class CircuitPatternPropertyStorage
         {
             // T1: Electronic
             CircuitPatternProperty.register(getCircuit(ELECTRONIC_CIRCUIT_LV))
+            CircuitPatternProperty.register(getCircuit(ELECTRONIC_CIRCUIT_MV))
 
             // T2: Integrated
+            CircuitPatternProperty.register(getCircuit(INTEGRATED_CIRCUIT_LV))
+            CircuitPatternProperty.register(getCircuit(INTEGRATED_CIRCUIT_MV))
+            CircuitPatternProperty.register(getCircuit(INTEGRATED_CIRCUIT_HV))
 
             // T3: Processor
 

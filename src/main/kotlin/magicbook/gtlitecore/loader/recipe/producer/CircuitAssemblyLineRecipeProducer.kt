@@ -1,10 +1,25 @@
 package magicbook.gtlitecore.loader.recipe.producer
 
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
+import gregtech.api.unification.material.Materials.AnnealedCopper
+import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.RedAlloy
+import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.SolderingAlloy
+import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.CRYSTAL_ASSEMBLY_LUV
 import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
 import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
@@ -40,6 +55,7 @@ import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CIRCUIT_ASSEMBLY_LINE_RECIPES
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_ASSEMBLY_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_COMPUTER_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_MAINFRAME_OpV
@@ -60,6 +76,14 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_AS
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_COMPUTER_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_MAINFRAME_MAX
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_PROCESSOR_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COATED_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_RAM_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_TRANSISTOR
 import net.minecraft.init.Items
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -75,7 +99,11 @@ class CircuitAssemblyLineRecipeProducer
         /**
          * Raw rules:
          *
+         * - If recipe needs bolt number >64, then regularized it to 64.
+         * - Used same soldering consumed of Circuit Assembler recipes.
          * - Each 4x SMD -> 1x Advanced SMD, each 4x Advanced SMD -> 1x Gooware SMD, ...
+         * - Has duration buffing, e.g. original duration 10s, we see that 10s * 16 = 160s,
+         *   but the actual wrapped duration should be 60s (160s - 100s).
          */
         fun produce()
         {
@@ -144,13 +172,79 @@ class CircuitAssemblyLineRecipeProducer
 
             // =========================================================================================================
 
-            // Testing
+            // T1: Electronic
+
+            // Electronic Circuit
             CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .inputs(ItemStack(Items.APPLE))
+                .input(WRAP_BASIC_CIRCUIT_BOARD)
+                .input(WRAP_SMD_RESISTOR, 2)
+                .input(VACUUM_TUBE, 32)
+                .input(wireGtHex, RedAlloy, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .output(ELECTRONIC_CIRCUIT_LV, 64)
+                .EUt(VH[LV].toLong())
+                .duration(1 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
                 .circuit(getCircuit(ELECTRONIC_CIRCUIT_LV))
+                .buildAndRegister()
+
+            // Good Electronic Circuit
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_GOOD_CIRCUIT_BOARD)
+                .input(ELECTRONIC_CIRCUIT_LV, 32)
+                .input(WRAP_SMD_DIODE, 2)
+                .input(wireGtHex, Copper, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(ELECTRONIC_CIRCUIT_MV, 32)
+                .EUt(VH[LV].toLong())
+                .duration(1 * MINUTE + 20 * SECOND) // Original: 15s, Wrapped: 15s * 16 = 240s
+                .circuit(getCircuit(ELECTRONIC_CIRCUIT_MV))
+                .buildAndRegister()
+
+            // T2: Integrated
+
+            // Integrated Circuit
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_BASIC_CIRCUIT_BOARD)
+                .input(WRAP_ILC_CHIP)
+                .input(WRAP_SMD_RESISTOR, 2)
+                .input(WRAP_SMD_RESISTOR, 2)
+                .input(wireGtQuadruple, Copper, 2)
+                .input(bolt, Tin, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(INTEGRATED_CIRCUIT_LV, 64)
+                .EUt(VH[LV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(INTEGRATED_CIRCUIT_LV))
+                .buildAndRegister()
+
+            // Good Integrated Circuit
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_GOOD_CIRCUIT_BOARD)
+                .input(INTEGRATED_CIRCUIT_LV, 64)
+                .input(WRAP_SMD_RESISTOR, 2)
+                .input(WRAP_SMD_DIODE, 2)
+                .input(wireGtQuadruple, Gold, 4)
+                .input(bolt, Silver, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(INTEGRATED_CIRCUIT_MV, 48)
+                .EUt(24) // LV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(INTEGRATED_CIRCUIT_MV))
+                .buildAndRegister()
+
+            // Advanced Integrated Circuit
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(INTEGRATED_CIRCUIT_MV, 48)
+                .input(WRAP_ILC_CHIP, 2)
+                .input(WRAP_RAM_CHIP, 2)
+                .input(WRAP_SMD_TRANSISTOR, 4)
+                .input(wireGtQuadruple, Electrum, 8)
+                .input(bolt, AnnealedCopper, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(INTEGRATED_CIRCUIT_HV, 32)
                 .EUt(VA[LV].toLong())
-                .duration(100000 * SECOND)
+                .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+                .circuit(getCircuit(INTEGRATED_CIRCUIT_HV))
                 .buildAndRegister()
         }
 
