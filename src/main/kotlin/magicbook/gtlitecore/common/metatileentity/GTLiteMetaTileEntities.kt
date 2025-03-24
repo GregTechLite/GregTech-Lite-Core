@@ -117,6 +117,8 @@ class GTLiteMetaTileEntities
         val CRYOGENIC_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val MASS_FABRICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val REPLICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val FOOD_PROCESSOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val MULTICOOKER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -366,6 +368,18 @@ class GTLiteMetaTileEntities
                 "replicator", RecipeMaps.REPLICATOR_RECIPES,
                 Textures.REPLICATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
+
+            // 14256-14270: Food Processor
+            MetaTileEntities.registerSimpleMetaTileEntity(FOOD_PROCESSOR, 14258, // 14256-14257 for Steam Machines.
+                "food_processor", GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES,
+                GTLiteTextures.FOOD_PROCESSOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
+            // 14271-14285: Multicooker
+            MetaTileEntities.registerSimpleMetaTileEntity(MULTICOOKER, 14273, // 14271-14272 for Steam Machines.
+                "multicooker", GTLiteRecipeMaps.MULTICOOKER_RECIPES,
+                GTLiteTextures.MULTICOOKER_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
             // ...
 
@@ -698,6 +712,10 @@ class GTLiteMetaTileEntities
             BURNER_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             BATH_CONDENSER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             CRYOGENIC_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            MASS_FABRICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            REPLICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            FOOD_PROCESSOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            MULTICOOKER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             IRON_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             COPPER_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

@@ -382,10 +382,10 @@ class OilCrackingChain
             // C5 Fraction -> Dimerized C5 Fraction.
             FLUID_HEATER_RECIPES.recipeBuilder()
                 .circuitMeta(2)
-                .fluidInputs(Carbon5Fraction.getFluid(1000))
-                .fluidOutputs(DimerizedCarbon5Fraction.getFluid(870))
+                .fluidInputs(Carbon5Fraction.getFluid(100))
+                .fluidOutputs(DimerizedCarbon5Fraction.getFluid(87))
                 .EUt(VA[LV].toLong())
-                .duration(3 * SECOND)
+                .duration(15 * TICK)
                 .buildAndRegister()
 
             // Dimerized C5 Fraction -> C10H12 + C5H12 + C5H8

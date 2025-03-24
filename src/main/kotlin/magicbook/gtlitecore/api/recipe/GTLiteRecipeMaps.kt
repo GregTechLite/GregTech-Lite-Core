@@ -564,6 +564,37 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
+        /**
+         * @zenProp food_processor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("FOOD_PROCESSOR_RECIPES")
+        val FOOD_PROCESSOR_RECIPES = RecipeMapBuilder("food_processor", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(2)
+            .fluidInputs(3)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GTLiteGuiTextures.DISK_OVERLAY, false)
+            .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_FOOD_PROCESSING)
+            .sound(GTSoundEvents.ASSEMBLER)
+            .build()
+
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("MULTICOOKER_RECIPES")
+        val MULTICOOKER_RECIPES = RecipeMapBuilder("multicooker", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(2)
+            .itemSlotOverlay(GuiTextures.HEATING_OVERLAY_1, false)
+            .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
+            .sound(GTSoundEvents.MIXER)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

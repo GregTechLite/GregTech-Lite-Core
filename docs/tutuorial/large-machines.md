@@ -3,7 +3,7 @@
 | LV   | Large Forge Hammer            | Forge Hammer, Compressor                                         |
 | MV   | Large Fluid Solidifier        | Fluid Solidifier, Tool Caster                                    |
 |      | Large Electromagnet           | Polarizer, Electromagnetic Separator                             |
-| HV   | Large Arc Furnace             | Arc Furnace, Alloy Smelter                                       |
+| HV   | Large Arc Furnace             | Arc Furnace, Alloy Smelter, Food Processor, Multicooker          |
 |      | Large Centrifuge              | Centrifuge, Thermal Centrifuge                                   |
 |      | Large Sifter                  | Sifter                                                           |
 |      | Large Electrolyzer            | Electrolyzer                                                     |

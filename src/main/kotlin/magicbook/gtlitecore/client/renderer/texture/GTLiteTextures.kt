@@ -53,6 +53,12 @@ class GTLiteTextures
         val CRYOGENIC_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/cryogenic_reactor")
 
         @JvmField
+        val FOOD_PROCESSOR_OVERLAY = OrientedOverlayRenderer("machines/food_processor")
+
+        @JvmField
+        val MULTICOOKER_OVERLAY = OrientedOverlayRenderer("machines/multicooker")
+
+        @JvmField
         val LARGE_BREWERY_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_brewery")
 
         @JvmField

@@ -51,6 +51,10 @@ class GTLiteGuiTextures
         val PLATE_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/plate_overlay.png")
 
+        @JvmField
+        val DISK_OVERLAY: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/disk_overlay.png")
+
         // Progress Bars
         @JvmField
         val PROGRESS_BAR_SLICING = TextureArea.fullImage(
@@ -71,6 +75,10 @@ class GTLiteGuiTextures
         @JvmField
         val PROGRESS_BAR_REACTION: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_reaction.png")
+
+        @JvmField
+        val PROGRESS_BAR_FOOD_PROCESSING: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_food_processing.png")
 
         // Widgets
         @JvmField

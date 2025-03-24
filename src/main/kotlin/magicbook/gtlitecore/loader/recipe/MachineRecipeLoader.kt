@@ -170,6 +170,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
@@ -205,6 +206,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -473,6 +475,24 @@ class MachineRecipeLoader
                 'H', CraftingComponent.HULL,
                 'X', CraftingComponent.BETTER_CIRCUIT,
                 'W', CraftingComponent.CABLE_QUAD)
+
+            // Food Processor
+            MetaTileEntityLoader.registerMachineRecipe(true, FOOD_PROCESSOR,
+                "AOC", "RHR", "AOC",
+                'C', CraftingComponent.CIRCUIT,
+                'A', CraftingComponent.CABLE,
+                'R', CraftingComponent.ROBOT_ARM,
+                'H', CraftingComponent.HULL,
+                'O', CraftingComponent.CONVEYOR)
+
+            // Multicooker
+            MetaTileEntityLoader.registerMachineRecipe(true, MULTICOOKER,
+                "CGC", "GHG", "WMW",
+                'G', CraftingComponent.GLASS,
+                'H', CraftingComponent.HULL,
+                'C', CraftingComponent.CIRCUIT,
+                'W', CraftingComponent.COIL_HEATING_DOUBLE,
+                'M', CraftingComponent.MOTOR)
 
             // =========================================================================================================
 
