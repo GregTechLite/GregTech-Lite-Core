@@ -3,12 +3,15 @@ package magicbook.gtlitecore.loader.recipe
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
@@ -28,7 +31,9 @@ import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -73,6 +78,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
@@ -82,9 +88,13 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
+import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.SENSOR_IV
+import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -92,6 +102,7 @@ import gregtech.common.metatileentities.MetaTileEntities.AUTOCLAVE
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
+import gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
 import gregtech.common.metatileentities.MetaTileEntities.DISTILLATION_TOWER
@@ -138,6 +149,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -154,6 +166,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CATALYTIC_REFORMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_DEHYDRATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHEMICAL_PLANT
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CIRCUIT_ASSEMBLY_LINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
@@ -991,6 +1004,29 @@ class MachineRecipeLoader
                 'S', UnificationEntry(spring, MolybdenumDisilicide),
                 'D', UnificationEntry(plateDouble, AluminiumBronze),
                 'W', UnificationEntry(cableGtDouble, Silver))
+
+            // TODO Large Mass Fabricator
+
+            // TODO Large Replicator
+
+            // Circuit Assembly Line
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(CIRCUIT_ASSEMBLER[LuV])
+                .input(ROBOT_ARM_LuV, 4)
+                .input(ELECTRIC_MOTOR_LuV, 4)
+                .input(FIELD_GENERATOR_LuV, 1)
+                .input(EMITTER_LuV, 1)
+                .input(SENSOR_LuV, 1)
+                .input(plate, RhodiumPlatedPalladium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .output(CIRCUIT_ASSEMBLY_LINE)
+                .EUt(VA[LuV].toLong())
+                .duration(MINUTE)
+                .scannerResearch { r ->
+                    r.researchStack(CIRCUIT_ASSEMBLER[LuV].stackForm)
+                        .EUt(VA[IV].toLong())
+                        .duration(30 * SECOND) }
+                .buildAndRegister()
 
         }
 
