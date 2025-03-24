@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api.unification.material
 
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 
 class GTLiteMaterialIconSet
@@ -21,6 +22,13 @@ class GTLiteMaterialIconSet
 
         @JvmField
         val AEROTHEUM = MaterialIconSet("aerotheum", null, true)
+
+        // =============================================================================================================
+        @JvmStatic
+        fun setMaterialIconSets()
+        {
+            Uranium238.materialIconSet = MaterialIconSet.METALLIC
+        }
 
     }
 

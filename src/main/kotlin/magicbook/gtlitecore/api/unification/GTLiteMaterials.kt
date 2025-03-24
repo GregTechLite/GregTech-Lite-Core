@@ -8,6 +8,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
+import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
@@ -63,6 +64,8 @@ import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Quartzite
@@ -91,6 +94,8 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uranium
+import gregtech.api.unification.material.Materials.Uranium235
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -134,6 +139,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidPipeProperties
+import gregtech.api.unification.material.properties.FluidProperty
 import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.OreProperty
@@ -145,6 +151,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMaterials
@@ -1320,9 +1327,12 @@ class GTLiteMaterials
         {
             // DustProperty can be overridden to IngotProperty or GemProperty yet,
             // please see: MaterialPropertiesMixin#setProperty().
-            sequenceOf(Strontium, Rhenium).forEach { addIngot(it) }
+            sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238)
+                .forEach { addIngot(it) }
 
             sequenceOf(Rubidium).forEach { addDust(it) }
+
+            sequenceOf(Uranium238).forEach { addLiquid(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
@@ -1423,6 +1433,10 @@ class GTLiteMaterials
             // Modified molybdenite properties.
             Molybdenite.getProperty(PropertyKey.ORE).directSmeltResult = null
 
+            // Modified plutonium-239 properties.
+            Plutonium239.setProperty(PropertyKey.ORE, OreProperty())
+            Plutonium239.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
+
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
                 FluidPipeProperties(2010, 175,
@@ -1432,12 +1446,19 @@ class GTLiteMaterials
             Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
             Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
 
+            Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
+            Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
+            Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+
         }
 
         // Quick-path of add MaterialProperty to a material.
         private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
         private fun addGem(material: Material) = material.setProperty(PropertyKey.GEM, GemProperty())
         private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
+        private fun addLiquid(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
+        private fun addGas(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.GAS, FluidBuilder()))
+        private fun addPlasma(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.PLASMA, FluidBuilder()))
 
     }
 
