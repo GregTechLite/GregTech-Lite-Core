@@ -55,6 +55,7 @@ import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.material.Materials.Zircon
@@ -115,6 +116,7 @@ class GTLiteMaterialFlags
             Potin.addFlags(GENERATE_FRAME)
             RedSteel.addFlags(GENERATE_FRAME)
             Polybenzimidazole.addFlags(GENERATE_FRAME)
+            VanadiumSteel.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)

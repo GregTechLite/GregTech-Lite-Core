@@ -1,16 +1,23 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -20,6 +27,7 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
+import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_HV
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
@@ -261,69 +269,69 @@ class NanoCircuits
                 .buildAndRegister()
 
             // LuV Nano Mainframe
-            // GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
-            //     arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
-            //         NANO_COMPUTER_IV.getStackForm(2),
-            //         SMD_INDUCTOR.getStackForm(16),
-            //         SMD_CAPACITOR.getStackForm(32),
-            //         RANDOM_ACCESS_MEMORY.getStackForm(16),
-            //         OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
-            //     arrayOf(SolderingAlloy.getFluid(L * 2)))
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
+                    NANO_COMPUTER_IV.getStackForm(2),
+                    SMD_INDUCTOR.getStackForm(16),
+                    SMD_CAPACITOR.getStackForm(32),
+                    RANDOM_ACCESS_MEMORY.getStackForm(16),
+                    OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
+                arrayOf(SolderingAlloy.getFluid(L * 2)))
 
-            // GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
-            //     arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
-            //         NANO_COMPUTER_IV.getStackForm(2),
-            //         SMD_INDUCTOR.getStackForm(16),
-            //         SMD_CAPACITOR.getStackForm(32),
-            //         RANDOM_ACCESS_MEMORY.getStackForm(16),
-            //         OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
-            //     arrayOf(Tin.getFluid(L * 4)))
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
+                    NANO_COMPUTER_IV.getStackForm(2),
+                    SMD_INDUCTOR.getStackForm(16),
+                    SMD_CAPACITOR.getStackForm(32),
+                    RANDOM_ACCESS_MEMORY.getStackForm(16),
+                    OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
+                arrayOf(Tin.getFluid(L * 4)))
 
-            // GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
-            //     arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
-            //         NANO_COMPUTER_IV.getStackForm(2),
-            //         ADVANCED_SMD_INDUCTOR.getStackForm(4),
-            //         ADVANCED_SMD_CAPACITOR.getStackForm(8),
-            //         RANDOM_ACCESS_MEMORY.getStackForm(16),
-            //         OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
-            //     arrayOf(SolderingAlloy.getFluid(L * 2)))
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
+                    NANO_COMPUTER_IV.getStackForm(2),
+                    ADVANCED_SMD_INDUCTOR.getStackForm(4),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(16),
+                    OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
+                arrayOf(SolderingAlloy.getFluid(L * 2)))
 
-            // GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
-            //     arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
-            //         NANO_COMPUTER_IV.getStackForm(2),
-            //         ADVANCED_SMD_INDUCTOR.getStackForm(4),
-            //         ADVANCED_SMD_CAPACITOR.getStackForm(8),
-            //         RANDOM_ACCESS_MEMORY.getStackForm(16),
-            //         OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
-            //     arrayOf(Tin.getFluid(L * 4)))
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, Aluminium, 2),
+                    NANO_COMPUTER_IV.getStackForm(2),
+                    ADVANCED_SMD_INDUCTOR.getStackForm(4),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(16),
+                    OreDictUnifier.get(wireGtSingle, AnnealedCopper, 32)),
+                arrayOf(Tin.getFluid(L * 4)))
 
-            // CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            //     .input(frameGt, Aluminium, 2)
-            //     .input(NANO_COMPUTER_IV, 2)
-            //     .input(SMD_INDUCTOR, 16)
-            //     .input(SMD_CAPACITOR, 32)
-            //     .input(RANDOM_ACCESS_MEMORY, 16)
-            //     .input(wireGtSingle, AnnealedCopper, 32)
-            //     .output(NANO_MAINFRAME_LUV)
-            //     .EUt(VA[EV].toLong())
-            //     .duration(40 * SECOND)
-            //     .solderMultiplier(4)
-            //     .cleanroom(CleanroomType.CLEANROOM)
-            //     .buildAndRegister()
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 2)
+                .input(NANO_COMPUTER_IV, 2)
+                .input(SMD_INDUCTOR, 16)
+                .input(SMD_CAPACITOR, 32)
+                .input(RANDOM_ACCESS_MEMORY, 16)
+                .input(wireGtSingle, AnnealedCopper, 32)
+                .output(NANO_MAINFRAME_LUV)
+                .EUt(VA[EV].toLong())
+                .duration(40 * SECOND)
+                .solderMultiplier(4)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
-            // CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            //     .input(frameGt, Aluminium, 2)
-            //     .input(NANO_COMPUTER_IV, 2)
-            //     .input(ADVANCED_SMD_INDUCTOR, 4)
-            //     .input(ADVANCED_SMD_CAPACITOR, 8)
-            //     .input(RANDOM_ACCESS_MEMORY, 16)
-            //     .input(wireGtSingle, AnnealedCopper, 32)
-            //     .output(NANO_MAINFRAME_LUV)
-            //     .EUt(VA[EV].toLong())
-            //     .duration(20 * SECOND)
-            //     .solderMultiplier(4)
-            //     .cleanroom(CleanroomType.CLEANROOM)
-            //     .buildAndRegister()
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 2)
+                .input(NANO_COMPUTER_IV, 2)
+                .input(ADVANCED_SMD_INDUCTOR, 4)
+                .input(ADVANCED_SMD_CAPACITOR, 8)
+                .input(RANDOM_ACCESS_MEMORY, 16)
+                .input(wireGtSingle, AnnealedCopper, 32)
+                .output(NANO_MAINFRAME_LUV)
+                .EUt(VA[EV].toLong())
+                .duration(20 * SECOND)
+                .solderMultiplier(4)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
         }
 

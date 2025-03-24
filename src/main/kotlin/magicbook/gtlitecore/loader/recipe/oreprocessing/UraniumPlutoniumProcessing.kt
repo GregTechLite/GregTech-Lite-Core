@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.oreprocessing
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.unification.material.Materials.Carbon
@@ -13,6 +14,7 @@ import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
+import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
@@ -29,6 +31,8 @@ class UraniumPlutoniumProcessing
         fun init()
         {
             // Add several simplified recipes for U, U235, and U238.
+            GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES,
+                UraniumHexafluoride.getFluid(1000))
 
             // UO2 + 2Mg -> U + 2MgO
             ROASTER_RECIPES.recipeBuilder()
