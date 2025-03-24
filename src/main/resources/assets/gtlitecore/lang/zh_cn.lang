@@ -380,6 +380,7 @@ tile.metal_casing_02.polybenzimidazole.name=化学防护聚苯并咪唑机器外
 tile.metal_casing_02.aluminium_bronze.name=热稳定铝青铜机器外壳
 tile.metal_casing_02.hastelloy_n.name=耐高温哈斯特洛伊合金-N机器外壳
 tile.metal_casing_02.rene_n5.name=时效硬化镍基高温合金-N5机器外壳
+tile.metal_casing_02.bismuth_bronze.name=食品级铋青铜机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1515,6 +1516,12 @@ gtlitecore.machine.circuit_assembly_line.tooltip.10=根据多方块结构中存�
 gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，机器的最大并行数均为§e4×(片数-4)§7。
 gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
 gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
+
+gtlitecore.machine.large_food_processor.name=大型料理烹饪机
+gtlitecore.machine.large_food_processor.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.large_food_processor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.large_food_processor.tooltip.3=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.large_food_processor.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

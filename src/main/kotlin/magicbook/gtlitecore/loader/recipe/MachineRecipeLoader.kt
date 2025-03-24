@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Gold
@@ -93,8 +94,10 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
+import gregtech.common.items.MetaItems.ROBOT_ARM_MV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
+import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -194,6 +197,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_EXTRUDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FLUID_SOLIDIFIER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FOOD_PROCESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_FORGE_HAMMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_GAS_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
@@ -1047,6 +1051,18 @@ class MachineRecipeLoader
                         .EUt(VA[IV].toLong())
                         .duration(30 * SECOND) }
                 .buildAndRegister()
+
+            // Large Food Processor
+            ModHandler.addShapedRecipe(true, "large_food_processor", LARGE_FOOD_PROCESSOR.stackForm,
+                "RPS", "AHB", "WXW",
+                'H', HULL[MV].stackForm,
+                'A', FOOD_PROCESSOR[MV]!!.stackForm,
+                'B', MULTICOOKER[MV]!!.stackForm,
+                'R', ROBOT_ARM_MV.stackForm,
+                'S', SENSOR_MV.stackForm,
+                'P', ELECTRIC_PUMP_MV.stackForm,
+                'W', UnificationEntry(cableGtSingle, Cupronickel),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
 
         }
 

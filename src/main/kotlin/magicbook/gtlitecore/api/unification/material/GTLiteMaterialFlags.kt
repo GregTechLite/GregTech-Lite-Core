@@ -5,6 +5,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
@@ -117,6 +118,7 @@ class GTLiteMaterialFlags
             RedSteel.addFlags(GENERATE_FRAME)
             Polybenzimidazole.addFlags(GENERATE_FRAME)
             VanadiumSteel.addFlags(GENERATE_FRAME)
+            BismuthBronze.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)

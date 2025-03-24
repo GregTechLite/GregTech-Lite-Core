@@ -55,7 +55,8 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
         POLYBENZIMIDAZOLE("polybenzimidazole"),
         ALUMINIUM_BRONZE("aluminium_bronze"),
         HASTELLOY_N("hastelloy_n"),
-        RENE_N5("rene_n5");
+        RENE_N5("rene_n5"),
+        BISMUTH_BRONZE("bismuth_bronze");
 
         private final String name;
     }

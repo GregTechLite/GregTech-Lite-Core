@@ -46,6 +46,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtractor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeExtruder
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeFluidSolidifier
+import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeFoodProcessor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeForgeHammer
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeGasCollector
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeLaserEngraver
@@ -206,6 +207,7 @@ class GTLiteMetaTileEntities
         lateinit var LARGE_MASS_FABRICATOR: MetaTileEntityLargeMassFabricator
         lateinit var LARGE_REPLICATOR: MetaTileEntityLargeReplicator
         lateinit var CIRCUIT_ASSEMBLY_LINE: MetaTileEntityCircuitAssemblyLine
+        lateinit var LARGE_FOOD_PROCESSOR: MetaTileEntityLargeFoodProcessor
 
         @JvmStatic
         fun preInit()
@@ -685,8 +687,11 @@ class GTLiteMetaTileEntities
             CIRCUIT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(18135,
                 MetaTileEntityCircuitAssemblyLine(GTLiteUtility.gtliteId("circuit_assembly_line")))
 
-            // 18136 ADVANCED_ASSEMBLY_LINE
-            // 18137 COMPONENT_ASSEMBLY_LINE
+            LARGE_FOOD_PROCESSOR = MetaTileEntities.registerMetaTileEntity(18136,
+                MetaTileEntityLargeFoodProcessor(GTLiteUtility.gtliteId("large_food_processor")))
+
+            //  ADVANCED_ASSEMBLY_LINE
+            //  COMPONENT_ASSEMBLY_LINE
 
         }
 
@@ -789,6 +794,7 @@ class GTLiteMetaTileEntities
             INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_MASS_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CIRCUIT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_FOOD_PROCESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

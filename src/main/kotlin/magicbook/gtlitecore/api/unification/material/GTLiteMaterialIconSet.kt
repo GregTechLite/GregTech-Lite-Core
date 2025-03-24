@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api.unification.material
 
+import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 
@@ -27,6 +28,7 @@ class GTLiteMaterialIconSet
         @JvmStatic
         fun setMaterialIconSets()
         {
+            BismuthBronze.materialIconSet = MaterialIconSet.METALLIC
             Uranium238.materialIconSet = MaterialIconSet.METALLIC
         }
 

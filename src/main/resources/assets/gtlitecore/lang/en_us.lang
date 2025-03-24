@@ -380,6 +380,7 @@ tile.metal_casing_02.polybenzimidazole.name=Chemically Protective Polybenzimidaz
 tile.metal_casing_02.aluminium_bronze.name=Thermally Stable Aluminium Bronze Machine Casing
 tile.metal_casing_02.hastelloy_n.name=Heatproof Hastelloy-N Machine Casing
 tile.metal_casing_02.rene_n5.name=Time Hardening René-N5 Machine Casing
+tile.metal_casing_02.bismuth_bronze.name=Food Grade Bismuth Bronze
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1501,7 +1502,7 @@ gtlitecore.machine.large_replicator.tooltip.2=When Voltage tier >= §3UV§7 tier
 gtlitecore.machine.large_replicator.tooltip.3=Each §eEmitter Casing tier§7 and §eSensor Casing tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.large_replicator.tooltip.4=Each §eField Gen Casing tier§7 and §eProcessor Casing tier§7 +1, processing +§l4§r§7 items.
 
-gtlitecore.machine.circuit_assembly_line.name=电路装配线
+gtlitecore.machine.circuit_assembly_line.name=Circuit Assembly Line
 gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
 gtlitecore.machine.circuit_assembly_line.tooltip.2=支持一般的§a电路组装机§7配方与批量化的§d电路装配线§7配方。
 gtlitecore.machine.circuit_assembly_line.tooltip.3=在§d电路装配线§7模式下，需要提供对应种类的§b电路模板§7来识别配方。
@@ -1515,6 +1516,12 @@ gtlitecore.machine.circuit_assembly_line.tooltip.10=根据多方块结构中存�
 gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，机器的最大并行数均为§e4×(片数-4)§7。
 gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
 gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
+
+gtlitecore.machine.large_food_processor.name=Large Food Processor
+gtlitecore.machine.large_food_processor.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.large_food_processor.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.large_food_processor.tooltip.3=Each §ePump Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.large_food_processor.tooltip.4=Each §aRobot Arm Casing tier§7 +1, processing +§l8§r§7 items.
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

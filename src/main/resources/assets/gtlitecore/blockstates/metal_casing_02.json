@@ -79,6 +79,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/rene_n5"
         }
+      },
+      "bismuth_bronze": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/bismuth_bronze"
+        }
       }
     }
   }
