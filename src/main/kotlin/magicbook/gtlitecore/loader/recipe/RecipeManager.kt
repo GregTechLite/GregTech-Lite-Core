@@ -19,7 +19,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
-import magicbook.gtlitecore.loader.recipe.machine.GreenhouseRecipes
+import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
@@ -35,6 +35,7 @@ import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProd
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MassReplicationRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MetalCasingRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.MiningDroneAsteroidRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.WrapItemRecipeProducer
 
@@ -57,6 +58,8 @@ class RecipeManager
             MassReplicationRecipeProducer.produce()
             CircuitAssemblyLineRecipeProducer.produce()
             WrapItemRecipeProducer.produce()
+            GreenhouseRecipeProducer.produce()
+            MiningDroneAsteroidRecipeProducer.produce()
 
             // Loading chains and ore processings.
             OilCrackingChain.init()
@@ -93,7 +96,6 @@ class RecipeManager
             // Additional machine recipes.
             AlloyBlastSmelterRecipes.init()
             BathCondenserRecipes.init()
-            GreenhouseRecipes.init()
             LoomRecipes.init()
             PolisherRecipes.init()
 

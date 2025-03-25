@@ -616,6 +616,35 @@ metaitem.circuit.supracausal_mainframe.name=超因果星系级电脑主机群复
 metaitem.circuit.supracausal_mainframe.tooltip.1=万物归一者，原初的神迹
 metaitem.circuit.supracausal_mainframe.tooltip.2=MAX级电路
 
+metaitem.mining_drone.lv.name=采矿无人机（§7LV§f）
+metaitem.mining_drone.lv.tooltip=岩层穿透者
+metaitem.mining_drone.mv.name=采矿无人机（§bMV§f）
+metaitem.mining_drone.mv.tooltip=岩层穿透者
+metaitem.mining_drone.hv.name=采矿无人机（§6HV§f）
+metaitem.mining_drone.hv.tooltip=岩层穿透者
+metaitem.mining_drone.ev.name=采矿无人机（§5EV§f）
+metaitem.mining_drone.ev.tooltip=岩层穿透者
+metaitem.mining_drone.iv.name=采矿无人机（§1IV§f）
+metaitem.mining_drone.iv.tooltip=深空采矿单元
+metaitem.mining_drone.luv.name=采矿无人机（§dLuV§f）
+metaitem.mining_drone.luv.tooltip=深空采矿单元
+metaitem.mining_drone.zpm.name=采矿无人机（§cZPM§f）
+metaitem.mining_drone.zpm.tooltip=深空采矿单元
+metaitem.mining_drone.uv.name=采矿无人机（§3UV§f）
+metaitem.mining_drone.uv.tooltip=行星带资源提取器
+metaitem.mining_drone.uhv.name=采矿无人机（§4UHV§f）
+metaitem.mining_drone.uhv.tooltip=行星带资源提取器
+metaitem.mining_drone.uev.name=采矿无人机（§aUEV§f）
+metaitem.mining_drone.uev.tooltip=行星带资源提取器
+metaitem.mining_drone.uiv.name=采矿无人机（§2UIV§f）
+metaitem.mining_drone.uiv.tooltip=行星带资源提取器
+metaitem.mining_drone.uxv.name=采矿无人机（§eUXV§f）
+metaitem.mining_drone.uxv.tooltip=行星带资源提取器
+metaitem.mining_drone.opv.name=采矿无人机（§9OpV§f）
+metaitem.mining_drone.opv.tooltip=行星带资源提取器
+metaitem.mining_drone.max.name=采矿无人机（§c§lMAX§f）
+metaitem.mining_drone.max.tooltip=行星带资源提取器
+
 metaitem.tool.disposable.saw.name=一次性锯
 metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具
 metaitem.tool.disposable.hard_hammer.name=一次性锤
@@ -778,6 +807,7 @@ recipemap.chemical_plant.name=化工厂
 recipemap.circuit_assembly_line.name=电路装配线
 recipemap.food_processor.name=食品料理机
 recipemap.multicooker.name=多功能烹饪机
+recipemap.mining_drone_airport.name=采矿无人机坪
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s

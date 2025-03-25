@@ -15,6 +15,7 @@ import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
+import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
@@ -581,6 +582,9 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
+        /**
+         * @zenProp multicooker
+         */
         @ZenProperty
         @JvmStatic
         @get:JvmName("MULTICOOKER_RECIPES")
@@ -593,6 +597,20 @@ class GTLiteRecipeMaps
             .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
             .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
             .sound(GTSoundEvents.MIXER)
+            .build()
+
+        /**
+         * @zenProp mining_drone_airport
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("MINING_DRONE_RECIPES")
+        val MINING_DRONE_RECIPES = RecipeMapBuilder("mining_drone_airport", SimpleRecipeBuilder())
+            .ui { MiningDroneAirportUI(it) }
+            .itemInputs(2)
+            .itemOutputs(25)
+            .fluidInputs(1)
+            .sound(GTSoundEvents.COMPRESSOR)
             .build()
 
         @JvmStatic

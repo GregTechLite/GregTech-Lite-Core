@@ -563,6 +563,35 @@ metaitem.circuit.supracausal_mainframe.name=Supracausal Interstellar Mainframe C
 metaitem.circuit.supracausal_mainframe.tooltip.1=The All in One, and The Beyond One
 metaitem.circuit.supracausal_mainframe.tooltip.2=MAX-Tier Circuit
 
+metaitem.mining_drone.lv.name=§7LV§f Mining Drone
+metaitem.mining_drone.lv.tooltip=Rock penetrator
+metaitem.mining_drone.mv.name=§bMV§f Mining Drone
+metaitem.mining_drone.mv.tooltip=Rock penetrator
+metaitem.mining_drone.hv.name=§6HV§f Mining Drone
+metaitem.mining_drone.hv.tooltip=Rock penetrator
+metaitem.mining_drone.ev.name=§5EV§f Mining Drone
+metaitem.mining_drone.ev.tooltip=Rock penetrator
+metaitem.mining_drone.iv.name=§1IV§f Mining Drone
+metaitem.mining_drone.iv.tooltip=Deep space mining unit
+metaitem.mining_drone.luv.name=§dLuV§f Mining Drone
+metaitem.mining_drone.luv.tooltip=Deep space mining unit
+metaitem.mining_drone.zpm.name=§cZPM§f Mining Drone
+metaitem.mining_drone.zpm.tooltip=Deep space mining unit
+metaitem.mining_drone.uv.name=§3UV§f Mining Drone
+metaitem.mining_drone.uv.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.uhv.name=§4UHV§f Mining Drone
+metaitem.mining_drone.uhv.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.uev.name=§aUEV§f Mining Drone
+metaitem.mining_drone.uev.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.uiv.name=§2UIV§f Mining Drone
+metaitem.mining_drone.uiv.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.uxv.name=§eUXV§f Mining Drone
+metaitem.mining_drone.uxv.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.opv.name=§9OpV§f Mining Drone
+metaitem.mining_drone.opv.tooltip=Planetary belt ore extractor
+metaitem.mining_drone.max.name=§c§lMAX§f Mining Drone
+metaitem.mining_drone.max.tooltip=Planetary belt ore extractor
+
 metaitem.tool.disposable.saw.name=Disposable Saw
 metaitem.tool.disposable.saw.tooltip=Disposable Tool for crafting recipes
 metaitem.tool.disposable.hard_hammer.name=Disposable Hard Hammer
@@ -778,6 +807,7 @@ recipemap.chemical_plant.name=Chemical Plant
 recipemap.circuit_assembly_line.name=Circuit Assembly Line
 recipemap.food_processor.name=Food Processor
 recipemap.multicooker.name=Multi Cooker
+recipemap.mining_drone_airport.name=Mining Drone Airport
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s

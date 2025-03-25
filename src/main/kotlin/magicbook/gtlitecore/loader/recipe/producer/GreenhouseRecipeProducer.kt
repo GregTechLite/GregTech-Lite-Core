@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.loader.recipe.machine
+package magicbook.gtlitecore.loader.recipe.producer
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -35,7 +35,7 @@ import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class GreenhouseRecipes
+class GreenhouseRecipeProducer
 {
     // Frontend data class of all greenhouse recipes.
     // One recipe of greenhouse has four recipe type:
@@ -56,7 +56,7 @@ class GreenhouseRecipes
 
         }
 
-        fun init()
+        fun produce()
         {
             // Greenhouse Gas
             FLUID_HEATER_RECIPES.recipeBuilder()
@@ -168,8 +168,10 @@ class GreenhouseRecipes
         private fun addGreenhouseRecipes(saplingStack: ItemStack, logStack: ItemStack, leavesStack: ItemStack, appleStack: ItemStack? = null,
                                          sap: Material? = null)
         {
-            listOf(RecipeFrontend.AirBasic, RecipeFrontend.GreenhouseGasBasic, RecipeFrontend.AirFertilized,
-                RecipeFrontend.GreenhouseGasFertilized).forEach { t ->
+            listOf(
+                RecipeFrontend.AirBasic, RecipeFrontend.GreenhouseGasBasic, RecipeFrontend.AirFertilized,
+                RecipeFrontend.GreenhouseGasFertilized
+            ).forEach { t ->
                 val builder = GREENHOUSE_RECIPES.recipeBuilder()
                     .notConsumable(saplingStack)
                     .notConsumable(t.gas)

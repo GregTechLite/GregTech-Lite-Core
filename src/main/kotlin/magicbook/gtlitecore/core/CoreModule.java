@@ -11,6 +11,7 @@ import magicbook.gtlitecore.client.ClientEventHandlers;
 import magicbook.gtlitecore.common.CommonProxy;
 import magicbook.gtlitecore.common.EventHandlers;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.cover.GTLiteCoverBehaviors;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.module.GTLiteModules;
@@ -71,6 +72,7 @@ public class CoreModule implements IModule
     {
         DungeonLootLoader.init();
         GTLiteMetaTileEntities.postInit();
+        GTLiteCoverBehaviors.init();
     }
 
     @Override

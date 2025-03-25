@@ -119,6 +119,21 @@ class GTLiteMetaItems
         lateinit var SUPRACAUSAL_COMPUTER_OpV: MetaItem<*>.MetaValueItem
         lateinit var SUPRACAUSAL_MAINFRAME_MAX: MetaItem<*>.MetaValueItem
 
+        lateinit var MINING_DRONE_LV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_MV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_HV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_EV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_IV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_LuV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_ZPM: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_UV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_UHV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_UEV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_UIV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_UXV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_OpV: MetaItem<*>.MetaValueItem
+        lateinit var MINING_DRONE_MAX: MetaItem<*>.MetaValueItem
+
         lateinit var DISPOSABLE_SAW: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_HARD_HAMMER: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_SOFT_MALLET: MetaItem<*>.MetaValueItem
@@ -462,7 +477,49 @@ class GTLiteMetaItems
                         AnimatedTextHandler.BLUE + AnimatedTextHandler.BOLD, AnimatedTextHandler.LIGHT_PURPLE + AnimatedTextHandler.BOLD).get())
                 })
 
-            // 301-500: ...
+            // 301-500: Covers and Cover Components.
+
+            MINING_DRONE_LV = GTLITE_ITEMS.addItem(321, "mining_drone.lv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_MV = GTLITE_ITEMS.addItem(322, "mining_drone.mv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_HV = GTLITE_ITEMS.addItem(323, "mining_drone.hv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_EV = GTLITE_ITEMS.addItem(324, "mining_drone.ev")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_IV = GTLITE_ITEMS.addItem(325, "mining_drone.iv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_LuV = GTLITE_ITEMS.addItem(326, "mining_drone.luv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_ZPM = GTLITE_ITEMS.addItem(327, "mining_drone.zpm")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_UV = GTLITE_ITEMS.addItem(328, "mining_drone.uv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_UHV = GTLITE_ITEMS.addItem(329, "mining_drone.uhv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_UEV = GTLITE_ITEMS.addItem(330, "mining_drone.uev")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_UIV = GTLITE_ITEMS.addItem(331, "mining_drone.uiv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_UXV = GTLITE_ITEMS.addItem(332, "mining_drone.uxv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_OpV = GTLITE_ITEMS.addItem(333, "mining_drone.opv")
+                .setMaxStackSize(16)
+
+            MINING_DRONE_MAX = GTLITE_ITEMS.addItem(334, "mining_drone.max")
+                .setMaxStackSize(16)
 
             // 501-600: Tool Components.
 
