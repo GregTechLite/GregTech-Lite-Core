@@ -24,6 +24,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCircuitAssemblyLine
@@ -169,6 +170,8 @@ class GTLiteMetaTileEntities
 
         // Multiblock machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
+
+        lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
 
@@ -579,6 +582,9 @@ class GTLiteMetaTileEntities
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
                 MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
 
+            MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
+                MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
+
             CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
                 MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
 
@@ -758,6 +764,8 @@ class GTLiteMetaTileEntities
             NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+
+            MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 

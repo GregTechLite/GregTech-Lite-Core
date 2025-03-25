@@ -37,6 +37,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
@@ -76,6 +77,7 @@ import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
@@ -89,10 +91,12 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_IV
+import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_LV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_MV
 import gregtech.common.items.MetaItems.SENSOR_IV
@@ -160,6 +164,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
@@ -210,6 +215,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MINING_DRONE_AIRPORT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
@@ -524,6 +530,17 @@ class MachineRecipeLoader
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // Mining Drone Airport
+            ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,
+                "RDE", "CHC", "XWX",
+                'H', HULL[LV].stackForm,
+                'D', MINING_DRONE_LV,
+                'R', ROBOT_ARM_LV,
+                'E', EMITTER_LV,
+                'C', CONVEYOR_MODULE_LV,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LV),
+                'W', UnificationEntry(cableGtSingle, Tin))
 
             // Catalytic Reformer
             ModHandler.addShapedRecipe(true, "catalytic_reformer", CATALYTIC_REFORMER.stackForm,
