@@ -48,6 +48,7 @@ class GregtechOverrideRecipeLoader
                 .circuitMeta(6)
                 .input(frameGt, Steel)
                 .input(plate, Polyethylene, 6)
+                .fluidInputs(Concrete.getFluid(L))
                 .outputs(MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.PLASCRETE, ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
