@@ -6,6 +6,7 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
+import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Magnesia
@@ -31,7 +32,7 @@ class UraniumPlutoniumProcessing
         fun init()
         {
             // Add several simplified recipes for U, U235, and U238.
-            GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES,
+            GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
                 UraniumHexafluoride.getFluid(1000))
 
             // UO2 + 2Mg -> U + 2MgO

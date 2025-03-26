@@ -214,8 +214,8 @@ class GTLiteMaterialFlags
             Molybdenite.addFlags(DISABLE_DECOMPOSITION)
             Powellite.addFlags(DISABLE_DECOMPOSITION)
             Wulfenite.addFlags(DISABLE_DECOMPOSITION)
-            // Disabled uranium hexafluoride composition.
-            UraniumHexafluoride.addFlags(DISABLE_DECOMPOSITION)
+            // Disabled clay composition.
+            Clay.addFlags(DISABLE_DECOMPOSITION)
         }
 
     }
