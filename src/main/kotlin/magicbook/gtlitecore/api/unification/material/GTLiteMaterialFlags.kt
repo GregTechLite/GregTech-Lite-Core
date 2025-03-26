@@ -54,7 +54,6 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Tungsten
-import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron

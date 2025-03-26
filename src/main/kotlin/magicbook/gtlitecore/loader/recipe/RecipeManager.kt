@@ -19,7 +19,6 @@ import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
-import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
@@ -33,6 +32,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MassReplicationRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MetalCasingRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MiningDroneAsteroidRecipeProducer

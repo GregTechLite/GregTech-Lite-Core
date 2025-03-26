@@ -24,12 +24,10 @@ import gregtech.common.metatileentities.MetaTileEntities
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
-import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Supplier
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityMiningDroneAirport(metaTileEntityId: ResourceLocation) : RecipeMapMultiblockController(metaTileEntityId, GTLiteRecipeMaps.MINING_DRONE_RECIPES)
