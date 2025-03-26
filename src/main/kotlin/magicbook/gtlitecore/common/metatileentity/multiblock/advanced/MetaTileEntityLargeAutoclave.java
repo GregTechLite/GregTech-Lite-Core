@@ -26,6 +26,7 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
@@ -87,14 +88,8 @@ public class MetaTileEntityLargeAutoclave extends MultiMapMultiblockController
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> pistonCasing = StreamEx.of(GTLiteAPI.MAP_PISTON_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> pumpCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PUMP_CASING);
+        List<IBlockState> pistonCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PISTON_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(pumpCasing);
             add(pistonCasing);

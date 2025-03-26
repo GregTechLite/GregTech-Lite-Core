@@ -21,6 +21,7 @@ import lombok.Getter;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02;
@@ -89,22 +90,10 @@ public class MetaTileEntityLargeReplicator extends RecipeMapMultiblockController
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> fieldGenCasing = StreamEx.of(GTLiteAPI.MAP_FIELD_GEN_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> emitterCasing = StreamEx.of(GTLiteAPI.MAP_EMITTER_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> sensorCasing = StreamEx.of(GTLiteAPI.MAP_SENSOR_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> processorCasing = StreamEx.of(GTLiteAPI.MAP_PROCESSOR_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> fieldGenCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_FIELD_GEN_CASING);
+        List<IBlockState> emitterCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_EMITTER_CASING);
+        List<IBlockState> sensorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_SENSOR_CASING);
+        List<IBlockState> processorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PROCESSOR_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(fieldGenCasing);
             add(emitterCasing);

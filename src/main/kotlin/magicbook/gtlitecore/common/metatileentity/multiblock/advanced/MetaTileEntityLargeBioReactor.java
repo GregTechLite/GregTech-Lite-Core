@@ -29,6 +29,7 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
@@ -92,14 +93,8 @@ public class MetaTileEntityLargeBioReactor extends MultiMapMultiblockController
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> sensorCasing = StreamEx.of(GTLiteAPI.MAP_SENSOR_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> cleanroomCasing = StreamEx.of(GTLiteAPI.MAP_CLEANROOM_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> sensorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_SENSOR_CASING);
+        List<IBlockState> cleanroomCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_CLEANROOM_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(sensorCasing);
             add(cleanroomCasing);

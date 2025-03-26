@@ -21,6 +21,7 @@ import lombok.Getter;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
@@ -81,14 +82,8 @@ public class MetaTileEntityLargeLaserEngraver extends RecipeMapMultiblockControl
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> emitterCasing = StreamEx.of(GTLiteAPI.MAP_EMITTER_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> conveyorCasing = StreamEx.of(GTLiteAPI.MAP_CONVEYOR_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> emitterCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_EMITTER_CASING);
+        List<IBlockState> conveyorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_CONVEYOR_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(emitterCasing);
             add(conveyorCasing);

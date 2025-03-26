@@ -23,6 +23,7 @@ import lombok.Getter;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
@@ -86,14 +87,8 @@ public class MetaTileEntityLargeExtractor extends MultiMapMultiblockController
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> motorCasing = StreamEx.of(GTLiteAPI.MAP_MOTOR_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> pumpCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PUMP_CASING);
+        List<IBlockState> motorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_MOTOR_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(pumpCasing);
             add(motorCasing);

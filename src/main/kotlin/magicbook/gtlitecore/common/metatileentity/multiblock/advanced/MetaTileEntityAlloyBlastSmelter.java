@@ -32,6 +32,7 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
+import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01;
@@ -97,14 +98,8 @@ public class MetaTileEntityAlloyBlastSmelter extends RecipeMapMultiblockControll
     private void registerCasingMaps()
     {
         if (hasRegistered) return;
-        List<IBlockState> pumpCasing = StreamEx.of(GTLiteAPI.MAP_PUMP_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .map(Map.Entry::getKey)
-                .toList();
-        List<IBlockState> heatingCoil = StreamEx.of(GregTechAPI.HEATING_COILS.entrySet())
-                .sortedByInt(entry -> entry.getValue().getTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        List<IBlockState> pumpCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PUMP_CASING);
+        List<IBlockState> heatingCoil = LazyStreams.fastSortedByKey(GregTechAPI.HEATING_COILS);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(pumpCasing);
             add(heatingCoil);
