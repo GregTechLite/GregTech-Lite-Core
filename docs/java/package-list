@@ -8,6 +8,7 @@ magicbook.gtlitecore.api.pattern.predicate
 magicbook.gtlitecore.api.recipe.property.value
 magicbook.gtlitecore.api.utils
 magicbook.gtlitecore.api.utils.functions
+magicbook.gtlitecore.api.utils.stream
 magicbook.gtlitecore.api.worldgen
 magicbook.gtlitecore.api.worldgen.feature
 magicbook.gtlitecore.client
