@@ -6,6 +6,9 @@ import net.minecraft.client.resources.I18n
 import java.util.*
 import java.util.function.Supplier
 
+/**
+ * Utilities for formatting, text interacted, I18n, etc.
+ */
 class FormattingUtility
 {
 

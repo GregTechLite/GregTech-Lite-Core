@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api.utils;
 
+import gregtech.api.GTValues;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -15,34 +16,16 @@ import java.util.function.Supplier;
 
 public class AnimatedTextHandler
 {
-
+    // (ItemStack, Supplier<String>) => ItemStack.tooltip(String)
     private static final Map<ItemStack, Supplier<String>> tooltipMap = new ItemStackMap<>(false);
 
-    public static final String BLACK;
-    public static final String DARK_BLUE;
-    public static final String DARK_GREEN;
-    public static final String DARK_AQUA;
-    public static final String DARK_RED;
-    public static final String DARK_PURPLE;
-    public static final String GOLD;
-    public static final String GRAY;
-    public static final String DARK_GRAY;
-    public static final String BLUE;
-    public static final String GREEN;
-    public static final String AQUA;
-    public static final String RED;
-    public static final String LIGHT_PURPLE;
-    public static final String YELLOW;
-    public static final String WHITE;
-    public static final String OBFUSCATED;
-    public static final String BOLD;
-    public static final String STRIKETHROUGH;
-    public static final String UNDERLINE;
-    public static final String ITALIC;
-    public static final String RESET;
-
+    // Vanilla color/format strings.
+    public static final String BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED,
+            DARK_PURPLE, GOLD, GRAY, DARK_GRAY, BLUE, GREEN, AQUA, RED, LIGHT_PURPLE,
+            YELLOW, WHITE, OBFUSCATED, BOLD, STRIKETHROUGH, UNDERLINE, ITALIC, RESET;
     public static final Supplier<String> NEW_LINE;
 
+    // Initialized all vanilla color/format strings.
     static
     {
         AQUA = TextFormatting.AQUA.toString();
@@ -67,260 +50,7 @@ public class AnimatedTextHandler
         UNDERLINE = TextFormatting.UNDERLINE.toString();
         WHITE = TextFormatting.WHITE.toString();
         YELLOW = TextFormatting.YELLOW.toString();
-
         NEW_LINE = () -> "\n";
-    }
-
-    /**
-     * Helper method to concatenate multiple texts.
-     *
-     * @author glowredman
-     *
-     * @since 1.0.0
-     */
-    @SafeVarargs
-    public static Supplier<String> chain(Supplier<String>... parts)
-    {
-        return () -> {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (Supplier<String> text : parts)
-            {
-                stringBuilder.append(text.get());
-            }
-            return stringBuilder.toString();
-        };
-    }
-
-    /**
-     * Helper method to create a static text.
-     *
-     * @author glowredman
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> text(String text)
-    {
-        return () -> text;
-    }
-
-    /**
-     * Helper method to create a formatted and static text.
-     *
-     * @author glowredman
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> text(String format, Object... args)
-    {
-        return () -> String.format(Locale.ROOT, format, args);
-    }
-
-    /**
-     * Helper method to create a translated and static text.
-     *
-     * @author glowredman
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> translatedText(String translationKey)
-    {
-        return () -> TranslateUtility.translateToLocal(translationKey);
-    }
-
-    /**
-     * Helper method to create a translated, formatted and static text.
-     *
-     * @author glowredman
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> translatedText(String translationKey, Object... args)
-    {
-        return () -> TranslateUtility.translateToLocalFormatted(translationKey, args);
-    }
-
-    /**
-     * Helper method to create an animated text.
-     *
-     * @author TTFTCUTS, glowredman
-     *
-     * <p>
-     *     Taken and adapted from <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
-     *     please see: Line 19 at {@code src/main/java/fox/spiteful/avaritia/LudicrousText.java}.
-     * </p>
-     *
-     * @param text             The text to be animated
-     * @param posstep          How many steps {@code formattingArray} is shifted each {@code delay}
-     * @param delay            How many milliseconds are between each shift of {@code formattingArray}
-     * @param formattingArray  An array of formatting codes. Each char of {@code text} will be prefixed by one entry,
-     *                         depending on {@code posstep} and {@code delay}. Wraps around,
-     *                         if shorter than {@code formattingArray}.
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> animatedText(String text,
-                                                int posstep, int delay,
-                                                String... formattingArray)
-    {
-        if (text == null || text.isEmpty()
-                || formattingArray == null || formattingArray.length == 0)
-            return () -> "";
-
-        final int finalDelay = Math.max(delay, 1);
-        final int finalPosstep = Math.max(posstep, 0);
-
-        return () -> {
-            StringBuilder stringBuilder = new StringBuilder(text.length() * 3);
-            int offset = (int) ((System.currentTimeMillis() / finalDelay) % formattingArray.length);
-            for (int i = 0; i < text.length(); i++)
-            {
-                char c = text.charAt(i);
-                int indexColorArray = (i * finalPosstep + formattingArray.length - offset) % formattingArray.length;
-                stringBuilder.append(formattingArray[indexColorArray]);
-                stringBuilder.append(c);
-            }
-            return stringBuilder.toString();
-        };
-    }
-
-    /**
-     * Helper method to create a formatted and animated text.
-     *
-     * @author TTFTCUTS, glowredman
-     *
-     * <p>
-     *     Taken and adapted from <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
-     *     please see: Line 19 at {@code src/main/java/fox/spiteful/avaritia/LudicrousText.java}.
-     * </p>
-     *
-     * @param format           The text to be formatted and animated
-     * @param args             The formatting arguments
-     * @param posstep          How many steps {@code formattingArray} is shifted each {@code delay}
-     * @param delay            How many milliseconds are between each shift of {@code formattingArray}
-     * @param formattingArray  An array of formatting codes. Each char of {@code text} will be prefixed by one entry,
-     *                         depending on {@code posstep} and {@code delay}. Wraps around,
-     *                         if shorter than {@code formattingArray}.
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> animatedText(String format, Object[] args,
-                                                int posstep, int delay,
-                                                String... formattingArray)
-    {
-        return animatedText(String.format(Locale.ROOT, format, args), posstep, delay, formattingArray);
-    }
-
-    /**
-     * Helper method to create a translated and animated text.
-     *
-     * @author TTFTCUTS, glowredman
-     *
-     * <p>
-     *     Taken and adapted from <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
-     *     please see: Line 19 at {@code src/main/java/fox/spiteful/avaritia/LudicrousText.java}.
-     * </p>
-     *
-     * @param translationKey   The key used to look up the translation
-     * @param posstep          How many steps {@code formattingArray} is shifted each {@code delay}
-     * @param delay            How many milliseconds are between each shift of {@code formattingArray}
-     * @param formattingArray  An array of formatting codes. Each char of {@code text} will be prefixed by one entry,
-     *                         depending on {@code posstep} and {@code delay}. Wraps around,
-     *                         if shorter than {@code formattingArray}.
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> translatedAnimatedText(String translationKey, int posstep, int delay,
-                                                          String... formattingArray)
-    {
-        return animatedText(TranslateUtility.translateToLocal(translationKey), posstep, delay, formattingArray);
-    }
-
-    /**
-     * Helper method to create a translated, formatted and animated text
-     *
-     * @author TTFTCUTS, glowredman
-     *
-     * <p>
-     *     Taken and adapted from <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
-     *     please see: Line 19 at {@code src/main/java/fox/spiteful/avaritia/LudicrousText.java}.
-     * </p>
-     *
-     * @param translationKey   The key used to look up the translation
-     * @param args             The formatting arguments
-     * @param posstep          How many steps {@code formattingArray} is shifted each {@code delay}
-     * @param delay            How many milliseconds are between each shift of {@code formattingArray}
-     * @param formattingArray  An array of formatting codes. Each char of {@code text} will be prefixed by one entry,
-     *                         depending on {@code posstep} and {@code delay}. Wraps around,
-     *                         if shorter than {@code formattingArray}.
-     *
-     * @since 1.0.0
-     */
-    public static Supplier<String> translatedAnimatedText(String translationKey, Object[] args,
-                                                          int posstep, int delay,
-                                                          String... formattingArray)
-    {
-        return animatedText(TranslateUtility.translateToLocalFormatted(translationKey, args), posstep, delay, formattingArray);
-    }
-
-    /**
-     * Add {@code tooltip} to all items with {@code oredictName}.
-     *
-     * @author glowredman
-     *
-     * <p>
-     *     The items must be registered to the {@link OreDictionary} when this method is called,
-     *     and items with equal registry name and meta but different NBT are considered equal.
-     * </p>
-     *
-     * @since 1.0.0
-     */
-    public static void addOredictTooltip(String oredictName, Supplier<String> tooltip)
-    {
-        for (ItemStack item : OreDictionary.getOres(oredictName))
-        {
-            addItemTooltip(item, tooltip);
-        }
-    }
-
-    /**
-     * Add {@code tooltip} to item specified by {@code modid}, {@code name} and {@code meta}.
-     *
-     * @author glowredman
-     *
-     * <p>
-     *     The item must be registered to the {@link GameRegistry} when this method is called,
-     *     and items with equal registry name and meta but different NBT are considered equal.
-     *     Using {@link OreDictionary#WILDCARD_VALUE} as {@code meta} is allowed.
-     * </p>
-     *
-     * @since 1.0.0
-     */
-    public static void addItemTooltip(String modid, String name, int meta, Supplier<String> tooltip)
-    {
-        Item item = GameRegistry.makeItemStack(modid, 0, 1, name).getItem();
-        if (tooltip == null)
-            return;
-
-        tooltipMap.merge(new ItemStack(item, 1, meta), tooltip, (a, b) -> chain(a, NEW_LINE, b));
-    }
-
-    /**
-     * Add {@code tooltip} to {@code item}.
-     *
-     * @author glowredman
-     *
-     * <p>
-     *     Items with equal registry name and meta but different NBT are considered equal.
-     *     Using {@link OreDictionary#WILDCARD_VALUE} as meta is allowed.
-     * </p>
-     *
-     * @since 1.0.0
-     */
-    public static void addItemTooltip(ItemStack item, Supplier<String> tooltip)
-    {
-        if (item == null || tooltip == null)
-            return;
-        tooltipMap.merge(item, tooltip, (a, b) -> chain(a, NEW_LINE, b));
     }
 
     @SubscribeEvent
@@ -335,6 +65,181 @@ public class AnimatedTextHandler
             return;
 
         event.getToolTip().addAll(Arrays.asList(text.split("\n")));
+    }
+
+    /**
+     * Create an animated text, this method taken and adapted from GT:NH modpack team's
+     * fork mod <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>, please
+     * see line 19 at {@code fox/spiteful/avaritia/LudicrousText.java}.
+     *
+     * @param text    The text to be animated.
+     * @param step    The steps {@code formats} is shifted each {@code delay}.
+     * @param delay   The milliseconds which between each shift of {@code formats}.
+     * @param formats An array of formatting codes. Each char of {@code text} will be
+     *                prefixed by one entry, depending on {@code step} and {@code delay}.
+     *                Wraps around, if shorter than {@code formats}.
+     * @return        An animated text with properties.
+     *
+     * @author TTFTCUTS, glowredman
+     */
+    public static Supplier<String> animatedText(String text,
+                                                int step, int delay,
+                                                String... formats)
+    {
+        if (text == null || text.isEmpty() || formats == null || formats.length == 0)
+            return () -> "";
+
+        final int finalDelay = Math.max(delay, 1);
+        final int finalStep = Math.max(step, 0);
+
+        return () -> {
+            StringBuilder stringBuilder = new StringBuilder(text.length() * 3);
+            int offset = (int) ((System.currentTimeMillis() / finalDelay) % formats.length);
+            for (int i = 0; i < text.length(); i++)
+            {
+                char c = text.charAt(i);
+                int indexColorArray = (i * finalStep + formats.length - offset) % formats.length;
+                stringBuilder.append(formats[indexColorArray]);
+                stringBuilder.append(c);
+            }
+            return stringBuilder.toString();
+        };
+    }
+
+    /**
+     * Create a formatted and animated text, this method taken and adapted from GT:NH modpack
+     * team's fork mod <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
+     * please see line 19 at {@code fox/spiteful/avaritia/LudicrousText.java}.
+     *
+     * @param format  The text to be formatted and animated.
+     * @param args    The formatting arguments.
+     * @param step    The steps {@code formats} is shifted each {@code delay}.
+     * @param delay   The milliseconds which between each shift of {@code formats}.
+     * @param formats An array of formatting codes. Each char of {@code text} will be
+     *                prefixed by one entry, depending on {@code step} and {@code delay}.
+     *                Wraps around, if shorter than {@code formats}.
+     * @return        A formatted and animated text with properties.
+     *
+     * @author TTFTCUTS, glowredman
+     */
+    public static Supplier<String> animatedText(String format, Object[] args,
+                                                int step, int delay,
+                                                String... formats)
+    {
+        return animatedText(String.format(Locale.ROOT, format, args), step, delay, formats);
+    }
+
+    /**
+     * Create a translated and animated text, this method taken and adapted from GT:NH modpack
+     * fork mod <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>, please
+     * see line 19 at {@code fox/spiteful/avaritia/LudicrousText.java}.
+     *
+     * @param translationKey The key used to look up the translation.
+     * @param step           The steps {@code formats} is shifted each {@code delay}.
+     * @param delay          The milliseconds which between each shift of {@code formats}.
+     * @param formats        An array of formatting codes. Each char of {@code text} will be
+     *                       prefixed by one entry, depending on {@code step} and {@code delay}.
+     *                       Wraps around, if shorter than {@code formats}.
+     * @return               A translated and animated text with properties.
+     *
+     * @author TTFTCUTS, glowredman
+     */
+    public static Supplier<String> translatedAnimatedText(String translationKey,
+                                                          int step, int delay,
+                                                          String... formats)
+    {
+        return animatedText(FormattingUtility.translateToLocal(translationKey), step, delay, formats);
+    }
+
+    /**
+     * Create a translated, formatted and animated text, this method taken and adapted from
+     * GT:NH modpack fork mod <a href=https://github.com/GTNewHorizons/Avaritia>Avaritia</a>,
+     * please see line 19 at {@code fox/spiteful/avaritia/LudicrousText.java}.
+     *
+     * @param translationKey The key used to look up the translation.
+     * @param args           The formatting arguments.
+     * @param step           The steps {@code formats} is shifted each {@code delay}.
+     * @param delay          The milliseconds which between each shift of {@code formats}.
+     * @param formats        An array of formatting codes. Each char of {@code text} will be
+     *                       prefixed by one entry, depending on {@code step} and {@code delay}.
+     *                       Wraps around, if shorter than {@code formats}.
+     * @return               A translated and animated text with properties.
+     *
+     * @author TTFTCUTS, glowredman
+     */
+    public static Supplier<String> translatedAnimatedText(String translationKey, Object[] args,
+                                                          int step, int delay,
+                                                          String... formats)
+    {
+        return animatedText(FormattingUtility.translateToLocalFormatted(translationKey, args), step, delay, formats);
+    }
+
+    /**
+     * Add static {@code tooltip} to all items with {@code oreDictName}, this method is
+     * useful for some grouped items like Gregtech materials.
+     * <p>
+     * Should use static text ({@link FormattingUtility#text}) in {@code tooltip}.
+     * <p>
+     * The items must be registered in the {@link OreDictionary} when this method is
+     * called, and items with equal registry name and meta but different NBT are
+     * considered equal.
+     *
+     * @param oreDictName Ore Dictionary name.
+     * @param tooltip     Static string supplier.
+     *
+     * @author glowredman
+     */
+    public static void addOreDictTooltip(String oreDictName, Supplier<String> tooltip)
+    {
+        for (ItemStack item : OreDictionary.getOres(oreDictName))
+            addItemTooltip(item, tooltip);
+    }
+
+    /**
+     * Add {@code tooltip} to specific item with {@code modId}, {@code name} and {@code meta}.
+     * <p>
+     * For default, if {@code modId} is {@code null}, then will search {@code name} and
+     * {@code meta} in the mod.
+     * <p>
+     * Should use static text ({@link FormattingUtility#text}) in {@code tooltip}.
+     *
+     * @param modId   The mod Id.
+     * @param name    The item name.
+     * @param meta    The item meta.
+     * @param tooltip Static string supplier.
+     *
+     * @author glowredman
+     */
+    public static void addItemTooltip(String modId, String name, int meta, Supplier<String> tooltip)
+    {
+        Item item = GameRegistry.makeItemStack(modId == null ? GTLiteValues.MODID : modId,
+                0, 1, name).getItem();
+
+        if (tooltip == null)
+            return;
+
+        tooltipMap.merge(new ItemStack(item, 1, meta), tooltip,
+                (a, b) -> FormattingUtility.chain(a, NEW_LINE, b));
+    }
+
+    /**
+     * Add {@code tooltip} to {@code item}.
+     * <p>
+     * Items with equal registry name and meta but different NBT are considered equal,
+     * using {@link OreDictionary#WILDCARD_VALUE} or {@link GTValues#W} as meta is allowed.
+     * <p>
+     * Should use static text ({@link FormattingUtility#text}) in {@code tooltip}.
+     *
+     * @param item    The item stack.
+     * @param tooltip Static string supplier.
+     *
+     * @author glowredman
+     */
+    public static void addItemTooltip(ItemStack item, Supplier<String> tooltip)
+    {
+        if (item == null || tooltip == null)
+            return;
+        tooltipMap.merge(item, tooltip, (a, b) -> FormattingUtility.chain(a, NEW_LINE, b));
     }
 
 }
