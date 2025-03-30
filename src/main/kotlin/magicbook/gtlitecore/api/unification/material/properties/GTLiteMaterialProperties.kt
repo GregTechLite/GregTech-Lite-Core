@@ -13,8 +13,10 @@ import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iron
@@ -64,6 +66,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorapatite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jasper
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kaolinite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Labradorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
@@ -71,6 +75,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nephelite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Oligoclase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Picotite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tanzanite
@@ -173,6 +178,15 @@ class GTLiteMaterialProperties
 
             oreProp = Cryolite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Alumina, Alumina, Sodium)
+
+            oreProp = Jade.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Jade, Jasper, Emerald)
+
+            oreProp = Jasper.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Jasper, Jade, SiliconDioxide)
+
+            oreProp = Picotite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Picotite, Chrome, Chrome)
 
             // Modified Biotite and Mica properties.
             Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)

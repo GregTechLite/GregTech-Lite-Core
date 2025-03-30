@@ -1722,6 +1722,9 @@ gtlitecore.material.lead_dichloride=Lead Dichloride
 gtlitecore.material.trace_rhenium_flue=Trace Rhenium Flue
 gtlitecore.material.perrhenic_acid=Perrhenic Acid
 gtlitecore.material.ammonium_perrhenate=Ammonium Perrhenate
+gtlitecore.material.jade=Jade
+gtlitecore.material.jasper=Jasper
+gtlitecore.material.picotite=Picotite
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1810,6 +1813,7 @@ gtlitecore.veins.ore.baddeleyite=Baddeleyite Vein
 gtlitecore.veins.ore.uvarovite=Uvarovite Vein
 gtlitecore.veins.ore.cryolite=Cryolite Vein
 gtlitecore.veins.ore.plutonium=Plutonium Vein
+gtlitecore.veins.ore.jade=Jade Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)

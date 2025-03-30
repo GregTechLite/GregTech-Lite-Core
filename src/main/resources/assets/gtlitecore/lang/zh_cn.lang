@@ -1723,6 +1723,9 @@ gtlitecore.material.lead_dichloride=二氯化铅
 gtlitecore.material.trace_rhenium_flue=微量铼烟气
 gtlitecore.material.perrhenic_acid=高铼酸
 gtlitecore.material.ammonium_perrhenate=高铼酸铵
+gtlitecore.material.jade=玉
+gtlitecore.material.jasper=碧玉
+gtlitecore.material.picotite=铬尖晶石
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1811,6 +1814,7 @@ gtlitecore.veins.ore.baddeleyite=斜锆石矿脉
 gtlitecore.veins.ore.uvarovite=钙铬榴石矿脉
 gtlitecore.veins.ore.cryolite=冰晶石矿脉
 gtlitecore.veins.ore.plutonium=钚矿脉
+gtlitecore.veins.ore.jade=玉矿脉
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）

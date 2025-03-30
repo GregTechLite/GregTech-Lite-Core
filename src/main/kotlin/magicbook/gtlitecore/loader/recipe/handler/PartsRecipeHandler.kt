@@ -248,6 +248,39 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Lime)
                 }
+                Materials.Malachite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Green)
+                }
+                Materials.Andradite -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Brown)
+                }
+                Materials.GreenSapphire -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Lime)
+                }
+                Materials.Pyrope -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Purple)
+                }
+                Materials.Rutile -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Pink)
+                }
+                Materials.Spessartine -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Red)
+                }
+                Materials.Olivine -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Lime)
+                }
+                Materials.Amethyst -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Purple)
+                }
+
                 // Addition gem colored lens in gtlitecore.
                 GTLiteMaterials.Tanzanite -> {
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
@@ -277,6 +310,11 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.LightBlue)
                 }
+                GTLiteMaterials.Jade -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Green)
+                }
+
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.
                     val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)

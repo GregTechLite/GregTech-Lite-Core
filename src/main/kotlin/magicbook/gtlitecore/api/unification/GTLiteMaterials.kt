@@ -106,6 +106,7 @@ import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
+import gregtech.api.unification.material.info.MaterialIconSet.DIAMOND
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
@@ -645,6 +646,37 @@ class GTLiteMaterials
             .color(0xA69970).iconSet(METALLIC)
             .flags(DISABLE_DECOMPOSITION)
             .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
+            .build()
+
+        // 2053 Jade
+        @JvmField
+        val Jade: Material = Material.Builder(2053, gtliteId("jade"))
+            .gem(2)
+            .ore()
+            .color(0x006400).iconSet(RUBY)
+            .components(Sodium, 1, Aluminium, 1, Silicon, 2, Oxygen, 6)
+            .flags(CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
+        // 2054 Jasper
+        @JvmField
+        val Jasper: Material = Material.Builder(2054, gtliteId("jasper"))
+            .gem(2)
+            .ore()
+            .color(0xC85050).iconSet(EMERALD)
+            .components(Calcium, 1, Magnesium, 5, Oxygen, 24, Hydrogen, 2, Silicon, 8)
+            .flags(HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+            .setFormula("CaMg5(OH)2(Si4O11)2", true)
+
+        // 2055 Picotite
+        @JvmField
+        val Picotite: Material = Material.Builder(2055, gtliteId("picotite"))
+            .gem(3)
+            .ore(2, 3)
+            .color(0x931C24).iconSet(DIAMOND)
+            .components(Iron, 1, Chrome, 2, Oxygen, 4)
+            .flags(GENERATE_PLATE, GENERATE_LENS)
             .build()
 
         // =======================================================================
