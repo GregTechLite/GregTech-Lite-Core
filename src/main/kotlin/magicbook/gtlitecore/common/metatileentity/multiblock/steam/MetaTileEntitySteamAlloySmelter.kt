@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.steam
 
 import gregtech.api.capability.impl.SteamMultiWorkable
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController
@@ -12,7 +13,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.ConfigHolder
-import gregtech.common.blocks.BlockBoilerCasing
+import gregtech.common.blocks.BlockFireboxCasing
 import gregtech.common.blocks.BlockMetalCasing
 import gregtech.common.blocks.MetaBlocks
 import net.minecraft.client.resources.I18n
@@ -24,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, RecipeMaps.COMPRESSOR_RECIPES, CONVERSION_RATE)
+class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, RecipeMaps.ALLOY_SMELTER_RECIPES, CONVERSION_RATE)
 {
 
     init
@@ -33,29 +34,29 @@ class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation) : Recipe
         this.recipeMapWorkable.parallelLimit = 8
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntitySteamCompressor(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntitySteamAlloySmelter(metaTileEntityId)
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
-        .aisle("CCC", "CCC", "CCC")
-        .aisle("CCC", "CPC", "CCC")
-        .aisle("CCC", "CPC", "CCC")
-        .aisle("CCC", "CSC", "CCC")
+        .aisle("CCC", "FFF", "FFF", "CCC")
+        .aisle("CCC", "F#F", "F#F", "CCC")
+        .aisle("CSC", "FFF", "FFF", "CCC")
         .where('S', selfPredicate())
         .where('C', states(getCasingState())
-            .setMinGlobalLimited(27)
+            .setMinGlobalLimited(9)
             .or(autoAbilities()))
-        .where('P', states(getPipeCasingState()))
+        .where('F', states(getFireboxCasingState()))
+        .where('#', air())
         .build()
 
     private fun getCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID) else MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS)
 
-    private fun getPipeCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE) else MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE)
+    private fun getFireboxCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.STEEL_FIREBOX) else MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.BRONZE_FIREBOX)
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = Textures.COMPRESSOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = Textures.ALLOY_SMELTER_OVERLAY
 
     override fun hasMaintenanceMechanics() = false
 

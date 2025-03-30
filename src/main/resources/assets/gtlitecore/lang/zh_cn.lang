@@ -1319,6 +1319,8 @@ gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶�
 
 gtlitecore.machine.steam_compressor.name=大型蒸汽压缩机
 
+gtlitecore.machine.steam_alloy_smelter.name=大型蒸汽合金炉
+
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机

@@ -17,6 +17,7 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.BlueSteel
+import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
@@ -139,6 +140,7 @@ import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
+import gregtech.common.metatileentities.MetaTileEntities.STEAM_ALLOY_SMELTER_BRONZE
 import gregtech.common.metatileentities.MetaTileEntities.STEAM_COMPRESSOR_BRONZE
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
@@ -225,6 +227,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ALLOY_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
@@ -542,6 +545,14 @@ class MachineRecipeLoader
                 'P', OreDictNames.craftingPiston,
                 'F', STEAM_COMPRESSOR_BRONZE.stackForm,
                 'G', UnificationEntry(gear, Potin))
+
+            // Steam Alloy Smelter
+            ModHandler.addShapedRecipe(true, "steam_alloy_smelter", STEAM_ALLOY_SMELTER.stackForm,
+                "PGP", "CFC", "PGP",
+                'F', STEAM_ALLOY_SMELTER_BRONZE.stackForm,
+                'G', UnificationEntry(gear, Brass),
+                'P', UnificationEntry(pipeNormalFluid, Bronze),
+                'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
 
             // Mining Drone Airport
             ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,

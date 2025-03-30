@@ -1319,6 +1319,8 @@ gtlitecore.machine.coagulation_tank.tooltip.4=Need to placed Iron Stick as a fra
 
 gtlitecore.machine.steam_compressor.name=Large Steam Compressor
 
+gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
+
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer

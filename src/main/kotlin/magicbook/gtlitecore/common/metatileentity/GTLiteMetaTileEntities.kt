@@ -61,6 +61,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
+import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamAlloySmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamCompressor
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
@@ -172,6 +173,7 @@ class GTLiteMetaTileEntities
         // Multiblock machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
         lateinit var STEAM_COMPRESSOR: MetaTileEntitySteamCompressor
+        lateinit var STEAM_ALLOY_SMELTER: MetaTileEntitySteamAlloySmelter
 
         lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
@@ -586,6 +588,9 @@ class GTLiteMetaTileEntities
 
             STEAM_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18002,
                 MetaTileEntitySteamCompressor(GTLiteUtility.gtliteId("steam_compressor")))
+
+            STEAM_ALLOY_SMELTER = MetaTileEntities.registerMetaTileEntity(18003,
+                MetaTileEntitySteamAlloySmelter(GTLiteUtility.gtliteId("steam_alloy_smelter")))
 
             MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
                 MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))

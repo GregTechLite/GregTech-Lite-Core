@@ -7,6 +7,7 @@ import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlueTopaz
+import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
@@ -126,6 +127,7 @@ class GTLiteMaterialFlags
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
             Darmstadtium.addFlags(GENERATE_GEAR)
+            Brass.addFlags(GENERATE_GEAR)
 
             // gearSmall
             Neutronium.addFlags(GENERATE_SMALL_GEAR)
