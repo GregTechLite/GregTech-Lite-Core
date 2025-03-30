@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe
 
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
@@ -68,6 +69,7 @@ class RecipeManager
             RubbersChain.init()
             PolymersChain.init()
             AlloysChain.init()
+            DyesChain.init()
             MicaInsulatorChain.init()
             OxidesChain.init()
             AmmoniaChain.init()

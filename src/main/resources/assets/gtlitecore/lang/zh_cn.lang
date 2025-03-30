@@ -1726,6 +1726,11 @@ gtlitecore.material.ammonium_perrhenate=高铼酸铵
 gtlitecore.material.jade=玉
 gtlitecore.material.jasper=碧玉
 gtlitecore.material.picotite=铬尖晶石
+gtlitecore.material.manganese_monoxide=一氧化锰
+gtlitecore.material.lead_chromate=铬酸铅
+gtlitecore.material.lead_nitrate=硝酸铅
+gtlitecore.material.cobalt_aluminate=铝酸钴
+gtlitecore.material.orpiment=雌黄
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1766,6 +1771,8 @@ gtlitecore.material.blazing_pyrotheum=烈焰之炽焱
 gtlitecore.material.gelid_cryotheum=极寒之凛冰
 gtlitecore.material.tectonic_petrotheum=板块之层岩
 gtlitecore.material.zephyrean_aerotheum=飞扬之清风
+gtlitecore.material.sienna=赭棕
+gtlitecore.material.burnt_sienna=赭红
 
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷
@@ -1817,6 +1824,7 @@ gtlitecore.veins.ore.uvarovite=钙铬榴石矿脉
 gtlitecore.veins.ore.cryolite=冰晶石矿脉
 gtlitecore.veins.ore.plutonium=钚矿脉
 gtlitecore.veins.ore.jade=玉矿脉
+gtlitecore.veins.ore.realgar=雄黄矿脉
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）

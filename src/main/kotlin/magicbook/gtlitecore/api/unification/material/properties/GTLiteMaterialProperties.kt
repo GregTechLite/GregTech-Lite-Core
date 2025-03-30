@@ -30,6 +30,7 @@ import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Silicon
@@ -37,6 +38,7 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Strontium
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
@@ -74,6 +76,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nephelite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Oligoclase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Picotite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
@@ -187,6 +190,9 @@ class GTLiteMaterialProperties
 
             oreProp = Picotite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Picotite, Chrome, Chrome)
+
+            oreProp = Orpiment.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Sulfur, Antimony, Realgar)
 
             // Modified Biotite and Mica properties.
             Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)

@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
+import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Caesium
@@ -679,6 +680,49 @@ class GTLiteMaterials
             .flags(GENERATE_PLATE, GENERATE_LENS)
             .build()
 
+        // 2056 Manganese Monoxide
+        @JvmField
+        val ManganeseMonoxide: Material = Material.Builder(2056, gtliteId("manganese_monoxide"))
+            .dust()
+            .color(0x472400)
+            .components(Manganese, 1, Oxygen, 1)
+            .build()
+
+        // 2057 Lead Chromate
+        @JvmField
+        val LeadChromate: Material = Material.Builder(2057, gtliteId("lead_chromate"))
+            .dust()
+            .color(0xFFFB00).iconSet(SHINY)
+            .components(Lead, 1, Chrome, 1, Oxygen, 4)
+            .build()
+
+        // 2058 Lead Nitrate
+        @JvmField
+        val LeadNitrate: Material = Material.Builder(2058, gtliteId("lead_nitrate"))
+            .dust()
+            .color(0xFFFFFF).iconSet(SHINY)
+            .components(Lead, 1, Nitrogen, 2, Oxygen, 6)
+            .build()
+            .setFormula("Pb(NO3)2", true)
+
+        // 2059 Cobalt Aluminate
+        @JvmField
+        val CobaltAluminate: Material = Material.Builder(2059,  gtliteId("cobalt_aluminate"))
+            .dust()
+            .color(0x1605FF).iconSet(SHINY)
+            .components(Cobalt, 1, Aluminium, 2, Oxygen, 4)
+            .build()
+
+        // 2060 Orpiment
+        @JvmField
+        val Orpiment: Material = Material.Builder(2060, gtliteId("orpiment"))
+            .gem()
+            .ore()
+            .color(0xEBD352).iconSet(EMERALD)
+            .components(Arsenic, 2, Sulfur, 3)
+            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1190,6 +1234,24 @@ class GTLiteMaterials
             .iconSet(AEROTHEUM)
             .components(SiliconDioxide, 2, Saltpeter, 1, Air, 1)
             .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6015 Sienna
+        @JvmField
+        val Sienna: Material = Material.Builder(6015, gtliteId("sienna"))
+            .dust()
+            .color(0x4A3724)
+            .components(ManganeseMonoxide, 1, BandedIron, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 6016 Burnt Sienna
+        @JvmField
+        val BurntSienna: Material = Material.Builder(6016, gtliteId("burnt_sienna"))
+            .dust()
+            .color(0x662E2E)
+            .components(ManganeseMonoxide, 1, BandedIron, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build()
 
         // =======================================================================
