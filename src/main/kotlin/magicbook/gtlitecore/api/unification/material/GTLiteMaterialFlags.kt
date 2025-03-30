@@ -32,6 +32,7 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Potin
@@ -54,6 +55,7 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -118,6 +120,8 @@ class GTLiteMaterialFlags
             Polybenzimidazole.addFlags(GENERATE_FRAME)
             VanadiumSteel.addFlags(GENERATE_FRAME)
             BismuthBronze.addFlags(GENERATE_FRAME)
+            RhodiumPlatedPalladium.addFlags(GENERATE_FRAME)
+            Darmstadtium.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -161,10 +165,14 @@ class GTLiteMaterialFlags
             Hafnium.addFlags(GENERATE_PLATE)
             Graphite.addFlags(GENERATE_PLATE)
             Rhenium.addFlags(GENERATE_PLATE)
+            Uranium235.addFlags(GENERATE_PLATE)
+            Plutonium239.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
             Invar.addFlags(GENERATE_DOUBLE_PLATE)
+            Uranium235.addFlags(GENERATE_DOUBLE_PLATE)
+            Plutonium239.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)

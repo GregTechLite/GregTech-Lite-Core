@@ -18,10 +18,12 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Diesel
 import gregtech.api.unification.material.Materials.Galena
+import gregtech.api.unification.material.Materials.Gasoline
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GraniticMineralSand
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.HeavyFuel
+import gregtech.api.unification.material.Materials.HighOctaneGasoline
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lepidolite
@@ -62,13 +64,15 @@ class MiningDroneAsteroidRecipeProducer
         // TT is the rank tier, T is the recipe tier for all asteroids.
         fun produce() {
 
-            // TT1 Asteroids
+            // TT1 Asteroids (LV-HV)
             for (fuel in arrayOf(
                 LightFuel.getFluid(16000),
                 HeavyFuel.getFluid(14000),
                 Diesel.getFluid(12000),
                 BioDiesel.getFluid(12000),
+                Gasoline.getFluid(10000),
                 CetaneBoostedDiesel.getFluid(8000),
+                HighOctaneGasoline.getFluid(6000),
                 RocketFuel.getFluid(6000),
                 // RP1RocketFuel.getFluid(6000),
                 // DenseHydrazineRocketFuel.getFluid(2000),
@@ -442,13 +446,15 @@ class MiningDroneAsteroidRecipeProducer
 
             }
 
-            // TT2 Asteroids
+            // TT2 Asteroids (MV-EV)
             for (fuel in arrayOf(
-                LightFuel.getFluid(24000),
-                HeavyFuel.getFluid(22000),
+                // LightFuel.getFluid(24000),
+                // HeavyFuel.getFluid(22000),
                 Diesel.getFluid(20000),
                 BioDiesel.getFluid(20000),
+                Gasoline.getFluid(18000),
                 CetaneBoostedDiesel.getFluid(16000),
+                HighOctaneGasoline.getFluid(14000),
                 RocketFuel.getFluid(14000),
                 // RP1RocketFuel.getFluid(14000),
                 // DenseHydrazineRocketFuel.getFluid(10000),
@@ -519,13 +525,15 @@ class MiningDroneAsteroidRecipeProducer
 
             }
 
-            // TT3 Asteroids
+            // TT3 Asteroids (HV-IV)
             for (fuel in arrayOf(
-                LightFuel.getFluid(32000),
-                HeavyFuel.getFluid(30000),
-                Diesel.getFluid(28000),
-                BioDiesel.getFluid(28000),
+                // LightFuel.getFluid(32000),
+                // HeavyFuel.getFluid(30000),
+                // Diesel.getFluid(28000),
+                // BioDiesel.getFluid(28000),
+                // Gasoline.getFluid(26000),
                 CetaneBoostedDiesel.getFluid(24000),
+                HighOctaneGasoline.getFluid(22000),
                 RocketFuel.getFluid(22000),
                 // RP1RocketFuel.getFluid(22000),
                 // DenseHydrazineRocketFuel.getFluid(18000),
@@ -540,6 +548,46 @@ class MiningDroneAsteroidRecipeProducer
 
                 // T1: Zirconium
             }
+
+            // TT4 Asteroids (EV-LuV)
+            for (fuel in arrayOf(
+                // LightFuel.getFluid(40000),
+                // HeavyFuel.getFluid(38000),
+                // Diesel.getFluid(36000),
+                // BioDiesel.getFluid(36000),
+                // Gasoline.getFluid(34000),
+                // CetaneBoostedDiesel.getFluid(32000),
+                HighOctaneGasoline.getFluid(30000),
+                RocketFuel.getFluid(30000),
+                // RP1RocketFuel.getFluid(30000),
+                // DenseHydrazineRocketFuel.getFluid(26000),
+                // MethylhydrazineNitrateRocketFuel.getFluid(26000)
+            ))
+            {
+                // ...
+            }
+
+            // TT5 Asteroids (IV-ZPM)
+            for (fuel in arrayOf(
+                // LightFuel.getFluid(48000),
+                // HeavyFuel.getFluid(46000),
+                // Diesel.getFluid(44000),
+                // BioDiesel.getFluid(44000),
+                // Gasoline.getFluid(42000),
+                // CetaneBoostedDiesel.getFluid(40000),
+                // HighOctaneGasoline.getFluid(38000),
+                RocketFuel.getFluid(38000),
+                // RP1RocketFuel.getFluid(38000),
+                // DenseHydrazineRocketFuel.getFluid(34000),
+                // MethylhydrazineNitrateRocketFuel.getFluid(34000)
+            ))
+            {
+                // ...
+            }
+
+            // TT6 Asteroids (LuV-UV)
+
+            // ...
 
         }
 
