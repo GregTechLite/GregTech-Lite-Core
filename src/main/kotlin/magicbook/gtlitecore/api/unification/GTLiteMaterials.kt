@@ -368,7 +368,7 @@ class GTLiteMaterials
         @JvmField
         val Iron3Sulfate: Material = Material.Builder(2022, gtliteId("iron_sulfate"))
             .dust()
-            .colorAverage()
+            .color(0xB09D99)
             .components(Iron, 2, Sulfur, 3, Oxygen, 12)
             .flags(DISABLE_DECOMPOSITION)
             .build()

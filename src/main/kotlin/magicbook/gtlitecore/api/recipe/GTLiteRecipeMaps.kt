@@ -642,13 +642,18 @@ class GTLiteRecipeMaps
             RecipeMaps.FORGE_HAMMER_RECIPES.maxOutputs = 2
             RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidOutputs = 2
 
-            //
+            // (1,1,2,0)
             RecipeMaps.MASS_FABRICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
 
-            //
+            // (1,1,2,1) -> (1,1,3,1)
             RecipeMaps.REPLICATOR_RECIPES.maxFluidInputs = 3
             RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
             RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+
+            // (1,1,9,1) -> (1,2,9,1)
+            RecipeMaps.ARC_FURNACE_RECIPES.maxFluidInputs = 2
+            RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_1, false)
+            RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setFluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false)
         }
 
     }
