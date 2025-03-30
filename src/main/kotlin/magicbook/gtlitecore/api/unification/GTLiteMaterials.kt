@@ -769,10 +769,10 @@ class GTLiteMaterials
             .color(0x7878B4).iconSet(METALLIC)
             .components(Iron, 7, Aluminium, 4, Nickel, 2, Chrome, 1, Sulfur, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
-            .blast { b -> b
-                .temp(3850, BlastProperty.GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
-                .blastStats(VA[HV], 24 * SECOND)
-                .vacuumStats(VA[MV], 2 * SECOND)
+            .blast { b ->
+                b.temp(3850, BlastProperty.GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
+                    .blastStats(VA[HV], 24 * SECOND)
+                    .vacuumStats(VA[MV], 2 * SECOND)
             }
             .build()
 
@@ -896,10 +896,11 @@ class GTLiteMaterials
             .color(0x37BF7E).iconSet(SHINY)
             .components(VanadiumSteel, 4, Niobium, 2, Chrome, 3, Nickel, 4)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
-            .blast { b -> b
-                .temp(4800, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
-                .blastStats(VA[IV], 34 * SECOND)
-                .vacuumStats(VA[EV], 17 * SECOND)
+            .blast { b ->
+                b
+                    .temp(4800, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
+                    .blastStats(VA[IV], 34 * SECOND)
+                    .vacuumStats(VA[EV], 17 * SECOND)
             }
             .build()
 
@@ -911,10 +912,11 @@ class GTLiteMaterials
             .color(0x7777F1).iconSet(BRIGHT)
             .components(Nickel, 23, Manganese, 2, Copper, 10, Aluminium, 4, Titanium, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
-            .blast { b -> b
-                .temp(4500, BlastProperty.GasTier.MID) // RTM Alloy
-                .blastStats(VA[IV], 27 * SECOND)
-                .vacuumStats(VA[HV], 20 * SECOND)
+            .blast { b ->
+                b
+                    .temp(4500, BlastProperty.GasTier.MID) // RTM Alloy
+                    .blastStats(VA[IV], 27 * SECOND)
+                    .vacuumStats(VA[HV], 20 * SECOND)
             }
             .build()
 
@@ -956,10 +958,10 @@ class GTLiteMaterials
             .color(0x56566A).iconSet(METALLIC)
             .components(Tantalum, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR)
-            .blast { b -> b
-                .temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
-                .blastStats(VA[EV], 60 * SECOND)
-                .vacuumStats(VA[HV], 20 * SECOND)
+            .blast { b ->
+                b.temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
+                    .blastStats(VA[EV], 60 * SECOND)
+                    .vacuumStats(VA[HV], 20 * SECOND)
             }
             .build()
 
@@ -1322,144 +1324,6 @@ class GTLiteMaterials
             .liquid(FluidBuilder().temperature(125))
             .color(UUMatter.materialRGB - FermionicUUMatter.materialRGB)
             .build()
-
-        fun setMaterialProperties()
-        {
-            // DustProperty can be overridden to IngotProperty or GemProperty yet,
-            // please see: MaterialPropertiesMixin#setProperty().
-            sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238)
-                .forEach { addIngot(it) }
-
-            sequenceOf(Rubidium).forEach { addDust(it) }
-
-            sequenceOf(Uranium238).forEach { addLiquid(it) }
-
-            // Let andradite can generate in world natural.
-            Andradite.setProperty(PropertyKey.ORE, OreProperty())
-            var oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Andradite, Andradite, Calcium)
-
-            oreProp = Dolomite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Dolomite, Calcium, Magnesium)
-
-            oreProp = Tanzanite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Tanzanite, Opal, Aluminium)
-
-            oreProp = Azurite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Iron, Copper, Malachite)
-            oreProp.setWashedIn(SodiumPersulfate)
-
-            oreProp = Forsterite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Forsterite, Magnesium, Manganese)
-
-            oreProp = Augite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Calcite, SiliconDioxide, Kaolinite)
-
-            oreProp = Albite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Albite, Sodium, Silicon)
-
-            oreProp = Fluorite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Fluorite, Calcium, Calcium)
-
-            oreProp = Anorthite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Calcium, Silicon, Aluminium)
-
-            oreProp = Oligoclase.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Anorthite, Oligoclase, Aluminium)
-
-            oreProp = Labradorite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Albite, Silicon, Aluminium)
-
-            oreProp = Bytownite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Anorthite, Calcium, Aluminium)
-
-            oreProp = Tenorite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Iron, Manganese, Malachite)
-
-            oreProp = Cuprite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Iron, Antimony, Malachite)
-
-            oreProp = Wollastonite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Wollastonite, Calcium, Silicon)
-
-            oreProp = Fluorapatite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Fluorapatite, Apatite, Phosphate)
-
-            oreProp = Kaolinite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Clay, Clay, SiliconDioxide)
-
-            oreProp = Celestine.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Celestine, Celestine, StrontiumOxide)
-
-            oreProp = Strontianite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Strontianite, Calcite, StrontiumOxide)
-
-            oreProp = Muscovite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Mica, Muscovite, Phlogopite)
-
-            oreProp = Phlogopite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Muscovite, Phlogopite, Mica)
-
-            oreProp = Baddeleyite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Baddeleyite, Baddeleyite, Zircon)
-
-            oreProp = Nephelite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Nephelite, Albite, Silicon)
-
-            oreProp = Aegirine.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Aegirine, Ferrosilite, Iron)
-
-            oreProp = Cryolite.getProperty(PropertyKey.ORE)
-            oreProp.setOreByProducts(Alumina, Alumina, Sodium)
-
-            // Modified Biotite and Mica properties.
-            Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
-            Biotite.setProperty(PropertyKey.ORE, OreProperty())
-            Biotite.getProperty(PropertyKey.ORE).setOreByProducts(Phlogopite, Muscovite, Biotite)
-
-            Mica.setFormula("KAl2(AlSi3O10)F2", true)
-
-            // Modified Ferrosilite properties.
-            Ferrosilite.setProperty(PropertyKey.ORE, OreProperty())
-            Ferrosilite.getProperty(PropertyKey.ORE).setOreByProducts(Ferrosilite, SiliconDioxide, Iron)
-
-            // Modified Bauxite formulas.
-            Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
-
-            // Modified Uvarovite properties.
-            Uvarovite.setProperty(PropertyKey.ORE, OreProperty())
-            Uvarovite.getProperty(PropertyKey.ORE).setOreByProducts(Quartzite, Uvarovite, Lizardite)
-
-            // Modified molybdenite properties.
-            Molybdenite.getProperty(PropertyKey.ORE).directSmeltResult = null
-
-            // Modified plutonium-239 properties.
-            Plutonium239.setProperty(PropertyKey.ORE, OreProperty())
-            Plutonium239.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
-
-            // Add fluid pipe properties.
-            Inconel718.setProperty(PropertyKey.FLUID_PIPE,
-                FluidPipeProperties(2010, 175,
-                    true, true, true, false))
-
-            // Add blast properties.
-            Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
-            Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
-
-            Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
-            Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
-            Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
-
-        }
-
-        // Quick-path of add MaterialProperty to a material.
-        private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
-        private fun addGem(material: Material) = material.setProperty(PropertyKey.GEM, GemProperty())
-        private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
-        private fun addLiquid(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
-        private fun addGas(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.GAS, FluidBuilder()))
-        private fun addPlasma(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.PLASMA, FluidBuilder()))
-
     }
 
 }
