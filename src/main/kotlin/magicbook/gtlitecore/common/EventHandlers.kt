@@ -7,7 +7,6 @@ import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.recipe.property.storage.RecipePropertyStorages
-import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet
 import magicbook.gtlitecore.api.unification.material.infos.MaterialInfoCache
