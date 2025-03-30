@@ -1332,6 +1332,20 @@ class GTLiteMaterials
             .liquid(FluidBuilder().temperature(125))
             .color(UUMatter.materialRGB - FermionicUUMatter.materialRGB)
             .build()
+
+        // 12104 Rich Nitrogen Mixture
+        @JvmField
+        val RichNitrogenMixture: Material = Material.Builder(12104, gtliteId("rich_nitrogen_mixture"))
+            .gas(FluidBuilder().temperature(400))
+            .color(0x6891D8)
+            .build()
+
+        // 12105 Rich Ammonia Mixture
+        @JvmField
+        val RichAmmoniaMixture: Material = Material.Builder(12105, gtliteId("rich_ammonia_mixture"))
+            .gas(FluidBuilder().temperature(400))
+            .color(0x708ACD)
+            .build()
     }
 
 }

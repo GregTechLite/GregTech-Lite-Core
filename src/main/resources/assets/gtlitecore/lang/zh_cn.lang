@@ -1788,6 +1788,8 @@ gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质
 gtlitecore.material.bosonic_uu_matter=玻色子UU物质
+gtlitecore.material.rich_nitrogen_mixture=富氮混合物
+gtlitecore.material.rich_ammonia_mixture=富氨混合物
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

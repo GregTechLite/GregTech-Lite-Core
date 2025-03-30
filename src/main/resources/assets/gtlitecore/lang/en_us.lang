@@ -1787,6 +1787,8 @@ gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
 gtlitecore.material.bosonic_uu_matter=Bosonic UU Matter
+gtlitecore.material.rich_nitrogen_mixture=Rich Nitrogen Mixture
+gtlitecore.material.rich_ammonia_mixture=Rich Ammonium Mixture
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

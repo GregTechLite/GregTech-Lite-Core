@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe
 
+import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
@@ -67,6 +68,7 @@ class RecipeManager
             PolymersChain.init()
             MicaInsulatorChain.init()
             OxidesChain.init()
+            AmmoniaChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
