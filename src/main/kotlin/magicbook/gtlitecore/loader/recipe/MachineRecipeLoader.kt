@@ -9,6 +9,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.items.OreDictNames
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
@@ -71,6 +72,7 @@ import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockGlassCasing
+import gregtech.common.blocks.BlockMetalCasing
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
@@ -137,6 +139,7 @@ import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
+import gregtech.common.metatileentities.MetaTileEntities.STEAM_COMPRESSOR_BRONZE
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
@@ -222,6 +225,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
@@ -530,6 +534,14 @@ class MachineRecipeLoader
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // Steam Compressor
+            ModHandler.addShapedRecipe(true, "steam_compressor", STEAM_COMPRESSOR.stackForm,
+                "CPC", "GFG", "CPC",
+                'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS),
+                'P', OreDictNames.craftingPiston,
+                'F', STEAM_COMPRESSOR_BRONZE.stackForm,
+                'G', UnificationEntry(gear, Potin))
 
             // Mining Drone Airport
             ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,

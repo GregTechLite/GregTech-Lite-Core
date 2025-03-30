@@ -1317,6 +1317,8 @@ gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f�
 gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
 gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
+gtlitecore.machine.steam_compressor.name=大型蒸汽压缩机
+
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机

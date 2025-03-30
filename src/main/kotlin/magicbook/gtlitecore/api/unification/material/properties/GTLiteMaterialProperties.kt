@@ -39,6 +39,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
@@ -93,7 +94,7 @@ class GTLiteMaterialProperties
 
             sequenceOf(Rubidium).forEach { addDust(it) }
 
-            sequenceOf(Uranium238).forEach { addLiquid(it) }
+            sequenceOf(Uranium238, Zircaloy4, Inconel718).forEach { addLiquid(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())

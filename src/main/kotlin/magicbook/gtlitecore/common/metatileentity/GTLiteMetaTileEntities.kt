@@ -61,6 +61,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
+import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamCompressor
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
@@ -170,6 +171,7 @@ class GTLiteMetaTileEntities
 
         // Multiblock machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
+        lateinit var STEAM_COMPRESSOR: MetaTileEntitySteamCompressor
 
         lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
@@ -582,6 +584,9 @@ class GTLiteMetaTileEntities
             COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
                 MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
 
+            STEAM_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18002,
+                MetaTileEntitySteamCompressor(GTLiteUtility.gtliteId("steam_compressor")))
+
             MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
                 MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
 
@@ -764,6 +769,7 @@ class GTLiteMetaTileEntities
             NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            STEAM_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
