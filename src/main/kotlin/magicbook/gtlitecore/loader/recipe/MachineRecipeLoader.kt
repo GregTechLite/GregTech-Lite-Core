@@ -229,6 +229,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ALLOY_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ENGINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
@@ -553,6 +554,15 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, Brass),
                 'P', UnificationEntry(pipeNormalFluid, Bronze),
                 'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
+
+            // Steam Engine
+            ModHandler.addShapedRecipe(true, "steam_engine", STEAM_ENGINE.stackForm,
+                "FPF", "PCP", "SGS",
+                'C', GTLiteMetaBlocks.METAL_CASING_02.getItemVariant(BlockMetalCasing02.MetalCasingType.BRASS),
+                'S', UnificationEntry(gearSmall, Bronze),
+                'G', UnificationEntry(gear, Steel),
+                'F', UnificationEntry(pipeSmallFluid, Potin),
+                'P', UnificationEntry(plate, Brass))
 
             // Mining Drone Airport
             ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,

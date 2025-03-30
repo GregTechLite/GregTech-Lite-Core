@@ -1,6 +1,11 @@
 package magicbook.gtlitecore.api.pattern
 
+import gregtech.api.GTValues
+import gregtech.api.capability.GregtechCapabilities
+import gregtech.api.capability.IEnergyContainer
+import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
+import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.pattern.TraceabilityPredicate
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier
@@ -8,6 +13,7 @@ import magicbook.gtlitecore.api.pattern.predicate.TierTraceabilityPredicate
 import net.minecraft.block.state.IBlockState
 import java.util.function.Supplier
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteTraceabilityPredicate
 {
 
@@ -177,6 +183,20 @@ class GTLiteTraceabilityPredicate
             {
                 return@TraceabilityPredicate false
             }
+        }
+
+        @JvmStatic
+        fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate
+        {
+            val abilities = MultiblockAbility.REGISTRY[MultiblockAbility.OUTPUT_ENERGY]
+            abilities!!.addAll(MultiblockAbility.REGISTRY[MultiblockAbility.SUBSTATION_OUTPUT_ENERGY]!!)
+            return MultiblockWithDisplayBase.metaTileEntities(*abilities
+                .filter { mte ->
+                    val container = mte.getCapability<IEnergyContainer>(GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER, null)
+                    container != null && container.outputVoltage <= GTValues.V[voltageTier]
+                }.toTypedArray())
+                .addTooltip("gregtech.multiblock.pattern.error.limited.1", GTValues.VN[GTValues.LV])
+                .addTooltip("gregtech.multiblock.pattern.error.limited.0", GTValues.VN[voltageTier])
         }
 
     }

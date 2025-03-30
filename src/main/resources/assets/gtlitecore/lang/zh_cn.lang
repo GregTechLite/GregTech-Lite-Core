@@ -381,6 +381,7 @@ tile.metal_casing_02.aluminium_bronze.name=热稳定铝青铜机器外壳
 tile.metal_casing_02.hastelloy_n.name=耐高温哈斯特洛伊合金-N机器外壳
 tile.metal_casing_02.rene_n5.name=时效硬化镍基高温合金-N5机器外壳
 tile.metal_casing_02.bismuth_bronze.name=食品级铋青铜机器外壳
+tile.metal_casing_02.brass.name=工业级黄铜机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1321,6 +1322,8 @@ gtlitecore.machine.steam_compressor.name=大型蒸汽压缩机
 
 gtlitecore.machine.steam_alloy_smelter.name=大型蒸汽合金炉
 
+gtlitecore.machine.steam_engine.name=工业蒸汽引擎
+
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
@@ -1817,6 +1820,7 @@ gtlitecore.tooltip.potion.header=§6食用后:
 gtlitecore.tooltip.potion.each=   §a%4$s%%§r 概率获得 §c%3$s§r 刻的§e%1$s %2$s§r 效果
 
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
+gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
 
 # Creative Tabs
 itemGroup.gtlite=格雷科技精简版

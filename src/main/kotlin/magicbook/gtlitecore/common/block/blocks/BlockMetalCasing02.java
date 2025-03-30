@@ -56,7 +56,8 @@ public class BlockMetalCasing02 extends VariantBlock<BlockMetalCasing02.MetalCas
         ALUMINIUM_BRONZE("aluminium_bronze"),
         HASTELLOY_N("hastelloy_n"),
         RENE_N5("rene_n5"),
-        BISMUTH_BRONZE("bismuth_bronze");
+        BISMUTH_BRONZE("bismuth_bronze"),
+        BRASS("brass");
 
         private final String name;
     }

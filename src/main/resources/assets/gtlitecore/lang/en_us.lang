@@ -381,6 +381,7 @@ tile.metal_casing_02.aluminium_bronze.name=Thermally Stable Aluminium Bronze Mac
 tile.metal_casing_02.hastelloy_n.name=Heatproof Hastelloy-N Machine Casing
 tile.metal_casing_02.rene_n5.name=Time Hardening René-N5 Machine Casing
 tile.metal_casing_02.bismuth_bronze.name=Food Grade Bismuth Bronze
+tile.metal_casing_02.brass.name=Industrial Brass Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1321,6 +1322,8 @@ gtlitecore.machine.steam_compressor.name=Large Steam Compressor
 
 gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
 
+gtlitecore.machine.steam_engine.name=Industrial Steam Engine
+
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
@@ -1816,6 +1819,7 @@ gtlitecore.tooltip.potion.header=§6Contains effects:
 gtlitecore.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%§r chance of happening
 
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
+gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
 
 # Creative Tabs
 itemGroup.gtlite=GregTech Lite

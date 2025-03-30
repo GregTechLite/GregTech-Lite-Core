@@ -123,6 +123,7 @@ class GTLiteMaterialFlags
             BismuthBronze.addFlags(GENERATE_FRAME)
             RhodiumPlatedPalladium.addFlags(GENERATE_FRAME)
             Darmstadtium.addFlags(GENERATE_FRAME)
+            Brass.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)

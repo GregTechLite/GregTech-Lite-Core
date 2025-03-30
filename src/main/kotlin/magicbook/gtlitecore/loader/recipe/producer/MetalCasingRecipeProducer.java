@@ -16,6 +16,7 @@ import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.BismuthBronze;
 import static gregtech.api.unification.material.Materials.BlackSteel;
 import static gregtech.api.unification.material.Materials.BlueSteel;
+import static gregtech.api.unification.material.Materials.Brass;
 import static gregtech.api.unification.material.Materials.Iridium;
 import static gregtech.api.unification.material.Materials.Polybenzimidazole;
 import static gregtech.api.unification.material.Materials.Potin;
@@ -203,6 +204,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
                 BlockMetalCasing02.MetalCasingType.BISMUTH_BRONZE,
                 BismuthBronze);
+
+        // Brass
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_02,
+                BlockMetalCasing02.MetalCasingType.BRASS,
+                Brass);
 
     }
 
