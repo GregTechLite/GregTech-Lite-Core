@@ -11,9 +11,11 @@ import magicbook.gtlitecore.client.ClientEventHandlers;
 import magicbook.gtlitecore.common.CommonProxy;
 import magicbook.gtlitecore.common.EventHandlers;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.command.CommandMaterialComponent;
 import magicbook.gtlitecore.common.cover.GTLiteCoverBehaviors;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
+import magicbook.gtlitecore.core.command.CommandManager;
 import magicbook.gtlitecore.core.module.GTLiteModules;
 import magicbook.gtlitecore.loader.dungeon.DungeonLootLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,6 +24,7 @@ import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.ApiStatus;
@@ -79,6 +82,15 @@ public class CoreModule implements IModule
     public void postInit(FMLPostInitializationEvent event)
     {
 
+    }
+
+    @Override
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        CommandManager commandManager = CommandManager.getInstance();
+        GTLiteAPI.commandManager = commandManager;
+        commandManager.registerServerCommand(event);
+        GTLiteAPI.commandManager.addCommand(new CommandMaterialComponent());
     }
 
     /* --------------------------------------------------------------------------------------- */

@@ -1826,3 +1826,10 @@ gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
 itemGroup.gtlite=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器
 itemGroup.gtlite.decoration=格雷科技精简版 | 装饰
+
+# Commands
+gtlitecore.command.component.usage=用法：/gtlite component
+gtlitecore.command.component.print=材料成分：%s
+gtlitecore.command.component.no_item=必须在主/副手持有物品时执行此命令。
+gtlitecore.command.component.no_component=当前手持物品没有材料成分。
+gtlitecore.command.component.not_player=这条命令只能由玩家使用。

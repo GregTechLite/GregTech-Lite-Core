@@ -1825,3 +1825,10 @@ gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
 itemGroup.gtlite=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines
 itemGroup.gtlite.decoration=GregTech Lite | Decorations
+
+# Commands
+gtlitecore.command.component.usage=Usage: /gtlite component
+gtlitecore.command.component.print=Material Component: %s
+gtlitecore.command.component.no_item=Must has item on main/off hand when command executed.
+gtlitecore.command.component.no_component=Item has not material component yet.
+gtlitecore.command.component.not_player=This command can only executed by player.

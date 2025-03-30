@@ -6,6 +6,7 @@ import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
+import magicbook.gtlitecore.api.command.ICommandManager;
 import magicbook.gtlitecore.api.module.IModuleManager;
 import magicbook.gtlitecore.api.utils.Mods;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
@@ -28,6 +29,8 @@ public class GTLiteAPI
     public static Object instance;
     // Will be available at the Construction stage.
     public static IModuleManager moduleManager;
+    // Will be available at the Server-Starting stage.
+    public static ICommandManager commandManager;
 
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- Creative Tabs -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     // Total CreativeTabs of gtlitecore, this is default settings for many contents in
