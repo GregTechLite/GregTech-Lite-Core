@@ -81,7 +81,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
@@ -282,16 +281,6 @@ class MixerRecipes
                 .output(dust, BabbitAlloy, 50)
                 .EUt(VA[MV].toLong())
                 .duration(40 * SECOND)
-                .buildAndRegister()
-
-            // Silicon Carbide
-            MIXER_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .input(dust, Silicon, 1)
-                .input(dust, Carbon, 1)
-                .output(dust, SiliconCarbide, 2)
-                .EUt(VA[EV].toLong())
-                .duration(5 * SECOND)
                 .buildAndRegister()
 
             // HSLA Steel

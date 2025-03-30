@@ -650,7 +650,8 @@ class GTLiteRecipeMaps
             RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
             RecipeMaps.REPLICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
 
-            // (1,1,9,1) -> (1,2,9,1)
+            // (1,1,9,1) -> (4,2,9,1)
+            RecipeMaps.ARC_FURNACE_RECIPES.maxInputs = 4
             RecipeMaps.ARC_FURNACE_RECIPES.maxFluidInputs = 2
             RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_1, false)
             RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setFluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false)
