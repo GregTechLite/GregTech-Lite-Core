@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe.producer
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -7,7 +8,10 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.BasalticMineralSand
+import gregtech.api.unification.material.Materials.Bauxite
+import gregtech.api.unification.material.Materials.Bentonite
 import gregtech.api.unification.material.Materials.BioDiesel
+import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.BrownLimonite
 import gregtech.api.unification.material.Materials.Cassiterite
 import gregtech.api.unification.material.Materials.CassiteriteSand
@@ -17,6 +21,7 @@ import gregtech.api.unification.material.Materials.Coal
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Diesel
+import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Galena
 import gregtech.api.unification.material.Materials.Gasoline
 import gregtech.api.unification.material.Materials.Gold
@@ -25,11 +30,14 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.HeavyFuel
 import gregtech.api.unification.material.Materials.HighOctaneGasoline
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Kyanite
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lepidolite
 import gregtech.api.unification.material.Materials.LightFuel
 import gregtech.api.unification.material.Materials.Magnetite
 import gregtech.api.unification.material.Materials.Malachite
+import gregtech.api.unification.material.Materials.Mica
+import gregtech.api.unification.material.Materials.Pollucite
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RockSalt
@@ -39,17 +47,25 @@ import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Spodumene
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Trona
 import gregtech.api.unification.material.Materials.VanadiumMagnetite
 import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.material.Materials.Zeolite
 import gregtech.api.unification.ore.OrePrefix.ore
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MINING_DRONE_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Augite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cuprite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kaolinite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_EV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_HV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_MV
@@ -461,19 +477,112 @@ class MiningDroneAsteroidRecipeProducer
                 // MethylhydrazineNitrateRocketFuel.getFluid(10000)
             ))
             {
-                // T1: Mica Asteroid
+                // T1: Mica Asteroid (Mica-Kyanite-Bauxite-Pollucite-Muscovite-Phlogopite-Biotite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .notConsumable(MINING_DRONE_MV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Mica, 25, 6400, 0)
+                    .chancedOutput(ore, Kyanite, 22, 5500, 0)
+                    .chancedOutput(ore, Bauxite, 18, 4600, 0)
+                    .chancedOutput(ore, Pollucite, 16, 4000, 0)
+                    .chancedOutput(ore, Muscovite, 12, 3600, 0)
+                    .chancedOutput(ore, Phlogopite, 8, 2400, 0)
+                    .chancedOutput(ore, Biotite, 4, 1200, 0)
+                    .EUt(VA[MV].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
 
-                // T2: Mica Asteroid
+                // T2: Mica Asteroid (Mica-Kyanite-Bauxite-Pollucite-Muscovite-Phlogopite-Biotite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .notConsumable(MINING_DRONE_HV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Mica, 64, 8000, 0)
+                    .chancedOutput(ore, Kyanite, 44, 7100, 0)
+                    .chancedOutput(ore, Bauxite, 36, 6200, 0)
+                    .chancedOutput(ore, Pollucite, 32, 5400, 0)
+                    .chancedOutput(ore, Muscovite, 24, 4000, 0)
+                    .chancedOutput(ore, Phlogopite, 16, 3600, 0)
+                    .chancedOutput(ore, Biotite, 8, 2400, 0)
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
 
-                // T3: Mica Asteroid
+                // T3: Mica Asteroid (Mica-Kyanite-Bauxite-Pollucite-Muscovite-Phlogopite-Biotite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .notConsumable(MINING_DRONE_EV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Mica, 64, 9000, 0)
+                    .chancedOutput(ore, Mica, 48, 9000, 0)
+                    .chancedOutput(ore, Bauxite, 64, 8400, 0)
+                    .chancedOutput(ore, Bauxite, 32, 8400, 0)
+                    .chancedOutput(ore, Pollucite, 64, 7500, 0)
+                    .chancedOutput(ore, Pollucite, 24, 7500, 0)
+                    .chancedOutput(ore, Muscovite, 64, 6300, 0)
+                    .chancedOutput(ore, Phlogopite, 48, 5600, 0)
+                    .chancedOutput(ore, Biotite, 32, 4800, 0)
+                    .EUt(VA[EV].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
 
-                // T1: Augite Asteroid
+                // T1: Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(10)
+                    .notConsumable(MINING_DRONE_MV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Kaolinite, 30, 6000, 0)
+                    .chancedOutput(ore, Bentonite, 24, 5500, 0)
+                    .chancedOutput(ore, Augite, 18, 4700, 0)
+                    .chancedOutput(ore, Ferrosilite, 16, 4200, 0)
+                    .chancedOutput(ore, Spodumene, 12, 3000, 0)
+                    .chancedOutput(ore, Dolomite, 8, 2400, 0)
+                    .chancedOutput(ore, Wollastonite, 6, 1800, 0)
+                    .chancedOutput(ore, Trona, 4, 1000, 0)
+                    .EUt(VA[MV].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
 
-                // T2: Augite Asteroid
+                // T2: Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(10)
+                    .notConsumable(MINING_DRONE_HV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Kaolinite, 64, 7200, 0)
+                    .chancedOutput(ore, Bentonite, 48, 6400, 0)
+                    .chancedOutput(ore, Augite, 36, 5500, 0)
+                    .chancedOutput(ore, Ferrosilite, 32, 4800, 0)
+                    .chancedOutput(ore, Spodumene, 24, 4200, 0)
+                    .chancedOutput(ore, Dolomite, 18, 3600, 0)
+                    .chancedOutput(ore, Wollastonite, 12, 2900, 0)
+                    .chancedOutput(ore, Trona, 8, 2400, 0)
+                    .EUt(VA[HV].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
 
-                // T3: Augite Asteroid
+                // T3: Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(10)
+                    .notConsumable(MINING_DRONE_EV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Kaolinite, 64, 8600, 0)
+                    .chancedOutput(ore, Kaolinite, 64, 8600, 0)
+                    .chancedOutput(ore, Augite, 64, 7800, 0)
+                    .chancedOutput(ore, Augite, 48, 7800, 0)
+                    .chancedOutput(ore, Ferrosilite, 64, 6400, 0)
+                    .chancedOutput(ore, Ferrosilite, 32, 6400, 0)
+                    .chancedOutput(ore, Spodumene, 64, 5700, 0)
+                    .chancedOutput(ore, Spodumene, 24, 5700, 0)
+                    .chancedOutput(ore, Dolomite, 64, 4900, 0)
+                    .chancedOutput(ore, Dolomite, 12, 4900, 0)
+                    .chancedOutput(ore, Wollastonite, 64, 4200, 0)
+                    .chancedOutput(ore, Trona, 48, 3600, 0)
+                    .EUt(VA[EV].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
 
@@ -501,19 +610,19 @@ class MiningDroneAsteroidRecipeProducer
 
                 // -----------------------------------------------------------------------------------------------------
 
-                // T1: Various Gems Asteroid 1
+                // T1: Various Gems Asteroid 1 (Diamond-Ruby-Emerald-Olivine-Sapphire-GreenSapphire-Lapis-Lazurite-Sodalite-CertusQuartz-Topaz-BlueTopaz-Amethyst-Opal)
 
-                // T2: Various Gems Asteroid 1
+                // T2: Various Gems Asteroid 1 (Diamond-Ruby-Emerald-Olivine-Sapphire-GreenSapphire-Lapis-Lazurite-Sodalite-CertusQuartz-Topaz-BlueTopaz-Amethyst-Opal)
 
-                // T3: Various Gems Asteroid 1
+                // T3: Various Gems Asteroid 1 (Diamond-Ruby-Emerald-Olivine-Sapphire-GreenSapphire-Lapis-Lazurite-Sodalite-CertusQuartz-Topaz-BlueTopaz-Amethyst-Opal)
 
                 // -----------------------------------------------------------------------------------------------------
 
-                // T1: Various Gems Asteroid 2
+                // T1: Various Gems Asteroid 2 (Almandine-Andradite-Grossular-Pyrope-Spessartine-Uvarovite-Tanzanite-Quartzite-Realgar-Opriment-Apatite-GarnetRed-GarnetYellow-Zircon)
 
-                // T2: Various Gems Asteroid 2
+                // T2: Various Gems Asteroid 2 (Almandine-Andradite-Grossular-Pyrope-Spessartine-Uvarovite-Tanzanite-Quartzite-Realgar-Opriment-Apatite-GarnetRed-GarnetYellow-Zircon)
 
-                // T3: Various Gems Asteroid 3
+                // T3: Various Gems Asteroid 3 (Almandine-Andradite-Grossular-Pyrope-Spessartine-Uvarovite-Tanzanite-Quartzite-Realgar-Opriment-Apatite-GarnetRed-GarnetYellow-Zircon)
 
                 // -----------------------------------------------------------------------------------------------------
 
