@@ -1,20 +1,31 @@
 package magicbook.gtlitecore.loader.recipe.producer
 
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.GTValues.VHA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
+import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
+import gregtech.api.unification.material.Materials.BlueAlloy
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.common.items.MetaItems.CRYSTAL_ASSEMBLY_LUV
@@ -70,16 +81,58 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_AS
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_COMPUTER_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_MAINFRAME_MAX
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_PROCESSOR_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_RAM_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SIMPLE_SOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SOC_CHIP
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
 
+/**
+ * CAL recipe producer and its utility methods.
+ *
+ * This producer add all circuit recipes and its scanning recipes for CAL, the raw materials
+ * processing please see [WrapItemRecipeProducer].
+ *
+ * Here's the rule of CAL recipes:
+ * - **Bolt Reduction**: If CAL recipe needs >64x bolt, then regularized it to 64x.
+ * - **Same Soldering**: CAL used same amount soldering of Circuit Assembler recipes.
+ * - **Advanced Recipes**: In CAL recipe, can use higher SMD to change lower SMD:
+ *    - SMD -> Advanced SMD: Amount 4:1, Duration / 4;
+ *    - Advanced SMD -> Gooware SMD: Amount 4:1, Duration / 4;
+ *    - Gooware SMD -> Optical SMD: Amount 4:1 (16:1), Duration / 4 (/16);
+ *    - Optical SMD -> Spintronic SMD: Amount 4:1 (64:1), Duration / 4 (/64);
+ *    - Spintronic SMD -> Cosmic SMD: Amount 4:1 (256:1), Duration / 4 (/256);
+ *    - Cosmic SMD -> Supracausal SMD: Amount 4:1 (512:1), Duration / 4 (/512);
+ * - **Duration Buffing**: For example, if a circuit in Circuit Assembler needs 10s,
+ *   we see that 10s * 16 = 160s, but the actual wrapped recipe in CAL needs 120s,
+ *   even 60s (lower than original duration); another situation is one and another
+ *   circuit has same duration but the first one has lower tier than the second one,
+ *   in that time should balance the duration (the lower one should have lower duration
+ *   consumed, and the higher one should have higher duration consumed).
+ * - **Wire Conversion**: Used [wireGtHex] when used [wireGtSingle] in Circuit Assembly
+ *   recipe, used [wireGtQuadruple] when used [wireFine] in Circuit Assembly recipe.
+ */
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CircuitAssemblyLineRecipeProducer
 {
@@ -90,15 +143,6 @@ class CircuitAssemblyLineRecipeProducer
         @JvmField
         val INFO_NBT_NAME = "CircuitInfo"
 
-        /**
-         * Raw rules:
-         *
-         * - If recipe needs bolt number >64, then regularized it to 64.
-         * - Used same soldering consumed of Circuit Assembler recipes.
-         * - Each 4x SMD -> 1x Advanced SMD, each 4x Advanced SMD -> 1x Gooware SMD, ...
-         * - Has duration buffing, e.g. original duration 10s, we see that 10s * 16 = 160s,
-         *   but the actual wrapped duration should be 60s (160s - 100s).
-         */
         fun produce()
         {
             addCircuit(VACUUM_TUBE)
@@ -240,6 +284,284 @@ class CircuitAssemblyLineRecipeProducer
                 .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
                 .circuit(getCircuit(INTEGRATED_CIRCUIT_HV))
                 .buildAndRegister()
+
+            // T3: Processor
+
+            // NAND Chip
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_GOOD_CIRCUIT_BOARD)
+                .input(WRAP_SIMPLE_SOC_CHIP)
+                .input(bolt, RedAlloy, 32)
+                .input(wireGtQuadruple, Tin, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(NAND_CHIP_ULV, 64)
+                .output(NAND_CHIP_ULV, 64)
+                .EUt(VA[MV].toLong())
+                .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+                .circuit(getCircuit(NAND_CHIP_ULV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(WRAP_SIMPLE_SOC_CHIP)
+                .input(bolt, RedAlloy, 32)
+                .input(wireGtQuadruple, Tin, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(NAND_CHIP_ULV, 64)
+                .output(NAND_CHIP_ULV, 64)
+                .output(NAND_CHIP_ULV, 64)
+                .output(NAND_CHIP_ULV, 64)
+                .EUt(VA[MV].toLong())
+                .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+                .circuit(getCircuit(NAND_CHIP_ULV))
+                .buildAndRegister()
+
+            // Microprocessor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(WRAP_CPU_CHIP)
+                .input(WRAP_SMD_RESISTOR, 2)
+                .input(WRAP_SMD_CAPACITOR, 2)
+                .input(WRAP_SMD_TRANSISTOR, 2)
+                .input(wireGtQuadruple, Copper)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(MICROPROCESSOR_LV, 64)
+                .EUt(VHA[MV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(MICROPROCESSOR_LV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(WRAP_SOC_CHIP)
+                .input(wireGtQuadruple, Copper, 2)
+                .input(bolt, Tin, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(MICROPROCESSOR_LV, 64)
+                .output(MICROPROCESSOR_LV, 64)
+                .EUt(600) // EV
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(MICROPROCESSOR_LV))
+                .buildAndRegister()
+
+            // Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(WRAP_CPU_CHIP)
+                .input(WRAP_SMD_RESISTOR, 4)
+                .input(WRAP_SMD_CAPACITOR, 4)
+                .input(WRAP_SMD_TRANSISTOR, 4)
+                .input(wireGtQuadruple, RedAlloy, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(PROCESSOR_MV, 64)
+                .EUt(VHA[MV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(PROCESSOR_MV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(WRAP_SOC_CHIP)
+                .input(wireGtQuadruple, RedAlloy, 4)
+                .input(bolt, AnnealedCopper, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(PROCESSOR_MV, 64)
+                .output(PROCESSOR_MV, 64)
+                .EUt(2400) // IV
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(PROCESSOR_MV))
+                .buildAndRegister()
+
+            // Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(PROCESSOR_MV, 64)
+                .input(WRAP_SMD_INDUCTOR, 4)
+                .input(WRAP_SMD_CAPACITOR, 8)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(wireGtQuadruple, RedAlloy, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(PROCESSOR_ASSEMBLY_HV, 48)
+                .EUt(90) // MV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(PROCESSOR_ASSEMBLY_HV))
+                .buildAndRegister()
+
+            // Workstation
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(PROCESSOR_ASSEMBLY_HV, 48)
+                .input(WRAP_SMD_DIODE, 4)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(wireGtQuadruple, Electrum, 16)
+                .input(bolt, BlueAlloy, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(WORKSTATION_EV, 32)
+                .EUt(VA[MV].toLong())
+                .duration(5 * MINUTE) // Original: 20s, Wrapped: 20ss * 16 = 320s
+                .circuit(getCircuit(WORKSTATION_EV))
+                .buildAndRegister()
+
+            // Mainframe
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Aluminium, 32)
+                .input(WORKSTATION_EV, 32)
+                .input(WRAP_SMD_INDUCTOR, 8)
+                .input(WRAP_SMD_CAPACITOR, 16)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtHex, AnnealedCopper, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(MAINFRAME_IV, 16)
+                .EUt(VA[HV].toLong())
+                .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+                .circuit(getCircuit(MAINFRAME_IV))
+                .buildAndRegister()
+
+            // T4: Nano
+
+            // Nano Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(WRAP_NANO_CPU_CHIP)
+                .input(WRAP_SMD_RESISTOR, 8)
+                .input(WRAP_SMD_CAPACITOR, 8)
+                .input(WRAP_SMD_TRANSISTOR, 8)
+                .input(wireGtQuadruple, Electrum, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(NANO_PROCESSOR_HV, 64)
+                .EUt(600) // EV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(NANO_PROCESSOR_HV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(WRAP_NANO_CPU_CHIP)
+                .input(WRAP_ADVANCED_SMD_RESISTOR, 2)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 2)
+                .input(WRAP_ADVANCED_SMD_TRANSISTOR, 2)
+                .input(wireGtQuadruple, Electrum, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(NANO_PROCESSOR_HV, 64)
+                .EUt(600) // EV
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(NANO_PROCESSOR_HV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(WRAP_ADVANCED_SOC_CHIP)
+                .input(wireGtQuadruple, Electrum, 4)
+                .input(bolt, Platinum, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(NANO_PROCESSOR_HV, 64)
+                .output(NANO_PROCESSOR_HV, 64)
+                .EUt(9600) // LuV
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(NANO_PROCESSOR_HV))
+                .buildAndRegister()
+
+            // Nano Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(NANO_PROCESSOR_HV, 64)
+                .input(WRAP_SMD_INDUCTOR, 4)
+                .input(WRAP_SMD_CAPACITOR, 8)
+                .input(WRAP_RAM_CHIP, 8)
+                .input(wireGtQuadruple, Electrum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
+                .EUt(600) // EV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(NANO_PROCESSOR_ASSEMBLY_EV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(NANO_PROCESSOR_HV, 64)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 2)
+                .input(WRAP_RAM_CHIP, 8)
+                .input(wireGtQuadruple, Electrum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
+                .EUt(600) // EV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(NANO_PROCESSOR_ASSEMBLY_EV))
+                .buildAndRegister()
+
+            // Nano Computer
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(NANO_PROCESSOR_ASSEMBLY_EV, 48)
+                .input(WRAP_SMD_DIODE, 8)
+                .input(WRAP_NOR_CHIP, 4)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtQuadruple, Electrum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(NANO_COMPUTER_IV, 32)
+                .EUt(600) // EV
+                .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(NANO_COMPUTER_IV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(NANO_PROCESSOR_ASSEMBLY_EV, 48)
+                .input(WRAP_ADVANCED_SMD_DIODE, 2)
+                .input(WRAP_NOR_CHIP, 4)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtQuadruple, Electrum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(NANO_COMPUTER_IV, 32)
+                .EUt(600) // EV
+                .duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(NANO_COMPUTER_IV))
+                .buildAndRegister()
+
+            // Nano Mainframe
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 32)
+                .input(NANO_COMPUTER_IV, 32)
+                .input(WRAP_SMD_INDUCTOR, 16)
+                .input(WRAP_SMD_CAPACITOR, 32)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtHex, AnnealedCopper, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(NANO_MAINFRAME_LUV, 16)
+                .EUt(VA[EV].toLong())
+                .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+                .circuit(getCircuit(NANO_MAINFRAME_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 32)
+                .input(NANO_COMPUTER_IV, 32)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR, 4)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtHex, AnnealedCopper, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(NANO_MAINFRAME_LUV, 16)
+                .EUt(VA[EV].toLong())
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(NANO_MAINFRAME_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 32)
+                .input(NANO_COMPUTER_IV, 32)
+                .input(WRAP_GOOWARE_SMD_INDUCTOR)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtHex, AnnealedCopper, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(NANO_MAINFRAME_LUV, 16)
+                .EUt(VA[EV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(NANO_MAINFRAME_LUV))
+                .buildAndRegister()
+
         }
 
         private fun addCircuit(circuit: MetaItem<*>.MetaValueItem)

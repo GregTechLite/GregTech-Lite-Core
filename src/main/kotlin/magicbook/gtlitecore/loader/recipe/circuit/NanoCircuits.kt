@@ -39,6 +39,8 @@ import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class NanoCircuits
@@ -329,6 +331,20 @@ class NanoCircuits
                 .output(NANO_MAINFRAME_LUV)
                 .EUt(VA[EV].toLong())
                 .duration(20 * SECOND)
+                .solderMultiplier(4)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, VanadiumSteel, 2)
+                .input(NANO_COMPUTER_IV, 2)
+                .input(GOOWARE_SMD_INDUCTOR)
+                .input(GOOWARE_SMD_CAPACITOR, 2)
+                .input(RANDOM_ACCESS_MEMORY, 16)
+                .input(wireGtSingle, AnnealedCopper, 32)
+                .output(NANO_MAINFRAME_LUV)
+                .EUt(VA[EV].toLong())
+                .duration(10 * SECOND)
                 .solderMultiplier(4)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()

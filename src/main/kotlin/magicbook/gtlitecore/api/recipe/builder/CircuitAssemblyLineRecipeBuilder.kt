@@ -39,7 +39,7 @@ class CircuitAssemblyLineRecipeBuilder : RecipeBuilder<CircuitAssemblyLineRecipe
 
     override fun toString() = ToStringBuilder(this)
         .appendSuper(super.toString())
-        .append(CircuitPatternProperty.INSTANCE.getKey(), this.getCircuit())
+        .append(CircuitPatternProperty.INSTANCE.key, this.getCircuit())
         .toString()
 
 }
