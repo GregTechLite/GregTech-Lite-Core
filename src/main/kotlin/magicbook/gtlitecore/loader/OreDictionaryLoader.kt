@@ -19,6 +19,7 @@ import gregtech.api.unification.stack.MaterialStack
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
@@ -66,6 +67,7 @@ class OreDictionaryLoader
 
             // White
             OreDictionary.registerOre("dyeWhite", OreDictUnifier.get(dust, LeadNitrate))
+            OreDictionary.registerOre("dyeWhite", OreDictUnifier.get(dust, DiaminostilbenedisulfonicAcid))
 
             // Orange
             OreDictionary.registerOre("dyeOrange", OreDictUnifier.get(dust, BrownLimonite))

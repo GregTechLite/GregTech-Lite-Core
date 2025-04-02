@@ -64,7 +64,7 @@ class GregtechOverrideRecipeLoader
 
             // H2O -> 2H + O
             ELECTROLYZER_RECIPES.recipeBuilder()
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(Hydrogen.getFluid(2000))
                 .fluidOutputs(Oxygen.getFluid(1000))
@@ -72,7 +72,8 @@ class GregtechOverrideRecipeLoader
                 .duration(15 * SECOND)
                 .buildAndRegister()
 
-            // TODO circuitMeta 1 and 2 for salt and rock salt with water electrolysis.
+            // Another correspondenced recipes please see: AluminiumSodiumProcessing,
+            // this is a conflict resolved of these recipes.
 
             // Down-tier Cleanroom Plascrete because Mining Drone Airport is at LV stage,
             // player cannot get MV assembler in LV stage.

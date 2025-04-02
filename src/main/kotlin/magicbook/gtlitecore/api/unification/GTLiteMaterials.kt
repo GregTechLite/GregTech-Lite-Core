@@ -64,6 +64,7 @@ import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Silicon
@@ -723,6 +724,31 @@ class GTLiteMaterials
             .flags(GENERATE_PLATE, GENERATE_LENS)
             .build()
 
+        // 2061 Sodium Chlorate
+        @JvmField
+        val SodiumChlorate: Material = Material.Builder(2061, gtliteId("sodium_chlorate"))
+            .dust()
+            .colorAverage().iconSet(ROUGH)
+            .components(Sodium, 1,  Chlorine, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2062 Sodium Perchlorate
+        @JvmField
+        val SodiumPerchlorate: Material = Material.Builder(2062, gtliteId("sodium_perchlorate"))
+            .dust()
+            .color(Salt.materialRGB).iconSet(ROUGH)
+            .components(Sodium, 1, Chlorine, 1, Oxygen, 4)
+            .build()
+
+        // 2063 Sodium Hypochlorite
+        @JvmField
+        val SodiumHypochlorite: Material = Material.Builder(2063, gtliteId("sodium_hypochlorite"))
+            .dust()
+            .color(0x778D56).iconSet(SHINY)
+            .components(Sodium, 1, Chlorine, 1, Oxygen, 1)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1291,6 +1317,23 @@ class GTLiteMaterials
             .components(Carbon, 8, Hydrogen, 10)
             .build()
             .setFormula("C6H4(CH3)2", true)
+
+        // 8005 Nitrotoluene
+        @JvmField
+        val Nitrotoluene: Material = Material.Builder(8005, gtliteId("nitrotoluene"))
+            .liquid()
+            .color(0x99236E)
+            .components(Carbon, 7, Hydrogen, 7, Nitrogen, 1, Oxygen, 2)
+            .build()
+            .setFormula("C6H4CH3NO2", true)
+
+        // 8006 Diaminostilbenedisulfonic Acid (DSDA)
+        @JvmField
+        val DiaminostilbenedisulfonicAcid: Material = Material.Builder(8006, gtliteId("diaminostilbenedisulfonic_acid"))
+            .dust()
+            .color(0xF2F2F2).iconSet(ROUGH)
+            .components(Carbon, 14, Hydrogen, 14, Nitrogen, 2, Oxygen, 6, Sulfur, 2)
+            .build()
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials

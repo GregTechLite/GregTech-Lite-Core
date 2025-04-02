@@ -17,16 +17,19 @@ import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
+import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.HypochlorousAcid
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
@@ -49,6 +52,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubyJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarbonate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumChlorate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumHypochlorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPerchlorate
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -61,6 +67,14 @@ class AluminiumSodiumProcessing
     {
 
         fun init()
+        {
+            gemJuiceProcess()
+            aluminiumHydroxideProcess()
+            aluminaBlastingProcess()
+            saltElectrolysisProcess()
+        }
+
+        private fun gemJuiceProcess()
         {
             // Centrifuging gem juices to get Al(OH)3.
             for (inputPrefix in arrayOf(crushed, crushedPurified, dustImpure, dustPure))
@@ -134,7 +148,10 @@ class AluminiumSodiumProcessing
                 .duration(2 * SECOND + 5 * TICK)
                 .buildAndRegister()
 
-            // Chemistry Al(OH)3 processing.
+        }
+
+        private fun aluminiumHydroxideProcess()
+        {
             // (Al2O3)3(TiO2)2(H2O)2? (bauxite) + 4NaOH + H2O -> 4NaAlO2
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(3)
@@ -210,7 +227,10 @@ class AluminiumSodiumProcessing
                 .EUt(VA[HV].toLong())
                 .duration(30 * SECOND)
                 .buildAndRegister()
+        }
 
+        private fun aluminaBlastingProcess()
+        {
             // Add Alumina (Al2O3) to Aluminium recipes.
 
             // Al2O3 + 3H -> 2Al + 3H2O
@@ -246,6 +266,76 @@ class AluminiumSodiumProcessing
                 .EUt(VA[MV].toLong())
                 .duration(1 * MINUTE)
                 .blastFurnaceTemp(2054) // Kanthal
+                .buildAndRegister()
+        }
+
+        private fun saltElectrolysisProcess()
+        {
+            // NaOH + HClO -> NaClO + H2O
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, SodiumHydroxide, 3)
+                .fluidInputs(HypochlorousAcid.getFluid(1000))
+                .output(dust, SodiumHypochlorite, 3)
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // NaOH + HCl -> NaClO + 2H
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, SodiumHydroxide, 3)
+                .fluidInputs(HydrochloricAcid.getFluid(1000))
+                .output(dust, SodiumHypochlorite, 3)
+                .fluidOutputs(Hydrogen.getFluid(2000))
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // 2NaOH + 2Cl -> NaClO + NaCl + H2O
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, SodiumHydroxide, 6)
+                .fluidInputs(Chlorine.getFluid(2000))
+                .output(dust, SodiumHypochlorite, 3)
+                .output(dust, Salt, 2)
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // NaCl + 3H2O -> NaClO3 + 6H
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Salt, 2)
+                .fluidInputs(Water.getFluid(3000))
+                .output(dust, SodiumChlorate, 5)
+                .fluidOutputs(Hydrogen.getFluid(6000))
+                .EUt(VA[MV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // Common decompose of NaClO3.
+            ELECTROLYZER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, SodiumChlorate, 5)
+                .output(dust, Sodium)
+                .fluidOutputs(Chlorine.getFluid(1000))
+                .fluidOutputs(Oxygen.getFluid(3000))
+                .EUt(VHA[MV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // NaClO3 + H2O -> NaClO4 + 2H
+            ELECTROLYZER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, SodiumChlorate, 5)
+                .fluidInputs(Water.getFluid(1000))
+                .output(dust, SodiumPerchlorate, 6)
+                .fluidOutputs(Hydrogen.getFluid(2000))
+                .EUt(VA[MV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
         }

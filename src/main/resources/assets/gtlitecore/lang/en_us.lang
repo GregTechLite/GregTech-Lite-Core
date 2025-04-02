@@ -1730,6 +1730,9 @@ gtlitecore.material.lead_chromate=Lead Chromate
 gtlitecore.material.lead_nitrate=Lead Nitrate
 gtlitecore.material.cobalt_aluminate=Cobalt Aluminate
 gtlitecore.material.orpiment=Orpiment
+gtlitecore.material.sodium_chlorate=Sodium Chlorate
+gtlitecore.material.sodium_perchlorate=Sodium Perchlorate
+gtlitecore.material.sodium_hypochlorite=Sodium Hypochlorite
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1777,6 +1780,8 @@ gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane
 gtlitecore.material.polyisoprene=Polyisoprene (PI)
 gtlitecore.material.para_xylene=Para Xylene
+gtlitecore.material.nitrotoluene=Nitrotoluene
+gtlitecore.material.diaminostilbenedisulfonic_acid=Diaminostilbenedisulfonic Acid (DSDA)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
