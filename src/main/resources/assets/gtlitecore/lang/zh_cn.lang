@@ -1803,6 +1803,8 @@ gtlitecore.material.fermionic_uu_matter=费米子UU物质
 gtlitecore.material.bosonic_uu_matter=玻色子UU物质
 gtlitecore.material.rich_nitrogen_mixture=富氮混合物
 gtlitecore.material.rich_ammonia_mixture=富氨混合物
+gtlitecore.material.sea_water=海水
+gtlitecore.material.acidic_salt_water=酸化盐水
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球
@@ -1831,6 +1833,9 @@ gtlitecore.veins.ore.cryolite=冰晶石矿脉
 gtlitecore.veins.ore.plutonium=钚矿脉
 gtlitecore.veins.ore.jade=玉矿脉
 gtlitecore.veins.ore.realgar=雄黄矿脉
+
+gtlitecore.veins.fluid.sea_water=主世界海水矿藏
+gtlitecore.veins.fluid.blaze=下界烈焰矿藏
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§a需要 §f%s§a 刻来吃下（一般食物需要 §f32§a 刻来吃下）

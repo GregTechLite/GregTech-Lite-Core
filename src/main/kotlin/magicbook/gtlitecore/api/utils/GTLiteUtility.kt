@@ -21,6 +21,7 @@ import one.util.streamex.StreamEx
 import java.util.function.BooleanSupplier
 import java.util.function.Consumer
 import java.util.function.Supplier
+import kotlin.math.pow
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteUtility
@@ -191,6 +192,35 @@ class GTLiteUtility
             for (i in 0 until length - list.size)
                 finalList.add(last)
             return finalList
+        }
+
+        /**
+         * Usage:
+         * ```
+         * averageRGB(n, mat1.materialRGB, mat2.materialRGB, ..., matn.materialRGB)
+         * ```
+         */
+        @JvmStatic
+        fun averageRGB(divisor: Int, vararg inputs: Int): Int
+        {
+            var red = 0
+            var green = 0
+            var blue = 0
+
+            for (input in inputs)
+            {
+                // Make sure to account for opacity.
+                red += (input - (input % (256.0.pow(2).toInt()))) shr (16 % 256)
+                // Removes the last chunk, shifts it out, and removes the first chunk.
+                green += ((input - (input % 256)) shr 8) % 256
+                blue += input % 256
+            }
+
+            var result = blue / divisor
+            result += (green / divisor) shl 8
+            result += (red / divisor) shl 16
+
+            return result
         }
 
         @JvmStatic

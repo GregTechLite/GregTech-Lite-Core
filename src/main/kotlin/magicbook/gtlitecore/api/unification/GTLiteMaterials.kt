@@ -65,6 +65,7 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Salt
+import gregtech.api.unification.material.Materials.SaltWater
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Silicon
@@ -76,6 +77,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
@@ -127,6 +129,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -1460,6 +1463,22 @@ class GTLiteMaterials
             .gas(FluidBuilder().temperature(400))
             .color(0x708ACD)
             .build()
+
+        // 12106 Sea Water
+        @JvmField
+        val SeaWater: Material = Material.Builder(12106, gtliteId("sea_water"))
+            .liquid()
+            .color(0x0000FF)
+            .build()
+            .setFormula("H2O?", true)
+
+        // 12107 Acidic Salt Water
+        @JvmField
+        val AcidicSaltWater: Material = Material.Builder(12107, gtliteId("acidic_salt_water"))
+            .liquid()
+            .color(averageRGB(2, SaltWater.materialRGB, SulfuricAcid.materialRGB))
+            .build()
+            .setFormula("(H2O)(H2SO4)?", true)
     }
 
 }

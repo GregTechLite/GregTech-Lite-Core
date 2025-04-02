@@ -1802,6 +1802,8 @@ gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
 gtlitecore.material.bosonic_uu_matter=Bosonic UU Matter
 gtlitecore.material.rich_nitrogen_mixture=Rich Nitrogen Mixture
 gtlitecore.material.rich_ammonia_mixture=Rich Ammonium Mixture
+gtlitecore.material.sea_water=Sea Water
+gtlitecore.material.acidic_salt_water=Acidic Salt Water
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere
@@ -1830,6 +1832,9 @@ gtlitecore.veins.ore.cryolite=Cryolite Vein
 gtlitecore.veins.ore.plutonium=Plutonium Vein
 gtlitecore.veins.ore.jade=Jade Vein
 gtlitecore.veins.ore.realgar=Realgar Vein
+
+gtlitecore.veins.fluid.sea_water=Overworld Sea Water Fluid Vein
+gtlitecore.veins.fluid.blaze=Nether Blaze Fluid Vein
 
 # Tooltips
 gtlitecore.tooltip.food.duration=§aTakes §f%s§a Ticks to eat (compared to the normal 32 Ticks)

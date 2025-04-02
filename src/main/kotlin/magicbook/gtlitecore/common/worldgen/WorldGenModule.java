@@ -50,7 +50,7 @@ public class WorldGenModule extends BaseModule
         // Extracted all deposit settings from zipFileSystem in jar files
         // to original GregTech folders, and then when WorldGenRegistry working,
         // new veins can be added finely.
-        FileUtility.extractJarFiles(resourceWorldGenPath, getWorldGenPath(GTValues.MODID).toFile(), false);
+        FileUtility.extractJarFiles(resourceWorldGenPath, getWorldGenPath(GTValues.MODID).toFile(), true);
     }
 
     @Override

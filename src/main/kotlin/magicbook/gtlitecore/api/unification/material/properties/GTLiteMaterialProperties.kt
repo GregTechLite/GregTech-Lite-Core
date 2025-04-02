@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
+import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Chrome
@@ -19,6 +20,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Inconel718
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
@@ -100,9 +102,9 @@ class GTLiteMaterialProperties
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238)
                 .forEach { addIngot(it) }
 
-            sequenceOf(Rubidium).forEach { addDust(it) }
+            sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
 
-            sequenceOf(Uranium238, Zircaloy4, Inconel718).forEach { addLiquid(it) }
+            sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718).forEach { addLiquid(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
