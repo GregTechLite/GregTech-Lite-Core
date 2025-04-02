@@ -32,6 +32,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
@@ -80,6 +81,7 @@ class RecipeManager
             CaesiumRubidiumProcessing.init()
             MolybdenumRheniumProcessing.init()
             UraniumPlutoniumProcessing.init()
+            TungstenProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

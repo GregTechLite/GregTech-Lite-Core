@@ -749,6 +749,15 @@ class GTLiteMaterials
             .components(Sodium, 1, Chlorine, 1, Oxygen, 1)
             .build()
 
+        // 2064 Tungsten Trioxide
+        @JvmField
+        val TungstenTrioxide: Material = Material.Builder(2064, gtliteId("tungsten_trioxide"))
+            .dust()
+            .color(0xC7D300).iconSet(DULL)
+            .components(Tungsten, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
