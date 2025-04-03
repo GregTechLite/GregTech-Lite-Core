@@ -387,6 +387,7 @@ tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
 tile.multiblock_casing_01.substrate_casing.name=Substrate Casing
 tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casing
+tile.multiblock_casing_01.atomic_substrate_casing.name=Atomic Substrate Casing
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 

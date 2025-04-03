@@ -387,6 +387,7 @@ tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
 tile.multiblock_casing_01.substrate_casing.name=基板机械方块
 tile.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方块
+tile.multiblock_casing_01.atomic_substrate_casing.name=原子级基板机械方块
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
