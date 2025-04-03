@@ -25,6 +25,7 @@ magicbook.gtlitecore.common.metatileentity.single
 magicbook.gtlitecore.common.worldgen
 magicbook.gtlitecore.common.worldgen.trees
 magicbook.gtlitecore.core
+magicbook.gtlitecore.core.command
 magicbook.gtlitecore.core.module
 magicbook.gtlitecore.integration
 magicbook.gtlitecore.integration.jei
