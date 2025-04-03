@@ -1,21 +1,47 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VHA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Graphene
+import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
+import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.NaquadahAlloy
+import gregtech.api.unification.material.Materials.NiobiumNitride
+import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Osmiridium
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.RTMAlloy
+import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Trinium
+import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.Ultimet
+import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
@@ -37,6 +63,7 @@ import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
@@ -51,7 +78,200 @@ class NanoCircuits
 
         fun init()
         {
+            smdRecipes()
+            circuitRecipes()
+        }
 
+        private fun smdRecipes()
+        {
+            // Advanced SMD Transistor
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(foil, VanadiumGallium),
+                    OreDictUnifier.get(wireFine, HSSG, 8)),
+                arrayOf(Polybenzimidazole.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, VanadiumGallium)
+                .input(wireFine, TungstenSteel, 8)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_TRANSISTOR, 16)
+                .EUt(VHA[IV].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, VanadiumGallium)
+                .input(wireFine, HSSG, 8)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_TRANSISTOR, 32)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, VanadiumGallium)
+                .input(wireFine, HSSS, 8)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_TRANSISTOR, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(2 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Advanced SMD Resistor
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, Graphene),
+                    OreDictUnifier.get(wireFine, Platinum, 4)),
+                arrayOf(Polybenzimidazole.getFluid(L * 2)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Graphene)
+                .input(wireFine, Molybdenum, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(ADVANCED_SMD_RESISTOR, 16)
+                .EUt(VHA[IV].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Graphene)
+                .input(wireFine, Ultimet, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(ADVANCED_SMD_RESISTOR, 32)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Graphene)
+                .input(wireFine, RTMAlloy, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(ADVANCED_SMD_RESISTOR, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(2 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Advanced SMD Capacitor
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(foil, Polybenzimidazole, 2),
+                    OreDictUnifier.get(foil, HSSS)),
+                arrayOf(Polybenzimidazole.getFluid(L / 4)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, Polybenzimidazole)
+                .input(foil, Iridium)
+                .fluidInputs(Polybenzimidazole.getFluid(L / 2))
+                .output(ADVANCED_SMD_CAPACITOR, 16)
+                .EUt(VHA[IV].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, Polybenzimidazole)
+                .input(foil, Ruridit)
+                .fluidInputs(Polybenzimidazole.getFluid(L / 2))
+                .output(ADVANCED_SMD_CAPACITOR, 32)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(foil, Polybenzimidazole)
+                .input(foil, Osmiridium)
+                .fluidInputs(Polybenzimidazole.getFluid(L / 2))
+                .output(ADVANCED_SMD_CAPACITOR, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(2 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Advanced SMD Diode
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, IndiumGalliumPhosphide),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 16)),
+                arrayOf(Polybenzimidazole.getFluid(L * 2)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, IndiumGalliumPhosphide)
+                .input(wireFine, NiobiumNitride, 8)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(ADVANCED_SMD_DIODE, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, IndiumGalliumPhosphide)
+                .input(wireFine, YttriumBariumCuprate, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+                .output(ADVANCED_SMD_DIODE, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Advanced SMD Inductor
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(OreDictUnifier.get(ring, HSSE),
+                    OreDictUnifier.get(wireFine, Palladium, 4)),
+                arrayOf(Polybenzimidazole.getFluid(L)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(ring, StrontiumFerrite)
+                .input(wireFine, Palladium, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_INDUCTOR, 16)
+                .EUt(VHA[IV].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(ring, StrontiumFerrite)
+                .input(wireFine, Trinium, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_INDUCTOR, 32)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(ring, StrontiumFerrite)
+                .input(wireFine, NaquadahAlloy, 4)
+                .fluidInputs(Polybenzimidazole.getFluid(L))
+                .output(ADVANCED_SMD_INDUCTOR, 64)
+                .EUt(VHA[IV].toLong())
+                .duration(4 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+        }
+
+        private fun circuitRecipes()
+        {
             // HV Nano Processor
             GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
                 arrayOf(ADVANCED_CIRCUIT_BOARD.stackForm,

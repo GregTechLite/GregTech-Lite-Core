@@ -37,6 +37,7 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Obsidian
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Redstone
@@ -45,6 +46,7 @@ import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
+import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
@@ -83,6 +85,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TectonicPetrotheum
@@ -103,6 +106,17 @@ class MixerRecipes
 
         fun init()
         {
+            // Strontium Ferrite
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Strontium)
+                .input(dust, Iron, 12)
+                .fluidInputs(Oxygen.getFluid(19000))
+                .output(dust, StrontiumFerrite, 32)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
             // Kovar
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(2)

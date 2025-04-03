@@ -104,6 +104,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
@@ -761,6 +762,21 @@ class GTLiteMaterials
             .color(0xC7D300).iconSet(DULL)
             .components(Tungsten, 1, Oxygen, 3)
             .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2065 Strontium Ferrite
+        @JvmField
+        val StrontiumFerrite: Material = Material.Builder(2065, gtliteId("strontium_ferrite"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(SHINY)
+            .components(Strontium, 1, Iron, 12, Oxygen, 19)
+            .flags(GENERATE_ROD, GENERATE_RING)
+            .blast { b ->
+                b.temp(3000, BlastProperty.GasTier.MID)
+                    .blastStats(VA[EV], 40 * SECOND)
+                    .vacuumStats(VA[MV], 10 * SECOND)
+            }
             .build()
 
         // =======================================================================

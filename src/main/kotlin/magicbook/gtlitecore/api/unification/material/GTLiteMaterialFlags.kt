@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
+import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
@@ -27,10 +28,13 @@ import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Molybdenite
+import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmium
@@ -42,6 +46,7 @@ import gregtech.api.unification.material.Materials.Powellite
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhenium
@@ -56,7 +61,9 @@ import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
+import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -118,6 +125,8 @@ class GTLiteMaterialFlags
             Hafnium.addFlags(GENERATE_FOIL)
             Kanthal.addFlags(GENERATE_FOIL)
             Indium.addFlags(GENERATE_FOIL)
+            Ultimet.addFlags(GENERATE_FOIL)
+            RTMAlloy.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -222,6 +231,13 @@ class GTLiteMaterialFlags
             Ruthenium.addFlags(GENERATE_FINE_WIRE)
             Hafnium.addFlags(GENERATE_FINE_WIRE)
             Kanthal.addFlags(GENERATE_FINE_WIRE)
+            HSSS.addFlags(GENERATE_FINE_WIRE)
+            Molybdenum.addFlags(GENERATE_FINE_WIRE)
+            Ultimet.addFlags(GENERATE_FINE_WIRE)
+            RTMAlloy.addFlags(GENERATE_FINE_WIRE)
+            NiobiumNitride.addFlags(GENERATE_FINE_WIRE)
+            Trinium.addFlags(GENERATE_FINE_WIRE)
+            NaquadahAlloy.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
