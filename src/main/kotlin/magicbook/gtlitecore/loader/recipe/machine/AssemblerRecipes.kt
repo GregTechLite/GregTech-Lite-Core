@@ -7,11 +7,14 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
+import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
@@ -23,12 +26,14 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
@@ -40,6 +45,7 @@ import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polyethylene
@@ -64,12 +70,17 @@ import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.material.Materials.Zircaloy4
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
+import gregtech.api.unification.ore.OrePrefix.cableGtOctal
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -77,6 +88,7 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
+import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
@@ -88,6 +100,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -96,6 +109,7 @@ import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_MV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
@@ -107,15 +121,25 @@ import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
+import gregtech.common.items.MetaItems.TOOL_DATA_STICK
+import gregtech.common.items.MetaItems.WETWARE_BOARD
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getCableByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getEmitterByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getSensorByTier
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -129,6 +153,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_EV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_HV
@@ -146,6 +171,14 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ENERGY_HATCH_4A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_1048576
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_16384
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_262144
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_65536
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_1048576
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_16384
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_262144
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_65536
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
@@ -169,8 +202,10 @@ class AssemblerRecipes
             drumAndCrateRecipes()
             componentCasingRecipes()
             miscHatchesRecipes()
+            laserHatchesRecipes()
             wireCoilRecipes()
             miningDroneRecipes()
+            miscItemsRecipes()
             vanillaChangingRecipes()
         }
 
@@ -1147,6 +1182,120 @@ class AssemblerRecipes
                 .buildAndRegister()
         }
 
+        private fun laserHatchesRecipes()
+        {
+            // Advanced laser hatches which has amperage beyond 1048576A is for higher tier
+            // than it tier, 256A-1048576A is for its tier.
+            for (tier in IV .. UHV) // TODO Change UHV to OpV when contents are completed.
+            {
+                val actualTier = tier - 5
+                // 16384A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(4)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 8)
+                    .input(getSensorByTier(tier), 8)
+                    .input(getPumpByTier(tier), 8)
+                    .input(cableGtOctal, getCableByTier(tier), 4)
+                    .output(LASER_INPUT_HATCH_16384[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
+
+                // 16384A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(4)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 8)
+                    .input(getEmitterByTier(tier), 8)
+                    .input(getPumpByTier(tier), 8)
+                    .input(cableGtOctal, getCableByTier(tier), 4)
+                    .output(LASER_OUTPUT_HATCH_16384[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
+
+                // 65536A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(5)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 16)
+                    .input(getSensorByTier(tier), 16)
+                    .input(getPumpByTier(tier), 16)
+                    .input(cableGtHex, getCableByTier(tier), 4)
+                    .output(LASER_INPUT_HATCH_65536[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(4 * MINUTE)
+                    .buildAndRegister()
+
+                // 65536A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(5)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 16)
+                    .input(getEmitterByTier(tier), 16)
+                    .input(getPumpByTier(tier), 16)
+                    .input(cableGtHex, getCableByTier(tier), 4)
+                    .output(LASER_OUTPUT_HATCH_65536[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(4 * MINUTE)
+                    .buildAndRegister()
+
+                // 262144A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(6)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 32)
+                    .input(getSensorByTier(tier), 32)
+                    .input(getPumpByTier(tier), 32)
+                    .input(cableGtHex, getCableByTier(tier), 8)
+                    .output(LASER_INPUT_HATCH_262144[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(8 * MINUTE)
+                    .buildAndRegister()
+
+                // 262144A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(6)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 32)
+                    .input(getEmitterByTier(tier), 32)
+                    .input(getSensorByTier(tier), 32)
+                    .input(cableGtHex, getCableByTier(tier), 8)
+                    .output(LASER_OUTPUT_HATCH_262144[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(8 * MINUTE)
+                    .buildAndRegister()
+
+                // 1048576A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(7)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(getSensorByTier(tier), 64)
+                    .input(getPumpByTier(tier), 64)
+                    .input(cableGtHex, getCableByTier(tier), 16)
+                    .output(LASER_INPUT_HATCH_1048576[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(16 * MINUTE)
+                    .buildAndRegister()
+
+                // 1048576A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(7)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(getEmitterByTier(tier), 64)
+                    .input(getPumpByTier(tier), 64)
+                    .input(cableGtHex, getCableByTier(tier), 16)
+                    .output(LASER_OUTPUT_HATCH_1048576[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(16 * MINUTE)
+                    .buildAndRegister()
+            }
+
+        }
+
         private fun wireCoilRecipes()
         {
             // Make wire coils easier than original recipes, these new recipes do not
@@ -1444,6 +1593,22 @@ class AssemblerRecipes
 
             // TODO UHV-MAX Mining Drones
 
+        }
+
+        private fun miscItemsRecipes()
+        {
+            // Circuit Pattern
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .input(TOOL_DATA_STICK)
+                .input(foil, Indium, 2)
+                .input(wireFine, SiliconCarbide, 8)
+                .input(screw, Zircaloy4, 6)
+                .fluidInputs(Iridium.getFluid(L * 8))
+                .fluidInputs(PCBCoolant.getFluid(500))
+                .output(CIRCUIT_PATTERN)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
         }
 
         private fun vanillaChangingRecipes()

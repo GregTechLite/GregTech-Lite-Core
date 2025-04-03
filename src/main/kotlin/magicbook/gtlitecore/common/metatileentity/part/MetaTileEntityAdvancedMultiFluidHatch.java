@@ -21,21 +21,14 @@ public class MetaTileEntityAdvancedMultiFluidHatch extends MetaTileEntityMultiFl
     @Override
     public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems)
     {
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH())
-        {
+        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH())
-        {
+        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH())
-        {
+        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH())
-        {
+        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.NONUPLE_FLUID_EXPORT_HATCH)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
     }
+
 }

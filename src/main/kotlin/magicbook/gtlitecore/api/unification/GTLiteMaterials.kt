@@ -97,6 +97,8 @@ import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITIO
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
@@ -956,7 +958,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x404040).iconSet(METALLIC)
             .components(Silicon, 1, Carbon, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_FOIL,
+                GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(3850, BlastProperty.GasTier.HIGH) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
                     .blastStats(VA[IV], 7 * SECOND + 10 * TICK)

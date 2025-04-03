@@ -65,6 +65,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntit
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamCompressor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
+import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedLaserHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
@@ -74,6 +75,7 @@ import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticC
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler
 import net.minecraftforge.items.CapabilityItemHandler
+import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
@@ -146,30 +148,55 @@ class GTLiteMetaTileEntities
         lateinit var INVENTORY_TANK_EXTENDER: MetaTileEntityExtender
         lateinit var UNIVERSAL_EXTENDER: MetaTileEntityExtender
 
-        @get:JvmName("BUFFER")
+        @JvmField
         val BUFFER = arrayOfNulls<MetaTileEntityBuffer>(3)
 
-        @get:JvmName("ENERGY_HATCH_4A")
+        @JvmField
         val ENERGY_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
-        @get:JvmName("DYNAMO_HATCH_4A")
+        @JvmField
         val DYNAMO_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
-        @get:JvmName("ENERGY_HATCH_16A")
+        @JvmField
         val ENERGY_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @get:JvmName("DYNAMO_HATCH_16A")
+        @JvmField
         val DYNAMO_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @get:JvmName("SUBSTATION_ENERGY_HATCH_64A")
+        @JvmField
         val SUBSTATION_ENERGY_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @get:JvmName("SUBSTATION_DYNAMO_HATCH_64A")
+        @JvmField
         val SUBSTATION_DYNAMO_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
 
-        @get:JvmName("QUADRUPLE_FLUID_IMPORT_HATCH")
+        @JvmField
         val QUADRUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @get:JvmName("QUADRUPLE_FLUID_EXPORT_HATCH")
+        @JvmField
         val QUADRUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @get:JvmName("NONUPLE_FLUID_IMPORT_HATCH")
+        @JvmField
         val NONUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @get:JvmName("NONUPLE_FLUID_EXPORT_HATCH")
+        @JvmField
         val NONUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
+
+        @JvmField
+        val LASER_INPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_INPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_INPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_INPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_INPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_INPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        @JvmField
+        val LASER_OUTPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
 
         // Multiblock machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
@@ -547,6 +574,37 @@ class GTLiteMetaTileEntities
             SUBSTATION_DYNAMO_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16028,
                 MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ev"), GTValues.EV, 64, true))
 
+            // 16031-16140: IV-OpV Higher amperage laser hatches.
+            for (i in 0 until 9)
+            {
+                val j = i + GTValues.IV
+                val voltageName = GTValues.VN[j].lowercase(Locale.getDefault())
+                LASER_INPUT_HATCH_16384[i] = MetaTileEntities.registerMetaTileEntity(16031 + i,
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_16384a.$voltageName"), j, 16384, false))
+                LASER_OUTPUT_HATCH_16384[i] = MetaTileEntities.registerMetaTileEntity(16040 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_16384a.$voltageName"), j, 16384, true))
+                LASER_INPUT_HATCH_65536[i] = MetaTileEntities.registerMetaTileEntity(16049 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_65536a.$voltageName"), j, 65536, false))
+                LASER_OUTPUT_HATCH_65536[i] = MetaTileEntities.registerMetaTileEntity(16058 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_65536a.$voltageName"), j, 65536, true))
+                LASER_INPUT_HATCH_262144[i] = MetaTileEntities.registerMetaTileEntity(16067 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_262144a.$voltageName"), j, 262144, false))
+                LASER_OUTPUT_HATCH_262144[i] = MetaTileEntities.registerMetaTileEntity(16076 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_262144a.$voltageName"), j, 262144, true))
+                LASER_INPUT_HATCH_1048576[i] = MetaTileEntities.registerMetaTileEntity(16085 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_1048576a.$voltageName"), j, 1048576, false))
+                LASER_OUTPUT_HATCH_1048576[i] = MetaTileEntities.registerMetaTileEntity(16094 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_1048576a.$voltageName"), j, 1048576, true))
+                LASER_INPUT_HATCH_4194304[i] = MetaTileEntities.registerMetaTileEntity(16103 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_4194304a.$voltageName"), j, 4194304, false))
+                LASER_OUTPUT_HATCH_4194304[i] = MetaTileEntities.registerMetaTileEntity(16112 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_4194304a.$voltageName"), j, 4194304, true))
+                LASER_INPUT_HATCH_16777216[i] = MetaTileEntities.registerMetaTileEntity(16121 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_16777216a.$voltageName"), j, 16777216, false))
+                LASER_OUTPUT_HATCH_16777216[i] = MetaTileEntities.registerMetaTileEntity(16130 + i, // +9
+                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_16777216a.$voltageName"), j, 16777216, true))
+            }
+
             // 17001-17100: Item/Fluid Hatches.
             QUADRUPLE_FLUID_IMPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17001,
                 MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.ulv"), GTValues.ULV, 4, false))
@@ -595,8 +653,7 @@ class GTLiteMetaTileEntities
                 MetaTileEntitySteamAlloySmelter(GTLiteUtility.gtliteId("steam_alloy_smelter")))
 
             STEAM_ENGINE = MetaTileEntities.registerMetaTileEntity(18004,
-                MetaTileEntitySteamEngine(GTLiteUtility.gtliteId("steam_engine"))
-            )
+                MetaTileEntitySteamEngine(GTLiteUtility.gtliteId("steam_engine")))
 
             MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
                 MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
@@ -773,6 +830,19 @@ class GTLiteMetaTileEntities
             DYNAMO_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             SUBSTATION_ENERGY_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             SUBSTATION_DYNAMO_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+
+            LASER_INPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_OUTPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             QUADRUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             QUADRUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }

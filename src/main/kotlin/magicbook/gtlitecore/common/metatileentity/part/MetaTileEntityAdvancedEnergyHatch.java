@@ -21,30 +21,18 @@ public class MetaTileEntityAdvancedEnergyHatch extends MetaTileEntityEnergyHatch
     @Override
     public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems)
     {
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.ENERGY_HATCH_4A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.ENERGY_HATCH_4A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.DYNAMO_HATCH_4A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.DYNAMO_HATCH_4A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.ENERGY_HATCH_16A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.ENERGY_HATCH_16A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.DYNAMO_HATCH_16A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.DYNAMO_HATCH_16A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.SUBSTATION_ENERGY_HATCH_64A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.SUBSTATION_ENERGY_HATCH_64A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
-        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.Companion.SUBSTATION_DYNAMO_HATCH_64A())
-        {
+        for (MetaTileEntityEnergyHatch hatch : GTLiteMetaTileEntities.SUBSTATION_DYNAMO_HATCH_64A)
             if (hatch != null) subItems.add(hatch.getStackForm());
-        }
     }
 
 }

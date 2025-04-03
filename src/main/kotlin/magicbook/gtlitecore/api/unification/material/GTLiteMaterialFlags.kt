@@ -20,6 +20,7 @@ import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Inconel718
+import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
@@ -61,6 +62,7 @@ import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
+import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlag
@@ -107,6 +109,7 @@ class GTLiteMaterialFlags
             // bolt & screw
             Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
+            Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
 
             // foil
             Nickel.addFlags(GENERATE_FOIL)
@@ -114,6 +117,7 @@ class GTLiteMaterialFlags
             Zirconium.addFlags(GENERATE_FOIL)
             Hafnium.addFlags(GENERATE_FOIL)
             Kanthal.addFlags(GENERATE_FOIL)
+            Indium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -170,6 +174,7 @@ class GTLiteMaterialFlags
             Rhenium.addFlags(GENERATE_PLATE)
             Uranium235.addFlags(GENERATE_PLATE)
             Plutonium239.addFlags(GENERATE_PLATE)
+            Indium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -198,6 +203,7 @@ class GTLiteMaterialFlags
 
             // stick
             Polybenzimidazole.addFlags(GENERATE_ROD)
+            Zircaloy4.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
