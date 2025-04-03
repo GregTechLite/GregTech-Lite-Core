@@ -12,7 +12,7 @@ class NoCoilTemperatureProperty : RecipeProperty<Int>(KEY, Int::class.java)
     companion object
     {
 
-        val KEY = "temperature"
+        const val KEY = "temperature"
 
         @JvmField
         var INSTANCE = NoCoilTemperatureProperty()

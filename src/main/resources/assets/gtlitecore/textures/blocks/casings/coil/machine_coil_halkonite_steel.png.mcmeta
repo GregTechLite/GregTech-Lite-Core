@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "interpolate": false,
+    "frametime": 2
+  },
+  "ctm": {
+    "ctm_version": 1,
+    "type": "sctm",
+    "layer": "CUTOUT",
+    "textures": [
+      "gtlitecore:blocks/coils/machine_coil_halkonite_steel_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
+    }
+  }
+}

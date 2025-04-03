@@ -22,19 +22,23 @@ import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -167,6 +171,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
@@ -1113,6 +1118,41 @@ class MachineRecipeLoader
                 'P', ELECTRIC_PUMP_MV.stackForm,
                 'W', UnificationEntry(cableGtSingle, Cupronickel),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.MV))
+
+
+            // Substrate Casing
+            ModHandler.addShapedRecipe(true, "substrate_casing", GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.SUBSTRATE_CASING, ConfigHolder.recipes.casingsPerCraft),
+                "PPP", "RFR", "R R",
+                'P', UnificationEntry(plate, Palladium),
+                'R', UnificationEntry(stick, RedSteel),
+                'F', UnificationEntry(frameGt, BlueSteel))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(frameGt, BlueSteel)
+                .input(plate, Palladium, 3)
+                .input(stick, RedSteel, 4)
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.SUBSTRATE_CASING, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Advanced Substrate Casing
+            ModHandler.addShapedRecipe(true, "advanced_substrate_casing", GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.ADVANCED_SUBSTRATE_CASING, ConfigHolder.recipes.casingsPerCraft),
+                "PPP", "RFR", "R R",
+                'P', UnificationEntry(plate, Ruridit),
+                'R', UnificationEntry(stick, Duranium),
+                'F', UnificationEntry(frameGt, NaquadahAlloy));
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(frameGt, NaquadahAlloy)
+                .input(plate, Ruridit, 3)
+                .input(stick, Duranium, 4)
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.ADVANCED_SUBSTRATE_CASING, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
 
         }
 

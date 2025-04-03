@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "interpolate": true,
+    "frametime": 5
+  },
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "CUTOUT",
+    "textures": [
+      "gtlitecore:blocks/casings/fusions/fusion_machine_casing_5_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
+    }
+  }
+}
