@@ -37,11 +37,11 @@ class AlloysChain
 
         fun init()
         {
-            siliconCarbideProcessing()
-            rhodiumPlatedPalladiumProcessing()
+            siliconCarbideProcess()
+            rhodiumPlatedPalladiumProcess()
         }
 
-        private fun siliconCarbideProcessing()
+        private fun siliconCarbideProcess()
         {
             // Add a simplified recipes for silicon dust (arc furnace -> dust, EBF -> ingot).
             GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
@@ -173,7 +173,7 @@ class AlloysChain
 
         }
 
-        private fun rhodiumPlatedPalladiumProcessing()
+        private fun rhodiumPlatedPalladiumProcess()
         {
             // Change rhodium plated palladium smelting recipes to arc furnace but not EBF,
             // player can get liquid by common mixer and ABS.

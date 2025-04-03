@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.steam
 
 import gregtech.api.capability.impl.SteamMultiWorkable
-import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController

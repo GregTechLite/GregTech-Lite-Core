@@ -4,7 +4,6 @@ import magicbook.gtlitecore.api.command.ICommandManager;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.server.command.CommandTreeBase;
-import org.jetbrains.annotations.NotNull;
 
 public class CommandManager implements ICommandManager
 {

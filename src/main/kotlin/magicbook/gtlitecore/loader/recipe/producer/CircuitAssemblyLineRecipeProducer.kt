@@ -25,9 +25,9 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.wireFine
-import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.CRYSTAL_ASSEMBLY_LUV
 import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
 import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV

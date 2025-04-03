@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
