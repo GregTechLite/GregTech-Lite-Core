@@ -8,6 +8,7 @@ import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
+import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
@@ -92,6 +93,7 @@ class RecipeManager
             ProcessorCircuits.init()
             NanoCircuits.init()
             QuantumCircuits.init()
+            CrystalCircuits.init()
 
             // Original GregTech machine recipes.
             AssemblerRecipes.init()
