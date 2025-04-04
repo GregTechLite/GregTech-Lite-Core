@@ -189,6 +189,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CIRCUIT_ASSEMBLY_LINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYSTALLIZATION_CRUCIBLE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
@@ -1166,6 +1167,15 @@ class MachineRecipeLoader
                 'H', HULL[EV].stackForm,
                 'S', SENSOR_EV.stackForm,
                 'E', EMITTER_EV.stackForm)
+
+            // Crystallization Crucible
+            ModHandler.addShapedRecipe(true, "crystallization_crucible", CRYSTALLIZATION_CRUCIBLE.stackForm,
+                "CMC", "LHL", "PCP",
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'M', UnificationEntry(plateDouble, MolybdenumDisilicide),
+                'L', UnificationEntry(pipeNormalFluid, Titanium),
+                'H', HULL[EV].stackForm,
+                'P', UnificationEntry(plate, Titanium))
 
         }
 

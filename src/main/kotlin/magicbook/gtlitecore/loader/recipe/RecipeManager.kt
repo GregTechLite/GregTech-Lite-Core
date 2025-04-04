@@ -21,10 +21,12 @@ import magicbook.gtlitecore.loader.recipe.circuit.QuantumCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes
+import magicbook.gtlitecore.loader.recipe.machine.AutoclaveRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BathCondenserRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
+import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
@@ -108,6 +110,7 @@ class RecipeManager
             // Original GregTech machine recipes.
             AssemblerRecipes.init()
             AssemblyLineRecipes.init()
+            AutoclaveRecipes.init()
             BenderRecipes.init()
             CannerRecipes.init()
             CentrifugeRecipes.init()
@@ -121,6 +124,7 @@ class RecipeManager
             // Additional machine recipes.
             AlloyBlastSmelterRecipes.init()
             BathCondenserRecipes.init()
+            CrystallizationCrucibleRecipes.init()
             LoomRecipes.init()
             PolisherRecipes.init()
 

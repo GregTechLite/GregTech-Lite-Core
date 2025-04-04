@@ -25,6 +25,7 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
@@ -209,6 +210,7 @@ class GTLiteMetaTileEntities
 
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
         lateinit var CVD_UNIT: MetaTileEntityCVDUnit
+        lateinit var CRYSTALLIZATION_CRUCIBLE: MetaTileEntityCrystallizationCrucible
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -666,6 +668,9 @@ class GTLiteMetaTileEntities
             CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18012,
                 MetaTileEntityCVDUnit(GTLiteUtility.gtliteId("cvd_unit")))
 
+            CRYSTALLIZATION_CRUCIBLE = MetaTileEntities.registerMetaTileEntity(18013,
+                MetaTileEntityCrystallizationCrucible(GTLiteUtility.gtliteId("crystallization_crucible")))
+
             // 18013 Nanoscale Fabricator
 
             // 18014 ...
@@ -870,6 +875,8 @@ class GTLiteMetaTileEntities
             MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

@@ -1354,6 +1354,13 @@ gtlitecore.machine.cvd_unit.tooltip.3=当电压等级大于等于§3UV§7时，�
 gtlitecore.machine.cvd_unit.tooltip.4=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.cvd_unit.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
+gtlitecore.machine.crystallization_crucible.name=结晶坩埚
+gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
+gtlitecore.machine.crystallization_crucible.tooltip.2=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.crystallization_crucible.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.crystallization_crucible.tooltip.4=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.crystallization_crucible.tooltip.5=每提高1个§a线圈等级§7，每次运行可以多处理§l8§r§7个物品。
+
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。

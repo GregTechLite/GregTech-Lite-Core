@@ -100,6 +100,9 @@ class GTLiteTextures
         @JvmField
         val CVD_UNIT_OVERLAY = OrientedOverlayRenderer("machines/multiblock/cvd_unit")
 
+        @JvmField
+        val CRYSTALLIZATION_CRUCIBLE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/crystallization_crucible")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

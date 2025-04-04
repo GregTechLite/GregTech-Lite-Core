@@ -9,6 +9,7 @@ class RecipeHandlers
         fun init()
         {
             MaterialRecipeHandler.init()
+            BouleRecipeHandler.init()
             PartsRecipeHandler.init()
             OreRecipeHandler.init()
             ToolRecipeHandler.init()
