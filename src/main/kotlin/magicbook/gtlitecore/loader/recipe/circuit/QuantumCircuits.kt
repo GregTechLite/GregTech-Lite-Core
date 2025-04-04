@@ -6,7 +6,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.GalliumArsenide
 import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide

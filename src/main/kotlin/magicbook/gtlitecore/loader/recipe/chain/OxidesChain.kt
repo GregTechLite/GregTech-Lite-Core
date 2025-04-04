@@ -9,7 +9,6 @@ import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
@@ -64,7 +63,6 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
