@@ -5,6 +5,7 @@ magicbook.gtlitecore.api.capability.logic
 magicbook.gtlitecore.api.metatileentity
 magicbook.gtlitecore.api.module
 magicbook.gtlitecore.api.pattern.predicate
+magicbook.gtlitecore.api.recipe.property
 magicbook.gtlitecore.api.recipe.property.value
 magicbook.gtlitecore.api.utils
 magicbook.gtlitecore.api.utils.functions
@@ -19,6 +20,7 @@ magicbook.gtlitecore.client.renderer.texture.custom
 magicbook.gtlitecore.common
 magicbook.gtlitecore.common.block.blocks
 magicbook.gtlitecore.common.block.itemblocks
+magicbook.gtlitecore.common.metatileentity.multiblock
 magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 magicbook.gtlitecore.common.metatileentity.part
 magicbook.gtlitecore.common.metatileentity.single
