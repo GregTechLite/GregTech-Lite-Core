@@ -10,6 +10,7 @@ import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
+import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
@@ -37,6 +38,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
@@ -83,6 +85,7 @@ class RecipeManager
             PalladiumAcetateChain.init()
             LithiumTitanateChain.init()
             NanoparticlesChain.init()
+            QuantumDotsChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
@@ -92,6 +95,7 @@ class RecipeManager
             UraniumPlutoniumProcessing.init()
             TungstenProcessing.init()
             IodineBromineProcessing.init()
+            SeleniumTelluriumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

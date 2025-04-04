@@ -1867,6 +1867,19 @@ gtlitecore.material.palladium_acetate=Palladium Acetate
 gtlitecore.material.palladium_loaded_rutile_nanoparticles=Palladium Loaded Rutile Nanoparticles
 gtlitecore.material.lithium_oxide=Lithium Oxide
 gtlitecore.material.lithium_carbonate=Lithium Carbonate
+gtlitecore.material.blue_vitriol=Blue Vitriol
+gtlitecore.material.sodium_tellurite=Sodium Tellurite
+gtlitecore.material.selenium_dioxide=Selenium Dioxide
+gtlitecore.material.tellurium_dioxide=Tellurium Dioxide
+gtlitecore.material.selenous_acid=Selenous Acid
+gtlitecore.material.aluminium_selenide=Aluminium Selenide
+gtlitecore.material.hydrogen_selenide=Hydrogen Selenide
+gtlitecore.material.cadmium_bromide=Cadmium Bromide
+gtlitecore.material.magnesium_bromide=Magnesium Bromide
+gtlitecore.material.hra_magnesium=High Reaction Activated Magnesium
+gtlitecore.material.hydrobromic_acid=Hydrobromic Acid
+gtlitecore.material.dimethylcadmium=Dimethylcadmium
+gtlitecore.material.cadmium_selenide=Cadmium Selenide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1917,6 +1930,10 @@ gtlitecore.material.para_xylene=Para Xylene
 gtlitecore.material.nitrotoluene=Nitrotoluene
 gtlitecore.material.diaminostilbenedisulfonic_acid=Diaminostilbenedisulfonic Acid (DSDA)
 gtlitecore.material.succinic_acid=Succinic Acid
+gtlitecore.material.butanediol=1,4-Butanediol
+gtlitecore.material.tetrahydrofuran=tetrahydrofuran
+gtlitecore.material.ethylene_dibromide=1,2-Ethylene Dibromide
+gtlitecore.material.grignard_reagent=Grignard Reagent
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -1938,6 +1955,7 @@ gtlitecore.material.rich_nitrogen_mixture=Rich Nitrogen Mixture
 gtlitecore.material.rich_ammonia_mixture=Rich Ammonium Mixture
 gtlitecore.material.sea_water=Sea Water
 gtlitecore.material.acidic_salt_water=Acidic Salt Water
+gtlitecore.material.chalcogen_anode_mud=Chalcogen Anode Mud
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

@@ -1871,6 +1871,19 @@ item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=钯负�
 item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=钯负载金红石纳米细微粒
 gtlitecore.material.lithium_oxide=氧化锂
 gtlitecore.material.lithium_carbonate=碳酸锂
+gtlitecore.material.blue_vitriol=蓝矾溶液
+gtlitecore.material.sodium_tellurite=亚碲酸钠
+gtlitecore.material.selenium_dioxide=二氧化硒
+gtlitecore.material.tellurium_dioxide=二氧化碲
+gtlitecore.material.selenous_acid=亚硒酸
+gtlitecore.material.aluminium_selenide=硒化铝
+gtlitecore.material.hydrogen_selenide=硒化氢
+gtlitecore.material.cadmium_bromide=二溴化镉
+gtlitecore.material.magnesium_bromide=二溴化镁
+gtlitecore.material.hra_magnesium=高反应活性镁
+gtlitecore.material.hydrobromic_acid=氢溴酸
+gtlitecore.material.dimethylcadmium=二甲基镉
+gtlitecore.material.cadmium_selenide=硒化镉
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1921,6 +1934,10 @@ gtlitecore.material.para_xylene=对二甲苯
 gtlitecore.material.nitrotoluene=硝基甲苯
 gtlitecore.material.diaminostilbenedisulfonic_acid=二氨基二苯乙烯二磺酸（DSDA）
 gtlitecore.material.succinic_acid=琥珀酸
+gtlitecore.material.butanediol=1,4-丁二醇
+gtlitecore.material.tetrahydrofuran=四氢呋喃
+gtlitecore.material.ethylene_dibromide=1,2-二溴乙烷
+gtlitecore.material.grignard_reagent=格式试剂
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -1942,6 +1959,7 @@ gtlitecore.material.rich_nitrogen_mixture=富氮混合物
 gtlitecore.material.rich_ammonia_mixture=富氨混合物
 gtlitecore.material.sea_water=海水
 gtlitecore.material.acidic_salt_water=酸化盐水
+gtlitecore.material.chalcogen_anode_mud=硫系元素阳极泥
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

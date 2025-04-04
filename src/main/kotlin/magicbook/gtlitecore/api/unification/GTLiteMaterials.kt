@@ -8,6 +8,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
+import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
@@ -17,7 +18,9 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Blaze
+import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
@@ -67,10 +70,12 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SaltWater
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Sapphire
+import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SodaAsh
@@ -83,6 +88,7 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
@@ -798,7 +804,7 @@ class GTLiteMaterials
             .ingot()
             .color(0xFE71A9).iconSet(SHINY)
             .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(3100, BlastProperty.GasTier.MID)
                     .blastStats(VA[EV], 16 * SECOND)
@@ -850,6 +856,116 @@ class GTLiteMaterials
             .dust()
             .color(0xD1F3F6).iconSet(ROUGH)
             .components(Lithium, 2, Carbon, 1, Oxygen, 3)
+            .build()
+
+        // 2073 Blue Vitriol
+        @JvmField
+        val BlueVitriol: Material = Material.Builder(2073, gtliteId("blue_vitriol"))
+            .liquid()
+            .color(0x4242DE)
+            .components(Copper, 1, Sulfur, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2074 Sodium Tellurite
+        @JvmField
+        val SodiumTellurite: Material = Material.Builder(2074, gtliteId("sodium_tellurite"))
+            .dust()
+            .color(0xC6C9BE).iconSet(ROUGH)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Sodium, 2, Tellurium, 1, Oxygen, 3)
+            .build()
+
+        // 2075 Selenium Dioxide
+        @JvmField
+        val SeleniumDioxide: Material = Material.Builder(2075, gtliteId("selenium_dioxide"))
+            .dust()
+            .color(0xE0DDD8).iconSet(METALLIC)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Selenium, 1, Oxygen, 2)
+            .build()
+
+        // 2076 Tellurium Dioxide
+        @JvmField
+        val TelluriumDioxide: Material = Material.Builder(2076, gtliteId("tellurium_dioxide"))
+            .dust()
+            .color(0xE3DDB8).iconSet(METALLIC)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Tellurium, 1, Oxygen, 2)
+            .build()
+
+        // 2077 Selenous Acid
+        @JvmField
+        val SelenousAcid: Material = Material.Builder(2077, gtliteId("selenous_acid"))
+            .dust()
+            .color(0xE0E083).iconSet(SHINY)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Hydrogen, 2, Selenium, 1, Oxygen, 3)
+            .build()
+
+        // 2078 Aluminium Selenide
+        @JvmField
+        val AluminiumSelenide: Material = Material.Builder(2078, gtliteId("aluminium_selenide"))
+            .dust()
+            .color(0x969651)
+            .components(Aluminium, 2, Selenium, 3)
+            .build()
+
+        // 2079 Hydrogen Selenide
+        @JvmField
+        val HydrogenSelenide: Material = Material.Builder(2079, gtliteId("hydrogen_selenide"))
+            .gas()
+            .color(0x42f554)
+            .components(Hydrogen, 2, Selenium, 1)
+            .build()
+
+        // 2080 Cadmium Bromide
+        @JvmField
+        val CadmiumBromide: Material = Material.Builder(2080, gtliteId("cadmium_bromide"))
+            .dust()
+            .color(0xFF1774).iconSet(SHINY)
+            .components(Cadmium, 1, Bromine, 2)
+            .build()
+
+        // 2081 Magnesium Bromide
+        @JvmField
+        val MagnesiumBromide: Material = Material.Builder(2081, gtliteId("magnesium_bromide"))
+            .dust()
+            .color(0x5F4C32).iconSet(METALLIC)
+            .components(Magnesium, 1, Bromine, 2)
+            .build()
+
+        // 2082 HRA Magnesium
+        @JvmField
+        val HRAMagnesium: Material = Material.Builder(2082, gtliteId("hra_magnesium"))
+            .dust()
+            .color(Magnesium.materialRGB).iconSet(SHINY)
+            .components(Magnesium, 1)
+            .build()
+
+        // 2083 Hydrobromic Acid
+        @JvmField
+        val HydrobromicAcid: Material = Material.Builder(2083, gtliteId("hydrobromic_acid"))
+            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            .color(0x8D1212)
+            .components(Hydrogen, 1, Bromine, 1)
+            .build()
+
+        // 2084 Dimethylcadmium
+        @JvmField
+        val Dimethylcadmium: Material = Material.Builder(2084, gtliteId("dimethylcadmium"))
+            .liquid()
+            .color(0x5C037F)
+            .components(Carbon, 2, Hydrogen, 6, Cadmium, 1)
+            .build()
+            .setFormula("(CH3)2Cd", true)
+
+        // 2085 Cadmium Selenide
+        @JvmField
+        val CadmiumSelenide: Material = Material.Builder(2085, gtliteId("cadmium_selenide"))
+            .dust()
+            .color(0x983034).iconSet(METALLIC)
+            .components(Cadmium, 1, Selenium, 1)
             .build()
 
         // =======================================================================
@@ -1447,6 +1563,40 @@ class GTLiteMaterials
             .components(Carbon, 4, Hydrogen, 6, Oxygen, 4)
             .build()
 
+        // 8008 Butanediol
+        @JvmField
+        val Butanediol: Material = Material.Builder(8008, gtliteId("butanediol"))
+            .liquid()
+            .color(0xAAC4DA)
+            .components(Carbon, 4, Hydrogen, 10, Oxygen, 2)
+            .build()
+            .setFormula("C4H8(OH)2", true)
+
+        // 8009 Tetrahydrofuran
+        @JvmField
+        val Tetrahydrofuran: Material = Material.Builder(8009, gtliteId("tetrahydrofuran"))
+            .liquid()
+            .color(0x0BCF52)
+            .components(Carbon, 4, Hydrogen, 8, Oxygen, 1)
+            .build()
+            .setFormula("(CH2)4O", true)
+
+        // 8010 Ethylene Dibromide
+        @JvmField
+        val EthyleneDibromide: Material = Material.Builder(8010, gtliteId("ethylene_dibromide"))
+            .liquid()
+            .color(0x4F1743)
+            .components(Carbon, 2, Hydrogen, 4, Bromine, 2)
+            .build()
+
+        // 8011 Grignard Reagent
+        @JvmField
+        val GrignardReagent: Material = Material.Builder(8011, gtliteId("grignard_reagent"))
+            .liquid()
+            .color(0xA12AA1)
+            .components(Carbon, 1, Hydrogen, 3, HRAMagnesium, 1, Bromine, 1)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -1579,6 +1729,14 @@ class GTLiteMaterials
             .color(averageRGB(2, SaltWater.materialRGB, SulfuricAcid.materialRGB))
             .build()
             .setFormula("(H2O)(H2SO4)?", true)
+
+        // 12108 Chalcogen Anode Mud
+        @JvmField
+        val ChalcogenAnodeMud: Material = Material.Builder(12108, gtliteId("chalcogen_anode_mud"))
+            .dust()
+            .color(0x8A3324)
+            .iconSet(FINE)
+            .build()
     }
 
 }

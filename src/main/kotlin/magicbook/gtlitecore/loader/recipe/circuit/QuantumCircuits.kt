@@ -1,15 +1,24 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.GalliumArsenide
+import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -18,18 +27,24 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.QUANTUM_ASSEMBLY_IV
 import gregtech.common.items.MetaItems.QUANTUM_COMPUTER_LUV
+import gregtech.common.items.MetaItems.QUANTUM_EYE
 import gregtech.common.items.MetaItems.QUANTUM_PROCESSOR_EV
 import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.SMD_CAPACITOR
 import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.GTRecipeUtility
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class QuantumCircuits
@@ -39,6 +54,98 @@ class QuantumCircuits
     {
 
         fun init()
+        {
+            circuitComponentsRecipes()
+            circuitRecipes()
+        }
+
+        private fun circuitComponentsRecipes()
+        {
+            // QuBit Central Processing Unit (QuBit CPU)
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(NANO_CENTRAL_PROCESSING_UNIT_WAFER.stackForm,
+                    QUANTUM_EYE.getStackForm(2)),
+                arrayOf(GalliumArsenide.getFluid(L * 2)))
+
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(NANO_CENTRAL_PROCESSING_UNIT_WAFER.stackForm,
+                    OreDictUnifier.get(dust, IndiumGalliumPhosphide)),
+                arrayOf(Radon.getFluid(50)))
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER)
+                .input(dustTiny, CadmiumSelenide)
+                .input(QUANTUM_EYE)
+                .fluidInputs(GalliumArsenide.getFluid(L))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 2)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER)
+                .input(dustTiny, CadmiumSelenide)
+                .input(dust, IndiumGalliumPhosphide)
+                .fluidInputs(Radon.getFluid(50))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 2)
+                .EUt(VA[IV].toLong())
+                .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 4)
+                .input(dustSmall, CadmiumSelenide)
+                .input(QUANTUM_EYE, 4)
+                .fluidInputs(GalliumArsenide.getFluid(L * 4))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 8)
+                .EUt(VA[IV].toLong())
+                .duration(15 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 4)
+                .input(dustSmall, CadmiumSelenide)
+                .input(dust, IndiumGalliumPhosphide, 4)
+                .fluidInputs(Radon.getFluid(200))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 8)
+                .EUt(VA[IV].toLong())
+                .duration(25 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 9)
+                .input(dust, CadmiumSelenide)
+                .input(QUANTUM_EYE, 9)
+                .fluidInputs(GalliumArsenide.getFluid(L * 9))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 18)
+                .EUt(VA[IV].toLong())
+                .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(10)
+                .input(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 9)
+                .input(dust, CadmiumSelenide)
+                .input(dust, IndiumGalliumPhosphide, 9)
+                .fluidInputs(Radon.getFluid(450))
+                .output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 18)
+                .EUt(VA[IV].toLong())
+                .duration(30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+        }
+
+        private fun circuitRecipes()
         {
             // EV Quantum Processor
             GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,

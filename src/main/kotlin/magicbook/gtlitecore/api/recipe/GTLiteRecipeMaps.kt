@@ -647,6 +647,9 @@ class GTLiteRecipeMaps
                     .buildAndRegister()
             }
 
+            // (2,6,1,6) -> (2,6,2,6)
+            RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
+
             // (1,6,0,0) -> (1,9,2,2)
             RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
             RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
