@@ -306,7 +306,7 @@ public class MetaTileEntityAlloyBlastSmelter extends RecipeMapMultiblockControll
 
     @NotNull
     @Override
-    public  List<ITextComponent> getDataInfo()
+    public List<ITextComponent> getDataInfo()
     {
         List<ITextComponent> textList = super.getDataInfo();
         ITextComponent temperatureInfo = TextComponentUtil.translationWithColor(

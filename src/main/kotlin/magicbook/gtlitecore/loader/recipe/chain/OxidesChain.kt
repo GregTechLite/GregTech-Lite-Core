@@ -5,9 +5,11 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
@@ -33,6 +35,7 @@ import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Galena
 import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Hafnia
+import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Massicot
@@ -61,6 +64,8 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumCarbonate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -321,6 +326,15 @@ class OxidesChain
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
+            // 2Li + O -> Li2O
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Lithium, 2)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .output(dust, LithiumOxide, 3)
+                .EUt(VH[LV].toLong())
+                .duration(3 * SECOND)
+                .buildAndRegister()
         }
 
         private fun carbonMonoxideProcessing()

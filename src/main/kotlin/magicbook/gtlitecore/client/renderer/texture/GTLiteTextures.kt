@@ -97,6 +97,9 @@ class GTLiteTextures
         @JvmField
         val MINING_DRONE_AIRPORT_OVERLAY = OrientedOverlayRenderer("machines/multiblock/mining_drone_airport")
 
+        @JvmField
+        val CVD_UNIT_OVERLAY = OrientedOverlayRenderer("machines/multiblock/cvd_unit")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

@@ -1,46 +1,73 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.AceticAcid
+import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
+import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.HydrochloricAcid
+import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
 import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Krypton
+import gregtech.api.unification.material.Materials.LithiumChloride
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Osmiridium
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
+import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.SodaAsh
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
@@ -51,7 +78,11 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_INDUCTOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_RESISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
+import gregtech.common.items.MetaItems.CARBON_FIBERS
+import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
 import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
@@ -63,9 +94,21 @@ import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumCarbonate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumAcetate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumLoadedRutileNanoparticles
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumNitrate
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.GTRecipeUtility
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 
@@ -79,6 +122,7 @@ class NanoCircuits
         fun init()
         {
             smdRecipes()
+            circuitComponentsRecipes()
             circuitRecipes()
         }
 
@@ -268,6 +312,54 @@ class NanoCircuits
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
+        }
+
+        private fun circuitComponentsRecipes()
+        {
+            // Nano Central Processing Unit (NanoCPU) Wafer
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(CENTRAL_PROCESSING_UNIT_WAFER.stackForm,
+                    CARBON_FIBERS.getStackForm(16)),
+                arrayOf(Glowstone.getFluid(L * 4)))
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(CENTRAL_PROCESSING_UNIT_WAFER)
+                .input(dustTiny, PalladiumLoadedRutileNanoparticles)
+                .input(CARBON_FIBERS, 8)
+                .fluidInputs(Glowstone.getFluid(L * 4))
+                .notConsumable(Argon.getFluid(1))
+                .output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 4)
+                .EUt(VA[EV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(CENTRAL_PROCESSING_UNIT_WAFER, 4)
+                .input(dustSmall, PalladiumLoadedRutileNanoparticles)
+                .input(CARBON_FIBERS, 32)
+                .fluidInputs(Glowstone.getFluid(L * 16))
+                .notConsumable(Krypton.getFluid(1))
+                .output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 16)
+                .EUt(VA[EV].toLong())
+                .duration(15 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(CENTRAL_PROCESSING_UNIT_WAFER, 9)
+                .input(dust, PalladiumLoadedRutileNanoparticles)
+                .input(CARBON_FIBERS, 64)
+                .fluidInputs(Glowstone.getFluid(L * 64))
+                .notConsumable(Xenon.getFluid(1))
+                .output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 36)
+                .EUt(VA[EV].toLong())
+                .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
         }
 
         private fun circuitRecipes()

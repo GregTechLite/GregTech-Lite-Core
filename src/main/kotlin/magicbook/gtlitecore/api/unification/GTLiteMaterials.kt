@@ -9,6 +9,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Andradite
@@ -53,6 +54,7 @@ import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Obsidian
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
@@ -64,6 +66,7 @@ import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SaltWater
 import gregtech.api.unification.material.Materials.Saltpeter
@@ -116,6 +119,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
 import gregtech.api.unification.material.info.MaterialIconSet.DIAMOND
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
+import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
@@ -779,6 +783,75 @@ class GTLiteMaterials
             }
             .build()
 
+        // 2066 Titanium Nitrate
+        @JvmField
+        val TitaniumNitrate: Material = Material.Builder(2066, gtliteId("titanium_nitrate"))
+            .dust()
+            .colorAverage()
+            .components(Titanium, 1, Nitrogen, 4, Oxygen, 12)
+            .build()
+            .setFormula("Ti(NO3)4", true)
+
+        // 2067 Lithium Titanate
+        @JvmField
+        val LithiumTitanate: Material = Material.Builder(2067, gtliteId("lithium_titanate"))
+            .ingot()
+            .color(0xFE71A9).iconSet(SHINY)
+            .components(Lithium, 2, Titanium, 1, Oxygen, 3)
+            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(3100, BlastProperty.GasTier.MID)
+                    .blastStats(VA[EV], 16 * SECOND)
+                    .vacuumStats(VA[MV], 8 * SECOND)
+            }
+            .fluidPipeProperties(2830, 200, true, true, false, false)
+            .build()
+
+        // 2068 Palladium Nitrate
+        @JvmField
+        val PalladiumNitrate: Material = Material.Builder(2068, gtliteId("palladium_nitrate"))
+            .dust()
+            .color(0x82312A).iconSet(METALLIC)
+            .components(Palladium, 1, Nitrogen, 2, Oxygen, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Pd(NO3)2", true)
+
+        // 2069 Palladium Acetate
+        @JvmField
+        val PalladiumAcetate: Material = Material.Builder(2069, gtliteId("palladium_acetate"))
+            .dust()
+            .color(0x693C2D).iconSet(SHINY)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Palladium, 1, AceticAcid, 2)
+            .build()
+            .setFormula("Pd(CH3COOH)2", true)
+
+        // 2070 Palladium Loaded Rutile Nanoparticles
+        @JvmField
+        val PalladiumLoadedRutileNanoparticles: Material = Material.Builder(2070, gtliteId("palladium_loaded_rutile_nanoparticles"))
+            .dust()
+            .colorAverage().iconSet(FINE)
+            .components(Palladium, 1, Rutile, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2071 Lithium Oxide
+        @JvmField
+        val LithiumOxide = Material.Builder(2071, gtliteId("lithium_oxide"))
+            .dust()
+            .color(0x9DB6B9).iconSet(DULL)
+            .components(Lithium, 2, Oxygen, 1)
+            .build()
+
+        // 2072 Lithium Carbonate
+        @JvmField
+        val LithiumCarbonate: Material = Material.Builder(2072, gtliteId("lithium_carbonate"))
+            .dust()
+            .color(0xD1F3F6).iconSet(ROUGH)
+            .components(Lithium, 2, Carbon, 1, Oxygen, 3)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1364,6 +1437,14 @@ class GTLiteMaterials
             .dust()
             .color(0xF2F2F2).iconSet(ROUGH)
             .components(Carbon, 14, Hydrogen, 14, Nitrogen, 2, Oxygen, 6, Sulfur, 2)
+            .build()
+
+        // 8007 Succinic Acid
+        @JvmField
+        val SuccinicAcid: Material = Material.Builder(8007, gtliteId("succinic_acid"))
+            .dust()
+            .color(0x0C3A5B).iconSet(DULL)
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 4)
             .build()
 
         // =======================================================================

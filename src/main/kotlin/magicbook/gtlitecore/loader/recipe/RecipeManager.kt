@@ -3,9 +3,12 @@ package magicbook.gtlitecore.loader.recipe
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
+import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
+import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
+import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
@@ -77,6 +80,9 @@ class RecipeManager
             MicaInsulatorChain.init()
             OxidesChain.init()
             AmmoniaChain.init()
+            PalladiumAcetateChain.init()
+            LithiumTitanateChain.init()
+            NanoparticlesChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()

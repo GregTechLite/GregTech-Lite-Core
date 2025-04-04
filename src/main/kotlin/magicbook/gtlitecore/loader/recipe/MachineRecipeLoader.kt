@@ -97,6 +97,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
+import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
@@ -106,6 +107,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_MV
+import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
@@ -187,6 +189,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CIRCUIT_ASSEMBLY_LINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
@@ -1153,6 +1156,16 @@ class MachineRecipeLoader
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // CVD Unit
+            ModHandler.addShapedRecipe(true, "cvd_unit", CVD_UNIT.stackForm,
+                "PKP", "CHC", "ESE",
+                'P', UnificationEntry(plate, BlueSteel),
+                'K', UnificationEntry(cableGtSingle, Aluminium),
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.EV),
+                'H', HULL[EV].stackForm,
+                'S', SENSOR_EV.stackForm,
+                'E', EMITTER_EV.stackForm)
 
         }
 

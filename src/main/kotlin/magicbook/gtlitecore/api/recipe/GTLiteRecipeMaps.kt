@@ -13,6 +13,7 @@ import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
@@ -611,6 +612,21 @@ class GTLiteRecipeMaps
             .itemOutputs(25)
             .fluidInputs(1)
             .sound(GTSoundEvents.COMPRESSOR)
+            .build()
+
+        /**
+         * @zenProp cvd_unit
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CVD_RECIPES")
+        val CVD_RECIPES = RecipeMapBuilder("cvd_unit", NoCoilTemperatureRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(3)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.COOLING)
             .build()
 
         @JvmStatic

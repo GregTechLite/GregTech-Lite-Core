@@ -387,7 +387,6 @@ tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
 tile.multiblock_casing_01.substrate_casing.name=Substrate Casing
 tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casing
-tile.multiblock_casing_01.atomic_substrate_casing.name=Atomic Substrate Casing
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -813,6 +812,7 @@ recipemap.circuit_assembly_line.name=Circuit Assembly Line
 recipemap.food_processor.name=Food Processor
 recipemap.multicooker.name=Multi Cooker
 recipemap.mining_drone_airport.name=Mining Drone Airport
+recipemap.cvd_unit.name=Chemical Vapor Deposition
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1331,6 +1331,13 @@ gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
+
+gtlitecore.machine.cvd_unit.name=Chemical Vapor Deposition Unit
+gtlitecore.machine.cvd_unit.tooltip.1=Film Evapor Transmission
+gtlitecore.machine.cvd_unit.tooltip.2=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.cvd_unit.tooltip.3=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.cvd_unit.tooltip.4=Each §eEmitter Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.cvd_unit.tooltip.5=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
@@ -1853,6 +1860,13 @@ gtlitecore.material.sodium_perchlorate=Sodium Perchlorate
 gtlitecore.material.sodium_hypochlorite=Sodium Hypochlorite
 gtlitecore.material.tungsten_trioxide=Tungsten Trioxide
 gtlitecore.material.strontium_ferrite=Strontium Ferrite
+gtlitecore.material.titanium_nitrate=Titanium Nitrate
+gtlitecore.material.lithium_titanate=Lithium Titanate
+gtlitecore.material.palladium_nitrate=Palladium Nitrate
+gtlitecore.material.palladium_acetate=Palladium Acetate
+gtlitecore.material.palladium_loaded_rutile_nanoparticles=Palladium Loaded Rutile Nanoparticles
+gtlitecore.material.lithium_oxide=Lithium Oxide
+gtlitecore.material.lithium_carbonate=Lithium Carbonate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1902,6 +1916,7 @@ gtlitecore.material.polyisoprene=Polyisoprene (PI)
 gtlitecore.material.para_xylene=Para Xylene
 gtlitecore.material.nitrotoluene=Nitrotoluene
 gtlitecore.material.diaminostilbenedisulfonic_acid=Diaminostilbenedisulfonic Acid (DSDA)
+gtlitecore.material.succinic_acid=Succinic Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

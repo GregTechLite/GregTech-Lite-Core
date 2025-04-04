@@ -17,14 +17,6 @@
           "side": "gtlitecore:blocks/casings/special/substrate_casing_side",
           "bottom": "#side"
         }
-      },
-      "atomic_substrate_casing": {
-        "model": "minecraft:cube_bottom_top",
-        "textures": {
-          "top": "gtlitecore:blocks/casings/special/atomic_substrate_casing_top",
-          "side": "gtlitecore:blocks/casings/special/substrate_casing_side",
-          "bottom": "#side"
-        }
       }
     }
   }

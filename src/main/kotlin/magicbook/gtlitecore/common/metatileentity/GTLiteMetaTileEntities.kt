@@ -22,6 +22,7 @@ import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
@@ -207,6 +208,7 @@ class GTLiteMetaTileEntities
         lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
+        lateinit var CVD_UNIT: MetaTileEntityCVDUnit
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -660,6 +662,19 @@ class GTLiteMetaTileEntities
 
             CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
                 MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
+
+            CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18012,
+                MetaTileEntityCVDUnit(GTLiteUtility.gtliteId("cvd_unit")))
+
+            // 18013 Nanoscale Fabricator
+
+            // 18014 ...
+
+            // 18015 LICVD
+
+            // 18016 ...
+
+            // 18017 PECVD
 
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))

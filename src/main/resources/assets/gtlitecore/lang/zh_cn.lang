@@ -387,7 +387,6 @@ tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
 tile.multiblock_casing_01.substrate_casing.name=基板机械方块
 tile.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方块
-tile.multiblock_casing_01.atomic_substrate_casing.name=原子级基板机械方块
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -813,6 +812,7 @@ recipemap.circuit_assembly_line.name=电路装配线
 recipemap.food_processor.name=食品料理机
 recipemap.multicooker.name=多功能烹饪机
 recipemap.mining_drone_airport.name=采矿无人机坪
+recipemap.cvd_unit.name=化学气相沉积
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1331,6 +1331,13 @@ gtlitecore.machine.steam_engine.name=工业蒸汽引擎
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
+
+gtlitecore.machine.cvd_unit.name=化学气相沉积单元
+gtlitecore.machine.cvd_unit.tooltip.1=薄膜蒸镀传输
+gtlitecore.machine.cvd_unit.tooltip.2=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.cvd_unit.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.cvd_unit.tooltip.4=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.cvd_unit.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
@@ -1854,6 +1861,16 @@ gtlitecore.material.sodium_perchlorate=高氯酸钠
 gtlitecore.material.sodium_hypochlorite=次氯酸钠
 gtlitecore.material.tungsten_trioxide=三氧化钨
 gtlitecore.material.strontium_ferrite=锶铁氧体
+gtlitecore.material.titanium_nitrate=硝酸钛
+gtlitecore.material.lithium_titanate=钛酸锂
+gtlitecore.material.palladium_nitrate=硝酸钯
+gtlitecore.material.palladium_acetate=乙酸钯
+gtlitecore.material.palladium_loaded_rutile_nanoparticles=钯负载金红石纳米粒子
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=钯负载金红石纳米粒子颗粒
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=钯负载金红石纳米微粒
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=钯负载金红石纳米细微粒
+gtlitecore.material.lithium_oxide=氧化锂
+gtlitecore.material.lithium_carbonate=碳酸锂
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1903,6 +1920,7 @@ gtlitecore.material.polyisoprene=聚异戊二烯（PI）
 gtlitecore.material.para_xylene=对二甲苯
 gtlitecore.material.nitrotoluene=硝基甲苯
 gtlitecore.material.diaminostilbenedisulfonic_acid=二氨基二苯乙烯二磺酸（DSDA）
+gtlitecore.material.succinic_acid=琥珀酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
