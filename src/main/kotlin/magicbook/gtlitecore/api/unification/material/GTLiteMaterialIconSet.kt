@@ -10,6 +10,8 @@ class GTLiteMaterialIconSet
     companion object
     {
         // ======================================== Generalized MaterialIconSets =======================================
+        @JvmField
+        val NANOPARTICLES = MaterialIconSet("nanoparticles", null, true)
 
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField

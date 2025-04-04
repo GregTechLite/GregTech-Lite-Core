@@ -141,6 +141,7 @@ import gregtech.api.unification.material.properties.BlastProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
@@ -838,14 +839,14 @@ class GTLiteMaterials
         @JvmField
         val PalladiumLoadedRutileNanoparticles: Material = Material.Builder(2070, gtliteId("palladium_loaded_rutile_nanoparticles"))
             .dust()
-            .colorAverage().iconSet(FINE)
+            .colorAverage().iconSet(NANOPARTICLES)
             .components(Palladium, 1, Rutile, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
         // 2071 Lithium Oxide
         @JvmField
-        val LithiumOxide = Material.Builder(2071, gtliteId("lithium_oxide"))
+        val LithiumOxide: Material = Material.Builder(2071, gtliteId("lithium_oxide"))
             .dust()
             .color(0x9DB6B9).iconSet(DULL)
             .components(Lithium, 2, Oxygen, 1)
