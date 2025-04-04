@@ -390,6 +390,19 @@ tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casi
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
+tile.crucible.bronze.name=Bronze Crucible
+tile.crucible.invar.name=Invar Crucible
+tile.crucible.quartz.name=Quartz Crucible
+tile.crucible.chrome.name=Chrome Crucible
+tile.crucible.vanadium.name=Vanadium Crucible
+tile.crucible.niobium_titanium.name=Niobium Titanium Crucible
+tile.crucible.iridium.name=Iridium Crucible
+tile.crucible.molybdenum.name=Molybdenum Crucible
+tile.crucible.tungsten.name=Tungsten Crucible
+tile.crucible.osmium.name=Osmium Crucible
+tile.crucible.graphite.name=Graphite Crucible
+tile.crucible.boron_nitride.name=Boron Nitride Crucible
+
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
 metaitem.shape.mold.rod.tooltip=Mold for making Rods
@@ -813,6 +826,8 @@ recipemap.food_processor.name=Food Processor
 recipemap.multicooker.name=Multi Cooker
 recipemap.mining_drone_airport.name=Mining Drone Airport
 recipemap.cvd_unit.name=Chemical Vapor Deposition
+recipemap.crystallization_crucible.name=Crystallization Crucible
+recipemap.nanoscale_fabricator.name=Molecular Beaming
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1793,6 +1808,8 @@ item.material.oreprefix.oreSlate=Slate %s Ore
 item.material.oreprefix.oreShale=Shale %s Ore
 item.material.oreprefix.sheetedFrame=Sheeted %s Frame
 item.material.oreprefix.wallGt=%s Wall
+item.material.oreprefix.seedCrystal=%s Crystal Seed
+item.material.oreprefix.boule=%s Boule
 
 # Materials
 gtlitecore.material.dolomite=Dolomite
@@ -1880,6 +1897,7 @@ gtlitecore.material.hra_magnesium=High Reaction Activated Magnesium
 gtlitecore.material.hydrobromic_acid=Hydrobromic Acid
 gtlitecore.material.dimethylcadmium=Dimethylcadmium
 gtlitecore.material.cadmium_selenide=Cadmium Selenide
+gtlitecore.material.prasiolite=Prasiolite
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -1984,6 +2002,7 @@ gtlitecore.veins.ore.cryolite=Cryolite Vein
 gtlitecore.veins.ore.plutonium=Plutonium Vein
 gtlitecore.veins.ore.jade=Jade Vein
 gtlitecore.veins.ore.realgar=Realgar Vein
+gtlitecore.veins.ore.prasiolite=Prasiolite Vein
 
 gtlitecore.veins.fluid.sea_water=Overworld Sea Water Fluid Vein
 gtlitecore.veins.fluid.blaze=Nether Blaze Fluid Vein

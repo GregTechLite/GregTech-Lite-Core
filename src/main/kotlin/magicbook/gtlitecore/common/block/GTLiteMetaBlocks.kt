@@ -14,6 +14,7 @@ import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOv
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
 import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
@@ -141,11 +142,10 @@ class GTLiteMetaBlocks
         lateinit var PRIMITIVE_CASING: BlockPrimitiveCasing
         lateinit var METAL_CASING_01: BlockMetalCasing01
         lateinit var METAL_CASING_02: BlockMetalCasing02
-
         lateinit var BOILER_CASING_01: BlockBoilerCasing01
-
         lateinit var MULTIBLOCK_CASING_01: BlockMultiblockCasing01
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
+        lateinit var CRUCIBLE: BlockCrucible
 
         @JvmStatic
         fun init()
@@ -377,6 +377,10 @@ class GTLiteMetaBlocks
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setRegistryName("active_unique_casing_01")
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            CRUCIBLE = BlockCrucible()
+            (CRUCIBLE as? Block)?.setRegistryName("crucible")
+            (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             // Initialized Blocks.FIRE#setFireInfo().
             setFireInfos()
         }
@@ -492,6 +496,7 @@ class GTLiteMetaBlocks
             registerItemModel(METAL_CASING_02)
             registerItemModel(MULTIBLOCK_CASING_01)
             registerItemModel(BOILER_CASING_01)
+            registerItemModel(CRUCIBLE)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)

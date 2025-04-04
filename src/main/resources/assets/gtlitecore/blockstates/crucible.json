@@ -1,0 +1,85 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:crucible",
+    "textures": {
+      "all": "gtlitecore:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "bronze": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/bronze"
+        }
+      },
+      "invar": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/invar"
+        }
+      },
+      "quartz": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/quartz"
+        }
+      },
+      "chrome": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/chrome"
+        }
+      },
+      "vanadium": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/vanadium"
+        }
+      },
+      "niobium_titanium": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/niobium_titanium"
+        }
+      },
+      "iridium": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/iridium"
+        }
+      },
+      "molybdenum": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/molybdenum"
+        }
+      },
+      "tungsten": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/tungsten"
+        }
+      },
+      "osmium": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/osmium"
+        }
+      },
+      "graphite": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/graphite"
+        }
+      },
+      "boron_nitride": {
+        "model": "gtlitecore:crucible",
+        "textures": {
+          "all": "gtlitecore:blocks/crucibles/boron_nitride"
+        }
+      }
+    }
+  }
+}

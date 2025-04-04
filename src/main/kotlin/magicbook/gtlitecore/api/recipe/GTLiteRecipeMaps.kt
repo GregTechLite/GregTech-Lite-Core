@@ -629,6 +629,40 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COOLING)
             .build()
 
+        /**
+         * @zenProp crystallization_crucible
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("CRYSTALLIZATION_RECIPES")
+        val CRYSTALLIZATION_RECIPES = RecipeMapBuilder("crystallization_crucible", BlastRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(1)
+            .fluidInputs(3)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+            .itemSlotOverlay(GuiTextures.CRYSTAL_OVERLAY, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_CRYSTALLIZATION)
+            .sound(GTSoundEvents.FURNACE)
+            .build()
+
+        /**
+         * @zenProp nanoscale_fabricator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("MOLECULAR_BEAM_RECIPES")
+        val MOLECULAR_BEAM_RECIPES = RecipeMapBuilder("nanoscale_fabricator", NoCoilTemperatureRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .itemSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_1, false)
+            .itemSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_1, true)
+            .fluidSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_2, false)
+            .fluidSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_2, true)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_NANOSCALE)
+            .sound(GTSoundEvents.ELECTROLYZER)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

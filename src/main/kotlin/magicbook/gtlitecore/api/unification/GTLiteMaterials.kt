@@ -138,6 +138,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
@@ -199,7 +200,7 @@ class GTLiteMaterials
             .ore()
             .color(0x1D640F).iconSet(LAPIS)
             .components(Magnesium, 2, Silicon, 1, Oxygen, 4)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
             .build()
             .setFormula("Mg2(SiO4)", true)
 
@@ -243,7 +244,7 @@ class GTLiteMaterials
             .ore()
             .color(0x303E38).iconSet(EMERALD)
             .components(Magnesium, 5, Aluminium, 2, Silicon, 3, Hydrogen, 8, Oxygen, 18)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
             .setFormula("Mg5Al2Si3O10(OH)8", true)
 
@@ -254,7 +255,7 @@ class GTLiteMaterials
             .ore()
             .color(0xC4A997).iconSet(CERTUS)
             .components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2010 Fluorite
@@ -264,7 +265,7 @@ class GTLiteMaterials
             .ore()
             .color(0x276A4C).iconSet(GEM_HORIZONTAL)
             .components(Calcium, 1, Fluorine, 2)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
             .build()
 
         // 2011 Anorthite
@@ -274,7 +275,7 @@ class GTLiteMaterials
             .ore()
             .color(0x595853).iconSet(CERTUS)
             .components(Calcium, 1, Aluminium, 2, Silicon, 2, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2012 Oligoclase
@@ -284,7 +285,7 @@ class GTLiteMaterials
             .ore()
             .color(0xC4A997).iconSet(CERTUS)
             .components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2013 Labradorite
@@ -294,7 +295,7 @@ class GTLiteMaterials
             .ore()
             .color(0x5C7181).iconSet(RUBY)
             .components(Albite, 2, Anorthite, 3)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2014 Bytownite
@@ -304,7 +305,7 @@ class GTLiteMaterials
             .ore()
             .color(0xC99C67).iconSet(LAPIS)
             .components(Albite, 1, Anorthite, 4)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS)
+            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2015 Tenorite
@@ -344,7 +345,7 @@ class GTLiteMaterials
             .ore()
             .color(0x4FB3D8).iconSet(QUARTZ)
             .components(Calcium, 5, Phosphate, 3, Fluorine, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING, HIGH_SIFTER_OUTPUT, GENERATE_LENS)
+            .flags(DECOMPOSITION_BY_ELECTROLYZING, HIGH_SIFTER_OUTPUT, GENERATE_LENS, GENERATE_BOULE)
             .build()
             .setFormula("Ca5(PO4)3F", true)
 
@@ -399,7 +400,7 @@ class GTLiteMaterials
             .ore()
             .color(0x4AE3E6).iconSet(OPAL)
             .components(Strontium, 1, Sulfur, 1, Oxygen, 4)
-            .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+            .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
             .build()
 
         // 2024 Strontianite
@@ -456,7 +457,7 @@ class GTLiteMaterials
             .ore()
             .color(0x689F9F).iconSet(GEM_HORIZONTAL)
             .components(Zirconium, 1, Oxygen, 2)
-            .flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+            .flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
             .build()
 
         // 2030 Nephelite
@@ -466,7 +467,7 @@ class GTLiteMaterials
             .ore()
             .color(0xE56842).iconSet(CERTUS)
             .components(Potassium, 1, Sodium, 3, Aluminium, 4, Silicon, 4, Oxygen, 16)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
             .setFormula("KNa3(AlSiO4)4", true)
 
@@ -477,7 +478,7 @@ class GTLiteMaterials
             .ore()
             .color(0x4ACA3B).iconSet(EMERALD)
             .components(Sodium, 1, Iron, 1, Silicon, 2, Oxygen, 6)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2032 Niobium Pentoxide
@@ -561,7 +562,7 @@ class GTLiteMaterials
             .ore()
             .color(0xBFEFFF).iconSet(QUARTZ)
             .components(Sodium, 3, Aluminium, 1, Fluorine, 6)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2042 Aluminium Hydroxide
@@ -673,7 +674,7 @@ class GTLiteMaterials
             .ore()
             .color(0x006400).iconSet(RUBY)
             .components(Sodium, 1, Aluminium, 1, Silicon, 2, Oxygen, 6)
-            .flags(CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS)
+            .flags(CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2054 Jasper
@@ -683,7 +684,7 @@ class GTLiteMaterials
             .ore()
             .color(0xC85050).iconSet(EMERALD)
             .components(Calcium, 1, Magnesium, 5, Oxygen, 24, Hydrogen, 2, Silicon, 8)
-            .flags(HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS)
+            .flags(HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
             .setFormula("CaMg5(OH)2(Si4O11)2", true)
 
@@ -694,7 +695,7 @@ class GTLiteMaterials
             .ore(2, 3)
             .color(0x931C24).iconSet(DIAMOND)
             .components(Iron, 1, Chrome, 2, Oxygen, 4)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .flags(GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
             .build()
 
         // 2056 Manganese Monoxide
@@ -737,7 +738,7 @@ class GTLiteMaterials
             .ore()
             .color(0xEBD352).iconSet(EMERALD)
             .components(Arsenic, 2, Sulfur, 3)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
+            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // 2061 Sodium Chlorate
@@ -966,6 +967,16 @@ class GTLiteMaterials
             .dust()
             .color(0x983034).iconSet(METALLIC)
             .components(Cadmium, 1, Selenium, 1)
+            .build()
+
+        // 2086 Prasiolite
+        @JvmField
+        val Prasiolite: Material = Material.Builder(2086, gtliteId("prasiolite"))
+            .gem()
+            .ore()
+            .color(0x9EB749).iconSet(QUARTZ)
+            .components(SiliconDioxide, 5, Iron, 1)
+            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
 
         // =======================================================================

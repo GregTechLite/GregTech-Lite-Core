@@ -12,6 +12,8 @@ import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
@@ -51,8 +53,10 @@ import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -73,6 +77,7 @@ import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlag
+import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
@@ -100,16 +105,32 @@ class GTLiteMaterialFlags
 
         // Used to disabled ABS recipes for automatically generate handler.
         @JvmField
-        val NO_ALLOY_BLAST_RECIPES = MaterialFlag.Builder("no_alloy_blast_recipes")
+        val NO_ALLOY_BLAST_RECIPES: MaterialFlag = MaterialFlag.Builder("no_alloy_blast_recipes")
             .requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
             .build()
 
         // Used to disable everything related to ABS.
         @JvmField
-        val DISABLE_ALLOY_PROPERTY = MaterialFlag.Builder("disable_alloy_property")
+        val DISABLE_ALLOY_PROPERTY: MaterialFlag = MaterialFlag.Builder("disable_alloy_property")
             .requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
             .requireFlags(NO_ALLOY_BLAST_RECIPES)
             .build()
+
+        // Used to disable crystallization crucible recipes of a crystallizable gem,
+        // means it only has autoclave crystallization recipes.
+        @JvmField
+        val DISABLE_CRYSTALLIZATION: MaterialFlag = MaterialFlag.Builder("disable_crystallization")
+            .requireProps(PropertyKey.GEM)
+            .requireFlags(MaterialFlags.CRYSTALLIZABLE)
+            .build()
+
+        // Used to generate boule without crystal seed, or want to generate crystallization
+        // crucible recipes only without autoclave recipes.
+        @JvmField
+        val GENERATE_BOULE: MaterialFlag = MaterialFlag.Builder("generate_boule")
+            .requireProps(PropertyKey.GEM)
+            .build()
+
 
         fun setMaterialFlags()
         {
@@ -117,6 +138,30 @@ class GTLiteMaterialFlags
             Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
             Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
+
+            // boule
+            Diamond.addFlags(GENERATE_BOULE)
+            Sapphire.addFlags(GENERATE_BOULE)
+            GreenSapphire.addFlags(GENERATE_BOULE)
+            Ruby.addFlags(GENERATE_BOULE)
+            Emerald.addFlags(GENERATE_BOULE)
+            Topaz.addFlags(GENERATE_BOULE)
+            BlueTopaz.addFlags(GENERATE_BOULE)
+            Almandine.addFlags(GENERATE_BOULE)
+            Andradite.addFlags(GENERATE_BOULE)
+            Zircon.addFlags(GENERATE_BOULE)
+            Grossular.addFlags(GENERATE_BOULE)
+            Rutile.addFlags(GENERATE_BOULE)
+            Pyrope.addFlags(GENERATE_BOULE)
+            Spessartine.addFlags(GENERATE_BOULE)
+            Uvarovite.addFlags(GENERATE_BOULE)
+            Realgar.addFlags(GENERATE_BOULE)
+            Malachite.addFlags(GENERATE_BOULE)
+            Olivine.addFlags(GENERATE_BOULE)
+            Opal.addFlags(GENERATE_BOULE)
+            Amethyst.addFlags(GENERATE_BOULE)
+            GarnetRed.addFlags(GENERATE_BOULE)
+            GarnetYellow.addFlags(GENERATE_BOULE)
 
             // foil
             Nickel.addFlags(GENERATE_FOIL)

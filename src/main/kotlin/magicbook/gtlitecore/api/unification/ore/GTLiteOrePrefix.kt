@@ -12,6 +12,7 @@ import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconType
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -76,6 +77,18 @@ class GTLiteOrePrefix
             GTLiteMaterialIconType.wallGt, OrePrefix.Flags.ENABLE_UNIFICATION) { m ->
             m.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
 
+        @JvmField
+        val seedCrystal: OrePrefix = OrePrefix("seedCrystal", M / 9, null,
+            GTLiteMaterialIconType.seedCrystal, OrePrefix.Flags.ENABLE_UNIFICATION,
+            OrePrefix.Conditions.hasGemProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_BOULE)
+                    || (m.hasFlags(MaterialFlags.CRYSTALLIZABLE) && !m.hasFlags(GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION))})
+
+        @JvmField
+        val boule: OrePrefix = OrePrefix("boule", M * 4, null,
+            GTLiteMaterialIconType.boule, OrePrefix.Flags.ENABLE_UNIFICATION,
+            OrePrefix.Conditions.hasGemProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_BOULE)
+                    || (m.hasFlags(MaterialFlags.CRYSTALLIZABLE) && !m.hasFlags(GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION))})
+
         fun setOrePrefixInfos()
         {
             gemSolitary.maxStackSize = 8
@@ -136,6 +149,8 @@ class GTLiteOrePrefix
         fun addToMetaItem()
         {
             MetaItems.addOrePrefix(gemSolitary)
+            MetaItems.addOrePrefix(seedCrystal)
+            MetaItems.addOrePrefix(boule)
         }
 
     }

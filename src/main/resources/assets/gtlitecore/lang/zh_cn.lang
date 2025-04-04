@@ -390,6 +390,19 @@ tile.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方�
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
+tile.crucible.bronze.name=青铜坩埚
+tile.crucible.invar.name=殷钢坩埚
+tile.crucible.quartz.name=石英岩坩埚
+tile.crucible.chrome.name=铬坩埚
+tile.crucible.vanadium.name=钒坩埚
+tile.crucible.niobium_titanium.name=铌钛合金坩埚
+tile.crucible.iridium.name=铱坩埚
+tile.crucible.molybdenum.name=钼坩埚
+tile.crucible.tungsten.name=钨坩埚
+tile.crucible.osmium.name=锇坩埚
+tile.crucible.graphite.name=石墨坩埚
+tile.crucible.boron_nitride.name=氮化硼坩埚
+
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
 metaitem.shape.mold.rod.tooltip=用来制作杆的模具
@@ -813,6 +826,8 @@ recipemap.food_processor.name=食品料理机
 recipemap.multicooker.name=多功能烹饪机
 recipemap.mining_drone_airport.name=采矿无人机坪
 recipemap.cvd_unit.name=化学气相沉积
+recipemap.crystallization_crucible.name=结晶坩埚
+recipemap.nanoscale_fabricator.name=分子束外延
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1793,6 +1808,8 @@ item.material.oreprefix.oreSlate=板岩%s矿石
 item.material.oreprefix.oreShale=页岩%s矿石
 item.material.oreprefix.sheetedFrame=%s板框箱
 item.material.oreprefix.wallGt=%s壁面
+item.material.oreprefix.seedCrystal=%s晶种
+item.material.oreprefix.boule=%s晶棒
 
 # Materials
 gtlitecore.material.dolomite=白云石
@@ -1884,6 +1901,7 @@ gtlitecore.material.hra_magnesium=高反应活性镁
 gtlitecore.material.hydrobromic_acid=氢溴酸
 gtlitecore.material.dimethylcadmium=二甲基镉
 gtlitecore.material.cadmium_selenide=硒化镉
+gtlitecore.material.prasiolite=堇云石
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -1988,6 +2006,7 @@ gtlitecore.veins.ore.cryolite=冰晶石矿脉
 gtlitecore.veins.ore.plutonium=钚矿脉
 gtlitecore.veins.ore.jade=玉矿脉
 gtlitecore.veins.ore.realgar=雄黄矿脉
+gtlitecore.veins.ore.prasiolite=堇云石矿脉
 
 gtlitecore.veins.fluid.sea_water=主世界海水矿藏
 gtlitecore.veins.fluid.blaze=下界烈焰矿藏

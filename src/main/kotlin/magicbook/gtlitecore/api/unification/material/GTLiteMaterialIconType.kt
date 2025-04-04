@@ -17,6 +17,12 @@ class GTLiteMaterialIconType
 
         @JvmField
         val wallGt = MaterialIconType("wallGt")
+
+        @JvmField
+        val seedCrystal = MaterialIconType("seedCrystal")
+
+        @JvmField
+        val boule = MaterialIconType("boule")
     }
 
 }

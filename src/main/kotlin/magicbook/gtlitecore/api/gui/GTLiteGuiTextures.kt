@@ -15,28 +15,28 @@ class GTLiteGuiTextures
     {
         // Bases
         @JvmField /* GuiTextures#SLOT_STEAM for fluid slots in Steam Machines.  */
-        val FLUID_SLOT_STEAM = SteamTexture.fullImage(
+        val FLUID_SLOT_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/base/fluid_slot_%s.png")
 
         @JvmField /* GuiTextures#PRIMITIVE_SLOT for fluid slots. */
-        val PRIMITIVE_FLUID_SLOT = TextureArea.fullImage(
+        val PRIMITIVE_FLUID_SLOT: TextureArea = TextureArea.fullImage(
             "textures/gui/primitive/primitive_fluid_slot.png")
 
         // Overlays
         @JvmField
-        val CHOPPING_BLOCK_OVERLAY = TextureArea.fullImage(
+        val CHOPPING_BLOCK_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/chopping_block_overlay.png")
 
         @JvmField
-        val SLICED_CONTAINER_OVERLAY = TextureArea.fullImage(
+        val SLICED_CONTAINER_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/sliced_container_overlay.png")
 
         @JvmField
-        val SLICED_MATTER_OVERLAY= TextureArea.fullImage(
+        val SLICED_MATTER_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/sliced_matter_overlay.png")
 
         @JvmField /* GuiTextures#INT_CIRCUIT_OVERLAY for Steam Machines. */
-        val INT_CIRCUIT_OVERLAY_STEAM = SteamTexture.fullImage(
+        val INT_CIRCUIT_OVERLAY_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/overlay/int_circuit_overlay_%s.png")
 
         @JvmField /* GuiTextures#STRING_SLOT_OVERLAY for fluid slots. */
@@ -59,9 +59,17 @@ class GTLiteGuiTextures
         val RAW_ORE_OVERLAY: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/raw_ore_overlay.png")
 
+        @JvmField
+        val NANOSCALE_OVERLAY_1: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/nanoscale_overlay_1.png")
+
+        @JvmField
+        val NANOSCALE_OVERLAY_2: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/nanoscale_overlay_2.png")
+
         // Progress Bars
         @JvmField
-        val PROGRESS_BAR_SLICING = TextureArea.fullImage(
+        val PROGRESS_BAR_SLICING: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_slicing.png")
 
         @JvmField
@@ -69,7 +77,7 @@ class GTLiteGuiTextures
             "textures/gui/progress_bar/progress_bar_extraction.png")
 
         @JvmField
-        val PROGRESS_BAR_ARROW_MULTIPLE_STEAM = SteamTexture.fullImage(
+        val PROGRESS_BAR_ARROW_MULTIPLE_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/progress_bar/progress_bar_arrow_multiple_%s.png")
 
         @JvmField
@@ -87,6 +95,10 @@ class GTLiteGuiTextures
         @JvmField
         val PROGRESS_BAR_MINING_DRONE: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_mining_drone.png")
+
+        @JvmField
+        val PROGRESS_BAR_NANOSCALE: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_nanoscale.png")
 
         // Widgets
         @JvmField
