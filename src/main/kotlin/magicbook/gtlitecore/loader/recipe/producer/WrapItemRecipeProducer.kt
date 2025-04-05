@@ -48,11 +48,14 @@ import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.WETWARE_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
@@ -60,6 +63,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_IN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.INFINITE_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_DIODE
@@ -67,6 +71,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_IN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERFECT_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
@@ -78,6 +83,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTIMATE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_CAPACITOR
@@ -86,6 +92,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_APIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ARAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COATED_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_CAPACITOR
@@ -98,6 +106,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ELITE_CIR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EPOXY_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXTREME_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_FIBER_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_FPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_CAPACITOR
@@ -114,6 +123,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_MULTILAYE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_DIODE
@@ -125,6 +135,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PHENOLIC_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_QUBIT_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SIMPLE_SOC_CHIP
@@ -145,6 +156,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUS
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_UHASOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_UHPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ULPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ULTIMATE_CIRCUIT_BOARD
@@ -242,11 +254,12 @@ class WrapItemRecipeProducer
             wrapItems[POWER_INTEGRATED_CIRCUIT] = WRAP_PIC_CHIP
             wrapItems[HIGH_POWER_INTEGRATED_CIRCUIT] = WRAP_HPIC_CHIP
             wrapItems[ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT] = WRAP_UHPIC_CHIP
-            // wrapItems[NANO_PIC_CHIP] = WRAP_NPIC_CHIP
-            // wrapItems[PICO_PIC_CHIP] = WRAP_PPIC_CHIP
-            // wrapItems[FEMTO_PIC_CHIP] = WRAP_FPIC_CHIP
-            // wrapItems[ATTO_PIC_CHIP] = WRAP_APIC_CHIP
-            // wrapItems[ADVANCED_RAM_CHIP] = WRAP_ARAM_CHIP
+            wrapItems[NANO_PIC_CHIP] = WRAP_NPIC_CHIP
+            wrapItems[PICO_PIC_CHIP] = WRAP_PPIC_CHIP
+            wrapItems[FEMTO_PIC_CHIP] = WRAP_FPIC_CHIP
+            wrapItems[ATTO_PIC_CHIP] = WRAP_APIC_CHIP
+            wrapItems[ADVANCED_RAM_CHIP] = WRAP_ARAM_CHIP
+            wrapItems[ULTRA_HIGHLY_ADVANCED_SOC_CHIP] = WRAP_UHASOC_CHIP
 
             // Circuit Components
             // wrapItems[CRYSTAL_CENTRAL_PROCESSING_UNIT] = WRAP_CRYSTAL_CPU

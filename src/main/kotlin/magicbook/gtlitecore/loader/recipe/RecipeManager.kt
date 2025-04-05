@@ -2,12 +2,14 @@ package magicbook.gtlitecore.loader.recipe
 
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
+import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
@@ -18,6 +20,7 @@ import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.QuantumCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.WetwareCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AlloySmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
@@ -31,6 +34,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
+import magicbook.gtlitecore.loader.recipe.machine.LaserEngraverRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
@@ -89,6 +93,8 @@ class RecipeManager
             LithiumTitanateChain.init()
             NanoparticlesChain.init()
             QuantumDotsChain.init()
+            OzoneChain.init()
+            MagnetoResonaticChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
@@ -107,6 +113,7 @@ class RecipeManager
             NanoCircuits.init()
             QuantumCircuits.init()
             CrystalCircuits.init()
+            WetwareCircuits.init()
 
             // Original GregTech machine recipes.
             AlloySmelterRecipes.init()
@@ -119,6 +126,7 @@ class RecipeManager
             ExtruderRecipes.init()
             FormingPressRecipes.init()
             GasCollectorRecipes.init()
+            LaserEngraverRecipes.init()
             MixerRecipes.init()
             PackerRecipes.init()
             WiremillRecipes.init()

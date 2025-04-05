@@ -170,14 +170,16 @@ public class MetaTileEntityLargeLaserEngraver extends RecipeMapMultiblockControl
                 .aisle("CCC", "GMG", "CEC", " C ")
                 .aisle("CCC", "GMG", "CEC", " C ")
                 .aisle("CCC", "GMG", "CEC", " C ")
-                .aisle("CNC", "ISJ", "CCC", " F ")
+                .aisle("INJ", "KSL", "CCC", " F ")
                 .where('S', GTLiteMetaTileEntities.LARGE_LASER_ENGRAVER, EnumFacing.SOUTH)
                 .where('C', getCasingState())
                 .where('G', getGlassState())
                 .where('F', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.UP)
                 .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
-                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH);
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
+                .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
         AtomicInteger count = new AtomicInteger();
         StreamEx.of(emitterCasings)
                 .map(b -> {

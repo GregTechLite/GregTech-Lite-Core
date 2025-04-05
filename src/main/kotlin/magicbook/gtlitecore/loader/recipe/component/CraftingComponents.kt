@@ -177,6 +177,16 @@ class CraftingComponents
                 MAX to GTLiteMetaItems.VOLTAGE_COIL_MAX.stackForm
             ).toMap())
 
+            // Power ICs.
+            CraftingComponent.POWER_COMPONENT.appendIngredients(sequenceOf(
+                UHV to GTLiteMetaItems.NANO_PIC_CHIP.stackForm,
+                UEV to GTLiteMetaItems.NANO_PIC_CHIP.stackForm,
+                UIV to GTLiteMetaItems.PICO_PIC_CHIP.stackForm,
+                UXV to GTLiteMetaItems.PICO_PIC_CHIP.stackForm,
+                OpV to GTLiteMetaItems.FEMTO_PIC_CHIP.stackForm,
+                MAX to GTLiteMetaItems.FEMTO_PIC_CHIP.stackForm
+            ).toMap())
+
         }
 
     }

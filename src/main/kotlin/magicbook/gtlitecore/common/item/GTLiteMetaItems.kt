@@ -152,6 +152,19 @@ class GTLiteMetaItems
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
 
+        lateinit var NANO_PIC_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var NANO_PIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var PICO_PIC_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var PICO_PIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var FEMTO_PIC_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var FEMTO_PIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ATTO_PIC_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var ATTO_PIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ADVANCED_RAM_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var ADVANCED_RAM_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ULTRA_HIGHLY_ADVANCED_SOC_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var ULTRA_HIGHLY_ADVANCED_SOC_CHIP: MetaItem<*>.MetaValueItem
+
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PLASTIC_BOARD: MetaItem<*>.MetaValueItem
@@ -223,6 +236,12 @@ class GTLiteMetaItems
         lateinit var WRAP_PIC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_HPIC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_UHPIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_NPIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_PPIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_FPIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_APIC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_ARAM_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var MICA_PULP: MetaItem<*>.MetaValueItem
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
@@ -587,6 +606,18 @@ class GTLiteMetaItems
             DIELECTRIC_MIRROR = GTLITE_ITEMS.addItem(1102, "circuit.component.dielectric_mirror")
 
             // 2001-2500: Boules and Wafers.
+            NANO_PIC_WAFER = GTLITE_ITEMS.addItem(2001, "wafer.nano_power_integrated_circuit")
+            NANO_PIC_CHIP = GTLITE_ITEMS.addItem(2002, "wafer.chip.nano_power_integrated_circuit")
+            PICO_PIC_WAFER = GTLITE_ITEMS.addItem(2003, "wafer.pico_power_integrated_circuit")
+            PICO_PIC_CHIP = GTLITE_ITEMS.addItem(2004, "wafer.chip.pico_power_integrated_circuit")
+            FEMTO_PIC_WAFER = GTLITE_ITEMS.addItem(2005, "wafer.femto_power_integrated_circuit")
+            FEMTO_PIC_CHIP = GTLITE_ITEMS.addItem(2006, "wafer.chip.femto_power_integrated_circuit")
+            ATTO_PIC_WAFER = GTLITE_ITEMS.addItem(2007, "wafer.atto_power_integrated_circuit")
+            ATTO_PIC_CHIP = GTLITE_ITEMS.addItem(2008, "wafer.chip.atto_power_integrated_circuit")
+            ADVANCED_RAM_WAFER = GTLITE_ITEMS.addItem(2009, "wafer.advanced_random_access_memory")
+            ADVANCED_RAM_CHIP = GTLITE_ITEMS.addItem(2010, "wafer.chip.advanced_random_access_memory")
+            ULTRA_HIGHLY_ADVANCED_SOC_WAFER = GTLITE_ITEMS.addItem(2011, "wafer.ultra_highly_advanced_system_on_chip")
+            ULTRA_HIGHLY_ADVANCED_SOC_CHIP = GTLITE_ITEMS.addItem(2012, "wafer.chip.ultra_highly_advanced_system_on_chip")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")
@@ -660,6 +691,12 @@ class GTLiteMetaItems
             WRAP_PIC_CHIP = GTLITE_ITEMS.addItem(3069, "wrap.wafer.chip.power_integrated_circuit")
             WRAP_HPIC_CHIP = GTLITE_ITEMS.addItem(3070, "wrap.wafer.chip.high_power_integrated_circuit")
             WRAP_UHPIC_CHIP = GTLITE_ITEMS.addItem(3071, "wrap.wafer.chip.ultra_high_power_integrated_circuit")
+            WRAP_NPIC_CHIP = GTLITE_ITEMS.addItem(3072, "wrap.wafer.chip.nano_power_integrated_circuit")
+            WRAP_PPIC_CHIP = GTLITE_ITEMS.addItem(3073, "wrap.wafer.chip.pico_power_integrated_circuit")
+            WRAP_FPIC_CHIP = GTLITE_ITEMS.addItem(3074, "wrap.wafer.chip.femto_power_integrated_circuit")
+            WRAP_APIC_CHIP = GTLITE_ITEMS.addItem(3075, "wrap.wafer.chip.atto_power_integrated_circuit")
+            WRAP_ARAM_CHIP = GTLITE_ITEMS.addItem(3076, "wrap.wafer.chip.advanced_random_access_memory")
+            WRAP_UHASOC_CHIP = GTLITE_ITEMS.addItem(3077, "wrap.wafer.chip.ultra_highly_advanced_system_on_chip")
 
             // 5001-8000: Miscellaneous Materials.
             MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")

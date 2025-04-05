@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
@@ -9,7 +10,10 @@ import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Air
+import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
@@ -18,6 +22,7 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
@@ -71,6 +76,7 @@ class CrystalCircuits
 
             LASER_ENGRAVER_RECIPES.recipeBuilder()
                 .notConsumable(DIELECTRIC_MIRROR)
+                .notConsumable(craftingLens, MarkerMaterials.Color.Lime)
                 .input(ENGRAVED_CRYSTAL_CHIP)
                 .output(CRYSTAL_CENTRAL_PROCESSING_UNIT)
                 .EUt(10000) // LuV

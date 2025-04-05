@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Bronze
@@ -86,6 +87,7 @@ import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
@@ -144,9 +146,11 @@ import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.DISABLE_CRYSTALLIZATION
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
@@ -1015,6 +1019,43 @@ class GTLiteMaterials
             .components(ZBLANGlass, 1, Praseodymium, 1)
             .build()
             .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true)
+
+        // 2090 Ozone
+        @JvmField
+        val Ozone: Material = Material.Builder(2090, gtliteId("ozone"))
+            .gas()
+            .color(0xBEF4FA)
+            .components(Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2091 Cubic Zirconia
+        @JvmField
+        val CubicZirconia: Material = Material.Builder(2091, gtliteId("cubic_zirconia"))
+            .gem()
+            .color(0xFFDFE2).iconSet(DIAMOND)
+            .components(Zirconium, 1, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+            .build()
+            .setFormula("c-ZrO2", true)
+
+        // 2092 Bismuth Telluride
+        @JvmField
+        val BismuthTelluride: Material = Material.Builder(2092, gtliteId("bismuth_telluride"))
+            .dust()
+            .color(0x0E8933).iconSet(DULL)
+            .components(Bismuth, 2, Tellurium, 3)
+            .build()
+
+        // 2093 Magneto Resonatic
+        @JvmField
+        val MagnetoResonatic: Material = Material.Builder(2093, gtliteId("magneto_resonatic"))
+            .gem()
+            .color(0xFF97FF).iconSet(MAGNETO)
+            .components(BismuthTelluride, 4, Prasiolite, 3, CubicZirconia, 1, SteelMagnetic, 1)
+            .flags(NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+            .build()
+            .setFormula("(Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

@@ -26,6 +26,9 @@ class GTLiteMaterialIconSet
         @JvmField
         val AEROTHEUM = MaterialIconSet("aerotheum", null, true)
 
+        @JvmField
+        val MAGNETO = MaterialIconSet("magneto", null, true)
+
         // =============================================================================================================
         @JvmStatic
         fun setMaterialIconSets()

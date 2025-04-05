@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures" : {
+    "layer0": "gtlitecore:items/metaitems/wafer.pico_power_integrated_circuit"
+  }
+}

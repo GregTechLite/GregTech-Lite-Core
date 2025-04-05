@@ -708,6 +708,13 @@ class GTLiteRecipeMaps
             RecipeMaps.ARC_FURNACE_RECIPES.maxFluidInputs = 2
             RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_1, false)
             RecipeMaps.ARC_FURNACE_RECIPES.recipeMapUI.setFluidSlotOverlay(GuiTextures.LIGHTNING_OVERLAY_2, false)
+
+            // (2,1,0,0) -> (4,4,2,2)
+            RecipeMaps.LASER_ENGRAVER_RECIPES.maxInputs = 4
+            RecipeMaps.LASER_ENGRAVER_RECIPES.maxOutputs = 4
+            RecipeMaps.LASER_ENGRAVER_RECIPES.maxFluidInputs = 2
+            RecipeMaps.LASER_ENGRAVER_RECIPES.maxFluidOutputs = 2
+            RecipeMaps.LASER_ENGRAVER_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.LENS_OVERLAY, false)
         }
 
     }
