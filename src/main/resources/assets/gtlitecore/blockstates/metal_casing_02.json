@@ -91,6 +91,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/brass"
         }
+      },
+      "titanium_tungsten_carbide": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/titanium_tungsten_carbide"
+        }
       }
     }
   }

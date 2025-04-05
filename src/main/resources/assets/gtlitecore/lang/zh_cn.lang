@@ -382,6 +382,7 @@ tile.metal_casing_02.hastelloy_n.name=耐高温哈斯特洛伊合金-N机器外�
 tile.metal_casing_02.rene_n5.name=时效硬化镍基高温合金-N5机器外壳
 tile.metal_casing_02.bismuth_bronze.name=食品级铋青铜机器外壳
 tile.metal_casing_02.brass.name=工业级黄铜机器外壳
+tile.metal_casing_02.titanium_tungsten_carbide.name=抗激光碳化钛钨机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1361,6 +1362,17 @@ gtlitecore.machine.crystallization_crucible.tooltip.3=当电压等级大于等�
 gtlitecore.machine.crystallization_crucible.tooltip.4=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.crystallization_crucible.tooltip.5=每提高1个§a线圈等级§7，每次运行可以多处理§l8§r§7个物品。
 
+gtlitecore.machine.nanoscale_fabricator.name=纳米级制造室
+gtlitecore.machine.nanoscale_fabricator.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.nanoscale_fabricator.tooltip.2=配方温度受到结构中的所有坩埚的平均温度限制。
+gtlitecore.machine.nanoscale_fabricator.tooltip.3=平均温度必须在配方要求的±§c250K§7以内方可使配方成功运行。
+gtlitecore.machine.nanoscale_fabricator.tooltip.4=只能使用ULV输入总线在指定坩埚位置的下方输入物品。
+gtlitecore.machine.nanoscale_fabricator.tooltip.5=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.nanoscale_fabricator.tooltip.6=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+gtlitecore.machine.nanoscale_fabricator.average_temperature=平均温度：%s
+gtlitecore.machine.nanoscale_fabricator.temperature_range=可运行温度范围：%s-%s
+gtlitecore.machine.nanoscale_fabricator.required_temperature=温度：%s
+
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
@@ -1936,6 +1948,8 @@ gtlitecore.material.hastelloy_x=哈斯特洛伊合金-X
 gtlitecore.material.hastelloy_n=哈斯特洛伊合金-N
 gtlitecore.material.aluminium_bronze=铝青铜
 gtlitecore.material.rene_n_5=镍基高温合金-N5
+gtlitecore.material.titanium_carbide=碳化钛
+gtlitecore.material.titanium_tungsten_carbide=碳化钛钨
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

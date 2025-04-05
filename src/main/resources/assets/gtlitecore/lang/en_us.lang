@@ -382,6 +382,7 @@ tile.metal_casing_02.hastelloy_n.name=Heatproof Hastelloy-N Machine Casing
 tile.metal_casing_02.rene_n5.name=Time Hardening René-N5 Machine Casing
 tile.metal_casing_02.bismuth_bronze.name=Food Grade Bismuth Bronze
 tile.metal_casing_02.brass.name=Industrial Brass Machine Casing
+tile.metal_casing_02.titanium_tungsten_carbide.name=Laserproof Titanium Tungsten Carbide Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1361,6 +1362,17 @@ gtlitecore.machine.crystallization_crucible.tooltip.3=When Voltage tier >= §3UV
 gtlitecore.machine.crystallization_crucible.tooltip.4=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.crystallization_crucible.tooltip.5=Each §aCoil tier§7 +1, processing +§l8§r§7 items.
 
+gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
+gtlitecore.machine.nanoscale_fabricator.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.nanoscale_fabricator.tooltip.2=Recipe temperature dependent with average temperature of all crucibles in structure.
+gtlitecore.machine.nanoscale_fabricator.tooltip.3=Average temperature must be ±§c250K§7 with recipe required temperature.
+gtlitecore.machine.nanoscale_fabricator.tooltip.4=Required ULV Item Import Bus at crucible below in structure.
+gtlitecore.machine.nanoscale_fabricator.tooltip.5=Each §eEmitter Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.nanoscale_fabricator.tooltip.6=Each §aRobot Arm Casing tier§7 +1, processing +§l4§r§7 items.
+gtlitecore.machine.nanoscale_fabricator.average_temperature=Average Temperature: %s
+gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature Range: %s-%s
+gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
@@ -1932,6 +1944,8 @@ gtlitecore.material.hastelloy_x=Hastelloy-X
 gtlitecore.material.hastelloy_n=Hastelloy-N
 gtlitecore.material.aluminium_bronze=Aluminium Bronze
 gtlitecore.material.rene_n_5=René-N5
+gtlitecore.material.titanium_carbide=Titanium Carbide
+gtlitecore.material.titanium_tungsten_carbide=Titanium Tungsten Carbide
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

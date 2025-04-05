@@ -27,6 +27,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatal
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCircuitAssemblyLine
@@ -211,6 +212,7 @@ class GTLiteMetaTileEntities
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
         lateinit var CVD_UNIT: MetaTileEntityCVDUnit
         lateinit var CRYSTALLIZATION_CRUCIBLE: MetaTileEntityCrystallizationCrucible
+        lateinit var NANOSCALE_FABRICATOR: MetaTileEntityNanoscaleFabricator
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -671,15 +673,8 @@ class GTLiteMetaTileEntities
             CRYSTALLIZATION_CRUCIBLE = MetaTileEntities.registerMetaTileEntity(18013,
                 MetaTileEntityCrystallizationCrucible(GTLiteUtility.gtliteId("crystallization_crucible")))
 
-            // 18013 Nanoscale Fabricator
-
-            // 18014 ...
-
-            // 18015 LICVD
-
-            // 18016 ...
-
-            // 18017 PECVD
+            NANOSCALE_FABRICATOR = MetaTileEntities.registerMetaTileEntity(18014,
+                MetaTileEntityNanoscaleFabricator(GTLiteUtility.gtliteId("nanoscale_fabricator")))
 
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
@@ -877,6 +872,7 @@ class GTLiteMetaTileEntities
             CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

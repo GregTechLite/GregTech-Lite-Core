@@ -52,6 +52,7 @@ import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
@@ -89,6 +90,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TectonicPetrotheum
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZephyreanAerotheum
@@ -442,6 +445,26 @@ class MixerRecipes
                 .output(dust, ReneN5, 40)
                 .EUt(VA[LuV].toLong())
                 .duration(40 * SECOND)
+                .buildAndRegister()
+
+            // Titanium Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Titanium, 1)
+                .input(dust, Carbon, 1)
+                .output(dust, TitaniumCarbide, 2)
+                .EUt(VA[HV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // Titanium Tungsten Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, TungstenCarbide, 1)
+                .input(dust, TitaniumCarbide, 2)
+                .output(dust, TitaniumTungstenCarbide, 3)
+                .EUt(VA[EV].toLong())
+                .duration(24 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

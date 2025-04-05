@@ -103,6 +103,9 @@ class GTLiteTextures
         @JvmField
         val CRYSTALLIZATION_CRUCIBLE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/crystallization_crucible")
 
+        @JvmField
+        val NANOSCALE_FABRICATOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/nanoscale_fabricator")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -199,6 +202,9 @@ class GTLiteTextures
 
         @JvmField
         val BRASS_CASING = GTLiteSimpleOverlayRenderer("casings/metal/brass")
+
+        @JvmField
+        val TITANIUM_TUNGSTEN_CARBIDE_CASING = GTLiteSimpleOverlayRenderer("casings/metal/titanium_tungsten_carbide")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

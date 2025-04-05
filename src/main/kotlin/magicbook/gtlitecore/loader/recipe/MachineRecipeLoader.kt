@@ -165,6 +165,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Molybdenum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -231,6 +232,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MINING_DRONE_AIRPORT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NANOSCALE_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -1176,6 +1178,16 @@ class MachineRecipeLoader
                 'L', UnificationEntry(pipeNormalFluid, Titanium),
                 'H', HULL[EV].stackForm,
                 'P', UnificationEntry(plate, Titanium))
+
+            // Nanoscale Fabricator
+            ModHandler.addShapedRecipe(true, "nanoscale_fabricator", NANOSCALE_FABRICATOR.stackForm,
+                "KSK", "EHE", "CFC",
+                'K', UnificationEntry(cableGtSingle, Platinum),
+                'S', SENSOR_IV.stackForm,
+                'E', EMITTER_IV.stackForm,
+                'H', HULL[IV].stackForm,
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'F', UnificationEntry(plate, TitaniumCarbide))
 
         }
 

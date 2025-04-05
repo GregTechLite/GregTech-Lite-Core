@@ -92,6 +92,7 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
@@ -1363,6 +1364,36 @@ class GTLiteMaterials
                 b.temp(6800, BlastProperty.GasTier.HIGH) // Naquadah
                     .blastStats(VA[LuV], 30 * SECOND)
                     .vacuumStats(VA[EV], 25 * SECOND)
+            }
+            .build()
+
+        // 4027 Titanium Carbide
+        @JvmField
+        val TitaniumCarbide: Material = Material.Builder(4027, gtliteId("titanium_carbide"))
+            .ingot()
+            .fluid()
+            .color(0xB20B3A).iconSet(METALLIC)
+            .components(Titanium, 1, Carbon, 1)
+            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING)
+            .blast { b ->
+                b.temp(3430, BlastProperty.GasTier.MID) // Nichrome
+                    .blastStats(VA[HV], 50 * SECOND)
+                    .vacuumStats(VA[MV], 10 * SECOND)
+            }
+            .build()
+
+        // 4028 Titanium Tungsten Carbide
+        @JvmField
+        val TitaniumTungstenCarbide: Material = Material.Builder(4028, gtliteId("titanium_tungsten_carbide"))
+            .ingot()
+            .fluid()
+            .color(0x800D0D).iconSet(METALLIC)
+            .components(TungstenCarbide, 1, TitaniumCarbide, 2)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(3800, BlastProperty.GasTier.HIGH) // Nichrome
+                    .blastStats(VA[EV], 50 * SECOND)
+                    .vacuumStats(VA[HV], 15 * SECOND)
             }
             .build()
 
