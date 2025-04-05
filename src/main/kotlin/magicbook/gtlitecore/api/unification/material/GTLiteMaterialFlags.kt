@@ -43,6 +43,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
+import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Powellite
 import gregtech.api.unification.material.Materials.Pyrochlore
@@ -172,6 +173,7 @@ class GTLiteMaterialFlags
             Indium.addFlags(GENERATE_FOIL)
             Ultimet.addFlags(GENERATE_FOIL)
             RTMAlloy.addFlags(GENERATE_FOIL)
+            PolyvinylButyral.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)

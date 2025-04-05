@@ -150,6 +150,7 @@ class GTLiteMetaItems
         lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
+        lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -583,6 +584,7 @@ class GTLiteMetaItems
 
             // 1101-2000: Circuit Components.
             VACUUM_TUBE_COMPONENT = GTLITE_ITEMS.addItem(1101, "circuit.component.vacuum_tube_component")
+            DIELECTRIC_MIRROR = GTLITE_ITEMS.addItem(1102, "circuit.component.dielectric_mirror")
 
             // 2001-2500: Boules and Wafers.
 

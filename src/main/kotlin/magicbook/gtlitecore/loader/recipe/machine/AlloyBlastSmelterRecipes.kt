@@ -1,11 +1,13 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Antimony
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.BatteryAlloy
 import gregtech.api.unification.material.Materials.BlueAlloy
 import gregtech.api.unification.material.Materials.Boron
@@ -19,11 +21,13 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Magnalium
 import gregtech.api.unification.material.Materials.Magnesium
@@ -34,14 +38,18 @@ import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import net.minecraftforge.fluids.Fluid
@@ -124,6 +132,21 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[MV].toLong())
                 .duration(11 * SECOND + 14 * TICK)
                 .blastFurnaceTemp(1048) // Cupronickel
+                .buildAndRegister()
+
+            // ZBLAN Glass
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Zirconium, 5)
+                .input(dust, Barium, 2)
+                .input(dust, Lanthanum)
+                .input(dust, Aluminium)
+                .input(dust, Sodium, 2)
+                .fluidInputs(Fluorine.getFluid(6200))
+                .fluidOutputs(ZBLANGlass.getFluid(L * 11))
+                .EUt(VA[HV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .blastFurnaceTemp(1073) // Cupronickel
                 .buildAndRegister()
 
         }

@@ -19,6 +19,7 @@ import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.QuantumCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
+import magicbook.gtlitecore.loader.recipe.machine.AlloySmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AutoclaveRecipes
@@ -108,6 +109,7 @@ class RecipeManager
             CrystalCircuits.init()
 
             // Original GregTech machine recipes.
+            AlloySmelterRecipes.init()
             AssemblerRecipes.init()
             AssemblyLineRecipes.init()
             AutoclaveRecipes.init()

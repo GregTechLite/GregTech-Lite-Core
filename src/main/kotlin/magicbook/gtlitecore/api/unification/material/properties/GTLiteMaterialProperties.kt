@@ -18,10 +18,12 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
@@ -31,6 +33,7 @@ import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
@@ -102,7 +105,7 @@ class GTLiteMaterialProperties
             // DustProperty can be overridden to IngotProperty or GemProperty yet,
             // please see: MaterialPropertiesMixin#setProperty().
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
-                Selenium, Tellurium)
+                Selenium, Tellurium, Lanthanum, Erbium, Praseodymium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }

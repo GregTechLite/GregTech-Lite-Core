@@ -38,6 +38,7 @@ import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Massicot
+import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
@@ -51,6 +52,7 @@ import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfurTrioxide
+import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tetrahedrite
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
@@ -64,6 +66,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -332,6 +336,26 @@ class OxidesChain
                 .output(dust, LithiumOxide, 3)
                 .EUt(VH[LV].toLong())
                 .duration(3 * SECOND)
+                .buildAndRegister()
+
+            // 2Nb + 5O -> Nb2O5
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Niobium, 2)
+                .fluidInputs(Oxygen.getFluid(5000))
+                .output(dust, NiobiumPentoxide, 7)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // 2Ta + 5O -> Ta2O5
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Tantalum, 2)
+                .fluidInputs(Oxygen.getFluid(5000))
+                .output(dust, TantalumPentoxide, 7)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
         }
 

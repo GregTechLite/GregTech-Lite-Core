@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Carbon
@@ -22,6 +23,7 @@ import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrotine
+import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -29,6 +31,7 @@ import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Manganese
@@ -44,6 +47,7 @@ import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Silicon
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
@@ -94,6 +98,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZephyreanAerotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
@@ -118,6 +123,20 @@ class MixerRecipes
                 .output(dust, StrontiumFerrite, 32)
                 .EUt(VA[IV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // ZBLAN Glass
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Zirconium, 5)
+                .input(dust, Barium, 2)
+                .input(dust, Lanthanum)
+                .input(dust, Aluminium)
+                .input(dust, Sodium, 2)
+                .fluidInputs(Fluorine.getFluid(6200))
+                .output(dust, ZBLANGlass, 11)
+                .EUt(VA[HV].toLong())
+                .duration(25 * SECOND)
                 .buildAndRegister()
 
             // Kovar

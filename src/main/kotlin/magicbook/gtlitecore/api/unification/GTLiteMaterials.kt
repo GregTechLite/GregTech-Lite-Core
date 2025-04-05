@@ -17,6 +17,7 @@ import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.BandedIron
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Bronze
@@ -34,6 +35,7 @@ import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
 import gregtech.api.unification.material.Materials.Electrotine
+import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gold
@@ -44,6 +46,7 @@ import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesite
@@ -61,6 +64,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
@@ -121,6 +125,7 @@ import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
+import gregtech.api.unification.material.info.MaterialFlags.NO_WORKING
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
 import gregtech.api.unification.material.info.MaterialIconSet.DIAMOND
@@ -980,6 +985,36 @@ class GTLiteMaterials
             .components(SiliconDioxide, 5, Iron, 1)
             .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
             .build()
+
+        // 2087 ZBLAN Glass
+        @JvmField
+        val ZBLANGlass: Material = Material.Builder(2087, gtliteId("zblan_glass"))
+            .ingot()
+            .fluid()
+            .color(0xACB4BC).iconSet(SHINY)
+            .components(Zirconium, 5, Barium, 2, Lanthanum, 1, Aluminium, 1, Sodium, 2, Fluorine, 6)
+            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2", true)
+
+        // 2088 Er-doped ZBLAN Glass
+        @JvmField
+        val ErbiumDopedZBLANGlass: Material = Material.Builder(2088, gtliteId("erbium_doped_zblan_glass"))
+            .ingot()
+            .color(0x505444).iconSet(BRIGHT)
+            .components(ZBLANGlass, 1, Erbium, 1)
+            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
+            .build().setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true)
+
+        // 2089 Pr-doped ZBLAN Glass
+        @JvmField
+        val PraseodymiumDopedZBLANGlass: Material = Material.Builder(2089, gtliteId("praseodymium_doped_zblan_glass"))
+            .ingot()
+            .color(0xC5C88D).iconSet(BRIGHT)
+            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .components(ZBLANGlass, 1, Praseodymium, 1)
+            .build()
+            .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

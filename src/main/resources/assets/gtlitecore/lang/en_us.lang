@@ -689,6 +689,8 @@ metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Inte
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
 
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
+metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
+metaitem.circuit.component.dielectric_mirror.tooltip=Bragg Mirror
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -1917,6 +1919,12 @@ gtlitecore.material.hydrobromic_acid=Hydrobromic Acid
 gtlitecore.material.dimethylcadmium=Dimethylcadmium
 gtlitecore.material.cadmium_selenide=Cadmium Selenide
 gtlitecore.material.prasiolite=Prasiolite
+gtlitecore.material.zblan_glass=ZBLAN Glass
+item.gtlitecore.material.zblan_glass.ingot=ZBLAN Glass Bar
+gtlitecore.material.erbium_doped_zblan_glass=Erbium-doped ZBLAN Glass
+item.gtlitecore.material.erbium_doped_zblan_glass.ingot=Erbium-doped ZBLAN Glass Bar
+gtlitecore.material.praseodymium_doped_zblan_glass=Praseodymium-doped ZBLAN Glass
+item.gtlitecore.material.praseodymium_doped_zblan_glass.ingot=Praseodymium-doped ZBLAN Glass Bar
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

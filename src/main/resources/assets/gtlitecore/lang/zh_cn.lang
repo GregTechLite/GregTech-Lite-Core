@@ -689,6 +689,8 @@ metaitem.tool.disposable.rolling_pin.name=一次性擀面杖
 metaitem.tool.disposable.rolling_pin.tooltip=仅用于合成的一次性工具
 
 metaitem.circuit.component.vacuum_tube_component.name=真空管组件
+metaitem.circuit.component.dielectric_mirror.name=介电镜
+metaitem.circuit.component.dielectric_mirror.tooltip=布氏镜
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -1921,6 +1923,12 @@ gtlitecore.material.hydrobromic_acid=氢溴酸
 gtlitecore.material.dimethylcadmium=二甲基镉
 gtlitecore.material.cadmium_selenide=硒化镉
 gtlitecore.material.prasiolite=堇云石
+gtlitecore.material.zblan_glass=ZBLAN玻璃
+item.gtlitecore.material.zblan_glass.ingot=ZBLAN玻璃条
+gtlitecore.material.erbium_doped_zblan_glass=铒掺杂的ZBLAN玻璃
+item.gtlitecore.material.erbium_doped_zblan_glass.ingot=铒掺杂的ZBLAN玻璃条
+gtlitecore.material.praseodymium_doped_zblan_glass=镨掺杂的ZBLAN玻璃
+item.gtlitecore.material.praseodymium_doped_zblan_glass.ingot=镨掺杂的ZBLAN玻璃条
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
