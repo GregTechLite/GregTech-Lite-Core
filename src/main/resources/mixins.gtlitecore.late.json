@@ -6,6 +6,7 @@
   "minVersion": "0.8.3",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "gregtech.CoreModuleMixin",
     "gregtech.JustEnoughItemsModuleMixin",
     "gregtech.OreConfigUtilsMixin",
     "gregtech.MaterialPropertiesMixin",
