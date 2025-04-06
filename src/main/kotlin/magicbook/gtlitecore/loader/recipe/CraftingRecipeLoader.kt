@@ -4,18 +4,25 @@ import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -56,6 +63,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -279,6 +287,10 @@ class CraftingRecipeLoader
             ModHandler.addShapelessRecipe("plate_graphite", OreDictUnifier.get(plate, Graphite),
                 GTLiteToolItems.ROLLING_PIN, OreDictUnifier.get(dust, Graphite))
 
+            // Add recipes to graphene plate.
+            ModHandler.addShapelessRecipe("plate_graphene", OreDictUnifier.get(plate, Graphene),
+                GTLiteToolItems.ROLLING_PIN, OreDictUnifier.get(dust, Graphene))
+
             // Casting Mold (Empty)
             ModHandler.addShapedRecipe(true, "casting_mold.empty", CASTING_MOLD_EMPTY.stackForm,
                 "hf ", "PP ", "PP ",
@@ -475,6 +487,63 @@ class CraftingRecipeLoader
             ModHandler.removeRecipeByName("${GTValues.MODID}:smart_item_filter_emerald")
             ModHandler.addShapelessRecipe("smart_item_filter", SMART_FILTER.stackForm,
                 ITEM_FILTER, OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV))
+
+            // Bronze Crucible
+            ModHandler.addShapedRecipe(true, "bronze_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.BRONZE_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Bronze))
+
+            // Invar Crucible
+            ModHandler.addShapedRecipe(true, "invar_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.INVAR_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Invar))
+
+            // Quartzite Crucible
+            ModHandler.addShapedRecipe(true, "quartzite_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.QUARTZ_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Quartzite))
+
+            // Chrome Crucible
+            ModHandler.addShapedRecipe(true, "chrome_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.CHROME_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Chrome))
+
+            // Vanadium Crucible
+            ModHandler.addShapedRecipe(true, "vanadium_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.VANADIUM_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Vanadium))
+
+            // Niobium Titanium Crucible
+            ModHandler.addShapedRecipe(true, "niobium_titanium_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.NIOBIUM_TITANIUM_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, NiobiumTitanium))
+
+            // Iridium Crucible
+            ModHandler.addShapedRecipe(true, "iridium_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.IRIDIUM_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Iridium))
+
+            // Molybdenum Crucible
+            ModHandler.addShapedRecipe(true, "molybdenum_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.MOLYBDENUM_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Molybdenum))
+
+            // Tungsten Crucible
+            ModHandler.addShapedRecipe(true, "tungsten_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.TUNGSTEN_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Tungsten))
+
+            // Osmium Crucible
+            ModHandler.addShapedRecipe(true, "osmium_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.OSMIUM_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Osmium))
+
+            // Graphite Crucible
+            ModHandler.addShapedRecipe(true, "graphite_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.GRAPHITE_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, Graphene))
+
+            // TODO Boron Nitride Crucible
 
         }
 

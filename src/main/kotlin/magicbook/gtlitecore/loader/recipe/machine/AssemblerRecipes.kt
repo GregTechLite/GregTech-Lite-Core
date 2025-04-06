@@ -29,13 +29,16 @@ import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.Indium
+import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -48,6 +51,7 @@ import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
+import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
@@ -64,6 +68,7 @@ import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium235
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
@@ -138,6 +143,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
@@ -197,6 +203,7 @@ class AssemblerRecipes
             miscHatchesRecipes()
             laserHatchesRecipes()
             wireCoilRecipes()
+            crucibleRecipes()
             miningDroneRecipes()
             miscItemsRecipes()
             vanillaChangingRecipes()
@@ -1423,6 +1430,110 @@ class AssemblerRecipes
                 .buildAndRegister()
 
             // TODO UHV-MAX Wire Coils.
+        }
+
+        private fun crucibleRecipes()
+        {
+            // Bronze Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Bronze, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.BRONZE_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Invar Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Invar, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.INVAR_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Quartzite Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Quartzite, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.QUARTZ_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Chrome Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Chrome, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.CHROME_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Vanadium Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Vanadium, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.VANADIUM_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Niobium Titanium Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, NiobiumTitanium, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.NIOBIUM_TITANIUM_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Iridium Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Iridium, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.IRIDIUM_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Molybdenum Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Molybdenum, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.MOLYBDENUM_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Tungsten Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Tungsten, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.TUNGSTEN_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Osmium Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Osmium, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.OSMIUM_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Graphite Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, Graphene, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.GRAPHITE_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
+
+
         }
 
         private fun miningDroneRecipes()
