@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
+import gregtech.api.unification.material.Materials.IridiumMetalResidue
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lutetium
@@ -36,6 +37,7 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Opal
+import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
@@ -43,6 +45,7 @@ import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.RarestMetalMixture
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
@@ -51,6 +54,7 @@ import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SodiumBisulfate
 import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
@@ -125,7 +129,8 @@ class GTLiteMaterialProperties
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
 
-            sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718).forEach { addLiquid(it) }
+            sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate)
+                .forEach { addLiquid(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
@@ -269,6 +274,11 @@ class GTLiteMaterialProperties
             Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
             Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
             Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+
+            // Modified platinum group related materials' formula.
+            PalladiumRaw.setFormula("PdCl2", true);
+            RarestMetalMixture.setFormula("IrOs?", true);
+            IridiumMetalResidue.setFormula("Ir2O3", true)
 
         }
 

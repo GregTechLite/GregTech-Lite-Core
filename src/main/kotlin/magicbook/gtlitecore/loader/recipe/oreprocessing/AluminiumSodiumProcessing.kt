@@ -5,6 +5,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -12,6 +13,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Beryllium
@@ -44,6 +46,7 @@ import gregtech.api.unification.ore.OrePrefix.dustImpure
 import gregtech.api.unification.ore.OrePrefix.dustPure
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingot
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cryolite
@@ -305,15 +308,37 @@ class AluminiumSodiumProcessing
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
-            // NaCl + 3H2O -> NaClO3 + 6H
-            CHEMICAL_RECIPES.recipeBuilder()
+            // Modified Salt (NaCl) electrolysis recipes.
+            GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
+                OreDictUnifier.get(dust, Salt, 2)) // Safety delete, we ensure it is disabled decomposition but cannot check other mod if these recipe be re-added.
+
+            ELECTROLYZER_RECIPES.recipeBuilder()
                 .circuitMeta(1)
+                .input(dust, Salt, 2)
+                .output(dust, Sodium)
+                .fluidOutputs(Chlorine.getFluid(1000))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 16 * TICK)
+                .buildAndRegister()
+
+            // NaCl + 3H2O -> NaClO3 + 6H
+            ELECTROLYZER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
                 .input(dust, Salt, 2)
                 .fluidInputs(Water.getFluid(3000))
                 .output(dust, SodiumChlorate, 5)
                 .fluidOutputs(Hydrogen.getFluid(6000))
                 .EUt(VA[MV].toLong())
-                .duration(20 * SECOND)
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Dehydration decompose of NaClO3 -> NaCl + 3O
+            CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .input(dust, SodiumChlorate, 5)
+                .output(dust, Salt, 2)
+                .fluidOutputs(Oxygen.getFluid(3000))
+                .EUt(VHA[MV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
             // Common decompose of NaClO3.

@@ -57,6 +57,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
@@ -295,6 +296,8 @@ class GTLiteMaterialFlags
             Wulfenite.addFlags(DISABLE_DECOMPOSITION)
             // Disabled clay composition.
             Clay.addFlags(DISABLE_DECOMPOSITION)
+            // Disabled salt composition.
+            Salt.addFlags(DISABLE_DECOMPOSITION)
         }
 
     }

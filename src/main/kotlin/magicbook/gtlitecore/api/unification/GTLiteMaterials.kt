@@ -47,9 +47,11 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
+import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lanthanum
@@ -67,10 +69,12 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Obsidian
 import gregtech.api.unification.material.Materials.Olivine
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
@@ -80,8 +84,10 @@ import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Salt
@@ -1242,6 +1248,113 @@ class GTLiteMaterials
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build()
 
+        // 2115 Platinum Group Residue
+        @JvmField
+        val PlatinumGroupResidue: Material = Material.Builder(2115, gtliteId("platinum_group_residue"))
+            .dust()
+            .color(0x64632E).iconSet(ROUGH)
+            .components(Iridium, 1, Osmium, 1, Rhodium, 1, Ruthenium, 1, RareEarth, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("RuRhIr2Os(HNO3)3", true)
+
+        // 2116 Platinum Group Concentrate
+        @JvmField
+        val PlatinumGroupConcentrate: Material = Material.Builder(2116, gtliteId("platinum_group_concentrate"))
+            .liquid()
+            .color(0xFFFFA6)
+            .components(Gold, 1, Platinum, 1, Palladium, 1, HydrochloricAcid, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("AuPtPd(HCl)6", true)
+
+        // 2117 Purified Platinum Group Concentrate
+        @JvmField
+        val PurifiedPlatinumGroupConcentrate: Material = Material.Builder(2117, gtliteId("purified_platinum_group_concentrate"))
+            .liquid()
+            .color(0xFFFFC8)
+            .components(Hydrogen, 2, Platinum, 1, Palladium, 1, Chlorine, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("H2PtPdCl6", true)
+
+        // 2118 Ammonium Hexachloroplatinate
+        @JvmField
+        val AmmoniumHexachloroplatinate: Material = Material.Builder(2118, gtliteId("ammonium_hexachloroplatinate"))
+            .liquid()
+            .color(0xFEF0C2)
+            .flags(DISABLE_DECOMPOSITION)
+            .components(Nitrogen, 2, Hydrogen, 8, Platinum, 1, Chlorine, 6)
+            .build()
+            .setFormula("(NH4)2PtCl6", true)
+
+        // 2119 Ammonium Hexachloropalladate
+        @JvmField
+        val AmmoniumHexachloropalladate: Material = Material.Builder(2119, gtliteId("ammonium_hexachloropalladate"))
+            .liquid()
+            .color(0x808080)
+            .components(Nitrogen, 2, Hydrogen, 8, Palladium, 1, Chlorine, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(NH4)2PdCl6", true)
+
+        // 2120 Sodium Nitrate
+        @JvmField
+        val SodiumNitrate: Material = Material.Builder(2120, gtliteId("sodium_nitrate"))
+            .dust()
+            .color(0x846684).iconSet(ROUGH)
+            .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
+            .build()
+
+        // 2121 Hexachloroplatinic Acid
+        @JvmField
+        val HexachloroplatinicAcid: Material = Material.Builder(2121, gtliteId("hexachloroplatinic_acid"))
+            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            .color(0xFEF4D1)
+            .components(Hydrogen, 2, Platinum, 1, Chlorine, 6)
+            .build()
+
+        // 2122 Carbon Tetrachloride
+        @JvmField
+        val CarbonTetrachloride: Material = Material.Builder(2122, gtliteId("carbon_tetrachloride"))
+            .liquid()
+            .color(0x75201A)
+            .components(Carbon, 1, Chlorine, 4)
+            .build()
+
+        // 2123 Sodium Peroxide
+        @JvmField
+        val SodiumPeroxide: Material = Material.Builder(2123, gtliteId("sodium_peroxide"))
+            .dust()
+            .color(0xECFF80).iconSet(ROUGH)
+            .components(Sodium, 2, Oxygen, 2)
+            .build()
+
+        // 2124 Ruthenium Trichloride
+        @JvmField
+        val RutheniumTrichloride: Material = Material.Builder(2124, gtliteId("ruthenium_trichloride"))
+            .dust()
+            .color(0x605C6C).iconSet(METALLIC)
+            .components(Ruthenium, 1, Chlorine, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2125 Rhodium Trioxide
+        @JvmField
+        val RhodiumTrioxide: Material = Material.Builder(2125, gtliteId("rhodium_trioxide"))
+            .dust()
+            .color(0xD93D16).iconSet(METALLIC)
+            .components(Rhodium, 2, Oxygen, 3)
+            .build()
+
+        // 2126 Sulfur Dichloride
+        @JvmField
+        val SulfurDichloride: Material = Material.Builder(2126, gtliteId("sulfur_dichloride"))
+            .liquid()
+            .color(0x761410)
+            .components(Sulfur, 1, Chlorine, 2)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1918,6 +2031,40 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("(C8H7O)2PO2H", true)
+
+        // 8014 Formic Acid
+        @JvmField
+        val FormicAcid: Material = Material.Builder(8014, gtliteId("formic_acid"))
+            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            .color(0xFFAA77)
+            .components(Hydrogen, 2, Carbon, 1, Oxygen, 2)
+            .build()
+            .setFormula("HCOOH", true)
+
+        // 8015 Methyl Formate
+        @JvmField
+        val MethylFormate: Material = Material.Builder(8015, gtliteId("methyl_formate"))
+            .liquid()
+            .color(0xFFAAAA)
+            .components(Hydrogen, 4, Carbon, 2, Oxygen, 2)
+            .build()
+            .setFormula("HCO2CH3", true)
+
+        // 8016 Thionyl Chloride
+        @JvmField
+        val ThionylChloride: Material = Material.Builder(8016, gtliteId("thionyl_chloride"))
+            .liquid()
+            .color(0xEBE863)
+            .components(Sulfur, 1, Oxygen, 1, Chlorine, 2)
+            .build()
+
+        // 8017 Osmium Tetrachloride
+        @JvmField
+        val OsmiumTetrachloride: Material = Material.Builder(8017, gtliteId("osmium_tetrachloride"))
+            .dust()
+            .color(0x29080A).iconSet(METALLIC)
+            .components(Osmium, 1, Chlorine, 4)
+            .build()
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
