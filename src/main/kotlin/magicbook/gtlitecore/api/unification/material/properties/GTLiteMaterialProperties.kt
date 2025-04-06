@@ -14,16 +14,22 @@ import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Ferrosilite
+import gregtech.api.unification.material.Materials.Gadolinium
+import gregtech.api.unification.material.Materials.Graphene
+import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lanthanum
+import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
@@ -34,10 +40,13 @@ import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Praseodymium
+import gregtech.api.unification.material.Materials.Promethium
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
+import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -46,12 +55,16 @@ import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tellurium
+import gregtech.api.unification.material.Materials.Terbium
+import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
+import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidPipeProperties
@@ -105,7 +118,9 @@ class GTLiteMaterialProperties
             // DustProperty can be overridden to IngotProperty or GemProperty yet,
             // please see: MaterialPropertiesMixin#setProperty().
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
-                Selenium, Tellurium, Lanthanum, Erbium, Praseodymium)
+                Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
+                Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
+                Scandium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
@@ -228,11 +243,24 @@ class GTLiteMaterialProperties
             Plutonium239.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
 
             // Add fluid pipe properties.
-            Inconel718.setProperty(
-                PropertyKey.FLUID_PIPE,
+            Inconel718.setProperty(PropertyKey.FLUID_PIPE,
                 FluidPipeProperties(2010, 175,
-                    true, true, true, false)
-            )
+                    true, true, true, false))
+
+            // Modified rare earth elements color.
+            Promethium.materialRGB = 0x24B535
+            Dysprosium.materialRGB = 0xDD79DD
+            Erbium.materialRGB = 0xCC6633
+            Holmium.materialRGB = 0xC38E2F
+            Terbium.materialRGB = 0xA274A2
+            Thulium.materialRGB = 0x596BC2
+
+            Promethium.materialIconSet = MaterialIconSet.SHINY
+            Lutetium.materialIconSet = MaterialIconSet.SHINY
+            Thulium.materialIconSet = MaterialIconSet.SHINY
+
+            // Modified Graphene formula.
+            Graphene.setFormula("C8", true)
 
             // Add blast properties.
             Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))

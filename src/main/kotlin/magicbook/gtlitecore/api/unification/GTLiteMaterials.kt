@@ -27,21 +27,26 @@ import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Erbium
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Hafnium
+import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Invar
@@ -50,10 +55,12 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
+import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -66,6 +73,7 @@ import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
+import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
@@ -79,7 +87,9 @@ import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SaltWater
 import gregtech.api.unification.material.Materials.Saltpeter
+import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Sapphire
+import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -95,6 +105,8 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tellurium
+import gregtech.api.unification.material.Materials.Terbium
+import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
@@ -104,6 +116,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
@@ -1057,6 +1070,178 @@ class GTLiteMaterials
             .build()
             .setFormula("(Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe", true)
 
+        // 2094 Lanthanum Oxide
+        @JvmField
+        val LanthanumOxide: Material = Material.Builder(2094, gtliteId("lanthanum_oxide"))
+            .dust()
+            .color(0x5F7777).iconSet(SHINY)
+            .components(Lanthanum, 2, Oxygen, 3)
+            .build()
+
+        // 2095 Cerium Oxide
+        @JvmField
+        val CeriumOxide: Material = Material.Builder(2095, gtliteId("cerium_oxide"))
+            .dust()
+            .color(0x10937F).iconSet(METALLIC)
+            .components(Cerium, 1, Oxygen, 2)
+            .build()
+
+        // 2096 Praseodymium Oxide
+        @JvmField
+        val PraseodymiumOxide: Material = Material.Builder(2096, gtliteId("praseodymium_oxide"))
+            .dust()
+            .color(0xD0D0D0).iconSet(METALLIC)
+            .components(Praseodymium, 2, Oxygen, 3)
+            .build()
+
+        // 2097 Neodymium Oxide
+        @JvmField
+        val NeodymiumOxide: Material = Material.Builder(2097, gtliteId("neodymium_oxide"))
+            .dust()
+            .color(0x868686)
+            .components(Neodymium, 2, Oxygen, 3)
+            .build()
+
+        // 2098 Samarium Oxide
+        @JvmField
+        val SamariumOxide: Material = Material.Builder(2098, gtliteId("samarium_oxide"))
+            .dust()
+            .color(0xFFFFDD)
+            .components(Samarium, 2, Oxygen, 3)
+            .build()
+
+        // 2099 Europium Oxide
+        @JvmField
+        val EuropiumOxide: Material = Material.Builder(2099, gtliteId("europium_oxide"))
+            .dust()
+            .color(0x20AAAA).iconSet(SHINY)
+            .components(Europium, 2, Oxygen, 3)
+            .build()
+
+        // 2100 Gadolinium Oxide
+        @JvmField
+        val GadoliniumOxide: Material = Material.Builder(2100, gtliteId("gadolinium_oxide"))
+            .dust()
+            .color(0xEEEEFF).iconSet(METALLIC)
+            .components(Gadolinium, 2, Oxygen, 3)
+            .build()
+
+        // 2101 Terbium Oxide
+        @JvmField
+        val TerbiumOxide: Material = Material.Builder(2101, gtliteId("terbium_oxide"))
+            .dust()
+            .color(0xA264A2).iconSet(METALLIC)
+            .components(Terbium, 2, Oxygen, 3)
+            .build()
+
+        // 2102 Dysprosium Oxide
+        @JvmField
+        val DysprosiumOxide: Material = Material.Builder(2102, gtliteId("dysprosium_oxide"))
+            .dust()
+            .color(0xD273D2).iconSet(METALLIC)
+            .components(Dysprosium, 2, Oxygen, 3)
+            .build()
+
+        // 2103 Holmium Oxide
+        @JvmField
+        val HolmiumOxide: Material = Material.Builder(2103, gtliteId("holmium_oxide"))
+            .dust()
+            .color(0xAF7F2A).iconSet(SHINY)
+            .components(Holmium, 2, Oxygen, 3)
+            .build()
+
+        // 2104 Erbium Oxide
+        @JvmField
+        val ErbiumOxide: Material = Material.Builder(2104, gtliteId("erbium_oxide"))
+            .dust()
+            .color(0xE07A32).iconSet(METALLIC)
+            .components(Erbium, 2, Oxygen, 3)
+            .build()
+
+        // 2105 Thulium Oxide
+        @JvmField
+        val ThuliumOxide: Material = Material.Builder(2105, gtliteId("thulium_oxide"))
+            .dust()
+            .color(0x3B9E8B)
+            .components(Thulium, 2, Oxygen, 3)
+            .build()
+
+        // 2106 Ytterbium Oxide
+        @JvmField
+        val YtterbiumOxide: Material = Material.Builder(2106, gtliteId("ytterbium_oxide"))
+            .dust()
+            .color(0xA9A9A9)
+            .components(Ytterbium, 2, Oxygen, 3)
+            .build()
+
+        // 2107 Lutetium Oxide
+        @JvmField
+        val LutetiumOxide: Material = Material.Builder(2107, gtliteId("lutetium_oxide"))
+            .dust()
+            .color(0x11BBFF).iconSet(METALLIC)
+            .components(Lutetium, 2, Oxygen, 3)
+            .build()
+
+        // 2108 Scandium Oxide
+        @JvmField
+        val ScandiumOxide: Material = Material.Builder(2108, gtliteId("scandium_oxide"))
+            .dust()
+            .color(0x43964F).iconSet(METALLIC)
+            .components(Scandium, 2, Oxygen, 3)
+            .build()
+
+        // 2109 Yttrium Oxide
+        @JvmField
+        val YttriumOxide: Material = Material.Builder(2109, gtliteId("yttrium_oxide"))
+            .dust()
+            .color(0x78544E).iconSet(SHINY)
+            .components(Yttrium, 2, Oxygen, 3)
+            .build()
+
+        // 2110 Promethium Oxide
+        @JvmField
+        val PromethiumOxide: Material = Material.Builder(2110, gtliteId("promethium_oxide"))
+            .dust()
+            .color(0x1B8828).iconSet(METALLIC)
+            .components(Promethium, 2, Oxygen, 3)
+            .build()
+
+        // 2111 La-Pr-Nd-Ce Oxides Solution
+        @JvmField
+        val LaPrNdCeOxidesSolution: Material = Material.Builder(2111, gtliteId("la_pr_nd_ce_oxides_solution"))
+            .liquid()
+            .color(0x9CE3DB)
+            .components(LanthanumOxide, 1, PraseodymiumOxide, 1, NeodymiumOxide, 1, CeriumOxide, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 2112 Sc-Eu-Gd-Sm Oxides Solution
+        @JvmField
+        val ScEuGdSmOxidesSolution: Material = Material.Builder(2112, gtliteId("sc_eu_gd_sm_oxides_solution"))
+            .liquid()
+            .color(0xFFFF99)
+            .components(ScandiumOxide, 1, EuropiumOxide, 1, GadoliniumOxide, 1, SamariumOxide, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 2113 Y-Tb-Dy-Ho Oxides Solution
+        @JvmField
+        val YTbDyHoOxidesSolution: Material = Material.Builder(2113, gtliteId("y_tb_dy_ho_oxides_solution"))
+            .liquid()
+            .color(0x99FF99)
+            .components(YttriumOxide, 1, TerbiumOxide, 1, DysprosiumOxide, 1, HolmiumOxide, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 2114 Er-Tm-Yb-Lu Oxides Solution
+        @JvmField
+        val ErTmYbLuOxidesSolution: Material = Material.Builder(2114, gtliteId("er_tm_yb_lu_oxides_solution"))
+            .liquid()
+            .color(0xFFB3FF)
+            .components(ErbiumOxide, 1, ThuliumOxide, 1, YtterbiumOxide, 1, LutetiumOxide, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -1716,6 +1901,24 @@ class GTLiteMaterials
             .components(Carbon, 1, Hydrogen, 3, HRAMagnesium, 1, Bromine, 1)
             .build()
 
+        // 8012 Ethylhexanol
+        @JvmField
+        val Ethylhexanol: Material = Material.Builder(8012, gtliteId("ethylhexanol"))
+            .liquid()
+            .color(0xFEEA9A)
+            .components(Carbon, 8, Hydrogen, 10, Oxygen, 1)
+            .build()
+
+        // 8013 Di-(2-Ethylhexyl) Phosphoric Acid
+        @JvmField
+        val DiethylhexylPhosphoricAcid: Material = Material.Builder(8013, gtliteId("diethylhexyl_phosphoric_acid"))
+            .liquid()
+            .color(0xFFFF99)
+            .components(Carbon, 16, Hydrogen, 35, Oxygen, 4, Phosphorus, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(C8H7O)2PO2H", true)
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -1856,6 +2059,21 @@ class GTLiteMaterials
             .color(0x8A3324)
             .iconSet(FINE)
             .build()
+
+        // 12109 Rare Earth Hydroxides Solution
+        @JvmField
+        val RareEarthHydroxidesSolution: Material = Material.Builder(12109, gtliteId("rare_earth_hydroxides_solution"))
+            .liquid()
+            .color(0x434327)
+            .build()
+
+        // 12110 Rare Earth Chlorides Solution
+        @JvmField
+        val RareEarthChloridesSolution: Material = Material.Builder(12110, gtliteId("rare_earth_chlorides_solution"))
+            .liquid()
+            .color(0x838367)
+            .build()
+
     }
 
 }

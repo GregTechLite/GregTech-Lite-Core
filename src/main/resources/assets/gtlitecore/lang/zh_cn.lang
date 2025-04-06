@@ -1959,6 +1959,27 @@ gtlitecore.material.ozone=臭氧
 gtlitecore.material.cubic_zirconia=立方氧化锆
 gtlitecore.material.bismuth_telluride=三碲化二铋
 gtlitecore.material.magneto_resonatic=共振紫晶
+gtlitecore.material.lanthanum_oxide=氧化镧
+gtlitecore.material.cerium_oxide=氧化铈
+gtlitecore.material.praseodymium_oxide=氧化镨
+gtlitecore.material.neodymium_oxide=氧化钕
+gtlitecore.material.samarium_oxide=氧化钐
+gtlitecore.material.europium_oxide=氧化铕
+gtlitecore.material.gadolinium_oxide=氧化钆
+gtlitecore.material.terbium_oxide=氧化铽
+gtlitecore.material.dysprosium_oxide=氧化镝
+gtlitecore.material.holmium_oxide=氧化钬
+gtlitecore.material.erbium_oxide=氧化铒
+gtlitecore.material.thulium_oxide=氧化铥
+gtlitecore.material.ytterbium_oxide=氧化镱
+gtlitecore.material.lutetium_oxide=氧化镥
+gtlitecore.material.scandium_oxide=氧化钪
+gtlitecore.material.yttrium_oxide=氧化钇
+gtlitecore.material.promethium_oxide=氧化钷
+gtlitecore.material.la_pr_nd_ce_oxides_solution=镧-镨-钕-铈氧化物溶液
+gtlitecore.material.sc_eu_gd_sm_oxides_solution=钪-铕-钆-钐氧化物溶液
+gtlitecore.material.y_tb_dy_ho_oxides_solution=钇-铽-镝-钬氧化物溶液
+gtlitecore.material.er_tm_yb_lu_oxides_solution=铒-铥-镱-镥氧化物溶液
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2015,6 +2036,8 @@ gtlitecore.material.butanediol=1,4-丁二醇
 gtlitecore.material.tetrahydrofuran=四氢呋喃
 gtlitecore.material.ethylene_dibromide=1,2-二溴乙烷
 gtlitecore.material.grignard_reagent=格式试剂
+gtlitecore.material.ethylhexanol=2-乙基己醇
+gtlitecore.material.diethylhexyl_phosphoric_acid=二-(2-乙基己基)磷酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2037,6 +2060,8 @@ gtlitecore.material.rich_ammonia_mixture=富氨混合物
 gtlitecore.material.sea_water=海水
 gtlitecore.material.acidic_salt_water=酸化盐水
 gtlitecore.material.chalcogen_anode_mud=硫系元素阳极泥
+gtlitecore.material.rare_earth_hydroxides_solution=稀土氢氧化物溶液
+gtlitecore.material.rare_earth_chlorides_solution=稀土氯化物溶液
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

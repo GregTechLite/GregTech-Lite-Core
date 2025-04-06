@@ -1955,6 +1955,27 @@ gtlitecore.material.ozone=Ozone
 gtlitecore.material.cubic_zirconia=Cubic Zirconia
 gtlitecore.material.bismuth_telluride=Bismuth Telluride
 gtlitecore.material.magneto_resonatic=Magneto Resonatic
+gtlitecore.material.lanthanum_oxide=Lanthanum Oxide
+gtlitecore.material.cerium_oxide=Cerium Oxide
+gtlitecore.material.praseodymium_oxide=Praseodymium Oxide
+gtlitecore.material.neodymium_oxide=Neodymium Oxide
+gtlitecore.material.samarium_oxide=Samarium Oxide
+gtlitecore.material.europium_oxide=Europium Oxide
+gtlitecore.material.gadolinium_oxide=Gadolinium Oxide
+gtlitecore.material.terbium_oxide=Terbium Oxide
+gtlitecore.material.dysprosium_oxide=Dysprosium Oxide
+gtlitecore.material.holmium_oxide=Holmium Oxide
+gtlitecore.material.erbium_oxide=Erbium Oxide
+gtlitecore.material.thulium_oxide=Thulium Oxide
+gtlitecore.material.ytterbium_oxide=Ytterbium Oxide
+gtlitecore.material.lutetium_oxide=Lutetium Oxide
+gtlitecore.material.scandium_oxide=Scandium Oxide
+gtlitecore.material.yttrium_oxide=Yttrium Oxide
+gtlitecore.material.promethium_oxide=Promethium Oxide
+gtlitecore.material.la_pr_nd_ce_oxides_solution=La-Pr-Nd-Ce Oxides Solution
+gtlitecore.material.sc_eu_gd_sm_oxides_solution=Sc-Eu-Gd-Sm Oxides Solution
+gtlitecore.material.y_tb_dy_ho_oxides_solution=Y-Tb-Dy-Ho Oxides Solution
+gtlitecore.material.er_tm_yb_lu_oxides_solution=Er-Tm-Yb-Lu Oxides Solution
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2011,6 +2032,8 @@ gtlitecore.material.butanediol=1,4-Butanediol
 gtlitecore.material.tetrahydrofuran=tetrahydrofuran
 gtlitecore.material.ethylene_dibromide=1,2-Ethylene Dibromide
 gtlitecore.material.grignard_reagent=Grignard Reagent
+gtlitecore.material.ethylhexanol=2-Ethylhexanol
+gtlitecore.material.diethylhexyl_phosphoric_acid=Di-(2-Ethylhexyl) Phosphoric Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -2033,6 +2056,8 @@ gtlitecore.material.rich_ammonia_mixture=Rich Ammonium Mixture
 gtlitecore.material.sea_water=Sea Water
 gtlitecore.material.acidic_salt_water=Acidic Salt Water
 gtlitecore.material.chalcogen_anode_mud=Chalcogen Anode Mud
+gtlitecore.material.rare_earth_hydroxides_solution=Rare Earth Hydroxides Solution
+gtlitecore.material.rare_earth_chlorides_solution=Rare Earth Chlorides Solution
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

@@ -45,6 +45,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
@@ -105,6 +106,7 @@ class RecipeManager
             TungstenProcessing.init()
             IodineBromineProcessing.init()
             SeleniumTelluriumProcessing.init()
+            RareEarthProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()
