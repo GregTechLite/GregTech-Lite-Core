@@ -404,6 +404,23 @@ tile.crucible.osmium.name=锇坩埚
 tile.crucible.graphite.name=石墨坩埚
 tile.crucible.boron_nitride.name=氮化硼坩埚
 
+tile.glass_casing_01.pmma.name=PMMA玻璃
+tile.glass_casing_01.pmma.tooltip=亚克力玻璃
+tile.glass_casing_01.bpa_polycarbonate.name=BPA聚碳酸酯玻璃
+tile.glass_casing_01.cbdo_polycarbonate.name=CBDO聚碳酸酯玻璃
+tile.glass_casing_01.zblan.name=ZBLAN玻璃
+tile.glass_casing_01.erbium_zblan.name=铒掺杂的ZBLAN玻璃
+tile.glass_casing_01.praseodymium_zblan.name=镨掺杂的ZBLAN玻璃
+tile.glass_casing_01.gst.name=GST玻璃
+
+tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃
+tile.glass_casing_02.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
+tile.glass_casing_02.tungsten_steel_borosilicate.name=钨钢强化硼硅酸盐玻璃
+tile.glass_casing_02.rhodium_plated_palladium_borosilicate.name=镀铑钯强化硼硅酸盐玻璃
+tile.glass_casing_02.osmiridium_borosilicate.name=铱锇合金强化硼硅酸盐玻璃
+tile.glass_casing_02.tritanium_borosilicate.name=三钛强化硼硅酸盐玻璃
+tile.glass_casing_02.neutronium_borosilicate.name=中子强化硼硅酸盐玻璃
+
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
 metaitem.shape.mold.rod.tooltip=用来制作杆的模具

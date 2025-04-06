@@ -53,6 +53,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
+import net.minecraft.init.Blocks
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CraftingComponents
@@ -185,6 +186,23 @@ class CraftingComponents
                 UXV to GTLiteMetaItems.PICO_PIC_CHIP.stackForm,
                 OpV to GTLiteMetaItems.FEMTO_PIC_CHIP.stackForm,
                 MAX to GTLiteMetaItems.FEMTO_PIC_CHIP.stackForm
+            ).toMap())
+
+            // Glasses.
+            CraftingComponent.GLASS.appendIngredients(sequenceOf(
+                ULV to Blocks.GLASS,
+                LV to "glassLv",
+                MV to "glassMv",
+                HV to "glassHv",
+                EV to "glassEv",
+                IV to "glassIv",
+                LuV to "glassLuv",
+                ZPM to "glassZpm",
+                UV to "glassUv",
+                UHV to "glassUhv",
+                UEV to "glassUev",
+                UIV to "glassUiv"
+                // TODO UXV-MAX
             ).toMap())
 
         }

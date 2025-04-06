@@ -1,0 +1,56 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "pmma": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/pmma"
+        }
+      },
+      "bpa_polycarbonate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/bpa_polycarbonate"
+        }
+      },
+      "cbdo_polycarbonate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/cbdo_polycarbonate"
+        }
+      },
+      "zblan": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/zblan"
+        }
+      },
+      "erbium_zblan": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/erbium_zblan"
+        }
+      },
+      "praseodymium_zblan": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/praseodymium_zblan"
+        }
+      },
+      "gst": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/gst"
+        }
+      }
+    }
+  }
+}

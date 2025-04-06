@@ -17,6 +17,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
@@ -146,6 +148,8 @@ class GTLiteMetaBlocks
         lateinit var MULTIBLOCK_CASING_01: BlockMultiblockCasing01
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
         lateinit var CRUCIBLE: BlockCrucible
+        lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
+        lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
 
         @JvmStatic
         fun init()
@@ -381,6 +385,14 @@ class GTLiteMetaBlocks
             (CRUCIBLE as? Block)?.setRegistryName("crucible")
             (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            TRANSPARENT_CASING_01 = BlockGlassCasing01()
+            (TRANSPARENT_CASING_01 as? Block)?.setRegistryName("glass_casing_01")
+            (TRANSPARENT_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            TRANSPARENT_CASING_02 = BlockGlassCasing02()
+            (TRANSPARENT_CASING_02 as? Block)?.setRegistryName("glass_casing_02")
+            (TRANSPARENT_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             // Initialized Blocks.FIRE#setFireInfo().
             setFireInfos()
         }
@@ -497,6 +509,8 @@ class GTLiteMetaBlocks
             registerItemModel(MULTIBLOCK_CASING_01)
             registerItemModel(BOILER_CASING_01)
             registerItemModel(CRUCIBLE)
+            registerItemModel(TRANSPARENT_CASING_01)
+            registerItemModel(TRANSPARENT_CASING_02)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)

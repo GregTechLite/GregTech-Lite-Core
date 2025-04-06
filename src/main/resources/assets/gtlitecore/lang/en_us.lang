@@ -404,6 +404,23 @@ tile.crucible.osmium.name=Osmium Crucible
 tile.crucible.graphite.name=Graphite Crucible
 tile.crucible.boron_nitride.name=Boron Nitride Crucible
 
+tile.glass_casing_01.pmma.name=PMMA Glass
+tile.glass_casing_01.pmma.tooltip=Acrylic Glass
+tile.glass_casing_01.bpa_polycarbonate.name=BPA Polycarbonate Glass
+tile.glass_casing_01.cbdo_polycarbonate.name=CBDO Polycarbonate Glass
+tile.glass_casing_01.zblan.name=ZBLAN Glass
+tile.glass_casing_01.erbium_zblan.name=Erbium-doped ZBLAN Glass
+tile.glass_casing_01.praseodymium_zblan.name=Praseodymium-doped ZBLAN Glass
+tile.glass_casing_01.gst.name=GST Glass
+
+tile.glass_casing_02.borosilicate.name=Borosilicate Glass
+tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
+tile.glass_casing_02.tungsten_steel_borosilicate.name=Tungsten Steel reinforced Borosilicate Glass
+tile.glass_casing_02.rhodium_plated_palladium_borosilicate.name=Rhodium Plated Palladium reinforced Borosilicate Glass
+tile.glass_casing_02.osmiridium_borosilicate.name=Osmiridium reinforced Borosilicate Glass
+tile.glass_casing_02.tritanium_borosilicate.name=Tritanium reinforced Borosilicate Glass
+tile.glass_casing_02.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
+
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
 metaitem.shape.mold.rod.tooltip=Mold for making Rods

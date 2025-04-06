@@ -1,13 +1,17 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.V
+import gregtech.api.GTValues.VA
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.unification.material.Materials.Andesite
 import gregtech.api.unification.material.Materials.Basalt
+import gregtech.api.unification.material.Materials.BorosilicateGlass
 import gregtech.api.unification.material.Materials.Concrete
 import gregtech.api.unification.material.Materials.Diorite
 import gregtech.api.unification.material.Materials.DistilledWater
@@ -17,19 +21,26 @@ import gregtech.api.unification.material.Materials.GraniteRed
 import gregtech.api.unification.material.Materials.Marble
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.POLISHER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlueSchist
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSchist
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kimberlite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Komatiite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Limestone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class PolisherRecipes
@@ -200,6 +211,42 @@ class PolisherRecipes
                 .output(dust, Shale, 2)
                 .EUt(V[ULV])
                 .duration(1 * SECOND + 4 * TICK)
+                .buildAndRegister()
+
+            // Borosilicate Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, BorosilicateGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE, 2))
+                .output(dust, BorosilicateGlass)
+                .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // ZBLAN Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, ZBLANGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ZBLAN, 2))
+                .output(dust, ZBLANGlass)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Er-doped ZBLAN Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, ErbiumDopedZBLANGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ERBIUM_ZBLAN, 2))
+                .output(dust, ErbiumDopedZBLANGlass)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Pr-doped ZBLAN Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, PraseodymiumDopedZBLANGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PRASEODYMIUM_ZBLAN, 2))
+                .output(dust, PraseodymiumDopedZBLANGlass)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
         }

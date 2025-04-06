@@ -1,0 +1,56 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/borosilicate"
+        }
+      },
+      "titanium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/titanium_borosilicate"
+        }
+      },
+      "tungsten_steel_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/tungsten_steel_borosilicate"
+        }
+      },
+      "rhodium_plated_palladium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/rhodium_plated_palladium_borosilicate"
+        }
+      },
+      "osmiridium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/osmiridium_borosilicate"
+        }
+      },
+      "tritanium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/tritanium_borosilicate"
+        }
+      },
+      "neutronium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/neutronium_borosilicate"
+        }
+      }
+    }
+  }
+}

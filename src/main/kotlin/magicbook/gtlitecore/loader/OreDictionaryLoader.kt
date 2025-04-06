@@ -16,6 +16,8 @@ import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.stack.ItemMaterialInfo
 import gregtech.api.unification.stack.MaterialStack
+import gregtech.common.blocks.BlockGlassCasing
+import gregtech.common.blocks.MetaBlocks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
@@ -26,6 +28,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
+import net.minecraft.init.Blocks
 import net.minecraftforge.oredict.OreDictionary
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -38,7 +43,9 @@ class OreDictionaryLoader
         fun init()
         {
             // Add more chemistry products to dye.
-            dyeAddition()
+            chromaticDyes()
+            // Add ore dictionaries to tiered glasses.
+            tieredGlasses()
 
             // sheetedFrame
             GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (m, b) ->
@@ -61,7 +68,7 @@ class OreDictionaryLoader
 
         }
 
-        private fun dyeAddition()
+        private fun chromaticDyes()
         {
             // Add three new dyes for each color, consists of ore dyes, organic dyes etc.
 
@@ -118,6 +125,47 @@ class OreDictionaryLoader
             OreDictionary.registerOre("dyeBlack", OreDictUnifier.get(dust, Carbon))
             OreDictionary.registerOre("dyeBlack", OreDictUnifier.get(dust, Graphite))
 
+        }
+
+        private fun tieredGlasses() // TODO Redo it with MarkerMaterials system or not?
+        {
+            OreDictionary.registerOre("glassLv", Blocks.GLASS)
+
+            OreDictionary.registerOre("glassMv", Blocks.GLASS)
+            OreDictionary.registerOre("glassMv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.CLEANROOM_GLASS))
+
+            OreDictionary.registerOre("glassHv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+            OreDictionary.registerOre("glassHv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
+
+            OreDictionary.registerOre("glassEv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+            OreDictionary.registerOre("glassEv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TITANIUM_BOROSILICATE))
+
+            OreDictionary.registerOre("glassIv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))
+            OreDictionary.registerOre("glassIv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TUNGSTEN_STEEL_BOROSILICATE))
+
+            OreDictionary.registerOre("glassLuv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))
+            OreDictionary.registerOre("glassLuv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.RHODIUM_PLATED_PALLADIUM_BOROSILICATE))
+
+            OreDictionary.registerOre("glassZpm", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS))
+            OreDictionary.registerOre("glassZpm", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.BPA_POLYCARBONATE))
+            OreDictionary.registerOre("glassZpm", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.OSMIRIDIUM_BOROSILICATE))
+
+            OreDictionary.registerOre("glassUv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS))
+            OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.BPA_POLYCARBONATE))
+            OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TRITANIUM_BOROSILICATE))
+            OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ZBLAN))
+            OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.GST))
+
+            OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PMMA))
+            OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.NEUTRONIUM_BOROSILICATE))
+            OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ERBIUM_ZBLAN))
+            OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PRASEODYMIUM_ZBLAN))
+
+            OreDictionary.registerOre("glassUev", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.CBDO_POLYCARBONATE))
+
+            OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.CBDO_POLYCARBONATE))
+
+            // TODO UXV-MAX
         }
 
     }

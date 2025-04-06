@@ -32,6 +32,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
+import magicbook.gtlitecore.loader.recipe.machine.FluidSolidifierRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LaserEngraverRecipes
@@ -39,6 +40,7 @@ import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
+import magicbook.gtlitecore.loader.recipe.machine.VacuumChamberRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
@@ -128,6 +130,7 @@ class RecipeManager
             CannerRecipes.init()
             CentrifugeRecipes.init()
             ExtruderRecipes.init()
+            FluidSolidifierRecipes.init()
             FormingPressRecipes.init()
             GasCollectorRecipes.init()
             LaserEngraverRecipes.init()
@@ -141,6 +144,7 @@ class RecipeManager
             CrystallizationCrucibleRecipes.init()
             LoomRecipes.init()
             PolisherRecipes.init()
+            VacuumChamberRecipes.init()
 
             // Loading override recipes.
             VanillaOverrideRecipeLoader.init()
