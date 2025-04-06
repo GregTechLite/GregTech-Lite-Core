@@ -1,16 +1,19 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Air
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Oxygen
@@ -23,6 +26,7 @@ import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.lens
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_INDUCTOR
@@ -35,9 +39,14 @@ import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ENGRAVED_CRYSTAL_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
+import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -61,6 +70,47 @@ class CrystalCircuits
 
         private fun circuitComponentsRecipes()
         {
+            // Gem addition of engraved crystal chip.
+            BLAST_RECIPES.recipeBuilder()
+                .input(plate, Forsterite)
+                .input(RAW_CRYSTAL_CHIP)
+                .fluidInputs(Helium.getFluid(1000))
+                .output(ENGRAVED_CRYSTAL_CHIP)
+                .EUt(VA[HV].toLong())
+                .duration(45 * SECOND)
+                .blastFurnaceTemp(5000) // HSSG
+                .buildAndRegister()
+
+            BLAST_RECIPES.recipeBuilder()
+                .input(plate, Aegirine)
+                .input(RAW_CRYSTAL_CHIP)
+                .fluidInputs(Helium.getFluid(1000))
+                .output(ENGRAVED_CRYSTAL_CHIP)
+                .EUt(VA[HV].toLong())
+                .duration(45 * SECOND)
+                .blastFurnaceTemp(5000) // HSSG
+                .buildAndRegister()
+
+            BLAST_RECIPES.recipeBuilder()
+                .input(plate, Jade)
+                .input(RAW_CRYSTAL_CHIP)
+                .fluidInputs(Helium.getFluid(1000))
+                .output(ENGRAVED_CRYSTAL_CHIP)
+                .EUt(VA[HV].toLong())
+                .duration(45 * SECOND)
+                .blastFurnaceTemp(5000) // HSSG
+                .buildAndRegister()
+
+            BLAST_RECIPES.recipeBuilder()
+                .input(plate, Prasiolite)
+                .input(RAW_CRYSTAL_CHIP)
+                .fluidInputs(Helium.getFluid(1000))
+                .output(ENGRAVED_CRYSTAL_CHIP)
+                .EUt(VA[HV].toLong())
+                .duration(45 * SECOND)
+                .blastFurnaceTemp(5000) // HSSG
+                .buildAndRegister()
+
             // Dielectric Mirror
             MOLECULAR_BEAM_RECIPES.recipeBuilder()
                 .input(foil, PolyvinylButyral)

@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe
 import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
@@ -16,7 +17,10 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -24,6 +28,8 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.items.MetaItems.ITEM_FILTER
+import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
@@ -42,7 +48,12 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NAME
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
+import gregtech.common.items.MetaItems.SMART_FILTER
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
@@ -437,6 +448,33 @@ class CraftingRecipeLoader
                 'P', UnificationEntry(plate, Polybenzimidazole),
                 'Q', UnificationEntry(pipeNormalFluid, Polybenzimidazole),
                 'F', UnificationEntry(frameGt, Polybenzimidazole))
+
+            // Ore Dictionary Filter
+            ModHandler.addShapedRecipe(true, "ore_dictionary_filter_forsterite", ORE_DICTIONARY_FILTER.stackForm,
+                "FFF", "FPF", "FFF",
+                'P', UnificationEntry(plate, Forsterite),
+                'F', UnificationEntry(foil, Zinc))
+
+            ModHandler.addShapedRecipe(true, "ore_dictionary_filter_aegirine", ORE_DICTIONARY_FILTER.stackForm,
+                "FFF", "FPF", "FFF",
+                'P', UnificationEntry(plate, Aegirine),
+                'F', UnificationEntry(foil, Zinc))
+
+            ModHandler.addShapedRecipe(true, "ore_dictionary_filter_jade", ORE_DICTIONARY_FILTER.stackForm,
+                "FFF", "FPF", "FFF",
+                'P', UnificationEntry(plate, Jade),
+                'F', UnificationEntry(foil, Zinc))
+
+            ModHandler.addShapedRecipe(true, "ore_dictionary_filter_prasiolite", ORE_DICTIONARY_FILTER.stackForm,
+                "FFF", "FPF", "FFF",
+                'P', UnificationEntry(plate, Prasiolite),
+                'F', UnificationEntry(foil, Zinc))
+
+            // Smart Item Filter
+            ModHandler.removeRecipeByName("${GTValues.MODID}:smart_item_filter_olivine")
+            ModHandler.removeRecipeByName("${GTValues.MODID}:smart_item_filter_emerald")
+            ModHandler.addShapelessRecipe("smart_item_filter", SMART_FILTER.stackForm,
+                ITEM_FILTER, OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV))
 
         }
 
