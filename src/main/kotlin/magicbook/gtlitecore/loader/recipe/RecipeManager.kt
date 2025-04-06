@@ -145,6 +145,7 @@ class RecipeManager
             // Loading override recipes.
             VanillaOverrideRecipeLoader.init()
             GregtechOverrideRecipeLoader.init()
+            RecipeConflicts.init()
         }
 
     }
