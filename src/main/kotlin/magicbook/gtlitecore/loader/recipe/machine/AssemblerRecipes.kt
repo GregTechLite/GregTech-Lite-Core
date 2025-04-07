@@ -49,6 +49,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Quartzite
@@ -84,6 +85,7 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
@@ -100,6 +102,8 @@ import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
+import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.EMITTER_EV
@@ -145,6 +149,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
@@ -204,6 +209,7 @@ class AssemblerRecipes
         {
             drumAndCrateRecipes()
             componentCasingRecipes()
+            pipeCasingRecipes()
             miscHatchesRecipes()
             laserHatchesRecipes()
             wireCoilRecipes()
@@ -705,6 +711,75 @@ class AssemblerRecipes
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
 
+        }
+
+        private fun pipeCasingRecipes()
+        {
+            // Bronze pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Bronze, 4)
+                .input(pipeNormalFluid, Bronze, 4)
+                .input(frameGt, Bronze)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Steel pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Steel, 4)
+                .input(pipeNormalFluid, Steel, 4)
+                .input(frameGt, Steel)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Titanium pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Titanium, 4)
+                .input(pipeNormalFluid, Titanium, 4)
+                .input(frameGt, Titanium)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TITANIUM_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Tungsten Steel pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, TungstenSteel, 4)
+                .input(pipeNormalFluid, TungstenSteel, 4)
+                .input(frameGt, TungstenSteel)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // PTFE pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Polytetrafluoroethylene, 4)
+                .input(pipeNormalFluid, Polytetrafluoroethylene, 4)
+                .input(frameGt, Polytetrafluoroethylene)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // PBI pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Polybenzimidazole, 4)
+                .input(pipeNormalFluid, Polybenzimidazole, 4)
+                .input(frameGt, Polybenzimidazole)
+                .outputs(GTLiteMetaBlocks.BOILER_CASING_01.getItemVariant(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun miscHatchesRecipes()
