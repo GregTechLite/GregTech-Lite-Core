@@ -384,6 +384,8 @@ tile.metal_casing_02.bismuth_bronze.name=Food Grade Bismuth Bronze
 tile.metal_casing_02.brass.name=Industrial Brass Machine Casing
 tile.metal_casing_02.titanium_tungsten_carbide.name=Laserproof Titanium Tungsten Carbide Machine Casing
 
+tile.metal_casing_03.cobalt_brass.name=Vibration Tolerant Cobalt Brass Machine Casing
+
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
 tile.multiblock_casing_01.substrate_casing.name=Substrate Casing
@@ -876,6 +878,7 @@ recipemap.mining_drone_airport.name=Mining Drone Airport
 recipemap.cvd_unit.name=Chemical Vapor Deposition
 recipemap.crystallization_crucible.name=Crystallization Crucible
 recipemap.nanoscale_fabricator.name=Molecular Beaming
+recipemap.sonicator.name=Sonication
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1419,6 +1422,12 @@ gtlitecore.machine.nanoscale_fabricator.tooltip.6=Each §aRobot Arm Casing tier�
 gtlitecore.machine.nanoscale_fabricator.average_temperature=Average Temperature: %s
 gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature Range: %s-%s
 gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
+
+gtlitecore.machine.sonicator.name=Sonicator
+gtlitecore.machine.sonicator.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.sonicator.tooltip.2=When Borosilicate Glass tier >= §3UV§7tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.sonicator.tooltip.3=Each §eMotor Casing tier§7 and §ePump Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.sonicator.tooltip.4=Each §aVoltage tier§7 +1, processing +§l4§r§7 items.
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

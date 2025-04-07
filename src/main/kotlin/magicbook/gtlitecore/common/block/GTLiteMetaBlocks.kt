@@ -22,6 +22,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing
@@ -144,6 +145,7 @@ class GTLiteMetaBlocks
         lateinit var PRIMITIVE_CASING: BlockPrimitiveCasing
         lateinit var METAL_CASING_01: BlockMetalCasing01
         lateinit var METAL_CASING_02: BlockMetalCasing02
+        lateinit var METAL_CASING_03: BlockMetalCasing03
         lateinit var BOILER_CASING_01: BlockBoilerCasing01
         lateinit var MULTIBLOCK_CASING_01: BlockMultiblockCasing01
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
@@ -369,6 +371,10 @@ class GTLiteMetaBlocks
             (METAL_CASING_02 as? Block)?.setRegistryName("metal_casing_02")
             (METAL_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            METAL_CASING_03 = BlockMetalCasing03()
+            (METAL_CASING_03 as? Block)?.setRegistryName("metal_casing_03")
+            (METAL_CASING_03 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             BOILER_CASING_01 = BlockBoilerCasing01()
             (BOILER_CASING_01 as? Block)?.setRegistryName("boiler_casing_01")
             (BOILER_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -506,6 +512,7 @@ class GTLiteMetaBlocks
             registerItemModel(PRIMITIVE_CASING)
             registerItemModel(METAL_CASING_01)
             registerItemModel(METAL_CASING_02)
+            registerItemModel(METAL_CASING_03)
             registerItemModel(MULTIBLOCK_CASING_01)
             registerItemModel(BOILER_CASING_01)
             registerItemModel(CRUCIBLE)

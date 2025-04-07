@@ -384,6 +384,8 @@ tile.metal_casing_02.bismuth_bronze.name=食品级铋青铜机器外壳
 tile.metal_casing_02.brass.name=工业级黄铜机器外壳
 tile.metal_casing_02.titanium_tungsten_carbide.name=抗激光碳化钛钨机器外壳
 
+tile.metal_casing_03.cobalt_brass.name=防震钴黄铜机器外壳
+
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
 tile.multiblock_casing_01.substrate_casing.name=基板机械方块
@@ -876,6 +878,7 @@ recipemap.mining_drone_airport.name=采矿无人机坪
 recipemap.cvd_unit.name=化学气相沉积
 recipemap.crystallization_crucible.name=结晶坩埚
 recipemap.nanoscale_fabricator.name=分子束外延
+recipemap.sonicator.name=超声震荡
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1419,6 +1422,12 @@ gtlitecore.machine.nanoscale_fabricator.tooltip.6=每提高1个§a机械臂外�
 gtlitecore.machine.nanoscale_fabricator.average_temperature=平均温度：%s
 gtlitecore.machine.nanoscale_fabricator.temperature_range=可运行温度范围：%s-%s
 gtlitecore.machine.nanoscale_fabricator.required_temperature=温度：%s
+
+gtlitecore.machine.sonicator.name=超声震荡器
+gtlitecore.machine.sonicator.tooltip.1=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.sonicator.tooltip.2=当玻璃等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.sonicator.tooltip.3=每提高1个§e马达外壳等级§7与§e电动泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.sonicator.tooltip.4=每提高1个§a电压等级§7，每次运行可以多处理§l4§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能

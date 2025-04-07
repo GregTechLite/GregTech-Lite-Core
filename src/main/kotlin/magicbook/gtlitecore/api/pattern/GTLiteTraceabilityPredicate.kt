@@ -73,6 +73,11 @@ class GTLiteTraceabilityPredicate
             Comparator.comparing { s -> (GTLiteAPI.MAP_PROCESSOR_CASING[s] as WrappedIntTier).getIntTier() },
             "ProcessorCasing", null) }
 
+        @JvmStatic
+        var BOROSILICATE_GLASS = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_BOROSILICATE_GLASS,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_BOROSILICATE_GLASS[s] as WrappedIntTier).getIntTier() },
+            "BorosilicateGlass", null) }
+
         // Overriden of original Cleanroom Casing by tiered stats predicate.
         @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,

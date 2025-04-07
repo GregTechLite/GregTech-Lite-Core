@@ -77,6 +77,9 @@ class StructureUtility
         fun processorCasings() = GTLiteTraceabilityPredicate.PROCESSOR_CASING.get()
 
         @JvmStatic
+        fun borosilicateGlasses() = GTLiteTraceabilityPredicate.BOROSILICATE_GLASS.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

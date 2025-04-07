@@ -663,6 +663,26 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ELECTROLYZER)
             .build()
 
+        /**
+         * @zenProp sonicator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("SONICATION_RECIPES")
+        val SONICATION_RECIPES = RecipeMapBuilder("sonicator", SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidInputs(2)
+            .fluidOutputs(2)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false)
+            .itemSlotOverlay(GTLiteGuiTextures.FOIL_OVERLAY, true)
+            .fluidSlotOverlay(GuiTextures.BREWER_OVERLAY, false, false)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, false, true)
+            .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_4, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT)
+            .sound(GTSoundEvents.CENTRIFUGE)
+            .build()
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {

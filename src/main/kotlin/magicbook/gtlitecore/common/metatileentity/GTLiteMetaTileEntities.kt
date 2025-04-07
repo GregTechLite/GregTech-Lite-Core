@@ -28,6 +28,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagu
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySonicator
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityCircuitAssemblyLine
@@ -213,6 +214,7 @@ class GTLiteMetaTileEntities
         lateinit var CVD_UNIT: MetaTileEntityCVDUnit
         lateinit var CRYSTALLIZATION_CRUCIBLE: MetaTileEntityCrystallizationCrucible
         lateinit var NANOSCALE_FABRICATOR: MetaTileEntityNanoscaleFabricator
+        lateinit var SONICATOR: MetaTileEntitySonicator
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -676,6 +678,9 @@ class GTLiteMetaTileEntities
             NANOSCALE_FABRICATOR = MetaTileEntities.registerMetaTileEntity(18014,
                 MetaTileEntityNanoscaleFabricator(GTLiteUtility.gtliteId("nanoscale_fabricator")))
 
+            SONICATOR = MetaTileEntities.registerMetaTileEntity(18015,
+                MetaTileEntitySonicator(GTLiteUtility.gtliteId("sonicator")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -873,6 +878,7 @@ class GTLiteMetaTileEntities
             CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SONICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

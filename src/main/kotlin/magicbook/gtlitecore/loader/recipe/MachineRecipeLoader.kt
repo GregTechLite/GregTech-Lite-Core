@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Osmium
@@ -96,6 +97,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -238,6 +240,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SONICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ALLOY_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ENGINE
@@ -1188,6 +1191,15 @@ class MachineRecipeLoader
                 'H', HULL[IV].stackForm,
                 'C', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'F', UnificationEntry(plate, TitaniumCarbide))
+
+            // Sonicator
+            ModHandler.addShapedRecipe(true, "sonicator", SONICATOR.stackForm,
+                "LFL", "PHP", "CPC",
+                'L', UnificationEntry(pipeLargeFluid, Naquadah),
+                'F', FIELD_GENERATOR_LuV.stackForm,
+                'P', ELECTRIC_PUMP_LuV.stackForm,
+                'H', HULL[LuV].stackForm,
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.ZPM))
 
         }
 

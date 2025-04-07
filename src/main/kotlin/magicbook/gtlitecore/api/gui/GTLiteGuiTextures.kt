@@ -67,6 +67,10 @@ class GTLiteGuiTextures
         val NANOSCALE_OVERLAY_2: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/nanoscale_overlay_2.png")
 
+        @JvmField
+        val FOIL_OVERLAY: TextureArea = TextureArea.fullImage(
+            "textures/gui/overlay/foil_overlay.png")
+
         // Progress Bars
         @JvmField
         val PROGRESS_BAR_SLICING: TextureArea = TextureArea.fullImage(
@@ -102,19 +106,19 @@ class GTLiteGuiTextures
 
         // Widgets
         @JvmField
-        val BUTTON_INT_CIRCUIT_PLUS_STEAM = SteamTexture.fullImage(
+        val BUTTON_INT_CIRCUIT_PLUS_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/widget/button_circuit_plus_%s.png")
 
         @JvmField
-        val BUTTON_INT_CIRCUIT_MINUS_STEAM = SteamTexture.fullImage(
+        val BUTTON_INT_CIRCUIT_MINUS_STEAM: SteamTexture = SteamTexture.fullImage(
             "textures/gui/widget/button_circuit_minus_%s.png")
 
         @JvmField
-        val BUTTON_INT_CIRCUIT_PLUS_PRIMITIVE = TextureArea.fullImage(
+        val BUTTON_INT_CIRCUIT_PLUS_PRIMITIVE: TextureArea = TextureArea.fullImage(
             "textures/gui/primitive/button_circuit_plus_primitive.png")
 
         @JvmField
-        val BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE = TextureArea.fullImage(
+        val BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE: TextureArea = TextureArea.fullImage(
             "textures/gui/primitive/button_circuit_minus_primitive.png")
     }
 
