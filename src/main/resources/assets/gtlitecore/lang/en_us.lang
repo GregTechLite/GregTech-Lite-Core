@@ -705,6 +705,8 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=Cosmic Planetary Mai
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Interstellar Supercomputer Complex
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
 
+metaitem.tool.magnetron.name=Magnetron
+
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
 metaitem.circuit.component.dielectric_mirror.tooltip=Bragg Mirror
@@ -2009,6 +2011,8 @@ gtlitecore.material.ruthenium_trichloride=Ruthenium Trichloride
 gtlitecore.material.rhodium_trioxide=Rhodium Trioxide
 gtlitecore.material.sulfur_dichloride=Sulfur Dichloride
 gtlitecore.material.osmium_tetrachloride=Osmium Tetrachloride
+gtlitecore.material.beryllium_oxide=Beryllium Oxide
+gtlitecore.material.graphene_oxide=Graphene Oxide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2070,6 +2074,11 @@ gtlitecore.material.diethylhexyl_phosphoric_acid=Di-(2-Ethylhexyl) Phosphoric Ac
 gtlitecore.material.formic_acid=Formic Acid
 gtlitecore.material.methyl_formate=Methyl Formate
 gtlitecore.material.thionyl_chloride=Thionyl Chloride
+gtlitecore.material.phthalic_anhydride=Phthalic Anhydride
+gtlitecore.material.ethylanthraquinone=2-Ethylanthraquinone
+gtlitecore.material.ethylanthrahydroquinone=2-Ethylanthrahydroquinone
+gtlitecore.material.hydrogen_peroxide=Hydrogen Peroxide
+gtlitecore.material.hydrazine=Hydrazine
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

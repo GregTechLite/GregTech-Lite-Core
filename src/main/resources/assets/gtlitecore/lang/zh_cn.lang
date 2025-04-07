@@ -533,6 +533,8 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=寰宇行星级电�
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=超因果星系级超级计算机复合体
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=超因果星系级电脑主机群复合体
 
+metaitem.tool.magnetron.name=磁控管
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板
@@ -2013,6 +2015,9 @@ gtlitecore.material.ruthenium_trichloride=三氯化钌
 gtlitecore.material.rhodium_trioxide=三氧化二铑
 gtlitecore.material.sulfur_dichloride=二氯化硫
 gtlitecore.material.osmium_tetrachloride=四氯化锇
+gtlitecore.material.beryllium_oxide=氧化铍
+gtlitecore.material.hydrogen_peroxide=过氧化氢
+gtlitecore.material.graphene_oxide=氧化石墨烯
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2074,6 +2079,10 @@ gtlitecore.material.diethylhexyl_phosphoric_acid=二-(2-乙基己基)磷酸
 gtlitecore.material.formic_acid=甲酸
 gtlitecore.material.methyl_formate=甲酸甲酯
 gtlitecore.material.thionyl_chloride=亚硫酰氯
+gtlitecore.material.phthalic_anhydride=邻苯二甲酸酐
+gtlitecore.material.ethylanthraquinone=2-乙基蒽醌
+gtlitecore.material.ethylanthrahydroquinone=2-乙基蒽氢醌
+gtlitecore.material.hydrazine=肼
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

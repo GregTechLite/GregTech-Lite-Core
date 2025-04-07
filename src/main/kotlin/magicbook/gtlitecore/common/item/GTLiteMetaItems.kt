@@ -148,6 +148,7 @@ class GTLiteMetaItems
         lateinit var DISPOSABLE_ROLLING_PIN: MetaItem<*>.MetaValueItem
 
         lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
+        lateinit var MAGNETRON: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
@@ -596,6 +597,8 @@ class GTLiteMetaItems
 
             CIRCUIT_PATTERN = GTLITE_ITEMS.addItem(621, "tool.circuit_pattern")
                 .addComponents(CircuitPatternBehavior())
+
+            MAGNETRON = GTLITE_ITEMS.addItem(622, "tool.magnetron")
 
             // 701-800: Batteries.
 

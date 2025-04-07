@@ -4,6 +4,9 @@ import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
+import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
+import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
+import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
@@ -99,6 +102,9 @@ class RecipeManager
             QuantumDotsChain.init()
             OzoneChain.init()
             MagnetoResonaticChain.init()
+            HydrogenPeroxideChain.init()
+            HydrazineChain.init()
+            GrapheneChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()

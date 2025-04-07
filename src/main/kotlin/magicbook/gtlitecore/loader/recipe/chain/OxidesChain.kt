@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.AntimonyTrioxide
 import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.BandedIron
+import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
@@ -61,8 +62,10 @@ import gregtech.api.unification.material.Materials.ZirconiumTetrachloride
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.ingot
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
@@ -354,6 +357,16 @@ class OxidesChain
                 .input(dust, Tantalum, 2)
                 .fluidInputs(Oxygen.getFluid(5000))
                 .output(dust, TantalumPentoxide, 7)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Be + O -> BeO
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Beryllium)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .output(ingot, BerylliumOxide, 2)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()

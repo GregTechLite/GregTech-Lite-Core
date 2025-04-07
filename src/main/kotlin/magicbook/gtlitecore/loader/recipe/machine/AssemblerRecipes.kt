@@ -122,6 +122,7 @@ import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_STICK
+import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
@@ -132,6 +133,8 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getCableByTier
@@ -153,6 +156,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MAGNETRON
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_EV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_HV
@@ -1712,6 +1716,17 @@ class AssemblerRecipes
                 .output(CIRCUIT_PATTERN)
                 .EUt(VA[IV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Magnetron
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ring, BerylliumOxide, 64)
+                .input(ring, BerylliumOxide, 64)
+                .input(plate, HSLASteel, 6)
+                .input(VACUUM_TUBE)
+                .output(MAGNETRON)
+                .EUt(VA[IV].toLong())
+                .duration(30 * SECOND)
                 .buildAndRegister()
         }
 

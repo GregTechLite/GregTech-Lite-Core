@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bromine
@@ -44,6 +45,7 @@ import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
@@ -1355,6 +1357,40 @@ class GTLiteMaterials
             .components(Sulfur, 1, Chlorine, 2)
             .build()
 
+        // 2127 Osmium Tetrachloride
+        @JvmField
+        val OsmiumTetrachloride: Material = Material.Builder(2127, gtliteId("osmium_tetrachloride"))
+            .dust()
+            .color(0x29080A).iconSet(METALLIC)
+            .components(Osmium, 1, Chlorine, 4)
+            .build()
+
+        // 2128 Beryllium Oxide
+        @JvmField
+        val BerylliumOxide: Material = Material.Builder(2128, gtliteId("beryllium_oxide"))
+            .ingot()
+            .color(0x54C757)
+            .components(Beryllium, 1, Oxygen, 1)
+            .flags(GENERATE_ROD, GENERATE_RING)
+            .build()
+
+        // 2129 Hydrogen Peroxide
+        @JvmField
+        val HydrogenPeroxide: Material = Material.Builder(2129, gtliteId("hydrogen_peroxide"))
+            .liquid()
+            .color(0xD2FFFF)
+            .components(Hydrogen, 2, Oxygen, 2)
+            .build()
+
+        // 2130 Graphene Oxide
+        @JvmField
+        val GrapheneOxide: Material = Material.Builder(2130, gtliteId("graphene_oxide"))
+            .dust()
+            .color(0x777777).iconSet(ROUGH)
+            .components(Graphene, 1, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2058,12 +2094,39 @@ class GTLiteMaterials
             .components(Sulfur, 1, Oxygen, 1, Chlorine, 2)
             .build()
 
-        // 8017 Osmium Tetrachloride
+        // 8017 Phthalic Anhydride
         @JvmField
-        val OsmiumTetrachloride: Material = Material.Builder(8017, gtliteId("osmium_tetrachloride"))
+        val PhthalicAnhydride: Material = Material.Builder(8017, gtliteId("phthalic_anhydride"))
             .dust()
-            .color(0x29080A).iconSet(METALLIC)
-            .components(Osmium, 1, Chlorine, 4)
+            .color(0xEEAAEE)
+            .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
+            .build()
+            .setFormula("C6H4(CO)2O", true)
+
+        // 8018 Ethylanthraquinone
+        @JvmField
+        val Ethylanthraquinone: Material = Material.Builder(8018, gtliteId("ethylanthraquinone"))
+            .liquid()
+            .color(0xCC865A)
+            .components(Carbon, 16, Hydrogen, 12, Oxygen, 2)
+            .build()
+            .setFormula("C6H4(CO)2C6H3Et", true)
+
+        // 8019 Ethylanthrahydroquinone
+        @JvmField
+        val Ethylanthrahydroquinone: Material = Material.Builder(8019, gtliteId("ethylanthrahydroquinone"))
+            .liquid()
+            .color(0xAD531A)
+            .components(Carbon, 16, Hydrogen, 18, Oxygen, 2)
+            .build()
+            .setFormula("C6H4(CH2OH)2C6H3Et", true)
+
+        // 8020 Hydrazine
+        @JvmField
+        val Hydrazine: Material = Material.Builder(8020, gtliteId("hydrazine"))
+            .liquid()
+            .color(0xB50707)
+            .components(Nitrogen, 2, Hydrogen, 4)
             .build()
 
         // =======================================================================
