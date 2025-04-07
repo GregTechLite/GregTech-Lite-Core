@@ -8,7 +8,6 @@ import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.command.ICommandManager;
 import magicbook.gtlitecore.api.module.IModuleManager;
-import magicbook.gtlitecore.api.utils.Mods;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
@@ -19,7 +18,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
+import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.state.IBlockState;
 
 public class GTLiteAPI
@@ -37,17 +36,17 @@ public class GTLiteAPI
     // the mod, but if item, block or other contents satisfied descriptions of the
     // following CreativeTabs, then should use consistent CreativeTabs.
     public static final BaseCreativeTab TAB_GTLITE = new BaseCreativeTab("gtlite",
-            () -> GTLiteMetaTileEntities.PE_CAN.getStackForm(), false);
+            () -> GTLiteMetaItems.LOGO_CORE.getStackForm(), false);
 
     // Machines (consists of single machines and multiblock machines) for gtlitecore,
     // which copied from gregtech's machine creative tabs.
     public static final BaseCreativeTab TAB_GTLITE_MACHINE = new BaseCreativeTab("gtlite.machine",
-            () -> GTLiteMetaTileEntities.LARGE_CUTTER.getStackForm(), false);
+            () -> GTLiteMetaItems.LOGO_MACHINE.getStackForm(), false);
 
     // Decorations for gtlitecore which consists of all stone blocks and its variants,
     // trees, planks, logs and other tree related blocks, and decorative blocks.
     public static final BaseCreativeTab TAB_GTLITE_DECORATION = new BaseCreativeTab("gtlite.decoration",
-            () -> Mods.GregTechLiteCore.getItem("stone_cobble", 1), false);
+            () -> GTLiteMetaItems.LOGO_DECORATION.getStackForm(), false);
 
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();

@@ -28,6 +28,10 @@ class GTLiteMetaItems
 
         private lateinit var GTLITE_ITEMS: MetaItem<*>
 
+        lateinit var LOGO_CORE: MetaItem<*>.MetaValueItem
+        lateinit var LOGO_MACHINE: MetaItem<*>.MetaValueItem
+        lateinit var LOGO_DECORATION: MetaItem<*>.MetaValueItem
+
         lateinit var SHAPE_MOLD_ROD: MetaItem<*>.MetaValueItem
         lateinit var SHAPE_MOLD_BOLT: MetaItem<*>.MetaValueItem
         lateinit var SHAPE_MOLD_ROUND: MetaItem<*>.MetaValueItem
@@ -272,6 +276,12 @@ class GTLiteMetaItems
         fun register()
         {
             // 0-10 Logos of gtlitecore.
+            LOGO_CORE = GTLITE_ITEMS.addItem(1, "gtlite_logo.core")
+                .setInvisible()
+            LOGO_MACHINE = GTLITE_ITEMS.addItem(2, "gtlite_logo.machine")
+                .setInvisible()
+            LOGO_DECORATION = GTLITE_ITEMS.addItem(3, "gtlite_logo.decoration")
+                .setInvisible()
 
             // 11-100: Shape Molds & Extruders.
 
