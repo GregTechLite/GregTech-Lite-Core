@@ -2013,6 +2013,10 @@ gtlitecore.material.sulfur_dichloride=Sulfur Dichloride
 gtlitecore.material.osmium_tetrachloride=Osmium Tetrachloride
 gtlitecore.material.beryllium_oxide=Beryllium Oxide
 gtlitecore.material.graphene_oxide=Graphene Oxide
+gtlitecore.material.yttrium_nitrate=Yttrium Nitrate
+gtlitecore.material.barium_nitrate=Barium Nitrate
+gtlitecore.material.copper_nitrate=Copper Nitrate
+gtlitecore.material.yttrium_barium_copper_oxides_mixture=Yttrium Barium Copper Oxides Mixture
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2079,6 +2083,7 @@ gtlitecore.material.ethylanthraquinone=2-Ethylanthraquinone
 gtlitecore.material.ethylanthrahydroquinone=2-Ethylanthrahydroquinone
 gtlitecore.material.hydrogen_peroxide=Hydrogen Peroxide
 gtlitecore.material.hydrazine=Hydrazine
+gtlitecore.material.citric_acid=Citric Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

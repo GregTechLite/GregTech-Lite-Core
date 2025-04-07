@@ -1391,6 +1391,42 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 2131 Yttrium Nitrate
+        @JvmField
+        val YttriumNitrate: Material = Material.Builder(2131, gtliteId("yttrium_nitrate"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Yttrium, 1, Nitrogen, 3, Oxygen, 9)
+            .build()
+            .setFormula("Y(NO3)3", true)
+
+        // 2132 Barium Nitrate
+        @JvmField
+        val BariumNitrate: Material = Material.Builder(2132, gtliteId("barium_nitrate"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Barium, 1, Nitrogen, 2, Oxygen, 6)
+            .build()
+            .setFormula("Ba(NO3)2", true)
+
+        // 2133 Copper Nitrate
+        @JvmField
+        val CopperNitrate: Material = Material.Builder(2133, gtliteId("copper_nitrate"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Copper, 1, Nitrogen, 2, Oxygen, 6)
+            .build()
+            .setFormula("Cu(NO3)2", true)
+
+        // 2134 Yttrium Barium Copper Oxides Mixture
+        @JvmField
+        val YttriumBariumCopperOxidesMixture: Material = Material.Builder(2134, gtliteId("yttrium_barium_copper_oxides_mixture"))
+            .dust()
+            .colorAverage().iconSet(ROUGH)
+            .components(Yttrium, 1, Barium, 2, Copper, 3, Oxygen, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2127,6 +2163,14 @@ class GTLiteMaterials
             .liquid()
             .color(0xB50707)
             .components(Nitrogen, 2, Hydrogen, 4)
+            .build()
+
+        // 8021 Citric Acid
+        @JvmField
+        val CitricAcid: Material = Material.Builder(8021, gtliteId("citric_acid"))
+            .liquid()
+            .color(0xFFCC00)
+            .components(Carbon, 6, Hydrogen, 8, Oxygen, 7)
             .build()
 
         // =======================================================================

@@ -2018,6 +2018,10 @@ gtlitecore.material.osmium_tetrachloride=四氯化锇
 gtlitecore.material.beryllium_oxide=氧化铍
 gtlitecore.material.hydrogen_peroxide=过氧化氢
 gtlitecore.material.graphene_oxide=氧化石墨烯
+gtlitecore.material.yttrium_nitrate=硝酸钇
+gtlitecore.material.barium_nitrate=硝酸钡
+gtlitecore.material.copper_nitrate=硝酸铜
+gtlitecore.material.yttrium_barium_copper_oxides_mixture=钇钡铜氧混合物
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2083,6 +2087,7 @@ gtlitecore.material.phthalic_anhydride=邻苯二甲酸酐
 gtlitecore.material.ethylanthraquinone=2-乙基蒽醌
 gtlitecore.material.ethylanthrahydroquinone=2-乙基蒽氢醌
 gtlitecore.material.hydrazine=肼
+gtlitecore.material.citric_acid=柠檬酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

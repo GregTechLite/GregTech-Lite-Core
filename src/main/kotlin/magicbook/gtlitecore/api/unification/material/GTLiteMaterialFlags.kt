@@ -77,6 +77,7 @@ import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
@@ -302,6 +303,10 @@ class GTLiteMaterialFlags
             Clay.addFlags(DISABLE_DECOMPOSITION)
             // Disabled salt composition.
             Salt.addFlags(DISABLE_DECOMPOSITION)
+
+            // Disabled Rhodium Plated Palladium and YBCO ABS recipe.
+            RhodiumPlatedPalladium.addFlags(NO_ALLOY_BLAST_RECIPES)
+            YttriumBariumCuprate.addFlags(NO_ALLOY_BLAST_RECIPES)
         }
 
     }

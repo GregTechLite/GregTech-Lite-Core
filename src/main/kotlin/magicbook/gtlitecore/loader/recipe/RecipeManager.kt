@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe
 
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
@@ -105,6 +106,7 @@ class RecipeManager
             HydrogenPeroxideChain.init()
             HydrazineChain.init()
             GrapheneChain.init()
+            CitricAcidChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
