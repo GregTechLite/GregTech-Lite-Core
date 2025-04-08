@@ -154,6 +154,10 @@ class GTLiteMetaItems
         lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
         lateinit var MAGNETRON: MetaItem<*>.MetaValueItem
 
+        lateinit var DIRTY_PETRI_DISH: MetaItem<*>.MetaValueItem
+        lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem
+        lateinit var CUPRIAVIDUS_NECATOR_PETRI_DISH: MetaItem<*>.MetaValueItem
+
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
 
@@ -253,6 +257,7 @@ class GTLiteMetaItems
         lateinit var MICA_INSULATOR_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
         lateinit var SAND_DUST: MetaItem<*>.MetaValueItem
+        lateinit var MUD_BALL: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -610,6 +615,12 @@ class GTLiteMetaItems
 
             MAGNETRON = GTLITE_ITEMS.addItem(622, "tool.magnetron")
 
+            // ...
+
+            DIRTY_PETRI_DISH = GTLITE_ITEMS.addItem(631, "tool.petri_dish.dirty")
+            BREVIBACTERIUM_FLAVUM_PETRI_DISH = GTLITE_ITEMS.addItem(632, "tool.petri_dish.brevibacterium_flavum")
+            CUPRIAVIDUS_NECATOR_PETRI_DISH = GTLITE_ITEMS.addItem(633, "tool.petri_dish.cupriavidus_necator")
+
             // 701-800: Batteries.
 
             // 1001-1100: ...
@@ -725,6 +736,9 @@ class GTLiteMetaItems
 
             SAND_DUST = GTLITE_ITEMS.addItem(5005, "material.dust.sand")
                 .addOreDict("dustSand")
+
+            MUD_BALL = GTLITE_ITEMS.addItem(5006, "material.dust.mud_ball")
+                .addOreDict("dustMudBall")
 
             // 9001-10000: Miscellaneous Foods.
             BANANA = GTLITE_ITEMS.addItem(9001, "food.fruit.banana")

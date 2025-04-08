@@ -537,6 +537,10 @@ metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=超因果星系
 
 metaitem.tool.magnetron.name=磁控管
 
+metaitem.tool.petri_dish.dirty.name=污浊的培养皿
+metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
+metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板
@@ -832,6 +836,7 @@ metaitem.material.plate.mica_mineral_wool.name=云母矿棉片
 metaitem.material.plate.mica_insulator.name=绝缘云母板
 metaitem.material.foil.mica_insulator.name=绝缘云母箔
 metaitem.material.dust.sand.name=细沙堆
+metaitem.material.dust.mud_ball.name=泥
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -2081,6 +2086,7 @@ gtlitecore.material.waelz_slag=威氏浸出渣
 item.gtlitecore.material.waelz_slag.dust=威氏浸出渣
 item.gtlitecore.material.waelz_slag.dustSmall=小堆威氏浸出渣
 item.gtlitecore.material.waelz_slag.dustTiny=小撮威氏浸出渣
+gtlitecore.material.piranha_solution=食人鱼洗液
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2147,6 +2153,9 @@ gtlitecore.material.ethylanthraquinone=2-乙基蒽醌
 gtlitecore.material.ethylanthrahydroquinone=2-乙基蒽氢醌
 gtlitecore.material.hydrazine=肼
 gtlitecore.material.citric_acid=柠檬酸
+gtlitecore.material.glutamine=谷氨酰胺
+gtlitecore.material.linoleic_acid=亚油酸
+gtlitecore.material.vitamin_h=维生素H
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2155,6 +2164,9 @@ gtlitecore.material.rainbow_sap=彩虹树液
 gtlitecore.material.blood=血液
 gtlitecore.material.blood_cells=血细胞
 gtlitecore.material.blood_plasma=血浆
+gtlitecore.material.bfgf=碱性成纤维细胞生长因子（bFGF）
+gtlitecore.material.egf=表皮细胞生长因子（EGF）
+gtlitecore.material.cat=过氧化氢酶（CAT）
 
 gtlitecore.material.green_sapphire_juice=绿色蓝宝石汁
 gtlitecore.material.sapphire_juice=蓝宝石汁
@@ -2175,6 +2187,9 @@ gtlitecore.material.acidic_salt_water=酸化盐水
 gtlitecore.material.chalcogen_anode_mud=硫系元素阳极泥
 gtlitecore.material.rare_earth_hydroxides_solution=稀土氢氧化物溶液
 gtlitecore.material.rare_earth_chlorides_solution=稀土氯化物溶液
+gtlitecore.material.brevibacterium_flavum=黄色短杆菌
+gtlitecore.material.yeast=酵母
+gtlitecore.material.cupriavidus_necator=贪铜钩虫菌
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

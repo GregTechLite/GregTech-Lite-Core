@@ -47,6 +47,7 @@ import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RarestMetalMixture
+import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
@@ -283,6 +284,9 @@ class GTLiteMaterialProperties
             PalladiumRaw.setFormula("PdCl2", true);
             RarestMetalMixture.setFormula("IrOs?", true);
             IridiumMetalResidue.setFormula("Ir2O3", true)
+
+            // Change color of Raw Growth Medium.
+            RawGrowthMedium.materialRGB = 0x0B2E12
 
         }
 

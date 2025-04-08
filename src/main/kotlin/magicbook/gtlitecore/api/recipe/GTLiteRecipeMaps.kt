@@ -802,6 +802,9 @@ class GTLiteRecipeMaps
             RecipeMaps.LASER_ENGRAVER_RECIPES.maxFluidInputs = 2
             RecipeMaps.LASER_ENGRAVER_RECIPES.maxFluidOutputs = 2
             RecipeMaps.LASER_ENGRAVER_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.LENS_OVERLAY, false)
+
+            // (1,0,1,1) -> (1,1,1,1)
+            RecipeMaps.BREWING_RECIPES.maxOutputs = 1
         }
 
     }

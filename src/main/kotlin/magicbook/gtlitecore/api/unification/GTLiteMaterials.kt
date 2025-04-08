@@ -1493,6 +1493,15 @@ class GTLiteMaterials
             .build()
             .setFormula("(ZnSO4)Ga", true)
 
+        // 2141 Piranha Solution
+        @JvmField
+        val PiranhaSolution: Material = Material.Builder(2141, gtliteId("piranha_solution"))
+            .liquid()
+            .color(0x4820AB)
+            .components(SulfuricAcid, 1, HydrogenPeroxide, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2239,6 +2248,32 @@ class GTLiteMaterials
             .components(Carbon, 6, Hydrogen, 8, Oxygen, 7)
             .build()
 
+        // 8022 Glutamine
+        @JvmField
+        val Glutamine: Material = Material.Builder(8022, gtliteId("glutamine"))
+            .dust()
+            .color(0xEDE9B4).iconSet(DULL)
+            .components(Carbon, 5, Hydrogen, 10, Nitrogen, 2, Oxygen, 3)
+            .build()
+
+        // 8023 Linoleic Acid
+        @JvmField
+        val LinoleicAcid: Material = Material.Builder(8023, gtliteId("linoleic_acid"))
+            .liquid()
+            .color(0xD5D257)
+            .components(Carbon, 18, Hydrogen, 32, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8024 Vitamin-H
+        @JvmField
+        val VitaminH: Material = Material.Builder(8024, gtliteId("vitamin_h"))
+            .dust()
+            .color(0x68CC6A)
+            .components(Carbon, 10, Hydrogen, 16, Nitrogen, 2, Oxygen, 3, Sulfur, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -2287,6 +2322,29 @@ class GTLiteMaterials
             .liquid()
             .color(0xE37171).iconSet(DULL)
             .build()
+
+        // 12024 bFGF
+        @JvmField
+        val BFGF: Material = Material.Builder(12024, gtliteId("bfgf"))
+            .liquid()
+            .color(0xB365E0)
+            .build()
+            .setFormula("bFGF", false)
+
+        // 12025 EGF
+        @JvmField
+        val EGF: Material = Material.Builder(12025, gtliteId("egf"))
+            .liquid()
+            .color(0x815799)
+            .build()
+            .setFormula("EGF", false) // C257H381N73O83S7 in reality world ^^.
+
+        @JvmField
+        val CAT: Material = Material.Builder(12026, gtliteId("cat"))
+            .liquid()
+            .color(0xDB6596)
+            .build()
+            .setFormula("CAT", false)
 
         // 12031 Green Sapphire Juice
         @JvmField
@@ -2417,6 +2475,26 @@ class GTLiteMaterials
             .color(0x838367)
             .build()
 
+        // 12111 Brevibacterium Flavum
+        @JvmField
+        val BrevibacteriumFlavum: Material = Material.Builder(12111, gtliteId("brevibacterium_flavum"))
+            .dust()
+            .color(0x766718).iconSet(ROUGH)
+            .build()
+
+        // 12112 Yeast
+        @JvmField
+        val Yeast: Material = Material.Builder(12112, gtliteId("yeast"))
+            .dust()
+            .color(0xF0E660).iconSet(ROUGH)
+            .build()
+
+        // 12113 Cupriavidus Necator
+        @JvmField
+        val CupriavidusNecator: Material = Material.Builder(12113, gtliteId("cupriavidus_necator"))
+            .dust()
+            .color(0x2C4D24).iconSet(ROUGH)
+            .build()
     }
 
 }
