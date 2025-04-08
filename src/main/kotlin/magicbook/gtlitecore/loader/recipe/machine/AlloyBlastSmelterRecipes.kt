@@ -22,6 +22,7 @@ import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Invar
@@ -41,6 +42,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Zinc
@@ -48,6 +50,7 @@ import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -147,6 +150,18 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[HV].toLong())
                 .duration(1 * MINUTE + 30 * SECOND)
                 .blastFurnaceTemp(1073) // Cupronickel
+                .buildAndRegister()
+
+            // GST Glass
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Germanium, 2)
+                .input(dust, Antimony, 2)
+                .input(dust, Tellurium, 5)
+                .fluidOutputs(GSTGlass.getFluid(L * 9))
+                .EUt(VA[HV].toLong())
+                .duration(MINUTE + 20 * SECOND)
+                .blastFurnaceTemp(873) // Cupronickel
                 .buildAndRegister()
 
         }

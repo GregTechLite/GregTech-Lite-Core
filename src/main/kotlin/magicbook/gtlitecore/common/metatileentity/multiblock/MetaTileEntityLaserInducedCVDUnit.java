@@ -5,14 +5,15 @@ import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.MultiblockShapeInfo;
 import gregtech.api.pattern.PatternMatchContext;
+import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtech.core.sound.GTSoundEvents;
@@ -21,9 +22,11 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
+import magicbook.gtlitecore.api.unification.GTLiteMaterials;
 import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
@@ -53,30 +56,37 @@ import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
 import static magicbook.gtlitecore.api.utils.StructureUtility.emitterCasings;
 import static magicbook.gtlitecore.api.utils.StructureUtility.pumpCasings;
+import static magicbook.gtlitecore.api.utils.StructureUtility.sensorCasings;
 
 @Getter
-public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
+public class MetaTileEntityLaserInducedCVDUnit extends MultiMapMultiblockController
 {
 
     private int emitterCasingTier;
     private int pumpCasingTier;
+    private int sensorCasingTier;
 
     private static boolean hasRegistered = false;
     private static List<IBlockState> emitterCasings;
     private static List<IBlockState> pumpCasings;
+    private static List<IBlockState> sensorCasings;
 
-    // =================================================================================================================
-    public MetaTileEntityCVDUnit(ResourceLocation metaTileEntityId)
+    public MetaTileEntityLaserInducedCVDUnit(ResourceLocation metaTileEntityId)
     {
-        super(metaTileEntityId, GTLiteRecipeMaps.CVD_RECIPES());
-        this.recipeMapWorkable = new CVDUnitRecipeLogic(this);
+        super(metaTileEntityId, new RecipeMap[] {
+                GTLiteRecipeMaps.LASER_CVD_RECIPES(),
+                GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES(),
+                GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES(),
+                GTLiteRecipeMaps.SONICATION_RECIPES()
+        });
+        this.recipeMapWorkable = new LaserInducedCVDRecipeLogic(this);
         this.registerCasingMaps();
     }
 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
     {
-        return new MetaTileEntityCVDUnit(metaTileEntityId);
+        return new MetaTileEntityLaserInducedCVDUnit(metaTileEntityId);
     }
 
     private void registerCasingMaps()
@@ -84,12 +94,15 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
         if (hasRegistered) return;
         List<IBlockState> emitterCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_EMITTER_CASING);
         List<IBlockState> pumpCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_PUMP_CASING);
+        List<IBlockState> sensorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_SENSOR_CASING);
         int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
             add(emitterCasing);
             add(pumpCasing);
+            add(sensorCasing);
         }});
         emitterCasings = consistent(emitterCasing, maxLength);
         pumpCasings = consistent(pumpCasing, maxLength);
+        sensorCasings = consistent(sensorCasing, maxLength);
         hasRegistered = true;
     }
 
@@ -100,12 +113,16 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
         super.formStructure(context);
         Object type1 = context.get("EmitterCasingTieredStats");
         Object type2 = context.get("PumpCasingTieredStats");
+        Object type3 = context.get("SensorCasingTieredStats");
         this.emitterCasingTier = getOrDefault(
                 () -> type1 instanceof WrappedIntTier,
                 () -> ((WrappedIntTier) type1).getIntTier(), 0);
         this.pumpCasingTier = getOrDefault(
                 () -> type2 instanceof WrappedIntTier,
                 () -> ((WrappedIntTier) type2).getIntTier(), 0);
+        this.sensorCasingTier = getOrDefault(
+                () -> type3 instanceof WrappedIntTier,
+                () -> ((WrappedIntTier) type3).getIntTier(), 0);
     }
 
     @Override
@@ -114,6 +131,7 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
         super.invalidateStructure();
         this.emitterCasingTier = 0;
         this.pumpCasingTier = 0;
+        this.sensorCasingTier = 0;
     }
 
     @NotNull
@@ -121,24 +139,29 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
     protected BlockPattern createStructurePattern()
     {
         return FactoryBlockPattern.start()
-                .aisle("CCCCC", "CCCCC", "CCCCC")
-                .aisle("CCCCC", "EDDDE", "CGGGC")
-                .aisle("CCCCC", "PDDDP", "CGGGC")
-                .aisle("CCCCC", "SGGGC", "CGGGC")
+                .aisle("   CCCCC", "   CGGGC", "   CGGGC", "   CGGGC", "    CCC ")
+                .aisle("CCCCCCCC", "CCCFDDDF", "CCCF###F", "CCCF###F", "    FFF ")
+                .aisle("CCCCCCCC", "CPCFDDDF", "CPRG###T", "CCCF###F", "    FFF ")
+                .aisle("CCCCCCCC", "CCCFDDDF", "CSCF###F", "CCCF###F", "    FFF ")
+                .aisle("   CCCCC", "   CGGGC", "   CGGGC", "   CGGGC", "    CCC ")
                 .where('S', selfPredicate())
                 .where('C', states(getCasingState())
-                        .setMinGlobalLimited(20)
+                        .setMinGlobalLimited(60)
                         .or(autoAbilities()))
                 .where('D', states(getSecondCasingState()))
                 .where('G', states(getGlassState()))
-                .where('E', emitterCasings())
+                .where('F', frames(GTLiteMaterials.HastelloyX))
+                .where('R', emitterCasings())
                 .where('P', pumpCasings())
+                .where('T', sensorCasings())
+                .where('#', air())
+                .where(' ', any())
                 .build();
     }
 
     private static IBlockState getCasingState()
     {
-        return GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HSLA_STEEL);
+        return GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HASTELLOY_X);
     }
 
     private static IBlockState getSecondCasingState()
@@ -148,14 +171,14 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
 
     private static IBlockState getGlassState()
     {
-        return MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS);
+        return GTLiteMetaBlocks.TRANSPARENT_CASING_01.getState(BlockGlassCasing01.GlassType.ZBLAN);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart)
     {
-        return GTLiteTextures.HSLA_STEEL_CASING;
+        return GTLiteTextures.HASTELLOY_X_CASING;
     }
 
     @SideOnly(Side.CLIENT)
@@ -171,16 +194,18 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
     {
         List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
         MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
-                .aisle("FCCCC", "CCCCC", "CCCCC")
-                .aisle("CCCCC", "EDDDE", "CGGGC")
-                .aisle("CCCCC", "PDDDP", "CGGGC")
-                .aisle("NIJKL", "SGGGC", "CGGGC")
-                .where('S', GTLiteMetaTileEntities.CVD_UNIT, EnumFacing.SOUTH)
+                .aisle("   CCCCC", "   CGGGC", "   CGGGC", "   CGGGC", "    CCC ")
+                .aisle("CCCCCCCC", "CCCFDDDF", "CCCF   F", "CCCF   F", "    FFF ")
+                .aisle("CCCCCCCC", "CPCFDDDF", "CPRG   T", "CCCF   F", "    FFF ")
+                .aisle("CECCCCCC", "KNLFDDDF", "ISJF   F", "CCCF   F", "    FFF ")
+                .aisle("   CCCCC", "   CGGGC", "   CGGGC", "   CGGGC", "    CCC ")
+                .where('S', GTLiteMetaTileEntities.LASER_INDUCED_CVD_UNIT, EnumFacing.SOUTH)
                 .where('C', getCasingState())
                 .where('D', getSecondCasingState())
+                .where('F', MetaBlocks.FRAMES.get(GTLiteMaterials.HastelloyX).getBlock(GTLiteMaterials.HastelloyX))
                 .where('G', getGlassState())
                 .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
-                .where('F', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.SOUTH)
                 .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
                 .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
                 .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
@@ -190,8 +215,9 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
                 .map(b -> {
                     if (builder != null)
                     {
-                        builder.where('E', b);
+                        builder.where('R', b);
                         builder.where('P', pumpCasings.get(count.get()));
+                        builder.where('T', sensorCasings.get(count.get()));
                         count.getAndIncrement();
                     }
                     return builder;
@@ -212,6 +238,8 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
                 this.writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE, buf -> {});
             if (this.pumpCasingTier == 0)
                 this.writeCustomData(GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE, buf -> {});
+            if (this.sensorCasingTier == 0)
+                this.writeCustomData(GTLiteDataCodes.INITIALIZE_MINOR_TIERED_MACHINE, buf -> {});
         }
     }
 
@@ -223,10 +251,14 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
             this.writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE, b -> b.writeInt(this.emitterCasingTier));
         if (dataId == GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE)
             this.writeCustomData(GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE, b -> b.writeInt(this.pumpCasingTier));
+        if (dataId == GTLiteDataCodes.INITIALIZE_MINOR_TIERED_MACHINE)
+            this.writeCustomData(GTLiteDataCodes.UPDATE_MINOR_TIERED_MACHINE, b -> b.writeInt(this.sensorCasingTier));
         if (dataId == GTLiteDataCodes.UPDATE_TIERED_MACHINE)
             this.emitterCasingTier = buf.readInt();
         if (dataId == GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE)
             this.pumpCasingTier = buf.readInt();
+        if (dataId == GTLiteDataCodes.UPDATE_MINOR_TIERED_MACHINE)
+            this.sensorCasingTier = buf.readInt();
     }
 
     // =================================================================================================================
@@ -237,11 +269,12 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
                                boolean advanced)
     {
         super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.1"));
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.2"));
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.3"));
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.4"));
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.5"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.2"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.3"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.4"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.5"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.6"));
     }
 
     // =================================================================================================================
@@ -257,9 +290,10 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
         return GTSoundEvents.BREAKDOWN_ELECTRICAL;
     }
 
-    protected class CVDUnitRecipeLogic extends MultiblockRecipeLogic
+    protected class LaserInducedCVDRecipeLogic extends MultiblockRecipeLogic
     {
-        public CVDUnitRecipeLogic(RecipeMapMultiblockController tileEntity)
+
+        public LaserInducedCVDRecipeLogic(RecipeMapMultiblockController tileEntity)
         {
             super(tileEntity);
         }
@@ -273,13 +307,13 @@ public class MetaTileEntityCVDUnit extends RecipeMapMultiblockController
         @Override
         public void setMaxProgress(int maxProgress)
         {
-            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.8, getEmitterCasingTier()))));
+            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.5, Math.min(getEmitterCasingTier(), getSensorCasingTier())))));
         }
 
         @Override
         public int getParallelLimit()
         {
-            return 4 * getPumpCasingTier();
+            return 8 * getPumpCasingTier();
         }
 
     }

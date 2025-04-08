@@ -24,6 +24,7 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -53,6 +54,7 @@ import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tungsten
@@ -74,6 +76,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
@@ -137,6 +140,17 @@ class MixerRecipes
                 .output(dust, ZBLANGlass, 11)
                 .EUt(VA[HV].toLong())
                 .duration(25 * SECOND)
+                .buildAndRegister()
+
+            // GST Glass
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Germanium, 2)
+                .input(dust, Antimony, 2)
+                .input(dust, Tellurium, 5)
+                .output(dust, GSTGlass, 9)
+                .EUt(VA[HV].toLong())
+                .duration(12 * SECOND + 10)
                 .buildAndRegister()
 
             // Kovar

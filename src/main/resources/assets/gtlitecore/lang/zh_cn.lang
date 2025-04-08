@@ -879,6 +879,7 @@ recipemap.cvd_unit.name=化学气相沉积
 recipemap.crystallization_crucible.name=结晶坩埚
 recipemap.nanoscale_fabricator.name=分子束外延
 recipemap.sonicator.name=超声震荡
+recipemap.laser_induced_cvd_unit.name=激光诱导化学气相沉积
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1403,7 +1404,7 @@ gtlitecore.machine.cvd_unit.tooltip.1=薄膜蒸镀传输
 gtlitecore.machine.cvd_unit.tooltip.2=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.cvd_unit.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.cvd_unit.tooltip.4=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.cvd_unit.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.cvd_unit.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l4§r§7个物品。
 
 gtlitecore.machine.crystallization_crucible.name=结晶坩埚
 gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
@@ -1428,6 +1429,14 @@ gtlitecore.machine.sonicator.tooltip.1=升级部件外壳或电压等级以提�
 gtlitecore.machine.sonicator.tooltip.2=当玻璃等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.sonicator.tooltip.3=每提高1个§e马达外壳等级§7与§e电动泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.sonicator.tooltip.4=每提高1个§a电压等级§7，每次运行可以多处理§l4§r§7个物品。
+
+gtlitecore.machine.laser_induced_cvd_unit.name=激光诱导化学气相沉积单元
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=每提高1个§a泵外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
@@ -2031,6 +2040,8 @@ gtlitecore.material.yttrium_nitrate=硝酸钇
 gtlitecore.material.barium_nitrate=硝酸钡
 gtlitecore.material.copper_nitrate=硝酸铜
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=钇钡铜氧混合物
+gtlitecore.material.gst_glass=GST玻璃
+item.gtlitecore.material.gst_glass.ingot=GST玻璃条
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

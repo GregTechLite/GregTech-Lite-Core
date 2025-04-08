@@ -23,6 +23,7 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Gadolinium
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
@@ -124,12 +125,13 @@ class GTLiteMaterialProperties
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
-                Scandium)
+                Scandium, Germanium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
 
-            sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate)
+            sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
+                Germanium)
                 .forEach { addLiquid(it) }
 
             // Let andradite can generate in world natural.
@@ -274,6 +276,8 @@ class GTLiteMaterialProperties
             Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
             Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
             Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+
+            Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
 
             // Modified platinum group related materials' formula.
             PalladiumRaw.setFormula("PdCl2", true);

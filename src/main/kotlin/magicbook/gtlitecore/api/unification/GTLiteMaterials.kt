@@ -44,6 +44,7 @@ import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gadolinium
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.GreenSapphire
@@ -1425,6 +1426,19 @@ class GTLiteMaterials
             .colorAverage().iconSet(ROUGH)
             .components(Yttrium, 1, Barium, 2, Copper, 3, Oxygen, 6)
             .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2135 GST Glass
+        @JvmField
+        val GSTGlass: Material = Material.Builder(2135, gtliteId("gst_glass"))
+            .ingot()
+            .fluid()
+            .color(0xCFFFFF).iconSet(SHINY)
+            .components(Germanium, 2, Antimony, 2, Tellurium, 5)
+            .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE)
+            .blast { b ->
+                b.temp(873, BlastProperty.GasTier.MID)
+            }
             .build()
 
         // =======================================================================

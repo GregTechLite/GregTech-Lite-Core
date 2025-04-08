@@ -683,6 +683,22 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.CENTRIFUGE)
             .build()
 
+        /**
+         * @zenProp laser_induced_cvd_unit
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("LASER_CVD_RECIPES")
+        val LASER_CVD_RECIPES = RecipeMapBuilder("laser_induced_cvd_unit", NoCoilTemperatureRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(3)
+            .fluidInputs(4)
+            .fluidOutputs(3)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+            .setSmallRecipeMap(CVD_RECIPES)
+
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.
         {
@@ -699,6 +715,44 @@ class GTLiteRecipeMaps
                     .duration(recipeBuilder.duration)
                     .EUt(recipeBuilder.eUt)
                     .buildAndRegister()
+            }
+
+            // Copying cvd recipes to laser-induced/plasma-enriched cvd recipe map.
+            CVD_RECIPES.onRecipeBuild(GTLiteUtility.gtliteId("advanced_cvd_copy")) { recipeBuilder ->
+
+                val inputsCopied = recipeBuilder.inputs.toTypedArray()
+                val fluidInputsCopied = recipeBuilder.fluidInputs
+                val outputsCopied = recipeBuilder.outputs
+                val chancedOutputsCopied = recipeBuilder.chancedOutputs
+                val fluidOutputsCopied = recipeBuilder.fluidOutputs
+                val chancedFluidOutputsCopied = recipeBuilder.chancedFluidOutputs
+                val cleanroomCopied = recipeBuilder.cleanroom
+                val eUtCopied = recipeBuilder.eUt
+                val durationCopied = recipeBuilder.duration
+
+                // Laser-Induced CVD recipes required laser-induced gas for protective
+                // and ensure transmissive correct.
+                for (laserInducedGas in arrayOf(Materials.Helium.getFluid(16000),
+                    Materials.Neon.getFluid(16000),
+                    Materials.Argon.getFluid(16000),
+                    Materials.Krypton.getFluid(16000),
+                    Materials.Xenon.getFluid(16000)))
+                {
+                    LASER_CVD_RECIPES.recipeBuilder()
+                        .inputs(*inputsCopied)
+                        .fluidInputs(fluidInputsCopied)
+                        .notConsumable(laserInducedGas)
+                        .outputs(outputsCopied)
+                        .chancedOutputs(chancedOutputsCopied)
+                        .fluidOutputs(fluidOutputsCopied)
+                        .chancedFluidOutputs(chancedFluidOutputsCopied)
+                        .cleanroom(cleanroomCopied)
+                        .EUt(eUtCopied)
+                        .duration(durationCopied)
+                        .buildAndRegister()
+                } // TODO Maybe another choice is lasers (laser emitters).
+
+                // TODO PLASMA_CVD_RECIPES
             }
 
             // (2,6,1,6) -> (2,6,2,6)

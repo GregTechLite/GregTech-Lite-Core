@@ -27,6 +27,7 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.POLISHER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlueSchist
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSchist
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kimberlite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Komatiite
@@ -245,6 +246,15 @@ class PolisherRecipes
                 .input(block, PraseodymiumDopedZBLANGlass)
                 .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PRASEODYMIUM_ZBLAN, 2))
                 .output(dust, PraseodymiumDopedZBLANGlass)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // GST Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, GSTGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.GST, 2))
+                .output(dust, GSTGlass)
                 .EUt(VA[IV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()

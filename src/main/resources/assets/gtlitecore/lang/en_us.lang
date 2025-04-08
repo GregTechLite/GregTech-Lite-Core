@@ -879,6 +879,7 @@ recipemap.cvd_unit.name=Chemical Vapor Deposition
 recipemap.crystallization_crucible.name=Crystallization Crucible
 recipemap.nanoscale_fabricator.name=Molecular Beaming
 recipemap.sonicator.name=Sonication
+recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1403,7 +1404,7 @@ gtlitecore.machine.cvd_unit.tooltip.1=Film Evapor Transmission
 gtlitecore.machine.cvd_unit.tooltip.2=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.cvd_unit.tooltip.3=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.cvd_unit.tooltip.4=Each §eEmitter Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
-gtlitecore.machine.cvd_unit.tooltip.5=Each §aPump Casing tier§7 +1, processing +§l16§r§7 items.
+gtlitecore.machine.cvd_unit.tooltip.5=Each §aPump Casing tier§7 +1, processing +§l4§r§7 items.
 
 gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
 gtlitecore.machine.crystallization_crucible.tooltip.1=Artificial Gem Technology
@@ -1428,6 +1429,14 @@ gtlitecore.machine.sonicator.tooltip.1=Update Component Casing or Voltage tier t
 gtlitecore.machine.sonicator.tooltip.2=When Borosilicate Glass tier >= §3UV§7tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.sonicator.tooltip.3=Each §eMotor Casing tier§7 and §ePump Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.sonicator.tooltip.4=Each §aVoltage tier§7 +1, processing +§l4§r§7 items.
+
+gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting CVD reaction with High-Energy Laser Beam.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Compatible with all common §2CVD§7 recipes, but required input not-consumable §9Laser Transmissive Gas§7.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=Each §eEmitter Casing tier§7 and §eSensor Casing Tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
@@ -2026,6 +2035,8 @@ gtlitecore.material.yttrium_nitrate=Yttrium Nitrate
 gtlitecore.material.barium_nitrate=Barium Nitrate
 gtlitecore.material.copper_nitrate=Copper Nitrate
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=Yttrium Barium Copper Oxides Mixture
+gtlitecore.material.gst_glass=GST Glass
+item.gtlitecore.material.gst_glass.ingot=GST Glass Bar
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

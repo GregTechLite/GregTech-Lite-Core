@@ -26,6 +26,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUn
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaserInducedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySonicator
@@ -215,6 +216,7 @@ class GTLiteMetaTileEntities
         lateinit var CRYSTALLIZATION_CRUCIBLE: MetaTileEntityCrystallizationCrucible
         lateinit var NANOSCALE_FABRICATOR: MetaTileEntityNanoscaleFabricator
         lateinit var SONICATOR: MetaTileEntitySonicator
+        lateinit var LASER_INDUCED_CVD_UNIT: MetaTileEntityLaserInducedCVDUnit
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -681,6 +683,9 @@ class GTLiteMetaTileEntities
             SONICATOR = MetaTileEntities.registerMetaTileEntity(18015,
                 MetaTileEntitySonicator(GTLiteUtility.gtliteId("sonicator")))
 
+            LASER_INDUCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18016,
+                MetaTileEntityLaserInducedCVDUnit(GTLiteUtility.gtliteId("laser_induced_cvd_unit")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -879,6 +884,7 @@ class GTLiteMetaTileEntities
             CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             SONICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LASER_INDUCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

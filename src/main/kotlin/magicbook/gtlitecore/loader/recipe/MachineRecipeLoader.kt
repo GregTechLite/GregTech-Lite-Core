@@ -9,6 +9,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.GTValues.ZPM
 import gregtech.api.items.OreDictNames
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
@@ -21,6 +22,7 @@ import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
+import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Electrum
@@ -103,6 +105,7 @@ import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
@@ -158,6 +161,7 @@ import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
@@ -230,6 +234,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ROCK_BREAKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INDUCED_CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MINING_DRONE_AIRPORT
@@ -1200,6 +1205,15 @@ class MachineRecipeLoader
                 'P', ELECTRIC_PUMP_LuV.stackForm,
                 'H', HULL[LuV].stackForm,
                 'C', UnificationEntry(circuit, MarkerMaterials.Tier.ZPM))
+
+            // Laser-Induced CVD Unit
+            ModHandler.addShapedRecipe(true, "laser_induced_cvd_unit", LASER_INDUCED_CVD_UNIT.stackForm,
+                "EAE", "XHX", "PPP",
+                'E', EMITTER_ZPM.stackForm,
+                'A', UnificationEntry(plate, GSTGlass),
+                'H', HULL[ZPM].stackForm,
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.UV),
+                'P', UnificationEntry(plate, Darmstadtium))
 
         }
 
