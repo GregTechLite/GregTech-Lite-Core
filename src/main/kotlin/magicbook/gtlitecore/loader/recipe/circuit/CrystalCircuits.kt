@@ -7,13 +7,17 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Air
+import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Helium
+import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Oxygen
@@ -25,19 +29,27 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
+import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
 import gregtech.common.items.MetaItems.ADVANCED_SMD_INDUCTOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.CRYSTAL_ASSEMBLY_LUV
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
+import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.CRYSTAL_PROCESSOR_IV
 import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ENGRAVED_CRYSTAL_CHIP
+import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
+import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM_RECIPES
@@ -52,6 +64,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIELECTRIC_MIRROR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
 
@@ -263,8 +276,89 @@ class CrystalCircuits
                 .buildAndRegister()
 
             // ZPM Crystal Supercomputer
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
+                    CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    NOR_MEMORY_CHIP.getStackForm(32),
+                    NAND_MEMORY_CHIP.getStackForm(64),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
+                arrayOf(SolderingAlloy.getFluid(L)))
+
+            GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+                arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
+                    CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    NOR_MEMORY_CHIP.getStackForm(32),
+                    NAND_MEMORY_CHIP.getStackForm(64),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
+                arrayOf(Tin.getFluid(L * 2)))
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ELITE_CIRCUIT_BOARD)
+                .input(CRYSTAL_ASSEMBLY_LUV, 3)
+                .input(RANDOM_ACCESS_MEMORY, 4)
+                .input(NOR_MEMORY_CHIP, 32)
+                .input(NAND_MEMORY_CHIP, 64)
+                .input(wireFine, NiobiumTitanium, 32)
+                .output(CRYSTAL_COMPUTER_ZPM, 2)
+                .EUt(9600) // LuV
+                .duration(20 * SECOND)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // UV Crystal Mainframe
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, HSSE, 2),
+                    CRYSTAL_COMPUTER_ZPM.getStackForm(2),
+                    RANDOM_ACCESS_MEMORY.getStackForm(32),
+                    HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(wireGtSingle, NiobiumTitanium, 8),
+                    ADVANCED_SMD_INDUCTOR.getStackForm(8),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(16),
+                    ADVANCED_SMD_DIODE.getStackForm(8)),
+                arrayOf(SolderingAlloy.getFluid(L * 10)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSS)
+                .input(CRYSTAL_COMPUTER_ZPM, 2)
+                .input(ADVANCED_SMD_INDUCTOR, 16)
+                .input(ADVANCED_SMD_CAPACITOR, 16)
+                .input(ADVANCED_SMD_DIODE, 16)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(RANDOM_ACCESS_MEMORY, 32)
+                .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .output(CRYSTAL_MAINFRAME_UV)
+                .EUt(VA[LuV].toLong())
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(CRYSTAL_COMPUTER_ZPM.stackForm)
+                        .EUt(VA[LuV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSS)
+                .input(CRYSTAL_COMPUTER_ZPM, 2)
+                .input(GOOWARE_SMD_INDUCTOR, 2)
+                .input(GOOWARE_SMD_CAPACITOR, 4)
+                .input(GOOWARE_SMD_DIODE, 2)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(RANDOM_ACCESS_MEMORY, 32)
+                .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .output(CRYSTAL_MAINFRAME_UV)
+                .EUt(VA[LuV].toLong())
+                .duration(20 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(CRYSTAL_COMPUTER_ZPM.stackForm)
+                        .EUt(VA[LuV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
 
         }
 

@@ -157,6 +157,7 @@ class GTLiteMetaItems
         lateinit var DIRTY_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var CUPRIAVIDUS_NECATOR_PETRI_DISH: MetaItem<*>.MetaValueItem
+        lateinit var ELECTRIC_SIGNAL_PETRI_DISH: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
@@ -620,6 +621,7 @@ class GTLiteMetaItems
             DIRTY_PETRI_DISH = GTLITE_ITEMS.addItem(631, "tool.petri_dish.dirty")
             BREVIBACTERIUM_FLAVUM_PETRI_DISH = GTLITE_ITEMS.addItem(632, "tool.petri_dish.brevibacterium_flavum")
             CUPRIAVIDUS_NECATOR_PETRI_DISH = GTLITE_ITEMS.addItem(633, "tool.petri_dish.cupriavidus_necator")
+            ELECTRIC_SIGNAL_PETRI_DISH = GTLITE_ITEMS.addItem(634, "tool.petri_dish.electric_signal")
 
             // 701-800: Batteries.
 

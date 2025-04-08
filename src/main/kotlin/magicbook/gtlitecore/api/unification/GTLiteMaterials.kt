@@ -2274,6 +2274,99 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 8025 Durene
+        @JvmField
+        val Durene: Material = Material.Builder(8025, gtliteId("durene"))
+            .dust()
+            .color(0x336040).iconSet(FINE)
+            .components(Carbon, 10, Hydrogen, 14)
+            .build()
+            .setFormula("C6H2(CH3)4", true)
+
+        // 8026 Pyromellitic Dianhydride (PDMA)
+        @JvmField
+        val PyromelliticDianhydride: Material = Material.Builder(8026, gtliteId("pyromellitic_dianhydride"))
+            .dust()
+            .color(0xF0EAD6).iconSet(ROUGH)
+            .components(Carbon, 10, Hydrogen, 2, Oxygen, 6)
+            .build()
+            .setFormula("C6H2(C2O3)2", true)
+
+        // 8027 Aminophenol
+        @JvmField
+        val Aminophenol: Material = Material.Builder(8027, gtliteId("aminophenol"))
+            .dust()
+            .color(0xFFFFFF).iconSet(SHINY)
+            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+            .build()
+
+        // 8028 Aniline
+        @JvmField
+        val Aniline: Material = Material.Builder(8028, gtliteId("aniline"))
+            .liquid()
+            .color(0x4c911d)
+            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 1)
+            .build()
+            .setFormula("C6H5NH2", true)
+
+        // 8029 Oxydianiline (ODA)
+        @JvmField
+        val Oxydianiline: Material = Material.Builder(8029, gtliteId("oxydianiline"))
+            .dust()
+            .color(0xF0E130)
+            .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
+            .build()
+            .setFormula("O(C6H4NH2)2", true)
+
+        // 8030 Kapton-K (Poly 4,4'-Oxydiphenylene-Pyromellitimide)
+        @JvmField
+        val KaptonK: Material = Material.Builder(8030, gtliteId("kapton_k"))
+            .polymer()
+            .liquid()
+            .color(0xFFCE52)
+            .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            .build()
+            .setFormula("(C7H2N2O4)(O(C6H4)2)", true)
+
+        // 8031 Biphenyl Tetracarboxylic Acid Dianhydride (BTAD)
+        @JvmField
+        val BiphenylTetracarboxylicAcidDianhydride: Material = Material.Builder(8031, gtliteId("biphenyl_tetracarboxylic_acid_dianhydride"))
+            .dust()
+            .color(0xFF7F50)
+            .components(Carbon, 16, Hydrogen, 6, Oxygen, 6)
+            .build()
+            .setFormula("(C8H3O3)2", true)
+
+        // 8032 Nitroaniline
+        @JvmField
+        val Nitroaniline: Material = Material.Builder(8032, gtliteId("nitroaniline"))
+            .liquid()
+            .color(0x2A6E68)
+            .components(Carbon, 6, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
+            .build()
+            .setFormula("H2NC6H4NO2", true)
+
+        // 8033 Para-Phenylenediamine
+        @JvmField
+        val ParaPhenylenediamine: Material = Material.Builder(8033, gtliteId("para_phenylenediamine"))
+            .dust()
+            .color(0x4A8E7B).iconSet(ROUGH)
+            .components(Carbon, 6, Hydrogen, 8, Nitrogen, 2)
+            .build()
+            .setFormula("H2NC6H4NH2", true)
+
+        // 8034 Kapton-E
+        @JvmField
+        val KaptonE: Material = Material.Builder(8034, gtliteId("kapton_e"))
+            .polymer()
+            .liquid()
+            .color(0xFFDF8C)
+            .components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
+            .build()
+            .setFormula("O(C6H4NH2)2", true)
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 

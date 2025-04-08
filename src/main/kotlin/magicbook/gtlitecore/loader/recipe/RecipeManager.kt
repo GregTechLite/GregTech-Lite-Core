@@ -9,6 +9,7 @@ import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
+import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
@@ -111,6 +112,7 @@ class RecipeManager
             GrapheneChain.init()
             CitricAcidChain.init()
             GrowthMediumChain.init()
+            KaptonChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()

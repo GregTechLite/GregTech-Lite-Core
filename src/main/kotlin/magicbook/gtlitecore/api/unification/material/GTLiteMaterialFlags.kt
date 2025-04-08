@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
@@ -179,6 +180,7 @@ class GTLiteMaterialFlags
             Ultimet.addFlags(GENERATE_FOIL)
             RTMAlloy.addFlags(GENERATE_FOIL)
             PolyvinylButyral.addFlags(GENERATE_FOIL)
+            Germanium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -239,6 +241,7 @@ class GTLiteMaterialFlags
             Indium.addFlags(GENERATE_PLATE)
             Vanadium.addFlags(GENERATE_PLATE)
             Graphene.addFlags(GENERATE_PLATE)
+            Germanium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -293,6 +296,7 @@ class GTLiteMaterialFlags
             NiobiumNitride.addFlags(GENERATE_FINE_WIRE)
             Trinium.addFlags(GENERATE_FINE_WIRE)
             NaquadahAlloy.addFlags(GENERATE_FINE_WIRE)
+            Germanium.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

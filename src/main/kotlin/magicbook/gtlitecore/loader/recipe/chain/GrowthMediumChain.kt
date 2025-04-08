@@ -307,12 +307,13 @@ class GrowthMediumChain
                 .buildAndRegister()
 
             // Linoleic Acid
-            SONICATION_RECIPES.recipeBuilder()
+            BREWING_RECIPES.recipeBuilder()
                 .input(dust, Yeast)
                 .fluidInputs(Biomass.getFluid(1000))
                 .fluidOutputs(LinoleicAcid.getFluid(1000))
                 .EUt(VA[EV].toLong())
                 .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Vitamin-H

@@ -712,6 +712,7 @@ metaitem.tool.magnetron.name=Magnetron
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish
+metaitem.tool.petri_dish.electric_signal.name=Electric Signal Petri Dish
 
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
@@ -2152,6 +2153,16 @@ gtlitecore.material.citric_acid=Citric Acid
 gtlitecore.material.glutamine=Glutamine
 gtlitecore.material.linoleic_acid=Linoleic Acid
 gtlitecore.material.vitamin_h=Vitamin-H
+gtlitecore.material.durene=Durene
+gtlitecore.material.pyromellitic_dianhydride=Pyromellitic Dianhydride (PDMA)
+gtlitecore.material.aminophenol=Aminophenol
+gtlitecore.material.aniline=Aniline
+gtlitecore.material.oxydianiline=4,4'-Oxydianiline (ODA)
+gtlitecore.material.kapton_k=Kapton-K
+gtlitecore.material.biphenyl_tetracarboxylic_acid_dianhydride=Biphenyl Tetracarboxylic Acid Dianhydride (BTAD)
+gtlitecore.material.nitroaniline=4-Nitroaniline
+gtlitecore.material.para_phenylenediamine=Para-Phenylenediamine
+gtlitecore.material.kapton_e=Kapton-E
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

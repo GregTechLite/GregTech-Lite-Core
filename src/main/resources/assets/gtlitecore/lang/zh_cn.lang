@@ -540,6 +540,7 @@ metaitem.tool.magnetron.name=磁控管
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
+metaitem.tool.petri_dish.electric_signal.name=电信号培养皿
 
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
@@ -2156,6 +2157,16 @@ gtlitecore.material.citric_acid=柠檬酸
 gtlitecore.material.glutamine=谷氨酰胺
 gtlitecore.material.linoleic_acid=亚油酸
 gtlitecore.material.vitamin_h=维生素H
+gtlitecore.material.durene=均四甲苯
+gtlitecore.material.pyromellitic_dianhydride=均苯四酸二酐（PDMA）
+gtlitecore.material.aminophenol=对氨基苯酚
+gtlitecore.material.aniline=苯胺
+gtlitecore.material.oxydianiline=4,4'-二氨基二苯醚（ODA）
+gtlitecore.material.kapton_k=聚酰亚胺-K
+gtlitecore.material.biphenyl_tetracarboxylic_acid_dianhydride=联苯四甲酸二酐（BPDA）
+gtlitecore.material.nitroaniline=4-硝基苯胺
+gtlitecore.material.para_phenylenediamine=对苯二胺
+gtlitecore.material.kapton_e=聚酰亚胺-E
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
