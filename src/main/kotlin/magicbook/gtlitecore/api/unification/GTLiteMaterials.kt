@@ -2265,6 +2265,29 @@ class GTLiteMaterials
             .liquid(FluidBuilder().customStill())
             .build()
 
+        // ...
+
+        // 12021 Blood
+        @JvmField
+        val Blood: Material = Material.Builder(12021, gtliteId("blood"))
+            .liquid()
+            .color(0x5C0606)
+            .build()
+
+        // 12022 Blood Cells
+        @JvmField
+        val BloodCells: Material = Material.Builder(12022, gtliteId("blood_cells"))
+            .liquid()
+            .color(0xAD2424).iconSet(DULL)
+            .build()
+
+        // 12023 Blood Plasma
+        @JvmField
+        val BloodPlasma: Material = Material.Builder(12023, gtliteId("blood_plasma"))
+            .liquid()
+            .color(0xE37171).iconSet(DULL)
+            .build()
+
         // 12031 Green Sapphire Juice
         @JvmField
         val GreenSapphireJuice: Material = Material.Builder(12031, gtliteId("green_sapphire_juice"))

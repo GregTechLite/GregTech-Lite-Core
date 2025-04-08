@@ -880,6 +880,7 @@ recipemap.crystallization_crucible.name=Crystallization Crucible
 recipemap.nanoscale_fabricator.name=Molecular Beaming
 recipemap.sonicator.name=Sonication
 recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
+recipemap.mob_extractor.name=Mob Extractor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -889,6 +890,9 @@ gtlitecore.recipe.block_group_members.rainbow.name=Rainbow logs
 
 gtlitecore.recipe.temperature=Temperature: %sK
 gtlitecore.recipe.circuit_pattern=Required Circuit Pattern Info
+
+gtlitecore.recipe.accepted_entity=Required Entity on Machine Top: %s
+gtlitecore.recipe.entity_name.player=Player
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -1382,6 +1386,33 @@ gtlitecore.machine.multicooker.uxv.name=Epic Multicooker IV
 gtlitecore.machine.multicooker.uxv.tooltip=Next generation meal preparator
 gtlitecore.machine.multicooker.opv.name=Legendary Multicooker
 gtlitecore.machine.multicooker.opv.tooltip=Next generation meal preparator
+
+gtlitecore.machine.mob_extractor.lv.name=Basic Mob Extractor
+gtlitecore.machine.mob_extractor.lv.tooltip=Egg Collector
+gtlitecore.machine.mob_extractor.mv.name=Advanced Mob Extractor
+gtlitecore.machine.mob_extractor.mv.tooltip=Egg Collector
+gtlitecore.machine.mob_extractor.hv.name=Advanced Mob Extractor II
+gtlitecore.machine.mob_extractor.hv.tooltip=Egg Collector
+gtlitecore.machine.mob_extractor.ev.name=Advanced Mob Extractor III
+gtlitecore.machine.mob_extractor.ev.tooltip=Egg Collector
+gtlitecore.machine.mob_extractor.iv.name=Elite Mob Extractor
+gtlitecore.machine.mob_extractor.iv.tooltip=Painless Blood Extractor
+gtlitecore.machine.mob_extractor.luv.name=Elite Mob Extractor II
+gtlitecore.machine.mob_extractor.luv.tooltip=Painless Blood Extractor
+gtlitecore.machine.mob_extractor.zpm.name=Elite Mob Extractor III
+gtlitecore.machine.mob_extractor.zpm.tooltip=Painless Blood Extractor
+gtlitecore.machine.mob_extractor.uv.name=Ultimate Mob Extractor
+gtlitecore.machine.mob_extractor.uv.tooltip=Bio-Trophy Chamber
+gtlitecore.machine.mob_extractor.uhv.name=Epic Mob Extractor
+gtlitecore.machine.mob_extractor.uhv.tooltip=Bio-Trophy Chamber
+gtlitecore.machine.mob_extractor.uev.name=Epic Mob Extractor II
+gtlitecore.machine.mob_extractor.uev.tooltip=Bio-Trophy Chamber
+gtlitecore.machine.mob_extractor.uiv.name=Epic Mob Extractor III
+gtlitecore.machine.mob_extractor.uiv.tooltip=Bio-Trophy Chamber
+gtlitecore.machine.mob_extractor.uxv.name=Epic Mob Extractor IV
+gtlitecore.machine.mob_extractor.uxv.tooltip=Bio-Trophy Chamber
+gtlitecore.machine.mob_extractor.opv.name=Legendary Mob Extractor
+gtlitecore.machine.mob_extractor.opv.tooltip=Bio-Trophy Chamber
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
@@ -2116,6 +2147,10 @@ gtlitecore.material.citric_acid=Citric Acid
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
 gtlitecore.material.rainbow_sap=Rainbow Sap
+
+gtlitecore.material.blood=Blood
+gtlitecore.material.blood_cells=Blood Cells
+gtlitecore.material.blood_plasma=Blood Plasma
 
 gtlitecore.material.green_sapphire_juice=Green Sapphire Juice
 gtlitecore.material.sapphire_juice=Sapphire Juice

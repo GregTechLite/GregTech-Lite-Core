@@ -880,6 +880,7 @@ recipemap.crystallization_crucible.name=结晶坩埚
 recipemap.nanoscale_fabricator.name=分子束外延
 recipemap.sonicator.name=超声震荡
 recipemap.laser_induced_cvd_unit.name=激光诱导化学气相沉积
+recipemap.mob_extractor.name=生物资源提取器
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -889,6 +890,9 @@ gtlitecore.recipe.block_group_members.rainbow.name=彩虹木
 
 gtlitecore.recipe.temperature=温度：%sK
 gtlitecore.recipe.circuit_pattern=需要电路模板信息
+
+gtlitecore.recipe.accepted_entity=需要顶部存在：%s
+gtlitecore.recipe.entity_name.player=玩家
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -1382,6 +1386,33 @@ gtlitecore.machine.multicooker.uxv.name=史诗多功能烹饪机 IV
 gtlitecore.machine.multicooker.uxv.tooltip=次世代备餐机
 gtlitecore.machine.multicooker.opv.name=传奇多功能烹饪机
 gtlitecore.machine.multicooker.opv.tooltip=次世代备餐机
+
+gtlitecore.machine.mob_extractor.lv.name=基础生物资源提取器
+gtlitecore.machine.mob_extractor.lv.tooltip=鸡蛋收集器
+gtlitecore.machine.mob_extractor.mv.name=进阶生物资源提取器
+gtlitecore.machine.mob_extractor.mv.tooltip=鸡蛋收集器
+gtlitecore.machine.mob_extractor.hv.name=进阶生物资源提取器 II
+gtlitecore.machine.mob_extractor.hv.tooltip=鸡蛋收集器
+gtlitecore.machine.mob_extractor.ev.name=进阶生物资源提取器 III
+gtlitecore.machine.mob_extractor.ev.tooltip=鸡蛋收集器
+gtlitecore.machine.mob_extractor.iv.name=精英生物资源提取器
+gtlitecore.machine.mob_extractor.iv.tooltip=无痛采血站
+gtlitecore.machine.mob_extractor.luv.name=精英生物资源提取器 II
+gtlitecore.machine.mob_extractor.luv.tooltip=无痛采血站
+gtlitecore.machine.mob_extractor.zpm.name=精英生物资源提取器 III
+gtlitecore.machine.mob_extractor.zpm.tooltip=无痛采血站
+gtlitecore.machine.mob_extractor.uv.name=终极生物资源提取器
+gtlitecore.machine.mob_extractor.uv.tooltip=活体陈列室
+gtlitecore.machine.mob_extractor.uhv.name=史诗生物资源提取器
+gtlitecore.machine.mob_extractor.uhv.tooltip=活体陈列室
+gtlitecore.machine.mob_extractor.uev.name=史诗生物资源提取器 II
+gtlitecore.machine.mob_extractor.uev.tooltip=活体陈列室
+gtlitecore.machine.mob_extractor.uiv.name=史诗生物资源提取器 III
+gtlitecore.machine.mob_extractor.uiv.tooltip=活体陈列室
+gtlitecore.machine.mob_extractor.uxv.name=史诗生物资源提取器 IV
+gtlitecore.machine.mob_extractor.uxv.tooltip=活体陈列室
+gtlitecore.machine.mob_extractor.opv.name=传奇生物资源提取器
+gtlitecore.machine.mob_extractor.opv.tooltip=活体陈列室
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
@@ -2120,6 +2151,10 @@ gtlitecore.material.citric_acid=柠檬酸
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
 gtlitecore.material.rainbow_sap=彩虹树液
+
+gtlitecore.material.blood=血液
+gtlitecore.material.blood_cells=血细胞
+gtlitecore.material.blood_plasma=血浆
 
 gtlitecore.material.green_sapphire_juice=绿色蓝宝石汁
 gtlitecore.material.sapphire_juice=蓝宝石汁

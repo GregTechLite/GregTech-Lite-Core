@@ -6,6 +6,7 @@ import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
+import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
@@ -42,6 +43,7 @@ import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LaserEngraverRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
+import magicbook.gtlitecore.loader.recipe.machine.MobExtractorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
 import magicbook.gtlitecore.loader.recipe.machine.VacuumChamberRecipes
@@ -108,6 +110,7 @@ class RecipeManager
             HydrazineChain.init()
             GrapheneChain.init()
             CitricAcidChain.init()
+            GrowthMediumChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
@@ -153,6 +156,7 @@ class RecipeManager
             BathCondenserRecipes.init()
             CrystallizationCrucibleRecipes.init()
             LoomRecipes.init()
+            MobExtractorRecipes.init()
             PolisherRecipes.init()
             VacuumChamberRecipes.init()
 

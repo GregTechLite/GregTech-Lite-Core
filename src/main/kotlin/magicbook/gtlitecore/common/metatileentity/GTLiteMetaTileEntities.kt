@@ -72,6 +72,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntit
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedLaserHatch
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedMultiFluidHatch
+import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntityMobExtractor
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySapCollector
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapCollector
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
@@ -131,6 +132,7 @@ class GTLiteMetaTileEntities
         val REPLICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val FOOD_PROCESSOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val MULTICOOKER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val MOB_EXTRACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -428,6 +430,15 @@ class GTLiteMetaTileEntities
                 "multicooker", GTLiteRecipeMaps.MULTICOOKER_RECIPES,
                 GTLiteTextures.MULTICOOKER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
+
+            // 14286-14300: Mob Extractor
+            for (i in 1 .. GTValues.OpV)
+            {
+                val voltageName = GTValues.VN[i].lowercase(Locale.getDefault())
+                MOB_EXTRACTOR[i] = MetaTileEntities.registerMetaTileEntity(14288 + i, // 14286-14287 for Steam Machines.
+                    MetaTileEntityMobExtractor(GTLiteUtility.gtliteId("mob_extractor.$voltageName"), GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
+                        GTLiteTextures.MOB_EXTRACTOR_OVERLAY, i, false, GTUtility.largeTankSizeFunction))
+            }
 
             // ...
 

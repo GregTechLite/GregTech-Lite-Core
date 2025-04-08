@@ -13,6 +13,7 @@ import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -698,6 +699,18 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.COOLING)
             .build()
             .setSmallRecipeMap(CVD_RECIPES)
+
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("MOB_EXTRACTOR_RECIPES")
+        val MOB_EXTRACTOR_RECIPES = RecipeMapBuilder("mob_extractor", MobProximityRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false)
+            .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT)
+            .sound(GTSoundEvents.COMPRESSOR)
+            .build()
 
         @JvmStatic
         fun postRecipeMaps() // Used to post RecipeMap changing.

@@ -59,6 +59,9 @@ class GTLiteTextures
         val MULTICOOKER_OVERLAY = OrientedOverlayRenderer("machines/multicooker")
 
         @JvmField
+        val MOB_EXTRACTOR_OVERLAY = OrientedOverlayRenderer("machines/mob_extractor")
+
+        @JvmField
         val LARGE_BREWERY_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_brewery")
 
         @JvmField

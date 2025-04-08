@@ -238,6 +238,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LOOM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MINING_DRONE_AIRPORT
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MOB_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NANOSCALE_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -530,6 +531,16 @@ class MachineRecipeLoader
                 'C', CraftingComponent.CIRCUIT,
                 'W', CraftingComponent.COIL_HEATING_DOUBLE,
                 'M', CraftingComponent.MOTOR)
+
+            // Mob Extractor
+            MetaTileEntityLoader.registerMachineRecipe(true, MOB_EXTRACTOR,
+                "BCE", "PME", "WCW",
+                'M', CraftingComponent.HULL,
+                'E', CraftingComponent.PISTON,
+                'P', CraftingComponent.PUMP,
+                'C', CraftingComponent.CIRCUIT,
+                'W', CraftingComponent.CABLE,
+                'B', CraftingComponent.SAWBLADE)
 
             // =========================================================================================================
 
