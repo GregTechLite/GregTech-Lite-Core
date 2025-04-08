@@ -2037,6 +2037,14 @@ gtlitecore.material.copper_nitrate=Copper Nitrate
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=Yttrium Barium Copper Oxides Mixture
 gtlitecore.material.gst_glass=GST Glass
 item.gtlitecore.material.gst_glass.ingot=GST Glass Bar
+gtlitecore.material.germanium_dioxide=Germanium Dioxide
+gtlitecore.material.roasted_sphalerite=Roasted Sphalerite
+gtlitecore.material.zinc_rich_sphalerite=Zinc-rich Sphalerite
+gtlitecore.material.waelz_oxide=Waelz Oxide
+gtlitecore.material.waelz_slag=Waelz Slag
+item.gtlitecore.material.waelz_slag.dust=Waelz Slag
+item.gtlitecore.material.waelz_slag.dustSmall=Small Waelz Slag
+item.gtlitecore.material.waelz_slag.dustTiny=Tiny Waelz Slag
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

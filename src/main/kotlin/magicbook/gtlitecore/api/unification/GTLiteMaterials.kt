@@ -44,6 +44,7 @@ import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gadolinium
+import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
@@ -127,6 +128,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
@@ -176,6 +178,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.ROASTED
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -1440,6 +1443,55 @@ class GTLiteMaterials
                 b.temp(873, BlastProperty.GasTier.MID)
             }
             .build()
+
+        // 2136 Germanium Dioxide
+        @JvmField
+        val GermaniumDioxide: Material = Material.Builder(2136, gtliteId("germanium_dioxide"))
+            .dust()
+            .color(0x666666)
+            .components(Germanium, 1, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2137 Roasted Sphalerite
+        @JvmField
+        val RoastedSphalerite: Material = Material.Builder(2137, gtliteId("roasted_sphalerite"))
+            .dust()
+            .color(0xAC8B5C).iconSet(ROASTED)
+            .components(GermaniumDioxide, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(GeO2)?", true)
+
+        // 2138 Zn-rich Sphalerite
+        @JvmField
+        val ZincRichSphalerite: Material = Material.Builder(2138, gtliteId("zinc_rich_sphalerite"))
+            .dust()
+            .color(0xC3AC8F).iconSet(METALLIC)
+            .components(Zinc, 2, RoastedSphalerite, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Zn2(GaGeO2)?", true)
+
+        // 2139 Waelz Oxide
+        @JvmField
+        val WaelzOxide: Material = Material.Builder(2139, gtliteId("waelz_oxide"))
+            .dust()
+            .color(0xB8B8B8).iconSet(FINE)
+            .components(Zinc, 1, GermaniumDioxide, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(GeO2)Zn", true)
+
+        // 2140 Waelz Slag
+        @JvmField
+        val WaelzSlag: Material = Material.Builder(2140, gtliteId("waelz_slag"))
+            .dust()
+            .color(0xAC8B5C).iconSet(ROUGH)
+            .components(Gallium, 1, Zinc, 1, Sulfur, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(ZnSO4)Ga", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

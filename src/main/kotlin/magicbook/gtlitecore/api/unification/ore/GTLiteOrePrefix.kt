@@ -124,6 +124,10 @@ class GTLiteOrePrefix
             // Deleted Zephyrean Aerotheum dusts.
             dustSmall.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
             dustTiny.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
+
+            // Deleted RoastedSphalerite dusts.
+            dustSmall.setIgnored(GTLiteMaterials.RoastedSphalerite)
+            dustTiny.setIgnored(GTLiteMaterials.RoastedSphalerite)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high

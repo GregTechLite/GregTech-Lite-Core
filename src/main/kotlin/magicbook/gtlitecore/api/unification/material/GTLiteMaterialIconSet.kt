@@ -13,6 +13,9 @@ class GTLiteMaterialIconSet
         @JvmField
         val NANOPARTICLES = MaterialIconSet("nanoparticles", null, true)
 
+        @JvmField
+        val ROASTED = MaterialIconSet("roasted", null, true)
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

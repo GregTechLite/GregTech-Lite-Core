@@ -48,6 +48,7 @@ import magicbook.gtlitecore.loader.recipe.machine.VacuumChamberRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.GermaniumZincProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
@@ -119,6 +120,7 @@ class RecipeManager
             SeleniumTelluriumProcessing.init()
             RareEarthProcessing.init()
             PlatinumGroupProcessing.init()
+            GermaniumZincProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

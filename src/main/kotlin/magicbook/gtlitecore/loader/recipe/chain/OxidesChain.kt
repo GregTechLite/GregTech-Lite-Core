@@ -230,6 +230,7 @@ class OxidesChain
                 arrayOf(Oxygen.getFluid(3000)))
 
             ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .input(dust, Sphalerite)
                 .fluidInputs(Oxygen.getFluid(3000))
                 .output(dust, Zincite)
