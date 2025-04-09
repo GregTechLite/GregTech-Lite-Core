@@ -9,6 +9,8 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
@@ -21,6 +23,7 @@ import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -94,14 +97,19 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_O
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
 import magicbook.gtlitecore.common.item.GTLiteToolItems
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.DIAMOND_CRATE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GOLD_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRIDIUM_DRUM
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.IRON_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SILVER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
@@ -418,6 +426,36 @@ class CraftingRecipeLoader
                 " h ", "PSP", "PSP",
                 'P', UnificationEntry(plate, Iridium),
                 'S', UnificationEntry(stickLong, Iridium))
+
+            // Iron Crate
+            ModHandler.addShapedRecipe(true, "iron_crate", IRON_CRATE.stackForm,
+                "SPS", "PhP", "SPS",
+                'P', UnificationEntry(plate, Iron),
+                'S', UnificationEntry(stickLong, Iron))
+
+            // Copper Crate
+            ModHandler.addShapedRecipe(true, "copper_crate", COPPER_CRATE.stackForm,
+                "SPS", "PhP", "SPS",
+                'P', UnificationEntry(plate, Copper),
+                'S', UnificationEntry(stickLong, Copper))
+
+            // Silver Crate
+            ModHandler.addShapedRecipe(true, "silver_crate", SILVER_CRATE.stackForm,
+                "SPS", "PhP", "SPS",
+                'P', UnificationEntry(plate, Silver),
+                'S', UnificationEntry(stickLong, Silver))
+
+            // Gold Crate
+            ModHandler.addShapedRecipe(true, "gold_crate", GOLD_CRATE.stackForm,
+                "SPS", "PhP", "SPS",
+                'P', UnificationEntry(plate, Gold),
+                'S', UnificationEntry(stickLong, Gold))
+
+            // Diamond Crate
+            ModHandler.addShapedRecipe(true, "diamond_crate", DIAMOND_CRATE.stackForm,
+                "SPS", "PhP", "SPS",
+                'P', UnificationEntry(plate, Diamond),
+                'S', UnificationEntry(stickLong, Diamond))
 
             // Additional Quadruple/Nonuple Input Hatch converts.
             for (i in 0..3)

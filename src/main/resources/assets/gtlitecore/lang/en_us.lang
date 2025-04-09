@@ -1751,6 +1751,12 @@ gtlitecore.machine.plastic_can.polyethylene.name=Polyethylene Plastic Can
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=Polytetrafluoroethylene Plastic Can
 gtlitecore.machine.plastic_can.polybenzimidazole.name=Polybenzimidazole Plastic Can
 
+gtlitecore.machine.crate.iron.name=Iron Crate
+gtlitecore.machine.crate.copper.name=Copper Crate
+gtlitecore.machine.crate.silver.name=Silver Crate
+gtlitecore.machine.crate.gold.name=Gold Crate
+gtlitecore.machine.crate.diamond.name=Diamond Crate
+
 gtlitecore.machine.bridge.inventory.name=Inventory Bridge
 gtlitecore.machine.bridge.inventory.tooltip=§bRelays inventories
 gtlitecore.machine.bridge.tank.name=Tank Bridge

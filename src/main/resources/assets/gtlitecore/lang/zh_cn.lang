@@ -1751,6 +1751,12 @@ gtlitecore.machine.plastic_can.polyethylene.name=聚乙烯塑料桶
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=聚四氟乙烯塑料桶
 gtlitecore.machine.plastic_can.polybenzimidazole.name=聚苯并咪唑塑料桶
 
+gtlitecore.machine.crate.iron.name=铁板条箱
+gtlitecore.machine.crate.copper.name=铜板条箱
+gtlitecore.machine.crate.silver.name=银板条箱
+gtlitecore.machine.crate.gold.name=金板条箱
+gtlitecore.machine.crate.diamond.name=钻石板条箱
+
 gtlitecore.machine.bridge.inventory.name=物品桥接器
 gtlitecore.machine.bridge.inventory.tooltip=§b将物品容器连接
 gtlitecore.machine.bridge.tank.name=流体桥接器

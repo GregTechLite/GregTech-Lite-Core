@@ -274,6 +274,7 @@ class GTLiteMaterialFlags
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
+            Diamond.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)

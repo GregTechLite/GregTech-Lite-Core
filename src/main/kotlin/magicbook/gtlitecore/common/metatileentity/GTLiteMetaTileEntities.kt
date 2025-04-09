@@ -12,6 +12,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
+import gregtech.common.metatileentities.storage.MetaTileEntityCrate
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
@@ -144,6 +145,12 @@ class GTLiteMetaTileEntities
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+
+        lateinit var IRON_CRATE: MetaTileEntityCrate
+        lateinit var COPPER_CRATE: MetaTileEntityCrate
+        lateinit var SILVER_CRATE: MetaTileEntityCrate
+        lateinit var GOLD_CRATE: MetaTileEntityCrate
+        lateinit var DIAMOND_CRATE: MetaTileEntityCrate
 
         lateinit var INVENTORY_BRIDGE: MetaTileEntityBridge
         lateinit var TANK_BRIDGE: MetaTileEntityBridge
@@ -473,6 +480,22 @@ class GTLiteMetaTileEntities
 
             PBI_CAN = MetaTileEntities.registerMetaTileEntity(15017,
                 MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polybenzimidazole"), Materials.Polybenzimidazole, 256000))
+
+            // ...
+            IRON_CRATE = MetaTileEntities.registerMetaTileEntity(15021,
+                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.iron"), Materials.Iron, 45, 9))
+
+            COPPER_CRATE = MetaTileEntities.registerMetaTileEntity(15022,
+                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.copper"), Materials.Copper, 36, 9))
+
+            SILVER_CRATE = MetaTileEntities.registerMetaTileEntity(15023,
+                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.silver"), Materials.Silver, 63, 9))
+
+            GOLD_CRATE = MetaTileEntities.registerMetaTileEntity(15024,
+                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.gold"), Materials.Gold, 81, 9))
+
+            DIAMOND_CRATE = MetaTileEntities.registerMetaTileEntity(15025,
+                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.diamond"), Materials.Diamond, 100, 10))
 
             // ...
 
