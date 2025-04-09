@@ -10,18 +10,36 @@ import gregtech.core.CoreModule;
 import gregtech.core.command.internal.CommandManager;
 import gregtech.datafix.command.CommandDataFix;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.jetbrains.annotations.ApiStatus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+/**
+ * Bug fixes of {@code CoreModule}.
+ *
+ * @apiNote The incorrect class {@code BQuDataFixer} is initialized in {@code CoreModule}, this
+ *          data fixer will cause {@code NullPointerException} when the save data has Gregtech mod,
+ *          and will throw this exception when player open its save. This bug maybe caused by
+ *          update of BQu, because GTCEu do not provide disabled of this data fixer, so we fix
+ *          this bug by disabled it initialization in {@code CoreModule}.
+ *
+ * @deprecated When GTCEu update and fix this problem.
+ */
+@ApiStatus.ScheduledForRemoval(inVersion = "Next GTCEu Update")
+@Deprecated
 @Mixin(value = CoreModule.class, remap = false)
 public abstract class CoreModuleMixin
 {
+
     /**
+     * @deprecated When GTCEu update and fix this problem.
+     *
      * @author Magic_Sweepy
-     * @reason Duplicated {@code BQuDataFixer} by default because it will cause NPE when BQu is loaded,
-     *         seems BQu update break this DataFixer, so we disabled it by mixin.
-     *          TODO removal it when GTCEu fix this DataFixer.
+     * @reason Duplicated Gregtech {@code CommandManager} initialization and disabled
+     *         incorrect {@code BQuDataFixer} initialization.
      */
+    @ApiStatus.ScheduledForRemoval(inVersion = "Next GTCEu Update")
+    @Deprecated
     @Overwrite
     public void serverStarting(FMLServerStartingEvent event)
     {

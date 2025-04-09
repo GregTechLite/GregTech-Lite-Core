@@ -12,6 +12,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Map;
 
+/**
+ * Improvement of {@code MaterialProperties}.
+ *
+ * @apiNote This class make {@code MaterialProperties} can be overriden in addon mod, if
+ *          material has {@code DustProperty}, then this class allowed to overriden it with
+ *          a {@code IngotProperty} or {@code GemProperty}.
+ */
 @Mixin(value = MaterialProperties.class, remap = false)
 public abstract class MaterialPropertiesMixin
 {

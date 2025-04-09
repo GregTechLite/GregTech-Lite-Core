@@ -61,6 +61,16 @@ import java.util.stream.Stream;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING;
 
+/**
+ * Improvement of {@code MetaTileEntity} priority of {@code JustEnoughItemsModule}.
+ *
+ * @apiNote This class improved the priority of Gregtech {@code JustEnoughItemsModule},
+ *          if an addon mod's first letter is "faster" than Gregtech, then its machines
+ *          will on top in JustEnoughItems Recipe Catalyst because {@code MTERegistry}
+ *          is an order-ignored registry. This mixin provided a comparator to sort it,
+ *          please see: {@link #gtlitecore$getSortedMTEs()}, this is a frontend of the
+ *          pool of all MTEs.
+ */
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = JustEnoughItemsModule.class, remap = false)
 public abstract class JustEnoughItemsModuleMixin
