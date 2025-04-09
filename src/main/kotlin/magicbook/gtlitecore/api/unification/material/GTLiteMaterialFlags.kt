@@ -145,6 +145,7 @@ class GTLiteMaterialFlags
             Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
             Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
+            CertusQuartz.addFlags(GENERATE_ROD)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -271,6 +272,7 @@ class GTLiteMaterialFlags
             // stick
             Polybenzimidazole.addFlags(GENERATE_ROD)
             Zircaloy4.addFlags(GENERATE_ROD)
+            CertusQuartz.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
