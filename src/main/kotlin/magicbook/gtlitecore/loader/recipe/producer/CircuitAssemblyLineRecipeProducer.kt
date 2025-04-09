@@ -12,6 +12,7 @@ import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.BlueAlloy
@@ -30,7 +31,9 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
@@ -41,6 +44,7 @@ import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.CRYSTAL_PROCESSOR_IV
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_LV
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_MV
+import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_HV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_LV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_MV
@@ -57,6 +61,9 @@ import gregtech.common.items.MetaItems.QUANTUM_ASSEMBLY_IV
 import gregtech.common.items.MetaItems.QUANTUM_COMPUTER_LUV
 import gregtech.common.items.MetaItems.QUANTUM_MAINFRAME_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_PROCESSOR_EV
+import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
+import gregtech.common.items.MetaItems.TOOL_DATA_STICK
 import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
@@ -99,6 +106,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ARAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_CPU
@@ -106,6 +114,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_I
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_SOC
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ELITE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_DIAMOND_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_LAPOTRON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_SAPPHIRE_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXTREME_CIRCUIT_BOARD
@@ -117,6 +126,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_QUBIT_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_RAM_CHIP
@@ -127,6 +137,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_INDUC
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_WETWARE_CIRCUIT_BOARD
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
 
@@ -229,6 +240,12 @@ class CircuitAssemblyLineRecipeProducer
             addCircuit(SUPRACAUSAL_COMPUTER_OpV)
 
             addCircuit(SUPRACAUSAL_MAINFRAME_MAX)
+
+            addCircuit(ENERGY_LAPOTRONIC_ORB)
+            addCircuit(DIAMOND_MODULATOR)
+            addCircuit(RUBY_MODULATOR)
+            addCircuit(SAPPHIRE_MODULATOR)
+            addCircuit(CRYSTAL_SOC_SOCKET)
 
             // =========================================================================================================
 
@@ -810,6 +827,63 @@ class CircuitAssemblyLineRecipeProducer
             // T9: Optical
 
             // ...
+
+            // Lapotronic Orb
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(WRAP_PIC_CHIP, 4)
+                .input(WRAP_ENGRAVED_LAPOTRON_CHIP, 24)
+                .input(WRAP_NANO_CPU_CHIP, 2)
+                .input(wireGtQuadruple, Platinum, 16)
+                .input(plate, Platinum, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(ENERGY_LAPOTRONIC_ORB, 16)
+                .EUt(VH[EV].toLong())
+                .duration(6 * MINUTE) // Original: 25.6s, Wrapped: 25.6s * 16 = 409.6s
+                .circuit(getCircuit(ENERGY_LAPOTRONIC_ORB))
+                .buildAndRegister()
+
+            // Data Stick
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ADVANCED_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.HV, 32)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(WRAP_NOR_CHIP, 16)
+                .input(WRAP_NAND_CHIP, 32)
+                .input(wireGtQuadruple, Platinum, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(TOOL_DATA_STICK, 16)
+                .EUt(1200) // EV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+
+            // Data Orb
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.IV, 32)
+                .input(WRAP_RAM_CHIP, 8)
+                .input(WRAP_NOR_CHIP, 32)
+                .input(WRAP_NAND_CHIP, 48)
+                .input(wireGtQuadruple, NiobiumTitanium, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(TOOL_DATA_ORB, 16)
+                .EUt(9600) // LuV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+
+            // Data Module
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_WETWARE_CIRCUIT_BOARD)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 32)
+                .input(WRAP_ARAM_CHIP, 32)
+                .input(WRAP_NOR_CHIP, 64)
+                .input(WRAP_NAND_CHIP, 64)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(TOOL_DATA_MODULE, 16)
+                .EUt(38400) // ZPM
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
 
             // Diamond Modulator
             CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()

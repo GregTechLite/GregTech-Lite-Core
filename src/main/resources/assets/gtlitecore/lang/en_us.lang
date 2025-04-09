@@ -854,6 +854,7 @@ metaitem.wrap.wafer.chip.advanced_random_access_memory.name=封装高级随机�
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=封装极高进阶片上系统（UHASoC）晶片
 metaitem.wrap.wafer.chip.crystal_interface.name=Wrap Crystal Interface
 
+metaitem.wrap.circuit.component.engraved_lapotron_chip.name=Wrap Engraved Lapotron Chip
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip
 metaitem.wrap.circuit.component.engraved_ruby_chip.name=Wrap Engraved Ruby Chip
 metaitem.wrap.circuit.component.engraved_sapphire_chip.name=Wrap Engraved Sapphire Chip

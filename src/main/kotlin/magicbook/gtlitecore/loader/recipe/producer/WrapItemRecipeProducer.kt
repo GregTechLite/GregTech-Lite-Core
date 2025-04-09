@@ -20,6 +20,7 @@ import gregtech.common.items.MetaItems.COATED_BOARD
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.EPOXY_BOARD
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.FIBER_BOARD
@@ -113,6 +114,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_I
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_SOC
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ELITE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_DIAMOND_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_LAPOTRON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_SAPPHIRE_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EPOXY_BOARD
@@ -275,6 +277,7 @@ class WrapItemRecipeProducer
             wrapItems[CRYSTAL_INTERFACE_CHIP] = WRAP_CRYSTAL_INTERFACE_CHIP
 
             // Engraved Chips
+            wrapItems[ENGRAVED_LAPOTRON_CHIP] = WRAP_ENGRAVED_LAPOTRON_CHIP
             wrapItems[ENGRAVED_DIAMOND_CHIP] = WRAP_ENGRAVED_DIAMOND_CHIP
             wrapItems[ENGRAVED_RUBY_CHIP] = WRAP_ENGRAVED_RUBY_CHIP
             wrapItems[ENGRAVED_SAPPHIRE_CHIP] = WRAP_ENGRAVED_SAPPHIRE_CHIP

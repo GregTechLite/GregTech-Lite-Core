@@ -267,6 +267,7 @@ class GTLiteMetaItems
         lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
 
+        lateinit var WRAP_ENGRAVED_LAPOTRON_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
@@ -758,9 +759,10 @@ class GTLiteMetaItems
             WRAP_UHASOC_CHIP = GTLITE_ITEMS.addItem(3077, "wrap.wafer.chip.ultra_highly_advanced_system_on_chip")
             WRAP_CRYSTAL_INTERFACE_CHIP = GTLITE_ITEMS.addItem(3078, "wrap.wafer.chip.crystal_interface")
 
-            WRAP_ENGRAVED_DIAMOND_CHIP = GTLITE_ITEMS.addItem(3091, "wrap.circuit.component.engraved_diamond_chip")
-            WRAP_ENGRAVED_RUBY_CHIP = GTLITE_ITEMS.addItem(3092, "wrap.circuit.component.engraved_ruby_chip")
-            WRAP_ENGRAVED_SAPPHIRE_CHIP = GTLITE_ITEMS.addItem(3093, "wrap.circuit.component.engraved_sapphire_chip")
+            WRAP_ENGRAVED_LAPOTRON_CHIP = GTLITE_ITEMS.addItem(3091, "wrap.circuit.component.engraved_lapotron_chip")
+            WRAP_ENGRAVED_DIAMOND_CHIP = GTLITE_ITEMS.addItem(3092, "wrap.circuit.component.engraved_diamond_chip")
+            WRAP_ENGRAVED_RUBY_CHIP = GTLITE_ITEMS.addItem(3093, "wrap.circuit.component.engraved_ruby_chip")
+            WRAP_ENGRAVED_SAPPHIRE_CHIP = GTLITE_ITEMS.addItem(3094, "wrap.circuit.component.engraved_sapphire_chip")
 
             WRAP_CRYSTAL_CPU = GTLITE_ITEMS.addItem(3101, "wrap.crystal.central_processing_unit")
             WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")

@@ -6,6 +6,7 @@ import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.CRYSTAL_PROCESSOR_IV
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_LV
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_MV
+import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_HV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_LV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_MV
@@ -90,6 +91,7 @@ class CircuitPatternPropertyStorage
             // Open Computers Circuits
 
             // Other Component Circuits
+            CircuitPatternProperty.register(getCircuit(ENERGY_LAPOTRONIC_ORB))
             CircuitPatternProperty.register(getCircuit(DIAMOND_MODULATOR))
             CircuitPatternProperty.register(getCircuit(RUBY_MODULATOR))
             CircuitPatternProperty.register(getCircuit(SAPPHIRE_MODULATOR))
