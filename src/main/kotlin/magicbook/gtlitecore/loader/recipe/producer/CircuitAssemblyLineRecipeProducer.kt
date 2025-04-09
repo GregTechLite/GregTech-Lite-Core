@@ -2,8 +2,10 @@ package magicbook.gtlitecore.loader.recipe.producer
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -15,13 +17,18 @@ import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.BlueAlloy
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.wireFine
@@ -65,6 +72,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_ASSEMBL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_COMPUTER_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_MAINFRAME_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_PROCESSOR_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIAMOND_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_ASSEMBLY_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_COMPUTER_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_MAINFRAME_UEV
@@ -73,6 +82,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMB
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_COMPUTER_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_MAINFRAME_UXV
@@ -90,13 +101,24 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CPU_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_CPU
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_INTERFACE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_SOC
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ELITE_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_DIAMOND_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_RUBY_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXTREME_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_QUBIT_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SIMPLE_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_CAPACITOR
@@ -560,6 +582,289 @@ class CircuitAssemblyLineRecipeProducer
                 .EUt(VA[EV].toLong())
                 .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
                 .circuit(getCircuit(NANO_MAINFRAME_LUV))
+                .buildAndRegister()
+
+            // T5: Quantum
+
+            // Quantum Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(WRAP_QUBIT_CPU_CHIP)
+                .input(WRAP_NANO_CPU_CHIP)
+                .input(WRAP_SMD_CAPACITOR, 12)
+                .input(WRAP_SMD_TRANSISTOR, 12)
+                .input(wireGtQuadruple, Platinum, 12)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(QUANTUM_PROCESSOR_EV, 64)
+                .EUt(2400) // IV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(WRAP_QUBIT_CPU_CHIP)
+                .input(WRAP_NANO_CPU_CHIP)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 3)
+                .input(WRAP_ADVANCED_SMD_TRANSISTOR, 3)
+                .input(wireGtQuadruple, Platinum, 12)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(QUANTUM_PROCESSOR_EV, 64)
+                .EUt(2400) // IV
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(WRAP_ADVANCED_SOC_CHIP)
+                .input(wireGtQuadruple, Platinum, 12)
+                .input(bolt, NiobiumTitanium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(QUANTUM_PROCESSOR_EV, 64)
+                .output(QUANTUM_PROCESSOR_EV, 64)
+                .EUt(38400) // ZPM
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+                .buildAndRegister()
+
+            // Quantum Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(QUANTUM_PROCESSOR_EV, 64)
+                .input(WRAP_SMD_INDUCTOR, 8)
+                .input(WRAP_SMD_CAPACITOR, 16)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(wireGtQuadruple, Platinum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(QUANTUM_ASSEMBLY_IV, 48)
+                .EUt(2400) // IV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(QUANTUM_ASSEMBLY_IV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(QUANTUM_PROCESSOR_EV, 64)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR, 2)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 4)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(wireGtQuadruple, Platinum, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(QUANTUM_ASSEMBLY_IV, 48)
+                .EUt(2400) // IV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(QUANTUM_ASSEMBLY_IV))
+                .buildAndRegister()
+
+            // Quantum Supercomputer
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(QUANTUM_ASSEMBLY_IV, 48)
+                .input(WRAP_SMD_DIODE, 8)
+                .input(WRAP_NOR_CHIP, 4)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtQuadruple, Platinum, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(QUANTUM_COMPUTER_LUV, 32)
+                .EUt(2400) // IV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_EXTREME_CIRCUIT_BOARD)
+                .input(QUANTUM_ASSEMBLY_IV, 48)
+                .input(WRAP_ADVANCED_SMD_DIODE, 2)
+                .input(WRAP_NOR_CHIP, 4)
+                .input(WRAP_RAM_CHIP, 16)
+                .input(wireGtQuadruple, Platinum, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(QUANTUM_COMPUTER_LUV, 32)
+                .EUt(2400) // IV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
+                .buildAndRegister()
+
+            // Quantum Mainframe
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSG, 32)
+                .input(QUANTUM_COMPUTER_LUV, 32)
+                .input(WRAP_SMD_INDUCTOR, 24)
+                .input(WRAP_SMD_CAPACITOR, 48)
+                .input(WRAP_RAM_CHIP, 24)
+                .input(wireGtHex, AnnealedCopper, 48)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(QUANTUM_MAINFRAME_ZPM, 16)
+                .EUt(VA[IV].toLong())
+                .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+                .circuit(getCircuit(QUANTUM_MAINFRAME_ZPM))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSG, 32)
+                .input(QUANTUM_COMPUTER_LUV, 32)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR, 6)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 12)
+                .input(WRAP_RAM_CHIP, 24)
+                .input(wireGtHex, AnnealedCopper, 48)
+                .fluidInputs(SolderingAlloy.getFluid(L * 2))
+                .output(QUANTUM_MAINFRAME_ZPM, 16)
+                .EUt(VA[IV].toLong())
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(QUANTUM_MAINFRAME_ZPM))
+                .buildAndRegister()
+
+            // T6: Crystal
+
+            // Crystal Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_NANO_CPU_CHIP, 2)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 4)
+                .input(WRAP_ADVANCED_SMD_TRANSISTOR, 4)
+                .input(wireGtQuadruple, NiobiumTitanium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(CRYSTAL_PROCESSOR_IV, 64)
+                .EUt(9600) // LuV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_NANO_CPU_CHIP, 2)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR)
+                .input(WRAP_GOOWARE_SMD_TRANSISTOR)
+                .input(wireGtQuadruple, NiobiumTitanium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(CRYSTAL_PROCESSOR_IV, 64)
+                .EUt(9600) // LuV
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(WRAP_CRYSTAL_SOC)
+                .input(wireGtQuadruple, NiobiumTitanium, 8)
+                .input(bolt, YttriumBariumCuprate, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(CRYSTAL_PROCESSOR_IV, 64)
+                .output(CRYSTAL_PROCESSOR_IV, 64)
+                .EUt(86000) // ZPM
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+                .buildAndRegister()
+
+            // Crystal Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(CRYSTAL_PROCESSOR_IV, 64)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR, 4)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
+                .input(WRAP_RAM_CHIP, 24)
+                .input(wireGtQuadruple, NiobiumTitanium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(CRYSTAL_ASSEMBLY_LUV, 48)
+                .EUt(9600) // LuV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(CRYSTAL_ASSEMBLY_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(CRYSTAL_PROCESSOR_IV, 64)
+                .input(WRAP_GOOWARE_SMD_INDUCTOR)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
+                .input(WRAP_RAM_CHIP, 24)
+                .input(wireGtQuadruple, NiobiumTitanium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(CRYSTAL_ASSEMBLY_LUV, 48)
+                .EUt(9600) // LuV
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(CRYSTAL_ASSEMBLY_LUV))
+                .buildAndRegister()
+
+            // Crystal Supercomputer
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ELITE_CIRCUIT_BOARD)
+                .input(CRYSTAL_ASSEMBLY_LUV, 48)
+                .input(WRAP_RAM_CHIP, 4)
+                .input(WRAP_NOR_CHIP, 32)
+                .input(WRAP_NAND_CHIP, 64)
+                .input(wireGtQuadruple, NiobiumTitanium, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(CRYSTAL_COMPUTER_ZPM, 32)
+                .EUt(9600) // LuV
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(CRYSTAL_COMPUTER_ZPM))
+                .buildAndRegister()
+
+            // T7: Wetware
+
+            // T8: Gooware
+
+            // T9: Optical
+
+            // ...
+
+            // Diamond Modulator
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ENGRAVED_DIAMOND_CHIP)
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 64)
+                .input(bolt, Platinum, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(DIAMOND_MODULATOR, 64)
+                .output(DIAMOND_MODULATOR, 64)
+                .EUt(VA[IV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(DIAMOND_MODULATOR))
+                .buildAndRegister()
+
+            // Ruby Modulator
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ENGRAVED_RUBY_CHIP)
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 64)
+                .input(bolt, Platinum, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(RUBY_MODULATOR, 64)
+                .output(RUBY_MODULATOR, 64)
+                .EUt(VA[IV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(RUBY_MODULATOR))
+                .buildAndRegister()
+
+            // Sapphire Modulator
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ENGRAVED_SAPPHIRE_CHIP)
+                .input(WRAP_PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 64)
+                .input(bolt, Platinum, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(SAPPHIRE_MODULATOR, 64)
+                .output(SAPPHIRE_MODULATOR, 64)
+                .EUt(VA[IV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(SAPPHIRE_MODULATOR))
+                .buildAndRegister()
+
+            // Crystal SoC Socket
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_CRYSTAL_INTERFACE_CHIP)
+                .input(DIAMOND_MODULATOR, 16)
+                .input(RUBY_MODULATOR, 16)
+                .input(SAPPHIRE_MODULATOR, 16)
+                .input(wireGtQuadruple, Europium, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(CRYSTAL_SOC_SOCKET, 16)
+                .EUt(VA[LuV].toLong())
+                .duration(20 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
+                .circuit(getCircuit(CRYSTAL_SOC_SOCKET))
                 .buildAndRegister()
 
         }

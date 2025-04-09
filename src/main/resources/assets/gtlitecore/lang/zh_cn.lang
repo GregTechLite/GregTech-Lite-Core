@@ -535,6 +535,11 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=寰宇行星级电�
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=超因果星系级超级计算机复合体
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=超因果星系级电脑主机群复合体
 
+metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=钻石晶体调节器
+metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=红宝石晶体调节器
+metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=蓝宝石晶体调节器
+metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_socket=晶体SoC插槽
+
 metaitem.tool.magnetron.name=磁控管
 
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
@@ -847,6 +852,11 @@ metaitem.wrap.wafer.chip.femto_power_integrated_circuit.name=封装飞米功率�
 metaitem.wrap.wafer.chip.atto_power_integrated_circuit.name=封装阿米功率集成电路（APIC）晶片
 metaitem.wrap.wafer.chip.advanced_random_access_memory.name=封装高级随机存取存储器（ARAM）晶片
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=封装极高进阶片上系统（UHASoC）晶片
+metaitem.wrap.wafer.chip.crystal_interface.name=封装晶体接口晶片
+
+metaitem.wrap.circuit.component.engraved_diamond_chip.name=封装刻蚀钻石晶片
+metaitem.wrap.circuit.component.engraved_ruby_chip.name=封装刻蚀红宝石晶片
+metaitem.wrap.circuit.component.engraved_sapphire_chip.name=封装刻蚀蓝宝石晶片
 
 metaitem.wrap.crystal.central_processing_unit.name=封装晶体CPU
 metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC

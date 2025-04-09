@@ -707,6 +707,11 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=Cosmic Planetary Mai
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Interstellar Supercomputer Complex
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
 
+metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=Diamond Modulator
+metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=Ruby Modulator
+metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=Sapphire Modulator
+metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_socket=Crystal SoC Socket
+
 metaitem.tool.magnetron.name=Magnetron
 
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
@@ -847,9 +852,14 @@ metaitem.wrap.wafer.chip.femto_power_integrated_circuit.name=封装飞米功率�
 metaitem.wrap.wafer.chip.atto_power_integrated_circuit.name=封装阿米功率集成电路（APIC）晶片
 metaitem.wrap.wafer.chip.advanced_random_access_memory.name=封装高级随机存取存储器（ARAM）晶片
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=封装极高进阶片上系统（UHASoC）晶片
+metaitem.wrap.wafer.chip.crystal_interface.name=Wrap Crystal Interface
 
-metaitem.wrap.crystal.central_processing_unit.name=封装晶体CPU
-metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC
+metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip
+metaitem.wrap.circuit.component.engraved_ruby_chip.name=Wrap Engraved Ruby Chip
+metaitem.wrap.circuit.component.engraved_sapphire_chip.name=Wrap Engraved Sapphire Chip
+
+metaitem.wrap.crystal.central_processing_unit.name=Wrap Crystal Central Processing Unit
+metaitem.wrap.crystal.system_on_chip.name=Wrap Crystal System On Chip
 
 metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
 metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate

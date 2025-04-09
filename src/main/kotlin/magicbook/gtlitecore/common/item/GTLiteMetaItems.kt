@@ -265,6 +265,13 @@ class GTLiteMetaItems
         lateinit var WRAP_APIC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ARAM_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
+
+        lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CRYSTAL_CPU: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CRYSTAL_SOC: MetaItem<*>.MetaValueItem
 
         lateinit var MICA_PULP: MetaItem<*>.MetaValueItem
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
@@ -749,6 +756,14 @@ class GTLiteMetaItems
             WRAP_APIC_CHIP = GTLITE_ITEMS.addItem(3075, "wrap.wafer.chip.atto_power_integrated_circuit")
             WRAP_ARAM_CHIP = GTLITE_ITEMS.addItem(3076, "wrap.wafer.chip.advanced_random_access_memory")
             WRAP_UHASOC_CHIP = GTLITE_ITEMS.addItem(3077, "wrap.wafer.chip.ultra_highly_advanced_system_on_chip")
+            WRAP_CRYSTAL_INTERFACE_CHIP = GTLITE_ITEMS.addItem(3078, "wrap.wafer.chip.crystal_interface")
+
+            WRAP_ENGRAVED_DIAMOND_CHIP = GTLITE_ITEMS.addItem(3091, "wrap.circuit.component.engraved_diamond_chip")
+            WRAP_ENGRAVED_RUBY_CHIP = GTLITE_ITEMS.addItem(3092, "wrap.circuit.component.engraved_ruby_chip")
+            WRAP_ENGRAVED_SAPPHIRE_CHIP = GTLITE_ITEMS.addItem(3093, "wrap.circuit.component.engraved_sapphire_chip")
+
+            WRAP_CRYSTAL_CPU = GTLITE_ITEMS.addItem(3101, "wrap.crystal.central_processing_unit")
+            WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")
 
             // 5001-8000: Miscellaneous Materials.
             MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")
