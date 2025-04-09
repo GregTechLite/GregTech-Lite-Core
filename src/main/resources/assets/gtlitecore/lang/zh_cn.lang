@@ -861,6 +861,7 @@ metaitem.wrap.circuit.component.engraved_sapphire_chip.name=封装刻蚀蓝宝�
 
 metaitem.wrap.crystal.central_processing_unit.name=封装晶体CPU
 metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC
+metaitem.wrap.circuit.component.neuro_processor.name=封装神经处理单元
 
 metaitem.material.dust.gelatinous_mica_pulp.name=胶质云母粉
 metaitem.material.plate.mica_mineral_wool.name=云母矿棉片

@@ -20,19 +20,27 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RedAlloy
+import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
+import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
@@ -55,12 +63,14 @@ import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
 import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_HV
+import gregtech.common.items.MetaItems.NEURO_PROCESSOR
 import gregtech.common.items.MetaItems.PROCESSOR_ASSEMBLY_HV
 import gregtech.common.items.MetaItems.PROCESSOR_MV
 import gregtech.common.items.MetaItems.QUANTUM_ASSEMBLY_IV
 import gregtech.common.items.MetaItems.QUANTUM_COMPUTER_LUV
 import gregtech.common.items.MetaItems.QUANTUM_MAINFRAME_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_PROCESSOR_EV
+import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtech.common.items.MetaItems.TOOL_DATA_STICK
@@ -122,9 +132,11 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRC
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
@@ -685,7 +697,7 @@ class CircuitAssemblyLineRecipeProducer
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .output(QUANTUM_COMPUTER_LUV, 32)
                 .EUt(2400) // IV
-                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
                 .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
                 .buildAndRegister()
 
@@ -699,7 +711,7 @@ class CircuitAssemblyLineRecipeProducer
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .output(QUANTUM_COMPUTER_LUV, 32)
                 .EUt(2400) // IV
-                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
                 .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
                 .buildAndRegister()
 
@@ -816,17 +828,105 @@ class CircuitAssemblyLineRecipeProducer
                 .fluidInputs(SolderingAlloy.getFluid(L))
                 .output(CRYSTAL_COMPUTER_ZPM, 32)
                 .EUt(9600) // LuV
-                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
                 .circuit(getCircuit(CRYSTAL_COMPUTER_ZPM))
                 .buildAndRegister()
 
             // T7: Wetware
 
+            // Wetware Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_NEURO_PROCESSOR)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_QUBIT_CPU_CHIP)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
+                .input(WRAP_ADVANCED_SMD_TRANSISTOR, 8)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(WETWARE_PROCESSOR_LUV, 64)
+                .EUt(38400) // ZPM
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_NEURO_PROCESSOR)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_QUBIT_CPU_CHIP)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
+                .input(WRAP_GOOWARE_SMD_TRANSISTOR, 2)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(WETWARE_PROCESSOR_LUV, 64)
+                .EUt(38400) // ZPM
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_NEURO_PROCESSOR)
+                .input(WRAP_HIGHLY_ADVANCED_SOC_CHIP)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 8)
+                .input(bolt, Naquadah, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(WETWARE_PROCESSOR_LUV, 64)
+                .output(WETWARE_PROCESSOR_LUV, 64)
+                .EUt(150_000) // UV
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+                .buildAndRegister()
+
+            // Wetware Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_WETWARE_CIRCUIT_BOARD)
+                .input(WETWARE_PROCESSOR_LUV, 64)
+                .input(WRAP_ADVANCED_SMD_INDUCTOR, 8)
+                .input(WRAP_ADVANCED_SMD_CAPACITOR, 16)
+                .input(WRAP_ARAM_CHIP, 24)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
+                .EUt(38400) // ZPM
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_WETWARE_CIRCUIT_BOARD)
+                .input(WETWARE_PROCESSOR_LUV, 64)
+                .input(WRAP_GOOWARE_SMD_INDUCTOR, 2)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 4)
+                .input(WRAP_ARAM_CHIP, 24)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
+                .EUt(38400) // ZPM
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+                .buildAndRegister()
+
+            // Wetware Supercomputer
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_WETWARE_CIRCUIT_BOARD)
+                .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
+                .input(WRAP_ARAM_CHIP, 8)
+                .input(WRAP_NOR_CHIP, 64)
+                .input(WRAP_NAND_CHIP, 64)
+                .input(wireGtQuadruple, YttriumBariumCuprate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(WETWARE_SUPER_COMPUTER_UV, 32)
+                .EUt(38400) // ZPM
+                .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(WETWARE_SUPER_COMPUTER_UV))
+                .buildAndRegister()
+
+            // Wetware Mainframe
+
             // T8: Gooware
 
             // T9: Optical
 
-            // ...
+            // ---------------------------------------------------------------------------------------------------------
 
             // Lapotronic Orb
             CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -939,6 +1039,21 @@ class CircuitAssemblyLineRecipeProducer
                 .EUt(VA[LuV].toLong())
                 .duration(20 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
                 .circuit(getCircuit(CRYSTAL_SOC_SOCKET))
+                .buildAndRegister()
+
+            // Neuro Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_WETWARE_CIRCUIT_BOARD)
+                .input(STEM_CELLS, 64)
+                .input(pipeTinyFluid, Polybenzimidazole, 32)
+                .input(plate, Electrum, 64)
+                .input(foil, SiliconeRubber, 64)
+                .input(bolt, HSSE, 64)
+                .fluidInputs(SterileGrowthMedium.getFluid(250))
+                .output(NEURO_PROCESSOR, 32)
+                .EUt(80000) // ZPM
+                .duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
+                .circuit(getCircuit(NEURO_PROCESSOR))
                 .buildAndRegister()
 
         }

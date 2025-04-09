@@ -271,8 +271,10 @@ class GTLiteMetaItems
         lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
+
         lateinit var WRAP_CRYSTAL_CPU: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CRYSTAL_SOC: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
 
         lateinit var MICA_PULP: MetaItem<*>.MetaValueItem
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
@@ -766,6 +768,7 @@ class GTLiteMetaItems
 
             WRAP_CRYSTAL_CPU = GTLITE_ITEMS.addItem(3101, "wrap.crystal.central_processing_unit")
             WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")
+            WRAP_NEURO_PROCESSOR = GTLITE_ITEMS.addItem(3103, "wrap.circuit.component.neuro_processor")
 
             // 5001-8000: Miscellaneous Materials.
             MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")

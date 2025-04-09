@@ -261,7 +261,7 @@ class WetwareCircuits
                 .input(NEURO_PROCESSOR)
                 .input(HIGHLY_ADVANCED_SOC)
                 .input(wireFine, YttriumBariumCuprate, 8)
-                .input(bolt, Naquadah)
+                .input(bolt, Naquadah, 8)
                 .output(WETWARE_PROCESSOR_LUV, 8)
                 .EUt(150_000) // UV
                 .duration(2 * SECOND + 10 * TICK)

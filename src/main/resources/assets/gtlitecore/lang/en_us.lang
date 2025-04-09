@@ -861,6 +861,7 @@ metaitem.wrap.circuit.component.engraved_sapphire_chip.name=Wrap Engraved Sapphi
 
 metaitem.wrap.crystal.central_processing_unit.name=Wrap Crystal Central Processing Unit
 metaitem.wrap.crystal.system_on_chip.name=Wrap Crystal System On Chip
+metaitem.wrap.circuit.component.neuro_processor.name=Wrap Neuro Processor
 
 metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
 metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate

@@ -32,6 +32,7 @@ import gregtech.common.items.MetaItems.LOW_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.MULTILAYER_FIBER_BOARD
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.NEURO_PROCESSOR
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.PHENOLIC_BOARD
 import gregtech.common.items.MetaItems.PLASTIC_BOARD
@@ -136,6 +137,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_LPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_MULTILAYER_FIBER_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NPIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_BOARD
@@ -285,6 +287,7 @@ class WrapItemRecipeProducer
             // Circuit Components
             wrapItems[CRYSTAL_CENTRAL_PROCESSING_UNIT] = WRAP_CRYSTAL_CPU
             wrapItems[CRYSTAL_SYSTEM_ON_CHIP] = WRAP_CRYSTAL_SOC
+            wrapItems[NEURO_PROCESSOR] = WRAP_NEURO_PROCESSOR
 
             // Add all Wrap Items.
             wrapItems.forEach { (originalItem, wrapItem) -> addRecipe(originalItem, wrapItem) }

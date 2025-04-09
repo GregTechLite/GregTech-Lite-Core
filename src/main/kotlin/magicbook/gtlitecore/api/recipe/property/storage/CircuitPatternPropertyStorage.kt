@@ -17,12 +17,17 @@ import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
 import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_HV
+import gregtech.common.items.MetaItems.NEURO_PROCESSOR
 import gregtech.common.items.MetaItems.PROCESSOR_ASSEMBLY_HV
 import gregtech.common.items.MetaItems.PROCESSOR_MV
 import gregtech.common.items.MetaItems.QUANTUM_ASSEMBLY_IV
 import gregtech.common.items.MetaItems.QUANTUM_COMPUTER_LUV
 import gregtech.common.items.MetaItems.QUANTUM_MAINFRAME_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_PROCESSOR_EV
+import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
+import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
+import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
+import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.property.CircuitPatternProperty
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
@@ -75,6 +80,10 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(CRYSTAL_MAINFRAME_UV))
 
             // T7: Wetware
+            CircuitPatternProperty.register(getCircuit(WETWARE_PROCESSOR_LUV))
+            CircuitPatternProperty.register(getCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+            CircuitPatternProperty.register(getCircuit(WETWARE_SUPER_COMPUTER_UV))
+            CircuitPatternProperty.register(getCircuit(WETWARE_MAINFRAME_UHV))
 
             // T8: Gooware
 
@@ -96,6 +105,7 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(RUBY_MODULATOR))
             CircuitPatternProperty.register(getCircuit(SAPPHIRE_MODULATOR))
             CircuitPatternProperty.register(getCircuit(CRYSTAL_SOC_SOCKET))
+            CircuitPatternProperty.register(getCircuit(NEURO_PROCESSOR))
 
         }
 
