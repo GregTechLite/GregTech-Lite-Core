@@ -161,6 +161,14 @@ class GTLiteMetaItems
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
+        lateinit var ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
+
+        lateinit var DIAMOND_MODULATOR: MetaItem<*>.MetaValueItem
+        lateinit var RUBY_MODULATOR: MetaItem<*>.MetaValueItem
+        lateinit var SAPPHIRE_MODULATOR: MetaItem<*>.MetaValueItem
+        lateinit var CRYSTAL_SOC_SOCKET: MetaItem<*>.MetaValueItem
 
         lateinit var NANO_PIC_WAFER: MetaItem<*>.MetaValueItem
         lateinit var NANO_PIC_CHIP: MetaItem<*>.MetaValueItem
@@ -174,6 +182,11 @@ class GTLiteMetaItems
         lateinit var ADVANCED_RAM_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ULTRA_HIGHLY_ADVANCED_SOC_WAFER: MetaItem<*>.MetaValueItem
         lateinit var ULTRA_HIGHLY_ADVANCED_SOC_CHIP: MetaItem<*>.MetaValueItem
+
+        lateinit var EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE: MetaItem<*>.MetaValueItem
+        lateinit var EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var CRYSTAL_INTERFACE_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -630,6 +643,14 @@ class GTLiteMetaItems
             // 1101-2000: Circuit Components.
             VACUUM_TUBE_COMPONENT = GTLITE_ITEMS.addItem(1101, "circuit.component.vacuum_tube_component")
             DIELECTRIC_MIRROR = GTLITE_ITEMS.addItem(1102, "circuit.component.dielectric_mirror")
+            ENGRAVED_DIAMOND_CHIP = GTLITE_ITEMS.addItem(1103, "circuit.component.engraved_diamond_chip")
+            ENGRAVED_RUBY_CHIP = GTLITE_ITEMS.addItem(1104, "circuit.component.engraved_ruby_chip")
+            ENGRAVED_SAPPHIRE_CHIP = GTLITE_ITEMS.addItem(1105, "circuit.component.engraved_sapphire_chip")
+
+            DIAMOND_MODULATOR = GTLITE_ITEMS.addItem(1111, "circuit.component.diamond_modulator")
+            RUBY_MODULATOR = GTLITE_ITEMS.addItem(1112, "circuit.component.ruby_modulator")
+            SAPPHIRE_MODULATOR = GTLITE_ITEMS.addItem(1113, "circuit.component.sapphire_modulator")
+            CRYSTAL_SOC_SOCKET = GTLITE_ITEMS.addItem(1114, "circuit.component.crystal_system_on_chip_socket")
 
             // 2001-2500: Boules and Wafers.
             NANO_PIC_WAFER = GTLITE_ITEMS.addItem(2001, "wafer.nano_power_integrated_circuit")
@@ -644,6 +665,11 @@ class GTLiteMetaItems
             ADVANCED_RAM_CHIP = GTLITE_ITEMS.addItem(2010, "wafer.chip.advanced_random_access_memory")
             ULTRA_HIGHLY_ADVANCED_SOC_WAFER = GTLITE_ITEMS.addItem(2011, "wafer.ultra_highly_advanced_system_on_chip")
             ULTRA_HIGHLY_ADVANCED_SOC_CHIP = GTLITE_ITEMS.addItem(2012, "wafer.chip.ultra_highly_advanced_system_on_chip")
+
+            EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE = GTLITE_ITEMS.addItem(2401, "boule.cubic_zirconia.europium")
+            EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER = GTLITE_ITEMS.addItem(2402, "wafer.cubic_zirconia.europium")
+            CRYSTAL_INTERFACE_WAFER = GTLITE_ITEMS.addItem(2403, "wafer.crystal_interface")
+            CRYSTAL_INTERFACE_CHIP = GTLITE_ITEMS.addItem(2404, "wafer.chip.crystal_interface")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")

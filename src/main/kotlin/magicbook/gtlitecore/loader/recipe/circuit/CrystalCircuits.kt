@@ -1,27 +1,36 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Air
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
+import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Palladium
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.PolyvinylButyral
+import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
@@ -30,6 +39,7 @@ import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
@@ -50,23 +60,38 @@ import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
+import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYSTALLIZATION_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_INTERFACE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_INTERFACE_WAFER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIAMOND_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIELECTRIC_MIRROR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_DIAMOND_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_RUBY_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CrystalCircuits
@@ -78,6 +103,7 @@ class CrystalCircuits
         fun init()
         {
             circuitComponentsRecipes()
+            systemOnChipRecipes()
             circuitRecipes()
         }
 
@@ -150,6 +176,117 @@ class CrystalCircuits
                 .duration(5 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
+        }
+
+        private fun systemOnChipRecipes()
+        {
+            // Deleted original SoC recipes.
+            GTRecipeHandler.removeRecipesByInputs(LASER_ENGRAVER_RECIPES,
+                CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
+                OreDictUnifier.get(craftingLens, MarkerMaterials.Color.Blue))
+
+            // c-ZrO2 + Eu -> Eu-doped c-ZrO2 Boule
+            CRYSTALLIZATION_RECIPES.recipeBuilder()
+                .input(dust, CubicZirconia, 64)
+                .input(dust, Europium, 8)
+                .output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .blastFurnaceTemp(3000) // Nichrome
+                .buildAndRegister()
+
+            // Eu-doped c-ZrO2 Boule -> Eu-doped c-ZrO2 Wafer
+            CUTTER_RECIPES.recipeBuilder()
+                .input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
+                .fluidInputs(Lubricant.getFluid(100))
+                .output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER, 8)
+                .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Eu-doped c-ZrO2 Wafer -> Crystal Interface Wafer
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, NetherStar)
+                .input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER)
+                .output(CRYSTAL_INTERFACE_WAFER)
+                .EUt(VA[LuV].toLong())
+                .duration(1 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Crystal Interface Wafer -> Crystal Interface Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(CRYSTAL_INTERFACE_WAFER)
+                .fluidInputs(Lubricant.getFluid(100))
+                .output(CRYSTAL_INTERFACE_CHIP, 8)
+                .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Diamond Modulator
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENGRAVED_DIAMOND_CHIP)
+                .input(PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 8)
+                .input(bolt, Platinum, 4)
+                .output(DIAMOND_MODULATOR, 8)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Ruby Modulator
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENGRAVED_RUBY_CHIP)
+                .input(PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 8)
+                .input(bolt, Platinum, 4)
+                .output(RUBY_MODULATOR, 8)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Sapphire Modulator
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENGRAVED_SAPPHIRE_CHIP)
+                .input(PLASTIC_CIRCUIT_BOARD)
+                .input(wireFine, Palladium, 8)
+                .input(bolt, Platinum, 4)
+                .output(SAPPHIRE_MODULATOR, 8)
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Crystal SoC Socket
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(CRYSTAL_INTERFACE_CHIP)
+                .input(DIAMOND_MODULATOR)
+                .input(RUBY_MODULATOR)
+                .input(SAPPHIRE_MODULATOR)
+                .input(wireFine, Europium, 4)
+                .output(CRYSTAL_SOC_SOCKET)
+                .EUt(VA[LuV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Crystal SoC
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .input(CRYSTAL_SOC_SOCKET)
+                .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+                .output(CRYSTAL_SYSTEM_ON_CHIP)
+                .EUt(VA[ZPM].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
         }
 
         private fun circuitRecipes()
@@ -321,7 +458,7 @@ class CrystalCircuits
                 arrayOf(SolderingAlloy.getFluid(L * 10)))
 
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, HSSS)
+                .input(frameGt, HSSE)
                 .input(CRYSTAL_COMPUTER_ZPM, 2)
                 .input(ADVANCED_SMD_INDUCTOR, 16)
                 .input(ADVANCED_SMD_CAPACITOR, 16)
@@ -341,7 +478,7 @@ class CrystalCircuits
                 .buildAndRegister()
 
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, HSSS)
+                .input(frameGt, HSSE)
                 .input(CRYSTAL_COMPUTER_ZPM, 2)
                 .input(GOOWARE_SMD_INDUCTOR, 2)
                 .input(GOOWARE_SMD_CAPACITOR, 4)

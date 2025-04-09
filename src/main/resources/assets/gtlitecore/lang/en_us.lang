@@ -717,6 +717,18 @@ metaitem.tool.petri_dish.electric_signal.name=Electric Signal Petri Dish
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
 metaitem.circuit.component.dielectric_mirror.tooltip=Bragg Mirror
+metaitem.circuit.component.engraved_diamond_chip.name=Engraved Diamond Chip
+metaitem.circuit.component.engraved_ruby_chip.name=Engraved Ruby Chip
+metaitem.circuit.component.engraved_sapphire_chip.name=Engraved Sapphire Chip
+
+metaitem.circuit.component.diamond_modulator.name=Diamond Crystal Modulator
+metaitem.circuit.component.diamond_modulator.tooltip=Logic Processor
+metaitem.circuit.component.ruby_modulator.name=Ruby Crystal Modulator
+metaitem.circuit.component.ruby_modulator.tooltip=Control Processor
+metaitem.circuit.component.sapphire_modulator.name=Sapphire Crystal Modulator
+metaitem.circuit.component.sapphire_modulator.tooltip=Transform Processor
+metaitem.circuit.component.crystal_system_on_chip_socket.name=Crystal SoC Socket
+metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=Bridge the Crystal and Circuit
 
 metaitem.wafer.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶圆
 metaitem.wafer.nano_power_integrated_circuit.tooltip=纳米功率集成电路原料
@@ -742,6 +754,13 @@ metaitem.wafer.ultra_highly_advanced_system_on_chip.name=极高进阶片上系�
 metaitem.wafer.ultra_highly_advanced_system_on_chip.tooltip=极高进阶片上系统原料
 metaitem.wafer.chip.ultra_highly_advanced_system_on_chip.name=极高进阶片上系统（UHASoC）晶片
 metaitem.wafer.chip.ultra_highly_advanced_system_on_chip.tooltip=极高进阶片上系统
+
+metaitem.boule.cubic_zirconia.europium.name=Europium-doped Cubic Zirconia Boule
+metaitem.wafer.cubic_zirconia.europium.name=Europium-doped Cubic Zirconia Wafer
+metaitem.wafer.crystal_interface.name=Crystal Interface Wafer
+metaitem.wafer.crystal_interface.tooltip=Raw Crystal Interface
+metaitem.wafer.chip.crystal_interface.name=Crystal Interface Chip
+metaitem.wafer.chip.crystal_interface.tooltip=Crystal Interface
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板

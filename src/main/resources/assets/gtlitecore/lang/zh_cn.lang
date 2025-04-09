@@ -717,6 +717,18 @@ metaitem.tool.disposable.rolling_pin.tooltip=仅用于合成的一次性工具
 metaitem.circuit.component.vacuum_tube_component.name=真空管组件
 metaitem.circuit.component.dielectric_mirror.name=介电镜
 metaitem.circuit.component.dielectric_mirror.tooltip=布氏镜
+metaitem.circuit.component.engraved_diamond_chip.name=刻蚀钻石晶片
+metaitem.circuit.component.engraved_ruby_chip.name=刻蚀红宝石晶片
+metaitem.circuit.component.engraved_sapphire_chip.name=刻蚀蓝宝石晶片
+
+metaitem.circuit.component.diamond_modulator.name=钻石晶体调节器
+metaitem.circuit.component.diamond_modulator.tooltip=逻辑处理电路
+metaitem.circuit.component.ruby_modulator.name=红宝石晶体调节器
+metaitem.circuit.component.ruby_modulator.tooltip=控制处理电路
+metaitem.circuit.component.sapphire_modulator.name=蓝宝石晶体调节器
+metaitem.circuit.component.sapphire_modulator.tooltip=转换处理电路
+metaitem.circuit.component.crystal_system_on_chip_socket.name=晶体SoC插槽
+metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=桥接晶体和电路
 
 metaitem.wafer.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶圆
 metaitem.wafer.nano_power_integrated_circuit.tooltip=纳米功率集成电路原料
@@ -742,6 +754,13 @@ metaitem.wafer.ultra_highly_advanced_system_on_chip.name=极高进阶片上系�
 metaitem.wafer.ultra_highly_advanced_system_on_chip.tooltip=极高进阶片上系统原料
 metaitem.wafer.chip.ultra_highly_advanced_system_on_chip.name=极高进阶片上系统（UHASoC）晶片
 metaitem.wafer.chip.ultra_highly_advanced_system_on_chip.tooltip=极高进阶片上系统
+
+metaitem.boule.cubic_zirconia.europium.name=铕掺杂的立方氧化锆晶棒
+metaitem.wafer.cubic_zirconia.europium.name=铕掺杂的立方氧化锆晶圆
+metaitem.wafer.crystal_interface.name=晶体接口晶圆
+metaitem.wafer.crystal_interface.tooltip=晶体接口原料
+metaitem.wafer.chip.crystal_interface.name=晶体接口晶片
+metaitem.wafer.chip.crystal_interface.tooltip=晶体接口
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板

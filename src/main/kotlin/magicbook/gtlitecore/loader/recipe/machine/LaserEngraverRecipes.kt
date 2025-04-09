@@ -1,7 +1,9 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -11,8 +13,12 @@ import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.NetherStar
+import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.ore.OrePrefix.craftingLens
+import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC_WAFER
 import gregtech.common.items.MetaItems.NAQUADAH_WAFER
@@ -23,6 +29,9 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_WAFER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_DIAMOND_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_RUBY_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPHIRE_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_WAFER
 import net.minecraftforge.oredict.OreDictionary
@@ -106,6 +115,34 @@ class LaserEngraverRecipes
                 .output(ADVANCED_RAM_CHIP, 16)
                 .EUt(VA[ZPM].toLong())
                 .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Engraved Diamond Chip
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, Diamond)
+                .input(gemExquisite, Diamond)
+                .output(ENGRAVED_DIAMOND_CHIP)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // Engraved Ruby Chip
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, Ruby)
+                .input(gemExquisite, Ruby)
+                .output(ENGRAVED_RUBY_CHIP)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // Engraved Sapphire Chip
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, Sapphire)
+                .input(gemExquisite, Sapphire)
+                .output(ENGRAVED_SAPPHIRE_CHIP)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
