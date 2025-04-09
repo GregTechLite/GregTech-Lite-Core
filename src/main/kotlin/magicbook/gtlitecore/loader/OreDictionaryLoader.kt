@@ -27,6 +27,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
+import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
@@ -46,6 +47,18 @@ class OreDictionaryLoader
             chromaticDyes()
             // Add ore dictionaries to tiered glasses.
             tieredGlasses()
+
+            // Add treeSapling ore dictionary to all gtlite trees.
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getItem("gtlite_sapling_0"))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 2))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 4))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 6))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 8))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 10))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 12))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 14))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getItem("gtlite_sapling_1"))
+            OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 2))
 
             // sheetedFrame
             GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (m, b) ->
