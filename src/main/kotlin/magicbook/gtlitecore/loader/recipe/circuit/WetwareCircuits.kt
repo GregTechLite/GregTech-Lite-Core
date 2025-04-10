@@ -12,7 +12,6 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bacteria
@@ -36,7 +35,6 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
@@ -53,14 +51,12 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_RESISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.MULTILAYER_FIBER_BOARD
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NEURO_PROCESSOR
-import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.PETRI_DISH
 import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT

@@ -9,8 +9,8 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tetrafluoroethylene
 import gregtech.api.unification.ore.OrePrefix.stick
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FluorinatedEthylenePropylene
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexafluoropropylene
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class FEPChain

@@ -2,7 +2,6 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA

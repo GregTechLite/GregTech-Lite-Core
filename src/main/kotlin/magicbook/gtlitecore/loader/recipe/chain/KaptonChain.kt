@@ -5,11 +5,9 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.AmmoniumChloride
 import gregtech.api.unification.material.Materials.Chloromethane
@@ -21,7 +19,6 @@ import gregtech.api.unification.material.Materials.Nitrochlorobenzene
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phenol
-import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc

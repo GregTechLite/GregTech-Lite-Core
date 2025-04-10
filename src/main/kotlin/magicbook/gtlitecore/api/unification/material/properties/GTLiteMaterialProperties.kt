@@ -44,7 +44,6 @@ import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
-import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RarestMetalMixture
 import gregtech.api.unification.material.Materials.RawGrowthMedium

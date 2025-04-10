@@ -7,7 +7,6 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Cerium

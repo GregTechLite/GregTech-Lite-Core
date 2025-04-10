@@ -12,9 +12,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Copper
@@ -32,7 +30,6 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Selenium
-import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
