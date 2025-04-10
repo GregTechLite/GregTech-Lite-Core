@@ -2209,6 +2209,10 @@ gtlitecore.material.acetone_cyanohydrin=Acetone Cyanohydrin
 gtlitecore.material.polymethylmethacrylate=Polymethylmethacrylate (PMMA)
 item.gtlitecore.material.polymethylmethacrylate.ingot=Polymethylmethacrylate (PMMA) Bar
 item.gtlitecore.material.polymethylmethacrylate.wireFine=Polymethylmethacrylate (PMMA) Fiber
+gtlitecore.material.diacetyl=Diacetyl
+gtlitecore.material.ethylene_oxide=Ethylene Oxide
+gtlitecore.material.ethylene_glycol=Ethylene Glycol
+gtlitecore.material.edot=3,4-Ethylenedioxythiophene (EDOT)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

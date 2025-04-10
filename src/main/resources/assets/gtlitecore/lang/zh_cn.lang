@@ -2213,6 +2213,10 @@ gtlitecore.material.acetone_cyanohydrin=丙酮氰醇
 gtlitecore.material.polymethylmethacrylate=聚甲基丙烯酸甲酯（PMMA）
 item.gtlitecore.material.polymethylmethacrylate.ingot=聚甲基丙烯酸甲酯（PMMA）条
 item.gtlitecore.material.polymethylmethacrylate.wireFine=聚甲基丙烯酸甲酯（PMMA）纤维
+gtlitecore.material.diacetyl=丁二酮
+gtlitecore.material.ethylene_oxide=环氧乙烷
+gtlitecore.material.ethylene_glycol=乙二醇
+gtlitecore.material.edot=3,4-乙撑二氧噻吩（EDOT）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

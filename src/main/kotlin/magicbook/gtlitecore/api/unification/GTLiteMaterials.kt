@@ -2167,6 +2167,7 @@ class GTLiteMaterials
             .liquid()
             .color(0xAAC4DA)
             .components(Carbon, 4, Hydrogen, 10, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION) // Re-added electrolysis reaction by PedotChain.
             .build()
             .setFormula("C4H8(OH)2", true)
 
@@ -2433,6 +2434,39 @@ class GTLiteMaterials
             .color(0x91CAE1)
             .components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
             .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .build()
+
+        // 8039 Diacetyl
+        @JvmField
+        val Diacetyl: Material = Material.Builder(8039,  gtliteId("diacetyl"))
+            .liquid()
+            .color(0xF7FF65)
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+            .build()
+
+        // 8040 Ethylene Oxide
+        @JvmField
+        val EthyleneOxide: Material = Material.Builder(8040, gtliteId("ethylene_oxide"))
+            .gas()
+            .color(0xDCBFE1)
+            .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
+            .build()
+
+        // 8041 Ethylene Glycol
+        @JvmField
+        val EthyleneGlycol: Material = Material.Builder(8041, gtliteId("ethylene_glycol"))
+            .liquid()
+            .color(0x286632)
+            .components(Carbon, 2, Hydrogen, 6, Oxygen, 2)
+            .build()
+            .setFormula("C2H4(OH)2", true)
+
+        // 8042 3,4-Ethylenedioxythiophene (EDOT)
+        @JvmField
+        val Edot: Material = Material.Builder(8042, gtliteId("edot"))
+            .liquid()
+            .color(0xB1FFD7)
+            .components(Carbon, 6, Hydrogen, 6, Oxygen, 2, Sulfur, 1)
             .build()
 
         // =======================================================================
