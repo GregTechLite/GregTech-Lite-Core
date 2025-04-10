@@ -734,6 +734,9 @@ metaitem.circuit.component.sapphire_modulator.name=蓝宝石晶体调节器
 metaitem.circuit.component.sapphire_modulator.tooltip=转换处理电路
 metaitem.circuit.component.crystal_system_on_chip_socket.name=晶体SoC插槽
 metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=桥接晶体和电路
+metaitem.circuit.component.bz_reaction_chamber.name=别洛索夫-扎鲍京斯基振荡反应室
+metaitem.circuit.component.nonlinear_chemical_oscillator.name=非线性化学振荡器
+metaitem.circuit.component.nonlinear_chemical_oscillator.tooltip=非平衡热力学！
 
 metaitem.wafer.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶圆
 metaitem.wafer.nano_power_integrated_circuit.tooltip=纳米功率集成电路原料
@@ -2134,6 +2137,7 @@ gtlitecore.material.samarium_cobalt=钐钴合金
 gtlitecore.material.potassium_hydroxide=氢氧化钾
 gtlitecore.material.copper_dichloride=二氯化铜
 gtlitecore.material.sodium_cyanide=氰化钠
+gtlitecore.material.potassium_bromate=溴酸钾
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2238,6 +2242,11 @@ gtlitecore.material.ethylenediamine_pyrocatechol=乙二胺邻苯二酚（EDP）
 gtlitecore.material.formaldehyde=甲醛
 gtlitecore.material.tetrasodium_ethylenediaminetetraacetic_acid=乙二胺四乙酸四钠
 gtlitecore.material.ethylenediaminetetraacetic_acid=乙二胺四乙酸（EDTA）
+gtlitecore.material.hexafluoropropylene=六氟丙烯
+gtlitecore.material.fluorinated_ethylene_propylene=聚全氟乙丙烯（FEP）
+gtlitecore.material.trichloroethylene=三氯乙烯
+gtlitecore.material.chloroacetic_acid=氯乙酸
+gtlitecore.material.malonic_acid=丙二酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2274,6 +2283,7 @@ gtlitecore.material.yeast=酵母
 gtlitecore.material.cupriavidus_necator=贪铜钩虫菌
 
 gtlitecore.material.methylamine_mixture=甲胺混合物
+gtlitecore.material.bz_medium=别洛索夫-扎鲍京斯基振荡反应液
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

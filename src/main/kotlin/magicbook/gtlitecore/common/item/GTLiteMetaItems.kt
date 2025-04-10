@@ -164,6 +164,8 @@ class GTLiteMetaItems
         lateinit var ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var BZ_REACTION_CHAMBER: MetaItem<*>.MetaValueItem
+        lateinit var NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
 
         lateinit var DIAMOND_MODULATOR: MetaItem<*>.MetaValueItem
         lateinit var RUBY_MODULATOR: MetaItem<*>.MetaValueItem
@@ -661,6 +663,8 @@ class GTLiteMetaItems
             RUBY_MODULATOR = GTLITE_ITEMS.addItem(1112, "circuit.component.ruby_modulator")
             SAPPHIRE_MODULATOR = GTLITE_ITEMS.addItem(1113, "circuit.component.sapphire_modulator")
             CRYSTAL_SOC_SOCKET = GTLITE_ITEMS.addItem(1114, "circuit.component.crystal_system_on_chip_socket")
+            BZ_REACTION_CHAMBER = GTLITE_ITEMS.addItem(1115, "circuit.component.bz_reaction_chamber")
+            NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(1116, "circuit.component.nonlinear_chemical_oscillator")
 
             // 2001-2500: Boules and Wafers.
             NANO_PIC_WAFER = GTLITE_ITEMS.addItem(2001, "wafer.nano_power_integrated_circuit")

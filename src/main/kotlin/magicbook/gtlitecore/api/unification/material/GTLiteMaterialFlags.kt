@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
@@ -265,6 +266,7 @@ class GTLiteMaterialFlags
             WroughtIron.addFlags(GENERATE_ROTOR)
             TinAlloy.addFlags(GENERATE_ROTOR)
             Aluminium.addFlags(GENERATE_ROTOR)
+            Iridium.addFlags(GENERATE_ROTOR)
 
             // round
             Steel.addFlags(GENERATE_ROUND)

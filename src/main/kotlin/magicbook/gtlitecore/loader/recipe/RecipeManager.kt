@@ -4,12 +4,14 @@ import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
 import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
+import magicbook.gtlitecore.loader.recipe.chain.FEPChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
@@ -24,7 +26,7 @@ import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
-import magicbook.gtlitecore.loader.recipe.chain.PmmaChain
+import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
@@ -128,12 +130,14 @@ class RecipeManager
             CitricAcidChain.init()
             GrowthMediumChain.init()
             KaptonChain.init()
-            PmmaChain.init()
+            PMMAChain.init()
             EthyleneGlycolChain.init()
             PedotChain.init()
             MethylamineChain.init()
             EDTAChain.init()
             EtchingMaterialsChain.init()
+            FEPChain.init()
+            BZMediumChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

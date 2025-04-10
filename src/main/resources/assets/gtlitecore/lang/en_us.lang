@@ -734,6 +734,9 @@ metaitem.circuit.component.sapphire_modulator.name=Sapphire Crystal Modulator
 metaitem.circuit.component.sapphire_modulator.tooltip=Transform Processor
 metaitem.circuit.component.crystal_system_on_chip_socket.name=Crystal SoC Socket
 metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=Bridge the Crystal and Circuit
+metaitem.circuit.component.bz_reaction_chamber.name=Belousov-Zhabotinsky Oscillation Reaction Chamber
+metaitem.circuit.component.nonlinear_chemical_oscillator.name=Nonlinear Chemical Oscillator
+metaitem.circuit.component.nonlinear_chemical_oscillator.tooltip=Non-Equilibrium Thermodynamics!
 
 metaitem.wafer.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶圆
 metaitem.wafer.nano_power_integrated_circuit.tooltip=纳米功率集成电路原料
@@ -2129,6 +2132,7 @@ gtlitecore.material.samarium_cobalt=Samarium Cobalt
 gtlitecore.material.potassium_hydroxide=Potassium Hydroxide
 gtlitecore.material.copper_dichloride=Copper Dichloride
 gtlitecore.material.sodium_cyanide=Sodium Cyanide
+gtlitecore.material.potassium_bromate=Potassium Bromate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2234,6 +2238,11 @@ gtlitecore.material.ethylenediamine_pyrocatechol=Ethylenediamine Pyrocatechol (E
 gtlitecore.material.formaldehyde=Formaldehyde
 gtlitecore.material.tetrasodium_ethylenediaminetetraacetic_acid=Tetrasodium Ethylenediaminetetraacetic Acid
 gtlitecore.material.ethylenediaminetetraacetic_acid=Ethylenediaminetetraacetic Acid (EDTA)
+gtlitecore.material.hexafluoropropylene=Hexafluoropropylene
+gtlitecore.material.fluorinated_ethylene_propylene=Fluorinated Ethylene Propylene (FEP)
+gtlitecore.material.trichloroethylene=Trichloroethylene
+gtlitecore.material.chloroacetic_acid=Chloroacetic Acid
+gtlitecore.material.malonic_acid=Malonic Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -2270,6 +2279,7 @@ gtlitecore.material.yeast=Yeast
 gtlitecore.material.cupriavidus_necator=Cupriavidus Necator
 
 gtlitecore.material.methylamine_mixture=Methylamine Mixture
+gtlitecore.material.bz_medium=Belousov-Zhabotinsky Oscillation Reaction Medium
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

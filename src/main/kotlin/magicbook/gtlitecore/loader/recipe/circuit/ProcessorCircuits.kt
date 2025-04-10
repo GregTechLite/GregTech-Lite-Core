@@ -2,12 +2,14 @@ package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Component.Capacitor
@@ -50,6 +52,7 @@ import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.GOOD_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.MICROPROCESSOR_LV
 import gregtech.common.items.MetaItems.NAND_CHIP_ULV
+import gregtech.common.items.MetaItems.PLASTIC_BOARD
 import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.PROCESSOR_ASSEMBLY_HV
 import gregtech.common.items.MetaItems.PROCESSOR_MV
@@ -62,6 +65,8 @@ import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.WORKSTATION_EV
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
@@ -74,8 +79,27 @@ class ProcessorCircuits
 
         fun init()
         {
+            circuitBoardRecipes()
             smdRecipes()
             circuitRecipes()
+        }
+
+        private fun circuitBoardRecipes()
+        {
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                TetramethylammoniumHydroxide.getFluid(125),
+                EthylenediaminePyrocatechol.getFluid(50)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(PLASTIC_BOARD)
+                    .input(foil, Copper, 6)
+                    .fluidInputs(etchingLiquid)
+                    .output(PLASTIC_CIRCUIT_BOARD)
+                    .EUt(VA[LV].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
+            }
         }
 
         private fun smdRecipes()

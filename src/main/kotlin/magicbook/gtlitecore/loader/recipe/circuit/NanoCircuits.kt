@@ -3,11 +3,13 @@ package magicbook.gtlitecore.loader.recipe.circuit
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Aluminium
@@ -56,6 +58,7 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.CARBON_FIBERS
 import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT_WAFER
+import gregtech.common.items.MetaItems.EPOXY_BOARD
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
@@ -70,8 +73,10 @@ import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumLoadedRutileNanoparticles
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
@@ -87,9 +92,28 @@ class NanoCircuits
 
         fun init()
         {
+            circuitBoardRecipes()
             smdRecipes()
             circuitComponentsRecipes()
             circuitRecipes()
+        }
+
+        private fun circuitBoardRecipes()
+        {
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                TetramethylammoniumHydroxide.getFluid(250),
+                EthylenediaminePyrocatechol.getFluid(125)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(EPOXY_BOARD)
+                    .input(foil, Electrum, 8)
+                    .fluidInputs(etchingLiquid)
+                    .output(ADVANCED_CIRCUIT_BOARD)
+                    .EUt(VA[LV].toLong())
+                    .duration(45 * SECOND)
+                    .buildAndRegister()
+            }
         }
 
         private fun smdRecipes()

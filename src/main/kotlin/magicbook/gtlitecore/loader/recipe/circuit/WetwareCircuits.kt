@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
@@ -9,6 +10,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -20,11 +22,13 @@ import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropi
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.Iron3Chloride
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.SiliconeRubber
+import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Tin
@@ -72,8 +76,10 @@ import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -142,6 +148,36 @@ class WetwareCircuits
                 .duration(1 * MINUTE)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
+
+            // Down consumed of etching liquids and foils.
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(WETWARE_BOARD.stackForm,
+                    OreDictUnifier.get(foil, NiobiumTitanium, 32)),
+                arrayOf(SodiumPersulfate.getFluid(10000)))
+
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(WETWARE_BOARD.stackForm,
+                    OreDictUnifier.get(foil, NiobiumTitanium, 32)),
+                arrayOf(Iron3Chloride.getFluid(5000)))
+
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                SodiumPersulfate.getFluid(8000),
+                Iron3Chloride.getFluid(4000),
+                TetramethylammoniumHydroxide.getFluid(2000),
+                EthylenediaminePyrocatechol.getFluid(1000)
+            ))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(WETWARE_BOARD)
+                    .input(foil, NiobiumTitanium, 24)
+                    .fluidInputs(etchingLiquid)
+                    .output(WETWARE_CIRCUIT_BOARD)
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE + 30 * SECOND)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
 
         }
 

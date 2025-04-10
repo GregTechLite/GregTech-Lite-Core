@@ -1602,6 +1602,15 @@ class GTLiteMaterials
             .components(Sodium, 1, Carbon, 1, Nitrogen, 1)
             .build()
 
+        // 2151 Potassium Bromate
+        @JvmField
+        val PotassiumBromate: Material = Material.Builder(2151, gtliteId("potassium_bromate"))
+            .dust()
+            .color(0x782828).iconSet(ROUGH)
+            .components(Potassium, 1, Bromine, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2674,6 +2683,46 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 8058 Hexafluoropropylene
+        @JvmField
+        val Hexafluoropropylene: Material = Material.Builder(8058, gtliteId("hexafluoropropylene"))
+            .liquid()
+            .color(0x141D6F)
+            .components(Carbon, 3, Fluorine, 6)
+            .build()
+
+        // 8059 Fluorinated Ethylene Propylene (FEP)
+        @JvmField
+        val FluorinatedEthylenePropylene: Material = Material.Builder(8059, gtliteId("fluorinated_ethylene_propylene"))
+            .liquid()
+            .color(0xC8C8C8).iconSet(DULL)
+            .components(Carbon, 5, Fluorine, 10)
+            .build()
+
+        // 8060 Trichloroethylene
+        @JvmField
+        val Trichloroethylene: Material = Material.Builder(8060, gtliteId("trichloroethylene"))
+            .liquid()
+            .color(0xB685B1)
+            .components(Carbon, 2, Hydrogen, 1, Chlorine, 3)
+            .build()
+
+        // 8061 Chloroacetic Acid
+        @JvmField
+        val ChloroaceticAcid: Material = Material.Builder(8061, gtliteId("chloroacetic_acid"))
+            .dust()
+            .color(0x38541A).iconSet(SHINY)
+            .components(Carbon, 2, Hydrogen, 3, Chlorine, 1, Oxygen, 2)
+            .build()
+
+        // 8062 Malonic Acid
+        @JvmField
+        val MalonicAcid: Material = Material.Builder(8062, gtliteId("malonic_acid"))
+            .dust()
+            .color(0x61932E).iconSet(SHINY)
+            .components(Carbon, 3, Hydrogen, 4, Oxygen, 4)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -2903,6 +2952,13 @@ class GTLiteMaterials
         val MethylamineMixture: Material = Material.Builder(12131, gtliteId("methylamine_mixture"))
             .liquid()
             .color(0xAA4400)
+            .build()
+
+        // 12132 B-Z Medium
+        @JvmField
+        val BZMedium: Material = Material.Builder(12132, gtliteId("bz_medium"))
+            .liquid()
+            .color(0xA2FD35)
             .build()
 
     }

@@ -2,11 +2,14 @@ package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.GalliumArsenide
 import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
 import gregtech.api.unification.material.Materials.NiobiumTitanium
@@ -18,6 +21,7 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -25,6 +29,7 @@ import gregtech.common.items.MetaItems.ADVANCED_SMD_INDUCTOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.FIBER_BOARD
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
@@ -41,6 +46,9 @@ import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
@@ -54,8 +62,28 @@ class QuantumCircuits
 
         fun init()
         {
+            circuitBoardRecipes()
             circuitComponentsRecipes()
             circuitRecipes()
+        }
+
+        private fun circuitBoardRecipes()
+        {
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                TetramethylammoniumHydroxide.getFluid(500),
+                EthylenediaminePyrocatechol.getFluid(250)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(FIBER_BOARD)
+                    .input(foil, AnnealedCopper, 12)
+                    .fluidInputs(etchingLiquid)
+                    .output(EXTREME_CIRCUIT_BOARD)
+                    .EUt(VA[LV].toLong())
+                    .duration(1 * MINUTE)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
         }
 
         private fun circuitComponentsRecipes()

@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
@@ -23,6 +24,7 @@ import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
+import gregtech.api.unification.material.Materials.Iron3Chloride
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.NiobiumTitanium
@@ -31,6 +33,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Sapphire
+import gregtech.api.unification.material.Materials.SodiumPersulfate
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
@@ -57,6 +60,7 @@ import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ENGRAVED_CRYSTAL_CHIP
 import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
+import gregtech.common.items.MetaItems.MULTILAYER_FIBER_BOARD
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
 import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
@@ -68,14 +72,17 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.GTRecipeUtility
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_INTERFACE_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_INTERFACE_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
@@ -102,9 +109,43 @@ class CrystalCircuits
 
         fun init()
         {
+            circuitBoardRecipes()
             circuitComponentsRecipes()
             systemOnChipRecipes()
             circuitRecipes()
+        }
+
+        private fun circuitBoardRecipes()
+        {
+            // Redo foil consumed amounts from 8 to 16 to ensure it has priority with
+            // other circuit boards.
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(MULTILAYER_FIBER_BOARD.stackForm,
+                    OreDictUnifier.get(foil, Platinum, 8)),
+                arrayOf(SodiumPersulfate.getFluid(4000)))
+
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(MULTILAYER_FIBER_BOARD.stackForm,
+                    OreDictUnifier.get(foil, Platinum, 8)),
+                arrayOf(Iron3Chloride.getFluid(2000)))
+
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                SodiumPersulfate.getFluid(4000),
+                Iron3Chloride.getFluid(2000),
+                TetramethylammoniumHydroxide.getFluid(1000),
+                EthylenediaminePyrocatechol.getFluid(500)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(MULTILAYER_FIBER_BOARD)
+                    .input(foil, Platinum, 16)
+                    .fluidInputs(etchingLiquid)
+                    .output(ELITE_CIRCUIT_BOARD)
+                    .EUt(VA[MV].toLong())
+                    .duration(1 * MINUTE + 15 * SECOND)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
         }
 
         private fun circuitComponentsRecipes()

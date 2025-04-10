@@ -1,14 +1,17 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
@@ -21,43 +24,70 @@ import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Indium
+import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Nitrobenzene
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
+import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
+import gregtech.api.unification.ore.OrePrefix.rotor
+import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
+import gregtech.common.items.MetaItems.FLUID_CELL_LARGE_STAINLESS_STEEL
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminophenol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BZMedium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperGalliumIndiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FluorinatedEthylenePropylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroselenicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroxyquinoline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroxyquinolineAluminium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotPSS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotTMA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BZ_REACTION_CHAMBER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NONLINEAR_CHEMICAL_OSCILLATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTIMATE_CIRCUIT_BOARD
 
+/**
+ * @see [magicbook.gtlitecore.loader.recipe.chain.BZMediumChain]
+ */
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GoowareCircuits
 {
@@ -75,7 +105,57 @@ class GoowareCircuits
 
         private fun circuitBoardRecipes()
         {
+            // Gooware Board
+            CVD_RECIPES.recipeBuilder()
+                .input(plate, KaptonE)
+                .input(foil, YttriumBariumCuprate, 24)
+                .fluidInputs(FluorinatedEthylenePropylene.getFluid(L))
+                .output(GOOWARE_BOARD)
+                .EUt(VA[UV].toLong())
+                .duration(2 * SECOND)
+                .buildAndRegister()
 
+            // Gooware Circuit Board
+            for (etchingLiquid in arrayOf(
+                // SodiumPersulfate.getFluid(16000),
+                // Iron3Chloride.getFluid(8000) // 4000, 2000
+                TetramethylammoniumHydroxide.getFluid(16000),
+                EthylenediaminePyrocatechol.getFluid(8000)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(GOOWARE_BOARD)
+                    .input(foil, YttriumBariumCuprate, 32)
+                    .fluidInputs(etchingLiquid)
+                    .output(ULTIMATE_CIRCUIT_BOARD)
+                    .EUt(VA[EV].toLong())
+                    .duration(1 * MINUTE + 45 * SECOND)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
+
+            // BZ Reactor Chamber
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(FLUID_CELL_LARGE_STAINLESS_STEEL)
+                .input(plate, Naquadah, 4)
+                .input(plate, Ruridit, 2)
+                .input(bolt, Trinium, 12)
+                .input(stick, SamariumMagnetic)
+                .input(rotor, Iridium)
+                .input(ELECTRIC_MOTOR_LuV)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(BZ_REACTION_CHAMBER)
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // Non-linear Chemical Oscillator
+            CANNER_RECIPES.recipeBuilder()
+                .input(BZ_REACTION_CHAMBER)
+                .fluidInputs(BZMedium.getFluid(500))
+                .output(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .EUt(VA[IV].toLong())
+                .duration(3 * SECOND)
+                .buildAndRegister()
         }
 
         private fun smdRecipes()

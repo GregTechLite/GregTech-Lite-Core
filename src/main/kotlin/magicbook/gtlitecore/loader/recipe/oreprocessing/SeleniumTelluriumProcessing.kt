@@ -156,6 +156,7 @@ class SeleniumTelluriumProcessing
 
             // TeO2 + 2SO2 + H2O -> Te + H2SO4 + SO3
             CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .input(dust, TelluriumDioxide, 3)
                 .fluidInputs(SulfurDioxide.getFluid(2000))
                 .fluidInputs(Water.getFluid(1000))

@@ -9,6 +9,7 @@ import gregtech.api.GTValues.VH
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
@@ -27,6 +28,7 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.ReinforcedEpoxyResin
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SulfuricAcid
@@ -56,8 +58,10 @@ import gregtech.common.items.MetaItems.RESISTOR
 import gregtech.common.items.MetaItems.VACUUM_TUBE
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COAGULATION_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VACUUM_TUBE_COMPONENT
@@ -148,6 +152,40 @@ class ElectronicCircuits
                 .EUt(VA[LV].toLong())
                 .duration(7 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // Advanced recipes of basic circuit board.
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, AnnealedCopper, 4)
+                .input(plate, Wood)
+                .fluidInputs(Glue.getFluid(100))
+                .output(BASIC_CIRCUIT_BOARD, 4)
+                .EUt(7) // ULV
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(foil, Cupronickel, 4)
+                .input(plate, Wood)
+                .fluidInputs(Glue.getFluid(100))
+                .output(BASIC_CIRCUIT_BOARD, 16)
+                .EUt(7) // ULV
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Advanced etching liquids recipe addition.
+            for (etchingLiquid in arrayOf(
+                TetramethylammoniumHydroxide.getFluid(50),
+                EthylenediaminePyrocatechol.getFluid(25)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(foil, Silver, 4)
+                    .input(PHENOLIC_BOARD)
+                    .fluidInputs(etchingLiquid)
+                    .output(GOOD_CIRCUIT_BOARD)
+                    .EUt(VA[LV].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
 
         }
 
