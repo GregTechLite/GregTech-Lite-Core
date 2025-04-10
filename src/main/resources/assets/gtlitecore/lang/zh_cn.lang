@@ -2128,6 +2128,9 @@ gtlitecore.material.piranha_solution=食人鱼洗液
 gtlitecore.material.hydroxyquinoline_aluminium=羟基喹啉铝
 gtlitecore.material.hydroselenic_acid=氢硒酸
 gtlitecore.material.copper_gallium_indium_selenide=硒化铜镓铟
+gtlitecore.material.barium_hydroxide=氢氧化钡
+gtlitecore.material.barium_titanate=钛酸钡
+gtlitecore.material.samarium_cobalt=钐钴合金
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

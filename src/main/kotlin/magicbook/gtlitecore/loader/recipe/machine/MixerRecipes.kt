@@ -47,6 +47,7 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Saltpeter
+import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steel
@@ -91,6 +92,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
@@ -151,6 +153,16 @@ class MixerRecipes
                 .output(dust, GSTGlass, 9)
                 .EUt(VA[HV].toLong())
                 .duration(12 * SECOND + 10)
+                .buildAndRegister()
+
+            // Samarium Cobalt
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Samarium)
+                .input(dust, Cobalt, 5)
+                .output(dust, SamariumCobalt, 6)
+                .EUt(VA[LuV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
             // Kovar

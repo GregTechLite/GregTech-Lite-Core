@@ -2123,6 +2123,9 @@ gtlitecore.material.piranha_solution=Piranha Solution
 gtlitecore.material.hydroxyquinoline_aluminium=Hydroxyquinoline Aluminium
 gtlitecore.material.hydroselenic_acid=Hydroselenic Acid
 gtlitecore.material.copper_gallium_indium_selenide=Copper Gallium Indium Selenide
+gtlitecore.material.barium_hydroxide=Barium Hydroxide
+gtlitecore.material.barium_titanate=Barium Titanate
+gtlitecore.material.samarium_cobalt=Samarium Cobalt
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

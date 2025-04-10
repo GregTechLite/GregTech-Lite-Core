@@ -155,6 +155,17 @@ class AluminiumSodiumProcessing
 
         private fun aluminiumHydroxideProcess()
         {
+            // An easier NaOH recipes.
+            // Na + H2O -> NaOH + H
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, Sodium)
+                .fluidInputs(Water.getFluid(1000))
+                .output(dust, SodiumHydroxide, 3)
+                .fluidOutputs(Hydrogen.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
             // (Al2O3)3(TiO2)2(H2O)2? (bauxite) + 4NaOH + H2O -> 4NaAlO2
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(3)

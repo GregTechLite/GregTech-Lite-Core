@@ -1539,6 +1539,44 @@ class GTLiteMaterials
             }
             .build()
 
+        // 2145 Barium Hydroxide
+        @JvmField
+        val BariumHydroxide: Material = Material.Builder(2145, gtliteId("barium_hydroxide"))
+            .dust()
+            .color(0xFFFFED).iconSet(DULL)
+            .components(Barium, 1, Oxygen, 2, Hydrogen, 2)
+            .build()
+            .setFormula("Ba(OH)2", true)
+
+        // 2146 Barium Titanate
+        @JvmField
+        val BariumTitanate: Material = Material.Builder(2146, gtliteId("barium_titanate"))
+            .ingot()
+            .color(0x99FF99).iconSet(SHINY)
+            .components(Barium, 1, Titanium, 1, Oxygen, 3)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL)
+            .blast { b ->
+                b.temp(3600, BlastProperty.GasTier.LOW) // Nichrome
+                    .blastStats(VA[IV], 18 * SECOND)
+                    .vacuumStats(VA[HV], 4 * SECOND)
+            }
+            .build()
+
+        // 2147 Samarium Cobalt
+        @JvmField
+        val SamariumCobalt: Material = Material.Builder(2147, gtliteId("samarium_cobalt"))
+            .ingot()
+            .fluid()
+            .color(0xB3D683).iconSet(METALLIC)
+            .components(Samarium, 1,  Cobalt, 5)
+            .flags(GENERATE_ROD, GENERATE_RING)
+            .blast { b ->
+                b.temp(5000, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy)
+                    .blastStats(VA[IV], 45 * SECOND)
+                    .vacuumStats(VA[HV], 20 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2496,7 +2534,7 @@ class GTLiteMaterials
             .polymer()
             .liquid()
             .color(0xE165A7)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL)
             .components(Edot, 1, PolystyreneSulfonate, 1)
             .cableProperties(V[ZPM], 6, 1, false)
             .build()

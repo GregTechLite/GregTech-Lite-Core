@@ -13,32 +13,48 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Glycerol
+import gregtech.api.unification.material.Materials.HydrochloricAcid
+import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Nitrobenzene
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Selenium
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminophenol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperGalliumIndiumSelenide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroselenicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroxyquinoline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroxyquinolineAluminium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotPSS
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotTMA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
 
@@ -137,6 +153,63 @@ class GoowareCircuits
                 .input(wireFine, Osmiridium, 4)
                 .fluidInputs(KaptonK.getFluid(L * 2))
                 .output(GOOWARE_SMD_RESISTOR, 16)
+                .EUt(VA[ZPM].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Ba + 2H2O -> Ba(OH)2 + 2H
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, Barium)
+                .fluidInputs(Water.getFluid(2000))
+                .output(dust, BariumHydroxide, 5)
+                .fluidOutputs(Hydrogen.getFluid(2000))
+                .EUt(VA[MV].toLong())
+                .duration(4 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Ba(OH)2 + TiCl4 + H2O -> BaTiO3 + 4HCl
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, BariumHydroxide, 5)
+                .fluidInputs(TitaniumTetrachloride.getFluid(1000))
+                .fluidInputs(Water.getFluid(1000))
+                .output(dust, BariumTitanate, 5)
+                .fluidOutputs(HydrochloricAcid.getFluid(4000))
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Gooware SMD Capacitor
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(foil, PedotPSS)
+                .input(foil, BariumTitanate)
+                .fluidInputs(KaptonK.getFluid(L / 2))
+                .output(GOOWARE_SMD_CAPACITOR, 16)
+                .EUt(VA[ZPM].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Gooware SMD Diode
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, CubicZirconia)
+                .input(wireFine, PedotTMA, 8)
+                .fluidInputs(KaptonK.getFluid(L * 2))
+                .output(GOOWARE_SMD_DIODE, 64)
+                .EUt(VA[ZPM].toLong())
+                .duration(8 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Gooware SMD Inductor
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(ring, SamariumCobalt)
+                .input(wireFine, Europium, 4)
+                .fluidInputs(KaptonK.getFluid(L))
+                .output(GOOWARE_SMD_INDUCTOR, 16)
                 .EUt(VA[ZPM].toLong())
                 .duration(8 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
