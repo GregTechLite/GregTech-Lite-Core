@@ -30,6 +30,9 @@ magicbook.gtlitecore.core
 magicbook.gtlitecore.core.command
 magicbook.gtlitecore.core.module
 magicbook.gtlitecore.integration
+magicbook.gtlitecore.integration.appliedenergistics2
+magicbook.gtlitecore.integration.groovyscript
+magicbook.gtlitecore.integration.groovyscript.hooks
 magicbook.gtlitecore.integration.jei
 magicbook.gtlitecore.integration.top
 magicbook.gtlitecore.loader.recipe.producer
