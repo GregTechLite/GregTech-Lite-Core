@@ -19,11 +19,14 @@ import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
+import magicbook.gtlitecore.loader.recipe.chain.PedotChain
+import magicbook.gtlitecore.loader.recipe.chain.PmmaChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.GoowareCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
@@ -120,6 +123,8 @@ class RecipeManager
             CitricAcidChain.init()
             GrowthMediumChain.init()
             KaptonChain.init()
+            PmmaChain.init()
+            PedotChain.init()
 
             AluminiumSodiumProcessing.init()
             StrontiumProcessing.init()
@@ -142,6 +147,7 @@ class RecipeManager
             QuantumCircuits.init()
             CrystalCircuits.init()
             WetwareCircuits.init()
+            GoowareCircuits.init()
 
             // Original GregTech machine recipes.
             AlloySmelterRecipes.init()

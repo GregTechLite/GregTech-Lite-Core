@@ -54,6 +54,7 @@ import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
+import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
@@ -1502,6 +1503,39 @@ class GTLiteMaterials
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build()
 
+        // 2142 Hydroxyquinoline Aluminium
+        @JvmField
+        val HydroxyquinolineAluminium: Material = Material.Builder(2142, gtliteId("hydroxyquinoline_aluminium"))
+            .ingot()
+            .color(0x3F5A9F).iconSet(SHINY)
+            .components(Aluminium, 1, Carbon, 9, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL)
+            .build()
+            .setFormula("(C9H7NO)Al", true)
+
+        // 2143 Hydroselenic Acid
+        @JvmField
+        val HydroselenicAcid: Material = Material.Builder(2143, gtliteId("hydroselenic_acid"))
+            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            .color(0xDBC3B5)
+            .components(Hydrogen, 2, Selenium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2144 Copper Gallium Indium Selenide
+        @JvmField
+        val CopperGalliumIndiumSelenide: Material = Material.Builder(2144, gtliteId("copper_gallium_indium_selenide"))
+            .ingot()
+            .colorAverage().iconSet(SHINY)
+            .components(Copper, 1, Gallium, 1, Indium, 1, Selenium, 2)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(6000, BlastProperty.GasTier.MID) // Naquadah (HSS-G)
+                    .blastStats(VA[EV], 30 * SECOND)
+                    .vacuumStats(VA[MV], 10 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2366,6 +2400,40 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
             .build()
             .setFormula("O(C6H4NH2)2", true)
+
+        // 8035 Hydroxyquinoline
+        @JvmField
+        val Hydroxyquinoline: Material = Material.Builder(8035, gtliteId("hydroxyquinoline"))
+            .dust()
+            .color(0x3A9A71).iconSet(METALLIC)
+            .components(Carbon, 9, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+            .build()
+
+        // 8036 Hydrogen Cyanide
+        @JvmField
+        val HydrogenCyanide: Material = Material.Builder(8036, gtliteId("hydrogen_cyanide"))
+            .liquid()
+            .color(0x6E6A5E)
+            .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
+            .build()
+
+        // 8037 Acetone Cyanohydrin
+        @JvmField
+        val AcetoneCyanohydrin: Material = Material.Builder(8037, gtliteId("acetone_cyanohydrin"))
+            .liquid()
+            .color(0xA1FFD0)
+            .components(Carbon, 4, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+            .build()
+
+        // 8038 Polymethylmethacrylate (PMMA)
+        @JvmField
+        val Polymethylmethacrylate: Material = Material.Builder(8038, gtliteId("polymethylmethacrylate"))
+            .ingot()
+            .liquid()
+            .color(0x91CAE1)
+            .components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .build()
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials

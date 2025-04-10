@@ -2120,6 +2120,9 @@ item.gtlitecore.material.waelz_slag.dust=Waelz Slag
 item.gtlitecore.material.waelz_slag.dustSmall=Small Waelz Slag
 item.gtlitecore.material.waelz_slag.dustTiny=Tiny Waelz Slag
 gtlitecore.material.piranha_solution=Piranha Solution
+gtlitecore.material.hydroxyquinoline_aluminium=Hydroxyquinoline Aluminium
+gtlitecore.material.hydroselenic_acid=Hydroselenic Acid
+gtlitecore.material.copper_gallium_indium_selenide=Copper Gallium Indium Selenide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2200,6 +2203,12 @@ gtlitecore.material.biphenyl_tetracarboxylic_acid_dianhydride=Biphenyl Tetracarb
 gtlitecore.material.nitroaniline=4-Nitroaniline
 gtlitecore.material.para_phenylenediamine=Para-Phenylenediamine
 gtlitecore.material.kapton_e=Kapton-E
+gtlitecore.material.hydroxyquinoline=Hydroxyquinoline
+gtlitecore.material.hydrogen_cyanide=Hydrogen Cyanide
+gtlitecore.material.acetone_cyanohydrin=Acetone Cyanohydrin
+gtlitecore.material.polymethylmethacrylate=Polymethylmethacrylate (PMMA)
+item.gtlitecore.material.polymethylmethacrylate.ingot=Polymethylmethacrylate (PMMA) Bar
+item.gtlitecore.material.polymethylmethacrylate.wireFine=Polymethylmethacrylate (PMMA) Fiber
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

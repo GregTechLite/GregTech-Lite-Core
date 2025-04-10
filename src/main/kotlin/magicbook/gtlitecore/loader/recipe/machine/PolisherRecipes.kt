@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -32,6 +33,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSchis
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kimberlite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Komatiite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Limestone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polymethylmethacrylate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
@@ -255,6 +257,15 @@ class PolisherRecipes
                 .input(block, GSTGlass)
                 .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.GST, 2))
                 .output(dust, GSTGlass)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // PMMA Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, Polymethylmethacrylate)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PMMA, 2))
+                .output(dust, Polymethylmethacrylate)
                 .EUt(VA[IV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
