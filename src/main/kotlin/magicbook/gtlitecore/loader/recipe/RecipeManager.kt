@@ -7,6 +7,8 @@ import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
+import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
+import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
@@ -14,6 +16,7 @@ import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
+import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
@@ -63,6 +66,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PlatinumGroupProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
@@ -127,8 +131,12 @@ class RecipeManager
             PmmaChain.init()
             EthyleneGlycolChain.init()
             PedotChain.init()
+            MethylamineChain.init()
+            EDTAChain.init()
+            EtchingMaterialsChain.init()
 
             AluminiumSodiumProcessing.init()
+            PotassiumProcessing.init()
             StrontiumProcessing.init()
             NiobiumTantalumProcessing.init()
             CaesiumRubidiumProcessing.init()

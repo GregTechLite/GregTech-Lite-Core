@@ -2131,6 +2131,9 @@ gtlitecore.material.copper_gallium_indium_selenide=硒化铜镓铟
 gtlitecore.material.barium_hydroxide=氢氧化钡
 gtlitecore.material.barium_titanate=钛酸钡
 gtlitecore.material.samarium_cobalt=钐钴合金
+gtlitecore.material.potassium_hydroxide=氢氧化钾
+gtlitecore.material.copper_dichloride=二氯化铜
+gtlitecore.material.sodium_cyanide=氰化钠
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2224,6 +2227,17 @@ gtlitecore.material.polystyrene=聚苯乙烯（PS）
 gtlitecore.material.polystyrene_sulfonate=聚苯乙烯磺酸（PSS）
 gtlitecore.material.pedot_pss=PEDOT:PSS
 gtlitecore.material.pedot_tma=PEDOT-TMA
+gtlitecore.material.methylamine=甲胺
+gtlitecore.material.trimethylamine=三甲胺
+gtlitecore.material.tetramethylammonium_chloride=四甲基氯化铵（TMAC）
+gtlitecore.material.tetramethylammonium_hydroxide=四甲基氢氧化铵（TMAH）
+gtlitecore.material.pyrocatechol=邻苯二酚
+gtlitecore.material.dichloroethane=1,2-二氯乙烷
+gtlitecore.material.ethylenediamine=乙二胺
+gtlitecore.material.ethylenediamine_pyrocatechol=乙二胺邻苯二酚（EDP）
+gtlitecore.material.formaldehyde=甲醛
+gtlitecore.material.tetrasodium_ethylenediaminetetraacetic_acid=乙二胺四乙酸四钠
+gtlitecore.material.ethylenediaminetetraacetic_acid=乙二胺四乙酸（EDTA）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2258,6 +2272,8 @@ gtlitecore.material.rare_earth_chlorides_solution=稀土氯化物溶液
 gtlitecore.material.brevibacterium_flavum=黄色短杆菌
 gtlitecore.material.yeast=酵母
 gtlitecore.material.cupriavidus_necator=贪铜钩虫菌
+
+gtlitecore.material.methylamine_mixture=甲胺混合物
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

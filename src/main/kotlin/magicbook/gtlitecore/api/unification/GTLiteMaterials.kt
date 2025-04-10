@@ -1577,6 +1577,31 @@ class GTLiteMaterials
             }
             .build()
 
+        // 2148 Potassium Hydroxide
+        @JvmField
+        val PotassiumHydroxide: Material = Material.Builder(2148, gtliteId("potassium_hydroxide"))
+            .dust()
+            .liquid(FluidBuilder().temperature(633))
+            .color(0xFA9849)
+            .components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
+            .build()
+
+        // 2149 Copper Dichloride
+        @JvmField
+        val CopperDichloride: Material = Material.Builder(2149, gtliteId("copper_dichloride"))
+            .dust()
+            .color(0x3FB3B8).iconSet(ROUGH)
+            .components(Copper, 1, Chlorine, 2)
+            .build()
+
+        // 2150 Sodium Cyanide
+        @JvmField
+        val SodiumCyanide: Material = Material.Builder(2150, gtliteId("sodium_cyanide"))
+            .dust()
+            .color(0x1B3818).iconSet(DULL)
+            .components(Sodium, 1, Carbon, 1, Nitrogen, 1)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2550,6 +2575,105 @@ class GTLiteMaterials
             .cableProperties(V[UV], 8, 4, false)
             .build()
 
+        // 8047 Methylamine
+        @JvmField
+        val Methylamine: Material = Material.Builder(8047, gtliteId("methylamine"))
+            .gas()
+            .color(0xAA6600)
+            .components(Carbon, 1, Hydrogen, 5, Nitrogen, 1)
+            .build()
+            .setFormula("CH3NH2", true)
+
+        // 8048 Trimethylamine
+        @JvmField
+        val Trimethylamine: Material = Material.Builder(8048, gtliteId("trimethylamine"))
+            .gas()
+            .color(0xBB7700)
+            .components(Carbon, 3, Hydrogen, 9, Nitrogen, 1)
+            .build()
+            .setFormula("(CH3)3N", true)
+
+        // 8049 Tetramethylammonium Chloride
+        @JvmField
+        val TetramethylammoniumChloride: Material = Material.Builder(8049, gtliteId("tetramethylammonium_chloride"))
+            .dust()
+            .color(0x27FF81).iconSet(METALLIC)
+            .components(Carbon, 4, Hydrogen, 12, Nitrogen, 1, Chlorine, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("N(CH3)4Cl", true)
+
+        // 8050 Tetramethylammonium Hydroxide
+        @JvmField
+        val TetramethylammoniumHydroxide: Material = Material.Builder(8050, gtliteId("tetramethylammonium_hydroxide"))
+            .liquid()
+            .color(0x40FFD6)
+            .components(Nitrogen, 1, Carbon, 4, Hydrogen, 12, Oxygen, 1, Hydrogen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("N(CH3)4OH", true)
+
+        // 8051 Pyrocatechol
+        @JvmField
+        val Pyrocatechol: Material = Material.Builder(8051, gtliteId("pyrocatechol"))
+            .dust()
+            .color(0x784421).iconSet(DULL)
+            .components(Carbon, 6, Hydrogen, 6, Oxygen, 2)
+            .build()
+
+        // 8052 1,2-Dichloroethane
+        @JvmField
+        val Dichloroethane: Material = Material.Builder(8052, gtliteId("dichloroethane"))
+            .liquid()
+            .color(0xDAAED3)
+            .components(Carbon, 2, Hydrogen, 4, Chlorine, 2)
+            .build()
+
+        // 8053 Ethylenediamine
+        @JvmField
+        val Ethylenediamine: Material = Material.Builder(8053, gtliteId("ethylenediamine"))
+            .liquid()
+            .color(0xD00ED0)
+            .components(Carbon, 2, Hydrogen, 8, Nitrogen, 2)
+            .build()
+            .setFormula("C2H4(NH2)2", true)
+
+        // 8054 Ethylenediamine Pyrocatechol (EDP)
+        @JvmField
+        val EthylenediaminePyrocatechol: Material = Material.Builder(8054, gtliteId("ethylenediamine_pyrocatechol"))
+            .liquid()
+            .color(0xFBFF17)
+            .components(Ethylenediamine, 1, Pyrocatechol, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8055 Formaldehyde
+        @JvmField
+        val Formaldehyde: Material = Material.Builder(8055, gtliteId("formaldehyde"))
+            .liquid()
+            .color(0x858F40)
+            .components(Carbon, 1, Hydrogen, 2, Oxygen, 1)
+            .build()
+
+        // 8056 Tetrasodium EDTA
+        @JvmField
+        val TetrasodiumEDTA: Material = Material.Builder(8056, gtliteId("tetrasodium_ethylenediaminetetraacetic_acid"))
+            .dust()
+            .color(0x8890E0).iconSet(SHINY)
+            .components(Carbon, 10, Hydrogen, 12, Nitrogen, 2, Oxygen, 8, Sodium, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8057 Ethylenediaminetetraacetic Acid (EDTA)
+        @JvmField
+        val EDTA: Material = Material.Builder(8057, gtliteId("ethylenediaminetetraacetic_acid"))
+            .dust()
+            .liquid()
+            .color(0x87E6D9).iconSet(ROUGH)
+            .components(Carbon, 10, Hydrogen, 16, Nitrogen, 2, Oxygen, 8)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -2771,6 +2895,16 @@ class GTLiteMaterials
             .dust()
             .color(0x2C4D24).iconSet(ROUGH)
             .build()
+
+        // ...
+
+        // 12131 MethylamineMixture
+        @JvmField
+        val MethylamineMixture: Material = Material.Builder(12131, gtliteId("methylamine_mixture"))
+            .liquid()
+            .color(0xAA4400)
+            .build()
+
     }
 
 }

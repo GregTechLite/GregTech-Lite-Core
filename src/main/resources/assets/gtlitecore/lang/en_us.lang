@@ -2126,6 +2126,9 @@ gtlitecore.material.copper_gallium_indium_selenide=Copper Gallium Indium Selenid
 gtlitecore.material.barium_hydroxide=Barium Hydroxide
 gtlitecore.material.barium_titanate=Barium Titanate
 gtlitecore.material.samarium_cobalt=Samarium Cobalt
+gtlitecore.material.potassium_hydroxide=Potassium Hydroxide
+gtlitecore.material.copper_dichloride=Copper Dichloride
+gtlitecore.material.sodium_cyanide=Sodium Cyanide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2220,6 +2223,17 @@ gtlitecore.material.polystyrene=Polystyrene (PS)
 gtlitecore.material.polystyrene_sulfonate=Polystyrene Sulfonate (PSS)
 gtlitecore.material.pedot_pss=PEDOT:PSS
 gtlitecore.material.pedot_tma=PEDOT-TMA
+gtlitecore.material.methylamine=Methylamine
+gtlitecore.material.trimethylamine=Trimethylamine
+gtlitecore.material.tetramethylammonium_chloride=Tetramethylammonium Chloride (TMAC)
+gtlitecore.material.tetramethylammonium_hydroxide=Tetramethylammonium Hydroxide (TMAH)
+gtlitecore.material.pyrocatechol=Pyrocatechol
+gtlitecore.material.dichloroethane=1,2-Dichloroethane
+gtlitecore.material.ethylenediamine=Ethylenediamine
+gtlitecore.material.ethylenediamine_pyrocatechol=Ethylenediamine Pyrocatechol (EDP)
+gtlitecore.material.formaldehyde=Formaldehyde
+gtlitecore.material.tetrasodium_ethylenediaminetetraacetic_acid=Tetrasodium Ethylenediaminetetraacetic Acid
+gtlitecore.material.ethylenediaminetetraacetic_acid=Ethylenediaminetetraacetic Acid (EDTA)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -2254,6 +2268,8 @@ gtlitecore.material.rare_earth_chlorides_solution=Rare Earth Chlorides Solution
 gtlitecore.material.brevibacterium_flavum=Brevibacterium Flavum
 gtlitecore.material.yeast=Yeast
 gtlitecore.material.cupriavidus_necator=Cupriavidus Necator
+
+gtlitecore.material.methylamine_mixture=Methylamine Mixture
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

@@ -57,6 +57,7 @@ import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
@@ -310,6 +311,7 @@ class GTLiteMaterialFlags
             Clay.addFlags(DISABLE_DECOMPOSITION)
             // Disabled salt composition.
             Salt.addFlags(DISABLE_DECOMPOSITION)
+            RockSalt.addFlags(DISABLE_DECOMPOSITION)
 
             // Disabled Rhodium Plated Palladium and YBCO ABS recipe.
             RhodiumPlatedPalladium.addFlags(NO_ALLOY_BLAST_RECIPES)
