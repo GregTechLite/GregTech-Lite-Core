@@ -1,5 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
+import magicbook.gtlitecore.api.utils.Mods
+import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
@@ -88,7 +90,11 @@ class RecipeManager
             DisposableToolRecipeProducer.produce()
             MetalCasingRecipeProducer.produce()
             MassReplicationRecipeProducer.produce()
+
             CircuitAssemblyLineRecipeProducer.produce()
+            if (Mods.AppliedEnergistics2.isModLoaded())
+                AppEngCALRecipeProducer.produce()
+
             WrapItemRecipeProducer.produce()
             GreenhouseRecipeProducer.produce()
             MiningDroneAsteroidRecipeProducer.produce()
