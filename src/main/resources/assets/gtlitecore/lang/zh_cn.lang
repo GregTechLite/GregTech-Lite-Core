@@ -2217,6 +2217,10 @@ gtlitecore.material.diacetyl=丁二酮
 gtlitecore.material.ethylene_oxide=环氧乙烷
 gtlitecore.material.ethylene_glycol=乙二醇
 gtlitecore.material.edot=3,4-乙撑二氧噻吩（EDOT）
+gtlitecore.material.polystyrene=聚苯乙烯（PS）
+gtlitecore.material.polystyrene_sulfonate=聚苯乙烯磺酸（PSS）
+gtlitecore.material.pedot_pss=PEDOT:PSS
+gtlitecore.material.pedot_tma=PEDOT-TMA
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

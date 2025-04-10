@@ -6,7 +6,10 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Material
@@ -2467,6 +2470,46 @@ class GTLiteMaterials
             .liquid()
             .color(0xB1FFD7)
             .components(Carbon, 6, Hydrogen, 6, Oxygen, 2, Sulfur, 1)
+            .build()
+
+        // 8043 Polystyrene (PS)
+        @JvmField
+        val Polystyrene: Material = Material.Builder(8043, gtliteId("polystyrene"))
+            .liquid()
+            .color(0xE1C2C2)
+            .components(Carbon, 8, Hydrogen, 8)
+            .build()
+
+        // 8044 Polystyrene Sulfonate (PSS)
+        @JvmField
+        val PolystyreneSulfonate: Material = Material.Builder(8044, gtliteId("polystyrene_sulfonate"))
+            .polymer()
+            .liquid()
+            .color(0xE17C72)
+            .components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
+            .build()
+            .setFormula("C8H7SO3H", true)
+
+        // 8045 PEDOT:PSS
+        @JvmField
+        val PedotPSS: Material = Material.Builder(8045, gtliteId("pedot_pss"))
+            .polymer()
+            .liquid()
+            .color(0xE165A7)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .components(Edot, 1, PolystyreneSulfonate, 1)
+            .cableProperties(V[ZPM], 6, 1, false)
+            .build()
+
+        // 8046 PEDOT-TMA
+        @JvmField
+        val PedotTMA: Material = Material.Builder(8046, gtliteId("pedot_tma"))
+            .polymer()
+            .liquid()
+            .color(0x5E9EE1)
+            .components(Edot, 1, Polymethylmethacrylate, 2)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .cableProperties(V[UV], 8, 4, false)
             .build()
 
         // =======================================================================

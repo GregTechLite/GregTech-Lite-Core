@@ -2213,6 +2213,10 @@ gtlitecore.material.diacetyl=Diacetyl
 gtlitecore.material.ethylene_oxide=Ethylene Oxide
 gtlitecore.material.ethylene_glycol=Ethylene Glycol
 gtlitecore.material.edot=3,4-Ethylenedioxythiophene (EDOT)
+gtlitecore.material.polystyrene=Polystyrene (PS)
+gtlitecore.material.polystyrene_sulfonate=Polystyrene Sulfonate (PSS)
+gtlitecore.material.pedot_pss=PEDOT:PSS
+gtlitecore.material.pedot_tma=PEDOT-TMA
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
