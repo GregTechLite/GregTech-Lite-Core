@@ -27,6 +27,7 @@ import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
+import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
@@ -138,6 +139,7 @@ class RecipeManager
             EtchingMaterialsChain.init()
             FEPChain.init()
             BZMediumChain.init()
+            PhosphorusChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

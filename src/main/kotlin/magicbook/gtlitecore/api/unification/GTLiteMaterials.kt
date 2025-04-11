@@ -162,6 +162,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.DIAMOND
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.EMERALD
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
+import gregtech.api.unification.material.info.MaterialIconSet.FLINT
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
@@ -1610,6 +1611,76 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 2152 White Phosphorus
+        @JvmField
+        val WhitePhosphorus: Material = Material.Builder(2152, gtliteId("white_phosphorus"))
+            .gem()
+            .color(0xECEADD).iconSet(FLINT)
+            .components(Phosphorus, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2153 Red Phosphorus
+        @JvmField
+        val RedPhosphorus: Material = Material.Builder(2153, gtliteId("red_phosphorus"))
+            .gem()
+            .color(0x77040E).iconSet(FLINT)
+            .components(Phosphorus, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2154 Violet Phosphorus
+        @JvmField
+        val VioletPhosphorus: Material = Material.Builder(2154, gtliteId("violet_phosphorus"))
+            .gem()
+            .color(0x8000FF).iconSet(FLINT)
+            .components(Phosphorus, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2155 Black Phosphorus
+        @JvmField
+        val BlackPhosphorus: Material = Material.Builder(2155, gtliteId("black_phosphorus"))
+            .gem()
+            .color(0x36454F).iconSet(FLINT)
+            .components(Phosphorus, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2156 Blue Phosphorus
+        @JvmField
+        val BluePhosphorus: Material = Material.Builder(2156, gtliteId("blue_phosphorus"))
+            .gem()
+            .color(0x9BE3E4).iconSet(FLINT)
+            .components(Phosphorus, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2157 Phosphorus Trichloride
+        @JvmField
+        val PhosphorusTrichloride: Material = Material.Builder(2157, gtliteId("phosphorus_trichloride"))
+            .liquid()
+            .color(0xD8D85B)
+            .components(Phosphorus, 1, Chlorine, 3)
+            .build()
+
+        // 2158 Sodium Fluoride
+        @JvmField
+        val SodiumFluoride: Material = Material.Builder(2158, gtliteId("sodium_fluoride"))
+            .dust()
+            .color(0x460012).iconSet(DULL)
+            .components(Sodium, 1, Fluorine, 1)
+            .build()
+
+        // 2159 Sodium Trifluoroethanolate
+        @JvmField
+        val SodiumTrifluoroethanolate: Material = Material.Builder(2159, gtliteId("sodium_trifluoroethanolate"))
+            .dust()
+            .color(0x50083E).iconSet(ROUGH)
+            .components(Sodium, 1, Carbon, 2, Hydrogen, 4, Oxygen, 1, Fluorine, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2721,6 +2792,138 @@ class GTLiteMaterials
             .color(0x61932E).iconSet(SHINY)
             .components(Carbon, 3, Hydrogen, 4, Oxygen, 4)
             .build()
+
+        // 8063 Phosphoryl Chloride
+        @JvmField
+        val PhosphorylChloride: Material = Material.Builder(8063, gtliteId("phosphoryl_chloride"))
+            .liquid()
+            .color(0xE8BB5B)
+            .components(Phosphorus, 1, Oxygen, 1, Chlorine, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8064 Phosphonitrilic Chloride Trimer
+        @JvmField
+        val PhosphonitrilicChlorideTrimer: Material = Material.Builder(8064, gtliteId("phosphonitrilic_chloride_trimer"))
+            .liquid()
+            .color(0x082C38)
+            .components(Chlorine, 6, Nitrogen, 3, Phosphorus, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8065 Fluorobenzene
+        @JvmField
+        val Fluorobenzene: Material = Material.Builder(8065, gtliteId("fluorobenzene"))
+            .liquid()
+            .color(0x7CCA88)
+            .components(Carbon, 6, Hydrogen, 5, Fluorine, 1)
+            .build()
+
+        // 8066 Octafluoro Pentanol
+        @JvmField
+        val OctafluoroPentanol: Material = Material.Builder(8066, gtliteId("octafluoro_pentanol"))
+            .liquid()
+            .color(0xE5EBDE)
+            .components(Carbon, 5, Hydrogen, 4, Fluorine, 8, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8067 Raw Polyphosphonitrile Fluoro Rubber
+        @JvmField
+        val RawPolyphosphonitrileFluoroRubber: Material = Material.Builder(8067, gtliteId("raw_polyphosphonitrile_fluoro_rubber"))
+            .dust()
+            .color(0x585858)
+            .components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+
+        // 8068 Polyphosphonitrile Fluoro Rubber
+        @JvmField
+        val PolyphosphonitrileFluoroRubber: Material = Material.Builder(8068, gtliteId("polyphosphonitrile_fluoro_rubber"))
+            .polymer()
+            .liquid()
+            .color(0x372B28)
+            .components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
+            .build()
+            .setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+
+        // 8069 Polytetrahydrofuran
+        @JvmField
+        val Polytetrahydrofuran: Material = Material.Builder(8069, gtliteId("polytetrahydrofuran"))
+            .liquid()
+            .color(0x089B3E)
+            .components(Carbon, 4, Hydrogen, 10, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(C4H8O)OH2", true)
+
+        // 8070 Dinitrotoluene
+        @JvmField
+        val Dinitrotoluene: Material = Material.Builder(8070, gtliteId("dinitrotoluene"))
+            .liquid()
+            .color(0xEAEFC9)
+            .components(Carbon, 7, Hydrogen, 6, Nitrogen, 2, Oxygen, 4)
+            .build()
+
+        // 8071 Diaminotoluene
+        @JvmField
+        val Diaminotoluene: Material = Material.Builder(8071, gtliteId("diaminotoluene"))
+            .liquid()
+            .color(0xEA8204)
+            .components(Carbon, 7, Hydrogen, 7, Nitrogen, 2)
+            .build()
+            .setFormula("C6H3(NH2)2CH3", true)
+
+        // 8072 Phosgene
+        @JvmField
+        val Phosgene: Material = Material.Builder(8072, gtliteId("phosgene"))
+            .gas()
+            .color(0x48927C)
+            .components(Carbon, 1, Oxygen, 1, Chlorine, 2)
+            .build()
+
+        // 8073 Toluene Diisocyanate
+        @JvmField
+        val TolueneDiisocyanate: Material = Material.Builder(8073, gtliteId("toluene_diisocyanate"))
+            .liquid()
+            .color(0xCCCC66)
+            .components(Carbon, 9, Hydrogen, 8, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("CH3C6H3(NCO)2", true)
+
+        // 8074 Toluene Tetramethyl Diisocyanate
+        @JvmField
+        val TolueneTetramethylDiisocyanate: Material = Material.Builder(8074, gtliteId("toluene_tetramethyl_diisocyanate"))
+            .liquid()
+            .color(0xBFBFBF)
+            .components(Carbon, 19, Hydrogen, 12, Oxygen, 3, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(CONH)2(C6H4)2CH2(C4O)", true)
+
+        // 8075 Raw Polytetramethylene Glycol Rubber
+        @JvmField
+        val RawPolytetramethyleneGlycolRubber: Material = Material.Builder(8075, gtliteId("raw_polytetramethylene_glycol_rubber"))
+            .dust()
+            .color(0xFFFFFF).iconSet(ROUGH)
+            .components(Carbon, 23, Hydrogen, 23, Oxygen, 5, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+
+        // 8076 Polytetramethylene Glycol Rubber
+        @JvmField
+        val PolytetramethyleneGlycolRubber: Material = Material.Builder(8076, gtliteId("polytetramethylene_glycol_rubber"))
+            .polymer()
+            .liquid()
+            .color(0xFFFFFF)
+            .components(Carbon, 23, Hydrogen, 23, Oxygen, 5, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
+            .build()
+            .setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials

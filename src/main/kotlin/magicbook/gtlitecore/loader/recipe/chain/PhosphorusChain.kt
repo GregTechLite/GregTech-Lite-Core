@@ -1,0 +1,168 @@
+package magicbook.gtlitecore.loader.recipe.chain
+
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.CarbonDioxide
+import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.TricalciumPhosphate
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.gem
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BluePhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorylChloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VioletPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhitePhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+
+@Suppress("MISSING_DEPENDENCY_CLASS")
+class PhosphorusChain
+{
+
+    companion object
+    {
+
+        fun init()
+        {
+            phosphorusProcess()
+            phosphoryChlorideProcess()
+        }
+
+        private fun phosphorusProcess()
+        {
+            // 2Ca3(PO4)2 + 6SiO2 + 5C -> 6CaSiO3 + 5CO2 + P4 (white)
+            BURNER_REACTOR_RECIPES.recipeBuilder()
+                .input(dust, TricalciumPhosphate, 10)
+                .input(dust, SiliconDioxide, 18)
+                .input(dust, Carbon, 5)
+                .output(dust, Wollastonite, 30)
+                .output(gem, WhitePhosphorus)
+                .fluidOutputs(CarbonDioxide.getFluid(5000))
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // TODO Advanced recipes for P4 (white).
+
+            // P4 (white) + Ar -> P4 (red)
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, WhitePhosphorus)
+                .fluidInputs(Argon.getFluid(50))
+                .output(gem, RedPhosphorus)
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // P4 (white) + 2Pb -> P4 (violet)
+            CHEMICAL_BATH_RECIPES.recipeBuilder() // Hitoff reaction.
+                .input(dust, WhitePhosphorus)
+                .fluidInputs(Lead.getFluid(L * 2))
+                .output(gem, VioletPhosphorus)
+                .EUt(VA[HV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // P4 (white) -> P4 (black)
+            BURNER_REACTOR_RECIPES.recipeBuilder()
+                .input(gem, WhitePhosphorus)
+                .output(gem, BlackPhosphorus)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // P4 (black) -> P4 (blue)
+            MOLECULAR_BEAM_RECIPES.recipeBuilder()
+                .notConsumable(foil, Gold)
+                .input(gem, BlackPhosphorus)
+                .output(dust, BluePhosphorus)
+                .EUt(VA[ZPM].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+        }
+
+        private fun phosphoryChlorideProcess()
+        {
+            // P4 (white) + 12Cl -> 4PCl3
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, WhitePhosphorus)
+                .fluidInputs(Chlorine.getFluid(12000))
+                .fluidOutputs(PhosphorusTrichloride.getFluid(4000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // 2P4 (red) + 24Cl -> 8PCl3
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, RedPhosphorus, 2)
+                .fluidInputs(Chlorine.getFluid(24000))
+                .fluidOutputs(PhosphorusTrichloride.getFluid(8000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // 2P4 (black) + 24Cl -> 8PCl3
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, BlackPhosphorus, 2)
+                .fluidInputs(Chlorine.getFluid(24000))
+                .fluidOutputs(PhosphorusTrichloride.getFluid(8000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // 4P4 (violet) + 48Cl -> 16PCl3
+            LARGE_CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, VioletPhosphorus, 4)
+                .fluidInputs(Chlorine.getFluid(48000))
+                .fluidOutputs(PhosphorusTrichloride.getFluid(16000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // 4P4 (blue) + 48Cl -> 16PCl3
+            LARGE_CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, BluePhosphorus, 4)
+                .fluidInputs(Chlorine.getFluid(48000))
+                .fluidOutputs(PhosphorusTrichloride.getFluid(16000))
+                .EUt(VA[MV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // PCl3 + O -> POCl3
+            CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(PhosphorusTrichloride.getFluid(1000))
+                .fluidInputs(Oxygen.getFluid(1000))
+                .fluidOutputs(PhosphorylChloride.getFluid(1000))
+                .EUt(VA[HV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+        }
+
+    }
+
+}
