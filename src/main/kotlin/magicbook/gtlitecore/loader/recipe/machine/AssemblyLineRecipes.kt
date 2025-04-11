@@ -8,6 +8,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSS
@@ -28,6 +29,7 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
@@ -57,6 +59,10 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
+import gregtech.common.items.MetaItems.ROBOT_ARM_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
@@ -80,6 +86,7 @@ class AssemblyLineRecipes
             electricPistonRecipes()
             electricPumpRecipes()
             conveyorModuleRecipes()
+            robotArmRecipes()
             // ...
         }
 
@@ -574,6 +581,116 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
+        }
+
+        private fun robotArmRecipes()
+        {
+            // LuV
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(stickLong, HSSS, 4),
+                    OreDictUnifier.get(gear, HSSS),
+                    OreDictUnifier.get(gearSmall, HSSS, 3),
+                    ELECTRIC_MOTOR_LuV.getStackForm(2),
+                    ELECTRIC_PISTON_LUV.stackForm,
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV, 2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.EV, 4),
+                    OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 4), Lubricant.getFluid(250)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, HSSS, 2)
+                .input(gear, HSSS)
+                .input(gearSmall, HSSS, 2)
+                .input(ELECTRIC_MOTOR_LuV, 2)
+                .input(ELECTRIC_PISTON_LUV)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(circuit, MarkerMaterials.Tier.IV, 2)
+                .input(circuit, MarkerMaterials.Tier.EV, 4)
+                .input(cableGtSingle, NiobiumTitanium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .fluidInputs(Lubricant.getFluid(250))
+                .output(ROBOT_ARM_LuV)
+                .EUt(6000) // IV
+                .duration(20 * SECOND)
+                .scannerResearch { r ->
+                    r.researchStack(ROBOT_ARM_IV.stackForm)
+                        .EUt(VA[HV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(stickLong, Osmiridium, 4),
+                    OreDictUnifier.get(gear, Osmiridium),
+                    OreDictUnifier.get(gearSmall, Osmiridium, 3),
+                    ELECTRIC_MOTOR_ZPM.getStackForm(2),
+                    ELECTRIC_PISTON_ZPM.stackForm,
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.IV, 4),
+                    OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 8), Lubricant.getFluid(500)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, Osmiridium, 2)
+                .input(gear, Osmiridium)
+                .input(gearSmall, Osmiridium, 2)
+                .input(ELECTRIC_MOTOR_ZPM, 2)
+                .input(ELECTRIC_PISTON_ZPM)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
+                .input(circuit, MarkerMaterials.Tier.IV, 4)
+                .input(cableGtSingle, VanadiumGallium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Lubricant.getFluid(500))
+                .output(ROBOT_ARM_ZPM)
+                .EUt(24000) // LuV
+                .duration(20 * SECOND)
+                .scannerResearch { r ->
+                    r.researchStack(ROBOT_ARM_LuV.stackForm)
+                        .EUt(VA[IV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // UV
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(stickLong, Tritanium, 4),
+                    OreDictUnifier.get(gear, Tritanium),
+                    OreDictUnifier.get(gearSmall, Tritanium, 3),
+                    ELECTRIC_MOTOR_UV.getStackForm(2),
+                    ELECTRIC_PISTON_UV.stackForm,
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM, 2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 4),
+                    OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 12), Lubricant.getFluid(1000),
+                    Naquadria.getFluid(L * 4)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, Tritanium, 4)
+                .input(gear, Tritanium)
+                .input(gearSmall, Tritanium, 3)
+                .input(ELECTRIC_MOTOR_UV, 2)
+                .input(ELECTRIC_PISTON_UV)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV, 4)
+                .input(cableGtSingle, YttriumBariumCuprate, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 12))
+                .fluidInputs(Lubricant.getFluid(1000))
+                .fluidInputs(Naquadria.getFluid(L))
+                .output(ROBOT_ARM_UV)
+                .EUt(100_000) // ZPM
+                .duration(20 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(ROBOT_ARM_ZPM.stackForm)
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
         }
 
         private fun energyHatchesRecipes()
