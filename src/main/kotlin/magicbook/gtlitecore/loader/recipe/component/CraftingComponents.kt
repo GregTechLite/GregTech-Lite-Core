@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Lead
@@ -37,6 +38,8 @@ import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.springSmall
@@ -167,6 +170,18 @@ class CraftingComponents
 
         fun setCraftingComponents()
         {
+
+            // Normal Pipes.
+            CraftingComponent.PIPE_NORMAL.appendIngredients(sequenceOf(
+                9 to UnificationEntry(pipeNormalFluid, Duranium),
+                10 to UnificationEntry(pipeNormalFluid, Neutronium)
+            ).toMap())
+
+            // Large Pipes
+            CraftingComponent.PIPE_LARGE.appendIngredients(sequenceOf(
+                9 to UnificationEntry(pipeLargeFluid, Duranium),
+                10 to UnificationEntry(pipeLargeFluid, Neutronium)
+            ).toMap())
 
             // Voltage Coils.
             CraftingComponent.VOLTAGE_COIL.appendIngredients(sequenceOf(

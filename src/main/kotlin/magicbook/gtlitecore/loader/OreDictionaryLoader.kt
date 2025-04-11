@@ -12,8 +12,13 @@ import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Realgar
+import gregtech.api.unification.material.Materials.Rubber
+import gregtech.api.unification.material.Materials.SiliconeRubber
+import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.stack.ItemMaterialInfo
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.blocks.BlockGlassCasing
@@ -25,6 +30,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diaminosti
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.Mods
@@ -59,6 +66,27 @@ class OreDictionaryLoader
             OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_0", 14))
             OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getItem("gtlite_sapling_1"))
             OreDictionary.registerOre("treeSapling", Mods.GregTechLiteCore.getMetaItem("gtlite_sapling_1", 2))
+
+            // Let rubbers compatible with a fake tiered in recipes.
+            for (rubber in arrayOf(Rubber, StyreneButadieneRubber, SiliconeRubber,
+                PolyphosphonitrileFluoroRubber, PolytetramethyleneGlycolRubber))
+            {
+                OreDictionary.registerOre("plateAnyRubber", OreDictUnifier.get(plate, rubber))
+                OreDictionary.registerOre("ringAnyRubber", OreDictUnifier.get(ring, rubber))
+            }
+
+            for (rubber in arrayOf(StyreneButadieneRubber, SiliconeRubber,
+                PolyphosphonitrileFluoroRubber, PolytetramethyleneGlycolRubber))
+            {
+                OreDictionary.registerOre("plateAnySyntheticRubber", OreDictUnifier.get(plate, rubber))
+                OreDictionary.registerOre("ringAnySyntheticRubber", OreDictUnifier.get(ring, rubber))
+            }
+
+            for (rubber in arrayOf(PolyphosphonitrileFluoroRubber, PolytetramethyleneGlycolRubber))
+            {
+                OreDictionary.registerOre("plateAnyAdvancedSyntheticRubber", OreDictUnifier.get(plate, rubber))
+                OreDictionary.registerOre("ringAnyAdvancedSyntheticRubber", OreDictUnifier.get(ring, rubber))
+            }
 
             // sheetedFrame
             GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (m, b) ->

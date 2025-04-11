@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -429,13 +430,65 @@ class GTLiteUtility
             GTValues.MV -> Materials.Copper
             GTValues.HV -> Materials.Gold
             GTValues.EV -> Materials.Aluminium
-            GTValues.IV -> Materials.Platinum
+            GTValues.IV -> Materials.Tungsten
             GTValues.LuV -> Materials.NiobiumTitanium
             GTValues.ZPM -> Materials.VanadiumGallium
             GTValues.UV -> Materials.YttriumBariumCuprate
             GTValues.UHV -> Materials.Europium
             // TODO UEV-UXV
             else -> Materials.Water // TODO OpV Cable
+        }
+
+        @JvmStatic
+        fun getTieredMaterial1ByTier(tier: Int): Material = when (tier)
+        {
+            GTValues.ULV -> Materials.Bronze
+            GTValues.LV -> Materials.Steel
+            GTValues.MV -> Materials.Aluminium
+            GTValues.HV -> Materials.StainlessSteel
+            GTValues.EV -> Materials.Titanium
+            GTValues.IV -> Materials.TungstenSteel
+            GTValues.LuV -> Materials.RhodiumPlatedPalladium
+            GTValues.ZPM -> Materials.NaquadahAlloy
+            GTValues.UV -> Materials.Darmstadtium
+            GTValues.UHV -> Materials.Neutronium
+            // TODO UEV-UXV
+            else -> Materials.Water // TODO OpV Tiered Material
+        }
+
+        @JvmStatic
+        fun getTieredMaterial2ByTier(tier: Int): Material = when (tier)
+        {
+            GTValues.ULV -> Materials.WroughtIron
+            GTValues.LV -> Materials.Tin
+            GTValues.MV -> Materials.Bronze
+            GTValues.HV -> Materials.Steel
+            GTValues.EV -> Materials.StainlessSteel
+            GTValues.IV -> Materials.TungstenSteel
+            GTValues.LuV -> Materials.HSSS
+            GTValues.ZPM -> Materials.Osmiridium
+            GTValues.UV -> Materials.Tritanium
+            // GTValues.UHV -> GTLiteMaterials.Adamantium
+            // TODO UEV-UXV
+            else -> Materials.Water // TODO OpV Tiered Material 2
+        }
+
+        @JvmStatic
+        fun getPipeByTier(tier: Int): Material = when (tier)
+        {
+            GTValues.ULV -> Materials.Copper
+            GTValues.LV -> Materials.Bronze
+            GTValues.MV -> Materials.Steel
+            GTValues.HV -> Materials.StainlessSteel
+            GTValues.EV -> Materials.Titanium
+            GTValues.IV -> Materials.TungstenSteel
+            GTValues.LuV -> Materials.NiobiumTitanium
+            GTValues.ZPM -> Materials.Iridium
+            GTValues.UV -> Materials.Naquadah
+            GTValues.UHV -> Materials.Duranium
+            GTValues.UEV -> Materials.Neutronium
+            // TODO UIV-UXV
+            else -> Materials.Water // TODO OpV Pipe Material
         }
 
         /**

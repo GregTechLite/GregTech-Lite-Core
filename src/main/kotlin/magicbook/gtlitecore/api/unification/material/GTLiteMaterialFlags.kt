@@ -73,6 +73,7 @@ import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Trinium
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium235
@@ -267,6 +268,7 @@ class GTLiteMaterialFlags
             TinAlloy.addFlags(GENERATE_ROTOR)
             Aluminium.addFlags(GENERATE_ROTOR)
             Iridium.addFlags(GENERATE_ROTOR)
+            Tritanium.addFlags(GENERATE_ROTOR)
 
             // round
             Steel.addFlags(GENERATE_ROUND)
