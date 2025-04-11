@@ -6,16 +6,23 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VHA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Glycerol
@@ -24,10 +31,12 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nitrobenzene
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.SolderingAlloy
@@ -39,13 +48,17 @@ import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.FLUID_CELL_LARGE_STAINLESS_STEEL
+import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
@@ -72,15 +85,36 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BZ_REACTION_CHAMBER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_ASSEMBLY_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_COMPUTER_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_MAINFRAME_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCESSOR_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NONLINEAR_CHEMICAL_OSCILLATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTIMATE_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 
 /**
  * @see [magicbook.gtlitecore.loader.recipe.chain.BZMediumChain]
@@ -129,30 +163,6 @@ class GoowareCircuits
                     .cleanroom(CleanroomType.CLEANROOM)
                     .buildAndRegister()
             }
-
-            // BZ Reactor Chamber
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(FLUID_CELL_LARGE_STAINLESS_STEEL)
-                .input(plate, Naquadah, 4)
-                .input(plate, Ruridit, 2)
-                .input(bolt, Trinium, 12)
-                .input(stick, SamariumMagnetic)
-                .input(rotor, Iridium)
-                .input(ELECTRIC_MOTOR_LuV)
-                .fluidInputs(SolderingAlloy.getFluid(L))
-                .output(BZ_REACTION_CHAMBER)
-                .EUt(VA[UV].toLong())
-                .duration(30 * SECOND)
-                .buildAndRegister()
-
-            // Non-linear Chemical Oscillator
-            CANNER_RECIPES.recipeBuilder()
-                .input(BZ_REACTION_CHAMBER)
-                .fluidInputs(BZMedium.getFluid(500))
-                .output(NONLINEAR_CHEMICAL_OSCILLATOR)
-                .EUt(VA[IV].toLong())
-                .duration(3 * SECOND)
-                .buildAndRegister()
         }
 
         private fun smdRecipes()
@@ -295,11 +305,269 @@ class GoowareCircuits
 
         private fun circuitComponentsRecipes()
         {
+            // BZ Reaction Chamber
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(FLUID_CELL_LARGE_STAINLESS_STEEL)
+                .input(plate, Naquadah, 4)
+                .input(plate, Ruridit, 2)
+                .input(bolt, Trinium, 12)
+                .input(stick, SamariumMagnetic)
+                .input(rotor, Iridium)
+                .input(ELECTRIC_MOTOR_LuV)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(BZ_REACTION_CHAMBER)
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
 
+            // Non-linear Chemical Oscillator
+            CANNER_RECIPES.recipeBuilder()
+                .input(BZ_REACTION_CHAMBER)
+                .fluidInputs(BZMedium.getFluid(500))
+                .output(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .EUt(VA[IV].toLong())
+                .duration(3 * SECOND)
+                .buildAndRegister()
         }
 
         private fun circuitRecipes()
         {
+            // Gooware Processor
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+                .input(GOOWARE_SMD_CAPACITOR, 16)
+                .input(GOOWARE_SMD_TRANSISTOR, 16)
+                .input(wireFine, Europium, 8)
+                .output(GOOWARE_PROCESSOR_ZPM, 4)
+                .EUt(VHA[UV].toLong())
+                .duration(10 * SECOND)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+                .input(OPTICAL_SMD_CAPACITOR, 4)
+                .input(OPTICAL_SMD_TRANSISTOR, 4)
+                .input(wireFine, Europium, 8)
+                .output(GOOWARE_PROCESSOR_ZPM, 4)
+                .EUt(VHA[UV].toLong())
+                .duration(5 * SECOND)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+                .input(SPINTRONIC_SMD_CAPACITOR)
+                .input(SPINTRONIC_SMD_TRANSISTOR)
+                .input(wireFine, Europium, 8)
+                .output(GOOWARE_PROCESSOR_ZPM, 4)
+                .EUt(VHA[UV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(ULTRA_HIGHLY_ADVANCED_SOC_CHIP)
+                .input(wireFine, Europium, 8)
+                .input(bolt, Neutronium, 8)
+                .output(GOOWARE_PROCESSOR_ZPM, 8)
+                .EUt(VHA[UHV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .solderMultiplier(1)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Gooware Assembly
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 4)
+                .input(GOOWARE_SMD_INDUCTOR, 16)
+                .input(GOOWARE_SMD_CAPACITOR, 32)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireFine, Europium, 16)
+                .output(GOOWARE_ASSEMBLY_UV, 3)
+                .EUt(VHA[UV].toLong())
+                .duration(20 * SECOND)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 4)
+                .input(OPTICAL_SMD_INDUCTOR, 4)
+                .input(OPTICAL_SMD_CAPACITOR, 8)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireFine, Europium, 16)
+                .output(GOOWARE_ASSEMBLY_UV, 3)
+                .EUt(VHA[UV].toLong())
+                .duration(10 * SECOND)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 4)
+                .input(SPINTRONIC_SMD_INDUCTOR)
+                .input(SPINTRONIC_SMD_CAPACITOR, 2)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireFine, Europium, 16)
+                .output(GOOWARE_ASSEMBLY_UV, 3)
+                .EUt(VHA[UV].toLong())
+                .duration(5 * SECOND)
+                .solderMultiplier(2)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Gooware Supercomputer
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_ASSEMBLY_UV, 3)
+                .input(GOOWARE_SMD_DIODE, 8)
+                .input(NOR_MEMORY_CHIP, 16)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireFine, Europium, 16)
+                .input(foil, KaptonK, 32)
+                .input(plate, Americium, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
+                .output(GOOWARE_COMPUTER_UHV, 2)
+                .EUt(VA[UV].toLong())
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_ASSEMBLY_UV, 3)
+                .input(OPTICAL_SMD_DIODE, 2)
+                .input(NOR_MEMORY_CHIP, 16)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireFine, Europium, 16)
+                .input(foil, KaptonK, 32)
+                .input(plate, Americium, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
+                .output(GOOWARE_COMPUTER_UHV, 2)
+                .EUt(VA[UV].toLong())
+                .duration(20 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // Gooware Mainframe
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(GOOWARE_COMPUTER_UHV, 2)
+                .input(GOOWARE_SMD_DIODE, 64)
+                .input(GOOWARE_SMD_CAPACITOR, 64)
+                .input(GOOWARE_SMD_TRANSISTOR, 64)
+                .input(GOOWARE_SMD_RESISTOR, 64)
+                .input(GOOWARE_SMD_INDUCTOR, 64)
+                .input(foil, KaptonK, 64)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(plate, Americium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(KaptonE.getFluid(L * 16))
+                .output(GOOWARE_MAINFRAME_UEV)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(192)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(GOOWARE_COMPUTER_UHV, 2)
+                .input(OPTICAL_SMD_DIODE, 16)
+                .input(OPTICAL_SMD_CAPACITOR, 16)
+                .input(OPTICAL_SMD_TRANSISTOR, 16)
+                .input(OPTICAL_SMD_RESISTOR, 16)
+                .input(OPTICAL_SMD_INDUCTOR, 16)
+                .input(foil, KaptonK, 64)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(plate, Americium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(KaptonE.getFluid(L * 16))
+                .output(GOOWARE_MAINFRAME_UEV)
+                .EUt(VA[UHV].toLong())
+                .duration(45 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(192)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(GOOWARE_COMPUTER_UHV, 2)
+                .input(SPINTRONIC_SMD_DIODE, 4)
+                .input(SPINTRONIC_SMD_CAPACITOR, 4)
+                .input(SPINTRONIC_SMD_TRANSISTOR, 4)
+                .input(SPINTRONIC_SMD_RESISTOR, 4)
+                .input(SPINTRONIC_SMD_INDUCTOR, 4)
+                .input(foil, KaptonK, 64)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(plate, Americium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(KaptonE.getFluid(L * 16))
+                .output(GOOWARE_MAINFRAME_UEV)
+                .EUt(VA[UHV].toLong())
+                .duration(25 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(192)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(GOOWARE_COMPUTER_UHV, 2)
+                .input(COSMIC_SMD_DIODE)
+                .input(COSMIC_SMD_CAPACITOR)
+                .input(COSMIC_SMD_TRANSISTOR)
+                .input(COSMIC_SMD_RESISTOR)
+                .input(COSMIC_SMD_INDUCTOR)
+                .input(foil, KaptonK, 64)
+                .input(ADVANCED_RAM_CHIP, 32)
+                .input(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(plate, Americium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(KaptonE.getFluid(L * 16))
+                .output(GOOWARE_MAINFRAME_UEV)
+                .EUt(VA[UHV].toLong())
+                .duration(15 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(192)
+                }
+                .buildAndRegister()
 
         }
 

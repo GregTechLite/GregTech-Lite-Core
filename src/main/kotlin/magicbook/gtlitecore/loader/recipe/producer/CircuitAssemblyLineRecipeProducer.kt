@@ -7,6 +7,8 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
@@ -23,6 +25,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
@@ -136,7 +139,11 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_QUBIT_CPU_CHIP
@@ -148,6 +155,11 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_INDUC
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_UHASOC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ULTIMATE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_WETWARE_CIRCUIT_BOARD
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
@@ -922,6 +934,111 @@ class CircuitAssemblyLineRecipeProducer
             // Wetware Mainframe
 
             // T8: Gooware
+
+            // Gooware Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 16)
+                .input(WRAP_GOOWARE_SMD_TRANSISTOR, 16)
+                .input(wireGtQuadruple, Europium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(GOOWARE_PROCESSOR_ZPM, 64)
+                .EUt(VHA[UV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_OPTICAL_SMD_CAPACITOR, 4)
+                .input(WRAP_OPTICAL_SMD_TRANSISTOR, 4)
+                .input(wireGtQuadruple, Europium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(GOOWARE_PROCESSOR_ZPM, 64)
+                .EUt(VHA[UV].toLong())
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR)
+                .input(WRAP_SPINTRONIC_SMD_TRANSISTOR)
+                .input(wireGtQuadruple, Europium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(GOOWARE_PROCESSOR_ZPM, 64)
+                .EUt(VHA[UV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
+                .input(WRAP_UHASOC_CHIP)
+                .input(wireGtQuadruple, Europium, 8)
+                .input(bolt, Neutronium, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(GOOWARE_PROCESSOR_ZPM, 64)
+                .output(GOOWARE_PROCESSOR_ZPM, 64)
+                .EUt(VHA[UHV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+                .buildAndRegister()
+
+            // Gooware Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 64)
+                .input(WRAP_GOOWARE_SMD_INDUCTOR, 16)
+                .input(WRAP_GOOWARE_SMD_CAPACITOR, 32)
+                .input(WRAP_ARAM_CHIP, 32)
+                .input(wireGtQuadruple, Europium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(GOOWARE_ASSEMBLY_UV, 48)
+                .EUt(VHA[UV].toLong())
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 64)
+                .input(WRAP_OPTICAL_SMD_INDUCTOR, 4)
+                .input(WRAP_OPTICAL_SMD_CAPACITOR, 8)
+                .input(WRAP_ARAM_CHIP, 32)
+                .input(wireGtQuadruple, Europium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(GOOWARE_ASSEMBLY_UV, 48)
+                .EUt(VHA[UV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+                .input(GOOWARE_PROCESSOR_ZPM, 64)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 2)
+                .input(WRAP_ARAM_CHIP, 32)
+                .input(wireGtQuadruple, Europium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(GOOWARE_ASSEMBLY_UV, 48)
+                .EUt(VHA[UV].toLong())
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+                .buildAndRegister()
+
+            // Gooware Supercomputer
+
+            // Gooware Mainframe
+
 
             // T9: Optical
 

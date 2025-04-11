@@ -32,6 +32,10 @@ import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.property.CircuitPatternProperty
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIAMOND_MODULATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_ASSEMBLY_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_COMPUTER_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_MAINFRAME_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCESSOR_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer.Companion.getCircuit
@@ -86,6 +90,10 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(WETWARE_MAINFRAME_UHV))
 
             // T8: Gooware
+            CircuitPatternProperty.register(getCircuit(GOOWARE_PROCESSOR_ZPM))
+            CircuitPatternProperty.register(getCircuit(GOOWARE_ASSEMBLY_UV))
+            CircuitPatternProperty.register(getCircuit(GOOWARE_COMPUTER_UHV))
+            CircuitPatternProperty.register(getCircuit(GOOWARE_MAINFRAME_UEV))
 
             // T9: Optical
 

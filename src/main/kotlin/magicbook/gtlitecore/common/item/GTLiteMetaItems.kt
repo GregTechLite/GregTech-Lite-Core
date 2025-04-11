@@ -164,13 +164,13 @@ class GTLiteMetaItems
         lateinit var ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ENGRAVED_RUBY_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ENGRAVED_SAPPHIRE_CHIP: MetaItem<*>.MetaValueItem
-        lateinit var BZ_REACTION_CHAMBER: MetaItem<*>.MetaValueItem
-        lateinit var NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
 
         lateinit var DIAMOND_MODULATOR: MetaItem<*>.MetaValueItem
         lateinit var RUBY_MODULATOR: MetaItem<*>.MetaValueItem
         lateinit var SAPPHIRE_MODULATOR: MetaItem<*>.MetaValueItem
         lateinit var CRYSTAL_SOC_SOCKET: MetaItem<*>.MetaValueItem
+        lateinit var BZ_REACTION_CHAMBER: MetaItem<*>.MetaValueItem
+        lateinit var NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
 
         lateinit var NANO_PIC_WAFER: MetaItem<*>.MetaValueItem
         lateinit var NANO_PIC_CHIP: MetaItem<*>.MetaValueItem
@@ -268,6 +268,7 @@ class GTLiteMetaItems
         lateinit var WRAP_ARAM_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_ENGRAVED_LAPOTRON_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
@@ -773,6 +774,7 @@ class GTLiteMetaItems
             WRAP_CRYSTAL_CPU = GTLITE_ITEMS.addItem(3101, "wrap.crystal.central_processing_unit")
             WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")
             WRAP_NEURO_PROCESSOR = GTLITE_ITEMS.addItem(3103, "wrap.circuit.component.neuro_processor")
+            WRAP_NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(3104, "wrap.circuit.component.nonlinear_chemical_oscillator")
 
             // 5001-8000: Miscellaneous Materials.
             MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")
