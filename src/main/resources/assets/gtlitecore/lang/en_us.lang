@@ -2142,6 +2142,15 @@ gtlitecore.material.blue_phosphorus=Blue Phosphorus
 gtlitecore.material.phosphorus_trichloride=Phosphorus Trichloride
 gtlitecore.material.sodium_fluoride=Sodium Fluoride
 gtlitecore.material.sodium_trifluoroethanolate=Sodium Trifluoroethanolate
+gtlitecore.material.technetium_heptaoxide=Technetium Heptaoxide
+gtlitecore.material.trinium_trioxide=Trinium Trioxide
+gtlitecore.material.pertechnetate=Pertechnetate
+gtlitecore.material.ammonium_nitrate=Ammonium Nitrate
+gtlitecore.material.ammonium_pertechnetate=Ammonium Pertechnetate
+gtlitecore.material.technetium_dioxide=Technetium Dioxide
+gtlitecore.material.indium_phosphate=Indium Phosphate
+gtlitecore.material.gallium_trioxide=Gallium Trioxide
+gtlitecore.material.calcium_sulfide=Calcium Sulfide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2303,6 +2312,8 @@ gtlitecore.material.cupriavidus_necator=Cupriavidus Necator
 
 gtlitecore.material.methylamine_mixture=Methylamine Mixture
 gtlitecore.material.bz_medium=Belousov-Zhabotinsky Oscillation Reaction Medium
+gtlitecore.material.low_purity_enriched_naquadah_emulsion=Low Purity Enriched Naquadah Emulsion
+gtlitecore.material.low_purity_naquadria_emulsion=Low Purity Naquadria Emulsion
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

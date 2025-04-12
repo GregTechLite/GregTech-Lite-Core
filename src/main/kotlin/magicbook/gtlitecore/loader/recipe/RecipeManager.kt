@@ -67,12 +67,14 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.GermaniumZincProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.NaquadahProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PlatinumGroupProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.TechnetiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
@@ -154,6 +156,8 @@ class RecipeManager
             RareEarthProcessing.init()
             PlatinumGroupProcessing.init()
             GermaniumZincProcessing.init()
+            NaquadahProcessing.init()
+            TechnetiumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

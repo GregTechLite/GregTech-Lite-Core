@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
@@ -74,6 +75,7 @@ import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Obsidian
 import gregtech.api.unification.material.Materials.Olivine
@@ -118,11 +120,13 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.UUMatter
@@ -1681,6 +1685,82 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 2160 Technetium Heptaoxide
+        @JvmField
+        val TechnetiumHeptaoxide: Material = Material.Builder(2160, gtliteId("technetium_heptaoxide"))
+            .dust()
+            .color(0xFCE9A4).iconSet(SHINY)
+            .components(Technetium, 2, Oxygen, 7)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2161 Trinium Trioxide
+        @JvmField
+        val TriniumTrioxide: Material = Material.Builder(2161, gtliteId("trinium_trioxide"))
+            .dust()
+            .color(0xC037C5).iconSet(METALLIC)
+            .components(Trinium, 2, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2162 Pertechnetate
+        @JvmField
+        val Pertechnetate: Material = Material.Builder(2162, gtliteId("pertechnetate"))
+            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            .color(0xCC3300)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2163 Ammonium Nitrate
+        @JvmField
+        val AmmoniumNitrate: Material = Material.Builder(2163, gtliteId("ammonium_nitrate"))
+            .dust()
+            .color(0xA59ED7).iconSet(METALLIC)
+            .components(Ammonia, 1, NitricAcid, 1)
+            .build()
+            .setFormula("NH4NO3", true)
+
+        // 2164 Ammonium Pertechnetate
+        @JvmField
+        val AmmoniumPertechnetate: Material = Material.Builder(2164, gtliteId("ammonium_pertechnetate"))
+            .dust()
+            .color(0x996666).iconSet(ROUGH)
+            .components(Nitrogen, 1, Hydrogen, 4, Technetium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2165 Technetium Dioxide
+        @JvmField
+        val TechnetiumDioxide: Material = Material.Builder(2165, gtliteId("technetium_dioxide"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Technetium, 1, Oxygen, 2)
+            .build()
+
+        // 2166 Indium Phosphate
+        @JvmField
+        val IndiumPhosphate: Material = Material.Builder(2166, gtliteId("indium_phosphate"))
+            .dust()
+            .color(0x2B2E70).iconSet(SHINY)
+            .components(Indium, 1, Phosphorus, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2167 Gallium Trioxide
+        @JvmField
+        val GalliumTrioxide: Material = Material.Builder(2167, gtliteId("gallium_trioxide"))
+            .dust()
+            .color(0xE4CDFF).iconSet(METALLIC)
+            .components(Gallium, 1, Oxygen, 3)
+            .build()
+
+        // 2168 Calcium Sulfide
+        val CalciumSulfide: Material = Material.Builder(2168, gtliteId("calcium_sulfide"))
+            .dust()
+            .color(0xF9F9F9).iconSet(METALLIC)
+            .components(Calcium, 1, Sulfur, 1)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -3161,6 +3241,21 @@ class GTLiteMaterials
         val BZMedium: Material = Material.Builder(12132, gtliteId("bz_medium"))
             .liquid()
             .color(0xA2FD35)
+            .build()
+
+        // 12133 Low Purity Enriched Naquadah Emulsion
+        @JvmField
+        val LowPurityEnrichedNaquadahEmulsion: Material = Material.Builder(12133, gtliteId("low_purity_enriched_naquadah_emulsion"))
+            .liquid()
+            .color(0x4C4C4C).iconSet(DULL)
+            .build()
+
+        // 12134 Low Purity Naquadria Emulsion
+        @JvmField
+        val LowPurityNaquadriaEmulsion: Material = Material.Builder(12134, gtliteId("low_purity_naquadria_emulsion"))
+            .liquid()
+            .color(0x393939)
+            .iconSet(DULL)
             .build()
 
     }

@@ -2147,18 +2147,15 @@ gtlitecore.material.blue_phosphorus=蓝磷
 gtlitecore.material.phosphorus_trichloride=三氯化磷
 gtlitecore.material.sodium_fluoride=氟化钠
 gtlitecore.material.sodium_trifluoroethanolate=三氟乙醇钠
-gtlitecore.material.fluorobenzene=氟苯
-gtlitecore.material.octafluoro_pentanol=八氟戊醇
-gtlitecore.material.raw_polyphosphonitrile_fluoro_rubber=生聚膦腈氟橡胶
-gtlitecore.material.polyphosphonitrile_fluoro_rubber=聚膦腈氟橡胶（PPF）
-gtlitecore.material.polytetrahydrofuran=聚四氢呋喃（PTHF）
-gtlitecore.material.dinitrotoluene=二硝基甲苯
-gtlitecore.material.diaminotoluene=二氨基甲苯
-gtlitecore.material.phosgene=光气
-gtlitecore.material.toluene_diisocyanate=甲苯二异氰酸酯
-gtlitecore.material.toluene_tetramethyl_diisocyanate=甲苯四甲基二异氰酸酯
-gtlitecore.material.raw_polytetramethylene_glycol_rubber=生聚四氢呋喃二醇橡胶
-gtlitecore.material.polytetramethylene_glycol_rubber=聚四氢呋喃二醇橡胶（PTMEG）
+gtlitecore.material.technetium_heptaoxide=七氧化二锝
+gtlitecore.material.trinium_trioxide=三氧化三元
+gtlitecore.material.pertechnetate=高锝酸
+gtlitecore.material.ammonium_nitrate=硝酸铵
+gtlitecore.material.ammonium_pertechnetate=高锝酸铵
+gtlitecore.material.technetium_dioxide=二氧化锝
+gtlitecore.material.indium_phosphate=磷酸铟
+gtlitecore.material.gallium_trioxide=三氧化镓
+gtlitecore.material.calcium_sulfide=硫化钙
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2270,6 +2267,18 @@ gtlitecore.material.chloroacetic_acid=氯乙酸
 gtlitecore.material.malonic_acid=丙二酸
 gtlitecore.material.phosphoryl_chloride=磷酰氯
 gtlitecore.material.phosphonitrilic_chloride_trimer=六氯环三磷腈
+gtlitecore.material.fluorobenzene=氟苯
+gtlitecore.material.octafluoro_pentanol=八氟戊醇
+gtlitecore.material.raw_polyphosphonitrile_fluoro_rubber=生聚膦腈氟橡胶
+gtlitecore.material.polyphosphonitrile_fluoro_rubber=聚膦腈氟橡胶（PPF）
+gtlitecore.material.polytetrahydrofuran=聚四氢呋喃（PTHF）
+gtlitecore.material.dinitrotoluene=二硝基甲苯
+gtlitecore.material.diaminotoluene=二氨基甲苯
+gtlitecore.material.phosgene=光气
+gtlitecore.material.toluene_diisocyanate=甲苯二异氰酸酯
+gtlitecore.material.toluene_tetramethyl_diisocyanate=甲苯四甲基二异氰酸酯
+gtlitecore.material.raw_polytetramethylene_glycol_rubber=生聚四氢呋喃二醇橡胶
+gtlitecore.material.polytetramethylene_glycol_rubber=聚四氢呋喃二醇橡胶（PTMEG）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2307,6 +2316,8 @@ gtlitecore.material.cupriavidus_necator=贪铜钩虫菌
 
 gtlitecore.material.methylamine_mixture=甲胺混合物
 gtlitecore.material.bz_medium=别洛索夫-扎鲍京斯基振荡反应液
+gtlitecore.material.low_purity_enriched_naquadah_emulsion=低纯富集硅岩乳液
+gtlitecore.material.low_purity_naquadria_emulsion=低纯超能硅岩乳液
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球
