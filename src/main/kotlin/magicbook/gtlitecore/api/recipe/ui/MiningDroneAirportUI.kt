@@ -17,16 +17,14 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
 
     init
     {
-        this.setItemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
-        this.setItemSlotOverlay(GTLiteGuiTextures.RAW_ORE_OVERLAY, true)
-        this.setFluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
+
     }
 
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
-        val builder = ModularUI.Builder(GuiTextures.BACKGROUND, 176, 203)
-            .widget(RecipeProgressWidget(200, 74 - 18 * 3 + 9, 45 - 18 - 6 - 2 - 2, 66, 66 + 10, GTLiteGuiTextures.PROGRESS_BAR_MINING_DRONE, progressBarMoveType(), recipeMap()))
+        val builder = ModularUI.Builder(GuiTextures.BACKGROUND, 176, 156)
+            .widget(RecipeProgressWidget(200, 18 + 27, 0 + 4, 34, 63, GTLiteGuiTextures.PROGRESS_BAR_MINING_DRONE, progressBarMoveType(), recipeMap()))
         this.addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         this.addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
@@ -37,28 +35,35 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
                                        isOutputs: Boolean, yOffset: Int)
     {
 
-        val startOutputsX = 176 / 2 - 18
-        val startOutputsY = 9
-        if (isOutputs)
+        if (!isOutputs)
         {
-            for (i in 0 .. 4) // Height.
+            // Item input slots (2x2) for mining drones, int circuits and other items
+            // if needed (these slots are not needed often).
+            for (i in 0 .. 1) // Height
             {
-                for (j in 0 .. 4) // Width.
+                for (j in 0 .. 1) // Weight
                 {
-                    val slotIndex = i * 5 + j
-                    this.addSlot(builder, startOutputsX + 18 * j, startOutputsY + 18 * i,
-                        slotIndex, itemHandler, fluidHandler, false, true)
+                    val slotIndex = i * 2 + j
+                    this.addSlot(builder, j * 18 + 9, i * 18, slotIndex, itemHandler, fluidHandler, false, false)
                 }
             }
+            // Fluid input slots for rocket fuels import (and some booster).
+            this.addSlot(builder, 9, 45 + 9, 0, itemHandler, fluidHandler, true, false)
+            this.addSlot(builder, 9 + 18, 45 + 9, 1, itemHandler, fluidHandler, true, false)
+
         }
         else
         {
-            val startInputsX = 14 - 8
-            val startInputsY = startOutputsY + 18 * 2
+            // Item output slots (4x4) for all ores which will be exports.
+            for (i in 0 .. 3) // Height
+            {
+                for (j in 0 .. 3) // Weight
+                {
+                    val slotIndex = i * 4 + j
+                    this.addSlot(builder, 79 + j * 18, i * 18, slotIndex, itemHandler, fluidHandler, false, true)
+                }
+            }
 
-            this.addSlot(builder, startInputsX, startInputsY, 0, itemHandler, fluidHandler, false, false)
-            this.addSlot(builder, startInputsX + 18, startInputsY, 1, itemHandler, fluidHandler, false, false)
-            this.addSlot(builder, startInputsX, startInputsY + 18, 0, itemHandler, fluidHandler, true, false)
         }
 
     }

@@ -609,9 +609,9 @@ class GTLiteRecipeMaps
         @get:JvmName("MINING_DRONE_RECIPES")
         val MINING_DRONE_RECIPES = RecipeMapBuilder("mining_drone_airport", SimpleRecipeBuilder())
             .ui { MiningDroneAirportUI(it) }
-            .itemInputs(2)
-            .itemOutputs(25)
-            .fluidInputs(1)
+            .itemInputs(4)
+            .itemOutputs(16)
+            .fluidInputs(2)
             .sound(GTSoundEvents.COMPRESSOR)
             .build()
 
