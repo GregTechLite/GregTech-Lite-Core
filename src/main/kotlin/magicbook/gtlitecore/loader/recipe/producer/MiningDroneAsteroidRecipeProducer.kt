@@ -18,15 +18,20 @@ import gregtech.api.unification.material.Materials.CassiteriteSand
 import gregtech.api.unification.material.Materials.CetaneBoostedDiesel
 import gregtech.api.unification.material.Materials.Chalcopyrite
 import gregtech.api.unification.material.Materials.Coal
+import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.Cobaltite
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Diesel
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Galena
+import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Gasoline
+import gregtech.api.unification.material.Materials.GlauconiteSand
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.GraniticMineralSand
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.HeavyFuel
 import gregtech.api.unification.material.Materials.HighOctaneGasoline
 import gregtech.api.unification.material.Materials.Iron
@@ -37,15 +42,23 @@ import gregtech.api.unification.material.Materials.LightFuel
 import gregtech.api.unification.material.Materials.Magnetite
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Mica
+import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Pollucite
 import gregtech.api.unification.material.Materials.Pyrite
+import gregtech.api.unification.material.Materials.Pyrochlore
+import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.RocketFuel
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Soapstone
+import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.Spodumene
+import gregtech.api.unification.material.Materials.Talc
+import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Trona
 import gregtech.api.unification.material.Materials.VanadiumMagnetite
@@ -56,11 +69,15 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MINING_DRONE_R
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Augite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cuprite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DenseHydrazineRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kaolinite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylhydrazineNitrateRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RP1RocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -76,24 +93,62 @@ class MiningDroneAsteroidRecipeProducer
 
     companion object
     {
+        // LV-HV
+        private var fuelBasic = arrayOf(
+            LightFuel.getFluid(16000), HeavyFuel.getFluid(14000),
+            Diesel.getFluid(12000), BioDiesel.getFluid(12000),
+            Gasoline.getFluid(10000),
+            CetaneBoostedDiesel.getFluid(8000),
+            HighOctaneGasoline.getFluid(6000), RocketFuel.getFluid(6000), RP1RocketFuel.getFluid(6000),
+            DenseHydrazineRocketFuel.getFluid(2000), MethylhydrazineNitrateRocketFuel.getFluid(2000))
+        // MV-EV
+        private var fuelAdvanced = arrayOf( // +8000
+            // LightFuel.getFluid(24000), HeavyFuel.getFluid(22000),
+            Diesel.getFluid(20000), BioDiesel.getFluid(20000),
+            Gasoline.getFluid(18000),
+            CetaneBoostedDiesel.getFluid(16000),
+            HighOctaneGasoline.getFluid(14000), RocketFuel.getFluid(14000), RP1RocketFuel.getFluid(14000),
+            DenseHydrazineRocketFuel.getFluid(10000), MethylhydrazineNitrateRocketFuel.getFluid(10000))
+        // HV-IV
+        private var fuelElite = arrayOf( // +8000
+            // LightFuel.getFluid(32000), HeavyFuel.getFluid(30000),
+            // Diesel.getFluid(28000), BioDiesel.getFluid(28000),
+            Gasoline.getFluid(26000),
+            CetaneBoostedDiesel.getFluid(24000),
+            HighOctaneGasoline.getFluid(22000), RocketFuel.getFluid(22000), RP1RocketFuel.getFluid(22000),
+            DenseHydrazineRocketFuel.getFluid(18000), MethylhydrazineNitrateRocketFuel.getFluid(18000))
 
-        // TT is the rank tier, T is the recipe tier for all asteroids.
-        fun produce() {
+        // EV-LuV
+        private var fuelUltimate = arrayOf( // +8000
+            // LightFuel.getFluid(40000), HeavyFuel.getFluid(38000),
+            // Diesel.getFluid(36000), BioDiesel.getFluid(36000),
+            // Gasoline.getFluid(34000),
+            CetaneBoostedDiesel.getFluid(32000),
+            HighOctaneGasoline.getFluid(30000), RocketFuel.getFluid(30000), RP1RocketFuel.getFluid(30000),
+            DenseHydrazineRocketFuel.getFluid(26000), MethylhydrazineNitrateRocketFuel.getFluid(26000))
 
-            // TT1 Asteroids (LV-HV)
-            for (fuel in arrayOf(
-                LightFuel.getFluid(16000),
-                HeavyFuel.getFluid(14000),
-                Diesel.getFluid(12000),
-                BioDiesel.getFluid(12000),
-                Gasoline.getFluid(10000),
-                CetaneBoostedDiesel.getFluid(8000),
-                HighOctaneGasoline.getFluid(6000),
-                RocketFuel.getFluid(6000),
-                // RP1RocketFuel.getFluid(6000),
-                // DenseHydrazineRocketFuel.getFluid(2000),
-                // MethylhydrazineNitrateRocketFuel.getFluid(2000)
-            ))
+        // IV-ZPM
+        private var fuelEpic = arrayOf( // +8000
+            // LightFuel.getFluid(48000), HeavyFuel.getFluid(46000),
+            // Diesel.getFluid(44000), BioDiesel.getFluid(44000),
+            // Gasoline.getFluid(42000),
+            // CetaneBoostedDiesel.getFluid(40000),
+            HighOctaneGasoline.getFluid(38000), RocketFuel.getFluid(38000), RP1RocketFuel.getFluid(38000),
+            DenseHydrazineRocketFuel.getFluid(32000), MethylhydrazineNitrateRocketFuel.getFluid(32000))
+
+        // LuV-UV
+        private var fuelLegendary = arrayOf( // +8000
+            // LightFuel.getFluid(56000), HeavyFuel.getFluid(54000),
+            // Diesel.getFluid(52000), BioDiesel.getFluid(52000),
+            // Gasoline.getFluid(50000),
+            // CetaneBoostedDiesel.getFluid(48000),
+            // HighOctaneGasoline.getFluid(46000), RocketFuel.getFluid(46000), RP1RocketFuel.getFluid(46000),
+            DenseHydrazineRocketFuel.getFluid(40000), MethylhydrazineNitrateRocketFuel.getFluid(40000))
+
+        fun produce()
+        {
+            // Basic Asteroids/Virtual Veins (LV-HV)
+            for (fuel in fuelBasic)
             {
                 // T1: Carbon Group Asteroid (Coal-Lignite-Graphite-Diamond)
                 MINING_DRONE_RECIPES.recipeBuilder()
@@ -235,7 +290,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Copper Asteroid 1 (Copper-Chalcopyrite-Malachite)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(4)
@@ -276,7 +330,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Copper Asteroid 2 (Cuprite-Azurite-Tenorite)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(5)
@@ -317,7 +370,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Tin Asteroid (Cassiterite-CassiteriteSand-Tin-Zeolite-Realgar)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(6)
@@ -365,7 +417,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Salt Asteroid (Salt-RockSalt-Saltpeter-Lepidolite-Spodumene)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(7)
@@ -417,7 +468,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Lead Asteroid (Lead-Galena-Silver-Antimony)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(8)
@@ -459,23 +509,11 @@ class MiningDroneAsteroidRecipeProducer
                     .EUt(VA[HV].toLong())
                     .duration(30 * SECOND)
                     .buildAndRegister()
-
             }
 
-            // TT2 Asteroids (MV-EV)
-            for (fuel in arrayOf(
-                // LightFuel.getFluid(24000),
-                // HeavyFuel.getFluid(22000),
-                Diesel.getFluid(20000),
-                BioDiesel.getFluid(20000),
-                Gasoline.getFluid(18000),
-                CetaneBoostedDiesel.getFluid(16000),
-                HighOctaneGasoline.getFluid(14000),
-                RocketFuel.getFluid(14000),
-                // RP1RocketFuel.getFluid(14000),
-                // DenseHydrazineRocketFuel.getFluid(10000),
-                // MethylhydrazineNitrateRocketFuel.getFluid(10000)
-            ))
+            // =========================================================================================================
+            // Advanced Asteroids/Virtual Veins (MV-EV)
+            for (fuel in fuelAdvanced)
             {
                 // T1: Mica Asteroid (Mica-Kyanite-Bauxite-Pollucite-Muscovite-Phlogopite-Biotite)
                 MINING_DRONE_RECIPES.recipeBuilder()
@@ -528,7 +566,6 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
-
                 // T1: Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
                 MINING_DRONE_RECIPES.recipeBuilder()
                     .circuitMeta(10)
@@ -560,7 +597,7 @@ class MiningDroneAsteroidRecipeProducer
                     .chancedOutput(ore, Wollastonite, 12, 2900, 0)
                     .chancedOutput(ore, Trona, 8, 2400, 0)
                     .EUt(VA[HV].toLong())
-                    .duration(2 * MINUTE)
+                    .duration(1 * MINUTE)
                     .buildAndRegister()
 
                 // T3: Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
@@ -585,20 +622,111 @@ class MiningDroneAsteroidRecipeProducer
                     .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
+                // T1: Nickel-Cobalt Asteroid (Nickel-Garnierite-Cobalt-Cobaltite-Pyrite-Pentlandite-Soapstone-Talc-GlauconiteSand)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(11)
+                    .notConsumable(MINING_DRONE_MV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Nickel, 25, 7500, 0)
+                    .chancedOutput(ore, Garnierite, 22, 6800, 0)
+                    .chancedOutput(ore, Cobalt, 18, 6400, 0)
+                    .chancedOutput(ore, Cobaltite, 15, 5000, 0)
+                    .chancedOutput(ore, Pyrite, 12, 4300, 0)
+                    .chancedOutput(ore, Pentlandite, 10, 3600, 0)
+                    .chancedOutput(ore, Soapstone, 8, 2700, 0)
+                    .chancedOutput(ore, Talc, 6, 1900, 0)
+                    .chancedOutput(ore, GlauconiteSand, 4, 800, 0)
+                    .EUt(VA[MV].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
 
-                // T1: Nickel-Cobalt Asteroid
+                // T2: Nickel-Cobalt Asteroid (Nickel-Garnierite-Cobalt-Cobaltite-Pyrite-Pentlandite-Soapstone-Talc-GlauconiteSand)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(11)
+                    .notConsumable(MINING_DRONE_HV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Nickel, 52, 8600, 0)
+                    .chancedOutput(ore, Garnierite, 48, 7800, 0)
+                    .chancedOutput(ore, Cobalt, 36, 7200, 0)
+                    .chancedOutput(ore, Cobaltite, 32, 6500, 0)
+                    .chancedOutput(ore, Pyrite, 28, 5400, 0)
+                    .chancedOutput(ore, Pentlandite, 24, 4800, 0)
+                    .chancedOutput(ore, Soapstone, 18, 4000, 0)
+                    .chancedOutput(ore, Talc, 12, 3600, 0)
+                    .chancedOutput(ore, GlauconiteSand, 8, 2700, 0)
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
 
-                // T2: Nickel-Cobalt Asteroid
-
-                // T3: Nickel-Cobalt Asteroid
+                // T3: Nickel-Cobalt Asteroid (Nickel-Garnierite-Cobalt-Cobaltite-Pyrite-Pentlandite-Soapstone-Talc-GlauconiteSand)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(11)
+                    .notConsumable(MINING_DRONE_EV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Nickel, 64, 9000, 0)
+                    .chancedOutput(ore, Nickel, 52, 9000, 0)
+                    .chancedOutput(ore, Garnierite, 64, 8500, 0)
+                    .chancedOutput(ore, Garnierite, 48, 8500, 0)
+                    .chancedOutput(ore, Cobalt, 64, 8000, 0)
+                    .chancedOutput(ore, Cobalt, 36, 8000, 0)
+                    .chancedOutput(ore, Cobaltite, 64, 7400, 0)
+                    .chancedOutput(ore, Cobaltite, 24, 7400, 0)
+                    .chancedOutput(ore, Pyrite, 64, 6400, 0)
+                    .chancedOutput(ore, Pentlandite, 48, 5600, 0)
+                    .chancedOutput(ore, Soapstone, 36, 4800, 0)
+                    .chancedOutput(ore, Talc, 24, 3700, 0)
+                    .chancedOutput(ore, GlauconiteSand, 18, 3200, 0)
+                    .EUt(VA[EV].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
+                // T1: Manganese-Tantalum Asteroid (Pyrolusite-Tantalite-Pyrochlore-Grossular-Spessartine-Forsterite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(12)
+                    .notConsumable(MINING_DRONE_MV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Pyrolusite, 25, 6700, 0)
+                    .chancedOutput(ore, Tantalite, 22, 5400, 0)
+                    .chancedOutput(ore, Pyrochlore, 18, 4300, 0)
+                    .chancedOutput(ore, Grossular, 12, 3500, 0)
+                    .chancedOutput(ore, Spessartine, 8, 2200, 0)
+                    .chancedOutput(ore, Forsterite, 4, 1000, 0)
+                    .EUt(VA[MV].toLong())
+                    .duration(2 * MINUTE)
+                    .buildAndRegister()
 
-                // T1: Manganese-Tantalum Asteroid
+                // T2: Manganese-Tantalum Asteroid (Pyrolusite-Tantalite-Pyrochlore-Grossular-Spessartine-Forsterite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(12)
+                    .notConsumable(MINING_DRONE_HV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Pyrolusite, 48, 8000, 0)
+                    .chancedOutput(ore, Tantalite, 36, 7400, 0)
+                    .chancedOutput(ore, Pyrochlore, 32, 6500, 0)
+                    .chancedOutput(ore, Grossular, 24, 5000, 0)
+                    .chancedOutput(ore, Spessartine, 16, 4100, 0)
+                    .chancedOutput(ore, Forsterite, 8, 2900, 0)
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
 
-                // T2: Manganese-Tantalum Asteroid
-
-                // T3: Manganese-Tantalum Asteroid
+                // T3: Manganese-Tantalum Asteroid (Pyrolusite-Tantalite-Pyrochlore-Grossular-Spessartine-Forsterite)
+                MINING_DRONE_RECIPES.recipeBuilder()
+                    .circuitMeta(12)
+                    .notConsumable(MINING_DRONE_EV)
+                    .fluidInputs(fuel)
+                    .chancedOutput(ore, Pyrolusite, 64, 9000, 0)
+                    .chancedOutput(ore, Pyrolusite, 48, 9000, 0)
+                    .chancedOutput(ore, Tantalite, 64, 8500, 0)
+                    .chancedOutput(ore, Tantalite, 32, 8500, 0)
+                    .chancedOutput(ore, Pyrochlore, 64, 7600, 0)
+                    .chancedOutput(ore, Grossular, 48, 6600, 0)
+                    .chancedOutput(ore, Spessartine, 32, 5400, 0)
+                    .chancedOutput(ore, Forsterite, 24, 4800, 0)
+                    .EUt(VA[EV].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
 
                 // -----------------------------------------------------------------------------------------------------
 
@@ -634,28 +762,26 @@ class MiningDroneAsteroidRecipeProducer
 
             }
 
-            // TT3 Asteroids (HV-IV)
-            for (fuel in arrayOf(
-                // LightFuel.getFluid(32000),
-                // HeavyFuel.getFluid(30000),
-                // Diesel.getFluid(28000),
-                // BioDiesel.getFluid(28000),
-                // Gasoline.getFluid(26000),
-                CetaneBoostedDiesel.getFluid(24000),
-                HighOctaneGasoline.getFluid(22000),
-                RocketFuel.getFluid(22000),
-                // RP1RocketFuel.getFluid(22000),
-                // DenseHydrazineRocketFuel.getFluid(18000),
-                // MethylhydrazineNitrateRocketFuel.getFluid(18000)
-            ))
+            // Elite Asteroids (HV-IV)
+            for (fuel in fuelElite)
             {
-                // T1: Molybdenum
+                // T1: Molybdenum Asteroid
 
-                // T1: Titanium
+                // T2: Molybdenum Asteroid
 
-                // T1: Tungsten
+                // T3: Molybdenum Asteroid
 
-                // T1: Zirconium
+                // -----------------------------------------------------------------------------------------------------
+                // T1: Titanium Asteroid
+
+                // T2: Titanium Asteroid
+
+                // T3: Titanium Asteroid
+
+                // -----------------------------------------------------------------------------------------------------
+                // T1: Tungsten Asteroid
+
+                // T1: Zirconium Asteroid
             }
 
             // TT4 Asteroids (EV-LuV)

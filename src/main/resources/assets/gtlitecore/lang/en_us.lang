@@ -2151,6 +2151,7 @@ gtlitecore.material.technetium_dioxide=Technetium Dioxide
 gtlitecore.material.indium_phosphate=Indium Phosphate
 gtlitecore.material.gallium_trioxide=Gallium Trioxide
 gtlitecore.material.calcium_sulfide=Calcium Sulfide
+gtlitecore.material.rp_1_rocket_fuel=RP-1 Rocket Fuel
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2275,6 +2276,9 @@ gtlitecore.material.toluene_diisocyanate=Toluene Diisocyanate
 gtlitecore.material.toluene_tetramethyl_diisocyanate=Toluene Tetramethyl Diisocyanate
 gtlitecore.material.raw_polytetramethylene_glycol_rubber=Raw Polytetramethylene Glycol Rubber
 gtlitecore.material.polytetramethylene_glycol_rubber=Polytetramethylene Glycol Rubber (PTMEG)
+gtlitecore.material.dense_hydrazine_rocket_fuel=Dense Hydrazine Rocket Fuel
+gtlitecore.material.methylhydrazine=Methylhydrazine
+gtlitecore.material.methylhydrazine_nitrate_rocket_fuel=Methylhydrazine Nitrate Rocket Fuel
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

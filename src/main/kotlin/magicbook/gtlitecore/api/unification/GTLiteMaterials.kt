@@ -36,9 +36,11 @@ import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.CoalTar
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.Dimethylhydrazine
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
@@ -70,6 +72,7 @@ import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesite
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
@@ -123,6 +126,7 @@ import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
+import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
@@ -1755,10 +1759,20 @@ class GTLiteMaterials
             .build()
 
         // 2168 Calcium Sulfide
+        @JvmField
         val CalciumSulfide: Material = Material.Builder(2168, gtliteId("calcium_sulfide"))
             .dust()
             .color(0xF9F9F9).iconSet(METALLIC)
             .components(Calcium, 1, Sulfur, 1)
+            .build()
+
+        // 2169 RP-1 Rocket Fuel
+        @JvmField
+        val RP1RocketFuel: Material = Material.Builder(2169, gtliteId("rp_1_rocket_fuel"))
+            .liquid()
+            .color(0xFB2A08)
+            .components(CoalTar, 1, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
 
         // =======================================================================
@@ -3004,6 +3018,32 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
             .build()
             .setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+
+        // 8077 Dense Hydrazine Rocket Fuel
+        @JvmField
+        val DenseHydrazineRocketFuel: Material = Material.Builder(8077, gtliteId("dense_hydrazine_rocket_fuel"))
+            .liquid()
+            .color(0x912565)
+            .components(Dimethylhydrazine, 1, Methanol, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8078 Methylhydrazine
+        @JvmField
+        val Methylhydrazine: Material = Material.Builder(8078, gtliteId("methylhydrazine"))
+            .liquid()
+            .color(0x321452)
+            .components(Carbon, 1, Hydrogen, 6, Nitrogen, 2)
+            .build()
+
+        // 8079 Methylhydrazine Nitrate Rocket Fuel
+        @JvmField
+        val MethylhydrazineNitrateRocketFuel: Material = Material.Builder(8079, gtliteId("methylhydrazine_nitrate_rocket_fuel"))
+            .liquid()
+            .color(0x607186)
+            .components(Methylhydrazine, 1, Tetranitromethane, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials

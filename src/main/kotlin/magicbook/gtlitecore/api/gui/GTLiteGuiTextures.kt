@@ -56,10 +56,6 @@ class GTLiteGuiTextures
             "textures/gui/overlay/disk_overlay.png")
 
         @JvmField
-        val RAW_ORE_OVERLAY: TextureArea = TextureArea.fullImage(
-            "textures/gui/overlay/raw_ore_overlay.png")
-
-        @JvmField
         val NANOSCALE_OVERLAY_1: TextureArea = TextureArea.fullImage(
             "textures/gui/overlay/nanoscale_overlay_1.png")
 

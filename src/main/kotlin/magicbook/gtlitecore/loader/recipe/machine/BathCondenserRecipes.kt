@@ -52,7 +52,7 @@ class BathCondenserRecipes
                 .circuitMeta(1)
                 .fluidInputs(Oxygen.getFluid(100))
                 .fluidOutputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 100))
-                .EUt(VA[EV].toLong())
+                .EUt(VA[MV].toLong())
                 .duration(4 * SECOND)
                 .buildAndRegister()
 
