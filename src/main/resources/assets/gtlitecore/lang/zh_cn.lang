@@ -2175,6 +2175,7 @@ gtlitecore.material.calcium_sulfide=硫化钙
 gtlitecore.material.rp_1_rocket_fuel=RP-1火箭燃料
 gtlitecore.material.bismuth_trioxide=三氧化二铋
 gtlitecore.material.bismuth_strontium_calcium_cuprate=铋锶钙铜氧（BSCCO）
+gtlitecore.material.bedrockium=基岩
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2220,7 +2221,6 @@ gtlitecore.material.tectonic_petrotheum=板块之层岩
 gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
-gtlitecore.material.bedrockium=基岩
 
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷

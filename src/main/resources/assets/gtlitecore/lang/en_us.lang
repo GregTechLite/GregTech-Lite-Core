@@ -2170,6 +2170,7 @@ gtlitecore.material.calcium_sulfide=Calcium Sulfide
 gtlitecore.material.rp_1_rocket_fuel=RP-1 Rocket Fuel
 gtlitecore.material.bismuth_trioxide=Bismuth Trioxide
 gtlitecore.material.bismuth_strontium_calcium_cuprate=Bismuth Strontium Calcium Copper Oxides (BSCCO)
+gtlitecore.material.bedrockium=Bedrockium
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2215,7 +2216,6 @@ gtlitecore.material.tectonic_petrotheum=Tectonic Petrotheum
 gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
-gtlitecore.material.bedrockium=Bedrockium
 
 gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane

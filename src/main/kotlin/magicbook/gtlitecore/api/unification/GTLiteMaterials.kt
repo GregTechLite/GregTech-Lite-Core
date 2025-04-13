@@ -1810,6 +1810,20 @@ class GTLiteMaterials
             .build()
             .setFormula("Bi2Sr2CaCu2O8", true)
 
+        // 2172 Bedrockium
+        @JvmField
+        val Bedrockium: Material = Material.Builder(2172, gtliteId("bedrockium"))
+            .ingot()
+            .iconSet(BEDROCKIUM)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+            .blast { b ->
+                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
+                    .blastStats(VA[ZPM], 50 * SECOND)
+                    .vacuumStats(VA[LuV], 25 * SECOND)
+            }
+            .cableProperties(V[UHV], 2, 16, false)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2385,20 +2399,6 @@ class GTLiteMaterials
             .color(0x662E2E)
             .components(ManganeseMonoxide, 1, BandedIron, 1)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
-
-        // 6017 Bedrockium
-        @JvmField
-        val Bedrockium: Material = Material.Builder(6017, gtliteId("bedrockium"))
-            .ingot()
-            .iconSet(BEDROCKIUM)
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
-            .blast { b ->
-                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
-                    .blastStats(VA[ZPM], 50 * SECOND)
-                    .vacuumStats(VA[LuV], 25 * SECOND)
-            }
-            .cableProperties(V[UHV], 2, 16, false)
             .build()
 
         // =======================================================================
