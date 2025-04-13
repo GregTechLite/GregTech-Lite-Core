@@ -147,6 +147,7 @@ import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CEN
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
@@ -183,7 +184,10 @@ import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
+import gregtech.api.unification.material.properties.MaterialToolProperty
+import gregtech.api.unification.material.properties.ToolProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
@@ -851,14 +855,17 @@ class GTLiteMaterials
         @JvmField
         val LithiumTitanate: Material = Material.Builder(2067, gtliteId("lithium_titanate"))
             .ingot()
+            .fluid()
             .color(0xFE71A9).iconSet(SHINY)
             .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-            .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(EXT_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(3100, BlastProperty.GasTier.MID)
                     .blastStats(VA[EV], 16 * SECOND)
                     .vacuumStats(VA[MV], 8 * SECOND)
             }
+            .toolStats(MaterialToolProperty(8.5F, 7.0F, 2304, 4))
+            .rotorStats(8.5f, 4.0f, 3200)
             .fluidPipeProperties(2830, 200, true, true, false, false)
             .build()
 

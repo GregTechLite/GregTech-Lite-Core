@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Cerium
@@ -28,6 +29,7 @@ import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.IridiumMetalResidue
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lanthanum
@@ -37,6 +39,7 @@ import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Phosphate
@@ -77,8 +80,10 @@ import gregtech.api.unification.material.properties.FluidPipeProperties
 import gregtech.api.unification.material.properties.FluidProperty
 import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.IngotProperty
+import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
+import gregtech.api.unification.material.properties.ToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Albite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
@@ -126,7 +131,7 @@ class GTLiteMaterialProperties
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
-                Scandium, Germanium, Technetium)
+                Scandium, Germanium, Technetium, Cadmium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
@@ -247,8 +252,15 @@ class GTLiteMaterialProperties
             Molybdenite.getProperty(PropertyKey.ORE).directSmeltResult = null
 
             // Modified plutonium-239 properties.
+            Uranium.setProperty(PropertyKey.ORE, OreProperty())
+            Uranium.getProperty(PropertyKey.ORE).setOreByProducts(Uranium, Uranium238, Uranium235)
             Plutonium239.setProperty(PropertyKey.ORE, OreProperty())
             Plutonium239.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
+            Plutonium241.setProperty(PropertyKey.ORE, OreProperty())
+            Plutonium241.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium241, Plutonium239, Plutonium241)
+
+            Chrome.setProperty(PropertyKey.ORE, OreProperty())
+            Cadmium.setProperty(PropertyKey.ORE, OreProperty())
 
             // Add fluid pipe properties.
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
@@ -287,6 +299,10 @@ class GTLiteMaterialProperties
 
             // Change color of Raw Growth Medium.
             RawGrowthMedium.materialRGB = 0x0B2E12
+
+            // Add tool properties.
+            Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
+            Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
 
         }
 

@@ -142,7 +142,6 @@ class LaserEngraverRecipes
                 .output(ENGRAVED_SAPPHIRE_CHIP)
                 .EUt(VA[LV].toLong())
                 .duration(1 * MINUTE)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
         }
