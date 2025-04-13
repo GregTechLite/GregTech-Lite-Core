@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import java.util.function.Supplier;
 
 /**
- * Bug fixes of {@code FuelRecipeLogic}.
+ * Bug Fix: Let {@code FuelRecipeLogic} has valid fuel consumed recipe logic.
  *
  * @apiNote In {@code FuelRecipeLogic}, recipe progress used incorrect logic with all generators,
  *          because this is same as common recipe logic, this bug will cause all generators running

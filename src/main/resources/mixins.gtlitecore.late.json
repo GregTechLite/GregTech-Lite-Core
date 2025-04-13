@@ -21,6 +21,7 @@
   "server": [],
   "client": [
     "gregtech.BlockGlassCasingMixin",
-    "gregtech.BlockGlassCasingTypeMixin"
+    "gregtech.BlockGlassCasingTypeMixin",
+    "gregtech.CableRendererMixin"
   ]
 }

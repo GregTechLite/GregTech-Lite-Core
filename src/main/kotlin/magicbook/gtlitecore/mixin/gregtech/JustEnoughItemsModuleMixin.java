@@ -62,14 +62,15 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING;
 
 /**
- * Improvement of {@code MetaTileEntity} priority of {@code JustEnoughItemsModule}.
+ * Feature: Let {@code MetaTileEntity} has priority in JEI multiblock structure page.
+ * <p>
+ * This class improved the priority of Gregtech {@code JustEnoughItemsModule}, if an addon mod's
+ * first letter is "faster" than Gregtech, then its machines will on top in JustEnoughItems Recipe
+ * Catalyst because {@code MTERegistry} is an order-ignored registry. This mixin provided a
+ * comparator to sort it, please see: {@link #gtlitecore$getSortedMTEs()}, this is a frontend of
+ * the pool of all MTEs.
  *
- * @apiNote This class improved the priority of Gregtech {@code JustEnoughItemsModule},
- *          if an addon mod's first letter is "faster" than Gregtech, then its machines
- *          will on top in JustEnoughItems Recipe Catalyst because {@code MTERegistry}
- *          is an order-ignored registry. This mixin provided a comparator to sort it,
- *          please see: {@link #gtlitecore$getSortedMTEs()}, this is a frontend of the
- *          pool of all MTEs.
+ * @author Magic_Sweepy
  */
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = JustEnoughItemsModule.class, remap = false)

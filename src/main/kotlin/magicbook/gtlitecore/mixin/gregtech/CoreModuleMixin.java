@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /**
- * Bug fixes of {@code CoreModule}.
+ * Bug Fix: Disabled loading incorrect {@code BQuDataFixer} class in {@code CoreModule}.
  *
  * @apiNote The incorrect class {@code BQuDataFixer} is initialized in {@code CoreModule}, this
  *          data fixer will cause {@code NullPointerException} when the save data has Gregtech mod,
