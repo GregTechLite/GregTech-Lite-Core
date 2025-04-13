@@ -784,106 +784,26 @@ class MiningDroneAsteroidRecipeProducer
                 // T1: Zirconium Asteroid
             }
 
-            // TT4 Asteroids (EV-LuV)
-            for (fuel in arrayOf(
-                // LightFuel.getFluid(40000),
-                // HeavyFuel.getFluid(38000),
-                // Diesel.getFluid(36000),
-                // BioDiesel.getFluid(36000),
-                // Gasoline.getFluid(34000),
-                // CetaneBoostedDiesel.getFluid(32000),
-                HighOctaneGasoline.getFluid(30000),
-                RocketFuel.getFluid(30000),
-                // RP1RocketFuel.getFluid(30000),
-                // DenseHydrazineRocketFuel.getFluid(26000),
-                // MethylhydrazineNitrateRocketFuel.getFluid(26000)
-            ))
+            // Ultimate Asteroids (EV-LuV)
+            for (fuel in fuelUltimate)
             {
                 // ...
             }
 
-            // TT5 Asteroids (IV-ZPM)
-            for (fuel in arrayOf(
-                // LightFuel.getFluid(48000),
-                // HeavyFuel.getFluid(46000),
-                // Diesel.getFluid(44000),
-                // BioDiesel.getFluid(44000),
-                // Gasoline.getFluid(42000),
-                // CetaneBoostedDiesel.getFluid(40000),
-                // HighOctaneGasoline.getFluid(38000),
-                RocketFuel.getFluid(38000),
-                // RP1RocketFuel.getFluid(38000),
-                // DenseHydrazineRocketFuel.getFluid(34000),
-                // MethylhydrazineNitrateRocketFuel.getFluid(34000)
-            ))
+            // Epic Asteroids (IV-ZPM)
+            for (fuel in fuelEpic)
             {
                 // ...
             }
 
-            // TT6 Asteroids (LuV-UV)
-
-            // ...
+            // Legendary Asteroids (LuV-UV)
+            for (fuel in fuelLegendary)
+            {
+                // ...
+            }
 
         }
 
     }
 
 }
-
-/*
-
-                // MINING_DRONE_RECIPES.recipeBuilder()
-                //     .circuitMeta(2)
-                //     .notConsumable(MINING_DRONE_LV)
-                //     .fluidInputs(fuel)
-                //     .chancedOutput(ore, Augite, 18, 3000, 0)
-                //     .chancedOutput(ore, Ferrosilite, 16, 2800, 0)
-                //     .chancedOutput(ore, Spodumene, 14, 2600, 0)
-                //     .chancedOutput(ore, Lepidolite, 12, 2400, 0)
-                //     .chancedOutput(ore, Dolomite, 10, 2200, 0)
-                //     .chancedOutput(ore, Trona, 8, 2000, 0)
-                //     .chancedOutput(ore, Wollastonite, 6, 1500, 0)
-                //     .chancedOutput(ore, Andradite, 4, 1000, 0)
-                //     .EUt(VA[LV].toLong())
-                //     .duration(2 * MINUTE)
-                //     .buildAndRegister()
-
-
-
-                // Mica Asteroid
-                MINING_DRONE_RECIPES.recipeBuilder()
-                    .circuitMeta(6)
-                    .notConsumable(MINING_DRONE_MV)
-                    .fluidInputs(fuel)
-                    .chancedOutput(ore, Mica, 32, 4800, 0)
-                    .chancedOutput(ore, Asbestos, 28, 3600, 0)
-                    .chancedOutput(ore, Lepidolite, 24, 3200, 0)
-                    .chancedOutput(ore, Anorthite, 18, 2900)
-                    .chancedOutput(ore, Oligoclase, 12, 2400)
-                    .chancedOutput(ore, Labradorite, 8, 2200)
-                    .chancedOutput(ore, Bytownite, 4, 1600)
-                    .EUt(VA[MV].toLong())
-                    .duration(2 * MINUTE)
-                    .buildAndRegister()
-
-                // Nickel-Cobalt Asteroid
-                MINING_DRONE_RECIPES.recipeBuilder()
-                    .circuitMeta(7)
-                    .notConsumable(MINING_DRONE_MV)
-                    .fluidInputs(fuel)
-                    .chancedOutput(ore, Nickel, 42, 5000, 0)
-                    .chancedOutput(ore, Cobalt, 36, 4200, 0)
-                    .chancedOutput(ore, Pentlandite, 32, 3800)
-                    .chancedOutput(ore, Garnierite, 26, 3400)
-                    .chancedOutput(ore, Cobaltite, 24, 2800)
-                    .chancedOutput(ore, GlauconiteSand, 10, 1200)
-                    .EUt(VA[MV].toLong())
-                    .duration(2 * MINUTE)
-                    .buildAndRegister()
-
-
-                    .chancedOutputs(ore, Lead, )
-            }
-
-
- */

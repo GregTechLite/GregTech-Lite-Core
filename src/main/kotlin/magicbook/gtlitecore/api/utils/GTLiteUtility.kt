@@ -2,14 +2,11 @@ package magicbook.gtlitecore.api.utils
 
 import gregtech.api.GTValues
 import gregtech.api.items.metaitem.MetaItem
-import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
-import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
-import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -226,6 +223,9 @@ class GTLiteUtility
             return result
         }
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.MOTOR]
+         */
         @JvmStatic
         fun getMotorByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -242,12 +242,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.ELECTRIC_MOTOR_UIV
             GTValues.UXV -> MetaItems.ELECTRIC_MOTOR_UXV
             GTValues.OpV -> MetaItems.ELECTRIC_MOTOR_OpV
-            else -> MetaItems.LOGO // TODO MAX Motor
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getMotorStackByTier(tier: Int) = getMotorByTier(tier).stackForm
+        fun getMotorStackByTier(tier: Int): ItemStack = getMotorByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.PISTON]
+         */
         @JvmStatic
         fun getPistonByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -264,13 +267,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.ELECTRIC_PISTON_UIV
             GTValues.UXV -> MetaItems.ELECTRIC_PISTON_UXV
             GTValues.OpV -> MetaItems.ELECTRIC_PISTON_OpV
-            else -> MetaItems.LOGO // TODO MAX Piston
+            else -> MetaItems.LOGO // TODO MAX
         }
 
-
         @JvmStatic
-        fun getPistonStackByTier(tier: Int) = getPistonByTier(tier).stackForm
+        fun getPistonStackByTier(tier: Int): ItemStack = getPistonByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.PUMP]
+         */
         @JvmStatic
         fun getPumpByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -287,12 +292,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.ELECTRIC_PUMP_UIV
             GTValues.UXV -> MetaItems.ELECTRIC_PUMP_UXV
             GTValues.OpV -> MetaItems.ELECTRIC_PUMP_OpV
-            else -> MetaItems.LOGO // TODO MAX Pump
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getPumpStackByTier(tier: Int) = getPumpByTier(tier).stackForm
+        fun getPumpStackByTier(tier: Int): ItemStack = getPumpByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.CONVEYOR]
+         */
         @JvmStatic
         fun getConveyorByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -309,12 +317,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.CONVEYOR_MODULE_UIV
             GTValues.UXV -> MetaItems.CONVEYOR_MODULE_UXV
             GTValues.OpV -> MetaItems.CONVEYOR_MODULE_OpV
-            else -> MetaItems.LOGO // TODO MAX Conveyor
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getConveyorStackByTier(tier: Int) = getConveyorByTier(tier).stackForm
+        fun getConveyorStackByTier(tier: Int): ItemStack = getConveyorByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.ROBOT_ARM]
+         */
         @JvmStatic
         fun getRobotArmByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -331,12 +342,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.ROBOT_ARM_UIV
             GTValues.UXV -> MetaItems.ROBOT_ARM_UXV
             GTValues.OpV -> MetaItems.ROBOT_ARM_OpV
-            else -> MetaItems.LOGO // TODO MAX Robot Arm
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getRobotArmStackByTier(tier: Int) = getRobotArmByTier(tier).stackForm
+        fun getRobotArmStackByTier(tier: Int): ItemStack = getRobotArmByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.EMITTER]
+         */
         @JvmStatic
         fun getEmitterByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -353,12 +367,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.EMITTER_UIV
             GTValues.UXV -> MetaItems.EMITTER_UXV
             GTValues.OpV -> MetaItems.EMITTER_OpV
-            else -> MetaItems.LOGO // TODO MAX Emitter
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getEmitterStackByTier(tier: Int) = getEmitterByTier(tier).stackForm
+        fun getEmitterStackByTier(tier: Int): ItemStack = getEmitterByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.SENSOR]
+         */
         @JvmStatic
         fun getSensorByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -375,12 +392,15 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.SENSOR_UIV
             GTValues.UXV -> MetaItems.SENSOR_UXV
             GTValues.OpV -> MetaItems.SENSOR_OpV
-            else -> MetaItems.LOGO // TODO MAX Sensor
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getSensorStackByTier(tier: Int) = getSensorByTier(tier).stackForm
+        fun getSensorStackByTier(tier: Int): ItemStack = getSensorByTier(tier).stackForm
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.FIELD_GENERATOR]
+         */
         @JvmStatic
         fun getFieldGenByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
@@ -397,33 +417,62 @@ class GTLiteUtility
             GTValues.UIV -> MetaItems.FIELD_GENERATOR_UIV
             GTValues.UXV -> MetaItems.FIELD_GENERATOR_UXV
             GTValues.OpV -> MetaItems.FIELD_GENERATOR_OpV
-            else -> MetaItems.LOGO // TODO MAX Field Gen
+            else -> MetaItems.LOGO // TODO MAX
         }
 
         @JvmStatic
-        fun getFieldGenStackByTier(tier: Int) = getFieldGenByTier(tier).stackForm
+        fun getFieldGenStackByTier(tier: Int): ItemStack = getFieldGenByTier(tier).stackForm
 
+        /**
+         * Get mining drone by tier like other component tiered getters.
+         */
         @JvmStatic
-        fun getCircuitByTier(tier: Int): ItemStack = when (tier)
+        fun getDroneByTier(tier: Int): MetaItem<*>.MetaValueItem = when (tier)
         {
-            GTValues.LV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.LV)
-            GTValues.MV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.MV)
-            GTValues.HV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.HV)
-            GTValues.EV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.EV)
-            GTValues.IV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.IV)
-            GTValues.LuV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.LuV)
-            GTValues.ZPM -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.ZPM)
-            GTValues.UV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.UV)
-            GTValues.UHV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.UHV)
-            GTValues.UEV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.UEV)
-            GTValues.UIV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.UIV)
-            GTValues.UXV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.UXV)
-            GTValues.OpV -> OreDictUnifier.get(OrePrefix.circuit, MarkerMaterials.Tier.OpV)
-            else -> MetaItems.LOGO.stackForm // TODO MAX Field Gen
+            GTValues.LV -> GTLiteMetaItems.MINING_DRONE_LV
+            GTValues.MV -> GTLiteMetaItems.MINING_DRONE_MV
+            GTValues.HV -> GTLiteMetaItems.MINING_DRONE_HV
+            GTValues.EV -> GTLiteMetaItems.MINING_DRONE_EV
+            GTValues.IV -> GTLiteMetaItems.MINING_DRONE_IV
+            GTValues.LuV -> GTLiteMetaItems.MINING_DRONE_LuV
+            GTValues.ZPM -> GTLiteMetaItems.MINING_DRONE_ZPM
+            GTValues.UV -> GTLiteMetaItems.MINING_DRONE_UV
+            GTValues.UHV -> GTLiteMetaItems.MINING_DRONE_UHV
+            GTValues.UEV -> GTLiteMetaItems.MINING_DRONE_UEV
+            GTValues.UIV -> GTLiteMetaItems.MINING_DRONE_UIV
+            GTValues.UXV -> GTLiteMetaItems.MINING_DRONE_UXV
+            GTValues.OpV -> GTLiteMetaItems.MINING_DRONE_OpV
+            else -> GTLiteMetaItems.MINING_DRONE_MAX
         }
 
+        @JvmStatic
+        fun getDroneStackByTier(tier: Int): ItemStack = getDroneByTier(tier).stackForm
+
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.CABLE]
+         */
         @JvmStatic
         fun getCableByTier(tier: Int): Material = when (tier)
+        {
+            GTValues.ULV -> Materials.RedAlloy
+            GTValues.LV -> Materials.Tin
+            GTValues.MV -> Materials.Copper
+            GTValues.HV -> Materials.Gold
+            GTValues.EV -> Materials.Aluminium
+            GTValues.IV -> Materials.Platinum
+            GTValues.LuV -> Materials.NiobiumTitanium
+            GTValues.ZPM -> Materials.VanadiumGallium
+            GTValues.UV -> Materials.YttriumBariumCuprate
+            GTValues.UHV -> Materials.Europium
+            // TODO UEV-UXV
+            else -> Materials.Water // TODO OpV Cable
+        }
+
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.CABLE]
+         */
+        @JvmStatic
+        fun getComponentCableByTier(tier: Int): Material = when (tier)
         {
             GTValues.ULV -> Materials.RedAlloy
             GTValues.LV -> Materials.Tin
@@ -439,8 +488,11 @@ class GTLiteUtility
             else -> Materials.Water // TODO OpV Cable
         }
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.HULL]
+         */
         @JvmStatic
-        fun getTieredMaterial1ByTier(tier: Int): Material = when (tier)
+        fun getHullMaterialByTier(tier: Int): Material = when (tier)
         {
             GTValues.ULV -> Materials.Bronze
             GTValues.LV -> Materials.Steel
@@ -453,11 +505,14 @@ class GTLiteUtility
             GTValues.UV -> Materials.Darmstadtium
             GTValues.UHV -> Materials.Neutronium
             // TODO UEV-UXV
-            else -> Materials.Water // TODO OpV Tiered Material
+            else -> Materials.Water // TODO OpV
         }
 
+        /**
+         * Materials which the tiered components used like [getHullMaterialByTier].
+         */
         @JvmStatic
-        fun getTieredMaterial2ByTier(tier: Int): Material = when (tier)
+        fun getComponentMaterialByTier(tier: Int): Material = when (tier)
         {
             GTValues.ULV -> Materials.WroughtIron
             GTValues.LV -> Materials.Tin
@@ -470,9 +525,13 @@ class GTLiteUtility
             GTValues.UV -> Materials.Tritanium
             // GTValues.UHV -> GTLiteMaterials.Adamantium
             // TODO UEV-UXV
-            else -> Materials.Water // TODO OpV Tiered Material 2
+            else -> Materials.Water // TODO OpV
         }
 
+        /**
+         * @see [gregtech.loaders.recipe.CraftingComponent.PIPE_NORMAL]
+         * @see [gregtech.loaders.recipe.CraftingComponent.PIPE_LARGE]
+         */
         @JvmStatic
         fun getPipeByTier(tier: Int): Material = when (tier)
         {
@@ -488,7 +547,7 @@ class GTLiteUtility
             GTValues.UHV -> Materials.Duranium
             GTValues.UEV -> Materials.Neutronium
             // TODO UIV-UXV
-            else -> Materials.Water // TODO OpV Pipe Material
+            else -> Materials.Water // TODO OpV
         }
 
         /**

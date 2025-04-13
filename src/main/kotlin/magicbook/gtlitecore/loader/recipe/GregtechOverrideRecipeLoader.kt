@@ -2,7 +2,6 @@ package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
 import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
@@ -16,12 +15,10 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Concrete
-import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Oxygen
-import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.Silicon
@@ -29,7 +26,6 @@ import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
-import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Water
@@ -47,16 +43,11 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockCleanroomCasing
 import gregtech.common.blocks.MetaBlocks
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_MV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import magicbook.gtlitecore.api.utils.GTLiteUtility
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getCableByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentCableByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getConveyorByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getConveyorStackByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getMotorByTier
@@ -64,10 +55,9 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getMotorStackByTie
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPipeByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpStackByTier
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getTieredMaterial2ByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentMaterialByTier
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -148,7 +138,7 @@ class GregtechOverrideRecipeLoader
                     "PPP", "MCM", "PPP",
                     'M', getMotorByTier(i),
                     'P', "plateAnyRubber",
-                    'C', UnificationEntry(cableGtSingle, getCableByTier(i)))
+                    'C', UnificationEntry(cableGtSingle, getComponentCableByTier(i)))
             }
 
             ModHandler.addShapedRecipe(true, "conveyor_module.iv", CONVEYOR_MODULE_IV.stackForm,
@@ -163,13 +153,13 @@ class GregtechOverrideRecipeLoader
                 {
                     GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
                         arrayOf(GTLiteUtility.copy(getMotorStackByTier(i), 2),
-                            OreDictUnifier.get(cableGtSingle, getCableByTier(i)),
+                            OreDictUnifier.get(cableGtSingle, getComponentCableByTier(i)),
                             IntCircuitIngredient.getIntegratedCircuit(1)),
                         arrayOf(rubber.getFluid(L * 6)))
                 }
                 ASSEMBLER_RECIPES.recipeBuilder()
                     .circuitMeta(1)
-                    .input(cableGtSingle, getCableByTier(i))
+                    .input(cableGtSingle, getComponentCableByTier(i))
                     .inputs(GTLiteUtility.copy(getMotorStackByTier(i), 2))
                     .input("plateAnyRubber", 6)
                     .output(getConveyorByTier(i))
@@ -212,12 +202,12 @@ class GregtechOverrideRecipeLoader
             {
                 ModHandler.addShapedRecipe(true, "electric_pump.${VN[i].lowercase()}", getPumpStackByTier(i),
                     "STR", "hPw", "RMC",
-                    'S', UnificationEntry(screw, getTieredMaterial2ByTier(i)),
-                    'T', UnificationEntry(rotor, getTieredMaterial2ByTier(i)),
+                    'S', UnificationEntry(screw, getComponentMaterialByTier(i)),
+                    'T', UnificationEntry(rotor, getComponentMaterialByTier(i)),
                     'R', "ringAnyRubber",
                     'P', UnificationEntry(pipeNormalFluid, getPipeByTier(i)),
                     'M', getMotorByTier(i),
-                    'C', UnificationEntry(cableGtSingle, getCableByTier(i)))
+                    'C', UnificationEntry(cableGtSingle, getComponentCableByTier(i)))
             }
             ModHandler.addShapedRecipe(true, "electric_pump.iv", ELECTRIC_PUMP_IV.stackForm,
                 "STR", "hPw", "RMC",
@@ -233,19 +223,19 @@ class GregtechOverrideRecipeLoader
                 for (rubber in arrayOf(Rubber, SiliconeRubber, StyreneButadieneRubber))
                 {
                     GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                        *arrayOf(OreDictUnifier.get(cableGtSingle, getCableByTier(i)),
+                        *arrayOf(OreDictUnifier.get(cableGtSingle, getComponentCableByTier(i)),
                             OreDictUnifier.get(pipeNormalFluid, getPipeByTier(i)),
-                            OreDictUnifier.get(screw, getTieredMaterial2ByTier(i)),
-                            OreDictUnifier.get(rotor, getTieredMaterial2ByTier(i)),
+                            OreDictUnifier.get(screw, getComponentMaterialByTier(i)),
+                            OreDictUnifier.get(rotor, getComponentMaterialByTier(i)),
                             OreDictUnifier.get(ring, rubber, 2),
                             getMotorStackByTier(i)))
                 }
 
                 ASSEMBLER_RECIPES.recipeBuilder()
-                    .input(cableGtSingle, getCableByTier(i))
+                    .input(cableGtSingle, getComponentCableByTier(i))
                     .input(pipeNormalFluid, getPipeByTier(i))
-                    .input(screw, getTieredMaterial2ByTier(i))
-                    .input(rotor, getTieredMaterial2ByTier(i))
+                    .input(screw, getComponentMaterialByTier(i))
+                    .input(rotor, getComponentMaterialByTier(i))
                     .input("ringAnyRubber", 2)
                     .input(getMotorByTier(i))
                     .output(getPumpByTier(i))
