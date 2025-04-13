@@ -83,7 +83,6 @@ import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
-import gregtech.api.unification.material.properties.ToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Albite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina

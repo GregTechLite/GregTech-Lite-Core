@@ -48,6 +48,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentCableByTier
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentMaterialByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getConveyorByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getConveyorStackByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getMotorByTier
@@ -55,7 +56,6 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getMotorStackByTie
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPipeByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpStackByTier
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentMaterialByTier
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import java.util.*

@@ -57,6 +57,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BIO_REACTOR_RE
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SONICATION_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BFGF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Blood
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodCells
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodPlasma
@@ -68,7 +69,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LinoleicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK

@@ -6,7 +6,6 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA

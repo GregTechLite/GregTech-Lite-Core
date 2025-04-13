@@ -9,13 +9,11 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Alunite
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
-import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Asbestos
 import gregtech.api.unification.material.Materials.BandedIron
@@ -195,7 +193,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_I
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_MV
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
