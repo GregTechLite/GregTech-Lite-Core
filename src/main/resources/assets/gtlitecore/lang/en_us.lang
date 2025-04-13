@@ -2156,6 +2156,8 @@ gtlitecore.material.indium_phosphate=Indium Phosphate
 gtlitecore.material.gallium_trioxide=Gallium Trioxide
 gtlitecore.material.calcium_sulfide=Calcium Sulfide
 gtlitecore.material.rp_1_rocket_fuel=RP-1 Rocket Fuel
+gtlitecore.material.bismuth_trioxide=Bismuth Trioxide
+gtlitecore.material.bismuth_strontium_calcium_cuprate=Bismuth Strontium Calcium Copper Oxides (BSCCO)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

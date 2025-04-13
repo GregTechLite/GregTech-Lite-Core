@@ -4,6 +4,7 @@ import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
@@ -32,6 +33,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
+import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.GoowareCircuits
@@ -118,6 +120,8 @@ class RecipeManager
             RubbersChain.init()
             PolymersChain.init()
             AlloysChain.init()
+            BSCCOChain.init()
+            YBCOChain.init()
             DyesChain.init()
             MicaInsulatorChain.init()
             OxidesChain.init()

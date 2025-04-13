@@ -1782,6 +1782,30 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
+        // 2170 Bismuth Trioxide
+        @JvmField
+        val BismuthTrioxide: Material = Material.Builder(2170, gtliteId("bismuth_trioxide"))
+            .dust()
+            .color(0xF5EF42).iconSet(FINE)
+            .components(Bismuth, 2, Oxygen, 3)
+            .build()
+
+        // 2171 Bismuth Strontium Calcium Cuprate (BSCCO)
+        @JvmField
+        val BismuthStrontiumCalciumCuprate: Material = Material.Builder(2171, gtliteId("bismuth_strontium_calcium_cuprate"))
+            .ingot()
+            .fluid()
+            .color(0xD880D8)
+            .components(BismuthTrioxide, 1, Strontianite, 2, Calcite, 1, Tenorite, 2)
+            .blast { b ->
+                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
+                    .blastStats(VA[UV], 43 * SECOND)
+                    .vacuumStats(VA[IV], 21 * SECOND) }
+            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .cableProperties(V[UV], 4, 3, false)
+            .build()
+            .setFormula("Bi2Sr2CaCu2O8", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 

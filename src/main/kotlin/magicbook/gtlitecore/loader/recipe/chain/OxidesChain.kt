@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Beryllium
+import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
@@ -30,6 +31,7 @@ import gregtech.api.unification.material.Materials.ChromiumTrioxide
 import gregtech.api.unification.material.Materials.Coal
 import gregtech.api.unification.material.Materials.CobaltOxide
 import gregtech.api.unification.material.Materials.Cobaltite
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.CupricOxide
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Galena
@@ -66,6 +68,7 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
@@ -370,6 +373,26 @@ class OxidesChain
                 .output(ingot, BerylliumOxide, 2)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // 2Bi + 3O -> Bi2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Bismuth, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, BismuthTrioxide, 5)
+                .EUt(VA[LV].toLong())
+                .duration(4 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // Cu + O -> CuO
+            ROASTER_RECIPES.recipeBuilder() // TODO Oxidification for other copper ores?
+                .circuitMeta(1)
+                .input(dust, Copper)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .output(dust, Tenorite, 2)
+                .EUt(VA[LV].toLong())
+                .duration(15 * TICK)
                 .buildAndRegister()
         }
 

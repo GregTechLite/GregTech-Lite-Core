@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
@@ -14,6 +15,7 @@ import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.BorosilicateGlass
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.CobaltBrass
@@ -32,6 +34,7 @@ import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Magnalium
 import gregtech.api.unification.material.Materials.Magnesium
+import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Potin
@@ -49,8 +52,12 @@ import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -162,6 +169,32 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[HV].toLong())
                 .duration(MINUTE + 20 * SECOND)
                 .blastFurnaceTemp(873) // Cupronickel
+                .buildAndRegister()
+
+            // BSCCO
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(14)
+                .input(dust, BismuthTrioxide, 5)
+                .input(dust, Strontianite, 10)
+                .input(dust, Calcite, 5)
+                .input(dust, Tenorite, 4)
+                .fluidInputs(Neon.getFluid(150))
+                .fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
+                .EUt(VA[UV].toLong())
+                .duration(2 * MINUTE + 9 * SECOND + 12 * TICK)
+                .blastFurnaceTemp(7000) // Naquadah
+                .buildAndRegister()
+
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, BismuthTrioxide, 5)
+                .input(dust, Strontianite, 10)
+                .input(dust, Calcite, 5)
+                .input(dust, Tenorite, 4)
+                .fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
+                .EUt(VA[UV].toLong())
+                .duration(3 * MINUTE + 13 * SECOND + 10 * TICK)
+                .blastFurnaceTemp(7000) // Naquadah
                 .buildAndRegister()
 
         }

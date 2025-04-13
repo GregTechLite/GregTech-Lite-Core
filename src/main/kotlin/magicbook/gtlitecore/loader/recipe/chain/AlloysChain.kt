@@ -69,7 +69,6 @@ class AlloysChain
         {
             siliconCarbideProcess()
             rhodiumPlatedPalladiumProcess()
-            yttriumBariumCuprateProcess()
         }
 
         private fun siliconCarbideProcess()
@@ -221,114 +220,6 @@ class AlloysChain
                 .output(ingotHot, RhodiumPlatedPalladium, 4)
                 .EUt(VA[IV].toLong())
                 .duration(30 * SECOND)
-                .buildAndRegister()
-
-        }
-
-        private fun yttriumBariumCuprateProcess()
-        {
-            // Remove original YBCO dust recipe.
-            GTRecipeUtility.removeMixerRecipes(
-                arrayOf(OreDictUnifier.get(dust, Yttrium),
-                    OreDictUnifier.get(dust, Barium, 2),
-                    OreDictUnifier.get(dust, Copper, 3),
-                    IntCircuitIngredient.getIntegratedCircuit(2)),
-                arrayOf(Oxygen.getFluid(7000)))
-
-            // Add another choice of Y2O3, do not push player used REE distillation.
-            // 2Y + 3O -> Y2O3
-            ROASTER_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(dust, Yttrium, 2)
-                .fluidInputs(Oxygen.getFluid(3000))
-                .output(dust, YttriumOxide, 5)
-                .EUt(VA[MV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // Y2O3 + 6HNO3 -> 2Y(NO3)3 + 3H2O
-            CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .input(dust, YttriumOxide, 5)
-                .fluidInputs(NitricAcid.getFluid(6000))
-                .output(dust, YttriumNitrate, 26)
-                .fluidOutputs(Water.getFluid(3000))
-                .EUt(VA[EV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
-            // Add another recipe of BaS because it is the semi-products of Naquadah Processing.
-            // Ba + S -> BaS
-            ROASTER_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(dust, Barium)
-                .input(dust, Sulfur)
-                .output(dust, BariumSulfide, 2)
-                .EUt(VA[LV].toLong())
-                .duration(4 * SECOND)
-                .buildAndRegister()
-
-            // BaS + 2HNO3 -> Ba(NO3)2 + H2S
-            CHEMICAL_RECIPES.recipeBuilder()
-                .input(dust, BariumSulfide, 2)
-                .fluidInputs(NitricAcid.getFluid(2000))
-                .output(dust, BariumNitrate, 9)
-                .EUt(VA[HV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // Cu + 2HNO3 -> Cu(NO3)2 + 2H
-            BURNER_REACTOR_RECIPES.recipeBuilder()
-                .input(dust, Copper)
-                .fluidInputs(NitricAcid.getFluid(2000))
-                .output(dust, CopperNitrate, 9)
-                .fluidOutputs(Hydrogen.getFluid(2000))
-                .EUt(VA[MV].toLong())
-                .duration(8 * SECOND)
-                .buildAndRegister()
-
-            // CuO + 2HNO3 -> Cu(NO3)2 + H2O
-            BURNER_REACTOR_RECIPES.recipeBuilder()
-                .input(dust, Tenorite, 2)
-                .fluidInputs(NitricAcid.getFluid(2000))
-                .output(dust, CopperNitrate, 9)
-                .fluidOutputs(Steam.getFluid(1000))
-                .EUt(VA[MV].toLong())
-                .duration(8 * SECOND)
-                .buildAndRegister()
-
-            // Cu2O + 4HNO3 -> 2Cu(NO3)2 + H2O + 2H (drop)
-            BURNER_REACTOR_RECIPES.recipeBuilder()
-                .input(dust, Cuprite, 3)
-                .fluidInputs(NitricAcid.getFluid(4000))
-                .output(dust, CopperNitrate, 18)
-                .EUt(VA[MV].toLong())
-                .duration(8 * SECOND)
-                .buildAndRegister()
-
-            // Y(NO3)3 + 2Ba(NO3)2 + 3Cu(NO3)2 + 2NH3 + C6H8O7 -> YBa2Cu3O6 + 15NO2 + 6CO + 4H2O + 6H
-            LARGE_CHEMICAL_RECIPES.recipeBuilder()
-                .input(dust, YttriumNitrate, 13)
-                .input(dust, BariumNitrate, 18)
-                .input(dust, CopperNitrate, 27)
-                .fluidInputs(Ammonia.getFluid(2000))
-                .fluidInputs(CitricAcid.getFluid(1000))
-                .output(dust, YttriumBariumCopperOxidesMixture, 12)
-                .fluidOutputs(NitrogenDioxide.getFluid(15000))
-                .fluidOutputs(CarbonMonoxide.getFluid(6000))
-                .fluidOutputs(Water.getFluid(4000))
-                .fluidOutputs(Hydrogen.getFluid(6000))
-                .EUt(VA[IV].toLong())
-                .duration(12 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
-                .buildAndRegister()
-
-            // YBa2Cu3O6 + O -> YBa2Cu3O7
-            ARC_FURNACE_RECIPES.recipeBuilder()
-                .input(dust, YttriumBariumCopperOxidesMixture, 12)
-                .fluidInputs(Oxygen.getFluid(1000))
-                .output(ingotHot, YttriumBariumCuprate, 13)
-                .EUt(VA[IV].toLong())
-                .duration(2 * MINUTE + 5 * SECOND)
                 .buildAndRegister()
 
         }
