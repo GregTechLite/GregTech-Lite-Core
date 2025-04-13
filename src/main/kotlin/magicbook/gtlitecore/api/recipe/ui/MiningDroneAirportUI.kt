@@ -17,7 +17,7 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
 
     init
     {
-
+        this.setFluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
     }
 
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,
@@ -48,8 +48,8 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
                 }
             }
             // Fluid input slots for rocket fuels import (and some booster).
-            this.addSlot(builder, 9, 45 + 9, 0, itemHandler, fluidHandler, true, false)
-            this.addSlot(builder, 9 + 18, 45 + 9, 1, itemHandler, fluidHandler, true, false)
+            // this.addSlot(builder, 9, 45 + 9, 0, itemHandler, fluidHandler, true, false)
+            this.addSlot(builder, 9 + 18, 45 + 9, 0, itemHandler, fluidHandler, true, false)
 
         }
         else

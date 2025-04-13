@@ -611,7 +611,7 @@ class GTLiteRecipeMaps
             .ui { MiningDroneAirportUI(it) }
             .itemInputs(4)
             .itemOutputs(16)
-            .fluidInputs(2)
+            .fluidInputs(1)
             .sound(GTSoundEvents.COMPRESSOR)
             .build()
 
