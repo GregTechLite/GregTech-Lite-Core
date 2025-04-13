@@ -2220,6 +2220,7 @@ gtlitecore.material.tectonic_petrotheum=板块之层岩
 gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
+gtlitecore.material.bedrockium=基岩
 
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷
@@ -2244,7 +2245,7 @@ gtlitecore.material.hydrazine=肼
 gtlitecore.material.citric_acid=柠檬酸
 gtlitecore.material.glutamine=谷氨酰胺
 gtlitecore.material.linoleic_acid=亚油酸
-gtlitecore.material.vitamin_h=维生素H
+gtlitecore.material.biotin=生物素
 gtlitecore.material.durene=均四甲苯
 gtlitecore.material.pyromellitic_dianhydride=均苯四酸二酐（PDMA）
 gtlitecore.material.aminophenol=对氨基苯酚

@@ -2215,6 +2215,7 @@ gtlitecore.material.tectonic_petrotheum=Tectonic Petrotheum
 gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
+gtlitecore.material.bedrockium=Bedrockium
 
 gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane
@@ -2240,7 +2241,7 @@ gtlitecore.material.hydrazine=Hydrazine
 gtlitecore.material.citric_acid=Citric Acid
 gtlitecore.material.glutamine=Glutamine
 gtlitecore.material.linoleic_acid=Linoleic Acid
-gtlitecore.material.vitamin_h=Vitamin-H
+gtlitecore.material.biotin=Biotin
 gtlitecore.material.durene=Durene
 gtlitecore.material.pyromellitic_dianhydride=Pyromellitic Dianhydride (PDMA)
 gtlitecore.material.aminophenol=Aminophenol

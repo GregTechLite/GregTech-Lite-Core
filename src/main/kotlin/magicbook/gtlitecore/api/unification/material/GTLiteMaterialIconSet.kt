@@ -16,6 +16,8 @@ class GTLiteMaterialIconSet
         @JvmField
         val ROASTED = MaterialIconSet("roasted", null, true)
 
+        @JvmField
+        val BEDROCKIUM = MaterialIconSet("bedrockium", null, true)
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

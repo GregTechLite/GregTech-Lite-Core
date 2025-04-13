@@ -68,7 +68,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LinoleicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VitaminH
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -323,7 +323,7 @@ class GrowthMediumChain
                 .input(dust, Sugar)
                 .fluidInputs(Nitrogen.getFluid(1000))
                 .fluidInputs(Hydrogen.getFluid(1000))
-                .output(dust, VitaminH, 64) // 2x
+                .output(dust, Biotin, 64) // 2x
                 .EUt(VA[IV].toLong())
                 .duration(25 * SECOND)
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
@@ -349,7 +349,7 @@ class GrowthMediumChain
             LARGE_MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(8)
                 .input(dust, Glutamine, 20)
-                .input(dust, VitaminH, 32)
+                .input(dust, Biotin, 32)
                 .fluidInputs(Biomass.getFluid(16000))
                 .fluidInputs(BloodCells.getFluid(4000))
                 .fluidInputs(LinoleicAcid.getFluid(2000))

@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -160,6 +161,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
@@ -186,10 +188,10 @@ import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
-import gregtech.api.unification.material.properties.ToolProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.BEDROCKIUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
@@ -2385,6 +2387,20 @@ class GTLiteMaterials
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build()
 
+        // 6017 Bedrockium
+        @JvmField
+        val Bedrockium: Material = Material.Builder(6017, gtliteId("bedrockium"))
+            .ingot()
+            .iconSet(BEDROCKIUM)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+            .blast { b ->
+                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
+                    .blastStats(VA[ZPM], 50 * SECOND)
+                    .vacuumStats(VA[LuV], 25 * SECOND)
+            }
+            .cableProperties(V[UHV], 2, 16, false)
+            .build()
+
         // =======================================================================
         // 8001-12000: Organic Chemistry Materials
 
@@ -2587,9 +2603,9 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
-        // 8024 Vitamin-H
+        // 8024 Biotin
         @JvmField
-        val VitaminH: Material = Material.Builder(8024, gtliteId("vitamin_h"))
+        val Biotin: Material = Material.Builder(8024, gtliteId("biotin"))
             .dust()
             .color(0x68CC6A)
             .components(Carbon, 10, Hydrogen, 16, Nitrogen, 2, Oxygen, 3, Sulfur, 1)
