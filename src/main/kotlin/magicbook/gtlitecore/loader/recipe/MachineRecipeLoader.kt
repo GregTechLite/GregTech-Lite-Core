@@ -7,6 +7,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
@@ -50,11 +51,14 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TreatedWood
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
@@ -84,6 +88,7 @@ import gregtech.common.blocks.BlockMetalCasing
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.COMPONENT_GRINDER_TUNGSTEN
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
@@ -92,10 +97,12 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
@@ -187,6 +194,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_L
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BEDROCK_DRILLING_RIG
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BUFFER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
@@ -1225,6 +1233,24 @@ class MachineRecipeLoader
                 'H', HULL[ZPM].stackForm,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.UV),
                 'P', UnificationEntry(plate, Darmstadtium))
+
+            // Bedrock Drilling Rig
+            ModHandler.addShapedRecipe(true, "bedrock_drilling_rig", BEDROCK_DRILLING_RIG.stackForm,
+                "PKP", "CHC", "MMM",
+                'P', ELECTRIC_PISTON_UV.stackForm,
+                'K', UnificationEntry(cableGtQuadruple, YttriumBariumCuprate),
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.UHV),
+                'H', HULL[UV].stackForm,
+                'M', ELECTRIC_MOTOR_UV.stackForm)
+
+            // Drill Head
+            ModHandler.addShapedRecipe(true, "drill_head", GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.DRILL_HEAD),
+                "PGP", "MHM", "SSS",
+                'P', ELECTRIC_PISTON_UV.stackForm,
+                'G', UnificationEntry(gear, Tritanium),
+                'M', ELECTRIC_MOTOR_UV.stackForm,
+                'H', HULL[UV].stackForm,
+                'S', COMPONENT_GRINDER_TUNGSTEN.stackForm)
 
         }
 

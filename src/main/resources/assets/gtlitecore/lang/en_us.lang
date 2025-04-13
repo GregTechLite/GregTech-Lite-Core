@@ -385,11 +385,13 @@ tile.metal_casing_02.brass.name=Industrial Brass Machine Casing
 tile.metal_casing_02.titanium_tungsten_carbide.name=Laserproof Titanium Tungsten Carbide Machine Casing
 
 tile.metal_casing_03.cobalt_brass.name=Vibration Tolerant Cobalt Brass Machine Casing
+tile.metal_casing_03.trinaquadalloy.name=Atomic Trinaquadalloy Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
 tile.multiblock_casing_01.substrate_casing.name=Substrate Casing
 tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casing
+tile.multiblock_casing_01.drill_head.name=Drill Head
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -922,6 +924,7 @@ recipemap.nanoscale_fabricator.name=Molecular Beaming
 recipemap.sonicator.name=Sonication
 recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
 recipemap.mob_extractor.name=Mob Extractor
+recipemap.bedrock_drilling_rig.name=Bedrock Drilling Rig
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1513,6 +1516,15 @@ gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Update Component Casing or V
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=Each §eEmitter Casing tier§7 and §eSensor Casing Tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.7=Laser Transmissive Gas: §fHelium, Neon, Argon, Krypton, Xenon§7
+
+gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
+gtlitecore.machine.bedrock_drilling_rig.tooltip.1=深度钻取基岩以提取特殊的矿石资源，基岩需要位于§6钻头§7方块之下。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底层的中心，钻机将会按照配方钻取基岩方块以运行。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.4=Update Component Casing or Voltage tier to improve machine performance.
+gtlitecore.machine.bedrock_drilling_rig.tooltip.5=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
+gtlitecore.machine.bedrock_drilling_rig.tooltip.6=Each §aPiston Casing tier§7 +1, processing +§l16§r§7 items.
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
@@ -2187,6 +2199,7 @@ gtlitecore.material.aluminium_bronze=Aluminium Bronze
 gtlitecore.material.rene_n_5=René-N5
 gtlitecore.material.titanium_carbide=Titanium Carbide
 gtlitecore.material.titanium_tungsten_carbide=Titanium Tungsten Carbide
+gtlitecore.material.trinaquadalloy=Trinaquadalloy
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

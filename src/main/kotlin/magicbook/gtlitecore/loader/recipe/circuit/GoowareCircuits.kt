@@ -144,6 +144,7 @@ class GoowareCircuits
                 .output(GOOWARE_BOARD)
                 .EUt(VA[UV].toLong())
                 .duration(2 * SECOND)
+                .temperature(493)
                 .buildAndRegister()
 
             // Gooware Circuit Board

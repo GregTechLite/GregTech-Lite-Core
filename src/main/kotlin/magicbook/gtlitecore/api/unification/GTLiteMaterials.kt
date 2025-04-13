@@ -74,6 +74,7 @@ import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
@@ -197,6 +198,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.ROASTED
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
@@ -2219,6 +2221,21 @@ class GTLiteMaterials
                 b.temp(3800, BlastProperty.GasTier.HIGH) // Nichrome
                     .blastStats(VA[EV], 50 * SECOND)
                     .vacuumStats(VA[HV], 15 * SECOND)
+            }
+            .build()
+
+        // 4029 Trinaquadalloy
+        @JvmField
+        val Trinaquadalloy: Material = Material.Builder(4029, gtliteId("trinaquadalloy"))
+            .ingot()
+            .fluid()
+            .color(0x281832).iconSet(BRIGHT)
+            .components(Trinium, 6, Naquadah, 2, Carbon, 1)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(8747, BlastProperty.GasTier.HIGHER) // Trinium
+                    .blastStats(VA[ZPM], 1 * MINUTE)
+                    .vacuumStats(VA[IV], 45 * SECOND)
             }
             .build()
 

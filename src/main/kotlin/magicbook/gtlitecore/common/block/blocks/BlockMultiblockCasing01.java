@@ -44,7 +44,8 @@ public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing0
     public enum MultiblockCasingType implements IStringSerializable
     {
         SUBSTRATE_CASING("substrate_casing"),
-        ADVANCED_SUBSTRATE_CASING("advanced_substrate_casing");
+        ADVANCED_SUBSTRATE_CASING("advanced_substrate_casing"),
+        DRILL_HEAD("drill_head");
 
         private final String name;
     }

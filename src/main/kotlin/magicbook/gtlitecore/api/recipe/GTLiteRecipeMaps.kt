@@ -700,6 +700,9 @@ class GTLiteRecipeMaps
             .build()
             .setSmallRecipeMap(CVD_RECIPES)
 
+        /**
+         * @zenProp mob_extractor
+         */
         @ZenProperty
         @JvmStatic
         @get:JvmName("MOB_EXTRACTOR_RECIPES")
@@ -710,6 +713,21 @@ class GTLiteRecipeMaps
             .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false)
             .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT)
             .sound(GTSoundEvents.COMPRESSOR)
+            .build()
+
+        /**
+         * @zenProp bedrock_drilling_rig
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("DRILLING_RECIPES")
+        val DRILLING_RECIPES = RecipeMapBuilder("bedrock_drilling_rig", SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.CRUSHED_ORE_OVERLAY, false, true)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+            .sound(GTSoundEvents.MACERATOR)
             .build()
 
         @JvmStatic
@@ -762,6 +780,7 @@ class GTLiteRecipeMaps
                         .cleanroom(cleanroomCopied)
                         .EUt(eUtCopied)
                         .duration(durationCopied)
+                        .hidden()
                         .buildAndRegister()
                 } // TODO Maybe another choice is lasers (laser emitters).
 

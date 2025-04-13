@@ -23,6 +23,7 @@ import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityBedrockDrillingRig
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
@@ -226,6 +227,7 @@ class GTLiteMetaTileEntities
         lateinit var NANOSCALE_FABRICATOR: MetaTileEntityNanoscaleFabricator
         lateinit var SONICATOR: MetaTileEntitySonicator
         lateinit var LASER_INDUCED_CVD_UNIT: MetaTileEntityLaserInducedCVDUnit
+        lateinit var BEDROCK_DRILLING_RIG: MetaTileEntityBedrockDrillingRig
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -720,6 +722,9 @@ class GTLiteMetaTileEntities
             LASER_INDUCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18016,
                 MetaTileEntityLaserInducedCVDUnit(GTLiteUtility.gtliteId("laser_induced_cvd_unit")))
 
+            BEDROCK_DRILLING_RIG = MetaTileEntities.registerMetaTileEntity(18017,
+                MetaTileEntityBedrockDrillingRig(GTLiteUtility.gtliteId("bedrock_drilling_rig")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -919,6 +924,7 @@ class GTLiteMetaTileEntities
             NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             SONICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LASER_INDUCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            BEDROCK_DRILLING_RIG.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

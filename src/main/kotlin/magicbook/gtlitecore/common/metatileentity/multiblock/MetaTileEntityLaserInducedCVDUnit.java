@@ -275,6 +275,7 @@ public class MetaTileEntityLaserInducedCVDUnit extends MultiMapMultiblockControl
         tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.4"));
         tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.5"));
         tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.6"));
+        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.7"));
     }
 
     // =================================================================================================================

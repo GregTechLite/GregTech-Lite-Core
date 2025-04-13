@@ -7,6 +7,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/cobalt_brass"
         }
+      },
+      "trinaquadalloy": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/trinaquadalloy"
+        }
       }
     }
   }

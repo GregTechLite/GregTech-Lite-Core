@@ -385,11 +385,13 @@ tile.metal_casing_02.brass.name=工业级黄铜机器外壳
 tile.metal_casing_02.titanium_tungsten_carbide.name=抗激光碳化钛钨机器外壳
 
 tile.metal_casing_03.cobalt_brass.name=防震钴黄铜机器外壳
+tile.metal_casing_03.trinaquadalloy.name=原子级碳化三元硅岩合金机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
 tile.multiblock_casing_01.substrate_casing.name=基板机械方块
 tile.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方块
+tile.multiblock_casing_01.drill_head.name=钻头
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -922,6 +924,7 @@ recipemap.nanoscale_fabricator.name=分子束外延
 recipemap.sonicator.name=超声震荡
 recipemap.laser_induced_cvd_unit.name=激光诱导化学气相沉积
 recipemap.mob_extractor.name=生物资源提取器
+recipemap.bedrock_drilling_rig.name=基岩钻机
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1513,6 +1516,15 @@ gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=升级部件外壳或电压�
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=每提高1个§a泵外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.7=支持的激光传输气体：§f氦、氖、氩、氪、氙§7
+
+gtlitecore.machine.bedrock_drilling_rig.name=基岩钻机
+gtlitecore.machine.bedrock_drilling_rig.tooltip.1=深度钻取基岩以提取特殊的矿石资源，基岩需要位于§6钻头§7方块之下。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底层的中心，钻机将会按照配方钻取基岩方块以运行。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.4=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.bedrock_drilling_rig.tooltip.5=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.6=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
@@ -2192,6 +2204,7 @@ gtlitecore.material.aluminium_bronze=铝青铜
 gtlitecore.material.rene_n_5=镍基高温合金-N5
 gtlitecore.material.titanium_carbide=碳化钛
 gtlitecore.material.titanium_tungsten_carbide=碳化钛钨
+gtlitecore.material.trinaquadalloy=碳化三元硅岩合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
