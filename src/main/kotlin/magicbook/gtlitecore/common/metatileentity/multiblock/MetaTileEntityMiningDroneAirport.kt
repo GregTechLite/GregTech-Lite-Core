@@ -24,8 +24,11 @@ import gregtech.common.metatileentities.MetaTileEntities
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import net.minecraft.client.resources.I18n
+import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
@@ -101,6 +104,15 @@ class MetaTileEntityMiningDroneAirport(metaTileEntityId: ResourceLocation) : Rec
             shapeInfos.add(builder.build())
         }
         return shapeInfos
+    }
+
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    {
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.4"))
     }
 
     override fun hasMufflerMechanics(): Boolean = true

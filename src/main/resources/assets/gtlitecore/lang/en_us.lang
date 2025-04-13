@@ -1468,6 +1468,10 @@ gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
 gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
+gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与总控中心
+gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作
+gtlitecore.machine.mining_drone_airport.tooltip.3=提高采矿无人机的数量或等级将产出更多的矿石
+gtlitecore.machine.mining_drone_airport.tooltip.4=每次工作需要§c消耗§7燃料，但钻头与杆循环利用§f不会§7消耗。
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
