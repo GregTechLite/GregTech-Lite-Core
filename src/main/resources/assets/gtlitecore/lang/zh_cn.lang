@@ -1990,6 +1990,10 @@ item.material.oreprefix.seedCrystal=%s晶种
 item.material.oreprefix.boule=%s晶棒
 
 # Materials
+gtlitecore.material.adamantium=精金
+gtlitecore.material.vibranium=振金
+gtlitecore.material.taranium=塔兰金属
+
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
 gtlitecore.material.azurite=蓝铜矿
@@ -2176,6 +2180,8 @@ gtlitecore.material.rp_1_rocket_fuel=RP-1火箭燃料
 gtlitecore.material.bismuth_trioxide=三氧化二铋
 gtlitecore.material.bismuth_strontium_calcium_cuprate=铋锶钙铜氧（BSCCO）
 gtlitecore.material.bedrockium=基岩
+gtlitecore.material.adamantite=精金石
+gtlitecore.material.adamantium_unstable=不稳定精金
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2342,6 +2348,42 @@ gtlitecore.material.methylamine_mixture=甲胺混合物
 gtlitecore.material.bz_medium=别洛索夫-扎鲍京斯基振荡反应液
 gtlitecore.material.low_purity_enriched_naquadah_emulsion=低纯富集硅岩乳液
 gtlitecore.material.low_purity_naquadria_emulsion=低纯超能硅岩乳液
+gtlitecore.material.bedrock_smoke=粗基岩烟
+gtlitecore.material.bedrock_soot_solution=基岩烟灰溶液
+gtlitecore.material.clean_bedrock_soot_solution=洁净基岩烟灰溶液
+gtlitecore.material.heavy_bedrock_smoke=重基岩烟
+gtlitecore.material.medium_bedrock_smoke=基岩烟
+gtlitecore.material.light_bedrock_smoke=轻基岩烟
+gtlitecore.material.ultralight_bedrock_smoke=超轻基岩烟
+gtlitecore.material.heavy_taranium_gas=重塔兰金属气
+gtlitecore.material.medium_taranium_gas=塔兰金属气
+gtlitecore.material.light_taranium_gas=轻塔兰金属气
+gtlitecore.material.bedrock_gas=基岩气
+gtlitecore.material.crude_naquadah_fuel=粗制硅岩燃料
+gtlitecore.material.heavy_naquadah_fuel=重硅岩燃料
+gtlitecore.material.medium_naquadah_fuel=硅岩燃料
+gtlitecore.material.light_naquadah_fuel=轻硅岩燃料
+gtlitecore.material.naquadah_gas=硅岩气
+gtlitecore.material.cracked_heavy_taranium_gas=氟裂化重塔兰金属气
+gtlitecore.material.cracked_medium_taranium_gas=氟裂化塔兰金属气
+gtlitecore.material.cracked_light_taranium_gas=氟裂化轻塔兰金属气
+gtlitecore.material.heavy_taranium_fuel=重塔兰金属燃料
+gtlitecore.material.medium_taranium_fuel=塔兰金属燃料
+gtlitecore.material.light_taranium_fuel=轻塔兰金属燃料
+gtlitecore.material.enriched_bedrock_soot_solution=富集基岩烟灰溶液
+gtlitecore.material.clean_enriched_bedrock_soot_solution=洁净富集基岩烟灰溶液
+gtlitecore.material.heavy_enriched_bedrock_smoke=重富集基岩烟
+gtlitecore.material.medium_enriched_bedrock_smoke=富集基岩烟
+gtlitecore.material.light_enriched_bedrock_smoke=轻富集基岩烟
+gtlitecore.material.heavy_enriched_taranium_gas=重富集塔兰金属气
+gtlitecore.material.medium_enriched_taranium_gas=富集塔兰金属气
+gtlitecore.material.light_enriched_taranium_gas=轻富集塔兰金属气
+gtlitecore.material.cracked_heavy_enriched_taranium_gas=氡裂化重富集塔兰金属气
+gtlitecore.material.cracked_medium_enriched_taranium_gas=氡裂化富集塔兰金属气
+gtlitecore.material.cracked_light_enriched_taranium_gas=氡裂化轻富集塔兰金属气
+gtlitecore.material.heavy_enriched_taranium_fuel=重富集塔兰金属燃料
+gtlitecore.material.medium_enriched_taranium_fuel=富集塔兰金属燃料
+gtlitecore.material.light_enriched_taranium_fuel=轻富集塔兰金属燃料
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

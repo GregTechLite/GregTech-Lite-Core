@@ -1990,6 +1990,10 @@ item.material.oreprefix.seedCrystal=%s Crystal Seed
 item.material.oreprefix.boule=%s Boule
 
 # Materials
+gtlitecore.material.adamantium=Adamantium
+gtlitecore.material.vibranium=Vibranium
+gtlitecore.material.taranium=Taranium
+
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
 gtlitecore.material.azurite=Azurite
@@ -2171,6 +2175,8 @@ gtlitecore.material.rp_1_rocket_fuel=RP-1 Rocket Fuel
 gtlitecore.material.bismuth_trioxide=Bismuth Trioxide
 gtlitecore.material.bismuth_strontium_calcium_cuprate=Bismuth Strontium Calcium Copper Oxides (BSCCO)
 gtlitecore.material.bedrockium=Bedrockium
+gtlitecore.material.adamantite=Adamantite
+gtlitecore.material.adamantium_unstable=Unstable Adamantium
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2338,6 +2344,42 @@ gtlitecore.material.methylamine_mixture=Methylamine Mixture
 gtlitecore.material.bz_medium=Belousov-Zhabotinsky Oscillation Reaction Medium
 gtlitecore.material.low_purity_enriched_naquadah_emulsion=Low Purity Enriched Naquadah Emulsion
 gtlitecore.material.low_purity_naquadria_emulsion=Low Purity Naquadria Emulsion
+gtlitecore.material.bedrock_smoke=Crude Bedrock Smoke
+gtlitecore.material.bedrock_soot_solution=Bedrock Soot Solution
+gtlitecore.material.clean_bedrock_soot_solution=Clean Bedrock Solution
+gtlitecore.material.heavy_bedrock_smoke=Heavy Bedrock Smoke
+gtlitecore.material.medium_bedrock_smoke=Medium Bedrock Smoke
+gtlitecore.material.light_bedrock_smoke=Light Bedrock Smoke
+gtlitecore.material.ultralight_bedrock_smoke=Ultralight Bedrock Smoke
+gtlitecore.material.heavy_taranium_gas=Heavy Taranium Gas
+gtlitecore.material.medium_taranium_gas=Medium Taranium Gas
+gtlitecore.material.light_taranium_gas=Light Taranium Gas
+gtlitecore.material.bedrock_gas=Bedrock Gas
+gtlitecore.material.crude_naquadah_fuel=Crude Naquadah Fuel
+gtlitecore.material.heavy_naquadah_fuel=Heavy Naquadah Fuel
+gtlitecore.material.medium_naquadah_fuel=Medium Naquadah Fuel
+gtlitecore.material.light_naquadah_fuel=Light Naquadah Fuel
+gtlitecore.material.naquadah_gas=Naquadah Gas
+gtlitecore.material.cracked_heavy_taranium_gas=Fluorine-Cracked Heavy Taranium Gas
+gtlitecore.material.cracked_medium_taranium_gas=Fluorine-Cracked Medium Taranium Gas
+gtlitecore.material.cracked_light_taranium_gas=Fluorine-Cracked Light Taranium Gas
+gtlitecore.material.heavy_taranium_fuel=Heavy Taranium Fuel
+gtlitecore.material.medium_taranium_fuel=Medium Taranium Fuel
+gtlitecore.material.light_taranium_fuel=Light Taranium Fuel
+gtlitecore.material.enriched_bedrock_soot_solution=Enriched Bedrock Soot Solution
+gtlitecore.material.clean_enriched_bedrock_soot_solution=Clean Enriched Bedrock Soot Solution
+gtlitecore.material.heavy_enriched_bedrock_smoke=Heavy Enriched Bedrock Smoke
+gtlitecore.material.medium_enriched_bedrock_smoke=Medium Enriched Bedrock Smoke
+gtlitecore.material.light_enriched_bedrock_smoke=Light Enriched Bedrock Smoke
+gtlitecore.material.heavy_enriched_taranium_gas=Heavy Enriched Taranium Gas
+gtlitecore.material.medium_enriched_taranium_gas=Medium Enriched Taranium Gas
+gtlitecore.material.light_enriched_taranium_gas=Light Enriched Taranium Gas
+gtlitecore.material.cracked_heavy_enriched_taranium_gas=Radon-Cracked Heavy Enriched Taranium Gas
+gtlitecore.material.cracked_medium_enriched_taranium_gas=Radon-Cracked Medium Enriched Taranium Gas
+gtlitecore.material.cracked_light_enriched_taranium_gas=Radon-Cracked Light Enriched Taranium Gas
+gtlitecore.material.heavy_enriched_taranium_fuel=Heavy Enriched Taranium Fuel
+gtlitecore.material.medium_enriched_taranium_fuel=Medium Enriched Taranium Fuel
+gtlitecore.material.light_enriched_taranium_fuel=Light Enriched Taranium Fuel
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

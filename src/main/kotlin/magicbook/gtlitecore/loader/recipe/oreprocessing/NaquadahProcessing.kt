@@ -15,15 +15,19 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
+import gregtech.api.recipes.RecipeMaps.GAS_TURBINE_FUELS
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.AcidicEnrichedNaquadahSolution
 import gregtech.api.unification.material.Materials.AcidicNaquadriaSolution
+import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.AntimonyTrifluoride
 import gregtech.api.unification.material.Materials.BariumSulfide
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.EnrichedNaquadahSolution
 import gregtech.api.unification.material.Materials.EnrichedNaquadahSulfate
 import gregtech.api.unification.material.Materials.EnrichedNaquadahWaste
@@ -37,9 +41,11 @@ import gregtech.api.unification.material.Materials.ImpureNaquadriaSolution
 import gregtech.api.unification.material.Materials.IndiumPhosphide
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.NaquadriaSolution
 import gregtech.api.unification.material.Materials.NaquadriaSulfate
 import gregtech.api.unification.material.Materials.NaquadriaWaste
+import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.PhosphoricAcid
 import gregtech.api.unification.material.Materials.Quicklime
@@ -57,14 +63,21 @@ import gregtech.api.unification.ore.OrePrefix.dustSmall
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumSulfide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityEnrichedNaquadahEmulsion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityNaquadriaEmulsion
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumNaquadahFuel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumHeptaoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TriniumTrioxide
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
@@ -87,6 +100,7 @@ class NaquadahProcessing
             naquadahProcess()
             naquadahEnrichedProcess()
             naquadriaProcess()
+            naquadahFuelProcess()
         }
 
         private fun removeVanillaRecipes()
@@ -338,6 +352,98 @@ class NaquadahProcessing
                 .EUt(VA[LV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
+        }
+
+        private fun naquadahFuelProcess()
+        {
+            // Nq + NH4NO3 -> Nq(NH4NO3)?
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Naquadah)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(Water.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Naquadah)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(DistilledWater.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
+                .EUt(VA[IV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Nq+ + NH4NO3 -> 3Nq(NH4NO3)?
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, NaquadahEnriched)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(Water.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, NaquadahEnriched)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(DistilledWater.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Nq* + NH4NO3 -> 6Nq(NH4NO3)?
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Naquadria)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(Water.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Naquadria)
+                .input(dust, AmmoniumNitrate, 2)
+                .fluidInputs(DistilledWater.getFluid(1000))
+                .fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Crude Naquadah Fuel fraction.
+            DISTILLATION_RECIPES.recipeBuilder()
+                .fluidInputs(CrudeNaquadahFuel.getFluid(9000))
+                .chancedOutput(dust, Naquadah, 1000, 500)
+                .fluidOutputs(HeavyNaquadahFuel.getFluid(1000))
+                .fluidOutputs(MediumNaquadahFuel.getFluid(2000))
+                .fluidOutputs(LightNaquadahFuel.getFluid(3000))
+                .fluidOutputs(NaquadahGas.getFluid(1000))
+                .fluidOutputs(NitricAcid.getFluid(800))
+                .fluidOutputs(Ammonia.getFluid(400))
+                .fluidOutputs(EnrichedNaquadahWaste.getFluid(400))
+                .fluidOutputs(NaquadriaWaste.getFluid(200))
+                .EUt(VA[ZPM].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // TODO Naquadah fuels as Naquadah Reactor fuels.
+
+            // Naquadah gas as gas turbine fuels.
+            GAS_TURBINE_FUELS.recipeBuilder()
+                .fluidInputs(NaquadahGas.getFluid(24))
+                .EUt(VA[MV].toLong())
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
         }
 
     }

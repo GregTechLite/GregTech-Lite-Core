@@ -161,8 +161,10 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
@@ -188,6 +190,9 @@ import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
+import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Ad
+import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Tn
+import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
@@ -213,6 +218,63 @@ class GTLiteMaterials
     {
         // =======================================================================
         // 1-2000: Element Materials
+
+        // 1 Adamantium
+        @JvmField
+        val Adamantium: Material = Material.Builder(1, gtliteId("adamantium"))
+            .ingot()
+            .fluid()
+            .plasma()
+            .color(0xFF0040).iconSet(METALLIC)
+            .element(Ad)
+            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR,
+                GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(5225, BlastProperty.GasTier.HIGH) // HSS-G
+                    .blastStats(VA[UV], 45 * SECOND)
+                    .vacuumStats(VA[ZPM], 22 * SECOND + 10 * TICK)
+            }
+            .rotorStats(22.0f, 10.0f, 491520)
+            .toolStats(MaterialToolProperty.Builder.of(140.0F, 95.0F, 49152, 6)
+                .attackSpeed(0.5F).enchantability(32).magnetic().build()
+            )
+            .cableProperties(V[UHV], 4, 24, false)
+            .build()
+
+        // 2 Vibranium
+        @JvmField
+        val Vibranium: Material = Material.Builder(2, gtliteId("vibranium"))
+            .ingot()
+            .fluid()
+            .plasma()
+            .color(0xC880FF).iconSet(SHINY)
+            .element(Vb)
+            .flags(EXT_METAL, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(4852, BlastProperty.GasTier.HIGHER) // HSS-G
+                    .blastStats(VA[UHV], 75 * SECOND)
+                    .vacuumStats(VA[UV], 42 * SECOND + 15 * TICK)
+            }
+            .toolStats(MaterialToolProperty.Builder.of(155.0F, 120.0F, 73728, 7)
+                .attackSpeed(0.8F).enchantability(34).magnetic().build())
+            .build()
+
+        // 3 Taranium
+        @JvmField
+        val Taranium: Material = Material.Builder(3, gtliteId("taranium"))
+            .ingot()
+            .fluid()
+            .color(0x4F404F).iconSet(METALLIC)
+            .element(Tn)
+            .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(7000, BlastProperty.GasTier.HIGH) // Naquadah
+                    .blastStats(VA[ZPM], 22 * SECOND)
+                    .vacuumStats(VA[IV], 11 * SECOND)
+            }
+            .cableProperties(V[UHV], 8, 2, false)
+            .build()
 
         // =======================================================================
         // 2001-4000: First Degree Materials
@@ -1824,6 +1886,24 @@ class GTLiteMaterials
             .cableProperties(V[UHV], 2, 16, false)
             .build()
 
+        // 2173 Adamantite
+        @JvmField
+        val Adamantite: Material = Material.Builder(2173, gtliteId("adamantite"))
+            .dust()
+            .color(0xC83C3C).iconSet(ROUGH)
+            .components(Adamantium, 3, Oxygen, 4)
+            .build()
+
+        // 2174 Unstable Adamantium
+        @JvmField
+        val AdamantiumUnstable: Material = Material.Builder(2174, gtliteId("adamantium_unstable"))
+            .liquid()
+            .color(0xFF763C)
+            .components(Adamantium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Ad*", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -3360,6 +3440,274 @@ class GTLiteMaterials
             .liquid()
             .color(0x393939)
             .iconSet(DULL)
+            .build()
+
+        // 12135 Bedrock Smoke
+        @JvmField
+        val BedrockSmoke: Material = Material.Builder(12135, gtliteId("bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x525252)
+            .build()
+
+        // 12136 Bedrock Soot Solution
+        @JvmField
+        val BedrockSootSolution: Material = Material.Builder(12136, gtliteId("bedrock_soot_solution"))
+            .liquid()
+            .color(0x1E2430)
+            .build()
+
+        // 12137 Clean Bedrock Soot Solution
+        @JvmField
+        val CleanBedrockSootSolution: Material = Material.Builder(12137, gtliteId("clean_bedrock_soot_solution"))
+            .liquid()
+            .color(0xA89F9E)
+            .build()
+
+        // 12138 Heavy Bedrock Smoke
+        @JvmField
+        val HeavyBedrockSmoke: Material = Material.Builder(12138, gtliteId("heavy_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x242222)
+            .build()
+
+        // 12139 Medium Bedrock Smoke
+        @JvmField
+        val MediumBedrockSmoke: Material = Material.Builder(12139, gtliteId("medium_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x2E2C2C)
+            .build()
+
+        // 12140 Light Bedrock Smoke
+        @JvmField
+        val LightBedrockSmoke: Material = Material.Builder(12140, gtliteId("light_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x363333)
+            .build()
+
+        // 12141 Ultralight Bedrock Smoke
+        @JvmField
+        val UltralightBedrockSmoke: Material = Material.Builder(12141, gtliteId("ultralight_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x403D3D)
+            .build()
+
+        // 12142 Heavy Taranium Gas
+        @JvmField
+        val HeavyTaraniumGas: Material = Material.Builder(12142, gtliteId("heavy_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x262626)
+            .build()
+
+        // 12143 Medium Taranium Gas
+        @JvmField
+        val MediumTaraniumGas: Material = Material.Builder(12143, gtliteId("medium_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x313131)
+            .build()
+
+        // 12144 Light Taranium Gas
+        @JvmField
+        val LightTaraniumGas: Material = Material.Builder(12144, gtliteId("light_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x404040)
+            .build()
+
+        // 12145 Bedrock Gas
+        @JvmField
+        val BedrockGas: Material = Material.Builder(12145, gtliteId("bedrock_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x575757)
+            .build()
+
+        // 12146 Crude Naquadah Fuel
+        @JvmField
+        val CrudeNaquadahFuel: Material = Material.Builder(12146, gtliteId("crude_naquadah_fuel"))
+            .liquid()
+            .color(0x077F4E)
+            .build()
+
+        // 12147 Heavy Naquadah Fuel
+        @JvmField
+        val HeavyNaquadahFuel: Material = Material.Builder(12147, gtliteId("heavy_naquadah_fuel"))
+            .liquid()
+            .color(0x088C56)
+            .build()
+
+        // 12148 Medium Naquadah Fuel
+        @JvmField
+        val MediumNaquadahFuel: Material = Material.Builder(12148, gtliteId("medium_naquadah_fuel"))
+            .liquid()
+            .color(0x09A566)
+            .build()
+
+        // 12149 Light Naquadah Fuel
+        @JvmField
+        val LightNaquadahFuel: Material = Material.Builder(12149, gtliteId("light_naquadah_fuel"))
+            .liquid()
+            .color(0x0BBF75)
+            .build()
+
+        // 12150 Naquadah Gas
+        @JvmField
+        val NaquadahGas: Material = Material.Builder(12150, gtliteId("naquadah_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x0CD985)
+            .build()
+
+        // 12151 Cracked Heavy Taranium Gas
+        @JvmField
+        val CrackedHeavyTaraniumGas: Material = Material.Builder(12151, gtliteId("cracked_heavy_taranium_gas"))
+            .liquid()
+            .color(0x1F2B2E)
+            .build()
+
+        // 12152 Cracked Medium Taranium Gas
+        @JvmField
+        val CrackedMediumTaraniumGas: Material = Material.Builder(12152, gtliteId("cracked_medium_taranium_gas"))
+            .liquid()
+            .color(0x29393D)
+            .build()
+
+        // 12153 Cracked Light Taranium Gas
+        @JvmField
+        val CrackedLightTaraniumGas: Material = Material.Builder(12153, gtliteId("cracked_light_taranium_gas"))
+            .liquid()
+            .color(0x374C52)
+            .build()
+
+        // 12154 Heavy Taranium Fuel
+        @JvmField
+        val HeavyTaraniumFuel: Material = Material.Builder(12154, gtliteId("heavy_taranium_fuel"))
+            .liquid()
+            .color(0x141414)
+            .build()
+
+        // 12155 Medium Taranium Fuel
+        @JvmField
+        val MediumTaraniumFuel: Material = Material.Builder(12155, gtliteId("medium_taranium_fuel"))
+            .liquid()
+            .color(0x181818)
+            .build()
+
+        // 12156 Light Taranium Fuel
+        @JvmField
+        val LightTaraniumFuel: Material = Material.Builder(12156, gtliteId("light_taranium_fuel"))
+            .liquid()
+            .color(0x1C1C1C)
+            .build()
+
+        // 12157 Enriched Bedrock Soot Solution
+        @JvmField
+        val EnrichedBedrockSootSolution: Material = Material.Builder(12157, gtliteId("enriched_bedrock_soot_solution"))
+            .liquid()
+            .color(0x280C26)
+            .build()
+
+        // 12158 Clean Enriched Bedrock Soot Solution
+        @JvmField
+        val CleanEnrichedBedrockSootSolution: Material = Material.Builder(12158, gtliteId("clean_enriched_bedrock_soot_solution"))
+            .liquid()
+            .color(0x828C8C)
+            .build()
+
+        // 12159 Heavy Enriched Bedrock Smoke
+        @JvmField
+        val HeavyEnrichedBedrockSmoke: Material = Material.Builder(12159, gtliteId("heavy_enriched_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x1A2222)
+            .build()
+
+        // 12160 Medium Enriched Bedrock Smoke
+        @JvmField
+        val MediumEnrichedBedrockSmoke: Material = Material.Builder(12160, gtliteId("medium_enriched_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x1E2C2C)
+            .build()
+
+        // 12161 Light Enriched Bedrock Smoke
+        @JvmField
+        val LightEnrichedBedrockSmoke: Material = Material.Builder(12161, gtliteId("light_enriched_bedrock_smoke"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x163333)
+            .build()
+
+        // 12162 Heavy Enriched Taranium Gas
+        @JvmField
+        val HeavyEnrichedTaraniumGas: Material = Material.Builder(12162, gtliteId("heavy_enriched_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x1F2626)
+            .build()
+
+        // 12163 Medium Enriched Taranium Gas
+        @JvmField
+        val MediumEnrichedTaraniumGas: Material = Material.Builder(12163, gtliteId("medium_enriched_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x1F3131)
+            .build()
+
+        // 12164 Light Enriched Taranium Gas
+        @JvmField
+        val LightEnrichedTaraniumGas: Material = Material.Builder(12164, gtliteId("light_enriched_taranium_gas"))
+            .gas(FluidBuilder()
+                .translation("gregtech.fluid.generic"))
+            .color(0x1F4040)
+            .build()
+
+        // 12165 Cracked Heavy Enriched Taranium Gas
+        @JvmField
+        val CrackedHeavyEnrichedTaraniumGas: Material = Material.Builder(12165, gtliteId("cracked_heavy_enriched_taranium_gas"))
+            .liquid()
+            .color(0x2E1F2E)
+            .build()
+
+        // 12166 Cracked Medium Enriched Taranium Gas
+        @JvmField
+        val CrackedMediumEnrichedTaraniumGas: Material = Material.Builder(12166, gtliteId("cracked_medium_enriched_taranium_gas"))
+            .liquid()
+            .color(0x29393D)
+            .build()
+
+        // 12167 Cracked Light Enriched Taranium Gas
+        @JvmField
+        val CrackedLightEnrichedTaraniumGas: Material = Material.Builder(12167, gtliteId("cracked_light_enriched_taranium_gas"))
+            .liquid()
+            .color(0x374C52)
+            .build()
+
+        // 12168 Heavy Enriched Taranium Fuel
+        @JvmField
+        val HeavyEnrichedTaraniumFuel: Material = Material.Builder(12168, gtliteId("heavy_enriched_taranium_fuel"))
+            .liquid()
+            .color(0x0F1414)
+            .build()
+
+        // 12169 Medium Enriched Taranium Fuel
+        @JvmField
+        val MediumEnrichedTaraniumFuel: Material = Material.Builder(12169, gtliteId("medium_enriched_taranium_fuel"))
+            .liquid()
+            .color(0x0F1818)
+            .build()
+
+        // 12170 Light Enriched Taranium Fuel
+        @JvmField
+        val LightEnrichedTaraniumFuel: Material = Material.Builder(12170, gtliteId("light_enriched_taranium_fuel"))
+            .liquid()
+            .color(0x0F1C1C)
             .build()
 
     }

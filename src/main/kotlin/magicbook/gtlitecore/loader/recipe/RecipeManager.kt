@@ -65,7 +65,9 @@ import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
 import magicbook.gtlitecore.loader.recipe.machine.VacuumChamberRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
+import magicbook.gtlitecore.loader.recipe.oreprocessing.AdamantiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.AluminiumSodiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.BedrockiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.CaesiumRubidiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.GermaniumZincProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.IodineBromineProcessing
@@ -80,6 +82,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TechnetiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.VibraniumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
@@ -164,6 +167,9 @@ class RecipeManager
             GermaniumZincProcessing.init()
             NaquadahProcessing.init()
             TechnetiumProcessing.init()
+            BedrockiumProcessing.init()
+            AdamantiumProcessing.init()
+            VibraniumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()
