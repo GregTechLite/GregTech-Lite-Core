@@ -2176,7 +2176,10 @@ gtlitecore.material.bismuth_trioxide=Bismuth Trioxide
 gtlitecore.material.bismuth_strontium_calcium_cuprate=Bismuth Strontium Calcium Copper Oxides (BSCCO)
 gtlitecore.material.bedrockium=Bedrockium
 gtlitecore.material.adamantite=Adamantite
-gtlitecore.material.adamantium_unstable=Unstable Adamantium
+gtlitecore.material.unstable_adamantium=Unstable Adamantium
+gtlitecore.material.enriched_adamantium=Enriched Adamantium
+gtlitecore.material.unstable_vibranium=Unstable Vibranium
+gtlitecore.material.deep_iron=Deep Iron
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2380,6 +2383,7 @@ gtlitecore.material.cracked_light_enriched_taranium_gas=Radon-Cracked Light Enri
 gtlitecore.material.heavy_enriched_taranium_fuel=Heavy Enriched Taranium Fuel
 gtlitecore.material.medium_enriched_taranium_fuel=Medium Enriched Taranium Fuel
 gtlitecore.material.light_enriched_taranium_fuel=Light Enriched Taranium Fuel
+gtlitecore.material.energetic_naquadria=Energetic Naquadria
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

@@ -8,6 +8,7 @@ import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
+import net.minecraft.client.Minecraft
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.potion.PotionEffect
@@ -18,6 +19,8 @@ import net.minecraft.world.IBlockAccess
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.util.function.BooleanSupplier
 import java.util.function.Consumer
 import java.util.function.Supplier
@@ -565,6 +568,33 @@ class GTLiteUtility
                     TextComponentTranslation((effect.effect as PotionEffect).effectName).formattedText,
                     TextComponentTranslation("enchantment.level." + (effect.effect.getAmplifier() + 1)),
                     effect.effect.getDuration(), 100 - effect.chance).formattedText) })
+        }
+
+        /**
+         * Load file as string from a [location].
+         */
+        @JvmStatic
+        fun loadFile(location: ResourceLocation): String?
+        {
+            try
+            {
+                val code = StringBuilder()
+                val inputStream = Minecraft.getMinecraft().resourceManager.getResource(location).inputStream
+                val reader = BufferedReader(InputStreamReader(inputStream))
+                var line: String?
+                while ((reader.readLine().also { line = it }) != null)
+                {
+                    code.append(line)
+                    code.append('\n')
+                }
+                reader.close()
+                return code.toString()
+            }
+            catch (exception: Exception)
+            {
+                GTLiteLog.logger.error("Could not load shader file!", exception)
+            }
+            return null
         }
 
     }

@@ -2181,7 +2181,10 @@ gtlitecore.material.bismuth_trioxide=三氧化二铋
 gtlitecore.material.bismuth_strontium_calcium_cuprate=铋锶钙铜氧（BSCCO）
 gtlitecore.material.bedrockium=基岩
 gtlitecore.material.adamantite=精金石
-gtlitecore.material.adamantium_unstable=不稳定精金
+gtlitecore.material.unstable_adamantium=不稳定精金
+gtlitecore.material.enriched_adamantium=富集精金
+gtlitecore.material.unstable_vibranium=不稳定振金
+gtlitecore.material.deep_iron=深铁
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2384,6 +2387,7 @@ gtlitecore.material.cracked_light_enriched_taranium_gas=氡裂化轻富集塔兰
 gtlitecore.material.heavy_enriched_taranium_fuel=重富集塔兰金属燃料
 gtlitecore.material.medium_enriched_taranium_fuel=富集塔兰金属燃料
 gtlitecore.material.light_enriched_taranium_fuel=轻富集塔兰金属燃料
+gtlitecore.material.energetic_naquadria=充能超能硅岩
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

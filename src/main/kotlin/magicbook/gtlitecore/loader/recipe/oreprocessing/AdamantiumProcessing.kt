@@ -13,6 +13,7 @@ import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Monazite
@@ -66,9 +67,9 @@ class AdamantiumProcessing
                 .duration(40 * SECOND)
                 .buildAndRegister()
 
-            // Eu + Ad* -> Ad
+            // Dr + Ad* -> Ad
             FUSION_RECIPES.recipeBuilder()
-                .fluidInputs(Europium.getFluid(16))
+                .fluidInputs(Duranium.getFluid(16))
                 .fluidInputs(AdamantiumUnstable.getFluid(16))
                 .fluidOutputs(Adamantium.getPlasma(16))
                 .EUt(VA[LuV].toLong())

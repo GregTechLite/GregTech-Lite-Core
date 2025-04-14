@@ -1896,13 +1896,40 @@ class GTLiteMaterials
 
         // 2174 Unstable Adamantium
         @JvmField
-        val AdamantiumUnstable: Material = Material.Builder(2174, gtliteId("adamantium_unstable"))
+        val AdamantiumUnstable: Material = Material.Builder(2174, gtliteId("unstable_adamantium"))
             .liquid()
             .color(0xFF763C)
             .components(Adamantium, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("Ad*", true)
+
+        // 2175 Enriched Adamantium
+        @JvmField
+        val AdamantiumEnriched: Material = Material.Builder(2175, gtliteId("enriched_adamantium"))
+            .dust()
+            .color(0x64B4FF).iconSet(ROUGH)
+            .components(Vibranium, 1, RareEarth, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2176 Unstable Vibranium
+        @JvmField
+        val VibraniumUnstable: Material = Material.Builder(2176, gtliteId("unstable_vibranium"))
+            .liquid()
+            .color(0xFF7832)
+            .components(Vibranium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2177 Deep Iron
+        @JvmField
+        val DeepIron: Material = Material.Builder(2177, gtliteId("deep_iron"))
+            .dust()
+            .color(0x968C8C).iconSet(METALLIC)
+            .components(Iron, 2, Trinium, 1, Indium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
@@ -3708,6 +3735,13 @@ class GTLiteMaterials
         val LightEnrichedTaraniumFuel: Material = Material.Builder(12170, gtliteId("light_enriched_taranium_fuel"))
             .liquid()
             .color(0x0F1C1C)
+            .build()
+
+        // 12171 Energetic Naquadria
+        @JvmField
+        val NaquadriaEnergetic: Material = Material.Builder(12171, gtliteId("energetic_naquadria"))
+            .liquid()
+            .color(0x202020)
             .build()
 
     }

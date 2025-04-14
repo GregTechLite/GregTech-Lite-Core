@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
@@ -32,6 +33,7 @@ import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.IridiumMetalResidue
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
@@ -48,11 +50,13 @@ import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.RarestMetalMixture
 import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
@@ -70,6 +74,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
@@ -130,7 +135,7 @@ class GTLiteMaterialProperties
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
-                Scandium, Germanium, Technetium, Cadmium)
+                Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
@@ -138,6 +143,9 @@ class GTLiteMaterialProperties
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium)
                 .forEach { addLiquid(it) }
+
+            sequenceOf(Krypton, Xenon, Radon)
+                .forEach { addPlasma(it) }
 
             // Let andradite can generate in world natural.
             Andradite.setProperty(PropertyKey.ORE, OreProperty())
@@ -305,13 +313,35 @@ class GTLiteMaterialProperties
 
         }
 
+        // -------------------------------------------------------------------------------------------------------------
         // Quick-path of add MaterialProperty to a material.
+
+        /**
+         * Add ingot for a material which do not have [IngotProperty].
+         *
+         * The feature mixin allowed to use [IngotProperty] to change the material
+         * which has [DustProperty].
+         *
+         * @param material Material which do not have [IngotProperty].
+         *
+         * @see magicbook.gtlitecore.mixin.gregtech.MaterialPropertiesMixin
+         */
         private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
+
         private fun addGem(material: Material) = material.setProperty(PropertyKey.GEM, GemProperty())
+
         private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
+
         private fun addLiquid(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
+
         private fun addGas(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.GAS, FluidBuilder()))
-        private fun addPlasma(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.PLASMA, FluidBuilder()))
+
+        /**
+         * Add plasma for a material which exists liquid or gas (fluid).
+         *
+         * @param material Material which has fluids form.
+         */
+        private fun addPlasma(material: Material) = material.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA, FluidBuilder())
 
     }
 

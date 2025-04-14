@@ -4,6 +4,8 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -14,21 +16,34 @@ import gregtech.api.recipes.RecipeMaps.CRACKING_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.GAS_TURBINE_FUELS
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Helium3
+import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
 import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.SulfuricAcid
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.ore.OrePrefix.dust
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.DRILLING_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BedrockGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BedrockSmoke
@@ -47,20 +62,24 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyBedro
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumEnrichedTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumEnrichedTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UltralightBedrockSmoke
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -85,6 +104,111 @@ class BedrockiumProcessing
         {
             bedrockiumProcess()
             enrichedBedrockiumProcess()
+
+            // Advanced recipes for Taranium Fuels.
+
+            // Light Taranium Fuel.
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Taranium)
+                .input(dust, Gallium)
+                .fluidInputs(LightNaquadahFuel.getFluid(12000))
+                .fluidInputs(Krypton.getFluid(6000))
+                .fluidOutputs(LightTaraniumFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Adamantium)
+                .input(dust, IndiumGalliumPhosphide)
+                .fluidInputs(LightNaquadahFuel.getFluid(24000))
+                .fluidInputs(Krypton.getPlasma(8000))
+                .fluidOutputs(LightTaraniumFuel.getFluid(24000))
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Medium Taranium Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Taranium)
+                .input(dust, Duranium)
+                .fluidInputs(MediumNaquadahFuel.getFluid(12000))
+                .fluidInputs(Xenon.getFluid(6000))
+                .fluidOutputs(MediumTaraniumFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Adamantium)
+                .input(dust, Europium)
+                .fluidInputs(MediumNaquadahFuel.getFluid(24000))
+                .fluidInputs(Xenon.getPlasma(8000))
+                .fluidOutputs(MediumTaraniumFuel.getFluid(24000))
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Heavy Taranium Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Taranium)
+                .input(dust, Tritanium)
+                .fluidInputs(HeavyNaquadahFuel.getFluid(12000))
+                .fluidInputs(Radon.getFluid(6000))
+                .fluidOutputs(HeavyTaraniumFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Adamantium)
+                .input(dust, Neutronium)
+                .fluidInputs(HeavyNaquadahFuel.getFluid(24000))
+                .fluidInputs(Radon.getPlasma(8000))
+                .fluidOutputs(HeavyTaraniumFuel.getFluid(24000))
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Enriched Light Taranium Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Americium)
+                .fluidInputs(LightTaraniumFuel.getFluid(6000))
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidOutputs(LightEnrichedTaraniumFuel.getFluid(6000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Enriched Medium Taranium Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Dubnium)
+                .fluidInputs(MediumTaraniumFuel.getFluid(6000))
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidOutputs(MediumEnrichedTaraniumFuel.getFluid(6000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Enriched Heavy Taranium Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Rutherfordium)
+                .fluidInputs(HeavyTaraniumFuel.getFluid(6000))
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidOutputs(HeavyEnrichedTaraniumFuel.getFluid(6000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
         }
 
         private fun bedrockiumProcess()

@@ -6,6 +6,9 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
@@ -39,6 +42,7 @@ import gregtech.api.unification.material.Materials.HydrogenSulfide
 import gregtech.api.unification.material.Materials.ImpureEnrichedNaquadahSolution
 import gregtech.api.unification.material.Materials.ImpureNaquadriaSolution
 import gregtech.api.unification.material.Materials.IndiumPhosphide
+import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
@@ -46,8 +50,12 @@ import gregtech.api.unification.material.Materials.NaquadriaSolution
 import gregtech.api.unification.material.Materials.NaquadriaSulfate
 import gregtech.api.unification.material.Materials.NaquadriaWaste
 import gregtech.api.unification.material.Materials.NitricAcid
+import gregtech.api.unification.material.Materials.Nitrogen
+import gregtech.api.unification.material.Materials.NitrogenDioxide
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.PhosphoricAcid
+import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SodiumSulfide
@@ -56,11 +64,15 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.TitaniumTrifluoride
+import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.TriniumSulfide
+import gregtech.api.unification.material.Materials.Uranium235
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
@@ -75,6 +87,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityNaquadriaEmulsion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumHeptaoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TriniumTrioxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -431,7 +444,7 @@ class NaquadahProcessing
                 .fluidOutputs(Ammonia.getFluid(400))
                 .fluidOutputs(EnrichedNaquadahWaste.getFluid(400))
                 .fluidOutputs(NaquadriaWaste.getFluid(200))
-                .EUt(VA[ZPM].toLong())
+                .EUt(VA[IV].toLong())
                 .duration(1 * MINUTE)
                 .buildAndRegister()
 
@@ -442,6 +455,88 @@ class NaquadahProcessing
                 .fluidInputs(NaquadahGas.getFluid(24))
                 .EUt(VA[MV].toLong())
                 .duration(12 * SECOND)
+                .buildAndRegister()
+
+            // Advanced recipes for Naquadah Fuels.
+
+            // Energetic Naquadria
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Naquadria)
+                .fluidInputs(NitrogenDioxide.getFluid(500))
+                .fluidInputs(SulfuricAcid.getFluid(500))
+                .output(dust, Lutetium)
+                .output(dust, Uranium238)
+                .output(dust, Plutonium241)
+                .output(dust, NaquadahEnriched)
+                .fluidOutputs(NaquadriaEnergetic.getFluid(1000))
+                .EUt(V[ZPM] / 2)
+                .duration(2 * SECOND)
+                .buildAndRegister()
+
+            // Light Naquadah Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Naquadah)
+                .fluidInputs(Uranium235.getFluid(500))
+                .fluidInputs(Nitrogen.getFluid(500))
+                .fluidOutputs(LightNaquadahFuel.getFluid(6000))
+                .EUt(VA[UV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, GalliumSulfide)
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidOutputs(LightNaquadahFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Medium Naquadah Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, NaquadahEnriched)
+                .fluidInputs(Uranium235.getFluid(500))
+                .fluidInputs(Plutonium241.getFluid(500))
+                .output(dust, Plutonium239)
+                .fluidOutputs(MediumNaquadahFuel.getFluid(6000))
+                .EUt(VA[UV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, IndiumPhosphide)
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidOutputs(MediumNaquadahFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Heavy Naquadah Fuel
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Naquadria)
+                .input(dust, Plutonium239)
+                .fluidInputs(Nitrogen.getPlasma(500))
+                .output(dust, NaquadahEnriched)
+                .fluidOutputs(HeavyNaquadahFuel.getFluid(6000))
+                .EUt(VA[UV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(24)
+                .input(dust, Trinium)
+                .fluidInputs(NaquadriaEnergetic.getFluid(1000))
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidOutputs(HeavyNaquadahFuel.getFluid(12000))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
         }
