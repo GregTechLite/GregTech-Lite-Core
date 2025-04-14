@@ -274,6 +274,9 @@ dependencies {
         shadowImplementation("one.util:streamex:0.8.3") {
             isTransitive = false
         }
+        shadowImplementation("org.jheaps:jheaps:0.14") {
+            isTransitive = false
+        }
     }
 }
 
@@ -337,6 +340,7 @@ if (usesShadowJar.toBoolean()) {
         // Add shadowJar dependencies include and minimize settings at there.
         dependencies {
             include(dependency("one.util:streamex:.*"))
+            include(dependency("org.jheaps:jheaps:0.14:.*"))
             exclude(dependency(files("libs/gregtech-1.12.2-master.jar")))
         }
 
@@ -345,6 +349,7 @@ if (usesShadowJar.toBoolean()) {
 
         minimize {
             exclude(dependency("one.util:streamex.*"))
+            exclude(dependency("org.jheaps:jheaps:0.14.*"))
         }
     }
 }
