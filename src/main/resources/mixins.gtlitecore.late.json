@@ -22,6 +22,9 @@
   "client": [
     "gregtech.BlockGlassCasingMixin",
     "gregtech.BlockGlassCasingTypeMixin",
-    "gregtech.CableRendererMixin"
+    "gregtech.CableRendererMixin",
+    "gregtech.MetaItemMixin",
+    "gregtech.MetaPrefixItemMixin",
+    "gregtech.MetaValueItemMixin"
   ]
 }

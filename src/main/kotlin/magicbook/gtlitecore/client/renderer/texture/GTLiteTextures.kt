@@ -1,11 +1,15 @@
 package magicbook.gtlitecore.client.renderer.texture
 
+import codechicken.lib.texture.TextureUtils
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer
 import gregtech.client.renderer.texture.cube.SidedCubeRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtech.client.renderer.texture.custom.DrumRenderer
+import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.cube.GTLiteSimpleOverlayRenderer
 import magicbook.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
+import net.minecraft.client.renderer.texture.TextureAtlasSprite
+import net.minecraft.client.renderer.texture.TextureMap
 
 class GTLiteTextures
 {
@@ -245,6 +249,44 @@ class GTLiteTextures
         val UNIVERSAL_EXTENDER = ExtenderRenderer("storage/extenders/universal")
 
         // =============================================================================================================
+        lateinit var HALO: TextureAtlasSprite
+        lateinit var HALO_NOISE: TextureAtlasSprite
+        lateinit var COSMIC: Array<TextureAtlasSprite>
+        lateinit var COSMIC_0: TextureAtlasSprite
+        lateinit var COSMIC_1: TextureAtlasSprite
+        lateinit var COSMIC_2: TextureAtlasSprite
+        lateinit var COSMIC_3: TextureAtlasSprite
+        lateinit var COSMIC_4: TextureAtlasSprite
+        lateinit var COSMIC_5: TextureAtlasSprite
+        lateinit var COSMIC_6: TextureAtlasSprite
+        lateinit var COSMIC_7: TextureAtlasSprite
+        lateinit var COSMIC_8: TextureAtlasSprite
+        lateinit var COSMIC_9: TextureAtlasSprite
+
+        @JvmStatic
+        fun register(textureMap: TextureMap)
+        {
+            HALO = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/halo"))
+            HALO_NOISE = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/halo_noise"))
+            COSMIC_0 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_0"))
+            COSMIC_1 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_1"))
+            COSMIC_2 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_2"))
+            COSMIC_3 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_3"))
+            COSMIC_4 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_4"))
+            COSMIC_5 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_5"))
+            COSMIC_6 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_6"))
+            COSMIC_7 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_7"))
+            COSMIC_8 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_8"))
+            COSMIC_9 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_9"))
+            COSMIC = arrayOf(COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4, COSMIC_5, COSMIC_6,
+                COSMIC_7, COSMIC_8, COSMIC_9)
+        }
+
+        @JvmStatic
+        fun preInit()
+        {
+            TextureUtils.addIconRegister(GTLiteTextures::register)
+        }
 
     }
 
