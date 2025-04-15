@@ -2188,7 +2188,7 @@ gtlitecore.material.adamantium_unstable=不稳定精金
 gtlitecore.material.adamantium_enriched=富集精金
 gtlitecore.material.vibranium_unstable=不稳定振金
 gtlitecore.material.deep_iron=深铁
-gtlitecore.material.sodium_potassium=钠钾合金（反应堆慢化剂）
+gtlitecore.material.sodium_potassium_eutatic=共晶钠钾合金（反应堆慢化剂）
 gtlitecore.material.lead_bismuth_eutatic=共晶铅铋合金（反应堆慢化剂）
 gtlitecore.material.lithium_fluoride=氟化锂
 gtlitecore.material.potassium_fluoride=氟化钾
@@ -2242,7 +2242,7 @@ gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
 
 gtlitecore.material.supercritical_steam=超临界蒸汽
-gtlitecore.material.supercritical_sodium_potassium=超临界钠钾合金
+gtlitecore.material.supercritical_sodium_potassium_eutatic=超临界共晶钠钾合金
 gtlitecore.material.supercritical_lead_bismuth_eutatic=超临界共晶铅铋合金
 gtlitecore.material.supercritical_lithium_sodium_potassium_fluorides=超临界氟锂钠钾合金
 gtlitecore.material.supercritical_lithium_beryllium_fluorides=超临界氟锂铍合金

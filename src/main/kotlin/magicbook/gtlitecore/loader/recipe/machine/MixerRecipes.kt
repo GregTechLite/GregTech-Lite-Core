@@ -95,7 +95,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Molybdenum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
@@ -173,7 +173,7 @@ class MixerRecipes
                 .circuitMeta(2)
                 .input(dust, Sodium, 7)
                 .input(dust, Potassium, 3)
-                .output(dust, SodiumPotassium, 10)
+                .output(dust, SodiumPotassiumEutatic, 10)
                 .EUt(VA[LV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()

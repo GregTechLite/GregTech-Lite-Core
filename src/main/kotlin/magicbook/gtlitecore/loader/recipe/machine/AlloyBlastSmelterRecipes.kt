@@ -65,7 +65,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumFlu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
@@ -98,7 +98,7 @@ class AlloyBlastSmelterRecipes
             registerBinaryAlloy(Copper, 1, Redstone, 4,
                 RedAlloy, 1, 5 * SECOND)
             registerBinaryAlloy(Sodium, 7, Potassium, 3,
-                SodiumPotassium, 10, 5 * SECOND)
+                SodiumPotassiumEutatic, 10, 5 * SECOND)
             registerBinaryAlloy(Lead, 3, Bismuth, 7,
                 LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
 

@@ -1932,9 +1932,9 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
-        // 2178 Sodium Potassium
+        // 2178 Eutatic Sodium Potassium
         @JvmField
-        val SodiumPotassium: Material = Material.Builder(2178, gtliteId("sodium_potassium"))
+        val SodiumPotassiumEutatic: Material = Material.Builder(2178, gtliteId("sodium_potassium_eutatic"))
             .ingot()
             .fluid()
             .colorAverage().iconSet(DULL)
@@ -2586,12 +2586,12 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
-        // 6032 Supercritical Sodium Potassium
+        // 6032 Supercritical Eutatic Sodium Potassium
         @JvmField
-        val SupercriticalSodiumPotassium: Material = Material.Builder(6032, gtliteId("supercritical_sodium_potassium"))
+        val SupercriticalSodiumPotassiumEutatic: Material = Material.Builder(6032, gtliteId("supercritical_sodium_potassium_eutatic"))
             .liquid()
-            .color(SodiumPotassium.materialRGB).iconSet(SUPERCRITICAL)
-            .components(SodiumPotassium, 1)
+            .color(SodiumPotassiumEutatic.materialRGB).iconSet(SUPERCRITICAL)
+            .components(SodiumPotassiumEutatic, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 

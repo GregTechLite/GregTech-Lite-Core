@@ -2183,7 +2183,7 @@ gtlitecore.material.adamantium_unstable=Unstable Adamantium
 gtlitecore.material.adamantium_enriched=Enriched Adamantium
 gtlitecore.material.vibranium_unstable=Unstable Vibranium
 gtlitecore.material.deep_iron=Deep Iron
-gtlitecore.material.sodium_potassium=Sodium Potassium (Reactor Moderator)
+gtlitecore.material.sodium_potassium_eutatic=Eutatic Sodium Potassium (Reactor Moderator)
 gtlitecore.material.lead_bismuth_eutatic=Eutatic Lead Bismuth (Reactor Moderator)
 gtlitecore.material.lithium_fluoride=Lithium Fluoride
 gtlitecore.material.potassium_fluoride=Potassium Fluoride
@@ -2237,7 +2237,7 @@ gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
 
 gtlitecore.material.supercritical_steam=Supercritical Steam
-gtlitecore.material.supercritical_sodium_potassium=Supercritical Sodium Potassium
+gtlitecore.material.supercritical_sodium_potassium_eutatic=Supercritical Eutatic Sodium Potassium
 gtlitecore.material.supercritical_lead_bismuth_eutatic=Supercritical Eutatic Lead Bismuth
 gtlitecore.material.supercritical_lithium_sodium_potassium_fluorides=Supercritical Fluorine Lithium Sodium Potassium Alloy
 gtlitecore.material.supercritical_lithium_beryllium_fluorides=Supercritical Lithium Beryllium Fluorides
