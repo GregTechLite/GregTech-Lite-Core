@@ -1560,6 +1560,22 @@ gtlitecore.machine.fusion_reactor.uev.tooltip=家用中子星
 gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
 gtlitecore.machine.fusion_reactor.recipe_request=当合成启动能量高于§e(能源仓数×容量)§7时，聚变将无法进行。
 
+gtlitecore.machine.advanced_fusion_reactor.name=Advanced Fusion Reactor
+gtlitecore.machine.advanced_fusion_reactor.tooltip.1=异于托卡马克构型的仿星器聚变反应堆
+gtlitecore.machine.advanced_fusion_reactor.tooltip.2=由于仿星器直接通过外部线圈产生环形磁笼，所以不需要提供§a合成启动能量§7
+gtlitecore.machine.advanced_fusion_reactor.tooltip.3=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量，巨量的能量将加速聚变反应
+gtlitecore.machine.advanced_fusion_reactor.tooltip.4=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的超临界流体。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.5=更换更高级的外壳以解锁更高级的聚变反应：
+gtlitecore.machine.advanced_fusion_reactor.tooltip.6=使用更好的§f聚变机器外壳§7以提供更安全的结构保护与中子屏蔽；
+gtlitecore.machine.advanced_fusion_reactor.tooltip.7=使用更好的§f聚变线圈方块§7以提供更稳定的超导环向磁场与极向场；
+gtlitecore.machine.advanced_fusion_reactor.tooltip.8=使用更好的§f恒温仓§7以提供更稳定的超真空与超低温内部环境；
+gtlitecore.machine.advanced_fusion_reactor.tooltip.9=使用更好的§f偏滤器§7以提供更有效的过渡区域热负荷转移与物理清洁；
+gtlitecore.machine.advanced_fusion_reactor.tooltip.10=使用更好的§f真空室§7以提供更安全的内部结构保护与恒温真空保险层；
+gtlitecore.machine.advanced_fusion_reactor.tooltip.11=所有部件均限制配方能够运行的最大聚变等级，且所有部件必须保持同一等级。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.12=仿星器将在聚变反应时进行相当于两次一般§b无损超频§7的特殊超频。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.13=每提高1个§e机器外壳§7，§e真空室§7与§e恒温仓§7等级，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.14=每提高1个§e线圈方块§7与§e偏滤器§7等级，每次运行可以多处理§l64§r§7个物品。
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
@@ -2027,6 +2043,7 @@ item.material.oreprefix.boule=%s Boule
 gtlitecore.material.adamantium=Adamantium
 gtlitecore.material.vibranium=Vibranium
 gtlitecore.material.taranium=Taranium
+gtlitecore.material.metastable_flerovium=Metastable Flerovium
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2221,6 +2238,7 @@ gtlitecore.material.potassium_fluoride=Potassium Fluoride
 gtlitecore.material.lithium_sodium_potassium_fluorides=Fluorine Lithium Sodium Potassium Alloy (Reactor Moderator)
 gtlitecore.material.beryllium_difluoride=Beryllium Difluoride
 gtlitecore.material.lithium_beryllium_fluorides=Fluorine Lithium Beryllium Alloy (Reactor Moderator)
+gtlitecore.material.flerovium_ytterbium_plasma=Flerovium-Ytterbium
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2431,6 +2449,7 @@ gtlitecore.material.heavy_enriched_taranium_fuel=Heavy Enriched Taranium Fuel
 gtlitecore.material.medium_enriched_taranium_fuel=Medium Enriched Taranium Fuel
 gtlitecore.material.light_enriched_taranium_fuel=Light Enriched Taranium Fuel
 gtlitecore.material.energetic_naquadria=Energetic Naquadria
+gtlitecore.material.quasi_fissioning_plasma=Quasi-fissioning
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

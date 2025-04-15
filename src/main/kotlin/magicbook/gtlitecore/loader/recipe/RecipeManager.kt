@@ -34,6 +34,7 @@ import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
+import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
@@ -154,6 +155,7 @@ class RecipeManager
             PhosphorusChain.init()
             RocketFuelsChain.init()
             ReactorModeratorChain.init()
+            SuperheavyElementsChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

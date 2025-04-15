@@ -13,6 +13,7 @@ import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
+import gregtech.api.unification.Elements.Fl
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
@@ -275,6 +276,21 @@ class GTLiteMaterials
                     .vacuumStats(VA[IV], 11 * SECOND)
             }
             .cableProperties(V[UHV], 8, 2, false)
+            .build()
+
+        // 4 Metastable Flerovium
+        @JvmField
+        val MetastableFlerovium: Material = Material.Builder(4, gtliteId("metastable_flerovium"))
+            .ingot()
+            .fluid()
+            .plasma()
+            .color(0x521973).iconSet(SHINY)
+            .element(Fl)
+            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE)
+            .blast { b ->
+                b.temp(9900, BlastProperty.GasTier.HIGHEST) // Tritanium
+                  .blastStats(VA[UHV], 2 * MINUTE + 35 * SECOND)
+                  .vacuumStats(VA[UV], 40 * SECOND) }
             .build()
 
         // =======================================================================
@@ -1997,6 +2013,16 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("F3LiBe", true)
+
+        // 2185 Flerovium-Ytterbium Plasma
+        @JvmField
+        val FleroviumYtterbiumPlasma: Material = Material.Builder(2185, gtliteId("flerovium_ytterbium_plasma"))
+            .plasma()
+            .colorAverage()
+            .components(MetastableFlerovium, 1, Ytterbium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("FlY?", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
@@ -3856,6 +3882,13 @@ class GTLiteMaterials
         val NaquadriaEnergetic: Material = Material.Builder(12171, gtliteId("energetic_naquadria"))
             .liquid()
             .color(0x202020)
+            .build()
+
+        // 12172 Quasi-fissioning plasma
+        @JvmField
+        val QuasifissioningPlasma: Material = Material.Builder(12172, gtliteId("quasi_fissioning_plasma"))
+            .plasma()
+            .color(0xB0A2C3).iconSet(DULL)
             .build()
 
     }

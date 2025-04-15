@@ -80,6 +80,21 @@ class StructureUtility
         fun borosilicateGlasses() = GTLiteTraceabilityPredicate.BOROSILICATE_GLASS.get()
 
         @JvmStatic
+        fun fusionCasings() = GTLiteTraceabilityPredicate.FUSION_CASING.get();
+
+        @JvmStatic
+        fun fusionCoils() = GTLiteTraceabilityPredicate.FUSION_COIL.get();
+
+        @JvmStatic
+        fun cryostats() = GTLiteTraceabilityPredicate.CRYOSTAT.get()
+
+        @JvmStatic
+        fun divertors() = GTLiteTraceabilityPredicate.DIVERTOR.get()
+
+        @JvmStatic
+        fun vacuums() = GTLiteTraceabilityPredicate.VACUUM.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

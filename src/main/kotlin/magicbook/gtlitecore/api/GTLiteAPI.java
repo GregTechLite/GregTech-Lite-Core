@@ -2,6 +2,9 @@ package magicbook.gtlitecore.api;
 
 import gregtech.api.creativetab.BaseCreativeTab;
 import gregtech.common.blocks.BlockCleanroomCasing;
+import gregtech.common.blocks.BlockFusionCasing;
+import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
@@ -12,6 +15,9 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01;
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02;
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03;
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing;
@@ -21,6 +27,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 
 public class GTLiteAPI
 {
@@ -61,6 +68,11 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PROCESSOR_CASING = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_BOROSILICATE_GLASS = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_FUSION_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_FUSION_COIL = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CRYOSTAT = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_DIVERTOR = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_VACUUM = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
@@ -152,6 +164,82 @@ public class GTLiteAPI
                 new WrappedIntTier(BlockGlassCasing02.GlassType.NEUTRONIUM_BOROSILICATE, 7));
 
         // TODO UHV+ Borosilicates.
+
+        // fusion related casings (fusion casing, coil, cryostat, divertor and vacuum)
+        MAP_FUSION_CASING.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING),
+                new WrappedIntTier(BlockFusionCasing.CasingType.FUSION_CASING, 1));
+
+        MAP_FUSION_CASING.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING_MK2),
+                new WrappedIntTier(BlockFusionCasing.CasingType.FUSION_CASING_MK2, 2));
+
+        MAP_FUSION_CASING.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING_MK3),
+                new WrappedIntTier(BlockFusionCasing.CasingType.FUSION_CASING_MK3, 3));
+
+        MAP_FUSION_CASING.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK4),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK4, 4));
+
+        MAP_FUSION_CASING.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK5),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK5, 5));
+
+        MAP_FUSION_COIL.put(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS),
+                new WrappedIntTier(BlockGlassCasing.CasingType.FUSION_GLASS, 1));
+
+        MAP_FUSION_COIL.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL),
+                new WrappedIntTier(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL, 2));
+
+        MAP_FUSION_COIL.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_COIL),
+                new WrappedIntTier(BlockFusionCasing.CasingType.FUSION_COIL, 3));
+
+        MAP_FUSION_COIL.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL, 4));
+
+        MAP_FUSION_COIL.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL, 5));
+
+        MAP_CRYOSTAT.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK1),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK1, 1));
+
+        MAP_CRYOSTAT.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK2),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK2, 2));
+
+        MAP_CRYOSTAT.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK3),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK3, 3));
+
+        MAP_CRYOSTAT.put(GTLiteMetaBlocks.FUSION_CASING_01.getState(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK4),
+                new WrappedIntTier(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK4, 4));
+
+        MAP_CRYOSTAT.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.CRYOSTAT_MK5),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.CRYOSTAT_MK5, 5));
+
+        MAP_DIVERTOR.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK1),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK1, 1));
+
+        MAP_DIVERTOR.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK2),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK2, 2));
+
+        MAP_DIVERTOR.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK3),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK3, 3));
+
+        MAP_DIVERTOR.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK4),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK4, 4));
+
+        MAP_DIVERTOR.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK5),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK5, 5));
+
+        MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.VACUUM_MK1),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.VACUUM_MK1, 1));
+
+        MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_02.getState(BlockFusionCasing02.FusionCasingType.VACUUM_MK2),
+                new WrappedIntTier(BlockFusionCasing02.FusionCasingType.VACUUM_MK2, 2));
+
+        MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_03.getState(BlockFusionCasing03.FusionCasingType.VACUUM_MK3),
+                new WrappedIntTier(BlockFusionCasing03.FusionCasingType.VACUUM_MK3, 3));
+
+        MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_03.getState(BlockFusionCasing03.FusionCasingType.VACUUM_MK4),
+                new WrappedIntTier(BlockFusionCasing03.FusionCasingType.VACUUM_MK4, 4));
+
+        MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_03.getState(BlockFusionCasing03.FusionCasingType.VACUUM_MK5),
+                new WrappedIntTier(BlockFusionCasing03.FusionCasingType.VACUUM_MK5, 5));
 
         // cleanroomCasings
         MAP_CLEANROOM_CASING.put(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING),

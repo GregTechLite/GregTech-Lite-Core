@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
@@ -27,6 +28,7 @@ import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tin
@@ -55,6 +57,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_MV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.init.Blocks
 
@@ -170,6 +173,12 @@ class CraftingComponents
 
         fun setCraftingComponents()
         {
+
+            // Radioactive sticks.
+            CraftingComponent.STICK_RADIOACTIVE.appendIngredients(sequenceOf(
+                9 to UnificationEntry(stick, Rutherfordium),
+                10 to UnificationEntry(stick, MetastableFlerovium)
+            ).toMap())
 
             // Normal Pipes.
             CraftingComponent.PIPE_NORMAL.appendIngredients(sequenceOf(

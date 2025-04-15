@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.GarnetRed
@@ -61,6 +62,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
@@ -245,12 +247,16 @@ class GTLiteMaterialFlags
             Vanadium.addFlags(GENERATE_PLATE)
             Graphene.addFlags(GENERATE_PLATE)
             Germanium.addFlags(GENERATE_PLATE)
+            Dubnium.addFlags(GENERATE_PLATE)
+            Rutherfordium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
             Invar.addFlags(GENERATE_DOUBLE_PLATE)
             Uranium235.addFlags(GENERATE_DOUBLE_PLATE)
             Plutonium239.addFlags(GENERATE_DOUBLE_PLATE)
+            Dubnium.addFlags(GENERATE_DOUBLE_PLATE)
+            Rutherfordium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -276,6 +282,7 @@ class GTLiteMaterialFlags
             // stick
             Polybenzimidazole.addFlags(GENERATE_ROD)
             Zircaloy4.addFlags(GENERATE_ROD)
+            Rutherfordium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

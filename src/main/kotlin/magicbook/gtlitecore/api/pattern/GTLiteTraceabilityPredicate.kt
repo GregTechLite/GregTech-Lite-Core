@@ -78,6 +78,31 @@ class GTLiteTraceabilityPredicate
             Comparator.comparing { s -> (GTLiteAPI.MAP_BOROSILICATE_GLASS[s] as WrappedIntTier).getIntTier() },
             "BorosilicateGlass", null) }
 
+        @JvmStatic
+        var FUSION_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_FUSION_CASING,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_FUSION_CASING[s] as WrappedIntTier).getIntTier() },
+            "FusionCasing", null) }
+
+        @JvmStatic
+        var FUSION_COIL = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_FUSION_COIL,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_FUSION_COIL[s] as WrappedIntTier).getIntTier() },
+            "FusionCoil", null) }
+
+        @JvmStatic
+        var CRYOSTAT = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CRYOSTAT,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_CRYOSTAT[s] as WrappedIntTier).getIntTier() },
+            "Cryostat", null) }
+
+        @JvmStatic
+        var DIVERTOR = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_DIVERTOR,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_DIVERTOR[s] as WrappedIntTier).getIntTier() },
+            "Divertor", null) }
+
+        @JvmStatic
+        var VACUUM = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_VACUUM,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_VACUUM[s] as WrappedIntTier).getIntTier() },
+            "Vacuum", null) }
+
         // Overriden of original Cleanroom Casing by tiered stats predicate.
         @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,

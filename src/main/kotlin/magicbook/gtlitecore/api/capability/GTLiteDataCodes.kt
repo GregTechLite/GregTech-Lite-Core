@@ -27,6 +27,12 @@ class GTLiteDataCodes
 
         @JvmField
         var UPDATE_LAST_TIERED_MACHINE: Int = 9907
+
+        @JvmField
+        var INITIALIZE_EXTRA_TIERED_MACHINE: Int = 9908
+
+        @JvmField
+        var UPDATE_EXTRA_TIERED_MACHINE: Int = 9909
     }
 
 }

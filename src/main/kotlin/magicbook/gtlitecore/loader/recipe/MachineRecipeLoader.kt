@@ -7,6 +7,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -25,8 +26,10 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
@@ -43,6 +46,7 @@ import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -81,6 +85,7 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockGlassCasing
@@ -114,6 +119,7 @@ import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
@@ -144,6 +150,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
+import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.GAS_COLLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.IMPLOSION_COMPRESSOR
@@ -174,6 +181,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
@@ -186,10 +194,12 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
@@ -208,6 +218,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK4
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
@@ -1251,6 +1262,37 @@ class MachineRecipeLoader
                 'M', ELECTRIC_MOTOR_UV.stackForm,
                 'H', HULL[UV].stackForm,
                 'S', COMPONENT_GRINDER_TUNGSTEN.stackForm)
+
+            // Fusion Reactor Computer MK4
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL))
+                .input(circuit, MarkerMaterials.Tier.UEV, 4)
+                .input(plateDouble, MetastableFlerovium)
+                .input(plateDouble, Dubnium)
+                .input(FIELD_GENERATOR_UV, 2)
+                .input(FEMTO_PIC_CHIP, 64)
+                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(Europium.getFluid(L * 8))
+                .output(FUSION_REACTOR_MK4)
+                .EUt(VA[UV].toLong())
+                .duration(1 * MINUTE + 40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(FUSION_REACTOR[2].stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+            // Fusion Machine Casing MK4
+
+            // Fusion Reactor Computer MK5
+
+            // Fusion Machine Casing MK5
+
+            // Advanced Fusion Reactor
+
+            // Cryostat MK1
 
         }
 
