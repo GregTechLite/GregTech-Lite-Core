@@ -19,3 +19,4 @@
 - Some textures and codes are from [GT:NH](https://github.com/GTNewHorizons/GT-New-Horizons-Modpack) on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GT5-Unofficial/blob/master/LICENSE.txt).
 - Some textures and codes are from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry) on [GNU LGPL-3.0 License](https://github.com/SymmetricDevs/Supersymmetry/blob/master-ceu/LICENSE).
 - Some textures and codes are from [GregTechFoodOption](https://github.com/bruberu/GregTechFoodOption) on [GNU LGPL-3.0 License](https://github.com/bruberu/GregTechFoodOption/blob/master/LICENSE.txt).
+- Some renderer codes and textures are from [Avaritia](https://github.com/Morpheus1101/Avaritia) on [MIT License](https://github.com/Morpheus1101/Avaritia/blob/master/README.md).
