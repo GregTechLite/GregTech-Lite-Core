@@ -395,6 +395,28 @@ tile.multiblock_casing_01.drill_head.name=Drill Head
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
+tile.fusion_casing_01.fusion_casing_mk4.name=Fusion Machine Casing MK4
+tile.fusion_casing_01.fusion_casing_mk5.name=Fusion Machine Casing MK5
+tile.fusion_casing_01.advanced_fusion_coil.name=Advanced Fusion Coil Block
+tile.fusion_casing_01.ultimate_fusion_coil.name=Ultimate Fusion Coil Block
+tile.fusion_casing_01.cryostat_mk1.name=Reactor Cryostat MK1
+tile.fusion_casing_01.cryostat_mk2.name=Reactor Cryostat MK2
+tile.fusion_casing_01.cryostat_mk3.name=Reactor Cryostat MK3
+tile.fusion_casing_01.cryostat_mk4.name=Reactor Cryostat MK4
+
+tile.fusion_casing_02.cryostat_mk5.name=Reactor Cryostat MK5
+tile.fusion_casing_02.divertor_mk1.name=Reactor Divertor MK1
+tile.fusion_casing_02.divertor_mk2.name=Reactor Divertor MK2
+tile.fusion_casing_02.divertor_mk3.name=Reactor Divertor MK3
+tile.fusion_casing_02.divertor_mk4.name=Reactor Divertor MK4
+tile.fusion_casing_02.divertor_mk5.name=Reactor Divertor MK5
+tile.fusion_casing_02.vacuum_mk1.name=Reactor Vacuum MK1
+tile.fusion_casing_02.vacuum_mk2.name=Reactor Vacuum MK2
+
+tile.fusion_casing_03.vacuum_mk3.name=Reactor Vacuum MK3
+tile.fusion_casing_03.vacuum_mk4.name=Reactor Vacuum MK4
+tile.fusion_casing_03.vacuum_mk5.name=Reactor Vacuum MK5
+
 tile.crucible.bronze.name=Bronze Crucible
 tile.crucible.invar.name=Invar Crucible
 tile.crucible.quartz.name=Quartz Crucible
@@ -1528,6 +1550,15 @@ gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为
 gtlitecore.machine.bedrock_drilling_rig.tooltip.4=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.bedrock_drilling_rig.tooltip.5=Each §eMotor Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.bedrock_drilling_rig.tooltip.6=Each §aPiston Casing tier§7 +1, processing +§l16§r§7 items.
+
+gtlitecore.machine.fusion_reactor.uhv.name=Fusion Reactor Computer Mk-IV
+gtlitecore.machine.fusion_reactor.uhv.tooltip=银河泻落九天
+
+gtlitecore.machine.fusion_reactor.uev.name=Fusion Reactor Computer Mk-V
+gtlitecore.machine.fusion_reactor.uev.tooltip=家用中子星
+
+gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
+gtlitecore.machine.fusion_reactor.recipe_request=当合成启动能量高于§e(能源仓数×容量)§7时，聚变将无法进行。
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

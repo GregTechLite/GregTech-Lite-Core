@@ -17,6 +17,9 @@ import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
@@ -149,6 +152,9 @@ class GTLiteMetaBlocks
         lateinit var BOILER_CASING_01: BlockBoilerCasing01
         lateinit var MULTIBLOCK_CASING_01: BlockMultiblockCasing01
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
+        lateinit var FUSION_CASING_01: BlockFusionCasing01
+        lateinit var FUSION_CASING_02: BlockFusionCasing02
+        lateinit var FUSION_CASING_03: BlockFusionCasing03
         lateinit var CRUCIBLE: BlockCrucible
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
@@ -387,6 +393,18 @@ class GTLiteMetaBlocks
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setRegistryName("active_unique_casing_01")
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            FUSION_CASING_01 = BlockFusionCasing01()
+            (FUSION_CASING_01 as? Block)?.setRegistryName("fusion_casing_01")
+            (FUSION_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            FUSION_CASING_02 = BlockFusionCasing02()
+            (FUSION_CASING_02 as? Block)?.setRegistryName("fusion_casing_02")
+            (FUSION_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            FUSION_CASING_03 = BlockFusionCasing03()
+            (FUSION_CASING_03 as? Block)?.setRegistryName("fusion_casing_03")
+            (FUSION_CASING_03 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             CRUCIBLE = BlockCrucible()
             (CRUCIBLE as? Block)?.setRegistryName("crucible")
             (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -520,6 +538,9 @@ class GTLiteMetaBlocks
             registerItemModel(TRANSPARENT_CASING_02)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
+            FUSION_CASING_01.onModelRegister()
+            FUSION_CASING_02.onModelRegister()
+            FUSION_CASING_03.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
             WALLS.values.distinct().forEach(BlockGregtechWall::onModelRegister)
         }

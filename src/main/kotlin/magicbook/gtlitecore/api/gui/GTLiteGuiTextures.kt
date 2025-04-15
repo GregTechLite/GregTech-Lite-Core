@@ -116,6 +116,15 @@ class GTLiteGuiTextures
         @JvmField
         val BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE: TextureArea = TextureArea.fullImage(
             "textures/gui/primitive/button_circuit_minus_primitive.png")
+
+        @JvmField
+        val FUSION_REACTOR_MK4_TITLE: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/fusion_reactor_mk4_title")
+
+        @JvmField
+        val FUSION_REACTOR_MK5_TITLE: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/fusion_reactor_mk5_title")
+
     }
 
 }

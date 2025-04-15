@@ -1,0 +1,103 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=fusion_casing_mk4": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_4"
+      }
+    },
+    "active=true,variant=fusion_casing_mk4": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_4",
+        "top_all": "gregtech:blocks/casings/fusion/machine_casing_fusion_bloom"
+      }
+    },
+    "active=false,variant=fusion_casing_mk5": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_5"
+      }
+    },
+    "active=true,variant=fusion_casing_mk5": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_5",
+        "top_all": "gregtech:blocks/casings/fusion/machine_casing_fusion_bloom"
+      }
+    },
+    "active=false,variant=advanced_fusion_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/advanced_fusion_coil"
+      }
+    },
+    "active=true,variant=advanced_fusion_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/advanced_fusion_coil"
+      }
+    },
+    "active=false,variant=ultimate_fusion_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/ultimate_fusion_coil"
+      }
+    },
+    "active=true,variant=ultimate_fusion_coil": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/ultimate_fusion_coil"
+      }
+    },
+    "active=false,variant=cryostat_mk1": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_1"
+      }
+    },
+    "active=true,variant=cryostat_mk1": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_1"
+      }
+    },
+    "active=false,variant=cryostat_mk2": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_2"
+      }
+    },
+    "active=true,variant=cryostat_mk2": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_2"
+      }
+    },
+    "active=false,variant=cryostat_mk3": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_3"
+      }
+    },
+    "active=true,variant=cryostat_mk3": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_3"
+      }
+    },
+    "active=false,variant=cryostat_mk4": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_4"
+      }
+    },
+    "active=true,variant=cryostat_mk4": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/cryostat_4"
+      }
+    }
+  }
+}

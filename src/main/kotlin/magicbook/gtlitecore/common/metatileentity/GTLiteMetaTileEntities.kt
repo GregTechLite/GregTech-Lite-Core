@@ -28,6 +28,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUn
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityFusionReactors
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaserInducedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
@@ -228,6 +229,8 @@ class GTLiteMetaTileEntities
         lateinit var SONICATOR: MetaTileEntitySonicator
         lateinit var LASER_INDUCED_CVD_UNIT: MetaTileEntityLaserInducedCVDUnit
         lateinit var BEDROCK_DRILLING_RIG: MetaTileEntityBedrockDrillingRig
+        lateinit var FUSION_REACTOR_MK4: MetaTileEntityFusionReactors
+        lateinit var FUSION_REACTOR_MK5: MetaTileEntityFusionReactors
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -724,6 +727,12 @@ class GTLiteMetaTileEntities
 
             BEDROCK_DRILLING_RIG = MetaTileEntities.registerMetaTileEntity(18017,
                 MetaTileEntityBedrockDrillingRig(GTLiteUtility.gtliteId("bedrock_drilling_rig")))
+
+            FUSION_REACTOR_MK4 = MetaTileEntities.registerMetaTileEntity(18018,
+                MetaTileEntityFusionReactors(GTLiteUtility.gtliteId("fusion_reactor.uhv"), GTValues.UHV))
+
+            FUSION_REACTOR_MK5 = MetaTileEntities.registerMetaTileEntity(18019,
+                MetaTileEntityFusionReactors(GTLiteUtility.gtliteId("fusion_reactor.uev"), GTValues.UEV))
 
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))

@@ -25,6 +25,7 @@
     "gregtech.CableRendererMixin",
     "gregtech.MetaItemMixin",
     "gregtech.MetaPrefixItemMixin",
-    "gregtech.MetaValueItemMixin"
+    "gregtech.MetaValueItemMixin",
+    "gregtech.MetaTileEntityFusionReactorMixin"
   ]
 }

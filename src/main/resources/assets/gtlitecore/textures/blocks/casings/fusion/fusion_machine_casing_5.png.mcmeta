@@ -8,7 +8,7 @@
     "type": "CTM",
     "layer": "CUTOUT",
     "textures": [
-      "gtlitecore:blocks/casings/fusions/fusion_machine_casing_5_ctm"
+      "gtlitecore:blocks/casings/fusion/fusion_machine_casing_5_ctm"
     ],
     "extra": {
       "connect_inside": true
