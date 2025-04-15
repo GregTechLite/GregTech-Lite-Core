@@ -13,6 +13,7 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -27,6 +28,7 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Rubber
@@ -344,6 +346,20 @@ class GregtechOverrideRecipeLoader
                         .EUt(VA[UV].toLong())
                         .CWUt(32)
                 }
+                .buildAndRegister()
+
+            // Buff the neutronium fusion recipes.
+            GTRecipeHandler.removeRecipesByInputs(FUSION_RECIPES,
+                Americium.getFluid(128),
+                Naquadria.getFluid(128))
+
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Americium.getFluid(L))
+                .fluidInputs(Naquadria.getFluid(L))
+                .fluidOutputs(Neutronium.getFluid(L / 2))
+                .EUt(98304) // ZPM
+                .duration(10 * SECOND)
+                .EUToStart(600_000_000L) // 600M EU, MK3
                 .buildAndRegister()
 
         }
