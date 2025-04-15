@@ -190,7 +190,7 @@ class BedrockiumProcessing
             // Enriched Medium Taranium Fuel
             CHEMICAL_PLANT_RECIPES.recipeBuilder()
                 .circuitMeta(24)
-                .input(dust, Dubnium)
+                .input(dust, Rutherfordium)
                 .fluidInputs(MediumTaraniumFuel.getFluid(6000))
                 .fluidInputs(NaquadriaEnergetic.getFluid(1000))
                 .fluidOutputs(MediumEnrichedTaraniumFuel.getFluid(6000))
@@ -201,7 +201,7 @@ class BedrockiumProcessing
             // Enriched Heavy Taranium Fuel
             CHEMICAL_PLANT_RECIPES.recipeBuilder()
                 .circuitMeta(24)
-                .input(dust, Rutherfordium)
+                .input(dust, Dubnium)
                 .fluidInputs(HeavyTaraniumFuel.getFluid(6000))
                 .fluidInputs(NaquadriaEnergetic.getFluid(1000))
                 .fluidOutputs(HeavyEnrichedTaraniumFuel.getFluid(6000))

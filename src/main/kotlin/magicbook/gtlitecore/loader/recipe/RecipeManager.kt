@@ -56,6 +56,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FluidSolidifierRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
+import magicbook.gtlitecore.loader.recipe.machine.FusionReactorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.GasCollectorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LaserEngraverRecipes
 import magicbook.gtlitecore.loader.recipe.machine.LoomRecipes
@@ -193,6 +194,7 @@ class RecipeManager
             ExtruderRecipes.init()
             FluidSolidifierRecipes.init()
             FormingPressRecipes.init()
+            FusionReactorRecipes.init()
             GasCollectorRecipes.init()
             LaserEngraverRecipes.init()
             MixerRecipes.init()

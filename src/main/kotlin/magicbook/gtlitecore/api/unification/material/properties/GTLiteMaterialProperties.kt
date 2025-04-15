@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.Emerald
@@ -42,6 +43,7 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Phosphate
@@ -76,6 +78,7 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Ytterbium
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.info.MaterialIconSet
@@ -135,16 +138,17 @@ class GTLiteMaterialProperties
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
-                Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium)
+                Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
+                Curium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
-                Germanium)
+                Germanium, Rutherfordium, Dubnium, Curium)
                 .forEach { addLiquid(it) }
 
-            sequenceOf(Krypton, Xenon, Radon)
+            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon)
                 .forEach { addPlasma(it) }
 
             // Let andradite can generate in world natural.
