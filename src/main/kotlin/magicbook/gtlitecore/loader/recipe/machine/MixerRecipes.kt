@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Carbon
@@ -88,11 +89,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA8
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
@@ -162,6 +165,26 @@ class MixerRecipes
                 .input(dust, Cobalt, 5)
                 .output(dust, SamariumCobalt, 6)
                 .EUt(VA[LuV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Sodium Potassium
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Sodium, 7)
+                .input(dust, Potassium, 3)
+                .output(dust, SodiumPotassium, 10)
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Eutatic Lead Bismuth
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Lead, 3)
+                .input(dust, Bismuth, 7)
+                .output(dust, LeadBismuthEutatic, 10)
+                .EUt(VA[MV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
 

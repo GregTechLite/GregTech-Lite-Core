@@ -31,7 +31,7 @@ public class CommonProxy
 
     public void preLoad()
     {
-        GTLiteRecipeMaps.postRecipeMaps();
+        GTLiteRecipeMaps.preInit();
     }
 
     @SubscribeEvent

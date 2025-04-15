@@ -925,6 +925,7 @@ recipemap.sonicator.name=Sonication
 recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
 recipemap.mob_extractor.name=Mob Extractor
 recipemap.bedrock_drilling_rig.name=Bedrock Drilling Rig
+recipemap.advanced_fusion_reactor.name=Advanced Fusion Reactor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -937,6 +938,8 @@ gtlitecore.recipe.circuit_pattern=Required Circuit Pattern Info
 
 gtlitecore.recipe.accepted_entity=Required Entity on Machine Top: %s
 gtlitecore.recipe.entity_name.player=Player
+
+gtlitecore.recipe.advanced_fusion_tier=Level:
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -2176,10 +2179,17 @@ gtlitecore.material.bismuth_trioxide=Bismuth Trioxide
 gtlitecore.material.bismuth_strontium_calcium_cuprate=Bismuth Strontium Calcium Copper Oxides (BSCCO)
 gtlitecore.material.bedrockium=Bedrockium
 gtlitecore.material.adamantite=Adamantite
-gtlitecore.material.unstable_adamantium=Unstable Adamantium
-gtlitecore.material.enriched_adamantium=Enriched Adamantium
-gtlitecore.material.unstable_vibranium=Unstable Vibranium
+gtlitecore.material.adamantium_unstable=Unstable Adamantium
+gtlitecore.material.adamantium_enriched=Enriched Adamantium
+gtlitecore.material.vibranium_unstable=Unstable Vibranium
 gtlitecore.material.deep_iron=Deep Iron
+gtlitecore.material.sodium_potassium=Sodium Potassium (Reactor Moderator)
+gtlitecore.material.lead_bismuth_eutatic=Eutatic Lead Bismuth (Reactor Moderator)
+gtlitecore.material.lithium_fluoride=Lithium Fluoride
+gtlitecore.material.potassium_fluoride=Potassium Fluoride
+gtlitecore.material.lithium_sodium_potassium_fluorides=Fluorine Lithium Sodium Potassium Alloy (Reactor Moderator)
+gtlitecore.material.beryllium_difluoride=Beryllium Difluoride
+gtlitecore.material.lithium_beryllium_fluorides=Fluorine Lithium Beryllium Alloy (Reactor Moderator)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2225,6 +2235,12 @@ gtlitecore.material.tectonic_petrotheum=Tectonic Petrotheum
 gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
+
+gtlitecore.material.supercritical_steam=Supercritical Steam
+gtlitecore.material.supercritical_sodium_potassium=Supercritical Sodium Potassium
+gtlitecore.material.supercritical_lead_bismuth_eutatic=Supercritical Eutatic Lead Bismuth
+gtlitecore.material.supercritical_lithium_sodium_potassium_fluorides=Supercritical Fluorine Lithium Sodium Potassium Alloy
+gtlitecore.material.supercritical_lithium_beryllium_fluorides=Supercritical Lithium Beryllium Fluorides
 
 gtlitecore.material.dicyclopentadiene=Dicyclopentadiene
 gtlitecore.material.pentane=Pentane

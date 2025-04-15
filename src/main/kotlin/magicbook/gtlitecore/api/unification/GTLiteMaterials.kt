@@ -203,6 +203,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PYROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.ROASTED
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.SUPERCRITICAL
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -1896,7 +1897,7 @@ class GTLiteMaterials
 
         // 2174 Unstable Adamantium
         @JvmField
-        val AdamantiumUnstable: Material = Material.Builder(2174, gtliteId("unstable_adamantium"))
+        val AdamantiumUnstable: Material = Material.Builder(2174, gtliteId("adamantium_unstable"))
             .liquid()
             .color(0xFF763C)
             .components(Adamantium, 1)
@@ -1906,7 +1907,7 @@ class GTLiteMaterials
 
         // 2175 Enriched Adamantium
         @JvmField
-        val AdamantiumEnriched: Material = Material.Builder(2175, gtliteId("enriched_adamantium"))
+        val AdamantiumEnriched: Material = Material.Builder(2175, gtliteId("adamantium_enriched"))
             .dust()
             .color(0x64B4FF).iconSet(ROUGH)
             .components(Vibranium, 1, RareEarth, 1)
@@ -1915,7 +1916,7 @@ class GTLiteMaterials
 
         // 2176 Unstable Vibranium
         @JvmField
-        val VibraniumUnstable: Material = Material.Builder(2176, gtliteId("unstable_vibranium"))
+        val VibraniumUnstable: Material = Material.Builder(2176, gtliteId("vibranium_unstable"))
             .liquid()
             .color(0xFF7832)
             .components(Vibranium, 1)
@@ -1930,6 +1931,72 @@ class GTLiteMaterials
             .components(Iron, 2, Trinium, 1, Indium, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build()
+
+        // 2178 Sodium Potassium
+        @JvmField
+        val SodiumPotassium: Material = Material.Builder(2178, gtliteId("sodium_potassium"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(DULL)
+            .components(Sodium, 7, Potassium, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2179 Eutatic Lead Bismuth
+        @JvmField
+        val LeadBismuthEutatic: Material = Material.Builder(2179, gtliteId("lead_bismuth_eutatic"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(SHINY)
+            .components(Lead, 3, Bismuth, 7)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2180 Lithium Fluoride
+        @JvmField
+        val LithiumFluoride: Material = Material.Builder(2180, gtliteId("lithium_fluoride"))
+            .dust()
+            .colorAverage().iconSet(ROUGH)
+            .components(Lithium, 1, Fluorine, 1)
+            .build()
+
+        // 2181 Potassium Fluoride
+        @JvmField
+        val PotassiumFluoride: Material = Material.Builder(2181, gtliteId("potassium_fluoride"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Potassium, 1, Fluorine, 1)
+            .build()
+
+        // 2182 Lithium Sodium Potassium Fluorides
+        @JvmField
+        val LithiumSodiumPotassiumFluorides: Material = Material.Builder(2182, gtliteId("lithium_sodium_potassium_fluorides"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(METALLIC)
+            .components(LithiumFluoride, 1, SodiumFluoride, 1, PotassiumFluoride, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("F3LiNaK", true)
+
+        // 2183 Beryllium Difluoride
+        @JvmField
+        val BerylliumDifluoride: Material = Material.Builder(2183, gtliteId("beryllium_difluoride"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Beryllium, 1, Fluorine, 2)
+            .build()
+
+        // 2184 Lithium Beryllium Fluorides
+        @JvmField
+        val LithiumBerylliumFluorides: Material = Material.Builder(2184, gtliteId("lithium_beryllium_fluorides"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(ROUGH)
+            .components(LithiumFluoride, 1, BerylliumDifluoride, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("F3LiBe", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
@@ -2506,6 +2573,53 @@ class GTLiteMaterials
             .color(0x662E2E)
             .components(ManganeseMonoxide, 1, BandedIron, 1)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // ...
+
+        // 6031 Supercritical Steam
+        @JvmField
+        val SupercriticalSteam: Material = Material.Builder(6031, gtliteId("supercritical_steam"))
+            .gas(FluidBuilder().temperature(873))
+            .color(0xC4C4C4).iconSet(SUPERCRITICAL)
+            .components(Water, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6032 Supercritical Sodium Potassium
+        @JvmField
+        val SupercriticalSodiumPotassium: Material = Material.Builder(6032, gtliteId("supercritical_sodium_potassium"))
+            .liquid()
+            .color(SodiumPotassium.materialRGB).iconSet(SUPERCRITICAL)
+            .components(SodiumPotassium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6033 Supercritical Eutatic Lead Bismuth
+        @JvmField
+        val SupercriticalLeadBismuthEutatic: Material = Material.Builder(6033, gtliteId("supercritical_lead_bismuth_eutatic"))
+            .liquid()
+            .color(LeadBismuthEutatic.materialRGB).iconSet(SUPERCRITICAL)
+            .components(LeadBismuthEutatic, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6034 Supercritical Lithium Sodium Potassium Fluorides
+        @JvmField
+        val SupercriticalLithiumSodiumPotassiumFluorides: Material = Material.Builder(6034, gtliteId("supercritical_lithium_sodium_potassium_fluorides"))
+            .liquid()
+            .color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(SUPERCRITICAL)
+            .components(LithiumSodiumPotassiumFluorides, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6035 Supercritical Lithium Beryllium Fluorides
+        @JvmField
+        val SupercriticalLithiumBerylliumFluorides: Material = Material.Builder(6035, gtliteId("supercritical_lithium_beryllium_fluorides"))
+            .liquid()
+            .color(LithiumBerylliumFluorides.materialRGB).iconSet(SUPERCRITICAL)
+            .components(LithiumBerylliumFluorides, 1)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
 
         // =======================================================================

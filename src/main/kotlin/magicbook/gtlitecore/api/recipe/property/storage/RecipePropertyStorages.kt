@@ -9,7 +9,9 @@ class RecipePropertyStorages
         @JvmStatic
         fun loadPropertyStorage()
         {
+            AdvancedFusionTieredPropertyStorage.loadProperties()
             CircuitPatternPropertyStorage.loadProperties()
+            FusionEUToStartPropertyStorage.loadProperties()
         }
 
     }

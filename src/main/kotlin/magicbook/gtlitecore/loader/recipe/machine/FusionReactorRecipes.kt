@@ -165,7 +165,7 @@ class FusionReactorRecipes
         {
             PLASMA_GENERATOR_FUELS.recipeBuilder()
                 .fluidInputs(material.getPlasma(1))
-                .fluidInputs(material.getFluid(1))
+                .fluidOutputs(material.getFluid(1))
                 .EUt(V[EV])
                 .duration(duration)
                 .buildAndRegister()

@@ -1,8 +1,11 @@
 package magicbook.gtlitecore.api.recipe
 
 import crafttweaker.annotations.ZenRegister
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.V
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
+import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.BlastRecipeBuilder
@@ -12,14 +15,17 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import magicbook.gtlitecore.api.recipe.builder.AdvancedFusionRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import net.minecraft.init.SoundEvents
+import net.minecraftforge.fluids.FluidStack
 import stanhebben.zenscript.annotations.ZenClass
 import stanhebben.zenscript.annotations.ZenProperty
 import kotlin.math.max
@@ -730,8 +736,22 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.MACERATOR)
             .build()
 
+        /**
+         * @zenProp advanced_fusion_reactor
+         */
+        @ZenProperty
         @JvmStatic
-        fun postRecipeMaps() // Used to post RecipeMap changing.
+        @get:JvmName("ADVANCED_FUSION_RECIPES")
+        val ADVANCED_FUSION_RECIPES = RecipeMapBuilder("advanced_fusion_reactor", AdvancedFusionRecipeBuilder())
+            .fluidInputs(3)
+            .fluidOutputs(2)
+            .progressBar(GuiTextures.PROGRESS_BAR_FUSION)
+            .sound(GTSoundEvents.ARC)
+            .build()
+            .setSmallRecipeMap(RecipeMaps.FUSION_RECIPES)
+
+        @JvmStatic
+        fun preInit()
         {
             // Copying mixer recipes to large mixer recipe map.
             RecipeMaps.MIXER_RECIPES.onRecipeBuild(GTLiteUtility.gtliteId("mixer_copy")) { recipeBuilder ->

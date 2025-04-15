@@ -925,6 +925,7 @@ recipemap.sonicator.name=超声震荡
 recipemap.laser_induced_cvd_unit.name=激光诱导化学气相沉积
 recipemap.mob_extractor.name=生物资源提取器
 recipemap.bedrock_drilling_rig.name=基岩钻机
+recipemap.advanced_fusion_reactor.name=进阶聚变反应堆
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -937,6 +938,8 @@ gtlitecore.recipe.circuit_pattern=需要电路模板信息
 
 gtlitecore.recipe.accepted_entity=需要顶部存在：%s
 gtlitecore.recipe.entity_name.player=玩家
+
+gtlitecore.recipe.advanced_fusion_tier=等级：
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -2181,10 +2184,17 @@ gtlitecore.material.bismuth_trioxide=三氧化二铋
 gtlitecore.material.bismuth_strontium_calcium_cuprate=铋锶钙铜氧（BSCCO）
 gtlitecore.material.bedrockium=基岩
 gtlitecore.material.adamantite=精金石
-gtlitecore.material.unstable_adamantium=不稳定精金
-gtlitecore.material.enriched_adamantium=富集精金
-gtlitecore.material.unstable_vibranium=不稳定振金
+gtlitecore.material.adamantium_unstable=不稳定精金
+gtlitecore.material.adamantium_enriched=富集精金
+gtlitecore.material.vibranium_unstable=不稳定振金
 gtlitecore.material.deep_iron=深铁
+gtlitecore.material.sodium_potassium=钠钾合金（反应堆慢化剂）
+gtlitecore.material.lead_bismuth_eutatic=共晶铅铋合金（反应堆慢化剂）
+gtlitecore.material.lithium_fluoride=氟化锂
+gtlitecore.material.potassium_fluoride=氟化钾
+gtlitecore.material.lithium_sodium_potassium_fluorides=氟锂钠钾合金（反应堆慢化剂）
+gtlitecore.material.beryllium_difluoride=二氟化铍
+gtlitecore.material.lithium_beryllium_fluorides=氟锂铍合金（反应堆慢化剂）
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2230,6 +2240,12 @@ gtlitecore.material.tectonic_petrotheum=板块之层岩
 gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
+
+gtlitecore.material.supercritical_steam=超临界蒸汽
+gtlitecore.material.supercritical_sodium_potassium=超临界钠钾合金
+gtlitecore.material.supercritical_lead_bismuth_eutatic=超临界共晶铅铋合金
+gtlitecore.material.supercritical_lithium_sodium_potassium_fluorides=超临界氟锂钠钾合金
+gtlitecore.material.supercritical_lithium_beryllium_fluorides=超临界氟锂铍合金
 
 gtlitecore.material.dicyclopentadiene=双环戊二烯
 gtlitecore.material.pentane=戊烷
