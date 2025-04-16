@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.AntimonyTrifluoride
 import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.FluoroantimonicAcid
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
@@ -20,6 +21,7 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.SodaAsh
+import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -42,16 +44,16 @@ class PEEKChain
 
         fun init()
         {
-            // C6H5F + H2SbF7 + CH4 -> SbF3 + C7H7F + 4HF
+
+            // C7H8 + 2F -> C7H7F + HF
             CHEMICAL_RECIPES.recipeBuilder()
-                .fluidInputs(Fluorobenzene.getFluid(1000))
-                .fluidInputs(FluoroantimonicAcid.getFluid(1000))
-                .fluidInputs(Methane.getFluid(1000))
-                .output(dust, AntimonyTrifluoride, 4)
+                .circuitMeta(1)
+                .fluidInputs(Toluene.getFluid(1000))
+                .fluidInputs(Fluorine.getFluid(2000))
                 .fluidOutputs(Fluorotoluene.getFluid(1000))
-                .fluidOutputs(HydrofluoricAcid.getFluid(4000))
+                .fluidOutputs(HydrofluoricAcid.getFluid(1000))
                 .EUt(VA[HV].toLong())
-                .duration(7 * SECOND)
+                .duration(6 * SECOND)
                 .buildAndRegister()
 
             // C6H5F + C7H7F + 6Cl + H2O -> (FC6H4)2CO + 6HCl
