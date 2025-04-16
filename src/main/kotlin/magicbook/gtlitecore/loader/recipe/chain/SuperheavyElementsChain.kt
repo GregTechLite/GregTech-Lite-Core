@@ -2,7 +2,6 @@ package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -11,7 +10,6 @@ import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
-import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Krypton

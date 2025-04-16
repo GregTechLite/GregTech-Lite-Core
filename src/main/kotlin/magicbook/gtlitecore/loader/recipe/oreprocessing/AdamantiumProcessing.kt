@@ -14,7 +14,6 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Argon
 import gregtech.api.unification.material.Materials.Duranium
-import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Naquadah

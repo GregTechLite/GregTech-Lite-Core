@@ -188,7 +188,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Picotite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RP1RocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tanzanite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND

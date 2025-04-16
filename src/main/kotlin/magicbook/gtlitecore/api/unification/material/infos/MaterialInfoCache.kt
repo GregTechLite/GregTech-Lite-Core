@@ -34,7 +34,6 @@ import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Fermium
-import gregtech.api.unification.material.Materials.Flerovium
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium

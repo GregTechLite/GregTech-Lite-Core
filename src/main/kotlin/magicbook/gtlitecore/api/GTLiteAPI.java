@@ -4,7 +4,6 @@ import gregtech.api.creativetab.BaseCreativeTab;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.block.IBlockTier;
@@ -27,7 +26,6 @@ import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 
 public class GTLiteAPI
 {

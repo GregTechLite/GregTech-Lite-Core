@@ -1,8 +1,5 @@
 package magicbook.gtlitecore.client.model.quad.properties;
 
-import magicbook.gtlitecore.client.model.quad.ModelQuadView;
-import net.minecraft.util.EnumFacing;
-
 public class ModelQuadFlags
 {
     /**
