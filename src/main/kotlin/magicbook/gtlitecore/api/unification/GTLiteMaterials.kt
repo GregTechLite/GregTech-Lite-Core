@@ -64,6 +64,7 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
@@ -3390,6 +3391,68 @@ class GTLiteMaterials
             .liquid()
             .color(0x607186)
             .components(Methylhydrazine, 1, Tetranitromethane, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8080 Resorcinol
+        @JvmField
+        val Resorcinol: Material = Material.Builder(8080, gtliteId("resorcinol"))
+            .liquid()
+            .color(0x9DA38D)
+            .components(Carbon, 6, Hydrogen, 6, Oxygen, 2)
+            .build()
+
+        // 8081 Fluorotoluene
+        @JvmField
+        val Fluorotoluene: Material = Material.Builder(8081, gtliteId("fluorotoluene"))
+            .liquid()
+            .color(0x6EC5B8)
+            .components(Carbon, 7, Hydrogen, 7, Fluorine, 1)
+            .build()
+
+        // 8082 Difluorobenzophenone
+        @JvmField
+        val Difluorobenzophenone: Material = Material.Builder(8082, gtliteId("difluorobenzophenone"))
+            .dust()
+            .color(0xC44DA5).iconSet(SHINY)
+            .components(Carbon, 13, Hydrogen, 8, Oxygen, 1, Fluorine, 2)
+            .build()
+            .setFormula("(FC6H4)2CO", true)
+
+        // 8083 Hydroquinone
+        @JvmField
+        val Hydroquinone: Material = Material.Builder(8083, gtliteId("hydroquinone"))
+            .liquid()
+            .color(0x83251A)
+            .components(Carbon, 6, Hydrogen, 6, Oxygen, 2)
+            .build()
+            .setFormula("C6H4(OH)2", true)
+
+        // 8084 Polyetheretherketone (PEEK)
+        @JvmField
+        val Polyetheretherketone: Material = Material.Builder(8084, gtliteId("polyetheretherketone"))
+            .polymer()
+            .liquid()
+            .color(0x45433D)
+            .components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            .build()
+
+        // 8085 Fluorescein
+        @JvmField
+        val Fluorescein: Material = Material.Builder(8085, gtliteId("fluorescein"))
+            .dust()
+            .color(0xE0E660).iconSet(SHINY)
+            .components(Carbon, 20, Hydrogen, 12, Oxygen, 5)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8086 Erythrosine
+        @JvmField
+        val Erythrosine: Material = Material.Builder(8086, gtliteId("erythrosine"))
+            .dust()
+            .color(0xC63611).iconSet(DULL)
+            .components(Carbon, 20, Hydrogen, 6, Oxygen, 5, Sodium, 2, Iodine, 4)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 

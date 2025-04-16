@@ -1,9 +1,11 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
@@ -12,6 +14,8 @@ import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.ChromiumTrioxide
 import gregtech.api.unification.material.Materials.CobaltOxide
 import gregtech.api.unification.material.Materials.DilutedSulfuricAcid
+import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.NitrationMixture
@@ -19,6 +23,7 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Salt
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
@@ -26,15 +31,20 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Erythrosine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorescein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseMonoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitrotoluene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhthalicAnhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumHypochlorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -49,13 +59,14 @@ class DyesChain
 
         fun init()
         {
-            siennaProcessing() // Brown & Red
-            leadAcidateProcessing() // Yellow & White
-            cobaltAluminateProcessing() // Blue
-            dsdaProcessing() // White
+            siennaProcess() // Brown & Red
+            leadAcidateProcess() // Yellow & White
+            cobaltAluminateProcess() // Blue
+            dsdaProcess() // White
+            fluoresceinErythrosineProcess() // Yellow & Red
         }
 
-        private fun siennaProcessing()
+        private fun siennaProcess()
         {
 
             // Mn + O -> MnO
@@ -94,7 +105,7 @@ class DyesChain
 
         }
 
-        private fun leadAcidateProcessing()
+        private fun leadAcidateProcess()
         {
             // PbO + CrO3 -> PbCrO4
             BURNER_REACTOR_RECIPES.recipeBuilder()
@@ -118,7 +129,7 @@ class DyesChain
                 .buildAndRegister()
         }
 
-        private fun cobaltAluminateProcessing()
+        private fun cobaltAluminateProcess()
         {
             // Al2O3 + CoO -> CoAl2O4
             BURNER_REACTOR_RECIPES.recipeBuilder()
@@ -130,7 +141,7 @@ class DyesChain
                 .buildAndRegister()
         }
 
-        private fun dsdaProcessing()
+        private fun dsdaProcess()
         {
             // C7H8 + 2(HNO3)(H2SO4) + H2SO4 -> C7H7NO2 + 3H2SO4
             CHEMICAL_RECIPES.recipeBuilder()
@@ -154,6 +165,31 @@ class DyesChain
                 .fluidOutputs(Water.getFluid(4000))
                 .EUt(VA[EV].toLong())
                 .duration(16 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun fluoresceinErythrosineProcess()
+        {
+            // C6H4(CO)2O + 2C6H6O2 -> C20H12O5 + 2H2O
+            CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .input(dust, PhthalicAnhydride, 15)
+                .fluidInputs(Resorcinol.getFluid(2000))
+                .output(dust, Fluorescein, 37)
+                .fluidOutputs(Water.getFluid(2000))
+                .EUt(VA[EV].toLong())
+                .duration(11 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // C20H12O5 + 2NaOH + 4I -> C20H6O5Na2I4 + 4H + 2H2O
+            BURNER_REACTOR_RECIPES.recipeBuilder()
+                .input(dust, Fluorescein, 37)
+                .input(dust, SodiumHydroxide, 6)
+                .input(dust, Iodine, 4)
+                .output(dust, Erythrosine, 37)
+                .fluidOutputs(Hydrogen.getFluid(4000))
+                .fluidOutputs(Steam.getFluid(2000))
+                .EUt(VHA[HV].toLong())
+                .duration(7 * SECOND + 10 * TICK)
                 .buildAndRegister()
         }
 

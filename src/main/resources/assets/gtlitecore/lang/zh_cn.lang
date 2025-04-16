@@ -2380,6 +2380,13 @@ gtlitecore.material.polytetramethylene_glycol_rubber=聚四氢呋喃二醇橡胶
 gtlitecore.material.dense_hydrazine_rocket_fuel=混合浓缩肼火箭燃料
 gtlitecore.material.methylhydrazine=甲基肼
 gtlitecore.material.methylhydrazine_nitrate_rocket_fuel=硝酸甲肼火箭燃料
+gtlitecore.material.resorcinol=间苯二酚
+gtlitecore.material.fluorotoluene=氟甲苯
+gtlitecore.material.difluorobenzophenone=二氟二苯甲酮
+gtlitecore.material.hydroquinone=对苯二酚
+gtlitecore.material.polyetheretherketone=聚醚醚酮（PEEK）
+gtlitecore.material.fluorescein=荧光黄
+gtlitecore.material.erythrosine=赤藓红
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

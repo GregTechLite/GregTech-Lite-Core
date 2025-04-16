@@ -27,6 +27,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorescein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
@@ -129,6 +130,7 @@ class OreDictionaryLoader
             OreDictionary.registerOre("dyeYellow", OreDictUnifier.get(dust, Massicot)) // "Lead Yellow"
             OreDictionary.registerOre("dyeYellow", OreDictUnifier.get(dust, LeadChromate))
             OreDictionary.registerOre("dyeYellow", OreDictUnifier.get(dust, Orpiment)) // "Arsenic Yellow"
+            OreDictionary.registerOre("dyeYellow", OreDictUnifier.get(dust, Fluorescein))
 
             // Lime
 

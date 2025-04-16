@@ -25,6 +25,7 @@ import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
+import magicbook.gtlitecore.loader.recipe.chain.PEEKChain
 import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
@@ -158,6 +159,7 @@ class RecipeManager
             RocketFuelsChain.init()
             ReactorModeratorChain.init()
             SuperheavyElementsChain.init()
+            PEEKChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()
