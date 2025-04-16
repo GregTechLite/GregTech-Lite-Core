@@ -1,13 +1,20 @@
 package magicbook.gtlitecore.loader.recipe
 
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.VA
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Butyraldehyde
+import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.DilutedHydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrochloricAcid
+import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Polydimethylsiloxane
+import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -44,6 +51,23 @@ class RecipeConflicts
                 .EUt(96) // MV
                 .duration(2 * MINUTE + 24 * SECOND)
                 .buildAndRegister()
+
+            // Add an int circuit to C4H8O recipe.
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(Propene.getFluid(1000),
+                    Hydrogen.getFluid(2000),
+                    CarbonMonoxide.getFluid(1000)))
+
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Propene.getFluid(1000))
+                .fluidInputs(Hydrogen.getFluid(2000))
+                .fluidInputs(CarbonMonoxide.getFluid(1000))
+                .fluidOutputs(Butyraldehyde.getFluid(1000))
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
         }
 
     }

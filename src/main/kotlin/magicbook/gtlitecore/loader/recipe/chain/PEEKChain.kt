@@ -44,7 +44,6 @@ class PEEKChain
 
         fun init()
         {
-
             // C7H8 + 2F -> C7H7F + HF
             CHEMICAL_RECIPES.recipeBuilder()
                 .circuitMeta(1)

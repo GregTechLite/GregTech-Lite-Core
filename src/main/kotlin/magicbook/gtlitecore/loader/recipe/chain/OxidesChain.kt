@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.Sulfur
@@ -73,6 +74,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -393,6 +395,16 @@ class OxidesChain
                 .output(dust, Tenorite, 2)
                 .EUt(VA[LV].toLong())
                 .duration(15 * TICK)
+                .buildAndRegister()
+
+            // 2Na + O -> Na2O
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Sodium, 2)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .output(dust, SodiumOxide, 3)
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND)
                 .buildAndRegister()
         }
 

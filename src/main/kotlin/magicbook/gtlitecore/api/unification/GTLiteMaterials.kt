@@ -48,6 +48,7 @@ import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Erbium
+import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
@@ -119,6 +120,7 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Stone
@@ -2059,6 +2061,24 @@ class GTLiteMaterials
             .components(Rubidium, 1, Chlorine, 1)
             .build()
 
+        // 2189 Sodium Oxide
+        @JvmField
+        val SodiumOxide: Material = Material.Builder(2189, gtliteId("sodium_oxide"))
+            .dust()
+            .color(0x2C96FC).iconSet(BRIGHT)
+            .components(Sodium, 2, Oxygen, 1)
+            .build()
+
+        // 2190 Sodium Acetate
+        @JvmField
+        val SodiumAcetate: Material = Material.Builder(2190, gtliteId("sodium_acetate"))
+            .liquid()
+            .color(0xC5D624)
+            .components(SodiumHydroxide, 1, Ethenone, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C2H3NaO2", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -3454,6 +3474,68 @@ class GTLiteMaterials
             .color(0xC63611).iconSet(DULL)
             .components(Carbon, 20, Hydrogen, 6, Oxygen, 5, Sodium, 2, Iodine, 4)
             .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8087 Isochloropropane
+        @JvmField
+        val Isochloropropane: Material = Material.Builder(8087, gtliteId("isochloropropane"))
+            .liquid()
+            .color(0xC3AC65)
+            .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
+            .build()
+            .setFormula("CH3CHClCH3", true)
+
+        // 8088 Acetic Anhydride
+        @JvmField
+        val AceticAnhydride: Material = Material.Builder(8088, gtliteId("acetic_anhydride"))
+            .liquid()
+            .color(0xE2EBD9)
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 3)
+            .build()
+
+        // 8089 Dinitrodipropanyloxybenzene
+        @JvmField
+        val Dinitrodipropanyloxybenzene: Material = Material.Builder(8089, gtliteId("dinitrodipropanyloxybenzene"))
+            .liquid()
+            .color(0x9FAD1D)
+            .components(Carbon, 12, Hydrogen, 16, Oxygen, 6, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C12H16O2(NO2)2", true)
+
+        // 8090 Dibromomethylbenzene
+        @JvmField
+        val Dibromomethylbenzene: Material = Material.Builder(8090, gtliteId("dibromomethylbenzene"))
+            .liquid()
+            .color(0x9F4839)
+            .components(Carbon, 7, Hydrogen, 6, Bromine, 2)
+            .build()
+
+        // 8091 Terephthalaldehyde
+        @JvmField
+        val Terephthalaldehyde: Material = Material.Builder(8091, gtliteId("terephthalaldehyde"))
+            .dust()
+            .color(0x567C2D).iconSet(ROUGH)
+            .components(Carbon, 8, Hydrogen, 6, Oxygen, 2)
+            .build()
+
+        // 8092 Pretreated Zylon
+        @JvmField
+        val PretreatedZylon: Material = Material.Builder(8092, gtliteId("pretreated_zylon"))
+            .dust()
+            .color(0x623250).iconSet(DULL)
+            .components(Carbon, 20, Hydrogen, 22, Nitrogen, 2, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8093 Zylon
+        @JvmField
+        val Zylon: Material = Material.Builder(8093, gtliteId("zylon"))
+            .polymer()
+            .liquid()
+            .color(0xFFE000).iconSet(SHINY)
+            .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
             .build()
 
         // =======================================================================

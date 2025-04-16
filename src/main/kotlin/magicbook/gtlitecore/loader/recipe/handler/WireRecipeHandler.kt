@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
@@ -18,6 +19,7 @@ import gregtech.api.unification.material.properties.WireProperties
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.util.GTUtility
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import kotlin.reflect.full.declaredFunctions
 import kotlin.reflect.jvm.isAccessible
@@ -116,10 +118,50 @@ class WireRecipeHandler
                 builder.fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * insulationAmount / 4))
                     .buildAndRegister()
             }
-            // TODO Advanced Synthetic Rubber (for UV-OpV cables).
+            // Advanced Synthetic Rubber recipe (for UHV-OpV cables)
             if (voltageTier <= OpV)
             {
+                // PTMEG Rubber recipes.
+                var builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+                    .input(wirePrefix, material)
+                    .output(cablePrefix, material)
+                    .EUt(VA[ULV].toLong())
+                    .duration(5 * SECOND)
+                // Apply PVC foil for EV or above cables.
+                if (voltageTier >= EV)
+                    builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                // Apply PPS foil for LuV or above cables.
+                if (voltageTier >= LuV)
+                    builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
+                // Apply PEEK foil for UV or above cables.
+                if (voltageTier >= UV)
+                    builder.input(OrePrefix.foil, GTLiteMaterials.Polyetheretherketone, insulationAmount)
+                // Apply Zylon foil for UEV or above cables.
+                if (voltageTier >= UEV)
+                    builder.input(OrePrefix.foil, GTLiteMaterials.Zylon, insulationAmount)
+                builder.fluidInputs(GTLiteMaterials.PolytetramethyleneGlycolRubber.getFluid(L * insulationAmount / 2))
+                    .buildAndRegister()
 
+                // PPF Rubber recipes.
+                builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+                    .input(wirePrefix, material)
+                    .output(cablePrefix, material)
+                    .EUt(VA[ULV].toLong())
+                    .duration(5 * SECOND)
+                // Apply PVC foil for EV or above cables.
+                if (voltageTier >= EV)
+                    builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                // Apply PPS foil for LuV or above cables.
+                if (voltageTier >= LuV)
+                    builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
+                // Apply PEEK foil for UV or above cables.
+                if (voltageTier >= UV)
+                    builder.input(OrePrefix.foil, GTLiteMaterials.Polyetheretherketone, insulationAmount)
+                // Apply Zylon foil for UEV or above cables.
+                if (voltageTier >= UEV)
+                    builder.input(OrePrefix.foil, GTLiteMaterials.Zylon, insulationAmount)
+                builder.fluidInputs(GTLiteMaterials.PolyphosphonitrileFluoroRubber.getFluid(L * insulationAmount / 4))
+                    .buildAndRegister()
             }
         }
     }

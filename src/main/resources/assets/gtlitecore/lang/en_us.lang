@@ -2242,6 +2242,8 @@ gtlitecore.material.flerovium_ytterbium_plasma=Flerovium-Ytterbium
 gtlitecore.material.rubidium_titanate=Rubidium Titanate
 gtlitecore.material.sodium_titanate=Sodium Titanate
 gtlitecore.material.rubidium_chloride=Rubidium Chloride
+gtlitecore.material.sodium_oxide=Sodium Oxide
+gtlitecore.material.sodium_acetate=Sodium Acetate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2383,6 +2385,13 @@ gtlitecore.material.hydroquinone=Hydroquinone
 gtlitecore.material.polyetheretherketone=Polyetheretherketone (PEEK)
 gtlitecore.material.fluorescein=Fluorescein
 gtlitecore.material.erythrosine=Erythrosine
+gtlitecore.material.isochloropropane=Isochloropropane
+gtlitecore.material.acetic_anhydride=Acetic Anhydride
+gtlitecore.material.dinitrodipropanyloxybenzene=Dinitrodipropanyloxybenzene
+gtlitecore.material.dibromomethylbenzene=Dibromomethylbenzene
+gtlitecore.material.terephthalaldehyde=Terephthalaldehyde
+gtlitecore.material.pretreated_zylon=Pretreated Zylon
+gtlitecore.material.zylon=Zylon
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
