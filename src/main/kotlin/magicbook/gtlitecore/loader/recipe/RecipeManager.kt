@@ -34,6 +34,7 @@ import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
+import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
@@ -134,6 +135,7 @@ class RecipeManager
             AmmoniaChain.init()
             PalladiumAcetateChain.init()
             LithiumTitanateChain.init()
+            RubidiumTitanateChain.init()
             NanoparticlesChain.init()
             QuantumDotsChain.init()
             OzoneChain.init()

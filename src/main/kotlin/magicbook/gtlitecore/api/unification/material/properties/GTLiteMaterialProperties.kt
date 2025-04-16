@@ -1,16 +1,24 @@
 package magicbook.gtlitecore.api.unification.material.properties
 
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Calcite
@@ -60,6 +68,7 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Scandium
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -91,6 +100,7 @@ import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
+import gregtech.api.unification.material.properties.WireProperties
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Albite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
@@ -139,13 +149,13 @@ class GTLiteMaterialProperties
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
-                Curium)
+                Curium, Seaborgium, Bohrium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Rubidium, Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
-                Germanium, Rutherfordium, Dubnium, Curium)
+                Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon)
@@ -303,6 +313,24 @@ class GTLiteMaterialProperties
 
             Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
 
+            Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
+            Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[LuV])
+            Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
+            Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[EV])
+            Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND
+
+            Seaborgium.setProperty(PropertyKey.BLAST, BlastProperty(8300))
+            Seaborgium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
+            Seaborgium.getProperty(PropertyKey.BLAST).durationOverride = 16 * SECOND
+            Seaborgium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+            Seaborgium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 22 * SECOND
+
+            Bohrium.setProperty(PropertyKey.BLAST, BlastProperty(8500))
+            Bohrium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
+            Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18 * SECOND
+            Bohrium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+            Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14 * SECOND
+
             // Modified platinum group related materials' formula.
             PalladiumRaw.setFormula("PdCl2", true);
             RarestMetalMixture.setFormula("IrOs?", true);
@@ -314,6 +342,9 @@ class GTLiteMaterialProperties
             // Add tool properties.
             Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
             Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
+
+            // Add cable properties.
+            Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16, false))
 
         }
 

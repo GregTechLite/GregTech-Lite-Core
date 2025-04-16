@@ -2244,6 +2244,9 @@ gtlitecore.material.lithium_sodium_potassium_fluorides=氟锂钠钾合金（反�
 gtlitecore.material.beryllium_difluoride=二氟化铍
 gtlitecore.material.lithium_beryllium_fluorides=氟锂铍合金（反应堆慢化剂）
 gtlitecore.material.flerovium_ytterbium_plasma=钅夫-镱
+gtlitecore.material.rubidium_titanate=钛酸铷
+gtlitecore.material.sodium_titanate=钛酸钠
+gtlitecore.material.rubidium_chloride=氯化铷
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

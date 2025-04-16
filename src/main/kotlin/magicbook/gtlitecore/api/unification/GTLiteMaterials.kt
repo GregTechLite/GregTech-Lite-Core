@@ -941,9 +941,10 @@ class GTLiteMaterials
             .fluid()
             .color(0xFE71A9).iconSet(SHINY)
             .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(EXT_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                GENERATE_GEAR)
             .blast { b ->
-                b.temp(3100, BlastProperty.GasTier.MID)
+                b.temp(3100, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 16 * SECOND)
                     .vacuumStats(VA[MV], 8 * SECOND)
             }
@@ -1650,9 +1651,10 @@ class GTLiteMaterials
         @JvmField
         val BariumTitanate: Material = Material.Builder(2146, gtliteId("barium_titanate"))
             .ingot()
+            .fluid()
             .color(0x99FF99).iconSet(SHINY)
             .components(Barium, 1, Titanium, 1, Oxygen, 3)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL)
+            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_BOLT_SCREW)
             .blast { b ->
                 b.temp(3600, BlastProperty.GasTier.LOW) // Nichrome
                     .blastStats(VA[IV], 18 * SECOND)
@@ -2024,6 +2026,38 @@ class GTLiteMaterials
             .build()
             .setFormula("FlY?", true)
 
+        // 2186 Rubidium Titanate
+        @JvmField
+        val RubidiumTitanate: Material = Material.Builder(2186, gtliteId("rubidium_titanate"))
+            .ingot()
+            .fluid()
+            .color(0xB52E15).iconSet(SHINY)
+            .components(Rubidium, 2, Titanium, 1, Oxygen, 3)
+            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_BOLT_SCREW)
+            .blast { b ->
+                b.temp(4100, BlastProperty.GasTier.LOW) // RTM Alloy
+                    .blastStats(VA[LuV], 20 * SECOND)
+                    .vacuumStats(VA[EV], 2 * SECOND)
+            }
+            .build()
+
+        // 2187 Sodium Titanate
+        @JvmField
+        val SodiumTitanate: Material = Material.Builder(2187, gtliteId("sodium_titanate"))
+            .dust()
+            .color(0x2274BA).iconSet(SHINY)
+            .components(Sodium, 2, Titanium, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2188 Rubidium Chloride
+        @JvmField
+        val RubidiumChloride: Material = Material.Builder(2188, gtliteId("rubidium_chloride"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Rubidium, 1, Chlorine, 1)
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -2044,12 +2078,14 @@ class GTLiteMaterials
             .fluid()
             .color(0x92918D).iconSet(METALLIC)
             .components(Iron, 16, Molybdenum, 1, Titanium, 1, Nickel, 4, Cobalt, 2)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_DOUBLE_PLATE)
             .blast { b ->
                 b.temp(2413, BlastProperty.GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 20 * SECOND)
                     .vacuumStats(VA[MV], 2 * SECOND + 2 * TICK)
             }
+            .itemPipeProperties(576, 16F)
             .build()
 
         // 4003 Inconel-625
@@ -2091,7 +2127,7 @@ class GTLiteMaterials
             .color(0x9991A5).iconSet(SHINY)
             .components(Cobalt, 4, Chrome, 3, Phosphorus, 2, Molybdenum, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
-                GENERATE_ROTOR)
+                GENERATE_ROTOR, GENERATE_SPRING_SMALL)
             .blast { b ->
                 b.temp(3454, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 28 * SECOND + 10 * TICK)
@@ -2327,7 +2363,7 @@ class GTLiteMaterials
             .color(0x6A5BA3).iconSet(METALLIC)
             .components(Molybdenum, 1, Silicon, 2)
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
-                GENERATE_SPRING)
+                GENERATE_SPRING, GENERATE_SPRING_SMALL)
             .blast { b ->
                 b.temp(2300, BlastProperty.GasTier.MID) // Kanthal
                     .blastStats(VA[EV], 40 * SECOND)
@@ -2372,7 +2408,8 @@ class GTLiteMaterials
             .fluid()
             .color(0xDDDDDD).iconSet(METALLIC)
             .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_SPRING_SMALL)
             .blast { b ->
                 b.temp(4625, BlastProperty.GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 50 * SECOND)
@@ -2417,7 +2454,7 @@ class GTLiteMaterials
             .fluid()
             .color(0xB20B3A).iconSet(METALLIC)
             .components(Titanium, 1, Carbon, 1)
-            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
                 b.temp(3430, BlastProperty.GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 50 * SECOND)

@@ -7,19 +7,23 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.items.OreDictNames
+import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.BlueSteel
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Copper
@@ -32,11 +36,21 @@ import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.Inconel718
+import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
+import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
@@ -61,6 +75,7 @@ import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -71,9 +86,11 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
+import gregtech.api.unification.ore.OrePrefix.pipeLargeItem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
+import gregtech.api.unification.ore.OrePrefix.pipeSmallItem
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
@@ -85,9 +102,12 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockMetalCasing
 import gregtech.common.blocks.BlockSteamCasing
@@ -98,7 +118,10 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
@@ -106,20 +129,27 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LUV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
+import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
@@ -129,6 +159,8 @@ import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
+import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -174,19 +206,25 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -195,13 +233,18 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ADVANCED_FUSION_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ALLOY_BLAST_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BEDROCK_DRILLING_RIG
@@ -1285,14 +1328,256 @@ class MachineRecipeLoader
                 .buildAndRegister()
 
             // Fusion Machine Casing MK4
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .inputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL))
+                .input(VOLTAGE_COIL_UHV, 2)
+                .input(FIELD_GENERATOR_UV)
+                .input(plate, Dubnium, 6)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 8)) // TODO Kevlar?
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK4, 2))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
-            // Fusion Reactor Computer MK5
+            // Advanced Fusion Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
+                .input(FIELD_GENERATOR_LuV, 2)
+                .input(ELECTRIC_PUMP_LuV)
+                .input(NEUTRON_REFLECTOR, 4)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .input(pipeSmallFluid, Europium, 4)
+                .input(plate, Americium, 4)
+                .fluidInputs(YttriumBariumCuprate.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL))
+                .EUt(VA[UV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // TODO Fusion Reactor Computer MK5
 
             // Fusion Machine Casing MK5
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(HULL[UEV])
+                .inputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL))
+                .input(VOLTAGE_COIL_UEV, 2)
+                .input(FIELD_GENERATOR_UHV)
+                .input(plate, Bohrium, 6)
+                .fluidInputs(Polybenzimidazole.getFluid(L * 16)) // TODO Kevlar?
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK5, 2))
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Ultimate Fusion Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ADVANCED_FUSION_COIL))
+                .input(FIELD_GENERATOR_ZPM, 2)
+                .input(ELECTRIC_PUMP_ZPM)
+                .input(NEUTRON_REFLECTOR, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(pipeSmallFluid, Duranium, 4)
+                .input(plate, Dubnium, 4)
+                .fluidInputs(Europium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // Advanced Fusion Reactor
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(FUSION_REACTOR[0], 32)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 16)
+                .input(plateDouble, Duranium, 8)
+                .input(plateDouble, Europium, 8)
+                .input(ELECTRIC_PUMP_LuV, 4)
+                .input(FIELD_GENERATOR_LuV, 4)
+                .input(VOLTAGE_COIL_LuV, 8)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER, 16)
+                .input(gear, LithiumTitanate, 4)
+                .input(wireGtDouble, IndiumTinBariumTitaniumCuprate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 16))
+                .fluidInputs(Trinaquadalloy.getFluid(L * 4))
+                .fluidInputs(ReneN5.getFluid(L * 4))
+                .output(ADVANCED_FUSION_REACTOR)
+                .EUt(VA[LuV].toLong())
+                .duration(2 * MINUTE)
+                .scannerResearch { r ->
+                    r.researchStack(OreDictUnifier.get(block, Duranium))
+                        .EUt(VA[IV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
 
             // Cryostat MK1
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(13)
+                .input(frameGt, TitaniumCarbide)
+                .input(plate, TungstenSteel, 6)
+                .input(springSmall, MolybdenumDisilicide, 2)
+                .input(ELECTRIC_PUMP_LuV)
+                .input(pipeSmallFluid, Inconel718, 2)
+                .input(wireFine, Naquadah, 16)
+                .input(screw, LithiumTitanate, 4)
+                .fluidInputs(Duranium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK1, 4))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Cryostat MK2
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(13)
+                .input(frameGt, TungstenCarbide)
+                .input(plate, RhodiumPlatedPalladium, 6)
+                .input(springSmall, Talonite, 2)
+                .input(ELECTRIC_PUMP_ZPM)
+                .input(pipeNormalFluid, Inconel718, 2)
+                .input(wireFine, NaquadahEnriched, 16)
+                .input(screw, BariumTitanate, 4)
+                .fluidInputs(Tritanium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK2, 4))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Cryostat MK3
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(13)
+                .input(frameGt, TitaniumTungstenCarbide)
+                .input(plate, NaquadahAlloy, 6)
+                .input(springSmall, HastelloyN, 2)
+                .input(ELECTRIC_PUMP_UV)
+                .input(pipeLargeFluid, Inconel718, 2)
+                .input(wireFine, Naquadria, 16)
+                .input(screw, RubidiumTitanate, 4)
+                .fluidInputs(Neutronium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.CRYOSTAT_MK3, 4))
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // TODO Cryostat MK4 (Hsss -> Hdcs?, TitaniumTungstenCarbide -> TitanSteel?)
+
+            // TODO Cryostat MK5
+
+            // Divertor MK1
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(14)
+                .input(frameGt, TitaniumCarbide)
+                .input(plate, TungstenSteel, 2)
+                .input(rotor, TungstenSteel)
+                .input(CONVEYOR_MODULE_LuV)
+                .input(pipeSmallItem, MaragingSteel250, 2)
+                .input(wireFine, Naquadah, 16)
+                .input(screw, LithiumTitanate, 4)
+                .fluidInputs(Duranium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_02.getItemVariant(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK1, 4))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Divertor MK2
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(14)
+                .input(frameGt, TungstenCarbide)
+                .input(plate, RhodiumPlatedPalladium, 4)
+                .input(rotor, RhodiumPlatedPalladium)
+                .input(CONVEYOR_MODULE_ZPM)
+                .input(pipeNormalItem, MaragingSteel250, 2)
+                .input(wireFine, NaquadahEnriched, 16)
+                .input(screw, BariumTitanate, 4)
+                .fluidInputs(Tritanium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_02.getItemVariant(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK2, 4))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Divertor MK3
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(14)
+                .input(frameGt, TitaniumTungstenCarbide)
+                .input(plate, NaquadahAlloy, 4)
+                .input(rotor, NaquadahAlloy)
+                .input(CONVEYOR_MODULE_UV)
+                .input(pipeLargeItem, MaragingSteel250, 2)
+                .input(wireFine, Naquadria, 16)
+                .input(screw, RubidiumTitanate, 4)
+                .fluidInputs(Neutronium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_02.getItemVariant(BlockFusionCasing02.FusionCasingType.DIVERTOR_MK3, 4))
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // TODO Divertor MK4 (Hsss -> Hdcs, TitaniumTungstenCarbide -> TitanSteel)
+
+            // TODO Divertor MK5
+
+            // Vacuum MK1
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(frameGt, TitaniumCarbide)
+                .input(plateDouble, TungstenSteel, 2)
+                .input(gearSmall, HSSG, 3)
+                .input(ELECTRIC_PISTON_LUV)
+                .input(NEUTRON_REFLECTOR)
+                .input(wireFine, Naquadah, 16)
+                .input(screw, LithiumTitanate, 4)
+                .fluidInputs(Duranium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_02.getItemVariant(BlockFusionCasing02.FusionCasingType.VACUUM_MK1, 4))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Vacuum MK2
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(frameGt, TungstenCarbide)
+                .input(plateDouble, RhodiumPlatedPalladium, 2)
+                .input(gearSmall, HSSE, 3)
+                .input(ELECTRIC_PISTON_ZPM)
+                .input(NEUTRON_REFLECTOR, 2)
+                .input(wireFine, NaquadahEnriched, 16)
+                .input(screw, BariumTitanate, 4)
+                .fluidInputs(Tritanium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_02.getItemVariant(BlockFusionCasing02.FusionCasingType.VACUUM_MK2, 4))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Vacuum MK3
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(frameGt, TitaniumTungstenCarbide)
+                .input(plateDouble, NaquadahAlloy, 2)
+                .input(gearSmall, HSSS, 3)
+                .input(ELECTRIC_PISTON_UV)
+                .input(NEUTRON_REFLECTOR, 4)
+                .input(wireFine, Naquadria, 16)
+                .input(screw, RubidiumTitanate, 4)
+                .fluidInputs(Neutronium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.FUSION_CASING_03.getItemVariant(BlockFusionCasing03.FusionCasingType.VACUUM_MK3, 4))
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // TODO Vacuum MK4 (Hsss -> Hdcs, TitaniumTungstenCarbide -> TitanSteel)
+
+            // TODO Vacuum MK5
 
         }
 

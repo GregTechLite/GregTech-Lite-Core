@@ -2239,6 +2239,9 @@ gtlitecore.material.lithium_sodium_potassium_fluorides=Fluorine Lithium Sodium P
 gtlitecore.material.beryllium_difluoride=Beryllium Difluoride
 gtlitecore.material.lithium_beryllium_fluorides=Fluorine Lithium Beryllium Alloy (Reactor Moderator)
 gtlitecore.material.flerovium_ytterbium_plasma=Flerovium-Ytterbium
+gtlitecore.material.rubidium_titanate=Rubidium Titanate
+gtlitecore.material.sodium_titanate=Sodium Titanate
+gtlitecore.material.rubidium_chloride=Rubidium Chloride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

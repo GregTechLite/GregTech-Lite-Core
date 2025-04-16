@@ -7,6 +7,7 @@ import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlueTopaz
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
@@ -24,6 +25,7 @@ import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
+import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Inconel718
@@ -38,6 +40,7 @@ import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.NaquadahAlloy
+import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -77,6 +80,7 @@ import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uvarovite
@@ -186,6 +190,7 @@ class GTLiteMaterialFlags
             RTMAlloy.addFlags(GENERATE_FOIL)
             PolyvinylButyral.addFlags(GENERATE_FOIL)
             Germanium.addFlags(GENERATE_FOIL)
+            NaquadahEnriched.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -197,6 +202,7 @@ class GTLiteMaterialFlags
             Darmstadtium.addFlags(GENERATE_FRAME)
             Brass.addFlags(GENERATE_FRAME)
             Cobalt.addFlags(GENERATE_FRAME)
+            TungstenCarbide.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -205,6 +211,7 @@ class GTLiteMaterialFlags
 
             // gearSmall
             Neutronium.addFlags(GENERATE_SMALL_GEAR)
+            HSSE.addFlags(GENERATE_SMALL_GEAR)
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -249,6 +256,7 @@ class GTLiteMaterialFlags
             Germanium.addFlags(GENERATE_PLATE)
             Dubnium.addFlags(GENERATE_PLATE)
             Rutherfordium.addFlags(GENERATE_PLATE)
+            Bohrium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -310,6 +318,7 @@ class GTLiteMaterialFlags
             Trinium.addFlags(GENERATE_FINE_WIRE)
             NaquadahAlloy.addFlags(GENERATE_FINE_WIRE)
             Germanium.addFlags(GENERATE_FINE_WIRE)
+            NaquadahEnriched.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
