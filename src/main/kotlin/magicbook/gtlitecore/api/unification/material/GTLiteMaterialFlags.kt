@@ -283,6 +283,7 @@ class GTLiteMaterialFlags
             Aluminium.addFlags(GENERATE_ROTOR)
             Iridium.addFlags(GENERATE_ROTOR)
             Tritanium.addFlags(GENERATE_ROTOR)
+            Neutronium.addFlags(GENERATE_ROTOR)
 
             // round
             Steel.addFlags(GENERATE_ROUND)
@@ -295,9 +296,12 @@ class GTLiteMaterialFlags
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
             Diamond.addFlags(GENERATE_LONG_ROD)
+            Trinium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
+            Trinium.addFlags(GENERATE_SPRING)
+            Tritanium.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
