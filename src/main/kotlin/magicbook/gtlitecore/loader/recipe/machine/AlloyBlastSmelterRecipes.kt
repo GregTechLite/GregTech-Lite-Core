@@ -54,6 +54,8 @@ import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
@@ -67,6 +69,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -101,6 +104,8 @@ class AlloyBlastSmelterRecipes
                 SodiumPotassiumEutatic, 10, 5 * SECOND)
             registerBinaryAlloy(Lead, 3, Bismuth, 7,
                 LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
+            registerBinaryAlloy(BariumTitanate, 5, StrontiumOxide, 2,
+                BariumStrontiumTitanate, 7, 28 * SECOND)
 
             registerBinaryAlloy(Iron, 1, Tin, 1,
                 TinAlloy, 2, 5 * SECOND)

@@ -146,6 +146,7 @@ class SeleniumTelluriumProcessing
 
             // Na2TeO3 + H2O -> TeO2 + 2NaOH
             ELECTROLYZER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
                 .input(dust, SodiumTellurite, 6)
                 .fluidInputs(Water.getFluid(1000))
                 .output(dust, TelluriumDioxide, 3)

@@ -62,17 +62,6 @@ class YBCOChain
                     IntCircuitIngredient.getIntegratedCircuit(2)),
                 arrayOf(Oxygen.getFluid(7000)))
 
-            // Add another choice of Y2O3, do not push player used REE distillation.
-            // 2Y + 3O -> Y2O3
-            ROASTER_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(dust, Yttrium, 2)
-                .fluidInputs(Oxygen.getFluid(3000))
-                .output(dust, YttriumOxide, 5)
-                .EUt(VA[MV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
             // Y2O3 + 6HNO3 -> 2Y(NO3)3 + 3H2O
             CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .input(dust, YttriumOxide, 5)

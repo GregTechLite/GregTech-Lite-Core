@@ -5,17 +5,21 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
+import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.GarnetRed
@@ -74,6 +78,7 @@ import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tantalite
+import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
@@ -191,6 +196,9 @@ class GTLiteMaterialFlags
             PolyvinylButyral.addFlags(GENERATE_FOIL)
             Germanium.addFlags(GENERATE_FOIL)
             NaquadahEnriched.addFlags(GENERATE_FOIL)
+            Thallium.addFlags(GENERATE_FOIL)
+            Barium.addFlags(GENERATE_FOIL)
+            Calcium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -257,6 +265,10 @@ class GTLiteMaterialFlags
             Dubnium.addFlags(GENERATE_PLATE)
             Rutherfordium.addFlags(GENERATE_PLATE)
             Bohrium.addFlags(GENERATE_PLATE)
+            Thallium.addFlags(GENERATE_PLATE)
+            Barium.addFlags(GENERATE_PLATE)
+            Calcium.addFlags(GENERATE_PLATE)
+            Curium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -323,6 +335,7 @@ class GTLiteMaterialFlags
             NaquadahAlloy.addFlags(GENERATE_FINE_WIRE)
             Germanium.addFlags(GENERATE_FINE_WIRE)
             NaquadahEnriched.addFlags(GENERATE_FINE_WIRE)
+            Curium.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

@@ -26,6 +26,8 @@ import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Francium
+import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
@@ -167,6 +169,16 @@ class FusionReactorRecipes
                 .EUt(VA[LuV].toLong())
                 .duration(2 * SECOND)
                 .EUToStart(250_000_000L) // 250M EU, MK2
+                .buildAndRegister()
+
+            // Au + O -> Fr
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Gold.getFluid(L / 4))
+                .fluidInputs(Oxygen.getFluid(500))
+                .fluidOutputs(Francium.getFluid(L / 2))
+                .EUt(VHA[ZPM].toLong())
+                .duration(4 * SECOND + 5 * TICK)
+                .EUToStart(180_000_000L) // 180M EU, MK2
                 .buildAndRegister()
 
             // ---------------------------------------------------------------------------------------------------------

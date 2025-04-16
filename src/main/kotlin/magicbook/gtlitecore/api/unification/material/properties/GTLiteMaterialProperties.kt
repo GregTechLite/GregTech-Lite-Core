@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.Bohrium
@@ -35,6 +36,7 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Ferrosilite
+import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Graphene
@@ -84,6 +86,7 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
+import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
@@ -154,13 +157,14 @@ class GTLiteMaterialProperties
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
-                Magnesium)
+                Magnesium, Francium, Thallium, Barium, Lutetium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
-                Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium, )
+                Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
+                Francium, Thallium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)

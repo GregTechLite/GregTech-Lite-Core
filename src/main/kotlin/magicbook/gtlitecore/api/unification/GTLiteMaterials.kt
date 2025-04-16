@@ -52,6 +52,7 @@ import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Germanium
@@ -114,6 +115,7 @@ import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Scandium
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -133,6 +135,7 @@ import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Tetranitromethane
+import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
@@ -1661,7 +1664,7 @@ class GTLiteMaterials
             .blast { b ->
                 b.temp(3600, BlastProperty.GasTier.LOW) // Nichrome
                     .blastStats(VA[IV], 18 * SECOND)
-                    .vacuumStats(VA[HV], 4 * SECOND)
+                    .vacuumStats(VA[HV], 8 * SECOND)
             }
             .build()
 
@@ -2036,11 +2039,12 @@ class GTLiteMaterials
             .fluid()
             .color(0xB52E15).iconSet(SHINY)
             .components(Rubidium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_BOLT_SCREW)
+            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_BOLT_SCREW,
+                GENERATE_FOIL)
             .blast { b ->
                 b.temp(4100, BlastProperty.GasTier.LOW) // RTM Alloy
                     .blastStats(VA[LuV], 20 * SECOND)
-                    .vacuumStats(VA[EV], 2 * SECOND)
+                    .vacuumStats(VA[EV], 16 * SECOND)
             }
             .build()
 
@@ -2078,6 +2082,141 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C2H3NaO2", true)
+
+        // 2191 Caesium Bromide
+        @JvmField
+        val CaesiumBromide: Material = Material.Builder(2191, gtliteId("caesium_bromide"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Caesium, 1, Bromine, 1)
+            .build()
+
+        // 2192 Francium Bromide
+        @JvmField
+        val FranciumBromide: Material = Material.Builder(2192, gtliteId("francium_bromide"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Francium, 1, Bromine, 1)
+            .build()
+
+        // 2193 Francium Caesium Cadmium Bromide
+        @JvmField
+        val FranciumCaesiumCadmiumBromide: Material = Material.Builder(2193, gtliteId("francium_caesium_cadmium_bromide"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(SHINY)
+            .components(Francium, 1, Caesium, 1, Cadmium, 2, Bromine, 6)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+            .blast { b ->
+                b.temp(7100, BlastProperty.GasTier.HIGHER)
+                    .blastStats(VA[UHV], 20 * SECOND)
+                    .vacuumStats(VA[ZPM], 15 * SECOND)
+            }
+            .build()
+
+        // 2194 Sodium Seaborgate
+        @JvmField
+        val SodiumSeaborgate: Material = Material.Builder(2194, gtliteId("sodium_seaborgate"))
+            .dust()
+            .color(0x55bbd4).iconSet(BRIGHT)
+            .components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2195 Lead Scandium Tantalate
+        @JvmField
+        val LeadScandiumTantalate: Material = Material.Builder(2195, gtliteId("lead_scandium_tantalate"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Lead, 1, Scandium, 1, Tantalum, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2196 Thallium Sulfate
+        @JvmField
+        val ThalliumSulfate: Material = Material.Builder(2196, gtliteId("thallium_sulfate"))
+            .dust()
+            .color(0x9C222C).iconSet(METALLIC)
+            .components(Thallium, 2, Sulfur, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2197 Thallium Barium Calcium Cuprate (TBCCO)
+        @JvmField
+        val ThalliumBariumCalciumCuprate: Material = Material.Builder(2197, gtliteId("thallium_barium_calcium_cuprate"))
+            .ingot()
+            .fluid()
+            .color(0x669900).iconSet(SHINY)
+            .components(Thallium, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 10)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
+                    .blastStats(VA[UV], 43 * SECOND)
+                    .vacuumStats(VA[IV], 21 * SECOND) }
+            .cableProperties(V[UV], 2, 1, false)
+            .build()
+
+        // 2198 Potassium Manganate
+        @JvmField
+        val PotassiumManganate: Material = Material.Builder(2198, gtliteId("potassium_manganate"))
+            .dust()
+            .color(0x873883).iconSet(METALLIC)
+            .components(Potassium, 2, Manganese, 1, Oxygen, 4)
+            .build()
+
+        // 2199 Potassium Permanganate
+        @JvmField
+        val PotassiumPermanganate: Material = Material.Builder(2199, gtliteId("potassium_permanganate"))
+            .dust()
+            .color(0x871D82).iconSet(DULL)
+            .components(Potassium, 1, Manganese, 1, Oxygen, 4)
+            .build()
+
+        // 2200 Lanthanum Gallium Manganate
+        @JvmField
+        val LanthanumGalliumManganate: Material = Material.Builder(2200, gtliteId("lanthanum_gallium_manganate"))
+            .ingot()
+            .fluid()
+            .color(0x8AA07B).iconSet(METALLIC)
+            .components(Lanthanum, 1, Gallium, 1, Manganese, 1, Oxygen, 4)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+            .blast { b ->
+                b.temp(8000, BlastProperty.GasTier.HIGH) // Trinium
+                    .blastStats(VA[UV], 45 * SECOND)
+                    .vacuumStats(VA[IV], 22 * SECOND + 10 * TICK)
+            }
+            .build()
+
+        // 2201 Barium Strontium Titanate
+        @JvmField
+        val BariumStrontiumTitanate: Material = Material.Builder(2201, gtliteId("barium_strontium_titanate"))
+            .ingot()
+            .fluid()
+            .color(0xFF0066).iconSet(SHINY)
+            .components(Barium, 1, Strontium, 1, Titanium, 1, Oxygen, 4)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(7200, BlastProperty.GasTier.HIGH) // Naquadah
+                    .blastStats(VA[ZPM], 36 * SECOND)
+                    .vacuumStats(VA[IV], 18 * SECOND)
+            }
+            .build()
+
+        // 2202 Lutetium Manganese Germanium
+        @JvmField
+        val LutetiumManganeseGermanium: Material = Material.Builder(2202, gtliteId("lutetium_manganese_germanium"))
+            .ingot()
+            .fluid()
+            .colorAverage().iconSet(METALLIC)
+            .components(Lutetium, 1, Manganese, 3, Germanium, 6)
+            .flags(GENERATE_ROD, GENERATE_RING)
+            .blast { b ->
+                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
+                    .blastStats(VA[LuV], 1 * MINUTE)
+                    .vacuumStats(VA[EV], 30 * SECOND)
+            }
+            .build() // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ i think it is well in Gregtech.
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

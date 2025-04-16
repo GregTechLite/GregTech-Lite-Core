@@ -35,8 +35,10 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.CupricOxide
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Galena
+import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Hafnia
+import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
@@ -47,6 +49,7 @@ import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
 import gregtech.api.unification.material.Materials.Pyrite
+import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Silver
@@ -58,6 +61,7 @@ import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tetrahedrite
+import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconia
@@ -70,13 +74,17 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.YttriumOxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
@@ -245,19 +253,6 @@ class OxidesChain
                 .duration(6 * SECOND)
                 .buildAndRegister()
 
-            // FeS2 -> Fe2(SO4)3 + S
-            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-                arrayOf(OreDictUnifier.get(dust, Pyrite)),
-                arrayOf(Oxygen.getFluid(3000)))
-
-            ROASTER_RECIPES.recipeBuilder()
-                .input(dust, Pyrite, 2)
-                .output(dust, Iron3Sulfate)
-                .output(dust, Sulfur)
-                .EUt(VA[ULV].toLong())
-                .duration(4 * SECOND)
-                .buildAndRegister()
-
             // Fe2(SO4)3 -> Fe2O3 + 3SO3
             // This is another choice in early game for provide raw material to H2SO4.
             ROASTER_RECIPES.recipeBuilder()
@@ -278,21 +273,6 @@ class OxidesChain
                 .fluidInputs(Oxygen.getFluid(3000))
                 .output(dust, Garnierite)
                 .chancedOutput(dust, Ash, 1000, 0)
-                .fluidOutputs(SulfurDioxide.getFluid(1000))
-                .EUt(VA[MV].toLong())
-                .duration(6 * SECOND)
-                .buildAndRegister()
-
-            // PbS
-            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-                arrayOf(OreDictUnifier.get(dust, Galena)),
-                arrayOf(Oxygen.getFluid(3000)))
-
-            ROASTER_RECIPES.recipeBuilder()
-                .input(dust, Galena)
-                .fluidInputs(Oxygen.getFluid(3000))
-                .output(dust, Massicot)
-                .output(dustTiny, Silver, 6)
                 .fluidOutputs(SulfurDioxide.getFluid(1000))
                 .EUt(VA[MV].toLong())
                 .duration(6 * SECOND)
@@ -405,6 +385,50 @@ class OxidesChain
                 .output(dust, SodiumOxide, 3)
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND)
+                .buildAndRegister()
+
+            // Add another choice of La2O3, do not push player used REE distillation.
+            // 2La + 3O -> La2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Lanthanum, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, LanthanumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of Y2O3, do not push player used REE distillation.
+            // 2Y + 3O -> Y2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Yttrium, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, YttriumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of Sc2O3, do not push player used REE distillation.
+            // 2Sc + 3O -> Sc2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Scandium, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, ScandiumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of GaO3, do not push player used Naquadah processing.
+            // Ga + 3O -> GaO3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Gallium)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, GalliumTrioxide, 4)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
         }
 

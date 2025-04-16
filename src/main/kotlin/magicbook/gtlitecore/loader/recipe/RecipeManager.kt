@@ -31,6 +31,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
 import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
+import magicbook.gtlitecore.loader.recipe.chain.PotassiumPermanganateChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
@@ -44,6 +45,7 @@ import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.GoowareCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.IntegratedCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.OpticalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.QuantumCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.WetwareCircuits
@@ -86,6 +88,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TechnetiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.ThalliumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.VibraniumProcessing
@@ -162,6 +165,7 @@ class RecipeManager
             SuperheavyElementsChain.init()
             PEEKChain.init()
             ZylonChain.init()
+            PotassiumPermanganateChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()
@@ -181,6 +185,7 @@ class RecipeManager
             BedrockiumProcessing.init()
             AdamantiumProcessing.init()
             VibraniumProcessing.init()
+            ThalliumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()
@@ -191,6 +196,7 @@ class RecipeManager
             CrystalCircuits.init()
             WetwareCircuits.init()
             GoowareCircuits.init()
+            OpticalCircuits.init()
 
             // Original GregTech machine recipes.
             AlloySmelterRecipes.init()

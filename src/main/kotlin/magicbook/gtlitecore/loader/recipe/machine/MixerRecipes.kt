@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.metatileentity.multiblock.CleanroomType
@@ -36,6 +37,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
+import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Nichrome
@@ -90,6 +92,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA9
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
@@ -186,6 +189,17 @@ class MixerRecipes
                 .output(dust, LeadBismuthEutatic, 10)
                 .EUt(VA[MV].toLong())
                 .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Lutetium Manganese Germanium
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Lutetium)
+                .input(dust, Manganese, 3)
+                .input(dust, Germanium, 6)
+                .output(dust, LutetiumManganeseGermanium, 10)
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
             // Kovar
