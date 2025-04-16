@@ -45,6 +45,7 @@ import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Platinum
@@ -115,6 +116,7 @@ import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_MV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
@@ -141,6 +143,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getCableByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getEmitterByTier
@@ -1860,6 +1863,18 @@ class AssemblerRecipes
                 .EUt(VA[IV].toLong())
                 .duration(30 * SECOND)
                 .buildAndRegister()
+
+            // Advanced recipe for Neutron Reflector. TODO Should we add a more higher advanced recipes?
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, Osmiridium)
+                .input(plateDouble, BerylliumOxide, 4)
+                .input(plateDouble, TitaniumTungstenCarbide, 2)
+                .fluidInputs(TinAlloy.getFluid(L * 16))
+                .output(NEUTRON_REFLECTOR, 4)
+                .EUt(VA[EV].toLong())
+                .duration(40 * SECOND)
+                .buildAndRegister()
+
         }
 
         private fun vanillaChangingRecipes()

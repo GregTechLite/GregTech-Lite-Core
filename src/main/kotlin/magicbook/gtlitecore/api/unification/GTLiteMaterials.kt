@@ -1478,7 +1478,7 @@ class GTLiteMaterials
             .ingot()
             .color(0x54C757)
             .components(Beryllium, 1, Oxygen, 1)
-            .flags(GENERATE_ROD, GENERATE_RING)
+            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_RING)
             .build()
 
         // 2129 Hydrogen Peroxide
@@ -2469,7 +2469,7 @@ class GTLiteMaterials
             .fluid()
             .color(0x800D0D).iconSet(METALLIC)
             .components(TungstenCarbide, 1, TitaniumCarbide, 2)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
             .blast { b ->
                 b.temp(3800, BlastProperty.GasTier.HIGH) // Nichrome
                     .blastStats(VA[EV], 50 * SECOND)
