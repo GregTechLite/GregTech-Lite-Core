@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.creativetab.BaseCreativeTab;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.BlockFusionCasing;
@@ -24,6 +25,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockWireCoils;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.state.IBlockState;
 
@@ -245,6 +247,12 @@ public class GTLiteAPI
 
         MAP_CLEANROOM_CASING.put(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE),
                 new WrappedIntTier(BlockCleanroomCasing.CasingType.FILTER_CASING_STERILE, 2));
+
+        // heatingCoils
+        for (BlockWireCoils.WireCoilType type : BlockWireCoils.WireCoilType.values())
+        {
+            GregTechAPI.HEATING_COILS.put(GTLiteMetaBlocks.WIRE_COIL.getState(type), type);
+        }
 
     }
 

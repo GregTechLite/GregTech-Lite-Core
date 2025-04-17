@@ -35,6 +35,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
+import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.block.blocks.GTLiteLeaveVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteLogVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLitePlankVariantBlock
@@ -155,6 +156,7 @@ class GTLiteMetaBlocks
         lateinit var FUSION_CASING_01: BlockFusionCasing01
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
+        lateinit var WIRE_COIL: BlockWireCoils
         lateinit var CRUCIBLE: BlockCrucible
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
@@ -405,6 +407,10 @@ class GTLiteMetaBlocks
             (FUSION_CASING_03 as? Block)?.setRegistryName("fusion_casing_03")
             (FUSION_CASING_03 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            WIRE_COIL = BlockWireCoils()
+            (WIRE_COIL as? Block)?.setRegistryName("wire_coil")
+            (WIRE_COIL as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             CRUCIBLE = BlockCrucible()
             (CRUCIBLE as? Block)?.setRegistryName("crucible")
             (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -541,6 +547,7 @@ class GTLiteMetaBlocks
             FUSION_CASING_01.onModelRegister()
             FUSION_CASING_02.onModelRegister()
             FUSION_CASING_03.onModelRegister()
+            WIRE_COIL.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
             WALLS.values.distinct().forEach(BlockGregtechWall::onModelRegister)
         }

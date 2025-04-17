@@ -417,6 +417,8 @@ tile.fusion_casing_03.vacuum_mk3.name=反应堆真空室 MK3
 tile.fusion_casing_03.vacuum_mk4.name=反应堆真空室 MK4
 tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 
+tile.wire_coil.adamantium.name=精金线圈方块
+
 tile.crucible.bronze.name=青铜坩埚
 tile.crucible.invar.name=殷钢坩埚
 tile.crucible.quartz.name=石英岩坩埚

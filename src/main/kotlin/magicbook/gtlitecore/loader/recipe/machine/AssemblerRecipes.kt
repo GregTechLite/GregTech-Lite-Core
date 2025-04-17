@@ -140,6 +140,7 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
@@ -165,6 +166,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MAGNETRON
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
@@ -1569,7 +1571,18 @@ class AssemblerRecipes
                 .duration(45 * SECOND)
                 .buildAndRegister()
 
-            // TODO UHV-MAX Wire Coils.
+            // Adamantium Wire Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(wireGtDouble, Adamantium, 8)
+                .input(MICA_INSULATOR_FOIL, 40)
+                .fluidInputs(Naquadria.getFluid(L))
+                .outputs(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.ADAMANTIUM))
+                .EUt(VA[UHV].toLong())
+                .duration(50 * SECOND)
+                .buildAndRegister()
+
+            // TODO UEV-MAX Wire Coils.
         }
 
         private fun crucibleRecipes()

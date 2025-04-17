@@ -4,7 +4,7 @@
         "type": "CTM",
         "layer": "SOLID",
         "textures": [
-            "gtlitecore:blocks/coils/machine_coil_adamantium_ctm"
+            "gtlitecore:blocks/casings/coil/machine_coil_adamantium_ctm"
         ],
         "extra": {
             "connect_inside": true

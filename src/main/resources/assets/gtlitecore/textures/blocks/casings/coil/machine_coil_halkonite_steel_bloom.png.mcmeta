@@ -5,7 +5,7 @@
     "layer": "BLOOM",
     "gregtech": true,
     "textures": [
-      "gtlitecore:blocks/coils/machine_coil_halkonite_steel_bloom_ctm"
+      "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel_bloom_ctm"
     ],
     "extra": {
       "connect_inside": true
