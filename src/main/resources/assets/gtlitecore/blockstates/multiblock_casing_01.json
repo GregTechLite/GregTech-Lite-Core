@@ -25,6 +25,12 @@
           "side": "gregtech:blocks/casings/solid/machine_casing_solid_steel",
           "bottom": "gtlitecore:blocks/casings/special/drill_head_bottom"
         }
+      },
+      "advanced_filter_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/advanced_filter_casing"
+        }
       }
     }
   }

@@ -13,6 +13,7 @@ import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOverride
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
@@ -157,6 +158,7 @@ class GTLiteMetaBlocks
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
         lateinit var WIRE_COIL: BlockWireCoils
+        lateinit var COMPONENT_ASSEMBLY_CASING: BlockComponentAssemblyCasing
         lateinit var CRUCIBLE: BlockCrucible
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
@@ -411,6 +413,10 @@ class GTLiteMetaBlocks
             (WIRE_COIL as? Block)?.setRegistryName("wire_coil")
             (WIRE_COIL as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            COMPONENT_ASSEMBLY_CASING = BlockComponentAssemblyCasing()
+            (COMPONENT_ASSEMBLY_CASING as? Block)?.setRegistryName("component_assembly_casing")
+            (COMPONENT_ASSEMBLY_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             CRUCIBLE = BlockCrucible()
             (CRUCIBLE as? Block)?.setRegistryName("crucible")
             (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -540,6 +546,7 @@ class GTLiteMetaBlocks
             registerItemModel(MULTIBLOCK_CASING_01)
             registerItemModel(BOILER_CASING_01)
             registerItemModel(CRUCIBLE)
+            registerItemModel(COMPONENT_ASSEMBLY_CASING)
             registerItemModel(TRANSPARENT_CASING_01)
             registerItemModel(TRANSPARENT_CASING_02)
 

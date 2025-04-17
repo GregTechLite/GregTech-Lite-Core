@@ -10,6 +10,7 @@ class RecipePropertyStorages
         fun loadPropertyStorage()
         {
             AdvancedFusionTieredPropertyStorage.loadProperties()
+            ComponentAssemblyLineTieredPropertyStorage.loadProperties()
             CircuitPatternPropertyStorage.loadProperties()
             FusionEUToStartPropertyStorage.loadProperties()
         }

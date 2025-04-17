@@ -42,6 +42,7 @@ import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
@@ -49,6 +50,7 @@ import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
@@ -105,6 +107,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockCleanroomCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockMetalCasing
@@ -157,6 +160,7 @@ import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
+import gregtech.common.items.MetaItems.SMART_FILTER
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
@@ -202,6 +206,7 @@ import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
@@ -1576,6 +1581,20 @@ class MachineRecipeLoader
             // TODO Vacuum MK4 (Hsss -> Hdcs, TitaniumTungstenCarbide -> TitanSteel)
 
             // TODO Vacuum MK5
+
+            // TODO Component Assembly Line (CoAL)
+
+            // Advanced Filter Casing
+            ModHandler.addShapedRecipe(true, "advanced_filter_casing", GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.ADVANCED_FILTER_CASING, ConfigHolder.recipes.casingsPerCraft),
+                "PDP", "SCG", "MFR",
+                'C', MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING),
+                'S', SMART_FILTER,
+                'M', ELECTRIC_MOTOR_UV,
+                'D', CONVEYOR_MODULE_UV,
+                'F', UnificationEntry(frameGt, Iridium),
+                'R', UnificationEntry(rotor, Duranium),
+                'G', UnificationEntry(gearSmall, HastelloyN),
+                'P', UnificationEntry(pipeLargeItem, Osmiridium))
 
         }
 

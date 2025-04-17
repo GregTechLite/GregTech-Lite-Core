@@ -16,9 +16,11 @@ import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.AdvancedFusionRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
+import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
@@ -757,6 +759,21 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ARC)
             .build()
             .setSmallRecipeMap(RecipeMaps.FUSION_RECIPES)
+
+        /**
+         * @zenProp component_assembly_line
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("COMPONENT_ASSEMBLY_LINE_RECIPES")
+        val COMPONENT_ASSEMBLY_LINE_RECIPES = RecipeMapBuilder("component_assembly_line", ComponentAssemblyLineRecipeBuilder())
+            .ui { ComponentAssemblyLineUI(it) }
+            .itemInputs(12)
+            .itemOutputs(1)
+            .fluidInputs(12)
+            .sound(GTSoundEvents.ASSEMBLER)
+            .build()
+
 
         // -------------------------------------------------------------------------------------------------------------
         @JvmStatic

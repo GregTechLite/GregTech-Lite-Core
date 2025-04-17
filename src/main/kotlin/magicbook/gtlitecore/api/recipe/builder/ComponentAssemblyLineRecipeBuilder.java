@@ -4,42 +4,42 @@ import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.util.EnumValidationResult;
-import magicbook.gtlitecore.api.recipe.property.AdvancedFusionTieredProperty;
+import magicbook.gtlitecore.api.recipe.property.ComponentAssemblyLineTieredProperty;
 import magicbook.gtlitecore.api.utils.GTLiteLog;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.NotNull;
 
-public class AdvancedFusionRecipeBuilder extends RecipeBuilder<AdvancedFusionRecipeBuilder>
+public class ComponentAssemblyLineRecipeBuilder extends RecipeBuilder<ComponentAssemblyLineRecipeBuilder>
 {
 
-    public AdvancedFusionRecipeBuilder() {}
+    public ComponentAssemblyLineRecipeBuilder() {}
 
-    public AdvancedFusionRecipeBuilder(Recipe recipe,
-                                       RecipeMap<AdvancedFusionRecipeBuilder> recipeMap)
+    public ComponentAssemblyLineRecipeBuilder(Recipe recipe,
+                                              RecipeMap<ComponentAssemblyLineRecipeBuilder> recipeMap)
     {
         super(recipe, recipeMap);
     }
 
-    public AdvancedFusionRecipeBuilder(RecipeBuilder<AdvancedFusionRecipeBuilder> recipeBuilder)
+    public ComponentAssemblyLineRecipeBuilder(RecipeBuilder<ComponentAssemblyLineRecipeBuilder> recipeBuilder)
     {
         super(recipeBuilder);
     }
 
     @Override
-    public AdvancedFusionRecipeBuilder copy()
+    public ComponentAssemblyLineRecipeBuilder copy()
     {
-        return new AdvancedFusionRecipeBuilder(this);
+        return new ComponentAssemblyLineRecipeBuilder(this);
     }
 
     public int getTier()
     {
-        return this.recipePropertyStorage == null ? 0 : this.recipePropertyStorage.get(AdvancedFusionTieredProperty.getInstance(), 0);
+        return this.recipePropertyStorage == null ? 0 : this.recipePropertyStorage.get(ComponentAssemblyLineTieredProperty.getInstance(), 0);
     }
 
     @Override
     public boolean applyPropertyCT(@NotNull String key, @NotNull Object value)
     {
-        if (key.equals(AdvancedFusionTieredProperty.KEY))
+        if (key.equals(ComponentAssemblyLineTieredProperty.KEY))
         {
             this.tier(((Number) value).intValue());
             return true;
@@ -47,14 +47,14 @@ public class AdvancedFusionRecipeBuilder extends RecipeBuilder<AdvancedFusionRec
         return super.applyPropertyCT(key, value);
     }
 
-    public AdvancedFusionRecipeBuilder tier(int tier)
+    public ComponentAssemblyLineRecipeBuilder tier(int tier)
     {
         if (tier <= 0)
         {
             GTLiteLog.logger.error("Tier cannot be less than or equal to 0", new IllegalArgumentException());
             this.recipeStatus = EnumValidationResult.INVALID;
         }
-        this.applyProperty(AdvancedFusionTieredProperty.getInstance(), tier);
+        this.applyProperty(ComponentAssemblyLineTieredProperty.getInstance(), tier);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class AdvancedFusionRecipeBuilder extends RecipeBuilder<AdvancedFusionRec
     {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append(AdvancedFusionTieredProperty.getInstance().getKey(), this.getTier())
+                .append(ComponentAssemblyLineTieredProperty.getInstance().getKey(), this.getTier())
                 .toString();
     }
 

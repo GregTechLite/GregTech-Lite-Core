@@ -2672,7 +2672,7 @@ class GTLiteMaterials
             .color(0xDDDDDD).iconSet(METALLIC)
             .components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
-                GENERATE_SPRING_SMALL)
+                GENERATE_SPRING_SMALL,  GENERATE_SMALL_GEAR)
             .blast { b ->
                 b.temp(4625, BlastProperty.GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 50 * SECOND)

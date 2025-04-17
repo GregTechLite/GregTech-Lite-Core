@@ -95,6 +95,9 @@ class StructureUtility
         fun vacuums() = GTLiteTraceabilityPredicate.VACUUM.get()
 
         @JvmStatic
+        fun componentCasings() = GTLiteTraceabilityPredicate.COMPONENT_CASING.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

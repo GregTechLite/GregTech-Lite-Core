@@ -12,6 +12,7 @@ import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.command.ICommandManager;
 import magicbook.gtlitecore.api.module.IModuleManager;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing;
@@ -73,6 +74,7 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CRYOSTAT = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_DIVERTOR = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_VACUUM = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_COMPONENT_CASING = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
@@ -240,6 +242,13 @@ public class GTLiteAPI
 
         MAP_VACUUM.put(GTLiteMetaBlocks.FUSION_CASING_03.getState(BlockFusionCasing03.FusionCasingType.VACUUM_MK5),
                 new WrappedIntTier(BlockFusionCasing03.FusionCasingType.VACUUM_MK5, 5));
+
+        // componentCasings
+        for (BlockComponentAssemblyCasing.ComponentCasingType tier : BlockComponentAssemblyCasing.ComponentCasingType.values())
+        {
+            MAP_COMPONENT_CASING.put(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
 
         // cleanroomCasings
         MAP_CLEANROOM_CASING.put(MetaBlocks.CLEANROOM_CASING.getState(BlockCleanroomCasing.CasingType.FILTER_CASING),

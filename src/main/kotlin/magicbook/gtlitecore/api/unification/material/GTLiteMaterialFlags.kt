@@ -36,6 +36,7 @@ import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.IronMagnetic
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
@@ -45,6 +46,7 @@ import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -77,6 +79,7 @@ import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -110,6 +113,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
@@ -159,6 +163,7 @@ class GTLiteMaterialFlags
             Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
             Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
+            Duranium.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -277,6 +282,8 @@ class GTLiteMaterialFlags
             Plutonium239.addFlags(GENERATE_DOUBLE_PLATE)
             Dubnium.addFlags(GENERATE_DOUBLE_PLATE)
             Rutherfordium.addFlags(GENERATE_DOUBLE_PLATE)
+            HSSS.addFlags(GENERATE_DOUBLE_PLATE)
+            Tritanium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -289,6 +296,9 @@ class GTLiteMaterialFlags
             Potin.addFlags(GENERATE_DENSE)
             Osmium.addFlags(GENERATE_DENSE)
 
+            // ring
+            Duranium.addFlags(GENERATE_RING)
+
             // rotor
             WroughtIron.addFlags(GENERATE_ROTOR)
             TinAlloy.addFlags(GENERATE_ROTOR)
@@ -296,6 +306,7 @@ class GTLiteMaterialFlags
             Iridium.addFlags(GENERATE_ROTOR)
             Tritanium.addFlags(GENERATE_ROTOR)
             Neutronium.addFlags(GENERATE_ROTOR)
+            Duranium.addFlags(GENERATE_ROTOR)
 
             // round
             Steel.addFlags(GENERATE_ROUND)
@@ -309,6 +320,9 @@ class GTLiteMaterialFlags
             Chrome.addFlags(GENERATE_LONG_ROD)
             Diamond.addFlags(GENERATE_LONG_ROD)
             Trinium.addFlags(GENERATE_LONG_ROD)
+            IronMagnetic.addFlags(GENERATE_LONG_ROD)
+            SteelMagnetic.addFlags(GENERATE_LONG_ROD)
+            NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)

@@ -16,18 +16,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing01.MultiblockCasingType>
+public class BlockComponentAssemblyCasing extends VariantBlock<BlockComponentAssemblyCasing.ComponentCasingType>
 {
 
-    public BlockMultiblockCasing01()
+    public BlockComponentAssemblyCasing()
     {
         super(Material.IRON);
-        this.setTranslationKey("multiblock_casing_01");
+        this.setTranslationKey("component_assembly_casing");
         this.setHardness(5.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("wrench", 2);
-        this.setDefaultState(this.getState(MultiblockCasingType.SUBSTRATE_CASING));
+        this.setDefaultState(this.getState(ComponentCasingType.LV));
     }
 
     @Override
@@ -41,12 +41,22 @@ public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing0
 
     @Getter
     @AllArgsConstructor
-    public enum MultiblockCasingType implements IStringSerializable
+    public enum ComponentCasingType implements IStringSerializable
     {
-        SUBSTRATE_CASING("substrate_casing"),
-        ADVANCED_SUBSTRATE_CASING("advanced_substrate_casing"),
-        DRILL_HEAD("drill_head"),
-        ADVANCED_FILTER_CASING("advanced_filter_casing");
+        LV("lv"),
+        MV("mv"),
+        HV("hv"),
+        EV("ev"),
+        IV("iv"),
+        LuV("luv"),
+        ZPM("zpm"),
+        UV("uv"),
+        UHV("uhv"),
+        UEV("uev"),
+        UIV("uiv"),
+        UXV("uxv"),
+        OpV("opv"),
+        MAX("max");
 
         private final String name;
     }

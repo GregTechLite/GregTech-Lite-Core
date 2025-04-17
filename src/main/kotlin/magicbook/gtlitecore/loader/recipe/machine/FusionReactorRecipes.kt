@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Cobalt
@@ -48,6 +49,7 @@ import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Tritium
@@ -291,6 +293,16 @@ class FusionReactorRecipes
                 .EUt(VA[UHV].toLong())
                 .duration(2 * SECOND + 5 * TICK)
                 .EUToStart(800_000_000L) // 800M EU, MK4
+                .buildAndRegister()
+
+            // Cm + Na -> Bh
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Curium.getFluid(L / 2))
+                .fluidInputs(Sodium.getFluid(L * 2))
+                .fluidOutputs(Bohrium.getFluid(L * 2))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .EUToStart(850_000_000L) // 850M EU, MK4
                 .buildAndRegister()
 
             // Add plasma coolant recipes to vacuum freezer for original plasmas.

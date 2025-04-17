@@ -213,140 +213,140 @@ tile.gtlite_wood_fence_gate.nutmeg.name=Nutmeg Wood Fence Gate
 tile.gtlite_wood_fence_gate.coconut.name=Coconut Wood Fence Gate
 tile.gtlite_wood_fence_gate.rainbow.name=Rainbow Wood Fence Gate
 
-tile.motor_casing.lv.name=§7LV§r Electric Motor Casing
-tile.motor_casing.mv.name=§bMV§r Electric Motor Casing
-tile.motor_casing.hv.name=§6HV§r Electric Motor Casing
-tile.motor_casing.ev.name=§5EV§r Electric Motor Casing
-tile.motor_casing.iv.name=§1IV§r Electric Motor Casing
-tile.motor_casing.luv.name=§dLuV§r Electric Motor Casing
-tile.motor_casing.zpm.name=§cZPM§r Electric Motor Casing
-tile.motor_casing.uv.name=§3UV§r Electric Motor Casing
-tile.motor_casing.uhv.name=§4UHV§r Electric Motor Casing
-tile.motor_casing.uev.name=§aUEV§r Electric Motor Casing
-tile.motor_casing.uiv.name=§2UIV§r Electric Motor Casing
-tile.motor_casing.uxv.name=§eUXV§r Electric Motor Casing
-tile.motor_casing.opv.name=§9OpV§r Electric Motor Casing
-tile.motor_casing.max.name=§c§lMAX§r Electric Motor Casing
+tile.motor_casing.lv.name=§7LV§f Electric Motor Casing
+tile.motor_casing.mv.name=§bMV§f Electric Motor Casing
+tile.motor_casing.hv.name=§6HV§f Electric Motor Casing
+tile.motor_casing.ev.name=§5EV§f Electric Motor Casing
+tile.motor_casing.iv.name=§1IV§f Electric Motor Casing
+tile.motor_casing.luv.name=§dLuV§f Electric Motor Casing
+tile.motor_casing.zpm.name=§cZPM§f Electric Motor Casing
+tile.motor_casing.uv.name=§3UV§f Electric Motor Casing
+tile.motor_casing.uhv.name=§4UHV§f Electric Motor Casing
+tile.motor_casing.uev.name=§aUEV§f Electric Motor Casing
+tile.motor_casing.uiv.name=§2UIV§f Electric Motor Casing
+tile.motor_casing.uxv.name=§eUXV§f Electric Motor Casing
+tile.motor_casing.opv.name=§9OpV§f Electric Motor Casing
+tile.motor_casing.max.name=§c§lMAX§r§f Electric Motor Casing
 
-tile.piston_casing.lv.name=§7LV§r Electric Piston Casing
-tile.piston_casing.mv.name=§bMV§r Electric Piston Casing
-tile.piston_casing.hv.name=§6HV§r Electric Piston Casing
-tile.piston_casing.ev.name=§5EV§r Electric Piston Casing
-tile.piston_casing.iv.name=§1IV§r Electric Piston Casing
-tile.piston_casing.luv.name=§dLuV§r Electric Piston Casing
-tile.piston_casing.zpm.name=§cZPM§r Electric Piston Casing
-tile.piston_casing.uv.name=§3UV§r Electric Piston Casing
-tile.piston_casing.uhv.name=§4UHV§r Electric Piston Casing
-tile.piston_casing.uev.name=§aUEV§r Electric Piston Casing
-tile.piston_casing.uiv.name=§2UIV§r Electric Piston Casing
-tile.piston_casing.uxv.name=§eUXV§r Electric Piston Casing
-tile.piston_casing.opv.name=§9OpV§r Electric Piston Casing
-tile.piston_casing.max.name=§c§lMAX§r Electric Piston Casing
+tile.piston_casing.lv.name=§7LV§f Electric Piston Casing
+tile.piston_casing.mv.name=§bMV§f Electric Piston Casing
+tile.piston_casing.hv.name=§6HV§f Electric Piston Casing
+tile.piston_casing.ev.name=§5EV§f Electric Piston Casing
+tile.piston_casing.iv.name=§1IV§f Electric Piston Casing
+tile.piston_casing.luv.name=§dLuV§f Electric Piston Casing
+tile.piston_casing.zpm.name=§cZPM§f Electric Piston Casing
+tile.piston_casing.uv.name=§3UV§f Electric Piston Casing
+tile.piston_casing.uhv.name=§4UHV§f Electric Piston Casing
+tile.piston_casing.uev.name=§aUEV§f Electric Piston Casing
+tile.piston_casing.uiv.name=§2UIV§f Electric Piston Casing
+tile.piston_casing.uxv.name=§eUXV§f Electric Piston Casing
+tile.piston_casing.opv.name=§9OpV§f Electric Piston Casing
+tile.piston_casing.max.name=§c§lMAX§r§f Electric Piston Casing
 
-tile.pump_casing.lv.name=§7LV§r Electric Pump Casing
-tile.pump_casing.mv.name=§bMV§r Electric Pump Casing
-tile.pump_casing.hv.name=§6HV§r Electric Pump Casing
-tile.pump_casing.ev.name=§5EV§r Electric Pump Casing
-tile.pump_casing.iv.name=§1IV§r Electric Pump Casing
-tile.pump_casing.luv.name=§dLuV§r Electric Pump Casing
-tile.pump_casing.zpm.name=§cZPM§r Electric Pump Casing
-tile.pump_casing.uv.name=§3UV§r Electric Pump Casing
-tile.pump_casing.uhv.name=§4UHV§r Electric Pump Casing
-tile.pump_casing.uev.name=§aUEV§r Electric Pump Casing
-tile.pump_casing.uiv.name=§2UIV§r Electric Pump Casing
-tile.pump_casing.uxv.name=§eUXV§r Electric Pump Casing
-tile.pump_casing.opv.name=§9OpV§r Electric Pump Casing
-tile.pump_casing.max.name=§c§lMAX§r Electric Pump Casing
+tile.pump_casing.lv.name=§7LV§f Electric Pump Casing
+tile.pump_casing.mv.name=§bMV§f Electric Pump Casing
+tile.pump_casing.hv.name=§6HV§f Electric Pump Casing
+tile.pump_casing.ev.name=§5EV§f Electric Pump Casing
+tile.pump_casing.iv.name=§1IV§f Electric Pump Casing
+tile.pump_casing.luv.name=§dLuV§f Electric Pump Casing
+tile.pump_casing.zpm.name=§cZPM§f Electric Pump Casing
+tile.pump_casing.uv.name=§3UV§f Electric Pump Casing
+tile.pump_casing.uhv.name=§4UHV§f Electric Pump Casing
+tile.pump_casing.uev.name=§aUEV§f Electric Pump Casing
+tile.pump_casing.uiv.name=§2UIV§f Electric Pump Casing
+tile.pump_casing.uxv.name=§eUXV§f Electric Pump Casing
+tile.pump_casing.opv.name=§9OpV§f Electric Pump Casing
+tile.pump_casing.max.name=§c§lMAX§r§f Electric Pump Casing
 
-tile.conveyor_casing.lv.name=§7LV§r Conveyor Module Casing
-tile.conveyor_casing.mv.name=§bMV§r Conveyor Module Casing
-tile.conveyor_casing.hv.name=§6HV§r Conveyor Module Casing
-tile.conveyor_casing.ev.name=§5EV§r Conveyor Module Casing
-tile.conveyor_casing.iv.name=§1IV§r Conveyor Module Casing
-tile.conveyor_casing.luv.name=§dLuV§r Conveyor Module Casing
-tile.conveyor_casing.zpm.name=§cZPM§r Conveyor Module Casing
-tile.conveyor_casing.uv.name=§3UV§r Conveyor Module Casing
-tile.conveyor_casing.uhv.name=§4UHV§r Conveyor Module Casing
-tile.conveyor_casing.uev.name=§aUEV§r Conveyor Module Casing
-tile.conveyor_casing.uiv.name=§2UIV§r Conveyor Module Casing
-tile.conveyor_casing.uxv.name=§eUXV§r Conveyor Module Casing
-tile.conveyor_casing.opv.name=§9OpV§r Conveyor Module Casing
-tile.conveyor_casing.max.name=§c§lMAX§r Conveyor Module Casing
+tile.conveyor_casing.lv.name=§7LV§f Conveyor Module Casing
+tile.conveyor_casing.mv.name=§bMV§f Conveyor Module Casing
+tile.conveyor_casing.hv.name=§6HV§f Conveyor Module Casing
+tile.conveyor_casing.ev.name=§5EV§f Conveyor Module Casing
+tile.conveyor_casing.iv.name=§1IV§f Conveyor Module Casing
+tile.conveyor_casing.luv.name=§dLuV§f Conveyor Module Casing
+tile.conveyor_casing.zpm.name=§cZPM§f Conveyor Module Casing
+tile.conveyor_casing.uv.name=§3UV§f Conveyor Module Casing
+tile.conveyor_casing.uhv.name=§4UHV§f Conveyor Module Casing
+tile.conveyor_casing.uev.name=§aUEV§f Conveyor Module Casing
+tile.conveyor_casing.uiv.name=§2UIV§f Conveyor Module Casing
+tile.conveyor_casing.uxv.name=§eUXV§f Conveyor Module Casing
+tile.conveyor_casing.opv.name=§9OpV§f Conveyor Module Casing
+tile.conveyor_casing.max.name=§c§lMAX§r§f Conveyor Module Casing
 
-tile.robot_arm_casing.lv.name=§7LV§r Robot Arm Casing
-tile.robot_arm_casing.mv.name=§bMV§r Robot Arm Casing
-tile.robot_arm_casing.hv.name=§6HV§r Robot Arm Casing
-tile.robot_arm_casing.ev.name=§5EV§r Robot Arm Casing
-tile.robot_arm_casing.iv.name=§1IV§r Robot Arm Casing
-tile.robot_arm_casing.luv.name=§dLuV§r Robot Arm Casing
-tile.robot_arm_casing.zpm.name=§cZPM§r Robot Arm Casing
-tile.robot_arm_casing.uv.name=§3UV§r Robot Arm Casing
-tile.robot_arm_casing.uhv.name=§4UHV§r Robot Arm Casing
-tile.robot_arm_casing.uev.name=§aUEV§r Robot Arm Casing
-tile.robot_arm_casing.uiv.name=§2UIV§r Robot Arm Casing
-tile.robot_arm_casing.uxv.name=§eUXV§r Robot Arm Casing
-tile.robot_arm_casing.opv.name=§9OpV§r Robot Arm Casing
-tile.robot_arm_casing.max.name=§c§lMAX§r Robot Arm Casing
+tile.robot_arm_casing.lv.name=§7LV§f Robot Arm Casing
+tile.robot_arm_casing.mv.name=§bMV§f Robot Arm Casing
+tile.robot_arm_casing.hv.name=§6HV§f Robot Arm Casing
+tile.robot_arm_casing.ev.name=§5EV§f Robot Arm Casing
+tile.robot_arm_casing.iv.name=§1IV§f Robot Arm Casing
+tile.robot_arm_casing.luv.name=§dLuV§f Robot Arm Casing
+tile.robot_arm_casing.zpm.name=§cZPM§f Robot Arm Casing
+tile.robot_arm_casing.uv.name=§3UV§f Robot Arm Casing
+tile.robot_arm_casing.uhv.name=§4UHV§f Robot Arm Casing
+tile.robot_arm_casing.uev.name=§aUEV§f Robot Arm Casing
+tile.robot_arm_casing.uiv.name=§2UIV§f Robot Arm Casing
+tile.robot_arm_casing.uxv.name=§eUXV§f Robot Arm Casing
+tile.robot_arm_casing.opv.name=§9OpV§f Robot Arm Casing
+tile.robot_arm_casing.max.name=§c§lMAX§r§f Robot Arm Casing
 
-tile.emitter_casing.lv.name=§7LV§r Emitter Casing
-tile.emitter_casing.mv.name=§bMV§r Emitter Casing
-tile.emitter_casing.hv.name=§6HV§r Emitter Casing
-tile.emitter_casing.ev.name=§5EV§r Emitter Casing
-tile.emitter_casing.iv.name=§1IV§r Emitter Casing
-tile.emitter_casing.luv.name=§dLuV§r Emitter Casing
-tile.emitter_casing.zpm.name=§cZPM§r Emitter Casing
-tile.emitter_casing.uv.name=§3UV§r Emitter Casing
-tile.emitter_casing.uhv.name=§4UHV§r Emitter Casing
-tile.emitter_casing.uev.name=§aUEV§r Emitter Casing
-tile.emitter_casing.uiv.name=§2UIV§r Emitter Casing
-tile.emitter_casing.uxv.name=§eUXV§r Emitter Casing
-tile.emitter_casing.opv.name=§9OpV§r Emitter Casing
-tile.emitter_casing.max.name=§c§lMAX§r Emitter Casing
+tile.emitter_casing.lv.name=§7LV§f Emitter Casing
+tile.emitter_casing.mv.name=§bMV§f Emitter Casing
+tile.emitter_casing.hv.name=§6HV§f Emitter Casing
+tile.emitter_casing.ev.name=§5EV§f Emitter Casing
+tile.emitter_casing.iv.name=§1IV§f Emitter Casing
+tile.emitter_casing.luv.name=§dLuV§f Emitter Casing
+tile.emitter_casing.zpm.name=§cZPM§f Emitter Casing
+tile.emitter_casing.uv.name=§3UV§f Emitter Casing
+tile.emitter_casing.uhv.name=§4UHV§f Emitter Casing
+tile.emitter_casing.uev.name=§aUEV§f Emitter Casing
+tile.emitter_casing.uiv.name=§2UIV§f Emitter Casing
+tile.emitter_casing.uxv.name=§eUXV§f Emitter Casing
+tile.emitter_casing.opv.name=§9OpV§f Emitter Casing
+tile.emitter_casing.max.name=§c§lMAX§r§f Emitter Casing
 
-tile.sensor_casing.lv.name=§7LV§r Sensor Casing
-tile.sensor_casing.mv.name=§bMV§r Sensor Casing
-tile.sensor_casing.hv.name=§6HV§r Sensor Casing
-tile.sensor_casing.ev.name=§5EV§r Sensor Casing
-tile.sensor_casing.iv.name=§1IV§r Sensor Casing
-tile.sensor_casing.luv.name=§dLuV§r Sensor Casing
-tile.sensor_casing.zpm.name=§cZPM§r Sensor Casing
-tile.sensor_casing.uv.name=§3UV§r Sensor Casing
-tile.sensor_casing.uhv.name=§4UHV§r Sensor Casing
-tile.sensor_casing.uev.name=§aUEV§r Sensor Casing
-tile.sensor_casing.uiv.name=§2UIV§r Sensor Casing
-tile.sensor_casing.uxv.name=§eUXV§r Sensor Casing
-tile.sensor_casing.opv.name=§9OpV§r Sensor Casing
-tile.sensor_casing.max.name=§c§lMAX§r Sensor Casing
+tile.sensor_casing.lv.name=§7LV§f Sensor Casing
+tile.sensor_casing.mv.name=§bMV§f Sensor Casing
+tile.sensor_casing.hv.name=§6HV§f Sensor Casing
+tile.sensor_casing.ev.name=§5EV§f Sensor Casing
+tile.sensor_casing.iv.name=§1IV§f Sensor Casing
+tile.sensor_casing.luv.name=§dLuV§f Sensor Casing
+tile.sensor_casing.zpm.name=§cZPM§f Sensor Casing
+tile.sensor_casing.uv.name=§3UV§f Sensor Casing
+tile.sensor_casing.uhv.name=§4UHV§f Sensor Casing
+tile.sensor_casing.uev.name=§aUEV§f Sensor Casing
+tile.sensor_casing.uiv.name=§2UIV§f Sensor Casing
+tile.sensor_casing.uxv.name=§eUXV§f Sensor Casing
+tile.sensor_casing.opv.name=§9OpV§f Sensor Casing
+tile.sensor_casing.max.name=§c§lMAX§r§f Sensor Casing
 
-tile.field_gen_casing.lv.name=§7LV§r Field Generator Casing
-tile.field_gen_casing.mv.name=§bMV§r Field Generator Casing
-tile.field_gen_casing.hv.name=§6HV§r Field Generator Casing
-tile.field_gen_casing.ev.name=§5EV§r Field Generator Casing
-tile.field_gen_casing.iv.name=§1IV§r Field Generator Casing
-tile.field_gen_casing.luv.name=§dLuV§r Field Generator Casing
-tile.field_gen_casing.zpm.name=§cZPM§r Field Generator Casing
-tile.field_gen_casing.uv.name=§3UV§r Field Generator Casing
-tile.field_gen_casing.uhv.name=§4UHV§r Field Generator Casing
-tile.field_gen_casing.uev.name=§aUEV§r Field Generator Casing
-tile.field_gen_casing.uiv.name=§2UIV§r Field Generator Casing
-tile.field_gen_casing.uxv.name=§eUXV§r Field Generator Casing
-tile.field_gen_casing.opv.name=§9OpV§r Field Generator Casing
-tile.field_gen_casing.max.name=§c§lMAX§r Field Generator Casing
+tile.field_gen_casing.lv.name=§7LV§f Field Generator Casing
+tile.field_gen_casing.mv.name=§bMV§f Field Generator Casing
+tile.field_gen_casing.hv.name=§6HV§f Field Generator Casing
+tile.field_gen_casing.ev.name=§5EV§f Field Generator Casing
+tile.field_gen_casing.iv.name=§1IV§f Field Generator Casing
+tile.field_gen_casing.luv.name=§dLuV§f Field Generator Casing
+tile.field_gen_casing.zpm.name=§cZPM§f Field Generator Casing
+tile.field_gen_casing.uv.name=§3UV§f Field Generator Casing
+tile.field_gen_casing.uhv.name=§4UHV§f Field Generator Casing
+tile.field_gen_casing.uev.name=§aUEV§f Field Generator Casing
+tile.field_gen_casing.uiv.name=§2UIV§f Field Generator Casing
+tile.field_gen_casing.uxv.name=§eUXV§f Field Generator Casing
+tile.field_gen_casing.opv.name=§9OpV§f Field Generator Casing
+tile.field_gen_casing.max.name=§c§lMAX§r§f Field Generator Casing
 
-tile.processor_casing.lv.name=§7LV§r Processor Casing
-tile.processor_casing.mv.name=§bMV§r Processor Casing
-tile.processor_casing.hv.name=§6HV§r Processor Casing
-tile.processor_casing.ev.name=§5EV§r Processor Casing
-tile.processor_casing.iv.name=§1IV§r Processor Casing
-tile.processor_casing.luv.name=§dLuV§r Processor Casing
-tile.processor_casing.zpm.name=§cZPM§r Processor Casing
-tile.processor_casing.uv.name=§3UV§r Processor Casing
-tile.processor_casing.uhv.name=§4UHV§r Processor Casing
-tile.processor_casing.uev.name=§aUEV§r Processor Casing
-tile.processor_casing.uiv.name=§2UIV§r Processor Casing
-tile.processor_casing.uxv.name=§eUXV§r Processor Casing
-tile.processor_casing.opv.name=§9OpV§r Processor Casing
-tile.processor_casing.max.name=§c§lMAX§r Processor Casing
+tile.processor_casing.lv.name=§7LV§f Processor Casing
+tile.processor_casing.mv.name=§bMV§f Processor Casing
+tile.processor_casing.hv.name=§6HV§f Processor Casing
+tile.processor_casing.ev.name=§5EV§f Processor Casing
+tile.processor_casing.iv.name=§1IV§f Processor Casing
+tile.processor_casing.luv.name=§dLuV§f Processor Casing
+tile.processor_casing.zpm.name=§cZPM§f Processor Casing
+tile.processor_casing.uv.name=§3UV§f Processor Casing
+tile.processor_casing.uhv.name=§4UHV§f Processor Casing
+tile.processor_casing.uev.name=§aUEV§f Processor Casing
+tile.processor_casing.uiv.name=§2UIV§f Processor Casing
+tile.processor_casing.uxv.name=§eUXV§f Processor Casing
+tile.processor_casing.opv.name=§9OpV§f Processor Casing
+tile.processor_casing.max.name=§c§lMAX§r§f Processor Casing
 
 tile.primitive_casing.reinforced_treated_wood_wall.name=Reinforced Treated Wood Wall
 
@@ -392,6 +392,8 @@ tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 tile.multiblock_casing_01.substrate_casing.name=Substrate Casing
 tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casing
 tile.multiblock_casing_01.drill_head.name=Drill Head
+tile.multiblock_casing_01.advanced_filter_casing.name=Advanced Filter Casing
+tile.multiblock_casing_01.advanced_filter_casing.tooltip=Maintain the Cleanliness of Precision Components
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -431,6 +433,21 @@ tile.crucible.tungsten.name=Tungsten Crucible
 tile.crucible.osmium.name=Osmium Crucible
 tile.crucible.graphite.name=Graphite Crucible
 tile.crucible.boron_nitride.name=Boron Nitride Crucible
+
+tile.component_assembly_casing.lv.name=§7LV§f Component Assembly Casing
+tile.component_assembly_casing.mv.name=§bMV§f Component Assembly Casing
+tile.component_assembly_casing.hv.name=§6HV§f Component Assembly Casing
+tile.component_assembly_casing.ev.name=§5EV§f Component Assembly Casing
+tile.component_assembly_casing.iv.name=§1IV§f Component Assembly Casing
+tile.component_assembly_casing.luv.name=§dLuV§f Component Assembly Casing
+tile.component_assembly_casing.zpm.name=§cZPM§f Component Assembly Casing
+tile.component_assembly_casing.uv.name=§3UV§f Component Assembly Casing
+tile.component_assembly_casing.uhv.name=§4UHV§f Component Assembly Casing
+tile.component_assembly_casing.uev.name=§aUEV§f Component Assembly Casing
+tile.component_assembly_casing.uiv.name=§2UIV§f Component Assembly Casing
+tile.component_assembly_casing.uxv.name=§eUXV§f Component Assembly Casing
+tile.component_assembly_casing.opv.name=§9OpV§f Component Assembly Casing
+tile.component_assembly_casing.max.name=§c§lMAX§r§f Component Assembly Casing
 
 tile.glass_casing_01.pmma.name=PMMA Glass
 tile.glass_casing_01.pmma.tooltip=Acrylic Glass
@@ -952,6 +969,7 @@ recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
 recipemap.mob_extractor.name=Mob Extractor
 recipemap.bedrock_drilling_rig.name=Bedrock Drilling Rig
 recipemap.advanced_fusion_reactor.name=Advanced Fusion Reactor
+recipemap.component_assembly_line.name=Component Assembly Line
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -966,6 +984,7 @@ gtlitecore.recipe.accepted_entity=Required Entity on Machine Top: %s
 gtlitecore.recipe.entity_name.player=Player
 
 gtlitecore.recipe.advanced_fusion_tier=Level:
+gtlitecore.recipe.component_assembly_line_tier=Component Assembly Casing Tier: %s
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -1579,6 +1598,12 @@ gtlitecore.machine.advanced_fusion_reactor.tooltip.11=所有部件均限制配�
 gtlitecore.machine.advanced_fusion_reactor.tooltip.12=仿星器将在聚变反应时进行相当于两次一般§b无损超频§7的特殊超频。
 gtlitecore.machine.advanced_fusion_reactor.tooltip.13=每提高1个§e机器外壳§7，§e真空室§7与§e恒温仓§7等级，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.advanced_fusion_reactor.tooltip.14=每提高1个§e线圈方块§7与§e偏滤器§7等级，每次运行可以多处理§l64§r§7个物品。
+
+gtlitecore.machine.component_assembly_line.name=Component Assembly Line
+gtlitecore.machine.component_assembly_line.tooltip.1=批量装配各式各样的零部件，效率碾压同等级组装机/装配线！
+gtlitecore.machine.component_assembly_line.tooltip.2=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的§f硼硅酸盐玻璃§7替换结构中的玻璃
+gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

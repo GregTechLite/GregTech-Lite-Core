@@ -94,6 +94,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.TungstenProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.UraniumPlutoniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.VibraniumProcessing
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.ComponentAssemblyLineRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.DisposableToolRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MassReplicationRecipeProducer
@@ -127,6 +128,7 @@ class RecipeManager
             WrapItemRecipeProducer.produce()
             GreenhouseRecipeProducer.produce()
             MiningDroneAsteroidRecipeProducer.produce()
+            ComponentAssemblyLineRecipeProducer.produce()
 
             // Loading chains and ore processings.
             OilCrackingChain.init()

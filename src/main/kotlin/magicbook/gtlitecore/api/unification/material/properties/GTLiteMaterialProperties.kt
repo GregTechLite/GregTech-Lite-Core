@@ -164,7 +164,7 @@ class GTLiteMaterialProperties
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
-                Francium, Thallium)
+                Francium, Thallium, Sodium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)

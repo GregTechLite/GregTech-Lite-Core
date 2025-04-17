@@ -380,7 +380,7 @@ class AssemblyLineRecipes
                 .input(round, Tritanium, 8)
                 .input(stick, Tritanium, 4)
                 .input(gear, Tritanium)
-                .input(gearSmall, Tritanium)
+                .input(gearSmall, Tritanium, 2)
                 .input(cableGtSingle, YttriumBariumCuprate, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .fluidInputs(Lubricant.getFluid(1000))

@@ -27,6 +27,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityBedro
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityComponentAssemblyLine
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityFusionReactors
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaserInducedCVDUnit
@@ -233,6 +234,7 @@ class GTLiteMetaTileEntities
         lateinit var FUSION_REACTOR_MK4: MetaTileEntityFusionReactors
         lateinit var FUSION_REACTOR_MK5: MetaTileEntityFusionReactors
         lateinit var ADVANCED_FUSION_REACTOR: MetaTileEntityAdvancedFusionReactor
+        lateinit var COMPONENT_ASSEMBLY_LINE: MetaTileEntityComponentAssemblyLine
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -739,6 +741,9 @@ class GTLiteMetaTileEntities
             ADVANCED_FUSION_REACTOR = MetaTileEntities.registerMetaTileEntity(18020,
                 MetaTileEntityAdvancedFusionReactor(GTLiteUtility.gtliteId("advanced_fusion_reactor")))
 
+            COMPONENT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(18021,
+                MetaTileEntityComponentAssemblyLine(GTLiteUtility.gtliteId("component_assembly_line")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -942,6 +947,7 @@ class GTLiteMetaTileEntities
             FUSION_REACTOR_MK4.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             FUSION_REACTOR_MK5.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ADVANCED_FUSION_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            COMPONENT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
