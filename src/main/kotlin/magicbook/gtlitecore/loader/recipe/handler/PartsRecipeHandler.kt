@@ -280,7 +280,6 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Purple)
                 }
-
                 // Addition gem colored lens in gtlitecore.
                 GTLiteMaterials.Tanzanite -> {
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
@@ -314,7 +313,10 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Green)
                 }
-
+                GTLiteMaterials.Heterodiamond -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Purple)
+                }
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.
                     val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)

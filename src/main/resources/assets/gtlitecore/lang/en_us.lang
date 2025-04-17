@@ -653,6 +653,8 @@ metaitem.mining_drone.opv.tooltip=Planetary belt ore extractor
 metaitem.mining_drone.max.name=§c§lMAX§f Mining Drone
 metaitem.mining_drone.max.tooltip=Planetary belt ore extractor
 
+metaitem.tool.component.grinder.boron_nitride.name=Boron Nitride Grinder
+
 metaitem.tool.disposable.saw.name=Disposable Saw
 metaitem.tool.disposable.saw.tooltip=Disposable Tool for crafting recipes
 metaitem.tool.disposable.hard_hammer.name=Disposable Hard Hammer
@@ -2256,6 +2258,12 @@ gtlitecore.material.potassium_permanganate=Potassium Permanganate
 gtlitecore.material.lanthanum_gallium_manganate=Lanthanum Gallium Manganate
 gtlitecore.material.barium_strontium_titanate=Barium Strontium Titanate
 gtlitecore.material.lutetium_manganese_germanium=Lutetium Manganese Germanium Alloy
+gtlitecore.material.boric_acid=Boric Acid
+gtlitecore.material.boron_trioxide=Boron Trioxide
+gtlitecore.material.boron_trifluoride=Boron Trifluoride
+gtlitecore.material.lithium_hydride=Lithium Hydride
+gtlitecore.material.lithium_tetrafluoroborate=Lithium Tetrafluoroborate
+gtlitecore.material.boron_trichloride=Boron Trichloride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2404,6 +2412,14 @@ gtlitecore.material.dibromomethylbenzene=Dibromomethylbenzene
 gtlitecore.material.terephthalaldehyde=Terephthalaldehyde
 gtlitecore.material.pretreated_zylon=Pretreated Zylon
 gtlitecore.material.zylon=Zylon
+gtlitecore.material.diborane=Diborane
+gtlitecore.material.borazine=Borazine
+gtlitecore.material.trichloroborazine=Trichloroborazine
+gtlitecore.material.hexagonal_boron_nitride=Hexagonal Boron Nitride
+gtlitecore.material.cubic_boron_nitride=Cubic Boron Nitride
+gtlitecore.material.amorphous_boron_nitride=Amorphous Boron Nitride
+gtlitecore.material.heterodiamond=Heterodiamond
+gtlitecore.material.cubic_heterodiamond=Cubic Heterodiamond
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

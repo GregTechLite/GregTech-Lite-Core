@@ -32,8 +32,10 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
@@ -60,6 +62,10 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import gregtech.common.items.MetaItems.SMART_FILTER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeterodiamond
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
@@ -80,6 +86,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SOFT_MALLET
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_BORON_NITRIDE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_ROUND
@@ -581,7 +588,17 @@ class CraftingRecipeLoader
                 "P P", "PhP", "PPP",
                 'P', UnificationEntry(plate, Graphene))
 
-            // TODO Boron Nitride Crucible
+            // Boron Nitride Crucible
+            ModHandler.addShapedRecipe(true, "boron_nitride_crucible", GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.BORON_NITRIDE_CRUCIBLE),
+                "P P", "PhP", "PPP",
+                'P', UnificationEntry(plate, AmorphousBoronNitride))
+
+            // Boron Nitride Grinder
+            ModHandler.addShapedRecipe("boron_nitride_grinder", COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
+                "PDP", "DGD", "PDP",
+                'P', UnificationEntry(plate, CubicBoronNitride),
+                'D', UnificationEntry(plateDouble, Bedrockium),
+                'G', UnificationEntry(gem, CubicHeterodiamond))
 
         }
 

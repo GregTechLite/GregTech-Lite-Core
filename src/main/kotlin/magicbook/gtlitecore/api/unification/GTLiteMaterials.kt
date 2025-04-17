@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Blaze
+import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Cadmium
@@ -155,6 +156,7 @@ import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.EXPLOSIVE
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
@@ -164,6 +166,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
@@ -200,6 +203,7 @@ import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Vb
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.DISABLE_CRYSTALLIZATION
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
@@ -804,8 +808,8 @@ class GTLiteMaterials
         val AmmoniumPerrhenate: Material = Material.Builder(2052, gtliteId("ammonium_perrhenate"))
             .dust()
             .color(0xA69970).iconSet(METALLIC)
-            .flags(DISABLE_DECOMPOSITION)
             .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
 
         // 2053 Jade
@@ -2217,6 +2221,105 @@ class GTLiteMaterials
                     .vacuumStats(VA[EV], 30 * SECOND)
             }
             .build() // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ i think it is well in Gregtech.
+
+        // 2203 Boric Acid
+        @JvmField
+        val BoricAcid: Material = Material.Builder(2203, gtliteId("boric_acid"))
+            .dust()
+            .color(0xFAFAFA).iconSet(SHINY)
+            .components(Hydrogen, 3, Boron, 1, Oxygen, 3)
+            .build()
+
+        // 2204 Boron Trioxide
+        @JvmField
+        val BoronTrioxide: Material = Material.Builder(2204, gtliteId("boron_trioxide"))
+            .dust()
+            .color(0xE9FAC0).iconSet(METALLIC)
+            .components(Boron, 2, Oxygen, 3)
+            .build()
+
+        // 2205 Boron Trifluoride
+        @JvmField
+        val BoronTrifluoride: Material = Material.Builder(2205, gtliteId("boron_trifluoride"))
+            .gas()
+            .color(0xFAF191)
+            .components(Boron, 1, Fluorine, 3)
+            .build()
+
+        // 2206 Lithium Hydride
+        @JvmField
+        val LithiumHydride: Material = Material.Builder(2206, gtliteId("lithium_hydride"))
+            .ingot()
+            .color(0x9BAFDB).iconSet(METALLIC)
+            .components(Lithium, 1, Hydrogen, 1)
+            .build()
+
+        // 2207 Lithium Tetrafluoroborate
+        @JvmField
+        val LithiumTetrafluoroborate: Material = Material.Builder(2207, gtliteId("lithium_tetrafluoroborate"))
+            .dust()
+            .color(0x90FAF6).iconSet(SHINY)
+            .components(Lithium, 1, Boron, 1, Fluorine, 4)
+            .build()
+
+        // 2208 Boron Trichloride
+        @JvmField
+        val BoronTrichloride: Material = Material.Builder(2208, gtliteId("boron_trichloride"))
+            .gas()
+            .color(0x033F1B)
+            .components(Boron, 1, Chlorine, 3)
+            .build()
+
+        // 2209 Hexagonal Boron Nitride
+        @JvmField
+        val HexagonalBoronNitride: Material = Material.Builder(2209, gtliteId("hexagonal_boron_nitride"))
+            .gem()
+            .color(0x6A6A72).iconSet(GEM_VERTICAL)
+            .components(Boron, 1, Nitrogen, 1)
+            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+            .setFormula("h-BN", true)
+
+        // 2210 Cubic Boron Nitride
+        @JvmField
+        val CubicBoronNitride: Material = Material.Builder(2210, gtliteId("cubic_boron_nitride"))
+            .gem()
+            .color(0x545572).iconSet(DIAMOND)
+            .components(Boron, 1, Nitrogen, 1)
+            .flags(EXT_METAL, DISABLE_CRYSTALLIZATION, DISABLE_DECOMPOSITION, FLAMMABLE, EXPLOSIVE,
+                GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_LENS)
+            .toolStats(MaterialToolProperty(14.0F, 9.0F, 12400, 15))
+            .build()
+            .setFormula("c-BN", true)
+
+        // 2211 Amorphous Boron Nitride
+        @JvmField
+        val AmorphousBoronNitride: Material = Material.Builder(2211, gtliteId("amorphous_boron_nitride"))
+            .ingot()
+            .color(0x9193C5).iconSet(SHINY)
+            .components(Boron, 1, Nitrogen, 1)
+            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            .build()
+            .setFormula("a-BN", true)
+
+        // 2212 Heterodiamond
+        @JvmField
+        val Heterodiamond: Material = Material.Builder(2212, gtliteId("heterodiamond"))
+            .gem()
+            .color(0x512A72).iconSet(GEM_HORIZONTAL)
+            .components(Boron, 1, Carbon, 1, Nitrogen, 1)
+            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+
+        // 2213 Cubic Heterodiamond
+        @JvmField
+        val CubicHeterodiamond: Material = Material.Builder(2213, gtliteId("cubic_heterodiamond"))
+            .gem()
+            .color(0x753DA6).iconSet(DIAMOND)
+            .components(Boron, 1, Carbon, 2, Nitrogen, 1)
+            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+            .setFormula("c-BC2N", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
@@ -3675,6 +3778,30 @@ class GTLiteMaterials
             .color(0xFFE000).iconSet(SHINY)
             .components(Carbon, 14, Hydrogen, 6, Nitrogen, 2, Oxygen, 2)
             .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            .build()
+
+        // 8094 Diborane
+        @JvmField
+        val Diborane: Material = Material.Builder(8094, gtliteId("diborane"))
+            .gas()
+            .color(0x3F3131)
+            .components(Boron, 2, Hydrogen, 6)
+            .build()
+
+        // 8095 Borazine
+        @JvmField
+        val Borazine: Material = Material.Builder(8095, gtliteId("borazine"))
+            .liquid()
+            .color(0x542828)
+            .components(Boron, 3, Hydrogen, 6, Nitrogen, 3)
+            .build()
+
+        // 8096 Trichloroborazine
+        @JvmField
+        val Trichloroborazine: Material = Material.Builder(8096, gtliteId("trichloroborazine"))
+            .liquid()
+            .color(0xD62929)
+            .components(Boron, 3, Chlorine, 3, Hydrogen, 3, Nitrogen, 3)
             .build()
 
         // =======================================================================

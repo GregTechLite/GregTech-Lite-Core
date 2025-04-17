@@ -138,6 +138,8 @@ class GTLiteMetaItems
         lateinit var MINING_DRONE_OpV: MetaItem<*>.MetaValueItem
         lateinit var MINING_DRONE_MAX: MetaItem<*>.MetaValueItem
 
+        lateinit var COMPONENT_GRINDER_BORON_NITRIDE: MetaItem<*>.MetaValueItem
+
         lateinit var DISPOSABLE_SAW: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_HARD_HAMMER: MetaItem<*>.MetaValueItem
         lateinit var DISPOSABLE_SOFT_MALLET: MetaItem<*>.MetaValueItem
@@ -585,6 +587,7 @@ class GTLiteMetaItems
                 .setMaxStackSize(16)
 
             // 501-600: Tool Components.
+            COMPONENT_GRINDER_BORON_NITRIDE = GTLITE_ITEMS.addItem(501, "tool.component.grinder.boron_nitride")
 
             // 601-700: Tools.
             DISPOSABLE_SAW = GTLITE_ITEMS.addItem(601, "tool.disposable.saw")

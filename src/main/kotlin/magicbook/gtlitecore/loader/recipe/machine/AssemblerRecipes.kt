@@ -140,6 +140,7 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
@@ -1672,6 +1673,14 @@ class AssemblerRecipes
                 .duration(35 * SECOND)
                 .buildAndRegister()
 
+            // Boron Nitride Crucible
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(plate, AmorphousBoronNitride, 7)
+                .outputs(GTLiteMetaBlocks.CRUCIBLE.getItemVariant(BlockCrucible.CrucibleType.BORON_NITRIDE_CRUCIBLE))
+                .EUt(4) // ULV
+                .duration(35 * SECOND)
+                .buildAndRegister()
 
         }
 

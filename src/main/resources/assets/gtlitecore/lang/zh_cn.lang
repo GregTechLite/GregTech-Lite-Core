@@ -718,6 +718,8 @@ metaitem.mining_drone.opv.tooltip=行星带资源提取器
 metaitem.mining_drone.max.name=采矿无人机（§c§lMAX§f）
 metaitem.mining_drone.max.tooltip=行星带资源提取器
 
+metaitem.tool.component.grinder.boron_nitride.name=氮化硼磨头
+
 metaitem.tool.disposable.saw.name=一次性锯
 metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具
 metaitem.tool.disposable.hard_hammer.name=一次性锤
@@ -2261,6 +2263,12 @@ gtlitecore.material.potassium_permanganate=高锰酸钾
 gtlitecore.material.lanthanum_gallium_manganate=锰酸镧镓
 gtlitecore.material.barium_strontium_titanate=钛酸钡锶
 gtlitecore.material.lutetium_manganese_germanium=镥锰锗合金
+gtlitecore.material.boric_acid=硼酸
+gtlitecore.material.boron_trioxide=三氧化二硼
+gtlitecore.material.boron_trifluoride=三氟化硼
+gtlitecore.material.lithium_hydride=氢化锂
+gtlitecore.material.lithium_tetrafluoroborate=四氟硼酸锂
+gtlitecore.material.boron_trichloride=三氯化硼
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2408,6 +2416,14 @@ gtlitecore.material.dibromomethylbenzene=二溴甲苯
 gtlitecore.material.terephthalaldehyde=对苯二甲醛
 gtlitecore.material.pretreated_zylon=预处理柴隆纤维
 gtlitecore.material.zylon=柴隆纤维
+gtlitecore.material.diborane=乙硼烷
+gtlitecore.material.borazine=环氮硼烷
+gtlitecore.material.trichloroborazine=三氯环氮硼烷
+gtlitecore.material.hexagonal_boron_nitride=六方氮化硼
+gtlitecore.material.cubic_boron_nitride=立方氮化硼
+gtlitecore.material.amorphous_boron_nitride=非晶氮化硼
+gtlitecore.material.heterodiamond=异质金刚石
+gtlitecore.material.cubic_heterodiamond=立方异质金刚石
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

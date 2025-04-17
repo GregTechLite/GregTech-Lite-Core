@@ -86,6 +86,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.init.Blocks
@@ -487,14 +488,14 @@ class CraftingComponents
             //      5: COMPONENT_GRINDER_TUNGSTEN
             // New: 0-2 Diamond, 3-4: COMPONENT_GRINDER_DIAMOND,
             //      5-8: COMPONENT_GRINDER_TUNGSTEN,
-            //      9-14: TODO
+            //      9-11: COMPONENT_GRINDER_BORON_NITRIDE, 12-14: TODO
             CraftingComponent.GRINDER.appendIngredients(sequenceOf(
                 LuV to MetaItems.COMPONENT_GRINDER_TUNGSTEN.stackForm,
                 ZPM to MetaItems.COMPONENT_GRINDER_TUNGSTEN.stackForm,
                 UV  to MetaItems.COMPONENT_GRINDER_TUNGSTEN.stackForm,
-                // UHV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
-                // UEV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
-                // UIV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
+                UHV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
+                UEV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
+                UIV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
                 // UXV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
                 // OpV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
                 // MAX to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm
@@ -505,15 +506,15 @@ class CraftingComponents
             //      5: TungstenCarbide, 6: HSSE, 7: NaquadahAlloy, 8: Duranium
             // New: 0: Bronze, 1: CobaltBrass, 2: VanadiumSteel, 3: BlueSteel, 4: Ultimet,
             //      5: TungstenCarbide, 6: HSSE, 7: NaquadahAlloy, 8: Duranium,
-            //      9-14: TODO
-            // CraftingComponent.SAWBLADE.appendIngredients(sequenceOf(
-            //     // UHV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
-            //     // UEV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
-            //     // UIV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
-            //     // UXV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
-            //     // OpV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
-            //     // MAX to UnificationEntry(toolHeadBuzzSaw, Tritanium)
-            // ).toMap())
+            //      9: Cubic Boron Nitride, 10-14: TODO
+            CraftingComponent.SAWBLADE.appendIngredients(sequenceOf(
+                UHV to UnificationEntry(toolHeadBuzzSaw, CubicBoronNitride),
+                // UEV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
+                // UIV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
+                // UXV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
+                // OpV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
+                // MAX to UnificationEntry(toolHeadBuzzSaw, Tritanium)
+            ).toMap())
 
             // COIL_HEATING
             // Old: 0-1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome, 5: RTMAlloy,

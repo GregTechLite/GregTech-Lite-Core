@@ -6,6 +6,7 @@ import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
+import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
@@ -166,6 +167,7 @@ class RecipeManager
             PEEKChain.init()
             ZylonChain.init()
             PotassiumPermanganateChain.init()
+            BoronNitrideChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()
