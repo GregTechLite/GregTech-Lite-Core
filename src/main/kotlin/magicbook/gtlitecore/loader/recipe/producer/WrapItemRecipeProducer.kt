@@ -6,7 +6,9 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -104,6 +106,21 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_APIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ARAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_EV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_HV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_IV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_LV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_LuV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_MAX
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_MV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_OpV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_ULV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UXV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COATED_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_DIODE
@@ -294,6 +311,142 @@ class WrapItemRecipeProducer
 
             // Add all Wrap Items.
             wrapItems.forEach { (originalItem, wrapItem) -> addRecipe(originalItem, wrapItem) }
+
+            // Circuits
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.ULV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_ULV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.LV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_LV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.MV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_MV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.HV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_HV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.EV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_EV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.IV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_IV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.LuV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_LuV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_ZPM)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_UV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.UHV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_UHV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.UEV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_UEV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.UIV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_UIV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.UXV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_UXV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.OpV, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_OpV)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(16)
+                .input(circuit, MarkerMaterials.Tier.MAX, 16)
+                .fluidInputs(Polyethylene.getFluid(L / 2))
+                .output(WRAP_CIRCUIT_MAX)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
         }
 
         private fun addRecipe(originalItem: MetaItem<*>.MetaValueItem, wrappedItem: MetaItem<*>.MetaValueItem)

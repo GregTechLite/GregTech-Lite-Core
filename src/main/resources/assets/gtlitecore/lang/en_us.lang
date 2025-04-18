@@ -912,6 +912,22 @@ metaitem.wrap.crystal.system_on_chip.name=Wrap Crystal System On Chip
 metaitem.wrap.circuit.component.neuro_processor.name=Wrap Neuro Processor
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=Wrap Nonlinear Chemical Oscillator
 
+metaitem.wrap.circuit.generic.ulv.name=Wrap §8ULV§f Circuit
+metaitem.wrap.circuit.generic.lv.name=Wrap §7LV§f Circuit
+metaitem.wrap.circuit.generic.mv.name=Wrap §bMV§f Circuit
+metaitem.wrap.circuit.generic.hv.name=Wrap §6HV§f Circuit
+metaitem.wrap.circuit.generic.ev.name=Wrap §4EV§f Circuit
+metaitem.wrap.circuit.generic.iv.name=Wrap §1IV§f Circuit
+metaitem.wrap.circuit.generic.luv.name=Wrap §dLuV§f Circuit
+metaitem.wrap.circuit.generic.zpm.name=Wrap §cZPM§f Circuit
+metaitem.wrap.circuit.generic.uv.name=Wrap §3UV§f Circuit
+metaitem.wrap.circuit.generic.uhv.name=Wrap §4UHV§f Circuit
+metaitem.wrap.circuit.generic.uev.name=Wrap §aUEV§f Circuit
+metaitem.wrap.circuit.generic.uiv.name=Wrap §2UIV§f Circuit
+metaitem.wrap.circuit.generic.uxv.name=Wrap §eUXV§f Circuit
+metaitem.wrap.circuit.generic.opv.name=Wrap §9OpV§f Circuit
+metaitem.wrap.circuit.generic.max.name=Wrap §c§lMAX§r§f Circuit
+
 metaitem.material.dust.gelatinous_mica_pulp.name=Gelatinous Mica Pulp
 metaitem.material.plate.mica_mineral_wool.name=Mica Mineral Wool Plate
 metaitem.material.plate.mica_insulator.name=Mica Insulator Plate

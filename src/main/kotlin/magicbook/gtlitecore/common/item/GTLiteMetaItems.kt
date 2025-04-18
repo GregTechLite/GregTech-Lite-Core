@@ -281,6 +281,22 @@ class GTLiteMetaItems
         lateinit var WRAP_CRYSTAL_SOC: MetaItem<*>.MetaValueItem
         lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
 
+        lateinit var WRAP_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_LV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_MV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_HV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_EV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_IV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_LuV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_ZPM: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_UV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_UHV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_UEV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_UIV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_UXV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_OpV: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_CIRCUIT_MAX: MetaItem<*>.MetaValueItem
+
         lateinit var MICA_PULP: MetaItem<*>.MetaValueItem
         lateinit var MICA_PLATE: MetaItem<*>.MetaValueItem
         lateinit var MICA_INSULATOR_PLATE: MetaItem<*>.MetaValueItem
@@ -778,6 +794,22 @@ class GTLiteMetaItems
             WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")
             WRAP_NEURO_PROCESSOR = GTLITE_ITEMS.addItem(3103, "wrap.circuit.component.neuro_processor")
             WRAP_NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(3104, "wrap.circuit.component.nonlinear_chemical_oscillator")
+
+            WRAP_CIRCUIT_ULV = GTLITE_ITEMS.addItem(3201, "wrap.circuit.generic.ulv")
+            WRAP_CIRCUIT_LV = GTLITE_ITEMS.addItem(3202, "wrap.circuit.generic.lv")
+            WRAP_CIRCUIT_MV = GTLITE_ITEMS.addItem(3203, "wrap.circuit.generic.mv")
+            WRAP_CIRCUIT_HV = GTLITE_ITEMS.addItem(3204, "wrap.circuit.generic.hv")
+            WRAP_CIRCUIT_EV = GTLITE_ITEMS.addItem(3205, "wrap.circuit.generic.ev")
+            WRAP_CIRCUIT_IV = GTLITE_ITEMS.addItem(3206, "wrap.circuit.generic.iv")
+            WRAP_CIRCUIT_LuV = GTLITE_ITEMS.addItem(3207, "wrap.circuit.generic.luv")
+            WRAP_CIRCUIT_ZPM = GTLITE_ITEMS.addItem(3208, "wrap.circuit.generic.zpm")
+            WRAP_CIRCUIT_UV = GTLITE_ITEMS.addItem(3209, "wrap.circuit.generic.uv")
+            WRAP_CIRCUIT_UHV = GTLITE_ITEMS.addItem(3210, "wrap.circuit.generic.uhv")
+            WRAP_CIRCUIT_UEV = GTLITE_ITEMS.addItem(3211, "wrap.circuit.generic.uev")
+            WRAP_CIRCUIT_UIV = GTLITE_ITEMS.addItem(3212, "wrap.circuit.generic.uiv")
+            WRAP_CIRCUIT_UXV = GTLITE_ITEMS.addItem(3213, "wrap.circuit.generic.uxv")
+            WRAP_CIRCUIT_OpV = GTLITE_ITEMS.addItem(3214, "wrap.circuit.generic.opv")
+            WRAP_CIRCUIT_MAX = GTLITE_ITEMS.addItem(3215, "wrap.circuit.generic.max")
 
             // 5001-8000: Miscellaneous Materials.
             MICA_PULP = GTLITE_ITEMS.addItem(5001, "material.dust.gelatinous_mica_pulp")

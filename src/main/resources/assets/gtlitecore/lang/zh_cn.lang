@@ -912,6 +912,22 @@ metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC
 metaitem.wrap.circuit.component.neuro_processor.name=封装神经处理单元
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=封装非线性化学振荡器
 
+metaitem.wrap.circuit.generic.ulv.name=封装电路板（§8ULV§f）
+metaitem.wrap.circuit.generic.lv.name=封装电路板（§7LV§f）
+metaitem.wrap.circuit.generic.mv.name=封装电路板（§bMV§f）
+metaitem.wrap.circuit.generic.hv.name=封装电路板（§6HV§f）
+metaitem.wrap.circuit.generic.ev.name=封装电路板（§4EV§f）
+metaitem.wrap.circuit.generic.iv.name=封装电路板（§1IV§f）
+metaitem.wrap.circuit.generic.luv.name=封装电路板（§dLuV§f）
+metaitem.wrap.circuit.generic.zpm.name=封装电路板（§cZPM§f）
+metaitem.wrap.circuit.generic.uv.name=封装电路板（§3UV§f）
+metaitem.wrap.circuit.generic.uhv.name=封装电路板（§4UHV§f）
+metaitem.wrap.circuit.generic.uev.name=封装电路板（§aUEV§f）
+metaitem.wrap.circuit.generic.uiv.name=封装电路板（§2UIV§f）
+metaitem.wrap.circuit.generic.uxv.name=封装电路板（§eUXV§f）
+metaitem.wrap.circuit.generic.opv.name=封装电路板（§9OpV§f）
+metaitem.wrap.circuit.generic.max.name=封装电路板（§c§lMAX§r§f）
+
 metaitem.material.dust.gelatinous_mica_pulp.name=胶质云母粉
 metaitem.material.plate.mica_mineral_wool.name=云母矿棉片
 metaitem.material.plate.mica_insulator.name=绝缘云母板
