@@ -29,7 +29,7 @@ import java.util.function.Function;
 public class CommonProxy
 {
 
-    public void preLoad()
+    public void onPreInit()
     {
         GTLiteRecipeMaps.preInit();
     }

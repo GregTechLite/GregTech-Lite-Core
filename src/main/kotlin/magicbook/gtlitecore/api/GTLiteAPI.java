@@ -7,10 +7,13 @@ import gregtech.common.blocks.BlockFusionCasing;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import magicbook.gtlitecore.api.advancement.IAdvancementManager;
 import magicbook.gtlitecore.api.block.IBlockTier;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.command.ICommandManager;
 import magicbook.gtlitecore.api.module.IModuleManager;
+import magicbook.gtlitecore.api.network.INetworkHandler;
+import magicbook.gtlitecore.api.sound.ISoundManager;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
@@ -37,8 +40,14 @@ public class GTLiteAPI
     public static Object instance;
     // Will be available at the Construction stage.
     public static IModuleManager moduleManager;
+    // Will be available at the Pre-Initialization stage
+    public static INetworkHandler networkHandler;
     // Will be available at the Server-Starting stage.
     public static ICommandManager commandManager;
+    // Will be available at the Pre-Initialization stage.
+    public static IAdvancementManager advancementManager;
+    // Will be available at the Pre-Initialization stage.
+    public static ISoundManager soundManager;
 
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- Creative Tabs -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     // Total CreativeTabs of gtlitecore, this is default settings for many contents in

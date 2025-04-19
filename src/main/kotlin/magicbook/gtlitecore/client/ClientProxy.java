@@ -18,9 +18,9 @@ public class ClientProxy extends CommonProxy
 {
 
     @Override
-    public void preLoad()
+    public void onPreInit()
     {
-        super.preLoad();
+        super.onPreInit();
         GTLiteTextures.preInit();
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper.class);
         ShaderUtils.initShaders();
