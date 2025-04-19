@@ -96,6 +96,7 @@ class PhosphorusChain
                 .output(dust, BluePhosphorus)
                 .EUt(VA[ZPM].toLong())
                 .duration(5 * SECOND)
+                .temperature(4800)
                 .buildAndRegister()
 
         }
