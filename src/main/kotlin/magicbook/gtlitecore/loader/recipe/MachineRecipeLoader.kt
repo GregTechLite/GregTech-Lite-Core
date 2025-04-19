@@ -14,10 +14,12 @@ import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.items.OreDictNames
+import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.builders.ResearchRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
@@ -329,6 +331,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class MachineRecipeLoader

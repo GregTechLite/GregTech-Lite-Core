@@ -10,7 +10,6 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.builders.ResearchRecipeBuilder
-import gregtech.api.recipes.builders.ResearchRecipeBuilder.ScannerRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
@@ -95,6 +94,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import net.minecraft.item.ItemStack
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class AssemblyLineRecipes
@@ -148,7 +149,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_MOTOR_IV.stackForm)
+                    r.researchStack(ELECTRIC_MOTOR_IV)
                         .EUt(VA[HV].toLong())
                         .duration(30 * SECOND)
                 }
@@ -179,7 +180,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_MOTOR_LuV.stackForm)
+                    r.researchStack(ELECTRIC_MOTOR_LuV)
                         .EUt(VA[IV].toLong())
                         .duration(MINUTE)
                 }
@@ -212,7 +213,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(ELECTRIC_MOTOR_ZPM.stackForm)
+                    r.researchStack(ELECTRIC_MOTOR_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -235,7 +236,7 @@ class AssemblyLineRecipes
             //     .EUt(400_000) // UV
             //     .duration(20 * SECOND)
             //     .stationResearch { r ->
-            //         r.researchStack(ELECTRIC_MOTOR_UV.stackForm)
+            //         r.researchStack(ELECTRIC_MOTOR_UV)
             //             .EUt(VA[UV].toLong())
             //             .CWUt(24)
             //     }
@@ -259,7 +260,7 @@ class AssemblyLineRecipes
             //     .EUt(1_800_000) // UHV
             //     .duration(40 * SECOND)
             //     .stationResearch { r ->
-            //         r.researchStack(ELECTRIC_MOTOR_UHV.stackForm)
+            //         r.researchStack(ELECTRIC_MOTOR_UHV)
             //             .EUt(VA[UHV].toLong())
             //             .CWUt(32)
             //     }
@@ -333,7 +334,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_PISTON_IV.stackForm)
+                    r.researchStack(ELECTRIC_PISTON_IV)
                         .EUt(VA[HV].toLong())
                         .duration(30 * SECOND)
                 }
@@ -366,7 +367,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_PISTON_LUV.stackForm)
+                    r.researchStack(ELECTRIC_PISTON_LUV)
                         .EUt(VA[IV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -401,7 +402,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(ELECTRIC_PISTON_ZPM.stackForm)
+                    r.researchStack(ELECTRIC_PISTON_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -447,7 +448,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_PUMP_IV.stackForm)
+                    r.researchStack(ELECTRIC_PUMP_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -478,7 +479,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ELECTRIC_PUMP_LuV.stackForm)
+                    r.researchStack(ELECTRIC_PUMP_LuV)
                         .EUt(VA[IV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -510,7 +511,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(ELECTRIC_PUMP_ZPM.stackForm)
+                    r.researchStack(ELECTRIC_PUMP_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -546,7 +547,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(CONVEYOR_MODULE_IV.stackForm)
+                    r.researchStack(CONVEYOR_MODULE_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -576,7 +577,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(CONVEYOR_MODULE_LuV.stackForm)
+                    r.researchStack(CONVEYOR_MODULE_LuV)
                         .EUt(VA[IV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -608,7 +609,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(CONVEYOR_MODULE_ZPM.stackForm)
+                    r.researchStack(CONVEYOR_MODULE_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -647,7 +648,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ROBOT_ARM_IV.stackForm)
+                    r.researchStack(ROBOT_ARM_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -682,7 +683,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(ROBOT_ARM_LuV.stackForm)
+                    r.researchStack(ROBOT_ARM_LuV)
                         .EUt(VA[IV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -719,7 +720,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(ROBOT_ARM_ZPM.stackForm)
+                    r.researchStack(ROBOT_ARM_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -753,7 +754,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(EMITTER_IV.stackForm)
+                    r.researchStack(EMITTER_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -785,7 +786,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(EMITTER_LuV.stackForm)
+                    r.researchStack(EMITTER_LuV)
                         .EUt(VA[LuV].toLong())
                         .CWUt(4)
                 }
@@ -818,7 +819,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(EMITTER_ZPM.stackForm)
+                    r.researchStack(EMITTER_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -852,7 +853,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(SENSOR_IV.stackForm)
+                    r.researchStack(SENSOR_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -884,7 +885,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .stationResearch { r -> r
-                    .researchStack(SENSOR_LuV.stackForm)
+                    .researchStack(SENSOR_LuV)
                     .EUt(VA[LuV].toLong())
                     .CWUt(4)
                 }
@@ -917,7 +918,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(SENSOR_ZPM.stackForm)
+                    r.researchStack(SENSOR_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(16)
                 }
@@ -952,7 +953,7 @@ class AssemblyLineRecipes
                 .EUt(6000) // IV
                 .duration(20 * SECOND)
                 .scannerResearch { r ->
-                    r.researchStack(FIELD_GENERATOR_IV.stackForm)
+                    r.researchStack(FIELD_GENERATOR_IV)
                         .EUt(VA[HV].toLong())
                         .duration(1 * MINUTE)
                 }
@@ -984,7 +985,7 @@ class AssemblyLineRecipes
                 .EUt(24000) // LuV
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(FIELD_GENERATOR_LuV.stackForm)
+                    r.researchStack(FIELD_GENERATOR_LuV)
                         .EUt(VA[LuV].toLong())
                         .CWUt(8)
                 }
@@ -1017,7 +1018,7 @@ class AssemblyLineRecipes
                 .EUt(100_000) // ZPM
                 .duration(20 * SECOND)
                 .stationResearch { r ->
-                    r.researchStack(FIELD_GENERATOR_ZPM.stackForm)
+                    r.researchStack(FIELD_GENERATOR_ZPM)
                         .EUt(VA[ZPM].toLong())
                         .CWUt(48)
                 }
@@ -1056,6 +1057,20 @@ class AssemblyLineRecipes
 
             // 16777216A IV Laser Source Hatch
 
+        }
+
+        /**
+         * Extension function of [ResearchRecipeBuilder.researchStack], allowed this function
+         * accepted [MetaItem.MetaValueItem] (original value must accept [ItemStack]).
+         */
+        @ScheduledForRemoval(inVersion = "Next GTCEu Update")
+        @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
+                    replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
+        @JvmStatic
+        private fun <T : ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.researchStack(metaValueItem: MetaItem<*>.MetaValueItem): ResearchRecipeBuilder<T>
+        {
+            val stack: ItemStack = metaValueItem.stackForm
+            return if (!stack.isEmpty) this.researchStack(stack) else this
         }
 
     }
