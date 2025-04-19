@@ -6,13 +6,18 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
+import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.builders.ResearchRecipeBuilder
+import gregtech.api.recipes.builders.ResearchRecipeBuilder.ScannerRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Naquadah
@@ -31,6 +36,7 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
+import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -43,6 +49,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
@@ -70,6 +77,10 @@ import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.GRAVI_STAR
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
@@ -81,6 +92,7 @@ import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
@@ -628,7 +640,7 @@ class AssemblyLineRecipes
                 .input(circuit, MarkerMaterials.Tier.LuV)
                 .input(circuit, MarkerMaterials.Tier.IV, 2)
                 .input(circuit, MarkerMaterials.Tier.EV, 4)
-                .input(cableGtSingle, NiobiumTitanium, 2)
+                .input(cableGtSingle, NiobiumTitanium, 3)
                 .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .fluidInputs(Lubricant.getFluid(250))
                 .output(ROBOT_ARM_LuV)
@@ -663,7 +675,7 @@ class AssemblyLineRecipes
                 .input(circuit, MarkerMaterials.Tier.ZPM)
                 .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(circuit, MarkerMaterials.Tier.IV, 4)
-                .input(cableGtSingle, VanadiumGallium, 2)
+                .input(cableGtSingle, VanadiumGallium, 3)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .fluidInputs(Lubricant.getFluid(500))
                 .output(ROBOT_ARM_ZPM)
@@ -733,7 +745,7 @@ class AssemblyLineRecipes
                 .input(ELECTRIC_MOTOR_LuV)
                 .input(stickLong, Ruridit, 2)
                 .input(QUANTUM_STAR)
-                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
                 .input(foil, Osmium, 64)
                 .input(cableGtSingle, NiobiumTitanium, 2)
                 .fluidInputs(SolderingAlloy.getFluid(L * 2))
@@ -760,9 +772,9 @@ class AssemblyLineRecipes
                 arrayOf(SolderingAlloy.getFluid(L * 4)))
 
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, NaquadahAlloy)
+                .input(frameGt, Osmiridium)
                 .input(ELECTRIC_MOTOR_ZPM)
-                .input(stickLong, Osmiridium, 2)
+                .input(stickLong, NaquadahAlloy, 2)
                 .input(QUANTUM_STAR, 2)
                 .input(circuit, MarkerMaterials.Tier.ZPM, 2)
                 .input(foil, Trinium, 64)
@@ -794,7 +806,7 @@ class AssemblyLineRecipes
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Tritanium)
                 .input(ELECTRIC_MOTOR_UV)
-                .input(stickLong, Tritanium, 4)
+                .input(stickLong, EnrichedNaquadahAlloy, 4)
                 .input(QUANTUM_STAR, 4)
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(foil, Naquadria, 64)
@@ -859,9 +871,9 @@ class AssemblyLineRecipes
                 arrayOf(SolderingAlloy.getFluid(L * 4)))
 
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, NaquadahAlloy)
+                .input(frameGt, Osmiridium)
                 .input(ELECTRIC_MOTOR_ZPM)
-                .input(plate, Osmiridium, 2)
+                .input(plate, NaquadahAlloy, 2)
                 .input(QUANTUM_STAR, 2)
                 .input(circuit, MarkerMaterials.Tier.ZPM, 2)
                 .input(foil, NaquadahEnriched, 64)
@@ -893,7 +905,7 @@ class AssemblyLineRecipes
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Tritanium)
                 .input(ELECTRIC_MOTOR_UV)
-                .input(plate, Tritanium, 4)
+                .input(plate, EnrichedNaquadahAlloy, 4)
                 .input(QUANTUM_STAR, 4)
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(foil, Bedrockium, 64)
@@ -915,7 +927,114 @@ class AssemblyLineRecipes
 
         private fun fieldGeneratorRecipes()
         {
-            // TODO ...
+            // LuV
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, HSSS),
+                    OreDictUnifier.get(plate, HSSS, 6),
+                    QUANTUM_STAR.stackForm,
+                    EMITTER_LuV.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV, 2),
+                    OreDictUnifier.get(wireFine, IndiumTinBariumTitaniumCuprate, 64),
+                    OreDictUnifier.get(wireFine, IndiumTinBariumTitaniumCuprate, 64),
+                    OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 4)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HSSS)
+                .input(plateDouble, HSSS, 4)
+                .input(QUANTUM_STAR)
+                .input(EMITTER_LuV, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
+                .input(wireFine, IndiumTinBariumTitaniumCuprate, 64)
+                .input(cableGtSingle, NiobiumTitanium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .output(FIELD_GENERATOR_LuV)
+                .EUt(6000) // IV
+                .duration(20 * SECOND)
+                .scannerResearch { r ->
+                    r.researchStack(FIELD_GENERATOR_IV.stackForm)
+                        .EUt(VA[HV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, NaquadahAlloy),
+                    OreDictUnifier.get(plate, NaquadahAlloy, 6),
+                    QUANTUM_STAR.stackForm,
+                    EMITTER_ZPM.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM, 2),
+                    OreDictUnifier.get(wireFine, UraniumRhodiumDinaquadide, 64),
+                    OreDictUnifier.get(wireFine, UraniumRhodiumDinaquadide, 64),
+                    OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 8)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Osmiridium)
+                .input(plateDouble, Osmiridium, 4)
+                .input(QUANTUM_STAR, 2)
+                .input(EMITTER_ZPM, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(wireFine, UraniumRhodiumDinaquadide, 64)
+                .input(wireFine, UraniumRhodiumDinaquadide, 32)
+                .input(cableGtSingle, VanadiumGallium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .output(FIELD_GENERATOR_ZPM)
+                .EUt(24000) // LuV
+                .duration(20 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(FIELD_GENERATOR_LuV.stackForm)
+                        .EUt(VA[LuV].toLong())
+                        .CWUt(8)
+                }
+                .buildAndRegister()
+
+            // UV
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(OreDictUnifier.get(frameGt, Tritanium),
+                    OreDictUnifier.get(plate, Tritanium, 6),
+                    GRAVI_STAR.stackForm,
+                    EMITTER_UV.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV, 2),
+                    OreDictUnifier.get(wireFine, EnrichedNaquadahTriniumEuropiumDuranide, 64),
+                    OreDictUnifier.get(wireFine, EnrichedNaquadahTriniumEuropiumDuranide, 64),
+                    OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4)),
+                arrayOf(SolderingAlloy.getFluid(L * 12), Naquadria.getFluid(L * 4)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Tritanium)
+                .input(plateDouble, Tritanium, 4)
+                .input(QUANTUM_STAR, 4)
+                .input(EMITTER_UV, 2)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
+                .input(wireFine, EnrichedNaquadahTriniumEuropiumDuranide, 64)
+                .input(wireFine, EnrichedNaquadahTriniumEuropiumDuranide, 64)
+                .input(cableGtSingle, YttriumBariumCuprate, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 12))
+                .fluidInputs(Naquadria.getFluid(L))
+                .output(FIELD_GENERATOR_UV)
+                .EUt(100_000) // ZPM
+                .duration(20 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(FIELD_GENERATOR_ZPM.stackForm)
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+            // UHV
+
+            // UEV
+
+            // UIV
+
+            // UXV
+
+            // OpV
+
+            // MAX
+
         }
 
         private fun energyHatchesRecipes()

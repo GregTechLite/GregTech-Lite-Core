@@ -9,6 +9,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Air
@@ -40,6 +41,7 @@ import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -49,6 +51,8 @@ import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Silicon
@@ -78,6 +82,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
@@ -547,6 +552,17 @@ class MixerRecipes
                 .output(dust, TitaniumTungstenCarbide, 3)
                 .EUt(VA[EV].toLong())
                 .duration(24 * SECOND)
+                .buildAndRegister()
+
+            // Enriched Naquadah Alloy
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, NaquadahEnriched, 4)
+                .input(dust, Ruridit, 2)
+                .input(dust, Rutherfordium)
+                .output(dust, EnrichedNaquadahAlloy, 7)
+                .EUt(VA[ZPM].toLong())
+                .duration(40 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

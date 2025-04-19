@@ -81,6 +81,7 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
@@ -107,7 +108,9 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Ruthenium
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Salt
@@ -251,7 +254,7 @@ class GTLiteMaterials
             .toolStats(MaterialToolProperty.Builder.of(140.0F, 95.0F, 49152, 6)
                 .attackSpeed(0.5F).enchantability(32).magnetic().build()
             )
-            .cableProperties(V[UHV], 4, 24, false)
+            .cableProperties(V[UHV], 4, 24)
             .build()
 
         // 2 Vibranium
@@ -285,7 +288,7 @@ class GTLiteMaterials
                     .blastStats(VA[ZPM], 22 * SECOND)
                     .vacuumStats(VA[IV], 11 * SECOND)
             }
-            .cableProperties(V[UHV], 8, 2, false)
+            .cableProperties(V[UHV], 8, 2)
             .build()
 
         // 4 Metastable Flerovium
@@ -1897,7 +1900,7 @@ class GTLiteMaterials
                     .blastStats(VA[UV], 43 * SECOND)
                     .vacuumStats(VA[IV], 21 * SECOND) }
             .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .cableProperties(V[UV], 4, 3, false)
+            .cableProperties(V[UV], 4, 3)
             .build()
             .setFormula("Bi2Sr2CaCu2O8", true)
 
@@ -1905,6 +1908,7 @@ class GTLiteMaterials
         @JvmField
         val Bedrockium: Material = Material.Builder(2172, gtliteId("bedrockium"))
             .ingot()
+            .fluid()
             .iconSet(BEDROCKIUM)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
             .blast { b ->
@@ -1912,7 +1916,7 @@ class GTLiteMaterials
                     .blastStats(VA[ZPM], 50 * SECOND)
                     .vacuumStats(VA[LuV], 25 * SECOND)
             }
-            .cableProperties(V[UHV], 2, 16, false)
+            .cableProperties(V[UHV], 2, 16)
             .build()
 
         // 2173 Adamantite
@@ -2158,7 +2162,7 @@ class GTLiteMaterials
                 b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
                     .blastStats(VA[UV], 43 * SECOND)
                     .vacuumStats(VA[IV], 21 * SECOND) }
-            .cableProperties(V[UV], 2, 1, false)
+            .cableProperties(V[UHV], 2, 1)
             .build()
 
         // 2198 Potassium Manganate
@@ -2755,6 +2759,26 @@ class GTLiteMaterials
             }
             .build()
 
+        // 4030 Enriched Naquadah Alloy
+        @JvmField
+        val EnrichedNaquadahAlloy: Material = Material.Builder(4030, gtliteId("enriched_naquadah_alloy"))
+            .ingot(6)
+            .fluid()
+            .color(0x160740).iconSet(SHINY)
+            .components(NaquadahEnriched, 4, Ruridit, 2, Rutherfordium, 1)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
+                GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+            .blast { b ->
+                b.temp(9001, BlastProperty.GasTier.HIGHER) // Trinium
+                    .blastStats(VA[ZPM], 1 * MINUTE + 40 * SECOND)
+                    .vacuumStats(VA[LuV], 30 * SECOND)
+            }
+            .toolStats(MaterialToolProperty.Builder.of(45.0F, 24.0F, 4096, 6)
+                .attackSpeed(0.6F).enchantability(36).magnetic().build())
+            .rotorStats(12.0f, 6.0f, 7680)
+            .cableProperties(V[UHV], 4, 8)
+            .build()
+
         // =======================================================================
         // 6001-8000: High Degree Materials
 
@@ -3345,7 +3369,7 @@ class GTLiteMaterials
             .color(0xE165A7)
             .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL)
             .components(Edot, 1, PolystyreneSulfonate, 1)
-            .cableProperties(V[ZPM], 6, 1, false)
+            .cableProperties(V[ZPM], 6, 1)
             .build()
 
         // 8046 PEDOT-TMA
@@ -3356,7 +3380,7 @@ class GTLiteMaterials
             .color(0x5E9EE1)
             .components(Edot, 1, Polymethylmethacrylate, 2)
             .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .cableProperties(V[UV], 8, 4, false)
+            .cableProperties(V[UV], 8, 4)
             .build()
 
         // 8047 Methylamine

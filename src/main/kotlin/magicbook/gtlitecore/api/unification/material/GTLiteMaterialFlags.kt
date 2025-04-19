@@ -53,6 +53,7 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
@@ -216,6 +217,7 @@ class GTLiteMaterialFlags
             Brass.addFlags(GENERATE_FRAME)
             Cobalt.addFlags(GENERATE_FRAME)
             TungstenCarbide.addFlags(GENERATE_FRAME)
+            Osmiridium.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
