@@ -16,7 +16,8 @@
     "gregtech.WireCombiningHandlerMixin",
     "gregtech.WireRecipeHandlerMixin",
     "gregtech.MetaTileEntityDrumAccessor",
-    "gregtech.FuelRecipeLogicMixin"
+    "gregtech.FuelRecipeLogicMixin",
+    "jei.ItemStackRendererMixin"
   ],
   "server": [],
   "client": [
