@@ -179,6 +179,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.HIGH_SIFTER_OUTPUT
+import gregtech.api.unification.material.info.MaterialFlags.IS_MAGNETIC
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
@@ -194,6 +195,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.GEM_HORIZONTAL
 import gregtech.api.unification.material.info.MaterialIconSet.GEM_VERTICAL
 import gregtech.api.unification.material.info.MaterialIconSet.LAPIS
 import gregtech.api.unification.material.info.MaterialIconSet.LIGNITE
+import gregtech.api.unification.material.info.MaterialIconSet.MAGNETIC
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.OPAL
 import gregtech.api.unification.material.info.MaterialIconSet.QUARTZ
@@ -2342,6 +2344,33 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("Ca(OH)2", true)
+
+        // 2216 Chromium Germanium Telluride
+        @JvmField
+        val ChromiumGermaniumTelluride: Material = Material.Builder(2216, gtliteId("chromium_germanium_telluride"))
+            .ingot()
+            .fluid()
+            .color(0x8F103E).iconSet(METALLIC)
+            .components(Chrome, 1, Germanium, 1, Tellurium, 3)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROD, GENERATE_LONG_ROD)
+            .blast { b ->
+                b.temp(8900, BlastProperty.GasTier.HIGHER) // Trinium
+                    .blastStats(VA[LuV], 1 * MINUTE + 30 * SECOND)
+                    .vacuumStats(VA[IV], 20 * SECOND)
+            }
+            .build()
+
+        // 2217 Magnetic Chromium Germanium Telluride
+        @JvmField
+        val ChromiumGermaniumTellurideMagnetic: Material = Material.Builder(2217, gtliteId("chromium_germanium_telluride_magnetic"))
+            .ingot()
+            .color(0x8F103E).iconSet(MAGNETIC)
+            .components(ChromiumGermaniumTelluride, 1)
+            .flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC)
+            .ingotSmeltInto(ChromiumGermaniumTelluride)
+            .arcSmeltInto(ChromiumGermaniumTelluride)
+            .macerateInto(ChromiumGermaniumTelluride)
+            .build()
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

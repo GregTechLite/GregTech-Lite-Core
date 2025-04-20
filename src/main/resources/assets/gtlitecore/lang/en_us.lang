@@ -2314,6 +2314,8 @@ gtlitecore.material.heterodiamond=Heterodiamond
 gtlitecore.material.cubic_heterodiamond=Cubic Heterodiamond
 gtlitecore.material.calcium_carbide=Calcium Carbide
 gtlitecore.material.calcium_hydroxide=Calcium Hydroxide
+gtlitecore.material.chromium_germanium_telluride=Chromium Germanium Telluride
+gtlitecore.material.chromium_germanium_telluride_magnetic=Magnetic Chromium Germanium Telluride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

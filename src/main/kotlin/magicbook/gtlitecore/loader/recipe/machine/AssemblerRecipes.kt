@@ -102,6 +102,7 @@ import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
+import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
@@ -154,9 +155,11 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -187,6 +190,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_L
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_MV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
@@ -256,6 +260,7 @@ class AssemblerRecipes
             wireCoilRecipes()
             crucibleRecipes()
             ////////////////////////////////
+            voltageCoilRecipes()
             miningDroneRecipes()
             miscItemsRecipes()
             ////////////////////////////////
@@ -1829,6 +1834,19 @@ class AssemblerRecipes
                 .duration(35 * SECOND)
                 .buildAndRegister()
 
+        }
+
+        private fun voltageCoilRecipes()
+        {
+            // UHV Voltage Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(stick, ChromiumGermaniumTellurideMagnetic)
+                .input(wireFine, Taranium, 16)
+                .output(VOLTAGE_COIL_UHV)
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
         }
 
         private fun miningDroneRecipes()

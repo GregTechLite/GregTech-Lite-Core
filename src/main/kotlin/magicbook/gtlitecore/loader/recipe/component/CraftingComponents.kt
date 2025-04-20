@@ -87,6 +87,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -592,15 +593,15 @@ class CraftingComponents
             // STICK_MAGNETIC
             // Old: 0-1: IronMagnetic, 2-3: SteelMagnetic, 4-8: NeodymiumMagnetic
             // New: 0-1: IronMagnetic, 2-3: SteelMagnetic, 4-7: NeodymiumMagnetic,
-            //      8-11: SamariumMagnetic, 12-14: TODO
+            //      8-11: SamariumMagnetic, 12-14: ChromiumGermaniumTellurideMagnetic
             CraftingComponent.STICK_MAGNETIC.appendIngredients(sequenceOf(
                 UV to UnificationEntry(stick, SamariumMagnetic),
                 UHV to UnificationEntry(stick, SamariumMagnetic),
                 UEV to UnificationEntry(stickLong, SamariumMagnetic),
                 UIV to UnificationEntry(stickLong, SamariumMagnetic),
-                // UXV to UnificationEntry(stick, Tritanium),
-                // OpV to UnificationEntry(stick, Tritanium),
-                // MAX to UnificationEntry(stickLong, Tritanium)
+                UXV to UnificationEntry(stick, ChromiumGermaniumTellurideMagnetic),
+                OpV to UnificationEntry(stick, ChromiumGermaniumTellurideMagnetic),
+                MAX to UnificationEntry(stickLong, ChromiumGermaniumTellurideMagnetic)
             ).toMap())
 
             // STICK_DISTILLATION

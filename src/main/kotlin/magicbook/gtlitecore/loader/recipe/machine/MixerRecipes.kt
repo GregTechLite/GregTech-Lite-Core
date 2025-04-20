@@ -80,6 +80,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
@@ -205,6 +206,17 @@ class MixerRecipes
                 .output(dust, LutetiumManganeseGermanium, 10)
                 .EUt(VA[UV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Chromium Germanium Telluride
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Chrome)
+                .input(dust, Germanium)
+                .input(dust, Tellurium, 3)
+                .output(dust, ChromiumGermaniumTelluride, 5)
+                .EUt(VA[UV].toLong())
+                .duration(45 * SECOND)
                 .buildAndRegister()
 
             // Kovar

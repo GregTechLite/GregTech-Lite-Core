@@ -117,6 +117,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bytownite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Celestine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTelluride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cryolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cuprite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
@@ -357,6 +359,9 @@ class GTLiteMaterialProperties
 
             // Add cable properties.
             Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16, false))
+
+            // Add magnetic properties.
+            ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT).magneticMaterial = ChromiumGermaniumTellurideMagnetic
 
         }
 
