@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
+import gregtech.api.GTValues.UHV
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -10,6 +11,7 @@ import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
@@ -23,11 +25,14 @@ import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -63,6 +68,9 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import gregtech.common.items.MetaItems.SMART_FILTER
+import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
@@ -90,6 +98,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_BORON_NITRIDE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_ROUND
@@ -105,6 +114,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TUR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_FLAT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_OCTAGONAL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_STRIPES
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteToolItems
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
@@ -607,6 +617,22 @@ class CraftingRecipeLoader
             ModHandler.addShapedRecipe(true, "casing_uev", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV),
                 "PPP", "PwP", "PPP",
                 'P', UnificationEntry(plate, Vibranium))
+
+            // UHV Transformer
+            ModHandler.addShapedRecipe(true, "transformer_uhv", TRANSFORMER[UHV].stackForm,
+                "PUU", "WH ", "PUU",
+                'H', HULL[UHV].stackForm,
+                'P', NANO_PIC_CHIP,
+                'W', UnificationEntry(cableGtSingle, Seaborgium),
+                'U', UnificationEntry(cableGtSingle, Europium))
+
+            // UHV Hi-Amp Transformer
+            ModHandler.addShapedRecipe(true, "hi_amp_transformer", HI_AMP_TRANSFORMER[UHV].stackForm,
+                "CUU", "WV ", "CUU",
+                'C', VOLTAGE_COIL_UHV,
+                'V', TRANSFORMER[UHV].stackForm,
+                'W', UnificationEntry(cableGtQuadruple, Seaborgium),
+                'U', UnificationEntry(cableGtQuadruple, Europium))
 
         }
 

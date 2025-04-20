@@ -40,6 +40,7 @@ import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
@@ -100,6 +101,7 @@ import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
@@ -113,6 +115,7 @@ import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -143,6 +146,7 @@ import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
@@ -246,6 +250,7 @@ class AssemblerRecipes
             dynamoHatchesRecipes()
             hiAmpEnergyHatchesRecipes()
             hiAmpDynamoHatchesRecipes()
+            transformersRecipes()
             laserHatchesRecipes()
             ////////////////////////////////
             wireCoilRecipes()
@@ -1433,6 +1438,23 @@ class AssemblerRecipes
                 .output(SUBSTATION_DYNAMO_HATCH_64A[4])
                 .EUt(VA[MV].toLong())
                 .duration(20 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun transformersRecipes()
+        {
+            // UHV Adjustable Transformer
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(HI_AMP_TRANSFORMER[UHV])
+                .input(ELECTRIC_PUMP_IV)
+                .input(cableGtOctal, Seaborgium)
+                .input(cableGtOctal, Europium, 2)
+                .input(springSmall, Europium)
+                .input(spring, Seaborgium)
+                .fluidInputs(Lubricant.getFluid(2000))
+                .output(POWER_TRANSFORMER[UHV])
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
         }
 
