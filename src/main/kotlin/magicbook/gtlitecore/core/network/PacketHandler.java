@@ -2,7 +2,9 @@ package magicbook.gtlitecore.core.network;
 
 import magicbook.gtlitecore.api.network.INetworkPacket;
 import net.minecraft.util.IntIdentityHashBiMap;
+import org.jetbrains.annotations.ApiStatus;
 
+@ApiStatus.Internal
 public class PacketHandler
 {
 

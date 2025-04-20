@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.CobaltBrass
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
@@ -36,11 +37,13 @@ import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.IronMagnetic
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Malachite
+import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
@@ -218,6 +221,7 @@ class GTLiteMaterialFlags
             Cobalt.addFlags(GENERATE_FRAME)
             TungstenCarbide.addFlags(GENERATE_FRAME)
             Osmiridium.addFlags(GENERATE_FRAME)
+            CobaltBrass.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)

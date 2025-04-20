@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
@@ -106,6 +107,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockBoilerCasing
+import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.EMITTER_EV
@@ -144,6 +146,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -847,6 +850,21 @@ class AssemblerRecipes
 
         private fun miscHatchesRecipes()
         {
+            // UHV Machine Hull
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV),
+                    OreDictUnifier.get(cableGtSingle, Europium, 2)),
+                arrayOf(Polybenzimidazole.getFluid(L * 2)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV))
+                .input(cableGtSingle, Europium, 2)
+                .fluidInputs(Kevlar.getFluid(L * 2))
+                .output(HULL[UHV])
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
             // ULV 4A Energy Hatch
             ASSEMBLER_RECIPES.recipeBuilder()
                 .input(ENERGY_INPUT_HATCH[ULV])

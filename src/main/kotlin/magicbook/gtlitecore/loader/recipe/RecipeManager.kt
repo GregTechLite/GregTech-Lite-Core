@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe
 
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
+import magicbook.gtlitecore.loader.recipe.chain.AcetyleneChain
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
@@ -18,6 +19,7 @@ import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
+import magicbook.gtlitecore.loader.recipe.chain.KevlarChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
@@ -170,6 +172,8 @@ class RecipeManager
             ZylonChain.init()
             PotassiumPermanganateChain.init()
             BoronNitrideChain.init()
+            AcetyleneChain.init()
+            KevlarChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

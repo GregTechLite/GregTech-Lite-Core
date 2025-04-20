@@ -87,6 +87,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.init.Blocks
@@ -455,18 +456,18 @@ class CraftingComponents
 
             // HULL_PLATE
             // Old: 0: Wood, 1-2: WroughtIron, 3-4: Polyethylene (PE),
-            //      5-6: Polytetrafluoroethylene (PTFE), 7-8: Polybenzimidazole (PBI),
+            //      5-6: Polytetrafluoroethylene (PTFE), 7-9: Polybenzimidazole (PBI),
             // New: 0: Wood, 1-2: WroughtIron, 3-4: Polyethylene (PE),
             //      5-6: Polytetrafluoroethylene (PTFE), 7-8: Polybenzimidazole (PBI),
-            //      9-14: TODO
-            // CraftingComponent.HULL_PLATE.appendIngredients(sequenceOf(
-            //     // UHV to UnificationEntry(plate, Tritanium),
-            //     // UEV to UnificationEntry(plate, Tritanium),
-            //     // UIV to UnificationEntry(plate, Tritanium),
-            //     // UXV to UnificationEntry(plate, Tritanium),
-            //     // OpV to UnificationEntry(plate, Tritanium),
-            //     // MAX to UnificationEntry(plate, Tritanium)
-            // ).toMap())
+            //      9-10: Kevlar, 11-14: TODO
+            CraftingComponent.HULL_PLATE.appendIngredients(sequenceOf(
+                UHV to UnificationEntry(plate, Kevlar),
+                UEV to UnificationEntry(plate, Kevlar),
+                // UIV to UnificationEntry(plate, Tritanium),
+                // UXV to UnificationEntry(plate, Tritanium),
+                // OpV to UnificationEntry(plate, Tritanium),
+                // MAX to UnificationEntry(plate, Tritanium)
+            ).toMap())
 
             // ROTOR
             // Old: 0-1: Tin, 2: Bronze, 3: Steel, 4: StainlessSteel, 5: TungstenSteel,
@@ -633,14 +634,14 @@ class CraftingComponents
             // PIPE_REACTOR
             // Old: 0-2: Glass, 3-5: Polyethylene (PE), 6-8: Polytetrafluoroethylene (PTFE)
             // New: 0-2: Glass, 3-5: Polyethylene (PE), 6-8: Polytetrafluoroethylene (PTFE),
-            //      9-11: Polybenzimidazole (PBI), 12-14: TODO
+            //      9-11: Polybenzimidazole (PBI), 12-14: Kevlar
             CraftingComponent.PIPE_REACTOR.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(pipeNormalFluid, Polybenzimidazole),
                 UEV to UnificationEntry(pipeLargeFluid, Polybenzimidazole),
                 UIV to UnificationEntry(pipeHugeFluid, Polybenzimidazole),
-                // UXV to UnificationEntry(pipeNormalFluid, Tritanium),
-                // OpV to UnificationEntry(pipeLargeFluid, Tritanium),
-                // MAX to UnificationEntry(pipeHugeFluid, Tritanium)
+                UXV to UnificationEntry(pipeNormalFluid, Kevlar),
+                OpV to UnificationEntry(pipeLargeFluid, Kevlar),
+                MAX to UnificationEntry(pipeHugeFluid, Kevlar)
             ).toMap())
 
             // POWER_COMPONENT

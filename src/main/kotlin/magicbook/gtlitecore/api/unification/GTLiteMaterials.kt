@@ -2325,6 +2325,24 @@ class GTLiteMaterials
             .build()
             .setFormula("c-BC2N", true)
 
+        // 2214 Calcium Carbide
+        @JvmField
+        val CalciumCarbide: Material = Material.Builder(2214, gtliteId("calcium_carbide"))
+            .dust()
+            .color(0x807B70).iconSet(DULL)
+            .components(Calcium, 1, Carbon, 2)
+            .build()
+
+        // 2215 Calcium Hydroxide
+        @JvmField
+        val CalciumHydroxide: Material = Material.Builder(2215, gtliteId("calcium_hydroxide"))
+            .dust()
+            .color(0x5F8764).iconSet(ROUGH)
+            .components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Ca(OH)2", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -3827,6 +3845,81 @@ class GTLiteMaterials
             .color(0xD62929)
             .components(Boron, 3, Chlorine, 3, Hydrogen, 3, Nitrogen, 3)
             .build()
+
+        // 8097 γ-Butyrolactone
+        @JvmField
+        val GammaButyrolactone: Material = Material.Builder(8097, gtliteId("gamma_butyrolactone"))
+            .liquid()
+            .color(0xAF04D6)
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+            .build()
+
+        // 8098 N-Methyl-2-Pyrrolidone
+        @JvmField
+        val NMethylPyrrolidone: Material = Material.Builder(8098, gtliteId("n_methyl_pyrrolidone"))
+            .liquid()
+            .color(0xA504D6)
+            .components(Carbon, 5, Hydrogen, 9, Nitrogen, 1, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8099 Acetylene
+        @JvmField
+        val Acetylene: Material = Material.Builder(8099, gtliteId("acetylene"))
+            .liquid()
+            .color(0x959C60)
+            .components(Carbon, 2, Hydrogen, 2)
+            .build()
+
+        // 8100 Tetrabromoethane
+        @JvmField
+        val Tetrabromoethane: Material = Material.Builder(8100, gtliteId("tetrabromoethane"))
+            .liquid()
+            .color(0x5AAADA)
+            .components(Carbon, 2, Hydrogen, 2, Bromine, 4)
+            .build()
+
+        // 8101 Terephthalic Acid
+        @JvmField
+        val TerephthalicAcid: Material = Material.Builder(8101, gtliteId("terephthalic_acid"))
+            .dust()
+            .color(0x5ACCDA).iconSet(ROUGH)
+            .components(Carbon, 8, Hydrogen, 6, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C6H4(CO2H)2", true)
+
+        // 8102 Bistrichloromethylbenzene
+        @JvmField
+        val Bistrichloromethylbenzene: Material = Material.Builder(8102, gtliteId("bistrichloromethylbenzene"))
+            .liquid()
+            .color(0xCF8498)
+            .components(Carbon, 8, Hydrogen, 4, Chlorine, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C6H4(CCl3)2", true)
+
+        // 8103 Terephthaloyl Chloride
+        @JvmField
+        val TerephthaloylChloride: Material = Material.Builder(8103, gtliteId("terephthaloyl_chloride"))
+            .dust()
+            .color(0xFAC4DA).iconSet(SHINY)
+            .components(Carbon, 8, Hydrogen, 4, Oxygen, 2, Chlorine, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C6H4(COCl)2", true)
+
+        // 8104 Kevlar
+        @JvmField
+        val Kevlar: Material = Material.Builder(8104, gtliteId("kevlar"))
+            .polymer()
+            .liquid()
+            .color(0xF0F078)
+            .components(Carbon, 14, Hydrogen, 10, Nitrogen, 2, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            .fluidPipeProperties(2000, 700, true)
+            .build()
+            .setFormula("(C6H4)2(CO)2(NH)2", true);
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
