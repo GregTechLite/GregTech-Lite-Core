@@ -63,6 +63,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
@@ -89,6 +90,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.init.Blocks
 
@@ -121,7 +123,7 @@ class CraftingComponents
         // GEAR
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-        //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
+        //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
         val GEAR = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(gear, WroughtIron),
             LV  to UnificationEntry(gear, Steel),
@@ -132,13 +134,18 @@ class CraftingComponents
             LuV to UnificationEntry(gear, RhodiumPlatedPalladium),
             ZPM to UnificationEntry(gear, NaquadahAlloy),
             UV  to UnificationEntry(gear, Darmstadtium),
-            UHV to UnificationEntry(gear, Neutronium)
+            UHV to UnificationEntry(gear, Neutronium),
+            UEV to UnificationEntry(gear, Vibranium),
+            // UIV to UnificationEntry(gear, Tritanium),
+            // UXV to UnificationEntry(gear, Tritanium),
+            // OpV to UnificationEntry(gear, Tritanium),
+            // MAX to UnificationEntry(gear, Tritanium)
         ).toMap())
 
         // GEAR_SMALL
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-        //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
+        //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
         val GEAR_SMALL = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(gearSmall, WroughtIron),
             LV  to UnificationEntry(gearSmall, Steel),
@@ -149,13 +156,18 @@ class CraftingComponents
             LuV to UnificationEntry(gearSmall, RhodiumPlatedPalladium),
             ZPM to UnificationEntry(gearSmall, NaquadahAlloy),
             UV  to UnificationEntry(gearSmall, Darmstadtium),
-            UHV to UnificationEntry(gearSmall, Neutronium)
+            UHV to UnificationEntry(gearSmall, Neutronium),
+            UEV to UnificationEntry(gearSmall, Vibranium),
+            // UIV to UnificationEntry(gearSmall, Tritanium),
+            // UXV to UnificationEntry(gearSmall, Tritanium),
+            // OpV to UnificationEntry(gearSmall, Tritanium),
+            // MAX to UnificationEntry(gearSmall, Tritanium)
         ).toMap())
 
         // PLATE_DENSE
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-        //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
+        //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
         val PLATE_DENSE = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(plateDense, WroughtIron),
             LV  to UnificationEntry(plateDense, Steel),
@@ -166,13 +178,18 @@ class CraftingComponents
             LuV to UnificationEntry(plateDense, RhodiumPlatedPalladium),
             ZPM to UnificationEntry(plateDense, NaquadahAlloy),
             UV  to UnificationEntry(plateDense, Darmstadtium),
-            UHV to UnificationEntry(plateDense, Neutronium)
+            UHV to UnificationEntry(plateDense, Neutronium),
+            UEV to UnificationEntry(plateDense, Vibranium),
+            // UIV to UnificationEntry(plateDense, Tritanium),
+            // UXV to UnificationEntry(plateDense, Tritanium),
+            // OpV to UnificationEntry(plateDense, Tritanium),
+            // MAX to UnificationEntry(plateDense, Tritanium)
         ).toMap())
 
         // STICK
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-        //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
+        //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
         val STICK = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(stick, WroughtIron),
             LV  to UnificationEntry(stick, Steel),
@@ -183,13 +200,18 @@ class CraftingComponents
             LuV to UnificationEntry(stick, RhodiumPlatedPalladium),
             ZPM to UnificationEntry(stick, NaquadahAlloy),
             UV  to UnificationEntry(stick, Darmstadtium),
-            UHV to UnificationEntry(stick, Neutronium)
+            UHV to UnificationEntry(stick, Neutronium),
+            UEV to UnificationEntry(stick, Vibranium),
+            // UIV to UnificationEntry(stick, Tritanium),
+            // UXV to UnificationEntry(stick, Tritanium),
+            // OpV to UnificationEntry(stick, Tritanium),
+            // MAX to UnificationEntry(stick, Tritanium)
         ).toMap())
 
         // STICK_LONG
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-        //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
+        //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
         val STICK_LONG = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(stickLong, WroughtIron),
             LV  to UnificationEntry(stickLong, Steel),
@@ -200,7 +222,12 @@ class CraftingComponents
             LuV to UnificationEntry(stickLong, RhodiumPlatedPalladium),
             ZPM to UnificationEntry(stickLong, NaquadahAlloy),
             UV  to UnificationEntry(stickLong, Darmstadtium),
-            UHV to UnificationEntry(stickLong, Neutronium)
+            UHV to UnificationEntry(stickLong, Neutronium),
+            UEV to UnificationEntry(stickLong, Vibranium),
+            // UIV to UnificationEntry(stickLong, Tritanium),
+            // UXV to UnificationEntry(stickLong, Tritanium),
+            // OpV to UnificationEntry(stickLong, Tritanium),
+            // MAX to UnificationEntry(stickLong, Tritanium)
         ).toMap())
 
         // SPRING_SMALL
@@ -430,14 +457,14 @@ class CraftingComponents
             //      8: Darmstadtium, 9: Neutronium
             // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
             //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-            //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
-            // CraftingComponent.PLATE.appendIngredients(sequenceOf(
-            //     // UEV to UnificationEntry(plate, Tritanium),
-            //     // UIV to UnificationEntry(plate, Tritanium),
-            //     // UXV to UnificationEntry(plate, Tritanium),
-            //     // OpV to UnificationEntry(plate, Tritanium),
-            //     // MAX to UnificationEntry(plate, Tritanium)
-            // ).toMap())
+            //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
+            CraftingComponent.PLATE.appendIngredients(sequenceOf(
+                UEV to UnificationEntry(plate, Vibranium),
+                // UIV to UnificationEntry(plate, Tritanium),
+                // UXV to UnificationEntry(plate, Tritanium),
+                // OpV to UnificationEntry(plate, Tritanium),
+                // MAX to UnificationEntry(plate, Tritanium)
+            ).toMap())
 
             // DOUBLE_PLATE
             // Old: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
@@ -445,14 +472,14 @@ class CraftingComponents
             //      8: Darmstadtium, 9: Neutronium
             // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
             //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
-            //      8: Darmstadtium, 9: Neutronium, 10-14: TODO
-            // CraftingComponent.DOUBLE_PLATE.appendIngredients(sequenceOf(
-            //     // UEV to UnificationEntry(plateDouble, Tritanium),
-            //     // UIV to UnificationEntry(plateDouble, Tritanium),
-            //     // UXV to UnificationEntry(plateDouble, Tritanium),
-            //     // OpV to UnificationEntry(plateDouble, Tritanium),
-            //     // MAX to UnificationEntry(plateDouble, Tritanium)
-            // ).toMap())
+            //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11-14: TODO
+            CraftingComponent.DOUBLE_PLATE.appendIngredients(sequenceOf(
+                UEV to UnificationEntry(plateDouble, Vibranium),
+                // UIV to UnificationEntry(plateDouble, Tritanium),
+                // UXV to UnificationEntry(plateDouble, Tritanium),
+                // OpV to UnificationEntry(plateDouble, Tritanium),
+                // MAX to UnificationEntry(plateDouble, Tritanium)
+            ).toMap())
 
             // HULL_PLATE
             // Old: 0: Wood, 1-2: WroughtIron, 3-4: Polyethylene (PE),
@@ -474,10 +501,10 @@ class CraftingComponents
             //      6: RhodiumPlatedPalladium, 7: NaquadahAlloy, 8: Darmstadtium
             // New: 0-1: Tin, 2: Bronze, 3: Steel, 4: StainlessSteel, 5: TungstenSteel,
             //      6: RhodiumPlatedPalladium, 7: NaquadahAlloy, 8: Darmstadtium,
-            //      9: Neutronium, 10-14: TODO
+            //      9: Neutronium, 10: Vibranium, 11-14: TODO
             CraftingComponent.ROTOR.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(rotor, Neutronium),
-                // UEV to UnificationEntry(rotor, Tritanium),
+                UEV to UnificationEntry(rotor, Vibranium),
                 // UIV to UnificationEntry(rotor, Tritanium),
                 // UXV to UnificationEntry(rotor, Tritanium),
                 // OpV to UnificationEntry(rotor, Tritanium),
@@ -680,14 +707,14 @@ class CraftingComponents
             //      9: Europium
             // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
             //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
-            //      9: Europium, 10-14: TODO
-            // CraftingComponent.SPRING.appendIngredients(sequenceOf(
-            //     // UEV to UnificationEntry(spring, Tritanium),
-            //     // UIV to UnificationEntry(spring, Tritanium),
-            //     // UXV to UnificationEntry(spring, Tritanium),
-            //     // OpV to UnificationEntry(spring, Tritanium),
-            //     // MAX to UnificationEntry(spring, Tritanium)
-            // ).toMap())
+            //      9: Europium, 10: Seaborgium, 11-14: TODO
+            CraftingComponent.SPRING.appendIngredients(sequenceOf(
+                UEV to UnificationEntry(spring, Seaborgium),
+                // UIV to UnificationEntry(spring, Tritanium),
+                // UXV to UnificationEntry(spring, Tritanium),
+                // OpV to UnificationEntry(spring, Tritanium),
+                // MAX to UnificationEntry(spring, Tritanium)
+            ).toMap())
 
         }
 

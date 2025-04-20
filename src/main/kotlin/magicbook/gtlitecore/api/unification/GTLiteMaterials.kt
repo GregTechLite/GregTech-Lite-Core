@@ -246,14 +246,13 @@ class GTLiteMaterials
                 GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
                 GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(5225, BlastProperty.GasTier.HIGH) // HSS-G
+                b.temp(10501, BlastProperty.GasTier.HIGH) // Tritanium
                     .blastStats(VA[UV], 45 * SECOND)
                     .vacuumStats(VA[ZPM], 22 * SECOND + 10 * TICK)
             }
             .rotorStats(22.0f, 10.0f, 491520)
             .toolStats(MaterialToolProperty.Builder.of(140.0F, 95.0F, 49152, 6)
-                .attackSpeed(0.5F).enchantability(32).magnetic().build()
-            )
+                .attackSpeed(0.5F).enchantability(32).magnetic().build())
             .cableProperties(V[UHV], 4, 24)
             .build()
 
@@ -265,9 +264,10 @@ class GTLiteMaterials
             .plasma()
             .color(0xC880FF).iconSet(SHINY)
             .element(Vb)
-            .flags(EXT_METAL, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
+                GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR)
             .blast { b ->
-                b.temp(4852, BlastProperty.GasTier.HIGHER) // HSS-G
+                b.temp(12001, BlastProperty.GasTier.HIGHER) // Adamantium
                     .blastStats(VA[UHV], 75 * SECOND)
                     .vacuumStats(VA[UV], 42 * SECOND + 15 * TICK)
             }

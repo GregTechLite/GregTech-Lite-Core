@@ -81,6 +81,7 @@ import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -330,6 +331,7 @@ class GTLiteMaterialFlags
             Polybenzimidazole.addFlags(GENERATE_ROD)
             Zircaloy4.addFlags(GENERATE_ROD)
             Rutherfordium.addFlags(GENERATE_ROD)
+            Seaborgium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -338,15 +340,18 @@ class GTLiteMaterialFlags
             IronMagnetic.addFlags(GENERATE_LONG_ROD)
             SteelMagnetic.addFlags(GENERATE_LONG_ROD)
             NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD)
+            Seaborgium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
             Trinium.addFlags(GENERATE_SPRING)
             Tritanium.addFlags(GENERATE_SPRING)
+            Seaborgium.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
             Europium.addFlags(GENERATE_SPRING_SMALL)
+            Seaborgium.addFlags(GENERATE_SPRING_SMALL)
 
             // wireFine
             Titanium.addFlags(GENERATE_FINE_WIRE)

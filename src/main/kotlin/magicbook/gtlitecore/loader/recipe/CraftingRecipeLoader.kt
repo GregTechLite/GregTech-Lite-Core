@@ -40,6 +40,8 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockMachineCasing
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
@@ -70,6 +72,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
@@ -599,6 +602,11 @@ class CraftingRecipeLoader
                 'P', UnificationEntry(plate, CubicBoronNitride),
                 'D', UnificationEntry(plateDouble, Bedrockium),
                 'G', UnificationEntry(gem, CubicHeterodiamond))
+
+            // UEV Machine Casing
+            ModHandler.addShapedRecipe(true, "casing_uev", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV),
+                "PPP", "PwP", "PPP",
+                'P', UnificationEntry(plate, Vibranium))
 
         }
 

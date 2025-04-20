@@ -4,11 +4,17 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.items.metaitem.MetaItem
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
+import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
 import gregtech.api.recipes.builders.ResearchRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -29,8 +35,11 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.SamariumMagnetic
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.SiliconeRubber
+import gregtech.api.unification.material.Materials.SodiumPotassium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Trinium
@@ -53,9 +62,12 @@ import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
@@ -81,6 +93,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.GRAVI_STAR
+import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
@@ -90,10 +103,24 @@ import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
+import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
+import gregtech.common.items.MetaItems.TOOL_DATA_STICK
+import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_UV
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HULL
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 
@@ -1040,7 +1067,276 @@ class AssemblyLineRecipes
 
         private fun energyHatchesRecipes()
         {
-            // TODO UHV-OpV
+            // LuV Energy Hatch
+            GTRecipeHandler.removeRecipesByInputs(SCANNER_RECIPES,
+                TOOL_DATA_STICK.stackForm, ENERGY_INPUT_HATCH[IV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[LuV].stackForm,
+                    OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 4),
+                    HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV),
+                    VOLTAGE_COIL_LuV.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(6000), SolderingAlloy.getFluid(L * 5)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[LuV])
+                .input(cableGtSingle, NiobiumTitanium, 2)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(VOLTAGE_COIL_LuV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 5))
+                .fluidInputs(SodiumPotassium.getFluid(4000))
+                .output(ENERGY_INPUT_HATCH[LuV])
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .scannerResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[IV])
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE) }
+                .buildAndRegister()
+
+            // LuV Dynamo Hatch
+            GTRecipeHandler.removeRecipesByInputs(SCANNER_RECIPES,
+                TOOL_DATA_STICK.stackForm, ENERGY_OUTPUT_HATCH[IV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[LuV].stackForm,
+                    OreDictUnifier.get(spring, NiobiumTitanium, 4),
+                    HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LuV),
+                    VOLTAGE_COIL_LuV.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(6000), SolderingAlloy.getFluid(L * 5)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[LuV])
+                .input(spring, NiobiumTitanium, 2)
+                .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV)
+                .input(VOLTAGE_COIL_LuV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 5))
+                .fluidInputs(SodiumPotassium.getFluid(4000))
+                .output(ENERGY_OUTPUT_HATCH[LuV])
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .scannerResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[IV])
+                    .EUt(VA[HV].toLong())
+                    .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM Energy Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_ORB.stackForm, ENERGY_INPUT_HATCH[LuV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[ZPM].stackForm,
+                    OreDictUnifier.get(cableGtSingle, VanadiumGallium, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM),
+                    VOLTAGE_COIL_ZPM.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(8000), SolderingAlloy.getFluid(L * 10)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[ZPM])
+                .input(cableGtSingle, VanadiumGallium, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(VOLTAGE_COIL_ZPM, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .fluidInputs(SodiumPotassium.getFluid(8000))
+                .output(ENERGY_INPUT_HATCH[ZPM])
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .scannerResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[LuV])
+                    .EUt(VA[IV].toLong())
+                    .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM Dynamo Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_ORB.stackForm, ENERGY_OUTPUT_HATCH[LuV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[ZPM].stackForm,
+                    OreDictUnifier.get(spring, VanadiumGallium, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM),
+                    VOLTAGE_COIL_ZPM.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(8000), SolderingAlloy.getFluid(L * 10)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[ZPM])
+                .input(spring, VanadiumGallium, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM)
+                .input(VOLTAGE_COIL_ZPM, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 10))
+                .fluidInputs(SodiumPotassium.getFluid(8000))
+                .output(ENERGY_OUTPUT_HATCH[ZPM])
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .scannerResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[LuV])
+                    .EUt(VA[IV].toLong())
+                    .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // UV Energy Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_INPUT_HATCH[ZPM].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[UV].stackForm,
+                    OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV),
+                    VOLTAGE_COIL_UV.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(10000), SolderingAlloy.getFluid(L * 20)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UV])
+                .input(cableGtSingle, YttriumBariumCuprate, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(VOLTAGE_COIL_UV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 20))
+                .fluidInputs(SodiumPotassium.getFluid(12000))
+                .output(ENERGY_INPUT_HATCH[UV])
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[ZPM])
+                    .EUt(VA[ZPM].toLong())
+                    .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // UV Dynamo Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_OUTPUT_HATCH[ZPM].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[UV].stackForm,
+                    OreDictUnifier.get(spring, YttriumBariumCuprate, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UV),
+                    VOLTAGE_COIL_UV.getStackForm(2)),
+                arrayOf(SodiumPotassium.getFluid(10000), SolderingAlloy.getFluid(L * 20)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UV])
+                .input(spring, YttriumBariumCuprate, 4)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(VOLTAGE_COIL_UV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 20))
+                .fluidInputs(SodiumPotassium.getFluid(12000))
+                .output(ENERGY_OUTPUT_HATCH[UV])
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[ZPM])
+                    .EUt(VA[ZPM].toLong())
+                    .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // UHV Energy Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_INPUT_HATCH[UV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[UHV].stackForm,
+                    OreDictUnifier.get(cableGtSingle, Europium, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV),
+                    OreDictUnifier.get(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 2)),
+                arrayOf(SodiumPotassium.getFluid(12000), SolderingAlloy.getFluid(L * 40)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .input(cableGtSingle, Europium, 4)
+                .input(NANO_PIC_CHIP, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(VOLTAGE_COIL_UHV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(16000))
+                .output(ENERGY_INPUT_HATCH[UHV])
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[UV])
+                    .EUt(VA[UV].toLong())
+                    .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // UHV Dynamo Hatch
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_OUTPUT_HATCH[UV].stackForm)
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(HULL[UHV].stackForm,
+                    OreDictUnifier.get(spring, Europium, 4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(2),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV),
+                    OreDictUnifier.get(wireGtDouble, RutheniumTriniumAmericiumNeutronate, 2)),
+                arrayOf(SodiumPotassium.getFluid(12000), SolderingAlloy.getFluid(L * 40)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .input(spring, Europium, 4)
+                .input(NANO_PIC_CHIP, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(VOLTAGE_COIL_UHV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(16000))
+                .output(ENERGY_OUTPUT_HATCH[UHV])
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[UV])
+                    .EUt(VA[UV].toLong())
+                    .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // UEV Energy Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UEV])
+                .input(cableGtSingle, Seaborgium, 4)
+                .input(NANO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .input(VOLTAGE_COIL_UEV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
+                .output(ENERGY_INPUT_HATCH[UEV])
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[UHV])
+                    .EUt(VA[UHV].toLong())
+                    .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // UEV Dynamo Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UEV])
+                .input(spring, Seaborgium, 4)
+                .input(NANO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .input(VOLTAGE_COIL_UEV, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
+                .output(ENERGY_OUTPUT_HATCH[UEV])
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[UHV])
+                    .EUt(VA[UHV].toLong())
+                    .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // TODO UIV-OpV
         }
 
         private fun laserHatchesRecipes()
@@ -1070,6 +1366,20 @@ class AssemblyLineRecipes
         private fun <T : ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.researchStack(metaValueItem: MetaItem<*>.MetaValueItem): ResearchRecipeBuilder<T>
         {
             val stack: ItemStack = metaValueItem.stackForm
+            return if (!stack.isEmpty) this.researchStack(stack) else this
+        }
+
+        /**
+         * Extension function of [ResearchRecipeBuilder.researchStack], allowed this function
+         * accepted [MetaTileEntity] (original value must accept [ItemStack]).
+         */
+        @ScheduledForRemoval(inVersion = "Next GTCEu Update")
+        @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
+            replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
+        @JvmStatic
+        private fun <T : ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.researchStack(metaTileEntity: MetaTileEntity): ResearchRecipeBuilder<T>
+        {
+            val stack: ItemStack = metaTileEntity.stackForm
             return if (!stack.isEmpty) this.researchStack(stack) else this
         }
 

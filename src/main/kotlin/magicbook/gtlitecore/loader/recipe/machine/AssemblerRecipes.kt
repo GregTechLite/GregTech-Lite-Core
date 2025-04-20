@@ -7,6 +7,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
@@ -58,7 +59,9 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.SodiumPotassium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
@@ -118,6 +121,7 @@ import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_MV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
@@ -132,6 +136,7 @@ import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_STICK
 import gregtech.common.items.MetaItems.VACUUM_TUBE
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
@@ -149,11 +154,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.utils.GTLiteUtility
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getCableByTier
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getEmitterByTier
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpByTier
-import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getSensorByTier
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -222,19 +224,40 @@ class AssemblerRecipes
 
         fun init()
         {
-            drumAndCrateRecipes()
-            componentCasingRecipes()
+            drumsRecipes()
+            cratesRecipes()
+            ////////////////////////////////
+            machineCasingRecipes()
+            machineHullRecipes()
             pipeCasingRecipes()
-            miscHatchesRecipes()
+            motorCasingRecipes()
+            pistonCasingRecipes()
+            pumpCasingRecipes()
+            conveyorCasingRecipes()
+            robotArmCasingRecipes()
+            emitterCasingRecipes()
+            sensorCasingRecipes()
+            fieldGenCasingRecipes()
+            processorCasingRecipes()
+            ////////////////////////////////
+            itemHatchesRecipes()
+            fluidHatchesRecipes()
+            energyHatchesRecipes()
+            dynamoHatchesRecipes()
+            hiAmpEnergyHatchesRecipes()
+            hiAmpDynamoHatchesRecipes()
             laserHatchesRecipes()
+            ////////////////////////////////
             wireCoilRecipes()
             crucibleRecipes()
+            ////////////////////////////////
             miningDroneRecipes()
             miscItemsRecipes()
+            ////////////////////////////////
             vanillaChangingRecipes()
         }
 
-        private fun drumAndCrateRecipes()
+        private fun drumsRecipes()
         {
             // Iron Drum
             ASSEMBLER_RECIPES.recipeBuilder()
@@ -295,7 +318,10 @@ class AssemblerRecipes
                 .EUt(VA[LV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
+        }
 
+        private fun cratesRecipes()
+        {
             // Iron Crate
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(1)
@@ -345,10 +371,118 @@ class AssemblerRecipes
                 .EUt(VA[LV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
-
         }
 
-        private fun componentCasingRecipes()
+        private fun machineCasingRecipes()
+        {
+            // UEV Machine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(plate, Vibranium, 8)
+                .outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+        }
+
+        private fun machineHullRecipes()
+        {
+            // UHV Machine Hull
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV),
+                    OreDictUnifier.get(cableGtSingle, Europium, 2)),
+                arrayOf(Polybenzimidazole.getFluid(L * 2)))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV))
+                .input(cableGtSingle, Europium, 2)
+                .fluidInputs(Kevlar.getFluid(L * 2))
+                .output(HULL[UHV])
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // UEV Machine Hull
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV))
+                .input(cableGtSingle, Seaborgium, 2)
+                .fluidInputs(Kevlar.getFluid(L * 2))
+                .output(HULL[UEV])
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+        }
+
+        private fun pipeCasingRecipes()
+        {
+            // Bronze pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Bronze, 4)
+                .input(pipeNormalFluid, Bronze, 4)
+                .input(frameGt, Bronze)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Steel pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Steel, 4)
+                .input(pipeNormalFluid, Steel, 4)
+                .input(frameGt, Steel)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Titanium pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Titanium, 4)
+                .input(pipeNormalFluid, Titanium, 4)
+                .input(frameGt, Titanium)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TITANIUM_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Tungsten Steel pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, TungstenSteel, 4)
+                .input(pipeNormalFluid, TungstenSteel, 4)
+                .input(frameGt, TungstenSteel)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // PTFE pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Polytetrafluoroethylene, 4)
+                .input(pipeNormalFluid, Polytetrafluoroethylene, 4)
+                .input(frameGt, Polytetrafluoroethylene)
+                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // PBI pipe casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(plate, Polybenzimidazole, 4)
+                .input(pipeNormalFluid, Polybenzimidazole, 4)
+                .input(frameGt, Polybenzimidazole)
+                .outputs(GTLiteMetaBlocks.BOILER_CASING_01.getItemVariant(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+        }
+
+        private fun motorCasingRecipes()
         {
             val motorCasings = arrayOf(
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.LV),
@@ -366,6 +500,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.OpV),
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.MAX))
 
+            for (i in motorCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(ring, Steel, 2)
+                    .input(GTLiteUtility.getMotorByTier(i + 1))
+                    .outputs(motorCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun pistonCasingRecipes()
+        {
             val pistonCasings = arrayOf(
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.LV),
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.MV),
@@ -382,6 +533,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.OpV),
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.MAX))
 
+            for (i in pistonCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(gearSmall, Steel, 2)
+                    .input(GTLiteUtility.getPistonByTier(i + 1))
+                    .outputs(pistonCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun pumpCasingRecipes()
+        {
             val pumpCasings = arrayOf(
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.LV),
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.MV),
@@ -398,6 +566,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.OpV),
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.MAX))
 
+            for (i in pumpCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(rotor, Steel, 2)
+                    .input(GTLiteUtility.getPumpByTier(i + 1))
+                    .outputs(pumpCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun conveyorCasingRecipes()
+        {
             val conveyorCasings = arrayOf(
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.LV),
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.MV),
@@ -414,6 +599,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.OpV),
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.MAX))
 
+            for (i in conveyorCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(round, Steel, 2)
+                    .input(GTLiteUtility.getConveyorByTier(i + 1))
+                    .outputs(conveyorCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun robotArmCasingRecipes()
+        {
             val robotArmCasings = arrayOf(
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.LV),
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.MV),
@@ -430,6 +632,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.OpV),
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.MAX))
 
+            for (i in robotArmCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(gear, Steel, 2)
+                    .input(GTLiteUtility.getRobotArmByTier(i + 1))
+                    .outputs(robotArmCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun emitterCasingRecipes()
+        {
             val emitterCasings = arrayOf(
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.LV),
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.MV),
@@ -446,6 +665,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.OpV),
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.MAX))
 
+            for (i in emitterCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(foil, Steel, 2)
+                    .input(GTLiteUtility.getEmitterByTier(i + 1))
+                    .outputs(emitterCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun sensorCasingRecipes()
+        {
             val sensorCasings = arrayOf(
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.LV),
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.MV),
@@ -462,6 +698,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.OpV),
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.MAX))
 
+            for (i in sensorCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(wireFine, Steel, 2)
+                    .input(GTLiteUtility.getSensorByTier(i + 1))
+                    .outputs(sensorCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun fieldGenCasingRecipes()
+        {
             val fieldGenCasings = arrayOf(
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.LV),
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.MV),
@@ -478,6 +731,23 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.OpV),
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.MAX))
 
+            for (i in fieldGenCasings.indices)
+            {
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(9)
+                    .input(frameGt, Steel)
+                    .input(plate, Steel, 4)
+                    .input(wireGtSingle, Steel, 2)
+                    .input(GTLiteUtility.getFieldGenByTier(i + 1))
+                    .outputs(fieldGenCasings[i])
+                    .EUt(VA[LV].toLong())
+                    .duration(2 * SECOND + 10 * TICK)
+                    .buildAndRegister()
+            }
+        }
+
+        private fun processorCasingRecipes()
+        {
             val processorCasings = arrayOf(
                 GTLiteMetaBlocks.PROCESSOR_CASING.getItemVariant(BlockProcessorCasing.ProcessorCasingTier.LV),
                 GTLiteMetaBlocks.PROCESSOR_CASING.getItemVariant(BlockProcessorCasing.ProcessorCasingTier.MV),
@@ -493,118 +763,6 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.PROCESSOR_CASING.getItemVariant(BlockProcessorCasing.ProcessorCasingTier.UXV),
                 GTLiteMetaBlocks.PROCESSOR_CASING.getItemVariant(BlockProcessorCasing.ProcessorCasingTier.OpV),
                 GTLiteMetaBlocks.PROCESSOR_CASING.getItemVariant(BlockProcessorCasing.ProcessorCasingTier.MAX))
-
-            for (i in motorCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(ring, Steel, 2)
-                    .input(GTLiteUtility.getMotorByTier(i + 1))
-                    .outputs(motorCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in pistonCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(gearSmall, Steel, 2)
-                    .input(GTLiteUtility.getPistonByTier(i + 1))
-                    .outputs(pistonCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in pumpCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(rotor, Steel, 2)
-                    .input(GTLiteUtility.getPumpByTier(i + 1))
-                    .outputs(pumpCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in conveyorCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(round, Steel, 2)
-                    .input(GTLiteUtility.getConveyorByTier(i + 1))
-                    .outputs(conveyorCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in robotArmCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(gear, Steel, 2)
-                    .input(GTLiteUtility.getRobotArmByTier(i + 1))
-                    .outputs(robotArmCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in emitterCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(foil, Steel, 2)
-                    .input(GTLiteUtility.getEmitterByTier(i + 1))
-                    .outputs(emitterCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in sensorCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(wireFine, Steel, 2)
-                    .input(GTLiteUtility.getSensorByTier(i + 1))
-                    .outputs(sensorCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
-
-            for (i in fieldGenCasings.indices)
-            {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(9)
-                    .input(frameGt, Steel)
-                    .input(plate, Steel, 4)
-                    .input(wireGtSingle, Steel, 2)
-                    .input(GTLiteUtility.getFieldGenByTier(i + 1))
-                    .outputs(fieldGenCasings[i])
-                    .EUt(VA[LV].toLong())
-                    .duration(2 * SECOND + 10 * TICK)
-                    .buildAndRegister()
-            }
 
             // For my testing, used GTLiteUtility#getCircuitByTier() will caused
             // circuit cannot be circuitX, so...
@@ -776,395 +934,15 @@ class AssemblerRecipes
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
-
         }
 
-        private fun pipeCasingRecipes()
+        private fun itemHatchesRecipes()
         {
-            // Bronze pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, Bronze, 4)
-                .input(pipeNormalFluid, Bronze, 4)
-                .input(frameGt, Bronze)
-                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // Steel pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, Steel, 4)
-                .input(pipeNormalFluid, Steel, 4)
-                .input(frameGt, Steel)
-                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // Titanium pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, Titanium, 4)
-                .input(pipeNormalFluid, Titanium, 4)
-                .input(frameGt, Titanium)
-                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TITANIUM_PIPE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // Tungsten Steel pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, TungstenSteel, 4)
-                .input(pipeNormalFluid, TungstenSteel, 4)
-                .input(frameGt, TungstenSteel)
-                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // PTFE pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, Polytetrafluoroethylene, 4)
-                .input(pipeNormalFluid, Polytetrafluoroethylene, 4)
-                .input(frameGt, Polytetrafluoroethylene)
-                .outputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // PBI pipe casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(5)
-                .input(plate, Polybenzimidazole, 4)
-                .input(pipeNormalFluid, Polybenzimidazole, 4)
-                .input(frameGt, Polybenzimidazole)
-                .outputs(GTLiteMetaBlocks.BOILER_CASING_01.getItemVariant(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VA[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            // ...
         }
 
-        private fun miscHatchesRecipes()
+        private fun fluidHatchesRecipes()
         {
-            // UHV Machine Hull
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-                arrayOf(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV),
-                    OreDictUnifier.get(cableGtSingle, Europium, 2)),
-                arrayOf(Polybenzimidazole.getFluid(L * 2)))
-
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UHV))
-                .input(cableGtSingle, Europium, 2)
-                .fluidInputs(Kevlar.getFluid(L * 2))
-                .output(HULL[UHV])
-                .EUt(VH[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // ULV 4A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_INPUT_HATCH[ULV])
-                .input(wireGtQuadruple, RedAlloy, 2)
-                .input(plate, WroughtIron, 2)
-                .output(ENERGY_HATCH_4A[0])
-                .EUt(1L)
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // LV 4A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_INPUT_HATCH[LV])
-                .input(wireGtQuadruple, Tin, 2)
-                .input(plate, Steel, 2)
-                .output(ENERGY_HATCH_4A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // MV 4A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_INPUT_HATCH[MV])
-                .input(wireGtQuadruple, Copper, 2)
-                .input(plate, Aluminium, 2)
-                .output(ENERGY_HATCH_4A[2])
-                .EUt(VA[LV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // HV 4A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_INPUT_HATCH[HV])
-                .input(wireGtQuadruple, Gold, 2)
-                .input(plate, StainlessSteel, 2)
-                .output(ENERGY_HATCH_4A[3])
-                .EUt(VA[MV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // ULV 4A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_OUTPUT_HATCH[ULV])
-                .input(wireGtQuadruple, RedAlloy, 2)
-                .input(plate, WroughtIron, 2)
-                .output(DYNAMO_HATCH_4A[0])
-                .EUt(1L)
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // LV 4A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_OUTPUT_HATCH[LV])
-                .input(wireGtQuadruple, Tin, 2)
-                .input(plate, Steel, 2)
-                .output(DYNAMO_HATCH_4A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // MV 4A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_OUTPUT_HATCH[MV])
-                .input(wireGtQuadruple, Copper, 2)
-                .input(plate, Aluminium, 2)
-                .output(DYNAMO_HATCH_4A[2])
-                .EUt(VA[LV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // HV 4A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(ENERGY_OUTPUT_HATCH[HV])
-                .input(wireGtQuadruple, Gold, 2)
-                .input(plate, StainlessSteel, 2)
-                .output(DYNAMO_HATCH_4A[3])
-                .EUt(VA[MV].toLong())
-                .duration(5 * SECOND)
-                .buildAndRegister()
-
-            // ULV 16A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[ULV])
-                .input(ENERGY_HATCH_4A[0])
-                .input(wireGtOctal, RedAlloy, 2)
-                .input(plate, WroughtIron, 4)
-                .output(ENERGY_HATCH_16A[0])
-                .EUt(1L)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // LV 16A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[LV])
-                .input(ENERGY_HATCH_4A[1])
-                .input(wireGtOctal, Tin, 2)
-                .input(plate, Steel, 4)
-                .output(ENERGY_HATCH_16A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // MV 16A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[MV])
-                .input(ENERGY_HATCH_4A[2])
-                .input(wireGtOctal, Copper, 2)
-                .input(plate, Aluminium, 4)
-                .output(ENERGY_HATCH_16A[2])
-                .EUt(VA[LV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // HV 16A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[HV])
-                .input(ENERGY_HATCH_4A[3])
-                .input(wireGtOctal, Gold, 2)
-                .input(plate, StainlessSteel, 4)
-                .output(ENERGY_HATCH_16A[3])
-                .EUt(VA[MV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // EV 16A Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[EV])
-                .input(ENERGY_INPUT_HATCH_4A[0])
-                .input(wireGtOctal, Aluminium, 2)
-                .input(plate, Titanium, 4)
-                .output(ENERGY_HATCH_16A[4])
-                .EUt(VA[HV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // ULV 16A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[ULV])
-                .input(DYNAMO_HATCH_4A[0])
-                .input(wireGtOctal, RedAlloy, 2)
-                .input(plate, WroughtIron, 4)
-                .output(DYNAMO_HATCH_16A[0])
-                .EUt(1L)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // LV 16A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[LV])
-                .input(DYNAMO_HATCH_4A[1])
-                .input(wireGtOctal, Tin, 2)
-                .input(plate, Steel, 4)
-                .output(DYNAMO_HATCH_16A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // MV 16A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[MV])
-                .input(DYNAMO_HATCH_4A[2])
-                .input(wireGtOctal, Copper, 2)
-                .input(plate, Aluminium, 4)
-                .output(DYNAMO_HATCH_16A[2])
-                .EUt(VA[LV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // HV 16A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[HV])
-                .input(DYNAMO_HATCH_4A[3])
-                .input(wireGtOctal, Gold, 2)
-                .input(plate, StainlessSteel, 4)
-                .output(DYNAMO_HATCH_16A[3])
-                .EUt(VA[MV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // EV 16A Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(TRANSFORMER[EV])
-                .input(ENERGY_OUTPUT_HATCH_4A[0])
-                .input(wireGtOctal, Aluminium, 2)
-                .input(plate, Titanium, 4)
-                .output(DYNAMO_HATCH_16A[4])
-                .EUt(VA[HV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            // ULV 64A Substation Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[ULV])
-                .input(ENERGY_HATCH_16A[0])
-                .input(wireGtHex, RedAlloy, 2)
-                .input(plate, WroughtIron, 6)
-                .output(SUBSTATION_ENERGY_HATCH_64A[0])
-                .EUt(1L)
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // LV 64A Substation Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[LV])
-                .input(ENERGY_HATCH_16A[1])
-                .input(wireGtHex, Tin, 2)
-                .input(plate, Steel, 6)
-                .output(SUBSTATION_ENERGY_HATCH_64A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // MV 64A Substation Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[MV])
-                .input(ENERGY_HATCH_16A[2])
-                .input(wireGtHex, Copper, 2)
-                .input(plate, Aluminium, 6)
-                .output(SUBSTATION_ENERGY_HATCH_64A[2])
-                .EUt(VA[LV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // HV 64A Substation Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[HV])
-                .input(ENERGY_HATCH_16A[3])
-                .input(wireGtHex, Gold, 2)
-                .input(plate, StainlessSteel, 6)
-                .output(SUBSTATION_ENERGY_HATCH_64A[3])
-                .EUt(VA[MV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // EV 64A Substation Energy Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[EV])
-                .input(ENERGY_HATCH_16A[4])
-                .input(wireGtHex, Aluminium, 2)
-                .input(plate, Titanium, 6)
-                .output(SUBSTATION_ENERGY_HATCH_64A[4])
-                .EUt(VA[MV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // ULV 64A Substation Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[ULV])
-                .input(DYNAMO_HATCH_16A[0])
-                .input(wireGtHex, RedAlloy, 2)
-                .input(plate, WroughtIron, 6)
-                .output(SUBSTATION_DYNAMO_HATCH_64A[0])
-                .EUt(1L)
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // LV 64A Substation Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[LV])
-                .input(DYNAMO_HATCH_16A[1])
-                .input(wireGtHex, Tin, 2)
-                .input(plate, Steel, 6)
-                .output(SUBSTATION_DYNAMO_HATCH_64A[1])
-                .EUt(VA[ULV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // MV 64A Substation Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[MV])
-                .input(DYNAMO_HATCH_16A[2])
-                .input(wireGtHex, Copper, 2)
-                .input(plate, Aluminium, 6)
-                .output(SUBSTATION_DYNAMO_HATCH_64A[2])
-                .EUt(VA[LV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // HV 64A Substation Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[HV])
-                .input(DYNAMO_HATCH_16A[3])
-                .input(wireGtHex, Gold, 2)
-                .input(plate, StainlessSteel, 6)
-                .output(SUBSTATION_DYNAMO_HATCH_64A[3])
-                .EUt(VA[MV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
-            // EV 64A Substation Dynamo Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(POWER_TRANSFORMER[EV])
-                .input(DYNAMO_HATCH_16A[4])
-                .input(wireGtHex, Aluminium, 2)
-                .input(plate, Titanium, 6)
-                .output(SUBSTATION_DYNAMO_HATCH_64A[4])
-                .EUt(VA[MV].toLong())
-                .duration(20 * SECOND)
-                .buildAndRegister()
-
             // ULV Quadruple Input Hatch
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(4)
@@ -1342,6 +1120,322 @@ class AssemblerRecipes
                 .buildAndRegister()
         }
 
+        private fun energyHatchesRecipes()
+        {
+            // ...
+        }
+
+        private fun dynamoHatchesRecipes()
+        {
+            // ...
+        }
+
+        private fun hiAmpEnergyHatchesRecipes()
+        {
+            // ULV 4A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[ULV])
+                .input(wireGtQuadruple, RedAlloy, 2)
+                .input(plate, WroughtIron, 2)
+                .output(ENERGY_HATCH_4A[0])
+                .EUt(1L)
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // LV 4A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[LV])
+                .input(wireGtQuadruple, Tin, 2)
+                .input(plate, Steel, 2)
+                .output(ENERGY_HATCH_4A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // MV 4A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[MV])
+                .input(wireGtQuadruple, Copper, 2)
+                .input(plate, Aluminium, 2)
+                .output(ENERGY_HATCH_4A[2])
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // HV 4A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[HV])
+                .input(wireGtQuadruple, Gold, 2)
+                .input(plate, StainlessSteel, 2)
+                .output(ENERGY_HATCH_4A[3])
+                .EUt(VA[MV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // ULV 16A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[ULV])
+                .input(ENERGY_HATCH_4A[0])
+                .input(wireGtOctal, RedAlloy, 2)
+                .input(plate, WroughtIron, 4)
+                .output(ENERGY_HATCH_16A[0])
+                .EUt(1L)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // LV 16A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[LV])
+                .input(ENERGY_HATCH_4A[1])
+                .input(wireGtOctal, Tin, 2)
+                .input(plate, Steel, 4)
+                .output(ENERGY_HATCH_16A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // MV 16A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[MV])
+                .input(ENERGY_HATCH_4A[2])
+                .input(wireGtOctal, Copper, 2)
+                .input(plate, Aluminium, 4)
+                .output(ENERGY_HATCH_16A[2])
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // HV 16A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[HV])
+                .input(ENERGY_HATCH_4A[3])
+                .input(wireGtOctal, Gold, 2)
+                .input(plate, StainlessSteel, 4)
+                .output(ENERGY_HATCH_16A[3])
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // EV 16A Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[EV])
+                .input(ENERGY_INPUT_HATCH_4A[0])
+                .input(wireGtOctal, Aluminium, 2)
+                .input(plate, Titanium, 4)
+                .output(ENERGY_HATCH_16A[4])
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // ULV 64A Substation Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[ULV])
+                .input(ENERGY_HATCH_16A[0])
+                .input(wireGtHex, RedAlloy, 2)
+                .input(plate, WroughtIron, 6)
+                .output(SUBSTATION_ENERGY_HATCH_64A[0])
+                .EUt(1L)
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // LV 64A Substation Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[LV])
+                .input(ENERGY_HATCH_16A[1])
+                .input(wireGtHex, Tin, 2)
+                .input(plate, Steel, 6)
+                .output(SUBSTATION_ENERGY_HATCH_64A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // MV 64A Substation Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[MV])
+                .input(ENERGY_HATCH_16A[2])
+                .input(wireGtHex, Copper, 2)
+                .input(plate, Aluminium, 6)
+                .output(SUBSTATION_ENERGY_HATCH_64A[2])
+                .EUt(VA[LV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // HV 64A Substation Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[HV])
+                .input(ENERGY_HATCH_16A[3])
+                .input(wireGtHex, Gold, 2)
+                .input(plate, StainlessSteel, 6)
+                .output(SUBSTATION_ENERGY_HATCH_64A[3])
+                .EUt(VA[MV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // EV 64A Substation Energy Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[EV])
+                .input(ENERGY_HATCH_16A[4])
+                .input(wireGtHex, Aluminium, 2)
+                .input(plate, Titanium, 6)
+                .output(SUBSTATION_ENERGY_HATCH_64A[4])
+                .EUt(VA[MV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun hiAmpDynamoHatchesRecipes()
+        {
+            // ULV 4A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[ULV])
+                .input(wireGtQuadruple, RedAlloy, 2)
+                .input(plate, WroughtIron, 2)
+                .output(DYNAMO_HATCH_4A[0])
+                .EUt(1L)
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // LV 4A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[LV])
+                .input(wireGtQuadruple, Tin, 2)
+                .input(plate, Steel, 2)
+                .output(DYNAMO_HATCH_4A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // MV 4A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[MV])
+                .input(wireGtQuadruple, Copper, 2)
+                .input(plate, Aluminium, 2)
+                .output(DYNAMO_HATCH_4A[2])
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // HV 4A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[HV])
+                .input(wireGtQuadruple, Gold, 2)
+                .input(plate, StainlessSteel, 2)
+                .output(DYNAMO_HATCH_4A[3])
+                .EUt(VA[MV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // ULV 16A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[ULV])
+                .input(DYNAMO_HATCH_4A[0])
+                .input(wireGtOctal, RedAlloy, 2)
+                .input(plate, WroughtIron, 4)
+                .output(DYNAMO_HATCH_16A[0])
+                .EUt(1L)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // LV 16A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[LV])
+                .input(DYNAMO_HATCH_4A[1])
+                .input(wireGtOctal, Tin, 2)
+                .input(plate, Steel, 4)
+                .output(DYNAMO_HATCH_16A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // MV 16A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[MV])
+                .input(DYNAMO_HATCH_4A[2])
+                .input(wireGtOctal, Copper, 2)
+                .input(plate, Aluminium, 4)
+                .output(DYNAMO_HATCH_16A[2])
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // HV 16A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[HV])
+                .input(DYNAMO_HATCH_4A[3])
+                .input(wireGtOctal, Gold, 2)
+                .input(plate, StainlessSteel, 4)
+                .output(DYNAMO_HATCH_16A[3])
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // EV 16A Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(TRANSFORMER[EV])
+                .input(ENERGY_OUTPUT_HATCH_4A[0])
+                .input(wireGtOctal, Aluminium, 2)
+                .input(plate, Titanium, 4)
+                .output(DYNAMO_HATCH_16A[4])
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // ULV 64A Substation Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[ULV])
+                .input(DYNAMO_HATCH_16A[0])
+                .input(wireGtHex, RedAlloy, 2)
+                .input(plate, WroughtIron, 6)
+                .output(SUBSTATION_DYNAMO_HATCH_64A[0])
+                .EUt(1L)
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // LV 64A Substation Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[LV])
+                .input(DYNAMO_HATCH_16A[1])
+                .input(wireGtHex, Tin, 2)
+                .input(plate, Steel, 6)
+                .output(SUBSTATION_DYNAMO_HATCH_64A[1])
+                .EUt(VA[ULV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // MV 64A Substation Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[MV])
+                .input(DYNAMO_HATCH_16A[2])
+                .input(wireGtHex, Copper, 2)
+                .input(plate, Aluminium, 6)
+                .output(SUBSTATION_DYNAMO_HATCH_64A[2])
+                .EUt(VA[LV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // HV 64A Substation Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[HV])
+                .input(DYNAMO_HATCH_16A[3])
+                .input(wireGtHex, Gold, 2)
+                .input(plate, StainlessSteel, 6)
+                .output(SUBSTATION_DYNAMO_HATCH_64A[3])
+                .EUt(VA[MV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // EV 64A Substation Dynamo Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[EV])
+                .input(DYNAMO_HATCH_16A[4])
+                .input(wireGtHex, Aluminium, 2)
+                .input(plate, Titanium, 6)
+                .output(SUBSTATION_DYNAMO_HATCH_64A[4])
+                .EUt(VA[MV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+        }
+
         private fun laserHatchesRecipes()
         {
             // Advanced laser hatches which has amperage beyond 1048576A is for higher tier
@@ -1354,9 +1448,9 @@ class AssemblerRecipes
                     .circuitMeta(4)
                     .input(HULL[tier])
                     .input(lens, Diamond, 8)
-                    .input(getSensorByTier(tier), 8)
-                    .input(getPumpByTier(tier), 8)
-                    .input(cableGtOctal, getCableByTier(tier), 4)
+                    .input(GTLiteUtility.getSensorByTier(tier), 8)
+                    .input(GTLiteUtility.getPumpByTier(tier), 8)
+                    .input(cableGtOctal, GTLiteUtility.getCableByTier(tier), 4)
                     .output(LASER_INPUT_HATCH_16384[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(2 * MINUTE)
@@ -1367,9 +1461,9 @@ class AssemblerRecipes
                     .circuitMeta(4)
                     .input(HULL[tier])
                     .input(lens, Diamond, 8)
-                    .input(getEmitterByTier(tier), 8)
-                    .input(getPumpByTier(tier), 8)
-                    .input(cableGtOctal, getCableByTier(tier), 4)
+                    .input(GTLiteUtility.getEmitterByTier(tier), 8)
+                    .input(GTLiteUtility.getPumpByTier(tier), 8)
+                    .input(cableGtOctal, GTLiteUtility.getCableByTier(tier), 4)
                     .output(LASER_OUTPUT_HATCH_16384[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(2 * MINUTE)
@@ -1380,9 +1474,9 @@ class AssemblerRecipes
                     .circuitMeta(5)
                     .input(HULL[tier])
                     .input(lens, Diamond, 16)
-                    .input(getSensorByTier(tier), 16)
-                    .input(getPumpByTier(tier), 16)
-                    .input(cableGtHex, getCableByTier(tier), 4)
+                    .input(GTLiteUtility.getSensorByTier(tier), 16)
+                    .input(GTLiteUtility.getPumpByTier(tier), 16)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 4)
                     .output(LASER_INPUT_HATCH_65536[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(4 * MINUTE)
@@ -1393,9 +1487,9 @@ class AssemblerRecipes
                     .circuitMeta(5)
                     .input(HULL[tier])
                     .input(lens, Diamond, 16)
-                    .input(getEmitterByTier(tier), 16)
-                    .input(getPumpByTier(tier), 16)
-                    .input(cableGtHex, getCableByTier(tier), 4)
+                    .input(GTLiteUtility.getEmitterByTier(tier), 16)
+                    .input(GTLiteUtility.getPumpByTier(tier), 16)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 4)
                     .output(LASER_OUTPUT_HATCH_65536[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(4 * MINUTE)
@@ -1406,9 +1500,9 @@ class AssemblerRecipes
                     .circuitMeta(6)
                     .input(HULL[tier])
                     .input(lens, Diamond, 32)
-                    .input(getSensorByTier(tier), 32)
-                    .input(getPumpByTier(tier), 32)
-                    .input(cableGtHex, getCableByTier(tier), 8)
+                    .input(GTLiteUtility.getSensorByTier(tier), 32)
+                    .input(GTLiteUtility.getPumpByTier(tier), 32)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 8)
                     .output(LASER_INPUT_HATCH_262144[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(8 * MINUTE)
@@ -1419,9 +1513,9 @@ class AssemblerRecipes
                     .circuitMeta(6)
                     .input(HULL[tier])
                     .input(lens, Diamond, 32)
-                    .input(getEmitterByTier(tier), 32)
-                    .input(getSensorByTier(tier), 32)
-                    .input(cableGtHex, getCableByTier(tier), 8)
+                    .input(GTLiteUtility.getEmitterByTier(tier), 32)
+                    .input(GTLiteUtility.getSensorByTier(tier), 32)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 8)
                     .output(LASER_OUTPUT_HATCH_262144[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(8 * MINUTE)
@@ -1432,9 +1526,9 @@ class AssemblerRecipes
                     .circuitMeta(7)
                     .input(HULL[tier])
                     .input(lens, Diamond, 64)
-                    .input(getSensorByTier(tier), 64)
-                    .input(getPumpByTier(tier), 64)
-                    .input(cableGtHex, getCableByTier(tier), 16)
+                    .input(GTLiteUtility.getSensorByTier(tier), 64)
+                    .input(GTLiteUtility.getPumpByTier(tier), 64)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 16)
                     .output(LASER_INPUT_HATCH_1048576[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(16 * MINUTE)
@@ -1445,9 +1539,9 @@ class AssemblerRecipes
                     .circuitMeta(7)
                     .input(HULL[tier])
                     .input(lens, Diamond, 64)
-                    .input(getEmitterByTier(tier), 64)
-                    .input(getPumpByTier(tier), 64)
-                    .input(cableGtHex, getCableByTier(tier), 16)
+                    .input(GTLiteUtility.getEmitterByTier(tier), 64)
+                    .input(GTLiteUtility.getPumpByTier(tier), 64)
+                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 16)
                     .output(LASER_OUTPUT_HATCH_1048576[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(16 * MINUTE)
