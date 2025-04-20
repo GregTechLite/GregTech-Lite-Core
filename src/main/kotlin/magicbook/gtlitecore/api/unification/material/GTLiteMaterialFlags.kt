@@ -31,6 +31,7 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Grossular
 import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Inconel718
@@ -49,6 +50,7 @@ import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
@@ -290,6 +292,13 @@ class GTLiteMaterialFlags
             Rutherfordium.addFlags(GENERATE_DOUBLE_PLATE)
             HSSS.addFlags(GENERATE_DOUBLE_PLATE)
             Tritanium.addFlags(GENERATE_DOUBLE_PLATE)
+            Iron.addFlags(GENERATE_DOUBLE_PLATE)
+            Manganese.addFlags(GENERATE_DOUBLE_PLATE)
+            Molybdenum.addFlags(GENERATE_DOUBLE_PLATE)
+            Neodymium.addFlags(GENERATE_DOUBLE_PLATE)
+            BismuthBronze.addFlags(GENERATE_DOUBLE_PLATE)
+            HSSG.addFlags(GENERATE_DOUBLE_PLATE)
+            HSSE.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
