@@ -47,6 +47,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
@@ -98,6 +99,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_BORON_NITRIDE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANTIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
@@ -633,6 +636,26 @@ class CraftingRecipeLoader
                 'V', TRANSFORMER[UHV].stackForm,
                 'W', UnificationEntry(cableGtQuadruple, Seaborgium),
                 'U', UnificationEntry(cableGtQuadruple, Europium))
+
+            // TODO UEV-OpV Transformers
+
+            // Adamantium Credit
+            ModHandler.addShapelessRecipe("credit_adamantium_alt", CREDIT_ADAMANTIUM.stackForm,
+                CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm,
+                CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm,
+                CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm)
+
+            ModHandler.addShapelessRecipe("credit_neutronium", CREDIT_NEUTRONIUM.getStackForm(8),
+                CREDIT_ADAMANTIUM.stackForm,)
+
+            // Vibranium Credit
+            ModHandler.addShapelessRecipe("credit_vibranium_alt", CREDIT_VIBRANIUM.stackForm,
+                CREDIT_ADAMANTIUM.stackForm, CREDIT_ADAMANTIUM.stackForm, CREDIT_ADAMANTIUM.stackForm,
+                CREDIT_ADAMANTIUM.stackForm, CREDIT_ADAMANTIUM.stackForm, CREDIT_ADAMANTIUM.stackForm,
+                CREDIT_ADAMANTIUM.stackForm, CREDIT_ADAMANTIUM.stackForm)
+
+            ModHandler.addShapelessRecipe("credit_vibranium", CREDIT_ADAMANTIUM.getStackForm(8),
+                CREDIT_VIBRANIUM.stackForm)
 
         }
 

@@ -1,7 +1,27 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
+import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.common.items.MetaItems.CREDIT_COPPER
+import gregtech.common.items.MetaItems.CREDIT_GOLD
+import gregtech.common.items.MetaItems.CREDIT_NAQUADAH
+import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
+import gregtech.common.items.MetaItems.CREDIT_OSMIUM
+import gregtech.common.items.MetaItems.CREDIT_PLATINUM
+import gregtech.common.items.MetaItems.CREDIT_SILVER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
+import gregtech.common.items.MetaItems.SHAPE_MOLD_CREDIT
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
@@ -16,6 +36,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_SOFT_MALLET
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANTIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_BOLT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_DRILL_HEAD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_RING
@@ -212,6 +234,87 @@ class FormingPressRecipes
                 .output(CASTING_MOLD_ROLLING_PIN)
                 .EUt(22) // LV
                 .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // Copper Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Copper)
+                .output(CREDIT_COPPER, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Silver Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Silver)
+                .output(CREDIT_SILVER, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Gold Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Gold)
+                .output(CREDIT_GOLD, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Platinum Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Platinum)
+                .output(CREDIT_PLATINUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Osmium Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Osmium)
+                .output(CREDIT_OSMIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Naquadah Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Naquadah)
+                .output(CREDIT_NAQUADAH, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Neutronium Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Neutronium)
+                .output(CREDIT_NEUTRONIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Adamantium Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Adamantium)
+                .output(CREDIT_ADAMANTIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Vibranium Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Vibranium)
+                .output(CREDIT_VIBRANIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
         }

@@ -17,6 +17,7 @@ import magicbook.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import magicbook.gtlitecore.common.item.behavior.FoodBehavior
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.item.EnumRarity
 import net.minecraft.item.Item
 
 @Suppress("MISSING_DEPENDENCY_CLASS", "MISSING_DEPENDENCY_SUPERCLASS")
@@ -61,6 +62,9 @@ class GTLiteMetaItems
         lateinit var CASTING_MOLD_KNIFE: MetaItem<*>.MetaValueItem
         lateinit var CASTING_MOLD_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
         lateinit var CASTING_MOLD_ROLLING_PIN: MetaItem<*>.MetaValueItem
+
+        lateinit var CREDIT_ADAMANTIUM: MetaItem<*>.MetaValueItem
+        lateinit var CREDIT_VIBRANIUM: MetaItem<*>.MetaValueItem
 
         lateinit var VOLTAGE_COIL_UHV: MetaItem<*>.MetaValueItem
         lateinit var VOLTAGE_COIL_UEV: MetaItem<*>.MetaValueItem
@@ -333,7 +337,7 @@ class GTLiteMetaItems
             LOGO_DECORATION = GTLITE_ITEMS.addItem(3, "gtlite_logo.decoration")
                 .setInvisible()
 
-            // 11-100: Shape Molds & Extruders.
+            // 11-85: Shape Molds & Extruders.
 
             // 11-40: Common Steel Molds (11-25) & Extruders addition (26-40).
             SHAPE_MOLD_ROD = GTLITE_ITEMS.addItem(11, "shape.mold.rod")
@@ -413,6 +417,12 @@ class GTLiteMetaItems
 
             CASTING_MOLD_ROLLING_PIN = GTLITE_ITEMS.addItem(63, "shape.mold.vanadium_steel.rolling_pin")
                 .setMaterialInfo(ItemMaterialInfo(MaterialStack(Materials.VanadiumSteel, M * 4)))
+
+            // 86-100: Credits
+            CREDIT_ADAMANTIUM = GTLITE_ITEMS.addItem(86, "credit.adamantium")
+                .setRarity(EnumRarity.EPIC)
+            CREDIT_VIBRANIUM = GTLITE_ITEMS.addItem(87, "credit.vibranium")
+                .setRarity(EnumRarity.EPIC)
 
             // 101-106: Voltage Coils.
             VOLTAGE_COIL_UHV = GTLITE_ITEMS.addItem(101, "voltage_coil.uhv")

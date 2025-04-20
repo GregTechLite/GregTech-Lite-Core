@@ -525,6 +525,11 @@ metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=Mold for making Dispos
 metaitem.shape.mold.vanadium_steel.rolling_pin.name=Casting Mold (Rolling Pin)
 metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=Mold for making Disposable Rolling Pin
 
+metaitem.credit.adamantium.name=Adamantium Credit
+metaitem.credit.adamantium.tooltip=2097152 Credits
+metaitem.credit.vibranium.name=Vibranium Credit
+metaitem.credit.vibranium.tooltip=16777216 Credits
+
 metaitem.board.gooware.name=Kapton™ Board
 metaitem.board.gooware.tooltip=DuPont™ Pyralux® TK Laminate Film
 metaitem.board.optical.name=Gallium Nitride Semiconductor Board

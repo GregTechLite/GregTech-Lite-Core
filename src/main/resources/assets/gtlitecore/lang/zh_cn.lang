@@ -525,6 +525,11 @@ metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=用来制作一次性�
 metaitem.shape.mold.vanadium_steel.rolling_pin.name=铸造模具（擀面杖）
 metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=用来制作一次性擀面杖的模具
 
+metaitem.credit.adamantium.name=精金币
+metaitem.credit.adamantium.tooltip=币值2097152
+metaitem.credit.vibranium.name=振金币
+metaitem.credit.vibranium.tooltip=币值16777216
+
 metaitem.tool.circuit_pattern.name=电路模板
 metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据
 metaitem.tool.circuit_pattern.type=§e蚀刻类型：§f%s§7
