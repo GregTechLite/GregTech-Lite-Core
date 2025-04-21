@@ -174,6 +174,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -207,6 +208,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_L
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_MV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
@@ -1951,6 +1953,16 @@ class AssemblerRecipes
                 .input(wireFine, Taranium, 16)
                 .output(VOLTAGE_COIL_UHV)
                 .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // UEV Voltage Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(stick, ChromiumGermaniumTellurideMagnetic)
+                .input(wireFine, MetastableOganesson, 16)
+                .output(VOLTAGE_COIL_UEV)
+                .EUt(VA[UEV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
         }

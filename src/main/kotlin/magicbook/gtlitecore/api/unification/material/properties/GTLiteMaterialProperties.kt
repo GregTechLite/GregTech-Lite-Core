@@ -25,6 +25,7 @@ import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
@@ -159,14 +160,14 @@ class GTLiteMaterialProperties
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
-                Magnesium, Francium, Thallium, Barium, Lutetium)
+                Magnesium, Francium, Thallium, Barium, Lutetium, Californium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
-                Francium, Thallium, Sodium)
+                Francium, Thallium, Sodium, Californium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)

@@ -123,6 +123,7 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 
 class MaterialInfoCache
 {
@@ -149,7 +150,7 @@ class MaterialInfoCache
                 Plutonium, Plutonium239, Plutonium241, Americium, Curium, Berkelium, Californium,
                 Einsteinium, Fermium, Mendelevium, Nobelium, Lawrencium, Rutherfordium, Dubnium,
                 Seaborgium, Bohrium, Hassium, Meitnerium, Darmstadtium, Roentgenium, Copernicium,
-                Nihonium, MetastableFlerovium, Moscovium, Livermorium, Tennessine, Oganesson))
+                Nihonium, MetastableFlerovium, Moscovium, Livermorium, Tennessine, MetastableOganesson))
         }
 
     }

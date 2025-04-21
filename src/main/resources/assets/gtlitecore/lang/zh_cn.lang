@@ -2101,6 +2101,7 @@ gtlitecore.material.adamantium=精金
 gtlitecore.material.vibranium=振金
 gtlitecore.material.taranium=塔兰金属
 gtlitecore.material.metastable_flerovium=亚稳态钅夫
+gtlitecore.material.metastable_oganesson=亚稳态鿫
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2570,6 +2571,7 @@ gtlitecore.material.medium_enriched_taranium_fuel=富集塔兰金属燃料
 gtlitecore.material.light_enriched_taranium_fuel=轻富集塔兰金属燃料
 gtlitecore.material.energetic_naquadria=充能超能硅岩
 gtlitecore.material.quasi_fissioning_plasma=拟裂变
+gtlitecore.material.oganesson_breeding_base=鿫增殖基
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

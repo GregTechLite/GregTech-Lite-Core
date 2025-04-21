@@ -10,9 +10,12 @@ import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
+import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Krypton
+import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Ytterbium
@@ -22,6 +25,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FleroviumYtterbiumPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -36,6 +41,7 @@ class SuperheavyElementsChain
         fun init()
         {
             metastableFleroviumProcess()
+            metastableOganessonProcess()
         }
 
         private fun metastableFleroviumProcess()
@@ -82,6 +88,36 @@ class SuperheavyElementsChain
                 .output(ingotHot, MetastableFlerovium)
                 .EUt(VA[IV].toLong())
                 .duration(7 * SECOND + 15 * TICK)
+                .buildAndRegister()
+
+        }
+
+        private fun metastableOganessonProcess()
+        {
+            // Og Breeding Base
+            MIXER_RECIPES.recipeBuilder()
+                .fluidInputs(Titanium.getFluid(L * 2))
+                .fluidInputs(Californium.getFluid(L * 2))
+                .fluidOutputs(OganessonBreedingBase.getFluid(L * 4))
+                .EUt(VA[IV].toLong())
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                OreDictUnifier.get(dust, MetastableOganesson),
+                IntCircuitIngredient.getIntegratedCircuit(1))
+
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, MetastableOganesson),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
+                arrayOf(Krypton.getFluid(10)))
+
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .fluidInputs(MetastableOganesson.getPlasma(L))
+                .output(ingotHot, MetastableOganesson)
+                .EUt(VA[ZPM].toLong())
+                .duration(12 * SECOND + 15 * TICK)
                 .buildAndRegister()
 
         }

@@ -18,9 +18,11 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
@@ -55,6 +57,8 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
@@ -243,6 +247,16 @@ class FusionReactorRecipes
                 .EUToStart(380_000_000L) // 380M EU, MK3
                 .buildAndRegister()
 
+            // Pu239 + Be -> Cf
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Plutonium239.getFluid(48))
+                .fluidInputs(Beryllium.getFluid(48))
+                .fluidOutputs(Californium.getFluid(48))
+                .EUt(49152) // ZPM
+                .duration(12 * SECOND)
+                .EUToStart(480_000_000) // 480M EU, MK3
+                .buildAndRegister()
+
             // ---------------------------------------------------------------------------------------------------------
             // Mark 4 Fusion Reactions
 
@@ -303,6 +317,16 @@ class FusionReactorRecipes
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
                 .EUToStart(850_000_000L) // 850M EU, MK4
+                .buildAndRegister()
+
+            // Cf + Cm -> Og
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(OganessonBreedingBase.getFluid(L))
+                .fluidInputs(Curium.getFluid(36))
+                .fluidOutputs(MetastableOganesson.getPlasma(L))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .EUToStart(1_100_000_000L) // 1100M EU, MK4
                 .buildAndRegister()
 
             // Add plasma coolant recipes to vacuum freezer for original plasmas.

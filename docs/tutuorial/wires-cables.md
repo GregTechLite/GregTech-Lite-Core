@@ -44,3 +44,4 @@
 | Thallium Barium Cuprate (TBCCO)*           | 2,097,152 (UHV)  | 2                     | 1                  | 2                 |
 | Enriched Naquadah Alloy*                   | 2,097,152 (UHV)  | 4                     | 8                  | 16                |
 | Seaborgium*                                | 8,388,608 (UEV)  | 4                     | 16                 | 32                |
+| Metastable Oganesson*                      | 8,388,608 (UEV)  | 18                    | 9                  | 18                |

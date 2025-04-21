@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
@@ -14,6 +15,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.Elements.Fl
+import gregtech.api.unification.Elements.Og
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
@@ -226,6 +228,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import net.minecraft.init.Enchantments
 
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -241,7 +244,7 @@ class GTLiteMaterials
         @JvmField
         val Adamantium: Material = Material.Builder(1, gtliteId("adamantium"))
             .ingot()
-            .fluid()
+            .liquid()
             .plasma()
             .color(0xFF0040).iconSet(METALLIC)
             .element(Ad)
@@ -255,7 +258,9 @@ class GTLiteMaterials
             }
             .rotorStats(22.0f, 10.0f, 491520)
             .toolStats(MaterialToolProperty.Builder.of(140.0F, 95.0F, 49152, 6)
-                .attackSpeed(0.5F).enchantability(32).magnetic().build())
+                .attackSpeed(0.5F).enchantability(32)
+                .enchantment(Enchantments.FORTUNE, 5)
+                .magnetic().build())
             .cableProperties(V[UHV], 4, 24)
             .build()
 
@@ -263,7 +268,7 @@ class GTLiteMaterials
         @JvmField
         val Vibranium: Material = Material.Builder(2, gtliteId("vibranium"))
             .ingot()
-            .fluid()
+            .liquid()
             .plasma()
             .color(0xC880FF).iconSet(SHINY)
             .element(Vb)
@@ -275,14 +280,18 @@ class GTLiteMaterials
                     .vacuumStats(VA[UV], 42 * SECOND + 15 * TICK)
             }
             .toolStats(MaterialToolProperty.Builder.of(155.0F, 120.0F, 73728, 7)
-                .attackSpeed(0.8F).enchantability(34).magnetic().build())
+                .attackSpeed(0.8F).enchantability(34)
+                .enchantment(Enchantments.SHARPNESS, 10)
+                .enchantment(Enchantments.SWEEPING, 5)
+                .enchantment(Enchantments.LOOTING, 3)
+                .magnetic().build())
             .build()
 
         // 3 Taranium
         @JvmField
         val Taranium: Material = Material.Builder(3, gtliteId("taranium"))
             .ingot()
-            .fluid()
+            .liquid()
             .color(0x4F404F).iconSet(METALLIC)
             .element(Tn)
             .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
@@ -298,7 +307,7 @@ class GTLiteMaterials
         @JvmField
         val MetastableFlerovium: Material = Material.Builder(4, gtliteId("metastable_flerovium"))
             .ingot()
-            .fluid()
+            .liquid()
             .plasma()
             .color(0x521973).iconSet(SHINY)
             .element(Fl)
@@ -307,6 +316,26 @@ class GTLiteMaterials
                 b.temp(9900, BlastProperty.GasTier.HIGHEST) // Tritanium
                   .blastStats(VA[UHV], 2 * MINUTE + 35 * SECOND)
                   .vacuumStats(VA[UV], 40 * SECOND) }
+            .build()
+
+        // 5 Metastable Oganesson
+        @JvmField
+        val MetastableOganesson: Material = Material.Builder(5, gtliteId("metastable_oganesson"))
+            .ingot()
+            .liquid()
+            .plasma()
+            .color(0xE61C24).iconSet(SHINY)
+            .element(Og)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR)
+            .blast { b -> b
+                .temp(12380, BlastProperty.GasTier.HIGHEST) // Adamantium
+                .blastStats(VA[UEV], 2 * MINUTE)
+                .vacuumStats(VA[UV], 40 * SECOND)
+            }
+            .toolStats(MaterialToolProperty.Builder.of(55.0F, 95.0F, 110592, 7)
+                .enchantment(Enchantments.MENDING, 3)
+                .attackSpeed(0.2F).enchantability(36).magnetic().build())
+            .cableProperties(V[UEV], 18, 9)
             .build()
 
         // =======================================================================
@@ -4500,6 +4529,13 @@ class GTLiteMaterials
         val QuasifissioningPlasma: Material = Material.Builder(12172, gtliteId("quasi_fissioning_plasma"))
             .plasma()
             .color(0xB0A2C3).iconSet(DULL)
+            .build()
+
+        // 12173 Oganesson Breeding Base
+        @JvmField
+        val OganessonBreedingBase: Material = Material.Builder(12173, gtliteId("oganesson_breeding_base"))
+            .liquid()
+            .color(0xA65A7F).iconSet(DULL)
             .build()
 
     }

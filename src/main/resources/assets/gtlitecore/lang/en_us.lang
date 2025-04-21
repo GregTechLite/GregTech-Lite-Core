@@ -2101,6 +2101,7 @@ gtlitecore.material.adamantium=Adamantium
 gtlitecore.material.vibranium=Vibranium
 gtlitecore.material.taranium=Taranium
 gtlitecore.material.metastable_flerovium=Metastable Flerovium
+gtlitecore.material.metastable_oganesson=Metastable Oganesson
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2566,6 +2567,7 @@ gtlitecore.material.medium_enriched_taranium_fuel=Medium Enriched Taranium Fuel
 gtlitecore.material.light_enriched_taranium_fuel=Light Enriched Taranium Fuel
 gtlitecore.material.energetic_naquadria=Energetic Naquadria
 gtlitecore.material.quasi_fissioning_plasma=Quasi-fissioning
+gtlitecore.material.oganesson_breeding_base=Oganesson Breeding Base
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere
