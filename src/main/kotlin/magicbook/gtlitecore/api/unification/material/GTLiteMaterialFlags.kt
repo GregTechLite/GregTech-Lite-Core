@@ -77,6 +77,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
@@ -212,6 +213,8 @@ class GTLiteMaterialFlags
             Barium.addFlags(GENERATE_FOIL)
             Calcium.addFlags(GENERATE_FOIL)
             Rutherfordium.addFlags(GENERATE_FOIL)
+            Neutronium.addFlags(GENERATE_FOIL)
+            RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -284,6 +287,7 @@ class GTLiteMaterialFlags
             Barium.addFlags(GENERATE_PLATE)
             Calcium.addFlags(GENERATE_PLATE)
             Curium.addFlags(GENERATE_PLATE)
+            RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -333,6 +337,7 @@ class GTLiteMaterialFlags
             Zircaloy4.addFlags(GENERATE_ROD)
             Rutherfordium.addFlags(GENERATE_ROD)
             Seaborgium.addFlags(GENERATE_ROD)
+            Dubnium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -342,6 +347,7 @@ class GTLiteMaterialFlags
             SteelMagnetic.addFlags(GENERATE_LONG_ROD)
             NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD)
             Seaborgium.addFlags(GENERATE_LONG_ROD)
+            Dubnium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
@@ -371,6 +377,7 @@ class GTLiteMaterialFlags
             Germanium.addFlags(GENERATE_FINE_WIRE)
             NaquadahEnriched.addFlags(GENERATE_FINE_WIRE)
             Curium.addFlags(GENERATE_FINE_WIRE)
+            RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

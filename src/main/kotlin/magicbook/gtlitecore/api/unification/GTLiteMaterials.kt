@@ -267,7 +267,7 @@ class GTLiteMaterials
             .color(0xC880FF).iconSet(SHINY)
             .element(Vb)
             .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
-                GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR)
+                GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_FOIL)
             .blast { b ->
                 b.temp(12001, BlastProperty.GasTier.HIGHER) // Adamantium
                     .blastStats(VA[UHV], 75 * SECOND)
@@ -1912,7 +1912,8 @@ class GTLiteMaterials
             .ingot()
             .fluid()
             .iconSet(BEDROCKIUM)
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
                     .blastStats(VA[ZPM], 50 * SECOND)
