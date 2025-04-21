@@ -15,6 +15,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.Elements.Fl
+import gregtech.api.unification.Elements.Hs
 import gregtech.api.unification.Elements.Og
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
@@ -105,6 +106,8 @@ import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
+import gregtech.api.unification.material.Materials.Radium
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
@@ -311,11 +314,12 @@ class GTLiteMaterials
             .plasma()
             .color(0x521973).iconSet(SHINY)
             .element(Fl)
-            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE)
+            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW)
             .blast { b ->
                 b.temp(9900, BlastProperty.GasTier.HIGHEST) // Tritanium
                   .blastStats(VA[UHV], 2 * MINUTE + 35 * SECOND)
                   .vacuumStats(VA[UV], 40 * SECOND) }
+            .rotorStats(25.0F, 3.0F, 15360)
             .build()
 
         // 5 Metastable Oganesson
@@ -336,6 +340,23 @@ class GTLiteMaterials
                 .enchantment(Enchantments.MENDING, 3)
                 .attackSpeed(0.2F).enchantability(36).magnetic().build())
             .cableProperties(V[UEV], 18, 9)
+            .build()
+
+        // 6 Metastable Hassium
+        @JvmField
+        val MetastableHassium: Material = Material.Builder(6, gtliteId("metastable_hassium"))
+            .ingot()
+            .liquid()
+            .plasma()
+            .color(0x2D3A9D).iconSet(BRIGHT)
+            .element(Hs)
+            .flags(STD_METAL, GENERATE_DOUBLE_PLATE)
+            .blast { b -> b
+                .temp(12000, BlastProperty.GasTier.HIGHEST) // Adamantium
+                .blastStats(VA[UEV], 4 * MINUTE + 30 * SECOND)
+                .vacuumStats(VA[UV], 1 * MINUTE)
+            }
+            .itemPipeProperties(256, 128F)
             .build()
 
         // =======================================================================
@@ -2522,6 +2543,24 @@ class GTLiteMaterials
             .flags(CRYSTALLIZABLE, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
             .build()
             .setFormula("Nd:YAG", true)
+
+        // 2231 Scandium-Titanium Mixture
+        @JvmField
+        val ScandiumTitaniumMixture: Material = Material.Builder(2231, gtliteId("scandium_titanium_mixture"))
+            .liquid()
+            .colorAverage()
+            .components(Scandium, 1, Titanium, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2232 Radium-Radon Mixture
+        @JvmField
+        val RadiumRadonMixture: Material = Material.Builder(2232, gtliteId("radium_radon_mixture"))
+            .liquid()
+            .colorAverage()
+            .components(Radium, 1, Radon, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

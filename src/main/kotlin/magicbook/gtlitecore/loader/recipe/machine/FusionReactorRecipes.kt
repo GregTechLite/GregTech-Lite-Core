@@ -57,8 +57,11 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RadiumRadonMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
@@ -327,6 +330,16 @@ class FusionReactorRecipes
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
                 .EUToStart(1_100_000_000L) // 1100M EU, MK4
+                .buildAndRegister()
+
+            // ScTi + RaRn -> Hs
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(ScandiumTitaniumMixture.getFluid(L))
+                .fluidInputs(RadiumRadonMixture.getFluid(L * 2))
+                .fluidOutputs(MetastableHassium.getPlasma(L * 4))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .EUToStart(1_200_000_000L) // 1200M EU, MK4
                 .buildAndRegister()
 
             // Add plasma coolant recipes to vacuum freezer for original plasmas.

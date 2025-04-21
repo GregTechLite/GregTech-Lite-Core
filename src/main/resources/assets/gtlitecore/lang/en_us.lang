@@ -791,6 +791,10 @@ metaitem.circuit.component.bz_reaction_chamber.name=Belousov-Zhabotinsky Oscilla
 metaitem.circuit.component.nonlinear_chemical_oscillator.name=Nonlinear Chemical Oscillator
 metaitem.circuit.component.nonlinear_chemical_oscillator.tooltip=Non-Equilibrium Thermodynamics!
 
+metaitem.boule.hassium.name=Hassium-doped Monocrystalline Silicon Boule
+
+metaitem.wafer.hassium.name=Hassium-doped Silicon Wafer
+
 metaitem.wafer.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶圆
 metaitem.wafer.nano_power_integrated_circuit.tooltip=纳米功率集成电路原料
 metaitem.wafer.chip.nano_power_integrated_circuit.name=纳米功率集成电路（NPIC）晶片
@@ -2102,6 +2106,7 @@ gtlitecore.material.vibranium=Vibranium
 gtlitecore.material.taranium=Taranium
 gtlitecore.material.metastable_flerovium=Metastable Flerovium
 gtlitecore.material.metastable_oganesson=Metastable Oganesson
+gtlitecore.material.metastable_hassium=Metastable Hassium
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2342,6 +2347,8 @@ gtlitecore.material.aluminium_nitrate=Aluminium Nitrate
 gtlitecore.material.chlorinated_solvents=Chlorinated Solvents
 gtlitecore.material.alumina_solution=Alumina Solution
 gtlitecore.material.nd_yag=Neodymium-doped Yttrium Aluminium Garnet
+gtlitecore.material.scandium_titanium_mixture=Scandium-Titanium Mixture
+gtlitecore.material.radium_radon_mixture=Radium-Radon Mixture
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

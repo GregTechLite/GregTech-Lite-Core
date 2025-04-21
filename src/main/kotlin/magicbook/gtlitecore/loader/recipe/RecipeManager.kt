@@ -68,6 +68,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CircuitAssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
+import magicbook.gtlitecore.loader.recipe.machine.CutterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FluidSolidifierRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
@@ -226,6 +227,7 @@ class RecipeManager
             CannerRecipes.init()
             CentrifugeRecipes.init()
             CircuitAssemblerRecipes.init()
+            CutterRecipes.init()
             ExtruderRecipes.init()
             FluidSolidifierRecipes.init()
             FormingPressRecipes.init()

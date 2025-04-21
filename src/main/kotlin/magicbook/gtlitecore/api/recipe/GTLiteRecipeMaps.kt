@@ -935,6 +935,9 @@ class GTLiteRecipeMaps
 
             // (1,0,1,1) -> (1,1,1,1)
             RecipeMaps.BREWING_RECIPES.maxOutputs = 1
+
+            // (1,1,2,0) -> (1,1,4,0)
+            RecipeMaps.CUTTER_RECIPES.maxOutputs = 4
         }
 
     }

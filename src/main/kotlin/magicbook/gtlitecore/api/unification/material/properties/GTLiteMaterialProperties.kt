@@ -67,6 +67,7 @@ import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Radium
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.RarestMetalMixture
 import gregtech.api.unification.material.Materials.RawGrowthMedium
@@ -160,14 +161,14 @@ class GTLiteMaterialProperties
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
-                Magnesium, Francium, Thallium, Barium, Lutetium, Californium)
+                Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
-                Francium, Thallium, Sodium, Californium)
+                Francium, Thallium, Sodium, Californium, Radium, Scandium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)

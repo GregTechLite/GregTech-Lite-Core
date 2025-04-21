@@ -15,6 +15,9 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Krypton
+import gregtech.api.unification.material.Materials.Radium
+import gregtech.api.unification.material.Materials.Radon
+import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
@@ -25,9 +28,12 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FleroviumYtterbiumPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RadiumRadonMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
@@ -40,11 +46,50 @@ class SuperheavyElementsChain
 
         fun init()
         {
-            metastableFleroviumProcess()
-            metastableOganessonProcess()
+            hassiumProcess()   // 108 Hassium (Hs)
+            fleroviumProcess() // 114 Flerovium (Fl)
+            oganessonProcess() // 118 Oganesson (Og)
         }
 
-        private fun metastableFleroviumProcess()
+        private fun hassiumProcess()
+        {
+            // Sc + Ti -> ScTi
+            MIXER_RECIPES.recipeBuilder()
+                .fluidInputs(Scandium.getFluid(L))
+                .fluidInputs(Titanium.getFluid(L))
+                .fluidOutputs(ScandiumTitaniumMixture.getFluid(L * 2))
+                .EUt(VA[ZPM].toLong())
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
+            // Ra + Rn -> RaRn
+            MIXER_RECIPES.recipeBuilder()
+                .fluidInputs(Radium.getFluid(L))
+                .fluidInputs(Radon.getFluid(125))
+                .fluidOutputs(RadiumRadonMixture.getFluid(L * 2))
+                .EUt(VA[ZPM].toLong())
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                OreDictUnifier.get(dust, MetastableHassium),
+                IntCircuitIngredient.getIntegratedCircuit(1))
+
+            GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+                arrayOf(OreDictUnifier.get(dust, MetastableHassium),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
+                arrayOf(Krypton.getFluid(10)))
+
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .fluidInputs(MetastableHassium.getPlasma(L))
+                .output(ingotHot, MetastableHassium)
+                .EUt(VA[UV].toLong())
+                .duration(14 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun fleroviumProcess()
         {
             // U235 + U238 -> U235U238?
             FUSION_RECIPES.recipeBuilder()
@@ -92,9 +137,9 @@ class SuperheavyElementsChain
 
         }
 
-        private fun metastableOganessonProcess()
+        private fun oganessonProcess()
         {
-            // Og Breeding Base
+            // 2Ti + 2Cf -> TiCf (Og Breeding Base)
             MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Titanium.getFluid(L * 2))
                 .fluidInputs(Californium.getFluid(L * 2))

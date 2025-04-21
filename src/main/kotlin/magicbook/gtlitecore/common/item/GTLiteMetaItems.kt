@@ -178,6 +178,10 @@ class GTLiteMetaItems
         lateinit var BZ_REACTION_CHAMBER: MetaItem<*>.MetaValueItem
         lateinit var NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
 
+        lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
+
+        lateinit var HASSIUM_WAFER: MetaItem<*>.MetaValueItem
+
         lateinit var NANO_PIC_WAFER: MetaItem<*>.MetaValueItem
         lateinit var NANO_PIC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var PICO_PIC_WAFER: MetaItem<*>.MetaValueItem
@@ -697,18 +701,22 @@ class GTLiteMetaItems
             NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(1116, "circuit.component.nonlinear_chemical_oscillator")
 
             // 2001-2500: Boules and Wafers.
-            NANO_PIC_WAFER = GTLITE_ITEMS.addItem(2001, "wafer.nano_power_integrated_circuit")
-            NANO_PIC_CHIP = GTLITE_ITEMS.addItem(2002, "wafer.chip.nano_power_integrated_circuit")
-            PICO_PIC_WAFER = GTLITE_ITEMS.addItem(2003, "wafer.pico_power_integrated_circuit")
-            PICO_PIC_CHIP = GTLITE_ITEMS.addItem(2004, "wafer.chip.pico_power_integrated_circuit")
-            FEMTO_PIC_WAFER = GTLITE_ITEMS.addItem(2005, "wafer.femto_power_integrated_circuit")
-            FEMTO_PIC_CHIP = GTLITE_ITEMS.addItem(2006, "wafer.chip.femto_power_integrated_circuit")
-            ATTO_PIC_WAFER = GTLITE_ITEMS.addItem(2007, "wafer.atto_power_integrated_circuit")
-            ATTO_PIC_CHIP = GTLITE_ITEMS.addItem(2008, "wafer.chip.atto_power_integrated_circuit")
-            ADVANCED_RAM_WAFER = GTLITE_ITEMS.addItem(2009, "wafer.advanced_random_access_memory")
-            ADVANCED_RAM_CHIP = GTLITE_ITEMS.addItem(2010, "wafer.chip.advanced_random_access_memory")
-            ULTRA_HIGHLY_ADVANCED_SOC_WAFER = GTLITE_ITEMS.addItem(2011, "wafer.ultra_highly_advanced_system_on_chip")
-            ULTRA_HIGHLY_ADVANCED_SOC_CHIP = GTLITE_ITEMS.addItem(2012, "wafer.chip.ultra_highly_advanced_system_on_chip")
+            HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
+
+            HASSIUM_WAFER = GTLITE_ITEMS.addItem(2006, "wafer.hassium")
+
+            NANO_PIC_WAFER = GTLITE_ITEMS.addItem(2011, "wafer.nano_power_integrated_circuit")
+            NANO_PIC_CHIP = GTLITE_ITEMS.addItem(2012, "wafer.chip.nano_power_integrated_circuit")
+            PICO_PIC_WAFER = GTLITE_ITEMS.addItem(2013, "wafer.pico_power_integrated_circuit")
+            PICO_PIC_CHIP = GTLITE_ITEMS.addItem(2014, "wafer.chip.pico_power_integrated_circuit")
+            FEMTO_PIC_WAFER = GTLITE_ITEMS.addItem(2015, "wafer.femto_power_integrated_circuit")
+            FEMTO_PIC_CHIP = GTLITE_ITEMS.addItem(2016, "wafer.chip.femto_power_integrated_circuit")
+            ATTO_PIC_WAFER = GTLITE_ITEMS.addItem(2017, "wafer.atto_power_integrated_circuit")
+            ATTO_PIC_CHIP = GTLITE_ITEMS.addItem(2018, "wafer.chip.atto_power_integrated_circuit")
+            ADVANCED_RAM_WAFER = GTLITE_ITEMS.addItem(2019, "wafer.advanced_random_access_memory")
+            ADVANCED_RAM_CHIP = GTLITE_ITEMS.addItem(2020, "wafer.chip.advanced_random_access_memory")
+            ULTRA_HIGHLY_ADVANCED_SOC_WAFER = GTLITE_ITEMS.addItem(2021, "wafer.ultra_highly_advanced_system_on_chip")
+            ULTRA_HIGHLY_ADVANCED_SOC_CHIP = GTLITE_ITEMS.addItem(2022, "wafer.chip.ultra_highly_advanced_system_on_chip")
 
             EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE = GTLITE_ITEMS.addItem(2401, "boule.cubic_zirconia.europium")
             EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER = GTLITE_ITEMS.addItem(2402, "wafer.cubic_zirconia.europium")
