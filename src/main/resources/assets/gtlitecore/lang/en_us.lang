@@ -386,6 +386,9 @@ tile.metal_casing_02.titanium_tungsten_carbide.name=Laserproof Titanium Tungsten
 
 tile.metal_casing_03.cobalt_brass.name=Vibration Tolerant Cobalt Brass Machine Casing
 tile.metal_casing_03.trinaquadalloy.name=Atomic Trinaquadalloy Machine Casing
+tile.metal_casing_03.osmiridium.name=Robust Osmiridium Machine Casing
+tile.metal_casing_03.neutronium.name=Extreme Strength Neutronium Machine Casing
+tile.metal_casing_03.naquadah_alloy.name=Radioactive Naquadah Alloy Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 

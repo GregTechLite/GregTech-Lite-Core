@@ -229,6 +229,7 @@ class GTLiteMaterialFlags
             TungstenCarbide.addFlags(GENERATE_FRAME)
             Osmiridium.addFlags(GENERATE_FRAME)
             CobaltBrass.addFlags(GENERATE_FRAME)
+            Duranium.addFlags(GENERATE_FRAME)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)

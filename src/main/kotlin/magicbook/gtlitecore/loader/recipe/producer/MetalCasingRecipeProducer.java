@@ -20,6 +20,9 @@ import static gregtech.api.unification.material.Materials.BlueSteel;
 import static gregtech.api.unification.material.Materials.Brass;
 import static gregtech.api.unification.material.Materials.CobaltBrass;
 import static gregtech.api.unification.material.Materials.Iridium;
+import static gregtech.api.unification.material.Materials.NaquadahAlloy;
+import static gregtech.api.unification.material.Materials.Neutronium;
+import static gregtech.api.unification.material.Materials.Osmiridium;
 import static gregtech.api.unification.material.Materials.Polybenzimidazole;
 import static gregtech.api.unification.material.Materials.Potin;
 import static gregtech.api.unification.material.Materials.RedSteel;
@@ -228,6 +231,21 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
                 BlockMetalCasing03.MetalCasingType.TRINAQUADALLOY,
                 Trinaquadalloy);
+
+        // Osmiridium
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
+                BlockMetalCasing03.MetalCasingType.OSMIRIDIUM,
+                Osmiridium);
+
+        // Neutronium
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
+                BlockMetalCasing03.MetalCasingType.NEUTRONIUM,
+                Neutronium);
+
+        // Naquadah Alloy
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
+                BlockMetalCasing03.MetalCasingType.NAQUADAH_ALLOY,
+                NaquadahAlloy);
 
     }
 

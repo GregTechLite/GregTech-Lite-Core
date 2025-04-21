@@ -386,6 +386,9 @@ tile.metal_casing_02.titanium_tungsten_carbide.name=抗激光碳化钛钨机器�
 
 tile.metal_casing_03.cobalt_brass.name=防震钴黄铜机器外壳
 tile.metal_casing_03.trinaquadalloy.name=原子级碳化三元硅岩合金机器外壳
+tile.metal_casing_03.osmiridium.name=坚固铱锇合金机器外壳
+tile.metal_casing_03.neutronium.name=超高强度中子机器外壳
+tile.metal_casing_03.naquadah_alloy.name=放射硅岩合金机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 

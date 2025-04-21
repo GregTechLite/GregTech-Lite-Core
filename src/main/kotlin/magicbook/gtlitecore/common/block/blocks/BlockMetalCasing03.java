@@ -44,7 +44,10 @@ public class BlockMetalCasing03 extends VariantBlock<BlockMetalCasing03.MetalCas
     public enum MetalCasingType implements IStringSerializable
     {
         COBALT_BRASS("cobalt_brass"),
-        TRINAQUADALLOY("trinaquadalloy");
+        TRINAQUADALLOY("trinaquadalloy"),
+        OSMIRIDIUM("osmiridium"),
+        NEUTRONIUM("neutronium"),
+        NAQUADAH_ALLOY("naquadah_alloy");
 
         private final String name;
     }

@@ -13,6 +13,24 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/trinaquadalloy"
         }
+      },
+      "osmiridium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/osmiridium"
+        }
+      },
+      "neutronium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/neutronium"
+        }
+      },
+      "naquadah_alloy": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/naquadah_alloy"
+        }
       }
     }
   }
