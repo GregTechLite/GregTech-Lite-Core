@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
@@ -2825,6 +2826,21 @@ class GTLiteMaterials
                 .attackSpeed(0.6F).enchantability(36).magnetic().build())
             .rotorStats(12.0f, 6.0f, 7680)
             .cableProperties(V[UHV], 4, 8)
+            .build()
+
+        // 4031 Quantum Alloy
+        @JvmField
+        val QuantumAlloy: Material = Material.Builder(4031, gtliteId("quantum_alloy"))
+            .ingot(7)
+            .fluid()
+            .color(0x0F0F0F).iconSet(BRIGHT)
+            .components(Stellite, 15, Jasper, 5, Gallium, 5, Americium, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .blast { b ->
+                b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                    .blastStats(VA[UHV], 58 * SECOND)
+                    .vacuumStats(VA[UV], 29 * SECOND)
+            }
             .build()
 
         // =======================================================================

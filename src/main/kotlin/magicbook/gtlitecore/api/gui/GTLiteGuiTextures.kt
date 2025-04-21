@@ -108,6 +108,10 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_2: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_component_assembly_line_2.png")
 
+        @JvmField
+        val PROGRESS_BAR_NOVA_EXPLOSION: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_nova_explosion.png")
+
         // Widgets
         @JvmField
         val BUTTON_INT_CIRCUIT_PLUS_STEAM: SteamTexture = SteamTexture.fullImage(

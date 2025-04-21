@@ -17,6 +17,7 @@ import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import magicbook.gtlitecore.api.recipe.builder.AdvancedFusionRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.MinimumHeightRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
@@ -25,6 +26,7 @@ import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.core.sound.GTLiteSoundEvents
 import net.minecraft.init.SoundEvents
 import net.minecraftforge.fluids.FluidStack
 import stanhebben.zenscript.annotations.ZenClass
@@ -774,6 +776,37 @@ class GTLiteRecipeMaps
             .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
+        /**
+         * @zenProp cosmic_ray_detector
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("COSMIC_RAY_DETECTING_RECIPES")
+        val COSMIC_RAY_DETECTING_RECIPES = RecipeMapBuilder("cosmic_ray_detector", MinimumHeightRecipeBuilder())
+            .itemInputs(1)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false)
+            .sound(GTSoundEvents.ARC)
+            .build()
+
+        /**
+         * @zenProp stellar_forge
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("STELLAR_FORGE_RECIPES")
+        val STELLAR_FORGE_RECIPES = RecipeMapBuilder("stellar_forge", SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(6)
+            .fluidInputs(6)
+            .fluidOutputs(6)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, true)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_NOVA_EXPLOSION)
+            .sound(GTLiteSoundEvents.STELLAR_FORGE)
+            .build()
 
         // -------------------------------------------------------------------------------------------------------------
         @JvmStatic

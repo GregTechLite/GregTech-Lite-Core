@@ -994,6 +994,8 @@ recipemap.mob_extractor.name=生物资源提取器
 recipemap.bedrock_drilling_rig.name=基岩钻机
 recipemap.advanced_fusion_reactor.name=进阶聚变反应堆
 recipemap.component_assembly_line.name=部件装配线
+recipemap.cosmic_ray_detector.name=宇宙射线探测器
+recipemap.stellar_forge.name=恒星炎炀锻炉
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1009,6 +1011,8 @@ gtlitecore.recipe.entity_name.player=玩家
 
 gtlitecore.recipe.advanced_fusion_tier=等级：
 gtlitecore.recipe.component_assembly_line_tier=部件装配外壳等级：%s
+
+gtlitecore.recipe.height=最低高度：%s
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -2360,6 +2364,7 @@ gtlitecore.material.titanium_carbide=碳化钛
 gtlitecore.material.titanium_tungsten_carbide=碳化钛钨
 gtlitecore.material.trinaquadalloy=碳化三元硅岩合金
 gtlitecore.material.enriched_naquadah_alloy=富集硅岩合金
+gtlitecore.material.quantum_alloy=量子合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
@@ -2619,3 +2624,6 @@ gtlitecore.command.component.print=材料成分：%s
 gtlitecore.command.component.no_item=必须在主/副手持有物品时执行此命令。
 gtlitecore.command.component.no_component=当前手持物品没有材料成分。
 gtlitecore.command.component.not_player=这条命令只能由玩家使用。
+
+# Sounds
+gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发

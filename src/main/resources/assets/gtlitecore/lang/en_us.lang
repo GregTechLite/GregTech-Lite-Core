@@ -994,6 +994,8 @@ recipemap.mob_extractor.name=Mob Extractor
 recipemap.bedrock_drilling_rig.name=Bedrock Drilling Rig
 recipemap.advanced_fusion_reactor.name=Advanced Fusion Reactor
 recipemap.component_assembly_line.name=Component Assembly Line
+recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
+recipemap.stellar_forge.name=Stellar Forge
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1009,6 +1011,8 @@ gtlitecore.recipe.entity_name.player=Player
 
 gtlitecore.recipe.advanced_fusion_tier=Level:
 gtlitecore.recipe.component_assembly_line_tier=Component Assembly Casing Tier: %s
+
+gtlitecore.recipe.height=Minimum Height: %s
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -2355,6 +2359,7 @@ gtlitecore.material.titanium_carbide=Titanium Carbide
 gtlitecore.material.titanium_tungsten_carbide=Titanium Tungsten Carbide
 gtlitecore.material.trinaquadalloy=Trinaquadalloy
 gtlitecore.material.enriched_naquadah_alloy=Enriched Naquadah Alloy
+gtlitecore.material.quantum_alloy=Quantum Alloy
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -2615,3 +2620,6 @@ gtlitecore.command.component.print=Material Component: %s
 gtlitecore.command.component.no_item=Must has item on main/off hand when command executed.
 gtlitecore.command.component.no_component=Item has not material component yet.
 gtlitecore.command.component.not_player=This command can only executed by player.
+
+# Sounds
+gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Nova Explosion
