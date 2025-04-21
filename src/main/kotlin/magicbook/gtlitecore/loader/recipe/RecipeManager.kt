@@ -21,6 +21,7 @@ import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
 import magicbook.gtlitecore.loader.recipe.chain.KevlarChain
+import magicbook.gtlitecore.loader.recipe.chain.LithiumNiobateChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
@@ -179,6 +180,7 @@ class RecipeManager
             KevlarChain.init()
             GalliumNitrideChain.init()
             PETChain.init()
+            LithiumNiobateChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

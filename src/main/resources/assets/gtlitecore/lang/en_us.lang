@@ -2333,6 +2333,8 @@ gtlitecore.material.gallium_trichloride=Gallium Trichloride
 gtlitecore.material.gallium_trioxide=Gallium Trioxide
 gtlitecore.material.gallium_nitride=Gallium Nitride
 gtlitecore.material.aluminium_trichloride=Aluminium Trichloride
+gtlitecore.material.niobium_pentachloride=Niobium Pentachloride
+gtlitecore.material.lithium_niobate=Lithium Niobate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

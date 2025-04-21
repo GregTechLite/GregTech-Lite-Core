@@ -23,6 +23,7 @@ import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC_WAFER
 import gregtech.common.items.MetaItems.NAQUADAH_WAFER
 import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -31,6 +32,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_W
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_DIAMOND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_WAFER
 import net.minecraftforge.oredict.OreDictionary
@@ -114,6 +117,34 @@ class LaserEngraverRecipes
                 .output(ADVANCED_RAM_CHIP, 16)
                 .EUt(VA[ZPM].toLong())
                 .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Nano Power Integrated Circuit (NPIC) Wafer
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, LithiumNiobate)
+                .input(NAQUADAH_WAFER)
+                .output(NANO_PIC_WAFER)
+                .EUt(VA[ZPM].toLong())
+                .duration(1 * MINUTE + 20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, LithiumNiobate)
+                .input(NEUTRONIUM_WAFER)
+                .output(NANO_PIC_WAFER, 4)
+                .EUt(VA[UV].toLong())
+                .duration(50 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Nano Power Integrated Circuit (NPIC) Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(NANO_PIC_WAFER)
+                .output(NANO_PIC_CHIP, 2)
+                .EUt(VA[ZPM].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 

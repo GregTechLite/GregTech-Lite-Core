@@ -2436,6 +2436,28 @@ class GTLiteMaterials
             .components(Aluminium, 1, Chlorine, 3)
             .build()
 
+        // 2222 Niobium Pentachloride
+        @JvmField
+        val NiobiumPentachloride: Material = Material.Builder(2222, gtliteId("niobium_pentachloride"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Niobium, 1, Chlorine, 5)
+            .build()
+
+        // 2223 Lithium Niobate
+        @JvmField
+        val LithiumNiobate: Material = Material.Builder(2223, gtliteId("lithium_niobate"))
+            .ingot()
+            .color(0xD27700).iconSet(SHINY)
+            .components(Lithium, 1, Niobium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_PLATE, GENERATE_LENS)
+            .blast { b ->
+                b.temp(3226, BlastProperty.GasTier.HIGH) // Nichrome
+                    .blastStats(VA[ZPM], 40 * SECOND)
+                    .vacuumStats(VA[IV], 10 * SECOND)
+            }
+            .build()
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
