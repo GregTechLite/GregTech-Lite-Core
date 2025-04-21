@@ -284,7 +284,7 @@ class GTLiteMaterials
             .fluid()
             .color(0x4F404F).iconSet(METALLIC)
             .element(Tn)
-            .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(7000, BlastProperty.GasTier.HIGH) // Naquadah
                     .blastStats(VA[ZPM], 22 * SECOND)

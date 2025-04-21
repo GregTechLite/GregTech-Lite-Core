@@ -19,9 +19,13 @@ import gregtech.api.recipes.builders.ResearchRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Iridium
@@ -35,7 +39,9 @@ import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
+import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -47,9 +53,11 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
+import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -60,6 +68,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
@@ -68,6 +77,7 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
@@ -128,11 +138,22 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_IV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
@@ -149,8 +170,10 @@ class AssemblyLineRecipes
         fun init()
         {
             componentRecipes()
+            miningDroneRecipes()
             energyHatchesRecipes()
             laserHatchesRecipes()
+            coALCasingRecipes()
         }
 
         private fun componentRecipes()
@@ -1244,6 +1267,83 @@ class AssemblyLineRecipes
 
         }
 
+        private fun miningDroneRecipes()
+        {
+            // LuV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, RhodiumPlatedPalladium)
+                .input(plate, RhodiumPlatedPalladium, 8)
+                .input(plateDouble, Uranium235, 4)
+                .input(circuit, MarkerMaterials.Tier.LuV, 2)
+                .input(toolHeadDrill, HSSE, 6)
+                .input(EMITTER_LuV, 2)
+                .input(SENSOR_LuV, 2)
+                .input(ROBOT_ARM_LuV, 2)
+                .input(rotor, RhodiumPlatedPalladium, 4)
+                .input(cableGtSingle, NiobiumTitanium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(2000))
+                .output(MINING_DRONE_LuV)
+                .EUt(VA[LuV].toLong())
+                .duration(30 * SECOND)
+                .scannerResearch { r ->
+                    r.researchStack(MINING_DRONE_IV.stackForm)
+                        .EUt(VA[IV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, NaquadahAlloy)
+                .input(plate, NaquadahAlloy, 8)
+                .input(plateDouble, Plutonium239, 4)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
+                .input(toolHeadDrill, NaquadahAlloy, 6)
+                .input(EMITTER_ZPM, 2)
+                .input(SENSOR_ZPM, 2)
+                .input(ROBOT_ARM_ZPM, 2)
+                .input(rotor, NaquadahAlloy, 4)
+                .input(cableGtSingle, VanadiumGallium, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(4000))
+                .output(MINING_DRONE_ZPM)
+                .EUt(VA[ZPM].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_LuV.stackForm)
+                        .EUt(VA[LuV].toLong())
+                        .CWUt(4)
+                }
+                .buildAndRegister()
+
+            // UV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(plate, Darmstadtium, 12)
+                .input(plateDouble, Naquadah, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 2)
+                .input(toolHeadDrill, Duranium, 8)
+                .input(EMITTER_UV, 2)
+                .input(SENSOR_UV, 2)
+                .input(ROBOT_ARM_UV, 2)
+                .input(rotor, Darmstadtium, 6)
+                .input(cableGtSingle, YttriumBariumCuprate, 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(8000))
+                .output(MINING_DRONE_UV)
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_ZPM.stackForm)
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(8)
+                }
+                .buildAndRegister()
+
+            // TODO UHV-MAX Mining Drones
+        }
+
         private fun energyHatchesRecipes()
         {
             // LuV Energy Hatch
@@ -1532,6 +1632,89 @@ class AssemblyLineRecipes
 
             // 16777216A IV Laser Source Hatch
 
+        }
+
+        private fun coALCasingRecipes()
+        {
+            // LuV CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, RhodiumPlatedPalladium)
+                .input(plateDense, RhodiumPlatedPalladium, 6)
+                .input(ROBOT_ARM_LuV, 8)
+                .input(ELECTRIC_PISTON_LUV, 10)
+                .input(ELECTRIC_MOTOR_LuV, 16)
+                .input(gear, RhodiumPlatedPalladium, 4)
+                .input(gearSmall, RhodiumPlatedPalladium, 16)
+                .input(cableGtQuadruple, NiobiumTitanium, 8)
+                .input(circuit, MarkerMaterials.Tier.LuV, 8)
+                .input(circuit, MarkerMaterials.Tier.IV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 24))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(Stellite.getFluid(L * 12))
+                .fluidInputs(TitaniumTungstenCarbide.getFluid(L * 6))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.LuV, 4))
+                .EUt(VA[LuV].toLong())
+                .duration(32 * SECOND)
+                .scannerResearch { b ->
+                    b.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.IV))
+                        .EUt(VA[HV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // ZPM CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, NaquadahAlloy)
+                .input(plateDense, NaquadahAlloy, 6)
+                .input(ROBOT_ARM_ZPM, 8)
+                .input(ELECTRIC_PISTON_ZPM, 10)
+                .input(ELECTRIC_MOTOR_ZPM, 16)
+                .input(gear, NaquadahAlloy, 4)
+                .input(gearSmall, NaquadahAlloy, 16)
+                .input(cableGtQuadruple, VanadiumGallium, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 8)
+                .input(circuit, MarkerMaterials.Tier.LuV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 24))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(HastelloyN.getFluid(L * 12))
+                .fluidInputs(Zeron100.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.ZPM, 4))
+                .EUt(VA[ZPM].toLong())
+                .duration(32 * SECOND)
+                .scannerResearch { b ->
+                    b.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.LuV))
+                        .EUt(VA[IV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
+            // UV CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Darmstadtium)
+                .input(plateDense, Darmstadtium, 6)
+                .input(ROBOT_ARM_UV, 8)
+                .input(ELECTRIC_PISTON_UV, 10)
+                .input(ELECTRIC_MOTOR_UV, 16)
+                .input(gear, Darmstadtium, 4)
+                .input(gearSmall, Darmstadtium, 16)
+                .input(cableGtQuadruple, YttriumBariumCuprate, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 8)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 24))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(ReneN5.getFluid(L * 12))
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UV, 4))
+                .EUt(VA[UV].toLong())
+                .duration(32 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.ZPM))
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(6)
+                }
+                .buildAndRegister()
+
+            // TODO UHV-MAX CoAL Casing
         }
 
         /**

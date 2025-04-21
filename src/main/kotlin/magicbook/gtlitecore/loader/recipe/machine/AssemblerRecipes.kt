@@ -95,6 +95,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
@@ -116,6 +117,16 @@ import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_MV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_MV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
@@ -127,7 +138,12 @@ import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
+import gregtech.common.items.MetaItems.ROBOT_ARM_EV
+import gregtech.common.items.MetaItems.ROBOT_ARM_HV
+import gregtech.common.items.MetaItems.ROBOT_ARM_IV
+import gregtech.common.items.MetaItems.ROBOT_ARM_LV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
+import gregtech.common.items.MetaItems.ROBOT_ARM_MV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
@@ -168,6 +184,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
@@ -247,6 +264,7 @@ class AssemblerRecipes
             sensorCasingRecipes()
             fieldGenCasingRecipes()
             processorCasingRecipes()
+            coALCasingRecipes()
             ////////////////////////////////
             itemHatchesRecipes()
             fluidHatchesRecipes()
@@ -944,6 +962,94 @@ class AssemblerRecipes
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+        }
+
+        private fun coALCasingRecipes()
+        {
+            // LV CoAL Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, Steel)
+                .input(plateDense, Steel, 4)
+                .input(ROBOT_ARM_LV, 4)
+                .input(ELECTRIC_PISTON_LV, 8)
+                .input(ELECTRIC_MOTOR_LV, 10)
+                .input(gear, Steel, 4)
+                .input(wireGtQuadruple, Tin, 6)
+                .input(circuit, MarkerMaterials.Tier.LV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.LV, 4))
+                .EUt(VA[LV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // MV CoAL Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, Aluminium)
+                .input(plateDense, Aluminium, 4)
+                .input(ROBOT_ARM_MV, 4)
+                .input(ELECTRIC_PISTON_MV, 8)
+                .input(ELECTRIC_MOTOR_MV, 10)
+                .input(gear, Aluminium, 4)
+                .input(wireGtQuadruple, Copper, 6)
+                .input(circuit, MarkerMaterials.Tier.MV, 8)
+                .input(circuit, MarkerMaterials.Tier.LV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.MV, 4))
+                .EUt(VA[MV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // HV CoAL Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, StainlessSteel)
+                .input(plateDense, StainlessSteel, 4)
+                .input(ROBOT_ARM_HV, 4)
+                .input(ELECTRIC_PISTON_HV, 8)
+                .input(ELECTRIC_MOTOR_HV, 10)
+                .input(gear, StainlessSteel, 4)
+                .input(wireGtQuadruple, Gold, 6)
+                .input(circuit, MarkerMaterials.Tier.HV, 8)
+                .input(circuit, MarkerMaterials.Tier.MV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.HV, 4))
+                .EUt(VA[HV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // EV CoAL Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, Titanium)
+                .input(plateDense, Titanium, 4)
+                .input(ROBOT_ARM_EV, 4)
+                .input(ELECTRIC_PISTON_EV, 8)
+                .input(ELECTRIC_MOTOR_EV, 10)
+                .input(gear, Titanium, 4)
+                .input(wireGtQuadruple, Aluminium, 6)
+                .input(circuit, MarkerMaterials.Tier.EV, 8)
+                .input(circuit, MarkerMaterials.Tier.HV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.EV, 4))
+                .EUt(VA[EV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // IV CoAL Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(frameGt, TungstenSteel)
+                .input(plateDense, TungstenSteel, 4)
+                .input(ROBOT_ARM_IV, 4)
+                .input(ELECTRIC_PISTON_IV, 8)
+                .input(ELECTRIC_MOTOR_IV, 10)
+                .input(gear, TungstenSteel, 4)
+                .input(wireGtQuadruple, Tungsten, 6)
+                .input(circuit, MarkerMaterials.Tier.IV, 8)
+                .input(circuit, MarkerMaterials.Tier.EV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.IV, 4))
+                .EUt(VA[IV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
         }
 
         private fun itemHatchesRecipes()
@@ -1935,81 +2041,6 @@ class AssemblerRecipes
                 .EUt(VA[IV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
-
-            // LuV Mining Drone
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, RhodiumPlatedPalladium)
-                .input(plate, RhodiumPlatedPalladium, 8)
-                .input(plateDouble, Uranium235, 4)
-                .input(circuit, MarkerMaterials.Tier.LuV, 2)
-                .input(toolHeadDrill, HSSE, 6)
-                .input(EMITTER_LuV, 2)
-                .input(SENSOR_LuV, 2)
-                .input(ROBOT_ARM_LuV, 2)
-                .input(rotor, RhodiumPlatedPalladium, 4)
-                .input(cableGtSingle, NiobiumTitanium, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 40))
-                .fluidInputs(DrillingFluid.getFluid(2000))
-                .output(MINING_DRONE_LuV)
-                .EUt(VA[LuV].toLong())
-                .duration(30 * SECOND)
-                .scannerResearch { r ->
-                    r.researchStack(MINING_DRONE_IV.stackForm)
-                        .EUt(VA[IV].toLong())
-                        .duration(1 * MINUTE)
-                }
-                .buildAndRegister()
-
-            // ZPM Mining Drone
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, NaquadahAlloy)
-                .input(plate, NaquadahAlloy, 8)
-                .input(plateDouble, Plutonium239, 4)
-                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
-                .input(toolHeadDrill, NaquadahAlloy, 6)
-                .input(EMITTER_ZPM, 2)
-                .input(SENSOR_ZPM, 2)
-                .input(ROBOT_ARM_ZPM, 2)
-                .input(rotor, NaquadahAlloy, 4)
-                .input(cableGtSingle, VanadiumGallium, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 40))
-                .fluidInputs(DrillingFluid.getFluid(4000))
-                .output(MINING_DRONE_ZPM)
-                .EUt(VA[ZPM].toLong())
-                .duration(30 * SECOND)
-                .stationResearch { r ->
-                    r.researchStack(MINING_DRONE_LuV.stackForm)
-                        .EUt(VA[LuV].toLong())
-                        .CWUt(4)
-                }
-                .buildAndRegister()
-
-            // UV Mining Drone
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(frameGt, Darmstadtium)
-                .input(plate, Darmstadtium, 12)
-                .input(plateDouble, Naquadah, 8)
-                .input(circuit, MarkerMaterials.Tier.UV, 2)
-                .input(toolHeadDrill, Duranium, 8)
-                .input(EMITTER_UV, 2)
-                .input(SENSOR_UV, 2)
-                .input(ROBOT_ARM_UV, 2)
-                .input(rotor, Darmstadtium, 6)
-                .input(cableGtSingle, YttriumBariumCuprate, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 40))
-                .fluidInputs(DrillingFluid.getFluid(8000))
-                .output(MINING_DRONE_UV)
-                .EUt(VA[UV].toLong())
-                .duration(30 * SECOND)
-                .stationResearch { r ->
-                    r.researchStack(MINING_DRONE_ZPM.stackForm)
-                        .EUt(VA[ZPM].toLong())
-                        .CWUt(8)
-                }
-                .buildAndRegister()
-
-            // TODO UHV-MAX Mining Drones
-
         }
 
         private fun miscItemsRecipes()
