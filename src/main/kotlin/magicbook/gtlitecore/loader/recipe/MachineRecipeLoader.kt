@@ -228,6 +228,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -1352,7 +1353,7 @@ class MachineRecipeLoader
                 .input(VOLTAGE_COIL_UHV, 2)
                 .input(FIELD_GENERATOR_UV)
                 .input(plate, Dubnium, 6)
-                .fluidInputs(Polybenzimidazole.getFluid(L * 8)) // TODO Kevlar?
+                .fluidInputs(Kevlar.getFluid(L * 8))
                 .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK4, 2))
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
@@ -1384,7 +1385,7 @@ class MachineRecipeLoader
                 .input(VOLTAGE_COIL_UEV, 2)
                 .input(FIELD_GENERATOR_UHV)
                 .input(plate, Bohrium, 6)
-                .fluidInputs(Polybenzimidazole.getFluid(L * 16)) // TODO Kevlar?
+                .fluidInputs(Kevlar.getFluid(L * 16))
                 .outputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.FUSION_CASING_MK5, 2))
                 .EUt(VA[UEV].toLong())
                 .duration(5 * SECOND)
