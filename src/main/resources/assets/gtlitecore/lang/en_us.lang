@@ -2335,6 +2335,13 @@ gtlitecore.material.gallium_nitride=Gallium Nitride
 gtlitecore.material.aluminium_trichloride=Aluminium Trichloride
 gtlitecore.material.niobium_pentachloride=Niobium Pentachloride
 gtlitecore.material.lithium_niobate=Lithium Niobate
+gtlitecore.material.manganese_sulfate=Manganese Sulfate
+gtlitecore.material.potassium_sulfate=Potassium Sulfate
+gtlitecore.material.neodymium_doped_yttrium_oxide=Neodymium-doped Yttrium Oxide
+gtlitecore.material.aluminium_nitrate=Aluminium Nitrate
+gtlitecore.material.chlorinated_solvents=Chlorinated Solvents
+gtlitecore.material.alumina_solution=Alumina Solution
+gtlitecore.material.nd_yag=Neodymium-doped Yttrium Aluminium Garnet
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2502,6 +2509,11 @@ gtlitecore.material.dimethyl_terephthalate=Dimethyl Terephthalate
 gtlitecore.material.polyethylene_terephthalate=Polyethylene Terephthalate (PET)
 gtlitecore.material.trimethylaluminium=Trimethylaluminium
 gtlitecore.material.trimethylgallium=Trimethylgallium
+gtlitecore.material.ammonium_cyanate=Ammonium Cyanate
+gtlitecore.material.carbamide=Carbamide
+gtlitecore.material.butanol=Butanol
+gtlitecore.material.tributylamine=Tributylamine
+gtlitecore.material.dichloromethane=Dichloromethane
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

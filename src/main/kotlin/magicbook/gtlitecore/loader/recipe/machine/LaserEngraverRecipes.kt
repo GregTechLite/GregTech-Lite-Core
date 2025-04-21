@@ -25,6 +25,7 @@ import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
@@ -50,11 +51,14 @@ class LaserEngraverRecipes
             // Disabled craftingLensWhite ore dict of Nether Star and Cubic Zirconia lens.
             OreDictionary.getOres("craftingLensWhite").removeIf { item ->
                 item.isItemEqual(OreDictUnifier.get(lens, NetherStar)) or
-                item.isItemEqual(OreDictUnifier.get(lens, CubicZirconia))}
+                        item.isItemEqual(OreDictUnifier.get(lens, CubicZirconia))
+            }
 
-            // Disabled craftingLensPink ore dict of Magneto Resonatic.
+            // Disabled craftingLensPink ore dict of Magneto Resonatic and Nd:YAG.
             OreDictionary.getOres("craftingLensPink").removeIf { item ->
-                item.isItemEqual(OreDictUnifier.get(lens, MagnetoResonatic)) }
+                item.isItemEqual(OreDictUnifier.get(lens, MagnetoResonatic)) or
+                        item.isItemEqual(OreDictUnifier.get(lens, NdYAG))
+            }
 
             // Highly Advanced System on Chip (HASoC)
             GTRecipeHandler.removeRecipesByInputs(LASER_ENGRAVER_RECIPES,

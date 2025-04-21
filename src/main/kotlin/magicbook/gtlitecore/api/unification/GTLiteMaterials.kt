@@ -2448,6 +2448,7 @@ class GTLiteMaterials
         @JvmField
         val LithiumNiobate: Material = Material.Builder(2223, gtliteId("lithium_niobate"))
             .ingot()
+            .fluid()
             .color(0xD27700).iconSet(SHINY)
             .components(Lithium, 1, Niobium, 1, Oxygen, 4)
             .flags(DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_PLATE, GENERATE_LENS)
@@ -2457,6 +2458,70 @@ class GTLiteMaterials
                     .vacuumStats(VA[IV], 10 * SECOND)
             }
             .build()
+
+        // 2224 Manganese Sulfate
+        @JvmField
+        val ManganeseSulfate: Material = Material.Builder(2224, gtliteId("manganese_sulfate"))
+            .dust()
+            .color(0xF0F895).iconSet(ROUGH)
+            .components(Manganese, 1, Sulfur, 1, Oxygen, 4)
+            .build()
+
+        // 2225 Potassium Sulfate
+        @JvmField
+        val PotassiumSulfate: Material = Material.Builder(2225, gtliteId("potassium_sulfate"))
+            .dust()
+            .color(0xF4FBB0).iconSet(DULL)
+            .components(Potassium, 2, Sulfur, 1, Oxygen, 4)
+            .build()
+
+        // 2226 Neodymium-doped Yttrium Oxide
+        @JvmField
+        val NeodymiumDopedYttriumOxide: Material = Material.Builder(2226, gtliteId("neodymium_doped_yttrium_oxide"))
+            .dust()
+            .color(0x5AD55F).iconSet(DULL)
+            .components(YttriumOxide, 1, NeodymiumOxide, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2227 Aluminium Nitrate
+        @JvmField
+        val AluminiumNitrate: Material = Material.Builder(2227, gtliteId("aluminium_nitrate"))
+            .dust()
+            .color(0x3AB3AA).iconSet(SHINY)
+            .components(Aluminium, 1, Nitrogen, 3, Oxygen, 9)
+            .build()
+            .setFormula("Al(NO3)3", true)
+
+        // 2228 Chlorinated Solvents
+        @JvmField
+        val ChlorinatedSolvents: Material = Material.Builder(2228, gtliteId("chlorinated_solvents"))
+            .liquid()
+            .color(0x40804c)
+            .components(Carbon, 2, Hydrogen, 8, Chlorine, 5)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(CH4)2Cl5", true)
+
+        // 2229 Alumina Solution
+        @JvmField
+        val AluminaSolution: Material = Material.Builder(2229, gtliteId("alumina_solution"))
+            .liquid()
+            .color(0x6C4DC1)
+            .components(Alumina, 1, Carbon, 25, Hydrogen, 56, Chlorine, 2, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(Al2O3)(CH2Cl2)(C12H27N)2", true)
+
+        // 2230 Nd:YAG
+        @JvmField
+        val NdYAG: Material = Material.Builder(2230, gtliteId("nd_yag"))
+            .gem()
+            .color(0xD99DE4).iconSet(GEM_VERTICAL)
+            .components(YttriumOxide, 2, NeodymiumOxide, 1, Alumina, 5)
+            .flags(CRYSTALLIZABLE, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
+            .build()
+            .setFormula("Nd:YAG", true)
 
         // =======================================================================
         // 4001-6000: Second Degree Materials
@@ -4111,6 +4176,50 @@ class GTLiteMaterials
             .build()
             .setFormula("Ga(CH3)3", true)
 
+        // 8111 Ammonium Cyanate
+        @JvmField
+        val AmmoniumCyanate: Material = Material.Builder(8111, gtliteId("ammonium_cyanate"))
+            .liquid()
+            .color(0x3a5dcf)
+            .components(Hydrogen, 4, Nitrogen, 2, Carbon, 1, Oxygen, 1)
+            .build()
+            .setFormula("NH4CNO", true)
+
+        // 8112 Carbamide
+        @JvmField
+        val Carbamide: Material = Material.Builder(8112, gtliteId("carbamide"))
+            .dust()
+            .color(0x16EF57).iconSet(ROUGH)
+            .components(Carbon, 1, Hydrogen, 4, Nitrogen, 2, Oxygen, 1)
+            .build()
+
+        // 8113 Butanol
+        @JvmField
+        val Butanol: Material = Material.Builder(8113, gtliteId("butanol"))
+            .liquid()
+            .color(0xC7AF2E)
+            .components(Carbon, 4, Hydrogen, 10, Oxygen, 1)
+            .build()
+            .setFormula("C4H9OH", true)
+
+        // 8114 Tributylamine
+        @JvmField
+        val Tributylamine: Material = Material.Builder(8114, gtliteId("tributylamine"))
+            .liquid()
+            .color(0x801a80)
+            .components(Carbon, 12, Hydrogen, 27, Nitrogen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(C4H9)3N", true)
+
+        // 8115 Dichloromethane
+        @JvmField
+        val Dichloromethane: Material = Material.Builder(8115, gtliteId("dichloromethane"))
+            .liquid()
+            .color(0xB87FC7)
+            .components(Carbon, 1, Hydrogen, 2, Chlorine, 2)
+            .build()
+
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
 
@@ -4652,6 +4761,13 @@ class GTLiteMaterials
             .liquid()
             .color(0xA65A7F).iconSet(DULL)
             .build()
+
+        // 12174 Unprocessed Nd:YAG Solution
+        val UnprocessedNdYAGSolution: Material = Material.Builder(12174, gtliteId("unprocessed_nd_yag_solution"))
+            .liquid()
+            .color(0x6f20af).iconSet(DULL)
+            .build()
+            .setFormula("Nd:YAG?", false)
 
     }
 

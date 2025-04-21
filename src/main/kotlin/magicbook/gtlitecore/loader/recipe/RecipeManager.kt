@@ -8,6 +8,7 @@ import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
+import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
@@ -27,6 +28,7 @@ import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
+import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
 import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
@@ -181,6 +183,8 @@ class RecipeManager
             GalliumNitrideChain.init()
             PETChain.init()
             LithiumNiobateChain.init()
+            ChloridesChain.init()
+            NdYAGChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

@@ -2340,6 +2340,13 @@ gtlitecore.material.gallium_nitride=氮化镓
 gtlitecore.material.aluminium_trichloride=三氯化铝
 gtlitecore.material.niobium_pentachloride=五氯化铌
 gtlitecore.material.lithium_niobate=铌酸锂
+gtlitecore.material.manganese_sulfate=硫酸锰
+gtlitecore.material.potassium_sulfate=硫酸钾
+gtlitecore.material.neodymium_doped_yttrium_oxide=钕掺杂的氧化钇
+gtlitecore.material.aluminium_nitrate=硝酸铝
+gtlitecore.material.chlorinated_solvents=有机氯溶液
+gtlitecore.material.alumina_solution=氧化铝混合溶液
+gtlitecore.material.nd_yag=钕掺杂的钇铝榴石
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2506,6 +2513,11 @@ gtlitecore.material.dimethyl_terephthalate=对苯二甲酸二甲酯
 gtlitecore.material.polyethylene_terephthalate=聚对苯二甲酸乙二醇酯（PET）
 gtlitecore.material.trimethylaluminium=三甲基铝
 gtlitecore.material.trimethylgallium=三甲基镓
+gtlitecore.material.ammonium_cyanate=氰酸铵
+gtlitecore.material.carbamide=碳酰胺
+gtlitecore.material.butanol=丁醇
+gtlitecore.material.tributylamine=三丁胺
+gtlitecore.material.dichloromethane=二氯甲烷
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2584,6 +2596,7 @@ gtlitecore.material.light_enriched_taranium_fuel=轻富集塔兰金属燃料
 gtlitecore.material.energetic_naquadria=充能超能硅岩
 gtlitecore.material.quasi_fissioning_plasma=拟裂变
 gtlitecore.material.oganesson_breeding_base=鿫增殖基
+gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴石溶液
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球
