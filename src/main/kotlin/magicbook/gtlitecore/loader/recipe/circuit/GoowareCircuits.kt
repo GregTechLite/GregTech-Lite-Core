@@ -155,7 +155,7 @@ class GoowareCircuits
             {
                 CHEMICAL_RECIPES.recipeBuilder()
                     .input(GOOWARE_BOARD)
-                    .input(foil, YttriumBariumCuprate, 32)
+                    .input(foil, Europium, 32)
                     .fluidInputs(etchingLiquid)
                     .output(ULTIMATE_CIRCUIT_BOARD)
                     .EUt(VA[EV].toLong())

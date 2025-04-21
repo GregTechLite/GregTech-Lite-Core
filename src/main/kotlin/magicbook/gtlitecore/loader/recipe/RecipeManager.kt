@@ -14,6 +14,7 @@ import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
 import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
 import magicbook.gtlitecore.loader.recipe.chain.FEPChain
+import magicbook.gtlitecore.loader.recipe.chain.GalliumNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
@@ -29,6 +30,7 @@ import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PEEKChain
+import magicbook.gtlitecore.loader.recipe.chain.PETChain
 import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
@@ -175,6 +177,8 @@ class RecipeManager
             BoronNitrideChain.init()
             AcetyleneChain.init()
             KevlarChain.init()
+            GalliumNitrideChain.init()
+            PETChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

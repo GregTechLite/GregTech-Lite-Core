@@ -79,7 +79,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeNaquadahFuel
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightNaquadahFuel
@@ -305,20 +305,20 @@ class NaquadahProcessing
             SIFTER_RECIPES.recipeBuilder()
                 .fluidInputs(NaquadriaSolution.getFluid(1000))
                 .fluidInputs(SulfuricAcid.getFluid(2000))
-                .output(dust, GalliumTrioxide, 5)
+                .output(dust, GalliumDioxide, 3)
                 .fluidOutputs(AcidicNaquadriaSolution.getFluid(1000))
                 .EUt(VA[ZPM].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
-            // Addition recipes for Ga2O3, GaS convert.
-            // Ga2O3 + 2S -> 2GaS + 3O
+            // Addition recipes for GaO2, GaS convert.
+            // GaO2 + S -> GaS + 2O
             ROASTER_RECIPES.recipeBuilder()
-                .input(dust, GalliumTrioxide, 5)
-                .input(dust, Sulfur, 2)
-                .output(dust, GalliumSulfide, 4)
-                .fluidOutputs(Oxygen.getFluid(3000))
-                .EUt(VA[EV].toLong())
+                .input(dust, GalliumDioxide, 3)
+                .input(dust, Sulfur)
+                .output(dust, GalliumSulfide, 2)
+                .fluidOutputs(Oxygen.getFluid(2000))
+                .EUt(VA[MV].toLong())
                 .duration(2 * SECOND)
                 .buildAndRegister()
 

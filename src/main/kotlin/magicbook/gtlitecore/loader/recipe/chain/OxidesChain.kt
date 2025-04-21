@@ -34,7 +34,6 @@ import gregtech.api.unification.material.Materials.Cobaltite
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.CupricOxide
 import gregtech.api.unification.material.Materials.Ferrosilite
-import gregtech.api.unification.material.Materials.Galena
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Hafnia
@@ -42,21 +41,17 @@ import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
-import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
-import gregtech.api.unification.material.Materials.Pyrite
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
-import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Stibnite
-import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tantalum
@@ -74,7 +69,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
@@ -421,12 +416,12 @@ class OxidesChain
                 .buildAndRegister()
 
             // Add another choice of GaO3, do not push player used Naquadah processing.
-            // Ga + 3O -> GaO3
+            // Ga + 2O -> GaO2
             ROASTER_RECIPES.recipeBuilder()
-                .circuitMeta(3)
+                .circuitMeta(2)
                 .input(dust, Gallium)
-                .fluidInputs(Oxygen.getFluid(3000))
-                .output(dust, GalliumTrioxide, 4)
+                .fluidInputs(Oxygen.getFluid(2000))
+                .output(dust, GalliumDioxide, 3)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()

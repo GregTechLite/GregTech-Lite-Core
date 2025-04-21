@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.circuit
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -14,6 +15,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Caesium
@@ -34,17 +36,22 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.ingotHot
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
@@ -53,20 +60,25 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadScandiumTantalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyethyleneTerephthalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumManganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSeaborgate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERFECT_CIRCUIT_BOARD
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class OpticalCircuits
@@ -79,25 +91,66 @@ class OpticalCircuits
         {
             circuitBoardRecipes()
             smdRecipes()
+            circuitComponentsRecipes()
+            circuitRecipes()
         }
 
         private fun circuitBoardRecipes()
         {
+            // Optical Board
+            CVD_RECIPES.recipeBuilder()
+                .input(plate, GalliumNitride)
+                .input(foil, ThalliumBariumCalciumCuprate, 32)
+                .fluidInputs(PolyethyleneTerephthalate.getFluid(L * 2))
+                .output(OPTICAL_BOARD)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * SECOND)
+                .temperature(980)
+                .buildAndRegister()
 
+            // Optical Circuit Board
+            for (etchingLiquid in arrayOf(
+                // SodiumPersulfate.getFluid(32000),
+                // Iron3Chloride.getFluid(16000) // 8000, 4000
+                TetramethylammoniumHydroxide.getFluid(32000),
+                EthylenediaminePyrocatechol.getFluid(16000)))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(OPTICAL_BOARD)
+                    .input(foil, Americium, 48)
+                    .fluidInputs(etchingLiquid)
+                    .output(PERFECT_CIRCUIT_BOARD)
+                    .EUt(VA[EV].toLong())
+                    .duration(1 * MINUTE + 45 * SECOND)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
         }
 
         private fun smdRecipes()
         {
-            // La2O3 + 2K2MnO4 + 2GaO3 -> 2LaGaMnO4 + 2K2O + 7O
+            // La2O3 + 2K2MnO4 + 2GaO2 -> 2LaGaMnO4 + 2K2O + 5O
             BURNER_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, LanthanumOxide, 5)
                 .input(dust, PotassiumManganate, 14)
-                .input(dust, GalliumTrioxide, 8)
+                .input(dust, GalliumDioxide, 6)
                 .output(dust, LanthanumGalliumManganate, 14)
                 .output(dust, Potash, 6)
-                .fluidOutputs(Oxygen.getFluid(7000))
+                .fluidOutputs(Oxygen.getFluid(5000))
                 .EUt(VA[ZPM].toLong())
                 .duration(14 * SECOND)
+                .buildAndRegister()
+
+            // La2O3 + 2K2MnO4 + Ga2O3 -> 2LaGaMnO4 + 2K2O + 4O
+            BURNER_REACTOR_RECIPES.recipeBuilder()
+                .input(dust, LanthanumOxide, 5)
+                .input(dust, PotassiumManganate, 14)
+                .input(dust, GalliumTrioxide, 5)
+                .output(dust, LanthanumGalliumManganate, 14)
+                .output(dust, Potash, 6)
+                .fluidOutputs(Oxygen.getFluid(4000))
+                .EUt(VA[ZPM].toLong())
+                .duration(7 * SECOND)
                 .buildAndRegister()
 
             // BaTiO3 + SrO -> BaSrTiO4
@@ -247,7 +300,15 @@ class OpticalCircuits
 
         }
 
+        private fun circuitComponentsRecipes()
+        {
 
+        }
+
+        private fun circuitRecipes()
+        {
+
+        }
 
     }
 

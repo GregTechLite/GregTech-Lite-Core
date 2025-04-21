@@ -1887,12 +1887,12 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
 
-        // 2167 Gallium Trioxide
+        // 2167 Gallium Dioxide
         @JvmField
-        val GalliumTrioxide: Material = Material.Builder(2167, gtliteId("gallium_trioxide"))
+        val GalliumDioxide: Material = Material.Builder(2167, gtliteId("gallium_dioxide"))
             .dust()
-            .color(0xE4CDFF).iconSet(METALLIC)
-            .components(Gallium, 1, Oxygen, 3)
+            .color(0xAB9ABF).iconSet(DULL)
+            .components(Gallium, 1, Oxygen, 2)
             .build()
 
         // 2168 Calcium Sulfide
@@ -2401,6 +2401,39 @@ class GTLiteMaterials
             .ingotSmeltInto(ChromiumGermaniumTelluride)
             .arcSmeltInto(ChromiumGermaniumTelluride)
             .macerateInto(ChromiumGermaniumTelluride)
+            .build()
+
+        // 2218 Gallium Trichloride
+        @JvmField
+        val GalliumTrichloride: Material = Material.Builder(2218, gtliteId("gallium_trichloride"))
+            .dust()
+            .color(0x6EB4FF).iconSet(ROUGH)
+            .components(Gallium, 1, Chlorine, 3)
+            .build()
+
+        // 2219 Gallium Trioxide
+        @JvmField
+        val GalliumTrioxide: Material = Material.Builder(2219, gtliteId("gallium_trioxide"))
+            .dust()
+            .color(0xE4CDFF).iconSet(METALLIC)
+            .components(Gallium, 2, Oxygen, 3)
+            .build()
+
+        // 2220 Gallium Nitride
+        @JvmField
+        val GalliumNitride: Material = Material.Builder(2220, gtliteId("gallium_nitride"))
+            .ingot()
+            .color(0xFFF458).iconSet(SHINY)
+            .flags(STD_METAL)
+            .components(Gallium, 1, Nitrogen, 1)
+            .build()
+
+        // 2221 Aluminium Trichloride
+        @JvmField
+        val AluminiumTrichloride: Material = Material.Builder(2221, gtliteId("aluminium_trichloride"))
+            .dust()
+            .color(0x78C3EB).iconSet(SHINY)
+            .components(Aluminium, 1, Chlorine, 3)
             .build()
 
         // =======================================================================
@@ -3091,7 +3124,7 @@ class GTLiteMaterials
             .liquid()
             .color(0x575757).iconSet(SHINY)
             .components(Carbon, 5, Hydrogen, 8)
-            .flags(NO_SMASHING, NO_SMELTING)
+            .flags(NO_SMASHING, NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
             .build()
 
         // 8004 Para Xylene
@@ -3439,9 +3472,11 @@ class GTLiteMaterials
         // 8043 Polystyrene (PS)
         @JvmField
         val Polystyrene: Material = Material.Builder(8043, gtliteId("polystyrene"))
+            .polymer()
             .liquid()
             .color(0xE1C2C2)
             .components(Carbon, 8, Hydrogen, 8)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
             .build()
 
         // 8044 Polystyrene Sulfonate (PSS)
@@ -3451,6 +3486,7 @@ class GTLiteMaterials
             .liquid()
             .color(0xE17C72)
             .components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
             .build()
             .setFormula("C8H7SO3H", true)
 
@@ -3460,7 +3496,7 @@ class GTLiteMaterials
             .polymer()
             .liquid()
             .color(0xE165A7)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
             .components(Edot, 1, PolystyreneSulfonate, 1)
             .cableProperties(V[ZPM], 6, 1)
             .build()
@@ -3472,7 +3508,7 @@ class GTLiteMaterials
             .liquid()
             .color(0x5E9EE1)
             .components(Edot, 1, Polymethylmethacrylate, 2)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .cableProperties(V[UV], 8, 4)
             .build()
 
@@ -3995,6 +4031,63 @@ class GTLiteMaterials
             .fluidPipeProperties(2000, 700, true)
             .build()
             .setFormula("(C6H4)2(CO)2(NH)2", true);
+
+        // 8105 Para Toluic Acid
+        @JvmField
+        val ParaToluicAcid: Material = Material.Builder(8105, gtliteId("para_toluic_acid"))
+            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            .color(0x4FA597)
+            .components(Carbon, 8, Hydrogen, 8, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8106 Methylparatoluate
+        @JvmField
+        val Methylparatoluate: Material = Material.Builder(8106, gtliteId("methylparatoluate"))
+            .liquid()
+            .color(0x76BCB0)
+            .components(Carbon, 9, Hydrogen, 10, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8107 Dimethyl Terephthalate
+        @JvmField
+        val DimethylTerephthalate: Material = Material.Builder(8107, gtliteId("dimethyl_terephthalate"))
+            .liquid()
+            .color(0x05D8AF)
+            .components(Carbon, 10, Hydrogen, 10, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8108 Polyethylene Terephthalate (PET)
+        @JvmField
+        val PolyethyleneTerephthalate: Material = Material.Builder(8108, gtliteId("polyethylene_terephthalate"))
+            .polymer()
+            .liquid()
+            .color(0x1E5C58)
+            .components(Carbon, 10, Hydrogen, 6, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            .build()
+
+        // 8109 Trimethylaluminium
+        @JvmField
+        val Trimethylaluminium: Material = Material.Builder(8109, gtliteId("trimethylaluminium"))
+            .liquid()
+            .color(0x6ECCFF)
+            .components(Aluminium, 2, Carbon, 6, Hydrogen, 18)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Al2(CH3)6", true)
+
+        // 8110 Trimethylgallium
+        @JvmField
+        val Trimethylgallium: Material = Material.Builder(8110, gtliteId("trimethylgallium"))
+            .liquid()
+            .color(0x4F92FF)
+            .components(Gallium, 1, Carbon, 3, Hydrogen, 9)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Ga(CH3)3", true)
 
         // =======================================================================
         // 12001-14000: Unknown Composition Materials
