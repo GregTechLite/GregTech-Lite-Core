@@ -36,6 +36,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.SiliconeRubber
@@ -936,8 +937,8 @@ class AssemblyLineRecipes
                 .input(plate, EnrichedNaquadahAlloy, 4)
                 .input(QUANTUM_STAR, 4)
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
-                .input(foil, Bedrockium, 64)
-                .input(foil, Bedrockium, 64)
+                .input(foil, Rutherfordium, 64)
+                .input(foil, Rutherfordium, 64)
                 .input(cableGtSingle, YttriumBariumCuprate, 4)
                 .fluidInputs(SolderingAlloy.getFluid(L * 8))
                 .fluidInputs(Naquadria.getFluid(L))

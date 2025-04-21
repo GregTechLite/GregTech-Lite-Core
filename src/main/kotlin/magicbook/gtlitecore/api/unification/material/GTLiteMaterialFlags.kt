@@ -211,6 +211,7 @@ class GTLiteMaterialFlags
             Thallium.addFlags(GENERATE_FOIL)
             Barium.addFlags(GENERATE_FOIL)
             Calcium.addFlags(GENERATE_FOIL)
+            Rutherfordium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
