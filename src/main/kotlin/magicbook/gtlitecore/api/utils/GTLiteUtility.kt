@@ -4,25 +4,19 @@ import gregtech.api.GTValues
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
-import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.Minecraft
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.potion.PotionEffect
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.IBlockAccess
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.function.BooleanSupplier
-import java.util.function.Consumer
 import java.util.function.Supplier
 import kotlin.math.pow
 

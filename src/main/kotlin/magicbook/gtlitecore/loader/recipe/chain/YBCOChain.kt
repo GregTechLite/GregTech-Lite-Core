@@ -41,7 +41,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.YttriumNit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.YttriumOxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
 
 @Suppress("MISSING_DEPENDENCY_CLASS")

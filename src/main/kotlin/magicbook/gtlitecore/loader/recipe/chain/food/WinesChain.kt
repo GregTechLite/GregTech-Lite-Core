@@ -9,7 +9,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE_JUICE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.POTATO_JUICE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RED_WINE

@@ -4,10 +4,7 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
-import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
-import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Steam

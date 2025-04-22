@@ -28,8 +28,8 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumTrichloride
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylaluminium

@@ -9,15 +9,12 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Acetone
-import gregtech.api.unification.material.Materials.AntimonyTrifluoride
 import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Fluorine
-import gregtech.api.unification.material.Materials.FluoroantimonicAcid
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
-import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.SodaAsh

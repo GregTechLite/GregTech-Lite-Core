@@ -26,7 +26,6 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
-import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilder;
 import magicbook.gtlitecore.api.recipe.property.ComponentAssemblyLineTieredProperty;
 import magicbook.gtlitecore.api.unification.GTLiteMaterials;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
@@ -35,7 +34,6 @@ import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
-import magicbook.gtlitecore.loader.recipe.producer.ComponentAssemblyLineRecipeProducer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -51,7 +49,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static gregtech.api.util.RelativeDirection.DOWN;
 import static gregtech.api.util.RelativeDirection.FRONT;

@@ -56,7 +56,6 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Naquadah
-import gregtech.api.unification.material.Materials.NaturalGas
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Niobium

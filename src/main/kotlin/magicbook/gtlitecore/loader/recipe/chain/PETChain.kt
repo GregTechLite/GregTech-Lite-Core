@@ -7,12 +7,10 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.CarbonDioxide
-import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Water
-import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylTerephthalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthyleneGlycol

@@ -80,7 +80,6 @@ import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
-import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
@@ -157,6 +156,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_Z
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
+import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 

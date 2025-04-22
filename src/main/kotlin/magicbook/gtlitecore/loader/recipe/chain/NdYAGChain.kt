@@ -9,7 +9,6 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.Hydrogen

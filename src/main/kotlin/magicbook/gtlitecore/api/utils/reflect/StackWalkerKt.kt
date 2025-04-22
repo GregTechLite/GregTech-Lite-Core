@@ -1,6 +1,5 @@
 package magicbook.gtlitecore.api.utils.reflect
 
-import java.util.function.Function
 import java.util.stream.Stream
 
 class StackWalkerKt

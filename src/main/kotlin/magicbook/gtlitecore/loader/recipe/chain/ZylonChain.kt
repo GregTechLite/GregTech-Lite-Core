@@ -14,11 +14,9 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Bromine
-import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrogenSulfide
-import gregtech.api.unification.material.Materials.MethylAcetate
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium

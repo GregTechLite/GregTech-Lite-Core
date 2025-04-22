@@ -50,8 +50,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBro
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE

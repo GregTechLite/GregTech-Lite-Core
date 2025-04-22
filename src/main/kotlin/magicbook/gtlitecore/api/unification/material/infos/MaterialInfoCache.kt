@@ -41,7 +41,6 @@ import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Hafnium
-import gregtech.api.unification.material.Materials.Hassium
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -71,7 +70,6 @@ import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Nobelium
-import gregtech.api.unification.material.Materials.Oganesson
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
