@@ -46,6 +46,7 @@ import magicbook.gtlitecore.common.block.blocks.GTLiteWoodFenceGateVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodFenceVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodSlabVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodStairVariantBlock
+import magicbook.gtlitecore.common.worldgen.crops.WorldGenCrops
 import magicbook.gtlitecore.common.worldgen.trees.AbstractTree
 import magicbook.gtlitecore.common.worldgen.trees.WorldGenTrees
 import net.minecraft.block.Block
@@ -192,9 +193,11 @@ class GTLiteMetaBlocks
                 val planks = GTLitePlankVariantBlock(i)
                 planks.setRegistryName("gtlite_planks_$i")
             }
-            // TODO Crops, Berries?
+            // Various Crops.
+            WorldGenCrops.init()
+            // TODO Various Berries?
 
-            // Setup blocks for AbstractTree componetns.
+            // Setup blocks for AbstractTree components.
             AbstractTree.trees.forEach { it.setupBlocks() }
 
             // Wooden slabs.

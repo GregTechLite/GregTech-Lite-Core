@@ -554,23 +554,6 @@ class GTLiteUtility
         }
 
         /**
-         * Add potion effect tooltips which is client-only.
-         * This is useful for [magicbook.gtlitecore.common.item.behavior.FoodBehavior].
-         */
-        @SideOnly(Side.CLIENT)
-        @JvmStatic
-        fun addPotionEffectTooltip(effects: List<RandomPotionEffect>,
-                                   lines: MutableList<String>?)
-        {
-            lines!!.add(TextComponentTranslation("${GTLiteValues.MODID}.tooltip.potion.header").formattedText)
-            effects.forEach(Consumer { effect: RandomPotionEffect ->
-                lines.add(TextComponentTranslation("${GTLiteValues.MODID}.tooltip.potion.each",
-                    TextComponentTranslation((effect.effect as PotionEffect).effectName).formattedText,
-                    TextComponentTranslation("enchantment.level." + (effect.effect.getAmplifier() + 1)),
-                    effect.effect.getDuration(), 100 - effect.chance).formattedText) })
-        }
-
-        /**
          * Load file as string from a [location].
          */
         @JvmStatic

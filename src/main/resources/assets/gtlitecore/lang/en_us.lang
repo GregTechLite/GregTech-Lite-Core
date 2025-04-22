@@ -957,6 +957,51 @@ metaitem.food.fruit.olive.name=Olive
 metaitem.food.fruit.nutmeg.name=Nutmeg
 metaitem.food.fruit.coconut.name=Coconut
 
+metaitem.crop.seed.coffee.name=咖啡种子
+metaitem.crop.seed.tomato.name=番茄种子
+metaitem.crop.seed.onion.name=洋葱种子
+metaitem.crop.seed.cucumber.name=黄瓜种子
+metaitem.crop.seed.grape.name=葡萄种子
+metaitem.crop.seed.soy.name=大豆种子
+metaitem.crop.seed.bean.name=绿豆种子
+metaitem.crop.seed.pea.name=豌豆种子
+metaitem.crop.seed.oregano.name=牛至种子
+metaitem.crop.seed.horseradish.name=山葵种子
+metaitem.crop.seed.garlic.name=大蒜种子
+metaitem.crop.seed.basil.name=罗勒种子
+metaitem.crop.seed.aubergine.name=茄子种子
+metaitem.crop.seed.corn.name=玉米种子
+metaitem.crop.seed.artichoke.name=洋蓟种子
+metaitem.crop.seed.black_pepper.name=黑胡椒种子
+metaitem.crop.seed.rice.name=大米种子
+metaitem.crop.seed.white_grape.name=白葡萄种子
+metaitem.crop.seed.cotton.name=棉花种子
+
+metaitem.crop.coffee_cherry.name=咖啡叶
+metaitem.crop.tomato.name=番茄
+metaitem.crop.onion.name=洋葱
+metaitem.crop.cucumber.name=黄瓜
+metaitem.crop.grape.name=葡萄
+metaitem.crop.soybean.name=大豆
+metaitem.crop.bean.name=绿豆
+metaitem.crop.pea.name=豌豆
+metaitem.crop.oregano.name=牛至
+metaitem.crop.horseradish.name=山葵
+metaitem.crop.garlic_bulb.name=大蒜
+metaitem.crop.basil.name=罗勒叶
+metaitem.crop.aubergine.name=茄子
+metaitem.crop.corn.name=玉米
+metaitem.crop.artichoke.name=洋蓟
+metaitem.crop.black_pepper.name=黑胡椒
+metaitem.crop.rice.name=大米
+metaitem.crop.white_grape.name=白葡萄
+metaitem.crop.cotton.name=棉花
+
+metaitem.food.drink.grape_juice.name=Grape Juice
+metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
+metaitem.food.drink.red_wine.name=Red Wine
+metaitem.food.drink.red_wine.tooltip=Fine Wine
+
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
 
@@ -2538,6 +2583,8 @@ gtlitecore.material.sapphire_juice=Sapphire Juice
 gtlitecore.material.ruby_juice=Ruby Juice
 
 gtlitecore.material.greenhouse_gas=Greenhouse Gas
+gtlitecore.material.grape_juice=Grape Juice
+gtlitecore.material.red_wine=Red Wine
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
@@ -2641,6 +2688,10 @@ gtlitecore.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%�
 
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
 gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
+
+gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植它并等待成熟可收获其果实。
+gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
+gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
 
 # Creative Tabs
 itemGroup.gtlite=GregTech Lite

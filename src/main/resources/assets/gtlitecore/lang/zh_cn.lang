@@ -957,6 +957,51 @@ metaitem.food.fruit.olive.name=橄榄
 metaitem.food.fruit.nutmeg.name=肉桂
 metaitem.food.fruit.coconut.name=椰子
 
+metaitem.crop.seed.coffee.name=咖啡种子
+metaitem.crop.seed.tomato.name=番茄种子
+metaitem.crop.seed.onion.name=洋葱种子
+metaitem.crop.seed.cucumber.name=黄瓜种子
+metaitem.crop.seed.grape.name=葡萄种子
+metaitem.crop.seed.soy.name=大豆种子
+metaitem.crop.seed.bean.name=绿豆种子
+metaitem.crop.seed.pea.name=豌豆种子
+metaitem.crop.seed.oregano.name=牛至种子
+metaitem.crop.seed.horseradish.name=山葵种子
+metaitem.crop.seed.garlic.name=大蒜种子
+metaitem.crop.seed.basil.name=罗勒种子
+metaitem.crop.seed.aubergine.name=茄子种子
+metaitem.crop.seed.corn.name=玉米种子
+metaitem.crop.seed.artichoke.name=洋蓟种子
+metaitem.crop.seed.black_pepper.name=黑胡椒种子
+metaitem.crop.seed.rice.name=大米种子
+metaitem.crop.seed.white_grape.name=白葡萄种子
+metaitem.crop.seed.cotton.name=棉花种子
+
+metaitem.crop.coffee_cherry.name=咖啡叶
+metaitem.crop.tomato.name=番茄
+metaitem.crop.onion.name=洋葱
+metaitem.crop.cucumber.name=黄瓜
+metaitem.crop.grape.name=葡萄
+metaitem.crop.soybean.name=大豆
+metaitem.crop.bean.name=绿豆
+metaitem.crop.pea.name=豌豆
+metaitem.crop.oregano.name=牛至
+metaitem.crop.horseradish.name=山葵
+metaitem.crop.garlic_bulb.name=大蒜
+metaitem.crop.basil.name=罗勒叶
+metaitem.crop.aubergine.name=茄子
+metaitem.crop.corn.name=玉米
+metaitem.crop.artichoke.name=洋蓟
+metaitem.crop.black_pepper.name=黑胡椒
+metaitem.crop.rice.name=大米
+metaitem.crop.white_grape.name=白葡萄
+metaitem.crop.cotton.name=棉花
+
+metaitem.food.drink.grape_juice.name=葡萄汁
+metaitem.food.drink.grape_juice.tooltip=富含糖分
+metaitem.food.drink.red_wine.name=红葡萄酒
+metaitem.food.drink.red_wine.tooltip=平淡无奇
+
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
 
@@ -2542,6 +2587,8 @@ gtlitecore.material.sapphire_juice=蓝宝石汁
 gtlitecore.material.ruby_juice=红宝石汁
 
 gtlitecore.material.greenhouse_gas=温室气体
+gtlitecore.material.grape_juice=葡萄汁
+gtlitecore.material.red_wine=红葡萄酒
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
@@ -2646,6 +2693,10 @@ gtlitecore.tooltip.potion.each=   §a%4$s%%§r 概率获得 §c%3$s§r 刻的§e
 
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
+
+gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植它并等待成熟可收获其果实。
+gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
+gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
 
 # Creative Tabs
 itemGroup.gtlite=格雷科技精简版

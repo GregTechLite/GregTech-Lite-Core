@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:crop_cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/bean/5"
+        }
+      },
+      "6": {},
+      "7": {}
+    }
+  }
+}

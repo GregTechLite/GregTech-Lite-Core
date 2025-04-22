@@ -13,6 +13,7 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.command.CommandMaterialComponent;
 import magicbook.gtlitecore.common.cover.GTLiteCoverBehaviors;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
+import magicbook.gtlitecore.common.item.behavior.GTLiteBehaviors;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.advancement.AdvancementManager;
 import magicbook.gtlitecore.core.advancement.trigger.AdvancementTriggers;
@@ -116,7 +117,7 @@ public class CoreModule implements IModule
     @Override
     public void postInit(FMLPostInitializationEvent event)
     {
-        // ...
+        GTLiteBehaviors.addBehaviors();
     }
 
     @Override

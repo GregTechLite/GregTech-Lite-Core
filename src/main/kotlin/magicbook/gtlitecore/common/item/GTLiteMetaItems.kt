@@ -8,6 +8,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.stack.ItemMaterialInfo
 import gregtech.api.unification.stack.MaterialStack
+import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
@@ -17,8 +18,11 @@ import magicbook.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import magicbook.gtlitecore.common.item.behavior.FoodBehavior
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.init.Items
+import net.minecraft.init.MobEffects
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS", "MISSING_DEPENDENCY_SUPERCLASS")
 class GTLiteMetaItems
@@ -321,6 +325,49 @@ class GTLiteMetaItems
         lateinit var OLIVE: MetaItem<*>.MetaValueItem
         lateinit var NUTMEG: MetaItem<*>.MetaValueItem
         lateinit var COCONUT: MetaItem<*>.MetaValueItem
+
+        lateinit var COFFEE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var TOMATO_SEED: MetaItem<*>.MetaValueItem
+        lateinit var ONION_SEED: MetaItem<*>.MetaValueItem
+        lateinit var CUCUMBER_SEED: MetaItem<*>.MetaValueItem
+        lateinit var GRAPE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var SOY_SEED: MetaItem<*>.MetaValueItem
+        lateinit var BEAN_SEED: MetaItem<*>.MetaValueItem
+        lateinit var PEA_SEED: MetaItem<*>.MetaValueItem
+        lateinit var OREGANO_SEED: MetaItem<*>.MetaValueItem
+        lateinit var HORSERADISH_SEED: MetaItem<*>.MetaValueItem
+        lateinit var GARLIC_SEED: MetaItem<*>.MetaValueItem
+        lateinit var BASIL_SEED: MetaItem<*>.MetaValueItem
+        lateinit var AUBERGINE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var CORN_SEED: MetaItem<*>.MetaValueItem
+        lateinit var ARTICHOKE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var BLACK_PEPPER_SEED: MetaItem<*>.MetaValueItem
+        lateinit var RICE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var WHITE_GRAPE_SEED: MetaItem<*>.MetaValueItem
+        lateinit var COTTON_SEED: MetaItem<*>.MetaValueItem
+
+        lateinit var COFFEE_CHERRY: MetaItem<*>.MetaValueItem
+        lateinit var TOMATO: MetaItem<*>.MetaValueItem
+        lateinit var ONION: MetaItem<*>.MetaValueItem
+        lateinit var CUCUMBER: MetaItem<*>.MetaValueItem
+        lateinit var GRAPE: MetaItem<*>.MetaValueItem
+        lateinit var SOYBEAN: MetaItem<*>.MetaValueItem
+        lateinit var BEAN: MetaItem<*>.MetaValueItem
+        lateinit var PEA: MetaItem<*>.MetaValueItem
+        lateinit var OREGANO: MetaItem<*>.MetaValueItem
+        lateinit var HORSERADISH: MetaItem<*>.MetaValueItem
+        lateinit var GARLIC_BULB: MetaItem<*>.MetaValueItem
+        lateinit var BASIL: MetaItem<*>.MetaValueItem
+        lateinit var AUBERGINE: MetaItem<*>.MetaValueItem
+        lateinit var CORN: MetaItem<*>.MetaValueItem
+        lateinit var ARTICHOKE: MetaItem<*>.MetaValueItem
+        lateinit var BLACK_PEPPER: MetaItem<*>.MetaValueItem
+        lateinit var RICE: MetaItem<*>.MetaValueItem
+        lateinit var WHITE_GRAPE: MetaItem<*>.MetaValueItem
+        lateinit var COTTON: MetaItem<*>.MetaValueItem
+
+        lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
+        lateinit var RED_WINE: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -848,6 +895,8 @@ class GTLiteMetaItems
                 .addOreDict("dustMudBall")
 
             // 9001-10000: Miscellaneous Foods.
+
+            // 9001-9200: Fruits
             BANANA = GTLITE_ITEMS.addItem(9001, "food.fruit.banana")
                 .addComponents(FoodBehavior(2, 1f)
                     .setEatingDuration(3 * SECOND))
@@ -904,6 +953,156 @@ class GTLiteMetaItems
 
             COCONUT = GTLITE_ITEMS.addItem(9009, "food.fruit.coconut")
                 .addOreDict("cropCoconut")
+
+            // 9201-9300: Seeds and Crops
+            COFFEE_SEED = GTLITE_ITEMS.addItem(9201, "crop.seed.coffee")
+                .addOreDict("seedCoffee")
+
+            TOMATO_SEED = GTLITE_ITEMS.addItem(9202, "crop.seed.tomato")
+                .addOreDict("seedTomato")
+
+            ONION_SEED = GTLITE_ITEMS.addItem(9203, "crop.seed.tomato")
+                .addOreDict("seedOnion")
+
+            CUCUMBER_SEED = GTLITE_ITEMS.addItem(9204, "crop.seed.cucumber")
+                .addOreDict("seedCucumber")
+
+            GRAPE_SEED = GTLITE_ITEMS.addItem(9205, "crop.seed.grape")
+                .addOreDict("seedGrape")
+
+            SOY_SEED = GTLITE_ITEMS.addItem(9206, "crop.seed.soy")
+                .addOreDict("seedSoy")
+
+            BEAN_SEED = GTLITE_ITEMS.addItem(9207, "crop.seed.bean")
+                .addOreDict("seedBean")
+
+            PEA_SEED = GTLITE_ITEMS.addItem(9208, "crop.seed.pea")
+                .addOreDict("seedPea")
+
+            OREGANO_SEED = GTLITE_ITEMS.addItem(9209, "crop.seed.oregano")
+                .addOreDict("seedOregano")
+
+            HORSERADISH_SEED = GTLITE_ITEMS.addItem(9210, "crop.seed.horseradish")
+                .addOreDict("seedHorseradish")
+
+            GARLIC_SEED = GTLITE_ITEMS.addItem(9211, "crop.seed.garlic")
+                .addOreDict("seedGarlic")
+
+            BASIL_SEED = GTLITE_ITEMS.addItem(9212, "crop.seed.basil")
+                .addOreDict("seedBasil")
+
+            AUBERGINE_SEED = GTLITE_ITEMS.addItem(9213, "crop.seed.aubergine")
+                .addOreDict("seedAubergine")
+
+            CORN_SEED = GTLITE_ITEMS.addItem(9214, "crop.seed.corn")
+                .addOreDict("seedCorn")
+
+            ARTICHOKE_SEED = GTLITE_ITEMS.addItem(9215, "crop.seed.artichoke")
+                .addOreDict("seedArtichoke")
+
+            BLACK_PEPPER_SEED = GTLITE_ITEMS.addItem(9216, "crop.seed.black_pepper")
+                .addOreDict("seedBlackPepper")
+
+            RICE_SEED = GTLITE_ITEMS.addItem(9217, "crop.seed.rice")
+                .addOreDict("seedRice")
+
+            WHITE_GRAPE_SEED = GTLITE_ITEMS.addItem(9218, "crop.seed.white_grape")
+                .addOreDict("seedWhiteGrape")
+
+            COTTON_SEED = GTLITE_ITEMS.addItem(9219, "crop.seed.cotton")
+                .addOreDict("seedCotton")
+
+            COFFEE_CHERRY = GTLITE_ITEMS.addItem(9251, "crop.coffee_cherry")
+                .addOreDict("cropCoffee")
+
+            TOMATO = GTLITE_ITEMS.addItem(9252, "crop.tomato")
+                .addComponents(FoodBehavior(3, 0.5f)
+                    .setEatingDuration(3 * SECOND + 12 * TICK))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitTomato")
+                .addOreDict("cropTomato")
+
+            ONION = GTLITE_ITEMS.addItem(9253, "crop.onion")
+                .addComponents(FoodBehavior(3, 0.33f)
+                    .setEatingDuration(6 * SECOND + 8 * TICK))
+                .addOreDict("foodAny")
+                .addOreDict("vegetableAny")
+                .addOreDict("vegetableOnion")
+                .addOreDict("cropOnion")
+
+            CUCUMBER = GTLITE_ITEMS.addItem(9254, "crop.cucumber")
+                .addComponents(FoodBehavior(2, 0.5f)
+                    .setEatingDuration(3 * SECOND + 4 * TICK))
+                .addOreDict("foodAny")
+                .addOreDict("vegetableAny")
+                .addOreDict("vegetableCucumber")
+                .addOreDict("cropCucumber")
+
+            GRAPE = GTLITE_ITEMS.addItem(9255, "crop.grape")
+                .addComponents(FoodBehavior(1, 1f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitGrape")
+                .addOreDict("cropGrape")
+
+            SOYBEAN = GTLITE_ITEMS.addItem(9256, "crop.soybean")
+                .addOreDict("cropSoy")
+
+            BEAN = GTLITE_ITEMS.addItem(9257, "crop.bean")
+                .addOreDict("cropBean")
+
+            PEA = GTLITE_ITEMS.addItem(9258, "crop.pea")
+                .addOreDict("cropPea")
+
+            OREGANO = GTLITE_ITEMS.addItem(9259, "crop.oregano")
+                .addOreDict("cropOregano")
+
+            HORSERADISH = GTLITE_ITEMS.addItem(9260, "crop.horseradish")
+                .addOreDict("cropHorseradish")
+
+            GARLIC_BULB = GTLITE_ITEMS.addItem(9261, "crop.garlic_bulb")
+                .addOreDict("cropGarlic")
+
+            BASIL = GTLITE_ITEMS.addItem(9262, "crop.basil")
+                .addOreDict("cropBasil")
+
+            AUBERGINE = GTLITE_ITEMS.addItem(9263, "crop.aubergine")
+                .addOreDict("cropAubergine")
+
+            CORN = GTLITE_ITEMS.addItem(9264, "crop.corn")
+                .addOreDict("cropCorn")
+
+            ARTICHOKE = GTLITE_ITEMS.addItem(9265, "crop.artichoke")
+                .addOreDict("cropArtichoke")
+
+            BLACK_PEPPER = GTLITE_ITEMS.addItem(9266, "crop.black_pepper")
+                .addOreDict("cropBlackPepper")
+
+            RICE = GTLITE_ITEMS.addItem(9267, "crop.rice")
+                .addOreDict("cropRice")
+
+            WHITE_GRAPE = GTLITE_ITEMS.addItem(9268, "crop.white_grape")
+                .addComponents(FoodBehavior(1, 1f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitGrape")
+                .addOreDict("fruitWhiteGrape")
+                .addOreDict("cropWhiteGrape")
+
+            COTTON = GTLITE_ITEMS.addItem(9269, "crop.cotton")
+                .addOreDict("cropCotton")
+
+            // ...
+
+            GRAPE_JUICE = GTLITE_ITEMS.addItem(9051, "food.drink.grape_juice")
+                .addComponents(FoodBehavior(3, 0.2F, true, true, ItemStack(Items.GLASS_BOTTLE)))
+
+            RED_WINE = GTLITE_ITEMS.addItem(9052, "food.drink.red_wine")
+                .addComponents(FoodBehavior(4, 0.7f, true, true, ItemStack(Items.GLASS_BOTTLE),
+                    RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
+                    RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
+                    .setEatingDuration(8 * SECOND + 16 * TICK))
 
         }
 

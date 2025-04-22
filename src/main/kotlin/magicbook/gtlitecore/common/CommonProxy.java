@@ -8,6 +8,7 @@ import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix;
 import magicbook.gtlitecore.api.utils.GTLiteLog;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.GTLiteCropVariantBlock;
 import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock;
 import magicbook.gtlitecore.common.block.itemblocks.SheetedFrameItemBlock;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
@@ -47,6 +48,9 @@ public class CommonProxy
         GTLiteMetaBlocks.LOGS.forEach(registry::register);
         GTLiteMetaBlocks.PLANKS.forEach(registry::register);
         GTLiteMetaBlocks.SAPLINGS.forEach(registry::register);
+        // Register all crops.
+        GTLiteCropVariantBlock.CROPS.forEach(registry::register);
+        // TODO berries registrate?
         // Wooden slabs.
         registry.register(GTLiteMetaBlocks.WOOD_SLABS);
         registry.register(GTLiteMetaBlocks.DOUBLE_WOOD_SLABS);

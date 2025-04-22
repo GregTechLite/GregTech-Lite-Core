@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "crop"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/0"
+        }
+      },
+      "1": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/1"
+        }
+      },
+      "2": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/2"
+        }
+      },
+      "3": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/3"
+        }
+      },
+      "4": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/4"
+        }
+      },
+      "5": {
+        "textures": {
+          "crop": "gtlitecore:blocks/crops/cotton/5"
+        }
+      },
+      "6": {},
+      "7": {}
+    }
+  }
+}

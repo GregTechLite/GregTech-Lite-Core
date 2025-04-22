@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "gtlitecore:crop_cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gtlitecore:blocks/crops/basil/5"
+        }
+      },
+      "6": {},
+      "7": {}
+    }
+  }
+}

@@ -4324,6 +4324,7 @@ class GTLiteMaterials
             .build()
             .setFormula("EGF", false) // C257H381N73O83S7 in reality world ^^.
 
+        // 12026 CAT
         @JvmField
         val CAT: Material = Material.Builder(12026, gtliteId("cat"))
             .liquid()
@@ -4364,6 +4365,20 @@ class GTLiteMaterials
             .gas(FluidBuilder().temperature(313))
             .build()
             .setFormula("N78O21Ar9?", true)
+
+        // 12041 Grape Juice
+        @JvmField
+        val GrapeJuice: Material = Material.Builder(12041, gtliteId("grape_juice"))
+            .liquid()
+            .color(0x50C039)
+            .build()
+
+        // 12042 Red Wine
+        @JvmField
+        val RedWine: Material = Material.Builder(12042, gtliteId("red_wine"))
+            .liquid()
+            .color(0x7D0B07)
+            .build()
 
         // ...
 
