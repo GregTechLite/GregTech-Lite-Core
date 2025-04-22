@@ -29,7 +29,7 @@ import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
-import magicbook.gtlitecore.loader.recipe.chain.OilCrackingChain
+import magicbook.gtlitecore.loader.recipe.chain.OilsChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
 import magicbook.gtlitecore.loader.recipe.chain.PEEKChain
@@ -140,7 +140,7 @@ class RecipeManager
             ComponentAssemblyLineRecipeProducer.produce()
 
             // Loading chains and ore processings.
-            OilCrackingChain.init()
+            OilsChain.init()
             RubbersChain.init()
             PolymersChain.init()
             AlloysChain.init()

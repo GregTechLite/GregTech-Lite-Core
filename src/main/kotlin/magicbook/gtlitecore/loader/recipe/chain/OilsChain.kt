@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -22,6 +23,7 @@ import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.Ethylbenzene
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.HeavyFuel
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydroCrackedButadiene
 import gregtech.api.unification.material.Materials.HydroCrackedButane
 import gregtech.api.unification.material.Materials.HydroCrackedEthane
@@ -33,6 +35,7 @@ import gregtech.api.unification.material.Materials.Isoprene
 import gregtech.api.unification.material.Materials.LightFuel
 import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Naphtha
+import gregtech.api.unification.material.Materials.NaturalGas
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Propane
 import gregtech.api.unification.material.Materials.Propene
@@ -68,7 +71,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.GTRecipeUtility
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class OilCrackingChain
+class OilsChain
 {
 
     companion object
@@ -85,6 +88,18 @@ class OilCrackingChain
             carbon5FractionProcessing()
             oilFuelRecipes()
             catalyticReforming()
+
+            // Natural gas distillation addition.
+            DISTILLATION_RECIPES.recipeBuilder()
+                .fluidInputs(NaturalGas.getFluid(1000))
+                .fluidOutputs(Methane.getFluid(650)) // CH4
+                .fluidOutputs(Ethane.getFluid(128)) // C2H6
+                .fluidOutputs(Propane.getFluid(128)) // C3H8
+                .fluidOutputs(Butane.getFluid(64)) // C4H10
+                .fluidOutputs(Helium.getFluid(24))
+                .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
         }
 
         private fun ethaneCrackProcessing()
