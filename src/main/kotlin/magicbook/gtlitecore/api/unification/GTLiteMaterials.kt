@@ -4380,6 +4380,20 @@ class GTLiteMaterials
             .color(0x7D0B07)
             .build()
 
+        // 12043 Vinegar
+        @JvmField
+        val Vinegar: Material = Material.Builder(12043, gtliteId("vinegar"))
+            .liquid()
+            .color(0x5E0805)
+            .build()
+
+        // 12044 Potato Juice
+        @JvmField
+        val PotatoJuice: Material = Material.Builder(12044, gtliteId("potato_juice"))
+            .liquid()
+            .color(0xC3A92C)
+            .build()
+
         // ...
 
         // 12050 Carbon 5 Fraction
@@ -4819,7 +4833,7 @@ class GTLiteMaterials
         // 12174 Unprocessed Nd:YAG Solution
         val UnprocessedNdYAGSolution: Material = Material.Builder(12174, gtliteId("unprocessed_nd_yag_solution"))
             .liquid()
-            .color(0x6f20af).iconSet(DULL)
+            .color(0x6F20AF).iconSet(DULL)
             .build()
             .setFormula("Nd:YAG?", false)
 

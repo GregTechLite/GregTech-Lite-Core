@@ -368,6 +368,8 @@ class GTLiteMetaItems
 
         lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
         lateinit var RED_WINE: MetaItem<*>.MetaValueItem
+        lateinit var VINEGAR: MetaItem<*>.MetaValueItem
+        lateinit var POTATO_JUICE: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1100,9 +1102,17 @@ class GTLiteMetaItems
 
             RED_WINE = GTLITE_ITEMS.addItem(9052, "food.drink.red_wine")
                 .addComponents(FoodBehavior(4, 0.7f, true, true, ItemStack(Items.GLASS_BOTTLE),
-                    RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
-                    RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
+                    RandomPotionEffect(MobEffects.NAUSEA, 30 * SECOND, 0, 100 - 60),
+                    RandomPotionEffect(MobEffects.RESISTANCE, 20 * SECOND, 0, 100 - 40))
                     .setEatingDuration(8 * SECOND + 16 * TICK))
+
+            VINEGAR = GTLITE_ITEMS.addItem(9053, "food.drink.vinegar")
+                .addComponents(FoodBehavior(2, 0.5f, true, true, ItemStack(Items.GLASS_BOTTLE),
+                    RandomPotionEffect(MobEffects.RESISTANCE, 10 * SECOND, 0, 100 - 30)))
+
+            POTATO_JUICE = GTLITE_ITEMS.addItem(9054, "food.drink.potato_juice")
+                .addComponents(FoodBehavior(4, 0.4F, true, true, ItemStack(Items.GLASS_BOTTLE),
+                    RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
 
         }
 

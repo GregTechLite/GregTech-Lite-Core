@@ -49,6 +49,7 @@ import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.chain.ZylonChain
 import magicbook.gtlitecore.loader.recipe.chain.food.PurpleDrinkChain
+import magicbook.gtlitecore.loader.recipe.chain.food.VinegarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.WinesChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
@@ -191,6 +192,7 @@ class RecipeManager
 
             WinesChain.init()
             PurpleDrinkChain.init()
+            VinegarChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

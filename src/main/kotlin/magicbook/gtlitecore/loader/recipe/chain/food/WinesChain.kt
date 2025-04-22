@@ -5,11 +5,13 @@ import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Water
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapeJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE_JUICE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.POTATO_JUICE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RED_WINE
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -36,6 +38,23 @@ class WinesChain
                 .inputs(ItemStack(Items.GLASS_BOTTLE))
                 .fluidInputs(GrapeJuice.getFluid(250))
                 .output(GRAPE_JUICE)
+                .EUt(4)
+                .duration(10 * TICK)
+                .buildAndRegister()
+
+            // Potato Juice
+            MIXER_RECIPES.recipeBuilder()
+                .inputs(ItemStack(Items.POTATO))
+                .fluidInputs(Water.getFluid(750))
+                .fluidOutputs(PotatoJuice.getFluid(750))
+                .EUt(4)
+                .duration(6 * SECOND + 8 * TICK)
+                .buildAndRegister()
+
+            CANNER_RECIPES.recipeBuilder()
+                .inputs(ItemStack(Items.GLASS_BOTTLE))
+                .fluidInputs(PotatoJuice.getFluid(250))
+                .output(POTATO_JUICE)
                 .EUt(4)
                 .duration(10 * TICK)
                 .buildAndRegister()
