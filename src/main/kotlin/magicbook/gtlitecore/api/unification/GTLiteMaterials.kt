@@ -3295,7 +3295,7 @@ class GTLiteMaterials
         // 6032 Supercritical Eutatic Sodium Potassium
         @JvmField
         val SupercriticalSodiumPotassiumEutatic: Material = Material.Builder(6032, gtliteId("supercritical_sodium_potassium_eutatic"))
-            .liquid()
+            .liquid(FluidBuilder().temperature(1058))
             .color(SodiumPotassiumEutatic.materialRGB).iconSet(SUPERCRITICAL)
             .components(SodiumPotassiumEutatic, 1)
             .flags(DISABLE_DECOMPOSITION)
@@ -3304,7 +3304,7 @@ class GTLiteMaterials
         // 6033 Supercritical Eutatic Lead Bismuth
         @JvmField
         val SupercriticalLeadBismuthEutatic: Material = Material.Builder(6033, gtliteId("supercritical_lead_bismuth_eutatic"))
-            .liquid()
+            .liquid(FluidBuilder().temperature(1943))
             .color(LeadBismuthEutatic.materialRGB).iconSet(SUPERCRITICAL)
             .components(LeadBismuthEutatic, 1)
             .flags(DISABLE_DECOMPOSITION)
@@ -3313,7 +3313,7 @@ class GTLiteMaterials
         // 6034 Supercritical Lithium Sodium Potassium Fluorides
         @JvmField
         val SupercriticalLithiumSodiumPotassiumFluorides: Material = Material.Builder(6034, gtliteId("supercritical_lithium_sodium_potassium_fluorides"))
-            .liquid()
+            .liquid(FluidBuilder().temperature(1843))
             .color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(SUPERCRITICAL)
             .components(LithiumSodiumPotassiumFluorides, 1)
             .flags(DISABLE_DECOMPOSITION)
@@ -3322,7 +3322,7 @@ class GTLiteMaterials
         // 6035 Supercritical Lithium Beryllium Fluorides
         @JvmField
         val SupercriticalLithiumBerylliumFluorides: Material = Material.Builder(6035, gtliteId("supercritical_lithium_beryllium_fluorides"))
-            .liquid()
+            .liquid(FluidBuilder().temperature(1703))
             .color(LithiumBerylliumFluorides.materialRGB).iconSet(SUPERCRITICAL)
             .components(LithiumBerylliumFluorides, 1)
             .flags(DISABLE_DECOMPOSITION)
