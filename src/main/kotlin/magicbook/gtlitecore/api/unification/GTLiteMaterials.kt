@@ -1035,7 +1035,7 @@ class GTLiteMaterials
             .fluid()
             .color(0xFE71A9).iconSet(SHINY)
             .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_FINE_WIRE,
+            .flags(EXT2_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
                 GENERATE_GEAR)
             .blast { b ->
                 b.temp(3100, BlastProperty.GasTier.MID) // Nichrome
