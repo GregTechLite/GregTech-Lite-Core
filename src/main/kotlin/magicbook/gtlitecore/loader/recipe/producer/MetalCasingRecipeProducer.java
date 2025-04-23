@@ -9,7 +9,6 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03;
-import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01;
 import net.minecraft.util.IStringSerializable;
 
 import static gregtech.api.GTValues.LV;
@@ -34,7 +33,6 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.AluminiumBron
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.EglinSteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Grisium;
-import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HDCS;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HSLASteel;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HastelloyC276;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.HastelloyN;

@@ -99,8 +99,8 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.MolybdenumRheniumProcess
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NaquadahProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PlatinumGroupProcessing
-import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PoloniumRadiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.ProtactiniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing

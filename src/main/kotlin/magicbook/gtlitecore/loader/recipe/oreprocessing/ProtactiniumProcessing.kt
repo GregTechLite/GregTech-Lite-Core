@@ -1,24 +1,16 @@
 package magicbook.gtlitecore.loader.recipe.oreprocessing
 
-import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.unification.material.Materials.AceticAcid
-import gregtech.api.unification.material.Materials.NitricAcid
-import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylEther
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrate
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrateSolution
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 
 /**

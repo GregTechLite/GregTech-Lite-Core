@@ -236,7 +236,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy

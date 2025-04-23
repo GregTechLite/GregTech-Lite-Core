@@ -6,7 +6,6 @@ import gregtech.api.unification.material.info.MaterialIconSet
 import magicbook.gtlitecore.api.unification.material.infos.MaterialIconSetWithRenderer
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.item.behavior.HaloRenderItemBehavior
-import java.util.function.Supplier
 
 class GTLiteMaterialIconSet
 {

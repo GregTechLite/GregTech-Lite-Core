@@ -9,17 +9,9 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import one.util.streamex.StreamEx;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Spliterator;
-import java.util.Spliterators;
-import java.util.function.Consumer;
 import java.util.function.ToIntFunction;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 /**
  * A lazy and short-circuit stream related utilities class, this class is based on common
