@@ -97,6 +97,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.NaquadahProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PlatinumGroupProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.PoloniumRadiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
@@ -213,6 +214,7 @@ class RecipeManager
             AdamantiumProcessing.init()
             VibraniumProcessing.init()
             ThalliumProcessing.init()
+            PoloniumRadiumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

@@ -2403,6 +2403,16 @@ gtlitecore.material.alumina_solution=氧化铝混合溶液
 gtlitecore.material.nd_yag=钕掺杂的钇铝榴石
 gtlitecore.material.scandium_titanium_mixture=钪-钛混合物
 gtlitecore.material.radium_radon_mixture=镭-氡混合物
+gtlitecore.material.polonium_nitrate=硝酸钋
+gtlitecore.material.sodium_polonate=钋酸钠
+gtlitecore.material.polonium_dioxide=二氧化钋
+gtlitecore.material.uranyl_chloride_solution=氯化铀酰溶液
+gtlitecore.material.uranyl_nitrate_solution=硝酸铀酰溶液
+gtlitecore.material.radium_sulfate=硫酸镭
+gtlitecore.material.lead_sulfate=硫酸铅
+gtlitecore.material.thorium_nitrate=硝酸钍
+gtlitecore.material.radium_dichloride=二氯化镭
+gtlitecore.material.thorium_dioxide=二氧化钍
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

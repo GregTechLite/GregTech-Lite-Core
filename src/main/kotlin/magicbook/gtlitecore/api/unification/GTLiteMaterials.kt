@@ -100,6 +100,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
@@ -146,6 +147,7 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Thallium
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
@@ -153,6 +155,7 @@ import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.UUMatter
+import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -2560,6 +2563,97 @@ class GTLiteMaterials
             .colorAverage()
             .components(Radium, 1, Radon, 1)
             .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2233 Polonium Nitrate
+        @JvmField
+        val PoloniumNitrate: Material = Material.Builder(2233, gtliteId("polonium_nitrate"))
+            .dust()
+            .colorAverage().iconSet(ROUGH)
+            .components(Polonium, 1, Nitrogen, 4, Oxygen, 12)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Po(NO3)4", true)
+
+        // 2234 Sodium Polonate
+        @JvmField
+        val SodiumPolonate: Material = Material.Builder(2234, gtliteId("sodium_polonate"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Sodium, 2, Polonium, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Na2PoO4", true)
+
+        // 2235 Polonium Dioxide
+        @JvmField
+        val PoloniumDioxide: Material = Material.Builder(2235, gtliteId("polonium_dioxide"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Polonium, 1, Oxygen, 2)
+            .build()
+
+        // 2236 Uranyl Chloride Solution
+        @JvmField
+        val UranylChlorideSolution: Material = Material.Builder(2236, gtliteId("uranyl_chloride_solution"))
+            .liquid()
+            .color(0xDFE018)
+            .components(Uraninite, 1, Chlorine, 2, Water, 1, RareEarth, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2237 Uranyl Nitrate Solution
+        @JvmField
+        val UranylNitrateSolution: Material = Material.Builder(2237, gtliteId("uranyl_nitrate_solution"))
+            .liquid()
+            .colorAverage()
+            .components(Uraninite, 1, Nitrogen, 2, Oxygen, 7, Hydrogen, 2, RareEarth, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(UO2)(NO3)2(H2O)?", true)
+
+        // 2238 Radium Sulfate
+        @JvmField
+        val RadiumSulfate: Material = Material.Builder(2238, gtliteId("radium_sulfate"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Radium, 1, Sulfur, 1, Oxygen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2239 Lead Sulfate
+        @JvmField
+        val LeadSulfate: Material = Material.Builder(2239, gtliteId("lead_sulfate"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Lead, 1, Sulfur, 1, Oxygen, 4)
+            .build()
+
+        // 2240 Thorium Nitrate
+        @JvmField
+        val ThoriumNitrate: Material = Material.Builder(2240, gtliteId("thorium_nitrate"))
+            .dust()
+            .colorAverage().iconSet(METALLIC)
+            .components(Thorium, 1, Nitrogen, 4, Oxygen, 12)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("Th(NO3)4", true)
+
+        // 2241 Radium Dichloride
+        @JvmField
+        val RadiumDichloride: Material = Material.Builder(2241, gtliteId("radium_dichloride"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Radium, 1, Chlorine, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 2242 Thorium Dioxide
+        @JvmField
+        val ThoriumDioxide: Material = Material.Builder(2242, gtliteId("thorium_dioxide"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Thorium, 1, Oxygen, 2)
             .build()
 
         // =======================================================================

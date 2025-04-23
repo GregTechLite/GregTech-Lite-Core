@@ -2398,6 +2398,16 @@ gtlitecore.material.alumina_solution=Alumina Solution
 gtlitecore.material.nd_yag=Neodymium-doped Yttrium Aluminium Garnet
 gtlitecore.material.scandium_titanium_mixture=Scandium-Titanium Mixture
 gtlitecore.material.radium_radon_mixture=Radium-Radon Mixture
+gtlitecore.material.polonium_nitrate=Polonium Nitrate
+gtlitecore.material.sodium_polonate=Sodium Polonate
+gtlitecore.material.polonium_dioxide=Polonium Dioxide
+gtlitecore.material.uranyl_chloride_solution=Uranyl Chloride Solution
+gtlitecore.material.uranyl_nitrate_solution=Uranyl Nitrate Solution
+gtlitecore.material.radium_sulfate=Radium Sulfate
+gtlitecore.material.lead_sulfate=Lead Sulfate
+gtlitecore.material.thorium_nitrate=Thorium Nitrate
+gtlitecore.material.radium_dichloride=Radium Dichloride
+gtlitecore.material.thorium_dioxide=Thorium Dioxide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

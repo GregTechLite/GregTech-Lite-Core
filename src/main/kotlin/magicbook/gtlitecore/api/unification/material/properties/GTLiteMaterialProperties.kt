@@ -11,6 +11,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Andradite
@@ -49,6 +50,7 @@ import gregtech.api.unification.material.Materials.IridiumMetalResidue
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
@@ -64,6 +66,7 @@ import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Quartzite
@@ -89,7 +92,9 @@ import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thallium
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Thulium
+import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
@@ -161,14 +166,15 @@ class GTLiteMaterialProperties
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
-                Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium)
+                Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
+                Polonium, Actinium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
 
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
-                Francium, Thallium, Sodium, Californium, Radium, Scandium)
+                Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)
@@ -296,6 +302,10 @@ class GTLiteMaterialProperties
             Plutonium241.setProperty(PropertyKey.ORE, OreProperty())
             Plutonium241.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium241, Plutonium239, Plutonium241)
 
+            // Modified thorium byproducts.
+            Thorium.getProperty(PropertyKey.ORE).setOreByProducts(Uraninite, Lead, Actinium)
+
+            // Add new ore properties.
             Chrome.setProperty(PropertyKey.ORE, OreProperty())
             Cadmium.setProperty(PropertyKey.ORE, OreProperty())
 
