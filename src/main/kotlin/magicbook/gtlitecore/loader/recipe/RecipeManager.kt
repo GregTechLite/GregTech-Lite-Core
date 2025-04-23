@@ -10,6 +10,7 @@ import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
+import magicbook.gtlitecore.loader.recipe.chain.DiethylEtherChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
 import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
@@ -48,6 +49,7 @@ import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.chain.ZylonChain
+import magicbook.gtlitecore.loader.recipe.chain.food.AdditivesChain
 import magicbook.gtlitecore.loader.recipe.chain.food.PurpleDrinkChain
 import magicbook.gtlitecore.loader.recipe.chain.food.VinegarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.WinesChain
@@ -98,6 +100,7 @@ import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessin
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PlatinumGroupProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PotassiumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.PoloniumRadiumProcessing
+import magicbook.gtlitecore.loader.recipe.oreprocessing.ProtactiniumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.RareEarthProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.SeleniumTelluriumProcessing
 import magicbook.gtlitecore.loader.recipe.oreprocessing.StrontiumProcessing
@@ -190,7 +193,9 @@ class RecipeManager
             LithiumNiobateChain.init()
             ChloridesChain.init()
             NdYAGChain.init()
+            DiethylEtherChain.init()
 
+            AdditivesChain.init()
             WinesChain.init()
             PurpleDrinkChain.init()
             VinegarChain.init()
@@ -215,6 +220,7 @@ class RecipeManager
             VibraniumProcessing.init()
             ThalliumProcessing.init()
             PoloniumRadiumProcessing.init()
+            ProtactiniumProcessing.init()
 
             // Circuit recipes.
             ElectronicCircuits.init()

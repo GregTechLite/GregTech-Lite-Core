@@ -37,6 +37,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPolo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylChlorideSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrateSolution
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -116,8 +117,19 @@ class PoloniumRadiumProcessing
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
+            // UO2(NO3)2·H2O -> UO2(NO3)2 + H2O
+            CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .fluidInputs(UranylNitrateSolution.getFluid(1000))
+                .output(dust, UranylNitrate, 10)
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
             // 2UO2(NO3)2 + 4H2SO4 -> 2RaSO4 + 2PbSO4 + Th(NO3)4 + U + 2H2O
             CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .circuitMeta(2)
                 .fluidInputs(UranylNitrateSolution.getFluid(2000))
                 .fluidInputs(SulfuricAcid.getFluid(4000))
                 .output(dust, RadiumSulfate, 12)

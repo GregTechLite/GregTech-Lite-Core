@@ -938,6 +938,11 @@ class GTLiteRecipeMaps
 
             // (1,1,2,0) -> (1,1,4,0)
             RecipeMaps.CUTTER_RECIPES.maxOutputs = 4
+
+            // (2,1,1,1) -> (2,1,2,1)
+            RecipeMaps.FERMENTING_RECIPES.maxInputs = 2
+            RecipeMaps.FERMENTING_RECIPES.maxFluidInputs = 2
+            RecipeMaps.FERMENTING_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false, false)
         }
 
     }

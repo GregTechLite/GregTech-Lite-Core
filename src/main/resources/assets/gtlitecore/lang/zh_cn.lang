@@ -2413,6 +2413,7 @@ gtlitecore.material.lead_sulfate=硫酸铅
 gtlitecore.material.thorium_nitrate=硝酸钍
 gtlitecore.material.radium_dichloride=二氯化镭
 gtlitecore.material.thorium_dioxide=二氧化钍
+gtlitecore.material.uranyl_nitrate=无水硝酸铀酰
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2584,6 +2585,8 @@ gtlitecore.material.carbamide=碳酰胺
 gtlitecore.material.butanol=丁醇
 gtlitecore.material.tributylamine=三丁胺
 gtlitecore.material.dichloromethane=二氯甲烷
+gtlitecore.material.diethyl_ether=乙醚
+gtlitecore.material.aminooxyacetic_acid=2-氨基氧乙酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BATH_CONDENSER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vinegar
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -34,11 +35,22 @@ class VinegarChain
 
             // Vinegar
             FERMENTING_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .input(dust, Sugar)
                 .fluidInputs(Ethanol.getFluid(100))
                 .fluidOutputs(Vinegar.getFluid(100))
                 .EUt(2)
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            FERMENTING_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Sugar)
+                .fluidInputs(Ethanol.getFluid(100))
+                .fluidInputs(AminooxyaceticAcid.getFluid(50))
+                .fluidOutputs(Vinegar.getFluid(400))
+                .EUt(2)
+                .duration(15 * TICK)
                 .buildAndRegister()
 
             CANNER_RECIPES.recipeBuilder()

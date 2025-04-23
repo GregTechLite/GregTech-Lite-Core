@@ -4,9 +4,12 @@ import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.ore.OrePrefix.dust
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapeJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE_JUICE
@@ -60,10 +63,22 @@ class WinesChain
 
             // Red Wine
             FERMENTING_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Yeast)
                 .fluidInputs(GrapeJuice.getFluid(100))
                 .fluidOutputs(RedWine.getFluid(100))
                 .EUt(2)
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            FERMENTING_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Yeast)
+                .fluidInputs(GrapeJuice.getFluid(100))
+                .fluidInputs(AminooxyaceticAcid.getFluid(50))
+                .fluidOutputs(RedWine.getFluid(400))
+                .EUt(2)
+                .duration(15 * TICK)
                 .buildAndRegister()
 
             CANNER_RECIPES.recipeBuilder()

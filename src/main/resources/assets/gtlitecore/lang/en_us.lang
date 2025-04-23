@@ -2408,6 +2408,7 @@ gtlitecore.material.lead_sulfate=Lead Sulfate
 gtlitecore.material.thorium_nitrate=Thorium Nitrate
 gtlitecore.material.radium_dichloride=Radium Dichloride
 gtlitecore.material.thorium_dioxide=Thorium Dioxide
+gtlitecore.material.uranyl_nitrate=Uranyl Nitrate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2580,6 +2581,8 @@ gtlitecore.material.carbamide=Carbamide
 gtlitecore.material.butanol=Butanol
 gtlitecore.material.tributylamine=Tributylamine
 gtlitecore.material.dichloromethane=Dichloromethane
+gtlitecore.material.diethyl_ether=Diethyl Ether
+gtlitecore.material.aminooxyacetic_acid=2-Aminooxyacetic Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

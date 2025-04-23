@@ -2656,6 +2656,16 @@ class GTLiteMaterials
             .components(Thorium, 1, Oxygen, 2)
             .build()
 
+        // 2243 Uranyl Nitrate
+        @JvmField
+        val UranylNitrate: Material = Material.Builder(2243, gtliteId("uranyl_nitrate"))
+            .dust()
+            .colorAverage().iconSet(SHINY)
+            .components(Uraninite, 1, Nitrogen, 2, Oxygen, 6)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("UO2(NO3)2", true)
+
         // =======================================================================
         // 4001-6000: Second Degree Materials
 
@@ -4351,6 +4361,24 @@ class GTLiteMaterials
             .liquid()
             .color(0xB87FC7)
             .components(Carbon, 1, Hydrogen, 2, Chlorine, 2)
+            .build()
+
+        // 8116 Diethyl Ether
+        @JvmField
+        val DiethylEther: Material = Material.Builder(8116, gtliteId("diethyl_ether"))
+            .liquid()
+            .color(0xFFA4A3)
+            .components(Carbon, 4, Hydrogen, 10, Oxygen, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(C2H5)2O", true)
+
+        // 8117 2-Aminooxyacetic Acid
+        @JvmField
+        val AminooxyaceticAcid: Material = Material.Builder(8117, gtliteId("aminooxyacetic_acid"))
+            .liquid()
+            .color(0xECFF1E)
+            .components(Carbon, 2, Hydrogen, 5, Nitrogen, 1, Oxygen, 3)
             .build()
 
         // =======================================================================
