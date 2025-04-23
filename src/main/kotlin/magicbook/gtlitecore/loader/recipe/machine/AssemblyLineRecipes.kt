@@ -334,14 +334,18 @@ class AssemblyLineRecipes
             // UIV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
             //     .input(stickLong, TengamAttuned, 2)
-            //     .input(stickLong, , 8)
-            //     .input(ring, , 16)
-            //     .input(round, , 32)
-            //     .input(wireFine, , 64)
-            //     .input(wireFine, , 64)
-            //     .input(wireFine, , 64)
-            //     .input(wireFine, , 32)
-            //     .input(cableGtSingle, , 2)
+            //     .input(stickLong, HeavyQuarkDegenerateMatter, 8)
+            //     .input(ring, HeavyQuarkDegenerateMatter, 16)
+            //     .input(round, HeavyQuarkDegenerateMatter, 32)
+            //     .input(wireFine, Infinity, 64)
+            //     .input(wireFine, Infinity, 64)
+            //     .input(wireFine, Infinity, 64)
+            //     .input(wireFine, Infinity, 32)
+            //     .input(cableGtSingle, Rhugnor, 2)
+            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 32))
+            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000))
+            //     .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8))
+            //     .fluidInputs(CarbonNanotube.getFluid(L * 2))
 
             // UXV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -357,14 +361,14 @@ class AssemblyLineRecipes
             //     .input(wireFine, SpaceTime, 64)
             //     .input(wireFine, MagMatter, 64)
             //     .input(wireFine, MagMatter, 64)
-            //     .input(cableGtSingle, Periodicium, 2)
+            //     .input(cableGtSingle, Hypogen, 2)
 
             // OpV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
             //     .input(ENERGISED_TESSERACT)
             //     .input(stickLong, TengamAttuned, 2)
-            //     .input(stickLong, CosmicNeutronium, 4)
-            //     .input(stickLong, Eternity)
+            //     .input(stickLong, , 4)
+            //     .input(stickLong, )
             // ...
 
             // MAX

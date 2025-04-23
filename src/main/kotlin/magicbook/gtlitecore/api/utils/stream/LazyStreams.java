@@ -24,63 +24,86 @@ import java.util.stream.StreamSupport;
 /**
  * A lazy and short-circuit stream related utilities class, this class is based on common
  * stream and {@link StreamEx}, provided some methods to reduce same code usage.
- * <p>
- * This class also consists of some functional interface which used for stream contexts,
- * and its implementation (it is completed at this class yet).
- * <ul>
- *     <li>{@code Gatherer<T, R>}: A fast intermediate operator for stream, can gather
- *         input elements and do consume to a downstream.</li>
- * </ul>
  *
  * @author Magic_Sweepy
  */
 public final class LazyStreams
 {
     /**
-     * Generated a sorted list for a given {@code object2ObjectMap.entrySet()}.
+     * Generated a sorted list for a given {@code map}.
      * <p>
-     * Will sorted all elements in entry set by {@link StreamEx#sortedByInt(ToIntFunction)},
-     * this method is a lazy importing of {@link WrappedIntTier}.
+     * The action of values is from {@code tierExtractor}, it is used to send value to
+     * the sorter. As default, tier value used integer type.
      *
-     * @throws ClassCastException When the correspondenced types of {@code MetaBlock}
-     *         at {@code <K>} is not the implementation of {@code WrappedIntTier}.
+     * @param map           A common map.
+     * @param tierExtractor A to-integer function to get the value which will be sent
+     *                      to sorter of the list.
+     * @return              Sorted new list of all key values in {@code map} with the
+     *                      action which contained in sorter by value values in entry
+     *                      map of {@code map}.
      *
-     * @param object2ObjectMap Any (object, object) map, will use its entry set.
-     * @return                 The sorted key list.
+     * @param <K> The type of key of {@code map}.
+     * @param <V> The type of value of {@code map}.
      *
-     * @param <K> The type of key in {@code object2ObjectMap}.
-     * @param <V> The type of value in {@code object2ObjectMap}.
+     * @author Magic_Sweepy
      */
-    public static <K, V> List<K> fastSortedByKey(AbstractObject2ObjectMap<K, V> object2ObjectMap)
+    public static <K, V> List<K> fastSortedByKey(Map<K, V> map,
+                                                 ToIntFunction<? super V> tierExtractor)
     {
-        return StreamEx.of(object2ObjectMap.entrySet())
-                .sortedBy(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
+        return StreamEx.of(map.entrySet())
+                .sortedBy(entry -> tierExtractor.applyAsInt(entry.getValue()))
                 .map(Map.Entry::getKey)
                 .toList();
     }
 
     /**
-     * Generated a sorted list for a given {@code object2ObjectMap.entrySet()}.
-     * <p>
-     * Will sorted all elements in entry set by {@link StreamEx#sortedByInt(ToIntFunction)},
-     * this method is a lazy importing of {@link IHeatingCoilBlockStats}.
-     * <p>
-     * This method is a special version for all tiered stats stored at {@link GregTechAPI},
-     * because these stats are initialize with {@link Object2ObjectMap}, but not the
-     * default choice {@link Object2ObjectOpenHashMap} of {@link GTLiteAPI}.
+     * Generated a sorted list for a given {@code map}.
+     *
+     * @param map A <it>it.unimi.dsi.fastutil.objects</it>.{@link Object2ObjectMap},
+     *            for example, we used {@link Object2ObjectOpenHashMap} as the default
+     *            choice of storage usage in {@link GTLiteAPI}.
+     * @return    Sorted new list of all key values in {@code map} with the
+     *            action which contained in sorter by value values in entry
+     *            map of {@code map}.
+     *
+     * @param <K> The type of key of {@code map}.
+     * @param <V> The type of value of {@code map}.
+     *
+     * @throws ClassCastException When the correspondenced types of {@code MetaBlock}
+     *         at {@code <K>} is not the implementation of {@link WrappedIntTier}.
+     *
+     * @see it.unimi.dsi.fastutil.objects.AbstractObject2ObjectMap
+     *
+     * @author Magic_Sweepy
+     */
+    public static <K, V> List<K> fastSortedByKey(AbstractObject2ObjectMap<K, V> map)
+    {
+        return fastSortedByKey(map, v -> ((WrappedIntTier) v).getIntTier());
+    }
+
+    /**
+     * Generated a sorted list for a given {@code map}.
+     *
+     * @param map A <it>it.unimi.dsi.fastutil.objects</it>.{@link Object2ObjectMap},
+     *            for example, the gregtech mod used {@link Object2ObjectMap} as the
+     *            default choice of storage usage in {@link GregTechAPI}.
+     * @return    Sorted new list of all key values in {@code map} with the
+     *            action which contained in sorter by value values in entry
+     *            map of {@code map}.
+     *
+     * @param <K> The type of key of {@code map}.
+     * @param <V> The type of value of {@code map}.
      *
      * @throws ClassCastException When the correspondenced types of {@code MetaBlock}
      *         at {@code <K>} is not the implementation of {@code IHeatingCoilBlockStats}.
      *
-     * @param object2ObjectMap Any (object, object) map, will use its entry set.
-     * @return                 The sorted key list.
+     * @see it.unimi.dsi.fastutil.objects.Object2ObjectMap
+     *
+     * @author Magic_Sweepy
      */
-    public static <K, V> List<K> fastSortedByKey(Object2ObjectMap<K, V> object2ObjectMap)
+    public static <K, V> List<K> fastSortedByKey(Object2ObjectMap<K, V> map)
     {
-        return StreamEx.of(object2ObjectMap.entrySet())
-                .sortedBy(entry -> ((IHeatingCoilBlockStats) entry.getValue()).getTier())
-                .map(Map.Entry::getKey)
-                .toList();
+        return fastSortedByKey(map, v -> ((IHeatingCoilBlockStats) v).getTier());
     }
 
     /**
