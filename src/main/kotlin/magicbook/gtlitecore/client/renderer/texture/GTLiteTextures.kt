@@ -118,6 +118,9 @@ class GTLiteTextures
 
         @JvmField
         val ADVANCED_FUSION_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/advanced_fusion_reactor")
+
+        @JvmField
+        val COSMIC_RAY_DETECTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/cosmic_ray_detector")
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -220,6 +223,9 @@ class GTLiteTextures
 
         @JvmField
         val COBALT_BRASS_CASING = GTLiteSimpleOverlayRenderer("casings/metal/cobalt_brass")
+
+        @JvmField
+        val QUANTUM_ALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/quantum_alloy")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

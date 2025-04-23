@@ -31,6 +31,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/advanced_filter_casing"
         }
+      },
+      "reflective_surface_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/reflective_surface_casing"
+        }
       }
     }
   }

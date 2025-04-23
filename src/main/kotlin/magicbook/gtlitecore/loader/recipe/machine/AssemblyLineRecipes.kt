@@ -310,9 +310,9 @@ class AssemblyLineRecipes
             // UEV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
             //     .input(stickLong, ChromiumGermaniumTellurideMagnetic)
-            //     .input(stickLong, HeavyQuarkDegenerateMatter, 4)
-            //     .input(ring, HeavyQuarkDegenerateMatter, 8)
-            //     .input(round, HeavyQuarkDegenerateMatter, 16)
+            //     .input(stickLong, CosmicNeutronium, 4)
+            //     .input(ring, CosmicNeutronium, 8)
+            //     .input(round, CosmicNeutronium, 16)
             //     .input(wireFine, QuantumAlloy, 64)
             //     .input(wireFine, QuantumAlloy, 64)
             //     .input(wireFine, QuantumAlloy, 64)

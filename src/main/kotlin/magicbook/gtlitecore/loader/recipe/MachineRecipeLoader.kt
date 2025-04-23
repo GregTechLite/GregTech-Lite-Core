@@ -74,6 +74,7 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.block
@@ -149,6 +150,7 @@ import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
@@ -165,6 +167,7 @@ import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
+import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.SMART_FILTER
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
@@ -204,6 +207,7 @@ import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
+import gregtech.common.metatileentities.MetaTileEntities.SCANNER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.STEAM_ALLOY_SMELTER_BRONZE
 import gregtech.common.metatileentities.MetaTileEntities.STEAM_COMPRESSOR_BRONZE
@@ -220,8 +224,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
@@ -230,12 +236,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
@@ -249,6 +257,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
@@ -271,6 +280,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CIRCUIT_ASSEMBLY_LINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COAGULATION_TANK
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COMPONENT_ASSEMBLY_LINE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COSMIC_RAY_DETECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYOGENIC_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYSTALLIZATION_CRUCIBLE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CVD_UNIT
@@ -1635,6 +1645,50 @@ class MachineRecipeLoader
                 'R', UnificationEntry(rotor, Duranium),
                 'G', UnificationEntry(gearSmall, HastelloyN),
                 'P', UnificationEntry(pipeLargeItem, Osmiridium))
+
+            // Cosmic Ray Detector (CRD)
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(SCANNER[UHV], 4)
+                .inputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.REFLECTIVE_SURFACE_CASING, ConfigHolder.recipes.casingsPerCraft * 4))
+                .input(EMITTER_UHV, 6)
+                .input(SENSOR_UHV, 6)
+                .input(plateDouble, TitanSteel, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
+                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 18))
+                .fluidInputs(UUMatter.getFluid(16000))
+                .fluidInputs(FreeElectronGas.getFluid(8000))
+                .fluidInputs(Trinaquadalloy.getFluid(L * 8))
+                .output(COSMIC_RAY_DETECTOR)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE + 30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(SCANNER[UHV].stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // Reflective Surface Casing
+            ModHandler.addShapedRecipe(true, "reflective_surface_casing", GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.REFLECTIVE_SURFACE_CASING, ConfigHolder.recipes.casingsPerCraft * 4),
+                "EEE", "RQR", "SFS",
+                'E', EMITTER_UHV,
+                'R', NEUTRON_REFLECTOR,
+                'F', UnificationEntry(frameGt, HDCS),
+                'Q', GTLiteMetaBlocks.METAL_CASING_01.getItemVariant(BlockMetalCasing01.MetalCasingType.TALONITE),
+                'S', UnificationEntry(screw, EnrichedNaquadahAlloy))
+
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(frameGt, HDCS)
+                .inputs(GTLiteMetaBlocks.METAL_CASING_01.getItemVariant(BlockMetalCasing01.MetalCasingType.TALONITE))
+                .input(EMITTER_UHV, 3)
+                .input(NEUTRON_REFLECTOR, 2)
+                .input(screw, EnrichedNaquadahAlloy, 2)
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.REFLECTIVE_SURFACE_CASING, ConfigHolder.recipes.casingsPerCraft * 4))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
 
         }
 

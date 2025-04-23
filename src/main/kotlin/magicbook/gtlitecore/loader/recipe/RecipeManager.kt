@@ -10,6 +10,7 @@ import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
+import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
 import magicbook.gtlitecore.loader.recipe.chain.DiethylEtherChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
@@ -194,6 +195,7 @@ class RecipeManager
             ChloridesChain.init()
             NdYAGChain.init()
             DiethylEtherChain.init()
+            CosmicNeutroniumChain.init()
 
             AdditivesChain.init()
             WinesChain.init()

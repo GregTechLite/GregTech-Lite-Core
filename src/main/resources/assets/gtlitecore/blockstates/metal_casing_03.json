@@ -31,6 +31,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/naquadah_alloy"
         }
+      },
+      "quantum_alloy": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/quantum_alloy"
+        }
       }
     }
   }

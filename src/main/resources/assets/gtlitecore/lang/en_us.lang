@@ -388,7 +388,8 @@ tile.metal_casing_03.cobalt_brass.name=Vibration Tolerant Cobalt Brass Machine C
 tile.metal_casing_03.trinaquadalloy.name=Atomic Trinaquadalloy Machine Casing
 tile.metal_casing_03.osmiridium.name=Robust Osmiridium Machine Casing
 tile.metal_casing_03.neutronium.name=Extreme Strength Neutronium Machine Casing
-tile.metal_casing_03.naquadah_alloy.name=Radioactive Naquadah Alloy Casing
+tile.metal_casing_03.naquadah_alloy.name=Radioactive Naquadah Alloy Machine Casing
+tile.metal_casing_03.quantum_alloy.name=Superheavy Quantum Alloy Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -397,6 +398,8 @@ tile.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casi
 tile.multiblock_casing_01.drill_head.name=Drill Head
 tile.multiblock_casing_01.advanced_filter_casing.name=Advanced Filter Casing
 tile.multiblock_casing_01.advanced_filter_casing.tooltip=Maintain the Cleanliness of Precision Components
+tile.multiblock_casing_01.reflective_surface_casing.name=Deformation Resistant Reflective Surface Machine Casing
+tile.multiblock_casing_01.reflective_surface_casing.tooltip=Basic Structure of a Radio Telescope
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 
@@ -1686,6 +1689,13 @@ gtlitecore.machine.component_assembly_line.tooltip.2=允许使用任意种类的
 gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的§f硼硅酸盐玻璃§7替换结构中的玻璃
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
+gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
+gtlitecore.machine.cosmic_ray_detector.tooltip.3=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.cosmic_ray_detector.tooltip.4=每提高1个§e传感器外壳§7与§e处理器外壳§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.cosmic_ray_detector.tooltip.5=每提高1个§e发射器外壳§7与§e力场发生器外壳§7，每次运行可以多处理§l32§r§7个物品。
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
@@ -2156,6 +2166,7 @@ gtlitecore.material.taranium=Taranium
 gtlitecore.material.metastable_flerovium=Metastable Flerovium
 gtlitecore.material.metastable_oganesson=Metastable Oganesson
 gtlitecore.material.metastable_hassium=Metastable Hassium
+gtlitecore.material.cosmic_neutronium=Cosmic Neutronium
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2441,6 +2452,8 @@ gtlitecore.material.titanium_tungsten_carbide=Titanium Tungsten Carbide
 gtlitecore.material.trinaquadalloy=Trinaquadalloy
 gtlitecore.material.enriched_naquadah_alloy=Enriched Naquadah Alloy
 gtlitecore.material.quantum_alloy=Quantum Alloy
+gtlitecore.material.hdcs=High Durability Compound Steel (HDCS)
+gtlitecore.material.titan_steel=Titan Steel
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -2665,6 +2678,9 @@ gtlitecore.material.light_enriched_taranium_fuel=Light Enriched Taranium Fuel
 gtlitecore.material.energetic_naquadria=Energetic Naquadria
 gtlitecore.material.quasi_fissioning_plasma=Quasi-fissioning
 gtlitecore.material.oganesson_breeding_base=Oganesson Breeding Base
+gtlitecore.material.unprocessed_nd_yag_solution=Unprocessed Nd:YAG Solution
+
+gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

@@ -3,6 +3,10 @@ package magicbook.gtlitecore.api.unification.material
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
+import magicbook.gtlitecore.api.unification.material.infos.MaterialIconSetWithRenderer
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import java.util.function.Supplier
 
 class GTLiteMaterialIconSet
 {
@@ -21,6 +25,11 @@ class GTLiteMaterialIconSet
 
         @JvmField
         val SUPERCRITICAL = MaterialIconSet("supercritical", null, true)
+
+        @JvmField
+        val COSMIC = MaterialIconSetWithRenderer("cosmic", null, true,
+            HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

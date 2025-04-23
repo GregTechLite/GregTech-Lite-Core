@@ -389,6 +389,7 @@ tile.metal_casing_03.trinaquadalloy.name=原子级碳化三元硅岩合金机器
 tile.metal_casing_03.osmiridium.name=坚固铱锇合金机器外壳
 tile.metal_casing_03.neutronium.name=超高强度中子机器外壳
 tile.metal_casing_03.naquadah_alloy.name=放射硅岩合金机器外壳
+tile.metal_casing_03.quantum_alloy.name=超重量子合金机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -397,6 +398,8 @@ tile.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方�
 tile.multiblock_casing_01.drill_head.name=钻头
 tile.multiblock_casing_01.advanced_filter_casing.name=进阶过滤器机器外壳
 tile.multiblock_casing_01.advanced_filter_casing.tooltip=保持精密器件的洁净度
+tile.multiblock_casing_01.reflective_surface_casing.name=抗形变反射面机器外壳
+tile.multiblock_casing_01.reflective_surface_casing.tooltip=射电望远镜的基本构成
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -1686,6 +1689,13 @@ gtlitecore.machine.component_assembly_line.tooltip.2=允许使用任意种类的
 gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的§f硼硅酸盐玻璃§7替换结构中的玻璃
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
+gtlitecore.machine.cosmic_ray_detector.name=宇宙射线探测器
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
+gtlitecore.machine.cosmic_ray_detector.tooltip.3=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.cosmic_ray_detector.tooltip.4=每提高1个§e传感器外壳§7与§e处理器外壳§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.cosmic_ray_detector.tooltip.5=每提高1个§e发射器外壳§7与§e力场发生器外壳§7，每次运行可以多处理§l32§r§7个物品。
+
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
@@ -2156,6 +2166,7 @@ gtlitecore.material.taranium=塔兰金属
 gtlitecore.material.metastable_flerovium=亚稳态钅夫
 gtlitecore.material.metastable_oganesson=亚稳态鿫
 gtlitecore.material.metastable_hassium=亚稳态钅黑
+gtlitecore.material.cosmic_neutronium=宇宙中子素
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2446,6 +2457,8 @@ gtlitecore.material.titanium_tungsten_carbide=碳化钛钨
 gtlitecore.material.trinaquadalloy=碳化三元硅岩合金
 gtlitecore.material.enriched_naquadah_alloy=富集硅岩合金
 gtlitecore.material.quantum_alloy=量子合金
+gtlitecore.material.hdcs=高强度复合钢（HDCS）
+gtlitecore.material.titan_steel=泰坦精钢
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
@@ -2670,6 +2683,8 @@ gtlitecore.material.energetic_naquadria=充能超能硅岩
 gtlitecore.material.quasi_fissioning_plasma=拟裂变
 gtlitecore.material.oganesson_breeding_base=鿫增殖基
 gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴石溶液
+
+gtlitecore.material.neutron_proton_fermi_superfluid=中子-质子费米超流体
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

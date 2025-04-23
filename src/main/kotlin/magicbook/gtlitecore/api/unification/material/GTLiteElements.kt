@@ -13,8 +13,11 @@ class GTLiteElements
         val Vb: Element = Elements.add(152, 226, "Vibranium", "Vb")
         @JvmStatic
         val Ad: Element = Elements.add(222, 580, "Adamantium", "Ad")
-        @JvmField
+        @JvmStatic
         val Tn: Element = Elements.add(321, 478, "Taranium", "Tn")
+        @JvmStatic
+        val SpNt: Element = Elements.add(Elements.Sp.protons + Elements.Nt.protons,
+            Elements.Sp.neutrons + Elements.Nt.neutrons, "CosmicNeutronium", "SpNt")
 
     }
 

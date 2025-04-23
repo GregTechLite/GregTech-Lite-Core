@@ -256,7 +256,8 @@ public class MetaTileEntityBedrockDrillingRig extends RecipeMapMultiblockControl
         AtomicInteger count = new AtomicInteger();
         StreamEx.of(pistonCasings)
                 .map(b -> {
-                    if (builder != null) {
+                    if (builder != null)
+                    {
                         builder.where('O', b);
                         builder.where('Q', motorCasings.get(count.get()));
                         count.getAndIncrement();

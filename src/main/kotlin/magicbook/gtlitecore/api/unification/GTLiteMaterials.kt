@@ -64,6 +64,8 @@ import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.GreenSapphire
+import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
@@ -100,6 +102,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
@@ -152,8 +155,10 @@ import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
+import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
@@ -215,6 +220,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Ad
+import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.DISABLE_CRYSTALLIZATION
@@ -222,6 +228,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Compani
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.AEROTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.BEDROCKIUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
@@ -360,6 +367,24 @@ class GTLiteMaterials
                 .vacuumStats(VA[UV], 1 * MINUTE)
             }
             .itemPipeProperties(256, 128F)
+            .build()
+
+        // 7 Cosmic Neutronium
+        @JvmField
+        val CosmicNeutronium: Material = Material.Builder(7, gtliteId("cosmic_neutronium"))
+            .ingot()
+            .liquid()
+            .iconSet(COSMIC)
+            .element(SpNt)
+            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR,
+                GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
+            .blast { b ->
+                b.temp(12600, BlastProperty.GasTier.HIGHEST) // Adamantium
+                    .blastStats(VA[UEV], 12 * MINUTE)
+                    .vacuumStats(VA[UHV], 4 * MINUTE)
+            }
+            .cableProperties(V[UEV], 24, 4)
             .build()
 
         // =======================================================================
@@ -3116,7 +3141,7 @@ class GTLiteMaterials
             }
             .toolStats(MaterialToolProperty.Builder.of(45.0F, 24.0F, 4096, 6)
                 .attackSpeed(0.6F).enchantability(36).magnetic().build())
-            .rotorStats(12.0f, 6.0f, 7680)
+            .rotorStats(18.0f, 6.0f, 7680)
             .cableProperties(V[UHV], 4, 8)
             .build()
 
@@ -3127,12 +3152,51 @@ class GTLiteMaterials
             .fluid()
             .color(0x0F0F0F).iconSet(BRIGHT)
             .components(Stellite, 15, Jasper, 5, Gallium, 5, Americium, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
             .blast { b ->
                 b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UHV], 58 * SECOND)
                     .vacuumStats(VA[UV], 29 * SECOND)
             }
+            .itemPipeProperties(64, 96F)
+            .build()
+
+        // 4032 HDCS (High Durability Compound Steel)
+        @JvmField
+        val HDCS: Material = Material.Builder(4032, gtliteId("hdcs"))
+            .ingot(7)
+            .fluid()
+            .color(0x334433).iconSet(SHINY)
+            .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium241, 1)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(10900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
+                    .blastStats(VA[UHV], 1 * MINUTE + 30 * SECOND)
+                    .vacuumStats(VA[ZPM], 45 * SECOND)
+            }
+            .rotorStats(16.5f, 3.5f, 6000)
+            .toolStats(MaterialToolProperty.Builder.of(52.5F, 28.0F, 6144, 7)
+                .attackSpeed(0.5F).enchantability(34)
+                .enchantment(Enchantments.SHARPNESS, 5)
+                .magnetic().build())
+            .build()
+
+        // 4033 Titan Steel
+        @JvmField
+        val TitanSteel: Material = Material.Builder(4033, gtliteId("titan_steel"))
+            .ingot(7)
+            .fluid()
+            .color(0xAA0D0D).iconSet(SHINY)
+            .components(TitaniumTungstenCarbide, 3, Jasper, 3, Tritanium, 2)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_GEAR)
+            .blast { b ->
+                b.temp(10600, BlastProperty.GasTier.HIGHEST) // Tritanium
+                  .blastStats(VA[UHV], 1 * MINUTE)
+                  .vacuumStats(VA[UV], 28 * SECOND) }
+            .toolStats(MaterialToolProperty.Builder.of(48.0F, 24.0F, 5120, 7)
+                .attackSpeed(0.4F).enchantability(32)
+                .enchantment(Enchantments.FIRE_ASPECT, 3)
+                .magnetic().build())
             .build()
 
         // =======================================================================
@@ -4958,6 +5022,17 @@ class GTLiteMaterials
             .color(0x6F20AF).iconSet(DULL)
             .build()
             .setFormula("Nd:YAG?", false)
+
+        // ...
+
+        // 13001 Neutron-Proton Fermi Superfluid
+        @JvmField
+        val NeutronProtonFermiSuperfluid: Material = Material.Builder(13001, gtliteId("neutron_proton_fermi_superfluid"))
+            .plasma(FluidBuilder()
+                .temperature(100_000_000)
+                .translation("gregtech.fluid.generic")
+                .customStill())
+            .build()
 
     }
 

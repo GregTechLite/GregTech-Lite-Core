@@ -47,7 +47,8 @@ public class BlockMetalCasing03 extends VariantBlock<BlockMetalCasing03.MetalCas
         TRINAQUADALLOY("trinaquadalloy"),
         OSMIRIDIUM("osmiridium"),
         NEUTRONIUM("neutronium"),
-        NAQUADAH_ALLOY("naquadah_alloy");
+        NAQUADAH_ALLOY("naquadah_alloy"),
+        QUANTUM_ALLOY("quantum_alloy");
 
         private final String name;
     }
