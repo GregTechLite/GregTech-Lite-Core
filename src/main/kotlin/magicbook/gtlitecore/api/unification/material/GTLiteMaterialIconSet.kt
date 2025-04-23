@@ -30,6 +30,14 @@ class GTLiteMaterialIconSet
         val COSMIC = MaterialIconSetWithRenderer("cosmic", null, true,
             HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
 
+        @JvmField
+        val INFINITY = MaterialIconSetWithRenderer("infinity", null, true,
+            HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+
+        @JvmField
+        val HALKONITE = MaterialIconSetWithRenderer("halkonite", null, true,
+            HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

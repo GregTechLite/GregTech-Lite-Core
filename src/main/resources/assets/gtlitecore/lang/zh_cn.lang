@@ -426,6 +426,7 @@ tile.fusion_casing_03.vacuum_mk4.name=反应堆真空室 MK4
 tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 
 tile.wire_coil.adamantium.name=精金线圈方块
+tile.wire_coil.infinity.name=无尽线圈方块
 
 tile.crucible.bronze.name=青铜坩埚
 tile.crucible.invar.name=殷钢坩埚
@@ -2167,6 +2168,7 @@ gtlitecore.material.metastable_flerovium=亚稳态钅夫
 gtlitecore.material.metastable_oganesson=亚稳态鿫
 gtlitecore.material.metastable_hassium=亚稳态钅黑
 gtlitecore.material.cosmic_neutronium=宇宙中子素
+gtlitecore.material.infinity=无尽
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石

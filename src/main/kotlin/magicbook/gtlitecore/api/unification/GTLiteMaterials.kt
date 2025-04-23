@@ -220,6 +220,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Ad
+import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.If
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.GTLiteElements.Companion.Vb
@@ -230,6 +231,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.BEDROCKIUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.PETROTHEUM
@@ -385,6 +387,23 @@ class GTLiteMaterials
                     .vacuumStats(VA[UHV], 4 * MINUTE)
             }
             .cableProperties(V[UEV], 24, 4)
+            .build()
+
+        // 8 Infinity
+        @JvmField
+        val Infinity: Material = Material.Builder(8, gtliteId("infinity"))
+            .ingot()
+            .liquid()
+            .iconSet(INFINITY)
+            .element(If)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR)
+            .blast { b ->
+                b.temp(12600, BlastProperty.GasTier.HIGHEST) // Adamantium
+                    .blastStats(VA[UEV], 16 * MINUTE)
+                    .vacuumStats(VA[UHV], 8 * MINUTE)
+            }
+            .cableProperties(V[UEV], 36, 2)
             .build()
 
         // =======================================================================

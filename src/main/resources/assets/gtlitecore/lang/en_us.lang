@@ -426,6 +426,7 @@ tile.fusion_casing_03.vacuum_mk4.name=Reactor Vacuum MK4
 tile.fusion_casing_03.vacuum_mk5.name=Reactor Vacuum MK5
 
 tile.wire_coil.adamantium.name=Adamantium Wire Coil Block
+tile.wire_coil.infinity.name=Infinity Wire Coil Block
 
 tile.crucible.bronze.name=Bronze Crucible
 tile.crucible.invar.name=Invar Crucible
@@ -2167,6 +2168,7 @@ gtlitecore.material.metastable_flerovium=Metastable Flerovium
 gtlitecore.material.metastable_oganesson=Metastable Oganesson
 gtlitecore.material.metastable_hassium=Metastable Hassium
 gtlitecore.material.cosmic_neutronium=Cosmic Neutronium
+gtlitecore.material.infinity=Infinity
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite

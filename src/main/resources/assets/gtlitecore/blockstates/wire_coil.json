@@ -13,6 +13,32 @@
         "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_adamantium",
         "top_all": "gtlitecore:blocks/casings/coil/machine_coil_adamantium_bloom"
       }
+    },
+    "active=false,variant=infinity": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/coil/machine_coil_infinity"
+      }
+    },
+    "active=true,variant=infinity": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_infinity",
+        "top_all": "gtlitecore:blocks/casings/coil/machine_coil_infinity_bloom"
+      }
+    },
+    "active=false,variant=halkonite_steel": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel"
+      }
+    },
+    "active=true,variant=halkonite_steel": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel",
+        "top_all": "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel_bloom"
+      }
     }
   }
 }

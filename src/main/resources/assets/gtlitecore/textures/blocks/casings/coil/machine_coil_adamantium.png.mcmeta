@@ -1,13 +1,13 @@
 {
-    "ctm": {
-        "ctm_version": 1,
-        "type": "CTM",
-        "layer": "SOLID",
-        "textures": [
-            "gtlitecore:blocks/casings/coil/machine_coil_adamantium_ctm"
-        ],
-        "extra": {
-            "connect_inside": true
-        }
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": [
+      "gtlitecore:blocks/casings/coil/machine_coil_adamantium_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
     }
+  }
 }

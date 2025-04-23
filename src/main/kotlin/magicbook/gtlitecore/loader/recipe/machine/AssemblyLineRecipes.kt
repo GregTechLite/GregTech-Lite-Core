@@ -334,14 +334,14 @@ class AssemblyLineRecipes
             // UIV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
             //     .input(stickLong, TengamAttuned, 2)
-            //     .input(stickLong, QuantumchromodynamicallyConfinedMatter, 8)
-            //     .input(ring, QuantumchromodynamicallyConfinedMatter, 16)
-            //     .input(round, QuantumchromodynamicallyConfinedMatter, 32)
-            //     .input(wireFine, Hypogen, 64)
-            //     .input(wireFine, Hypogen, 64)
-            //     .input(wireFine, Hypogen, 64)
-            //     .input(wireFine, Hypogen, 32)
-            //     .input(cableGtSingle, Meitnerium, 2)
+            //     .input(stickLong, , 8)
+            //     .input(ring, , 16)
+            //     .input(round, , 32)
+            //     .input(wireFine, , 64)
+            //     .input(wireFine, , 64)
+            //     .input(wireFine, , 64)
+            //     .input(wireFine, , 32)
+            //     .input(cableGtSingle, , 2)
 
             // UXV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
