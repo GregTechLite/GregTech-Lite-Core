@@ -11,7 +11,14 @@ import one.util.streamex.StreamEx;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Spliterator;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * A lazy and short-circuit stream related utilities class, this class is based on common
@@ -96,6 +103,35 @@ public final class LazyStreams
     public static <K, V> List<K> fastSortedByKey(Object2ObjectMap<K, V> map)
     {
         return fastSortedByKey(map, v -> ((IHeatingCoilBlockStats) v).getTier());
+    }
+
+    /**
+     *
+     * @param source
+     * @param gatherer
+     * @return
+     * @param <T>
+     * @param <A>
+     * @param <R>
+     */
+    public static <T, A, R> Stream<R> gatherer(Stream<T> source,
+                                               Gatherer<? super T, A, R> gatherer)
+    {
+        Objects.requireNonNull(source);
+        Objects.requireNonNull(gatherer);
+
+        Supplier<A> initializer = gatherer.initializer();
+        Gatherer.Integrator<A, ? super T, R> integrator = gatherer.integrator();
+        BinaryOperator<A> combiner = gatherer.combiner();
+        BiConsumer<A, Gatherer.Downstream<? super R>> finisher = gatherer.finisher();
+
+        Spliterator<T> srcSpliterator = source.spliterator();
+        int characteristics = srcSpliterator.characteristics() &
+                (Spliterator.ORDERED | Spliterator.SIZED | Spliterator.SUBSIZED);
+
+        return StreamSupport.stream(new GathererSpliterator<>(initializer, integrator,
+                combiner, finisher, srcSpliterator, characteristics, source.isParallel()),
+                source.isParallel()).onClose(source::close);
     }
 
 }
