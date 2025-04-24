@@ -106,13 +106,27 @@ public final class LazyStreams
     }
 
     /**
+     * Returns a stream consisting of the results of applying the given {@link Gatherer}
+     * of the upstream {@code source} to the elements of this stream.
+     * <p>
+     * This is a stateful intermediate operation that is an extension point.
+     * <p>
+     * Gatherers are highly flexible and can describe a vast array of possibly stateful
+     * operations, with support for short-circuiting, and parallelization.
+     * <p>
+     * When executed in parallel, multiple intermediate results may be instantiated,
+     * populated, and merged to maintain isolation of mutable data structures. Therefore,
+     * even when executed in parallel with non-thread-safe data structures (such as
+     * a {@code ArrayList}), no additional synchronization is needed for a parallel
+     * reduction.
      *
-     * @param source
-     * @param gatherer
-     * @return
-     * @param <T>
-     * @param <A>
-     * @param <R>
+     * @param source   Upstream for gatherer pipeline.
+     * @param gatherer A gatherer.
+     * @return         The new stream.
+     *
+     * @param <T> The type of input elements for the gatherer.
+     * @param <A> The type of the state of the returned initializer.
+     * @param <R> The type of results for the gatherer.
      */
     public static <T, A, R> Stream<R> gatherer(Stream<T> source,
                                                Gatherer<? super T, A, R> gatherer)

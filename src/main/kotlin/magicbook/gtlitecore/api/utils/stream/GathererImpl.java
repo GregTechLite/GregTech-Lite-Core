@@ -10,6 +10,11 @@ import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Supplier;
 
+/**
+ * @param <T> The type of input elements for the new gatherer.
+ * @param <A> The type of the state of the returned initializer.
+ * @param <R> The type of results for the new gatherer.
+ */
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.MODULE)
