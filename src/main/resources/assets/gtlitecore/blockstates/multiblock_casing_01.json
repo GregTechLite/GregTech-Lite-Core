@@ -37,6 +37,24 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/reflective_surface_casing"
         }
+      },
+      "infinity_cooling_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/infinity_cooling_casing"
+        }
+      },
+      "stellar_containment_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stellar_containment_casing"
+        }
+      },
+      "harmonic_phonon_transmission_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/harmonic_phonon_transmission_casing"
+        }
       }
     }
   }

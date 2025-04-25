@@ -35,6 +35,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaser
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySonicator
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityStellarForge
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAdvancedFusionReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityChemicalPlant
@@ -237,6 +238,7 @@ class GTLiteMetaTileEntities
         lateinit var ADVANCED_FUSION_REACTOR: MetaTileEntityAdvancedFusionReactor
         lateinit var COMPONENT_ASSEMBLY_LINE: MetaTileEntityComponentAssemblyLine
         lateinit var COSMIC_RAY_DETECTOR: MetaTileEntityCosmicRayDetector
+        lateinit var STELLAR_FORGE: MetaTileEntityStellarForge
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -749,6 +751,9 @@ class GTLiteMetaTileEntities
             COSMIC_RAY_DETECTOR = MetaTileEntities.registerMetaTileEntity(18022,
                 MetaTileEntityCosmicRayDetector(GTLiteUtility.gtliteId("cosmic_ray_detector")))
 
+            STELLAR_FORGE = MetaTileEntities.registerMetaTileEntity(18023,
+                MetaTileEntityStellarForge(GTLiteUtility.gtliteId("stellar_forge")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -954,6 +959,7 @@ class GTLiteMetaTileEntities
             ADVANCED_FUSION_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             COMPONENT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             COSMIC_RAY_DETECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            STELLAR_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

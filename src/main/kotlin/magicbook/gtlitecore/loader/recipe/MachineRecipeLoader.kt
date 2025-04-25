@@ -78,6 +78,7 @@ import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.block
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -111,6 +112,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockCleanroomCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
@@ -144,6 +146,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.EMITTER_EV
@@ -162,6 +165,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_MV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
@@ -221,6 +225,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAllo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
@@ -235,10 +240,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
@@ -247,6 +255,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -258,6 +267,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -340,12 +350,14 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STELLAR_FORGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.UNIVERSAL_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.UNIVERSAL_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VACUUM_CHAMBER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VOLCANUS
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.VULCANIZING_PRESS
 import magicbook.gtlitecore.loader.recipe.component.CraftingComponents
 import net.minecraft.init.Blocks
@@ -1687,6 +1699,64 @@ class MachineRecipeLoader
                 .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.REFLECTIVE_SURFACE_CASING, ConfigHolder.recipes.casingsPerCraft * 4))
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Stellar Forge
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(VOLCANUS, 16)
+                .inputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.STELLAR_CONTAINMENT_CASING, 16))
+                .inputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.HARMONIC_PHONON_TRANSMISSION_CASING, 16))
+                .input(ELECTRIC_PUMP_UHV, 8)
+                .input(ROBOT_ARM_UHV, 8)
+                .input(FIELD_GENERATOR_UHV, 8)
+                .input(plateDouble, Tairitsium, 4)
+                .input(circuit, MarkerMaterials.Tier.UEV, 12)
+                .input(foil, EnrichedNaquadahAlloy, 24)
+                .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 36))
+                .fluidInputs(UUMatter.getFluid(64000))
+                .fluidInputs(TitanSteel.getFluid(L * 8))
+                .fluidInputs(HDCS.getFluid(L * 4))
+                .output(STELLAR_FORGE)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE + 30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(VOLCANUS.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(36)
+                }
+                .buildAndRegister()
+
+            // Stellar Containment Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(13)
+                .input(frameGt, QuantumAlloy, 4)
+                .inputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE, 16))
+                .input(plateDouble, HDCS, 8)
+                .input(pipeHugeFluid, Trinaquadalloy, 2)
+                .input(EMITTER_UHV, 2)
+                .input(NEUTRON_REFLECTOR, 32)
+                .input(screw, TitanSteel, 6)
+                .fluidInputs(Bedrockium.getFluid(L * 16))
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.STELLAR_CONTAINMENT_CASING, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Harmonic Phonon Transmissive Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(13)
+                .input(frameGt, Bedrockium, 4)
+                .input(plate, MetastableOganesson, 8)
+                .input(plate, Vibranium, 8)
+                .input(gear, CosmicNeutronium, 3)
+                .input(gearSmall, CosmicNeutronium, 6)
+                .input(ELECTRIC_PUMP_UHV, 2)
+                .input(bolt, HDCS, 12)
+                .fluidInputs(QuantumAlloy.getFluid(L * 16))
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.HARMONIC_PHONON_TRANSMISSION_CASING, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
         }

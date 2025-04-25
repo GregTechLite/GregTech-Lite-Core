@@ -88,6 +88,7 @@ import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
@@ -3136,12 +3137,13 @@ class GTLiteMaterials
             .fluid()
             .color(0x281832).iconSet(BRIGHT)
             .components(Trinium, 6, Naquadah, 2, Carbon, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
             .blast { b ->
                 b.temp(8747, BlastProperty.GasTier.HIGHER) // Trinium
                     .blastStats(VA[ZPM], 1 * MINUTE)
                     .vacuumStats(VA[IV], 45 * SECOND)
             }
+            .fluidPipeProperties(7552, 400, true, true, true, true)
             .build()
 
         // 4030 Enriched Naquadah Alloy
@@ -3187,7 +3189,8 @@ class GTLiteMaterials
             .fluid()
             .color(0x334433).iconSet(SHINY)
             .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium241, 1)
-            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
+                GENERATE_DOUBLE_PLATE)
             .blast { b ->
                 b.temp(10900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
                     .blastStats(VA[UHV], 1 * MINUTE + 30 * SECOND)
@@ -3216,6 +3219,24 @@ class GTLiteMaterials
                 .attackSpeed(0.4F).enchantability(32)
                 .enchantment(Enchantments.FIRE_ASPECT, 3)
                 .magnetic().build())
+            .build()
+
+        // 4034 Tairitsium
+        @JvmField
+        val Tairitsium: Material = Material.Builder(4034, gtliteId("tairitsium"))
+            .ingot()
+            .fluid()
+            .color(0x003F5F).iconSet(METALLIC)
+            .components(TungstenSteel, 8, Naquadria, 7, Bedrockium, 4, Carbon, 4, VanadiumSteel, 3, Francium, 1)
+            .blast { b ->
+                b.temp(10400, BlastProperty.GasTier.HIGHEST) // Tritanium
+                    .blastStats(VA[UHV], 20 * SECOND)
+                    .vacuumStats(VA[UV], 6 * SECOND + 10 * TICK) }
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE)
+            .toolStats(MaterialToolProperty.Builder.of(36.5F, 44.2F, 4980, 7)
+                .attackSpeed(0.6F).enchantability(30)
+                .enchantment(Enchantments.LOOTING, 3)
+                .build())
             .build()
 
         // =======================================================================

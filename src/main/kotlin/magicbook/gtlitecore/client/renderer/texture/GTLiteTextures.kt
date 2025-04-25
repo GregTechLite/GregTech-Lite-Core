@@ -121,6 +121,9 @@ class GTLiteTextures
 
         @JvmField
         val COSMIC_RAY_DETECTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/cosmic_ray_detector")
+
+        @JvmField
+        val STELLAR_FORGE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/stellar_forge")
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

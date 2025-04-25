@@ -28,6 +28,7 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Fluorine
+import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSG
@@ -46,6 +47,7 @@ import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -86,6 +88,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTelluride
@@ -119,6 +122,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPota
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TectonicPetrotheum
@@ -624,6 +628,20 @@ class MixerRecipes
                 .output(dust, TitanSteel, 8)
                 .EUt(VA[UHV].toLong())
                 .duration(35 * SECOND)
+                .buildAndRegister()
+
+            // Tairitsium
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(dust, TungstenSteel, 8)
+                .input(dust, Naquadria, 7)
+                .input(dust, Bedrockium, 4)
+                .input(dust, Carbon, 4)
+                .input(dust, VanadiumSteel, 3)
+                .input(dust, Francium)
+                .output(dust, Tairitsium, 26)
+                .EUt(VA[UHV].toLong())
+                .duration(40 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

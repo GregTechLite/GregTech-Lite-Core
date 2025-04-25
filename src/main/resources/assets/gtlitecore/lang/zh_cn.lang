@@ -400,6 +400,12 @@ tile.multiblock_casing_01.advanced_filter_casing.name=进阶过滤器机器外�
 tile.multiblock_casing_01.advanced_filter_casing.tooltip=保持精密器件的洁净度
 tile.multiblock_casing_01.reflective_surface_casing.name=抗形变反射面机器外壳
 tile.multiblock_casing_01.reflective_surface_casing.tooltip=射电望远镜的基本构成
+tile.multiblock_casing_01.infinity_cooling_casing.name=无尽冷却机器外壳
+tile.multiblock_casing_01.infinity_cooling_casing.tooltip=无限接近于绝对零度
+tile.multiblock_casing_01.stellar_containment_casing.name=恒星热力容器机器外壳
+tile.multiblock_casing_01.stellar_containment_casing.tooltip=抵抗数百万开尔文的热量
+tile.multiblock_casing_01.harmonic_phonon_transmission_casing.name=简谐声子传输机械方块
+tile.multiblock_casing_01.harmonic_phonon_transmission_casing.tooltip=热力波纹疾走
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 
@@ -1694,8 +1700,16 @@ gtlitecore.machine.cosmic_ray_detector.name=宇宙射线探测器
 gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
 gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
 gtlitecore.machine.cosmic_ray_detector.tooltip.3=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.cosmic_ray_detector.tooltip.4=每提高1个§e传感器外壳§7与§e处理器外壳§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.cosmic_ray_detector.tooltip.5=每提高1个§e发射器外壳§7与§e力场发生器外壳§7，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.cosmic_ray_detector.tooltip.4=每提高1个§e传感器外壳§7与§e处理器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.cosmic_ray_detector.tooltip.5=每提高1个§e发射器外壳§7与§e力场发生器外壳§7等级，每次运行可以多处理§l32§r§7个物品。
+
+gtlitecore.machine.stellar_forge.name=恒星炎炀锻炉
+gtlitecore.machine.stellar_forge.tooltip.1=驾驭恒星之力
+gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
+gtlitecore.machine.stellar_forge.tooltip.3=产物以极高温的等离子喷流或等离子聚合液体的形态产出。
+gtlitecore.machine.stellar_forge.tooltip.4=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.stellar_forge.tooltip.5=每提高1个§e发射器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.stellar_forge.tooltip.6=每提高1个§e力场发生器§7等级，每次运行可以多处理§l32§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
@@ -2461,6 +2475,7 @@ gtlitecore.material.enriched_naquadah_alloy=富集硅岩合金
 gtlitecore.material.quantum_alloy=量子合金
 gtlitecore.material.hdcs=高强度复合钢（HDCS）
 gtlitecore.material.titan_steel=泰坦精钢
+gtlitecore.material.tairitsium=对立合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

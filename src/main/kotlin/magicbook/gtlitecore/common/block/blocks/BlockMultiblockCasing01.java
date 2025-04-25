@@ -47,7 +47,10 @@ public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing0
         ADVANCED_SUBSTRATE_CASING("advanced_substrate_casing"),
         DRILL_HEAD("drill_head"),
         ADVANCED_FILTER_CASING("advanced_filter_casing"),
-        REFLECTIVE_SURFACE_CASING("reflective_surface_casing");
+        REFLECTIVE_SURFACE_CASING("reflective_surface_casing"),
+        INFINITY_COOLING_CASING("infinity_cooling_casing"),
+        STELLAR_CONTAINMENT_CASING("stellar_containment_casing"),
+        HARMONIC_PHONON_TRANSMISSION_CASING("harmonic_phonon_transmission_casing");
 
         private final String name;
     }
