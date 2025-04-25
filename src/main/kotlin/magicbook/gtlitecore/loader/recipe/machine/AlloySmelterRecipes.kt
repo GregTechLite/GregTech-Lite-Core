@@ -4,7 +4,9 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -20,7 +22,9 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -156,6 +160,23 @@ class AlloySmelterRecipes
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
+            // Cosmic Neutronium reinforced Borosilicate Glass
+            ALLOY_SMELTER_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
+                .input(plate, CosmicNeutronium, 4)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.COSMIC_NEUTRONIUM_BOROSILICATE))
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Infinity reinforced Borosilicate Glass
+            ALLOY_SMELTER_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
+                .input(plate, Infinity, 4)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.INFINITY_BOROSILICATE))
+                .EUt(VA[UIV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
         }
 
     }

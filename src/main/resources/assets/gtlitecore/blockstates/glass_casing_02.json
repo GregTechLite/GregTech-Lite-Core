@@ -50,6 +50,20 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/neutronium_borosilicate"
         }
+      },
+      "cosmic_neutronium_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/cosmic_neutronium_borosilicate"
+        }
+      },
+      "infinity_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/infinity_borosilicate"
+        }
       }
     }
   }

@@ -479,6 +479,8 @@ tile.glass_casing_02.rhodium_plated_palladium_borosilicate.name=镀铑钯强化�
 tile.glass_casing_02.osmiridium_borosilicate.name=铱锇合金强化硼硅酸盐玻璃
 tile.glass_casing_02.tritanium_borosilicate.name=三钛强化硼硅酸盐玻璃
 tile.glass_casing_02.neutronium_borosilicate.name=中子强化硼硅酸盐玻璃
+tile.glass_casing_02.cosmic_neutronium_borosilicate.name=宇宙中子强化硼硅酸盐玻璃
+tile.glass_casing_02.infinity.name=无尽强化硼硅酸盐玻璃
 
 # Items
 metaitem.shape.mold.rod.name=模具（杆）

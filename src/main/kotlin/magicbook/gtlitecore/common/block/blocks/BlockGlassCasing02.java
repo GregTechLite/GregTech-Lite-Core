@@ -112,8 +112,10 @@ public class BlockGlassCasing02 extends VariantBlock<BlockGlassCasing02.GlassTyp
         RHODIUM_PLATED_PALLADIUM_BOROSILICATE("rhodium_plated_palladium_borosilicate", GTValues.LuV),
         OSMIRIDIUM_BOROSILICATE("osmiridium_borosilicate", GTValues.ZPM),
         TRITANIUM_BOROSILICATE("tritanium_borosilicate", GTValues.UV),
-        NEUTRONIUM_BOROSILICATE("neutronium_borosilicate", GTValues.UHV);
-        // TODO UEV-MAX
+        NEUTRONIUM_BOROSILICATE("neutronium_borosilicate", GTValues.UHV),
+        COSMIC_NEUTRONIUM_BOROSILICATE("cosmic_neutronium_borosilicate", GTValues.UEV),
+        INFINITY_BOROSILICATE("infinity_borosilicate", GTValues.UIV);
+        // TODO UXV-MAX
 
         private final String name;
         private final int tier;

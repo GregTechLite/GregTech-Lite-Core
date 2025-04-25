@@ -479,6 +479,8 @@ tile.glass_casing_02.rhodium_plated_palladium_borosilicate.name=Rhodium Plated P
 tile.glass_casing_02.osmiridium_borosilicate.name=Osmiridium reinforced Borosilicate Glass
 tile.glass_casing_02.tritanium_borosilicate.name=Tritanium reinforced Borosilicate Glass
 tile.glass_casing_02.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
+tile.glass_casing_02.cosmic_neutronium_borosilicate.name=Cosmic Neutronium reinforced Borosilicate Glass
+tile.glass_casing_02.infinity.name=Infinity reinforced Borosilicate Glass
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)
