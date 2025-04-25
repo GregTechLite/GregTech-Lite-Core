@@ -433,6 +433,7 @@ tile.fusion_casing_03.vacuum_mk5.name=Reactor Vacuum MK5
 
 tile.wire_coil.adamantium.name=Adamantium Wire Coil Block
 tile.wire_coil.infinity.name=Infinity Wire Coil Block
+tile.wire_coil.halkonite_steel.name=Halkonite Steel Wire Coil Block
 
 tile.crucible.bronze.name=Bronze Crucible
 tile.crucible.invar.name=Invar Crucible
@@ -2471,6 +2472,7 @@ gtlitecore.material.quantum_alloy=Quantum Alloy
 gtlitecore.material.hdcs=High Durability Compound Steel (HDCS)
 gtlitecore.material.titan_steel=Titan Steel
 gtlitecore.material.tairitsium=Tairitsium
+gtlitecore.material.halkonite_steel=Halkonite Steel
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -2698,6 +2700,10 @@ gtlitecore.material.oganesson_breeding_base=Oganesson Breeding Base
 gtlitecore.material.unprocessed_nd_yag_solution=Unprocessed Nd:YAG Solution
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
+gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
+
+# Fluids
+gtlitecore.fluid.molten=Molten %s
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

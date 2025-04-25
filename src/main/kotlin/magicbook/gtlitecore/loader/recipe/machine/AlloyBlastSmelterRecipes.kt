@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Material
@@ -59,18 +60,25 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTita
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumBerylliumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -218,6 +226,21 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[UV].toLong())
                 .duration(3 * MINUTE + 13 * SECOND + 10 * TICK)
                 .blastFurnaceTemp(7000) // Naquadah
+                .buildAndRegister()
+
+            // Halkonite Steel
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, CosmicNeutronium, 2)
+                .input(dust, Tairitsium, 2)
+                .input(dust, RedPhosphorus, 2)
+                .input(dust, TitanSteel)
+                .input(dust, Infinity)
+                .fluidInputs(HeavyLeptonMixture.getFluid(1000))
+                .fluidOutputs(HalkoniteSteel.getFluid(L * 8))
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE)
+                .blastFurnaceTemp(13801) // Infinity
                 .buildAndRegister()
 
         }

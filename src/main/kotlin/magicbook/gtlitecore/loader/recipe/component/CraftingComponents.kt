@@ -89,6 +89,8 @@ import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
@@ -234,7 +236,7 @@ class CraftingComponents
         // SPRING_SMALL
         // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
-        //      9: Europium, 10-14: TODO
+        //      9: Europium, 10: Seaborgium, 11-14: TODO
         val SPRING_SMALL = CraftingComponent.Component(sequenceOf(
             ULV to UnificationEntry(springSmall, Lead),
             LV  to UnificationEntry(springSmall, Tin),
@@ -245,7 +247,12 @@ class CraftingComponents
             LuV to UnificationEntry(springSmall, NiobiumTitanium),
             ZPM to UnificationEntry(springSmall, VanadiumGallium),
             UV  to UnificationEntry(springSmall, YttriumBariumCuprate),
-            UHV to UnificationEntry(springSmall, Europium)
+            UHV to UnificationEntry(springSmall, Europium),
+            UEV to UnificationEntry(springSmall, Seaborgium),
+            // UIV to UnificationEntry(springSmall, Tritanium),
+            // UXV to UnificationEntry(springSmall, Tritanium),
+            // OpV to UnificationEntry(springSmall, Tritanium),
+            // MAX to UnificationEntry(springSmall, Tritanium)
         ).toMap())
 
         fun setCraftingComponents()
@@ -254,15 +261,15 @@ class CraftingComponents
             // Old: 0-1: Gold, 2: Silver, 3: Electrum, 4: Platinum, 5-8: Osmium.
             // New: 0-1: Gold, 2: Silver, 3: Electrum, 4: Platinum, 5-6: Osmium,
             //      7-8: Naquadah, 9: Trinium, 10: Tritanium, 11: Adamantium,
-            //      12-14: TODO
+            //      12: Infinity, 13: HalkoniteSteel, 14: TODO
             CraftingComponent.WIRE_ELECTRIC.appendIngredients(sequenceOf(
                 ZPM to UnificationEntry(wireGtSingle, Naquadah),
                 UV  to UnificationEntry(wireGtSingle, Naquadah),
                 UHV to UnificationEntry(wireGtSingle, Trinium),
                 UEV to UnificationEntry(wireGtSingle, Tritanium),
                 UIV to UnificationEntry(wireGtSingle, Adamantium),
-                // UXV to UnificationEntry(wireGtSingle, Tritanium),
-                // OpV to UnificationEntry(wireGtSingle, Tritanium),
+                UXV to UnificationEntry(wireGtSingle, Infinity),
+                OpV to UnificationEntry(wireGtSingle, HalkoniteSteel),
                 // MAX to UnificationEntry(wireGtSingle, Tritanium)
             ).toMap())
 
@@ -550,12 +557,12 @@ class CraftingComponents
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy
             // New: 0-1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome, 5: RTMAlloy,
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy, 9: Tritanium, 10: Adamantium,
-            //      11-14: TODO
+            //      11: Infinity, 12: HalkoniteSteel, 13-14: TODO
             CraftingComponent.COIL_HEATING.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(wireGtDouble, Tritanium),
                 UEV to UnificationEntry(wireGtDouble, Adamantium),
-                // UIV to UnificationEntry(wireGtDouble, Tritanium),
-                // UXV to UnificationEntry(wireGtDouble, Tritanium),
+                UIV to UnificationEntry(wireGtDouble, Infinity),
+                UXV to UnificationEntry(wireGtDouble, HalkoniteSteel),
                 // OpV to UnificationEntry(wireGtDouble, Tritanium),
                 // MAX to UnificationEntry(wireGtDouble, Tritanium)
             ).toMap())
@@ -565,12 +572,12 @@ class CraftingComponents
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy
             // New: 0-1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome, 5: RTMAlloy,
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy, 9: Tritanium, 10: Adamantium,
-            //      11-14: TODO
+            //      11: Infinity, 12: HalkoniteSteel, 13-14: TODO
             CraftingComponent.COIL_HEATING_DOUBLE.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(wireGtQuadruple, Tritanium),
                 UEV to UnificationEntry(wireGtQuadruple, Adamantium),
-                // UIV to UnificationEntry(wireGtQuadruple, Tritanium),
-                // UXV to UnificationEntry(wireGtQuadruple, Tritanium),
+                UIV to UnificationEntry(wireGtQuadruple, Infinity),
+                UXV to UnificationEntry(wireGtQuadruple, HalkoniteSteel),
                 // OpV to UnificationEntry(wireGtQuadruple, Tritanium),
                 // MAX to UnificationEntry(wireGtQuadruple, Tritanium)
             ).toMap())
@@ -609,13 +616,14 @@ class CraftingComponents
             //      5: RTMAlloy, 6: HSSG, 7: Naquadah, 8: NaquadahAlloy
             // New: 0: Blaze, 1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome,
             //      5: RTMAlloy, 6: HSSG, 7: Naquadah, 8: NaquadahAlloy, 9: Trinium,
-            //      10: Tritanium, 11: Adamantium, 12-14: TODO
+            //      10: Tritanium, 11: Adamantium, 12: Infinity, 13: HalkoniteSteel,
+            //      14: TODO
             CraftingComponent.STICK_DISTILLATION.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(spring, Trinium),
                 UEV to UnificationEntry(spring, Tritanium),
                 UIV to UnificationEntry(spring, Adamantium),
-                // UXV to UnificationEntry(spring, Tritanium),
-                // OpV to UnificationEntry(spring, Tritanium),
+                UXV to UnificationEntry(spring, Infinity),
+                OpV to UnificationEntry(spring, HalkoniteSteel),
                 // MAX to UnificationEntry(spring, Tritanium)
             ).toMap())
 

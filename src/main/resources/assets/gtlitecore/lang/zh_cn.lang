@@ -433,6 +433,7 @@ tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 
 tile.wire_coil.adamantium.name=精金线圈方块
 tile.wire_coil.infinity.name=无尽线圈方块
+tile.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
 
 tile.crucible.bronze.name=青铜坩埚
 tile.crucible.invar.name=殷钢坩埚
@@ -2476,6 +2477,7 @@ gtlitecore.material.quantum_alloy=量子合金
 gtlitecore.material.hdcs=高强度复合钢（HDCS）
 gtlitecore.material.titan_steel=泰坦精钢
 gtlitecore.material.tairitsium=对立合金
+gtlitecore.material.halkonite_steel=赫利孔钢
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
@@ -2702,6 +2704,10 @@ gtlitecore.material.oganesson_breeding_base=鿫增殖基
 gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴石溶液
 
 gtlitecore.material.neutron_proton_fermi_superfluid=中子-质子费米超流体
+gtlitecore.material.heavy_lepton_mixture=重轻子混合物
+
+# Fluids
+gtlitecore.fluid.molten=熔融%s
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

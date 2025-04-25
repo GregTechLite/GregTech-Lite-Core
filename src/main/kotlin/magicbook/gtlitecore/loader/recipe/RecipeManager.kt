@@ -20,6 +20,7 @@ import magicbook.gtlitecore.loader.recipe.chain.FEPChain
 import magicbook.gtlitecore.loader.recipe.chain.GalliumNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
+import magicbook.gtlitecore.loader.recipe.chain.HalkoniteSteelChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
 import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
@@ -196,6 +197,7 @@ class RecipeManager
             NdYAGChain.init()
             DiethylEtherChain.init()
             CosmicNeutroniumChain.init()
+            HalkoniteSteelChain.init()
 
             AdditivesChain.init()
             WinesChain.init()

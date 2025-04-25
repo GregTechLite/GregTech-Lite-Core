@@ -5,13 +5,11 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.unification.ore.OrePrefix
-import gregtech.api.unification.ore.OrePrefix.dust
-import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconType
 
@@ -105,29 +103,36 @@ class GTLiteOrePrefix
             }
 
             // Deleted ZSM-5 dusts.
-            dust.setIgnored(GTLiteMaterials.ZSM5)
-            dustSmall.setIgnored(GTLiteMaterials.ZSM5)
-            dustTiny.setIgnored(GTLiteMaterials.ZSM5)
+            OrePrefix.dust.setIgnored(GTLiteMaterials.ZSM5)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.ZSM5)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.ZSM5)
 
             // Deleted Blazing Pyrotheum dusts.
-            dustSmall.setIgnored(GTLiteMaterials.BlazingPyrotheum)
-            dustTiny.setIgnored(GTLiteMaterials.BlazingPyrotheum)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.BlazingPyrotheum)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.BlazingPyrotheum)
 
             // Deleted Gelid Cryotheum dusts.
-            dustSmall.setIgnored(GTLiteMaterials.GelidCryotheum)
-            dustTiny.setIgnored(GTLiteMaterials.GelidCryotheum)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.GelidCryotheum)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.GelidCryotheum)
 
             // Deleted Tectonic Petrotheum dusts.
-            dustSmall.setIgnored(GTLiteMaterials.TectonicPetrotheum)
-            dustTiny.setIgnored(GTLiteMaterials.TectonicPetrotheum)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.TectonicPetrotheum)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.TectonicPetrotheum)
 
             // Deleted Zephyrean Aerotheum dusts.
-            dustSmall.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
-            dustTiny.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
 
             // Deleted RoastedSphalerite dusts.
-            dustSmall.setIgnored(GTLiteMaterials.RoastedSphalerite)
-            dustTiny.setIgnored(GTLiteMaterials.RoastedSphalerite)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.RoastedSphalerite)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.RoastedSphalerite)
+
+            // Deleted HalkoniteSteel dusts, nugget and hot ingot.
+            OrePrefix.dust.setIgnored(HalkoniteSteel)
+            OrePrefix.dustSmall.setIgnored(HalkoniteSteel)
+            OrePrefix.dustTiny.setIgnored(HalkoniteSteel)
+            OrePrefix.nugget.setIgnored(HalkoniteSteel)
+            OrePrefix.ingotHot.setIgnored(HalkoniteSteel)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high
@@ -138,16 +143,16 @@ class GTLiteOrePrefix
         {
             // Because we add Tenorite (CuO ore) to change CuO dust, so this material is deprecated.
             // This material is ensured to remove all related recipes yet. Ignored all ore prefixes of CuO ^^.
-            dust.setIgnored(Materials.CupricOxide)
-            dustSmall.setIgnored(Materials.CupricOxide)
-            dustTiny.setIgnored(Materials.CupricOxide)
+            OrePrefix.dust.setIgnored(Materials.CupricOxide)
+            OrePrefix.dustSmall.setIgnored(Materials.CupricOxide)
+            OrePrefix.dustTiny.setIgnored(Materials.CupricOxide)
 
             // Because we add Baddeleyite (ZrO2 ore) to change ZrO2 dust, so this material is
             // deprecated. This material is ensured to remove all related recipes yet. Ignored all
             // ore prefixes of ZrO2 ^^.
-            dust.setIgnored(Materials.Zirconia)
-            dustSmall.setIgnored(Materials.Zirconia)
-            dustTiny.setIgnored(Materials.Zirconia)
+            OrePrefix.dust.setIgnored(Materials.Zirconia)
+            OrePrefix.dustSmall.setIgnored(Materials.Zirconia)
+            OrePrefix.dustTiny.setIgnored(Materials.Zirconia)
         }
 
         fun addToMetaItem()

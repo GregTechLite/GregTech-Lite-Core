@@ -103,9 +103,9 @@ public class BlockWireCoils extends VariantActiveBlock<BlockWireCoils.WireCoilTy
         // UHV: Adamantium, 12600K (10800K + 1800K)
         ADAMANTIUM("adamantium", 12600, 16, 16, GTLiteMaterials.Adamantium),
         // UEV: Infinity, 14400K (12600K + 1800K)
-        INFINITY("infinity", 14400, 32, 16, GTLiteMaterials.Infinity);
+        INFINITY("infinity", 14400, 32, 16, GTLiteMaterials.Infinity),
         // UIV: Halkonite Steel, 16201K (14400K + 1801K)
-        // HALKONITE_STEEL("halkonite_steel", 16201, 32, 32, GTLiteMaterials.HalkoniteSteel);
+        HALKONITE_STEEL("halkonite_steel", 16201, 32, 32, GTLiteMaterials.HalkoniteSteel);
 
         private final String name;
         private final int coilTemperature;

@@ -6,6 +6,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -137,7 +138,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
@@ -149,6 +152,8 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
+import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_IV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
@@ -174,6 +179,7 @@ class AssemblyLineRecipes
             energyHatchesRecipes()
             laserHatchesRecipes()
             coALCasingRecipes()
+            wireCoilRecipes()
         }
 
         private fun componentRecipes()
@@ -1719,6 +1725,44 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // TODO UHV-MAX CoAL Casing
+        }
+
+        private fun wireCoilRecipes()
+        {
+            // Infinity Wire Coil Block
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(wireGtDouble, Infinity, 8)
+                .input(screw, Infinity, 8)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .fluidInputs(Adamantium.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.INFINITY))
+                .EUt(VA[UEV].toLong())
+                .duration(55 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.ADAMANTIUM))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Halkonite Steel Wire Coil Block
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .input(wireGtDouble, HalkoniteSteel, 8)
+                .input(screw, HalkoniteSteel, 8)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 32)
+                .fluidInputs(Infinity.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.HALKONITE_STEEL))
+                .EUt(VA[UIV].toLong())
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.INFINITY))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
         }
 
         /**

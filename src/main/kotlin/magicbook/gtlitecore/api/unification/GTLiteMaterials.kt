@@ -8,6 +8,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -198,6 +199,7 @@ import gregtech.api.unification.material.info.MaterialFlags.IS_MAGNETIC
 import gregtech.api.unification.material.info.MaterialFlags.MORTAR_GRINDABLE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
+import gregtech.api.unification.material.info.MaterialFlags.NO_UNIFICATION
 import gregtech.api.unification.material.info.MaterialFlags.NO_WORKING
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.CERTUS
@@ -232,6 +234,7 @@ import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Compa
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.BEDROCKIUM
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.CRYOTHEUM
+import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.HALKONITE
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconSet.Companion.NANOPARTICLES
@@ -398,7 +401,8 @@ class GTLiteMaterials
             .iconSet(INFINITY)
             .element(If)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR,
-                GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR)
+                GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_SPRING,
+                GENERATE_SPRING_SMALL)
             .blast { b ->
                 b.temp(12600, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 16 * MINUTE)
@@ -2012,7 +2016,7 @@ class GTLiteMaterials
             .fluid()
             .iconSet(BEDROCKIUM)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR,
-                GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE)
+                GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
             .blast { b ->
                 b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
                     .blastStats(VA[ZPM], 50 * SECOND)
@@ -3238,6 +3242,25 @@ class GTLiteMaterials
                 .enchantment(Enchantments.LOOTING, 3)
                 .build())
             .build()
+
+        // 4035 Halkonite Steel
+        @JvmField
+        val HalkoniteSteel: Material = Material.Builder(4035, gtliteId("halkonite_steel"))
+            .ingot()
+            .liquid(FluidBuilder().customStill()
+                .translation("gtlitecore.fluid.molten"))
+            .iconSet(HALKONITE)
+            .components(CosmicNeutronium, 2, Tairitsium, 2, RedPhosphorus, 2, TitanSteel, 1, Infinity, 1)
+            .blast { b -> b
+                .temp(13801, BlastProperty.GasTier.HIGHEST) // Infinity
+                .blastStats(VA[UEV], 40 * SECOND)
+                .vacuumStats(VA[UHV], 20 * SECOND)
+            }
+            .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME,
+                GENERATE_SPRING, GENERATE_SPRING_SMALL)
+            .cableProperties(V[UIV], 48, 64, false)
+            .build()
+            .setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true) // Fix a little formula problem from P4.
 
         // =======================================================================
         // 6001-8000: High Degree Materials
@@ -5071,6 +5094,14 @@ class GTLiteMaterials
             .plasma(FluidBuilder()
                 .temperature(100_000_000)
                 .translation("gregtech.fluid.generic")
+                .customStill())
+            .build()
+
+        // 13002 Heavy Lepton Mixture
+        @JvmField
+        val HeavyLeptonMixture: Material = Material.Builder(13002, gtliteId("heavy_lepton_mixture"))
+            .liquid(FluidBuilder()
+                .temperature(48_000_000)
                 .customStill())
             .build()
 
