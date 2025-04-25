@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.api.utils;
 
 import gregtech.api.GTValues;
+import magicbook.gtlitecore.api.utils.maps.ItemStackMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;

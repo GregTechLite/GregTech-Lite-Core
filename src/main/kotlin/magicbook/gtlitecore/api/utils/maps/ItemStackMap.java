@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.api.utils;
+package magicbook.gtlitecore.api.utils.maps;
 
 /*
  * Copyright (c) 2022 GTNH Team, glee8e, Code Chicken
