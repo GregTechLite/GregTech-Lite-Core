@@ -185,6 +185,7 @@ class OreDictionaryLoader
             OreDictionary.registerOre("glassEv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TITANIUM_BOROSILICATE))
             // IV: Laminated Glass, Tungsten Steel reinforced Borosilicate Glass
             OreDictionary.registerOre("glassIv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))
+            OreDictionary.registerOre("glassIv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.THORIUM_YTTRIUM))
             OreDictionary.registerOre("glassIv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TUNGSTEN_STEEL_BOROSILICATE))
             // LuV: Laminated Glass, Rhodium Plated Palladium reinforced Borosilicate Glass
             OreDictionary.registerOre("glassLuv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))

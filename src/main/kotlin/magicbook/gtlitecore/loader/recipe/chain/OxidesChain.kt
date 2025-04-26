@@ -56,6 +56,7 @@ import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tetrahedrite
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
@@ -79,6 +80,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOx
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.YttriumOxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -424,6 +426,16 @@ class OxidesChain
                 .output(dust, GalliumDioxide, 3)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Th + 2O -> ThO2
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Thorium)
+                .fluidInputs(Oxygen.getFluid(2000))
+                .output(dust, ThoriumDioxide, 3)
+                .EUt(VA[MV].toLong())
+                .duration(4 * SECOND + 5 * TICK)
                 .buildAndRegister()
         }
 

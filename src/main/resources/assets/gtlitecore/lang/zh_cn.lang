@@ -471,6 +471,7 @@ tile.glass_casing_01.zblan.name=ZBLAN玻璃
 tile.glass_casing_01.erbium_zblan.name=铒掺杂的ZBLAN玻璃
 tile.glass_casing_01.praseodymium_zblan.name=镨掺杂的ZBLAN玻璃
 tile.glass_casing_01.gst.name=GST玻璃
+tile.glass_casing_01.thorium_yttrium.name=钍钇玻璃
 
 tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃
 tile.glass_casing_02.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
@@ -480,7 +481,7 @@ tile.glass_casing_02.osmiridium_borosilicate.name=铱锇合金强化硼硅酸盐
 tile.glass_casing_02.tritanium_borosilicate.name=三钛强化硼硅酸盐玻璃
 tile.glass_casing_02.neutronium_borosilicate.name=中子强化硼硅酸盐玻璃
 tile.glass_casing_02.cosmic_neutronium_borosilicate.name=宇宙中子强化硼硅酸盐玻璃
-tile.glass_casing_02.infinity.name=无尽强化硼硅酸盐玻璃
+tile.glass_casing_02.infinity_borosilicate.name=无尽强化硼硅酸盐玻璃
 
 # Items
 metaitem.shape.mold.rod.name=模具（杆）

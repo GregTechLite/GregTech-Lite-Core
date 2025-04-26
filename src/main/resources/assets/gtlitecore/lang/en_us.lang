@@ -471,6 +471,7 @@ tile.glass_casing_01.zblan.name=ZBLAN Glass
 tile.glass_casing_01.erbium_zblan.name=Erbium-doped ZBLAN Glass
 tile.glass_casing_01.praseodymium_zblan.name=Praseodymium-doped ZBLAN Glass
 tile.glass_casing_01.gst.name=GST Glass
+tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
@@ -480,7 +481,7 @@ tile.glass_casing_02.osmiridium_borosilicate.name=Osmiridium reinforced Borosili
 tile.glass_casing_02.tritanium_borosilicate.name=Tritanium reinforced Borosilicate Glass
 tile.glass_casing_02.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
 tile.glass_casing_02.cosmic_neutronium_borosilicate.name=Cosmic Neutronium reinforced Borosilicate Glass
-tile.glass_casing_02.infinity.name=Infinity reinforced Borosilicate Glass
+tile.glass_casing_02.infinity_borosilicate.name=Infinity reinforced Borosilicate Glass
 
 # Items
 metaitem.shape.mold.rod.name=Mold (Rod)

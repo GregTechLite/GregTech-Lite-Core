@@ -4,7 +4,7 @@
     "type": "CTM",
     "layer": "TRANSLUCENT",
     "textures": [
-      "gtlitecore:blocks/casings/glass/infinity_borosilicate_ctm"
+      "gtlitecore:blocks/casings/glass/thorium_yttrium_ctm"
     ],
     "extra": {
       "connect_inside": true
