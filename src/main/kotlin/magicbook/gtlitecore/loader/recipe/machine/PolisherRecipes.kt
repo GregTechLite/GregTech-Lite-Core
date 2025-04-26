@@ -38,6 +38,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Praseodymi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -229,8 +230,17 @@ class PolisherRecipes
             // Silicon Carbide Glass
             POLISHER_RECIPES.recipeBuilder()
                 .input(block, SiliconCarbide)
-                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.SILICON_CARBIDE))
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.SILICON_CARBIDE, 2))
                 .output(dust, SiliconCarbide)
+                .EUt(VA[EV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Woods Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, WoodsGlass)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.WOODS, 2))
+                .output(dust, WoodsGlass)
                 .EUt(VA[EV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()

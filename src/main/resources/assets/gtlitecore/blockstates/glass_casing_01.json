@@ -64,6 +64,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/silicon_carbide"
         }
+      },
+      "woods": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/woods"
+        }
       }
     }
   }

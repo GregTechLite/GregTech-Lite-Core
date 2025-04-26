@@ -190,6 +190,7 @@ class OreDictionaryLoader
             OreDictionary.registerOre("glassIv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TUNGSTEN_STEEL_BOROSILICATE))
             // LuV: Laminated Glass, Rhodium Plated Palladium reinforced Borosilicate Glass
             OreDictionary.registerOre("glassLuv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))
+            OreDictionary.registerOre("glassLuv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.WOODS))
             OreDictionary.registerOre("glassLuv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.RHODIUM_PLATED_PALLADIUM_BOROSILICATE))
             // ZPM: Fusion Glass, BPA Polycarbonate Glass, Osmiridium reinforced Borosilicate Glass
             OreDictionary.registerOre("glassZpm", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.FUSION_GLASS))

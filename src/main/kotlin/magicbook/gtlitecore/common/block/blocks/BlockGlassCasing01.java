@@ -115,7 +115,8 @@ public class BlockGlassCasing01 extends VariantBlock<BlockGlassCasing01.GlassTyp
         PRASEODYMIUM_ZBLAN("praseodymium_zblan", GTValues.UHV),
         GST("gst", GTValues.UV),
         THORIUM_YTTRIUM("thorium_yttrium", GTValues.IV),
-        SILICON_CARBIDE("silicon_carbide", GTValues.EV);
+        SILICON_CARBIDE("silicon_carbide", GTValues.EV),
+        WOODS("woods", GTValues.LuV);
 
         private final String name;
         private final int tier;

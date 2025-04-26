@@ -61,6 +61,7 @@ import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gallium
+import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
@@ -1261,7 +1262,7 @@ class GTLiteMaterials
         val PraseodymiumDopedZBLANGlass: Material = Material.Builder(2089, gtliteId("praseodymium_doped_zblan_glass"))
             .ingot()
             .color(0xC5C88D).iconSet(BRIGHT)
-            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
             .components(ZBLANGlass, 1, Praseodymium, 1)
             .build()
             .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true)
@@ -2714,6 +2715,28 @@ class GTLiteMaterials
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("UO2(NO3)2", true)
+
+        // 2244 Barium Oxide
+        @JvmField
+        val BariumOxide: Material = Material.Builder(2244, gtliteId("barium_oxide"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Barium, 1, Oxygen, 1)
+            .build()
+
+        // 2245 Woods Glass
+        @JvmField
+        val WoodsGlass: Material = Material.Builder(2245, gtliteId("woods_glass"))
+            .ingot()
+            .fluid()
+            .color(0x730099).iconSet(SHINY)
+            .components(SodaAsh, 6, SiliconDioxide, 3, BariumOxide, 2, Garnierite, 2)
+            .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE)
+            .blast { b ->
+                b.temp(1163, BlastProperty.GasTier.MID)
+                    .blastStats(VA[IV])
+            }
+            .build()
 
         // =======================================================================
         // 4001-6000: Second Degree Materials

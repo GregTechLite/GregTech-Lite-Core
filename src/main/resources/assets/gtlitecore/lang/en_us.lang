@@ -473,6 +473,7 @@ tile.glass_casing_01.praseodymium_zblan.name=Praseodymium-doped ZBLAN Glass
 tile.glass_casing_01.gst.name=GST Glass
 tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
 tile.glass_casing_01.silicon_carbide.name=Silicon Carbide Glass
+tile.glass_casing_01.woods.name=Woods Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
@@ -2441,6 +2442,9 @@ gtlitecore.material.thorium_nitrate=Thorium Nitrate
 gtlitecore.material.radium_dichloride=Radium Dichloride
 gtlitecore.material.thorium_dioxide=Thorium Dioxide
 gtlitecore.material.uranyl_nitrate=Uranyl Nitrate
+gtlitecore.material.barium_oxide=Barium Oxide
+gtlitecore.material.woods_glass=Woods Glass
+item.gtlitecore.material.woods_glass.ingot=Woods Glass Bar
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

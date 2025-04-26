@@ -50,6 +50,7 @@ import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
+import magicbook.gtlitecore.loader.recipe.chain.WoodsGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.chain.ZylonChain
 import magicbook.gtlitecore.loader.recipe.chain.food.AdditivesChain
@@ -200,6 +201,7 @@ class RecipeManager
             CosmicNeutroniumChain.init()
             HalkoniteSteelChain.init()
             ThoriumYttriumGlassChain.init()
+            WoodsGlassChain.init()
 
             AdditivesChain.init()
             WinesChain.init()

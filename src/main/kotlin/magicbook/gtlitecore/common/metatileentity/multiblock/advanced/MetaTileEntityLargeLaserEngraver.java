@@ -24,6 +24,7 @@ import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
 import magicbook.gtlitecore.api.utils.stream.LazyStreams;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01;
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import net.minecraft.block.state.IBlockState;
@@ -143,7 +144,7 @@ public class MetaTileEntityLargeLaserEngraver extends RecipeMapMultiblockControl
 
     private static IBlockState getGlassState()
     {
-        return MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS);
+        return GTLiteMetaBlocks.TRANSPARENT_CASING_01.getState(BlockGlassCasing01.GlassType.WOODS);
     }
 
     @SideOnly(Side.CLIENT)
