@@ -57,6 +57,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/thorium_yttrium"
         }
+      },
+      "silicon_carbide": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/silicon_carbide"
+        }
       }
     }
   }

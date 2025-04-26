@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.ULV
@@ -35,6 +36,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Limestone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polymethylmethacrylate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shale
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Slate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -221,6 +223,15 @@ class PolisherRecipes
                 .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE, 2))
                 .output(dust, BorosilicateGlass)
                 .EUt(VA[HV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Silicon Carbide Glass
+            POLISHER_RECIPES.recipeBuilder()
+                .input(block, SiliconCarbide)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.SILICON_CARBIDE))
+                .output(dust, SiliconCarbide)
+                .EUt(VA[EV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
 

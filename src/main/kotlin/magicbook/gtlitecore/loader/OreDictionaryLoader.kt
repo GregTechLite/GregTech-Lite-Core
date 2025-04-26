@@ -182,6 +182,7 @@ class OreDictionaryLoader
             OreDictionary.registerOre("glassHv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
             // EV: Tempered Glass, Titanium reinforced Borosilicate Glass
             OreDictionary.registerOre("glassEv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+            OreDictionary.registerOre("glassEv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.SILICON_CARBIDE))
             OreDictionary.registerOre("glassEv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TITANIUM_BOROSILICATE))
             // IV: Laminated Glass, Tungsten Steel reinforced Borosilicate Glass
             OreDictionary.registerOre("glassIv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.LAMINATED_GLASS))

@@ -472,6 +472,7 @@ tile.glass_casing_01.erbium_zblan.name=Erbium-doped ZBLAN Glass
 tile.glass_casing_01.praseodymium_zblan.name=Praseodymium-doped ZBLAN Glass
 tile.glass_casing_01.gst.name=GST Glass
 tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
+tile.glass_casing_01.silicon_carbide.name=Silicon Carbide Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
