@@ -3259,7 +3259,8 @@ class GTLiteMaterials
                 b.temp(10400, BlastProperty.GasTier.HIGHEST) // Tritanium
                     .blastStats(VA[UHV], 20 * SECOND)
                     .vacuumStats(VA[UV], 6 * SECOND + 10 * TICK) }
-            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
+                GENERATE_GEAR)
             .toolStats(MaterialToolProperty.Builder.of(36.5F, 44.2F, 4980, 7)
                 .attackSpeed(0.6F).enchantability(30)
                 .enchantment(Enchantments.LOOTING, 3)

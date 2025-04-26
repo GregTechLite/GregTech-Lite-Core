@@ -548,6 +548,16 @@ metaitem.credit.adamantium.name=精金币
 metaitem.credit.adamantium.tooltip=币值2097152
 metaitem.credit.vibranium.name=振金币
 metaitem.credit.vibranium.tooltip=币值16777216
+metaitem.credit.cosmic_neutronium.name=宇宙中子币
+metaitem.credit.cosmic_neutronium.tooltip=币值134217728
+metaitem.credit.infinity.name=无尽币
+metaitem.credit.infinity.tooltip=币值1073741824
+metaitem.credit.hypogen.name=海珀珍币
+metaitem.credit.hypogen.tooltip=币值8589934592
+metaitem.credit.space_time.name=时空币
+metaitem.credit.space_time.tooltip=币值68719476736
+metaitem.credit.eternity.name=永恒币
+metaitem.credit.eternity.tooltip=币值549755813888
 
 metaitem.tool.circuit_pattern.name=电路模板
 metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据

@@ -100,6 +100,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_W
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_BORON_NITRIDE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANTIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_COSMIC_NEUTRONIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_INFINITY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
@@ -656,6 +658,24 @@ class CraftingRecipeLoader
 
             ModHandler.addShapelessRecipe("credit_vibranium", CREDIT_ADAMANTIUM.getStackForm(8),
                 CREDIT_VIBRANIUM.stackForm)
+
+            // Cosmic Neutronium Credit
+            ModHandler.addShapelessRecipe("credit_cosmic_neutronium_alt", CREDIT_COSMIC_NEUTRONIUM.stackForm,
+                CREDIT_VIBRANIUM.stackForm, CREDIT_VIBRANIUM.stackForm, CREDIT_VIBRANIUM.stackForm,
+                CREDIT_VIBRANIUM.stackForm, CREDIT_VIBRANIUM.stackForm, CREDIT_VIBRANIUM.stackForm,
+                CREDIT_VIBRANIUM.stackForm, CREDIT_VIBRANIUM.stackForm)
+
+            ModHandler.addShapelessRecipe("credit_cosmic_neutronium", CREDIT_VIBRANIUM.getStackForm(8),
+                CREDIT_COSMIC_NEUTRONIUM.stackForm)
+
+            // Infinity Credit
+            ModHandler.addShapelessRecipe("credit_infinity_alt", CREDIT_INFINITY.stackForm,
+                CREDIT_COSMIC_NEUTRONIUM.stackForm, CREDIT_COSMIC_NEUTRONIUM.stackForm, CREDIT_COSMIC_NEUTRONIUM.stackForm,
+                CREDIT_COSMIC_NEUTRONIUM.stackForm, CREDIT_COSMIC_NEUTRONIUM.stackForm, CREDIT_COSMIC_NEUTRONIUM.stackForm,
+                CREDIT_COSMIC_NEUTRONIUM.stackForm, CREDIT_COSMIC_NEUTRONIUM.stackForm)
+
+            ModHandler.addShapelessRecipe("credit_infinity", CREDIT_COSMIC_NEUTRONIUM.getStackForm(8),
+                CREDIT_INFINITY.stackForm)
 
         }
 

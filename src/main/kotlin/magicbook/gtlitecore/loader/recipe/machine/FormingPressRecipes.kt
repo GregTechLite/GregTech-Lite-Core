@@ -21,6 +21,8 @@ import gregtech.common.items.MetaItems.CREDIT_SILVER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_MOLD_CREDIT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
@@ -37,6 +39,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANTIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_COSMIC_NEUTRONIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_INFINITY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_BOLT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_DRILL_HEAD
@@ -313,6 +317,24 @@ class FormingPressRecipes
                 .notConsumable(SHAPE_MOLD_CREDIT)
                 .input(plate, Vibranium)
                 .output(CREDIT_VIBRANIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Cosmic Neutronium Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, CosmicNeutronium)
+                .output(CREDIT_COSMIC_NEUTRONIUM, 4)
+                .EUt(VH[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Infinity Credit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_CREDIT)
+                .input(plate, Infinity)
+                .output(CREDIT_INFINITY, 4)
                 .EUt(VH[LV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()

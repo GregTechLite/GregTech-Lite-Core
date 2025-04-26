@@ -548,6 +548,16 @@ metaitem.credit.adamantium.name=Adamantium Credit
 metaitem.credit.adamantium.tooltip=2097152 Credits
 metaitem.credit.vibranium.name=Vibranium Credit
 metaitem.credit.vibranium.tooltip=16777216 Credits
+metaitem.credit.cosmic_neutronium.name=Cosmic Neutronium Credit
+metaitem.credit.cosmic_neutronium.tooltip=134217728 Credits
+metaitem.credit.infinity.name=Infinity Credit
+metaitem.credit.infinity.tooltip=1073741824 Credits
+metaitem.credit.hypogen.name=Hypogen Credit
+metaitem.credit.hypogen.tooltip=8589934592 Credits
+metaitem.credit.space_time.name=Space Time Credit
+metaitem.credit.space_time.tooltip=68719476736 Credits
+metaitem.credit.eternity.name=Eternity Credit
+metaitem.credit.eternity.tooltip=549755813888 Credits
 
 metaitem.board.gooware.name=Kapton™ Board
 metaitem.board.gooware.tooltip=DuPont™ Pyralux® TK Laminate Film

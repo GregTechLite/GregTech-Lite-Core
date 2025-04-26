@@ -14,8 +14,10 @@ import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import magicbook.gtlitecore.common.item.behavior.FoodBehavior
+import magicbook.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -69,6 +71,8 @@ class GTLiteMetaItems
 
         lateinit var CREDIT_ADAMANTIUM: MetaItem<*>.MetaValueItem
         lateinit var CREDIT_VIBRANIUM: MetaItem<*>.MetaValueItem
+        lateinit var CREDIT_COSMIC_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var CREDIT_INFINITY: MetaItem<*>.MetaValueItem
 
         lateinit var VOLTAGE_COIL_UHV: MetaItem<*>.MetaValueItem
         lateinit var VOLTAGE_COIL_UEV: MetaItem<*>.MetaValueItem
@@ -476,6 +480,12 @@ class GTLiteMetaItems
             CREDIT_ADAMANTIUM = GTLITE_ITEMS.addItem(86, "credit.adamantium")
                 .setRarity(EnumRarity.EPIC)
             CREDIT_VIBRANIUM = GTLITE_ITEMS.addItem(87, "credit.vibranium")
+                .setRarity(EnumRarity.EPIC)
+            CREDIT_COSMIC_NEUTRONIUM = GTLITE_ITEMS.addItem(88, "credit.cosmic_neutronium")
+                .addComponents(HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
+                .setRarity(EnumRarity.EPIC)
+            CREDIT_INFINITY = GTLITE_ITEMS.addItem(89, "credit.infinity")
+                .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
                 .setRarity(EnumRarity.EPIC)
 
             // 101-106: Voltage Coils.
