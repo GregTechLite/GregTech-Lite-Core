@@ -72,11 +72,13 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
@@ -197,6 +199,15 @@ class NaquadahProcessing
                 .fluidOutputs(ImpureEnrichedNaquadahSolution.getFluid(1000))
                 .EUt(VA[EV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Ba(OH)2 -> BaO + H2O
+            CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .input(dust, BariumHydroxide, 5)
+                .output(dust, BariumOxide, 2)
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(1 * SECOND + 12 * TICK)
                 .buildAndRegister()
 
             // Impure Nq+ Solution -> (Tc2O7) + Nq+ Solution + Nq+ Waste

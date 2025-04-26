@@ -29,6 +29,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Electrotine
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
+import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSG
@@ -63,6 +64,8 @@ import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Silicon
+import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
@@ -88,6 +91,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
@@ -132,6 +136,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZephyreanAerotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
@@ -233,6 +238,18 @@ class MixerRecipes
                 .input(dust, Tellurium, 3)
                 .output(dust, ChromiumGermaniumTelluride, 5)
                 .EUt(VA[UV].toLong())
+                .duration(45 * SECOND)
+                .buildAndRegister()
+
+            // Woods Glass
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, SodaAsh, 6)
+                .input(dust, SiliconDioxide, 3)
+                .input(dust, BariumOxide, 2)
+                .input(dust, Garnierite, 2)
+                .output(dust, WoodsGlass, 13)
+                .EUt(VA[IV].toLong())
                 .duration(45 * SECOND)
                 .buildAndRegister()
 

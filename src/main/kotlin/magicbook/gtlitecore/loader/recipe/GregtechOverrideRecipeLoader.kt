@@ -29,6 +29,7 @@ import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -39,6 +40,7 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
@@ -56,12 +58,14 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockCleanroomCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItems.BLACKLIGHT
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
@@ -70,6 +74,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentCableByTier
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentMaterialByTier
@@ -359,6 +364,17 @@ class GregtechOverrideRecipeLoader
                 .duration(10 * SECOND)
                 .EUToStart(600_000_000L) // 600M EU, MK3
                 .buildAndRegister()
+
+            // Blacklight overriden.
+            ModHandler.removeRecipeByName("${GTValues.MODID}:blacklight")
+            ModHandler.addShapedRecipe(true, "blacklight", BLACKLIGHT.stackForm,
+                "SPS", "QEQ", "XPW",
+                'P', UnificationEntry(plate, TungstenCarbide),
+                'Q', UnificationEntry(plate, WoodsGlass),
+                'E', UnificationEntry(spring, Europium),
+                'S', UnificationEntry(screw, TungstenCarbide),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'W', UnificationEntry(cableGtSingle, Platinum))
 
         }
 
