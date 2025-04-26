@@ -1021,6 +1021,8 @@ metaitem.food.drink.vinegar.name=醋
 metaitem.food.drink.vinegar.tooltip=酸醋含醋酸
 metaitem.food.drink.potato_juice.name=土豆汁
 metaitem.food.drink.potato_juice.tooltip=嘿！你最好别喝它，毕竟商店里从来不会售卖它...
+metaitem.food.drink.vodka.name=伏特加
+metaitem.food.drink.vodka.tooltip=生命之水
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -2648,6 +2650,7 @@ gtlitecore.material.grape_juice=葡萄汁
 gtlitecore.material.red_wine=红葡萄酒
 gtlitecore.material.vinegar=醋
 gtlitecore.material.potato_juice=土豆汁
+gtlitecore.material.vodka=伏特加
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分

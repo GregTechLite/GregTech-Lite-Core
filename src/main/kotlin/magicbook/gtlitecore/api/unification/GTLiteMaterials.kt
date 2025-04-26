@@ -4666,6 +4666,13 @@ class GTLiteMaterials
             .color(0xC3A92C)
             .build()
 
+        // 12045 Vodka
+        @JvmField
+        val Vodka: Material = Material.Builder(12045, gtliteId("vodka"))
+            .liquid()
+            .color(averageRGB(2, PotatoJuice.materialRGB, Water.materialRGB))
+            .build()
+
         // ...
 
         // 12050 Carbon 5 Fraction

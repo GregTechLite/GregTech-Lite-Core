@@ -1021,6 +1021,8 @@ metaitem.food.drink.vinegar.name=Vinegar
 metaitem.food.drink.vinegar.tooltip=Vinegar has Acetic Acid
 metaitem.food.drink.potato_juice.name=Potato Juice
 metaitem.food.drink.potato_juice.tooltip=Hey! You'd better not drink it, it's never sold in stores...
+metaitem.food.drink.vodka.name=Vodka
+metaitem.food.drink.vodka.tooltip=Water of Life
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -2644,6 +2646,7 @@ gtlitecore.material.grape_juice=Grape Juice
 gtlitecore.material.red_wine=Red Wine
 gtlitecore.material.vinegar=Vinegar
 gtlitecore.material.potato_juice=Potato Juice
+gtlitecore.material.vodka=Vodka
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction

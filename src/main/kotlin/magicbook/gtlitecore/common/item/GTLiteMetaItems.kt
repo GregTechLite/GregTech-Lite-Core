@@ -370,6 +370,7 @@ class GTLiteMetaItems
         lateinit var RED_WINE: MetaItem<*>.MetaValueItem
         lateinit var VINEGAR: MetaItem<*>.MetaValueItem
         lateinit var POTATO_JUICE: MetaItem<*>.MetaValueItem
+        lateinit var VODKA: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1113,6 +1114,12 @@ class GTLiteMetaItems
             POTATO_JUICE = GTLITE_ITEMS.addItem(9054, "food.drink.potato_juice")
                 .addComponents(FoodBehavior(4, 0.4F, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
+
+            VODKA = GTLITE_ITEMS.addItem(9055, "food.drink.vodka")
+                .addComponents(FoodBehavior(4, 0.8F, true, true, ItemStack(Items.GLASS_BOTTLE),
+                    RandomPotionEffect(MobEffects.NAUSEA, 20 * SECOND, 0, 100 - 80),
+                    RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 80))
+                    .setEatingDuration(6 * SECOND + 10 * TICK))
 
         }
 
