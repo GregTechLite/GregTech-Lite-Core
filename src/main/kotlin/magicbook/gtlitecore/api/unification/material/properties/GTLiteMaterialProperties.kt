@@ -328,15 +328,21 @@ class GTLiteMaterialProperties
 
             // Modified rare earth elements color.
             Promethium.materialRGB = 0x24B535
+            Promethium.materialIconSet = MaterialIconSet.SHINY
             Dysprosium.materialRGB = 0xDD79DD
             Erbium.materialRGB = 0xCC6633
             Holmium.materialRGB = 0xC38E2F
             Terbium.materialRGB = 0xA274A2
             Thulium.materialRGB = 0x596BC2
-
-            Promethium.materialIconSet = MaterialIconSet.SHINY
-            Lutetium.materialIconSet = MaterialIconSet.SHINY
             Thulium.materialIconSet = MaterialIconSet.SHINY
+
+            Lutetium.materialIconSet = MaterialIconSet.SHINY
+
+            // Modified superheavy elements color.
+            Nobelium.materialRGB = 0xF6B5FF
+            Nobelium.materialIconSet = MaterialIconSet.SHINY
+
+            Lawrencium.materialRGB = 0xBF4655
 
             // Modified Graphene formula.
             Graphene.setFormula("C8", true)
