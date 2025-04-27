@@ -807,7 +807,6 @@ class GTLiteRecipeMaps
             .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
             .progressBar(GTLiteGuiTextures.PROGRESS_BAR_NOVA_EXPLOSION)
             .sound(GTLiteSoundEvents.STELLAR_FORGE)
-            .generator()
             .build()
 
         // -------------------------------------------------------------------------------------------------------------
@@ -824,6 +823,7 @@ class GTLiteRecipeMaps
             .fluidInputs(1)
             .fluidOutputs(1)
             .sound(GTSoundEvents.FIRE)
+            .generator()
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

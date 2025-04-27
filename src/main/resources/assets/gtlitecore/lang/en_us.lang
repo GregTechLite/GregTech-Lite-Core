@@ -2519,6 +2519,11 @@ gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
 
+gtlitecore.material.superheated_steam=Superheated Steam
+gtlitecore.material.superheated_sodium_potassium_eutatic=Superheated Eutatic Sodium Potassium
+gtlitecore.material.superheated_lead_bismuth_eutatic=Superheated Eutatic Lead Bismuth
+gtlitecore.material.superheated_lithium_sodium_potassium_fluorides=Superheated Fluorine Lithium Sodium Potassium Alloy
+gtlitecore.material.superheated_lithium_beryllium_fluorides=Superheated Lithium Beryllium Fluorides
 gtlitecore.material.supercritical_steam=Supercritical Steam
 gtlitecore.material.supercritical_sodium_potassium_eutatic=Supercritical Eutatic Sodium Potassium
 gtlitecore.material.supercritical_lead_bismuth_eutatic=Supercritical Eutatic Lead Bismuth

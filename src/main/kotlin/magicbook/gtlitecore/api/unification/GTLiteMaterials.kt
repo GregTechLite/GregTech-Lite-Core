@@ -3434,6 +3434,51 @@ class GTLiteMaterials
 
         // ...
 
+        // 6026 Superheated Steam
+        @JvmField
+        val SuperheatedSteam: Material = Material.Builder(6026, gtliteId("superheated_steam"))
+            .gas(FluidBuilder().temperature(573))
+            .color(0xC4C4C4).iconSet(DULL)
+            .components(Water, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6027 Superheated Eutatic Sodium Potassium
+        @JvmField
+        val SuperheatedSodiumPotassiumEutatic: Material = Material.Builder(6027, gtliteId("superheated_sodium_potassium_eutatic"))
+            .liquid(FluidBuilder().temperature(758))
+            .color(SodiumPotassiumEutatic.materialRGB).iconSet(DULL)
+            .components(SodiumPotassiumEutatic, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6028 Superheated Eutatic Lead Bismuth
+        @JvmField
+        val SuperheatedLeadBismuthEutatic: Material = Material.Builder(6028, gtliteId("superheated_lead_bismuth_eutatic"))
+            .liquid(FluidBuilder().temperature(1643))
+            .color(LeadBismuthEutatic.materialRGB).iconSet(DULL)
+            .components(LeadBismuthEutatic, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6029 Superheated Lithium Sodium Potassium Fluorides
+        @JvmField
+        val SuperheatedLithiumSodiumPotassiumFluorides: Material = Material.Builder(6029, gtliteId("superheated_lithium_sodium_potassium_fluorides"))
+            .liquid(FluidBuilder().temperature(1543))
+            .color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(DULL)
+            .components(LithiumSodiumPotassiumFluorides, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 6030 Superheated Lithium Beryllium Fluorides
+        @JvmField
+        val SuperheatedLithiumBerylliumFluorides: Material = Material.Builder(6030, gtliteId("superheated_lithium_beryllium_fluorides"))
+            .liquid(FluidBuilder().temperature(1403))
+            .color(LithiumBerylliumFluorides.materialRGB).iconSet(DULL)
+            .components(LithiumBerylliumFluorides, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
         // 6031 Supercritical Steam
         @JvmField
         val SupercriticalSteam: Material = Material.Builder(6031, gtliteId("supercritical_steam"))

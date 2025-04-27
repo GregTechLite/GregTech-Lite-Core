@@ -2524,6 +2524,11 @@ gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
 
+gtlitecore.material.superheated_steam=过热蒸汽
+gtlitecore.material.superheated_sodium_potassium_eutatic=过热共晶钠钾合金
+gtlitecore.material.superheated_lead_bismuth_eutatic=过热共晶铅铋合金
+gtlitecore.material.superheated_lithium_sodium_potassium_fluorides=过热氟锂钠钾合金
+gtlitecore.material.superheated_lithium_beryllium_fluorides=过热氟锂铍合金
 gtlitecore.material.supercritical_steam=超临界蒸汽
 gtlitecore.material.supercritical_sodium_potassium_eutatic=超临界共晶钠钾合金
 gtlitecore.material.supercritical_lead_bismuth_eutatic=超临界共晶铅铋合金

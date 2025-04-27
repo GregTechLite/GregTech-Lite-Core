@@ -5,6 +5,8 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -17,6 +19,7 @@ import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
+import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Berkelium
@@ -52,6 +55,7 @@ import gregtech.api.unification.material.Materials.IridiumMetalResidue
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
@@ -64,6 +68,7 @@ import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Phosphate
@@ -81,6 +86,7 @@ import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rubidium
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Seaborgium
@@ -171,7 +177,8 @@ class GTLiteMaterialProperties
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
-                Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium)
+                Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
+                Astatine, Nobelium, Lawrencium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -179,7 +186,7 @@ class GTLiteMaterialProperties
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
-                Protactinium, Berkelium, Einsteinium, Mendelevium)
+                Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium, Lawrencium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)
@@ -345,9 +352,9 @@ class GTLiteMaterialProperties
             Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
 
             Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
-            Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[LuV])
+            Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
             Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
-            Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[EV])
+            Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[LuV])
             Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND
 
             Seaborgium.setProperty(PropertyKey.BLAST, BlastProperty(8300))
@@ -361,6 +368,9 @@ class GTLiteMaterialProperties
             Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18 * SECOND
             Bohrium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
             Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14 * SECOND
+
+            RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
+            RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
 
             // Modified platinum group related materials' formula.
             PalladiumRaw.setFormula("PdCl2", true);
