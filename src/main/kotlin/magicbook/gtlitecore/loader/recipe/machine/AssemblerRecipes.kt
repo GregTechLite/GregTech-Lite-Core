@@ -1796,14 +1796,12 @@ class AssemblerRecipes
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(8)
                 .input(wireGtDouble, Adamantium, 8)
-                .input(MICA_INSULATOR_FOIL, 40)
+                .input(MICA_INSULATOR_FOIL, 48)
                 .fluidInputs(Naquadria.getFluid(L))
                 .outputs(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.ADAMANTIUM))
                 .EUt(VA[UHV].toLong())
                 .duration(50 * SECOND)
                 .buildAndRegister()
-
-            // TODO UEV-MAX Wire Coils.
         }
 
         private fun crucibleRecipes()
