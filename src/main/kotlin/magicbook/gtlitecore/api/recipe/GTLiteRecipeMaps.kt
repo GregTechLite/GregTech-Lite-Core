@@ -8,6 +8,7 @@ import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.BlastRecipeBuilder
+import gregtech.api.recipes.builders.FuelRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
@@ -806,6 +807,23 @@ class GTLiteRecipeMaps
             .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
             .progressBar(GTLiteGuiTextures.PROGRESS_BAR_NOVA_EXPLOSION)
             .sound(GTLiteSoundEvents.STELLAR_FORGE)
+            .generator()
+            .build()
+
+        // -------------------------------------------------------------------------------------------------------------
+
+        /**
+         * @zenProp nuclear_reactor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("NUCLEAR_FUELS")
+        val NUCLEAR_FUELS = RecipeMapBuilder("nuclear_reactor", FuelRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidInputs(1)
+            .fluidOutputs(1)
+            .sound(GTSoundEvents.FIRE)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------
@@ -943,6 +961,8 @@ class GTLiteRecipeMaps
             RecipeMaps.FERMENTING_RECIPES.maxInputs = 2
             RecipeMaps.FERMENTING_RECIPES.maxFluidInputs = 2
             RecipeMaps.FERMENTING_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false, false)
+
+            RecipeMaps.THERMAL_CENTRIFUGE_RECIPES.maxOutputs = 4
         }
 
     }

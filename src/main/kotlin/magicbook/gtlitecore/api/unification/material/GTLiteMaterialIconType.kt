@@ -23,6 +23,25 @@ class GTLiteMaterialIconType
 
         @JvmField
         val boule = MaterialIconType("boule")
+
+        @JvmField
+        val fuelRodSingle = MaterialIconType("fuelRodSingle")
+
+        @JvmField
+        val fuelRodDouble = MaterialIconType("fuelRodDouble")
+
+        @JvmField
+        val fuelRodQuadruple = MaterialIconType("fuelRodQuadruple")
+
+        @JvmField
+        val fuelRodDepletedSingle = MaterialIconType("fuelRodDepletedSingle")
+
+        @JvmField
+        val fuelRodDepletedDouble = MaterialIconType("fuelRodDepletedDouble")
+
+        @JvmField
+        val fuelRodDepletedQuadruple = MaterialIconType("fuelRodDepletedQuadruple")
+
     }
 
 }

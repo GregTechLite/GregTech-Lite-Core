@@ -119,6 +119,7 @@ import magicbook.gtlitecore.loader.recipe.producer.GreenhouseRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MassReplicationRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MetalCasingRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.MiningDroneAsteroidRecipeProducer
+import magicbook.gtlitecore.loader.recipe.producer.NuclearFissionRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.StoneVariantRecipeProducer
 import magicbook.gtlitecore.loader.recipe.producer.WrapItemRecipeProducer
 
@@ -148,6 +149,7 @@ class RecipeManager
             GreenhouseRecipeProducer.produce()
             MiningDroneAsteroidRecipeProducer.produce()
             ComponentAssemblyLineRecipeProducer.produce()
+            NuclearFissionRecipeProducer.produce()
 
             // Loading chains and ore processings.
             OilsChain.init()

@@ -2,15 +2,19 @@ package magicbook.gtlitecore.api.unification.material
 
 import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.BismuthBronze
+import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
@@ -21,8 +25,10 @@ import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
@@ -45,13 +51,17 @@ import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
+import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.NeodymiumMagnetic
+import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
@@ -66,6 +76,7 @@ import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Powellite
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
@@ -90,6 +101,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Thallium
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
@@ -98,6 +110,7 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.Ultimet
+import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
@@ -164,6 +177,11 @@ class GTLiteMaterialFlags
             .requireProps(PropertyKey.GEM)
             .build()
 
+        // Used to generate fuel rods, this flag is the dependency of multi fuel rods' flags.
+        @JvmField
+        val GENERATE_FUEL_ROD: MaterialFlag = MaterialFlag.Builder("generate_fuel_rod")
+            .requireProps(PropertyKey.INGOT)
+            .build()
 
         fun setMaterialFlags()
         {
@@ -230,6 +248,24 @@ class GTLiteMaterialFlags
             Osmiridium.addFlags(GENERATE_FRAME)
             CobaltBrass.addFlags(GENERATE_FRAME)
             Duranium.addFlags(GENERATE_FRAME)
+
+            // fuelRod
+            Thorium.addFlags(GENERATE_FUEL_ROD)
+            Protactinium.addFlags(GENERATE_FUEL_ROD)
+            Uranium.addFlags(GENERATE_FUEL_ROD)
+            Neptunium.addFlags(GENERATE_FUEL_ROD)
+            Plutonium239.addFlags(GENERATE_FUEL_ROD)
+            Americium.addFlags(GENERATE_FUEL_ROD)
+            Curium.addFlags(GENERATE_FUEL_ROD)
+            Berkelium.addFlags(GENERATE_FUEL_ROD)
+            Californium.addFlags(GENERATE_FUEL_ROD)
+            Einsteinium.addFlags(GENERATE_FUEL_ROD)
+            Fermium.addFlags(GENERATE_FUEL_ROD)
+            Mendelevium.addFlags(GENERATE_FUEL_ROD)
+
+            Naquadah.addFlags(GENERATE_FUEL_ROD)
+            NaquadahEnriched.addFlags(GENERATE_FUEL_ROD)
+            Naquadria.addFlags(GENERATE_FUEL_ROD)
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -306,6 +342,7 @@ class GTLiteMaterialFlags
             BismuthBronze.addFlags(GENERATE_DOUBLE_PLATE)
             HSSG.addFlags(GENERATE_DOUBLE_PLATE)
             HSSE.addFlags(GENERATE_DOUBLE_PLATE)
+            BlueSteel.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)

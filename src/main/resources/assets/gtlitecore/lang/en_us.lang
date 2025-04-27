@@ -798,6 +798,8 @@ metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri 
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish
 metaitem.tool.petri_dish.electric_signal.name=Electric Signal Petri Dish
 
+metaitem.fuel_rod.empty.name=Empty Fuel Rod
+
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
 metaitem.circuit.component.dielectric_mirror.tooltip=Bragg Mirror
@@ -1077,6 +1079,8 @@ recipemap.advanced_fusion_reactor.name=Advanced Fusion Reactor
 recipemap.component_assembly_line.name=Component Assembly Line
 recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 recipemap.stellar_forge.name=Stellar Forge
+
+recipemap.nuclear_reactor.name=Nuclear Reactor
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -2191,6 +2195,12 @@ item.material.oreprefix.sheetedFrame=Sheeted %s Frame
 item.material.oreprefix.wallGt=%s Wall
 item.material.oreprefix.seedCrystal=%s Crystal Seed
 item.material.oreprefix.boule=%s Boule
+item.material.oreprefix.fuelRodSingle=%s Fuel Rod
+item.material.oreprefix.fuelRodDouble=Double %s Fuel Rod
+item.material.oreprefix.fuelRodQuadruple=Quadruple %s Fuel Rod
+item.material.oreprefix.fuelRodDepletedSingle=Depleted %s Fuel Rod
+item.material.oreprefix.fuelRodDepletedDouble=Double Depleted %s Fuel Rod
+item.material.oreprefix.fuelRodDepletedQuadruple=Quadruple Depleted %s Fuel Rod
 
 # Materials
 gtlitecore.material.adamantium=Adamantium

@@ -15,6 +15,7 @@ class RecipeHandlers
             ToolRecipeHandler.init()
             WireCombinationHandler.init()
             WireRecipeHandler.init()
+            NuclearFuelRecipeHandler.init()
         }
 
     }

@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bauxite
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Biotite
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
@@ -34,6 +35,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Dysprosium
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Fermium
@@ -55,6 +57,7 @@ import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Naquadah
@@ -168,7 +171,7 @@ class GTLiteMaterialProperties
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium,
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
-                Polonium, Actinium, Protactinium)
+                Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -176,7 +179,7 @@ class GTLiteMaterialProperties
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
-                Protactinium)
+                Protactinium, Berkelium, Einsteinium, Mendelevium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)

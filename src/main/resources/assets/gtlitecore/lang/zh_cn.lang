@@ -624,6 +624,8 @@ metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
 metaitem.tool.petri_dish.electric_signal.name=电信号培养皿
 
+metaitem.fuel_rod.empty.name=空燃料棒
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板
@@ -1077,6 +1079,8 @@ recipemap.advanced_fusion_reactor.name=进阶聚变反应堆
 recipemap.component_assembly_line.name=部件装配线
 recipemap.cosmic_ray_detector.name=宇宙射线探测器
 recipemap.stellar_forge.name=恒星炎炀锻炉
+
+recipemap.nuclear_reactor.name=核反应堆
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -2191,6 +2195,12 @@ item.material.oreprefix.sheetedFrame=%s板框箱
 item.material.oreprefix.wallGt=%s壁面
 item.material.oreprefix.seedCrystal=%s晶种
 item.material.oreprefix.boule=%s晶棒
+item.material.oreprefix.fuelRodSingle=%s燃料棒
+item.material.oreprefix.fuelRodDouble=双联%s燃料棒
+item.material.oreprefix.fuelRodQuadruple=四联%s燃料棒
+item.material.oreprefix.fuelRodDepletedSingle=枯竭%s燃料棒
+item.material.oreprefix.fuelRodDepletedDouble=双联枯竭%s燃料棒
+item.material.oreprefix.fuelRodDepletedQuadruple=四联枯竭%s燃料棒
 
 # Materials
 gtlitecore.material.adamantium=精金

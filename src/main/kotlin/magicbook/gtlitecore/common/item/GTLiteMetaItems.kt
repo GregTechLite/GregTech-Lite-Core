@@ -173,6 +173,8 @@ class GTLiteMetaItems
         lateinit var CUPRIAVIDUS_NECATOR_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var ELECTRIC_SIGNAL_PETRI_DISH: MetaItem<*>.MetaValueItem
 
+        lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
+
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
         lateinit var ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
@@ -743,6 +745,7 @@ class GTLiteMetaItems
             ELECTRIC_SIGNAL_PETRI_DISH = GTLITE_ITEMS.addItem(634, "tool.petri_dish.electric_signal")
 
             // 701-800: Batteries.
+            FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")
 
             // 1001-1100: ...
 
