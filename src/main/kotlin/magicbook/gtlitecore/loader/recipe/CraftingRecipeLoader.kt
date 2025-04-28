@@ -28,6 +28,8 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.StainlessSteel
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -42,6 +44,7 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
@@ -85,9 +88,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodQuadruple
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
@@ -108,6 +113,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_COSMIC_NEUTRONIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_INFINITY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FUEL_ROD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
@@ -694,7 +700,17 @@ class CraftingRecipeLoader
                 'P', UnificationEntry(plate, RhodiumPlatedPalladium),
                 'G', UnificationEntry(gear, RhodiumPlatedPalladium),
                 'F', UnificationEntry(frameGt, RhodiumPlatedPalladium))
-            
+
+            // Thorium Nuclear Reactor Core
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.thorium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE.getItemVariant(BlockNuclearReactorCore.ReactorCoreType.THORIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Thorium))
+
+            // TODO Other nuclear reactor core
+
         }
 
     }

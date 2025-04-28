@@ -124,6 +124,9 @@ class GTLiteTextures
 
         @JvmField
         val STELLAR_FORGE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/stellar_forge")
+
+        @JvmField
+        val NUCLEAR_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/nuclear_reactor")
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

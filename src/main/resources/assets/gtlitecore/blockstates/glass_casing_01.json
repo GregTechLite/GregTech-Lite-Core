@@ -71,6 +71,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/woods"
         }
+      },
+      "lead_silicon": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/lead_silicon"
+        }
       }
     }
   }

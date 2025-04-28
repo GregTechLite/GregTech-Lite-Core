@@ -5,7 +5,7 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.properties.IngotProperty
+import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
@@ -22,10 +22,10 @@ class NuclearFuelRecipeHandler
 
         fun init()
         {
-            GTLiteOrePrefix.fuelRodSingle.addProcessingHandler(PropertyKey.INGOT, this::processFuelRod)
+            GTLiteOrePrefix.fuelRodSingle.addProcessingHandler(PropertyKey.DUST, this::processFuelRod)
         }
 
-        private fun processFuelRod(ingotPrefix: OrePrefix, material: Material, property: IngotProperty)
+        private fun processFuelRod(fuelRodPrefix: OrePrefix, material: Material, property: DustProperty)
         {
             // fuelRodSingle
             CANNER_RECIPES.recipeBuilder()

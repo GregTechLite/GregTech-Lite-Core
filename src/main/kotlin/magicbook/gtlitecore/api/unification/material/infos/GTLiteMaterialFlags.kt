@@ -180,7 +180,7 @@ class GTLiteMaterialFlags
         // Used to generate fuel rods, this flag is the dependency of multi fuel rods' flags.
         @JvmField
         val GENERATE_FUEL_ROD: MaterialFlag = MaterialFlag.Builder("generate_fuel_rod")
-            .requireProps(PropertyKey.INGOT)
+            .requireProps(PropertyKey.DUST)
             .build()
 
         fun setMaterialFlags()
@@ -248,6 +248,7 @@ class GTLiteMaterialFlags
             Osmiridium.addFlags(GENERATE_FRAME)
             CobaltBrass.addFlags(GENERATE_FRAME)
             Duranium.addFlags(GENERATE_FRAME)
+            Inconel718.addFlags(GENERATE_FRAME)
 
             // fuelRod
             Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -266,6 +267,8 @@ class GTLiteMaterialFlags
             Naquadah.addFlags(GENERATE_FUEL_ROD)
             NaquadahEnriched.addFlags(GENERATE_FUEL_ROD)
             Naquadria.addFlags(GENERATE_FUEL_ROD)
+
+            Graphite.addFlags(GENERATE_FUEL_ROD) // Moderate Rod
 
             // gear
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
@@ -343,6 +346,7 @@ class GTLiteMaterialFlags
             HSSG.addFlags(GENERATE_DOUBLE_PLATE)
             HSSE.addFlags(GENERATE_DOUBLE_PLATE)
             BlueSteel.addFlags(GENERATE_DOUBLE_PLATE)
+            Thorium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -354,6 +358,7 @@ class GTLiteMaterialFlags
             Invar.addFlags(GENERATE_DENSE)
             Potin.addFlags(GENERATE_DENSE)
             Osmium.addFlags(GENERATE_DENSE)
+            Thorium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)
@@ -376,6 +381,7 @@ class GTLiteMaterialFlags
             Rutherfordium.addFlags(GENERATE_ROD)
             Seaborgium.addFlags(GENERATE_ROD)
             Dubnium.addFlags(GENERATE_ROD)
+            Inconel718.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

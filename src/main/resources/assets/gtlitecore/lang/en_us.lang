@@ -468,6 +468,8 @@ tile.component_assembly_casing.uxv.name=§eUXV§f Component Assembly Casing
 tile.component_assembly_casing.opv.name=§9OpV§f Component Assembly Casing
 tile.component_assembly_casing.max.name=§c§lMAX§r§f Component Assembly Casing
 
+tile.nuclear_reactor_core.thorium.name=Thorium Reactor Core
+
 tile.glass_casing_01.pmma.name=PMMA Glass
 tile.glass_casing_01.pmma.tooltip=Acrylic Glass
 tile.glass_casing_01.bpa_polycarbonate.name=BPA Polycarbonate Glass
@@ -479,6 +481,7 @@ tile.glass_casing_01.gst.name=GST Glass
 tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
 tile.glass_casing_01.silicon_carbide.name=Silicon Carbide Glass
 tile.glass_casing_01.woods.name=Woods Glass
+tile.glass_casing_01.lead_silicon.name=Lead Silicon Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
@@ -2742,6 +2745,14 @@ gtlitecore.material.unprocessed_nd_yag_solution=Unprocessed Nd:YAG Solution
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
+
+# Material Overriden
+item.gregtech.material.graphite.fuelRodSingle=Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodDouble=Double Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodQuadruple=Quadruple Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodDepletedSingle=Depleted Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodDepletedDouble=Double Depleted Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodDepletedQuadruple=Quadruple Depleted Graphite Moderate Rod
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s

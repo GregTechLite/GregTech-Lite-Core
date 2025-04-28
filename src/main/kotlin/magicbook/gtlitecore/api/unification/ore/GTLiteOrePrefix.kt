@@ -89,36 +89,43 @@ class GTLiteOrePrefix
         @JvmField
         val fuelRodSingle: OrePrefix = OrePrefix("fuelRodSingle", M * 2, null,
             GTLiteMaterialIconType.fuelRodSingle, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         @JvmField
         val fuelRodDouble: OrePrefix = OrePrefix("fuelRodDouble", M * 4, null,
             GTLiteMaterialIconType.fuelRodDouble, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         @JvmField
         val fuelRodQuadruple: OrePrefix = OrePrefix("fuelRodQuadruple", M * 8, null,
             GTLiteMaterialIconType.fuelRodQuadruple, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         @JvmField
         val fuelRodDepletedSingle: OrePrefix = OrePrefix("fuelRodDepletedSingle", M * 2, null,
             GTLiteMaterialIconType.fuelRodDepletedSingle, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         @JvmField
         val fuelRodDepletedDouble: OrePrefix = OrePrefix("fuelRodDepletedDouble", M * 4, null,
             GTLiteMaterialIconType.fuelRodDouble, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         @JvmField
         val fuelRodDepletedQuadruple: OrePrefix = OrePrefix("fuelRodDepletedQuadruple", M * 8, null,
             GTLiteMaterialIconType.fuelRodQuadruple, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
         fun setOrePrefixInfos()
         {
+            // Stack sizes.
             gemSolitary.maxStackSize = 8
+            fuelRodDouble.maxStackSize = 32
+            fuelRodQuadruple.maxStackSize = 16
+            fuelRodDepletedDouble.maxStackSize = 32
+            fuelRodDepletedQuadruple.maxStackSize = 16
+
+            // Byproducts.
             if (ConfigHolder.worldgen.allUniqueStoneTypes)
             {
                 oreLimestone.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Limestone, M))

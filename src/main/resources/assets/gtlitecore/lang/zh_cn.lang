@@ -468,6 +468,8 @@ tile.component_assembly_casing.uxv.name=部件装配外壳（§eUXV§f）
 tile.component_assembly_casing.opv.name=部件装配外壳（§9OpV§f）
 tile.component_assembly_casing.max.name=部件装配外壳（§c§lMAX§r§f）
 
+tile.nuclear_reactor_core.thorium.name=钍制反应堆堆芯
+
 tile.glass_casing_01.pmma.name=PMMA玻璃
 tile.glass_casing_01.pmma.tooltip=亚克力玻璃
 tile.glass_casing_01.bpa_polycarbonate.name=BPA聚碳酸酯玻璃
@@ -479,6 +481,7 @@ tile.glass_casing_01.gst.name=GST玻璃
 tile.glass_casing_01.thorium_yttrium.name=钍钇玻璃
 tile.glass_casing_01.silicon_carbide.name=碳化硅玻璃
 tile.glass_casing_01.woods.name=伍兹玻璃
+tile.glass_casing_01.lead_silicon.name=铅硅玻璃
 
 tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃
 tile.glass_casing_02.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
@@ -2746,6 +2749,14 @@ gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴�
 
 gtlitecore.material.neutron_proton_fermi_superfluid=中子-质子费米超流体
 gtlitecore.material.heavy_lepton_mixture=重轻子混合物
+
+# Material Overriden
+item.gregtech.material.graphite.fuelRodSingle=石墨慢化棒
+item.gregtech.material.graphite.fuelRodDouble=二联石墨慢化棒
+item.gregtech.material.graphite.fuelRodQuadruple=四联石墨慢化棒
+item.gregtech.material.graphite.fuelRodDepletedSingle=枯竭石墨慢化棒
+item.gregtech.material.graphite.fuelRodDepletedDouble=二联枯竭石墨慢化棒
+item.gregtech.material.graphite.fuelRodDepletedQuadruple=四联枯竭石墨慢化棒
 
 # Fluids
 gtlitecore.fluid.molten=熔融%s
