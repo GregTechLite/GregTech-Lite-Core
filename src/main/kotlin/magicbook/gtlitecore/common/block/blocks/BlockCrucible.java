@@ -76,7 +76,7 @@ public class BlockCrucible extends VariantBlock<BlockCrucible.CrucibleType>
         BORON_NITRIDE_CRUCIBLE("boron_nitride", 5328);
 
         private final String name;
-        private final int temperature;
+        public final int temperature;
     }
 
 }
