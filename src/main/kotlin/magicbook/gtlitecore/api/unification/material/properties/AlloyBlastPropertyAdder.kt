@@ -5,8 +5,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.stack.MaterialStack
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
-import magicbook.gtlitecore.api.unification.material.GTLitePropertyKey
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags
 import magicbook.gtlitecore.loader.recipe.producer.CustomAlloyBlastRecipeProducer
 import org.jetbrains.annotations.ApiStatus
 

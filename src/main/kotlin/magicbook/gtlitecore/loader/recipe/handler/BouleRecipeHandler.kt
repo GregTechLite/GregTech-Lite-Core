@@ -13,7 +13,7 @@ import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack

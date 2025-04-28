@@ -10,7 +10,7 @@ import gregtech.common.blocks.BlockMaterialBase;
 import gregtech.common.blocks.properties.PropertyMaterial;
 import gregtech.common.creativetab.GTCreativeTabs;
 import magicbook.gtlitecore.api.GTLiteAPI;
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconType;
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconType;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;

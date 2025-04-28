@@ -30,7 +30,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
-import magicbook.gtlitecore.api.unification.material.GTLitePropertyKey
+import magicbook.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.GTLiteUtility

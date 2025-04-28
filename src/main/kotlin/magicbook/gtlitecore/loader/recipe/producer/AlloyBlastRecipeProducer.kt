@@ -9,7 +9,7 @@ import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags
 import net.minecraftforge.fluids.Fluid
 import net.minecraftforge.fluids.FluidStack
 import kotlin.math.max

@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.api.unification.material
+package magicbook.gtlitecore.api.unification.material.element
 
 import gregtech.api.unification.Element
 import gregtech.api.unification.Elements

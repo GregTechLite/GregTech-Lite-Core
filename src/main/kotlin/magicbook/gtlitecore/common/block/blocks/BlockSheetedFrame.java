@@ -9,7 +9,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import magicbook.gtlitecore.api.GTLiteAPI;
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconType;
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconType;
 import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.client.model.factory.MaterialBlockModelLoader;
 import mcp.MethodsReturnNonnullByDefault;

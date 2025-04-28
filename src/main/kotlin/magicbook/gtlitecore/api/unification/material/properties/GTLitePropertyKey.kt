@@ -1,7 +1,6 @@
-package magicbook.gtlitecore.api.unification.material
+package magicbook.gtlitecore.api.unification.material.properties
 
 import gregtech.api.unification.material.properties.PropertyKey
-import magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
 
 class GTLitePropertyKey
 {

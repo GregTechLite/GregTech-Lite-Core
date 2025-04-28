@@ -1,9 +1,8 @@
-package magicbook.gtlitecore.api.unification.material
+package magicbook.gtlitecore.api.unification.material.infos
 
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
-import magicbook.gtlitecore.api.unification.material.infos.MaterialIconSetWithRenderer
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 

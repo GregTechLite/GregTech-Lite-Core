@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.api.unification.material
+package magicbook.gtlitecore.api.unification.material.infos
 
 import gregtech.api.unification.material.info.MaterialIconType
 

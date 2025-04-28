@@ -9,9 +9,8 @@ import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialFlags
-import magicbook.gtlitecore.api.unification.material.GTLiteMaterialIconType
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconType
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteOrePrefix
@@ -158,11 +157,11 @@ class GTLiteOrePrefix
             OrePrefix.dustTiny.setIgnored(GTLiteMaterials.RoastedSphalerite)
 
             // Deleted HalkoniteSteel dusts, nugget and hot ingot.
-            OrePrefix.dust.setIgnored(HalkoniteSteel)
-            OrePrefix.dustSmall.setIgnored(HalkoniteSteel)
-            OrePrefix.dustTiny.setIgnored(HalkoniteSteel)
-            OrePrefix.nugget.setIgnored(HalkoniteSteel)
-            OrePrefix.ingotHot.setIgnored(HalkoniteSteel)
+            OrePrefix.dust.setIgnored(GTLiteMaterials.HalkoniteSteel)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.HalkoniteSteel)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.HalkoniteSteel)
+            OrePrefix.nugget.setIgnored(GTLiteMaterials.HalkoniteSteel)
+            OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HalkoniteSteel)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high
