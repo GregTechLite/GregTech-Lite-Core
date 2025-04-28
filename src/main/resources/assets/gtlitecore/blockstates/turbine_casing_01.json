@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "rhodium_plated_palladium_turbine": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/mechanic/rhodium_plated_palladium_turbine"
+        }
+      }
+    }
+  }
+}

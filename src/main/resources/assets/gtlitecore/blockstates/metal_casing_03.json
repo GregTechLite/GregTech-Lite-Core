@@ -37,6 +37,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/quantum_alloy"
         }
+      },
+      "inconel_718": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/inconel_718"
+        }
       }
     }
   }

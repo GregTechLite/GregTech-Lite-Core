@@ -25,6 +25,7 @@ import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Tungsten
@@ -37,6 +38,7 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -46,6 +48,7 @@ import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockMachineCasing
+import gregtech.common.blocks.BlockTurbineCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.ITEM_FILTER
@@ -85,6 +88,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_CROWBAR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -677,6 +682,19 @@ class CraftingRecipeLoader
             ModHandler.addShapelessRecipe("credit_infinity", CREDIT_COSMIC_NEUTRONIUM.getStackForm(8),
                 CREDIT_INFINITY.stackForm)
 
+            // Rhodium Plated Palladium Turbine Casing
+            ModHandler.addShapedRecipe(true, "rhodium_plated_palladium_turbine_casing", GTLiteMetaBlocks.TURBINE_CASING_01.getItemVariant(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE, ConfigHolder.recipes.casingsPerCraft),
+                "PhP", "PCP", "PwP",
+                'C', MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING),
+                'P', UnificationEntry(plate, RhodiumPlatedPalladium))
+
+            // Rhodium Plated Palladium Gearbox Casing
+            ModHandler.addShapedRecipe(true, "rhodium_plated_palladium_gearbox_casing", GTLiteMetaBlocks.TURBINE_CASING_02.getItemVariant(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX, ConfigHolder.recipes.casingsPerCraft),
+                "PhP", "GFG", "PwP",
+                'P', UnificationEntry(plate, RhodiumPlatedPalladium),
+                'G', UnificationEntry(gear, RhodiumPlatedPalladium),
+                'F', UnificationEntry(frameGt, RhodiumPlatedPalladium))
+            
         }
 
     }

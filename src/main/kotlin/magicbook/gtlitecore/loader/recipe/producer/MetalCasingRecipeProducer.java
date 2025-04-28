@@ -19,6 +19,7 @@ import static gregtech.api.unification.material.Materials.BlackSteel;
 import static gregtech.api.unification.material.Materials.BlueSteel;
 import static gregtech.api.unification.material.Materials.Brass;
 import static gregtech.api.unification.material.Materials.CobaltBrass;
+import static gregtech.api.unification.material.Materials.Inconel718;
 import static gregtech.api.unification.material.Materials.Iridium;
 import static gregtech.api.unification.material.Materials.NaquadahAlloy;
 import static gregtech.api.unification.material.Materials.Neutronium;
@@ -252,6 +253,11 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
                 BlockMetalCasing03.MetalCasingType.QUANTUM_ALLOY,
                 QuantumAlloy);
+
+        // Inconel-718
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
+                BlockMetalCasing03.MetalCasingType.INCONEL_718,
+                Inconel718);
     }
 
     private static <T extends Enum<T> & IStringSerializable> void addCasingRecipe(VariantBlock<T> outputCasingType,

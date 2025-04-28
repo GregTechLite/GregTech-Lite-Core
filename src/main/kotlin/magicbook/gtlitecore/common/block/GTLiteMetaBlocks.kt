@@ -36,6 +36,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.block.blocks.GTLiteLeaveVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteLogVariantBlock
@@ -155,6 +157,8 @@ class GTLiteMetaBlocks
         lateinit var BOILER_CASING_01: BlockBoilerCasing01
         lateinit var MULTIBLOCK_CASING_01: BlockMultiblockCasing01
         lateinit var ACTIVE_UNIQUE_CASING_01: BlockActiveUniqueCasing01
+        lateinit var TURBINE_CASING_01: BlockTurbineCasing01
+        lateinit var TURBINE_CASING_02: BlockTurbineCasing02
         lateinit var FUSION_CASING_01: BlockFusionCasing01
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
@@ -400,6 +404,14 @@ class GTLiteMetaBlocks
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setRegistryName("active_unique_casing_01")
             (ACTIVE_UNIQUE_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            TURBINE_CASING_01 = BlockTurbineCasing01()
+            (TURBINE_CASING_01 as? Block)?.setRegistryName("turbine_casing_01")
+            (TURBINE_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            TURBINE_CASING_02 = BlockTurbineCasing02()
+            (TURBINE_CASING_02 as? Block)?.setRegistryName("turbine_casing_02")
+            (TURBINE_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             FUSION_CASING_01 = BlockFusionCasing01()
             (FUSION_CASING_01 as? Block)?.setRegistryName("fusion_casing_01")
             (FUSION_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -548,6 +560,8 @@ class GTLiteMetaBlocks
             registerItemModel(METAL_CASING_03)
             registerItemModel(MULTIBLOCK_CASING_01)
             registerItemModel(BOILER_CASING_01)
+            registerItemModel(TURBINE_CASING_01)
+            registerItemModel(TURBINE_CASING_02)
             registerItemModel(CRUCIBLE)
             registerItemModel(COMPONENT_ASSEMBLY_CASING)
             registerItemModel(TRANSPARENT_CASING_01)

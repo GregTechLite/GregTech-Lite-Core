@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.common.block.blocks;
 
+import gregtech.api.block.IStateHarvestLevel;
 import gregtech.api.block.VariantBlock;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,18 +17,17 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BlockMetalCasing03 extends VariantBlock<BlockMetalCasing03.MetalCasingType>
+public class BlockTurbineCasing02 extends VariantBlock<BlockTurbineCasing02.TurbineCasingType>
 {
 
-    public BlockMetalCasing03()
+    public BlockTurbineCasing02()
     {
         super(Material.IRON);
-        this.setTranslationKey("metal_casing_03");
+        this.setTranslationKey("turbine_casing_02");
         this.setHardness(5.0F);
         this.setResistance(10.0F);
         this.setSoundType(SoundType.METAL);
-        this.setHarvestLevel("wrench", 2);
-        this.setDefaultState(this.getState(MetalCasingType.COBALT_BRASS));
+        this.setDefaultState(this.getState(TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX));
     }
 
     @Override
@@ -41,17 +41,25 @@ public class BlockMetalCasing03 extends VariantBlock<BlockMetalCasing03.MetalCas
 
     @Getter
     @AllArgsConstructor
-    public enum MetalCasingType implements IStringSerializable
+    public enum TurbineCasingType implements IStringSerializable, IStateHarvestLevel
     {
-        COBALT_BRASS("cobalt_brass"),
-        TRINAQUADALLOY("trinaquadalloy"),
-        OSMIRIDIUM("osmiridium"),
-        NEUTRONIUM("neutronium"),
-        NAQUADAH_ALLOY("naquadah_alloy"),
-        QUANTUM_ALLOY("quantum_alloy"),
-        INCONEL_718("inconel_718");
+        RHODIUM_PLATED_PALLADIUM_GEARBOX("rhodium_plated_palladium_gearbox", 4);
 
         private final String name;
+        private final int harvestLevel;
+
+        @Override
+        public int getHarvestLevel(IBlockState state)
+        {
+            return getHarvestLevel();
+        }
+
+        @Override
+        public String getHarvestTool(IBlockState state)
+        {
+            return "wrench";
+        }
+
     }
 
 }

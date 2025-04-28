@@ -52,6 +52,7 @@ import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RedAlloy
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
@@ -103,6 +104,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
+import gregtech.common.blocks.BlockTurbineCasing
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
@@ -173,6 +175,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MAGNETRON
@@ -384,6 +388,27 @@ class AssemblerRecipes
                 .circuitMeta(8)
                 .input(plate, Vibranium, 8)
                 .outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Rhodium Plated Palladium Turbine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .inputs(MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING))
+                .input(plate, RhodiumPlatedPalladium, 6)
+                .outputs(GTLiteMetaBlocks.TURBINE_CASING_01.getItemVariant(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Rhodium Plated Palladium Gearbox Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(plate, RhodiumPlatedPalladium, 4)
+                .input(gear, RhodiumPlatedPalladium, 2)
+                .input(frameGt, RhodiumPlatedPalladium)
+                .outputs(GTLiteMetaBlocks.TURBINE_CASING_02.getItemVariant(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX, ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
