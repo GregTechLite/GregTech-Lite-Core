@@ -174,7 +174,13 @@ public class GTLiteAPI
         MAP_BOROSILICATE_GLASS.put(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getState(BlockGlassCasing02.GlassType.NEUTRONIUM_BOROSILICATE),
                 new WrappedIntTier(BlockGlassCasing02.GlassType.NEUTRONIUM_BOROSILICATE, 7));
 
-        // TODO UHV+ Borosilicates.
+        MAP_BOROSILICATE_GLASS.put(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getState(BlockGlassCasing02.GlassType.COSMIC_NEUTRONIUM_BOROSILICATE),
+                new WrappedIntTier(BlockGlassCasing02.GlassType.COSMIC_NEUTRONIUM_BOROSILICATE, 8));
+
+        MAP_BOROSILICATE_GLASS.put(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getState(BlockGlassCasing02.GlassType.INFINITY_BOROSILICATE),
+                new WrappedIntTier(BlockGlassCasing02.GlassType.INFINITY_BOROSILICATE, 9));
+
+        // TODO UXV+ Borosilicates.
 
         // fusion related casings (fusion casing, coil, cryostat, divertor and vacuum)
         MAP_FUSION_CASING.put(MetaBlocks.FUSION_CASING.getState(BlockFusionCasing.CasingType.FUSION_CASING),
