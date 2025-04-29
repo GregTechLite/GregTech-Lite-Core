@@ -2,8 +2,11 @@ package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
 import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VN
@@ -14,23 +17,35 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
+import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Concrete
+import gregtech.api.unification.material.Materials.Curium
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lithium
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Silicon
@@ -42,6 +57,7 @@ import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.Water
@@ -69,11 +85,13 @@ import gregtech.common.items.MetaItems.BLACKLIGHT
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getComponentCableByTier
@@ -90,6 +108,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
+import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -288,6 +307,37 @@ class GregtechOverrideRecipeLoader
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
+            // Let fusion MK1 used Curium and other fission products.
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+                arrayOf(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL),
+                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.ZPM, 4),
+                    OreDictUnifier.get(plateDouble, Plutonium241),
+                    OreDictUnifier.get(plateDouble, Osmiridium),
+                    FIELD_GENERATOR_IV.getStackForm(2),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
+                    OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)),
+                arrayOf(SolderingAlloy.getFluid(L * 8), NiobiumTitanium.getFluid(L * 8)))
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL))
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
+                .input(plateDouble, Curium)
+                .input(plateDouble, Osmiridium)
+                .input(FIELD_GENERATOR_IV, 2)
+                .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+                .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 8))
+                .fluidInputs(NiobiumTitanium.getFluid(L * 8))
+                .output(FUSION_REACTOR[0])
+                .EUt(VA[LuV].toLong())
+                .duration(30 * SECOND)
+                .scannerResearch { r -> r
+                    .researchStack(OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate))
+                    .EUt(VA[IV].toLong())
+                    .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
+
             // Let fusion MK2 used Nano PIC, MK3 used Pico PIC.
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL),
@@ -303,8 +353,8 @@ class GregtechOverrideRecipeLoader
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
                 .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(plateDouble, Einsteinium)
                 .input(plateDouble, Naquadria)
-                .input(plateDouble, Europium)
                 .input(FIELD_GENERATOR_LuV, 2)
                 .input(NANO_PIC_CHIP, 64)
                 .input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
@@ -334,8 +384,8 @@ class GregtechOverrideRecipeLoader
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
                 .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(plateDouble, Mendelevium)
                 .input(plateDouble, Rutherfordium)
-                .input(plateDouble, Americium)
                 .input(FIELD_GENERATOR_ZPM, 2)
                 .input(PICO_PIC_CHIP, 64)
                 .input(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)
@@ -343,7 +393,7 @@ class GregtechOverrideRecipeLoader
                 .fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
                 .output(FUSION_REACTOR[2])
                 .EUt(VA[ZPM].toLong())
-                .duration(1 * MINUTE + 20 * SECOND)
+                .duration(1 * MINUTE + 30 * SECOND)
                 .stationResearch { r ->
                     r.researchStack(FUSION_REACTOR[1].stackForm)
                         .EUt(VA[UV].toLong())
@@ -375,6 +425,22 @@ class GregtechOverrideRecipeLoader
                 'S', UnificationEntry(screw, TungstenCarbide),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'W', UnificationEntry(cableGtSingle, Platinum))
+
+            // Let radon be Pu244 + U238
+            GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES,
+                arrayOf(OreDictUnifier.get(ingot, Plutonium239, 8),
+                    OreDictUnifier.get(dust, Uranium238)),
+                arrayOf(Air.getFluid(10000)))
+
+            LARGE_CHEMICAL_RECIPES.recipeBuilder()
+                .input(ingot, Plutonium244, 8)
+                .input(dust, Uranium238)
+                .fluidInputs(Air.getFluid(10000))
+                .output(dust, Plutonium244, 8)
+                .fluidOutputs(Radon.getFluid(1000))
+                .EUt(VA[HV].toLong())
+                .duration(3 * MINUTE + 20 * SECOND)
+                .buildAndRegister()
 
         }
 

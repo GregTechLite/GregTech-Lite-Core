@@ -28,6 +28,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NUCLEAR_FUELS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumBerylliumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SupercriticalLeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SupercriticalLithiumBerylliumFluorides
@@ -75,7 +76,7 @@ import net.minecraftforge.fluids.FluidStack
  *           /  \
  *        Pu241 Pu239
  *               /  \
- *            Pu241 Am
+ *            Pu244 Am
  *                 /  \
  *                Lu  Cm
  *                   /  \
@@ -532,7 +533,7 @@ class NuclearFissionRecipeProducer
                 .input(fuelRodDepletedSingle, Plutonium239)
                 .output(dust, Steel, 2)
                 .output(dust, Plutonium239, 2)
-                .output(dust, Plutonium241)
+                .output(dust, Plutonium244)
                 .output(dust, Americium)
                 .EUt(VA[LV].toLong())
                 .duration(1 * MINUTE)
@@ -543,7 +544,7 @@ class NuclearFissionRecipeProducer
                 .input(fuelRodDepletedDouble, Plutonium239)
                 .output(dust, Steel, 4)
                 .output(dust, Plutonium239, 4)
-                .output(dust, Plutonium241, 2)
+                .output(dust, Plutonium244, 2)
                 .output(dust, Americium, 2)
                 .EUt(VA[LV].toLong())
                 .duration(1 * MINUTE)
@@ -554,7 +555,7 @@ class NuclearFissionRecipeProducer
                 .input(fuelRodDepletedQuadruple, Plutonium239)
                 .output(dust, Steel, 8)
                 .output(dust, Plutonium239, 8)
-                .output(dust, Plutonium241, 4)
+                .output(dust, Plutonium244, 4)
                 .output(dust, Americium, 4)
                 .EUt(VA[LV].toLong())
                 .duration(1 * MINUTE)

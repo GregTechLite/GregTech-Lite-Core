@@ -25,20 +25,29 @@ import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.BacterialSludge
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Biomass
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.EnrichedBacterialSludge
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Meat
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Mutagen
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Sugar
@@ -69,6 +78,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LinoleicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -165,7 +175,8 @@ class GrowthMediumChain
                 arrayOf(EnrichedBacterialSludge.getFluid(1000)))
 
             // 1x EnrichedBacterialSludge -> 1x Mutagen
-            for (radioactive in arrayOf(Uranium, Uranium235, Uranium238, Thorium))
+            for (radioactive in arrayOf(Uranium, Uranium235, Uranium238, Thorium,
+                Protactinium))
             {
                 BREWING_RECIPES.recipeBuilder()
                     .notConsumable(dust, radioactive)
@@ -177,7 +188,8 @@ class GrowthMediumChain
                     .buildAndRegister()
             }
 
-            for (radioactive in arrayOf(Plutonium239, Plutonium241, Naquadah))
+            for (radioactive in arrayOf(Plutonium239, Plutonium241, Plutonium244,
+                Naquadah, Neptunium, Americium, Curium, Berkelium))
             {
                 BREWING_RECIPES.recipeBuilder()
                     .notConsumable(dust, radioactive)
@@ -189,7 +201,8 @@ class GrowthMediumChain
                     .buildAndRegister()
             }
 
-            for (radioactive in arrayOf(NaquadahEnriched, Naquadria))
+            for (radioactive in arrayOf(NaquadahEnriched, Naquadria, Californium,
+                Einsteinium, Fermium, Mendelevium))
             {
                 BREWING_RECIPES.recipeBuilder()
                     .notConsumable(dust, radioactive)

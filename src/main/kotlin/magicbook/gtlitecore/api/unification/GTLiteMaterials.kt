@@ -23,6 +23,7 @@ class GTLiteMaterials
         lateinit var MetastableHassium: Material
         lateinit var CosmicNeutronium: Material
         lateinit var Infinity: Material
+        lateinit var Plutonium244: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material

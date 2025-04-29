@@ -7,6 +7,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
+import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.Elements.Fl
 import gregtech.api.unification.Elements.Hs
 import gregtech.api.unification.Elements.Og
@@ -38,10 +39,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.If
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Pu244
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
@@ -205,6 +208,14 @@ class GTLiteElementMaterials
                         .vacuumStats(VA[UHV], 8 * MINUTE)
                 }
                 .cableProperties(V[UEV], 36, 2)
+                .build()
+
+            // 9 Plutonium-244
+            Plutonium244 = Material.Builder(9, gtliteId("plutonium_244"))
+                .ingot()
+                .liquid(FluidBuilder().temperature(913))
+                .color(0xD82D2D).iconSet(METALLIC)
+                .element(Pu244)
                 .build()
 
         }
