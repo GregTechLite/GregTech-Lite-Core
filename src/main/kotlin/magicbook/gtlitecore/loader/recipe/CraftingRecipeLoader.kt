@@ -1,29 +1,41 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.UHV
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Molybdenum
+import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
@@ -31,9 +43,12 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.material.Materials.Zircaloy4
+import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -50,12 +65,15 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockTurbineCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
+import gregtech.common.items.MetaItems.ROBOT_ARM_EV
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
@@ -90,9 +108,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodQuadruple
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
-import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore01
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore02
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_BUTCHERY_KNIFE
@@ -113,7 +134,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_COSMIC_NEUTRONIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_INFINITY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_VIBRANIUM
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FUEL_ROD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAND_DUST
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_EXTRUDER_DRILL_HEAD
@@ -143,6 +163,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NUCLEAR_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SILVER_CRATE
@@ -701,15 +722,99 @@ class CraftingRecipeLoader
                 'G', UnificationEntry(gear, RhodiumPlatedPalladium),
                 'F', UnificationEntry(frameGt, RhodiumPlatedPalladium))
 
-            // Thorium Nuclear Reactor Core
-            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.thorium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE.getItemVariant(BlockNuclearReactorCore.ReactorCoreType.THORIUM),
+            // Nuclear Reactor
+            ModHandler.addShapedRecipe(true, "nuclear_reactor", NUCLEAR_REACTOR.stackForm,
+                "QBQ", "RHR", "PBP",
+                'H', HULL[EV].stackForm,
+                'R', ROBOT_ARM_EV,
+                'Q', ELECTRIC_PUMP_EV,
+                'P', UnificationEntry(plate, Zircaloy4),
+                'B', UnificationEntry(block, Thorium))
+
+            // Nuclear Reactor Cores
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.thorium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.THORIUM),
                 "PRP", "SDS", "PRP",
                 'R', UnificationEntry(fuelRodQuadruple, Graphite),
                 'P', UnificationEntry(plateDense, StainlessSteel),
                 'S', UnificationEntry(stickLong, StainlessSteel),
                 'D', UnificationEntry(plateDense, Thorium))
 
-            // TODO Other nuclear reactor core
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.protactinium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.PROTACTINIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Protactinium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.uranium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.URANIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Uranium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.neptunium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.NEPTUNIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Neptunium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.plutonium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.PLUTONIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Plutonium239))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.americium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.AMERICIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Americium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.curium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.CURIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Curium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.berkelium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.BERKELIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Berkelium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.californium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(BlockNuclearReactorCore02.ReactorCoreType.CALIFORNIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Californium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.einsteinium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(BlockNuclearReactorCore02.ReactorCoreType.EINSTEINIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Einsteinium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.fermium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(BlockNuclearReactorCore02.ReactorCoreType.FERMIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Fermium))
+
+            ModHandler.addShapedRecipe(true, "nuclear_reactor_core.mendelevium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(BlockNuclearReactorCore02.ReactorCoreType.MENDELEVIUM),
+                "PRP", "SDS", "PRP",
+                'R', UnificationEntry(fuelRodQuadruple, Graphite),
+                'P', UnificationEntry(plateDense, StainlessSteel),
+                'S', UnificationEntry(stickLong, StainlessSteel),
+                'D', UnificationEntry(plateDense, Mendelevium))
 
         }
 

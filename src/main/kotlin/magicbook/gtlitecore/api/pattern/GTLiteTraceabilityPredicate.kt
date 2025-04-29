@@ -108,6 +108,11 @@ class GTLiteTraceabilityPredicate
             Comparator.comparing { s -> (GTLiteAPI.MAP_COMPONENT_CASING[s] as WrappedIntTier).getIntTier() },
             "ComponentAssemblyCasing", null) }
 
+        @JvmStatic
+        var NUCLEAR_REACTOR_CORE = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_NUCLEAR_REACTOR_CORE,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_NUCLEAR_REACTOR_CORE[s] as WrappedIntTier).getIntTier() },
+            "NuclearReactorCore", null) }
+
         // Overriden of original Cleanroom Casing by tiered stats predicate.
         @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,

@@ -16,18 +16,18 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BlockNuclearReactorCore extends VariantActiveBlock<BlockNuclearReactorCore.ReactorCoreType>
+public class BlockNuclearReactorCore02 extends VariantActiveBlock<BlockNuclearReactorCore02.ReactorCoreType>
 {
 
-    public BlockNuclearReactorCore()
+    public BlockNuclearReactorCore02()
     {
         super(Material.IRON);
-        this.setTranslationKey("nuclear_reactor_core");
+        this.setTranslationKey("nuclear_reactor_core_02");
         this.setHardness(4.0F);
         this.setResistance(8.0F);
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("wrench", 3);
-        this.setDefaultState(this.getState(ReactorCoreType.THORIUM));
+        this.setDefaultState(this.getState(ReactorCoreType.CALIFORNIUM));
     }
 
     @Override
@@ -43,18 +43,10 @@ public class BlockNuclearReactorCore extends VariantActiveBlock<BlockNuclearReac
     @AllArgsConstructor
     public enum ReactorCoreType implements IStringSerializable
     {
-        THORIUM("thorium");
-        // PROTACTINIUM("protactinium"),
-        // URANIUM("uranium"),
-        // NEPTUNIUM("neptunium"),
-        // PLUTONIUM("plutonium"),
-        // AMERICIUM("americium"),
-        // CURIUM("curium"),
-        // BERKELIUM("berkelium"),
-        // CALIFORNIUM("californium"),
-        // EINSTEINIUM("einsteinium"),
-        // FERMIUM("fermium"),
-        // MENDELEVIUM("mendelevium");
+        CALIFORNIUM("californium"),
+        EINSTEINIUM("einsteinium"),
+        FERMIUM("fermium"),
+        MENDELEVIUM("mendelevium");
 
         private final String name;
     }

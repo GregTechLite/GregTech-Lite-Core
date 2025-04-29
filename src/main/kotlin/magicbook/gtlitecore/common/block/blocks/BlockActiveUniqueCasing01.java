@@ -63,7 +63,8 @@ public class BlockActiveUniqueCasing01 extends VariantActiveBlock<BlockActiveUni
     @AllArgsConstructor
     public enum UniqueCasingType implements IStringSerializable
     {
-        HEAT_VENT("heat_vent");
+        HEAT_VENT("heat_vent"),
+        TEMPERATURE_CONTROLLER("temperature_controller");
 
         private final String name;
     }

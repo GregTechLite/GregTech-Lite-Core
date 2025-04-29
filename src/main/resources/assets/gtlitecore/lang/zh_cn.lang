@@ -409,6 +409,7 @@ tile.multiblock_casing_01.harmonic_phonon_transmission_casing.name=简谐声子�
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.tooltip=热力波纹疾走
 
 tile.active_unique_casing_01.heat_vent.name=散热片
+tile.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
 
 tile.turbine_casing_01.rhodium_plated_palladium_turbine.name=镀铑钯涡轮机器外壳
 
@@ -468,7 +469,19 @@ tile.component_assembly_casing.uxv.name=部件装配外壳（§eUXV§f）
 tile.component_assembly_casing.opv.name=部件装配外壳（§9OpV§f）
 tile.component_assembly_casing.max.name=部件装配外壳（§c§lMAX§r§f）
 
-tile.nuclear_reactor_core.thorium.name=钍制反应堆堆芯
+tile.nuclear_reactor_core_01.thorium.name=钍制反应堆堆芯
+tile.nuclear_reactor_core_01.protactinium.name=镤制反应堆堆芯
+tile.nuclear_reactor_core_01.uranium.name=铀制反应堆堆芯
+tile.nuclear_reactor_core_01.neptunium.name=镎制反应堆堆芯
+tile.nuclear_reactor_core_01.plutonium.name=钚制反应堆堆芯
+tile.nuclear_reactor_core_01.americium.name=镅制反应堆堆芯
+tile.nuclear_reactor_core_01.curium.name=锔制反应堆堆芯
+tile.nuclear_reactor_core_01.berkelium.name=锫制反应堆堆芯
+
+tile.nuclear_reactor_core_02.californium.name=锎制反应堆堆芯
+tile.nuclear_reactor_core_02.einsteinium.name=锿制反应堆堆芯
+tile.nuclear_reactor_core_02.fermium.name=镄制反应堆堆芯
+tile.nuclear_reactor_core_02.mendelevium.name=钔制反应堆堆芯
 
 tile.glass_casing_01.pmma.name=PMMA玻璃
 tile.glass_casing_01.pmma.tooltip=亚克力玻璃
@@ -1644,6 +1657,15 @@ gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与
 gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作
 gtlitecore.machine.mining_drone_airport.tooltip.3=提高采矿无人机的数量或等级将产出更多的矿石
 gtlitecore.machine.mining_drone_airport.tooltip.4=每次工作需要§c消耗§7燃料，但钻头与杆循环利用§f不会§7消耗。
+
+gtlitecore.machine.nuclear_reactor.name=核反应堆
+gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
+gtlitecore.machine.nuclear_reactor.tooltip.2=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的过热/超临界流体。
+gtlitecore.machine.nuclear_reactor.tooltip.3=热冷却液的状态取决于裂变核素的重量，当其处于核素裂变链中的中后部分时才会输出超临界流体。
+gtlitecore.machine.nuclear_reactor.tooltip.4=核反应堆将会尝试并行裂变所有的燃料棒，同时需要输入更多的冷却液来稳定反应。
+gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§r以获取更高的能量输出。
+gtlitecore.machine.nuclear_reactor.tooltip.6=§r倍率：钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），
+gtlitecore.machine.nuclear_reactor.tooltip.7=§r锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
 

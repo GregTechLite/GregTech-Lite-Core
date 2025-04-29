@@ -29,6 +29,7 @@ import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
@@ -158,17 +159,20 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing
 import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
@@ -235,6 +239,8 @@ class AssemblerRecipes
             machineCasingRecipes()
             machineHullRecipes()
             pipeCasingRecipes()
+            turbineCasingRecipes()
+            nuclearCasingRecipes()
             motorCasingRecipes()
             pistonCasingRecipes()
             pumpCasingRecipes()
@@ -391,27 +397,6 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
-
-            // Rhodium Plated Palladium Turbine Casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(6)
-                .inputs(MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING))
-                .input(plate, RhodiumPlatedPalladium, 6)
-                .outputs(GTLiteMetaBlocks.TURBINE_CASING_01.getItemVariant(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VH[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
-
-            // Rhodium Plated Palladium Gearbox Casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(plate, RhodiumPlatedPalladium, 4)
-                .input(gear, RhodiumPlatedPalladium, 2)
-                .input(frameGt, RhodiumPlatedPalladium)
-                .outputs(GTLiteMetaBlocks.TURBINE_CASING_02.getItemVariant(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX, ConfigHolder.recipes.casingsPerCraft))
-                .EUt(VH[LV].toLong())
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
         }
 
         private fun machineHullRecipes()
@@ -508,6 +493,46 @@ class AssemblerRecipes
                 .outputs(GTLiteMetaBlocks.BOILER_CASING_01.getItemVariant(BlockBoilerCasing01.BoilerCasingType.POLYBENZIMIDAZOLE, ConfigHolder.recipes.casingsPerCraft))
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+        }
+
+        private fun turbineCasingRecipes()
+        {
+            // Rhodium Plated Palladium Turbine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .inputs(MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING))
+                .input(plate, RhodiumPlatedPalladium, 6)
+                .outputs(GTLiteMetaBlocks.TURBINE_CASING_01.getItemVariant(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Rhodium Plated Palladium Gearbox Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(plate, RhodiumPlatedPalladium, 4)
+                .input(gear, RhodiumPlatedPalladium, 2)
+                .input(frameGt, RhodiumPlatedPalladium)
+                .outputs(GTLiteMetaBlocks.TURBINE_CASING_02.getItemVariant(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX, ConfigHolder.recipes.casingsPerCraft))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+        }
+
+        private fun nuclearCasingRecipes()
+        {
+            // Nuclear Temperature Controller
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .inputs(GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(BlockMetalCasing03.MetalCasingType.INCONEL_718))
+                .inputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE))
+                .input(wireFine, Nichrome, 4)
+                .input(screw, Inconel718, 2)
+                .fluidInputs(ZirconiumCarbide.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(BlockActiveUniqueCasing01.UniqueCasingType.TEMPERATURE_CONTROLLER))
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
         }
 

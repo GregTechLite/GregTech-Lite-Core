@@ -29,7 +29,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
-import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore01
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore02
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing
@@ -166,7 +167,8 @@ class GTLiteMetaBlocks
         lateinit var WIRE_COIL: BlockWireCoils
         lateinit var COMPONENT_ASSEMBLY_CASING: BlockComponentAssemblyCasing
         lateinit var CRUCIBLE: BlockCrucible
-        lateinit var NUCLEAR_REACTOR_CORE: BlockNuclearReactorCore
+        lateinit var NUCLEAR_REACTOR_CORE_01: BlockNuclearReactorCore01
+        lateinit var NUCLEAR_REACTOR_CORE_02: BlockNuclearReactorCore02
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
 
@@ -438,9 +440,13 @@ class GTLiteMetaBlocks
             (CRUCIBLE as? Block)?.setRegistryName("crucible")
             (CRUCIBLE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
-            NUCLEAR_REACTOR_CORE = BlockNuclearReactorCore()
-            (NUCLEAR_REACTOR_CORE as? Block)?.setRegistryName("nuclear_reactor_core")
-            (NUCLEAR_REACTOR_CORE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+            NUCLEAR_REACTOR_CORE_01 = BlockNuclearReactorCore01()
+            (NUCLEAR_REACTOR_CORE_01 as? Block)?.setRegistryName("nuclear_reactor_core_01")
+            (NUCLEAR_REACTOR_CORE_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            NUCLEAR_REACTOR_CORE_02 = BlockNuclearReactorCore02()
+            (NUCLEAR_REACTOR_CORE_02 as? Block)?.setRegistryName("nuclear_reactor_core_02")
+            (NUCLEAR_REACTOR_CORE_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
             TRANSPARENT_CASING_01 = BlockGlassCasing01()
             (TRANSPARENT_CASING_01 as? Block)?.setRegistryName("glass_casing_01")
@@ -578,7 +584,8 @@ class GTLiteMetaBlocks
             FUSION_CASING_02.onModelRegister()
             FUSION_CASING_03.onModelRegister()
             WIRE_COIL.onModelRegister()
-            NUCLEAR_REACTOR_CORE.onModelRegister()
+            NUCLEAR_REACTOR_CORE_01.onModelRegister()
+            NUCLEAR_REACTOR_CORE_02.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
             WALLS.values.distinct().forEach(BlockGregtechWall::onModelRegister)
         }

@@ -73,6 +73,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
+import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamAlloySmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamCompressor
@@ -224,6 +225,7 @@ class GTLiteMetaTileEntities
         lateinit var STEAM_ALLOY_SMELTER: MetaTileEntitySteamAlloySmelter
 
         lateinit var STEAM_ENGINE: MetaTileEntitySteamEngine
+        lateinit var NUCLEAR_REACTOR: MetaTileEntityNuclearReactor
         lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
@@ -715,6 +717,15 @@ class GTLiteMetaTileEntities
             MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
                 MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
 
+            // 18007 ...
+
+            NUCLEAR_REACTOR = MetaTileEntities.registerMetaTileEntity(18008,
+                MetaTileEntityNuclearReactor(GTLiteUtility.gtliteId("nuclear_reactor")))
+
+            // 18009 Superheated Steam Turbine
+
+            // 18010 Supercritical Steam Turbine
+
             CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
                 MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
 
@@ -946,6 +957,7 @@ class GTLiteMetaTileEntities
             STEAM_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            NUCLEAR_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

@@ -24,6 +24,8 @@ import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03;
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore01;
+import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore02;
 import magicbook.gtlitecore.common.block.blocks.BlockPistonCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
@@ -84,6 +86,7 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_DIVERTOR = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_VACUUM = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_COMPONENT_CASING = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_NUCLEAR_REACTOR_CORE = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
@@ -263,6 +266,19 @@ public class GTLiteAPI
         {
             MAP_COMPONENT_CASING.put(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getState(tier),
                     new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        // nuclearReactorCores
+        for (BlockNuclearReactorCore01.ReactorCoreType tier : BlockNuclearReactorCore01.ReactorCoreType.values())
+        {
+            MAP_NUCLEAR_REACTOR_CORE.put(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        for (BlockNuclearReactorCore02.ReactorCoreType tier : BlockNuclearReactorCore02.ReactorCoreType.values())
+        {
+            MAP_NUCLEAR_REACTOR_CORE.put(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 9));
         }
 
         // cleanroomCasings

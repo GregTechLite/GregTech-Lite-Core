@@ -62,6 +62,7 @@ import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mendelevium
+import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Naquadah
@@ -178,7 +179,7 @@ class GTLiteMaterialProperties
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
                 Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
-                Astatine, Nobelium, Lawrencium)
+                Astatine, Nobelium, Lawrencium, Mercury)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -358,7 +359,7 @@ class GTLiteMaterialProperties
             Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
 
             Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
-            Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
+            Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
             Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
             Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[LuV])
             Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND

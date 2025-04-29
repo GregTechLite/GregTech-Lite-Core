@@ -13,6 +13,24 @@
         "bot_all": "gtlitecore:blocks/casings/special/heat_vent",
         "top_all": "gtlitecore:blocks/casings/special/heat_vent_bloom"
       }
+    },
+    "active=false,variant=temperature_controller": {
+      "model": "minecraft:cube_column",
+      "textures": {
+        "end" : "gtlitecore:blocks/casings/special/temperature_controller_top",
+        "side" : "gtlitecore:blocks/casings/special/temperature_controller_side"
+      }
+    },
+    "active=true,variant=temperature_controller": {
+      "model" : "gregtech:cube_2_layer_bottom_top",
+      "textures" : {
+        "bot_side" : "gtlitecore:blocks/casings/special/temperature_controller_side",
+        "bot_top" : "gtlitecore:blocks/casings/special/temperature_controller_top",
+        "bot_bottom" : "#bot_top",
+        "top_side" : "gtlitecore:blocks/casings/special/temperature_controller_side_bloom",
+        "top_top" : "gtlitecore:blocks/casings/special/temperature_controller_top_bloom",
+        "top_bottom" : "#top_top"
+      }
     }
   }
 }

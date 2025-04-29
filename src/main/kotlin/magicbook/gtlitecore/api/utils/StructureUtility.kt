@@ -98,6 +98,9 @@ class StructureUtility
         fun componentCasings() = GTLiteTraceabilityPredicate.COMPONENT_CASING.get()
 
         @JvmStatic
+        fun nuclearReactorCores() = GTLiteTraceabilityPredicate.NUCLEAR_REACTOR_CORE.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

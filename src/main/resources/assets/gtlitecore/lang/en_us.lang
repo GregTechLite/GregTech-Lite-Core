@@ -409,6 +409,7 @@ tile.multiblock_casing_01.harmonic_phonon_transmission_casing.name=Harmonic Phon
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.tooltip=Thermal Ripple Overdrive
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
+tile.active_unique_casing_01.temperature_controller.name=Nuclear Reactor Temperature Controller
 
 tile.turbine_casing_01.rhodium_plated_palladium_turbine.name=Rhodium Plated Palladium Turbine Casing
 
@@ -468,7 +469,19 @@ tile.component_assembly_casing.uxv.name=§eUXV§f Component Assembly Casing
 tile.component_assembly_casing.opv.name=§9OpV§f Component Assembly Casing
 tile.component_assembly_casing.max.name=§c§lMAX§r§f Component Assembly Casing
 
-tile.nuclear_reactor_core.thorium.name=Thorium Reactor Core
+tile.nuclear_reactor_core_01.thorium.name=Thorium Reactor Core
+tile.nuclear_reactor_core_01.protactinium.name=Protactinium Reactor Core
+tile.nuclear_reactor_core_01.uranium.name=Uranium Reactor Core
+tile.nuclear_reactor_core_01.neptunium.name=Neptunium Reactor Core
+tile.nuclear_reactor_core_01.plutonium.name=Plutonium Reactor Core
+tile.nuclear_reactor_core_01.americium.name=Americium Reactor Core
+tile.nuclear_reactor_core_01.curium.name=Curium Reactor Core
+tile.nuclear_reactor_core_01.berkelium.name=Berkelium Reactor Core
+
+tile.nuclear_reactor_core_02.californium.name=Californium Reactor Core
+tile.nuclear_reactor_core_02.einsteinium.name=Einsteinium Reactor Core
+tile.nuclear_reactor_core_02.fermium.name=Fermium Reactor Core
+tile.nuclear_reactor_core_02.mendelevium.name=Mendelevium Reactor Core
 
 tile.glass_casing_01.pmma.name=PMMA Glass
 tile.glass_casing_01.pmma.tooltip=Acrylic Glass
@@ -1644,6 +1657,15 @@ gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与
 gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作
 gtlitecore.machine.mining_drone_airport.tooltip.3=提高采矿无人机的数量或等级将产出更多的矿石
 gtlitecore.machine.mining_drone_airport.tooltip.4=每次工作需要§c消耗§7燃料，但钻头与杆循环利用§f不会§7消耗。
+
+gtlitecore.machine.nuclear_reactor.name=Nuclear Reactor
+gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
+gtlitecore.machine.nuclear_reactor.tooltip.2=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的过热/超临界流体。
+gtlitecore.machine.nuclear_reactor.tooltip.3=热冷却液的状态取决于裂变核素的重量，当其处于核素裂变链中的中后部分时才会输出超临界流体。
+gtlitecore.machine.nuclear_reactor.tooltip.4=核反应堆将会尝试并行裂变所有的燃料棒，同时需要输入更多的冷却液来稳定反应。
+gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§r以获取更高的能量输出。
+gtlitecore.machine.nuclear_reactor.tooltip.6=§r倍率：钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），
+gtlitecore.machine.nuclear_reactor.tooltip.7=§r锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 

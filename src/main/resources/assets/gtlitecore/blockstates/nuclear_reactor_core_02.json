@@ -1,0 +1,81 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=californium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/californium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/californium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=californium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/californium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/californium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=einsteinium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/einsteinium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/einsteinium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=einsteinium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/einsteinium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/einsteinium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=fermium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/fermium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/fermium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=fermium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/fermium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/fermium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=mendelevium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/mendelevium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/mendelevium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=mendelevium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/mendelevium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/mendelevium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    }
+  }
+}

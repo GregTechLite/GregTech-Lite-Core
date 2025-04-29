@@ -63,6 +63,7 @@ import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
@@ -190,6 +191,7 @@ class GTLiteMaterialFlags
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
             Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
             Duranium.addFlags(GENERATE_BOLT_SCREW)
+            Inconel718.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -233,6 +235,7 @@ class GTLiteMaterialFlags
             Rutherfordium.addFlags(GENERATE_FOIL)
             Neutronium.addFlags(GENERATE_FOIL)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
+            Nichrome.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -328,6 +331,15 @@ class GTLiteMaterialFlags
             Calcium.addFlags(GENERATE_PLATE)
             Curium.addFlags(GENERATE_PLATE)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_PLATE)
+            Zircaloy4.addFlags(GENERATE_PLATE)
+            Protactinium.addFlags(GENERATE_PLATE)
+            Uranium.addFlags(GENERATE_PLATE)
+            Neptunium.addFlags(GENERATE_PLATE)
+            Berkelium.addFlags(GENERATE_PLATE)
+            Californium.addFlags(GENERATE_PLATE)
+            Einsteinium.addFlags(GENERATE_PLATE)
+            Fermium.addFlags(GENERATE_PLATE)
+            Mendelevium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -347,6 +359,15 @@ class GTLiteMaterialFlags
             HSSE.addFlags(GENERATE_DOUBLE_PLATE)
             BlueSteel.addFlags(GENERATE_DOUBLE_PLATE)
             Thorium.addFlags(GENERATE_DOUBLE_PLATE)
+            Protactinium.addFlags(GENERATE_DOUBLE_PLATE)
+            Uranium.addFlags(GENERATE_DOUBLE_PLATE)
+            Neptunium.addFlags(GENERATE_DOUBLE_PLATE)
+            Curium.addFlags(GENERATE_DOUBLE_PLATE)
+            Berkelium.addFlags(GENERATE_DOUBLE_PLATE)
+            Californium.addFlags(GENERATE_DOUBLE_PLATE)
+            Einsteinium.addFlags(GENERATE_DOUBLE_PLATE)
+            Fermium.addFlags(GENERATE_DOUBLE_PLATE)
+            Mendelevium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -359,6 +380,17 @@ class GTLiteMaterialFlags
             Potin.addFlags(GENERATE_DENSE)
             Osmium.addFlags(GENERATE_DENSE)
             Thorium.addFlags(GENERATE_DENSE)
+            Protactinium.addFlags(GENERATE_DENSE)
+            Uranium.addFlags(GENERATE_DENSE)
+            Neptunium.addFlags(GENERATE_DENSE)
+            Plutonium239.addFlags(GENERATE_DENSE)
+            Americium.addFlags(GENERATE_DENSE)
+            Curium.addFlags(GENERATE_DENSE)
+            Berkelium.addFlags(GENERATE_DENSE)
+            Californium.addFlags(GENERATE_DENSE)
+            Einsteinium.addFlags(GENERATE_DENSE)
+            Fermium.addFlags(GENERATE_DENSE)
+            Mendelevium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)
@@ -422,6 +454,7 @@ class GTLiteMaterialFlags
             NaquadahEnriched.addFlags(GENERATE_FINE_WIRE)
             Curium.addFlags(GENERATE_FINE_WIRE)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE)
+            Nichrome.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

@@ -232,6 +232,9 @@ class GTLiteTextures
 
         @JvmField
         val QUANTUM_ALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/quantum_alloy")
+
+        @JvmField
+        val INCONEL_718_CASING = GTLiteSimpleOverlayRenderer("casings/metal/inconel_718")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

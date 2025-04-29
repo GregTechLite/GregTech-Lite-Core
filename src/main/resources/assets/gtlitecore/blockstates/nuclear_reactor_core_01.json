@@ -1,0 +1,157 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=thorium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/thorium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/thorium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=thorium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/thorium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/thorium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=protactinium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/protactinium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/protactinium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=protactinium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/protactinium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/protactinium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=uranium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/uranium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/uranium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=uranium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/uranium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/uranium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=neptunium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/neptunium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/neptunium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=neptunium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/neptunium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/neptunium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=plutonium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/plutonium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/plutonium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=plutonium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/plutonium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/plutonium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=americium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/americium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/americium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=americium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/americium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/americium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=curium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/curium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/curium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=curium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/curium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/curium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    },
+    "active=false,variant=berkelium": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/nuclear/core/berkelium_top",
+        "side": "gtlitecore:blocks/casings/nuclear/core/berkelium_side",
+        "bottom": "#top"
+      }
+    },
+    "active=true,variant=berkelium": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/nuclear/core/berkelium_top",
+        "bot_side": "gtlitecore:blocks/casings/nuclear/core/berkelium_side",
+        "bot_bottom": "#bot_up",
+        "top_up": "gtlitecore:blocks/casings/nuclear/core/top_bloom",
+        "top_side": "gtlitecore:blocks/casings/nuclear/core/side_bloom",
+        "top_bottom": "#top_up"
+      }
+    }
+  }
+}
