@@ -23,9 +23,9 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.LEFT
-import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.api.util.TextComponentUtil.stringWithColor
 import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtech.api.util.TextFormattingUtil.formatNumbers

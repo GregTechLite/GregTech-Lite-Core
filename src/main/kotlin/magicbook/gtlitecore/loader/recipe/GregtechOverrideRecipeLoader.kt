@@ -24,7 +24,6 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
-import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Concrete
 import gregtech.api.unification.material.Materials.Curium
@@ -108,7 +107,6 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
-import magicbook.gtlitecore.loader.recipe.oreprocessing.NiobiumTantalumProcessing
 import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")

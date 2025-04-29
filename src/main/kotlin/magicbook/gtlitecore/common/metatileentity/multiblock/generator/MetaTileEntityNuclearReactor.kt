@@ -6,14 +6,9 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
-import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.IProgressBarMultiblock
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController

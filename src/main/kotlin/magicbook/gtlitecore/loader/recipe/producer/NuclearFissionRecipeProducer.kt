@@ -46,7 +46,6 @@ import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRo
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodDouble
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodQuadruple
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodSingle
-import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import net.minecraftforge.fluids.FluidStack

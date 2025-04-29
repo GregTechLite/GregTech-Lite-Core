@@ -22,7 +22,6 @@ import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
-import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
@@ -65,7 +64,6 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockTurbineCasing
 import gregtech.common.blocks.MetaBlocks
@@ -108,10 +106,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.fuelRodQuadruple
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
-import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
-import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore01
 import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore02
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
