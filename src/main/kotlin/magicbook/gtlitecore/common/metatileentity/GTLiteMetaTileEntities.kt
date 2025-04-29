@@ -1,6 +1,8 @@
 package magicbook.gtlitecore.common.metatileentity
 
 import gregtech.api.GTValues
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.LuV
 import gregtech.api.block.machines.MachineItemBlock
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
@@ -10,7 +12,10 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
+import gregtech.common.blocks.BlockTurbineCasing
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtech.common.metatileentities.multi.electric.generator.MetaTileEntityLargeTurbine
 import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
 import gregtech.common.metatileentities.storage.MetaTileEntityCrate
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
@@ -23,6 +28,9 @@ import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityBedrockDrillingRig
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
@@ -226,6 +234,8 @@ class GTLiteMetaTileEntities
 
         lateinit var STEAM_ENGINE: MetaTileEntitySteamEngine
         lateinit var NUCLEAR_REACTOR: MetaTileEntityNuclearReactor
+        lateinit var HIGH_PRESSURE_STEAM_TURBINE: MetaTileEntityLargeTurbine
+        lateinit var SUPERCRITICAL_STEAM_TURBINE: MetaTileEntityLargeTurbine
         lateinit var MINING_DRONE_AIRPORT: MetaTileEntityMiningDroneAirport
 
         lateinit var CATALYTIC_REFORMER: MetaTileEntityCatalyticReformer
@@ -722,9 +732,17 @@ class GTLiteMetaTileEntities
             NUCLEAR_REACTOR = MetaTileEntities.registerMetaTileEntity(18008,
                 MetaTileEntityNuclearReactor(GTLiteUtility.gtliteId("nuclear_reactor")))
 
-            // 18009 Superheated Steam Turbine
+            HIGH_PRESSURE_STEAM_TURBINE = MetaTileEntities.registerMetaTileEntity(18009,
+                MetaTileEntityLargeTurbine(GTLiteUtility.gtliteId("large_turbine.high_pressure_steam"), GTLiteRecipeMaps.HIGH_PRESSURE_STEAM_FUELS, EV,
+                    MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_TURBINE_CASING),
+                    MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_GEARBOX),
+                    Textures.STABLE_TITANIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
-            // 18010 Supercritical Steam Turbine
+            SUPERCRITICAL_STEAM_TURBINE = MetaTileEntities.registerMetaTileEntity(18010,
+                MetaTileEntityLargeTurbine(GTLiteUtility.gtliteId("large_turbine.supercritical_steam"), GTLiteRecipeMaps.SUPERCRITICAL_STEAM_FUELS, LuV,
+                    GTLiteMetaBlocks.TURBINE_CASING_01.getState(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE),
+                    GTLiteMetaBlocks.TURBINE_CASING_02.getState(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX),
+                    GTLiteTextures.RHODIUM_PLATED_PALLADIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
             CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
                 MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
@@ -958,6 +976,8 @@ class GTLiteMetaTileEntities
 
             MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             NUCLEAR_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            HIGH_PRESSURE_STEAM_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SUPERCRITICAL_STEAM_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

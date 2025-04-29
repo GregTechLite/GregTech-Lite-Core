@@ -66,7 +66,9 @@ import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
@@ -90,6 +92,8 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
+import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.LARGE_PLASMA_TURBINE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -439,6 +443,15 @@ class GregtechOverrideRecipeLoader
                 .EUt(VA[HV].toLong())
                 .duration(3 * MINUTE + 20 * SECOND)
                 .buildAndRegister()
+
+            // Down-tier Large Plasma Turbine recipes hull requirement from LuV to IV.
+            ModHandler.removeRecipeByName("${GTValues.MODID}:large_plasma_turbine")
+            ModHandler.addShapedRecipe(true, "large_plasma_turbine", LARGE_PLASMA_TURBINE.stackForm,
+                "XGX", "GHG", "PGP",
+                'H', HULL[IV].stackForm,
+                'G', UnificationEntry(gear, TungstenSteel),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV),
+                'P', UnificationEntry(pipeLargeFluid, TungstenSteel))
 
         }
 

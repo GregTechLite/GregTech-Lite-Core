@@ -812,6 +812,38 @@ class GTLiteRecipeMaps
         // -------------------------------------------------------------------------------------------------------------
 
         /**
+         * @zenProp high_pressure_steam_turbine
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("HIGH_PRESSURE_STEAM_FUELS")
+        val HIGH_PRESSURE_STEAM_FUELS = RecipeMapBuilder("high_pressure_steam_turbine", FuelRecipeBuilder())
+            .fluidInputs(1)
+            .fluidOutputs(1)
+            .fluidSlotOverlay(GuiTextures.DARK_CANISTER_OVERLAY, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR)
+            .sound(GTSoundEvents.TURBINE)
+            .generator()
+            .allowEmptyOutputs()
+            .build()
+
+        /**
+         * @zenProp supercritical_steam_turbine
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("SUPERCRITICAL_STEAM_FUELS")
+        val SUPERCRITICAL_STEAM_FUELS = RecipeMapBuilder("supercritical_steam_turbine", FuelRecipeBuilder())
+            .fluidInputs(1)
+            .fluidOutputs(1)
+            .fluidSlotOverlay(GuiTextures.DARK_CANISTER_OVERLAY, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_GAS_COLLECTOR)
+            .sound(GTSoundEvents.TURBINE)
+            .generator()
+            .allowEmptyOutputs()
+            .build()
+
+        /**
          * @zenProp nuclear_reactor
          */
         @ZenProperty

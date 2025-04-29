@@ -718,15 +718,6 @@ class CraftingRecipeLoader
                 'G', UnificationEntry(gear, RhodiumPlatedPalladium),
                 'F', UnificationEntry(frameGt, RhodiumPlatedPalladium))
 
-            // Nuclear Reactor
-            ModHandler.addShapedRecipe(true, "nuclear_reactor", NUCLEAR_REACTOR.stackForm,
-                "QBQ", "RHR", "PBP",
-                'H', HULL[EV].stackForm,
-                'R', ROBOT_ARM_EV,
-                'Q', ELECTRIC_PUMP_EV,
-                'P', UnificationEntry(plate, Zircaloy4),
-                'B', UnificationEntry(block, Thorium))
-
             // Nuclear Reactor Cores
             ModHandler.addShapedRecipe(true, "nuclear_reactor_core.thorium", GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(BlockNuclearReactorCore01.ReactorCoreType.THORIUM),
                 "PRP", "SDS", "PRP",

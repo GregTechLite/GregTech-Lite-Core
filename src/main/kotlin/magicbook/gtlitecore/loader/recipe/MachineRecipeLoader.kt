@@ -66,6 +66,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -77,6 +78,7 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
@@ -160,6 +162,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
+import gregtech.common.items.MetaItems.ROBOT_ARM_EV
 import gregtech.common.items.MetaItems.ROBOT_ARM_HV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
@@ -296,6 +299,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK4
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.HIGH_PRESSURE_STEAM_TURBINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_EXTENDER
@@ -336,6 +340,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MOB_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NANOSCALE_FABRICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NUCLEAR_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -350,6 +355,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STELLAR_FORGE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUPERCRITICAL_STEAM_TURBINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
@@ -1757,6 +1763,31 @@ class MachineRecipeLoader
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
+
+            // Nuclear Reactor
+            ModHandler.addShapedRecipe(true, "nuclear_reactor", NUCLEAR_REACTOR.stackForm,
+                "QBQ", "RHR", "PBP",
+                'H', HULL[EV].stackForm,
+                'R', ROBOT_ARM_EV,
+                'Q', ELECTRIC_PUMP_EV,
+                'P', UnificationEntry(plate, Zircaloy4),
+                'B', UnificationEntry(block, Thorium))
+
+            // Large High Pressure Steam Turbine
+            ModHandler.addShapedRecipe(true, "large_high_pressure_steam_turbine", HIGH_PRESSURE_STEAM_TURBINE.stackForm,
+                "XGX", "GHG", "PGP",
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
+                'G', UnificationEntry(gear, Titanium),
+                'H', HULL[EV].stackForm,
+                'P', UnificationEntry(pipeLargeFluid, Titanium))
+
+            // Large Supercritical Steam Turbine
+            ModHandler.addShapedRecipe(true, "large_supercritical_steam_turbine", SUPERCRITICAL_STEAM_TURBINE.stackForm,
+                "XGX", "GHG", "PGP",
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.ZPM),
+                'G', UnificationEntry(gear, RhodiumPlatedPalladium),
+                'H', HULL[LuV].stackForm,
+                'P', UnificationEntry(pipeLargeFluid, RhodiumPlatedPalladium))
 
         }
 

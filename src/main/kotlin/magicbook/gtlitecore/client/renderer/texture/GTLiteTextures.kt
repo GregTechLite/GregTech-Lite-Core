@@ -235,6 +235,9 @@ class GTLiteTextures
 
         @JvmField
         val INCONEL_718_CASING = GTLiteSimpleOverlayRenderer("casings/metal/inconel_718")
+
+        @JvmField
+        val RHODIUM_PLATED_PALLADIUM_CASING = GTLiteSimpleOverlayRenderer("casings/metal/rhodium_plated_palladium")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

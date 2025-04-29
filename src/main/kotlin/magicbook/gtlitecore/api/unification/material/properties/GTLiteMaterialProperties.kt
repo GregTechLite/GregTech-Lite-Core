@@ -84,6 +84,7 @@ import gregtech.api.unification.material.Materials.RarestMetalMixture
 import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -324,6 +325,9 @@ class GTLiteMaterialProperties
             Inconel718.setProperty(PropertyKey.FLUID_PIPE,
                 FluidPipeProperties(2010, 175,
                     true, true, true, false))
+
+            RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
+                FluidPipeProperties(6120, 225, true, true, true, false))
 
             // Modified rare earth elements color.
             Promethium.materialRGB = 0x24B535
