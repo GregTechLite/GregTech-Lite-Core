@@ -6,7 +6,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.COMPRESSOR_RECIPES
 import gregtech.client.particle.VanillaParticleEffects
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -24,13 +24,22 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, RecipeMaps.COMPRESSOR_RECIPES, CONVERSION_RATE)
+class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation?) : RecipeMapSteamMultiblockController(metaTileEntityId, COMPRESSOR_RECIPES, CONVERSION_RATE)
 {
 
     init
     {
-        this.recipeMapWorkable = SteamMultiWorkable(this, CONVERSION_RATE)
-        this.recipeMapWorkable.parallelLimit = 8
+        recipeMapWorkable = SteamMultiWorkable(this, CONVERSION_RATE)
+        recipeMapWorkable.parallelLimit = 8
+    }
+
+    companion object
+    {
+        private val casingState
+            get() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID) else MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS)
+
+        private val pipeCasingState
+            get() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE) else MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntitySteamCompressor(metaTileEntityId)
@@ -41,15 +50,11 @@ class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation) : Recipe
         .aisle("CCC", "CPC", "CCC")
         .aisle("CCC", "CSC", "CCC")
         .where('S', selfPredicate())
-        .where('C', states(getCasingState())
+        .where('C', states(casingState)
             .setMinGlobalLimited(27)
             .or(autoAbilities()))
-        .where('P', states(getPipeCasingState()))
+        .where('P', states(pipeCasingState))
         .build()
-
-    private fun getCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID) else MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS)
-
-    private fun getPipeCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE) else MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.BRONZE_PIPE)
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS

@@ -1664,8 +1664,8 @@ gtlitecore.machine.nuclear_reactor.tooltip.2=需要输入§d反应堆慢化剂§
 gtlitecore.machine.nuclear_reactor.tooltip.3=热冷却液的状态取决于裂变核素的重量，当其处于核素裂变链中的中后部分时才会输出超临界流体。
 gtlitecore.machine.nuclear_reactor.tooltip.4=核反应堆将会尝试并行裂变所有的燃料棒，同时需要输入更多的冷却液来稳定反应。
 gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§r以获取更高的能量输出。
-gtlitecore.machine.nuclear_reactor.tooltip.6=§r倍率：钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），
-gtlitecore.machine.nuclear_reactor.tooltip.7=§r锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
+gtlitecore.machine.nuclear_reactor.tooltip.6=倍率：§f钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），§7
+gtlitecore.machine.nuclear_reactor.tooltip.7=§f锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 

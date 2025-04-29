@@ -1,420 +1,334 @@
-package magicbook.gtlitecore.common.metatileentity.multiblock.advanced;
+package magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.block.IHeatingCoilBlockStats;
-import gregtech.api.capability.IHeatingCoil;
-import gregtech.api.capability.IMultipleTankHandler;
-import gregtech.api.capability.impl.HeatingCoilRecipeLogic;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.MultiblockShapeInfo;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.properties.impl.TemperatureProperty;
-import gregtech.api.util.GTUtility;
-import gregtech.api.util.TextComponentUtil;
-import gregtech.api.util.TextFormattingUtil;
-import gregtech.client.renderer.ICubeRenderer;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockWireCoil;
-import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.core.sound.GTSoundEvents;
-import lombok.Getter;
-import magicbook.gtlitecore.api.GTLiteAPI;
-import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
-import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
-import magicbook.gtlitecore.api.unification.GTLiteMaterials;
-import magicbook.gtlitecore.api.utils.stream.LazyStreams;
-import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
-import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02;
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import one.util.streamex.StreamEx;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
+import gregtech.api.GregTechAPI
+import gregtech.api.block.IHeatingCoilBlockStats
+import gregtech.api.capability.IHeatingCoil
+import gregtech.api.capability.IMultipleTankHandler
+import gregtech.api.capability.impl.HeatingCoilRecipeLogic
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.MultiblockShapeInfo
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
+import gregtech.api.recipes.properties.impl.TemperatureProperty
+import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.RelativeDirection.LEFT
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.TextComponentUtil.stringWithColor
+import gregtech.api.util.TextComponentUtil.translationWithColor
+import gregtech.api.util.TextFormattingUtil.formatNumbers
+import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.renderer.texture.Textures
+import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockWireCoil
+import gregtech.common.metatileentities.MetaTileEntities
+import gregtech.core.sound.GTSoundEvents
+import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.block.impl.WrappedIntTier
+import magicbook.gtlitecore.api.capability.GTLiteDataCodes
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlazingPyrotheum
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.consistent
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getOrDefault
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.maxLength
+import magicbook.gtlitecore.api.utils.StructureUtility.Companion.motorCasings
+import magicbook.gtlitecore.api.utils.stream.LazyStreams
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import net.minecraft.block.state.IBlockState
+import net.minecraft.client.resources.I18n
+import net.minecraft.item.ItemStack
+import net.minecraft.network.PacketBuffer
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.ResourceLocation
+import net.minecraft.util.SoundEvent
+import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.text.TextFormatting
+import net.minecraft.world.World
+import net.minecraftforge.fluids.FluidStack
+import net.minecraftforge.fluids.capability.IFluidHandler
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import one.util.streamex.StreamEx
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.function.Consumer
+import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.pow
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import static gregtech.api.util.RelativeDirection.DOWN;
-import static gregtech.api.util.RelativeDirection.FRONT;
-import static gregtech.api.util.RelativeDirection.LEFT;
-import static magicbook.gtlitecore.api.utils.GTLiteUtility.consistent;
-import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
-import static magicbook.gtlitecore.api.utils.GTLiteUtility.maxLength;
-import static magicbook.gtlitecore.api.utils.StructureUtility.motorCasings;
-
-public class MetaTileEntityVolcanus extends RecipeMapMultiblockController implements IHeatingCoil
+@Suppress("MISSING_DEPENDENCY_CLASS")
+class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, BLAST_RECIPES), IHeatingCoil
 {
 
-    @Getter
-    private int motorCasingTier;
-    @Getter
-    private int coilTier;
-    @Getter
-    private int temperature;
+    private var motorCasingTier = 0
+    private var coilTier = 0
+    private var temperature = 0
 
-    private static boolean hasRegistered = false;
-    private static List<IBlockState> motorCasings;
-    private static List<IBlockState> heatingCoils;
-
-    // =================================================================================================================
-    public MetaTileEntityVolcanus(ResourceLocation metaTileEntityId)
+    init
     {
-        super(metaTileEntityId, RecipeMaps.BLAST_RECIPES);
-        this.recipeMapWorkable = new VolcanusRecipeLogic(this);
-        this.registerCasingMaps();
+        recipeMapWorkable = VolcanusRecipeLogic(this)
+        registerCasingMaps()
     }
 
-    @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
+    companion object
     {
-        return new MetaTileEntityVolcanus(metaTileEntityId);
+        private var hasRegistered = false
+        private lateinit var motorCasings: List<IBlockState>
+        private lateinit var heatingCoils: List<IBlockState>
+
+        private val casingState
+            get() = GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HASTELLOY_C276)
     }
 
-    private void registerCasingMaps()
+    private fun registerCasingMaps()
     {
-        if (hasRegistered) return;
-        List<IBlockState> motorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_MOTOR_CASING);
-        List<IBlockState> heatingCoil = LazyStreams.fastSortedByKey(GregTechAPI.HEATING_COILS);
-        int maxLength = maxLength(new ArrayList<List<IBlockState>>() {{
-            add(motorCasing);
-            add(heatingCoil);
-        }});
-        motorCasings = consistent(motorCasing, maxLength);
-        heatingCoils = consistent(heatingCoil, maxLength);
-        hasRegistered = true;
+        if (hasRegistered) return
+        val motorCasing = LazyStreams.fastSortedByKey(GTLiteAPI.MAP_MOTOR_CASING)
+        val heatingCoil = LazyStreams.fastSortedByKey(GregTechAPI.HEATING_COILS)
+        val maxLength = maxLength(listOf(motorCasing, heatingCoil))
+        motorCasings = consistent(motorCasing, maxLength)
+        heatingCoils = consistent(heatingCoil, maxLength)
+        hasRegistered = true
     }
 
-    // =================================================================================================================
-    @Override
-    protected void formStructure(PatternMatchContext context)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityVolcanus(metaTileEntityId)
+
+    override fun formStructure(context: PatternMatchContext)
     {
-        super.formStructure(context);
-        Object type1 = context.get("MotorCasingTieredStats");
-        Object type2 = context.get("CoilType");
-        this.motorCasingTier = getOrDefault(
-                () -> type1 instanceof WrappedIntTier,
-                () -> ((WrappedIntTier) type1).getIntTier(), 0);
-        if (type2 instanceof IHeatingCoilBlockStats)
+        super.formStructure(context)
+        val type1: Any? = context.get<Any>("MotorCasingTieredStats")
+        val type2: Any? = context.get<Any>("CoilType")
+        motorCasingTier = getOrDefault(
+            { type1 is WrappedIntTier },
+            { (type1 as WrappedIntTier).getIntTier() }, 0)
+        if (type2 is IHeatingCoilBlockStats)
         {
-            this.temperature = ((IHeatingCoilBlockStats) type2).getCoilTemperature();
-            this.coilTier = ((IHeatingCoilBlockStats) type2).getTier();
+            temperature = type2.coilTemperature
+            coilTier = type2.tier
         }
         else
         {
-            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.getCoilTemperature();
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.getTier();
+            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
+            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
         }
-        this.temperature += 100 * Math.max(0, GTUtility.getTierByVoltage(
-                getEnergyContainer().getInputVoltage() - GTValues.MV));
+        temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
     }
 
-    @Override
-    public void invalidateStructure()
+    override fun invalidateStructure()
     {
-        super.invalidateStructure();
-        this.motorCasingTier = 0;
-        this.coilTier = 0;
-        this.temperature = 0;
+        super.invalidateStructure()
+        motorCasingTier = 0
+        coilTier = 0
+        temperature = 0
     }
 
-    @NotNull
-    @Override
-    protected BlockPattern createStructurePattern()
-    {
-        return FactoryBlockPattern.start()
-                .aisle("DDD", "CCC", "CCC", "DDD")
-                .aisle("DDD", "CMC", "CMC", "DOD")
-                .aisle("DSD", "CCC", "CCC", "DDD")
-                .where('S', selfPredicate())
-                .where('D', states(getCasingState())
-                        .setMinGlobalLimited(9)
-                        .or(autoAbilities(true, true, true, true, true, true, false)))
-                .where('O', abilities(MultiblockAbility.MUFFLER_HATCH))
-                .where('M', motorCasings())
-                .where('C', heatingCoils())
-                .build();
-    }
-
-    private static IBlockState getCasingState()
-    {
-        return GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.HASTELLOY_C276);
-    }
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
+        .aisle("DDD", "CCC", "CCC", "DDD")
+        .aisle("DDD", "CMC", "CMC", "DOD")
+        .aisle("DSD", "CCC", "CCC", "DDD")
+        .where('S', selfPredicate())
+        .where('D', states(casingState)
+            .setMinGlobalLimited(9)
+            .or(autoAbilities(true, true, true, true, true, true, false)))
+        .where('O', abilities(MUFFLER_HATCH))
+        .where('M', motorCasings())
+        .where('C', heatingCoils())
+        .build()
 
     @SideOnly(Side.CLIENT)
-    @Override
-    public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart)
-    {
-        return GTLiteTextures.HASTELLOY_C276_CASING;
-    }
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.HASTELLOY_C276_CASING
 
     @SideOnly(Side.CLIENT)
-    @NotNull
-    @Override
-    protected ICubeRenderer getFrontOverlay()
-    {
-        return Textures.BLAST_FURNACE_OVERLAY;
-    }
+    override fun getFrontOverlay(): ICubeRenderer = Textures.BLAST_FURNACE_OVERLAY
 
-    @Override
-    public List<MultiblockShapeInfo> getMatchingShapes()
+    override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
-                .aisle("DED", "CCC", "CCC", "DDD")
-                .aisle("DDD", "CMC", "CMC", "DOD")
-                .aisle("ISJ", "CCC", "CCC", "KNL")
-                .where('S', GTLiteMetaTileEntities.VOLCANUS, EnumFacing.SOUTH)
-                .where('D', getCasingState())
-                .where('O', MetaTileEntities.MUFFLER_HATCH[1], EnumFacing.UP)
-                .where('N', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
-                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
-                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
-                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
-                .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[0], EnumFacing.SOUTH);
-        AtomicInteger count = new AtomicInteger();
+        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+            .aisle("DED", "CCC", "CCC", "DDD")
+            .aisle("DDD", "CMC", "CMC", "DOD")
+            .aisle("ISJ", "CCC", "CCC", "KNL")
+            .where('S', GTLiteMetaTileEntities.VOLCANUS, EnumFacing.SOUTH)
+            .where('D', casingState)
+            .where('O', MetaTileEntities.MUFFLER_HATCH[LV], EnumFacing.UP)
+            .where('N', { if (ConfigHolder.machines.enableMaintenance) MetaTileEntities.MAINTENANCE_HATCH else casingState }, EnumFacing.SOUTH)
+            .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[ULV], EnumFacing.NORTH)
+            .where('I', MetaTileEntities.ITEM_IMPORT_BUS[ULV], EnumFacing.SOUTH)
+            .where('J', MetaTileEntities.ITEM_EXPORT_BUS[ULV], EnumFacing.SOUTH)
+            .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[ULV], EnumFacing.SOUTH)
+            .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[ULV], EnumFacing.SOUTH)
+        val count = AtomicInteger()
         StreamEx.of(motorCasings)
-                .map(b -> {
-                    if (builder != null)
-                    {
-                        builder.where('M', b);
-                        builder.where('C', heatingCoils.get(count.get()));
-                        count.getAndIncrement();
-                    }
-                    return builder;
-                })
-                .nonNull()
-                .forEach(b -> shapeInfo.add(b.build()));
-        return shapeInfo;
+            .map { b ->
+                if (builder != null)
+                {
+                    builder.where('M', b)
+                    builder.where('C', heatingCoils[count.get()])
+                    count.getAndIncrement()
+                }
+                builder
+            }
+            .nonNull()
+            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+        return shapeInfo
     }
 
-    // =================================================================================================================
-    @Override
-    public void update()
+    override fun update()
     {
-        super.update();
-        if (this.getWorld().isRemote)
-        {
-            if (this.motorCasingTier == 0)
-                this.writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE, buf -> {});
-            if (this.coilTier == 0)
-                this.writeCustomData(GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE, buf -> {});
+        super.update()
+        if ((world as World).isRemote) {
+            if (motorCasingTier == 0)
+                writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
+            if (coilTier == 0)
+                writeCustomData(GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE) { _: PacketBuffer? -> }
         }
     }
 
-    @Override
-    public void receiveCustomData(int dataId, PacketBuffer buf)
+    override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
     {
-        super.receiveCustomData(dataId, buf);
+        super.receiveCustomData(dataId, buf)
         if (dataId == GTLiteDataCodes.INITIALIZE_TIERED_MACHINE)
-            this.writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE, b -> b.writeInt(this.motorCasingTier));
+            writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE) { b: PacketBuffer -> b.writeInt(motorCasingTier) }
         if (dataId == GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE)
-            this.writeCustomData(GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE, b -> b.writeInt(this.coilTier));
+            writeCustomData(GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE) { b: PacketBuffer -> b.writeInt(coilTier) }
         if (dataId == GTLiteDataCodes.UPDATE_TIERED_MACHINE)
-            this.motorCasingTier = buf.readInt();
+            motorCasingTier = buf.readInt()
         if (dataId == GTLiteDataCodes.UPDATE_SUB_TIERED_MACHINE)
-            this.coilTier = buf.readInt();
+            coilTier = buf.readInt()
     }
 
-    // =================================================================================================================
-    @Override
-    public void addInformation(ItemStack stack,
-                               @Nullable World world,
-                               @NotNull List<String> tooltip,
-                               boolean advanced)
+    override fun addInformation(stack: ItemStack,
+                                world: World?,
+                                tooltip: MutableList<String>,
+                                advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.1"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.2"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.3"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.4"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.5"));
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.6"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"));
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"));
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.5"))
+        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.6"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"))
     }
 
-    @Override
-    protected void addDisplayText(List<ITextComponent> textList)
+    override fun addDisplayText(textList: List<ITextComponent>)
     {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed())
-                .setWorkingStatus(
-                        this.recipeMapWorkable.isWorkingEnabled(),
-                        this.recipeMapWorkable.isActive())
-                .addEnergyUsageLine(this.energyContainer)
-                .addEnergyTierLine(GTUtility.getTierByVoltage(
-                        this.recipeMapWorkable.getMaxVoltage()))
-                .addCustom(tl -> {
-                    if (this.isStructureFormed())
+        MultiblockDisplayText.builder(textList, isStructureFormed)
+            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled,
+                recipeMapWorkable.isActive)
+            .addEnergyUsageLine(energyContainer)
+            .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+            .addCustom { tl ->
+                if (isStructureFormed)
+                {
+                    val temperatureInfo = stringWithColor(TextFormatting.RED,
+                        formatNumbers(temperature))
+                    tl.add(translationWithColor(TextFormatting.GRAY,
+                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+                    // TODO Impl of IProgressBarMultiblock to replaced it.
+                    if (getInputFluidInventory() != null)
                     {
-                        ITextComponent temperatureInfo = TextComponentUtil.stringWithColor(
-                                TextFormatting.RED,
-                                TextFormattingUtil.formatNumbers(this.temperature));
-                        tl.add(TextComponentUtil.translationWithColor(
-                                TextFormatting.GRAY,
-                                "gregtech.multiblock.blast_furnace.max_temperature",
-                                temperatureInfo));
-                        if (this.getInputFluidInventory() != null)
-                        {
-                            FluidStack pyrotheumStack = this.getInputFluidInventory()
-                                    .drain(GTLiteMaterials.BlazingPyrotheum.getFluid(Integer.MAX_VALUE), false);
-                            int pyrotheumAmount = pyrotheumStack == null ? 0 : pyrotheumStack.amount;
-                            ITextComponent amountInfo = TextComponentUtil.stringWithColor(
-                                    TextFormatting.GREEN,
-                                    TextFormattingUtil.formatNumbers(pyrotheumAmount) + " L");
-                            tl.add(TextComponentUtil.translationWithColor(
-                                    TextFormatting.GRAY,
-                                    "gtlitecore.machine.volcanus.pyrotheum_amount",
-                                    amountInfo)); // TODO Impl of IProgressBarMultiblock to replaced it.
-                        }
+                        val pyrotheumStack: FluidStack? = (getInputFluidInventory() as IFluidHandler)
+                            .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
+                        val pyrotheumAmount = pyrotheumStack?.amount ?: 0
+                        val amountInfo = stringWithColor(TextFormatting.GREEN,
+                            formatNumbers(pyrotheumAmount) + " L")
+                        tl.add(translationWithColor(TextFormatting.GRAY,
+                            "gtlitecore.machine.volcanus.pyrotheum_amount", amountInfo) as ITextComponent)
                     }
-                })
-                .addParallelsLine(this.recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine()
-                .addProgressLine(this.recipeMapWorkable.getProgressPercent());
+                }
+            }
+            .addParallelsLine(recipeMapWorkable.parallelLimit)
+            .addWorkingStatusLine()
+            .addProgressLine(recipeMapWorkable.progressPercent)
     }
 
-    @Override
-    protected void addWarningText(List<ITextComponent> textList)
+    override fun addWarningText(textList: List<ITextComponent>)
     {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed(), false)
-                .addCustom(tl -> {
-                    if (this.isStructureFormed())
+        MultiblockDisplayText.builder(textList, isStructureFormed, false)
+            .addCustom { tl ->
+                if (isStructureFormed)
+                {
+                    val pyrotheumStack: FluidStack? = (getInputFluidInventory() as IFluidHandler)
+                        .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
+                    if (pyrotheumStack == null || pyrotheumStack.amount == 0)
                     {
-                        FluidStack pyrotheumStack = this.getInputFluidInventory()
-                                .drain(GTLiteMaterials.BlazingPyrotheum.getFluid(Integer.MAX_VALUE), false);
-                        if (pyrotheumStack == null || pyrotheumStack.amount == 0)
-                        {
-                            ITextComponent warnInfo = TextComponentUtil.translationWithColor(
-                                    TextFormatting.YELLOW,
-                                    "gtlitecore.machine.volcanus.pyrotheum_warning");
-                            tl.add(warnInfo);
-                        }
+                        val warnInfo = translationWithColor(TextFormatting.YELLOW,
+                            "gtlitecore.machine.volcanus.pyrotheum_warning")
+                        tl.add(warnInfo as ITextComponent)
                     }
-                });
+                }
+            }
     }
 
-    @NotNull
-    @Override
-    public  List<ITextComponent> getDataInfo()
+    override fun getDataInfo(): List<ITextComponent>
     {
-        List<ITextComponent> textList = super.getDataInfo();
-        ITextComponent temperatureInfo = TextComponentUtil.translationWithColor(
-                TextFormatting.RED,
-                TextFormattingUtil.formatNumbers(this.temperature) + " K");
-        textList.add(TextComponentUtil.translationWithColor(
-                TextFormatting.GRAY,
-                "gregtech.multiblock.blast_furnace.max_temperature",
-                temperatureInfo));
-        return textList;
+        val textList = super.getDataInfo()
+        val temperatureInfo = translationWithColor(TextFormatting.RED,
+            formatNumbers(temperature) + " K")
+        textList.add(translationWithColor(TextFormatting.GRAY,
+            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+        return textList
     }
 
-    // =================================================================================================================
-    @Override
-    public boolean canBeDistinct()
-    {
-        return true;
-    }
+    override fun canBeDistinct() = true
 
-    @Override
-    public boolean hasMufflerMechanics()
-    {
-        return true;
-    }
+    override fun hasMufflerMechanics() = true
 
-    @Override
-    public SoundEvent getBreakdownSound()
-    {
-        return GTSoundEvents.BREAKDOWN_ELECTRICAL;
-    }
+    override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    @Override
-    public int getCurrentTemperature()
-    {
-        return this.temperature;
-    }
+    override fun getCurrentTemperature(): Int = temperature
 
-    @Override
-    public boolean checkRecipe(@NotNull Recipe recipe, boolean consumeIfSuccess)
-    {
-        return this.temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0);
-    }
+    override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
+        = temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0)!!
 
-    protected class VolcanusRecipeLogic extends HeatingCoilRecipeLogic
+    inner class VolcanusRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(metaTileEntity)
     {
 
-        private final MetaTileEntityVolcanus volcanus;
+        private val mte = metaTileEntity as MetaTileEntityVolcanus
 
-        public VolcanusRecipeLogic(RecipeMapMultiblockController tileEntity)
+        override fun updateRecipeProgress()
         {
-            super(tileEntity);
-            this.volcanus = (MetaTileEntityVolcanus) tileEntity;
-        }
-
-        @Override
-        protected void updateRecipeProgress()
-        {
-            if (this.canRecipeProgress && this.drawEnergy(this.recipeEUt, true))
+            if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                IMultipleTankHandler inputTank = volcanus.getInputFluidInventory();
-                FluidStack pyrotheumStack = GTLiteMaterials.BlazingPyrotheum.getFluid(2);
-                if (pyrotheumStack.isFluidStackIdentical(inputTank.drain(pyrotheumStack, false)))
+                val inputTank: IMultipleTankHandler = mte.getInputFluidInventory()
+                val pyrotheumStack: FluidStack = BlazingPyrotheum.getFluid(2)
+                if (pyrotheumStack.isFluidStackIdentical((inputTank as IFluidHandler)
+                        .drain(pyrotheumStack, false)))
                 {
-                    inputTank.drain(pyrotheumStack, true);
-                    if (++this.progressTime > this.maxProgressTime)
-                        this.completeRecipe();
+                    (inputTank as IFluidHandler).drain(pyrotheumStack, true)
+                    if (++this.progressTime > maxProgressTime)
+                        completeRecipe()
                 }
-                else
-                {
-                    return;
-                }
-                this.drawEnergy(this.recipeEUt, false);
+                else return
+                drawEnergy(recipeEUt, false)
             }
         }
 
-        @Override
-        protected double getOverclockingDurationFactor()
+        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+
+        override fun setMaxProgress(maxProgress: Int)
         {
-            return getMaxVoltage() >= GTValues.V[GTValues.UV] ? 0.25 : 0.5;
+            super.setMaxProgress(floor(maxProgress * 0.8.pow(motorCasingTier)).toInt())
         }
 
-        @Override
-        public void setMaxProgress(int maxProgress)
-        {
-            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.8, getMotorCasingTier()))));
-        }
-
-        @Override
-        public int getParallelLimit()
-        {
-            return 16 * getCoilTier();
-        }
+        override fun getParallelLimit() =  16 * coilTier
 
     }
 

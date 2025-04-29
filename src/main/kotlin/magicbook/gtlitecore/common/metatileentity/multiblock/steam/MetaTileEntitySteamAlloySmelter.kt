@@ -6,7 +6,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.ALLOY_SMELTER_RECIPES
 import gregtech.client.particle.VanillaParticleEffects
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -24,13 +24,22 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, RecipeMaps.ALLOY_SMELTER_RECIPES, CONVERSION_RATE)
+class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, ALLOY_SMELTER_RECIPES, CONVERSION_RATE)
 {
 
     init
     {
-        this.recipeMapWorkable = SteamMultiWorkable(this, CONVERSION_RATE)
-        this.recipeMapWorkable.parallelLimit = 8
+        recipeMapWorkable = SteamMultiWorkable(this, CONVERSION_RATE)
+        recipeMapWorkable.parallelLimit = 8
+    }
+
+    companion object
+    {
+        private val casingState
+            get() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID) else MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS)
+
+        private val fireboxCasingState
+            get() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.STEEL_FIREBOX) else MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.BRONZE_FIREBOX)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntitySteamAlloySmelter(metaTileEntityId)
@@ -40,16 +49,12 @@ class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : Reci
         .aisle("CCC", "F#F", "F#F", "CCC")
         .aisle("CSC", "FFF", "FFF", "CCC")
         .where('S', selfPredicate())
-        .where('C', states(getCasingState())
+        .where('C', states(casingState)
             .setMinGlobalLimited(9)
             .or(autoAbilities()))
-        .where('F', states(getFireboxCasingState()))
+        .where('F', states(fireboxCasingState))
         .where('#', air())
         .build()
-
-    private fun getCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STEEL_SOLID) else MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS)
-
-    private fun getFireboxCasingState() = if (ConfigHolder.machines.steelSteamMultiblocks) MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.STEEL_FIREBOX) else MetaBlocks.BOILER_FIREBOX_CASING.getState(BlockFireboxCasing.FireboxCasingType.BRONZE_FIREBOX)
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS

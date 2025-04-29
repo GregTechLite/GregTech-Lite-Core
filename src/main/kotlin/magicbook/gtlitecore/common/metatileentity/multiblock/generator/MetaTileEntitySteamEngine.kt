@@ -1,13 +1,14 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.generator
 
-import gregtech.api.GTValues
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.V
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.STEAM_TURBINE_FUELS
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockTurbineCasing
@@ -23,12 +24,20 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-
 @Suppress("MISSING_DEPENDENCY_CLASS")
-class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultiblockController(metaTileEntityId, RecipeMaps.STEAM_TURBINE_FUELS, GTValues.MV)
+class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultiblockController(metaTileEntityId, STEAM_TURBINE_FUELS, MV)
 {
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntitySteamEngine(metaTileEntityId)
+    companion object
+    {
+        private val casingState
+            get() = GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.BRASS)
+
+        private val gearboxCasingState
+            get() = MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.BRONZE_GEARBOX)
+    }
+
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntitySteamEngine(metaTileEntityId)
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle(" CC", "CEC", " CC")
@@ -36,18 +45,14 @@ class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultib
         .aisle(" CC", "CGC", " CC")
         .aisle(" CC", " SC", " CC")
         .where('S', selfPredicate())
-        .where('C', states(getCasingState())
+        .where('C', states(casingState)
             .setMinGlobalLimited(18)
             .or(autoAbilities(false, true, true, true, true, true, false)))
-        .where('G', states(getGearboxCasingState()))
-        .where('E', energyOutputPredicate(GTValues.MV))
+        .where('G', states(gearboxCasingState))
+        .where('E', energyOutputPredicate(MV))
         .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
         .where(' ', any())
         .build()
-
-    private fun getCasingState() = GTLiteMetaBlocks.METAL_CASING_02.getState(BlockMetalCasing02.MetalCasingType.BRASS)
-
-    private fun getGearboxCasingState() = MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.BRONZE_GEARBOX)
 
     override fun addInformation(stack: ItemStack?,
                                 player: World?,
@@ -55,7 +60,7 @@ class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultib
                                 advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.tooltip.maximum_energy_output", GTValues.V[GTValues.MV]))
+        tooltip.add(I18n.format("gtlitecore.tooltip.maximum_energy_output", V[MV]))
     }
 
     @SideOnly(Side.CLIENT)
