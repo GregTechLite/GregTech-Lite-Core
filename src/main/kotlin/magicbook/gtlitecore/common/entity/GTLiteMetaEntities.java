@@ -5,6 +5,7 @@ import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.common.entity.explosive.EntityLeptonicCharge;
 import magicbook.gtlitecore.common.entity.explosive.EntityNaquadriaCharge;
+import magicbook.gtlitecore.common.entity.explosive.EntityQuantumChromodynamicCharge;
 import magicbook.gtlitecore.common.entity.explosive.EntityTaraniumCharge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -28,6 +29,10 @@ public class GTLiteMetaEntities
                 EntityLeptonicCharge.class, "LeptonicCharge", 3,
                 GTLiteAPI.instance, 64, 3, true);
 
+        EntityRegistry.registerModEntity(GTLiteUtility.gtliteId("quantum_chromodynamic_charge"),
+                EntityQuantumChromodynamicCharge.class, "QuantumChromodynamicCharge", 4,
+                GTLiteAPI.instance, 64, 3, true);
+
     }
 
     @SideOnly(Side.CLIENT)
@@ -40,6 +45,9 @@ public class GTLiteMetaEntities
                 GTExplosiveRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(EntityLeptonicCharge.class,
+                GTExplosiveRenderer::new);
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityQuantumChromodynamicCharge.class,
                 GTExplosiveRenderer::new);
     }
 
