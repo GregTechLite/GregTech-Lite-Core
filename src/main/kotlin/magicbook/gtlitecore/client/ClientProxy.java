@@ -5,6 +5,7 @@ import magicbook.gtlitecore.client.shader.CosmicShaderHelper;
 import magicbook.gtlitecore.client.shader.ShaderUtils;
 import magicbook.gtlitecore.common.CommonProxy;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.entity.GTLiteMetaEntities;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -24,6 +25,7 @@ public class ClientProxy extends CommonProxy
         GTLiteTextures.preInit();
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper.class);
         ShaderUtils.initShaders();
+        GTLiteMetaEntities.initRenderers();
     }
 
     @SubscribeEvent

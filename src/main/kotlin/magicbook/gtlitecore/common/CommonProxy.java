@@ -129,6 +129,11 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02);
         registry.register(GTLiteMetaBlocks.TRANSPARENT_CASING_01);
         registry.register(GTLiteMetaBlocks.TRANSPARENT_CASING_02);
+
+        registry.register(GTLiteMetaBlocks.NAQUADRIA_CHARGE);
+        registry.register(GTLiteMetaBlocks.TARANIUM_CHARGE);
+        registry.register(GTLiteMetaBlocks.LEPTONIC_CHARGE);
+        registry.register(GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
     }
 
     @SubscribeEvent
@@ -224,6 +229,11 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.TARANIUM_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.LEPTONIC_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

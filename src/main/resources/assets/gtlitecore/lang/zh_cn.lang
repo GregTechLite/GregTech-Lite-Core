@@ -506,6 +506,22 @@ tile.glass_casing_02.neutronium_borosilicate.name=中子强化硼硅酸盐玻璃
 tile.glass_casing_02.cosmic_neutronium_borosilicate.name=宇宙中子强化硼硅酸盐玻璃
 tile.glass_casing_02.infinity_borosilicate.name=无尽强化硼硅酸盐玻璃
 
+tile.naquadria_charge.name=超能硅岩爆弹
+tile.naquadria_charge.tooltip.1=以高能爆炸物诱导超能硅岩释放巨量的能量。
+tile.naquadria_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+
+tile.taranium_charge.name=塔兰金属爆弹
+tile.taranium_charge.tooltip.1=驱役已知宇宙中能量密度最高的物质塔兰金属产生爆炸。
+tile.taranium_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+
+tile.leptonic_charge.name=轻子爆弹
+tile.leptonic_charge.tooltip.1=在微观层面上彻底撕裂强相互作用以带来实质性的毁灭。
+tile.leptonic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+
+tile.quantum_chromodynamic_charge.name=量子色动力学爆弹
+tile.quantum_chromodynamic_charge.tooltip.1=将夸克禁闭爆破以破坏原子核的基本结构来彻底抹杀物质。
+tile.quantum_chromodynamic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+
 # Items
 metaitem.shape.mold.rod.name=模具（杆）
 metaitem.shape.mold.rod.tooltip=用来制作杆的模具

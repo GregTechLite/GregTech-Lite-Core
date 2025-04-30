@@ -50,6 +50,10 @@ import magicbook.gtlitecore.common.block.blocks.GTLiteWoodFenceGateVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodFenceVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodSlabVariantBlock
 import magicbook.gtlitecore.common.block.blocks.GTLiteWoodStairVariantBlock
+import magicbook.gtlitecore.common.block.blocks.explosive.BlockLeptonicCharge
+import magicbook.gtlitecore.common.block.blocks.explosive.BlockNaquadriaCharge
+import magicbook.gtlitecore.common.block.blocks.explosive.BlockQuantumChromodynamicCharge
+import magicbook.gtlitecore.common.block.blocks.explosive.BlockTaraniumCharge
 import magicbook.gtlitecore.common.worldgen.crops.WorldGenCrops
 import magicbook.gtlitecore.common.worldgen.trees.AbstractTree
 import magicbook.gtlitecore.common.worldgen.trees.WorldGenTrees
@@ -171,6 +175,11 @@ class GTLiteMetaBlocks
         lateinit var NUCLEAR_REACTOR_CORE_02: BlockNuclearReactorCore02
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
+
+        lateinit var NAQUADRIA_CHARGE: BlockNaquadriaCharge
+        lateinit var TARANIUM_CHARGE: BlockTaraniumCharge
+        lateinit var LEPTONIC_CHARGE: BlockLeptonicCharge
+        lateinit var QUANTUM_CHROMODYNAMIC_CHARGE: BlockQuantumChromodynamicCharge
 
         @JvmStatic
         fun init()
@@ -456,6 +465,26 @@ class GTLiteMetaBlocks
             (TRANSPARENT_CASING_02 as? Block)?.setRegistryName("glass_casing_02")
             (TRANSPARENT_CASING_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            NAQUADRIA_CHARGE = BlockNaquadriaCharge()
+            (NAQUADRIA_CHARGE as? Block)?.setTranslationKey("naquadria_charge")
+            (NAQUADRIA_CHARGE as? Block)?.setRegistryName("naquadria_charge")
+            (NAQUADRIA_CHARGE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            TARANIUM_CHARGE = BlockTaraniumCharge()
+            (TARANIUM_CHARGE as? Block)?.setTranslationKey("taranium_charge")
+            (TARANIUM_CHARGE as? Block)?.setRegistryName("taranium_charge")
+            (TARANIUM_CHARGE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            LEPTONIC_CHARGE = BlockLeptonicCharge()
+            (LEPTONIC_CHARGE as? Block)?.setTranslationKey("leptonic_charge")
+            (LEPTONIC_CHARGE as? Block)?.setRegistryName("leptonic_charge")
+            (LEPTONIC_CHARGE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            QUANTUM_CHROMODYNAMIC_CHARGE = BlockQuantumChromodynamicCharge()
+            (QUANTUM_CHROMODYNAMIC_CHARGE as? Block)?.setTranslationKey("quantum_chromodynamic_charge")
+            (QUANTUM_CHROMODYNAMIC_CHARGE as? Block)?.setRegistryName("quantum_chromodynamic_charge")
+            (QUANTUM_CHROMODYNAMIC_CHARGE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             // Initialized Blocks.FIRE#setFireInfo().
             setFireInfos()
         }
@@ -578,6 +607,11 @@ class GTLiteMetaBlocks
             registerItemModel(COMPONENT_ASSEMBLY_CASING)
             registerItemModel(TRANSPARENT_CASING_01)
             registerItemModel(TRANSPARENT_CASING_02)
+
+            registerItemModel(NAQUADRIA_CHARGE)
+            registerItemModel(TARANIUM_CHARGE)
+            registerItemModel(LEPTONIC_CHARGE)
+            registerItemModel(QUANTUM_CHROMODYNAMIC_CHARGE)
 
             ACTIVE_UNIQUE_CASING_01.onModelRegister()
             FUSION_CASING_01.onModelRegister()
