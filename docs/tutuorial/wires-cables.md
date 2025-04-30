@@ -47,4 +47,5 @@
 | Metastable Oganesson*                      | 8,388,608 (UEV)  | 18                    | 9                  | 18                |
 | Cosmic Neutronium*                         | 8,388,608 (UEV)  | 24                    | 4                  | 8                 |
 | Infinity*                                  | 8,388,608 (UEV)  | 36                    | 2                  | 4                 |
+| Metastable Hassium*                        | 8,388,608 (UEV)  | 28                    | 5                  | 10                |
 | Halkonite Steel*                           | 33,554,432 (UIV) | 48                    | 64                 | 128               |

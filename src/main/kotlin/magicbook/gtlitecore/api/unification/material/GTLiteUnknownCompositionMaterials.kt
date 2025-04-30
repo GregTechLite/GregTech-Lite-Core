@@ -38,20 +38,24 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedMed
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedMediumTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimerizedCarbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedBedrockSootSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Gluons
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapeJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenhouseGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HadronicResonantGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyNaquadahFuel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
@@ -60,6 +64,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnric
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightNaquadahFuel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityEnrichedNaquadahEmulsion
@@ -72,11 +77,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumNaqu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylamineMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RainbowSap
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthChloridesSolution
@@ -88,6 +95,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RichNitrog
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubyJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaWater
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodioIndene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SteamCrackedSodioIndene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UltralightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UnprocessedNdYAGSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vinegar
@@ -621,8 +631,31 @@ class GTLiteUnknownCompositionMaterials
                 .build()
                 .setFormula("Nd:YAG?", false)
 
-            // 12175-12999 for misc materials.
+            // 12175 Mutated Living Solder
+            MutatedLivingSolder = Material.Builder(12175, gtliteId("mutated_living_solder"))
+                .liquid(FluidBuilder()
+                    .temperature(10525))
+                .color(0x936D9B).iconSet(DULL)
+                .build()
+
+            // 12176 Sodio-Indene
+            SodioIndene = Material.Builder(12176, gtliteId("sodio_indene"))
+                .liquid()
+                .color(0x1D1C24)
+                .build()
+
+            // 12177 Steam-cracked Sodio-Indene
+            SteamCrackedSodioIndene = Material.Builder(12177, gtliteId("steam_cracked_sodio_indene"))
+                .liquid(FluidBuilder().temperature(1105))
+                .color(0x1C1A29)
+                .build()
+
+            // 12178-12999 for misc materials.
             // ...
+
+            // Materials for particles and QCD contents reference this:
+            // Helmut Satz, The Thermodynamics of Quarks and Gluons
+            // https://link.springer.com/chapter/10.1007/978-3-642-02286-9_1
 
             // 13001 Neutron-Proton Fermi Superfluid
             NeutronProtonFermiSuperfluid = Material.Builder(13001, gtliteId("neutron_proton_fermi_superfluid"))
@@ -638,6 +671,63 @@ class GTLiteUnknownCompositionMaterials
                     .temperature(48_000_000)
                     .customStill())
                 .build()
+
+            // 13003 Quark-Gluon Plasma
+            QuarkGluonPlasma = Material.Builder(13003, gtliteId("quark_gluon_plasma"))
+                .plasma(FluidBuilder()
+                    .translation("gregtech.fluid.generic")
+                    .temperature(1_500_000_000) // In reality world, Q-G plasma has 15000000000~20000000000 MeV by theory, so we transform it as K.
+                    .customStill())
+                .build()
+
+            // 13004 Heavy Quarks
+            HeavyQuarks = Material.Builder(13004, gtliteId("heavy_quarks"))
+                .liquid(FluidBuilder()
+                    .temperature(1_800_000_000)
+                    .customStill())
+                .build()
+
+            // 13005 Light Quarks
+            LightQuarks = Material.Builder(13005, gtliteId("light_quarks"))
+                .liquid(FluidBuilder()
+                    .temperature(900_000_000)
+                    .customStill())
+                .build()
+
+            // 13006 Gluons
+            Gluons = Material.Builder(13006, gtliteId("gluons"))
+                .gas(FluidBuilder()
+                    .temperature(2_000_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13007 Hadronic Resonant Gas
+            HadronicResonantGas = Material.Builder(13007, gtliteId("hadronic_resonant_gas"))
+                .gas(FluidBuilder()
+                    .temperature(1_500_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13008 Stable Baryonic Matter
+            StableBaryonicMatter = Material.Builder(13008, gtliteId("stable_baryonic_matter"))
+                .plasma(FluidBuilder()
+                    .temperature(1_200_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // ...
+
+            // 13050 Dimensionally Shifted Superfluid
+            DimensionallyShiftedSuperfluid = Material.Builder(13050, gtliteId("dimensionally_shifted_superfluid"))
+                .plasma(FluidBuilder()
+                    .temperature(2_000_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
         }
 
     }

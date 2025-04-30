@@ -167,13 +167,14 @@ class GTLiteElementMaterials
                 .plasma()
                 .color(0x2D3A9D).iconSet(BRIGHT)
                 .element(Hs)
-                .flags(STD_METAL, GENERATE_DOUBLE_PLATE)
+                .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .blast { b -> b
                     .temp(12000, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 4 * MINUTE + 30 * SECOND)
                     .vacuumStats(VA[UV], 1 * MINUTE)
                 }
                 .itemPipeProperties(256, 128F)
+                .cableProperties(V[UEV], 28, 5)
                 .build()
 
             // 7 Cosmic Neutronium

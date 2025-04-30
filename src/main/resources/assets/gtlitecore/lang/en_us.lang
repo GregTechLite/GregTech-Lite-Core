@@ -2442,7 +2442,7 @@ gtlitecore.material.potassium_fluoride=Potassium Fluoride
 gtlitecore.material.lithium_sodium_potassium_fluorides=Fluorine Lithium Sodium Potassium Alloy (Reactor Moderator)
 gtlitecore.material.beryllium_difluoride=Beryllium Difluoride
 gtlitecore.material.lithium_beryllium_fluorides=Fluorine Lithium Beryllium Alloy (Reactor Moderator)
-gtlitecore.material.flerovium_ytterbium_plasma=Flerovium-Ytterbium
+gtlitecore.material.flerovium_ytterbium_plasma=Flerovium-Ytterbium Plasma
 gtlitecore.material.rubidium_titanate=Rubidium Titanate
 gtlitecore.material.sodium_titanate=Sodium Titanate
 gtlitecore.material.rubidium_chloride=Rubidium Chloride
@@ -2504,6 +2504,9 @@ gtlitecore.material.uranyl_nitrate=Uranyl Nitrate
 gtlitecore.material.barium_oxide=Barium Oxide
 gtlitecore.material.woods_glass=Woods Glass
 item.gtlitecore.material.woods_glass.ingot=Woods Glass Bar
+gtlitecore.material.potassium_tertbutoxide=Potassium Tertbutoxide
+gtlitecore.material.caesium_hydroxide=Caesium Hydroxide
+gtlitecore.material.caesium_carbonate=Caesium Carbonate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2691,6 +2694,21 @@ gtlitecore.material.tributylamine=Tributylamine
 gtlitecore.material.dichloromethane=Dichloromethane
 gtlitecore.material.diethyl_ether=Diethyl Ether
 gtlitecore.material.aminooxyacetic_acid=2-Aminooxyacetic Acid
+gtlitecore.material.benzyl_bromide=Benzyl Bromide
+gtlitecore.material.benzyltrimethylammonium_bromide=Benzyltrimethylammonium Bromide (BTAB)
+gtlitecore.material.chlorobutane=2-Chlorobutane
+gtlitecore.material.tertbutyl_alcohol=Tertbutyl Alcohol
+gtlitecore.material.indene=Indene
+gtlitecore.material.indanone=Indanone
+gtlitecore.material.truxene=Truxene
+gtlitecore.material.bromomethane=Bromomethane
+gtlitecore.material.bromo_bromomethyl_naphthalene=1-Bromo-2-(Bromomethyl) Naphthalene
+gtlitecore.material.bromobutane=1-Bromobutane
+gtlitecore.material.butyllithium=Butyllithium
+gtlitecore.material.acetyl_chloride=Acetyl Chloride
+gtlitecore.material.dimethylacetamide=Dimethylacetamide (DMA)
+gtlitecore.material.geodesic_polyarene=Geodesic Polyarene
+gtlitecore.material.fullerene=Fullerene
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -2775,9 +2793,20 @@ gtlitecore.material.energetic_naquadria=Energetic Naquadria
 gtlitecore.material.quasi_fissioning_plasma=Quasi-fissioning
 gtlitecore.material.oganesson_breeding_base=Oganesson Breeding Base
 gtlitecore.material.unprocessed_nd_yag_solution=Unprocessed Nd:YAG Solution
+gtlitecore.material.mutated_living_solder=Mutated Living Solder
+gtlitecore.material.sodio_indene=Sodio-Indene Mixture
+gtlitecore.material.steam_cracked_sodio_indene=Steam-Cracked Sodio-Indene Mixture
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
+gtlitecore.material.quark_gluon_plasma=Quark-Gluon Plasma
+gtlitecore.material.heavy_quarks=Heavy Quarks
+gtlitecore.material.light_quarks=Light Quarks
+gtlitecore.material.gluons=Gluons
+gtlitecore.material.hadronic_resonant_gas=Hadronic Resonant Gas
+gtlitecore.material.stable_baryonic_matter=Stable Baryonic Matter
+
+gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 
 # Material Overriden
 item.gregtech.material.graphite.fuelRodSingle=Graphite Moderate Rod

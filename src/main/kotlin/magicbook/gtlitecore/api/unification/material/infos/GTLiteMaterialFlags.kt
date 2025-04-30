@@ -143,6 +143,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 
 class GTLiteMaterialFlags
 {
@@ -236,6 +237,7 @@ class GTLiteMaterialFlags
             Neutronium.addFlags(GENERATE_FOIL)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
             Nichrome.addFlags(GENERATE_FOIL)
+            MetastableFlerovium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -414,6 +416,7 @@ class GTLiteMaterialFlags
             Seaborgium.addFlags(GENERATE_ROD)
             Dubnium.addFlags(GENERATE_ROD)
             Inconel718.addFlags(GENERATE_ROD)
+            Bohrium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -424,6 +427,7 @@ class GTLiteMaterialFlags
             NeodymiumMagnetic.addFlags(GENERATE_LONG_ROD)
             Seaborgium.addFlags(GENERATE_LONG_ROD)
             Dubnium.addFlags(GENERATE_LONG_ROD)
+            Bohrium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)

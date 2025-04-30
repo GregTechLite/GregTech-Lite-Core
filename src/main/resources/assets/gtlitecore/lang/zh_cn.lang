@@ -2447,7 +2447,7 @@ gtlitecore.material.potassium_fluoride=氟化钾
 gtlitecore.material.lithium_sodium_potassium_fluorides=氟锂钠钾合金（反应堆慢化剂）
 gtlitecore.material.beryllium_difluoride=二氟化铍
 gtlitecore.material.lithium_beryllium_fluorides=氟锂铍合金（反应堆慢化剂）
-gtlitecore.material.flerovium_ytterbium_plasma=钅夫-镱
+gtlitecore.material.flerovium_ytterbium_plasma=钅夫-镱等离子体
 gtlitecore.material.rubidium_titanate=钛酸铷
 gtlitecore.material.sodium_titanate=钛酸钠
 gtlitecore.material.rubidium_chloride=氯化铷
@@ -2509,6 +2509,9 @@ gtlitecore.material.uranyl_nitrate=无水硝酸铀酰
 gtlitecore.material.barium_oxide=氧化钡
 gtlitecore.material.woods_glass=伍兹玻璃
 item.gtlitecore.material.woods_glass.ingot=伍兹玻璃条
+gtlitecore.material.potassium_tertbutoxide=叔丁醇钾
+gtlitecore.material.caesium_hydroxide=氢氧化铯
+gtlitecore.material.caesium_carbonate=碳酸铯
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2695,6 +2698,21 @@ gtlitecore.material.tributylamine=三丁胺
 gtlitecore.material.dichloromethane=二氯甲烷
 gtlitecore.material.diethyl_ether=乙醚
 gtlitecore.material.aminooxyacetic_acid=2-氨基氧乙酸
+gtlitecore.material.benzyl_bromide=苄基溴
+gtlitecore.material.benzyltrimethylammonium_bromide=苄基三甲基溴化铵（BTAB）
+gtlitecore.material.chlorobutane=2-氯丁烷
+gtlitecore.material.tertbutyl_alcohol=叔丁醇
+gtlitecore.material.indene=茚
+gtlitecore.material.indanone=茚酮
+gtlitecore.material.truxene=三聚茚
+gtlitecore.material.bromomethane=溴甲烷
+gtlitecore.material.bromo_bromomethyl_naphthalene=1-溴-2-(溴甲基)萘
+gtlitecore.material.bromobutane=1-溴丁烷
+gtlitecore.material.butyllithium=正丁基锂
+gtlitecore.material.acetyl_chloride=乙酰氯
+gtlitecore.material.dimethylacetamide=二甲基乙酰胺（DMA）
+gtlitecore.material.geodesic_polyarene=拱形芳烃聚合物
+gtlitecore.material.fullerene=富勒烯
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -2779,9 +2797,20 @@ gtlitecore.material.energetic_naquadria=充能超能硅岩
 gtlitecore.material.quasi_fissioning_plasma=拟裂变
 gtlitecore.material.oganesson_breeding_base=鿫增殖基
 gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴石溶液
+gtlitecore.material.mutated_living_solder=突变活性焊料
+gtlitecore.material.sodio_indene=钠茚混合物
+gtlitecore.material.steam_cracked_sodio_indene=蒸汽裂化的钠茚混合物
 
 gtlitecore.material.neutron_proton_fermi_superfluid=中子-质子费米超流体
 gtlitecore.material.heavy_lepton_mixture=重轻子混合物
+gtlitecore.material.quark_gluon_plasma=夸克-胶子等离子体
+gtlitecore.material.heavy_quarks=重夸克
+gtlitecore.material.light_quarks=轻夸克
+gtlitecore.material.gluons=胶子
+gtlitecore.material.hadronic_resonant_gas=强子共振气体
+gtlitecore.material.stable_baryonic_matter=稳定重子物质
+
+gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 
 # Material Overriden
 item.gregtech.material.graphite.fuelRodSingle=石墨慢化棒

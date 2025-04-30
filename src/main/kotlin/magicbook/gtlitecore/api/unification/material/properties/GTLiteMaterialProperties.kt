@@ -22,6 +22,7 @@ import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Biotite
+import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
@@ -186,10 +187,11 @@ class GTLiteMaterialProperties
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
-                Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium, Lawrencium)
+                Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
+                Lawrencium, Ytterbium)
                 .forEach { addLiquid(it) }
 
-            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon)
+            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)
                 .forEach { addPlasma(it) }
 
             sequenceOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium)

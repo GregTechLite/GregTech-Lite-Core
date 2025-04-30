@@ -20,15 +20,6 @@ class CosmicNeutroniumChain
 
         fun init()
         {
-            // Neutron-Proton Fermi Superfluid
-            COSMIC_RAY_DETECTING_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .fluidOutputs(NeutronProtonFermiSuperfluid.getFluid(10))
-                .EUt(VA[UHV].toLong())
-                .duration(10 * TICK)
-                .minHeight(100)
-                .buildAndRegister()
-
             // Cosmic Neutronium
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(NeutronProtonFermiSuperfluid.getFluid(1000))

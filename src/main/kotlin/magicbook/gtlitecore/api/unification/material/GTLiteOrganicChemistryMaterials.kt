@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.Butene
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Dimethylhydrazine
@@ -16,10 +17,12 @@ import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Iodine
+import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
@@ -31,6 +34,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
+import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
@@ -38,19 +42,27 @@ import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AceticAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcetoneCyanohydrin
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcetylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminophenol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCyanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzylBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzyltrimethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BiphenylTetracarboxylicAcidDianhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bistrichloromethylbenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Borazine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BromoBromomethylNaphthalene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromobutane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromomethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanediol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butyllithium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DenseHydrazineRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diacetyl
@@ -65,6 +77,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylEth
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylhexylPhosphoricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Difluorobenzophenone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylTerephthalate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylacetamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrodipropanyloxybenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Durene
@@ -85,15 +98,20 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorobenz
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Formaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FormicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GammaButyrolactone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GeodesicPolyarene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardReagent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexafluoropropylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydrazine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenCyanide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroquinone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroxyquinoline
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indanone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Isochloropropane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
@@ -139,6 +157,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAc
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Terephthalaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerephthalicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerephthaloylChloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylAlcohol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumChloride
@@ -153,6 +172,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trichloroe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylaluminium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylgallium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Truxene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 
@@ -1097,6 +1117,133 @@ class GTLiteOrganicChemistryMaterials
                 .color(0xECFF1E)
                 .components(Carbon, 2, Hydrogen, 5, Nitrogen, 1, Oxygen, 3)
                 .build()
+
+            // 8118 BenzylBromide
+            BenzylBromide = Material.Builder(8118, gtliteId("benzyl_bromide"))
+                .gas()
+                .color(0xCF9D8C)
+                .components(Carbon, 7, Hydrogen, 7, Bromine, 1)
+                .build()
+                .setFormula("C6H5CH2Br", true)
+
+            // 8119 Benzyltrimethylammonium Bromide
+            BenzyltrimethylammoniumBromide = Material.Builder(8119, gtliteId("benzyltrimethylammonium_bromide"))
+                .dust()
+                .colorAverage().iconSet(SHINY)
+                .components(BenzylBromide, 1, Trimethylamine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C6H5CH2N(CH3)3Br", true)
+
+            // 8120 2-Chlorobutane
+            Chlorobutane = Material.Builder(8120, gtliteId("chlorobutane"))
+                .liquid()
+                .color(0xE6772D)
+                .components(Carbon, 4, Hydrogen, 9, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8121 Tertbutyl Alcohol
+            TertbutylAlcohol = Material.Builder(8121, gtliteId("tertbutyl_alcohol"))
+                .liquid()
+                .color(0xBC8F44)
+                .components(Carbon, 4, Hydrogen, 10, Oxygen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8122 Indene
+            Indene = Material.Builder(8122, gtliteId("indene"))
+                .liquid()
+                .color(0x171429)
+                .components(Carbon, 9, Hydrogen, 8)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C6H4C3H4", true)
+
+            // 8123 Indanone
+            Indanone = Material.Builder(8123, gtliteId("indanone"))
+                .dust()
+                .color(0x2E1616).iconSet(SHINY)
+                .components(Carbon, 9, Hydrogen, 8, Oxygen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C6H4C3H4O", true)
+
+            // 8124 Truxene
+            Truxene = Material.Builder(8124, gtliteId("truxene"))
+                .liquid()
+                .color(0x1A3336)
+                .components(Carbon, 27, Hydrogen, 18)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8125 Bromomethane
+            Bromomethane = Material.Builder(8125, gtliteId("bromomethane"))
+                .gas()
+                .color(0xC82C31)
+                .components(Carbon, 1, Hydrogen, 3, Bromine, 1)
+                .build()
+
+            // 8126 1-Bromo-2-(Bromomethyl) Naphthalene
+            BromoBromomethylNaphthalene = Material.Builder(8126, gtliteId("bromo_bromomethyl_naphthalene"))
+                .liquid()
+                .color(0x52122E)
+                .components(Carbon, 11, Hydrogen, 8, Bromine, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8127 1-Bromobutane
+            Bromobutane = Material.Builder(8127, gtliteId("bromobutane"))
+                .gas()
+                .color(0xE6E8A2)
+                .components(Butene, 1, HydrobromicAcid, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C4H9Br", true)
+
+            // 8128 Butyllithium
+            Butyllithium = Material.Builder(8128, gtliteId("butyllithium"))
+                .liquid()
+                .color(0xE683B6B)
+                .components(Butene, 1, Hydrogen, 1, Lithium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C4H9Li", true)
+
+            // 8129 Acetyl Chloride
+            AcetylChloride = Material.Builder(8129, gtliteId("acetyl_chloride"))
+                .liquid()
+                .color(0xC3C3C3)
+                .components(Carbon, 2, Hydrogen, 3, Oxygen, 1, Chlorine, 1)
+                .build()
+                .setFormula("CH3COCl", true)
+
+            // 8130 Dimethylacetamide
+            Dimethylacetamide = Material.Builder(8130, gtliteId("dimethylacetamide"))
+                .liquid()
+                .color(0x18AEA5)
+                .components(Carbon, 4, Hydrogen, 9, Nitrogen, 1, Oxygen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH3)2NC(O)CH3", true)
+
+            // 8131 GeodesicPolyarene
+            GeodesicPolyarene = Material.Builder(8131, gtliteId("geodesic_polyarene"))
+                .dust()
+                .color(0x9E81A8).iconSet(METALLIC)
+                .components(Carbon, 60, Hydrogen, 30)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8132 Fullerene
+            Fullerene = Material.Builder(8132, gtliteId("fullerene"))
+                .polymer()
+                .liquid()
+                .color(0x72556A).iconSet(BRIGHT)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .components(Carbon, 60)
+                .build()
+
         }
 
     }

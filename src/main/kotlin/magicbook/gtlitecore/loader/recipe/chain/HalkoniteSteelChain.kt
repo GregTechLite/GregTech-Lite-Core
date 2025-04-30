@@ -52,14 +52,6 @@ class HalkoniteSteelChain
         // - 1M <-> 8 sec <-> 144L Molten Liquid.
         fun init()
         {
-            // Heavy Lepton Mixture
-            COSMIC_RAY_DETECTING_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .fluidOutputs(HeavyLeptonMixture.getFluid(10))
-                .EUt(VA[UHV].toLong())
-                .duration(10 * TICK)
-                .minHeight(120)
-                .buildAndRegister()
 
             // Bedrockium Ingot -> Halkonite Steel Ingot
             FORGE_HAMMER_RECIPES.recipeBuilder()

@@ -209,7 +209,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bytownite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHexachlorotinate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumHydroxide
@@ -330,6 +332,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumH
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumManganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumPermanganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumSulfate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTertbutoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
@@ -1972,7 +1975,9 @@ class GTLiteFirstDegreeMaterials
 
             // 2185 Flerovium-Ytterbium Plasma
             FleroviumYtterbiumPlasma = Material.Builder(2185, gtliteId("flerovium_ytterbium_plasma"))
-                .plasma()
+                .plasma(FluidBuilder()
+                    .temperature(10550)
+                    .translation("gregtech.fluid.generic"))
                 .colorAverage()
                 .components(MetastableFlerovium, 1, Ytterbium, 1)
                 .flags(DISABLE_DECOMPOSITION)
@@ -2510,6 +2515,28 @@ class GTLiteFirstDegreeMaterials
                     b.temp(1163, BlastProperty.GasTier.MID)
                         .blastStats(VA[IV])
                 }
+                .build()
+
+            // 2246 Potassium Tertbutoxide
+            PotassiumTertbutoxide = Material.Builder(2246, gtliteId("potassium_tertbutoxide"))
+                .dust()
+                .color(0xFB7366).iconSet(DULL)
+                .components(Carbon, 4, Hydrogen, 9, Oxygen, 1, Potassium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2247 Caesium Hydroxide
+            CaesiumHydroxide = Material.Builder(2247, gtliteId("caesium_hydroxide"))
+                .dust()
+                .color(0xAF6341).iconSet(METALLIC)
+                .components(Caesium, 1, Oxygen, 1, Hydrogen, 1)
+                .build()
+
+            // 2248 Caesium Carbonate
+            CaesiumCarbonate = Material.Builder(2248, gtliteId("caesium_carbonate"))
+                .dust()
+                .color(0x62D4F3).iconSet(SHINY)
+                .components(Caesium, 2, Carbon, 1, Oxygen, 3)
                 .build()
 
         }

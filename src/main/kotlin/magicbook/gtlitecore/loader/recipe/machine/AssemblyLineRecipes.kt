@@ -20,6 +20,7 @@ import gregtech.api.recipes.builders.ResearchRecipeBuilder
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Dubnium
@@ -83,6 +84,7 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
@@ -100,16 +102,19 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.EMITTER_UEV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
@@ -124,6 +129,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
+import gregtech.common.items.MetaItems.SENSOR_UEV
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
@@ -140,11 +146,18 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
@@ -321,28 +334,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(stickLong, ChromiumGermaniumTellurideMagnetic)
-            //     .input(stickLong, CosmicNeutronium, 4)
-            //     .input(ring, CosmicNeutronium, 8)
-            //     .input(round, CosmicNeutronium, 16)
-            //     .input(wireFine, QuantumAlloy, 64)
-            //     .input(wireFine, QuantumAlloy, 64)
-            //     .input(wireFine, QuantumAlloy, 64)
-            //     .input(cableGtSingle, Seaborgium, 2)
-            //     .fluidInputs(MutatedLivingSolder.gteFluid(L * 16))
-            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
-            //     .fluidInputs(MetastableOganesson.getFluid(L * 4))
-            //     .fluidInputs(Fullerene.getFluid(L))
-            //     .output(ELECTRIC_MOTOR_UEV)
-            //     .EUt(1_800_000) // UHV
-            //     .duration(40 * SECOND)
-            //     .stationResearch { r ->
-            //         r.researchStack(ELECTRIC_MOTOR_UHV)
-            //             .EUt(VA[UHV].toLong())
-            //             .CWUt(32)
-            //     }
-            //     .buildAndRegister()
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, ChromiumGermaniumTellurideMagnetic)
+                .input(stickLong, CosmicNeutronium, 4)
+                .input(ring, CosmicNeutronium, 8)
+                .input(round, CosmicNeutronium, 16)
+                .input(wireFine, MetastableHassium, 64)
+                .input(wireFine, MetastableHassium, 64)
+                .input(wireFine, MetastableHassium, 64)
+                .input(cableGtSingle, Seaborgium, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(ELECTRIC_MOTOR_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_MOTOR_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
 
             // UIV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -514,6 +527,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_UEV)
+                .input(plate, CosmicNeutronium, 4)
+                .input(ring, CosmicNeutronium, 8)
+                .input(round, CosmicNeutronium, 16)
+                .input(stick, CosmicNeutronium, 4)
+                .input(gear, CosmicNeutronium)
+                .input(gearSmall, CosmicNeutronium, 2)
+                .input(cableGtSingle, Seaborgium, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(ELECTRIC_PISTON_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_PISTON_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
 
             // UIV
 
@@ -643,8 +678,29 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_UEV)
+                .input(pipeLargeFluid, Duranium)
+                .input(plate, CosmicNeutronium, 4)
+                .input(screw, CosmicNeutronium, 8)
+                .input("ringAnyAdvancedSyntheticRubber", 24)
+                .input(rotor, CosmicNeutronium)
+                .input(cableGtSingle, Seaborgium, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(ELECTRIC_PUMP_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_PUMP_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
 
-            // todo UEV Duranium pipe, UIV Neutronium pipe
+            // TODO UIV Pump with Neutronium pipe
         }
 
         private fun conveyorModuleRecipes()
@@ -763,6 +819,30 @@ class AssemblyLineRecipes
                         .CWUt(24)
                 }
                 .buildAndRegister()
+
+            // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_UHV, 2)
+                .input(plate, CosmicNeutronium, 4)
+                .input(ring, CosmicNeutronium, 16)
+                .input(round, CosmicNeutronium, 32)
+                .input(screw, CosmicNeutronium, 8)
+                .input(cableGtSingle, Seaborgium, 2)
+                .input("plateAnyAdvancedSyntheticRubber", 32)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(CONVEYOR_MODULE_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(CONVEYOR_MODULE_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
 
         }
 
@@ -885,7 +965,7 @@ class AssemblyLineRecipes
                 .input(circuit, MarkerMaterials.Tier.UHV)
                 .input(circuit, MarkerMaterials.Tier.UV, 2)
                 .input(circuit, MarkerMaterials.Tier.ZPM, 4)
-                .input(cableGtSingle, YttriumBariumCuprate, 4)
+                .input(cableGtSingle, Europium, 4)
                 .fluidInputs(SolderingAlloy.getFluid(L * 16))
                 .fluidInputs(Lubricant.getFluid(2000))
                 .fluidInputs(Taranium.getFluid(L * 2))
@@ -900,6 +980,29 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, CosmicNeutronium, 4)
+                .input(gear, CosmicNeutronium, 2)
+                .input(gearSmall, CosmicNeutronium, 6)
+                .input(ELECTRIC_MOTOR_UEV, 2)
+                .input(ELECTRIC_PISTON_UEV)
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .input(circuit, MarkerMaterials.Tier.UHV, 2)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
+                .input(cableGtSingle, Seaborgium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 32))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(ROBOT_ARM_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(ROBOT_ARM_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
         }
 
         private fun emitterRecipes()
@@ -1024,6 +1127,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, CosmicNeutronium)
+                .input(ELECTRIC_MOTOR_UEV)
+                .input(stickLong, Bohrium, 8)
+                .input(GRAVI_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
+                .input(foil, MetastableFlerovium, 64)
+                .input(foil, MetastableFlerovium, 64)
+                .input(foil, MetastableFlerovium, 64)
+                .input(cableGtSingle, Seaborgium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(EMITTER_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(EMITTER_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
         }
 
         private fun sensorRecipes()
@@ -1148,6 +1273,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, CosmicNeutronium)
+                .input(ELECTRIC_MOTOR_UEV)
+                .input(plate, Bohrium, 8)
+                .input(GRAVI_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 2)
+                .input(foil, Infinity, 64)
+                .input(foil, Infinity, 64)
+                .input(foil, Infinity, 64)
+                .input(cableGtSingle, Seaborgium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+                .fluidInputs(MetastableOganesson.getFluid(L * 4))
+                .fluidInputs(Fullerene.getFluid(L))
+                .output(SENSOR_UEV)
+                .EUt(1_800_000) // UHV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(SENSOR_UHV)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
 
         }
 
@@ -1272,7 +1419,29 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // UEV
+            // TODO UEV
+            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            //     .input(frameGt, CosmicNeutronium)
+            //     .input(plateDouble, CosmicNeutronium, 8)
+            //     .input(GRAVI_STAR, 2)
+            //     .input(EMITTER_UEV, 2)
+            //     .input(circuit, MarkerMaterials.Tier.UEV, 2)
+            //     .input(wireFine, VibraniumTritaniumActiniumIronSuperhydride, 64)
+            //     .input(wireFine, VibraniumTritaniumActiniumIronSuperhydride, 64)
+            //     .input(wireFine, VibraniumTritaniumActiniumIronSuperhydride, 64)
+            //     .input(cableGtSingle, Seaborgium, 4)
+            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 20))
+            //     .fluidInputs(MetastableOganesson.getFluid(L * 4))
+            //     .fluidInputs(Fullerene.getFluid(L))
+            //     .output(FIELD_GENERATOR_UEV)
+            //     .EUt(1_800_000) // UHV
+            //     .duration(40 * SECOND)
+            //     .stationResearch { r ->
+            //         r.researchStack(FIELD_GENERATOR_UHV)
+            //             .EUt(VA[UHV].toLong())
+            //             .CWUt(32)
+            //     }
+            //     .buildAndRegister()
 
             // UIV
 

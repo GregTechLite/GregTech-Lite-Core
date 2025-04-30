@@ -8,6 +8,7 @@ import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
+import magicbook.gtlitecore.loader.recipe.chain.ButyllithiumChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
@@ -17,6 +18,7 @@ import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
 import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
 import magicbook.gtlitecore.loader.recipe.chain.FEPChain
+import magicbook.gtlitecore.loader.recipe.chain.FullereneChain
 import magicbook.gtlitecore.loader.recipe.chain.GalliumNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
@@ -32,6 +34,7 @@ import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
+import magicbook.gtlitecore.loader.recipe.chain.MutatedLivingSolderChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
 import magicbook.gtlitecore.loader.recipe.chain.OilsChain
@@ -41,6 +44,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PEEKChain
 import magicbook.gtlitecore.loader.recipe.chain.PETChain
 import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
+import magicbook.gtlitecore.loader.recipe.chain.ParticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
 import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
@@ -182,6 +186,7 @@ class RecipeManager
             PedotChain.init()
             MethylamineChain.init()
             EDTAChain.init()
+            ButyllithiumChain.init()
             EtchingMaterialsChain.init()
             FEPChain.init()
             BZMediumChain.init()
@@ -201,11 +206,14 @@ class RecipeManager
             ChloridesChain.init()
             NdYAGChain.init()
             DiethylEtherChain.init()
+            ParticlesChain.init()
             CosmicNeutroniumChain.init()
             HalkoniteSteelChain.init()
             LeadSiliconGlassChain.init()
             ThoriumYttriumGlassChain.init()
             HeatExchangeChain.init()
+            MutatedLivingSolderChain.init()
+            FullereneChain.init()
 
             AdditivesChain.init()
             WinesChain.init()

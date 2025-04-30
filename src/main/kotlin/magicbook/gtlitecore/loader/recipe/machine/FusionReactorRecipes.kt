@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Argon
 import gregtech.api.unification.material.Materials.Beryllium
+import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Calcium
@@ -52,6 +53,7 @@ import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Tritium
@@ -229,6 +231,19 @@ class FusionReactorRecipes
 
             addPlasmaFuelRecipe(Radon, 16 * SECOND + 4 * TICK)
             addPlasmaCoolantRecipe(Radon, 12 * SECOND)
+
+            // Ta + Zn (plasma) -> Bi (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Tantalum.getFluid(L))
+                .fluidInputs(Zinc.getPlasma(L / 2))
+                .fluidOutputs(Bismuth.getPlasma(L))
+                .EUt(98304) // ZPM
+                .duration(16 * TICK)
+                .EUToStart(350_000_000L) // MK3
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Bismuth, 9 * SECOND + 4 * TICK)
+            addPlasmaCoolantRecipe(Bismuth, 5 * SECOND + 8 * TICK, true)
 
             // Pu241 + He -> Cm
             FUSION_RECIPES.recipeBuilder()

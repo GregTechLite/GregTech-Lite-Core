@@ -271,6 +271,9 @@ class GTLiteMaterials
         lateinit var UranylNitrate: Material
         lateinit var BariumOxide: Material
         lateinit var WoodsGlass: Material
+        lateinit var PotassiumTertbutoxide: Material
+        lateinit var CaesiumHydroxide: Material
+        lateinit var CaesiumCarbonate: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -458,6 +461,21 @@ class GTLiteMaterials
         lateinit var Dichloromethane: Material
         lateinit var DiethylEther: Material
         lateinit var AminooxyaceticAcid: Material
+        lateinit var BenzylBromide: Material
+        lateinit var BenzyltrimethylammoniumBromide: Material
+        lateinit var Chlorobutane: Material
+        lateinit var TertbutylAlcohol: Material
+        lateinit var Indene: Material
+        lateinit var Indanone: Material
+        lateinit var Truxene: Material
+        lateinit var Bromomethane: Material
+        lateinit var BromoBromomethylNaphthalene: Material
+        lateinit var Bromobutane: Material
+        lateinit var Butyllithium: Material
+        lateinit var AcetylChloride: Material
+        lateinit var Dimethylacetamide: Material
+        lateinit var GeodesicPolyarene: Material
+        lateinit var Fullerene: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
@@ -542,9 +560,20 @@ class GTLiteMaterials
         lateinit var QuasifissioningPlasma: Material
         lateinit var OganessonBreedingBase: Material
         lateinit var UnprocessedNdYAGSolution: Material
+        lateinit var MutatedLivingSolder: Material
+        lateinit var SodioIndene: Material
+        lateinit var SteamCrackedSodioIndene: Material
 
         lateinit var NeutronProtonFermiSuperfluid: Material
         lateinit var HeavyLeptonMixture: Material
+        lateinit var QuarkGluonPlasma: Material
+        lateinit var HeavyQuarks: Material
+        lateinit var LightQuarks: Material
+        lateinit var Gluons: Material
+        lateinit var HadronicResonantGas: Material
+        lateinit var StableBaryonicMatter: Material
+
+        lateinit var DimensionallyShiftedSuperfluid: Material
 
         @JvmStatic
         fun init()
