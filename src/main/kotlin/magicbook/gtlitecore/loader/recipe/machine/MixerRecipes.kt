@@ -18,11 +18,13 @@ import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
+import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
@@ -40,10 +42,12 @@ import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
+import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lanthanum
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Lutetium
@@ -59,8 +63,10 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Obsidian
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
@@ -81,6 +87,7 @@ import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tellurium
+import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
@@ -93,11 +100,13 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
@@ -130,6 +139,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoRes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
@@ -145,6 +155,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
@@ -700,6 +711,37 @@ class MixerRecipes
                 .output(dust, HastelloyK243, 20)
                 .EUt(VA[UEV].toLong())
                 .duration(1 * MINUTE + 20 * SECOND)
+                .buildAndRegister()
+
+            // Pikyonium 64B
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(dust, Inconel718, 8)
+                .input(dust, EglinSteel, 5)
+                .input(dust, NaquadahEnriched, 4)
+                .input(dust, TungstenSteel, 4)
+                .input(dust, Cerium, 3)
+                .input(dust, Antimony, 2)
+                .input(dust, Platinum, 2)
+                .input(dust, Ytterbium)
+                .output(dust, Pikyonium64B, 29)
+                .EUt(VA[UV].toLong())
+                .duration(45 * SECOND)
+                .buildAndRegister()
+
+            // Arceus Alloy 2B
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(dust, Pikyonium64B, 6)
+                .input(dust, Vibranium, 4)
+                .input(dust, Osmiridium, 2)
+                .input(dust, Lawrencium, 3)
+                .input(dust, Thallium, 2)
+                .input(dust, Astatine, 2)
+                .input(dust, Trinium)
+                .output(dust, ArceusAlloy2B, 20)
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE + 25 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

@@ -19,9 +19,11 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
+import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
@@ -37,9 +39,11 @@ import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Manganese
@@ -53,20 +57,26 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphorus
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rutherfordium
+import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
@@ -77,6 +87,7 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
@@ -99,6 +110,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
@@ -124,6 +136,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoRes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
@@ -133,11 +146,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
@@ -705,6 +720,38 @@ class GTLiteSecondDegreeMaterials
                     .magnetic()
                     .build())
                 .build()
+
+            // 4038 Pikyonium 64B
+            Pikyonium64B = Material.Builder(4038, gtliteId("pikyonium_64_b"))
+                .ingot()
+                .fluid()
+                .color(0x3467BA).iconSet(SHINY)
+                .components(Inconel718, 8, EglinSteel, 5, NaquadahEnriched, 4, TungstenSteel, 4, Cerium, 3,
+                    Antimony, 2, Platinum, 2, Ytterbium, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE)
+                .blast { b ->
+                    b.temp(10400, BlastProperty.GasTier.HIGHER) // Tritanium
+                        .blastStats(VA[UV], 30 * SECOND)
+                        .vacuumStats(VA[LuV], 15 * SECOND)
+                }
+                .rotorStats(18.2F, 5.5F, 7200)
+                .build()
+
+            // 4039 Arceus Alloy 2B
+            ArceusAlloy2B = Material.Builder(4039, gtliteId("arceus_alloy_2_b"))
+                .ingot()
+                .fluid()
+                .color(0xC4A415).iconSet(SHINY)
+                .components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE)
+                .blast { b ->
+                    b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
+                        .blastStats(VA[UEV], 1 * MINUTE + 15 * SECOND)
+                        .vacuumStats(VA[UV], 48 * SECOND)
+                }
+                .rotorStats(19.0F, 4.8F, 8400)
+                .build()
+
 
         }
 

@@ -246,6 +246,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
@@ -1694,7 +1695,7 @@ class MachineRecipeLoader
                 'R', NEUTRON_REFLECTOR,
                 'F', UnificationEntry(frameGt, HDCS),
                 'Q', GTLiteMetaBlocks.METAL_CASING_01.getItemVariant(BlockMetalCasing01.MetalCasingType.TALONITE),
-                'S', UnificationEntry(screw, EnrichedNaquadahAlloy))
+                'S', UnificationEntry(screw, Pikyonium64B))
 
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(6)
@@ -1702,7 +1703,7 @@ class MachineRecipeLoader
                 .inputs(GTLiteMetaBlocks.METAL_CASING_01.getItemVariant(BlockMetalCasing01.MetalCasingType.TALONITE))
                 .input(EMITTER_UHV, 3)
                 .input(NEUTRON_REFLECTOR, 2)
-                .input(screw, EnrichedNaquadahAlloy, 2)
+                .input(screw, Pikyonium64B, 2)
                 .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.REFLECTIVE_SURFACE_CASING, ConfigHolder.recipes.casingsPerCraft * 4))
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)

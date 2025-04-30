@@ -88,11 +88,13 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LUV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
@@ -116,6 +118,7 @@ import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
@@ -140,11 +143,15 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
@@ -1724,7 +1731,59 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO UHV-MAX CoAL Casing
+            // UHV CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Neutronium)
+                .input(plateDense, Neutronium, 6)
+                .input(ROBOT_ARM_UHV, 8)
+                .input(ELECTRIC_PISTON_UHV, 10)
+                .input(ELECTRIC_MOTOR_UHV, 16)
+                .input(gear, Neutronium, 4)
+                .input(gearSmall, Neutronium, 16)
+                .input(cableGtQuadruple, Europium, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 24))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(Tairitsium.getFluid(L * 12))
+                .fluidInputs(Pikyonium64B.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UHV, 4))
+                .EUt(VA[UHV].toLong())
+                .duration(32 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UV))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(12)
+                }
+                .buildAndRegister()
+
+            // UEV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Vibranium)
+                .input(plateDense, Vibranium, 6)
+                .input(ROBOT_ARM_UEV, 8)
+                .input(ELECTRIC_PISTON_UEV, 10)
+                .input(ELECTRIC_MOTOR_UEV, 16)
+                .input(gear, Vibranium, 4)
+                .input(gearSmall, Vibranium, 16)
+                .input(cableGtQuadruple, Seaborgium, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 24))
+                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(TitanSteel.getFluid(L * 12))
+                .fluidInputs(HastelloyX78.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UEV, 4))
+                .EUt(VA[UEV].toLong())
+                .duration(32 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UHV))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // TODO UIV-MAX CoAL Casing
         }
 
         private fun wireCoilRecipes()
