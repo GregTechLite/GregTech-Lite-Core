@@ -6,17 +6,29 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.Berkelium
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Curium
+import gregtech.api.unification.material.Materials.Einsteinium
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Hafnium
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lutetium
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Protactinium
+import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Thorium
@@ -743,17 +755,452 @@ class NuclearFissionRecipeProducer
             // ---------------------------------------------------------------------------------------------------------
             // Berkelium fission.
 
+            // fuelRodSingleBerkelium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3000), SupercriticalSteam.getFluid(3000))
+                put(SodiumPotassiumEutatic.getFluid(2550), SupercriticalSodiumPotassiumEutatic.getFluid(2550))
+                put(LeadBismuthEutatic.getFluid(2490), SupercriticalLeadBismuthEutatic.getFluid(2490))
+                put(LithiumBerylliumFluorides.getFluid(2485), SupercriticalLithiumBerylliumFluorides.getFluid(2485))
+                put(LithiumSodiumPotassiumFluorides.getFluid(2480), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodSingle, Berkelium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedSingle, Berkelium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] / 2L)
+                    .duration(55 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodDoubleBerkelium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3000 * 2), SupercriticalSteam.getFluid(3000 * 2))
+                put(SodiumPotassiumEutatic.getFluid(2550 * 2), SupercriticalSodiumPotassiumEutatic.getFluid(2550 * 2))
+                put(LeadBismuthEutatic.getFluid(2490 * 2), SupercriticalLeadBismuthEutatic.getFluid(2490 * 2))
+                put(LithiumBerylliumFluorides.getFluid(2485 * 2), SupercriticalLithiumBerylliumFluorides.getFluid(2485 * 2))
+                put(LithiumSodiumPotassiumFluorides.getFluid(2480 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480 * 2))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodDouble, Berkelium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedDouble, Berkelium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV].toLong())
+                    .duration(220 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodQuadrupleBerkelium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3000 * 4), SupercriticalSteam.getFluid(3000 * 4))
+                put(SodiumPotassiumEutatic.getFluid(2550 * 4), SupercriticalSodiumPotassiumEutatic.getFluid(2550 * 4))
+                put(LeadBismuthEutatic.getFluid(2490 * 4), SupercriticalLeadBismuthEutatic.getFluid(2490 * 4))
+                put(LithiumBerylliumFluorides.getFluid(2485 * 4), SupercriticalLithiumBerylliumFluorides.getFluid(2485 * 4))
+                put(LithiumSodiumPotassiumFluorides.getFluid(2480 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480 * 4))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodQuadruple, Berkelium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedQuadruple, Berkelium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] * 3L)
+                    .duration(880 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodSingleBerkelium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedSingle, Berkelium)
+                .output(dust, Steel, 2)
+                .output(dust, Berkelium, 2)
+                .output(dust, Rhenium)
+                .output(dust, Californium)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodDoubleBerkelium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedDouble, Berkelium)
+                .output(dust, Steel, 4)
+                .output(dust, Berkelium, 4)
+                .output(dust, Rhenium, 2)
+                .output(dust, Californium, 2)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodQuadrupleBerkelium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedQuadruple, Berkelium)
+                .output(dust, Steel, 8)
+                .output(dust, Berkelium, 8)
+                .output(dust, Rhenium, 4)
+                .output(dust, Californium, 4)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
             // ---------------------------------------------------------------------------------------------------------
             // Californium fission.
+
+            // fuelRodSingleCalifornium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3880), SupercriticalSteam.getFluid(3880))
+                put(SodiumPotassiumEutatic.getFluid(3430), SupercriticalSodiumPotassiumEutatic.getFluid(3430))
+                put(LeadBismuthEutatic.getFluid(3370), SupercriticalLeadBismuthEutatic.getFluid(3370))
+                put(LithiumBerylliumFluorides.getFluid(3365), SupercriticalLithiumBerylliumFluorides.getFluid(3365))
+                put(LithiumSodiumPotassiumFluorides.getFluid(3360), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodSingle, Californium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedSingle, Californium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV].toLong())
+                    .duration(64 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodDoubleCalifornium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3880 * 2), SupercriticalSteam.getFluid(3880 * 2))
+                put(SodiumPotassiumEutatic.getFluid(3430 * 2), SupercriticalSodiumPotassiumEutatic.getFluid(3430 * 2))
+                put(LeadBismuthEutatic.getFluid(3370 * 2), SupercriticalLeadBismuthEutatic.getFluid(3370 * 2))
+                put(LithiumBerylliumFluorides.getFluid(3365 * 2), SupercriticalLithiumBerylliumFluorides.getFluid(3365 * 2))
+                put(LithiumSodiumPotassiumFluorides.getFluid(3360 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360 * 2))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodDouble, Californium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedDouble, Californium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] * 3L)
+                    .duration(256 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodQuadrupleCalifornium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(3880 * 4), SupercriticalSteam.getFluid(3880 * 4))
+                put(SodiumPotassiumEutatic.getFluid(3430 * 4), SupercriticalSodiumPotassiumEutatic.getFluid(3430 * 4))
+                put(LeadBismuthEutatic.getFluid(3370 * 4), SupercriticalLeadBismuthEutatic.getFluid(3370 * 4))
+                put(LithiumBerylliumFluorides.getFluid(3365 * 4), SupercriticalLithiumBerylliumFluorides.getFluid(3365 * 4))
+                put(LithiumSodiumPotassiumFluorides.getFluid(3360 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360 * 4))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodQuadruple, Californium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedQuadruple, Californium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM].toLong())
+                    .duration(1024 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodSingleCalifornium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedSingle, Californium)
+                .output(dust, Steel, 2)
+                .output(dust, Californium, 2)
+                .output(dust, Scandium)
+                .output(dust, Einsteinium)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodDoubleCalifornium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedDouble, Californium)
+                .output(dust, Steel, 4)
+                .output(dust, Californium, 4)
+                .output(dust, Scandium, 2)
+                .output(dust, Einsteinium, 2)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodQuadrupleCalifornium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedQuadruple, Californium)
+                .output(dust, Steel, 8)
+                .output(dust, Californium, 8)
+                .output(dust, Scandium, 4)
+                .output(dust, Einsteinium, 4)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
 
             // ---------------------------------------------------------------------------------------------------------
             // Einsteinium fission.
 
+            // fuelRodSingleEinsteinium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(4840), SupercriticalSteam.getFluid(4840))
+                put(SodiumPotassiumEutatic.getFluid(4390), SupercriticalSodiumPotassiumEutatic.getFluid(4390))
+                put(LeadBismuthEutatic.getFluid(4330), SupercriticalLeadBismuthEutatic.getFluid(4330))
+                put(LithiumBerylliumFluorides.getFluid(4325), SupercriticalLithiumBerylliumFluorides.getFluid(4325))
+                put(LithiumSodiumPotassiumFluorides.getFluid(4320), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodSingle, Einsteinium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedSingle, Einsteinium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] * 2L)
+                    .duration(72 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodDoubleEinsteinium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(4840 * 2), SupercriticalSteam.getFluid(4840 * 2))
+                put(SodiumPotassiumEutatic.getFluid(4390 * 2), SupercriticalSodiumPotassiumEutatic.getFluid(4390 * 2))
+                put(LeadBismuthEutatic.getFluid(4330 * 2), SupercriticalLeadBismuthEutatic.getFluid(4330 * 2))
+                put(LithiumBerylliumFluorides.getFluid(4325 * 2), SupercriticalLithiumBerylliumFluorides.getFluid(4325 * 2))
+                put(LithiumSodiumPotassiumFluorides.getFluid(4320 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320 * 2))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodDouble, Einsteinium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedDouble, Einsteinium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] * 3L)
+                    .duration(288 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodQuadrupleEinsteinium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(4840 * 4), SupercriticalSteam.getFluid(4840 * 4))
+                put(SodiumPotassiumEutatic.getFluid(4390 * 4), SupercriticalSodiumPotassiumEutatic.getFluid(4390 * 4))
+                put(LeadBismuthEutatic.getFluid(4330 * 4), SupercriticalLeadBismuthEutatic.getFluid(4330 * 4))
+                put(LithiumBerylliumFluorides.getFluid(4325 * 4), SupercriticalLithiumBerylliumFluorides.getFluid(4325 * 4))
+                put(LithiumSodiumPotassiumFluorides.getFluid(4320 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320 * 4))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodQuadruple, Einsteinium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedQuadruple, Einsteinium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM].toLong())
+                    .duration(1152 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodSingleEinsteinium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedSingle, Einsteinium)
+                .output(dust, Steel, 2)
+                .output(dust, Einsteinium, 2)
+                .output(dust, Polonium)
+                .output(dust, Fermium)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodDoubleEinsteinium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedDouble, Einsteinium)
+                .output(dust, Steel, 4)
+                .output(dust, Einsteinium, 4)
+                .output(dust, Polonium, 2)
+                .output(dust, Fermium, 2)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodQuadrupleEinsteinium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedQuadruple, Einsteinium)
+                .output(dust, Steel, 8)
+                .output(dust, Einsteinium, 8)
+                .output(dust, Polonium, 4)
+                .output(dust, Fermium, 4)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
             // ---------------------------------------------------------------------------------------------------------
             // Fermium fission.
 
+            // fuelRodSingleFermium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(5860), SupercriticalSteam.getFluid(5860))
+                put(SodiumPotassiumEutatic.getFluid(5410), SupercriticalSodiumPotassiumEutatic.getFluid(5410))
+                put(LeadBismuthEutatic.getFluid(5350), SupercriticalLeadBismuthEutatic.getFluid(5350))
+                put(LithiumBerylliumFluorides.getFluid(5345), SupercriticalLithiumBerylliumFluorides.getFluid(5345))
+                put(LithiumSodiumPotassiumFluorides.getFluid(5340), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodSingle, Fermium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedSingle, Fermium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[LuV] * 3L)
+                    .duration(80 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodDoubleFermium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(5860 * 2), SupercriticalSteam.getFluid(5860 * 2))
+                put(SodiumPotassiumEutatic.getFluid(5410 * 2), SupercriticalSodiumPotassiumEutatic.getFluid(5410 * 2))
+                put(LeadBismuthEutatic.getFluid(5350 * 2), SupercriticalLeadBismuthEutatic.getFluid(5350 * 2))
+                put(LithiumBerylliumFluorides.getFluid(5345 * 2), SupercriticalLithiumBerylliumFluorides.getFluid(5345 * 2))
+                put(LithiumSodiumPotassiumFluorides.getFluid(5340 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340 * 2))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodDouble, Fermium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedDouble, Fermium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM].toLong())
+                    .duration(320 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodQuadrupleFermium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(5860 * 4), SupercriticalSteam.getFluid(5860 * 4))
+                put(SodiumPotassiumEutatic.getFluid(5410 * 4), SupercriticalSodiumPotassiumEutatic.getFluid(5410 * 4))
+                put(LeadBismuthEutatic.getFluid(5350 * 4), SupercriticalLeadBismuthEutatic.getFluid(5350 * 4))
+                put(LithiumBerylliumFluorides.getFluid(5345 * 4), SupercriticalLithiumBerylliumFluorides.getFluid(5345 * 4))
+                put(LithiumSodiumPotassiumFluorides.getFluid(5340 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340 * 4))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodQuadruple, Fermium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedQuadruple, Fermium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM] * 2L)
+                    .duration(1280 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodSingleFermium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedSingle, Fermium)
+                .output(dust, Steel, 2)
+                .output(dust, Fermium, 2)
+                .output(dust, Astatine)
+                .output(dust, Mendelevium)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodDoubleFermium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedDouble, Fermium)
+                .output(dust, Steel, 4)
+                .output(dust, Fermium, 4)
+                .output(dust, Astatine, 2)
+                .output(dust, Mendelevium, 2)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodQuadrupleFermium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedQuadruple, Fermium)
+                .output(dust, Steel, 8)
+                .output(dust, Fermium, 8)
+                .output(dust, Astatine, 4)
+                .output(dust, Mendelevium, 4)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
             // ---------------------------------------------------------------------------------------------------------
             // Mendelevium fission.
+
+            // fuelRodSingleMendelevium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(7100), SupercriticalSteam.getFluid(7100))
+                put(SodiumPotassiumEutatic.getFluid(6650), SupercriticalSodiumPotassiumEutatic.getFluid(6650))
+                put(LeadBismuthEutatic.getFluid(6590), SupercriticalLeadBismuthEutatic.getFluid(6590))
+                put(LithiumBerylliumFluorides.getFluid(6585), SupercriticalLithiumBerylliumFluorides.getFluid(6585))
+                put(LithiumSodiumPotassiumFluorides.getFluid(6580), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodSingle, Mendelevium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedSingle, Mendelevium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM].toLong())
+                    .duration(84 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodDoubleMendelevium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(7100 * 2), SupercriticalSteam.getFluid(7100 * 2))
+                put(SodiumPotassiumEutatic.getFluid(6650 * 2), SupercriticalSodiumPotassiumEutatic.getFluid(6650 * 2))
+                put(LeadBismuthEutatic.getFluid(6590 * 2), SupercriticalLeadBismuthEutatic.getFluid(6590 * 2))
+                put(LithiumBerylliumFluorides.getFluid(6585 * 2), SupercriticalLithiumBerylliumFluorides.getFluid(6585 * 2))
+                put(LithiumSodiumPotassiumFluorides.getFluid(6580 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580 * 2))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodDouble, Mendelevium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedDouble, Mendelevium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[ZPM] * 3L)
+                    .duration(336 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodQuadrupleMendelevium
+            mutableMapOf<FluidStack, FluidStack>().apply {
+                put(Steam.getFluid(7100 * 4), SupercriticalSteam.getFluid(7100 * 4))
+                put(SodiumPotassiumEutatic.getFluid(6650 * 4), SupercriticalSodiumPotassiumEutatic.getFluid(6650 * 4))
+                put(LeadBismuthEutatic.getFluid(6590 * 4), SupercriticalLeadBismuthEutatic.getFluid(6590 * 4))
+                put(LithiumBerylliumFluorides.getFluid(6585 * 4), SupercriticalLithiumBerylliumFluorides.getFluid(6585 * 4))
+                put(LithiumSodiumPotassiumFluorides.getFluid(6580 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580 * 4))
+            }.forEach { (coolant, hotCoolant) ->
+                NUCLEAR_FUELS.recipeBuilder()
+                    .input(fuelRodQuadruple, Mendelevium)
+                    .fluidInputs(coolant)
+                    .output(fuelRodDepletedQuadruple, Mendelevium)
+                    .fluidOutputs(hotCoolant)
+                    .EUt(VA[UV].toLong())
+                    .duration(1344 * SECOND)
+                    .buildAndRegister()
+            }
+
+            // fuelRodSingleMendelevium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedSingle, Mendelevium)
+                .output(dust, Steel, 2)
+                .output(dust, Mendelevium, 2)
+                .output(dust, Nobelium)
+                .output(dust, Lawrencium)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodDoubleMendelevium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedDouble, Mendelevium)
+                .output(dust, Steel, 4)
+                .output(dust, Mendelevium, 4)
+                .output(dust, Nobelium, 2)
+                .output(dust, Lawrencium, 2)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
+
+            // fuelRodQuadrupleMendelevium decomposition.
+            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(fuelRodDepletedQuadruple, Mendelevium)
+                .output(dust, Steel, 8)
+                .output(dust, Mendelevium, 8)
+                .output(dust, Nobelium, 4)
+                .output(dust, Lawrencium, 4)
+                .EUt(VA[LV].toLong())
+                .duration(1 * MINUTE)
+                .buildAndRegister()
 
         }
 

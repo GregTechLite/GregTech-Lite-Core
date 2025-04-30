@@ -237,6 +237,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
@@ -270,6 +271,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
@@ -1733,32 +1735,43 @@ class MachineRecipeLoader
                 .buildAndRegister()
 
             // Stellar Containment Casing
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(13)
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, QuantumAlloy, 4)
-                .inputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE, 16))
+                .input(frameGt, Tairitsium, 4)
+                .input(frameGt, TitanSteel, 4)
+                .input(frameGt, EnrichedNaquadahAlloy, 4)
                 .input(plateDouble, HDCS, 8)
-                .input(pipeHugeFluid, Trinaquadalloy, 2)
+                .input(plateDouble, Neutronium, 8)
                 .input(EMITTER_UHV, 2)
-                .input(NEUTRON_REFLECTOR, 32)
+                .input(SENSOR_UHV, 2)
+                .input(ELECTRIC_PUMP_UHV, 2)
+                .input(NEUTRON_REFLECTOR, 4)
                 .input(screw, TitanSteel, 6)
+                .fluidInputs(SolderingAlloy.getFluid(L * 32))
+                .fluidInputs(UUMatter.getFluid(4000))
                 .fluidInputs(Bedrockium.getFluid(L * 16))
                 .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.STELLAR_CONTAINMENT_CASING, 16))
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(BlockMetalCasing03.MetalCasingType.QUANTUM_ALLOY))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
                 .buildAndRegister()
 
             // Harmonic Phonon Transmissive Casing
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(13)
                 .input(frameGt, Bedrockium, 4)
-                .input(plate, MetastableOganesson, 8)
-                .input(plate, Vibranium, 8)
+                .input(plateDouble, MetastableOganesson, 8)
+                .input(pipeLargeFluid, HastelloyX78, 2)
                 .input(gear, CosmicNeutronium, 3)
                 .input(gearSmall, CosmicNeutronium, 6)
-                .input(ELECTRIC_PUMP_UHV, 2)
-                .input(bolt, HDCS, 12)
-                .fluidInputs(QuantumAlloy.getFluid(L * 16))
+                .input(ELECTRIC_PUMP_UHV)
+                .input(foil, Tairitsium, 12)
+                .input(bolt, HDCS, 4)
+                .fluidInputs(QuantumAlloy.getFluid(L * 4))
                 .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.HARMONIC_PHONON_TRANSMISSION_CASING, 16))
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)

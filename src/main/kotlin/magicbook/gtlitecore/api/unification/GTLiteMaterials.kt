@@ -308,6 +308,8 @@ class GTLiteMaterials
         lateinit var TitanSteel: Material
         lateinit var Tairitsium: Material
         lateinit var HalkoniteSteel: Material
+        lateinit var HastelloyX78: Material
+        lateinit var HastelloyK243: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

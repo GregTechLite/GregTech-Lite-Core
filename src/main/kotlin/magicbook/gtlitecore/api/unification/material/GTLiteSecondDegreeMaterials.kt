@@ -27,7 +27,9 @@ import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Francium
+import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
@@ -41,22 +43,28 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tin
@@ -102,8 +110,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyC276
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA813
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
@@ -557,7 +567,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x160740).iconSet(SHINY)
                 .components(NaquadahEnriched, 4, Ruridit, 2, Rutherfordium, 1)
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR)
+                    GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(9001, BlastProperty.GasTier.HIGHER) // Trinium
                         .blastStats(VA[ZPM], 1 * MINUTE + 40 * SECOND)
@@ -591,8 +601,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x334433).iconSet(SHINY)
                 .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium241, 1)
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
-                    GENERATE_DOUBLE_PLATE
-                )
+                    GENERATE_DOUBLE_PLATE)
                 .blast { b ->
                     b.temp(10900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
                         .blastStats(VA[UHV], 1 * MINUTE + 30 * SECOND)
@@ -611,7 +620,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0xAA0D0D).iconSet(SHINY)
                 .components(TitaniumTungstenCarbide, 3, Jasper, 3, Tritanium, 2)
-                .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_GEAR)
+                .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_GEAR,
+                    GENERATE_FRAME)
                 .blast { b ->
                     b.temp(10600, BlastProperty.GasTier.HIGHEST) // Tritanium
                         .blastStats(VA[UHV], 1 * MINUTE)
@@ -633,7 +643,7 @@ class GTLiteSecondDegreeMaterials
                         .blastStats(VA[UHV], 20 * SECOND)
                         .vacuumStats(VA[UV], 6 * SECOND + 10 * TICK) }
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
-                    GENERATE_GEAR)
+                    GENERATE_GEAR, GENERATE_FOIL, GENERATE_FRAME)
                 .toolStats(MaterialToolProperty.Builder.of(36.5F, 44.2F, 4980, 7)
                     .attackSpeed(0.6F).enchantability(30)
                     .enchantment(Enchantments.LOOTING, 3)
@@ -643,8 +653,7 @@ class GTLiteSecondDegreeMaterials
             // 4035 Halkonite Steel
             HalkoniteSteel = Material.Builder(4035, gtliteId("halkonite_steel"))
                 .ingot()
-                .liquid(
-                    FluidBuilder().customStill()
+                .liquid(FluidBuilder().customStill()
                     .translation("gtlitecore.fluid.molten"))
                 .iconSet(HALKONITE)
                 .components(CosmicNeutronium, 2, Tairitsium, 2, RedPhosphorus, 2, TitanSteel, 1, Infinity, 1)
@@ -653,13 +662,49 @@ class GTLiteSecondDegreeMaterials
                     .blastStats(VA[UEV], 40 * SECOND)
                     .vacuumStats(VA[UHV], 20 * SECOND)
                 }
-                .flags(
-                    EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME,
-                    GENERATE_SPRING, GENERATE_SPRING_SMALL
-                )
+                .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME,
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL)
                 .cableProperties(V[UIV], 48, 64, false)
                 .build()
                 .setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true) // Fix a little formula problem from P4.
+
+            // 4036 Hastelloy-X78
+            HastelloyX78 = Material.Builder(4036, gtliteId("hastelloy_x_78"))
+                .ingot()
+                .fluid()
+                .color(0xD1CB0B).iconSet(SHINY)
+                .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3,
+                    Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR)
+                .blast { b ->
+                    b.temp(12300, BlastProperty.GasTier.HIGHEST) // Adamantium
+                        .blastStats(VA[UHV], 44 * SECOND)
+                        .vacuumStats(VA[UV], 22 * SECOND)
+                }
+                .fluidPipeProperties(9300, 640, true, true, true, true)
+                .toolStats(MaterialToolProperty.Builder.of(44.8F, 64.4F, 7470, 7)
+                    .attackSpeed(0.5F).enchantability(32)
+                    .magnetic()
+                    .build())
+                .build()
+
+            // 4037 Hastelloy-K243
+            HastelloyK243 = Material.Builder(4037, gtliteId("hastelloy_k_243"))
+                .ingot()
+                .fluid()
+                .color(0x92D959).iconSet(BRIGHT)
+                .components(HastelloyX78, 5, NiobiumNitride, 2, Tritanium, 4, TungstenCarbide, 4, Promethium, 4, Mendelevium, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR)
+                .blast { b ->
+                    b.temp(14000, BlastProperty.GasTier.HIGHEST) // Infinity
+                        .blastStats(VA[UEV], 1 * MINUTE + 25 * SECOND)
+                        .vacuumStats(VA[UHV], 48 * SECOND)
+                }
+                .toolStats(MaterialToolProperty.Builder.of(58.0F, 80.0F, 11205, 8)
+                    .attackSpeed(0.8F).enchantability(36)
+                    .magnetic()
+                    .build())
+                .build()
 
         }
 

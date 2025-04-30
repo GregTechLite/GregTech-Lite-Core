@@ -2540,6 +2540,8 @@ gtlitecore.material.hdcs=High Durability Compound Steel (HDCS)
 gtlitecore.material.titan_steel=Titan Steel
 gtlitecore.material.tairitsium=Tairitsium
 gtlitecore.material.halkonite_steel=Halkonite Steel
+gtlitecore.material.hastelloy_x_78=Hastelloy-X78
+gtlitecore.material.hastelloy_k_243=Hastelloy-K243
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
