@@ -25,11 +25,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodCells
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CAT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChalcogenAnodeMud
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CleanBedrockSootSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CleanEnrichedBedrockSootSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Coffee
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedHeavyEnrichedTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedHeavyTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedLightEnrichedTaraniumGas
@@ -250,8 +252,17 @@ class GTLiteUnknownCompositionMaterials
                 .color(0xBBA844)
                 .build()
 
-            // 12047-12049 for other drinks.
-            // ...
+            // 12047 Coffee
+            Coffee = Material.Builder(12047, gtliteId("coffee"))
+                .liquid()
+                .color(0x36312E)
+                .build()
+
+            // 12048 Butter
+            Butter = Material.Builder(12048, gtliteId("butter"))
+                .liquid()
+                .color(0xFFEF82)
+                .build()
 
             // 12050 Carbon 5 Fraction
             Carbon5Fraction = Material.Builder(12050, gtliteId("carbon_5_fraction"))

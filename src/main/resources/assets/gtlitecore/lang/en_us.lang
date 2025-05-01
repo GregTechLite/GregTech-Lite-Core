@@ -1065,6 +1065,9 @@ metaitem.crop.cotton.name=棉花
 metaitem.food.utensil.component.clay_bowl.name=Clay Bowl
 metaitem.food.utensil.ceramic_bowl.name=Ceramic Bowl
 metaitem.food.utensil.dirty_ceramic_bowl.name=Dirty Ceramic Bowl
+metaitem.food.utensil.paper_cone.name=Paper Cone
+metaitem.food.utensil.component.clay_cup.name=Clay Cup
+metaitem.food.utensil.ceramic_cup.name=Ceramic Cup
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
@@ -1076,6 +1079,8 @@ metaitem.food.drink.potato_juice.name=Potato Juice
 metaitem.food.drink.potato_juice.tooltip=Hey! You'd better not drink it, it's never sold in stores...
 metaitem.food.drink.vodka.name=Vodka
 metaitem.food.drink.vodka.tooltip=Water of Life
+metaitem.food.drink.coffee_cup.name=A Cup of Coffee
+metaitem.food.drink.coffee_cup.tooltip=罐装咖啡因
 
 metaitem.food.polenta.name=Polenta
 metaitem.food.polenta.tooltip.1=Commonly found in Italian cuisine and called it by Polenta.
@@ -1085,6 +1090,21 @@ metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East 
 metaitem.corn_kernel_gem_chipped.name=Corn Kernel
 metaitem.corn_cob_gem_flawed.name=Corn Cob
 metaitem.bare_corn_kernel_gem_chipped.name=Bare Corn Kernel
+metaitem.small_green_coffee_round.name=Small Green Coffee Bean
+metaitem.large_green_coffee_gem_chipped.name=Large Green Coffee Bean
+metaitem.fermented_small_coffee_round.name=Fermented Small Coffee Bean
+metaitem.fermented_large_coffee_gem_chipped.name=Fermented Large Coffee Bean
+metaitem.dried_small_coffee_round.name=Dried Small Coffee Bean
+metaitem.dried_large_coffee_gem_chipped.name=Dried Large Coffee Bean
+metaitem.roasted_small_coffee_round.name=Roasted Small Coffee Bean
+metaitem.roasted_large_coffee_gem_chipped.name=Roasted Large Coffee Bean
+metaitem.ground_coffee_dust.name=Ground Coffee dust
+metaitem.graham_cracker_dough_crushed_centrifuged.name=Graham Cracker Dough
+metaitem.graham_cracker_chunk_plate_dense.name=Graham Cracker Chunk
+metaitem.graham_cracker_slice_plate.name=Graham Cracker Slice
+
+metaitem.food.graham_cracker.name=Graham Cracker
+metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -2761,6 +2781,8 @@ gtlitecore.material.vinegar=Vinegar
 gtlitecore.material.potato_juice=Potato Juice
 gtlitecore.material.vodka=Vodka
 gtlitecore.material.polenta=Polenta
+gtlitecore.material.coffee=Coffee
+gtlitecore.material.butter=Butter
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction

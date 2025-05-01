@@ -61,6 +61,7 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
@@ -91,6 +92,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import gregtech.common.items.MetaItems.SMART_FILTER
+import gregtech.common.items.ToolItems
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
@@ -343,6 +345,10 @@ class CraftingRecipeLoader
             // Add recipes to casting molds, we need add clay plate recipe at first.
             ModHandler.addShapelessRecipe("plate_clay", OreDictUnifier.get(plate, Clay),
                 GTLiteToolItems.ROLLING_PIN, ItemStack(Items.CLAY_BALL))
+
+            // Clay stick is required to some clay items.
+            ModHandler.addShapelessRecipe("stick_clay", OreDictUnifier.get(stick, Clay, 2),
+                ToolItems.KNIFE, ItemStack(Items.CLAY_BALL))
 
             // Add recipes to graphite plate.
             ModHandler.addShapelessRecipe("plate_graphite", OreDictUnifier.get(plate, Graphite),

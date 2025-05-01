@@ -417,6 +417,7 @@ class GTLiteMaterialFlags
             Dubnium.addFlags(GENERATE_ROD)
             Inconel718.addFlags(GENERATE_ROD)
             Bohrium.addFlags(GENERATE_ROD)
+            Clay.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
