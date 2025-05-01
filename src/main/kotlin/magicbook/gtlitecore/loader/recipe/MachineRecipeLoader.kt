@@ -251,6 +251,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAll
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
@@ -1772,7 +1773,7 @@ class MachineRecipeLoader
                 .input(ELECTRIC_PUMP_UHV)
                 .input(foil, Tairitsium, 12)
                 .input(bolt, HDCS, 4)
-                .fluidInputs(QuantumAlloy.getFluid(L * 4))
+                .fluidInputs(StableBaryonicMatter.getFluid(4000))
                 .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.HARMONIC_PHONON_TRANSMISSION_CASING, 16))
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
