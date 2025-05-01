@@ -2889,6 +2889,7 @@ gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收�
 itemGroup.gtlite=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器
 itemGroup.gtlite.decoration=格雷科技精简版 | 装饰
+itemGroup.gtlite.food=格雷科技精简版 | 食品
 
 # Commands
 gtlitecore.command.component.usage=用法：/gtlite component

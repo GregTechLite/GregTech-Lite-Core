@@ -68,6 +68,11 @@ public class GTLiteAPI
     public static final BaseCreativeTab TAB_GTLITE_DECORATION = new BaseCreativeTab("gtlite.decoration",
             () -> GTLiteMetaItems.LOGO_DECORATION.getStackForm(), false);
 
+    // Foods for gtlitecore which consists of all food related things, trees and berries
+    // is also in it.
+    public static final BaseCreativeTab TAB_GTLITE_FOOD = new BaseCreativeTab("gtlite.food",
+            () -> GTLiteMetaItems.LOGO_FOOD.getStackForm(), false);
+
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+ BlockState Maps +-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MOTOR_CASING = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_PISTON_CASING = new Object2ObjectOpenHashMap<>();

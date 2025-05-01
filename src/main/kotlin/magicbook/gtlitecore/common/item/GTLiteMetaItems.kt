@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
+import gregtech.api.creativetab.BaseCreativeTab
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.StandardMetaItem
 import gregtech.api.unification.material.MarkerMaterials
@@ -38,6 +39,7 @@ class GTLiteMetaItems
         lateinit var LOGO_CORE: MetaItem<*>.MetaValueItem
         lateinit var LOGO_MACHINE: MetaItem<*>.MetaValueItem
         lateinit var LOGO_DECORATION: MetaItem<*>.MetaValueItem
+        lateinit var LOGO_FOOD: MetaItem<*>.MetaValueItem
 
         lateinit var SHAPE_MOLD_ROD: MetaItem<*>.MetaValueItem
         lateinit var SHAPE_MOLD_BOLT: MetaItem<*>.MetaValueItem
@@ -395,6 +397,8 @@ class GTLiteMetaItems
             LOGO_MACHINE = GTLITE_ITEMS.addItem(2, "gtlite_logo.machine")
                 .setInvisible()
             LOGO_DECORATION = GTLITE_ITEMS.addItem(3, "gtlite_logo.decoration")
+                .setInvisible()
+            LOGO_FOOD = GTLITE_ITEMS.addItem(4, "gtlite_logo.food")
                 .setInvisible()
 
             // 11-85: Shape Molds & Extruders.
@@ -920,6 +924,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitBanana")
                 .addOreDict("cropBanana")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             ORANGE = GTLITE_ITEMS.addItem(9002, "food.fruit.orange")
                 .addComponents(FoodBehavior(2, 1f)
@@ -928,6 +933,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitOrange")
                 .addOreDict("cropOrange")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             MANGO = GTLITE_ITEMS.addItem(9003, "food.fruit.mango")
                 .addComponents(FoodBehavior(2, 1f))
@@ -935,6 +941,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitMango")
                 .addOreDict("cropMango")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             APRICOT = GTLITE_ITEMS.addItem(9004, "food.fruit.apricot")
                 .addComponents(FoodBehavior(2, 1f))
@@ -942,6 +949,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitApricot")
                 .addOreDict("cropApricot")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             LEMON = GTLITE_ITEMS.addItem(9005, "food.fruit.lemon")
                 .addComponents(FoodBehavior(1, 0.5f))
@@ -949,6 +957,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitLemon")
                 .addOreDict("cropLemon")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             LIME = GTLITE_ITEMS.addItem(9006, "food.fruit.lime")
                 .addComponents(FoodBehavior(1, 0.5f))
@@ -956,6 +965,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitLime")
                 .addOreDict("cropLime")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             OLIVE = GTLITE_ITEMS.addItem(9007, "food.fruit.olive")
                 .addComponents(FoodBehavior(2, 0.5f))
@@ -963,73 +973,96 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitOlive")
                 .addOreDict("cropOlive")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             NUTMEG = GTLITE_ITEMS.addItem(9008, "food.fruit.nutmeg")
                 .addOreDict("cropNutmeg")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             COCONUT = GTLITE_ITEMS.addItem(9009, "food.fruit.coconut")
                 .addOreDict("cropCoconut")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             // 9201-9300: Seeds and Crops
             COFFEE_SEED = GTLITE_ITEMS.addItem(9201, "crop.seed.coffee")
                 .addOreDict("seedCoffee")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             TOMATO_SEED = GTLITE_ITEMS.addItem(9202, "crop.seed.tomato")
                 .addOreDict("seedTomato")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             ONION_SEED = GTLITE_ITEMS.addItem(9203, "crop.seed.tomato")
                 .addOreDict("seedOnion")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             CUCUMBER_SEED = GTLITE_ITEMS.addItem(9204, "crop.seed.cucumber")
                 .addOreDict("seedCucumber")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             GRAPE_SEED = GTLITE_ITEMS.addItem(9205, "crop.seed.grape")
                 .addOreDict("seedGrape")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             SOY_SEED = GTLITE_ITEMS.addItem(9206, "crop.seed.soy")
                 .addOreDict("seedSoy")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BEAN_SEED = GTLITE_ITEMS.addItem(9207, "crop.seed.bean")
                 .addOreDict("seedBean")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             PEA_SEED = GTLITE_ITEMS.addItem(9208, "crop.seed.pea")
                 .addOreDict("seedPea")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             OREGANO_SEED = GTLITE_ITEMS.addItem(9209, "crop.seed.oregano")
                 .addOreDict("seedOregano")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             HORSERADISH_SEED = GTLITE_ITEMS.addItem(9210, "crop.seed.horseradish")
                 .addOreDict("seedHorseradish")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             GARLIC_SEED = GTLITE_ITEMS.addItem(9211, "crop.seed.garlic")
                 .addOreDict("seedGarlic")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BASIL_SEED = GTLITE_ITEMS.addItem(9212, "crop.seed.basil")
                 .addOreDict("seedBasil")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             AUBERGINE_SEED = GTLITE_ITEMS.addItem(9213, "crop.seed.aubergine")
                 .addOreDict("seedAubergine")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             CORN_SEED = GTLITE_ITEMS.addItem(9214, "crop.seed.corn")
                 .addOreDict("seedCorn")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             ARTICHOKE_SEED = GTLITE_ITEMS.addItem(9215, "crop.seed.artichoke")
                 .addOreDict("seedArtichoke")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BLACK_PEPPER_SEED = GTLITE_ITEMS.addItem(9216, "crop.seed.black_pepper")
                 .addOreDict("seedBlackPepper")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             RICE_SEED = GTLITE_ITEMS.addItem(9217, "crop.seed.rice")
                 .addOreDict("seedRice")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             WHITE_GRAPE_SEED = GTLITE_ITEMS.addItem(9218, "crop.seed.white_grape")
                 .addOreDict("seedWhiteGrape")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             COTTON_SEED = GTLITE_ITEMS.addItem(9219, "crop.seed.cotton")
                 .addOreDict("seedCotton")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             COFFEE_CHERRY = GTLITE_ITEMS.addItem(9251, "crop.coffee_cherry")
                 .addOreDict("cropCoffee")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             TOMATO = GTLITE_ITEMS.addItem(9252, "crop.tomato")
                 .addComponents(FoodBehavior(3, 0.5f)
@@ -1038,6 +1071,7 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitTomato")
                 .addOreDict("cropTomato")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             ONION = GTLITE_ITEMS.addItem(9253, "crop.onion")
                 .addComponents(FoodBehavior(3, 0.33f)
@@ -1046,6 +1080,7 @@ class GTLiteMetaItems
                 .addOreDict("vegetableAny")
                 .addOreDict("vegetableOnion")
                 .addOreDict("cropOnion")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             CUCUMBER = GTLITE_ITEMS.addItem(9254, "crop.cucumber")
                 .addComponents(FoodBehavior(2, 0.5f)
@@ -1054,6 +1089,7 @@ class GTLiteMetaItems
                 .addOreDict("vegetableAny")
                 .addOreDict("vegetableCucumber")
                 .addOreDict("cropCucumber")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             GRAPE = GTLITE_ITEMS.addItem(9255, "crop.grape")
                 .addComponents(FoodBehavior(1, 1f))
@@ -1061,42 +1097,55 @@ class GTLiteMetaItems
                 .addOreDict("fruitAny")
                 .addOreDict("fruitGrape")
                 .addOreDict("cropGrape")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             SOYBEAN = GTLITE_ITEMS.addItem(9256, "crop.soybean")
                 .addOreDict("cropSoy")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BEAN = GTLITE_ITEMS.addItem(9257, "crop.bean")
                 .addOreDict("cropBean")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             PEA = GTLITE_ITEMS.addItem(9258, "crop.pea")
                 .addOreDict("cropPea")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             OREGANO = GTLITE_ITEMS.addItem(9259, "crop.oregano")
                 .addOreDict("cropOregano")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             HORSERADISH = GTLITE_ITEMS.addItem(9260, "crop.horseradish")
                 .addOreDict("cropHorseradish")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             GARLIC_BULB = GTLITE_ITEMS.addItem(9261, "crop.garlic_bulb")
                 .addOreDict("cropGarlic")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BASIL = GTLITE_ITEMS.addItem(9262, "crop.basil")
                 .addOreDict("cropBasil")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             AUBERGINE = GTLITE_ITEMS.addItem(9263, "crop.aubergine")
                 .addOreDict("cropAubergine")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             CORN = GTLITE_ITEMS.addItem(9264, "crop.corn")
                 .addOreDict("cropCorn")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             ARTICHOKE = GTLITE_ITEMS.addItem(9265, "crop.artichoke")
                 .addOreDict("cropArtichoke")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             BLACK_PEPPER = GTLITE_ITEMS.addItem(9266, "crop.black_pepper")
                 .addOreDict("cropBlackPepper")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             RICE = GTLITE_ITEMS.addItem(9267, "crop.rice")
                 .addOreDict("cropRice")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             WHITE_GRAPE = GTLITE_ITEMS.addItem(9268, "crop.white_grape")
                 .addComponents(FoodBehavior(1, 1f))
@@ -1105,34 +1154,41 @@ class GTLiteMetaItems
                 .addOreDict("fruitGrape")
                 .addOreDict("fruitWhiteGrape")
                 .addOreDict("cropWhiteGrape")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             COTTON = GTLITE_ITEMS.addItem(9269, "crop.cotton")
                 .addOreDict("cropCotton")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             // ...
 
             GRAPE_JUICE = GTLITE_ITEMS.addItem(9051, "food.drink.grape_juice")
                 .addComponents(FoodBehavior(3, 0.2F, true, true, ItemStack(Items.GLASS_BOTTLE)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             RED_WINE = GTLITE_ITEMS.addItem(9052, "food.drink.red_wine")
                 .addComponents(FoodBehavior(4, 0.7f, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 30 * SECOND, 0, 100 - 60),
                     RandomPotionEffect(MobEffects.RESISTANCE, 20 * SECOND, 0, 100 - 40))
                     .setEatingDuration(8 * SECOND + 16 * TICK))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             VINEGAR = GTLITE_ITEMS.addItem(9053, "food.drink.vinegar")
                 .addComponents(FoodBehavior(2, 0.5f, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.RESISTANCE, 10 * SECOND, 0, 100 - 30)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             POTATO_JUICE = GTLITE_ITEMS.addItem(9054, "food.drink.potato_juice")
                 .addComponents(FoodBehavior(4, 0.4F, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             VODKA = GTLITE_ITEMS.addItem(9055, "food.drink.vodka")
                 .addComponents(FoodBehavior(4, 0.8F, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 20 * SECOND, 0, 100 - 80),
                     RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 80))
                     .setEatingDuration(6 * SECOND + 10 * TICK))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
         }
 

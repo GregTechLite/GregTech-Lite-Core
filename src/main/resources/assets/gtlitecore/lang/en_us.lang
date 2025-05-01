@@ -2885,6 +2885,7 @@ gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收�
 itemGroup.gtlite=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines
 itemGroup.gtlite.decoration=GregTech Lite | Decorations
+itemGroup.gtlite.food=GregTech Lite | Foods
 
 # Commands
 gtlitecore.command.component.usage=Usage: /gtlite component
