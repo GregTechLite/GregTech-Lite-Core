@@ -614,7 +614,7 @@ class GTLiteRecipeMaps
             .itemOutputs(3)
             .fluidInputs(3)
             .fluidOutputs(2)
-            .itemSlotOverlay(GuiTextures.HEATING_OVERLAY_1, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
             .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
             .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
             .sound(GTSoundEvents.MIXER)

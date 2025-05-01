@@ -59,7 +59,9 @@ import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.chain.ZylonChain
 import magicbook.gtlitecore.loader.recipe.chain.food.AdditivesChain
+import magicbook.gtlitecore.loader.recipe.chain.food.CornChain
 import magicbook.gtlitecore.loader.recipe.chain.food.PurpleDrinkChain
+import magicbook.gtlitecore.loader.recipe.chain.food.UtensilsChain
 import magicbook.gtlitecore.loader.recipe.chain.food.VinegarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.WinesChain
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
@@ -216,9 +218,11 @@ class RecipeManager
             FullereneChain.init()
 
             AdditivesChain.init()
+            UtensilsChain.init()
             WinesChain.init()
             PurpleDrinkChain.init()
             VinegarChain.init()
+            CornChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

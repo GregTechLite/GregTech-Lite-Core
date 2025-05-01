@@ -12,6 +12,7 @@ import gregtech.api.unification.stack.MaterialStack
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -374,11 +375,17 @@ class GTLiteMetaItems
         lateinit var WHITE_GRAPE: MetaItem<*>.MetaValueItem
         lateinit var COTTON: MetaItem<*>.MetaValueItem
 
+        lateinit var CLAY_BOWL: MetaItem<*>.MetaValueItem
+        lateinit var CERAMIC_BOWL: MetaItem<*>.MetaValueItem
+        lateinit var DIRTY_CERAMIC_BOWL: MetaItem<*>.MetaValueItem
+
         lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
         lateinit var RED_WINE: MetaItem<*>.MetaValueItem
         lateinit var VINEGAR: MetaItem<*>.MetaValueItem
         lateinit var POTATO_JUICE: MetaItem<*>.MetaValueItem
         lateinit var VODKA: MetaItem<*>.MetaValueItem
+
+        lateinit var POLENTA: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1162,32 +1169,49 @@ class GTLiteMetaItems
 
             // ...
 
-            GRAPE_JUICE = GTLITE_ITEMS.addItem(9051, "food.drink.grape_juice")
+            // 9401-9450: Utensils
+            CLAY_BOWL = GTLITE_ITEMS.addItem(9401, "food.utensil.component.clay_bowl")
+            CERAMIC_BOWL = GTLITE_ITEMS.addItem(9402, "food.utensil.ceramic_bowl")
+            DIRTY_CERAMIC_BOWL = GTLITE_ITEMS.addItem(9403, "food.utensil.dirty_ceramic_bowl")
+
+            // 9451-9500: Drinks
+            GRAPE_JUICE = GTLITE_ITEMS.addItem(9451, "food.drink.grape_juice")
                 .addComponents(FoodBehavior(3, 0.2F, true, true, ItemStack(Items.GLASS_BOTTLE)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
-            RED_WINE = GTLITE_ITEMS.addItem(9052, "food.drink.red_wine")
+            RED_WINE = GTLITE_ITEMS.addItem(9452, "food.drink.red_wine")
                 .addComponents(FoodBehavior(4, 0.7f, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 30 * SECOND, 0, 100 - 60),
                     RandomPotionEffect(MobEffects.RESISTANCE, 20 * SECOND, 0, 100 - 40))
                     .setEatingDuration(8 * SECOND + 16 * TICK))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
-            VINEGAR = GTLITE_ITEMS.addItem(9053, "food.drink.vinegar")
+            VINEGAR = GTLITE_ITEMS.addItem(9453, "food.drink.vinegar")
                 .addComponents(FoodBehavior(2, 0.5f, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.RESISTANCE, 10 * SECOND, 0, 100 - 30)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
-            POTATO_JUICE = GTLITE_ITEMS.addItem(9054, "food.drink.potato_juice")
+            POTATO_JUICE = GTLITE_ITEMS.addItem(9454, "food.drink.potato_juice")
                 .addComponents(FoodBehavior(4, 0.4F, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
-            VODKA = GTLITE_ITEMS.addItem(9055, "food.drink.vodka")
+            VODKA = GTLITE_ITEMS.addItem(9455, "food.drink.vodka")
                 .addComponents(FoodBehavior(4, 0.8F, true, true, ItemStack(Items.GLASS_BOTTLE),
                     RandomPotionEffect(MobEffects.NAUSEA, 20 * SECOND, 0, 100 - 80),
                     RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 80))
                     .setEatingDuration(6 * SECOND + 10 * TICK))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            // 9501-9550: Congees and Soups
+            POLENTA = GTLITE_ITEMS.addItem(9501, "food.polenta")
+                .addComponents(TooltipBehavior { lines ->
+                    lines.add(I18n.format("metaitem.food.polenta.tooltip.1"))
+                    lines.add(I18n.format("metaitem.food.polenta.tooltip.2"))
+                })
+                .addComponents(FoodBehavior(6, 0.4F)
+                    .setReturnStack(DIRTY_CERAMIC_BOWL)
+                    .setPotionEffects(RandomPotionEffect(MobEffects.SATURATION, 20, 0, 100 - 50)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
         }

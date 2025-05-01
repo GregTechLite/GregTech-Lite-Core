@@ -82,6 +82,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
@@ -243,7 +244,13 @@ class GTLiteUnknownCompositionMaterials
                 .color(averageRGB(2, PotatoJuice.materialRGB, Water.materialRGB))
                 .build()
 
-            // 12046-12049 for other drinks.
+            // 12046 Polenta
+            Polenta = Material.Builder(12046, gtliteId("polenta"))
+                .liquid()
+                .color(0xBBA844)
+                .build()
+
+            // 12047-12049 for other drinks.
             // ...
 
             // 12050 Carbon 5 Fraction

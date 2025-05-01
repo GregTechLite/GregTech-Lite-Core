@@ -1062,6 +1062,10 @@ metaitem.crop.rice.name=大米
 metaitem.crop.white_grape.name=白葡萄
 metaitem.crop.cotton.name=棉花
 
+metaitem.food.utensil.component.clay_bowl.name=Clay Bowl
+metaitem.food.utensil.ceramic_bowl.name=Ceramic Bowl
+metaitem.food.utensil.dirty_ceramic_bowl.name=Dirty Ceramic Bowl
+
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
 metaitem.food.drink.red_wine.name=Red Wine
@@ -1072,6 +1076,15 @@ metaitem.food.drink.potato_juice.name=Potato Juice
 metaitem.food.drink.potato_juice.tooltip=Hey! You'd better not drink it, it's never sold in stores...
 metaitem.food.drink.vodka.name=Vodka
 metaitem.food.drink.vodka.tooltip=Water of Life
+
+metaitem.food.polenta.name=Polenta
+metaitem.food.polenta.tooltip.1=Commonly found in Italian cuisine and called it by Polenta.
+metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East Africa.
+
+# Ore Dictionary Items
+metaitem.corn_kernel_gem_chipped.name=Corn Kernel
+metaitem.corn_cob_gem_flawed.name=Corn Cob
+metaitem.bare_corn_kernel_gem_chipped.name=Bare Corn Kernel
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -2747,6 +2760,7 @@ gtlitecore.material.red_wine=Red Wine
 gtlitecore.material.vinegar=Vinegar
 gtlitecore.material.potato_juice=Potato Juice
 gtlitecore.material.vodka=Vodka
+gtlitecore.material.polenta=Polenta
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction

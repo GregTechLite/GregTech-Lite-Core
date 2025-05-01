@@ -14,6 +14,7 @@ import magicbook.gtlitecore.common.command.CommandMaterialComponent;
 import magicbook.gtlitecore.common.cover.GTLiteCoverBehaviors;
 import magicbook.gtlitecore.common.entity.GTLiteMetaEntities;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
+import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems;
 import magicbook.gtlitecore.common.item.behavior.GTLiteBehaviors;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.advancement.AdvancementManager;
@@ -92,6 +93,7 @@ public class CoreModule implements IModule
         GTLiteStoneTypes.init();
         // Loading Gregtech MetaItems/MetaBlocks registries.
         GTLiteMetaItems.init();
+        GTLiteMetaOreDictItems.init();
         GTLiteMetaBlocks.init();
         // Loading API initializers and Gregtech API extensions.
         GTLiteAPI.init();

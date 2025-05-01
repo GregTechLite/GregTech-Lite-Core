@@ -1062,6 +1062,10 @@ metaitem.crop.rice.name=大米
 metaitem.crop.white_grape.name=白葡萄
 metaitem.crop.cotton.name=棉花
 
+metaitem.food.utensil.component.clay_bowl.name=粘土碗
+metaitem.food.utensil.ceramic_bowl.name=瓷碗
+metaitem.food.utensil.dirty_ceramic_bowl.name=脏瓷碗
+
 metaitem.food.drink.grape_juice.name=葡萄汁
 metaitem.food.drink.grape_juice.tooltip=富含糖分
 metaitem.food.drink.red_wine.name=红葡萄酒
@@ -1072,6 +1076,15 @@ metaitem.food.drink.potato_juice.name=土豆汁
 metaitem.food.drink.potato_juice.tooltip=嘿！你最好别喝它，毕竟商店里从来不会售卖它...
 metaitem.food.drink.vodka.name=伏特加
 metaitem.food.drink.vodka.tooltip=生命之水
+
+metaitem.food.polenta.name=玉米糊
+metaitem.food.polenta.tooltip.1=常见于意大利料理中，被称为波轮塔（Polenta）。
+metaitem.food.polenta.tooltip.2=在非洲东部也有更浓稠的玉米糊恩希玛（Eshima）。
+
+# Ore Dictionary Items
+metaitem.corn_kernel_gem_chipped.name=玉米粒
+metaitem.corn_cob_gem_flawed.name=玉米芯
+metaitem.bare_corn_kernel_gem_chipped.name=玉米籽
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -2751,6 +2764,7 @@ gtlitecore.material.red_wine=红葡萄酒
 gtlitecore.material.vinegar=醋
 gtlitecore.material.potato_juice=土豆汁
 gtlitecore.material.vodka=伏特加
+gtlitecore.material.polenta=玉米糊
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分

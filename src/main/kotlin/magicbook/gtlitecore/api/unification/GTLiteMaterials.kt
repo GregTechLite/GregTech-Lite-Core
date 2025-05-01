@@ -498,6 +498,7 @@ class GTLiteMaterials
         lateinit var Vinegar: Material
         lateinit var PotatoJuice: Material
         lateinit var Vodka: Material
+        lateinit var Polenta: Material
 
         lateinit var Carbon5Fraction: Material
         lateinit var DimerizedCarbon5Fraction: Material

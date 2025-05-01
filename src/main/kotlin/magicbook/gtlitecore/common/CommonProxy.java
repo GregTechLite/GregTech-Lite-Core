@@ -12,6 +12,7 @@ import magicbook.gtlitecore.common.block.blocks.GTLiteCropVariantBlock;
 import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock;
 import magicbook.gtlitecore.common.block.itemblocks.SheetedFrameItemBlock;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
+import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -33,6 +34,7 @@ public class CommonProxy
     public void onPreInit()
     {
         GTLiteRecipeMaps.preInit();
+        GTLiteMetaOreDictItems.register();
     }
 
     @SubscribeEvent
