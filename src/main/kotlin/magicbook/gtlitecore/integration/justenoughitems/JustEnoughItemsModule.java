@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.integration.jei;
+package magicbook.gtlitecore.integration.justenoughitems;
 
 import magicbook.gtlitecore.api.module.Module;
 import magicbook.gtlitecore.api.utils.GTLiteValues;

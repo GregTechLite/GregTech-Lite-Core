@@ -1,10 +1,10 @@
-package magicbook.gtlitecore.integration.top;
+package magicbook.gtlitecore.integration.theoneprobe;
 
 import magicbook.gtlitecore.api.module.Module;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.core.module.GTLiteModules;
 import magicbook.gtlitecore.integration.IntegrationSubModule;
-import magicbook.gtlitecore.integration.top.provider.DelegatorInfoProvider;
+import magicbook.gtlitecore.integration.theoneprobe.provider.DelegatorInfoProvider;
 import mcjty.theoneprobe.TheOneProbe;
 import mcjty.theoneprobe.api.ITheOneProbe;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import static magicbook.gtlitecore.integration.groovyscript.hooks.GrSRecipeHooks.MINUTE;
+import static magicbook.gtlitecore.api.utils.GTLiteValues.MINUTE;
 
 public class BlockLeptonicCharge extends BlockGTExplosive
 {

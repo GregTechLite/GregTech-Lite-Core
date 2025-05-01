@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.integration.top.provider
+package magicbook.gtlitecore.integration.theoneprobe.provider
 
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
