@@ -69,7 +69,7 @@ class GTLiteBehaviors
             GTLiteMetaItems.RICE_SEED.addComponents(CropSeedBehavior(WorldGenCrops.RICE_CROP,
                 GTLiteMetaItems.RICE_SEED, GTLiteMetaItems.RICE))
 
-            GTLiteMetaItems.WHITE_GRAPE.addComponents(CropSeedBehavior(WorldGenCrops.WHITE_GRAPE_CROP,
+            GTLiteMetaItems.WHITE_GRAPE_SEED.addComponents(CropSeedBehavior(WorldGenCrops.WHITE_GRAPE_CROP,
                 GTLiteMetaItems.WHITE_GRAPE_SEED, GTLiteMetaItems.WHITE_GRAPE))
 
             GTLiteMetaItems.COTTON_SEED.addComponents(CropSeedBehavior(WorldGenCrops.COTTON_CROP,

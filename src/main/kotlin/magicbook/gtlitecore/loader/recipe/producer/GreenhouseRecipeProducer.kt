@@ -20,14 +20,52 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.APRICOT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ARTICHOKE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ARTICHOKE_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.AUBERGINE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.AUBERGINE_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BANANA
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BASIL
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BASIL_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BEAN
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BEAN_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACK_PEPPER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACK_PEPPER_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COCONUT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_CHERRY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CORN
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CORN_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COTTON
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COTTON_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CUCUMBER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CUCUMBER_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GARLIC_BULB
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GARLIC_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HORSERADISH
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HORSERADISH_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LEMON
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LIME
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MANGO
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NUTMEG
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OLIVE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ONION
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ONION_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ORANGE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OREGANO
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OREGANO_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PEA
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PEA_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RICE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RICE_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SOYBEAN
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SOY_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TOMATO
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TOMATO_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WHITE_GRAPE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WHITE_GRAPE_SEED
 import net.minecraft.block.Block
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
@@ -161,7 +199,132 @@ class GreenhouseRecipeProducer
                 null, RainbowSap) // Rainbow wood doesn't have any apple stack products.
 
             // =========================================================================================================
-            // TODO Crops
+            // Crops growing.
+
+            // Vanilla crops
+
+            // Wheat
+            addGreenhouseRecipes(ItemStack(Items.WHEAT_SEEDS, 6),
+                ItemStack(Items.WHEAT, 12),
+                ItemStack(Items.WHEAT_SEEDS, 6))
+
+            // Pumpkin
+            addGreenhouseRecipes(ItemStack(Items.PUMPKIN_SEEDS, 6),
+                ItemStack(Blocks.PUMPKIN, 12),
+                ItemStack(Items.PUMPKIN_SEEDS, 6))
+
+            // Melon
+            addGreenhouseRecipes(ItemStack(Items.MELON_SEEDS, 6),
+                ItemStack(Blocks.MELON_BLOCK, 12),
+                ItemStack(Items.MELON_SEEDS, 6),
+                ItemStack(Items.MELON))
+
+            // Beetroot
+            addGreenhouseRecipes(ItemStack(Items.BEETROOT_SEEDS, 6),
+                ItemStack(Items.BEETROOT, 12),
+                ItemStack(Items.BEETROOT_SEEDS, 6))
+
+            // Coco
+            addGreenhouseRecipes(ItemStack(Items.DYE, 6, 3),
+                ItemStack(Items.DYE, 12, 3),
+                ItemStack(Items.DYE, 6, 3))
+
+            // Mods crops
+
+            // Coffee
+            addGreenhouseRecipes(COFFEE_SEED.getStackForm(6),
+                COFFEE_CHERRY.getStackForm(12),
+                COFFEE_SEED.getStackForm(6))
+
+            // Tomato
+            addGreenhouseRecipes(TOMATO_SEED.getStackForm(6),
+                TOMATO.getStackForm(12),
+                TOMATO_SEED.getStackForm(6))
+
+            // Onion
+            addGreenhouseRecipes(ONION_SEED.getStackForm(6),
+                ONION.getStackForm(12),
+                ONION_SEED.getStackForm(6))
+
+            // Cucumber
+            addGreenhouseRecipes(CUCUMBER_SEED.getStackForm(6),
+                CUCUMBER.getStackForm(12),
+                CUCUMBER_SEED.getStackForm(6))
+
+            // Grape
+            addGreenhouseRecipes(GRAPE_SEED.getStackForm(6),
+                GRAPE.getStackForm(12),
+                GRAPE_SEED.getStackForm(6))
+
+            // Soy
+            addGreenhouseRecipes(SOY_SEED.getStackForm(6),
+                SOYBEAN.getStackForm(12),
+                SOY_SEED.getStackForm(6))
+
+            // Bean
+            addGreenhouseRecipes(BEAN_SEED.getStackForm(6),
+                BEAN.getStackForm(12),
+                BEAN_SEED.getStackForm(6))
+
+            // Pea
+            addGreenhouseRecipes(PEA_SEED.getStackForm(6),
+                PEA.getStackForm(12),
+                PEA_SEED.getStackForm(6))
+
+            // Oregano
+            addGreenhouseRecipes(OREGANO_SEED.getStackForm(6),
+                OREGANO.getStackForm(12),
+                OREGANO_SEED.getStackForm(6))
+
+            // Horseradish
+            addGreenhouseRecipes(HORSERADISH_SEED.getStackForm(6),
+                HORSERADISH.getStackForm(12),
+                HORSERADISH_SEED.getStackForm(6))
+
+            // Garlic
+            addGreenhouseRecipes(GARLIC_SEED.getStackForm(6),
+                GARLIC_BULB.getStackForm(12),
+                GARLIC_SEED.getStackForm(6))
+
+            // Basil
+            addGreenhouseRecipes(BASIL_SEED.getStackForm(6),
+                BASIL.getStackForm(12),
+                BASIL_SEED.getStackForm(6))
+
+            // Aubergine
+            addGreenhouseRecipes(AUBERGINE_SEED.getStackForm(6),
+                AUBERGINE.getStackForm(12),
+                AUBERGINE_SEED.getStackForm(6))
+
+            // Corn
+            addGreenhouseRecipes(CORN_SEED.getStackForm(6),
+                CORN.getStackForm(12),
+                CORN_SEED.getStackForm(6))
+
+            // Artichoke
+            addGreenhouseRecipes(ARTICHOKE_SEED.getStackForm(6),
+                ARTICHOKE.getStackForm(12),
+                ARTICHOKE_SEED.getStackForm(6))
+
+            // Black pepper
+            addGreenhouseRecipes(BLACK_PEPPER_SEED.getStackForm(6),
+                BLACK_PEPPER.getStackForm(12),
+                BLACK_PEPPER_SEED.getStackForm(6))
+
+            // Rice
+            addGreenhouseRecipes(RICE_SEED.getStackForm(6),
+                RICE.getStackForm(12),
+                RICE_SEED.getStackForm(6))
+
+            // White grape
+            addGreenhouseRecipes(WHITE_GRAPE_SEED.getStackForm(6),
+                WHITE_GRAPE.getStackForm(12),
+                WHITE_GRAPE_SEED.getStackForm(6))
+
+            // Cotton
+            addGreenhouseRecipes(COTTON_SEED.getStackForm(6),
+                COTTON.getStackForm(12),
+                COTTON_SEED.getStackForm(6))
 
         }
 

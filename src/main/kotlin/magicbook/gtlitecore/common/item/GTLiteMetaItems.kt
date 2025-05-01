@@ -992,7 +992,7 @@ class GTLiteMetaItems
                 .addOreDict("seedTomato")
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
-            ONION_SEED = GTLITE_ITEMS.addItem(9203, "crop.seed.tomato")
+            ONION_SEED = GTLITE_ITEMS.addItem(9203, "crop.seed.onion")
                 .addOreDict("seedOnion")
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
