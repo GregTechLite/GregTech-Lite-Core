@@ -264,6 +264,9 @@ dependencies {
     // JHeaps 0.14
     implementation("org.jheaps:jheaps:0.14")
 
+    // JOML 1.10.4
+    implementation("org.joml:joml:1.10.4")
+
     // Kotson 2.5.0
     compileOnly("com.github.salomonbrys.kotson:kotson:2.5.0")
 
@@ -275,6 +278,9 @@ dependencies {
             isTransitive = false
         }
         shadowImplementation("org.jheaps:jheaps:0.14") {
+            isTransitive = false
+        }
+        shadowImplementation("org.joml:joml:1.10.4") {
             isTransitive = false
         }
     }
@@ -341,6 +347,7 @@ if (usesShadowJar.toBoolean()) {
         dependencies {
             include(dependency("one.util:streamex:.*"))
             include(dependency("org.jheaps:jheaps:0.14:.*"))
+            include(dependency("org.joml:joml:1.10.4:.*"))
             exclude(dependency(files("libs/gregtech-1.12.2-master.jar")))
         }
 
@@ -349,7 +356,8 @@ if (usesShadowJar.toBoolean()) {
 
         minimize {
             exclude(dependency("one.util:streamex.*"))
-            exclude(dependency("org.jheaps:jheaps:0.14.*"))
+            exclude(dependency("org.jheaps:jheaps.*"))
+            exclude(dependency("org.joml:joml.*"))
         }
     }
 }
