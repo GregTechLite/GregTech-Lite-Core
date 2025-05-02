@@ -40,10 +40,14 @@ The Spiritual Successor of Gregicality Legacy.
 
 Thanks for all the credit authors, it's your hard work that has brought about these wonderful contents:
 
-- Dynamic circuits textures, infinity and cosmic neutronium textures, some multiblock structures, some machine overlay textures are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
+- Dynamic circuits textures, infinity and cosmic neutronium textures, some multiblock structures, some machine overlay textures, Power IC textures are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
   this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GT5-Unofficial/blob/master/LICENSE.txt).
 - Laser textures, Nanoscale Fabricator overlay textures, Burner/Cryogenic Reactor overlay textures, Rolling Pin textures and Crucible textures are from [GregTech 6](https://github.com/GregTech6/gregtech6),
   this mod is on [GNU GPL-3.0 License](https://github.com/GregTech6/gregtech6/blob/master/LICENSE).
+- Circuit board textures, higher SMD textures, some multiblock structures and overlay textures, recipe maps and chemistry processings are from [Gregicality Science](https://github.com/GregTechCEu/gregicality-science), 
+  this mod is on [MIT License](https://github.com/GregTechCEu/gregicality-science/blob/master/LICENSE).
+- Some chemical processings, metal casing texture templates, fusion casing texture templates are from [Gregicality Legacy](https://github.com/GregTechCEu/gregicality-legacy),
+  this mod is on [GNU GPL-3.0 License](https://github.com/GregTechCEu/gregicality-legacy/blob/master/LICENSE).
 - Tree textures, some food textures and machine textures, a part of world generator codes and machine logic codes are from [GregTechFoodOption](https://github.com/bruberu/GregTechFoodOption),
   this mod is on [GNU LGPL-3.0 License](https://github.com/bruberu/GregTechFoodOption/blob/master/LICENSE.txt).
 - Vertex Buffer Objects (VBO), quads, some JOML extends utilities and some renderer codes are from [GTNHLib](https://github.com/GTNewHorizons/GTNHLib),
