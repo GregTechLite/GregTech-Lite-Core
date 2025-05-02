@@ -284,6 +284,9 @@ class GTLiteMaterials
         lateinit var SodiumThiosulfate: Material
         lateinit var LithiumThiinediselenide: Material
         lateinit var BETSPerrhenate: Material
+        lateinit var HeliumNeon: Material
+        lateinit var GermaniumTetrachloride: Material
+        lateinit var SiliconTetrachloride: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material

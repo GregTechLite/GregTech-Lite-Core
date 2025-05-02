@@ -855,6 +855,17 @@ metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=Bridge the Crys
 metaitem.circuit.component.bz_reaction_chamber.name=Belousov-Zhabotinsky Oscillation Reaction Chamber
 metaitem.circuit.component.nonlinear_chemical_oscillator.name=Nonlinear Chemical Oscillator
 metaitem.circuit.component.nonlinear_chemical_oscillator.tooltip=Non-Equilibrium Thermodynamics!
+metaitem.circuit.component.laser.empty.name=Empty Laser
+metaitem.circuit.component.laser.empty.tooltip=需要导光介质填充
+metaitem.circuit.component.laser.helium_neon.name=Helium-Neon Laser
+metaitem.circuit.component.laser.helium_neon.tooltip=用于弱光学设备
+metaitem.circuit.component.laser.nd_yag.name=Nd:YAG Laser
+metaitem.circuit.component.laser.nd_yag.tooltip=用于强光学设备
+
+metaitem.circuit.component.optical_laser_control_unit.name=Optical Laser Control Unit
+metaitem.circuit.component.optical_laser_control_unit.tooltip=激光信息传输
+metaitem.circuit.component.optical_fiber.name=Optical Fiber
+metaitem.circuit.component.optical_fiber.tooltip=透光玻璃
 
 metaitem.boule.hassium.name=Hassium-doped Monocrystalline Silicon Boule
 
@@ -891,6 +902,10 @@ metaitem.wafer.crystal_interface.name=Crystal Interface Wafer
 metaitem.wafer.crystal_interface.tooltip=Raw Crystal Interface
 metaitem.wafer.chip.crystal_interface.name=Crystal Interface Chip
 metaitem.wafer.chip.crystal_interface.tooltip=Crystal Interface
+metaitem.wafer.chip.phase_change_ram.name=相变随机存取存储器（PRAM）晶片
+metaitem.wafer.chip.phase_change_ram.tooltip=相变随机存取存储器
+metaitem.wafer.chip.all_optical_cascade_nor.name=全光级联逻辑或非门（ACNOR）晶片
+metaitem.wafer.chip.all_optical_cascade_nor.tooltip=光级联逻辑或非门
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -988,6 +1003,7 @@ metaitem.wrap.crystal.central_processing_unit.name=Wrap Crystal Central Processi
 metaitem.wrap.crystal.system_on_chip.name=Wrap Crystal System On Chip
 metaitem.wrap.circuit.component.neuro_processor.name=Wrap Neuro Processor
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=Wrap Nonlinear Chemical Oscillator
+metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Laser Control Unit
 
 metaitem.wrap.circuit.generic.ulv.name=Wrap §8ULV§f Circuit
 metaitem.wrap.circuit.generic.lv.name=Wrap §7LV§f Circuit
@@ -2554,6 +2570,7 @@ gtlitecore.material.uranyl_nitrate=Uranyl Nitrate
 gtlitecore.material.barium_oxide=Barium Oxide
 gtlitecore.material.woods_glass=Woods Glass
 item.gtlitecore.material.woods_glass.ingot=Woods Glass Bar
+item.gtlitecore.material.woods_glass.wireFine=Woods Glass Fiber
 gtlitecore.material.potassium_tertbutoxide=Potassium Tertbutoxide
 gtlitecore.material.caesium_hydroxide=Caesium Hydroxide
 gtlitecore.material.caesium_carbonate=Caesium Carbonate
@@ -2566,6 +2583,9 @@ gtlitecore.material.sodium_formate=Sodium Formate
 gtlitecore.material.sodium_thiosulfate=Sodium Thiosulfate
 gtlitecore.material.lithium_thiinediselenide=Lithium Thiinediselenide
 gtlitecore.material.bets_perrhenate=Bis-(Ethylenedithio)-Tetraselenafulvalene Perrhenate (BETSP)
+gtlitecore.material.helium_neon=Helium-Neon Mixture
+gtlitecore.material.germanium_tetrachloride=Germanium Tetrachloride
+gtlitecore.material.silicon_tetrachloride=Silicon Tetrachloride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

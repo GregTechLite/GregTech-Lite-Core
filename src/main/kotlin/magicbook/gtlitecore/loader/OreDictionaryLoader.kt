@@ -17,6 +17,7 @@ import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.stack.ItemMaterialInfo
@@ -74,6 +75,7 @@ class OreDictionaryLoader
             {
                 OreDictionary.registerOre("plateAnyRubber", OreDictUnifier.get(plate, rubber))
                 OreDictionary.registerOre("ringAnyRubber", OreDictUnifier.get(ring, rubber))
+                OreDictionary.registerOre("foilAnyRubber", OreDictUnifier.get(foil, rubber))
             }
 
             for (rubber in arrayOf(StyreneButadieneRubber, SiliconeRubber,
@@ -81,12 +83,14 @@ class OreDictionaryLoader
             {
                 OreDictionary.registerOre("plateAnySyntheticRubber", OreDictUnifier.get(plate, rubber))
                 OreDictionary.registerOre("ringAnySyntheticRubber", OreDictUnifier.get(ring, rubber))
+                OreDictionary.registerOre("foilAnySyntheticRubber", OreDictUnifier.get(foil, rubber))
             }
 
             for (rubber in arrayOf(PolyphosphonitrileFluoroRubber, PolytetramethyleneGlycolRubber))
             {
                 OreDictionary.registerOre("plateAnyAdvancedSyntheticRubber", OreDictUnifier.get(plate, rubber))
                 OreDictionary.registerOre("ringAnyAdvancedSyntheticRubber", OreDictUnifier.get(ring, rubber))
+                OreDictionary.registerOre("foilAnyAdvancedSyntheticRubber", OreDictUnifier.get(foil, rubber))
             }
 
             // sheetedFrame

@@ -190,6 +190,12 @@ class GTLiteMetaItems
         lateinit var CRYSTAL_SOC_SOCKET: MetaItem<*>.MetaValueItem
         lateinit var BZ_REACTION_CHAMBER: MetaItem<*>.MetaValueItem
         lateinit var NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
+        lateinit var EMPTY_LASER: MetaItem<*>.MetaValueItem
+        lateinit var HELIUM_NEON_LASER: MetaItem<*>.MetaValueItem
+        lateinit var ND_YAG_LASER: MetaItem<*>.MetaValueItem
+
+        lateinit var OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var OPTICAL_FIBER: MetaItem<*>.MetaValueItem
 
         lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
 
@@ -212,6 +218,8 @@ class GTLiteMetaItems
         lateinit var EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER: MetaItem<*>.MetaValueItem
         lateinit var CRYSTAL_INTERFACE_WAFER: MetaItem<*>.MetaValueItem
         lateinit var CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var PHASE_CHANGE_RAM_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ALL_OPTICAL_CASCADE_NOR_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -292,6 +300,7 @@ class GTLiteMetaItems
         lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_ENGRAVED_LAPOTRON_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
@@ -779,6 +788,14 @@ class GTLiteMetaItems
             CRYSTAL_SOC_SOCKET = GTLITE_ITEMS.addItem(1114, "circuit.component.crystal_system_on_chip_socket")
             BZ_REACTION_CHAMBER = GTLITE_ITEMS.addItem(1115, "circuit.component.bz_reaction_chamber")
             NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(1116, "circuit.component.nonlinear_chemical_oscillator")
+            EMPTY_LASER = GTLITE_ITEMS.addItem(1117, "circuit.component.laser.empty")
+            HELIUM_NEON_LASER = GTLITE_ITEMS.addItem(1118, "circuit.component.laser.helium_neon")
+            ND_YAG_LASER = GTLITE_ITEMS.addItem(1119, "circuit.component.laser.nd_yag")
+
+            // 1120-1125 for other lasers if it is existed in the future.
+
+            OPTICAL_LASER_CONTROL_UNIT = GTLITE_ITEMS.addItem(1126, "circuit.component.optical_laser_control_unit")
+            OPTICAL_FIBER = GTLITE_ITEMS.addItem(1127, "circuit.component.optical_fiber")
 
             // 2001-2500: Boules and Wafers.
             HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
@@ -802,6 +819,8 @@ class GTLiteMetaItems
             EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER = GTLITE_ITEMS.addItem(2402, "wafer.cubic_zirconia.europium")
             CRYSTAL_INTERFACE_WAFER = GTLITE_ITEMS.addItem(2403, "wafer.crystal_interface")
             CRYSTAL_INTERFACE_CHIP = GTLITE_ITEMS.addItem(2404, "wafer.chip.crystal_interface")
+            PHASE_CHANGE_RAM_CHIP = GTLITE_ITEMS.addItem(2405, "wafer.chip.phase_change_ram")
+            ALL_OPTICAL_CASCADE_NOR_CHIP = GTLITE_ITEMS.addItem(2406, "wafer.chip.all_optical_cascade_nor")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")
@@ -892,6 +911,7 @@ class GTLiteMetaItems
             WRAP_CRYSTAL_SOC = GTLITE_ITEMS.addItem(3102, "wrap.crystal.system_on_chip")
             WRAP_NEURO_PROCESSOR = GTLITE_ITEMS.addItem(3103, "wrap.circuit.component.neuro_processor")
             WRAP_NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(3104, "wrap.circuit.component.nonlinear_chemical_oscillator")
+            WRAP_OPTICAL_LASER_CONTROL_UNIT = GTLITE_ITEMS.addItem(3105, "wrap.circuit.component.optical_laser_control_unit")
 
             WRAP_CIRCUIT_ULV = GTLITE_ITEMS.addItem(3201, "wrap.circuit.generic.ulv")
             WRAP_CIRCUIT_LV = GTLITE_ITEMS.addItem(3202, "wrap.circuit.generic.lv")

@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -64,6 +65,7 @@ import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Neodymium
+import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Nitrogen
@@ -262,9 +264,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapheneOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyAlkaliChloridesSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Heterodiamond
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexachloroplatinicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
@@ -365,6 +369,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOx
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeleniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarbonate
@@ -2339,7 +2344,7 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .color(0xD27700).iconSet(SHINY)
                 .components(Lithium, 1, Niobium, 1, Oxygen, 4)
-                .flags(DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_PLATE, GENERATE_LENS)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_LENS, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(3226, BlastProperty.GasTier.HIGH) // Nichrome
                         .blastStats(VA[ZPM], 40 * SECOND)
@@ -2523,7 +2528,7 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .color(0x730099).iconSet(SHINY)
                 .components(SodaAsh, 6, SiliconDioxide, 3, BariumOxide, 2, Garnierite, 2)
-                .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE)
+                .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .blast { b ->
                     b.temp(1163, BlastProperty.GasTier.MID)
                         .blastStats(VA[IV])
@@ -2623,6 +2628,30 @@ class GTLiteFirstDegreeMaterials
                 .components(Rhenium, 1, Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4, Oxygen, 4)
                 .build()
                 .setFormula("(C10H8S4Se4)ReO4", true)
+
+            // 2258 Helium-Neon
+            HeliumNeon = Material.Builder(2258, gtliteId("helium_neon"))
+                .gas()
+                .color(0xFF0080)
+                .components(Helium, 1, Neon, 1)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
+                .build()
+
+            // 2259 Germanium Tetrachloride
+            GermaniumTetrachloride = Material.Builder(2259, gtliteId("germanium_tetrachloride"))
+                .liquid()
+                .color(0x787878)
+                .components(Germanium, 1, Chlorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2260 Silicon Tetrachloride
+            SiliconTetrachloride = Material.Builder(2260, gtliteId("silicon_tetrachloride"))
+                .liquid()
+                .color(0x5B5B7A)
+                .components(Silicon, 1, Chlorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
 
         }
 

@@ -99,6 +99,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_MAINFR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCESSOR_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_FIBER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
@@ -141,8 +142,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_LASER_CONTROL_UNIT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
@@ -157,6 +160,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SMD_TRANS
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_UHASOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ULTIMATE_CIRCUIT_BOARD
@@ -1041,6 +1045,35 @@ class CircuitAssemblyLineRecipeProducer
 
 
             // T9: Optical
+
+            // Optical Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_OPTICAL_SMD_RESISTOR, 24)
+                .input(WRAP_OPTICAL_SMD_CAPACITOR, 24)
+                .input(WRAP_OPTICAL_SMD_TRANSISTOR, 24)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_PROCESSOR_UV, 48)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_SPINTRONIC_SMD_RESISTOR, 6)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 6)
+                .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 6)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_PROCESSOR_UV, 48)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+                .buildAndRegister()
 
             // ---------------------------------------------------------------------------------------------------------
 

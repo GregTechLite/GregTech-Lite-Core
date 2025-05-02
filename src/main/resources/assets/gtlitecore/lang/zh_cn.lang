@@ -855,6 +855,17 @@ metaitem.circuit.component.crystal_system_on_chip_socket.tooltip=桥接晶体和
 metaitem.circuit.component.bz_reaction_chamber.name=别洛索夫-扎鲍京斯基振荡反应室
 metaitem.circuit.component.nonlinear_chemical_oscillator.name=非线性化学振荡器
 metaitem.circuit.component.nonlinear_chemical_oscillator.tooltip=非平衡热力学！
+metaitem.circuit.component.laser.empty.name=空激光镭射器
+metaitem.circuit.component.laser.empty.tooltip=需要导光介质填充
+metaitem.circuit.component.laser.helium_neon.name=氦氖混合气激光镭射器
+metaitem.circuit.component.laser.helium_neon.tooltip=用于弱光学设备
+metaitem.circuit.component.laser.nd_yag.name=钕掺杂的钇铝榴石激光镭射器
+metaitem.circuit.component.laser.nd_yag.tooltip=用于强光学设备
+
+metaitem.circuit.component.optical_laser_control_unit.name=光学激光控制单元
+metaitem.circuit.component.optical_laser_control_unit.tooltip=激光信息传输
+metaitem.circuit.component.optical_fiber.name=光纤
+metaitem.circuit.component.optical_fiber.tooltip=透光玻璃
 
 metaitem.boule.hassium.name=钅黑掺杂的单晶硅
 
@@ -891,6 +902,10 @@ metaitem.wafer.crystal_interface.name=晶体接口晶圆
 metaitem.wafer.crystal_interface.tooltip=晶体接口原料
 metaitem.wafer.chip.crystal_interface.name=晶体接口晶片
 metaitem.wafer.chip.crystal_interface.tooltip=晶体接口
+metaitem.wafer.chip.phase_change_ram.name=相变随机存取存储器（PRAM）晶片
+metaitem.wafer.chip.phase_change_ram.tooltip=相变随机存取存储器
+metaitem.wafer.chip.all_optical_cascade_nor.name=全光级联逻辑或非门（ACNOR）晶片
+metaitem.wafer.chip.all_optical_cascade_nor.tooltip=光级联逻辑或非门
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -988,6 +1003,7 @@ metaitem.wrap.crystal.central_processing_unit.name=封装晶体CPU
 metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC
 metaitem.wrap.circuit.component.neuro_processor.name=封装神经处理单元
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=封装非线性化学振荡器
+metaitem.wrap.circuit.component.optical_laser_control_unit.name=封装光学激光控制单元
 
 metaitem.wrap.circuit.generic.ulv.name=封装电路板（§8ULV§f）
 metaitem.wrap.circuit.generic.lv.name=封装电路板（§7LV§f）
@@ -2559,6 +2575,7 @@ gtlitecore.material.uranyl_nitrate=无水硝酸铀酰
 gtlitecore.material.barium_oxide=氧化钡
 gtlitecore.material.woods_glass=伍兹玻璃
 item.gtlitecore.material.woods_glass.ingot=伍兹玻璃条
+item.gtlitecore.material.woods_glass.wireFine=伍兹玻璃纤维
 gtlitecore.material.potassium_tertbutoxide=叔丁醇钾
 gtlitecore.material.caesium_hydroxide=氢氧化铯
 gtlitecore.material.caesium_carbonate=碳酸铯
@@ -2571,6 +2588,9 @@ gtlitecore.material.sodium_formate=甲酸钠
 gtlitecore.material.sodium_thiosulfate=硫代硫酸钠
 gtlitecore.material.lithium_thiinediselenide=二硒醚合硫锂
 gtlitecore.material.bets_perrhenate=高铼酸双(乙烯二硫代)四硒富瓦烯（BETSP）
+gtlitecore.material.helium_neon=氦氖混合气
+gtlitecore.material.germanium_tetrachloride=四氯化锗
+gtlitecore.material.silicon_tetrachloride=四氯化硅
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

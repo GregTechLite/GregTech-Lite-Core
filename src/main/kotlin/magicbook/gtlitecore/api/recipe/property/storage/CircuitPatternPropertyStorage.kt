@@ -36,6 +36,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_ASSEMB
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_COMPUTER_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_MAINFRAME_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCESSOR_ZPM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer.Companion.getCircuit
@@ -96,6 +100,10 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(GOOWARE_MAINFRAME_UEV))
 
             // T9: Optical
+            CircuitPatternProperty.register(getCircuit(OPTICAL_PROCESSOR_UV))
+            CircuitPatternProperty.register(getCircuit(OPTICAL_ASSEMBLY_UHV))
+            CircuitPatternProperty.register(getCircuit(OPTICAL_COMPUTER_UEV))
+            CircuitPatternProperty.register(getCircuit(OPTICAL_MAINFRAME_UIV))
 
             // T10: Spintronic
 
