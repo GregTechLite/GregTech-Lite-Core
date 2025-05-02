@@ -6,6 +6,7 @@ import codechicken.lib.vec.Matrix4
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.value.sync.DoubleSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
 import com.cleanroommc.modularui.widgets.ItemSlot
@@ -282,7 +283,7 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
                 .pos(76, 41)
                 .size(20, 15)
                 .texture(GTLiteMuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, 100)
-                .progress(recipeMapWorkable::getProgressPercent)
+                .value(DoubleSyncValue(recipeMapWorkable::getProgressPercent))
                 .direction(ProgressWidget.Direction.RIGHT))
     }
 
