@@ -36,6 +36,9 @@ class GTLiteMaterialIconSet
         val HALKONITE = MaterialIconSetWithRenderer("halkonite", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
+        @JvmField
+        val DEGENERATE = MaterialIconSet("degenerate", null, true)
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

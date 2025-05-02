@@ -23,7 +23,9 @@ import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.STD_METAL
+import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
@@ -48,6 +50,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminooxyac
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminophenol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCyanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzylBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzyltrimethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
@@ -56,6 +59,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bistrichlo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Borazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BromoBromomethylNaphthalene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromobutane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromodihydrothiine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromomethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanediol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanol
@@ -69,6 +73,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diacetyl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diaminotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diborane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibromoacrolein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibromomethylbenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dichloroethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dichloromethane
@@ -98,9 +103,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorobenz
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Formaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FormicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fructose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GammaButyrolactone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GeodesicPolyarene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glucose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardReagent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
@@ -127,6 +134,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitrotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OctafluoroPentanol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OxalicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Oxydianiline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ParaPhenylenediamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ParaToluicAcid
@@ -1242,6 +1250,52 @@ class GTLiteOrganicChemistryMaterials
                 .color(0x72556A).iconSet(BRIGHT)
                 .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .components(Carbon, 60)
+                .build()
+
+            // 8133 Glucose
+            Glucose = Material.Builder(8133, gtliteId("glucose"))
+                .dust()
+                .color(Sugar.materialRGB + 5).iconSet(ROUGH)
+                .components(Carbon, 6, Hydrogen, 12, Oxygen, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8134 Fructose
+            Fructose = Material.Builder(8134, gtliteId("fructose"))
+                .dust()
+                .color(Sugar.materialRGB + 10).iconSet(ROUGH)
+                .components(Carbon, 6, Hydrogen, 12, Oxygen, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8135 Oxalic Acid
+            OxalicAcid = Material.Builder(8135, gtliteId("oxalic_acid"))
+                .liquid()
+                .color(0x4AAAE2)
+                .components(Carbon, 2, Hydrogen, 2, Oxygen, 4)
+                .build() // (HOOC)(COOH)
+
+            // 8136 Dibromoacrolein
+            Dibromoacrolein = Material.Builder(8136, gtliteId("dibromoacrolein"))
+                .liquid()
+                .color(0x7C4660)
+                .components(Carbon, 2, Hydrogen, 2, Bromine, 2, Oxygen, 2)
+                .build()
+
+            // 8137 Bromodihydrothiine
+            Bromodihydrothiine = Material.Builder(8137, gtliteId("bromodihydrothiine"))
+                .liquid()
+                .color(0x66F36E)
+                .components(Carbon, 4, Hydrogen, 4, Sulfur, 2, Bromine, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8138 Bis-(Ethylenedithio)-Tetraselenafulvalene (BETS)
+            BETS = Material.Builder(8138, gtliteId("bisethylenedithiotetraselenafulvalene"))
+                .dust()
+                .color(0x98E993).iconSet(ROUGH)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4)
                 .build()
 
         }

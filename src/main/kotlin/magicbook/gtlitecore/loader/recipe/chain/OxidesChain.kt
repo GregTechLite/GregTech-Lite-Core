@@ -58,6 +58,8 @@ import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tetrahedrite
 import gregtech.api.unification.material.Materials.Thorium
+import gregtech.api.unification.material.Materials.Vanadium
+import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon
@@ -83,6 +85,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VanadiumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.YttriumOxide
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -448,6 +451,16 @@ class OxidesChain
                 .output(dust, BariumOxide, 2)
                 .EUt(VA[LV].toLong())
                 .duration(2 * SECOND)
+                .buildAndRegister()
+
+            // 2V + 5O -> V2O5
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Vanadium, 2)
+                .fluidInputs(Oxygen.getFluid(5000))
+                .output(dust, VanadiumPentoxide, 7)
+                .EUt(VA[MV].toLong())
+                .duration(3 * SECOND + 10 * TICK)
                 .buildAndRegister()
         }
 

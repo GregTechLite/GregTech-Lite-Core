@@ -14,6 +14,7 @@ import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
+import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Antimony
@@ -112,6 +113,7 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uraninite
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
@@ -123,7 +125,9 @@ import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELE
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.EXPLOSIVE
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
+import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -164,6 +168,9 @@ import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumOxalate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumTrihydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AdamantiumEnriched
@@ -186,6 +193,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Anorthite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Augite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumNitrate
@@ -290,6 +298,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNio
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTetrafluoroborate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumThiinediselenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
@@ -362,6 +371,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarb
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumChlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCyanide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFormate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumHydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumHypochlorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
@@ -371,6 +382,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPolo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSeaborgate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTellurite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumThiosulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTrifluoroethanolate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
@@ -399,6 +411,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TungstenTr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylChlorideSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylNitrateSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VanadiumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumUnstable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VioletPhosphorus
@@ -2538,6 +2551,78 @@ class GTLiteFirstDegreeMaterials
                 .color(0x62D4F3).iconSet(SHINY)
                 .components(Caesium, 2, Carbon, 1, Oxygen, 3)
                 .build()
+
+            // 2249 Sodium Hydride
+            SodiumHydride = Material.Builder(2249, gtliteId("sodium_hydride"))
+                .ingot()
+                .color(0xCACAC8).iconSet(METALLIC)
+                .components(Sodium, 1, Hydrogen, 1)
+                .build()
+
+            // 2250 Vanadium Pentoxide
+            VanadiumPentoxide = Material.Builder(2250, gtliteId("vanadium_pentoxide"))
+                .dust()
+                .colorAverage().iconSet(ROUGH)
+                .components(Vanadium, 2, Oxygen, 5)
+                .build()
+
+            // 2251 Actinium Oxalate
+            ActiniumOxalate = Material.Builder(2251, gtliteId("actinium_oxalate"))
+                .dust()
+                .color(0x92ACFF).iconSet(SHINY)
+                .components(Actinium, 1, Carbon, 4, Oxygen, 8)
+                .build()
+                .setFormula("Ac(CO2)4", true)
+
+            // 2252 Actinium Trihydride
+            ActiniumTrihydride = Material.Builder(2252, gtliteId("actinium_trihydride"))
+                .dust()
+                .color(0xD5DFFF).iconSet(SHINY)
+                .components(Actinium, 1, Hydrogen, 3)
+                .flags(DISABLE_DECOMPOSITION, FORCE_GENERATE_BLOCK)
+                .build()
+
+            // 2253 Actinium Superhydride
+            ActiniumSuperhydride = Material.Builder(2253, gtliteId("actinium_superhydride"))
+                .dust()
+                .plasma(FluidBuilder()
+                    .temperature(500_000))
+                .color(Actinium.materialRGB * 9 / 8).iconSet(SHINY)
+                .components(Actinium, 1, Hydrogen, 12)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2254 Sodium Formate
+            SodiumFormate = Material.Builder(2254, gtliteId("sodium_formate"))
+                .dust()
+                .color(0x416CC0).iconSet(ROUGH)
+                .components(Carbon, 1, Hydrogen, 1, Oxygen, 2, Sodium, 1)
+                .build()
+                .setFormula("HCOONa", false)
+
+            // 2255 Sodium Thiosulfate
+            SodiumThiosulfate = Material.Builder(2255, gtliteId("sodium_thiosulfate"))
+                .dust()
+                .color(0x1436A7).iconSet(METALLIC)
+                .components(Sodium, 2, Sulfur, 2, Oxygen, 3)
+                .build()
+
+            // 2256 Lithium Thiinediselenide
+            LithiumThiinediselenide = Material.Builder(2256, gtliteId("lithium_thiinediselenide"))
+                .dust()
+                .color(0x689E64).iconSet(DULL)
+                .components(Carbon, 4, Hydrogen, 4, Sulfur, 2, Lithium, 2, Selenium, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2257 BETS Perrhenate (BETSP)
+            BETSPerrhenate = Material.Builder(2257, gtliteId("bets_perrhenate"))
+                .dust()
+                .color(0x98E993).iconSet(SHINY)
+                .flags(DISABLE_DECOMPOSITION)
+                .components(Rhenium, 1, Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4, Oxygen, 4)
+                .build()
+                .setFormula("(C10H8S4Se4)ReO4", true)
 
         }
 

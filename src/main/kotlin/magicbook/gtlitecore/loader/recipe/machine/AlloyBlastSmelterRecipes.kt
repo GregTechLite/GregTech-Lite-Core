@@ -32,6 +32,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Magnalium
@@ -51,10 +52,13 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumDifluoride
@@ -79,6 +83,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -241,6 +247,34 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[UEV].toLong())
                 .duration(1 * MINUTE)
                 .blastFurnaceTemp(13801) // Infinity
+                .buildAndRegister()
+
+            // Vibranium Tritanium Actinium Iron Superhydride
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(dust, Vibranium, 5)
+                .input(dust, Tritanium, 5)
+                .input(dust, ActiniumSuperhydride)
+                .input(dust, BETSPerrhenate)
+                .fluidInputs(Iron.getPlasma(L))
+                .fluidInputs(Krypton.getFluid(130))
+                .fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
+                .EUt(VA[UEV].toLong())
+                .duration(195 * SECOND + 19 * TICK)
+                .blastFurnaceTemp(14400) // Infinity
+                .buildAndRegister()
+
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Vibranium, 5)
+                .input(dust, Tritanium, 5)
+                .input(dust, ActiniumSuperhydride)
+                .input(dust, BETSPerrhenate)
+                .fluidInputs(Iron.getPlasma(L))
+                .fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
+                .EUt(VA[UEV].toLong())
+                .duration(292 * SECOND + 10 * TICK)
+                .blastFurnaceTemp(14400) // Infinity
                 .buildAndRegister()
 
         }

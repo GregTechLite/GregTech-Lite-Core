@@ -370,6 +370,7 @@ class GTLiteMaterialFlags
             Einsteinium.addFlags(GENERATE_DOUBLE_PLATE)
             Fermium.addFlags(GENERATE_DOUBLE_PLATE)
             Mendelevium.addFlags(GENERATE_DOUBLE_PLATE)
+            Rhenium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -393,6 +394,7 @@ class GTLiteMaterialFlags
             Einsteinium.addFlags(GENERATE_DENSE)
             Fermium.addFlags(GENERATE_DENSE)
             Mendelevium.addFlags(GENERATE_DENSE)
+            Rhenium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)

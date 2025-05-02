@@ -66,7 +66,6 @@ import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Rhenium
-import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.STD_METAL
@@ -75,7 +74,6 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
-import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
@@ -91,6 +89,7 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
+import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
@@ -109,8 +108,10 @@ import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
@@ -146,16 +147,17 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.HALKONITE
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -752,7 +754,19 @@ class GTLiteSecondDegreeMaterials
                 .rotorStats(19.0F, 4.8F, 8400)
                 .build()
 
-
+            // 4040 Vibranium Tritanium Actinium Iron Superhydride
+            VibraniumTritaniumActiniumIronSuperhydride = Material.Builder(4040, gtliteId("vibranium_tritanium_actinium_iron_superhydride"))
+                .ingot()
+                .fluid()
+                .color(0x828AAD).iconSet(SHINY)
+                .components(Vibranium, 5, Tritanium, 5, ActiniumSuperhydride, 1, BETSPerrhenate, 1, Iron, 1)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .blast {b ->
+                    b.temp(14400, BlastProperty.GasTier.HIGHEST)
+                        .blastStats(VA[UEV], 30 * SECOND)
+                        .vacuumStats(VA[UHV], 15 * SECOND) }
+                .cableProperties(V[UEV], 32, 0, true)
+                .build()
         }
 
     }

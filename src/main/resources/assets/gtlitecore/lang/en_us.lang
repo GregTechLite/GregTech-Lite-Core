@@ -2297,6 +2297,7 @@ gtlitecore.material.metastable_hassium=Metastable Hassium
 gtlitecore.material.cosmic_neutronium=Cosmic Neutronium
 gtlitecore.material.infinity=Infinity
 gtlitecore.material.plutonium_244=Plutonium-244
+gtlitecore.material.degenerate_rhenium=Degenerate Rhenium
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2556,6 +2557,15 @@ item.gtlitecore.material.woods_glass.ingot=Woods Glass Bar
 gtlitecore.material.potassium_tertbutoxide=Potassium Tertbutoxide
 gtlitecore.material.caesium_hydroxide=Caesium Hydroxide
 gtlitecore.material.caesium_carbonate=Caesium Carbonate
+gtlitecore.material.sodium_hydride=Sodium Hydride
+gtlitecore.material.vanadium_pentoxide=Vanadium Pentoxide
+gtlitecore.material.actinium_oxalate=Actinium Oxalate
+gtlitecore.material.actinium_trihydride=Actinium Trihydride
+gtlitecore.material.actinium_superhydride=Actinium Superhydride
+gtlitecore.material.sodium_formate=Sodium Formate
+gtlitecore.material.sodium_thiosulfate=Sodium Thiosulfate
+gtlitecore.material.lithium_thiinediselenide=Lithium Thiinediselenide
+gtlitecore.material.bets_perrhenate=Bis-(Ethylenedithio)-Tetraselenafulvalene Perrhenate (BETSP)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2596,6 +2606,7 @@ gtlitecore.material.hastelloy_x_78=Hastelloy-X78
 gtlitecore.material.hastelloy_k_243=Hastelloy-K243
 gtlitecore.material.pikyonium_64_b=Pikyonium 64B
 gtlitecore.material.arceus_alloy_2_b=Arceus Alloy 2B
+gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=Vibranium Tritanium Actinium Iron Superhydride
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -2758,6 +2769,12 @@ gtlitecore.material.acetyl_chloride=Acetyl Chloride
 gtlitecore.material.dimethylacetamide=Dimethylacetamide (DMA)
 gtlitecore.material.geodesic_polyarene=Geodesic Polyarene
 gtlitecore.material.fullerene=Fullerene
+gtlitecore.material.glucose=Glucose
+gtlitecore.material.fructose=Fructose
+gtlitecore.material.oxalic_acid=Oxalic Acid
+gtlitecore.material.dibromoacrolein=Dibromoacrolein
+gtlitecore.material.bromodihydrothiine=Bromodihydrothiine
+gtlitecore.material.bisethylenedithiotetraselenafulvalene=Bis-(Ethylenedithio)-Tetraselenafulvalene (BETS)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

@@ -54,6 +54,9 @@ import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
+import magicbook.gtlitecore.loader.recipe.chain.ActiniumSuperhydrideChain
+import magicbook.gtlitecore.loader.recipe.chain.BETSPerrhenateChain
+import magicbook.gtlitecore.loader.recipe.chain.DegenerateRheniumChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
@@ -64,6 +67,7 @@ import magicbook.gtlitecore.loader.recipe.chain.food.CornChain
 import magicbook.gtlitecore.loader.recipe.chain.food.GrahamCrackersChain
 import magicbook.gtlitecore.loader.recipe.chain.food.MilkChain
 import magicbook.gtlitecore.loader.recipe.chain.food.PurpleDrinkChain
+import magicbook.gtlitecore.loader.recipe.chain.food.SugarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.UtensilsChain
 import magicbook.gtlitecore.loader.recipe.chain.food.VinegarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.WinesChain
@@ -219,6 +223,9 @@ class RecipeManager
             HeatExchangeChain.init()
             MutatedLivingSolderChain.init()
             FullereneChain.init()
+            DegenerateRheniumChain.init()
+            ActiniumSuperhydrideChain.init()
+            BETSPerrhenateChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()
@@ -229,6 +236,7 @@ class RecipeManager
             CoffeeChain.init()
             MilkChain.init()
             GrahamCrackersChain.init()
+            SugarChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

@@ -118,7 +118,7 @@ class BoronNitrideChain
                 .circuitMeta(1)
                 .input(dust, Lithium)
                 .fluidInputs(Hydrogen.getFluid(1000))
-                .output(ingot, LithiumHydride)
+                .output(ingot, LithiumHydride, 2)
                 .EUt(VA[HV].toLong())
                 .duration(15 * SECOND)
                 .buildAndRegister()

@@ -11,6 +11,7 @@ import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.Elements.Fl
 import gregtech.api.unification.Elements.Hs
 import gregtech.api.unification.Elements.Og
+import gregtech.api.unification.Elements.Rh
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
@@ -28,6 +29,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
+import gregtech.api.unification.material.info.MaterialFlags.NO_UNIFICATION
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
@@ -35,6 +37,7 @@ import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -49,6 +52,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -218,6 +222,17 @@ class GTLiteElementMaterials
                 .color(0xD82D2D).iconSet(METALLIC)
                 .element(Pu244)
                 .build()
+
+            // 10 Degenerate Rhenium
+            DegenerateRhenium = Material.Builder(10, gtliteId("degenerate_rhenium"))
+                .dust()
+                .plasma(FluidBuilder()
+                    .temperature(1_000_000))
+                .iconSet(DEGENERATE)
+                .element(Rh)
+                .flags(STD_METAL, NO_UNIFICATION)
+                .build()
+                .setFormula("§cR§de", true)
 
         }
 

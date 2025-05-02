@@ -2297,6 +2297,7 @@ gtlitecore.material.metastable_hassium=亚稳态钅黑
 gtlitecore.material.cosmic_neutronium=宇宙中子素
 gtlitecore.material.infinity=无尽
 gtlitecore.material.plutonium_244=钚-244
+gtlitecore.material.degenerate_rhenium=简并态铼
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2561,6 +2562,15 @@ item.gtlitecore.material.woods_glass.ingot=伍兹玻璃条
 gtlitecore.material.potassium_tertbutoxide=叔丁醇钾
 gtlitecore.material.caesium_hydroxide=氢氧化铯
 gtlitecore.material.caesium_carbonate=碳酸铯
+gtlitecore.material.sodium_hydride=氢化钠
+gtlitecore.material.vanadium_pentoxide=五氧化二钒
+gtlitecore.material.actinium_oxalate=乙二酸锕
+gtlitecore.material.actinium_trihydride=三氢化锕
+gtlitecore.material.actinium_superhydride=超氢化锕
+gtlitecore.material.sodium_formate=甲酸钠
+gtlitecore.material.sodium_thiosulfate=硫代硫酸钠
+gtlitecore.material.lithium_thiinediselenide=二硒醚合硫锂
+gtlitecore.material.bets_perrhenate=高铼酸双(乙烯二硫代)四硒富瓦烯（BETSP）
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2601,6 +2611,7 @@ gtlitecore.material.hastelloy_x_78=哈斯特洛伊合金-X78
 gtlitecore.material.hastelloy_k_243=哈斯特洛伊合金-K243
 gtlitecore.material.pikyonium_64_b=皮卡优合金64B
 gtlitecore.material.arceus_alloy_2_b=阿尔宙斯合金2B
+gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=振金三钛锕铁超氢合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩
@@ -2762,6 +2773,12 @@ gtlitecore.material.acetyl_chloride=乙酰氯
 gtlitecore.material.dimethylacetamide=二甲基乙酰胺（DMA）
 gtlitecore.material.geodesic_polyarene=拱形芳烃聚合物
 gtlitecore.material.fullerene=富勒烯
+gtlitecore.material.glucose=葡萄糖
+gtlitecore.material.fructose=果糖
+gtlitecore.material.oxalic_acid=乙二酸
+gtlitecore.material.dibromoacrolein=二溴丙烯醛
+gtlitecore.material.bromodihydrothiine=溴二氢硫醚
+gtlitecore.material.bisethylenedithiotetraselenafulvalene=双(乙烯二硫代)四硒富瓦烯（BETS）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

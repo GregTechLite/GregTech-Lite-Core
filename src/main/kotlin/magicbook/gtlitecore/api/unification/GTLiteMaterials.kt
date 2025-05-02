@@ -24,6 +24,7 @@ class GTLiteMaterials
         lateinit var CosmicNeutronium: Material
         lateinit var Infinity: Material
         lateinit var Plutonium244: Material
+        lateinit var DegenerateRhenium: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material
@@ -274,6 +275,15 @@ class GTLiteMaterials
         lateinit var PotassiumTertbutoxide: Material
         lateinit var CaesiumHydroxide: Material
         lateinit var CaesiumCarbonate: Material
+        lateinit var SodiumHydride: Material
+        lateinit var VanadiumPentoxide: Material
+        lateinit var ActiniumOxalate: Material
+        lateinit var ActiniumTrihydride: Material
+        lateinit var ActiniumSuperhydride: Material
+        lateinit var SodiumFormate: Material
+        lateinit var SodiumThiosulfate: Material
+        lateinit var LithiumThiinediselenide: Material
+        lateinit var BETSPerrhenate: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -315,6 +325,7 @@ class GTLiteMaterials
         lateinit var HastelloyK243: Material
         lateinit var Pikyonium64B: Material
         lateinit var ArceusAlloy2B: Material
+        lateinit var VibraniumTritaniumActiniumIronSuperhydride: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material
@@ -476,6 +487,12 @@ class GTLiteMaterials
         lateinit var Dimethylacetamide: Material
         lateinit var GeodesicPolyarene: Material
         lateinit var Fullerene: Material
+        lateinit var Glucose: Material
+        lateinit var Fructose: Material
+        lateinit var OxalicAcid: Material
+        lateinit var Dibromoacrolein: Material
+        lateinit var Bromodihydrothiine: Material
+        lateinit var BETS: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

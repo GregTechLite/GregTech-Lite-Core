@@ -12,13 +12,6 @@ class StellarForgeRecipes
 
         fun init()
         {
-            // Testing recipe
-            STELLAR_FORGE_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .fluidOutputs(Water.getFluid(1))
-                .EUt(1)
-                .duration(1)
-                .buildAndRegister()
 
         }
 

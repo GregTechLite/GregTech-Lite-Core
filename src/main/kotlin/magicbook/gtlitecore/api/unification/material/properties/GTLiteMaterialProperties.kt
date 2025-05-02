@@ -188,7 +188,7 @@ class GTLiteMaterialProperties
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
-                Lawrencium, Ytterbium)
+                Lawrencium, Ytterbium, Rhenium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)

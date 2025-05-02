@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
@@ -105,8 +106,10 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
@@ -156,6 +159,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
@@ -742,6 +746,19 @@ class MixerRecipes
                 .output(dust, ArceusAlloy2B, 20)
                 .EUt(VA[UEV].toLong())
                 .duration(1 * MINUTE + 25 * SECOND)
+                .buildAndRegister()
+
+            // Vibranium Tritanium Actinium Iron Superhydride
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, Vibranium, 5)
+                .input(dust, Tritanium, 5)
+                .input(dust, ActiniumSuperhydride)
+                .input(dust, BETSPerrhenate)
+                .fluidInputs(Iron.getPlasma(L))
+                .output(dust, VibraniumTritaniumActiniumIronSuperhydride, 13)
+                .EUt(VA[UEV].toLong())
+                .duration(40 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum
