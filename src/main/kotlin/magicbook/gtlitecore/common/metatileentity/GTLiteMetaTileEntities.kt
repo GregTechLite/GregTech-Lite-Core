@@ -20,8 +20,8 @@ import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
 import gregtech.common.metatileentities.storage.MetaTileEntityCrate
 import gregtech.common.metatileentities.storage.MetaTileEntityDrum
 import magicbook.gtlitecore.api.GTLiteAPI
-import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator
-import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicator
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicators
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity

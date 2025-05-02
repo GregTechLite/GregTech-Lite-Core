@@ -25,7 +25,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.client.renderer.ICubeRenderer;
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures;
-import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator;
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

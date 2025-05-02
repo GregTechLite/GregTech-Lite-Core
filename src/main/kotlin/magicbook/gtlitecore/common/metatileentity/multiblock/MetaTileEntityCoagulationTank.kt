@@ -3,18 +3,19 @@ package magicbook.gtlitecore.common.metatileentity.multiblock
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.factory.PosGuiData
+import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
+import com.cleanroommc.modularui.value.sync.SyncHandlers
+import com.cleanroommc.modularui.widgets.ItemSlot
+import com.cleanroommc.modularui.widgets.ProgressWidget
+import com.cleanroommc.modularui.widgets.SlotGroupWidget
 import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.PrimitiveRecipeLogic
-import gregtech.api.gui.GuiTextures
-import gregtech.api.gui.ModularUI
-import gregtech.api.gui.widgets.ClickButtonWidget
-import gregtech.api.gui.widgets.GhostCircuitSlotWidget
-import gregtech.api.gui.widgets.ProgressWidget
-import gregtech.api.gui.widgets.RecipeProgressWidget
 import gregtech.api.gui.widgets.SlotWidget
-import gregtech.api.gui.widgets.TankWidget
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -22,15 +23,19 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.ParallelLogicType
 import gregtech.api.metatileentity.multiblock.RecipeMapPrimitiveMultiblockController
+import gregtech.api.mui.GTGuiTextures
+import gregtech.api.mui.GTGuiTheme
+import gregtech.api.mui.GTGuis
+import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMap
-import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.util.GTTransferUtils.addFluidsToFluidHandler
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import gregtech.common.mui.widget.GTFluidSlot
+import magicbook.gtlitecore.api.gui.GTLiteMuiTextures
 import magicbook.gtlitecore.api.pattern.GTLiteTraceabilityPredicate.Companion.scaleIndicatorPredicate
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COAGULATION_RECIPES
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -39,7 +44,6 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
-import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.NonNullList
@@ -69,9 +73,9 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
 
     init
     {
-        this.recipeMapWorkable = CoagulationTankRecipeLogic(this, COAGULATION_RECIPES)
-        this.circuitInventory = GhostCircuitItemStackHandler(this)
-        this.circuitInventory?.addNotifiableMetaTileEntity(this)
+        recipeMapWorkable = CoagulationTankRecipeLogic(this, COAGULATION_RECIPES)
+        circuitInventory = GhostCircuitItemStackHandler(this)
+        circuitInventory?.addNotifiableMetaTileEntity(this)
     }
 
     companion object
@@ -92,15 +96,15 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
     override fun getImportItems(): IItemHandlerModifiable
     {
         if (actualImportItems == null)
-            actualImportItems = if (this.circuitInventory == null) super.getImportItems()
+            actualImportItems = if (circuitInventory == null) super.getImportItems()
                 else ItemHandlerList((listOf(super.getImportItems() as IItemHandlerModifiable, circuitInventory)) as MutableList<IItemHandler>)
-        return this.actualImportItems!!
+        return actualImportItems!!
     }
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.size = context.getOrDefault("length", 1)
+        size = context.getOrDefault("length", 1)
     }
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
@@ -177,19 +181,19 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
 
     private fun getCircuitSlotTooltip(widget: SlotWidget): SlotWidget
     {
-        val configString: String = if (this.circuitInventory == null || this.circuitInventory!!.circuitValue == GhostCircuitItemStackHandler.NO_CONFIG)
+        val configString: String = if (circuitInventory == null || circuitInventory!!.circuitValue == GhostCircuitItemStackHandler.NO_CONFIG)
             TextComponentTranslation("gregtech.gui.configurator_slot.no_value").formattedText
         else
-            valueOf(this.circuitInventory!!.circuitValue)
+            valueOf(circuitInventory!!.circuitValue)
         return widget.setTooltipText("gregtech.gui.configurator_slot.tooltip", configString)
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
-        data.setInteger("size", this.size)
-        if (this.circuitInventory != null)
-            this.circuitInventory!!.write(data)
+        data.setInteger("size", size)
+        if (circuitInventory != null)
+            circuitInventory!!.write(data)
         return data
     }
 
@@ -217,52 +221,69 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
         }
     }
 
-    override fun createUITemplate(player: EntityPlayer?): ModularUI.Builder
+    @Suppress("UnstableApiUsage")
+    override fun usesMui2() = true
+
+    override fun getUITheme(): GTGuiTheme = GTGuiTheme.PRIMITIVE
+
+    @Suppress("UnstableApiUsage")
+    override fun buildUI(guiData: PosGuiData, guiSyncManager: PanelSyncManager): ModularPanel
     {
-        val builder = ModularUI.builder(GuiTextures.PRIMITIVE_BACKGROUND, 176, 166)
-            .label(6, 6,  metaFullName)
-            .widget(RecipeProgressWidget(recipeMapWorkable::getProgressPercent,
-                76, 41, 20, 15,
-                GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR,
-                ProgressWidget.MoveType.HORIZONTAL, COAGULATION_RECIPES))
-            .widget(SlotWidget(importItems as IItemHandler,
-                0, 30, 30, true, true)
-                .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT))
-            .widget(SlotWidget(importItems as IItemHandler,
-                1, 48, 30, true, true)
-                .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT))
-            .widget(TankWidget(importFluids.getTankAt(1) as IFluidTank,
-                30, 48, 18, 18)
-                .setAlwaysShowFull(true)
-                .setBackgroundTexture(GTLiteGuiTextures.PRIMITIVE_FLUID_SLOT)
-                .setContainerClicking(true, true))
-            .widget(TankWidget(importFluids.getTankAt(0) as IFluidTank,
-                48, 48, 18, 18)
-                .setAlwaysShowFull(true)
-                .setBackgroundTexture(GTLiteGuiTextures.PRIMITIVE_FLUID_SLOT)
-                .setContainerClicking(true, true))
-            .widget(SlotWidget(exportItems as IItemHandler,
-                0, 106, 39, true, false)
-                .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT))
-
-        val circuitSlot = GhostCircuitSlotWidget(circuitInventory,
-            0, 124, 62)
-            .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTLiteGuiTextures.INT_CIRCUIT_OVERLAY_STEAM.get(true))
-
-        builder.widget(getCircuitSlotTooltip(circuitSlot))
-            .widget(ClickButtonWidget(115, 62, 9, 9, "") { click ->
-                circuitInventory!!.addCircuitValue(if (click.isShiftClick) 5 else 1) }
-                .setShouldClientCallback(true)
-                .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_PLUS_PRIMITIVE)
-                .setDisplayFunction { circuitInventory!!.hasCircuitValue()
-                        && circuitInventory!!.circuitValue < IntCircuitIngredient.CIRCUIT_MAX })
-            .widget(ClickButtonWidget(115, 71, 9, 9, "") { click ->
-                circuitInventory!!.addCircuitValue(if (click.isShiftClick) -5 else -1) }
-                .setShouldClientCallback(true)
-                .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_MINUS_PRIMITIVE)
-                .setDisplayFunction { circuitInventory!!.hasCircuitValue()
-                        && circuitInventory!!.circuitValue > IntCircuitIngredient.CIRCUIT_MIN })
-        return builder.bindPlayerInventory(player!!.inventory, GuiTextures.PRIMITIVE_SLOT, 0)
+        // Inventory syncers for item import/export slots.
+        guiSyncManager.registerSlotGroup("item_inv", 3)
+        // Tank syncers for fluid import slots.
+        val tankSyncManager1 = GTFluidSlot.sync(importFluids.getTankAt(0) as IFluidTank)
+            .showAmount(true)
+            .accessibility(true, true)
+        val tankSyncManager2 = GTFluidSlot.sync(importFluids.getTankAt(1) as IFluidTank)
+            .showAmount(true)
+            .accessibility(true, true)
+        return GTGuis.createPanel(this, 176, 166)
+            // Machine name
+            .child(IKey.lang(metaFullName).asWidget()
+                .pos(6, 6))
+            // Player inventory
+            .child(SlotGroupWidget.playerInventory()
+                .left(7).bottom(7))
+            // Import item slots (2)
+            .child(ItemSlot()
+                .slot(SyncHandlers.itemSlot(importItems, 0)
+                    .slotGroup("item_inv"))
+                .background(GTGuiTextures.SLOT_PRIMITIVE)
+                .pos(30, 30))
+            .child(ItemSlot()
+                .slot(SyncHandlers.itemSlot(importItems, 1)
+                    .slotGroup("item_inv"))
+                .background(GTGuiTextures.SLOT_PRIMITIVE)
+                .pos(30 + 18, 30))
+            // Export item slots (1)
+            .child(ItemSlot()
+                .slot(SyncHandlers.itemSlot(exportItems, 0)
+                    .slotGroup("item_inv")
+                    .accessibility(false, true))
+                .background(GTGuiTextures.SLOT_PRIMITIVE)
+                .pos(106, 39))
+            // Import fluid slots (2)
+            .child(GTFluidSlot()
+                .syncHandler(tankSyncManager1)
+                .pos(30, 30 + 18)
+                .background(GTLiteMuiTextures.PRIMITIVE_FLUID_SLOT))
+            .child(GTFluidSlot()
+                .syncHandler(tankSyncManager2)
+                .pos(30 + 18, 30 + 18)
+                .background(GTLiteMuiTextures.PRIMITIVE_FLUID_SLOT))
+            // Ghost circuit slots (1)
+            .child(GhostCircuitSlotWidget()
+                .slot(circuitInventory as IItemHandlerModifiable, 0)
+                .background(GTGuiTextures.SLOT_PRIMITIVE, GTLiteMuiTextures.PRIMITIVE_INT_CIRCUIT_OVERLAY)
+                .pos(124, 62))
+            // Recipe progress bar
+            .child(ProgressWidget()
+                .pos(76, 41)
+                .size(20, 15)
+                .texture(GTLiteMuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, 100)
+                .progress(recipeMapWorkable::getProgressPercent)
+                .direction(ProgressWidget.Direction.RIGHT))
     }
 
     override fun addInformation(stack: ItemStack?,

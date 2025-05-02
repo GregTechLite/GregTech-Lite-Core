@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.api.gui
+package magicbook.gtlitecore.api.gui.indicator
 
 import gregtech.api.gui.resources.SteamTexture
 import gregtech.api.gui.widgets.ProgressWidget

@@ -8,7 +8,7 @@ import gregtech.client.renderer.ICubeRenderer;
 import lombok.Getter;
 import lombok.Setter;
 import magicbook.gtlitecore.api.capability.logic.PseudoMultiSteamRecipeLogic;
-import magicbook.gtlitecore.api.gui.SteamProgressBarIndicator;
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

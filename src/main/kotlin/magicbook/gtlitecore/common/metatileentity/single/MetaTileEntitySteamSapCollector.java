@@ -8,7 +8,7 @@ import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import magicbook.gtlitecore.api.gui.SteamProgressBarIndicators;
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicators;
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
