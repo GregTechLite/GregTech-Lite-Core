@@ -64,7 +64,6 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
-import gregtech.loaders.recipe.chemistry.TitaniumRecipes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase

@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
-import gregtech.api.creativetab.BaseCreativeTab
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.StandardMetaItem
 import gregtech.api.unification.material.MarkerMaterials
@@ -12,7 +11,6 @@ import gregtech.api.unification.stack.MaterialStack
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK

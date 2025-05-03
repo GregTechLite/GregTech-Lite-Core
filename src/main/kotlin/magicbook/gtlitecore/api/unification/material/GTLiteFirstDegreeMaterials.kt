@@ -50,7 +50,6 @@ import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
-import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
@@ -132,7 +131,6 @@ import gregtech.api.unification.material.info.MaterialFlags.EXPLOSIVE
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
-import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -400,8 +398,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SulfurDichloride
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tanzanite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumDioxide

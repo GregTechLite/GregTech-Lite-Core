@@ -60,7 +60,6 @@ import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Tetrahedrite
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Vanadium
-import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.material.Materials.Zircon

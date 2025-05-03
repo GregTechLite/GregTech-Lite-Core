@@ -14,7 +14,6 @@ import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Paper
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.PLANT_BALL
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
@@ -27,7 +26,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_CHERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_CUP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PAPER_CONE
-import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems.Companion.CORN_COB
 import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems.Companion.DRIED_LARGE_COFFEE
 import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems.Companion.DRIED_SMALL_COFFEE
 import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems.Companion.FERMENTED_LARGE_COFFEE

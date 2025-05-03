@@ -2,7 +2,6 @@ package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UEV
-import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
@@ -29,10 +28,8 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COSMIC_RAY_DETECTING_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.utils.GTLiteUtility

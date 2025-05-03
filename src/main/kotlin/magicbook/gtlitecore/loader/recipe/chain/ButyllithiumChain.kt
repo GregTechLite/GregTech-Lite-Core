@@ -5,7 +5,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Lithium
-import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bromobutane

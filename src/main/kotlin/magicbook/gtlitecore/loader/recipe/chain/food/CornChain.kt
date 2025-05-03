@@ -3,7 +3,6 @@ package magicbook.gtlitecore.loader.recipe.chain.food
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
-import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES

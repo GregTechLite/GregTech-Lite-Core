@@ -3,8 +3,10 @@ package magicbook.gtlitecore.loader.recipe
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
 import magicbook.gtlitecore.loader.recipe.chain.AcetyleneChain
+import magicbook.gtlitecore.loader.recipe.chain.ActiniumSuperhydrideChain
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.BETSPerrhenateChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
@@ -12,6 +14,7 @@ import magicbook.gtlitecore.loader.recipe.chain.ButyllithiumChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
+import magicbook.gtlitecore.loader.recipe.chain.DegenerateRheniumChain
 import magicbook.gtlitecore.loader.recipe.chain.DiethylEtherChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
@@ -54,9 +57,6 @@ import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
-import magicbook.gtlitecore.loader.recipe.chain.ActiniumSuperhydrideChain
-import magicbook.gtlitecore.loader.recipe.chain.BETSPerrhenateChain
-import magicbook.gtlitecore.loader.recipe.chain.DegenerateRheniumChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain

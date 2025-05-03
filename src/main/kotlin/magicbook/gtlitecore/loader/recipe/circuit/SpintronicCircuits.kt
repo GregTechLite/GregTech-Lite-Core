@@ -8,7 +8,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Cadmium
@@ -21,7 +20,6 @@ import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Phosphate
 import gregtech.api.unification.material.Materials.PhosphoricAcid
-import gregtech.api.unification.material.Materials.PhosphorusPentoxide
 import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
@@ -37,7 +35,6 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCeriumCobaltIndium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHydroxide
@@ -46,7 +43,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAlum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HafniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MercuryCadmiumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -63,7 +59,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_TRANSISTOR
-import magicbook.gtlitecore.loader.recipe.chain.DegenerateRheniumChain
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class SpintronicCircuits

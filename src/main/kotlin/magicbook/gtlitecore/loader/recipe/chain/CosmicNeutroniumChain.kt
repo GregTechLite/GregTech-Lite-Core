@@ -4,12 +4,10 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COSMIC_RAY_DETECTING_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CosmicNeutroniumChain

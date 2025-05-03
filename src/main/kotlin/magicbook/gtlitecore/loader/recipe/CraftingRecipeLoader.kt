@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues
-import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.UHV
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
@@ -46,8 +45,6 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
-import gregtech.api.unification.material.Materials.Zircaloy4
-import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -69,10 +66,8 @@ import gregtech.common.blocks.BlockMachineCasing
 import gregtech.common.blocks.BlockTurbineCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
-import gregtech.common.items.MetaItems.ROBOT_ARM_EV
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
@@ -161,7 +156,6 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LEAD_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NONUPLE_FLUID_IMPORT_HATCH
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NUCLEAR_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_EXPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SILVER_CRATE

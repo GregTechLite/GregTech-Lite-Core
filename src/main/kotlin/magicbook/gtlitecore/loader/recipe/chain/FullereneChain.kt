@@ -27,7 +27,6 @@ import gregtech.api.unification.material.Materials.CoalTar
 import gregtech.api.unification.material.Materials.Dimethylamine
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
-import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Naphthalene

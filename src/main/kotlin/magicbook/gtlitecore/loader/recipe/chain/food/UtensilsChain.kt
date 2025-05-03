@@ -6,7 +6,6 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Water
-import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND

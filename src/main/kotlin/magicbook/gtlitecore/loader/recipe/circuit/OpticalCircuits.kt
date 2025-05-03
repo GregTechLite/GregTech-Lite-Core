@@ -4,7 +4,6 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -28,34 +27,26 @@ import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcium
-import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
-import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Einsteinium
-import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
-import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potash
-import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
-import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
-import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.SterlingSilver
 import gregtech.api.unification.material.Materials.Thallium
@@ -72,13 +63,11 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
-import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LASER_CVD_RECIPES
@@ -88,7 +77,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTita
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
@@ -101,7 +89,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGalliumManganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
@@ -113,11 +100,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphoryl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyetheretherketone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyethyleneTerephthalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumManganate
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSeaborgate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
@@ -136,12 +121,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_RES
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIELECTRIC_MIRROR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EMPTY_LASER
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_COMPUTER_UHV
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_RESISTOR
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HELIUM_NEON_LASER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ND_YAG_LASER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
@@ -168,7 +147,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_TRANSISTOR
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class OpticalCircuits
