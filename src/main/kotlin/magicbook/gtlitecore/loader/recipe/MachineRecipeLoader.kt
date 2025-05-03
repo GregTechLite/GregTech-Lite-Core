@@ -308,7 +308,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK4
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK5
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.HIGH_PRESSURE_STEAM_TURBINE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.HOT_COOLANT_TURBINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_EXTENDER
@@ -364,7 +364,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VACUUM_CHAMBER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_VULCANIZING_PRESS
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STELLAR_FORGE
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUPERCRITICAL_STEAM_TURBINE
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUPERCRITICAL_FLUID_TURBINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TANK_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TOOL_CASTER
@@ -1812,16 +1812,16 @@ class MachineRecipeLoader
                 'P', UnificationEntry(plate, Zircaloy4),
                 'B', UnificationEntry(block, Thorium))
 
-            // Large High Pressure Steam Turbine
-            ModHandler.addShapedRecipe(true, "large_high_pressure_steam_turbine", HIGH_PRESSURE_STEAM_TURBINE.stackForm,
+            // Large Hot Coolant Turbine
+            ModHandler.addShapedRecipe(true, "large_hot_coolant_turbine", HOT_COOLANT_TURBINE.stackForm,
                 "XGX", "GHG", "PGP",
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.IV),
                 'G', UnificationEntry(gear, Titanium),
                 'H', HULL[EV].stackForm,
                 'P', UnificationEntry(pipeLargeFluid, Titanium))
 
-            // Large Supercritical Steam Turbine
-            ModHandler.addShapedRecipe(true, "large_supercritical_steam_turbine", SUPERCRITICAL_STEAM_TURBINE.stackForm,
+            // Large Supercritical Fluid Turbine
+            ModHandler.addShapedRecipe(true, "large_supercritical_fluid_turbine", SUPERCRITICAL_FLUID_TURBINE.stackForm,
                 "XGX", "GHG", "PGP",
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.ZPM),
                 'G', UnificationEntry(gear, RhodiumPlatedPalladium),

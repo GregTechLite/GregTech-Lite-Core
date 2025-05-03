@@ -8,8 +8,8 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
 import gregtech.api.unification.material.Materials.DistilledWater
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.HIGH_PRESSURE_STEAM_FUELS
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SUPERCRITICAL_STEAM_FUELS
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.HOT_COOLANT_TURBINE_FUELS
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SUPERCRITICAL_FLUID_TURBINE_FUELS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumBerylliumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
@@ -40,7 +40,7 @@ class HeatExchangeChain
 
             // Superheated Steam
             // 320L SuperheatedSteam -> 320L Steam -> 2L DistilledWater
-            HIGH_PRESSURE_STEAM_FUELS.recipeBuilder()
+            HOT_COOLANT_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SuperheatedSteam.getFluid(320))
                 .fluidOutputs(DistilledWater.getFluid(2))
                 .EUt(V[MV])
@@ -48,7 +48,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Superheated Eutatic Sodium Potassium
-            HIGH_PRESSURE_STEAM_FUELS.recipeBuilder()
+            HOT_COOLANT_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SuperheatedSodiumPotassiumEutatic.getFluid(L))
                 .fluidOutputs(SodiumPotassiumEutatic.getFluid(L))
                 .EUt(V[HV])
@@ -56,7 +56,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Superheated Eutatic Lead Bismuth
-            HIGH_PRESSURE_STEAM_FUELS.recipeBuilder()
+            HOT_COOLANT_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SuperheatedLeadBismuthEutatic.getFluid(L))
                 .fluidOutputs(LeadBismuthEutatic.getFluid(L))
                 .EUt(V[HV])
@@ -64,7 +64,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Superheated Lithium Sodium Potassium Fluorides
-            HIGH_PRESSURE_STEAM_FUELS.recipeBuilder()
+            HOT_COOLANT_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SuperheatedLithiumSodiumPotassiumFluorides.getFluid(L))
                 .fluidOutputs(LithiumSodiumPotassiumFluorides.getFluid(L))
                 .EUt(V[EV])
@@ -72,7 +72,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Superheated Lithium Beryllium Fluorides
-            HIGH_PRESSURE_STEAM_FUELS.recipeBuilder()
+            HOT_COOLANT_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SuperheatedLithiumBerylliumFluorides.getFluid(L))
                 .fluidOutputs(LithiumBerylliumFluorides.getFluid(L))
                 .EUt(V[EV])
@@ -81,7 +81,7 @@ class HeatExchangeChain
 
             // Supercritical Steam
             // 640L SupercriticalSteam -> 640L Steam -> 4L Distilled Water
-            SUPERCRITICAL_STEAM_FUELS.recipeBuilder()
+            SUPERCRITICAL_FLUID_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SupercriticalSteam.getFluid(640))
                 .fluidOutputs(DistilledWater.getFluid(4))
                 .EUt(V[EV])
@@ -89,7 +89,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Supercritical Eutatic Sodium Potassium
-            SUPERCRITICAL_STEAM_FUELS.recipeBuilder()
+            SUPERCRITICAL_FLUID_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SupercriticalSodiumPotassiumEutatic.getFluid(L))
                 .fluidOutputs(SodiumPotassiumEutatic.getFluid(L))
                 .EUt(V[IV])
@@ -97,7 +97,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Supercritical Eutatic Lead Bismuth
-            SUPERCRITICAL_STEAM_FUELS.recipeBuilder()
+            SUPERCRITICAL_FLUID_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SupercriticalLeadBismuthEutatic.getFluid(L))
                 .fluidOutputs(LeadBismuthEutatic.getFluid(L))
                 .EUt(V[IV])
@@ -105,7 +105,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Supercritical Lithium Sodium Potassium Fluorides
-            SUPERCRITICAL_STEAM_FUELS.recipeBuilder()
+            SUPERCRITICAL_FLUID_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SupercriticalLithiumSodiumPotassiumFluorides.getFluid(L))
                 .fluidOutputs(LithiumSodiumPotassiumFluorides.getFluid(L))
                 .EUt(V[LuV])
@@ -113,7 +113,7 @@ class HeatExchangeChain
                 .buildAndRegister()
 
             // Supercritical Lithium Beryllium Fluorides
-            SUPERCRITICAL_STEAM_FUELS.recipeBuilder()
+            SUPERCRITICAL_FLUID_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(SupercriticalLithiumBerylliumFluorides.getFluid(L))
                 .fluidOutputs(LithiumBerylliumFluorides.getFluid(L))
                 .EUt(V[LuV])

@@ -95,6 +95,7 @@ class SpintronicCircuits
 
             // Spintronic SMD Transistor
             ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
                 .input(foil, AmorphousBoronNitride)
                 .input(wireFine, MercuryCadmiumTelluride, 16)
                 .fluidInputs(Kevlar.getFluid(L))

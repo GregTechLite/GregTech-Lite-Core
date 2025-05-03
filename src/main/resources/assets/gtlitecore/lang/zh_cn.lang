@@ -1166,8 +1166,8 @@ recipemap.component_assembly_line.name=部件装配线
 recipemap.cosmic_ray_detector.name=宇宙射线探测器
 recipemap.stellar_forge.name=恒星炎炀锻炉
 
-recipemap.high_pressure_steam_turbine.name=高压蒸汽涡轮
-recipemap.supercritical_steam_turbine.name=超临界蒸汽涡轮
+recipemap.hot_coolant_turbine.name=热冷却液涡轮
+recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
 recipemap.nuclear_reactor.name=核反应堆
 
 # Recipe Properties
@@ -1734,9 +1734,9 @@ gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§
 gtlitecore.machine.nuclear_reactor.tooltip.6=倍率：§f钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），§7
 gtlitecore.machine.nuclear_reactor.tooltip.7=§f锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
 
-gtlitecore.machine.large_turbine.high_pressure_steam.name=大型高压蒸汽涡轮
+gtlitecore.machine.large_turbine.hot_coolant.name=大型热冷却液涡轮
 
-gtlitecore.machine.large_turbine.supercritical_steam.name=大型超临界蒸汽涡轮
+gtlitecore.machine.large_turbine.supercritical_fluid.name=大型超临界流体涡轮
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
 

@@ -816,8 +816,8 @@ class GTLiteRecipeMaps
          */
         @ZenProperty
         @JvmStatic
-        @get:JvmName("HIGH_PRESSURE_STEAM_FUELS")
-        val HIGH_PRESSURE_STEAM_FUELS = RecipeMapBuilder("high_pressure_steam_turbine", FuelRecipeBuilder())
+        @get:JvmName("HOT_COOLANT_TURBINE_FUELS")
+        val HOT_COOLANT_TURBINE_FUELS = RecipeMapBuilder("hot_coolant_turbine", FuelRecipeBuilder())
             .fluidInputs(1)
             .fluidOutputs(1)
             .fluidSlotOverlay(GuiTextures.DARK_CANISTER_OVERLAY, false, true)
@@ -828,12 +828,12 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @zenProp supercritical_steam_turbine
+         * @zenProp supercritical_fluid_turbine
          */
         @ZenProperty
         @JvmStatic
-        @get:JvmName("SUPERCRITICAL_STEAM_FUELS")
-        val SUPERCRITICAL_STEAM_FUELS = RecipeMapBuilder("supercritical_steam_turbine", FuelRecipeBuilder())
+        @get:JvmName("SUPERCRITICAL_FLUID_TURBINE_FUELS")
+        val SUPERCRITICAL_FLUID_TURBINE_FUELS = RecipeMapBuilder("supercritical_fluid_turbine", FuelRecipeBuilder())
             .fluidInputs(1)
             .fluidOutputs(1)
             .fluidSlotOverlay(GuiTextures.DARK_CANISTER_OVERLAY, false, true)
