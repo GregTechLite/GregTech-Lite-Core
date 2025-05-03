@@ -238,7 +238,7 @@ class GTLiteMaterialFlags
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
             Nichrome.addFlags(GENERATE_FOIL)
             MetastableFlerovium.addFlags(GENERATE_FOIL)
-            Californium.addFlags(GENERATE_FOIL)
+            Einsteinium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)

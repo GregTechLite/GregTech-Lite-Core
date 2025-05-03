@@ -121,6 +121,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ARAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_BASIC_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_INDUCTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_COSMIC_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_CPU
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CRYSTAL_INTERFACE_CHIP
@@ -147,6 +151,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PERFECT_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_QUBIT_CPU_CHIP
@@ -1050,12 +1055,12 @@ class CircuitAssemblyLineRecipeProducer
             CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
                 .input(WRAP_CRYSTAL_CPU)
-                .input(WRAP_OPTICAL_SMD_RESISTOR, 24)
-                .input(WRAP_OPTICAL_SMD_CAPACITOR, 24)
-                .input(WRAP_OPTICAL_SMD_TRANSISTOR, 24)
+                .input(WRAP_OPTICAL_SMD_RESISTOR, 16)
+                .input(WRAP_OPTICAL_SMD_CAPACITOR, 16)
+                .input(WRAP_OPTICAL_SMD_TRANSISTOR, 16)
                 .input(OPTICAL_FIBER, 64)
                 .fluidInputs(SolderingAlloy.getFluid(L))
-                .output(OPTICAL_PROCESSOR_UV, 48)
+                .output(OPTICAL_PROCESSOR_UV, 64)
                 .EUt(VA[UHV].toLong())
                 .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
                 .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
@@ -1064,15 +1069,72 @@ class CircuitAssemblyLineRecipeProducer
             CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
                 .input(WRAP_CRYSTAL_CPU)
-                .input(WRAP_SPINTRONIC_SMD_RESISTOR, 6)
-                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 6)
-                .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 6)
+                .input(WRAP_SPINTRONIC_SMD_RESISTOR, 4)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 4)
+                .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 4)
                 .input(OPTICAL_FIBER, 64)
                 .fluidInputs(SolderingAlloy.getFluid(L))
-                .output(OPTICAL_PROCESSOR_UV, 48)
+                .output(OPTICAL_PROCESSOR_UV, 64)
                 .EUt(VA[UHV].toLong())
                 .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
                 .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
+                .input(WRAP_CRYSTAL_CPU)
+                .input(WRAP_COSMIC_SMD_RESISTOR)
+                .input(WRAP_COSMIC_SMD_CAPACITOR)
+                .input(WRAP_COSMIC_SMD_TRANSISTOR)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_PROCESSOR_UV, 64)
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+                .buildAndRegister()
+
+            // Optical Processor Assembly
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PERFECT_CIRCUIT_BOARD)
+                .input(OPTICAL_PROCESSOR_UV, 64)
+                .input(WRAP_OPTICAL_SMD_INDUCTOR, 16)
+                .input(WRAP_OPTICAL_SMD_CAPACITOR, 32)
+                .input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_ASSEMBLY_UHV, 48)
+                .EUt(VA[UHV].toLong())
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PERFECT_CIRCUIT_BOARD)
+                .input(OPTICAL_PROCESSOR_UV, 64)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 4)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 8)
+                .input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_ASSEMBLY_UHV, 48)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_PERFECT_CIRCUIT_BOARD)
+                .input(OPTICAL_PROCESSOR_UV, 64)
+                .input(WRAP_COSMIC_SMD_INDUCTOR)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 2)
+                .input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L))
+                .output(OPTICAL_ASSEMBLY_UHV, 48)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
                 .buildAndRegister()
 
             // ---------------------------------------------------------------------------------------------------------

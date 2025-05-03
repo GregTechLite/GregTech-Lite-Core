@@ -36,6 +36,7 @@ import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Germanium
@@ -72,6 +73,7 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
@@ -456,7 +458,7 @@ class OpticalCircuits
             FORMING_PRESS_RECIPES.recipeBuilder()
                 .input(ADVANCED_RAM_CHIP)
                 .input(plate, GSTGlass, 2)
-                .input(foil, Californium, 8)
+                .input(foil, Einsteinium, 8)
                 .output(PHASE_CHANGE_RAM_CHIP, 4)
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
@@ -538,9 +540,9 @@ class OpticalCircuits
             CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .input(OPTICAL_LASER_CONTROL_UNIT)
                 .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-                .input(OPTICAL_SMD_RESISTOR, 24)
-                .input(OPTICAL_SMD_CAPACITOR, 24)
-                .input(OPTICAL_SMD_TRANSISTOR, 24)
+                .input(OPTICAL_SMD_RESISTOR, 16)
+                .input(OPTICAL_SMD_CAPACITOR, 16)
+                .input(OPTICAL_SMD_TRANSISTOR, 16)
                 .input(OPTICAL_FIBER, 8)
                 .output(OPTICAL_PROCESSOR_UV, 4)
                 .EUt(VA[UHV].toLong())
@@ -552,9 +554,9 @@ class OpticalCircuits
             CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .input(OPTICAL_LASER_CONTROL_UNIT)
                 .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-                .input(SPINTRONIC_SMD_RESISTOR, 6)
-                .input(SPINTRONIC_SMD_CAPACITOR, 6)
-                .input(SPINTRONIC_SMD_TRANSISTOR, 6)
+                .input(SPINTRONIC_SMD_RESISTOR, 4)
+                .input(SPINTRONIC_SMD_CAPACITOR, 4)
+                .input(SPINTRONIC_SMD_TRANSISTOR, 4)
                 .input(OPTICAL_FIBER, 8)
                 .output(OPTICAL_PROCESSOR_UV, 4)
                 .EUt(VA[UHV].toLong())
@@ -563,62 +565,61 @@ class OpticalCircuits
                 .solderMultiplier(1)
                 .buildAndRegister()
 
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(OPTICAL_LASER_CONTROL_UNIT)
+                .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+                .input(COSMIC_SMD_RESISTOR)
+                .input(COSMIC_SMD_CAPACITOR)
+                .input(COSMIC_SMD_TRANSISTOR)
+                .input(OPTICAL_FIBER, 8)
+                .output(OPTICAL_PROCESSOR_UV, 4)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .solderMultiplier(1)
+                .buildAndRegister()
+
             // Optical Assembly
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .input(PERFECT_CIRCUIT_BOARD)
                 .input(OPTICAL_PROCESSOR_UV, 4)
-                .input(OPTICAL_SMD_CAPACITOR, 16)
                 .input(OPTICAL_SMD_INDUCTOR, 16)
-                .input(ADVANCED_SYSTEM_ON_CHIP, 32)
+                .input(OPTICAL_SMD_CAPACITOR, 32)
+                .input(HIGHLY_ADVANCED_SOC, 32)
                 .input(OPTICAL_FIBER, 16)
-                .input("foilAnySyntheticRubber", 32)
-                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .output(OPTICAL_ASSEMBLY_UHV, 3)
                 .EUt(VA[UHV].toLong())
                 .duration(20 * SECOND)
-                .stationResearch { r ->
-                    r.researchStack(OPTICAL_PROCESSOR_UV.stackForm)
-                        .EUt(VA[UHV].toLong())
-                        .CWUt(32)
-                }
+                .cleanroom(CleanroomType.CLEANROOM)
+                .solderMultiplier(2)
                 .buildAndRegister()
 
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .input(PERFECT_CIRCUIT_BOARD)
                 .input(OPTICAL_PROCESSOR_UV, 4)
-                .input(SPINTRONIC_SMD_CAPACITOR, 4)
                 .input(SPINTRONIC_SMD_INDUCTOR, 4)
-                .input(ADVANCED_SYSTEM_ON_CHIP, 32)
+                .input(SPINTRONIC_SMD_CAPACITOR, 8)
+                .input(HIGHLY_ADVANCED_SOC, 32)
                 .input(OPTICAL_FIBER, 16)
-                .input("foilAnySyntheticRubber", 32)
-                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .output(OPTICAL_ASSEMBLY_UHV, 3)
                 .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
-                .stationResearch { r ->
-                    r.researchStack(OPTICAL_PROCESSOR_UV.stackForm)
-                        .EUt(VA[UHV].toLong())
-                        .CWUt(32)
-                }
+                .cleanroom(CleanroomType.CLEANROOM)
+                .solderMultiplier(2)
                 .buildAndRegister()
 
-            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
                 .input(PERFECT_CIRCUIT_BOARD)
                 .input(OPTICAL_PROCESSOR_UV, 4)
-                .input(COSMIC_SMD_CAPACITOR)
                 .input(COSMIC_SMD_INDUCTOR)
-                .input(ADVANCED_SYSTEM_ON_CHIP, 32)
+                .input(COSMIC_SMD_CAPACITOR, 2)
+                .input(HIGHLY_ADVANCED_SOC, 32)
                 .input(OPTICAL_FIBER, 16)
-                .input("foilAnySyntheticRubber", 32)
-                .fluidInputs(SolderingAlloy.getFluid(L * 4))
                 .output(OPTICAL_ASSEMBLY_UHV, 3)
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
-                .stationResearch { r ->
-                    r.researchStack(OPTICAL_PROCESSOR_UV.stackForm)
-                        .EUt(VA[UHV].toLong())
-                        .CWUt(32)
-                }
+                .cleanroom(CleanroomType.CLEANROOM)
+                .solderMultiplier(2)
                 .buildAndRegister()
 
             // Optical Computer

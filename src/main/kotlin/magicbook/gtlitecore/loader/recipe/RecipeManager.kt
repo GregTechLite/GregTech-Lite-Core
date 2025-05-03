@@ -79,6 +79,7 @@ import magicbook.gtlitecore.loader.recipe.circuit.NanoCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.OpticalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ProcessorCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.QuantumCircuits
+import magicbook.gtlitecore.loader.recipe.circuit.SpintronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.WetwareCircuits
 import magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AlloySmelterRecipes
@@ -270,6 +271,7 @@ class RecipeManager
             WetwareCircuits.init()
             GoowareCircuits.init()
             OpticalCircuits.init()
+            SpintronicCircuits.init()
 
             // Original GregTech machine recipes.
             AlloySmelterRecipes.init()
