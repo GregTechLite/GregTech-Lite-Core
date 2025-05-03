@@ -69,6 +69,7 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.STD_METAL
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
@@ -121,6 +122,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HafniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyC276
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
@@ -141,12 +143,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium6
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -767,6 +771,50 @@ class GTLiteSecondDegreeMaterials
                         .vacuumStats(VA[UHV], 15 * SECOND) }
                 .cableProperties(V[UEV], 32, 0, true)
                 .build()
+
+            // 4041 Hafnium Carbide
+            HafniumCarbide = Material.Builder(4041, gtliteId("hafnium_carbide"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(METALLIC)
+                .components(Hafnium, 1, Carbon, 1)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
+                .blast { b ->
+                    b.temp(4090, BlastProperty.GasTier.MID) // RTM Alloy
+                        .blastStats(VA[EV], 1 * MINUTE + 5 * SECOND)
+                        .vacuumStats(VA[HV], 30 * SECOND)
+                }
+                .build()
+
+            // 4042 Seaborgium Carbide
+            SeaborgiumCarbide = Material.Builder(4042, gtliteId("seaborgium_carbide"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(METALLIC)
+                .components(Seaborgium, 1, Carbon, 1)
+                .flags(DECOMPOSITION_BY_CENTRIFUGING)
+                .blast { b ->
+                    b.temp(8500, BlastProperty.GasTier.HIGH) // Trinium
+                        .blastStats(VA[ZPM], 45 * SECOND)
+                        .vacuumStats(VA[IV], 22 * SECOND + 10 * TICK)
+                }
+                .build()
+
+            // 4043 Tantalum Hafnium Seaborgium Carbide
+            TantalumHafniumSeaborgiumCarbide = Material.Builder(4043, gtliteId("tantalum_hafnium_seaborgium_carbide"))
+                .ingot()
+                .fluid()
+                .color(0x2C2C2C).iconSet(SHINY)
+                .components(TantalumCarbide, 12, HafniumCarbide, 3, SeaborgiumCarbide, 1)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+                .blast { b ->
+                    b.temp(12900, BlastProperty.GasTier.HIGHEST) // Infinity (Adamantium)
+                        .blastStats(VA[UHV], 36 * SECOND)
+                        .vacuumStats(VA[UV], 18 * SECOND)
+                }
+                .build()
+                .setFormula("Ta12Hf3SgC16", true)
+
         }
 
     }

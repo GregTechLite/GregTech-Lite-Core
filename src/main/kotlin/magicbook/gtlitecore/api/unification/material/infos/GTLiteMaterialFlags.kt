@@ -51,10 +51,12 @@ import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
+import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -239,6 +241,7 @@ class GTLiteMaterialFlags
             Nichrome.addFlags(GENERATE_FOIL)
             MetastableFlerovium.addFlags(GENERATE_FOIL)
             Einsteinium.addFlags(GENERATE_FOIL)
+            Moscovium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -343,6 +346,8 @@ class GTLiteMaterialFlags
             Einsteinium.addFlags(GENERATE_PLATE)
             Fermium.addFlags(GENERATE_PLATE)
             Mendelevium.addFlags(GENERATE_PLATE)
+            Moscovium.addFlags(GENERATE_PLATE)
+            Meitnerium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -372,6 +377,7 @@ class GTLiteMaterialFlags
             Fermium.addFlags(GENERATE_DOUBLE_PLATE)
             Mendelevium.addFlags(GENERATE_DOUBLE_PLATE)
             Rhenium.addFlags(GENERATE_DOUBLE_PLATE)
+            Meitnerium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -463,6 +469,7 @@ class GTLiteMaterialFlags
             Curium.addFlags(GENERATE_FINE_WIRE)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE)
             Nichrome.addFlags(GENERATE_FINE_WIRE)
+            Moscovium.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

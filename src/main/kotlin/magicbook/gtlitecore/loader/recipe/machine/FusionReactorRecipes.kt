@@ -5,6 +5,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
@@ -38,6 +39,8 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Magnesium
+import gregtech.api.unification.material.Materials.Meitnerium
+import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Nickel
@@ -47,6 +50,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Radon
+import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Seaborgium
@@ -56,9 +60,11 @@ import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.loaders.recipe.chemistry.TitaniumRecipes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
@@ -317,6 +323,26 @@ class FusionReactorRecipes
             addPlasmaFuelRecipe(Technetium, 38 * SECOND + 5 * TICK)
             addPlasmaCoolantRecipe(Technetium, 19 * SECOND, true)
 
+            // Fe + Bi -> Mt
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Iron.getFluid(L))
+                .fluidInputs(Bismuth.getFluid(L))
+                .fluidOutputs(Meitnerium.getFluid(L / 2))
+                .EUt(VA[UHV].toLong())
+                .duration(18 * TICK)
+                .EUToStart(540_000_000L) // 540M EU, MK4
+                .buildAndRegister()
+
+            // Ni + Bi -> Rg
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Nickel.getFluid(L * 2))
+                .fluidInputs(Bismuth.getFluid(L * 2))
+                .fluidOutputs(Roentgenium.getFluid(L))
+                .EUt(VA[UHV].toLong())
+                .duration(2 * SECOND + 16 * TICK)
+                .EUToStart(740_000_000L) // 740M EU, MK4
+                .buildAndRegister()
+
             // Pu239 + Ca -> Sg
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(Plutonium239.getFluid(L))
@@ -355,6 +381,19 @@ class FusionReactorRecipes
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
                 .EUToStart(1_200_000_000L) // 1200M EU, MK4
+                .buildAndRegister()
+
+            // ---------------------------------------------------------------------------------------------------------
+            // Mark 5 Fusion
+
+            // Np + Ti -> Mc
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Nickel.getFluid(L))
+                .fluidInputs(Titanium.getFluid(L))
+                .fluidOutputs(Moscovium.getFluid(L / 4))
+                .EUt(VA[UEV].toLong())
+                .duration(4 * SECOND + 8 * TICK)
+                .EUToStart(1_600_000_000L) // 1600M EU, MK5
                 .buildAndRegister()
 
             // Add plasma coolant recipes to vacuum freezer for original plasmas.

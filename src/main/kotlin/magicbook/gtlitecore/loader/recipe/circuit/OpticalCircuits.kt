@@ -44,6 +44,7 @@ import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
@@ -264,22 +265,10 @@ class OpticalCircuits
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // 2NaOH + Sg + 6F + 2H2O -> Na2SgO4 + 6HF
-            BURNER_REACTOR_RECIPES.recipeBuilder()
-                .input(dust, SodiumHydroxide, 6)
-                .input(dust, Seaborgium)
-                .fluidInputs(Fluorine.getFluid(6000))
-                .fluidInputs(Water.getFluid(2000))
-                .output(dust, SodiumSeaborgate, 7)
-                .fluidOutputs(HydrofluoricAcid.getFluid(6000))
-                .EUt(VA[UV].toLong())
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
             // Optical SMD Resistor
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(6)
-                .input(dust, SodiumSeaborgate)
+                .input(dust, Mendelevium)
                 .input(wireFine, BismuthStrontiumCalciumCuprate, 4)
                 .fluidInputs(KaptonE.getFluid(L * 2))
                 .output(OPTICAL_SMD_RESISTOR, 32)

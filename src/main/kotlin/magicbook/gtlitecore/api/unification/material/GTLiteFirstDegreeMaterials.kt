@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
+import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
@@ -63,6 +64,7 @@ import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
@@ -85,6 +87,7 @@ import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
+import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutile
@@ -220,6 +223,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBro
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCarbonate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCeriumCobaltIndium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHexachlorotinate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumCarbide
@@ -312,6 +316,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoRes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseMonoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseSulfate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MercuryCadmiumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumFlue
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumTrioxide
@@ -395,6 +400,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SulfurDichloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tanzanite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TechnetiumDioxide
@@ -403,6 +410,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TelluriumD
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerbiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumRoentgeniumChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumNitrate
@@ -1007,7 +1015,7 @@ class GTLiteFirstDegreeMaterials
             StrontiumFerrite = Material.Builder(2065, gtliteId("strontium_ferrite"))
                 .ingot()
                 .fluid()
-                .colorAverage().iconSet(SHINY)
+                .colorAverage().iconSet(MAGNETIC)
                 .components(Strontium, 1, Iron, 12, Oxygen, 19)
                 .flags(GENERATE_ROD, GENERATE_RING)
                 .blast { b ->
@@ -1677,7 +1685,7 @@ class GTLiteFirstDegreeMaterials
             SamariumCobalt = Material.Builder(2147, gtliteId("samarium_cobalt"))
                 .ingot()
                 .fluid()
-                .color(0xB3D683).iconSet(METALLIC)
+                .color(0xB3D683).iconSet(MAGNETIC)
                 .components(Samarium, 1,  Cobalt, 5)
                 .flags(GENERATE_ROD, GENERATE_RING)
                 .blast { b ->
@@ -2078,10 +2086,16 @@ class GTLiteFirstDegreeMaterials
 
             // 2194 Sodium Seaborgate
             SodiumSeaborgate = Material.Builder(2194, gtliteId("sodium_seaborgate"))
-                .dust()
+                .ingot()
+                .fluid()
                 .color(0x55bbd4).iconSet(BRIGHT)
                 .components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
-                .flags(DISABLE_DECOMPOSITION)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .blast { b ->
+                    b.temp(9800, BlastProperty.GasTier.HIGHER) // Tritanium
+                        .blastStats(VA[UV], 24 * SECOND)
+                        .vacuumStats(VA[ZPM], 12 * SECOND)
+                }
                 .build()
 
             // 2195 Lead Scandium Tantalate
@@ -2162,7 +2176,7 @@ class GTLiteFirstDegreeMaterials
             LutetiumManganeseGermanium = Material.Builder(2202, gtliteId("lutetium_manganese_germanium"))
                 .ingot()
                 .fluid()
-                .colorAverage().iconSet(METALLIC)
+                .colorAverage().iconSet(MAGNETIC)
                 .components(Lutetium, 1, Manganese, 3, Germanium, 6)
                 .flags(GENERATE_ROD, GENERATE_RING)
                 .blast { b ->
@@ -2240,7 +2254,7 @@ class GTLiteFirstDegreeMaterials
                 .ingot()
                 .color(0x9193C5).iconSet(SHINY)
                 .components(Boron, 1, Nitrogen, 1)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
                 .build()
                 .setFormula("a-BN", true)
 
@@ -2651,6 +2665,49 @@ class GTLiteFirstDegreeMaterials
                 .color(0x5B5B7A)
                 .components(Silicon, 1, Chlorine, 4)
                 .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2261 Caesium Cerium Cobalt Indium
+            CaesiumCeriumCobaltIndium = Material.Builder(2261, gtliteId("caesium_cerium_cobalt_indium"))
+                .ingot()
+                .fluid()
+                .color(0x01E068).iconSet(MAGNETIC)
+                .components(Caesium, 1, Cerium, 1, Cobalt, 2, Indium, 10)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE)
+                .blast { b ->
+                    b.temp(8900, BlastProperty.GasTier.HIGH) // Trinium
+                        .blastStats(VA[UV], 34 * SECOND)
+                        .vacuumStats(VA[ZPM], 17 * SECOND)
+                }
+                .build()
+
+            // 2262 Mercury Cadmium Telluride
+            MercuryCadmiumTelluride = Material.Builder(2262, gtliteId("mercury_cadmium_telluride"))
+                .ingot()
+                .fluid()
+                .color(0x823C80).iconSet(BRIGHT)
+                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .components(Mercury, 2, Cadmium, 1, Tellurium, 2)
+                .blast { b ->
+                    b.temp(12170, BlastProperty.GasTier.HIGHER) // Adamantium
+                        .blastStats(VA[UHV], 12 * SECOND)
+                        .vacuumStats(VA[UV], 6 * SECOND)
+                }
+                .build()
+
+            // 2263 Thallium Roentgenium Chloride
+            ThalliumRoentgeniumChloride = Material.Builder(2263, gtliteId("thallium_roentgenium_chloride"))
+                .ingot()
+                .fluid()
+                .color(0x3C5CB5).iconSet(MAGNETIC)
+                .components(Thallium, 1, Roentgenium, 1, Chlorine, 3)
+                .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_RING)
+                .blast { b ->
+                    b.temp(12500, BlastProperty.GasTier.HIGHEST) // Adamantium
+                        .blastStats(VA[UV], 48 * SECOND)
+                        .vacuumStats(VA[ZPM], 24 * SECOND)
+                }
                 .build()
 
         }

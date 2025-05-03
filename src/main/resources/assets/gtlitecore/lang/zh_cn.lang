@@ -2591,6 +2591,9 @@ gtlitecore.material.bets_perrhenate=高铼酸双(乙烯二硫代)四硒富瓦烯
 gtlitecore.material.helium_neon=氦氖混合气
 gtlitecore.material.germanium_tetrachloride=四氯化锗
 gtlitecore.material.silicon_tetrachloride=四氯化硅
+gtlitecore.material.caesium_cerium_cobalt_indium=铯铈钴铟合金
+gtlitecore.material.mercury_cadmium_telluride=碲化汞镉
+gtlitecore.material.thallium_roentgenium_chloride=氯化铊钅仑
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2632,6 +2635,9 @@ gtlitecore.material.hastelloy_k_243=哈斯特洛伊合金-K243
 gtlitecore.material.pikyonium_64_b=皮卡优合金64B
 gtlitecore.material.arceus_alloy_2_b=阿尔宙斯合金2B
 gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=振金三钛锕铁超氢合金
+gtlitecore.material.hafnium_carbide=碳化铪
+gtlitecore.material.seaborgium_carbide=碳化钅喜
+gtlitecore.material.tantalum_hafnium_seaborgium_carbide=碳化钽铪钅喜
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

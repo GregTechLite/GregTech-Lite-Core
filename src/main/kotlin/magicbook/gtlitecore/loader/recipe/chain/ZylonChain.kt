@@ -6,6 +6,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -37,6 +38,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibromomet
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrodipropanyloxybenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Isochloropropane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumLoadedRutileNanoparticles
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ParaXylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PretreatedZylon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
@@ -155,6 +157,20 @@ class ZylonChain
                 .EUt(VA[IV].toLong())
                 .duration(35 * SECOND)
                 .buildAndRegister() // Smelting to ingot or extracting to fluid.
+
+            // Advanced recipes for C14H6N2O2
+            // C6H6O2 + C6H4(CH3)2 + 2HNO3 -> C14H6N2O2 + 6H2O
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .notConsumable(dust, PalladiumLoadedRutileNanoparticles)
+                .fluidInputs(Resorcinol.getFluid(1000))
+                .fluidInputs(ParaXylene.getFluid(1000))
+                .fluidInputs(NitricAcid.getFluid(2000))
+                .output(dust, Zylon, 24)
+                .fluidOutputs(Water.getFluid(6000))
+                .EUt(VA[UIV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
         }
 
     }

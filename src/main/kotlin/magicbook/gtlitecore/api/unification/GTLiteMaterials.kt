@@ -287,6 +287,9 @@ class GTLiteMaterials
         lateinit var HeliumNeon: Material
         lateinit var GermaniumTetrachloride: Material
         lateinit var SiliconTetrachloride: Material
+        lateinit var CaesiumCeriumCobaltIndium: Material
+        lateinit var MercuryCadmiumTelluride: Material
+        lateinit var ThalliumRoentgeniumChloride: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -329,6 +332,9 @@ class GTLiteMaterials
         lateinit var Pikyonium64B: Material
         lateinit var ArceusAlloy2B: Material
         lateinit var VibraniumTritaniumActiniumIronSuperhydride: Material
+        lateinit var HafniumCarbide: Material
+        lateinit var SeaborgiumCarbide: Material
+        lateinit var TantalumHafniumSeaborgiumCarbide: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

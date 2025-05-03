@@ -60,10 +60,12 @@ import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
+import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.Mica
 import gregtech.api.unification.material.Materials.Molybdenite
+import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
@@ -86,6 +88,7 @@ import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -179,7 +182,8 @@ class GTLiteMaterialProperties
                 Curium, Seaborgium, Bohrium, Neptunium, Fermium, Rubidium, Calcium,
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
                 Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
-                Astatine, Nobelium, Lawrencium, Mercury)
+                Astatine, Nobelium, Lawrencium, Mercury, Roentgenium, Moscovium,
+                Meitnerium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -188,7 +192,7 @@ class GTLiteMaterialProperties
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
-                Lawrencium, Ytterbium, Rhenium)
+                Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)

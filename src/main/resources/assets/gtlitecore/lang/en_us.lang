@@ -2586,6 +2586,9 @@ gtlitecore.material.bets_perrhenate=Bis-(Ethylenedithio)-Tetraselenafulvalene Pe
 gtlitecore.material.helium_neon=Helium-Neon Mixture
 gtlitecore.material.germanium_tetrachloride=Germanium Tetrachloride
 gtlitecore.material.silicon_tetrachloride=Silicon Tetrachloride
+gtlitecore.material.caesium_cerium_cobalt_indium=Caesium-Cerium-Cobalt-Indium
+gtlitecore.material.mercury_cadmium_telluride=Mercury Cadmium Telluride
+gtlitecore.material.thallium_roentgenium_chloride=Thallium Roentgenium Chloride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2627,6 +2630,9 @@ gtlitecore.material.hastelloy_k_243=Hastelloy-K243
 gtlitecore.material.pikyonium_64_b=Pikyonium 64B
 gtlitecore.material.arceus_alloy_2_b=Arceus Alloy 2B
 gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=Vibranium Tritanium Actinium Iron Superhydride
+gtlitecore.material.hafnium_carbide=Hafnium Carbide
+gtlitecore.material.seaborgium_carbide=Seaborgium Carbide
+gtlitecore.material.tantalum_hafnium_seaborgium_carbide=Tantalum Hafnium Seaborgium
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

@@ -24,6 +24,7 @@ import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
+import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chalcopyrite
 import gregtech.api.unification.material.Materials.Charcoal
 import gregtech.api.unification.material.Materials.Chlorine
@@ -74,6 +75,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Baddeleyit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
@@ -418,6 +420,17 @@ class OxidesChain
                 .input(dust, Scandium, 2)
                 .fluidInputs(Oxygen.getFluid(3000))
                 .output(dust, ScandiumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of CeO2, do not push player used REE distillation.
+            // Ce + 2O -> CeO2
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Cerium)
+                .fluidInputs(Oxygen.getFluid(2000))
+                .output(dust, CeriumOxide, 3)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()

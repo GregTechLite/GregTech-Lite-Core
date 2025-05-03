@@ -41,6 +41,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
+import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Inconel718
@@ -78,10 +79,12 @@ import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Saltpeter
 import gregtech.api.unification.material.Materials.Samarium
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
@@ -105,6 +108,7 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
@@ -126,6 +130,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryot
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HafniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyC276
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
@@ -145,7 +150,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSeaborgate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
@@ -463,9 +470,9 @@ class MixerRecipes
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(4)
                 .input(dust, Invar, 2)
-                .input(dust, Vanadium, 1)
-                .input(dust, Titanium, 1)
-                .input(dust, Molybdenum, 1)
+                .input(dust, Vanadium)
+                .input(dust, Titanium)
+                .input(dust, Molybdenum)
                 .output(dust, HSLASteel, 5)
                 .EUt(VA[HV].toLong())
                 .duration(15 * SECOND)
@@ -490,7 +497,7 @@ class MixerRecipes
                 .input(dust, Manganese, 2)
                 .input(dust, Copper, 10)
                 .input(dust, Aluminium, 4)
-                .input(dust, Titanium, 1)
+                .input(dust, Titanium)
                 .output(dust, Monel500, 40)
                 .EUt(VA[IV].toLong())
                 .duration(56 * SECOND)
@@ -502,7 +509,7 @@ class MixerRecipes
                 .input(dust, Iron, 16)
                 .input(dust, Aluminium, 3)
                 .input(dust, Chrome, 5)
-                .input(dust, Yttrium, 1)
+                .input(dust, Yttrium)
                 .output(dust, IncoloyMA956, 25)
                 .EUt(VA[IV].toLong())
                 .duration(34 * SECOND)
@@ -511,8 +518,8 @@ class MixerRecipes
             // Zirconium Carbide
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(2)
-                .input(dust, Zirconium, 1)
-                .input(dust, Carbon, 1)
+                .input(dust, Zirconium)
+                .input(dust, Carbon)
                 .output(dust, ZirconiumCarbide, 2)
                 .EUt(VA[HV].toLong())
                 .duration(18 * SECOND)
@@ -521,8 +528,8 @@ class MixerRecipes
             // Tantalum Carbide
             MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(2)
-                .input(dust, Tantalum, 1)
-                .input(dust, Carbon, 1)
+                .input(dust, Tantalum)
+                .input(dust, Carbon)
                 .output(dust, TantalumCarbide, 2)
                 .EUt(VA[EV].toLong())
                 .duration(15 * SECOND)
@@ -758,6 +765,26 @@ class MixerRecipes
                 .fluidInputs(Iron.getPlasma(L))
                 .output(dust, VibraniumTritaniumActiniumIronSuperhydride, 13)
                 .EUt(VA[UEV].toLong())
+                .duration(40 * SECOND)
+                .buildAndRegister()
+
+            // Hafnium Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Hafnium)
+                .input(dust, Carbon)
+                .output(dust, HafniumCarbide, 2)
+                .EUt(VA[EV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // Seaborgium Carbide
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Seaborgium)
+                .input(dust, Carbon)
+                .output(dust, SeaborgiumCarbide, 2)
+                .EUt(VA[ZPM].toLong())
                 .duration(40 * SECOND)
                 .buildAndRegister()
 
