@@ -25,6 +25,7 @@ import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
+import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
@@ -49,6 +50,8 @@ import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Polonium
+import gregtech.api.unification.material.Materials.Radium
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Rubidium
@@ -62,6 +65,7 @@ import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritium
+import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -322,24 +326,24 @@ class FusionReactorRecipes
             addPlasmaFuelRecipe(Technetium, 38 * SECOND + 5 * TICK)
             addPlasmaCoolantRecipe(Technetium, 19 * SECOND, true)
 
-            // Fe + Bi -> Mt
+            // Po + Cr -> Mt
             FUSION_RECIPES.recipeBuilder()
-                .fluidInputs(Iron.getFluid(L))
-                .fluidInputs(Bismuth.getFluid(L))
-                .fluidOutputs(Meitnerium.getFluid(L / 2))
-                .EUt(VA[UHV].toLong())
-                .duration(18 * TICK)
-                .EUToStart(540_000_000L) // 540M EU, MK4
+                .fluidInputs(Polonium.getFluid(L * 2))
+                .fluidInputs(Chrome.getFluid(L * 2))
+                .fluidOutputs(Meitnerium.getFluid(L * 4))
+                .EUt(VA[UHV] / 3L)
+                .duration(4 * SECOND + 8 * TICK)
+                .EUToStart(400_000_000L) // 400M EU, MK4
                 .buildAndRegister()
 
-            // Ni + Bi -> Rg
+            // Ra + V -> Rg
             FUSION_RECIPES.recipeBuilder()
-                .fluidInputs(Nickel.getFluid(L * 2))
-                .fluidInputs(Bismuth.getFluid(L * 2))
-                .fluidOutputs(Roentgenium.getFluid(L))
-                .EUt(VA[UHV].toLong())
-                .duration(2 * SECOND + 16 * TICK)
-                .EUToStart(740_000_000L) // 740M EU, MK4
+                .fluidInputs(Radium.getFluid(L * 2))
+                .fluidInputs(Vanadium.getFluid(L * 2))
+                .fluidOutputs(Roentgenium.getFluid(L * 4))
+                .EUt(VA[UHV] / 2L)
+                .duration(5 * SECOND + 12 * TICK)
+                .EUToStart(460_000_000L) // 460M EU, MK4
                 .buildAndRegister()
 
             // Pu239 + Ca -> Sg

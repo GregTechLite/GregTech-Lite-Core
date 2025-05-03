@@ -405,6 +405,9 @@ class GTLiteMaterialProperties
             // Add magnetic properties.
             ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT).magneticMaterial = ChromiumGermaniumTellurideMagnetic
 
+            // Change color of Meitnerium.
+            Meitnerium.materialRGB = 0x9C1E55
+
         }
 
         // -------------------------------------------------------------------------------------------------------------
