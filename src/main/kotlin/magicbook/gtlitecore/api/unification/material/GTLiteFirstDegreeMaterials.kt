@@ -1036,7 +1036,7 @@ class GTLiteFirstDegreeMaterials
                 .color(0xFE71A9).iconSet(SHINY)
                 .components(Lithium, 2, Titanium, 1, Oxygen, 3)
                 .flags(EXT2_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE, GENERATE_GEAR)
+                    GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING)
                 .blast { b ->
                     b.temp(3100, BlastProperty.GasTier.MID) // Nichrome
                         .blastStats(VA[EV], 16 * SECOND)
@@ -2238,9 +2238,8 @@ class GTLiteFirstDegreeMaterials
                 .gem()
                 .color(0x545572).iconSet(DIAMOND)
                 .components(Boron, 1, Nitrogen, 1)
-                .flags(
-                    EXT_METAL, DISABLE_CRYSTALLIZATION, DISABLE_DECOMPOSITION, FLAMMABLE, EXPLOSIVE,
-                    GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_LENS)
+                .flags(EXT_METAL, DISABLE_CRYSTALLIZATION, DISABLE_DECOMPOSITION, FLAMMABLE,
+                    EXPLOSIVE, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_LENS)
                 .toolStats(MaterialToolProperty(14.0F, 9.0F, 12400, 15))
                 .build()
                 .setFormula("c-BN", true)
