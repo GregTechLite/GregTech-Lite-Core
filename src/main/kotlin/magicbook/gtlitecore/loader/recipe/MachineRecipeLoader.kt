@@ -9,6 +9,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -237,6 +238,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStro
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
@@ -261,6 +263,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
@@ -283,7 +286,9 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.LEPTONIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.NAQUADRIA_CHARGE
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.TARANIUM_CHARGE
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
@@ -1797,30 +1802,35 @@ class MachineRecipeLoader
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Taranium Charge // TODO HMX Chain
-            // ASSEMBLER_RECIPES.recipeBuilder()
-            //     .circuitMeta(15)
-            //     .inputs(ItemStack(NAQUADRIA_CHARGE))
-            //     .input(dust, DegenerateRhenium)
-            //     .input(plate, Taranium, 2)
-            //     .input(plate, Lawrencium, 4)
-            //     .input(foil, Tritanium, 8)
-            //     .fluidInputs(HMX.getFluid(4000))
-            //     .outputs(ItemStack(TARANIUM_CHARGE))
-            //     .EUt(VA[UEV].toLong())
-            //     .duration(5 * SECOND)
-            //     .cleanroom(CleanroomType.CLEANROOM)
-            //     .buildAndRegister()
+            // Taranium Charge
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .inputs(ItemStack(NAQUADRIA_CHARGE))
+                .input(dust, DegenerateRhenium)
+                .input(plate, Taranium, 2)
+                .input(plate, Lawrencium, 4)
+                .input(foil, Tritanium, 8)
+                .fluidInputs(CyclotetramethyleneTetranitroamine.getFluid(4000))
+                .outputs(ItemStack(TARANIUM_CHARGE))
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
-            // Leptonic Charge // TODO N8 Chain
-            // ASSEMBLER_RECIPES.recipeBuilder()
-            //     .circuitMeta(15)
-            //     .inputs(ItemStack(TARANIUM_CHARGE))
-            //     .input(dust, Octaazacubane)
-            //     .input(plate, MetastableOganesson, 2)
-            //     .input(plate, Dubnium, 4)
-            //     .input(foil, Vibranium, 8)
-            //     .fluidInputs(HeavyLeptonMixture.getFluid(1000))
+            // Leptonic Charge
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .inputs(ItemStack(TARANIUM_CHARGE))
+                .input(dust, Octaazacubane)
+                .input(plate, MetastableOganesson, 2)
+                .input(plate, Dubnium, 4)
+                .input(foil, Vibranium, 8)
+                .fluidInputs(HeavyLeptonMixture.getFluid(1000))
+                .outputs(ItemStack(LEPTONIC_CHARGE))
+                .EUt(VA[UIV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // Quantum Chromodynamic Charge
             // ASSEMBLER_RECIPES.recipeBuilder()

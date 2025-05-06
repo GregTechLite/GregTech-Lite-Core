@@ -2607,6 +2607,8 @@ gtlitecore.material.potassium_formate=Potassium Formate
 gtlitecore.material.ammonium_sulfate=Ammonium Sulfate
 gtlitecore.material.ammonium_carbonate=Ammonium Carbonate
 gtlitecore.material.ammonium_acetate=Ammonium Acetate
+gtlitecore.material.sodium_azanide=Sodium Azanide
+gtlitecore.material.sodium_azide=Sodium Azide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2837,6 +2839,9 @@ gtlitecore.material.dibenzyltetraacetylhexaazaisowurtzitane=Dibenzyltetraacetylh
 gtlitecore.material.tetraacetyldinitrosohexaazaisowurtzitane=Tetraacetyldinitrosohexaazaisowurtzitane (TADNHIW)
 gtlitecore.material.crude_hexanitrohexaaxaisowurtzitane=Crude Hexanitrohexaaxaisowurtzitane
 gtlitecore.material.hexanitrohexaaxaisowurtzitane=Hexanitrohexaaxaisowurtzitane (HNIW)
+gtlitecore.material.hexamethylenetetramine=Hexamethylenetetramine
+gtlitecore.material.cyclotetramethylene_tetranitroamine=Cyclotetramethylene Tetranitroamine (HMX)
+gtlitecore.material.octaazacubane=Octaazacubane
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

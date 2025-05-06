@@ -77,6 +77,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chloroacet
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeHexanitrohexaaxaisowurtzitane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DenseHydrazineRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diacetyl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
@@ -126,6 +127,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardRe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexabenzylhexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexafluoropropylene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexamethylenetetramine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydrazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
@@ -149,6 +151,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NHydroxysu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitrotoluene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OctafluoroPentanol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OxalicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Oxydianiline
@@ -1460,6 +1463,31 @@ class GTLiteOrganicChemistryMaterials
                 .dust()
                 .color(0x0B7222).iconSet(BRIGHT)
                 .components(Carbon, 6, Hydrogen, 6, Nitrogen, 12, Oxygen, 12)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8157 Hexamethylenetetramine
+            Hexamethylenetetramine = Material.Builder(8157, gtliteId("hexamethylenetetramine"))
+                .dust()
+                .color(0x53576D)
+                .components(Carbon, 6, Hydrogen, 12, Nitrogen, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH2)6N4", true)
+
+            // 8158 Cyclotetramethylene Tetranitroamine (HMX)
+            CyclotetramethyleneTetranitroamine = Material.Builder(8158, gtliteId("cyclotetramethylene_tetranitroamine"))
+                .liquid()
+                .color(0xD0A57B).iconSet(SHINY)
+                .components(Carbon, 4, Hydrogen, 8, Nitrogen, 8, Oxygen, 8)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8159 Octaazacubane
+            Octaazacubane = Material.Builder(8159, gtliteId("octaazacubane"))
+                .dust()
+                .color(Nitrogen.materialRGB).iconSet(SHINY)
+                .components(Nitrogen, 8)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
 

@@ -2612,6 +2612,8 @@ gtlitecore.material.potassium_formate=甲醇钾
 gtlitecore.material.ammonium_sulfate=硫酸铵
 gtlitecore.material.ammonium_carbonate=碳酸铵
 gtlitecore.material.ammonium_acetate=乙酸铵
+gtlitecore.material.sodium_azanide=氨基钠
+gtlitecore.material.sodium_azide=叠氮化钠
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2841,6 +2843,9 @@ gtlitecore.material.dibenzyltetraacetylhexaazaisowurtzitane=二苄基四乙酰�
 gtlitecore.material.tetraacetyldinitrosohexaazaisowurtzitane=四乙酰二硝基六氮杂异伍兹烷（TADNHIW）
 gtlitecore.material.crude_hexanitrohexaaxaisowurtzitane=粗制六硝基六氮杂异伍兹烷
 gtlitecore.material.hexanitrohexaaxaisowurtzitane=六硝基六氮杂异伍兹烷（HNIW）
+gtlitecore.material.hexamethylenetetramine=六亚甲基四胺
+gtlitecore.material.cyclotetramethylene_tetranitroamine=环四亚甲基四硝胺（HMX）
+gtlitecore.material.octaazacubane=八氮立方烷
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

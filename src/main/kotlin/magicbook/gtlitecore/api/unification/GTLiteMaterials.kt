@@ -299,6 +299,8 @@ class GTLiteMaterials
         lateinit var AmmoniumSulfate: Material
         lateinit var AmmoniumCarbonate: Material
         lateinit var AmmoniumAcetate: Material
+        lateinit var SodiumAzanide: Material
+        lateinit var SodiumAzide: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -529,6 +531,9 @@ class GTLiteMaterials
         lateinit var Tetraacetyldinitrosohexaazaisowurtzitane: Material
         lateinit var CrudeHexanitrohexaaxaisowurtzitane: Material
         lateinit var Hexanitrohexaaxaisowurtzitane: Material
+        lateinit var Hexamethylenetetramine: Material
+        lateinit var CyclotetramethyleneTetranitroamine: Material
+        lateinit var Octaazacubane: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

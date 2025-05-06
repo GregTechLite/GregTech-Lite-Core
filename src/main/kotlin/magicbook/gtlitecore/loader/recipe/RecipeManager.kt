@@ -25,6 +25,7 @@ import magicbook.gtlitecore.loader.recipe.chain.FullereneChain
 import magicbook.gtlitecore.loader.recipe.chain.GalliumNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
+import magicbook.gtlitecore.loader.recipe.chain.HMXChain
 import magicbook.gtlitecore.loader.recipe.chain.HNIWChain
 import magicbook.gtlitecore.loader.recipe.chain.HalkoniteSteelChain
 import magicbook.gtlitecore.loader.recipe.chain.HeatExchangeChain
@@ -41,6 +42,7 @@ import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.MutatedLivingSolderChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
+import magicbook.gtlitecore.loader.recipe.chain.OctaazacubaneChain
 import magicbook.gtlitecore.loader.recipe.chain.OilsChain
 import magicbook.gtlitecore.loader.recipe.chain.OxidesChain
 import magicbook.gtlitecore.loader.recipe.chain.OzoneChain
@@ -233,6 +235,8 @@ class RecipeManager
             QuarksChain.init()
             SilicaGelChain.init()
             HNIWChain.init()
+            HMXChain.init()
+            OctaazacubaneChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

@@ -383,6 +383,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGelB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzanide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumChlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCyanide
@@ -2789,6 +2791,22 @@ class GTLiteFirstDegreeMaterials
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
                 .setFormula("NH4CH3CO2", true)
+
+            // 2273 Sodium Azanide
+            SodiumAzanide = Material.Builder(2273, gtliteId("sodium_azanide"))
+                .dust()
+                .colorAverage().iconSet(ROUGH)
+                .components(Sodium, 1, Nitrogen, 1, Hydrogen, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2274 Sodium Azide
+            SodiumAzide = Material.Builder(2274, gtliteId("sodium_azide"))
+                .dust()
+                .colorAverage()
+                .components(Sodium, 1, Nitrogen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
 
         }
 
