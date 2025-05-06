@@ -3,6 +3,7 @@ package magicbook.gtlitecore.api.unification.material
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -23,7 +24,9 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
@@ -39,6 +42,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
@@ -47,6 +51,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.If
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.M
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Pu244
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
@@ -54,6 +59,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.INFINITY
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETIUM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -234,6 +240,25 @@ class GTLiteElementMaterials
                 .flags(STD_METAL, NO_UNIFICATION)
                 .build()
                 .setFormula("§cR§de", true)
+
+            // 11 Magnetium
+            Magnetium = Material.Builder(11, gtliteId("magnetium"))
+                .ingot()
+                .liquid(FluidBuilder()
+                    .temperature(1_280_000))
+                .plasma(FluidBuilder()
+                    .temperature(2_560_000))
+                .iconSet(MAGNETIUM) // Base RGB: 9A4270
+                .element(M)
+                .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
+                    GENERATE_DENSE, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE, GENERATE_ROTOR)
+                .blast { b ->
+                    b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
+                        .blastStats(VA[UIV], 30 * SECOND)
+                        .vacuumStats(VA[UHV], 15 * SECOND)
+                }
+                .build()
 
         }
 

@@ -39,6 +39,10 @@ class GTLiteMaterialIconSet
         @JvmField
         val DEGENERATE = MaterialIconSet("degenerate", null, true)
 
+        @JvmField
+        val MAGNETIUM = MaterialIconSetWithRenderer("magnetium", null, true,
+            HaloRenderItemBehavior(10, 0x009A4270, { GTLiteTextures.HALO }, true))
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

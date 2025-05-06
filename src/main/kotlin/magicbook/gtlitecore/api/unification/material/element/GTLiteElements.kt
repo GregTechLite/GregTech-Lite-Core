@@ -25,6 +25,9 @@ class GTLiteElements
         @JvmStatic
         val If: Element = Elements.add(1001, 1001, "Infinity", "If")
 
+        @JvmStatic
+        val M: Element = Elements.add(166, 345, "Magnetium", "M")
+
     }
 
 }
