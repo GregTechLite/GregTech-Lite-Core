@@ -34,6 +34,7 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.GlycerylTrinitrate
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.HSSE
@@ -44,8 +45,10 @@ import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprat
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meitnerium
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -87,6 +90,7 @@ import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
@@ -226,12 +230,14 @@ import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
@@ -239,8 +245,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HadronicResonantGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
@@ -266,12 +275,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WatertightSteel
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.NAQUADRIA_CHARGE
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
@@ -1769,6 +1780,51 @@ class MachineRecipeLoader
                         .CWUt(36)
                 }
                 .buildAndRegister()
+
+            // Naquadria Charge TODO HNIW Chain
+            // ASSEMBLER_RECIPES.recipeBuilder()
+            //     .circuitMeta(15)
+            //     .input(frameGt, Naquadria)
+            //     .input(dust, HNIW)
+            //     .input(plate, NaquadahEnriched, 2)
+            //     .input(plate, Mendelevium, 4)
+            //     .input(foil, NaquadahAlloy, 8)
+            //     .fluidInputs(GlycerylTrinitrate.getFluid(16000))
+            //     .outputs(ItemStack(NAQUADRIA_CHARGE))
+            //     .EUt(VA[UHV].toLong())
+            //     .duration(5 * SECOND)
+            //     .cleanroom(CleanroomType.CLEANROOM)
+            //     .buildAndRegister()
+
+            // Taranium Charge // TODO HMX Chain
+            // ASSEMBLER_RECIPES.recipeBuilder()
+            //     .circuitMeta(15)
+            //     .inputs(ItemStack(NAQUADRIA_CHARGE))
+            //     .input(dust, DegenerateRhenium)
+            //     .input(plate, Taranium, 2)
+            //     .input(plate, Lawrencium, 4)
+            //     .input(foil, Tritanium, 8)
+            //     .fluidInputs(HMX.getFluid(4000))
+
+            // Leptonic Charge // TODO N8 Chain
+            // ASSEMBLER_RECIPES.recipeBuilder()
+            //     .circuitMeta(15)
+            //     .inputs(ItemStack(TARANIUM_CHARGE))
+            //     .input(dust, Octaazacubane)
+            //     .input(plate, MetastableOganesson, 2)
+            //     .input(plate, Dubnium, 4)
+            //     .input(foil, Vibranium, 8)
+            //     .fluidInputs(HeavyLeptonMixture.getFluid(1000))
+
+            // Quantum Chromodynamic Charge
+            // ASSEMBLER_RECIPES.recipeBuilder()
+            //     .circuitMeta(15)
+            //     .input(ItemStack(LEPTONIC_CHARGE))
+            //     .input(dust, ActiniumSuperhydride)
+            //     .input(plate, HeavyQuarkDegenerateMatter, 2)
+            //     .input(plate, Bohrium, 4)
+            //     .input(foil, QuantumchromodynamicallyConfirmMatter, 8)
+            //     .fluidInputs(HadronicResonantGas.getFluid(500))
 
             // Stellar Containment Casing
             ASSEMBLY_LINE_RECIPES.recipeBuilder()

@@ -91,16 +91,6 @@ class ParticlesChain
                 .blastFurnaceTemp(9800) // Tritanium
                 .buildAndRegister()
 
-            // Quark-Gluon Plasma -> Heavy Quarks, Light Quarks, Gluons
-            CENTRIFUGE_RECIPES.recipeBuilder()
-                .fluidInputs(QuarkGluonPlasma.getFluid(5000))
-                .fluidOutputs(HeavyQuarks.getFluid(3750))
-                .fluidOutputs(LightQuarks.getFluid(2500))
-                .fluidOutputs(Gluons.getFluid(1250))
-                .EUt(VA[UHV].toLong())
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
             // Dimensionally Shifted Superfluid
             LARGE_MIXER_RECIPES.recipeBuilder()
                 .circuitMeta(6)

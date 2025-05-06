@@ -53,6 +53,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.PotassiumPermanganateChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
+import magicbook.gtlitecore.loader.recipe.chain.QuarksChain
 import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
@@ -227,6 +228,7 @@ class RecipeManager
             DegenerateRheniumChain.init()
             ActiniumSuperhydrideChain.init()
             BETSPerrhenateChain.init()
+            QuarksChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

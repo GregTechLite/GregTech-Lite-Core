@@ -48,6 +48,7 @@ import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.IronMagnetic
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lazurite
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
@@ -258,6 +259,7 @@ class GTLiteMaterialFlags
             CobaltBrass.addFlags(GENERATE_FRAME)
             Duranium.addFlags(GENERATE_FRAME)
             Inconel718.addFlags(GENERATE_FRAME)
+            Naquadria.addFlags(GENERATE_FRAME)
 
             // fuelRod
             Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -348,6 +350,7 @@ class GTLiteMaterialFlags
             Mendelevium.addFlags(GENERATE_PLATE)
             Moscovium.addFlags(GENERATE_PLATE)
             Meitnerium.addFlags(GENERATE_PLATE)
+            Lawrencium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
