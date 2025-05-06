@@ -117,6 +117,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockCleanroomCasing
+import gregtech.common.blocks.BlockFireboxCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.BlockMetalCasing
@@ -213,6 +214,7 @@ import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
 import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
+import gregtech.common.metatileentities.MetaTileEntities.PRIMITIVE_BLAST_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SCANNER
@@ -310,6 +312,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.GREENHOUSE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.HOT_COOLANT_TURBINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_COKE_OVEN
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_BRIDGE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_EXTENDER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.INVENTORY_TANK_BRIDGE
@@ -705,6 +708,13 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, Steel),
                 'F', UnificationEntry(pipeSmallFluid, Potin),
                 'P', UnificationEntry(plate, Brass))
+
+            // Industrial Primitive Blast Furnace
+            ModHandler.addShapedRecipe(true, "industrial_primitive_blast_furnace", INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.stackForm,
+                "FBF", "BAB", "FBF",
+                'F', PRIMITIVE_BLAST_FURNACE.stackForm,
+                'B', MetaBlocks.BOILER_FIREBOX_CASING.getItemVariant(BlockFireboxCasing.FireboxCasingType.STEEL_FIREBOX),
+                'A', OreDictUnifier.get(frameGt, Steel))
 
             // Mining Drone Airport
             ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,

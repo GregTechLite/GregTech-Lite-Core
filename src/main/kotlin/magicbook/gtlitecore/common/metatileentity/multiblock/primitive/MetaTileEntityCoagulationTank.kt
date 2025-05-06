@@ -1,4 +1,4 @@
-package magicbook.gtlitecore.common.metatileentity.multiblock
+package magicbook.gtlitecore.common.metatileentity.multiblock.primitive
 
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
@@ -81,11 +81,11 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
 
     companion object
     {
-        private val casingState: IBlockState
+        private val casingState
             get() = GTLiteMetaBlocks.PRIMITIVE_CASING.getState(BlockPrimitiveCasing.PrimitiveCasingType.REINFORCED_TREATED_WOOD_WALL)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): MetaTileEntity = MetaTileEntityCoagulationTank(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityCoagulationTank(metaTileEntityId)
 
     override fun initializeInventory()
     {

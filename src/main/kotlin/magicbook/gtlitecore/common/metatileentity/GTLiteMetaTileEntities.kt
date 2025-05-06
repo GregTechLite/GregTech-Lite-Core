@@ -34,7 +34,6 @@ import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityBedrockDrillingRig
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatalyticReformer
-import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityComponentAssemblyLine
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCosmicRayDetector
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
@@ -83,6 +82,8 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
+import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityCoagulationTank
+import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityIndustrialPrimitiveBlastFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamAlloySmelter
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamCompressor
 import magicbook.gtlitecore.common.metatileentity.part.MetaTileEntityAdvancedEnergyHatch
@@ -231,8 +232,8 @@ class GTLiteMetaTileEntities
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
         lateinit var STEAM_COMPRESSOR: MetaTileEntitySteamCompressor
         lateinit var STEAM_ALLOY_SMELTER: MetaTileEntitySteamAlloySmelter
-
         lateinit var STEAM_ENGINE: MetaTileEntitySteamEngine
+        lateinit var INDUSTRIAL_PRIMITIVE_BLAST_FURNACE: MetaTileEntityIndustrialPrimitiveBlastFurnace
         lateinit var NUCLEAR_REACTOR: MetaTileEntityNuclearReactor
         lateinit var HOT_COOLANT_TURBINE: MetaTileEntityLargeTurbine
         lateinit var SUPERCRITICAL_FLUID_TURBINE: MetaTileEntityLargeTurbine
@@ -724,6 +725,9 @@ class GTLiteMetaTileEntities
             STEAM_ENGINE = MetaTileEntities.registerMetaTileEntity(18004,
                 MetaTileEntitySteamEngine(GTLiteUtility.gtliteId("steam_engine")))
 
+            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = MetaTileEntities.registerMetaTileEntity(18005,
+                MetaTileEntityIndustrialPrimitiveBlastFurnace(GTLiteUtility.gtliteId("industrial_primitive_blast_furnace")))
+
             MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
                 MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
 
@@ -973,7 +977,9 @@ class GTLiteMetaTileEntities
 
             COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             STEAM_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-
+            STEAM_ALLOY_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            STEAM_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             NUCLEAR_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             HOT_COOLANT_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)

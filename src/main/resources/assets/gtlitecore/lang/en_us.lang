@@ -1719,6 +1719,12 @@ gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
 
 gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 
+gtlitecore.machine.industrial_primitive_blast_furnace.name=Industrial Blast Furnace
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=闪速炼钢窑
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§r与§f输出总线§7进行自动化
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.4=每延长1片侧中层的片状结构，配方所需时间就变为原本的§l80%%§r§7。
+
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
 gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与总控中心
 gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作

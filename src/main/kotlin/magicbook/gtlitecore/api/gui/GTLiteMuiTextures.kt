@@ -29,6 +29,24 @@ class GTLiteMuiTextures
             "textures/gui/primitive/primitive_fluid_slot.png")
 
         /**
+         * @see gregtech.api.gui.GuiTextures.PRIMITIVE_INGOT_OVERLAY
+         */
+        val PRIMITIVE_INGOT_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+            "textures/gui/primitive/overlay_primitive_ingot.png")
+
+        /**
+         * @see gregtech.api.gui.GuiTextures.PRIMITIVE_DUST_OVERLAY
+         */
+        val PRIMITIVE_DUST_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+            "textures/gui/primitive/overlay_primitive_dust.png")
+
+        /**
+         * @see gregtech.api.gui.GuiTextures.PRIMITIVE_FURNACE_OVERLAY
+         */
+        val PRIMITIVE_FURNACE_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+            "textures/gui/primitive/overlay_primitive_furnace.png")
+
+        /**
          * TODO Add GuiTexture supported of this sprite.
          */
         val PRIMITIVE_INT_CIRCUIT_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,

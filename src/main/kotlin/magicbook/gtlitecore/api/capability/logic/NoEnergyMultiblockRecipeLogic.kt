@@ -8,7 +8,7 @@ import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic
 import gregtech.api.recipes.properties.RecipePropertyStorage
 
-class NoEnergyMultiblockRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity)
+open class NoEnergyMultiblockRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity)
 {
 
     override fun getEnergyInputPerSecond(): Long = Int.MAX_VALUE.toLong()
