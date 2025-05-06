@@ -187,11 +187,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumTrichloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumAcetate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumHexachloropalladate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumHexachloroplatinate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPertechnetate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Anorthite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Augite
@@ -325,6 +328,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeodymiumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nephelite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NitroniumTetrafluoroborate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NitrosoniumTetrafluoroborate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Oligoclase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OsmiumTetrachloride
@@ -344,6 +349,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumDi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumBromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFormate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumManganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumPermanganate
@@ -372,6 +378,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOx
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeleniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
@@ -405,6 +413,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Technetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TelluriumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerbiumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetrafluoroboricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumRoentgeniumChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumSulfate
@@ -2704,6 +2713,82 @@ class GTLiteFirstDegreeMaterials
                         .vacuumStats(VA[ZPM], 24 * SECOND)
                 }
                 .build()
+
+            // 2264 Silica Gel Base
+            SilicaGelBase = Material.Builder(2264, gtliteId("silica_gel_base"))
+                .liquid()
+                .color(0x7170BE).iconSet(DULL)
+                .components(SiliconDioxide, 1, SodiumHydroxide, 1, HydrochloricAcid, 1, Water, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(SiNa(OH)O2)(HCl)(H2O)", true)
+
+            // 2265 Silica Gel
+            SilicaGel = Material.Builder(2265, gtliteId("silica_gel"))
+                .dust()
+                .color(0x9695FD).iconSet(NANOPARTICLES)
+                .components(SiliconDioxide, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2266 Nitronium Tetrafluoroborate
+            NitroniumTetrafluoroborate = Material.Builder(2266, gtliteId("nitronium_tetrafluoroborate"))
+                .dust()
+                .color(0x787449).iconSet(DULL)
+                .components(Nitrogen, 1, Oxygen, 2, Boron, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2267 Nitrosonium Tetrafluoroborate
+            NitrosoniumTetrafluoroborate = Material.Builder(2267, gtliteId("nitrosonium_tetrafluoroborate"))
+                .dust()
+                .color(0xA32A8C).iconSet(ROUGH)
+                .components(Nitrogen, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2268 Tetrafluoroboric Acid
+            TetrafluoroboricAcid = Material.Builder(2268, gtliteId("tetrafluoroboric_acid"))
+                .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+                .color(0x83A731)
+                .components(Hydrogen, 1, Boron, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2269 Potassium Formate
+            PotassiumFormate = Material.Builder(2269, gtliteId("potassium_formate"))
+                .dust()
+                .color(0x74B5A9).iconSet(METALLIC)
+                .components(Carbon, 1, Hydrogen, 3, Oxygen, 1, Potassium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2270 Ammonium Sulfate
+            AmmoniumSulfate = Material.Builder(2270, gtliteId("ammonium_sulfate"))
+                .dust()
+                .color(0x5858F4).iconSet(METALLIC)
+                .components(Nitrogen, 4, Hydrogen, 8, Sulfur, 1, Oxygen, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(NH2)4SO4", true)
+
+            // 2271 Ammonium Carbonate
+            AmmoniumCarbonate = Material.Builder(2271, gtliteId("ammonium_carbonate"))
+                .dust()
+                .color(0x7C89D9).iconSet(SHINY)
+                .components(Carbon, 1, Hydrogen, 8, Oxygen, 3, Nitrogen, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(NH4)2CO3", true)
+
+            // 2272 Ammonium Acetate
+            AmmoniumAcetate = Material.Builder(2272, gtliteId("ammonium_acetate"))
+                .dust()
+                .color(0x646882).iconSet(METALLIC)
+                .components(Carbon, 2, Hydrogen, 7, Oxygen, 2, Nitrogen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("NH4CH3CO2", true)
 
         }
 

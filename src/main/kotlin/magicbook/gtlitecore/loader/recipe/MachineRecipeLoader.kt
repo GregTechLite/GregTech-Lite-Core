@@ -250,6 +250,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
@@ -1781,20 +1782,20 @@ class MachineRecipeLoader
                 }
                 .buildAndRegister()
 
-            // Naquadria Charge TODO HNIW Chain
-            // ASSEMBLER_RECIPES.recipeBuilder()
-            //     .circuitMeta(15)
-            //     .input(frameGt, Naquadria)
-            //     .input(dust, HNIW)
-            //     .input(plate, NaquadahEnriched, 2)
-            //     .input(plate, Mendelevium, 4)
-            //     .input(foil, NaquadahAlloy, 8)
-            //     .fluidInputs(GlycerylTrinitrate.getFluid(16000))
-            //     .outputs(ItemStack(NAQUADRIA_CHARGE))
-            //     .EUt(VA[UHV].toLong())
-            //     .duration(5 * SECOND)
-            //     .cleanroom(CleanroomType.CLEANROOM)
-            //     .buildAndRegister()
+            // Naquadria Charge
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(frameGt, Naquadria)
+                .input(dust, Hexanitrohexaaxaisowurtzitane)
+                .input(plate, NaquadahEnriched, 2)
+                .input(plate, Mendelevium, 4)
+                .input(foil, NaquadahAlloy, 8)
+                .fluidInputs(GlycerylTrinitrate.getFluid(16000))
+                .outputs(ItemStack(NAQUADRIA_CHARGE))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // Taranium Charge // TODO HMX Chain
             // ASSEMBLER_RECIPES.recipeBuilder()
@@ -1805,6 +1806,11 @@ class MachineRecipeLoader
             //     .input(plate, Lawrencium, 4)
             //     .input(foil, Tritanium, 8)
             //     .fluidInputs(HMX.getFluid(4000))
+            //     .outputs(ItemStack(TARANIUM_CHARGE))
+            //     .EUt(VA[UEV].toLong())
+            //     .duration(5 * SECOND)
+            //     .cleanroom(CleanroomType.CLEANROOM)
+            //     .buildAndRegister()
 
             // Leptonic Charge // TODO N8 Chain
             // ASSEMBLER_RECIPES.recipeBuilder()

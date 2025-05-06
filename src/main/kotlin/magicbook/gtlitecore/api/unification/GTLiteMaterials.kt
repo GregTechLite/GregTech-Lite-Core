@@ -290,6 +290,15 @@ class GTLiteMaterials
         lateinit var CaesiumCeriumCobaltIndium: Material
         lateinit var MercuryCadmiumTelluride: Material
         lateinit var ThalliumRoentgeniumChloride: Material
+        lateinit var SilicaGelBase: Material
+        lateinit var SilicaGel: Material
+        lateinit var NitroniumTetrafluoroborate: Material
+        lateinit var NitrosoniumTetrafluoroborate: Material
+        lateinit var TetrafluoroboricAcid: Material
+        lateinit var PotassiumFormate: Material
+        lateinit var AmmoniumSulfate: Material
+        lateinit var AmmoniumCarbonate: Material
+        lateinit var AmmoniumAcetate: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -502,6 +511,24 @@ class GTLiteMaterials
         lateinit var Dibromoacrolein: Material
         lateinit var Bromodihydrothiine: Material
         lateinit var BETS: Material
+        lateinit var Benzaldehyde: Material
+        lateinit var SuccinicAnhydride: Material
+        lateinit var NHydroxysuccinimide: Material
+        lateinit var SuccinimidylAcetate: Material
+        lateinit var DimethylamineHydrochloride: Material
+        lateinit var Dimethylformamide: Material
+        lateinit var Succinimide: Material
+        lateinit var Acetonitrile: Material
+        lateinit var Acetamide: Material
+        lateinit var Acetaldehyde: Material
+        lateinit var Glyoxal: Material
+        lateinit var Benzylamine: Material
+        lateinit var BenzylChloride: Material
+        lateinit var Hexabenzylhexaazaisowurtzitane: Material
+        lateinit var Dibenzyltetraacetylhexaazaisowurtzitane: Material
+        lateinit var Tetraacetyldinitrosohexaazaisowurtzitane: Material
+        lateinit var CrudeHexanitrohexaaxaisowurtzitane: Material
+        lateinit var Hexanitrohexaaxaisowurtzitane: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

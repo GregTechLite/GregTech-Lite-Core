@@ -12,9 +12,11 @@ import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Butene
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Dimethylamine
 import gregtech.api.unification.material.Materials.Dimethylhydrazine
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gallium
+import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Lithium
@@ -42,8 +44,11 @@ import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetaldehyde
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AceticAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcetoneCyanohydrin
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetonitrile
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcetylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
@@ -51,7 +56,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminopheno
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCyanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETS
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Benzaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzylBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzylChloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Benzylamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzyltrimethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BiphenylTetracarboxylicAcidDianhydride
@@ -68,10 +76,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeHexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DenseHydrazineRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diacetyl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diaminotoluene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibenzyltetraacetylhexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diborane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibromoacrolein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibromomethylbenzene
@@ -83,6 +93,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diethylhex
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Difluorobenzophenone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylTerephthalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylacetamide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylamineHydrochloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylformamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrodipropanyloxybenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Durene
@@ -109,9 +121,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GammaButyr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GeodesicPolyarene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glucose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glyoxal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardReagent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexabenzylhexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexafluoropropylene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydrazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenCyanide
@@ -130,6 +145,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylamin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylhydrazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylhydrazineNitrateRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylparatoluate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NHydroxysuccinimide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitrotoluene
@@ -162,10 +178,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolypho
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAnhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Succinimide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinimidylAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Terephthalaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerephthalicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TerephthaloylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylAlcohol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetraacetyldinitrosohexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumChloride
@@ -1296,6 +1316,151 @@ class GTLiteOrganicChemistryMaterials
                 .color(0x98E993).iconSet(ROUGH)
                 .flags(DISABLE_DECOMPOSITION)
                 .components(Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4)
+                .build()
+
+            // 8139 Benzaldehyde
+            Benzaldehyde = Material.Builder(8139, gtliteId("benzaldehyde"))
+                .liquid()
+                .color(0x957D53)
+                .components(Carbon, 7, Hydrogen, 6, Oxygen, 1)
+                .build()
+
+            // 8140 SuccinicAnhydride
+            SuccinicAnhydride = Material.Builder(8140, gtliteId("succinic_anhydride"))
+                .dust()
+                .color(0xA2569D)
+                .components(Carbon, 4, Hydrogen, 4, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH2CO)2O", true)
+
+            // 8141 N-Hydroxysuccinimide
+            NHydroxysuccinimide = Material.Builder(8141, gtliteId("n_hydroxysuccinimide"))
+                .dust()
+                .color(0x33BAFB).iconSet(METALLIC)
+                .components(Carbon, 4, Hydrogen, 5, Nitrogen, 1, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH2CO)2NOH", true)
+
+            // 8142 Succinimidyl Acetate
+            SuccinimidylAcetate = Material.Builder(8142, gtliteId("succinimidyl_acetate"))
+                .dust()
+                .color(0x1D3605).iconSet(ROUGH)
+                .components(Carbon, 6, Hydrogen, 7, Nitrogen, 1, Oxygen, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8143 Dimethylamine Hydrochloride
+            DimethylamineHydrochloride = Material.Builder(8143, gtliteId("dimethylamine_hydrochloride"))
+                .liquid()
+                .color(0xE3EBDC)
+                .components(Dimethylamine, 1, HydrochloricAcid, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C2H8NCl", true)
+
+            // 8144 Dimethylformamide (DMF)
+            Dimethylformamide = Material.Builder(8144, gtliteId("dimethylformamide"))
+                .liquid()
+                .color(0x42BDFF)
+                .components(Carbon, 3, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH3)2NC(O)H", true)
+
+            // 8145 Succinimide
+            Succinimide = Material.Builder(8145, gtliteId("succinimide"))
+                .dust()
+                .color(0x1774B6).iconSet(ROUGH)
+                .components(Carbon, 4, Hydrogen, 5, Nitrogen, 1, Oxygen, 2)
+                .build()
+
+            // 8146 Acetonitrile
+            Acetonitrile = Material.Builder(8146, gtliteId("acetonitrile"))
+                .liquid()
+                .color(0x7D82A3)
+                .components(Carbon, 2, Hydrogen, 3, Nitrogen, 1)
+                .build()
+                .setFormula("CH3CN", true)
+
+            // 8147 Acetamide
+            Acetamide = Material.Builder(8147, gtliteId("acetamide"))
+                .dust()
+                .color(0x7D82A3)
+                .components(Carbon, 2, Hydrogen, 5, Nitrogen, 1, Oxygen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("CH3CONH2", true)
+
+            // 8148 Acetaldehyde
+            Acetaldehyde = Material.Builder(8148, gtliteId("acetaldehyde"))
+                .liquid()
+                .color(0xF3F2F1)
+                .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
+                .build()
+
+            // 8149 Glyoxal
+            Glyoxal = Material.Builder(8149, gtliteId("glyoxal"))
+                .liquid()
+                .color(0xC9C7AB)
+                .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
+                .build()
+
+            // 8150 Benzylamine
+            Benzylamine = Material.Builder(8150, gtliteId("benzylamine"))
+                .liquid()
+                .color(0x527A92)
+                .components(Carbon, 7, Hydrogen, 9, Nitrogen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8151 Benzyl Chloride
+            BenzylChloride = Material.Builder(8151, gtliteId("benzyl_chloride"))
+                .gas()
+                .color(0x6699CC)
+                .components(Carbon, 7, Hydrogen, 7, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8152 Hexabenzylhexaazaisowurtzitane (HBHIW)
+            Hexabenzylhexaazaisowurtzitane = Material.Builder(8152, gtliteId("hexabenzylhexaazaisowurtzitane"))
+                .dust()
+                .color(0x48561E)
+                .components(Carbon, 48, Hydrogen, 48 ,Nitrogen, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8153 Dibenzyltetraacetylhexaazaisowurtzitane (DBTAHIW)
+            Dibenzyltetraacetylhexaazaisowurtzitane = Material.Builder(8153, gtliteId("dibenzyltetraacetylhexaazaisowurtzitane"))
+                .dust()
+                .color(0xB7E8EE)
+                .components(Carbon, 28, Hydrogen, 32, Nitrogen, 6, Oxygen, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8154 Tetraacetyldinitrosohexaazaisowurtzitane (TADNHIW)
+            Tetraacetyldinitrosohexaazaisowurtzitane = Material.Builder(8154, gtliteId("tetraacetyldinitrosohexaazaisowurtzitane"))
+                .dust()
+                .color(0xEA7584).iconSet(ROUGH)
+                .components(Carbon, 14, Hydrogen, 18, Nitrogen, 8, Oxygen, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8155 Crude Hexanitrohexaaxaisowurtzitane
+            CrudeHexanitrohexaaxaisowurtzitane = Material.Builder(8155, gtliteId("crude_hexanitrohexaaxaisowurtzitane"))
+                .dust()
+                .color(0x5799EC)
+                .components(Carbon, 6, Hydrogen, 6, Nitrogen, 12, Oxygen, 12)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8156 Hexanitrohexaaxaisowurtzitane (HNIW)
+            Hexanitrohexaaxaisowurtzitane = Material.Builder(8156, gtliteId("hexanitrohexaaxaisowurtzitane"))
+                .dust()
+                .color(0x0B7222).iconSet(BRIGHT)
+                .components(Carbon, 6, Hydrogen, 6, Nitrogen, 12, Oxygen, 12)
+                .flags(DISABLE_DECOMPOSITION)
                 .build()
 
         }

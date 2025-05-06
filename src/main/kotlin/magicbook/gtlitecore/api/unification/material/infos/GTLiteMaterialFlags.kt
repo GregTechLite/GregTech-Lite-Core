@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lazurite
+import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Meitnerium
@@ -430,6 +431,7 @@ class GTLiteMaterialFlags
             Inconel718.addFlags(GENERATE_ROD)
             Bohrium.addFlags(GENERATE_ROD)
             Clay.addFlags(GENERATE_ROD)
+            Magnesium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -441,12 +443,14 @@ class GTLiteMaterialFlags
             Seaborgium.addFlags(GENERATE_LONG_ROD)
             Dubnium.addFlags(GENERATE_LONG_ROD)
             Bohrium.addFlags(GENERATE_LONG_ROD)
+            Magnesium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
             Trinium.addFlags(GENERATE_SPRING)
             Tritanium.addFlags(GENERATE_SPRING)
             Seaborgium.addFlags(GENERATE_SPRING)
+            Magnesium.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
