@@ -302,6 +302,12 @@ class GTLiteMaterials
         lateinit var AmmoniumAcetate: Material
         lateinit var SodiumAzanide: Material
         lateinit var SodiumAzide: Material
+        lateinit var PalladiumBisdibenzylidieneacetone: Material
+        lateinit var PotassiumTetrachloroplatinate: Material
+        lateinit var AmmoniumPersulfate: Material
+        lateinit var SilverTetrafluoroborate: Material
+        lateinit var SilverChloride: Material
+        lateinit var SilverOxide: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -535,6 +541,15 @@ class GTLiteMaterials
         lateinit var Hexamethylenetetramine: Material
         lateinit var CyclotetramethyleneTetranitroamine: Material
         lateinit var Octaazacubane: Material
+        lateinit var Dibenzylideneacetone: Material
+        lateinit var Pyridine: Material
+        lateinit var Bipyridine: Material
+        lateinit var Cyclooctadiene: Material
+        lateinit var Dichlorocyclooctadieneplatinium: Material
+        lateinit var Diiodobiphenyl: Material
+        lateinit var TrimethyltinChloride: Material
+        lateinit var Cycloparaphenylene: Material
+        lateinit var Octene: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

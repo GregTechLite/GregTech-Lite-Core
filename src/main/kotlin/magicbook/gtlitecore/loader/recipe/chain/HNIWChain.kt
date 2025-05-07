@@ -98,7 +98,7 @@ class HNIWChain
 
         private fun hbhiwProcess()
         {
-            // 4NH3 + H2SO4 + 3O -> (NH2)4SO4 + 3H2O
+            // 4NH3 + H2SO4 + 3O -> (NH4)2SO4 + 3H2O
             CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
                 .fluidInputs(Ammonia.getFluid(4000))
                 .fluidInputs(SulfuricAcid.getFluid(1000))
@@ -109,7 +109,7 @@ class HNIWChain
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
-            // CaCO3 + (NH2)4SO4 -> 0.5CaSO4·(H2O)2 + (NH4)2CO3
+            // CaCO3 + (NH4)2SO4 -> 0.5CaSO4·(H2O)2 + (NH4)2CO3
             ROASTER_RECIPES.recipeBuilder()
                 .input(dust, Calcite, 5)
                 .input(dust, AmmoniumSulfate, 17)

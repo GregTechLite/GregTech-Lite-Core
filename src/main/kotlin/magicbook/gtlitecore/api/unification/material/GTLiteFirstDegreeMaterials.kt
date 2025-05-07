@@ -98,6 +98,7 @@ import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
@@ -193,6 +194,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumHe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumHexachloroplatinate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPerrhenate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPersulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPertechnetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
@@ -335,6 +337,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OsmiumTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Ozone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumAcetate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumBisdibenzylidieneacetone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumLoadedRutileNanoparticles
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PerrhenicAcid
@@ -355,6 +358,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumM
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumPermanganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTertbutoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTetrachloroplatinate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
@@ -381,6 +385,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAc
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverChloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverTetrafluoroborate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzanide
@@ -2772,7 +2779,7 @@ class GTLiteFirstDegreeMaterials
                 .components(Nitrogen, 4, Hydrogen, 8, Sulfur, 1, Oxygen, 4)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
-                .setFormula("(NH2)4SO4", true)
+                .setFormula("(NH4)2SO4", true)
 
             // 2271 Ammonium Carbonate
             AmmoniumCarbonate = Material.Builder(2271, gtliteId("ammonium_carbonate"))
@@ -2806,6 +2813,53 @@ class GTLiteFirstDegreeMaterials
                 .colorAverage()
                 .components(Sodium, 1, Nitrogen, 3)
                 .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2275 Palladium Bisdibenzylidieneacetone
+            PalladiumBisdibenzylidieneacetone = Material.Builder(2275, gtliteId("palladium_bisdibenzylidieneacetone"))
+                .dust()
+                .color(0xBE81A0).iconSet(ROUGH)
+                .components(Carbon, 51, Hydrogen, 42, Oxygen, 3, Palladium, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2276 Potassium Tetrachloroplatinate
+            PotassiumTetrachloroplatinate = Material.Builder(2276, gtliteId("potassium_tetrachloroplatinate"))
+                .dust()
+                .color(0xF1B04F).iconSet(SHINY)
+                .components(Potassium, 2, Platinum, 1, Chlorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2277 Ammonium Persulfate
+            AmmoniumPersulfate = Material.Builder(2277, gtliteId("ammonium_persulfate"))
+                .dust()
+                .color(0x4242B7)
+                .components(Nitrogen, 2, Hydrogen, 8, Sulfur, 2, Oxygen, 8)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(NH4)2S2O8", true)
+
+            // 2278 SilverTetrafluoroborate
+            SilverTetrafluoroborate = Material.Builder(2278, gtliteId("silver_tetrafluoroborate"))
+                .dust()
+                .color(0x818024)
+                .components(Silver, 1, Boron, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2279 Silver Chloride
+            SilverChloride = Material.Builder(2279, gtliteId("silver_chloride"))
+                .dust()
+                .color(0x8D8D8D).iconSet(METALLIC)
+                .components(Silver, 1, Chlorine, 1)
+                .build()
+
+            // 2280 Silver Oxide
+            SilverOxide = Material.Builder(2280, gtliteId("silver_oxide"))
+                .dust()
+                .color(0xA4A4A4)
+                .components(Silver, 2, Oxygen, 1)
                 .build()
 
         }
