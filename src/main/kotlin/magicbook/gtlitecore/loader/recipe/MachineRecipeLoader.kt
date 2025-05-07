@@ -385,6 +385,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NANOSCALE_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NUCLEAR_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PLASMA_ENHANCED_CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
@@ -1379,6 +1380,16 @@ class MachineRecipeLoader
                 'H', HULL[ZPM].stackForm,
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.UV),
                 'P', UnificationEntry(plate, Darmstadtium))
+
+            // Plasma-Enhanced CVD Unit
+            ModHandler.addShapedRecipe(true, "plasma_enhanced_cvd_unit", PLASMA_ENHANCED_CVD_UNIT.stackForm,
+                "PKP", "CHC", "ESE",
+                'P', UnificationEntry(plate, Vibranium),
+                'K', UnificationEntry(cableGtSingle, Europium),
+                'C', UnificationEntry(circuit, MarkerMaterials.Tier.UEV),
+                'H', HULL[UHV].stackForm,
+                'E', EMITTER_UHV,
+                'S', SENSOR_UHV)
 
             // Bedrock Drilling Rig
             ModHandler.addShapedRecipe(true, "bedrock_drilling_rig", BEDROCK_DRILLING_RIG.stackForm,

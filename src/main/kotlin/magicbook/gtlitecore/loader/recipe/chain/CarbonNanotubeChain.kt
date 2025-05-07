@@ -122,7 +122,7 @@ class CarbonNanotubeChain
                 .output(ingot, CarbonNanotube)
                 .EUt(VA[UV].toLong())
                 .duration(5 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
+                .temperature(993)
                 .buildAndRegister()
 
             // 12C2H2 + 28C6H4 + 4N -> 4C48 + 40NH3 (3972K)
@@ -136,7 +136,7 @@ class CarbonNanotubeChain
                 .fluidOutputs(Ammonia.getFluid(40000))
                 .EUt(VA[UEV].toLong())
                 .duration(1 * SECOND + 5 * TICK)
-                .cleanroom(CleanroomType.CLEANROOM)
+                .temperature(993)
                 .buildAndRegister()
 
             // C48 decomposition.

@@ -1786,7 +1786,7 @@ gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Compatible with all common �
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=Each §eEmitter Casing tier§7 and §eSensor Casing Tier§7 +1, recipe duration -> §l50%%§r§7 of the original.
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=Each §aPump Casing tier§7 +1, processing +§l8§r§7 items.
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=Each §ePump Casing tier§7 +1, processing +§l8§r§7 items.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.7=Laser Transmissive Gas: §fHelium, Neon, Argon, Krypton, Xenon§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
@@ -1842,6 +1842,14 @@ gtlitecore.machine.stellar_forge.tooltip.3=产物以极高温的等离子喷流�
 gtlitecore.machine.stellar_forge.tooltip.4=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.stellar_forge.tooltip.5=每提高1个§e发射器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.stellar_forge.tooltip.6=每提高1个§e力场发生器§7等级，每次运行可以多处理§l32§r§7个物品。
+
+gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced CVD Unit
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4=升级部件外壳或电压等级以提高机器性能
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.6=每提高1个§e泵外壳等级§7与§e力场外壳等级§7，每次运行可以多处理§l32§r§7个物品。
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

@@ -99,6 +99,7 @@ import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Seaborgium
+import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -353,6 +354,7 @@ class GTLiteMaterialFlags
             Moscovium.addFlags(GENERATE_PLATE)
             Meitnerium.addFlags(GENERATE_PLATE)
             Lawrencium.addFlags(GENERATE_PLATE)
+            Selenium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

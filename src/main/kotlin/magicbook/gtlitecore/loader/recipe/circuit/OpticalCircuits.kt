@@ -45,6 +45,7 @@ import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potash
+import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
@@ -71,6 +72,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LASER_CVD_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.PLASMA_CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
@@ -419,6 +421,19 @@ class OpticalCircuits
                 .EUt(VA[UV].toLong())
                 .duration(2 * MINUTE)
                 .temperature(1800)
+                .buildAndRegister()
+
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plate, Selenium)
+                .notConsumable(SHAPE_EXTRUDER_WIRE)
+                .fluidInputs(GermaniumTetrachloride.getFluid(4000))
+                .fluidInputs(PhosphorylChloride.getFluid(4000))
+                .fluidInputs(SiliconTetrachloride.getFluid(16000))
+                .output(OPTICAL_FIBER, 64)
+                .output(OPTICAL_FIBER, 64)
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .temperature(900)
                 .buildAndRegister()
 
             // PRAM

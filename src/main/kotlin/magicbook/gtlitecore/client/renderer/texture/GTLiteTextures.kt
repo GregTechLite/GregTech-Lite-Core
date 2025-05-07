@@ -238,6 +238,9 @@ class GTLiteTextures
 
         @JvmField
         val RHODIUM_PLATED_PALLADIUM_CASING = GTLiteSimpleOverlayRenderer("casings/metal/rhodium_plated_palladium")
+
+        @JvmField
+        val TRINAQUADALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/trinaquadalloy")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")
