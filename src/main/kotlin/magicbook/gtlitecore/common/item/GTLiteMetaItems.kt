@@ -12,6 +12,7 @@ import gregtech.api.util.RandomPotionEffect
 import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
+import magicbook.gtlitecore.api.utils.FormattingUtility
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -331,6 +332,8 @@ class GTLiteMetaItems
         lateinit var MICA_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
         lateinit var SAND_DUST: MetaItem<*>.MetaValueItem
         lateinit var MUD_BALL: MetaItem<*>.MetaValueItem
+        lateinit var CARBON_ALLOTROPE_MIXTURE: MetaItem<*>.MetaValueItem
+        lateinit var GRAPHENE_ALIGNED_CNT: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -944,6 +947,17 @@ class GTLiteMetaItems
 
             MUD_BALL = GTLITE_ITEMS.addItem(5006, "material.dust.mud_ball")
                 .addOreDict("dustMudBall")
+
+            CARBON_ALLOTROPE_MIXTURE = GTLITE_ITEMS.addItem(5007, "material.mixture.carbon_allotrope")
+                .addComponents(TooltipBehavior { tl ->
+                    tl.add("§eC" + FormattingUtility.subDigits("96"))
+                })
+
+            GRAPHENE_ALIGNED_CNT = GTLITE_ITEMS.addItem(5008, "material.plate.graphene_aligned_cnt")
+                .addComponents(TooltipBehavior { tl ->
+                    tl.add("§e(C" + FormattingUtility.subDigits("6") + "H" + FormattingUtility.subDigits("4") + ")"
+                        + FormattingUtility.subDigits("7") + "C" + FormattingUtility.subDigits("12"))
+                })
 
             // 9001-10000: Miscellaneous Foods.
 

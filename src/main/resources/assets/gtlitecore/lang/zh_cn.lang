@@ -1027,6 +1027,8 @@ metaitem.material.plate.mica_insulator.name=绝缘云母板
 metaitem.material.foil.mica_insulator.name=绝缘云母箔
 metaitem.material.dust.sand.name=细沙堆
 metaitem.material.dust.mud_ball.name=泥
+metaitem.material.mixture.carbon_allotrope.name=碳同素异构体混合物
+metaitem.material.plate.graphene_aligned_cnt.name=石墨烯排列碳纳米管
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -1159,6 +1161,7 @@ recipemap.crystallization_crucible.name=结晶坩埚
 recipemap.nanoscale_fabricator.name=分子束外延
 recipemap.sonicator.name=超声震荡
 recipemap.laser_induced_cvd_unit.name=激光诱导化学气相沉积
+recipemap.plasma_enhanced_cvd_unit.name=等离子增强化学气相沉积
 recipemap.mob_extractor.name=生物资源提取器
 recipemap.bedrock_drilling_rig.name=基岩钻机
 recipemap.advanced_fusion_reactor.name=进阶聚变反应堆
@@ -2862,6 +2865,7 @@ gtlitecore.material.diiodobiphenyl=二碘代联苯
 gtlitecore.material.trimethyltin_chloride=三甲基氯化锡
 gtlitecore.material.cycloparaphenylene=环对苯撑（CPP）
 gtlitecore.material.octene=1-辛烯
+gtlitecore.material.carbon_nanotube=碳纳米管（CNT）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

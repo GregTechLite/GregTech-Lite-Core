@@ -1027,6 +1027,8 @@ metaitem.material.plate.mica_insulator.name=Mica Insulator Plate
 metaitem.material.foil.mica_insulator.name=Mica Insulator Foil
 metaitem.material.dust.sand.name=Sand Dust
 metaitem.material.dust.mud_ball.name=Mud Ball
+metaitem.material.mixture.carbon_allotrope.name=Carbon Allotrope Mixture
+metaitem.material.plate.graphene_aligned_cnt.name=Graphene Aligned Carbon Nanotube
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
@@ -1159,6 +1161,7 @@ recipemap.crystallization_crucible.name=Crystallization Crucible
 recipemap.nanoscale_fabricator.name=Molecular Beaming
 recipemap.sonicator.name=Sonication
 recipemap.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition
+recipemap.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition
 recipemap.mob_extractor.name=Mob Extractor
 recipemap.bedrock_drilling_rig.name=Bedrock Drilling Rig
 recipemap.advanced_fusion_reactor.name=Advanced Fusion Reactor
@@ -2858,6 +2861,7 @@ gtlitecore.material.diiodobiphenyl=Diiodobiphenyl
 gtlitecore.material.trimethyltin_chloride=Trimethyltin Chloride
 gtlitecore.material.cycloparaphenylene=Cycloparaphenylene (CPP)
 gtlitecore.material.octene=1-Octene
+gtlitecore.material.carbon_nanotube=Carbon Nanotube (CNT)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

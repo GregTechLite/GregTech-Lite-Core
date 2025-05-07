@@ -550,6 +550,7 @@ class GTLiteMaterials
         lateinit var TrimethyltinChloride: Material
         lateinit var Cycloparaphenylene: Material
         lateinit var Octene: Material
+        lateinit var CarbonNanotube: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

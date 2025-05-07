@@ -178,6 +178,55 @@ class FormattingUtility
         @JvmStatic
         private fun getLocale(): Locale = Minecraft.getMinecraft().languageManager.currentLanguage.javaLocale
 
+        @JvmStatic
+        fun subDigits(number: String): String
+        {
+            val numbers = number.toCharArray()
+            val chars = CharArray(numbers.size)
+            for (i in numbers.indices)
+            {
+                chars[i] = when (numbers[i])
+                {
+                    '0' -> '₀'
+                    '1' -> '₁'
+                    '2' -> '₂'
+                    '3' -> '₃'
+                    '4' -> '₄'
+                    '5' -> '₅'
+                    '6' -> '₆'
+                    '7' -> '₇'
+                    '8' -> '₈'
+                    '9' -> '₉'
+                    else -> numbers[i]
+                }
+            }
+            return String(chars)
+        }
+
+        @JvmStatic
+        fun supDigits(number: String): String
+        {
+            val numbers = number.toCharArray()
+            val chars = CharArray(numbers.size)
+            for (i in numbers.indices) {
+                chars[i] = when (numbers[i])
+                {
+                    '0' -> '⁰'
+                    '1' -> '¹'
+                    '2' -> '²'
+                    '3' -> '³'
+                    '4' -> '⁴'
+                    '5' -> '⁵'
+                    '6' -> '⁶'
+                    '7' -> '⁷'
+                    '8' -> '⁸'
+                    '9' -> '⁹'
+                    else -> numbers[i]
+                }
+            }
+            return String(chars)
+        }
+
     }
 
 }

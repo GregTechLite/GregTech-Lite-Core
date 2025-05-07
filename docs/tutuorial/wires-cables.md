@@ -49,3 +49,4 @@
 | Infinity*                                  | 8,388,608 (UEV)  | 36                    | 2                  | 4                 |
 | Metastable Hassium*                        | 8,388,608 (UEV)  | 28                    | 5                  | 10                |
 | Halkonite Steel*                           | 33,554,432 (UIV) | 48                    | 64                 | 128               |
+| Carbon Nanotube*                           | 33,554,432 (UIV) | 8                     | 6                  | 12                |

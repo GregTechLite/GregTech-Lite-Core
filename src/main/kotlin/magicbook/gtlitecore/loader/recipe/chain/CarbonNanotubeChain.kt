@@ -5,13 +5,22 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.metatileentity.multiblock.CleanroomType
+import gregtech.api.recipes.RecipeMaps.BENDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
+import gregtech.api.recipes.RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.Acetone
 import gregtech.api.unification.material.Materials.Aluminium
@@ -22,6 +31,7 @@ import gregtech.api.unification.material.Materials.Butadiene
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.DilutedHydrochloricAcid
+import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -29,11 +39,13 @@ import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Isoprene
 import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SodiumHydroxide
@@ -42,9 +54,17 @@ import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_FOIL
+import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.PLASMA_CVD_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetaldehyde
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumPersulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Benzaldehyde
@@ -52,6 +72,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bipyridine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BoronTrifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BoronTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butyllithium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cyclooctadiene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cycloparaphenylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dibenzylideneacetone
@@ -74,6 +95,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TinDichlor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TrimethyltinChloride
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CARBON_ALLOTROPE_MIXTURE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPHENE_ALIGNED_CNT
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CarbonNanotubeChain
@@ -89,8 +112,90 @@ class CarbonNanotubeChain
             dichlorocyclooctadieneplatiniumProcess()
             cppProcess()
 
+            // 3C2H2 + 7C6H4 + 10N -> C48 + 10NH3 (993K)
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plate, Rhenium)
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .fluidInputs(Acetylene.getFluid(3000))
+                .fluidInputs(Cycloparaphenylene.getFluid(7000))
+                .fluidInputs(Nitrogen.getPlasma(10000))
+                .output(ingot, CarbonNanotube)
+                .EUt(VA[UV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
+            // 12C2H2 + 28C6H4 + 4N -> 4C48 + 40NH3 (3972K)
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plateDouble, Rhenium)
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .fluidInputs(Acetylene.getFluid(12000))
+                .fluidInputs(Cycloparaphenylene.getFluid(28000))
+                .fluidInputs(Nitrogen.getPlasma(40000))
+                .output(ingot, CarbonNanotube, 4)
+                .fluidOutputs(Ammonia.getFluid(40000))
+                .EUt(VA[UEV].toLong())
+                .duration(1 * SECOND + 5 * TICK)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
+            // C48 decomposition.
+            ELECTROLYZER_RECIPES.recipeBuilder()
+                .input(dust, CarbonNanotube)
+                .output(dust, Carbon, 48)
+                .EUt(VH[MV].toLong())
+                .duration((Carbon.mass * 48).toInt())
+                .buildAndRegister()
+
+            // In CNT (C48) chain, the main compound CPP/Cycloparaphenylene (C6H4) is not
+            // consumable actually, player should complete the following cycling when they
+            // completed CNT chain.
+
+            // Completed recipes of graphene foil, required it in CNT cycling.
+            BENDER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(plate, Graphene)
+                .output(foil, Graphene, 4)
+                .EUt(24)
+                .duration(Graphene.mass.toInt())
+                .buildAndRegister()
+
+            EXTRUDER_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_EXTRUDER_FOIL)
+                .input(dust, Graphene)
+                .output(foil, Graphene, 4)
+                .EUt(24)
+                .duration(Graphene.mass.toInt())
+                .buildAndRegister()
+
+            // 6C8 + C48 -> C96
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .input(foil, Graphene, 24)
+                .input(dust, CarbonNanotube)
+                .output(CARBON_ALLOTROPE_MIXTURE)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // C96 -> C48 + (C6H4)7C12
+            ELECTROMAGNETIC_SEPARATOR_RECIPES.recipeBuilder()
+                .input(CARBON_ALLOTROPE_MIXTURE)
+                .output(ingot, CarbonNanotube)
+                .output(GRAPHENE_ALIGNED_CNT, 4)
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // (C6H4)7(C12) -> 7C6H4 + 12C
+            EXTRACTOR_RECIPES.recipeBuilder()
+                .input(GRAPHENE_ALIGNED_CNT)
+                .output(dust, Carbon, 3)
+                .fluidOutputs(Cycloparaphenylene.getFluid(1750))
+                .EUt(VA[HV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun bipyridineProcess()

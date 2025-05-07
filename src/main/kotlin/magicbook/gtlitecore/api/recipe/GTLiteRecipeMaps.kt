@@ -720,6 +720,22 @@ class GTLiteRecipeMaps
             .setSmallRecipeMap(CVD_RECIPES)
 
         /**
+         * @zenProp plasma_enhanced_cvd_unit
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("PLASMA_CVD_RECIPES")
+        val PLASMA_CVD_RECIPES = RecipeMapBuilder("plasma_enhanced_cvd_unit", NoCoilTemperatureRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(3)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.COOLING)
+            .build()
+            .setSmallRecipeMap(CVD_RECIPES)
+
+        /**
          * @zenProp mob_extractor
          */
         @ZenProperty
@@ -889,6 +905,7 @@ class GTLiteRecipeMaps
                 val cleanroomCopied = recipeBuilder.cleanroom
                 val eUtCopied = recipeBuilder.eUt
                 val durationCopied = recipeBuilder.duration
+                val temperatureCopied = recipeBuilder.getTemperature()!!
 
                 // Laser-Induced CVD recipes required laser-induced gas for protective
                 // and ensure transmissive correct.
@@ -909,11 +926,25 @@ class GTLiteRecipeMaps
                         .cleanroom(cleanroomCopied)
                         .EUt(eUtCopied)
                         .duration(durationCopied)
+                        .temperature(temperatureCopied)
                         .hidden()
                         .buildAndRegister()
-                } // TODO Maybe another choice is lasers (laser emitters).
+                }
 
-                // TODO PLASMA_CVD_RECIPES
+                // Plasma-enhanced CVD recipes.
+                PLASMA_CVD_RECIPES.recipeBuilder()
+                    .inputs(*inputsCopied)
+                    .fluidInputs(fluidInputsCopied)
+                    .outputs(outputsCopied)
+                    .chancedOutputs(chancedOutputsCopied)
+                    .fluidOutputs(fluidOutputsCopied)
+                    .chancedFluidOutputs(chancedFluidOutputsCopied)
+                    .cleanroom(cleanroomCopied)
+                    .EUt(eUtCopied)
+                    .duration(durationCopied)
+                    .temperature(temperatureCopied)
+                    .hidden()
+                    .buildAndRegister()
             }
 
             // Add advanced fusion reactor recipes from fusion reactor recipes.

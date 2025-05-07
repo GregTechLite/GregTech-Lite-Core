@@ -244,6 +244,7 @@ class GTLiteMaterialFlags
             MetastableFlerovium.addFlags(GENERATE_FOIL)
             Einsteinium.addFlags(GENERATE_FOIL)
             Moscovium.addFlags(GENERATE_FOIL)
+            Graphene.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)

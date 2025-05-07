@@ -1,5 +1,7 @@
 package magicbook.gtlitecore.api.unification.material
 
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.ZPM
@@ -77,6 +79,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanediol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butyllithium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbamide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
@@ -1574,6 +1577,16 @@ class GTLiteOrganicChemistryMaterials
                 .liquid()
                 .color(0x7E8778)
                 .components(Carbon, 8, Hydrogen, 16)
+                .build()
+
+            // 8169 Carbon Nanotube
+            CarbonNanotube = Material.Builder(8169, gtliteId("carbon_nanotube"))
+                .polymer()
+                .liquid()
+                .color(0x05090C).iconSet(BRIGHT)
+                .components(Carbon, 48)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .cableProperties(V[UIV], 8, 6)
                 .build()
 
         }
