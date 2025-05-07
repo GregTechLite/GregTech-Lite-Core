@@ -245,14 +245,14 @@ class GTLiteElementMaterials
             Magnetium = Material.Builder(11, gtliteId("magnetium"))
                 .ingot()
                 .liquid(FluidBuilder()
-                    .temperature(1_280_000))
-                .plasma(FluidBuilder()
                     .temperature(2_560_000))
-                .iconSet(MAGNETIUM) // Base RGB: 9A4270
+                // TODO Maybe we needs a new renderer? allowed player set color(), colorBg()?
+                .iconSet(MAGNETIUM) // Foreground RGB: F2F226; Background RGB: 21A7A7;
+                                    // Layered Halo RGB: F8F8D5; Transition Dir: LD -> RU.
                 .element(M)
                 .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
                     GENERATE_DENSE, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE, GENERATE_ROTOR)
+                    GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_ROUND, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UIV], 30 * SECOND)

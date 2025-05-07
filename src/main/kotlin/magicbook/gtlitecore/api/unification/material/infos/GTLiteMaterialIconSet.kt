@@ -41,7 +41,7 @@ class GTLiteMaterialIconSet
 
         @JvmField
         val MAGNETIUM = MaterialIconSetWithRenderer("magnetium", null, true,
-            HaloRenderItemBehavior(10, 0x009A4270, { GTLiteTextures.HALO }, true))
+            HaloRenderItemBehavior(10, 0xF8F8D500.toInt(), { GTLiteTextures.HALO }, true))
 
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
