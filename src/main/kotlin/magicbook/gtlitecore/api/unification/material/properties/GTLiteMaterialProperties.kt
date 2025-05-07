@@ -33,6 +33,7 @@ import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Cerium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Dubnium
@@ -183,7 +184,7 @@ class GTLiteMaterialProperties
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
                 Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
                 Astatine, Nobelium, Lawrencium, Mercury, Roentgenium, Moscovium,
-                Meitnerium)
+                Meitnerium, Copernicium)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -192,7 +193,7 @@ class GTLiteMaterialProperties
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
-                Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium)
+                Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)

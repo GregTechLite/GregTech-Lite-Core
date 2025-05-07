@@ -1925,7 +1925,7 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // UEV
+            // UEV CoAL Casing
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Vibranium)
                 .input(plateDense, Vibranium, 6)
@@ -1951,7 +1951,9 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO UIV-MAX CoAL Casing
+            // UIV CoAL Casing (HastelloyK243, ArceusAlloy2B)
+
+            // TODO UXV-MAX CoAL Casing
         }
 
         private fun wireCoilRecipes()

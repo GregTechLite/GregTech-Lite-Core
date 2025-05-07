@@ -27,6 +27,7 @@ import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Dubnium
@@ -326,16 +327,6 @@ class FusionReactorRecipes
             addPlasmaFuelRecipe(Technetium, 38 * SECOND + 5 * TICK)
             addPlasmaCoolantRecipe(Technetium, 19 * SECOND, true)
 
-            // Po + Cr -> Mt
-            FUSION_RECIPES.recipeBuilder()
-                .fluidInputs(Polonium.getFluid(L * 2))
-                .fluidInputs(Chrome.getFluid(L * 2))
-                .fluidOutputs(Meitnerium.getFluid(L * 4))
-                .EUt(VA[UHV] / 3L)
-                .duration(4 * SECOND + 8 * TICK)
-                .EUToStart(400_000_000L) // 400M EU, MK4
-                .buildAndRegister()
-
             // Ra + V -> Rg
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(Radium.getFluid(L * 2))
@@ -366,16 +357,6 @@ class FusionReactorRecipes
                 .EUToStart(850_000_000L) // 850M EU, MK4
                 .buildAndRegister()
 
-            // Cf + Cm -> Og
-            FUSION_RECIPES.recipeBuilder()
-                .fluidInputs(OganessonBreedingBase.getFluid(L))
-                .fluidInputs(Curium.getFluid(36))
-                .fluidOutputs(MetastableOganesson.getPlasma(L))
-                .EUt(VA[UHV].toLong())
-                .duration(5 * SECOND)
-                .EUToStart(1_100_000_000L) // 1100M EU, MK4
-                .buildAndRegister()
-
             // ScTi + RaRn -> Hs
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(ScandiumTitaniumMixture.getFluid(L))
@@ -384,6 +365,36 @@ class FusionReactorRecipes
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
                 .EUToStart(1_200_000_000L) // 1200M EU, MK4
+                .buildAndRegister()
+
+            // Po + Cr -> Mt
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Polonium.getFluid(L * 2))
+                .fluidInputs(Chrome.getFluid(L * 2))
+                .fluidOutputs(Meitnerium.getFluid(L * 4))
+                .EUt(VA[UHV] / 3L)
+                .duration(4 * SECOND + 8 * TICK)
+                .EUToStart(400_000_000L) // 400M EU, MK4
+                .buildAndRegister()
+
+            // Zn + Ni -> Cn
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Zinc.getFluid(L * 4))
+                .fluidInputs(Nickel.getFluid(L * 4))
+                .fluidOutputs(Copernicium.getFluid(L * 2))
+                .EUt(VA[UHV] / 2L)
+                .duration(5 * SECOND + 6 * TICK)
+                .EUToStart(850_000_000L) // 850M EU, MK4
+                .buildAndRegister()
+
+            // Cf + Cm -> Og
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(OganessonBreedingBase.getFluid(L))
+                .fluidInputs(Curium.getFluid(36))
+                .fluidOutputs(MetastableOganesson.getPlasma(L))
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .EUToStart(1_100_000_000L) // 1100M EU, MK4
                 .buildAndRegister()
 
             // ---------------------------------------------------------------------------------------------------------

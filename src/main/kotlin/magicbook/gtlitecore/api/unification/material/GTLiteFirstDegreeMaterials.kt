@@ -2188,7 +2188,8 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .color(0xFF0066).iconSet(SHINY)
                 .components(Barium, 1, Strontium, 1, Titanium, 1, Oxygen, 4)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(7200, BlastProperty.GasTier.HIGH) // Naquadah
                         .blastStats(VA[ZPM], 36 * SECOND)
@@ -2696,8 +2697,8 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .color(0x01E068).iconSet(MAGNETIC)
                 .components(Caesium, 1, Cerium, 1, Cobalt, 2, Indium, 10)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE)
+                .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(8900, BlastProperty.GasTier.HIGH) // Trinium
                         .blastStats(VA[UV], 34 * SECOND)

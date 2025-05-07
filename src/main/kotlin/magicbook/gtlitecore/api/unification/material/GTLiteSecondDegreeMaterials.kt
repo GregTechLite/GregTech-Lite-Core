@@ -572,7 +572,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x281832).iconSet(BRIGHT)
                 .components(Trinium, 6, Naquadah, 2, Carbon, 1)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
+                    GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(8747, BlastProperty.GasTier.HIGHER) // Trinium
                         .blastStats(VA[ZPM], 1 * MINUTE)
@@ -623,7 +624,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x334433).iconSet(SHINY)
                 .components(TungstenSteel, 12, HSSS, 9, HSSG, 6, Ruridit, 3, MagnetoResonatic, 2, Plutonium241, 1)
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
-                    GENERATE_DOUBLE_PLATE, GENERATE_RING)
+                    GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_RING)
                 .blast { b ->
                     b.temp(10900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
                         .blastStats(VA[UHV], 1 * MINUTE + 30 * SECOND)
@@ -665,7 +666,8 @@ class GTLiteSecondDegreeMaterials
                         .blastStats(VA[UHV], 20 * SECOND)
                         .vacuumStats(VA[UV], 6 * SECOND + 10 * TICK) }
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
-                    GENERATE_GEAR, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING)
+                    GENERATE_GEAR, GENERATE_FOIL, GENERATE_FRAME, GENERATE_RING,
+                    GENERATE_SPRING_SMALL)
                 .toolStats(MaterialToolProperty.Builder.of(36.5F, 44.2F, 4980, 7)
                     .attackSpeed(0.6F).enchantability(30)
                     .enchantment(Enchantments.LOOTING, 3)
@@ -717,7 +719,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x92D959).iconSet(BRIGHT)
                 .components(HastelloyX78, 5, NiobiumNitride, 2, Tritanium, 4, TungstenCarbide, 4, Promethium, 4, Mendelevium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_RING)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_RING,
+                    GENERATE_SMALL_GEAR)
                 .blast { b ->
                     b.temp(14000, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UEV], 1 * MINUTE + 25 * SECOND)
@@ -808,7 +811,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x2C2C2C).iconSet(SHINY)
                 .components(TantalumCarbide, 12, HafniumCarbide, 3, SeaborgiumCarbide, 1)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+                .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FRAME)
                 .blast { b ->
                     b.temp(12900, BlastProperty.GasTier.HIGHEST) // Infinity (Adamantium)
                         .blastStats(VA[UHV], 36 * SECOND)
