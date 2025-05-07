@@ -39,6 +39,19 @@
         "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel",
         "top_all": "gtlitecore:blocks/casings/coil/machine_coil_halkonite_steel_bloom"
       }
+    },
+    "active=false,variant=space_time": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/coil/machine_coil_space_time"
+      }
+    },
+    "active=true,variant=space_time": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_space_time",
+        "top_all": "gtlitecore:blocks/casings/coil/machine_coil_space_time_bloom"
+      }
     }
   }
 }
