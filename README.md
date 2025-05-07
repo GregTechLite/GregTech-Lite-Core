@@ -2,8 +2,6 @@
 
 The Spiritual Successor of Gregicality Legacy.
 
-
-
 ## Features
 
 ### For Gameplay
@@ -40,13 +38,13 @@ The Spiritual Successor of Gregicality Legacy.
 
 Thanks for all the credit authors, it's your hard work that has brought about these wonderful contents:
 
-- Dynamic circuits textures, infinity and cosmic neutronium textures, some multiblock structures, some machine overlay textures, Power IC textures are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
+- Dynamic circuits textures, infinity, cosmic neutronium, halkonite steel, space time and eternity textures, some multiblock structures, some machine overlay textures, Power IC textures, Space Elevator multiblock, Component Assembly Line multiblock, e.t.c, are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
   this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GT5-Unofficial/blob/master/LICENSE.txt).
-- Laser textures, Nanoscale Fabricator overlay textures, Burner/Cryogenic Reactor overlay textures, Rolling Pin textures and Crucible textures are from [GregTech 6](https://github.com/GregTech6/gregtech6),
+- Laser textures, Nanoscale Fabricator overlay textures, Burner Reactor and Cryogenic Reactor overlay textures, a part of laminator and loom overlay textures, Rolling Pin textures and Crucible textures, Bedrock Drilling Rig multiblock are from [GregTech 6](https://github.com/GregTech6/gregtech6),
   this mod is on [GNU GPL-3.0 License](https://github.com/GregTech6/gregtech6/blob/master/LICENSE).
-- Circuit board textures, higher SMD textures, some multiblock structures and overlay textures, recipe maps and chemistry processings are from [Gregicality Science](https://github.com/GregTechCEu/gregicality-science), 
+- Circuit board textures, higher SMD textures, CVD Unit multiblock structures and some overlay textures, recipe maps and chemistry processings are from [Gregicality Science](https://github.com/GregTechCEu/gregicality-science), 
   this mod is on [MIT License](https://github.com/GregTechCEu/gregicality-science/blob/master/LICENSE).
-- Some chemical processings, metal casing texture templates, fusion casing texture templates are from [Gregicality Legacy](https://github.com/GregTechCEu/gregicality-legacy),
+- Some chemical processings, metal casing texture templates, fusion casing texture templates, Industrial Primitive Blast Furnace multiblock, Cosmic Ray Detector multiblock, several large machine structures are from [Gregicality Legacy](https://github.com/GregTechCEu/gregicality-legacy),
   this mod is on [GNU GPL-3.0 License](https://github.com/GregTechCEu/gregicality-legacy/blob/master/LICENSE).
 - Tree textures, some food textures and machine textures, a part of world generator codes and machine logic codes are from [GregTechFoodOption](https://github.com/bruberu/GregTechFoodOption),
   this mod is on [GNU LGPL-3.0 License](https://github.com/bruberu/GregTechFoodOption/blob/master/LICENSE.txt).
@@ -54,7 +52,7 @@ Thanks for all the credit authors, it's your hard work that has brought about th
   this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GTNHLib/blob/master/LICENSE.txt).
 - Cosmic neutronium and infinity render textures, animation tooltips implementations and some OpenGL codes are from [Avaritia](https://github.com/Morpheus1101/Avaritia),
   this mod is on [MIT License](https://github.com/Morpheus1101/Avaritia/blob/master/README.md).
-- Some machine overlay textures, stone texture templates and material textures from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry),
+- CVD Unit overlay textures, a part of laminator and loom overlay textures, stone texture templates and material textures from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry),
   this modpack is on [GNU LGPL-3.0 License](https://github.com/SymmetricDevs/Supersymmetry/blob/master-ceu/LICENSE).
 
 Salute and thank all credit authors :)
