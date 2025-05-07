@@ -6,7 +6,6 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.fluids.store.FluidStorageKey
 import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES

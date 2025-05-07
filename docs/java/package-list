@@ -15,6 +15,8 @@ magicbook.gtlitecore.api.sound
 magicbook.gtlitecore.api.unification.material.infos
 magicbook.gtlitecore.api.utils
 magicbook.gtlitecore.api.utils.functions
+magicbook.gtlitecore.api.utils.maps
+magicbook.gtlitecore.api.utils.math
 magicbook.gtlitecore.api.utils.reflect
 magicbook.gtlitecore.api.utils.stream
 magicbook.gtlitecore.api.worldgen
@@ -33,7 +35,10 @@ magicbook.gtlitecore.client.renderer.texture.custom
 magicbook.gtlitecore.client.shader
 magicbook.gtlitecore.common
 magicbook.gtlitecore.common.block.blocks
+magicbook.gtlitecore.common.block.blocks.explosive
 magicbook.gtlitecore.common.block.itemblocks
+magicbook.gtlitecore.common.entity
+magicbook.gtlitecore.common.entity.explosive
 magicbook.gtlitecore.common.item.behavior
 magicbook.gtlitecore.common.metatileentity.multiblock
 magicbook.gtlitecore.common.metatileentity.multiblock.advanced
@@ -54,8 +59,8 @@ magicbook.gtlitecore.integration
 magicbook.gtlitecore.integration.appliedenergistics2
 magicbook.gtlitecore.integration.groovyscript
 magicbook.gtlitecore.integration.groovyscript.hooks
-magicbook.gtlitecore.integration.jei
-magicbook.gtlitecore.integration.top
+magicbook.gtlitecore.integration.justenoughitems
+magicbook.gtlitecore.integration.theoneprobe
 magicbook.gtlitecore.loader.recipe.producer
 magicbook.gtlitecore.mixin.gregtech
 magicbook.gtlitecore.mixin.jei

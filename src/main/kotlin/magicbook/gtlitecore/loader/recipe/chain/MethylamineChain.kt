@@ -22,7 +22,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AceticAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylacetamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylamineHydrochloride

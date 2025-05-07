@@ -18,7 +18,6 @@ import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Lawrencium
-import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.Meitnerium

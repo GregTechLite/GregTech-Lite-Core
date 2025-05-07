@@ -1,6 +1,5 @@
 package magicbook.gtlitecore.api.unification.material
 
-import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
