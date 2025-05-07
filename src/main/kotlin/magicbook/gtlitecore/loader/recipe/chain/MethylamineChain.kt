@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Dimethylamine
@@ -21,7 +22,9 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AceticAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylacetamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimethylamineHydrochloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylformamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylamine
@@ -103,14 +106,26 @@ class MethylamineChain
                 .duration(6 * SECOND)
                 .buildAndRegister()
 
-            // Advanced recipe for (CH3)2NC(O)H.
+            // Advanced recipe for (CH3)2NC(O)H and (CH3)2NC(O)CH3.
 
-            // C2H8NCl + CO -> (CH3)2NC(O)H
+            // C2H7N + CO -> (CH3)2NC(O)H
             CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(1)
                 .fluidInputs(Dimethylamine.getFluid(1000))
                 .fluidInputs(CarbonMonoxide.getFluid(1000))
                 .fluidOutputs(Dimethylformamide.getFluid(1000))
                 .EUt(VA[IV].toLong())
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
+            // C2H7N + C2H4O2 -> (CH3)2NC(O)CH3 + H2O
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .fluidInputs(Dimethylamine.getFluid(1000))
+                .fluidInputs(AceticAcid.getFluid(1000))
+                .fluidOutputs(Dimethylacetamide.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[LuV].toLong())
                 .duration(12 * SECOND)
                 .buildAndRegister()
 
