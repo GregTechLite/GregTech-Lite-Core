@@ -1026,6 +1026,8 @@ class GTLiteRecipeMaps
             RecipeMaps.FERMENTING_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false, false)
 
             RecipeMaps.THERMAL_CENTRIFUGE_RECIPES.maxOutputs = 4
+
+            RecipeMaps.VACUUM_RECIPES.maxFluidOutputs = 2
         }
 
     }

@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
@@ -35,6 +36,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.CoalTar
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Deuterium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
@@ -132,6 +134,7 @@ import gregtech.api.unification.material.info.MaterialFlags.EXPLOSIVE
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -142,6 +145,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
@@ -250,6 +254,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cuprite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DeepIron
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DeuteriumSuperheavyMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylcadmium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DysprosiumOxide
@@ -275,6 +280,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapheneOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyAlkaliChloridesSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkEnrichedMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Heterodiamond
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexachloroplatinicAcid
@@ -321,6 +328,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseM
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MercuryCadmiumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumFlue
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Muscovite
@@ -364,6 +373,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Praseodymi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PromethiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PurifiedPlatinumGroupConcentrate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RP1RocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RadiumDichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RadiumRadonMixture
@@ -1701,7 +1711,7 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .color(0xB3D683).iconSet(MAGNETIC)
                 .components(Samarium, 1,  Cobalt, 5)
-                .flags(GENERATE_ROD, GENERATE_RING)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING)
                 .blast { b ->
                     b.temp(5000, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy)
                         .blastStats(VA[IV], 45 * SECOND)
@@ -2192,7 +2202,7 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .colorAverage().iconSet(MAGNETIC)
                 .components(Lutetium, 1, Manganese, 3, Germanium, 6)
-                .flags(GENERATE_ROD, GENERATE_RING)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING)
                 .blast { b ->
                     b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
                         .blastStats(VA[LuV], 1 * MINUTE)
@@ -2860,6 +2870,46 @@ class GTLiteFirstDegreeMaterials
                 .dust()
                 .color(0xA4A4A4)
                 .components(Silver, 2, Oxygen, 1)
+                .build()
+
+            // 2281 Heavy Quark Enriched Mixture
+            HeavyQuarkEnrichedMixture = Material.Builder(2281, gtliteId("heavy_quark_enriched_mixture"))
+                .plasma(FluidBuilder()
+                    .translation("gregtech.fluid.generic")
+                    .temperature(400_000_000)
+                    .customStill())
+                .build()
+
+            // 2282 Deuterium-Superheavy Mixture
+            DeuteriumSuperheavyMixture = Material.Builder(2282, gtliteId("deuterium_superheavy_mixture"))
+                .liquid(FluidBuilder()
+                    .temperature(18240))
+                .color(0x7B9EF8)
+                .components(Deuterium, 2, MetastableHassium, 1, MetastableFlerovium, 1, MetastableOganesson, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2283 Heavy Quark Degenerate Matter (HQDM)
+            HeavyQuarkDegenerateMatter = Material.Builder(2283, gtliteId("heavy_quark_degenerate_matter"))
+                .ingot()
+                .liquid()
+                .plasma(FluidBuilder()
+                    .temperature(1_600_000_000)
+                    .customStill())
+                .color(0x5DBD3A).iconSet(BRIGHT)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
+                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME)
+                .rotorStats(48.0f, 16.0f, 983040)
+                .fluidPipeProperties(200_000, 10000, true, true, true, true)
+                .build()
+
+            // 2284 Quantumchromodynamically ConfinedMatter (QCM)
+            QuantumchromodynamicallyConfinedMatter = Material.Builder(2284, gtliteId("quantumchromodynamically_confined_matter"))
+                .ingot()
+                .liquid()
+                .color(0xF0A745).iconSet(BRIGHT)
+                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .cableProperties(V[UIV], 24, 12)
                 .build()
 
         }

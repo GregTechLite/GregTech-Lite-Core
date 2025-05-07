@@ -60,6 +60,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyNaqua
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HighEnergyQuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedBedrockSmoke
@@ -733,6 +734,14 @@ class GTLiteUnknownCompositionMaterials
                 .plasma(FluidBuilder()
                     .temperature(1_200_000_000)
                     .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13009 High Energy Quark-Gluon Plasma
+            HighEnergyQuarkGluonPlasma = Material.Builder(13009, gtliteId("high_energy_quark_gluon_plasma"))
+                .plasma(FluidBuilder()
+                    .translation("gregtech.fluid.generic")
+                    .temperature(2_000_000_000) // In reality world, Q-G plasma has 15000000000~20000000000 MeV by theory, so we transform it as K.
                     .customStill())
                 .build()
 

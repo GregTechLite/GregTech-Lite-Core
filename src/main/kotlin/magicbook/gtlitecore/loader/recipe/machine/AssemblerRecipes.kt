@@ -9,6 +9,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
@@ -154,7 +155,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -192,6 +195,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_L
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_MV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
@@ -1985,6 +1989,16 @@ class AssemblerRecipes
                 .input(wireFine, MetastableOganesson, 16)
                 .output(VOLTAGE_COIL_UEV)
                 .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // UIV Voltage Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(stick, Magnetium)
+                .input(wireFine, QuantumchromodynamicallyConfinedMatter, 16)
+                .output(VOLTAGE_COIL_UIV)
+                .EUt(VA[UIV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
         }

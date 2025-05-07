@@ -308,6 +308,10 @@ class GTLiteMaterials
         lateinit var SilverTetrafluoroborate: Material
         lateinit var SilverChloride: Material
         lateinit var SilverOxide: Material
+        lateinit var HeavyQuarkEnrichedMixture: Material
+        lateinit var DeuteriumSuperheavyMixture: Material
+        lateinit var HeavyQuarkDegenerateMatter: Material
+        lateinit var QuantumchromodynamicallyConfinedMatter: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -650,6 +654,7 @@ class GTLiteMaterials
         lateinit var Gluons: Material
         lateinit var HadronicResonantGas: Material
         lateinit var StableBaryonicMatter: Material
+        lateinit var HighEnergyQuarkGluonPlasma: Material
 
         lateinit var DimensionallyShiftedSuperfluid: Material
 

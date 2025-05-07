@@ -751,7 +751,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0xC4A415).iconSet(SHINY)
                 .components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UEV], 1 * MINUTE + 15 * SECOND)

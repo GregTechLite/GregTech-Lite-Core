@@ -2624,6 +2624,10 @@ gtlitecore.material.ammonium_persulfate=过硫酸铵
 gtlitecore.material.silver_tetrafluoroborate=四氟硼酸银
 gtlitecore.material.silver_chloride=氯化银
 gtlitecore.material.silver_oxide=氧化银
+gtlitecore.material.heavy_quark_enriched_mixture=富集重夸克混合物
+gtlitecore.material.deuterium_superheavy_mixture=氘-超重元素混合物
+gtlitecore.material.heavy_quark_degenerate_matter=重夸克简并物质（HQDM）
+gtlitecore.material.quantumchromodynamically_confined_matter=量子色动力学封闭物质（QCM）
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2965,6 +2969,7 @@ gtlitecore.material.light_quarks=轻夸克
 gtlitecore.material.gluons=胶子
 gtlitecore.material.hadronic_resonant_gas=强子共振气体
 gtlitecore.material.stable_baryonic_matter=稳定重子物质
+gtlitecore.material.high_energy_quark_gluon_plasma=高能夸克-胶子等离子体
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 

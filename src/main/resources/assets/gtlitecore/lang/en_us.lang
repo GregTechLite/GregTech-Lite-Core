@@ -2619,6 +2619,10 @@ gtlitecore.material.ammonium_persulfate=Ammonium Persulfate
 gtlitecore.material.silver_tetrafluoroborate=Silver Tetrafluoroborate
 gtlitecore.material.silver_chloride=Silver Chloride
 gtlitecore.material.silver_oxide=Silver Oxide
+gtlitecore.material.heavy_quark_enriched_mixture=Heavy Quark Enriched Mixture
+gtlitecore.material.deuterium_superheavy_mixture=Deuterium-Superheavy Elements Mixture
+gtlitecore.material.heavy_quark_degenerate_matter=Heavy Quark Degenerate Matter (HQDM)
+gtlitecore.material.quantumchromodynamically_confined_matter=Quantumchromodynamically Confined Matter (QCM)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2961,6 +2965,7 @@ gtlitecore.material.light_quarks=Light Quarks
 gtlitecore.material.gluons=Gluons
 gtlitecore.material.hadronic_resonant_gas=Hadronic Resonant Gas
 gtlitecore.material.stable_baryonic_matter=Stable Baryonic Matter
+gtlitecore.material.high_energy_quark_gluon_plasma=High Energy Quark-Gluon Plasma
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 

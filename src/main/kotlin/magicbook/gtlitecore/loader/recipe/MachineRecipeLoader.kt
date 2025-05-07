@@ -233,6 +233,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BabbitAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
@@ -252,6 +253,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
@@ -288,6 +290,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.LEPTONIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.NAQUADRIA_CHARGE
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.QUANTUM_CHROMODYNAMIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.TARANIUM_CHARGE
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
@@ -1797,7 +1800,7 @@ class MachineRecipeLoader
                 .input(foil, NaquadahAlloy, 8)
                 .fluidInputs(GlycerylTrinitrate.getFluid(16000))
                 .outputs(ItemStack(NAQUADRIA_CHARGE))
-                .EUt(VA[UHV].toLong())
+                .EUt(VA[UV].toLong())
                 .duration(5 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
@@ -1812,7 +1815,7 @@ class MachineRecipeLoader
                 .input(foil, Tritanium, 8)
                 .fluidInputs(CyclotetramethyleneTetranitroamine.getFluid(4000))
                 .outputs(ItemStack(TARANIUM_CHARGE))
-                .EUt(VA[UEV].toLong())
+                .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
@@ -1827,20 +1830,25 @@ class MachineRecipeLoader
                 .input(foil, Vibranium, 8)
                 .fluidInputs(HeavyLeptonMixture.getFluid(1000))
                 .outputs(ItemStack(LEPTONIC_CHARGE))
-                .EUt(VA[UIV].toLong())
+                .EUt(VA[UEV].toLong())
                 .duration(5 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Quantum Chromodynamic Charge
-            // ASSEMBLER_RECIPES.recipeBuilder()
-            //     .circuitMeta(15)
-            //     .input(ItemStack(LEPTONIC_CHARGE))
-            //     .input(dust, ActiniumSuperhydride)
-            //     .input(plate, HeavyQuarkDegenerateMatter, 2)
-            //     .input(plate, Bohrium, 4)
-            //     .input(foil, QuantumchromodynamicallyConfirmMatter, 8)
-            //     .fluidInputs(HadronicResonantGas.getFluid(500))
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .inputs(ItemStack(LEPTONIC_CHARGE))
+                .input(dust, ActiniumSuperhydride)
+                .input(plate, HeavyQuarkDegenerateMatter, 2)
+                .input(plate, Bohrium, 4)
+                .input(foil, ArceusAlloy2B, 8)
+                .fluidInputs(HadronicResonantGas.getFluid(500))
+                .outputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
+                .EUt(VA[UIV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // Stellar Containment Casing
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
