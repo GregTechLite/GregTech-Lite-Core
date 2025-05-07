@@ -2,21 +2,53 @@ package magicbook.gtlitecore.loader
 
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barite
+import gregtech.api.unification.material.Materials.Berkelium
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.BrownLimonite
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Cinnabar
+import gregtech.api.unification.material.Materials.Curium
+import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Einsteinium
+import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Lawrencium
+import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Massicot
+import gregtech.api.unification.material.Materials.Meitnerium
+import gregtech.api.unification.material.Materials.Mendelevium
+import gregtech.api.unification.material.Materials.Moscovium
+import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Nobelium
+import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Plutonium241
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Realgar
+import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Rubber
+import gregtech.api.unification.material.Materials.Rutherfordium
+import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
+import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Thorium
+import gregtech.api.unification.material.Materials.Uranium
+import gregtech.api.unification.material.Materials.Uranium235
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
@@ -31,10 +63,15 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diaminosti
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorescein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -91,6 +128,19 @@ class OreDictionaryLoader
                 OreDictionary.registerOre("plateAnyAdvancedSyntheticRubber", OreDictUnifier.get(plate, rubber))
                 OreDictionary.registerOre("ringAnyAdvancedSyntheticRubber", OreDictUnifier.get(ring, rubber))
                 OreDictionary.registerOre("foilAnyAdvancedSyntheticRubber", OreDictUnifier.get(foil, rubber))
+            }
+
+            // Radioactive dusts.
+            for (material in arrayOf(Technetium, Thorium, Protactinium, Uranium, Uranium235, Uranium238,
+                Neptunium, Plutonium239, Plutonium241, Plutonium244, Americium, Curium, Berkelium, Californium,
+                Einsteinium, Fermium, Mendelevium, Nobelium, Lawrencium, Rutherfordium, Dubnium, Seaborgium,
+                Bohrium, MetastableHassium, Meitnerium, Darmstadtium, Roentgenium, /* Copernicium */ /* Nihonium*/
+                MetastableFlerovium, Moscovium, /* Livermorium */ /* Tennessine */ MetastableOganesson, Naquadah,
+                NaquadahEnriched, Naquadria, Taranium))
+            {
+                OreDictionary.registerOre("dustRadioactive", OreDictUnifier.get(dust, material))
+                OreDictionary.registerOre("dustSmallRadioactive", OreDictUnifier.get(dustSmall, material))
+                OreDictionary.registerOre("dustTinyRadioactive", OreDictUnifier.get(dustTiny, material))
             }
 
             // sheetedFrame

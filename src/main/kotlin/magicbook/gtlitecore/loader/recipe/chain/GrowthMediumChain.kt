@@ -175,44 +175,14 @@ class GrowthMediumChain
                 arrayOf(EnrichedBacterialSludge.getFluid(1000)))
 
             // 1x EnrichedBacterialSludge -> 1x Mutagen
-            for (radioactive in arrayOf(Uranium, Uranium235, Uranium238, Thorium,
-                Protactinium))
-            {
-                BREWING_RECIPES.recipeBuilder()
-                    .notConsumable(dust, radioactive)
+            BREWING_RECIPES.recipeBuilder()
+                    .input("dustTinyRadioactive")
                     .fluidInputs(EnrichedBacterialSludge.getFluid(1000))
                     .fluidOutputs(Mutagen.getFluid(1000))
                     .EUt(VHA[HV].toLong())
                     .duration(20 * SECOND)
                     .cleanroom(CleanroomType.STERILE_CLEANROOM)
                     .buildAndRegister()
-            }
-
-            for (radioactive in arrayOf(Plutonium239, Plutonium241, Plutonium244,
-                Naquadah, Neptunium, Americium, Curium, Berkelium))
-            {
-                BREWING_RECIPES.recipeBuilder()
-                    .notConsumable(dust, radioactive)
-                    .fluidInputs(EnrichedBacterialSludge.getFluid(1000))
-                    .fluidOutputs(Mutagen.getFluid(1000))
-                    .EUt(VHA[HV].toLong())
-                    .duration(5 * SECOND)
-                    .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                    .buildAndRegister()
-            }
-
-            for (radioactive in arrayOf(NaquadahEnriched, Naquadria, Californium,
-                Einsteinium, Fermium, Mendelevium))
-            {
-                BREWING_RECIPES.recipeBuilder()
-                    .notConsumable(dust, radioactive)
-                    .fluidInputs(EnrichedBacterialSludge.getFluid(1000))
-                    .fluidOutputs(Mutagen.getFluid(1000))
-                    .EUt(VHA[HV].toLong())
-                    .duration(2 * TICK)
-                    .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                    .buildAndRegister()
-            }
         }
 
         private fun bacteriasProcess()
