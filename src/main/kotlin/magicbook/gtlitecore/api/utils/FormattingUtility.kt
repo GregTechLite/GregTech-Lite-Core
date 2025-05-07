@@ -178,6 +178,11 @@ class FormattingUtility
         @JvmStatic
         private fun getLocale(): Locale = Minecraft.getMinecraft().languageManager.currentLanguage.javaLocale
 
+        /**
+         * A short-circuit call for make digits to sub digits format.
+         *
+         * @see gregtech.api.util.SmallDigits
+         */
         @JvmStatic
         fun subDigits(number: String): String
         {
@@ -203,6 +208,11 @@ class FormattingUtility
             return String(chars)
         }
 
+        /**
+         * A short-circuit call for make digits to sup digits format.
+         *
+         * @see gregtech.api.util.SmallDigits
+         */
         @JvmStatic
         fun supDigits(number: String): String
         {
