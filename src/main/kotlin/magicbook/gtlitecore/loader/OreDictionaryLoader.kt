@@ -142,25 +142,6 @@ class OreDictionaryLoader
                 OreDictionary.registerOre("dustTinyRadioactive", OreDictUnifier.get(dustTiny, material))
             }
 
-            // sheetedFrame
-            GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (m, b) ->
-                if (m == Materials.NULL)
-                    return@forEach
-                b.getItem(m).let { stack ->
-                    OreDictUnifier.registerOre(stack, GTLiteOrePrefix.sheetedFrame, m)
-                    OreDictUnifier.registerOre(stack, ItemMaterialInfo(MaterialStack(m, 1)))
-                }
-            }
-            // wallGt
-            GTLiteMetaBlocks.WALLS.entries.forEach { (m, b) ->
-                if (m == Materials.NULL)
-                    return@forEach
-                b.getItem(m).let { stack ->
-                    OreDictUnifier.registerOre(stack, GTLiteOrePrefix.wallGt, m)
-                    OreDictUnifier.registerOre(stack, ItemMaterialInfo(MaterialStack(m, 1)))
-                }
-            }
-
         }
 
         private fun chromaticDyes()

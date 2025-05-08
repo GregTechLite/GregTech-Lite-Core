@@ -385,6 +385,7 @@ class GTLiteMaterialFlags
             Mendelevium.addFlags(GENERATE_DOUBLE_PLATE)
             Rhenium.addFlags(GENERATE_DOUBLE_PLATE)
             Meitnerium.addFlags(GENERATE_DOUBLE_PLATE)
+            Bohrium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
