@@ -141,7 +141,7 @@ class GTLiteElementMaterials
                 .plasma()
                 .color(0x521973).iconSet(SHINY)
                 .element(Fl)
-                .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW)
+                .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(9900, BlastProperty.GasTier.HIGHEST) // Tritanium
                         .blastStats(VA[UHV], 2 * MINUTE + 35 * SECOND)

@@ -33,6 +33,7 @@
 | Trinium                                    | 131,072 (ZPM)    | 6                     | 4                  | 8                 |
 | Vanadium Gallium                           | 131,072 (ZPM)    | 4                     | 2                  | 4                 |
 | PEDOT:PSS*                                 | 131,072 (ZPM)    | 6                     | 1                  | 2                 |
+| Rutherfordium*                             | 131,072 (ZPM)    | 8                     | 2                  | 4                 |
 | Tritanium                                  | 524,288 (UV)     | 1                     | 8                  | 16                |
 | Yttrium Barium Cuprate (YBCO)              | 524,288 (UV)     | 4                     | 4                  | 8                 |
 | Naquadah Alloy                             | 524,288 (UV)     | 2                     | 4                  | 8                 |

@@ -242,7 +242,6 @@ class GTLiteMaterialFlags
             Neutronium.addFlags(GENERATE_FOIL)
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
             Nichrome.addFlags(GENERATE_FOIL)
-            MetastableFlerovium.addFlags(GENERATE_FOIL)
             Einsteinium.addFlags(GENERATE_FOIL)
             Moscovium.addFlags(GENERATE_FOIL)
             Graphene.addFlags(GENERATE_FOIL)

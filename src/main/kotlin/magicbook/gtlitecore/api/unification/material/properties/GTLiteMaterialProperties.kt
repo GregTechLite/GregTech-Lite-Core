@@ -401,7 +401,8 @@ class GTLiteMaterialProperties
             Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
 
             // Add cable properties.
-            Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16, false))
+            Rutherfordium.setProperty(PropertyKey.WIRE, WireProperties(V[ZPM].toInt(), 8, 2))
+            Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16))
 
             // Add magnetic properties.
             ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT).magneticMaterial = ChromiumGermaniumTellurideMagnetic
