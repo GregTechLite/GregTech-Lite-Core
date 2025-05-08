@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
@@ -25,12 +26,15 @@ import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.CoalTar
 import gregtech.api.unification.material.Materials.Dimethylamine
+import gregtech.api.unification.material.Materials.Ethylbenzene
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Naphthalene
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sodium
@@ -65,9 +69,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumH
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTertbutoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodioIndene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SteamCrackedSodioIndene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinimidylAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylAlcohol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThionylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylamine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Triphenylphosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Truxene
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -313,6 +319,27 @@ class FullereneChain
                 .EUt(VA[UHV].toLong())
                 .duration(10 * TICK)
                 .buildAndRegister()
+
+            // Advanced recipes for C60H30.
+            // 10C8H10 + 10C10H8 -> 3C60H30 + 90H
+            CHEMICAL_PLANT_RECIPES.recipeBuilder()
+                .notConsumable(dust, Triphenylphosphine)
+                .notConsumable(dust, SuccinimidylAcetate)
+                .notConsumable(dust, BenzyltrimethylammoniumBromide)
+                .notConsumable(dust, Iodine)
+                .notConsumable(Butyllithium.getFluid(1))
+                .notConsumable(Bromine.getFluid(1))
+                .fluidInputs(Ethylbenzene.getFluid(10000))
+                .fluidInputs(Naphthalene.getFluid(10000))
+                .output(dust, GeodesicPolyarene, 64)
+                .output(dust, GeodesicPolyarene, 64)
+                .output(dust, GeodesicPolyarene, 52)
+                .fluidOutputs(Hydrogen.getFluid(90000))
+                .EUt(VA[UXV].toLong())
+                .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
         }
 
     }

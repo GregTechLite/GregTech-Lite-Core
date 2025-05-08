@@ -13,10 +13,13 @@ import gregtech.api.unification.material.Materials.Argon
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Chlorobenzene
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -29,6 +32,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BluePhosph
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Triphenylphosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VioletPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhitePhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
@@ -45,6 +49,7 @@ class PhosphorusChain
         {
             phosphorusProcess()
             phosphoryChlorideProcess()
+            triphenylphosphineProcess()
         }
 
         private fun phosphorusProcess()
@@ -162,6 +167,20 @@ class PhosphorusChain
                 .duration(6 * SECOND)
                 .buildAndRegister()
 
+        }
+
+        private fun triphenylphosphineProcess()
+        {
+            // 6Na + PCl3 + 3C6H5Cl -> (C6H5)3P + 6NaCl
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, Sodium)
+                .fluidInputs(PhosphorusTrichloride.getFluid(1000))
+                .fluidInputs(Chlorobenzene.getFluid(3000))
+                .output(dust, Triphenylphosphine, 34)
+                .output(dust, Salt, 12)
+                .EUt(VA[IV].toLong())
+                .duration(8 * SECOND)
+                .buildAndRegister()
         }
 
     }

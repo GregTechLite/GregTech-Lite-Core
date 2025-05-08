@@ -23,6 +23,7 @@ import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
 import magicbook.gtlitecore.loader.recipe.chain.FEPChain
 import magicbook.gtlitecore.loader.recipe.chain.FullereneChain
+import magicbook.gtlitecore.loader.recipe.chain.FullerenePolymerMatrixChain
 import magicbook.gtlitecore.loader.recipe.chain.GalliumNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.GrapheneChain
 import magicbook.gtlitecore.loader.recipe.chain.GrowthMediumChain
@@ -247,6 +248,7 @@ class RecipeManager
             MagnetiumChain.init()
             HypogenChain.init()
             ShirabonChain.init()
+            FullerenePolymerMatrixChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

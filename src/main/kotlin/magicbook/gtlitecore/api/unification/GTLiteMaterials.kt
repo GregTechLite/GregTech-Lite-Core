@@ -315,6 +315,9 @@ class GTLiteMaterials
         lateinit var DeuteriumSuperheavyMixture: Material
         lateinit var HeavyQuarkDegenerateMatter: Material
         lateinit var QuantumchromodynamicallyConfinedMatter: Material
+        lateinit var SodiumEthoxide: Material
+        lateinit var Iron2Chloride: Material
+        lateinit var PalladiumFullereneMatrix: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -561,6 +564,18 @@ class GTLiteMaterials
         lateinit var Cycloparaphenylene: Material
         lateinit var Octene: Material
         lateinit var CarbonNanotube: Material
+        lateinit var Sarcosine: Material
+        lateinit var Ferrocene: Material
+        lateinit var Ferrocenylfulleropyrddolidine: Material
+        lateinit var Dimethylaminopyridine: Material
+        lateinit var Triphenylphosphine: Material
+        lateinit var IsopropylAlcohol: Material
+        lateinit var Diisopropylcarbodiimide: Material
+        lateinit var PhenylpentanoicAcid: Material
+        lateinit var DimethylSulfide: Material
+        lateinit var PhenylC61ButyricAcid: Material
+        lateinit var PhenylC61ButyricStyrene: Material
+        lateinit var FullerenePolymerMatrix: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

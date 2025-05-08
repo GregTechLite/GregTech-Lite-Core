@@ -91,6 +91,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
@@ -518,12 +519,12 @@ class CraftingComponents
             //      5-6: Polytetrafluoroethylene (PTFE), 7-9: Polybenzimidazole (PBI),
             // New: 0: Wood, 1-2: WroughtIron, 3-4: Polyethylene (PE),
             //      5-6: Polytetrafluoroethylene (PTFE), 7-8: Polybenzimidazole (PBI),
-            //      9-10: Kevlar, 11-14: TODO
+            //      9-10: Kevlar, 11-12: FullerenePolymerMatrix (FPM), 13-14: TODO
             CraftingComponent.HULL_PLATE.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(plate, Kevlar),
                 UEV to UnificationEntry(plate, Kevlar),
-                // UIV to UnificationEntry(plate, FullerenePolymerMatrix),
-                // UXV to UnificationEntry(plate, FullerenePolymerMatrix),
+                UIV to UnificationEntry(plate, FullerenePolymerMatrix),
+                UXV to UnificationEntry(plate, FullerenePolymerMatrix),
                 // OpV to UnificationEntry(plate, CosmicFabric),
                 // MAX to UnificationEntry(plate, CosmicFabric)
             ).toMap())

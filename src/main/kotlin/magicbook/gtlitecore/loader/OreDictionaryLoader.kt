@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Materials.BrownLimonite
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Cinnabar
+import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Dubnium
@@ -18,6 +19,7 @@ import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Lawrencium
+import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.Meitnerium
@@ -27,6 +29,7 @@ import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
@@ -40,6 +43,7 @@ import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
@@ -133,8 +137,8 @@ class OreDictionaryLoader
             for (material in arrayOf(Technetium, Thorium, Protactinium, Uranium, Uranium235, Uranium238,
                 Neptunium, Plutonium239, Plutonium241, Plutonium244, Americium, Curium, Berkelium, Californium,
                 Einsteinium, Fermium, Mendelevium, Nobelium, Lawrencium, Rutherfordium, Dubnium, Seaborgium,
-                Bohrium, MetastableHassium, Meitnerium, Darmstadtium, Roentgenium, /* Copernicium */ /* Nihonium*/
-                MetastableFlerovium, Moscovium, /* Livermorium */ /* Tennessine */ MetastableOganesson, Naquadah,
+                Bohrium, MetastableHassium, Meitnerium, Darmstadtium, Roentgenium, Copernicium, Nihonium,
+                MetastableFlerovium, Moscovium, Livermorium, Tennessine, MetastableOganesson, Naquadah,
                 NaquadahEnriched, Naquadria, Taranium))
             {
                 OreDictionary.registerOre("dustRadioactive", OreDictUnifier.get(dust, material))

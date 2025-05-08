@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader
 
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UIV
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.stack.ItemMaterialInfo
@@ -93,6 +94,11 @@ class MaterialInfoLoader
             OreDictUnifier.registerOre(MetaTileEntities.HULL[UEV].stackForm,
                 ItemMaterialInfo(MaterialStack(GTLiteMaterials.Vibranium, M * 8), // 8x plateX
                     MaterialStack(Materials.Seaborgium, M), // 2x cableGtSingle
+                    MaterialStack(Materials.Rubber, M * 2)))
+
+            OreDictUnifier.registerOre(MetaTileEntities.HULL[UIV].stackForm,
+                ItemMaterialInfo(MaterialStack(GTLiteMaterials.Shirabon, M * 8), // 8x plateX
+                    MaterialStack(GTLiteMaterials.SuperheavyAlloyA, M), // 2x cableGtSingle
                     MaterialStack(Materials.Rubber, M * 2)))
 
             // Loading all wood related material infos.

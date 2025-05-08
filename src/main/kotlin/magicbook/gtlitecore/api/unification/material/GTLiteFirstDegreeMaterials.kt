@@ -41,6 +41,7 @@ import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
 import gregtech.api.unification.material.Materials.Erbium
+import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Flint
@@ -59,6 +60,7 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Iron3Chloride
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
@@ -294,6 +296,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenSe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroselenicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydroxyquinolineAluminium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron2Chloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jasper
@@ -348,6 +351,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OsmiumTetr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Ozone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumBisdibenzylidieneacetone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumFullereneMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumLoadedRutileNanoparticles
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PerrhenicAcid
@@ -406,6 +410,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumChlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCyanide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumEthoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFormate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumHydride
@@ -2913,6 +2918,30 @@ class GTLiteFirstDegreeMaterials
                 .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .cableProperties(V[UIV], 24, 12)
                 .build()
+
+            // 2285 Sodium Ethoxide
+            SodiumEthoxide = Material.Builder(2285, gtliteId("sodium_ethoxide"))
+                .dust()
+                .color(Sodium.materialRGB + Ethanol.materialRGB)
+                .components(Carbon, 2, Hydrogen, 5, Oxygen, 1, Sodium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2286 Iron (II) Chloride
+            Iron2Chloride = Material.Builder(2286, gtliteId("iron_2_chloride"))
+                .liquid()
+                .color(Iron3Chloride.materialRGB - 10)
+                .components(Iron, 1, Chlorine, 2)
+                .build()
+
+            // 2287 Palladium Fullerene Matrix
+            PalladiumFullereneMatrix = Material.Builder(2287, gtliteId("palladium_fullerene_matrix"))
+                .dust()
+                .color(0x40AEE0).iconSet(SHINY)
+                .components(Carbon, 73, Hydrogen, 15, Nitrogen, 1, Iron, 1, Palladium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C73H15NFe)Pd", true)
 
         }
 
