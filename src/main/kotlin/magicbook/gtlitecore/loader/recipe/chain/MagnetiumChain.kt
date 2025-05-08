@@ -135,9 +135,9 @@ class MagnetiumChain
 
             // roundDuranium -> roundMagnetium
             POLARIZER_RECIPES.recipeBuilder()
-                .input(round, Duranium, 4)
+                .input(round, Duranium, 8)
                 .fluidInputs(HadronicResonantGas.getFluid(250))
-                .output(round, Magnetium, 4)
+                .output(round, Magnetium, 8)
                 .EUt(VA[UIV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
