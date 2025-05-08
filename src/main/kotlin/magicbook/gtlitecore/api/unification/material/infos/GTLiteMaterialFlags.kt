@@ -290,6 +290,7 @@ class GTLiteMaterialFlags
             // gearSmall
             Neutronium.addFlags(GENERATE_SMALL_GEAR)
             HSSE.addFlags(GENERATE_SMALL_GEAR)
+            Duranium.addFlags(GENERATE_SMALL_GEAR)
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -408,6 +409,7 @@ class GTLiteMaterialFlags
             Fermium.addFlags(GENERATE_DENSE)
             Mendelevium.addFlags(GENERATE_DENSE)
             Rhenium.addFlags(GENERATE_DENSE)
+            Duranium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)
@@ -423,6 +425,7 @@ class GTLiteMaterialFlags
 
             // round
             Steel.addFlags(GENERATE_ROUND)
+            Duranium.addFlags(GENERATE_ROUND)
 
             // stick
             Polybenzimidazole.addFlags(GENERATE_ROD)
@@ -446,6 +449,7 @@ class GTLiteMaterialFlags
             Dubnium.addFlags(GENERATE_LONG_ROD)
             Bohrium.addFlags(GENERATE_LONG_ROD)
             Magnesium.addFlags(GENERATE_LONG_ROD)
+            Duranium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
@@ -453,11 +457,13 @@ class GTLiteMaterialFlags
             Tritanium.addFlags(GENERATE_SPRING)
             Seaborgium.addFlags(GENERATE_SPRING)
             Magnesium.addFlags(GENERATE_SPRING)
+            Duranium.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
             Europium.addFlags(GENERATE_SPRING_SMALL)
             Seaborgium.addFlags(GENERATE_SPRING_SMALL)
+            Duranium.addFlags(GENERATE_SPRING_SMALL)
 
             // wireFine
             Titanium.addFlags(GENERATE_FINE_WIRE)
@@ -479,6 +485,7 @@ class GTLiteMaterialFlags
             RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FINE_WIRE)
             Nichrome.addFlags(GENERATE_FINE_WIRE)
             Moscovium.addFlags(GENERATE_FINE_WIRE)
+            Duranium.addFlags(GENERATE_FINE_WIRE)
 
             // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
             Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

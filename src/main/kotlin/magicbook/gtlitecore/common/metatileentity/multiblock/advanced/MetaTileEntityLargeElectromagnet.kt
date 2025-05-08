@@ -1,242 +1,184 @@
-package magicbook.gtlitecore.common.metatileentity.multiblock.advanced;
+package magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.IMultiblockPart;
-import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController;
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.pattern.MultiblockShapeInfo;
-import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.util.GTUtility;
-import gregtech.client.renderer.ICubeRenderer;
-import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockMultiblockCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
-import lombok.Getter;
-import magicbook.gtlitecore.api.GTLiteAPI;
-import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
-import magicbook.gtlitecore.api.capability.GTLiteDataCodes;
-import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
-import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01;
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import one.util.streamex.StreamEx;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
+import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.MultiblockShapeInfo
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
+import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
+import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.RelativeDirection.LEFT
+import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.client.renderer.ICubeRenderer
+import gregtech.common.ConfigHolder
+import gregtech.common.blocks.BlockMultiblockCasing
+import gregtech.common.blocks.MetaBlocks
+import gregtech.common.metatileentities.MetaTileEntities
+import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.block.impl.WrappedIntTier
+import magicbook.gtlitecore.api.capability.GTLiteDataCodes
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getOrDefault
+import magicbook.gtlitecore.api.utils.StructureUtility.Companion.fieldGenCasings
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import net.minecraft.client.resources.I18n
+import net.minecraft.item.ItemStack
+import net.minecraft.network.PacketBuffer
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.function.Consumer
+import kotlin.math.floor
+import kotlin.math.pow
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static gregtech.api.util.RelativeDirection.DOWN;
-import static gregtech.api.util.RelativeDirection.FRONT;
-import static gregtech.api.util.RelativeDirection.LEFT;
-import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
-import static magicbook.gtlitecore.api.utils.StructureUtility.fieldGenCasings;
-
-public class MetaTileEntityLargeElectromagnet extends MultiMapMultiblockController
+@Suppress("MISSING_DEPENDENCY_CLASS")
+class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
 {
 
-    @Getter
-    private int casingTier;
+    private var casingTier = 0
 
-    // =================================================================================================================
-    public MetaTileEntityLargeElectromagnet(ResourceLocation metaTileEntityId)
+    init
     {
-        super(metaTileEntityId, new RecipeMap[] {
-                RecipeMaps.POLARIZER_RECIPES,
-                RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
-        });
-        this.recipeMapWorkable = new LargeElectromagnetRecipeLogic(this);
+        recipeMapWorkable = LargeElectromagnetRecipeLogic(this)
     }
 
-    @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
+    companion object
     {
-        return new MetaTileEntityLargeElectromagnet(metaTileEntityId);
+        private val casingState
+            get() = GTLiteMetaBlocks.METAL_CASING_01.getState(BlockMetalCasing01.MetalCasingType.BABBIT_ALLOY)
+
+        private val secondCasingState
+            get() = MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING)
     }
 
-    // =================================================================================================================
-    @Override
-    protected void formStructure(PatternMatchContext context)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityLargeElectromagnet(metaTileEntityId)
+
+    override fun formStructure(context: PatternMatchContext)
     {
-        super.formStructure(context);
-        Object type = context.get("FieldGenCasingTieredStats");
-        this.casingTier = getOrDefault(
-                () -> type instanceof WrappedIntTier,
-                () -> ((WrappedIntTier) type).getIntTier(), 0);
+        super.formStructure(context)
+        val type: Any? = context.get<Any>("FieldGenCasingTieredStats")
+        casingTier = getOrDefault(
+            { type is WrappedIntTier },
+            { (type as WrappedIntTier).getIntTier() }, 0)
     }
 
-    @Override
-    public void invalidateStructure()
+    override fun invalidateStructure()
     {
-        super.invalidateStructure();
-        this.casingTier = 0;
+        super.invalidateStructure()
+        casingTier = 0
     }
 
-    @NotNull
-    @Override
-    protected BlockPattern createStructurePattern()
-    {
-        return FactoryBlockPattern.start()
-                .aisle(" CCC ", " CCC ", " CCC ")
-                .aisle("CCCCC", "C###C", "CGCGC")
-                .aisle("CCCCC", "C#F#C", "CGCGC")
-                .aisle("CCCCC", "C###C", "CGCGC")
-                .aisle(" CCC ", " CSC ", " CCC ")
-                .where('S', selfPredicate())
-                .where('C', states(getCasingState())
-                        .setMinGlobalLimited(8)
-                        .or(autoAbilities(true, true, true, true, false, false, false)))
-                .where('G', states(getSecondCasingState()))
-                .where('F', fieldGenCasings())
-                .where('#', air())
-                .where(' ', any())
-                .build();
-    }
-
-    private static IBlockState getCasingState()
-    {
-        return GTLiteMetaBlocks.METAL_CASING_01.getState(BlockMetalCasing01.MetalCasingType.BABBIT_ALLOY);
-    }
-
-    private static IBlockState getSecondCasingState()
-    {
-        return MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.GRATE_CASING);
-    }
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
+        .aisle(" CCC ", " CCC ", " CCC ")
+        .aisle("CCCCC", "C###C", "CGCGC")
+        .aisle("CCCCC", "C#F#C", "CGCGC")
+        .aisle("CCCCC", "C###C", "CGCGC")
+        .aisle(" CCC ", " CSC ", " CCC ")
+        .where('S', selfPredicate())
+        .where('C', states(casingState)
+            .setMinGlobalLimited(8)
+            .or(autoAbilities(true, true, true, true, true, false, false)))
+            .where('G', states(secondCasingState))
+            .where('F', fieldGenCasings())
+            .where('#', air())
+            .where(' ', any())
+            .build()
 
     @SideOnly(Side.CLIENT)
-    @Override
-    public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart)
-    {
-        return GTLiteTextures.BABBIT_ALLOY_CASING;
-    }
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.BABBIT_ALLOY_CASING
 
     @SideOnly(Side.CLIENT)
-    @NotNull
-    @Override
-    protected ICubeRenderer getFrontOverlay()
-    {
-        return GTLiteTextures.LARGE_ELECTROMAGNET_OVERLAY;
-    }
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ELECTROMAGNET_OVERLAY
 
-    @Override
-    public List<MultiblockShapeInfo> getMatchingShapes()
+    override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-        MultiblockShapeInfo.Builder builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
+        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
                 .aisle(" CEC ", " CCC ", " CCC ")
                 .aisle("CCCCC", "C   C", "CGCGC")
                 .aisle("CCCCC", "C F C", "CGCGC")
                 .aisle("CCCCC", "C   C", "CGCGC")
-                .aisle(" CMC ", " ISJ ", " CCC ")
+                .aisle(" CMC ", " ISJ ", " CKC ")
                 .where('S', GTLiteMetaTileEntities.LARGE_ELECTROMAGNET, EnumFacing.SOUTH)
-                .where('C', getCasingState())
-                .where('G', getSecondCasingState())
-                .where('M', () -> ConfigHolder.machines.enableMaintenance ? MetaTileEntities.MAINTENANCE_HATCH : getCasingState(), EnumFacing.SOUTH)
-                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[0], EnumFacing.NORTH)
-                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
-                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH);
-        StreamEx.of(GTLiteAPI.MAP_FIELD_GEN_CASING.entrySet())
-                .sortedByInt(entry -> ((WrappedIntTier) entry.getValue()).getIntTier())
-                .forEach(entry -> shapeInfo.add(builder.where('F', entry.getKey()).build()));
-        return shapeInfo;
+                .where('C', casingState)
+                .where('G', secondCasingState)
+                .where('M', { if (ConfigHolder.machines.enableMaintenance) MetaTileEntities.MAINTENANCE_HATCH else casingState }, EnumFacing.SOUTH)
+                .where('E', MetaTileEntities.ENERGY_INPUT_HATCH[ULV], EnumFacing.NORTH)
+                .where('I', MetaTileEntities.ITEM_IMPORT_BUS[ULV], EnumFacing.SOUTH)
+                .where('J', MetaTileEntities.ITEM_EXPORT_BUS[ULV], EnumFacing.SOUTH)
+                .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[ULV], EnumFacing.SOUTH)
+        GTLiteAPI.MAP_FIELD_GEN_CASING.entries
+            .sortedBy { entry -> (entry.value as WrappedIntTier).getIntTier() }
+            .forEach(Consumer { entry -> shapeInfo.add(builder.where('F', entry.key).build()) })
+        return shapeInfo
     }
 
-    // =================================================================================================================
-    @Override
-    public void update()
+    override fun update()
     {
-        super.update();
-        if (this.getWorld().isRemote && this.casingTier == 0)
-            this.writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE, buf -> {});
+        super.update()
+        if ((world as World).isRemote && casingTier == 0)
+            writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
     }
 
-    @Override
-    public void receiveCustomData(int dataId, PacketBuffer buf)
+    override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
     {
-        super.receiveCustomData(dataId, buf);
+        super.receiveCustomData(dataId, buf)
         if (dataId == GTLiteDataCodes.INITIALIZE_TIERED_MACHINE)
-            this.writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE, b -> b.writeInt(this.casingTier));
+            writeCustomData(GTLiteDataCodes.UPDATE_TIERED_MACHINE) { b: PacketBuffer -> b.writeInt(casingTier) }
         if (dataId == GTLiteDataCodes.UPDATE_TIERED_MACHINE)
-            this.casingTier = buf.readInt();
+            casingTier = buf.readInt()
     }
 
-    @Override
-    public void writeInitialSyncData(PacketBuffer buf)
+    override fun writeInitialSyncData(buf: PacketBuffer)
     {
-        super.writeInitialSyncData(buf);
-        buf.writeInt(this.casingTier);
+        super.writeInitialSyncData(buf)
+        buf.writeInt(casingTier)
     }
 
-    @Override
-    public void receiveInitialSyncData(PacketBuffer buf)
+    override fun receiveInitialSyncData(buf: PacketBuffer)
     {
-        super.receiveInitialSyncData(buf);
-        this.casingTier = buf.readInt();
+        super.receiveInitialSyncData(buf)
+        casingTier = buf.readInt()
     }
 
-    // =================================================================================================================
-    @Override
-    public void addInformation(ItemStack stack,
-                               @Nullable World player,
-                               @NotNull List<String> tooltip,
-                               boolean advanced)
+    override fun addInformation(stack: ItemStack,
+                                player: World?,
+                                tooltip: MutableList<String>,
+                                advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.1"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.2"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.3"));
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.4"));
+        super.addInformation(stack, player, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.4"))
     }
 
-    // =================================================================================================================
-    @Override
-    public boolean canBeDistinct()
-    {
-        return true;
-    }
+    override fun canBeDistinct() = true
 
-    protected class LargeElectromagnetRecipeLogic extends MultiblockRecipeLogic
+    inner class LargeElectromagnetRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        public LargeElectromagnetRecipeLogic(RecipeMapMultiblockController tileEntity)
+        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+
+        override fun setMaxProgress(maxProgress: Int)
         {
-            super(tileEntity);
+            super.setMaxProgress(floor(maxProgress * 0.5.pow(getTierByVoltage(maxVoltage).toDouble())).toInt())
         }
 
-        @Override
-        protected double getOverclockingDurationFactor()
-        {
-            return getMaxVoltage() >= GTValues.V[GTValues.UV] ? 0.25 : 0.5;
-        }
-
-        @Override
-        public void setMaxProgress(int maxProgress)
-        {
-            super.setMaxProgress((int) (Math.floor(maxProgress * Math.pow(0.5, GTUtility.getTierByVoltage(this.getMaxVoltage())))));
-        }
-
-        @Override
-        public int getParallelLimit()
-        {
-            return 8 * getCasingTier();
-        }
+        override fun getParallelLimit() = 8 * casingTier
 
     }
 

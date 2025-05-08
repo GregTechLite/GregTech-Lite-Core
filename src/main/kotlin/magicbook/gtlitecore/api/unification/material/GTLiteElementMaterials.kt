@@ -255,9 +255,9 @@ class GTLiteElementMaterials
                 .iconSet(MAGNETIUM) // Foreground RGB: F2F226; Background RGB: 21A7A7;
                                     // Layered Halo RGB: F8F8D5; Transition Dir: LD -> RU.
                 .element(M)
-                .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
-                    GENERATE_DENSE, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_ROUND, GENERATE_FRAME)
+                .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                    GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_SPRING, GENERATE_SPRING_SMALL,
+                    GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_ROUND, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UIV], 30 * SECOND)
@@ -271,7 +271,7 @@ class GTLiteElementMaterials
                 .liquid(FluidBuilder()
                     .temperature(9025))
                 .color(0xBE00FF).iconSet(METALLIC)
-                .flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE)
+                .flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
                 .element(Fs)
                 .toolStats(MaterialToolProperty.Builder.of(76.0F, 110.0F, 165888, 9)
                     .enchantment(Enchantments.EFFICIENCY, 6)

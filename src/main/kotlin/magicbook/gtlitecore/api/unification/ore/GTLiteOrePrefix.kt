@@ -169,6 +169,13 @@ class GTLiteOrePrefix
             OrePrefix.dustTiny.setIgnored(GTLiteMaterials.HalkoniteSteel)
             OrePrefix.nugget.setIgnored(GTLiteMaterials.HalkoniteSteel)
             OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HalkoniteSteel)
+
+            // Deleted Magnetium dusts, nugget and hot ingot.
+            OrePrefix.dust.setIgnored(GTLiteMaterials.Magnetium)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.Magnetium)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.Magnetium)
+            OrePrefix.nugget.setIgnored(GTLiteMaterials.Magnetium)
+            OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Magnetium)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high

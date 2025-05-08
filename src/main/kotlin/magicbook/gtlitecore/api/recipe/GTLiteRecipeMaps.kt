@@ -1028,6 +1028,8 @@ class GTLiteRecipeMaps
             RecipeMaps.THERMAL_CENTRIFUGE_RECIPES.maxOutputs = 4
 
             RecipeMaps.VACUUM_RECIPES.maxFluidOutputs = 2
+
+            RecipeMaps.POLARIZER_RECIPES.maxFluidInputs = 1
         }
 
     }
