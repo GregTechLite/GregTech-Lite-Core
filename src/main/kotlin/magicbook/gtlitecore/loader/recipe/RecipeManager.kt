@@ -32,6 +32,7 @@ import magicbook.gtlitecore.loader.recipe.chain.HalkoniteSteelChain
 import magicbook.gtlitecore.loader.recipe.chain.HeatExchangeChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrazineChain
 import magicbook.gtlitecore.loader.recipe.chain.HydrogenPeroxideChain
+import magicbook.gtlitecore.loader.recipe.chain.HypogenChain
 import magicbook.gtlitecore.loader.recipe.chain.InfinityChain
 import magicbook.gtlitecore.loader.recipe.chain.KaptonChain
 import magicbook.gtlitecore.loader.recipe.chain.KevlarChain
@@ -64,6 +65,7 @@ import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
 import magicbook.gtlitecore.loader.recipe.chain.RocketFuelsChain
 import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
+import magicbook.gtlitecore.loader.recipe.chain.ShirabonChain
 import magicbook.gtlitecore.loader.recipe.chain.SilicaGelChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
@@ -243,6 +245,8 @@ class RecipeManager
             CarbonNanotubeChain.init()
             InfinityChain.init()
             MagnetiumChain.init()
+            HypogenChain.init()
+            ShirabonChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

@@ -16,7 +16,6 @@ import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.PrimitiveRecipeLogic
-import gregtech.api.gui.widgets.SlotWidget
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -47,7 +46,6 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
-import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 import net.minecraftforge.common.util.Constants
 import net.minecraftforge.fluids.FluidStack
@@ -58,7 +56,6 @@ import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemHandlerHelper.insertItem
 import net.minecraftforge.items.ItemStackHandler
-import java.lang.String.valueOf
 import kotlin.math.min
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -176,15 +173,6 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
 
         circuitInventory!!.circuitValue = config
         if (!(world as World).isRemote) markDirty()
-    }
-
-    private fun getCircuitSlotTooltip(widget: SlotWidget): SlotWidget
-    {
-        val configString: String = if (circuitInventory == null || circuitInventory!!.circuitValue == GhostCircuitItemStackHandler.NO_CONFIG)
-            TextComponentTranslation("gregtech.gui.configurator_slot.no_value").formattedText
-        else
-            valueOf(circuitInventory!!.circuitValue)
-        return widget.setTooltipText("gregtech.gui.configurator_slot.tooltip", configString)
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound

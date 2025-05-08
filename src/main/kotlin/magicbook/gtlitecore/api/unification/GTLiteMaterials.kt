@@ -26,6 +26,9 @@ class GTLiteMaterials
         lateinit var Plutonium244: Material
         lateinit var DegenerateRhenium: Material
         lateinit var Magnetium: Material
+        lateinit var Rhugnor: Material
+        lateinit var Hypogen: Material
+        lateinit var Shirabon: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material
@@ -357,6 +360,9 @@ class GTLiteMaterials
         lateinit var HafniumCarbide: Material
         lateinit var SeaborgiumCarbide: Material
         lateinit var TantalumHafniumSeaborgiumCarbide: Material
+        lateinit var SuperheavyAlloyA: Material
+        lateinit var SuperheavyAlloyB: Material
+        lateinit var PreciousMetalAlloy: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

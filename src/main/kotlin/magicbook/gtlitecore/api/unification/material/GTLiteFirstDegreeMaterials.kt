@@ -146,6 +146,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
@@ -2899,7 +2900,7 @@ class GTLiteFirstDegreeMaterials
                     .customStill())
                 .color(0x5DBD3A).iconSet(BRIGHT)
                 .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
-                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME)
+                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND)
                 .rotorStats(48.0f, 16.0f, 983040)
                 .fluidPipeProperties(200_000, 10000, true, true, true, true)
                 .build()

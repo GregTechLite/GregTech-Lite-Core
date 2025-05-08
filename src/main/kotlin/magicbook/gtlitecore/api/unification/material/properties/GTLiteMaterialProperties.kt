@@ -57,6 +57,7 @@ import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
@@ -70,6 +71,7 @@ import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Opal
@@ -105,6 +107,7 @@ import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tellurium
+import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
@@ -184,7 +187,7 @@ class GTLiteMaterialProperties
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
                 Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
                 Astatine, Nobelium, Lawrencium, Mercury, Roentgenium, Moscovium,
-                Meitnerium, Copernicium)
+                Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -193,7 +196,8 @@ class GTLiteMaterialProperties
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
-                Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium)
+                Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium,
+                Nihonium, Livermorium, Tennessine)
                 .forEach { addLiquid(it) }
 
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)

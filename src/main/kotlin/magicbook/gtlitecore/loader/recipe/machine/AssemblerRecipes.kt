@@ -158,6 +158,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -401,6 +402,15 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // UIV Machine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(plate, Shirabon, 8)
+                .outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UIV))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun machineHullRecipes()
@@ -429,6 +439,8 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // UIV Machine Hull
         }
 
         private fun pipeCasingRecipes()
@@ -1603,7 +1615,7 @@ class AssemblerRecipes
         {
             // Advanced laser hatches which has amperage beyond 1048576A is for higher tier
             // than it tier, 256A-1048576A is for its tier.
-            for (tier in IV .. UHV) // TODO Change UHV to OpV when contents are completed.
+            for (tier in IV .. UEV) // TODO Change UEV to OpV when contents are completed.
             {
                 val actualTier = tier - 5
                 // 16384A Laser Target Hatch

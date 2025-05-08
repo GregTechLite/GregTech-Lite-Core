@@ -461,7 +461,8 @@ class GTLiteUtility
             GTValues.ZPM -> Materials.VanadiumGallium
             GTValues.UV -> Materials.YttriumBariumCuprate
             GTValues.UHV -> Materials.Europium
-            // TODO UEV-UXV
+            GTValues.UEV -> Materials.Seaborgium
+            // TODO UIV-UXV
             else -> Materials.Water // TODO OpV Cable
         }
 

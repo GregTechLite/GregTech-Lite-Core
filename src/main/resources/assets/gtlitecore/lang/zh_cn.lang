@@ -2332,6 +2332,9 @@ gtlitecore.material.infinity=无尽
 gtlitecore.material.plutonium_244=钚-244
 gtlitecore.material.degenerate_rhenium=简并态铼
 gtlitecore.material.magnetium=磁素
+gtlitecore.material.rhugnor=鲁格诺
+gtlitecore.material.hypogen=海珀珍
+gtlitecore.material.shirabon=调律源金
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2680,6 +2683,9 @@ gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=振金三钛�
 gtlitecore.material.hafnium_carbide=碳化铪
 gtlitecore.material.seaborgium_carbide=碳化钅喜
 gtlitecore.material.tantalum_hafnium_seaborgium_carbide=碳化钽铪钅喜
+gtlitecore.material.light_superheavy_alloy=超重元素-轻合金
+gtlitecore.material.heavy_superheavy_alloy=超重元素-重合金
+gtlitecore.material.precious_metal_alloy=贵金属合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

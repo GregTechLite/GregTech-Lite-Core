@@ -28,6 +28,14 @@ class GTLiteElements
         @JvmStatic
         val M: Element = Elements.add(166, 345, "Magnetium", "M")
 
+        @JvmStatic
+        val Fs: Element = Elements.add(184, 142, "Rhugnor", "Fs⚶")
+        @JvmStatic
+        val Hy: Element = Elements.add(240, 251, "Hypogen", "Hy⚶")
+
+        @JvmStatic
+        val Sh: Element = Elements.add(230, 306, "Shirabon", "Sh⏧")
+
     }
 
 }

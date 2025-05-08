@@ -2332,6 +2332,9 @@ gtlitecore.material.infinity=Infinity
 gtlitecore.material.plutonium_244=Plutonium-244
 gtlitecore.material.degenerate_rhenium=Degenerate Rhenium
 gtlitecore.material.magnetium=Magnetium
+gtlitecore.material.rhugnor=Rhugnor
+gtlitecore.material.hypogen=Hypogen
+gtlitecore.material.shirabon=Shirabon
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2675,6 +2678,9 @@ gtlitecore.material.vibranium_tritanium_actinium_iron_superhydride=Vibranium Tri
 gtlitecore.material.hafnium_carbide=Hafnium Carbide
 gtlitecore.material.seaborgium_carbide=Seaborgium Carbide
 gtlitecore.material.tantalum_hafnium_seaborgium_carbide=Tantalum Hafnium Seaborgium
+gtlitecore.material.light_superheavy_alloy=Superheavy Alloy (Light)
+gtlitecore.material.heavy_superheavy_alloy=Superheavy Alloy (Heavy)
+gtlitecore.material.precious_metal_alloy=Precious Metal Alloy
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

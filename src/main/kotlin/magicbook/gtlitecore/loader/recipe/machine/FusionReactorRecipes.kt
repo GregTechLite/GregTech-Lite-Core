@@ -19,6 +19,8 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Astatine
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bohrium
@@ -40,18 +42,22 @@ import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lithium
+import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Magnesium
+import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Radium
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Roentgenium
@@ -63,6 +69,7 @@ import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritium
@@ -400,6 +407,16 @@ class FusionReactorRecipes
             // ---------------------------------------------------------------------------------------------------------
             // Mark 5 Fusion
 
+            // At + Ni -> Nh
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Astatine.getFluid(L))
+                .fluidInputs(Nickel.getFluid(L * 2))
+                .fluidOutputs(Nihonium.getFluid(L / 2))
+                .EUt(VA[UEV] / 3L)
+                .duration(2 * SECOND + 14 * TICK)
+                .EUToStart(1_300_000_000L) // 1300M EU, MK5
+                .buildAndRegister()
+
             // Np + Ti -> Mc
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(Nickel.getFluid(L))
@@ -408,6 +425,26 @@ class FusionReactorRecipes
                 .EUt(VA[UEV].toLong())
                 .duration(4 * SECOND + 8 * TICK)
                 .EUToStart(1_600_000_000L) // 1600M EU, MK5
+                .buildAndRegister()
+
+            // Pa + Mn -> Lv
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Protactinium.getFluid(L))
+                .fluidInputs(Manganese.getFluid(L))
+                .fluidOutputs(Livermorium.getFluid(L))
+                .EUt(VA[UEV] / 2L)
+                .duration(9 * SECOND + 6 * TICK)
+                .EUToStart(1_800_000_000L) // 1800M EU, MK5
+                .buildAndRegister()
+
+            // Bk + Ca -> Ts
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Berkelium.getFluid(L))
+                .fluidInputs(Calcium.getFluid(L * 4))
+                .fluidOutputs(Tennessine.getFluid(L))
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND + 15 * TICK)
+                .EUToStart(2_000_000_000L) // 2000M EU, MK5
                 .buildAndRegister()
 
             // Add plasma coolant recipes to vacuum freezer for original plasmas.

@@ -39,23 +39,30 @@ import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Fs
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Hy
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.If
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.M
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Pu244
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Sh
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ENRICHED
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETIUM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -146,7 +153,7 @@ class GTLiteElementMaterials
                     b.temp(9900, BlastProperty.GasTier.HIGHEST) // Tritanium
                         .blastStats(VA[UHV], 2 * MINUTE + 35 * SECOND)
                         .vacuumStats(VA[UV], 40 * SECOND) }
-                .rotorStats(25.0F, 3.0F, 15360)
+                .rotorStats(25.0F, 3.0F, 153600)
                 .build()
 
             // 5 Metastable Oganesson
@@ -176,7 +183,7 @@ class GTLiteElementMaterials
                 .plasma()
                 .color(0x2D3A9D).iconSet(BRIGHT)
                 .element(Hs)
-                .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .blast { b -> b
                     .temp(12000, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 4 * MINUTE + 30 * SECOND)
@@ -256,6 +263,44 @@ class GTLiteElementMaterials
                         .blastStats(VA[UIV], 30 * SECOND)
                         .vacuumStats(VA[UHV], 15 * SECOND)
                 }
+                .build()
+
+            // 12 Rhugnor
+            Rhugnor = Material.Builder(12, gtliteId("rhugnor"))
+                .ingot()
+                .liquid(FluidBuilder()
+                    .temperature(9025))
+                .color(0xBE00FF).iconSet(METALLIC)
+                .flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE)
+                .element(Fs)
+                .toolStats(MaterialToolProperty.Builder.of(76.0F, 110.0F, 165888, 9)
+                    .enchantment(Enchantments.EFFICIENCY, 6)
+                    .enchantment(Enchantments.FORTUNE, 4)
+                    .attackSpeed(0.4F).enchantability(42).magnetic().build())
+                .itemPipeProperties(16384, 256F)
+                .rotorStats(48.0F, 8.0F, 98304)
+                .build()
+
+            // 13 Hypogen
+            Hypogen = Material.Builder(13, gtliteId("hypogen"))
+                .ingot()
+                .liquid(FluidBuilder()
+                    .temperature(11530))
+                .color(0xDC784B).iconSet(ENRICHED) // Opacity: 5-10-15-20-25-30-35
+                .element(Hy)
+                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .cableProperties(V[UIV], 16, 4)
+                .build()
+
+            // 14 Shirabon
+            Shirabon = Material.Builder(14, gtliteId("shirabon"))
+                .ingot()
+                .liquid()
+                .color(0xE0156D).iconSet(BRIGHT)
+                .element(Sh)
+                .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                    GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME)
                 .build()
 
         }
