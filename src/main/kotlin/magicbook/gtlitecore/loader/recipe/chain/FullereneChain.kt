@@ -34,7 +34,6 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Naphthalene
 import gregtech.api.unification.material.Materials.Oxygen
-import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sodium

@@ -148,7 +148,6 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 
 class GTLiteMaterialFlags
 {

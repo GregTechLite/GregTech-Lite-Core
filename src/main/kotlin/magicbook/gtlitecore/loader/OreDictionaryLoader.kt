@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.loader
 
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barite
@@ -55,8 +54,6 @@ import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
-import gregtech.api.unification.stack.ItemMaterialInfo
-import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.MetaBlocks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
@@ -75,7 +72,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyphosph
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
-import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01

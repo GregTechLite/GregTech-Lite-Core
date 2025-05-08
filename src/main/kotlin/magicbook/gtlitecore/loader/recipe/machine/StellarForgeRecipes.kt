@@ -1,26 +1,5 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
-import gregtech.api.GTValues.L
-import gregtech.api.GTValues.UHV
-import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.VA
-import gregtech.api.GTValues.ZPM
-import gregtech.api.unification.material.Materials.Barium
-import gregtech.api.unification.material.Materials.Copper
-import gregtech.api.unification.material.Materials.Indium
-import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
-import gregtech.api.unification.material.Materials.Oxygen
-import gregtech.api.unification.material.Materials.Tin
-import gregtech.api.unification.material.Materials.Titanium
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.STELLAR_FORGE_RECIPES
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
-import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.LEPTONIC_CHARGE
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.NAQUADRIA_CHARGE
-import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.TARANIUM_CHARGE
-import net.minecraft.item.ItemStack
-
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class StellarForgeRecipes
 {
