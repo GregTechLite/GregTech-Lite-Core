@@ -194,6 +194,9 @@ import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_IV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
@@ -1686,15 +1689,15 @@ class AssemblyLineRecipes
             // LuV Mining Drone
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, RhodiumPlatedPalladium)
-                .input(plate, RhodiumPlatedPalladium, 8)
-                .input(plateDouble, Uranium235, 4)
-                .input(circuit, MarkerMaterials.Tier.LuV, 2)
-                .input(toolHeadDrill, HSSE, 6)
+                .input(plateDouble, RhodiumPlatedPalladium, 8)
+                .input(round, RhodiumPlatedPalladium, 16)
                 .input(EMITTER_LuV, 2)
                 .input(SENSOR_LuV, 2)
                 .input(ROBOT_ARM_LuV, 2)
                 .input(rotor, RhodiumPlatedPalladium, 4)
-                .input(cableGtSingle, NiobiumTitanium, 2)
+                .input(toolHeadDrill, HSSE, 8)
+                .input(cableGtQuadruple, NiobiumTitanium, 2)
+                .input(circuit, MarkerMaterials.Tier.LuV, 4)
                 .fluidInputs(SolderingAlloy.getFluid(L * 40))
                 .fluidInputs(DrillingFluid.getFluid(2000))
                 .output(MINING_DRONE_LuV)
@@ -1710,15 +1713,15 @@ class AssemblyLineRecipes
             // ZPM Mining Drone
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, NaquadahAlloy)
-                .input(plate, NaquadahAlloy, 8)
-                .input(plateDouble, Plutonium239, 4)
-                .input(circuit, MarkerMaterials.Tier.ZPM, 2)
-                .input(toolHeadDrill, NaquadahAlloy, 6)
+                .input(plateDouble, NaquadahAlloy, 8)
+                .input(round, NaquadahAlloy, 16)
                 .input(EMITTER_ZPM, 2)
                 .input(SENSOR_ZPM, 2)
                 .input(ROBOT_ARM_ZPM, 2)
                 .input(rotor, NaquadahAlloy, 4)
-                .input(cableGtSingle, VanadiumGallium, 2)
+                .input(toolHeadDrill, NaquadahAlloy, 8)
+                .input(cableGtQuadruple, VanadiumGallium, 2)
+                .input(circuit, MarkerMaterials.Tier.ZPM, 4)
                 .fluidInputs(SolderingAlloy.getFluid(L * 40))
                 .fluidInputs(DrillingFluid.getFluid(4000))
                 .output(MINING_DRONE_ZPM)
@@ -1734,15 +1737,15 @@ class AssemblyLineRecipes
             // UV Mining Drone
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(frameGt, Darmstadtium)
-                .input(plate, Darmstadtium, 12)
-                .input(plateDouble, Naquadah, 8)
-                .input(circuit, MarkerMaterials.Tier.UV, 2)
-                .input(toolHeadDrill, Duranium, 8)
+                .input(plateDouble, Darmstadtium, 12)
+                .input(round, Darmstadtium, 16)
                 .input(EMITTER_UV, 2)
                 .input(SENSOR_UV, 2)
                 .input(ROBOT_ARM_UV, 2)
-                .input(rotor, Darmstadtium, 6)
-                .input(cableGtSingle, YttriumBariumCuprate, 2)
+                .input(rotor, Darmstadtium, 4)
+                .input(toolHeadDrill, Duranium, 16)
+                .input(cableGtQuadruple, YttriumBariumCuprate, 2)
+                .input(circuit, MarkerMaterials.Tier.UV, 4)
                 .fluidInputs(SolderingAlloy.getFluid(L * 40))
                 .fluidInputs(DrillingFluid.getFluid(8000))
                 .output(MINING_DRONE_UV)
@@ -1751,11 +1754,83 @@ class AssemblyLineRecipes
                 .stationResearch { r ->
                     r.researchStack(MINING_DRONE_ZPM.stackForm)
                         .EUt(VA[ZPM].toLong())
-                        .CWUt(8)
+                        .CWUt(16)
                 }
                 .buildAndRegister()
 
-            // TODO UHV-MAX Mining Drones
+            // UHV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Neutronium)
+                .input(plateDouble, Neutronium, 12)
+                .input(round, Neutronium, 16)
+                .input(EMITTER_UHV, 2)
+                .input(SENSOR_UHV, 2)
+                .input(ROBOT_ARM_UHV, 2)
+                .input(rotor, Neutronium, 4)
+                .input(toolHeadDrill, EnrichedNaquadahAlloy, 16)
+                .input(cableGtQuadruple, Europium, 2)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(16000))
+                .output(MINING_DRONE_UHV)
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_UV.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // UEV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Vibranium)
+                .input(plateDouble, Vibranium, 16)
+                .input(round, Vibranium, 32)
+                .input(EMITTER_UEV, 2)
+                .input(SENSOR_UEV, 2)
+                .input(ROBOT_ARM_UEV, 2)
+                .input(rotor, Vibranium, 4)
+                .input(toolHeadDrill, Adamantium, 16)
+                .input(cableGtQuadruple, Seaborgium, 2)
+                .input(circuit, MarkerMaterials.Tier.UEV, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(32000))
+                .output(MINING_DRONE_UEV)
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // UIV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Shirabon)
+                .input(plateDouble, Shirabon, 16)
+                .input(round, Shirabon, 32)
+                .input(EMITTER_UIV, 2)
+                .input(SENSOR_UIV, 2)
+                .input(ROBOT_ARM_UIV, 2)
+                .input(rotor, Shirabon, 4)
+                .input(toolHeadDrill, Rhugnor, 16)
+                .input(cableGtQuadruple, SuperheavyAlloyA, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(64000))
+                .output(MINING_DRONE_UIV)
+                .EUt(VA[UIV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_UEV.stackForm)
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // TODO UXV-MAX Mining Drones
         }
 
         private fun energyHatchesRecipes()

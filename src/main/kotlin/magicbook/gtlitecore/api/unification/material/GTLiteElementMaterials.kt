@@ -112,7 +112,7 @@ class GTLiteElementMaterials
                 .element(Vb)
                 .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR,
                     GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
-                    GENERATE_FOIL, GENERATE_FINE_WIRE)
+                    GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROUND)
                 .blast { b ->
                     b.temp(12001, BlastProperty.GasTier.HIGHER) // Adamantium
                         .blastStats(VA[UHV], 75 * SECOND)
@@ -300,7 +300,7 @@ class GTLiteElementMaterials
                 .element(Sh)
                 .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                     GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                    GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME)
+                    GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
                 .build()
 
         }

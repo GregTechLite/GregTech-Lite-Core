@@ -432,6 +432,10 @@ class GTLiteMaterialFlags
             // round
             Steel.addFlags(GENERATE_ROUND)
             Duranium.addFlags(GENERATE_ROUND)
+            RhodiumPlatedPalladium.addFlags(GENERATE_ROUND)
+            NaquadahAlloy.addFlags(GENERATE_ROUND)
+            Darmstadtium.addFlags(GENERATE_ROUND)
+            Neutronium.addFlags(GENERATE_ROUND)
 
             // stick
             Polybenzimidazole.addFlags(GENERATE_ROD)
