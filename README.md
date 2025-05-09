@@ -8,16 +8,16 @@ The Spiritual Successor of Gregicality Legacy.
 - ...
 
 ### For Development
-- More functional interfaces supported for primitive type, e.g. `BooleanBiConsumer`.
-  - See at `magicbook.api.utils.functions`.
-- Java 9 Feature "**StackWalker**" port for Java 8:
-  - Used it by `magicbook.api.utils.reflect.StackWalker`.
-  - Kotlin extension of `StackWalker` at `magicbook.api.utils.reflect.StackWalkerKt`.
-- Java 21 Feature "**Sequenced Collection**" port for Java 8:
-  - Used it by `magicbook.api.utils.maps.SequencedCollection`, `SequencedSet` and `SequencedMap`.
+- More primitive type and functional programming interfaces supported.
+  - Add some primitive type versions of consumers, predicates and functions.
+  - Add functors, bifunctors and its related implementations.
+- Apache tuples enhancement, add more list operations and functional operations.
+- Java 9 Feature "**StackWalker**" port for Java 8 and its kotlin extension.
+- Java 21 Feature "**Sequenced Collection**" port for Java 8.
 - Java 24 Feature "**Gatherer API**" port for Java 8:
-  - Used it in your stream by `magicbook.api.utils.stream.LazyStreams#gatherer`.
-  - Some implementations of gatherer at `magicbook.api.utils.stream.Gatherers`.
+  - The stream start point of gatherer and some implementation methods.
+  - More advanced operations like `zipWithIndex` for gatherer.
+- Stream and StreamEx enhancements, provided more advanced operations.
 
 ## License
 
