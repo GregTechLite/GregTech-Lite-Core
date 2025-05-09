@@ -40,6 +40,7 @@ import magicbook.gtlitecore.loader.recipe.chain.KevlarChain
 import magicbook.gtlitecore.loader.recipe.chain.LeadSiliconGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumNiobateChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
+import magicbook.gtlitecore.loader.recipe.chain.LuTmYVOChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetiumChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
@@ -249,6 +250,7 @@ class RecipeManager
             HypogenChain.init()
             ShirabonChain.init()
             FullerenePolymerMatrixChain.init()
+            LuTmYVOChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

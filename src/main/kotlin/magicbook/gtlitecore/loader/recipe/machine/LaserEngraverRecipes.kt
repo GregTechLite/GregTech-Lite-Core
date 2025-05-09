@@ -3,6 +3,7 @@ package magicbook.gtlitecore.loader.recipe.machine
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
@@ -36,6 +37,7 @@ import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmYVO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.gemSolitary
@@ -50,6 +52,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HASSIUM_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_WAFER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_WAFER
 import net.minecraftforge.oredict.OreDictionary
@@ -271,7 +275,7 @@ class LaserEngraverRecipes
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Nano Power Integrated Circuit (NPIC) Wafer
+            // Nano Power Integrate Circuit (NPIC) Wafer
             LASER_ENGRAVER_RECIPES.recipeBuilder()
                 .notConsumable(lens, LithiumNiobate)
                 .input(NAQUADAH_WAFER)
@@ -299,11 +303,48 @@ class LaserEngraverRecipes
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Nano Power Integrated Circuit (NPIC) Chip
+            // Nano Power Integrate Circuit (NPIC) Chip
             CUTTER_RECIPES.recipeBuilder()
                 .input(NANO_PIC_WAFER)
                 .output(NANO_PIC_CHIP, 2)
                 .EUt(VA[ZPM].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Pico Power Integrate Circuit (PPIC) Wafer
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, LuTmYVO)
+                .input(NAQUADAH_WAFER)
+                .output(PICO_PIC_WAFER)
+                .EUt(VA[UV].toLong())
+                .duration(1 * MINUTE + 20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, LuTmYVO)
+                .input(NEUTRONIUM_WAFER)
+                .output(PICO_PIC_WAFER, 4)
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, LuTmYVO)
+                .input(HASSIUM_WAFER)
+                .output(PICO_PIC_WAFER, 8)
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Pico Power Integrate Circuit (PPIC) Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(PICO_PIC_WAFER)
+                .output(PICO_PIC_CHIP, 2)
+                .EUt(VA[UV].toLong())
                 .duration(1 * MINUTE + 30 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
@@ -372,6 +413,10 @@ class LaserEngraverRecipes
             OreDictionary.getOres("craftingLensPink").removeIf { item ->
                 item.isItemEqual(OreDictUnifier.get(lens, MagnetoResonatic)) or
                         item.isItemEqual(OreDictUnifier.get(lens, NdYAG))
+            }
+            // Disabled craftingLensRed ore dict of Lu/Tm:YVO
+            OreDictionary.getOres("craftingLensRed").removeIf { item ->
+                item.isItemEqual(OreDictUnifier.get(lens, LuTmYVO))
             }
 
         }

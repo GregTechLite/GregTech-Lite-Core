@@ -318,6 +318,10 @@ class GTLiteMaterials
         lateinit var SodiumEthoxide: Material
         lateinit var Iron2Chloride: Material
         lateinit var PalladiumFullereneMatrix: Material
+        lateinit var LuTmYChloridesSolution: Material
+        lateinit var SodiumVanadate: Material
+        lateinit var LuTmDopedYttriumVanadateDeposition: Material
+        lateinit var LuTmYVO: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material

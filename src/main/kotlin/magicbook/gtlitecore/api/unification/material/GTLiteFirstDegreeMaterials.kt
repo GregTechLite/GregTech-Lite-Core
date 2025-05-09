@@ -323,6 +323,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTet
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumThiinediselenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lizardite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmDopedYttriumVanadateDeposition
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmYChloridesSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmYVO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnesiumBromide
@@ -426,6 +429,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTell
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumThiosulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumTrifluoroethanolate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumVanadate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumFerrite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
@@ -872,7 +876,7 @@ class GTLiteFirstDegreeMaterials
 
             // 2044 Sodium Carbonate
             SodiumCarbonate = Material.Builder(2044, gtliteId("sodium_carbonate"))
-                .dust()
+                .liquid()
                 .colorAverage()
                 .components(SodaAsh, 1, Water, 1)
                 .flags(DISABLE_DECOMPOSITION)
@@ -2942,6 +2946,40 @@ class GTLiteFirstDegreeMaterials
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
                 .setFormula("(C73H15NFe)Pd", true)
+
+            // 2288 Lutetium-Thulium-Yttrium Chlorides Solution
+            LuTmYChloridesSolution = Material.Builder(2288, gtliteId("lu_tm_y_chlorides_solution"))
+                .liquid()
+                .colorAverage()
+                .components(Lutetium, 2, Thulium, 2, Yttrium, 6, Chlorine, 30, Water, 15)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(LuCl3)2(TmCl3)2(YCl3)6(H2O)15", true)
+
+            // 2289 Sodium Vanadate
+            SodiumVanadate = Material.Builder(2289, gtliteId("sodium_vanadate"))
+                .dust()
+                .color(0xCC9933).iconSet(SHINY)
+                .components(Sodium, 3, Vanadium, 1, Oxygen, 4)
+                .build()
+
+            // 2290 Lu/Tm-doped Yttrium Vanadate Deposition
+            LuTmDopedYttriumVanadateDeposition = Material.Builder(2290, gtliteId("lu_tm_doped_yttrium_vanadate_deposition"))
+                .dust()
+                .colorAverage().iconSet(FINE)
+                .components(Lutetium, 1, Thulium, 1, SodiumVanadate, 1, RareEarth, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("Lu/Tm:YVO?", false)
+
+            // 2291 Lu/Tm:YVO
+            LuTmYVO = Material.Builder(2291, gtliteId("lu_tm_yvo"))
+                .gem()
+                .color(0x8C1B23).iconSet(GEM_HORIZONTAL)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+                .components(Yttrium, 1, Vanadium, 1, Oxygen, 1, Lutetium, 1, Thulium, 1)
+                .build()
+                .setFormula("Lu/Tm:YVO", false)
 
         }
 
