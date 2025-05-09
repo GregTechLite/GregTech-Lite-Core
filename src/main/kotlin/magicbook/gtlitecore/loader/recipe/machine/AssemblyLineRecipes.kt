@@ -151,6 +151,7 @@ import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
@@ -159,6 +160,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimensiona
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX78
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
@@ -195,8 +197,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_L
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
@@ -1994,7 +1998,7 @@ class AssemblyLineRecipes
                 .input(NANO_PIC_CHIP, 4)
                 .input(circuit, MarkerMaterials.Tier.UEV)
                 .input(VOLTAGE_COIL_UEV, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
                 .fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
                 .output(ENERGY_INPUT_HATCH[UEV])
                 .EUt(VA[UHV].toLong())
@@ -2013,7 +2017,7 @@ class AssemblyLineRecipes
                 .input(NANO_PIC_CHIP, 4)
                 .input(circuit, MarkerMaterials.Tier.UEV)
                 .input(VOLTAGE_COIL_UEV, 2)
-                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
                 .fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
                 .output(ENERGY_OUTPUT_HATCH[UEV])
                 .EUt(VA[UHV].toLong())
@@ -2025,7 +2029,45 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO UIV-OpV
+            // UIV Energy Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UIV])
+                .input(cableGtSingle, SuperheavyAlloyA, 4)
+                .input(PICO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(VOLTAGE_COIL_UIV, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 160))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(20000))
+                .output(ENERGY_INPUT_HATCH[UIV])
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[UEV])
+                    .EUt(VA[UEV].toLong())
+                    .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // UIV Dynamo Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UIV])
+                .input(spring, SuperheavyAlloyA, 4)
+                .input(PICO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(VOLTAGE_COIL_UIV, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 160))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(20000))
+                .output(ENERGY_OUTPUT_HATCH[UIV])
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[UEV])
+                    .EUt(VA[UEV].toLong())
+                    .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // TODO UXV-OpV
         }
 
         private fun laserHatchesRecipes()
@@ -2162,8 +2204,8 @@ class AssemblyLineRecipes
                 .input(cableGtQuadruple, Seaborgium, 8)
                 .input(circuit, MarkerMaterials.Tier.UEV, 8)
                 .input(circuit, MarkerMaterials.Tier.UHV, 16)
-                .fluidInputs(SolderingAlloy.getFluid(L * 24))
-                .fluidInputs(Lubricant.getFluid(4000))
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
                 .fluidInputs(TitanSteel.getFluid(L * 12))
                 .fluidInputs(HastelloyX78.getFluid(L * 8))
                 .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UEV, 4))
@@ -2176,7 +2218,31 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // UIV CoAL Casing (HastelloyK243, ArceusAlloy2B)
+            // UIV CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Shirabon)
+                .input(plateDense, Shirabon, 6)
+                .input(ROBOT_ARM_UIV, 8)
+                .input(ELECTRIC_PISTON_UIV, 10)
+                .input(ELECTRIC_MOTOR_UIV, 16)
+                .input(gear, Shirabon, 4)
+                .input(gearSmall, Shirabon, 16)
+                .input(cableGtQuadruple, SuperheavyAlloyA, 8)
+                .input(circuit, MarkerMaterials.Tier.UIV, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(HastelloyK243.getFluid(L * 12))
+                .fluidInputs(ArceusAlloy2B.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UIV, 4))
+                .EUt(VA[UIV].toLong())
+                .duration(32 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UEV))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
 
             // TODO UXV-MAX CoAL Casing
         }
