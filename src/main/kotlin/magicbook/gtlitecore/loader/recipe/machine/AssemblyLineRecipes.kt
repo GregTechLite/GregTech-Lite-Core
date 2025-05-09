@@ -1585,6 +1585,9 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UV
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                FIELD_GENERATOR_ZPM.stackForm, TOOL_DATA_MODULE.stackForm)
+
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(OreDictUnifier.get(frameGt, Tritanium),
                     OreDictUnifier.get(plate, Tritanium, 6),
