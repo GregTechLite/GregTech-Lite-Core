@@ -23,10 +23,12 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
@@ -34,6 +36,7 @@ import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Francium
@@ -57,14 +60,17 @@ import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
+import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
@@ -76,6 +82,7 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Thorium
+import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -85,6 +92,8 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.UUMatter
+import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
+import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.material.Materials.Zircaloy4
@@ -173,6 +182,7 @@ import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
@@ -191,7 +201,9 @@ import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.SENSOR_UHV
+import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.SMART_FILTER
+import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
@@ -317,6 +329,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
@@ -371,9 +384,11 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_GAS_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_LASER_ENGRAVER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ORE_WASHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_PACKER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ROCK_BREAKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
@@ -1264,9 +1279,59 @@ class MachineRecipeLoader
                 'D', UnificationEntry(plateDouble, AluminiumBronze),
                 'W', UnificationEntry(cableGtDouble, Silver))
 
-            // TODO Large Mass Fabricator
+            // Large Mass Fabricator
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(MASS_FABRICATOR[LuV]!!, 16)
+                .input(plateDouble, Californium, 8)
+                .input(plateDouble, Tritanium, 8)
+                .input(ENERGY_LAPOTRONIC_ORB, 4)
+                .input(EMITTER_LuV, 16)
+                .input(SENSOR_LuV, 16)
+                .input(ELECTRIC_PUMP_LuV, 16)
+                .input(gear, Berkelium, 3)
+                .input(gearSmall, Einsteinium, 6)
+                .input(foil, Berkelium, 24)
+                .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(64000))
+                .fluidInputs(VanadiumGallium.getFluid(L * 16))
+                .fluidInputs(Thulium.getFluid(L * 4))
+                .output(LARGE_MASS_FABRICATOR)
+                .EUt(VA[ZPM].toLong())
+                .duration(2 * MINUTE)
+                .scannerResearch { r ->
+                    r.researchStack(MASS_FABRICATOR[LuV]!!.stackForm)
+                        .EUt(VA[IV].toLong())
+                        .duration(1 * MINUTE)
+                }
+                .buildAndRegister()
 
-            // TODO Large Replicator
+            // Large Replicator
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(REPLICATOR[ZPM]!!, 16)
+                .input(plateDouble, Nobelium, 32)
+                .input(plateDouble, Darmstadtium, 32)
+                .input(TOOL_DATA_MODULE, 4)
+                .input(EMITTER_ZPM, 16)
+                .input(SENSOR_ZPM, 16)
+                .input(FIELD_GENERATOR_ZPM, 16)
+                .input(spring, Mendelevium, 12)
+                .input(NANO_PIC_CHIP, 48)
+                .input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
+                .input(bolt, Neptunium, 24)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(64000))
+                .fluidInputs(YttriumBariumCuprate.getFluid(L * 16))
+                .fluidInputs(Promethium.getFluid(L * 4))
+                .output(LARGE_REPLICATOR)
+                .EUt(VA[UV].toLong())
+                .duration(2 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(REPLICATOR[ZPM]!!.stackForm)
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(8)
+                }
+                .buildAndRegister()
 
             // Circuit Assembly Line
             ASSEMBLY_LINE_RECIPES.recipeBuilder()

@@ -71,6 +71,7 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
+import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmiridium
@@ -197,6 +198,7 @@ class GTLiteMaterialFlags
             Zircaloy4.addFlags(GENERATE_BOLT_SCREW)
             Duranium.addFlags(GENERATE_BOLT_SCREW)
             Inconel718.addFlags(GENERATE_BOLT_SCREW)
+            Neptunium.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -286,11 +288,13 @@ class GTLiteMaterialFlags
             RhodiumPlatedPalladium.addFlags(GENERATE_GEAR)
             Darmstadtium.addFlags(GENERATE_GEAR)
             Brass.addFlags(GENERATE_GEAR)
+            Berkelium.addFlags(GENERATE_GEAR)
 
             // gearSmall
             Neutronium.addFlags(GENERATE_SMALL_GEAR)
             HSSE.addFlags(GENERATE_SMALL_GEAR)
             Duranium.addFlags(GENERATE_SMALL_GEAR)
+            Einsteinium.addFlags(GENERATE_SMALL_GEAR)
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -354,6 +358,7 @@ class GTLiteMaterialFlags
             Meitnerium.addFlags(GENERATE_PLATE)
             Lawrencium.addFlags(GENERATE_PLATE)
             Selenium.addFlags(GENERATE_PLATE)
+            Nobelium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -385,6 +390,7 @@ class GTLiteMaterialFlags
             Rhenium.addFlags(GENERATE_DOUBLE_PLATE)
             Meitnerium.addFlags(GENERATE_DOUBLE_PLATE)
             Bohrium.addFlags(GENERATE_DOUBLE_PLATE)
+            Nobelium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -437,6 +443,10 @@ class GTLiteMaterialFlags
             Bohrium.addFlags(GENERATE_ROD)
             Clay.addFlags(GENERATE_ROD)
             Magnesium.addFlags(GENERATE_ROD)
+            Berkelium.addFlags(GENERATE_ROD)
+            Einsteinium.addFlags(GENERATE_ROD)
+            Mendelevium.addFlags(GENERATE_ROD)
+            Neptunium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -450,6 +460,7 @@ class GTLiteMaterialFlags
             Bohrium.addFlags(GENERATE_LONG_ROD)
             Magnesium.addFlags(GENERATE_LONG_ROD)
             Duranium.addFlags(GENERATE_LONG_ROD)
+            Mendelevium.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
@@ -458,6 +469,7 @@ class GTLiteMaterialFlags
             Seaborgium.addFlags(GENERATE_SPRING)
             Magnesium.addFlags(GENERATE_SPRING)
             Duranium.addFlags(GENERATE_SPRING)
+            Mendelevium.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)
