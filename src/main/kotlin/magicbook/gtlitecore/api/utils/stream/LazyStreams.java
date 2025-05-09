@@ -7,6 +7,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
+import magicbook.gtlitecore.api.utils.tuples.Pair;
 import one.util.streamex.StreamEx;
 
 import java.util.List;
@@ -146,6 +147,19 @@ public final class LazyStreams
         return StreamSupport.stream(new GathererSpliterator<>(initializer, integrator,
                 combiner, finisher, srcSpliterator, characteristics, source.isParallel()),
                 source.isParallel()).onClose(source::close);
+    }
+
+    /**
+     *
+     * @param stream
+     * @return
+     * @param <T>
+     */
+    public static <T> Stream<Pair<T, Integer>> zipWithIndex(final Stream<T> stream)
+    {
+        class State { int index; }
+        return gatherer(stream, Gatherer.ofSequential(State::new,
+                (state, element, downstream) -> downstream.push(Pair.of(element, state.index++))));
     }
 
 }

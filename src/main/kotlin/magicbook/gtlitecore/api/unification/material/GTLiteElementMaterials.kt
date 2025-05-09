@@ -301,6 +301,7 @@ class GTLiteElementMaterials
                 .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                     GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                     GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
+                .rotorStats(144.0F, 2.4F, 786432)
                 .build()
 
         }
