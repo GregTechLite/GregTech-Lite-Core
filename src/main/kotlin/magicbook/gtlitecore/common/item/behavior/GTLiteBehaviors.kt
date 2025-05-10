@@ -1,9 +1,11 @@
 package magicbook.gtlitecore.common.item.behavior
 
 import gregtech.api.util.RandomPotionEffect
+import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import magicbook.gtlitecore.common.worldgen.crops.WorldGenCrops
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
 import net.minecraft.init.MobEffects
 import net.minecraft.item.ItemStack
@@ -80,6 +82,9 @@ class GTLiteBehaviors
                 ItemStack(Items.GLASS_BOTTLE),
                 RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
                 RandomPotionEffect(MobEffects.WITHER, 800, 5, 10)))
+
+            // Set compressed clay be visitable.
+            MetaItems.COMPRESSED_CLAY.setCreativeTabs(GTCreativeTabs.TAB_GREGTECH as CreativeTabs)
 
         }
 
