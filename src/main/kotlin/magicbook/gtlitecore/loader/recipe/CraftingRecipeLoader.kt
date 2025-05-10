@@ -161,6 +161,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUADRUPLE_FLUID_IMPORT_HATCH
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SILVER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
+import magicbook.gtlitecore.loader.recipe.handler.ToolRecipeHandler
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -174,6 +175,8 @@ class CraftingRecipeLoader
 
         fun init()
         {
+            ToolRecipeHandler.registerCustomToolRecipes()
+
             // Modified all recipes of original shape molds because we need to add
             // more shape molds (even more and more in future).
 

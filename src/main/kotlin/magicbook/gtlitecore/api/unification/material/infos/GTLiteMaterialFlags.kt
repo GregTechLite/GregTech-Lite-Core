@@ -149,6 +149,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
+import org.jetbrains.annotations.ApiStatus
 
 class GTLiteMaterialFlags
 {
@@ -190,6 +191,7 @@ class GTLiteMaterialFlags
             .requireProps(PropertyKey.DUST)
             .build()
 
+        @ApiStatus.Internal
         fun setMaterialFlags()
         {
             // bolt & screw

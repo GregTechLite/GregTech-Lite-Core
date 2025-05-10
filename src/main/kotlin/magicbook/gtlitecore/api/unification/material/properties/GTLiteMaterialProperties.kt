@@ -168,7 +168,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import org.jetbrains.annotations.ApiStatus
 
+@ApiStatus.Internal
 class GTLiteMaterialProperties
 {
 
