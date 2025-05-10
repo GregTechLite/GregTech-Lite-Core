@@ -661,6 +661,22 @@ metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
 metaitem.tool.petri_dish.electric_signal.name=电信号培养皿
 
+metaitem.tool.memory_card.base.name=意识存储卡
+metaitem.tool.memory_card.zombie.name=僵尸意识存储卡
+metaitem.tool.memory_card.skeleton.name=骷髅意识存储卡
+metaitem.tool.memory_card.creeper.name=爬行者意识存储卡
+metaitem.tool.memory_card.spider.name=蜘蛛意识存储卡
+metaitem.tool.memory_card.slime.name=史莱姆意识存储卡
+metaitem.tool.memory_card.witch.name=女巫意识存储卡
+metaitem.tool.memory_card.guardian.name=守卫者意识存储卡
+metaitem.tool.memory_card.enderman.name=末影人意识存储卡
+metaitem.tool.memory_card.wither_skeleton.name=凋零骷髅意识存储卡
+metaitem.tool.memory_card.blaze.name=烈焰人意识存储卡
+metaitem.tool.memory_card.ghast.name=恶魂意识存储卡
+metaitem.tool.memory_card.shulker.name=潜影壳意识存储卡
+metaitem.tool.memory_card.wither.name=凋零意识存储卡
+metaitem.tool.memory_card.ender_dragon.name=末影龙意识存储卡
+
 metaitem.fuel_rod.empty.name=空燃料棒
 
 metaitem.board.gooware.name=聚酰亚胺电路基板
@@ -1168,6 +1184,7 @@ recipemap.advanced_fusion_reactor.name=进阶聚变反应堆
 recipemap.component_assembly_line.name=部件装配线
 recipemap.cosmic_ray_detector.name=宇宙射线探测器
 recipemap.stellar_forge.name=恒星炎炀锻炉
+recipemap.bio_simulator.name=生物模拟室
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1709,6 +1726,17 @@ gtlitecore.machine.mob_extractor.uxv.name=史诗生物资源提取器 IV
 gtlitecore.machine.mob_extractor.uxv.tooltip=活体陈列室
 gtlitecore.machine.mob_extractor.opv.name=传奇生物资源提取器
 gtlitecore.machine.mob_extractor.opv.tooltip=活体陈列室
+
+gtlitecore.machine.bio_simulator.lv.name=基础生物模拟室
+gtlitecore.machine.bio_simulator.lv.tooltip=怪物意识模拟器
+gtlitecore.machine.bio_simulator.mv.name=进阶生物模拟室
+gtlitecore.machine.bio_simulator.mv.tooltip=怪物意识模拟器
+gtlitecore.machine.bio_simulator.hv.name=进阶生物模拟室 II
+gtlitecore.machine.bio_simulator.hv.tooltip=怪物意识模拟器
+gtlitecore.machine.bio_simulator.ev.name=进阶生物模拟室 III
+gtlitecore.machine.bio_simulator.ev.tooltip=怪物意识模拟器
+gtlitecore.machine.bio_simulator.iv.name=精英生物模拟室
+gtlitecore.machine.bio_simulator.iv.tooltip=怪物意识模拟器
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！

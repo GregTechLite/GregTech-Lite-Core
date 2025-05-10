@@ -127,6 +127,9 @@ class GTLiteTextures
 
         @JvmField
         val NUCLEAR_REACTOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/nuclear_reactor")
+
+        @JvmField
+        val BIO_SIMULATOR_OVERLAY = OrientedOverlayRenderer("machines/bio_simulator")
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")

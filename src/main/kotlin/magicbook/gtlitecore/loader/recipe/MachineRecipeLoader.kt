@@ -338,6 +338,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BATH_CONDENSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BEDROCK_DRILLING_RIG
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_REACTOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BIO_SIMULATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BUFFER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CATALYTIC_REFORMER
@@ -704,6 +705,14 @@ class MachineRecipeLoader
                 'C', CraftingComponent.CIRCUIT,
                 'W', CraftingComponent.CABLE,
                 'B', CraftingComponent.SAWBLADE)
+
+            // Bio Simulator
+            MetaTileEntityLoader.registerMachineRecipe(true, BIO_SIMULATOR,
+                "WAW", "OHO", "WAW",
+                'A', CraftingComponent.SENSOR,
+                'W', CraftingComponent.CABLE,
+                'H', CraftingComponent.HULL,
+                'O', CraftingComponent.BETTER_CIRCUIT);
 
             // =========================================================================================================
 

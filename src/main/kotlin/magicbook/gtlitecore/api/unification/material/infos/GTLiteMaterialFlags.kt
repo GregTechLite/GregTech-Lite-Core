@@ -20,6 +20,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.CobaltBrass
+import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
@@ -482,6 +483,7 @@ class GTLiteMaterialFlags
             Europium.addFlags(GENERATE_SPRING_SMALL)
             Seaborgium.addFlags(GENERATE_SPRING_SMALL)
             Duranium.addFlags(GENERATE_SPRING_SMALL)
+            Cupronickel.addFlags(GENERATE_SPRING_SMALL)
 
             // wireFine
             Titanium.addFlags(GENERATE_FINE_WIRE)

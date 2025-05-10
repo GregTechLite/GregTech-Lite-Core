@@ -175,6 +175,22 @@ class GTLiteMetaItems
         lateinit var CUPRIAVIDUS_NECATOR_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var ELECTRIC_SIGNAL_PETRI_DISH: MetaItem<*>.MetaValueItem
 
+        lateinit var MEMORY_CARD_BASE: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_ZOMBIE: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_SKELETON: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_CREEPER: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_SPIDER: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_SLIME: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_WITCH: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_GUARDIAN: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_ENDERMAN: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_WITHER_SKELETON: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_BLAZE: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_GHAST: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_SHULKER: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_WITHER: MetaItem<*>.MetaValueItem
+        lateinit var MEMORY_CARD_ENDER_DRAGON: MetaItem<*>.MetaValueItem
+
         lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
@@ -770,6 +786,24 @@ class GTLiteMetaItems
             BREVIBACTERIUM_FLAVUM_PETRI_DISH = GTLITE_ITEMS.addItem(632, "tool.petri_dish.brevibacterium_flavum")
             CUPRIAVIDUS_NECATOR_PETRI_DISH = GTLITE_ITEMS.addItem(633, "tool.petri_dish.cupriavidus_necator")
             ELECTRIC_SIGNAL_PETRI_DISH = GTLITE_ITEMS.addItem(634, "tool.petri_dish.electric_signal")
+
+            // ...
+
+            MEMORY_CARD_BASE = GTLITE_ITEMS.addItem(641, "tool.memory_card.base")
+            MEMORY_CARD_ZOMBIE = GTLITE_ITEMS.addItem(642, "tool.memory_card.zombie")
+            MEMORY_CARD_SKELETON = GTLITE_ITEMS.addItem(643, "tool.memory_card.skeleton")
+            MEMORY_CARD_CREEPER = GTLITE_ITEMS.addItem(644, "tool.memory_card.creeper")
+            MEMORY_CARD_SPIDER = GTLITE_ITEMS.addItem(645, "tool.memory_card.spider")
+            MEMORY_CARD_SLIME = GTLITE_ITEMS.addItem(646, "tool.memory_card.slime")
+            MEMORY_CARD_WITCH = GTLITE_ITEMS.addItem(647, "tool.memory_card.witch")
+            MEMORY_CARD_GUARDIAN = GTLITE_ITEMS.addItem(648, "tool.memory_card.guardian")
+            MEMORY_CARD_ENDERMAN = GTLITE_ITEMS.addItem(649, "tool.memory_card.enderman")
+            MEMORY_CARD_WITHER_SKELETON = GTLITE_ITEMS.addItem(650, "tool.memory_card.wither_skeleton")
+            MEMORY_CARD_BLAZE = GTLITE_ITEMS.addItem(651, "tool.memory_card.blaze")
+            MEMORY_CARD_GHAST = GTLITE_ITEMS.addItem(652, "tool.memory_card.ghast")
+            MEMORY_CARD_SHULKER = GTLITE_ITEMS.addItem(653, "tool.memory_card.shulker")
+            MEMORY_CARD_WITHER = GTLITE_ITEMS.addItem(654, "tool.memory_card.wither")
+            MEMORY_CARD_ENDER_DRAGON = GTLITE_ITEMS.addItem(655, "tool.memory_card.ender_dragon")
 
             // 701-800: Batteries.
             FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")

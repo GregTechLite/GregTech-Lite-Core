@@ -288,6 +288,10 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_NOVA_EXPLOSION: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_nova_explosion.png")
 
+        @JvmField
+        val PROGRESS_BAR_SWORD: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_sword.png")
+
         // -------------------------------------------------------------------------------------------------------------
         // Widgets
         @JvmField

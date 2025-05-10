@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
+import net.minecraftforge.fluids.FluidRegistry
 import one.util.streamex.StreamEx
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -219,6 +220,20 @@ class GTLiteUtility
 
             return result
         }
+
+        /**
+         * Get fluid from other mods' fluids with a default value.
+         */
+        @JvmStatic
+        fun getModFluid(fluidName: String)
+            = getModFluid(fluidName, 1000)
+
+        /**
+         * Get fluid from other mods' fluids by FML fluid registrate.
+         */
+        @JvmStatic
+        fun getModFluid(fluidName: String, amount: Int)
+            = requireNotNull(FluidRegistry.getFluidStack(fluidName, amount))
 
         /**
          * @see [gregtech.loaders.recipe.CraftingComponent.MOTOR]

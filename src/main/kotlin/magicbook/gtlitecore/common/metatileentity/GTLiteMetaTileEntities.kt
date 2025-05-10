@@ -151,6 +151,7 @@ class GTLiteMetaTileEntities
         val FOOD_PROCESSOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val MULTICOOKER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val MOB_EXTRACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val BIO_SIMULATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.IV + 1)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -474,6 +475,12 @@ class GTLiteMetaTileEntities
                     MetaTileEntityMobExtractor(GTLiteUtility.gtliteId("mob_extractor.$voltageName"), GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
                         GTLiteTextures.MOB_EXTRACTOR_OVERLAY, i, false, GTUtility.largeTankSizeFunction))
             }
+
+            // 14301-14315: Bio Simulator
+            MetaTileEntities.registerSimpleMetaTileEntity(BIO_SIMULATOR, 14303, // 14301-14302 for Steam Machines.
+                "bio_simulator", GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES,
+                GTLiteTextures.BIO_SIMULATOR_OVERLAY, true,
+                GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
             // ...
 

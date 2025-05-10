@@ -825,6 +825,20 @@ class GTLiteRecipeMaps
             .sound(GTLiteSoundEvents.STELLAR_FORGE)
             .build()
 
+        /**
+         * @zenProp bio_simulator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("BIO_SIMULATOR_RECIPES")
+        val BIO_SIMULATOR_RECIPES = RecipeMapBuilder("bio_simulator", SimpleRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(1)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
+            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SWORD)
+            .sound(GTSoundEvents.ELECTROLYZER)
+            .build()
+
         // -------------------------------------------------------------------------------------------------------------
 
         /**
@@ -1030,6 +1044,10 @@ class GTLiteRecipeMaps
             RecipeMaps.VACUUM_RECIPES.maxFluidOutputs = 2
 
             RecipeMaps.POLARIZER_RECIPES.maxFluidInputs = 1
+
+            // If EnderIO is loaded, then add a fluid slots for XP juice outputs.
+            BIO_SIMULATOR_RECIPES.maxFluidOutputs = 1
+
         }
 
     }

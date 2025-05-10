@@ -100,6 +100,7 @@ import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes
 import magicbook.gtlitecore.loader.recipe.machine.AutoclaveRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BathCondenserRecipes
 import magicbook.gtlitecore.loader.recipe.machine.BenderRecipes
+import magicbook.gtlitecore.loader.recipe.machine.BioSimulatorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CannerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CentrifugeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CircuitAssemblerRecipes
@@ -320,6 +321,7 @@ class RecipeManager
             // Additional machine recipes.
             AlloyBlastSmelterRecipes.init()
             BathCondenserRecipes.init()
+            BioSimulatorRecipes.init()
             CrystallizationCrucibleRecipes.init()
             LoomRecipes.init()
             MobExtractorRecipes.init()
