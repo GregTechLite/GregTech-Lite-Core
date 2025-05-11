@@ -249,6 +249,7 @@ class GTLiteMaterialFlags
             Einsteinium.addFlags(GENERATE_FOIL)
             Moscovium.addFlags(GENERATE_FOIL)
             Graphene.addFlags(GENERATE_FOIL)
+            Dubnium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)

@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -14,12 +15,14 @@ import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chlorobenzene
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -27,8 +30,13 @@ import gregtech.api.unification.ore.OrePrefix.gem
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOLECULAR_BEAM_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SONICATION_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BluePhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
@@ -50,6 +58,7 @@ class PhosphorusChain
             phosphorusProcess()
             phosphoryChlorideProcess()
             triphenylphosphineProcess()
+            phosphoreneProcess()
         }
 
         private fun phosphorusProcess()
@@ -180,6 +189,30 @@ class PhosphorusChain
                 .output(dust, Salt, 12)
                 .EUt(VA[IV].toLong())
                 .duration(8 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun phosphoreneProcess()
+        {
+            // 2Na(OH) + 8P4 (black) + 0.2H2O + 0.8C5H9NO -> (P4)8(C5H9NO)(Na(OH))2·(H2O)
+            VACUUM_CHAMBER_RECIPES.recipeBuilder()
+                .input(dust, SodiumHydroxide, 6)
+                .input(gem, BlackPhosphorus, 8)
+                .fluidInputs(DistilledWater.getFluid(200))
+                .fluidInputs(NMethylPyrrolidone.getFluid(800))
+                .fluidOutputs(PhosphoreneSolution.getFluid(1000))
+                .EUt(VA[IV].toLong())
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+            // 1/8(P4)8(C5H9NO)(Na(OH))2·(H2O) -> P4 + 1/8C5H9NO (cycle)
+            SONICATION_RECIPES.recipeBuilder()
+                .fluidInputs(PhosphoreneSolution.getFluid(125))
+                .fluidInputs(Argon.getFluid(100))
+                .output(foil, Phosphorene, 4)
+                .fluidOutputs(NMethylPyrrolidone.getFluid(100))
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
         }
 

@@ -1,7 +1,9 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
@@ -12,6 +14,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -29,31 +32,40 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.ingotHot
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCeriumCobaltIndium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHydroxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HafniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MercuryCadmiumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSeaborgate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumRoentgeniumChloride
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.INFINITE_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_INDUCTOR
@@ -76,7 +88,35 @@ class SpintronicCircuits
 
         private fun circuitBoardRecipes()
         {
+            // Spintronic Board
+            CVD_RECIPES.recipeBuilder()
+                .input(plate, CarbonNanotube)
+                .input(foil, Phosphorene, 64)
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+                .output(SPINTRONIC_BOARD)
+                .EUt(VA[UEV].toLong())
+                .duration(2 * SECOND)
+                .temperature(3580)
+                .buildAndRegister()
 
+            // Infinite Circuit Board
+            for (etchingLiquid in arrayOf(
+                // SodiumPersulfate.getFluid(64000),
+                // Iron3Chloride.getFluid(32000), 16000, 8000
+                TetramethylammoniumHydroxide.getFluid(64000),
+                EthylenediaminePyrocatechol.getFluid(32000)
+            ))
+            {
+                CHEMICAL_RECIPES.recipeBuilder()
+                    .input(SPINTRONIC_BOARD)
+                    .input(foil, Dubnium, 64)
+                    .fluidInputs(etchingLiquid)
+                    .output(INFINITE_CIRCUIT_BOARD)
+                    .EUt(VA[IV].toLong())
+                    .duration(2 * MINUTE)
+                    .cleanroom(CleanroomType.CLEANROOM)
+                    .buildAndRegister()
+            }
         }
 
         private fun smdRecipes()

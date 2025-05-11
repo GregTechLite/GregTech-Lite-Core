@@ -187,6 +187,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylC61B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylpentanoicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosgene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphonitrilicChlorideTrimer
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhthalicAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyetheretherketone
@@ -1702,6 +1703,14 @@ class GTLiteOrganicChemistryMaterials
                 .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
                 .build()
                 .setFormula("(C153H36NO2)PdFe", true)
+
+            // 8182 Phosphorene
+            Phosphorene = Material.Builder(8182, gtliteId("phosphorene"))
+                .polymer()
+                .color(0x273239).iconSet(SHINY)
+                .components(Phosphorus, 4)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+                .build()
 
         }
 

@@ -85,6 +85,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
@@ -669,7 +670,13 @@ class GTLiteUnknownCompositionMaterials
                 .color(0x1C1A29)
                 .build()
 
-            // 12178-12999 for misc materials.
+            // 12178 Phosphorene Solution
+            PhosphoreneSolution = Material.Builder(12178, gtliteId("phosphorene_solution"))
+                .liquid()
+                .color(0x465966)
+                .build()
+
+            // 12179-12999 for misc materials.
             // ...
 
             // Materials for particles and QCD contents reference this:

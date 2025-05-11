@@ -2968,6 +2968,7 @@ gtlitecore.material.dimethyl_sulfide=Dimethyl Sulfide
 gtlitecore.material.phenyl_c_61_butyric_acid=Phenyl-C61-Butyric Acid (PCBA)
 gtlitecore.material.phenyl_c_61_butyric_styrene=Phenyl-C61-Butyric Styrene (PCBS)
 gtlitecore.material.fullerene_polymer_matrix=Fullerene Polymer Matrix (FPM)
+gtlitecore.material.phosphorene=Phosphorene
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3058,6 +3059,7 @@ gtlitecore.material.unprocessed_nd_yag_solution=Unprocessed Nd:YAG Solution
 gtlitecore.material.mutated_living_solder=Mutated Living Solder
 gtlitecore.material.sodio_indene=Sodio-Indene Mixture
 gtlitecore.material.steam_cracked_sodio_indene=Steam-Cracked Sodio-Indene Mixture
+gtlitecore.material.phosphorene_solution=Phosphorene Solution
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture

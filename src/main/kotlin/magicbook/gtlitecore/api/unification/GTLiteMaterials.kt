@@ -581,6 +581,7 @@ class GTLiteMaterials
         lateinit var PhenylC61ButyricAcid: Material
         lateinit var PhenylC61ButyricStyrene: Material
         lateinit var FullerenePolymerMatrix: Material
+        lateinit var Phosphorene: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
@@ -671,6 +672,7 @@ class GTLiteMaterials
         lateinit var MutatedLivingSolder: Material
         lateinit var SodioIndene: Material
         lateinit var SteamCrackedSodioIndene: Material
+        lateinit var PhosphoreneSolution: Material
 
         lateinit var NeutronProtonFermiSuperfluid: Material
         lateinit var HeavyLeptonMixture: Material

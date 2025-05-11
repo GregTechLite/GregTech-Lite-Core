@@ -2972,6 +2972,7 @@ gtlitecore.material.dimethyl_sulfide=二甲硫醚
 gtlitecore.material.phenyl_c_61_butyric_acid=苯基-C61-丁酸（PCBA）
 gtlitecore.material.phenyl_c_61_butyric_styrene=苯基-C61-丁酸苯乙烯（PCBS）
 gtlitecore.material.fullerene_polymer_matrix=富勒烯聚合物基质（FPM）
+gtlitecore.material.phosphorene=磷烯
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3062,6 +3063,7 @@ gtlitecore.material.unprocessed_nd_yag_solution=未处理钕掺杂的钇铝榴�
 gtlitecore.material.mutated_living_solder=突变活性焊料
 gtlitecore.material.sodio_indene=钠茚混合物
 gtlitecore.material.steam_cracked_sodio_indene=蒸汽裂化的钠茚混合物
+gtlitecore.material.phosphorene_solution=磷烯剥离溶液
 
 gtlitecore.material.neutron_proton_fermi_superfluid=中子-质子费米超流体
 gtlitecore.material.heavy_lepton_mixture=重轻子混合物
