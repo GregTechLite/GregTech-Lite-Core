@@ -233,6 +233,7 @@ class GTLiteElementMaterials
                 .liquid(FluidBuilder().temperature(913))
                 .color(0xD82D2D).iconSet(METALLIC)
                 .element(Pu244)
+                .flags(STD_METAL, GENERATE_FOIL)
                 .build()
 
             // 10 Degenerate Rhenium

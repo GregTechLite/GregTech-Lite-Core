@@ -288,8 +288,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
@@ -390,6 +392,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ORE_WASHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_PACKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_REPLICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ROCKET_ENGINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ROCK_BREAKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_SIFTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_WIREMILL
@@ -405,6 +408,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROCKET_ENGINE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SONICATOR
@@ -712,7 +716,17 @@ class MachineRecipeLoader
                 'A', CraftingComponent.SENSOR,
                 'W', CraftingComponent.CABLE,
                 'H', CraftingComponent.HULL,
-                'O', CraftingComponent.BETTER_CIRCUIT);
+                'O', CraftingComponent.BETTER_CIRCUIT)
+
+            // Rocket Engine
+            MetaTileEntityLoader.registerMachineRecipe(true, ROCKET_ENGINE,
+                "PXP", "MHM", "DWD",
+                'P', CraftingComponent.PISTON,
+                'X', CraftingComponent.CIRCUIT,
+                'M', CraftingComponent.MOTOR,
+                'H', CraftingComponent.HULL,
+                'D', CraftingComponent.DOUBLE_PLATE,
+                'W', CraftingComponent.CABLE)
 
             // =========================================================================================================
 
@@ -1299,7 +1313,7 @@ class MachineRecipeLoader
                 .input(ELECTRIC_PUMP_LuV, 16)
                 .input(gear, Berkelium, 3)
                 .input(gearSmall, Einsteinium, 6)
-                .input(foil, Berkelium, 24)
+                .input(foil, Plutonium244, 24)
                 .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
                 .fluidInputs(SolderingAlloy.getFluid(L * 40))
                 .fluidInputs(UUMatter.getFluid(64000))
@@ -2104,6 +2118,15 @@ class MachineRecipeLoader
                 'G', UnificationEntry(gear, RhodiumPlatedPalladium),
                 'H', HULL[LuV].stackForm,
                 'P', UnificationEntry(pipeLargeFluid, RhodiumPlatedPalladium))
+
+            // Large Rocket Engine
+            ModHandler.addShapedRecipe(true, "large_rocket_engine", LARGE_ROCKET_ENGINE.stackForm,
+                "SXS", "RHR", "WXW",
+                'R', ROCKET_ENGINE[2]!!.stackForm,
+                'H', HULL[IV].stackForm,
+                'S', UnificationEntry(spring, Nitinol60),
+                'W', UnificationEntry(cableGtSingle, Platinum),
+                'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV))
 
         }
 

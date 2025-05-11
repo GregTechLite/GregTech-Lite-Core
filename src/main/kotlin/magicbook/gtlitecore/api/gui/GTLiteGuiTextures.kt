@@ -292,6 +292,19 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_SWORD: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_sword.png")
 
+
+        @JvmField
+        val PROGRESS_BAR_LRE_HYDROGEN: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_lre_hydrogen.png")
+
+        @JvmField
+        val PROGRESS_BAR_LRE_LIQUID_AIR: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_lre_liquid_air.png")
+
+        @JvmField
+        val PROGRESS_BAR_LRE_CARBON_DIOXIDE: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_lre_carbon_dioxide.png")
+
         // -------------------------------------------------------------------------------------------------------------
         // Widgets
         @JvmField

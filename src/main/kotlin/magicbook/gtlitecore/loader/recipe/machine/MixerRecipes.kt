@@ -164,6 +164,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
@@ -853,6 +854,16 @@ class MixerRecipes
                 .output(dust, PreciousMetalAlloy, 8)
                 .EUt(VA[UV].toLong())
                 .duration(1 * MINUTE + 30 * SECOND)
+                .buildAndRegister()
+
+            // Nitinol 60
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Nickel, 2)
+                .input(dust, Titanium, 3)
+                .output(dust, Nitinol60, 5)
+                .EUt(VA[EV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

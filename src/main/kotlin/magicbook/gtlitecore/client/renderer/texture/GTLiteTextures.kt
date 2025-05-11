@@ -130,6 +130,17 @@ class GTLiteTextures
 
         @JvmField
         val BIO_SIMULATOR_OVERLAY = OrientedOverlayRenderer("machines/bio_simulator")
+
+        @JvmField
+        val LARGE_ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_rocket_engine")
+
+
+        @JvmField
+        val ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("generators/rocket_engine")
+
+        @JvmField
+        val NAQUADAH_REACTOR_OVERLAY = OrientedOverlayRenderer("generators/naquadah_reactor")
+
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -244,6 +255,9 @@ class GTLiteTextures
 
         @JvmField
         val TRINAQUADALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/trinaquadalloy")
+
+        @JvmField
+        val NITINOL_60_CASING = GTLiteSimpleOverlayRenderer("casings/metal/nitinol_60")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

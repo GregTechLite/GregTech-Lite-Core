@@ -391,6 +391,7 @@ tile.metal_casing_03.neutronium.name=超高强度中子机器外壳
 tile.metal_casing_03.naquadah_alloy.name=放射硅岩合金机器外壳
 tile.metal_casing_03.quantum_alloy.name=超重量子合金机器外壳
 tile.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机器外壳
+tile.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
 
 tile.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1189,6 +1190,7 @@ recipemap.bio_simulator.name=生物模拟室
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
 recipemap.nuclear_reactor.name=核反应堆
+recipemap.rocket_engine.name=火箭引擎
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1738,6 +1740,13 @@ gtlitecore.machine.bio_simulator.ev.tooltip=怪物意识模拟器
 gtlitecore.machine.bio_simulator.iv.name=精英生物模拟室
 gtlitecore.machine.bio_simulator.iv.tooltip=怪物意识模拟器
 
+gtlitecore.machine.rocket_engine.hv.name=基础火箭引擎
+gtlitecore.machine.rocket_engine.hv.tooltip=需要火箭燃料
+gtlitecore.machine.rocket_engine.ev.name=进阶火箭引擎
+gtlitecore.machine.rocket_engine.ev.tooltip=需要火箭燃料
+gtlitecore.machine.rocket_engine.iv.name=涡轮火箭引擎
+gtlitecore.machine.rocket_engine.iv.tooltip=需要火箭燃料
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -2112,6 +2121,17 @@ gtlitecore.machine.large_food_processor.tooltip.1=升级部件外壳或电压等
 gtlitecore.machine.large_food_processor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
 gtlitecore.machine.large_food_processor.tooltip.3=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 gtlitecore.machine.large_food_processor.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+
+gtlitecore.machine.large_rocket_engine.name=大型火箭引擎
+gtlitecore.machine.large_rocket_engine.tooltip=探索化学能燃料的极限
+gtlitecore.machine.large_rocket_engine.tooltip.1=工作时消耗§f8000L/s§7的液态空气与§f200L/s§f的二氧化碳气体
+gtlitecore.machine.large_rocket_engine.tooltip.2=提供§f80L/s§7的氢气并消耗§f双倍燃料§7以产生§f§l3§r§7倍能量输出
+gtlitecore.machine.large_rocket_engine.tooltip.3=竖侧中层的片状结构可以伸缩，当存在§f§l10§r§7片及以上的中层结构时，火箭引擎将会尝试进行超频。
+
+gtlitecore.machine.large_rocket_engine.hydrogen_boosted=氢气促燃中。
+gtlitecore.machine.large_rocket_engine.hydrogen_amount=氢气存量：%s
+gtlitecore.machine.large_rocket_engine.liquid_air_amount=液态空气存量：%s
+gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount=二氧化碳存量：%s
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
@@ -2721,6 +2741,7 @@ gtlitecore.material.tantalum_hafnium_seaborgium_carbide=碳化钽铪钅喜
 gtlitecore.material.light_superheavy_alloy=超重元素-轻合金
 gtlitecore.material.heavy_superheavy_alloy=超重元素-重合金
 gtlitecore.material.precious_metal_alloy=贵金属合金
+gtlitecore.material.nitinol_60=镍钛诺-60
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

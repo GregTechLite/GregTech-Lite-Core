@@ -888,6 +888,19 @@ class GTLiteRecipeMaps
             .generator()
             .build()
 
+        /**
+         * @zenProp rocket_engine
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ROCKET_ENGINE_FUELS")
+        val ROCKET_ENGINE_FUELS = RecipeMapBuilder("rocket_engine", FuelRecipeBuilder())
+            .fluidInputs(1)
+            .allowEmptyOutputs()
+            .sound(GTSoundEvents.COMBUSTION)
+            .generator()
+            .build()
+
         // -------------------------------------------------------------------------------------------------------------
         @JvmStatic
         fun preInit()

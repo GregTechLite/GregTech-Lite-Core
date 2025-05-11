@@ -44,6 +44,7 @@ import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Inconel625;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Kovar;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Monel500;
+import static magicbook.gtlitecore.api.unification.GTLiteMaterials.Nitinol60;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.ReneN5;
 import static magicbook.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide;
@@ -258,6 +259,12 @@ public class MetalCasingRecipeProducer
         addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
                 BlockMetalCasing03.MetalCasingType.INCONEL_718,
                 Inconel718);
+
+        // Nitinol 60
+        addCasingRecipe(GTLiteMetaBlocks.METAL_CASING_03,
+                BlockMetalCasing03.MetalCasingType.NITINOL_60,
+                Nitinol60);
+
     }
 
     private static <T extends Enum<T> & IStringSerializable> void addCasingRecipe(VariantBlock<T> outputCasingType,

@@ -370,6 +370,7 @@ class GTLiteMaterials
         lateinit var SuperheavyAlloyA: Material
         lateinit var SuperheavyAlloyB: Material
         lateinit var PreciousMetalAlloy: Material
+        lateinit var Nitinol60: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

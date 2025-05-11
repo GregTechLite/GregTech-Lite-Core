@@ -158,6 +158,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
@@ -891,6 +892,23 @@ class GTLiteSecondDegreeMaterials
                         .blastStats(VA[UV], 1 * MINUTE)
                         .vacuumStats(VA[ZPM], 30 * SECOND)
                 }
+                .build()
+
+            // 4047 Nitinol-60
+            Nitinol60 = Material.Builder(4047, gtliteId("nitinol_60"))
+                .ingot()
+                .fluid()
+                .color(0xCCB0EC).iconSet(SHINY)
+                .components(Nickel, 2, Titanium, 3)
+                .blast { b ->
+                    b.temp(1941, BlastProperty.GasTier.HIGH) // Kanthal
+                        .blastStats(VA[EV], 32 * SECOND + 10 * TICK)
+                        .vacuumStats(VA[MV], 7 * SECOND + 4 * TICK) }
+                .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME,
+                    GENERATE_SPRING, GENERATE_RING, GENERATE_GEAR)
+                .toolStats(MaterialToolProperty.Builder.of(12.0F, 7.0F, 2304, 3)
+                    .enchantability(16).build())
+                .itemPipeProperties(288, 3F)
                 .build()
 
         }

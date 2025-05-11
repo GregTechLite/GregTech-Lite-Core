@@ -391,6 +391,7 @@ tile.metal_casing_03.neutronium.name=Extreme Strength Neutronium Machine Casing
 tile.metal_casing_03.naquadah_alloy.name=Radioactive Naquadah Alloy Machine Casing
 tile.metal_casing_03.quantum_alloy.name=Superheavy Quantum Alloy Machine Casing
 tile.metal_casing_03.inconel_718.name=Radiation Protective Inconel-718 Machine Casing
+tile.metal_casing_03.nitinol_60.name=Superelastic Nitinol 60 Machine Casing
 
 tile.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1189,6 +1190,7 @@ recipemap.bio_simulator.name=Bio Simulator
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
 recipemap.nuclear_reactor.name=Nuclear Reactor
+recipemap.rocket_engine.name=Rocket Engine
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -1738,6 +1740,13 @@ gtlitecore.machine.bio_simulator.ev.tooltip=Mobware Simulator
 gtlitecore.machine.bio_simulator.iv.name=Elite Bio Simulator
 gtlitecore.machine.bio_simulator.iv.tooltip=Mobware Simulator
 
+gtlitecore.machine.rocket_engine.hv.name=Basic Rocket Engine
+gtlitecore.machine.rocket_engine.hv.tooltip=Required rocket fuels
+gtlitecore.machine.rocket_engine.ev.name=Advanced Rocket Engine
+gtlitecore.machine.rocket_engine.ev.tooltip=Required rocket fuels
+gtlitecore.machine.rocket_engine.iv.name=Turbine Rocket Engine
+gtlitecore.machine.rocket_engine.iv.tooltip=Required rocket fuels
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -2112,6 +2121,17 @@ gtlitecore.machine.large_food_processor.tooltip.1=Update Component Casing or Vol
 gtlitecore.machine.large_food_processor.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.
 gtlitecore.machine.large_food_processor.tooltip.3=Each §ePump Casing tier§7 +1, recipe duration -> §l80%%§r§7 of the original.
 gtlitecore.machine.large_food_processor.tooltip.4=Each §aRobot Arm Casing tier§7 +1, processing +§l8§r§7 items.
+
+gtlitecore.machine.large_rocket_engine.name=Large Rocket Engine
+gtlitecore.machine.large_rocket_engine.tooltip=探索化学能燃料的极限
+gtlitecore.machine.large_rocket_engine.tooltip.1=工作时消耗§f8000L/s§7的液态空气与§f200L/s§f的二氧化碳气体
+gtlitecore.machine.large_rocket_engine.tooltip.2=提供§f80L/s§7的氢气并消耗§f双倍燃料§7以产生3倍能量输出
+gtlitecore.machine.large_rocket_engine.tooltip.3=竖侧中层的片状结构可以伸缩，当存在10片及以上的中层结构时，火箭引擎将会尝试进行超频。
+
+gtlitecore.machine.large_rocket_engine.hydrogen_boosted=氢气促燃中。
+gtlitecore.machine.large_rocket_engine.hydrogen_amount=氢气存量：%s
+gtlitecore.machine.large_rocket_engine.liquid_air_amount=液态空气存量：%s
+gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount=二氧化碳存量：%s
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
@@ -2716,6 +2736,7 @@ gtlitecore.material.tantalum_hafnium_seaborgium_carbide=Tantalum Hafnium Seaborg
 gtlitecore.material.light_superheavy_alloy=Superheavy Alloy (Light)
 gtlitecore.material.heavy_superheavy_alloy=Superheavy Alloy (Heavy)
 gtlitecore.material.precious_metal_alloy=Precious Metal Alloy
+gtlitecore.material.nitinol_60=Nitinol 60
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
