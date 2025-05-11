@@ -90,6 +90,8 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE);
         registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE);
 
+        registry.register(GTLiteMetaBlocks.DUST_BLOCK);
+
         // TODO Crops?...
 
         // Sheeted frames.
@@ -192,6 +194,8 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
+
+        registry.register(createItemBlock(GTLiteMetaBlocks.DUST_BLOCK, ItemBlock::new));
 
         StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
                 .distinct()

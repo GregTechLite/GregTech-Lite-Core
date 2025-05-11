@@ -213,6 +213,8 @@ tile.gtlite_wood_fence_gate.nutmeg.name=Nutmeg Wood Fence Gate
 tile.gtlite_wood_fence_gate.coconut.name=Coconut Wood Fence Gate
 tile.gtlite_wood_fence_gate.rainbow.name=Rainbow Wood Fence Gate
 
+tile.dust_block.name=Dust Block
+
 tile.motor_casing.lv.name=§7LV§f Electric Motor Casing
 tile.motor_casing.mv.name=§bMV§f Electric Motor Casing
 tile.motor_casing.hv.name=§6HV§f Electric Motor Casing

@@ -10,13 +10,16 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VN
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
@@ -135,6 +138,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getPumpStackByTier
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_INDUCTOR
@@ -149,6 +153,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTIMATE_CIRCUIT_BOARD
+import net.minecraft.init.Blocks
+import net.minecraft.item.ItemStack
 import java.util.*
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -167,6 +173,21 @@ class GregtechOverrideRecipeLoader
 
             // Down-tier Clay electrolysis to provide another choice of aluminium,
             // cryolite and ruby juice and this is three methods to get aluminium at LV stage.
+            FORGE_HAMMER_RECIPES.recipeBuilder()
+                .inputs(ItemStack(Blocks.SAND))
+                .outputs(ItemStack(GTLiteMetaBlocks.DUST_BLOCK))
+                .EUt(VH[LV].toLong())
+                .duration(10 * TICK)
+                .buildAndRegister()
+
+            CHEMICAL_BATH_RECIPES.recipeBuilder()
+                .inputs(ItemStack(GTLiteMetaBlocks.DUST_BLOCK))
+                .fluidInputs(Water.getFluid(1000))
+                .outputs(ItemStack(Blocks.CLAY))
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
             ELECTROLYZER_RECIPES.recipeBuilder()
                 .input(dust, Clay, 13)
                 .output(dust, Sodium, 2)

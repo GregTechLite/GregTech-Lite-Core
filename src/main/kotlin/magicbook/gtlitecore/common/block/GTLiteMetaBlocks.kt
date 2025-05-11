@@ -16,6 +16,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
+import magicbook.gtlitecore.common.block.blocks.BlockDust
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
@@ -133,6 +134,8 @@ class GTLiteMetaBlocks
         lateinit var NUTMEG_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
         lateinit var COCONUT_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
         lateinit var RAINBOW_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
+
+        lateinit var DUST_BLOCK: BlockDust
 
         @JvmField
         val SHEETED_FRAMES = hashMapOf<Material, BlockSheetedFrame>()
@@ -345,6 +348,10 @@ class GTLiteMetaBlocks
             RAINBOW_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
             (RAINBOW_WOOD_FENCE_GATE as? Block)?.setRegistryName("gtlite_wood_fence_gate_rainbow")
             (RAINBOW_WOOD_FENCE_GATE as? Block)?.setTranslationKey("gtlite_wood_fence_gate.rainbow")
+
+            DUST_BLOCK = BlockDust()
+            (DUST_BLOCK as? Block)?.setRegistryName("dust_block")
+            (DUST_BLOCK as? Block)?.setTranslationKey("dust_block")
 
             // Sheeted frame
             createGeneratedBlock({ m -> m.hasProperty(PropertyKey.DUST) && m.hasFlag(MaterialFlags.GENERATE_FRAME) },
@@ -584,6 +591,9 @@ class GTLiteMetaBlocks
                 ModelResourceLocation(COCONUT_WOOD_FENCE_GATE.registryName!!, "inventory"))
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(RAINBOW_WOOD_FENCE_GATE), 0,
                 ModelResourceLocation(RAINBOW_WOOD_FENCE_GATE.registryName!!, "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DUST_BLOCK), 0,
+                ModelResourceLocation(DUST_BLOCK.registryName!!, "inventory"))
 
             // Common variant blocks.
             registerItemModel(MOTOR_CASING)
