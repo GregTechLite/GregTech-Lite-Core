@@ -122,6 +122,8 @@ Thanks for all the credit authors, it's your hard work that has brought about th
   this mod is on [GNU LGPL-3.0 License](https://github.com/bruberu/GregTechFoodOption/blob/master/LICENSE.txt).
 - Vertex Buffer Objects (VBO), quads, some JOML extends utilities and some renderer codes are from [GTNHLib](https://github.com/GTNewHorizons/GTNHLib),
   this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GTNHLib/blob/master/LICENSE.txt).
+- Icon loader utility class and confirm exit messages, player login events codes are from [NewHorizonsCoreMod](https://github.com/GTNewHorizons/NewHorizonsCoreMod),
+  this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/NewHorizonsCoreMod/blob/master/LICENSE).
 - Cosmic neutronium and infinity render textures, animation tooltips implementations and some OpenGL codes are from [Avaritia](https://github.com/Morpheus1101/Avaritia),
   this mod is on [MIT License](https://github.com/Morpheus1101/Avaritia/blob/master/README.md).
 - CVD Unit overlay textures, a part of laminator and loom overlay textures, stone texture templates and material textures from [Supersymmetry](https://github.com/SymmetricDevs/Supersymmetry),

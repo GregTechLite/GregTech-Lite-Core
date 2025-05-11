@@ -3091,6 +3091,9 @@ gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植�
 gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
 gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
 
+gtlitecore.tooltip.quit_message=你确定要退出游戏吗？
+gtlitecore.tooltip.modpack_name=格雷科技精简版
+
 # Creative Tabs
 itemGroup.gtlite=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器
