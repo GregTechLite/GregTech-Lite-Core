@@ -1191,6 +1191,7 @@ recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
 recipemap.nuclear_reactor.name=核反应堆
 recipemap.rocket_engine.name=火箭引擎
+recipemap.naquadah_reactor.name=硅岩反应堆
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -1747,6 +1748,15 @@ gtlitecore.machine.rocket_engine.ev.tooltip=需要火箭燃料
 gtlitecore.machine.rocket_engine.iv.name=涡轮火箭引擎
 gtlitecore.machine.rocket_engine.iv.tooltip=需要火箭燃料
 
+gtlitecore.machine.naquadah_reactor.iv.name=基础硅岩反应堆
+gtlitecore.machine.naquadah_reactor.iv.tooltip=需要硅岩燃料或塔兰金属燃料
+gtlitecore.machine.naquadah_reactor.luv.name=进阶硅岩反应堆
+gtlitecore.machine.naquadah_reactor.luv.tooltip=需要硅岩燃料或塔兰金属燃料
+gtlitecore.machine.naquadah_reactor.zpm.name=精英硅岩反应堆
+gtlitecore.machine.naquadah_reactor.zpm.tooltip=需要硅岩燃料或塔兰金属燃料
+gtlitecore.machine.naquadah_reactor.uv.name=极限硅岩反应堆
+gtlitecore.machine.naquadah_reactor.uv.tooltip=需要硅岩燃料或塔兰金属燃料
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -2132,6 +2142,16 @@ gtlitecore.machine.large_rocket_engine.hydrogen_boosted=氢气促燃中。
 gtlitecore.machine.large_rocket_engine.hydrogen_amount=氢气存量：%s
 gtlitecore.machine.large_rocket_engine.liquid_air_amount=液态空气存量：%s
 gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount=二氧化碳存量：%s
+
+gtlitecore.machine.large_naquadah_reactor.name=大型硅岩反应堆
+gtlitecore.machine.large_naquadah_reactor.tooltip=取之不尽，用之不竭
+gtlitecore.machine.large_naquadah_reactor.tooltip.1=比小型硅岩反应堆输出高§f§l4§r§7倍，且允许使用任意种类的§f动力仓§7或§f激光源仓§7输入能量。
+gtlitecore.machine.large_naquadah_reactor.tooltip.2=提供§f50L/s§7的氧等离子体并消耗§f双倍燃料§7以产生§f§l4§r§7倍能量输出
+gtlitecore.machine.large_naquadah_reactor.tooltip.3=在结构上没有§f动力仓§7/§f激光源仓§7等级限制
+gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能超频多次，超频的上限可以超过§c§lM§e§lA§a§lX§7级电压。
+
+gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=氧等离子体正在催化硅岩释放能量。
+gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体存量：%s
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

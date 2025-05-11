@@ -75,6 +75,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NAQUADAH_REACTOR_FUELS
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumHydroxide
@@ -550,6 +551,24 @@ class NaquadahProcessing
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
+            // Naquadah fuels.
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(HeavyNaquadahFuel.getFluid(1))
+                .EUt(V[EV])
+                .duration(9 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(MediumNaquadahFuel.getFluid(1))
+                .EUt(V[EV])
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(LightNaquadahFuel.getFluid(1))
+                .EUt(V[EV])
+                .duration(3 * SECOND)
+                .buildAndRegister()
         }
 
     }

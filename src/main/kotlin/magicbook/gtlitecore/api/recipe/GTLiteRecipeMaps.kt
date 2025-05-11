@@ -901,6 +901,19 @@ class GTLiteRecipeMaps
             .generator()
             .build()
 
+        /**
+         * @zenProp naquadah_reactor
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("NAQUADAH_REACTOR_FUELS")
+        val NAQUADAH_REACTOR_FUELS = RecipeMapBuilder("naquadah_reactor", FuelRecipeBuilder())
+            .fluidInputs(1)
+            .allowEmptyOutputs()
+            .sound(GTSoundEvents.ARC)
+            .generator()
+            .build()
+
         // -------------------------------------------------------------------------------------------------------------
         @JvmStatic
         fun preInit()

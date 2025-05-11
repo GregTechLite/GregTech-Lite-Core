@@ -18,13 +18,16 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -41,6 +44,7 @@ import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
@@ -678,15 +682,15 @@ class CraftingComponents
             //      12: MetastableHassium, 13: SuperheavyAlloyLight,
             //      14: SuperheavyAlloyHeavy
             CraftingComponent.STICK_RADIOACTIVE.appendIngredients(sequenceOf(
-                ULV to UnificationEntry(stick, Uranium235),
+                ULV to UnificationEntry(stick, Thorium),
                 LV  to UnificationEntry(stick, Uranium235),
                 MV  to UnificationEntry(stick, Uranium238),
                 HV  to UnificationEntry(stick, Plutonium239),
                 EV  to UnificationEntry(stick, Plutonium241),
                 IV  to UnificationEntry(stick, Naquadah),
-                LuV to UnificationEntry(stick, NaquadahEnriched),
-                ZPM to UnificationEntry(stick, Naquadria),
-                UV  to UnificationEntry(stick, Americium),
+                LuV to UnificationEntry(stick, Curium),
+                ZPM to UnificationEntry(stick, Californium),
+                UV  to UnificationEntry(stick, Mendelevium),
                 UHV to UnificationEntry(stick, Rutherfordium),
                 UEV to UnificationEntry(stick, Dubnium),
                 UIV to UnificationEntry(stick, MetastableFlerovium),

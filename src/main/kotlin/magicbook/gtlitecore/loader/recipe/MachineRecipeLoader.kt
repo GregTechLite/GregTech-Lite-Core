@@ -38,6 +38,7 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.GlycerylTrinitrate
@@ -292,6 +293,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
@@ -330,6 +332,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
@@ -389,6 +392,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MACERATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MASS_FABRICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_MIXER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_NAQUADAH_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_ORE_WASHER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_PACKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LARGE_REPLICATOR
@@ -403,6 +407,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MOB_EXTRACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.MULTICOOKER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NANOSCALE_FABRICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NAQUADAH_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.NUCLEAR_REACTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PLASMA_ENHANCED_CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
@@ -727,6 +732,15 @@ class MachineRecipeLoader
                 'H', CraftingComponent.HULL,
                 'D', CraftingComponent.DOUBLE_PLATE,
                 'W', CraftingComponent.CABLE)
+
+            // Naquadah Reactor
+            MetaTileEntityLoader.registerMachineRecipe(true, NAQUADAH_REACTOR,
+                "RCR", "FHF", "WCW",
+                'R', CraftingComponent.STICK_RADIOACTIVE,
+                'C', CraftingComponent.CIRCUIT,
+                'F', CraftingComponent.FIELD_GENERATOR,
+                'W', CraftingComponent.CABLE,
+                'H', CraftingComponent.HULL)
 
             // =========================================================================================================
 
@@ -2127,6 +2141,33 @@ class MachineRecipeLoader
                 'S', UnificationEntry(spring, Nitinol60),
                 'W', UnificationEntry(cableGtSingle, Platinum),
                 'X', UnificationEntry(circuit, MarkerMaterials.Tier.LuV))
+
+            // Large Naquadah Reactor
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(NUCLEAR_REACTOR, 64)
+                .input(NUCLEAR_REACTOR, 64)
+                .input(NUCLEAR_REACTOR, 64)
+                .input(NUCLEAR_REACTOR, 64)
+                .input(NAQUADAH_REACTOR[3]!!, 16)
+                .input(ELECTRIC_PUMP_UV, 8)
+                .input(ROBOT_ARM_UV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 16)
+                .input(plateDense, Pikyonium64B, 6)
+                .input(plateDense, Naquadria, 6)
+                .input(screw, Trinaquadalloy, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 160))
+                .fluidInputs(Bedrockium.getFluid(L * 40))
+                .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 20))
+                .fluidInputs(PreciousMetalAlloy.getFluid(L * 10))
+                .output(LARGE_NAQUADAH_REACTOR)
+                .EUt(VA[UHV].toLong())
+                .duration(5 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(NAQUADAH_REACTOR[3]!!.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
 
         }
 

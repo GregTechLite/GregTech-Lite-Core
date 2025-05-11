@@ -419,6 +419,7 @@ class GTLiteMaterialFlags
             Mendelevium.addFlags(GENERATE_DENSE)
             Rhenium.addFlags(GENERATE_DENSE)
             Duranium.addFlags(GENERATE_DENSE)
+            Naquadria.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)
@@ -454,6 +455,8 @@ class GTLiteMaterialFlags
             Einsteinium.addFlags(GENERATE_ROD)
             Mendelevium.addFlags(GENERATE_ROD)
             Neptunium.addFlags(GENERATE_ROD)
+            Curium.addFlags(GENERATE_ROD)
+            Californium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

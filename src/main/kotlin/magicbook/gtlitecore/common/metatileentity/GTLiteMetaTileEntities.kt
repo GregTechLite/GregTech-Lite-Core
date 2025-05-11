@@ -5,6 +5,8 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.ZPM
 import gregtech.api.block.machines.MachineItemBlock
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity
@@ -84,6 +86,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
+import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityLargeNaquadahReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityLargeRocketEngine
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
@@ -157,6 +160,7 @@ class GTLiteMetaTileEntities
         val MOB_EXTRACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
         val BIO_SIMULATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(6)
         val ROCKET_ENGINE = arrayOfNulls<SimpleGeneratorMetaTileEntity>(3)
+        val NAQUADAH_REACTOR = arrayOfNulls<SimpleGeneratorMetaTileEntity>(4)
 
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
@@ -298,6 +302,7 @@ class GTLiteMetaTileEntities
         lateinit var CIRCUIT_ASSEMBLY_LINE: MetaTileEntityCircuitAssemblyLine
         lateinit var LARGE_FOOD_PROCESSOR: MetaTileEntityLargeFoodProcessor
         lateinit var LARGE_ROCKET_ENGINE: MetaTileEntityLargeRocketEngine
+        lateinit var LARGE_NAQUADAH_REACTOR: MetaTileEntityLargeNaquadahReactor
 
         @JvmStatic
         fun preInit()
@@ -500,6 +505,23 @@ class GTLiteMetaTileEntities
             ROCKET_ENGINE[2] = MetaTileEntities.registerMetaTileEntity(14322,
                 SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("rocket_engine.iv"), GTLiteRecipeMaps.ROCKET_ENGINE_FUELS,
                     GTLiteTextures.ROCKET_ENGINE_OVERLAY, IV, GTUtility.genericGeneratorTankSizeFunction))
+
+            // 14331-14345: Naquadah Reactor
+            NAQUADAH_REACTOR[0] = MetaTileEntities.registerMetaTileEntity(14337, // 14331-14332 for Steam Machines, 14333-14336 for LV-EV Machines.
+                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.iv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
+                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, IV, GTUtility.genericGeneratorTankSizeFunction))
+
+            NAQUADAH_REACTOR[1] = MetaTileEntities.registerMetaTileEntity(14338,
+                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.luv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
+                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, LuV, GTUtility.genericGeneratorTankSizeFunction))
+
+            NAQUADAH_REACTOR[2] = MetaTileEntities.registerMetaTileEntity(14339,
+                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.zpm"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
+                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, ZPM, GTUtility.genericGeneratorTankSizeFunction))
+
+            NAQUADAH_REACTOR[3] = MetaTileEntities.registerMetaTileEntity(14340,
+                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.uv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
+                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, UV, GTUtility.genericGeneratorTankSizeFunction))
 
             // ...
 
@@ -929,6 +951,9 @@ class GTLiteMetaTileEntities
             LARGE_ROCKET_ENGINE = MetaTileEntities.registerMetaTileEntity(18137,
                 MetaTileEntityLargeRocketEngine(GTLiteUtility.gtliteId("large_rocket_engine")))
 
+            LARGE_NAQUADAH_REACTOR = MetaTileEntities.registerMetaTileEntity(18138,
+                MetaTileEntityLargeNaquadahReactor(GTLiteUtility.gtliteId("large_naquadah_reactor")))
+
             // ADVANCED_ASSEMBLY_LINE
 
         }
@@ -962,6 +987,7 @@ class GTLiteMetaTileEntities
             MOB_EXTRACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             BIO_SIMULATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
             ROCKET_ENGINE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            NAQUADAH_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
 
             IRON_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             COPPER_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
@@ -1071,6 +1097,7 @@ class GTLiteMetaTileEntities
             CIRCUIT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_FOOD_PROCESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_ROCKET_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_NAQUADAH_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

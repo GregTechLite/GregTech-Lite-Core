@@ -258,6 +258,9 @@ class GTLiteTextures
 
         @JvmField
         val NITINOL_60_CASING = GTLiteSimpleOverlayRenderer("casings/metal/nitinol_60")
+
+        @JvmField
+        val NAQUADAH_ALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/naquadah_alloy")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

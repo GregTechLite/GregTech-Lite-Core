@@ -43,6 +43,7 @@ import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.DRILLING_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NAQUADAH_REACTOR_FUELS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BedrockGas
@@ -207,6 +208,44 @@ class BedrockiumProcessing
                 .fluidOutputs(HeavyEnrichedTaraniumFuel.getFluid(6000))
                 .EUt(VA[UHV].toLong())
                 .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Taranium fuels.
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(HeavyTaraniumFuel.getFluid(1))
+                .EUt(V[EV] * 2)
+                .duration(18 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(MediumTaraniumFuel.getFluid(1))
+                .EUt(V[EV] * 2)
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(LightTaraniumFuel.getFluid(1))
+                .EUt(V[EV] * 2)
+                .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // Enriched taranium fuels.
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(HeavyEnrichedTaraniumFuel.getFluid(1))
+                .EUt(V[IV])
+                .duration(36 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(MediumEnrichedTaraniumFuel.getFluid(1))
+                .EUt(V[IV])
+                .duration(24 * SECOND)
+                .buildAndRegister()
+
+            NAQUADAH_REACTOR_FUELS.recipeBuilder()
+                .fluidInputs(LightEnrichedTaraniumFuel.getFluid(1))
+                .EUt(V[IV])
+                .duration(12 * SECOND)
                 .buildAndRegister()
 
         }

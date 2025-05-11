@@ -107,6 +107,7 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
@@ -596,7 +597,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x281832).iconSet(BRIGHT)
                 .components(Trinium, 6, Naquadah, 2, Carbon, 1)
                 .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
-                    GENERATE_SPRING_SMALL)
+                    GENERATE_SPRING_SMALL, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(8747, BlastProperty.GasTier.HIGHER) // Trinium
                         .blastStats(VA[ZPM], 1 * MINUTE)
@@ -762,7 +763,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x3467BA).iconSet(SHINY)
                 .components(Inconel718, 8, EglinSteel, 5, NaquadahEnriched, 4, TungstenSteel, 4, Cerium, 3,
                     Antimony, 2, Platinum, 2, Ytterbium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
                 .blast { b ->
                     b.temp(10400, BlastProperty.GasTier.HIGHER) // Tritanium
                         .blastStats(VA[UV], 30 * SECOND)

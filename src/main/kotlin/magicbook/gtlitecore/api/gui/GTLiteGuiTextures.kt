@@ -305,6 +305,10 @@ class GTLiteGuiTextures
         val PROGRESS_BAR_LRE_CARBON_DIOXIDE: TextureArea = TextureArea.fullImage(
             "textures/gui/progress_bar/progress_bar_lre_carbon_dioxide.png")
 
+        @JvmField
+        val PROGRESS_BAR_LNR_PLASMA_OXYGEN: TextureArea = TextureArea.fullImage(
+            "textures/gui/progress_bar/progress_bar_lnr_plasma_oxygen.png")
+
         // -------------------------------------------------------------------------------------------------------------
         // Widgets
         @JvmField
