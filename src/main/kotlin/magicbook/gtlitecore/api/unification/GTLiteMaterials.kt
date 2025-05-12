@@ -322,6 +322,10 @@ class GTLiteMaterials
         lateinit var SodiumVanadate: Material
         lateinit var LuTmDopedYttriumVanadateDeposition: Material
         lateinit var LuTmYVO: Material
+        lateinit var HexagonalSiliconNitride: Material
+        lateinit var CubicSiliconNitride: Material
+        lateinit var CeriumCarbonate: Material
+        lateinit var DielectricFormationMixture: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -582,6 +586,7 @@ class GTLiteMaterials
         lateinit var PhenylC61ButyricStyrene: Material
         lateinit var FullerenePolymerMatrix: Material
         lateinit var Phosphorene: Material
+        lateinit var Methyltrichlorosilane: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

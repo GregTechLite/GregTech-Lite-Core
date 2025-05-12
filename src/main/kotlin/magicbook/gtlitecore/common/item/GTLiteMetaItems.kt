@@ -211,6 +211,8 @@ class GTLiteMetaItems
 
         lateinit var OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
         lateinit var OPTICAL_FIBER: MetaItem<*>.MetaValueItem
+        lateinit var OPTICAL_IMC_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
 
@@ -235,6 +237,9 @@ class GTLiteMetaItems
         lateinit var CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
         lateinit var PHASE_CHANGE_RAM_CHIP: MetaItem<*>.MetaValueItem
         lateinit var ALL_OPTICAL_CASCADE_NOR_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE: MetaItem<*>.MetaValueItem
+        lateinit var BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var PERIODICALLY_POLED_OPTICAL_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -325,6 +330,7 @@ class GTLiteMetaItems
         lateinit var WRAP_CRYSTAL_CPU: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CRYSTAL_SOC: MetaItem<*>.MetaValueItem
         lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CIRCUIT_LV: MetaItem<*>.MetaValueItem
@@ -831,6 +837,8 @@ class GTLiteMetaItems
 
             OPTICAL_LASER_CONTROL_UNIT = GTLITE_ITEMS.addItem(1126, "circuit.component.optical_laser_control_unit")
             OPTICAL_FIBER = GTLITE_ITEMS.addItem(1127, "circuit.component.optical_fiber")
+            OPTICAL_IMC_UNIT = GTLITE_ITEMS.addItem(1128, "circuit.component.optical_imc_chip")
+            OPTOELECTRONIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(1129, "circuit.component.optoelectronic_system_on_chip")
 
             // 2001-2500: Boules and Wafers.
             HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
@@ -856,6 +864,9 @@ class GTLiteMetaItems
             CRYSTAL_INTERFACE_CHIP = GTLITE_ITEMS.addItem(2404, "wafer.chip.crystal_interface")
             PHASE_CHANGE_RAM_CHIP = GTLITE_ITEMS.addItem(2405, "wafer.chip.phase_change_ram")
             ALL_OPTICAL_CASCADE_NOR_CHIP = GTLITE_ITEMS.addItem(2406, "wafer.chip.all_optical_cascade_nor")
+            BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE = GTLITE_ITEMS.addItem(2407, "boule.cerium_carbonate.bohrium")
+            BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER = GTLITE_ITEMS.addItem(2408, "wafer.cerium_carbonate.bohrium")
+            PERIODICALLY_POLED_OPTICAL_CHIP = GTLITE_ITEMS.addItem(2409, "wafer.chip.periodically_poled_optical_chip")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")
@@ -947,6 +958,7 @@ class GTLiteMetaItems
             WRAP_NEURO_PROCESSOR = GTLITE_ITEMS.addItem(3103, "wrap.circuit.component.neuro_processor")
             WRAP_NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(3104, "wrap.circuit.component.nonlinear_chemical_oscillator")
             WRAP_OPTICAL_LASER_CONTROL_UNIT = GTLITE_ITEMS.addItem(3105, "wrap.circuit.component.optical_laser_control_unit")
+            WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(3106, "wrap.circuit.component.optoelectronic_system_on_chip")
 
             WRAP_CIRCUIT_ULV = GTLITE_ITEMS.addItem(3201, "wrap.circuit.generic.ulv")
             WRAP_CIRCUIT_LV = GTLITE_ITEMS.addItem(3202, "wrap.circuit.generic.lv")

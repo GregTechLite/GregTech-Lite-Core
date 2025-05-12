@@ -14,6 +14,9 @@ import org.spongepowered.asm.mixin.Unique;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+/**
+ * Feature: Let amount fontRenderer be scalable when it is too big.
+ */
 @ParametersAreNonnullByDefault
 @Mixin(value = ItemStackRenderer.class, remap = false)
 public class ItemStackRendererMixin implements IIngredientRenderer<ItemStack>

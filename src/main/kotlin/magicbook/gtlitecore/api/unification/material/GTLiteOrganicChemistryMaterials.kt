@@ -31,6 +31,7 @@ import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Selenium
+import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
@@ -167,6 +168,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylamin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylhydrazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylhydrazineNitrateRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylparatoluate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methyltrichlorosilane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NHydroxysuccinimide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
@@ -1711,6 +1713,14 @@ class GTLiteOrganicChemistryMaterials
                 .components(Phosphorus, 4)
                 .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
                 .build()
+
+            // 8183 Methyltrichlorosilane
+            Methyltrichlorosilane = Material.Builder(8183, gtliteId("methyltrichlorosilane"))
+                .liquid()
+                .color(0x4D7CB4)
+                .components(Carbon, 1, Hydrogen, 3, Chlorine, 3, Silicon, 1)
+                .build()
+                .setFormula("Si(CH3)Cl3", true)
 
         }
 

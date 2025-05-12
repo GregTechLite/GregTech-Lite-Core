@@ -7,6 +7,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
@@ -27,6 +28,7 @@ import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
@@ -83,9 +85,12 @@ import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CIRCUIT_ASSEMBLY_LINE_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ALL_OPTICAL_CASCADE_NOR_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_ASSEMBLY_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_COMPUTER_UXV
@@ -100,8 +105,11 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCES
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_FIBER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_IMC_UNIT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTOELECTRONIC_SYSTEM_ON_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERIODICALLY_POLED_OPTICAL_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV
@@ -151,6 +159,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PERFECT_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PLASTIC_CIRCUIT_BOARD
@@ -1059,7 +1068,7 @@ class CircuitAssemblyLineRecipeProducer
                 .input(WRAP_OPTICAL_SMD_CAPACITOR, 16)
                 .input(WRAP_OPTICAL_SMD_TRANSISTOR, 16)
                 .input(OPTICAL_FIBER, 64)
-                .fluidInputs(SolderingAlloy.getFluid(L))
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .output(OPTICAL_PROCESSOR_UV, 64)
                 .EUt(VA[UHV].toLong())
                 .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
@@ -1073,7 +1082,7 @@ class CircuitAssemblyLineRecipeProducer
                 .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 4)
                 .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 4)
                 .input(OPTICAL_FIBER, 64)
-                .fluidInputs(SolderingAlloy.getFluid(L))
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .output(OPTICAL_PROCESSOR_UV, 64)
                 .EUt(VA[UHV].toLong())
                 .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
@@ -1087,9 +1096,22 @@ class CircuitAssemblyLineRecipeProducer
                 .input(WRAP_COSMIC_SMD_CAPACITOR)
                 .input(WRAP_COSMIC_SMD_TRANSISTOR)
                 .input(OPTICAL_FIBER, 64)
-                .fluidInputs(SolderingAlloy.getFluid(L))
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .output(OPTICAL_PROCESSOR_UV, 64)
                 .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
+                .input(WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP)
+                .input(OPTICAL_FIBER, 64)
+                .input(bolt, Bedrockium, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .output(OPTICAL_PROCESSOR_UV, 64)
+                .output(OPTICAL_PROCESSOR_UV, 64)
+                .EUt(VA[UEV].toLong())
                 .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
                 .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
                 .buildAndRegister()
@@ -1265,6 +1287,21 @@ class CircuitAssemblyLineRecipeProducer
                 .EUt(80000) // ZPM
                 .duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
                 .circuit(getCircuit(NEURO_PROCESSOR))
+                .buildAndRegister()
+
+            // Optoelectronic SoC
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(OPTICAL_IMC_UNIT, 32)
+                .input(plate, CubicSiliconNitride, 16)
+                .input(PERIODICALLY_POLED_OPTICAL_CHIP, 32)
+                .input(ALL_OPTICAL_CASCADE_NOR_CHIP, 64)
+                .input(TOOL_DATA_ORB, 32)
+                .input(OPTICAL_FIBER, 64)
+                .fluidInputs(PCBCoolant.getFluid(4000))
+                .output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 32)
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
+                .circuit(getCircuit(OPTOELECTRONIC_SYSTEM_ON_CHIP))
                 .buildAndRegister()
 
         }

@@ -127,6 +127,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.material.Materials.ZincSulfide
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
@@ -242,6 +243,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumHyd
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Celestine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChlorinatedSolvents
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTelluride
@@ -254,10 +256,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperNitr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cryolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeterodiamond
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cuprite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DeepIron
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DeuteriumSuperheavyMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DielectricFormationMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylcadmium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dolomite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DysprosiumOxide
@@ -289,6 +293,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Heterodiamond
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexachloroplatinicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HolmiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
@@ -2981,6 +2986,40 @@ class GTLiteFirstDegreeMaterials
                 .build()
                 .setFormula("Lu/Tm:YVO", false)
 
+            // 2292 Hexagonal Silicon Nitride
+            HexagonalSiliconNitride = Material.Builder(2292, gtliteId("hexagonal_silicon_nitride"))
+                .gem()
+                .color(0x8C7BB6).iconSet(GEM_VERTICAL)
+                .components(Silicon, 3, Nitrogen, 4)
+                .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+                .build()
+                .setFormula("h-Si3N4", true)
+
+            // 2293 Cubic Silicon Nitride
+            CubicSiliconNitride = Material.Builder(2293, gtliteId("cubic_silicon_nitride"))
+                .gem()
+                .color(0x415B70).iconSet(RUBY)
+                .components(Silicon, 3, Nitrogen, 4)
+                .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+                .build()
+                .setFormula("c-Si3N4", true)
+
+            // 2294 Cerium Carbonate
+            CeriumCarbonate = Material.Builder(2294, gtliteId("cerium_carbonate"))
+                .dust()
+                .color(0x57855C).iconSet(SHINY)
+                .components(Cerium, 2, Carbon, 3, Oxygen, 9)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("Ce2(CO3)3", true)
+
+            // 2295 Dielectric Formation Mixture
+            DielectricFormationMixture = Material.Builder(2295, gtliteId("dielectric_formation_mixture"))
+                .liquid(FluidBuilder().temperature(209))
+                .color(0xE62A35)
+                .components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
+                .flags(DISABLE_DECOMPOSITION) // Add centrifuging decomposition by OpticalCircuits.
+                .build()
         }
 
     }

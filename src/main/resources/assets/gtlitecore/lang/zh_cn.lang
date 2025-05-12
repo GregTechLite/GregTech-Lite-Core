@@ -885,6 +885,10 @@ metaitem.circuit.component.optical_laser_control_unit.name=光学激光控制单
 metaitem.circuit.component.optical_laser_control_unit.tooltip=激光信息传输
 metaitem.circuit.component.optical_fiber.name=光纤
 metaitem.circuit.component.optical_fiber.tooltip=透光玻璃
+metaitem.circuit.component.optical_imc_chip.name=光学存算一体计算单元
+metaitem.circuit.component.optical_imc_chip.tooltip=利用PRAM内的电阻特性的存内计算
+metaitem.circuit.component.optoelectronic_system_on_chip.name=光电子SoC
+metaitem.circuit.component.optoelectronic_system_on_chip.tooltip=荧光片上电路
 
 metaitem.boule.hassium.name=钅黑掺杂的单晶硅
 
@@ -925,6 +929,9 @@ metaitem.wafer.chip.phase_change_ram.name=相变随机存取存储器（PRAM）�
 metaitem.wafer.chip.phase_change_ram.tooltip=相变随机存取存储器
 metaitem.wafer.chip.all_optical_cascade_nor.name=全光级联逻辑或非门（ACNOR）晶片
 metaitem.wafer.chip.all_optical_cascade_nor.tooltip=光级联逻辑或非门
+metaitem.boule.cerium_carbonate.bohrium.name=钅波掺杂的碳酸铈晶棒
+metaitem.wafer.cerium_carbonate.bohrium.name=钅波掺杂的碳酸铈晶圆
+metaitem.wafer.chip.periodically_poled_optical_chip.name=周期性极化光学晶片
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -1023,6 +1030,7 @@ metaitem.wrap.crystal.system_on_chip.name=封装晶体SoC
 metaitem.wrap.circuit.component.neuro_processor.name=封装神经处理单元
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=封装非线性化学振荡器
 metaitem.wrap.circuit.component.optical_laser_control_unit.name=封装光学激光控制单元
+metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=封装光电子SoC
 
 metaitem.wrap.circuit.generic.ulv.name=封装电路板（§8ULV§f）
 metaitem.wrap.circuit.generic.lv.name=封装电路板（§7LV§f）
@@ -2716,6 +2724,10 @@ gtlitecore.material.lu_tm_y_chlorides_solution=镥-铥-钇氯化物溶液
 gtlitecore.material.sodium_vanadate=钒酸钠
 gtlitecore.material.lu_tm_doped_yttrium_vanadate_deposition=镥/铥掺杂的钒酸钇沉淀
 gtlitecore.material.lu_tm_yvo=镥铥掺杂的钒酸钇
+gtlitecore.material.hexagonal_silicon_nitride=六方氮化硅
+gtlitecore.material.cubic_silicon_nitride=立方氮化硅
+gtlitecore.material.cerium_carbonate=碳酸铈
+gtlitecore.material.dielectric_formation_mixture=电介质反射形成混合物
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -2975,6 +2987,7 @@ gtlitecore.material.phenyl_c_61_butyric_acid=苯基-C61-丁酸（PCBA）
 gtlitecore.material.phenyl_c_61_butyric_styrene=苯基-C61-丁酸苯乙烯（PCBS）
 gtlitecore.material.fullerene_polymer_matrix=富勒烯聚合物基质（FPM）
 gtlitecore.material.phosphorene=磷烯
+gtlitecore.material.methyltrichlorosilane=甲基三氯硅烷
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

@@ -317,6 +317,10 @@ class PartsRecipeHandler
                     OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
                         MarkerMaterials.Color.Purple)
                 }
+                GTLiteMaterials.HexagonalSiliconNitride -> {
+                    OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
+                        MarkerMaterials.Color.Purple)
+                }
                 else -> {
                     // Default behaviour for determining lens color, left for addons and CraftTweaker.
                     val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)

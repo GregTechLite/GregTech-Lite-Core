@@ -9,7 +9,9 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Chloromethane
 import gregtech.api.unification.material.Materials.DilutedHydrochloricAcid
+import gregtech.api.unification.material.Materials.Dimethyldichlorosilane
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methane
@@ -50,6 +52,21 @@ class RecipeConflicts
                 .fluidOutputs(DilutedHydrochloricAcid.getFluid(6000))
                 .EUt(96) // MV
                 .duration(2 * MINUTE + 24 * SECOND)
+                .buildAndRegister()
+
+            // Conflict between Methyltrichlorosilane (Si(CH3)Cl3) and Dimethyldichlorosilane (Si(CH3)2Cl2)
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(OreDictUnifier.get(dust, Silicon)),
+                arrayOf(Chloromethane.getFluid(2000)))
+
+            // Si + 2CH3Cl -> Si(CH3)2Cl2
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Silicon)
+                .fluidInputs(Chloromethane.getFluid(2000))
+                .fluidOutputs(Dimethyldichlorosilane.getFluid(1000))
+                .EUt(96) // MV
+                .duration(12 * SECOND)
                 .buildAndRegister()
 
             // Add an int circuit to C4H8O recipe.

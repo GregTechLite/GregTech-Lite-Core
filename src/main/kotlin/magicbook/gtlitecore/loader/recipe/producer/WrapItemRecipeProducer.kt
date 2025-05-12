@@ -82,6 +82,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_DI
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTOELECTRONIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERFECT_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_BOARD
@@ -167,6 +168,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PERFECT_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PHENOLIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PIC_CHIP
@@ -311,6 +313,7 @@ class WrapItemRecipeProducer
             wrapItems[NEURO_PROCESSOR] = WRAP_NEURO_PROCESSOR
             wrapItems[NONLINEAR_CHEMICAL_OSCILLATOR] = WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
             wrapItems[OPTICAL_LASER_CONTROL_UNIT] = WRAP_OPTICAL_LASER_CONTROL_UNIT
+            wrapItems[OPTOELECTRONIC_SYSTEM_ON_CHIP] = WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
 
             // Add all Wrap Items.
             wrapItems.forEach { (originalItem, wrapItem) -> addRecipe(originalItem, wrapItem) }

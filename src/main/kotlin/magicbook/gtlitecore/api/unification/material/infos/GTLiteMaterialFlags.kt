@@ -458,6 +458,7 @@ class GTLiteMaterialFlags
             Neptunium.addFlags(GENERATE_ROD)
             Curium.addFlags(GENERATE_ROD)
             Californium.addFlags(GENERATE_ROD)
+            Moscovium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -488,6 +489,7 @@ class GTLiteMaterialFlags
             Seaborgium.addFlags(GENERATE_SPRING_SMALL)
             Duranium.addFlags(GENERATE_SPRING_SMALL)
             Cupronickel.addFlags(GENERATE_SPRING_SMALL)
+            Moscovium.addFlags(GENERATE_SPRING_SMALL)
 
             // wireFine
             Titanium.addFlags(GENERATE_FINE_WIRE)

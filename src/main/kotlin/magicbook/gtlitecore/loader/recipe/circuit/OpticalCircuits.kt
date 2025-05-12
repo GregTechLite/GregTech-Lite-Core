@@ -4,6 +4,7 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -19,69 +20,108 @@ import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Argon
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Caesium
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Chlorine
+import gregtech.api.unification.material.Materials.Chloromethane
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Einsteinium
+import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
+import gregtech.api.unification.material.Materials.Ethane
+import gregtech.api.unification.material.Materials.Ethanol
+import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Lubricant
+import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Mendelevium
+import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potash
+import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.SodiumBicarbonate
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.SterlingSilver
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.material.Materials.ZincSulfide
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
+import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYOGENIC_REACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CRYSTALLIZATION_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LASER_CVD_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.PLASMA_CVD_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ROASTER_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumCarbonate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DielectricFormationMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FranciumCaesiumCadmiumBromide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumNitride
@@ -89,6 +129,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumTri
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrobromicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGalliumManganate
@@ -97,6 +138,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadScandiumTantalate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MalonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseDifluoride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methyltrichlorosilane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyetheretherketone
@@ -109,13 +154,17 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ALL_OPTICAL_CASCADE_NOR_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_DIODE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_INDUCTOR
@@ -123,12 +172,15 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_RES
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIELECTRIC_MIRROR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EMPTY_LASER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HELIUM_NEON_LASER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ND_YAG_LASER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_FIBER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_IMC_UNIT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_LASER_CONTROL_UNIT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
@@ -137,7 +189,9 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_DI
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTOELECTRONIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERFECT_CIRCUIT_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERIODICALLY_POLED_OPTICAL_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PHASE_CHANGE_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
@@ -149,6 +203,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class OpticalCircuits
@@ -162,6 +217,7 @@ class OpticalCircuits
             circuitBoardRecipes()
             smdRecipes()
             circuitComponentsRecipes()
+            systemOnChipRecipes()
             circuitRecipes()
         }
 
@@ -516,6 +572,158 @@ class OpticalCircuits
                 .buildAndRegister()
         }
 
+        private fun systemOnChipRecipes()
+        {
+            // Si + 3CH3Cl-> Si(CH3)Cl3 + C2H6
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Silicon)
+                .fluidInputs(Chloromethane.getFluid(3000))
+                .fluidOutputs(Methyltrichlorosilane.getFluid(1000))
+                .fluidOutputs(Ethane.getFluid(1000))
+                .EUt(96) // MV
+                .duration(12 * SECOND)
+                .buildAndRegister()
+
+            // 3Si(CH3)Cl3 + 4HNO3 -> h-Si3N4 + 9HCl + C3H4O4 + 8O
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plate, Thallium)
+                .notConsumable(SHAPE_MOLD_PLATE)
+                .fluidInputs(Methyltrichlorosilane.getFluid(3000))
+                .fluidInputs(NitricAcid.getFluid(4000))
+                .fluidInputs(Argon.getPlasma(10000))
+                .output(plate, HexagonalSiliconNitride)
+                .output(dust, MalonicAcid, 11)
+                .fluidOutputs(HydrochloricAcid.getFluid(9000))
+                .fluidOutputs(Oxygen.getFluid(8000))
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .temperature(1250)
+                .buildAndRegister()
+
+            // h-Si3N4 -> c-Si3N4
+            CVD_RECIPES.recipeBuilder()
+                .input(dust, HexagonalSiliconNitride)
+                .output(gem, CubicSiliconNitride)
+                .EUt(VA[UHV].toLong())
+                .duration(5 * SECOND)
+                .temperature(3501)
+                .buildAndRegister()
+
+            // 2CeO2 + 3NaHCO3 -> Ce2(CO3)3 + 3NaOH + O
+            BURNER_REACTOR_RECIPES.recipeBuilder()
+                .input(dust, CeriumOxide, 6)
+                .input(dust, SodiumBicarbonate, 18)
+                .output(dust, CeriumCarbonate, 14)
+                .output(dust, SodiumHydroxide, 9)
+                .fluidOutputs(Oxygen.getFluid(1000))
+                .EUt(VA[ZPM].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Ce2(CO3)3 + Bh -> Bh-doped Ce2(CO3)3 Boule
+            CRYSTALLIZATION_RECIPES.recipeBuilder()
+                .input(dust, CeriumCarbonate, 64)
+                .input(dust, Bohrium, 8)
+                .output(BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE)
+                .EUt(VA[EV].toLong())
+                .duration(6 * SECOND)
+                .blastFurnaceTemp(6000) // Naquadah
+                .buildAndRegister()
+
+            // Bh-doped Ce2(CO3)3 Boule -> Bh-doped Ce2(CO3)3 Wafer
+            CUTTER_RECIPES.recipeBuilder()
+                .input(BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE)
+                .fluidInputs(Lubricant.getFluid(100))
+                .output(BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER, 4)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Zn + S -> ZnS
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Zinc)
+                .input(dust, Sulfur)
+                .output(dust, ZincSulfide, 2)
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Mn + 2F -> MnF2
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Manganese)
+                .fluidInputs(Fluorine.getFluid(2000))
+                .output(dust, ManganeseDifluoride, 3)
+                .EUt(VA[LV].toLong())
+                .duration(4 * SECOND)
+                .buildAndRegister()
+
+            // MnF2 + ZnS + Ta2O5 + TiO2 + C2H6O -> (MnF2)(ZnS)(Ta2O5)(TiO2)(C2H6O)
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, ManganeseDifluoride, 3)
+                .input(dust, ZincSulfide, 2)
+                .input(dust, TantalumPentoxide, 7)
+                .input(dust, Rutile, 3)
+                .fluidInputs(Ethanol.getFluid(1000))
+                .fluidOutputs(DielectricFormationMixture.getFluid(8000))
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // (MnF2)(ZnS)(Ta2O5)(TiO2)(C2H6O) -> MnF2 + ZnS + Ta2O5 + TiO2 + C2H6O
+            CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+                .fluidInputs(DielectricFormationMixture.getFluid(8000))
+                .output(dust, ManganeseDifluoride, 3)
+                .output(dust, ZincSulfide, 2)
+                .output(dust, TantalumPentoxide, 7)
+                .output(dust, Rutile, 3)
+                .fluidOutputs(Ethanol.getFluid(1000))
+                .EUt(VA[MV].toLong())
+                .duration(4 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // Bh-doped Ce2(CO3)3 Wafer -> Periodically Poled Optical Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER)
+                .fluidInputs(DielectricFormationMixture.getFluid(200))
+                .output(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
+                .EUt(VA[IV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Optical IMC Unit
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .input(ULTRA_HIGHLY_ADVANCED_SOC_CHIP)
+                .input(ENGRAVED_LAPOTRON_CHIP, 6)
+                .input(PHASE_CHANGE_RAM_CHIP, 2)
+                .input(springSmall, Moscovium)
+                .input(wireFine, MetastableOganesson, 4)
+                .output(OPTICAL_IMC_UNIT, 16)
+                .EUt(VA[UV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Optoelectronic SoC
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(OPTICAL_IMC_UNIT, 2)
+                .input(plate, CubicSiliconNitride)
+                .input(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
+                .input(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
+                .input(TOOL_DATA_ORB, 2)
+                .input(OPTICAL_FIBER, 8)
+                .fluidInputs(PCBCoolant.getFluid(4000))
+                .output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 2)
+                .EUt(VA[UEV].toLong())
+                .duration(5 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+        }
+
         private fun circuitRecipes()
         {
             // Optical Processor
@@ -556,6 +764,18 @@ class OpticalCircuits
                 .input(OPTICAL_FIBER, 8)
                 .output(OPTICAL_PROCESSOR_UV, 4)
                 .EUt(VA[UHV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .solderMultiplier(1)
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+                .input(OPTICAL_LASER_CONTROL_UNIT)
+                .input(OPTOELECTRONIC_SYSTEM_ON_CHIP)
+                .input(OPTICAL_FIBER, 8)
+                .input(bolt, Bedrockium, 8)
+                .output(OPTICAL_PROCESSOR_UV, 8)
+                .EUt(VA[UEV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .solderMultiplier(1)

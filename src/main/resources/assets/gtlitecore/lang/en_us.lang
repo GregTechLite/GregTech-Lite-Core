@@ -885,6 +885,10 @@ metaitem.circuit.component.optical_laser_control_unit.name=Optical Laser Control
 metaitem.circuit.component.optical_laser_control_unit.tooltip=激光信息传输
 metaitem.circuit.component.optical_fiber.name=Optical Fiber
 metaitem.circuit.component.optical_fiber.tooltip=透光玻璃
+metaitem.circuit.component.optical_imc_chip.name=Optical IMC Chip
+metaitem.circuit.component.optical_imc_chip.tooltip=利用PRAM内的电阻特性的存内计算
+metaitem.circuit.component.optoelectronic_system_on_chip.name=Optoelectronic SoC
+metaitem.circuit.component.optoelectronic_system_on_chip.tooltip=Luminous System on Chip
 
 metaitem.boule.hassium.name=Hassium-doped Monocrystalline Silicon Boule
 
@@ -921,10 +925,13 @@ metaitem.wafer.crystal_interface.name=Crystal Interface Wafer
 metaitem.wafer.crystal_interface.tooltip=Raw Crystal Interface
 metaitem.wafer.chip.crystal_interface.name=Crystal Interface Chip
 metaitem.wafer.chip.crystal_interface.tooltip=Crystal Interface
-metaitem.wafer.chip.phase_change_ram.name=相变随机存取存储器（PRAM）晶片
+metaitem.wafer.chip.phase_change_ram.name=Phase Change RAM
 metaitem.wafer.chip.phase_change_ram.tooltip=相变随机存取存储器
-metaitem.wafer.chip.all_optical_cascade_nor.name=全光级联逻辑或非门（ACNOR）晶片
+metaitem.wafer.chip.all_optical_cascade_nor.name=All-Optical Cascade NOR
 metaitem.wafer.chip.all_optical_cascade_nor.tooltip=光级联逻辑或非门
+metaitem.boule.cerium_carbonate.bohrium.name=Bohrium-doped Cerium Carbonate Boule
+metaitem.wafer.cerium_carbonate.bohrium.name=Bohrium-doped Cerium Carbonate Wafer
+metaitem.wafer.chip.periodically_poled_optical_chip.name=Periodically Poled Optical Chip
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
@@ -1023,6 +1030,7 @@ metaitem.wrap.crystal.system_on_chip.name=Wrap Crystal System On Chip
 metaitem.wrap.circuit.component.neuro_processor.name=Wrap Neuro Processor
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=Wrap Nonlinear Chemical Oscillator
 metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Laser Control Unit
+metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=Wrap Optoelectronic System On Chip
 
 metaitem.wrap.circuit.generic.ulv.name=Wrap §8ULV§f Circuit
 metaitem.wrap.circuit.generic.lv.name=Wrap §7LV§f Circuit
@@ -2711,6 +2719,10 @@ gtlitecore.material.lu_tm_y_chlorides_solution=Lutetium-Thulium-Yttrium Chloride
 gtlitecore.material.sodium_vanadate=Sodium Vanadate
 gtlitecore.material.lu_tm_doped_yttrium_vanadate_deposition=Lutetium/Thulium-doped Yttrium Vanadate Deposition
 gtlitecore.material.lu_tm_yvo=Lutetium/Thulium Yttrium Vanadate
+gtlitecore.material.hexagonal_silicon_nitride=Hexagonal Silicon Nitride
+gtlitecore.material.cubic_silicon_nitride=Cubic Silicon Nitride
+gtlitecore.material.cerium_carbonate=Cerium Carbonate
+gtlitecore.material.dielectric_formation_mixture=Dielectric Formation Mixture
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2971,6 +2983,7 @@ gtlitecore.material.phenyl_c_61_butyric_acid=Phenyl-C61-Butyric Acid (PCBA)
 gtlitecore.material.phenyl_c_61_butyric_styrene=Phenyl-C61-Butyric Styrene (PCBS)
 gtlitecore.material.fullerene_polymer_matrix=Fullerene Polymer Matrix (FPM)
 gtlitecore.material.phosphorene=Phosphorene
+gtlitecore.material.methyltrichlorosilane=Methyltrichlorosilane
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
