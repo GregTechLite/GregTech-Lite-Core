@@ -27,7 +27,6 @@
     "gregtech.MetaItemMixin",
     "gregtech.MetaPrefixItemMixin",
     "gregtech.MetaValueItemMixin",
-    "gregtech.MetaTileEntityFusionReactorMixin",
-    "gregtech.PipeRendererMixin"
+    "gregtech.MetaTileEntityFusionReactorMixin"
   ]
 }
