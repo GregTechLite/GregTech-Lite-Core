@@ -437,6 +437,7 @@ class GTLiteMetaItems
         lateinit var GRAHAM_CRACKER: MetaItem<*>.MetaValueItem
 
         lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
+        lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1417,6 +1418,22 @@ class GTLiteMetaItems
                         RandomPotionEffect(MobEffects.REGENERATION, 20 * SECOND, 10, 100 - 100),
                         RandomPotionEffect(MobEffects.RESISTANCE, 2 * MINUTE + 30 * SECOND, 3, 100 - 100),
                         RandomPotionEffect(MobEffects.ABSORPTION, 1 * MINUTE, 6, 100 - 100)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            MOON_BERRY = GTLITE_ITEMS.addItem(9602, "food.moon_berry")
+                .addComponents(FoodBehavior(16, 19.2F)
+                    .setEatingDuration(5 * SECOND)
+                    .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.REGENERATION, 2 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.RESISTANCE, 10 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.ABSORPTION, 5 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.STRENGTH, 8 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 20 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.WATER_BREATHING, 20 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.HASTE, 15 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.SATURATION, 8 * MINUTE, 127, 100 - 100),
+                        RandomPotionEffect(MobEffects.LUCK, 10 * MINUTE, 127, 100 - 100)))
+                .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), { GTLiteTextures.HALO }, true))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
         }

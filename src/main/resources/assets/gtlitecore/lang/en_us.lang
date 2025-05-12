@@ -1146,6 +1146,8 @@ metaitem.food.graham_cracker.tooltip=富含饱腹感
 
 metaitem.food.golden_strawberry.name=Golden Strawberry
 metaitem.food.golden_strawberry.tooltip=Better than Golden Apple
+metaitem.food.moon_berry.name=Moon Berry
+metaitem.food.moon_berry.tooltip=WOW!
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernel
@@ -3188,3 +3190,16 @@ gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Nova Explosion
 
 # Messages
 gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长
+
+# Enchantment Levels
+enchantment.level.0=I
+enchantment.level.7=VII
+enchantment.level.8=VIII
+enchantment.level.11=XI
+enchantment.level.12=XII
+enchantment.level.17=XVII
+enchantment.level.29=XXVIV
+enchantment.level.49=XLVIV
+enchantment.level.84=LXXXIV
+enchantment.level.128=CXXVIII
+enchantment.level.146=CXLVI
