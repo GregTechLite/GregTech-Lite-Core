@@ -4,6 +4,7 @@ import gregtech.api.util.RandomPotionEffect
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.MetaItems
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
+import magicbook.gtlitecore.common.worldgen.crops.WorldGenBerries
 import magicbook.gtlitecore.common.worldgen.crops.WorldGenCrops
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
@@ -76,6 +77,36 @@ class GTLiteBehaviors
 
             GTLiteMetaItems.COTTON_SEED.addComponents(CropSeedBehavior(WorldGenCrops.COTTON_CROP,
                 GTLiteMetaItems.COTTON_SEED, GTLiteMetaItems.COTTON))
+
+            GTLiteMetaItems.BLUEBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_BLUEBERRY,
+                GTLiteMetaItems.BLUEBERRY, GTLiteMetaItems.BLUEBERRY))
+
+            GTLiteMetaItems.BLACKBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_BLACKBERRY,
+                GTLiteMetaItems.BLACKBERRY, GTLiteMetaItems.BLACKBERRY))
+
+            GTLiteMetaItems.RASPBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_RASPBERRY,
+                GTLiteMetaItems.RASPBERRY, GTLiteMetaItems.RASPBERRY))
+
+            GTLiteMetaItems.STRAWBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_STRAWBERRY,
+                GTLiteMetaItems.STRAWBERRY, GTLiteMetaItems.STRAWBERRY))
+
+            GTLiteMetaItems.RED_CURRANT.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_RED_CURRANT,
+                GTLiteMetaItems.RED_CURRANT, GTLiteMetaItems.RED_CURRANT))
+
+            GTLiteMetaItems.BLACK_CURRANT.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_BLACK_CURRANT,
+                GTLiteMetaItems.BLACK_CURRANT, GTLiteMetaItems.BLACK_CURRANT))
+
+            GTLiteMetaItems.WHITE_CURRANT.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_WHITE_CURRANT,
+                GTLiteMetaItems.WHITE_CURRANT, GTLiteMetaItems.WHITE_CURRANT))
+
+            GTLiteMetaItems.LINGONBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_LINGONBERRY,
+                GTLiteMetaItems.LINGONBERRY, GTLiteMetaItems.LINGONBERRY))
+
+            GTLiteMetaItems.ELDERBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_ELDERBERRY,
+                GTLiteMetaItems.ELDERBERRY,  GTLiteMetaItems.ELDERBERRY))
+
+            GTLiteMetaItems.CRANBERRY.addComponents(BerryCropSeedBehavior(WorldGenBerries.BUSH_CRANBERRY,
+                GTLiteMetaItems.CRANBERRY, GTLiteMetaItems.CRANBERRY))
 
             // ---------------------------------------------------------------------------------------------------------
             MetaItems.BOTTLE_PURPLE_DRINK.addComponents(FoodBehavior(3, 0.2F, true, true,

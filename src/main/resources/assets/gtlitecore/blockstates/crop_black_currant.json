@@ -1,0 +1,34 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "textures": {
+      "particle": "#all"
+    }
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "model": "gtlitecore:small_berry_bush",
+        "textures": {
+          "all": "gtlitecore:blocks/crops/berries/ungrown"
+        }
+      },
+      "1": {
+        "model": "gtlitecore:large_berry_bush",
+        "textures": {
+          "all": "gtlitecore:blocks/crops/berries/ungrown"
+        }
+      },
+      "2": {
+        "model": "gtlitecore:large_berry_bush",
+        "textures": {
+          "all": "gtlitecore:blocks/crops/berries/black_currant_ripe"
+        }
+      }
+    },
+    "efficiency": {
+      "0": {}, "1": {}, "2": {}, "3": {}, "4": {}, "5": {}
+    }
+  }
+}

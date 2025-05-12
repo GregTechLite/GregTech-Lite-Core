@@ -55,6 +55,7 @@ import magicbook.gtlitecore.common.block.blocks.explosive.BlockLeptonicCharge
 import magicbook.gtlitecore.common.block.blocks.explosive.BlockNaquadriaCharge
 import magicbook.gtlitecore.common.block.blocks.explosive.BlockQuantumChromodynamicCharge
 import magicbook.gtlitecore.common.block.blocks.explosive.BlockTaraniumCharge
+import magicbook.gtlitecore.common.worldgen.crops.WorldGenBerries
 import magicbook.gtlitecore.common.worldgen.crops.WorldGenCrops
 import magicbook.gtlitecore.common.worldgen.trees.AbstractTree
 import magicbook.gtlitecore.common.worldgen.trees.WorldGenTrees
@@ -215,7 +216,7 @@ class GTLiteMetaBlocks
             }
             // Various Crops.
             WorldGenCrops.init()
-            // TODO Various Berries?
+            WorldGenBerries.init()
 
             // Setup blocks for AbstractTree components.
             AbstractTree.trees.forEach { it.setupBlocks() }

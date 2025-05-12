@@ -1087,25 +1087,35 @@ metaitem.crop.seed.rice.name=大米种子
 metaitem.crop.seed.white_grape.name=白葡萄种子
 metaitem.crop.seed.cotton.name=棉花种子
 
-metaitem.crop.coffee_cherry.name=咖啡叶
-metaitem.crop.tomato.name=番茄
-metaitem.crop.onion.name=洋葱
-metaitem.crop.cucumber.name=黄瓜
-metaitem.crop.grape.name=葡萄
-metaitem.crop.soybean.name=大豆
-metaitem.crop.bean.name=绿豆
-metaitem.crop.pea.name=豌豆
-metaitem.crop.oregano.name=牛至
-metaitem.crop.horseradish.name=山葵
-metaitem.crop.garlic_bulb.name=大蒜
-metaitem.crop.basil.name=罗勒叶
-metaitem.crop.aubergine.name=茄子
-metaitem.crop.corn.name=玉米
-metaitem.crop.artichoke.name=洋蓟
-metaitem.crop.black_pepper.name=黑胡椒
-metaitem.crop.rice.name=大米
-metaitem.crop.white_grape.name=白葡萄
-metaitem.crop.cotton.name=棉花
+metaitem.crop.coffee_cherry.name=Coffee Cherry
+metaitem.crop.tomato.name=Tomato
+metaitem.crop.onion.name=Onion
+metaitem.crop.cucumber.name=Cucumber
+metaitem.crop.grape.name=Grape
+metaitem.crop.soybean.name=Soybean
+metaitem.crop.bean.name=Bean
+metaitem.crop.pea.name=Pea
+metaitem.crop.oregano.name=Oregano
+metaitem.crop.horseradish.name=Horseradish
+metaitem.crop.garlic_bulb.name=Garlic Bulb
+metaitem.crop.basil.name=Basil
+metaitem.crop.aubergine.name=Aubergine
+metaitem.crop.corn.name=Corn
+metaitem.crop.artichoke.name=Artichoke
+metaitem.crop.black_pepper.name=Black Pepper
+metaitem.crop.rice.name=Rice
+metaitem.crop.white_grape.name=White Grape
+metaitem.crop.cotton.name=Cotton
+metaitem.crop.blueberry.name=Blueberry
+metaitem.crop.blackberry.name=Blackberry
+metaitem.crop.raspberry.name=Raspberry
+metaitem.crop.strawberry.name=Strawberry
+metaitem.crop.red_currant.name=Red Currant
+metaitem.crop.black_currant.name=Black Currant
+metaitem.crop.white_currant.name=White Currant
+metaitem.crop.lingonberry.name=Lingonberry
+metaitem.crop.elderberry.name=Elderberry
+metaitem.crop.cranberry.name=Cranberry
 
 metaitem.food.utensil.component.clay_bowl.name=Clay Bowl
 metaitem.food.utensil.ceramic_bowl.name=Ceramic Bowl
@@ -3145,6 +3155,11 @@ gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植�
 gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
 gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
 
+gtlitecore.tooltip.crop.berry_bush.1=§a这是一种浆果类作物的种子，它会以浆果丛的形式生长。
+gtlitecore.tooltip.crop.berry_bush.2=当附近只有一个浆果丛时，生长速度极其缓慢。
+gtlitecore.tooltip.crop.berry_bush.3=当附近8格内存在至少两丛与自身生长阶段相同的浆果丛时，生长速度会加速。
+gtlitecore.tooltip.crop.berry_bush.4=附近8格内至少需要一格空气，它也需要呼吸！
+
 gtlitecore.tooltip.quit_message=Are you sure you want to exit the game?
 gtlitecore.tooltip.modpack_name=GregTech Lite
 
@@ -3163,3 +3178,6 @@ gtlitecore.command.component.not_player=This command can only executed by player
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Nova Explosion
+
+# Messages
+gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长

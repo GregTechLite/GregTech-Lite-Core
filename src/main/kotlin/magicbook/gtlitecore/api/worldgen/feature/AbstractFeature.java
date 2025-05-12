@@ -2,7 +2,7 @@ package magicbook.gtlitecore.api.worldgen.feature;
 
 import magicbook.gtlitecore.api.utils.GTLiteLog;
 import magicbook.gtlitecore.api.utils.functions.TriConsumer;
-import magicbook.gtlitecore.api.worldgen.AbstractWorldGen;
+import magicbook.gtlitecore.api.worldgen.AbstractWorldGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -22,8 +22,8 @@ public abstract class AbstractFeature
     public final List<FeatureCondition> featureConditions = new ArrayList<>();
     public static final List<AbstractFeature> features = new ArrayList<>();
 
-    protected AbstractWorldGen FEATURE_GROW_INSTANCE;
-    protected AbstractWorldGen WORLD_GEN_INSTANCE;
+    protected AbstractWorldGenerator FEATURE_GROW_INSTANCE;
+    protected AbstractWorldGenerator WORLD_GEN_INSTANCE;
 
     private int totalChunksChecked;
     private int totalChunksPlaced;
@@ -72,7 +72,7 @@ public abstract class AbstractFeature
         }
     }
 
-    public AbstractWorldGen getWorldGenInstance()
+    public AbstractWorldGenerator getWorldGenInstance()
     {
         return this.WORLD_GEN_INSTANCE;
     }

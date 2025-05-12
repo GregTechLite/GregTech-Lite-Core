@@ -1106,6 +1106,16 @@ metaitem.crop.black_pepper.name=黑胡椒
 metaitem.crop.rice.name=大米
 metaitem.crop.white_grape.name=白葡萄
 metaitem.crop.cotton.name=棉花
+metaitem.crop.blueberry.name=蓝莓
+metaitem.crop.blackberry.name=黑莓
+metaitem.crop.raspberry.name=山莓
+metaitem.crop.strawberry.name=草莓
+metaitem.crop.red_currant.name=红醋栗
+metaitem.crop.black_currant.name=黑醋栗
+metaitem.crop.white_currant.name=白醋栗
+metaitem.crop.lingonberry.name=越橘
+metaitem.crop.elderberry.name=接骨木果
+metaitem.crop.cranberry.name=蔓越莓
 
 metaitem.food.utensil.component.clay_bowl.name=粘土碗
 metaitem.food.utensil.ceramic_bowl.name=瓷碗
@@ -3149,6 +3159,11 @@ gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植�
 gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
 gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
 
+gtlitecore.tooltip.crop.berry_bush.1=§a这是一种浆果类作物的种子，它会以浆果丛的形式生长。
+gtlitecore.tooltip.crop.berry_bush.2=当附近只有一个浆果丛时，生长速度极其缓慢。
+gtlitecore.tooltip.crop.berry_bush.3=当附近8格内存在至少两丛与自身生长阶段相同的浆果丛时，生长速度会加速。
+gtlitecore.tooltip.crop.berry_bush.4=附近8格内至少需要一格空气，它也需要呼吸！
+
 gtlitecore.tooltip.quit_message=你确定要退出游戏吗？
 gtlitecore.tooltip.modpack_name=格雷科技精简版
 
@@ -3167,3 +3182,6 @@ gtlitecore.command.component.not_player=这条命令只能由玩家使用。
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
+
+# Messages
+gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长

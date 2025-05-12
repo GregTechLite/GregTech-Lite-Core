@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public abstract class AbstractWorldGen extends WorldGenerator
+public abstract class AbstractWorldGenerator extends WorldGenerator
 {
 
     public final AbstractFeature feature;
 
-    protected AbstractWorldGen(boolean notify, AbstractFeature feature)
+    protected AbstractWorldGenerator(boolean notify, AbstractFeature feature)
     {
         super(notify);
         this.feature = feature;

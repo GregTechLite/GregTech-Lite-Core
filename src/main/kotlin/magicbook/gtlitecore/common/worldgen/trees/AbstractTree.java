@@ -3,7 +3,7 @@ package magicbook.gtlitecore.common.worldgen.trees;
 import lombok.Getter;
 import magicbook.gtlitecore.api.utils.GTLiteUtility;
 import magicbook.gtlitecore.api.utils.functions.TriConsumer;
-import magicbook.gtlitecore.api.worldgen.AbstractWorldGen;
+import magicbook.gtlitecore.api.worldgen.AbstractWorldGenerator;
 import magicbook.gtlitecore.api.worldgen.feature.AbstractFeature;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.GTLiteLeaveVariantBlock;
@@ -48,8 +48,8 @@ public abstract class AbstractTree extends AbstractFeature
         this.name = name;
         this.seed = seed;
 
-        FEATURE_GROW_INSTANCE = new WorldGenTree(true, this);
-        WORLD_GEN_INSTANCE = new WorldGenTree(false, this);
+        FEATURE_GROW_INSTANCE = new WorldGeneratorTree(true, this);
+        WORLD_GEN_INSTANCE = new WorldGeneratorTree(false, this);
 
         trees.add(this);
     }
@@ -206,7 +206,7 @@ public abstract class AbstractTree extends AbstractFeature
         return 0;
     }
 
-    public AbstractWorldGen getTreeGrowInstance()
+    public AbstractWorldGenerator getTreeGrowInstance()
     {
         return FEATURE_GROW_INSTANCE;
     }

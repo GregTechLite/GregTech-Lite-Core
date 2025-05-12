@@ -2989,7 +2989,7 @@ class GTLiteFirstDegreeMaterials
             // 2292 Hexagonal Silicon Nitride
             HexagonalSiliconNitride = Material.Builder(2292, gtliteId("hexagonal_silicon_nitride"))
                 .gem()
-                .color(0x8C7BB6).iconSet(GEM_VERTICAL)
+                .color(0x8C7BB6).iconSet(GEM_HORIZONTAL)
                 .components(Silicon, 3, Nitrogen, 4)
                 .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
                 .build()

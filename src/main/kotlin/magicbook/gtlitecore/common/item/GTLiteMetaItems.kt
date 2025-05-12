@@ -406,6 +406,16 @@ class GTLiteMetaItems
         lateinit var RICE: MetaItem<*>.MetaValueItem
         lateinit var WHITE_GRAPE: MetaItem<*>.MetaValueItem
         lateinit var COTTON: MetaItem<*>.MetaValueItem
+        lateinit var BLUEBERRY: MetaItem<*>.MetaValueItem
+        lateinit var BLACKBERRY: MetaItem<*>.MetaValueItem
+        lateinit var RASPBERRY: MetaItem<*>.MetaValueItem
+        lateinit var STRAWBERRY: MetaItem<*>.MetaValueItem
+        lateinit var RED_CURRANT: MetaItem<*>.MetaValueItem
+        lateinit var BLACK_CURRANT: MetaItem<*>.MetaValueItem
+        lateinit var WHITE_CURRANT: MetaItem<*>.MetaValueItem
+        lateinit var LINGONBERRY: MetaItem<*>.MetaValueItem
+        lateinit var ELDERBERRY: MetaItem<*>.MetaValueItem
+        lateinit var CRANBERRY: MetaItem<*>.MetaValueItem
 
         lateinit var CLAY_BOWL: MetaItem<*>.MetaValueItem
         lateinit var CERAMIC_BOWL: MetaItem<*>.MetaValueItem
@@ -1249,6 +1259,90 @@ class GTLiteMetaItems
 
             COTTON = GTLITE_ITEMS.addItem(9269, "crop.cotton")
                 .addOreDict("cropCotton")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            BLUEBERRY = GTLITE_ITEMS.addItem(9270, "crop.blueberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitBlueberry")
+                .addOreDict("cropBlueberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            BLACKBERRY = GTLITE_ITEMS.addItem(9271, "crop.blackberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitBlackberry")
+                .addOreDict("cropBlackberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            RASPBERRY = GTLITE_ITEMS.addItem(9272, "crop.raspberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitRaspberry")
+                .addOreDict("cropRaspberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            STRAWBERRY = GTLITE_ITEMS.addItem(9273, "crop.strawberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitStrawberry")
+                .addOreDict("cropStrawberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            RED_CURRANT = GTLITE_ITEMS.addItem(9274, "crop.red_currant")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitRedCurrant")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            BLACK_CURRANT = GTLITE_ITEMS.addItem(9275, "crop.black_currant")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitBlackCurrant")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            WHITE_CURRANT = GTLITE_ITEMS.addItem(9276, "crop.white_currant")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitWhiteCurrant")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            LINGONBERRY = GTLITE_ITEMS.addItem(9277, "crop.lingonberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitLingonberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            ELDERBERRY = GTLITE_ITEMS.addItem(9278, "crop.elderberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitElderberry")
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            CRANBERRY = GTLITE_ITEMS.addItem(9279, "crop.cranberry")
+                .addComponents(FoodBehavior(1, 0.5f))
+                .addOreDict("foodAny")
+                .addOreDict("fruitAny")
+                .addOreDict("fruitBerry")
+                .addOreDict("fruitCranberry")
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             // ...
