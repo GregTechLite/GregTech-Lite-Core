@@ -326,6 +326,7 @@ class GTLiteMaterials
         lateinit var CubicSiliconNitride: Material
         lateinit var CeriumCarbonate: Material
         lateinit var DielectricFormationMixture: Material
+        lateinit var ChloroauricAcid: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material

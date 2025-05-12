@@ -13,6 +13,7 @@ import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
 import magicbook.gtlitecore.api.utils.FormattingUtility
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -434,6 +435,8 @@ class GTLiteMetaItems
         lateinit var POLENTA: MetaItem<*>.MetaValueItem
 
         lateinit var GRAHAM_CRACKER: MetaItem<*>.MetaValueItem
+
+        lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1398,12 +1401,22 @@ class GTLiteMetaItems
                 })
                 .addComponents(FoodBehavior(6, 0.4F)
                     .setReturnStack(DIRTY_CERAMIC_BOWL)
-                    .setPotionEffects(RandomPotionEffect(MobEffects.SATURATION, 20, 0, 100 - 50)))
+                    .setPotionEffects(RandomPotionEffect(MobEffects.SATURATION, 1 * SECOND, 0, 100 - 50)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
             // 9551-9600: Noodles
             GRAHAM_CRACKER = GTLITE_ITEMS.addItem(9551, "food.graham_cracker")
                 .addComponents(FoodBehavior(2, 0.6F))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            // 9601-9650: Fruit Products
+            GOLDEN_STRAWBERRY = GTLITE_ITEMS.addItem(9601, "food.golden_strawberry")
+                .addComponents(FoodBehavior(8, 9.6F)
+                    .setEatingDuration(5 * SECOND)
+                    .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 3, 100 - 100),
+                        RandomPotionEffect(MobEffects.REGENERATION, 20 * SECOND, 10, 100 - 100),
+                        RandomPotionEffect(MobEffects.RESISTANCE, 2 * MINUTE + 30 * SECOND, 3, 100 - 100),
+                        RandomPotionEffect(MobEffects.ABSORPTION, 1 * MINUTE, 6, 100 - 100)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
         }

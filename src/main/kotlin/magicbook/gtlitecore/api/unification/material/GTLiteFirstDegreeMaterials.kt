@@ -246,6 +246,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Celestine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChlorinatedSolvents
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroauricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Clinochlore
@@ -3020,6 +3021,14 @@ class GTLiteFirstDegreeMaterials
                 .components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
                 .flags(DISABLE_DECOMPOSITION) // Add centrifuging decomposition by OpticalCircuits.
                 .build()
+
+            // 2296 Chloroauric Acid
+            ChloroauricAcid = Material.Builder(2296, gtliteId("chloroauric_acid"))
+                .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+                .color(0xD1B62C)
+                .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
+                .build()
+
         }
 
     }

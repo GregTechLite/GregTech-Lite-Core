@@ -1141,6 +1141,12 @@ metaitem.food.polenta.name=Polenta
 metaitem.food.polenta.tooltip.1=Commonly found in Italian cuisine and called it by Polenta.
 metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East Africa.
 
+metaitem.food.graham_cracker.name=Graham Cracker
+metaitem.food.graham_cracker.tooltip=富含饱腹感
+
+metaitem.food.golden_strawberry.name=Golden Strawberry
+metaitem.food.golden_strawberry.tooltip=Better than Golden Apple
+
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernel
 metaitem.corn_cob_gem_flawed.name=Corn Cob
@@ -2733,6 +2739,7 @@ gtlitecore.material.hexagonal_silicon_nitride=Hexagonal Silicon Nitride
 gtlitecore.material.cubic_silicon_nitride=Cubic Silicon Nitride
 gtlitecore.material.cerium_carbonate=Cerium Carbonate
 gtlitecore.material.dielectric_formation_mixture=Dielectric Formation Mixture
+gtlitecore.material.chloroauric_acid=Chloroauric Acid
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
