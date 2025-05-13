@@ -219,6 +219,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTita
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthChalcogenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
@@ -232,6 +233,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BoronTriox
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bytownite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCeriumCobaltIndium
@@ -366,11 +368,15 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumN
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PerrhenicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pertechnetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Picotite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlatinumGroupConcentrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlatinumGroupResidue
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlutoniumPhosphide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlutoniumTrihydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumBromate
@@ -1253,7 +1259,8 @@ class GTLiteFirstDegreeMaterials
                 .color(0x505444).iconSet(BRIGHT)
                 .components(ZBLANGlass, 1, Erbium, 1)
                 .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
-                .build().setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true)
+                .build()
+                .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true)
 
             // 2089 Pr-doped ZBLAN Glass
             PraseodymiumDopedZBLANGlass = Material.Builder(2089, gtliteId("praseodymium_doped_zblan_glass"))
@@ -2219,7 +2226,7 @@ class GTLiteFirstDegreeMaterials
                 .fluid()
                 .colorAverage().iconSet(MAGNETIC)
                 .components(Lutetium, 1, Manganese, 3, Germanium, 6)
-                .flags(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING)
+                .flags(EXT_METAL, GENERATE_LONG_ROD, GENERATE_RING)
                 .blast { b ->
                     b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
                         .blastStats(VA[LuV], 1 * MINUTE)
@@ -2350,7 +2357,7 @@ class GTLiteFirstDegreeMaterials
                 .ingot()
                 .color(0x8F103E).iconSet(MAGNETIC)
                 .components(ChromiumGermaniumTelluride, 1)
-                .flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC)
+                .flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC, GENERATE_SPRING_SMALL)
                 .ingotSmeltInto(ChromiumGermaniumTelluride)
                 .arcSmeltInto(ChromiumGermaniumTelluride)
                 .macerateInto(ChromiumGermaniumTelluride)
@@ -3027,6 +3034,48 @@ class GTLiteFirstDegreeMaterials
                 .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
                 .color(0xD1B62C)
                 .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
+                .build()
+
+            // 2297 Cadmium Sulfide
+            CadmiumSulfide = Material.Builder(2297, gtliteId("cadmium_sulfide"))
+                .dust()
+                .color(0xC8C43C).iconSet(METALLIC)
+                .components(Cadmium, 1, Sulfur, 1)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING, GENERATE_PLATE)
+                .build()
+
+            // 2298 Bismuth Chalcogenide
+            BismuthChalcogenide = Material.Builder(2298, gtliteId("bismuth_chalcogenide"))
+                .ingot()
+                .color(0x91994D).iconSet(SHINY)
+                .components(Bismuth, 1, Antimony, 1, Tellurium, 2, Sulfur, 1)
+                .flags(STD_METAL, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_FOIL)
+                .build()
+
+            // 2299 Plutonium Trihydride
+            PlutoniumTrihydride = Material.Builder(2299, gtliteId("plutonium_trihydride"))
+                .dust()
+                .color(0x140002).iconSet(SHINY)
+                .components(Plutonium244, 1, Hydrogen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("PuH3", true)
+
+            // 2300 Plutonium Phosphide
+            PlutoniumPhosphide = Material.Builder(2300, gtliteId("plutonium_phosphide"))
+                .ingot()
+                .color(0x1F0104).iconSet(MAGNETIC)
+                .components(Plutonium244, 1, Phosphorus, 1)
+                .flags(STD_METAL)
+                .build()
+                .setFormula("PuP", true)
+
+            // 2301 Phosphine
+            Phosphine = Material.Builder(2301, gtliteId("phosphine"))
+                .gas()
+                .color(0xACB330)
+                .components(Phosphorus, 1, Hydrogen, 3)
+                .flags(DECOMPOSITION_BY_ELECTROLYZING, FLAMMABLE)
                 .build()
 
         }

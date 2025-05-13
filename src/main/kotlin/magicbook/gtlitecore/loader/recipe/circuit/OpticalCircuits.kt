@@ -491,29 +491,6 @@ class OpticalCircuits
                 .duration(30 * SECOND)
                 .temperature(900)
                 .buildAndRegister()
-
-            // PRAM
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .input(ADVANCED_RAM_CHIP)
-                .input(plate, GSTGlass, 2)
-                .input(foil, Einsteinium, 8)
-                .output(PHASE_CHANGE_RAM_CHIP, 4)
-                .EUt(VA[UHV].toLong())
-                .duration(10 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
-                .buildAndRegister()
-
-            // ACNOR
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .input(NOR_MEMORY_CHIP)
-                .input(foil, LithiumNiobate, 4)
-                .input(wireFine, WoodsGlass, 4)
-                .output(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
-                .EUt(VA[UHV].toLong())
-                .duration(10 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
-                .buildAndRegister()
-
         }
 
         private fun circuitComponentsRecipes()
@@ -568,6 +545,28 @@ class OpticalCircuits
                 .output(OPTICAL_LASER_CONTROL_UNIT)
                 .EUt(VA[UHV].toLong())
                 .duration(30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // PRAM
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .input(ADVANCED_RAM_CHIP)
+                .input(plate, GSTGlass, 2)
+                .input(foil, Einsteinium, 8)
+                .output(PHASE_CHANGE_RAM_CHIP, 4)
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // ACNOR
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .input(NOR_MEMORY_CHIP)
+                .input(foil, LithiumNiobate, 4)
+                .input(wireFine, WoodsGlass, 4)
+                .output(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
+                .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
         }

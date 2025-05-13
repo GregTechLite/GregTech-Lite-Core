@@ -327,6 +327,10 @@ class GTLiteMaterials
         lateinit var CeriumCarbonate: Material
         lateinit var DielectricFormationMixture: Material
         lateinit var ChloroauricAcid: Material
+        lateinit var CadmiumSulfide: Material
+        lateinit var BismuthChalcogenide: Material
+        lateinit var PlutoniumTrihydride: Material
+        lateinit var PlutoniumPhosphide: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -588,6 +592,8 @@ class GTLiteMaterials
         lateinit var FullerenePolymerMatrix: Material
         lateinit var Phosphorene: Material
         lateinit var Methyltrichlorosilane: Material
+        lateinit var DiethylSulfide: Material
+        lateinit var Phosphine: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

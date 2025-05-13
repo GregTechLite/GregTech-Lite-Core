@@ -5,21 +5,26 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.store.FluidStorageKeys
+import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.Butane
 import gregtech.api.unification.material.Materials.Butene
 import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.DilutedSulfuricAcid
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Ethane
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
+import gregtech.api.unification.material.Materials.HydrogenSulfide
 import gregtech.api.unification.material.Materials.HypochlorousAcid
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Magnesium
@@ -39,6 +44,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanediol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSulfide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylcadmium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthyleneDibromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardReagent
@@ -62,6 +69,7 @@ class QuantumDotsChain
             grignardReagentProcess()
             dimethylcadmiumProcess()
             cadmiumSelenideProcess()
+            cadmiumSulfideProcess()
         }
 
         private fun grignardReagentProcess()
@@ -192,6 +200,39 @@ class QuantumDotsChain
                 .EUt(VA[IV].toLong())
                 .duration(4 * SECOND)
                 .temperature(665)
+                .buildAndRegister()
+        }
+
+        private fun cadmiumSulfideProcess()
+        {
+            // 2C2H4 + H2S -> C4H10S
+            MIXER_RECIPES.recipeBuilder()
+                .fluidInputs(Ethylene.getFluid(2000))
+                .fluidInputs(HydrogenSulfide.getFluid(1000))
+                .fluidOutputs(DiethylSulfide.getFluid(1000))
+                .EUt(VA[LV].toLong())
+                .duration(7 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // C4H10S decomposition.
+            CENTRIFUGE_RECIPES.recipeBuilder()
+                .fluidInputs(DiethylSulfide.getFluid(1000))
+                .fluidOutputs(Ethylene.getFluid(2000))
+                .fluidOutputs(HydrogenSulfide.getFluid(1000))
+                .EUt(VA[LV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Cd(CH3)2 + C4H10S -> CdS + C2H6 + C4H10
+            CVD_RECIPES.recipeBuilder()
+                .fluidInputs(Dimethylcadmium.getFluid(1000))
+                .fluidInputs(DiethylSulfide.getFluid(1000))
+                .output(dust, CadmiumSulfide, 2)
+                .fluidOutputs(Ethane.getFluid(1000))
+                .fluidOutputs(Butane.getFluid(1000))
+                .EUt(VA[UV].toLong())
+                .duration(4 * SECOND)
+                .temperature(742)
                 .buildAndRegister()
         }
 

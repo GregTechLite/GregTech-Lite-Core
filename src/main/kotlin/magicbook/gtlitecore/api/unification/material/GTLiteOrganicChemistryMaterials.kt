@@ -16,6 +16,8 @@ import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Dimethylamine
 import gregtech.api.unification.material.Materials.Dimethylhydrazine
+import gregtech.api.unification.material.Materials.EXT_METAL
+import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
@@ -37,12 +39,16 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
@@ -103,6 +109,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dichloroet
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dichloromethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dicyclopentadiene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylEther
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiethylhexylPhosphoricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Difluorobenzophenone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diiodobiphenyl
@@ -1597,11 +1604,12 @@ class GTLiteOrganicChemistryMaterials
 
             // 8169 Carbon Nanotube
             CarbonNanotube = Material.Builder(8169, gtliteId("carbon_nanotube"))
-                .polymer()
+                .ingot()
                 .liquid()
                 .color(0x05090C).iconSet(BRIGHT)
                 .components(Carbon, 48)
-                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                    GENERATE_LONG_ROD, GENERATE_SPRING)
                 .cableProperties(V[UIV], 8, 6)
                 .build()
 
@@ -1702,7 +1710,7 @@ class GTLiteOrganicChemistryMaterials
                 .liquid(FluidBuilder().temperature(500))
                 .color(0x2F0B01).iconSet(SHINY)
                 .components(Carbon, 153, Hydrogen, 36, Nitrogen, 1, Oxygen, 2, Lead, 1, Iron, 1)
-                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+                .flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .build()
                 .setFormula("(C153H36NO2)PdFe", true)
 
@@ -1721,6 +1729,15 @@ class GTLiteOrganicChemistryMaterials
                 .components(Carbon, 1, Hydrogen, 3, Chlorine, 3, Silicon, 1)
                 .build()
                 .setFormula("Si(CH3)Cl3", true)
+
+            // 8184 Diethyl Sulfide
+            DiethylSulfide = Material.Builder(8184, gtliteId("diethyl_sulfide"))
+                .liquid()
+                .color(0xFF7E4B)
+                .components(Ethylene, 2, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C2H5)2S", true)
 
         }
 

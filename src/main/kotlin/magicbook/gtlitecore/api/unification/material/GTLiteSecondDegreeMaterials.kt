@@ -819,9 +819,9 @@ class GTLiteSecondDegreeMaterials
             SeaborgiumCarbide = Material.Builder(4042, gtliteId("seaborgium_carbide"))
                 .ingot()
                 .fluid()
-                .colorAverage().iconSet(METALLIC)
+                .color(0x4059EA).iconSet(METALLIC)
                 .components(Seaborgium, 1, Carbon, 1)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(8500, BlastProperty.GasTier.HIGH) // Trinium
                         .blastStats(VA[ZPM], 45 * SECOND)

@@ -24,6 +24,7 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.gem
@@ -35,6 +36,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BluePhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
@@ -59,6 +61,7 @@ class PhosphorusChain
             phosphoryChlorideProcess()
             triphenylphosphineProcess()
             phosphoreneProcess()
+            phosphineProcess()
         }
 
         private fun phosphorusProcess()
@@ -212,6 +215,18 @@ class PhosphorusChain
                 .output(foil, Phosphorene, 4)
                 .fluidOutputs(NMethylPyrrolidone.getFluid(100))
                 .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+        }
+
+        private fun phosphineProcess()
+        {
+            // P4 + 6H2O -> 4PH3 + 6O (lost)
+            CHEMICAL_RECIPES.recipeBuilder()
+                .input(dust, WhitePhosphorus)
+                .fluidInputs(Water.getFluid(6000))
+                .fluidOutputs(Phosphine.getFluid(4000))
+                .EUt(VA[HV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
         }

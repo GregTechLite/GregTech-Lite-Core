@@ -214,6 +214,10 @@ class GTLiteMetaItems
         lateinit var OPTICAL_FIBER: MetaItem<*>.MetaValueItem
         lateinit var OPTICAL_IMC_UNIT: MetaItem<*>.MetaValueItem
         lateinit var OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var ESR_COMPUTATION_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var TOPOLOGICAL_INSULATOR_TUBE: MetaItem<*>.MetaValueItem
+        lateinit var CONDENSATE_CONTAINMENT_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var BOSE_EINSTEIN_CONDENSATE: MetaItem<*>.MetaValueItem
 
         lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
 
@@ -241,6 +245,8 @@ class GTLiteMetaItems
         lateinit var BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE: MetaItem<*>.MetaValueItem
         lateinit var BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER: MetaItem<*>.MetaValueItem
         lateinit var PERIODICALLY_POLED_OPTICAL_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var SPIN_TRANSFER_TORQUE_RAM_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -853,6 +859,10 @@ class GTLiteMetaItems
             OPTICAL_FIBER = GTLITE_ITEMS.addItem(1127, "circuit.component.optical_fiber")
             OPTICAL_IMC_UNIT = GTLITE_ITEMS.addItem(1128, "circuit.component.optical_imc_chip")
             OPTOELECTRONIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(1129, "circuit.component.optoelectronic_system_on_chip")
+            ESR_COMPUTATION_UNIT = GTLITE_ITEMS.addItem(1130, "circuit.component.esr_computation_unit")
+            TOPOLOGICAL_INSULATOR_TUBE = GTLITE_ITEMS.addItem(1131, "circuit.component.topological_insulator_tube")
+            CONDENSATE_CONTAINMENT_UNIT = GTLITE_ITEMS.addItem(1132, "circuit.component.condensate_containment_unit")
+            BOSE_EINSTEIN_CONDENSATE = GTLITE_ITEMS.addItem(1133, "circuit.component.bose_einstein_condensate")
 
             // 2001-2500: Boules and Wafers.
             HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
@@ -881,6 +891,8 @@ class GTLiteMetaItems
             BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE = GTLITE_ITEMS.addItem(2407, "boule.cerium_carbonate.bohrium")
             BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER = GTLITE_ITEMS.addItem(2408, "wafer.cerium_carbonate.bohrium")
             PERIODICALLY_POLED_OPTICAL_CHIP = GTLITE_ITEMS.addItem(2409, "wafer.chip.periodically_poled_optical_chip")
+            SPIN_TRANSFER_TORQUE_RAM_CHIP = GTLITE_ITEMS.addItem(2410, "wafer.chip.spin_transfer_torque_ram")
+            MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP = GTLITE_ITEMS.addItem(2411, "wafer.chip.magnetic_domain_wall_inversion_nand")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")

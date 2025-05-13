@@ -3,7 +3,6 @@ package magicbook.gtlitecore.loader.recipe.chain
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.DissolvedCalciumAcetate
@@ -72,7 +71,6 @@ class LuTmYVOChain
                 .EUt(VA[ZPM].toLong())
                 .duration(6 * SECOND)
                 .temperature(1440)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Lu/Tm:YVO? + C2H6O -> Lu/Tm:YVO + (NH4)2CO3 + C3H6
