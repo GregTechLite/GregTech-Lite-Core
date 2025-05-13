@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
+import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CertusQuartz
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
@@ -33,6 +34,7 @@ import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
+import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
@@ -134,6 +136,7 @@ import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlag
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
@@ -203,6 +206,9 @@ class GTLiteMaterialFlags
         @ApiStatus.Internal
         fun setMaterialFlags()
         {
+            // block
+            Carbon.addFlags(FORCE_GENERATE_BLOCK)
+
             // bolt & screw
             Polytetrafluoroethylene.addFlags(GENERATE_BOLT_SCREW)
             Polybenzimidazole.addFlags(GENERATE_BOLT_SCREW)
@@ -336,6 +342,7 @@ class GTLiteMaterialFlags
             Zircon.addFlags(GENERATE_LENS)
 
             // nanite
+            Carbon.addFlags(GENERATE_NANITE)
             Silver.addFlags(GENERATE_NANITE)
             Gold.addFlags(GENERATE_NANITE)
 

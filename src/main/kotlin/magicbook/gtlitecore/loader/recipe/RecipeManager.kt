@@ -46,6 +46,7 @@ import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
 import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.MutatedLivingSolderChain
+import magicbook.gtlitecore.loader.recipe.chain.NanitesChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
 import magicbook.gtlitecore.loader.recipe.chain.OctaazacubaneChain
@@ -255,6 +256,7 @@ class RecipeManager
             ShirabonChain.init()
             FullerenePolymerMatrixChain.init()
             LuTmYVOChain.init()
+            NanitesChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

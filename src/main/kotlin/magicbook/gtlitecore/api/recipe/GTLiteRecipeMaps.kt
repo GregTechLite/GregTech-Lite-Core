@@ -20,6 +20,7 @@ import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MinimumHeightRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
@@ -854,6 +855,21 @@ class GTLiteRecipeMaps
             .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, true)
             .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER)
             .sound(GTSoundEvents.ASSEMBLER)
+            .build()
+
+        /**
+         * @zenProp nano_forge
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("NANO_FORGE_RECIPES")
+        val NANO_FORGE_RECIPES = RecipeMapBuilder("nano_forge", NanoForgeRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(1)
+            .fluidInputs(3)
+            .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
+            .itemSlotOverlay(GuiTextures.CENTRIFUGE_OVERLAY, true)
+            .sound(GTSoundEvents.FURNACE)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

@@ -1224,6 +1224,7 @@ recipemap.cosmic_ray_detector.name=宇宙射线探测器
 recipemap.stellar_forge.name=恒星炎炀锻炉
 recipemap.bio_simulator.name=生物模拟室
 recipemap.pcb_factory.name=PCB工厂
+recipemap.nano_forge.name=纳米锻炉
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1250,6 +1251,8 @@ gtlitecore.recipe.height=最低高度：%s
 
 gtlitecore.recipe.pcb_factory_tier=结构等级：
 gtlitecore.recipe.required_bio_upgrade=需要生物仓升级
+
+gtlitecore.recipe.nano_forge_tier=结构等级：
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机

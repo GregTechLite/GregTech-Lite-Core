@@ -1227,6 +1227,7 @@ recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 recipemap.stellar_forge.name=Stellar Forge
 recipemap.bio_simulator.name=Bio Simulator
 recipemap.pcb_factory.name=PCB Factory
+recipemap.nano_forge.name=Nano Forge
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -1253,6 +1254,8 @@ gtlitecore.recipe.height=Minimum Height: %s
 
 gtlitecore.recipe.pcb_factory_tier=Structure Tier:
 gtlitecore.recipe.required_bio_upgrade=Required Bio Chamber Upgrade
+
+gtlitecore.recipe.nano_forge_tier=Structure Tier:
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher

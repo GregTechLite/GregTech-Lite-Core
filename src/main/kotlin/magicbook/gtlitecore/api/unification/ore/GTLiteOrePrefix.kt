@@ -119,7 +119,7 @@ class GTLiteOrePrefix
         @JvmField
         val nanite: OrePrefix = OrePrefix("nanite", -1, null,
             GTLiteMaterialIconType.nanite, OrePrefix.Flags.ENABLE_UNIFICATION,
-            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_NANITE) })
+            OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_NANITE) })
 
         fun setOrePrefixInfos()
         {
