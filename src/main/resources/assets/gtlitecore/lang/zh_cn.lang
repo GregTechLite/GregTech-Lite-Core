@@ -945,7 +945,6 @@ metaitem.wafer.chip.spin_transfer_torque_ram.tooltip=自旋转移力矩存储器
 metaitem.wafer.chip.magnetic_domain_wall_inversion_nand.name=磁畴壁反相逻辑与非门（MINAND）晶片
 metaitem.wafer.chip.magnetic_domain_wall_inversion_nand.tooltip=磁畴壁反相逻辑与非门
 
-
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板
 metaitem.wrap.board.plastic.name=封装塑料电路基板
@@ -1224,6 +1223,7 @@ recipemap.component_assembly_line.name=部件装配线
 recipemap.cosmic_ray_detector.name=宇宙射线探测器
 recipemap.stellar_forge.name=恒星炎炀锻炉
 recipemap.bio_simulator.name=生物模拟室
+recipemap.pcb_factory.name=PCB工厂
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1247,6 +1247,9 @@ gtlitecore.recipe.advanced_fusion_tier=等级：
 gtlitecore.recipe.component_assembly_line_tier=部件装配外壳等级：%s
 
 gtlitecore.recipe.height=最低高度：%s
+
+gtlitecore.recipe.pcb_factory_tier=结构等级：
+gtlitecore.recipe.required_bio_upgrade=需要生物仓升级
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -2425,6 +2428,7 @@ item.material.oreprefix.fuelRodQuadruple=四联%s燃料棒
 item.material.oreprefix.fuelRodDepletedSingle=枯竭%s燃料棒
 item.material.oreprefix.fuelRodDepletedDouble=双联枯竭%s燃料棒
 item.material.oreprefix.fuelRodDepletedQuadruple=四联枯竭%s燃料棒
+item.material.oreprefix.nanite=%s纳米蜂群
 
 # Materials
 gtlitecore.material.adamantium=精金

@@ -116,6 +116,11 @@ class GTLiteOrePrefix
             GTLiteMaterialIconType.fuelRodQuadruple, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
+        @JvmField
+        val nanite: OrePrefix = OrePrefix("nanite", -1, null,
+            GTLiteMaterialIconType.nanite, OrePrefix.Flags.ENABLE_UNIFICATION,
+            OrePrefix.Conditions.hasIngotProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_NANITE) })
+
         fun setOrePrefixInfos()
         {
             // Stack sizes.
@@ -209,6 +214,7 @@ class GTLiteOrePrefix
             MetaItems.addOrePrefix(fuelRodDepletedSingle)
             MetaItems.addOrePrefix(fuelRodDepletedDouble)
             MetaItems.addOrePrefix(fuelRodDepletedQuadruple)
+            MetaItems.addOrePrefix(nanite)
         }
 
     }

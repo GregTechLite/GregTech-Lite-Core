@@ -21,6 +21,7 @@ import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilde
 import magicbook.gtlitecore.api.recipe.builder.MinimumHeightRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.MobProximityRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -837,6 +838,22 @@ class GTLiteRecipeMaps
             .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
             .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SWORD)
             .sound(GTSoundEvents.ELECTROLYZER)
+            .build()
+
+        /**
+         * @zenProp pcb_factory
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("PCB_FACTORY_RECIPES")
+        val PCB_FACTORY_RECIPES = RecipeMapBuilder("pcb_factory", PCBFactoryRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(9)
+            .fluidInputs(3)
+            .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
+            .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER)
+            .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

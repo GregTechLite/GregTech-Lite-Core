@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.api.pattern
 
 import gregtech.api.GTValues
+import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
@@ -10,7 +11,10 @@ import gregtech.api.pattern.TraceabilityPredicate
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier
 import magicbook.gtlitecore.api.pattern.predicate.TierTraceabilityPredicate
+import magicbook.gtlitecore.api.utils.StructureUtility.Companion.getCandidates
 import net.minecraft.block.state.IBlockState
+import net.minecraft.util.math.BlockPos
+import java.util.LinkedList
 import java.util.function.Supplier
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -150,7 +154,6 @@ class GTLiteTraceabilityPredicate
          * in distillation tower multiblock predicates.
          *
          * @author Magic_Sweepy
-         * @since 1.0.0
          *
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.createStructurePattern
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.states
@@ -203,7 +206,6 @@ class GTLiteTraceabilityPredicate
          * in distillation tower multiblock predicates.
          *
          * @author Magic_Sweepy
-         * @since 1.0.0
          *
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.createStructurePattern
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.states
@@ -225,6 +227,13 @@ class GTLiteTraceabilityPredicate
             }
         }
 
+        /**
+         * Energy output hatches predicate with [voltageTier] restrict.
+         *
+         * @param voltageTier Maximum voltage tier of the energy output hatches allowed.
+         *
+         * @author Magic_Sweepy
+         */
         @JvmStatic
         fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate
         {
@@ -238,6 +247,26 @@ class GTLiteTraceabilityPredicate
                 .addTooltip("gregtech.multiblock.pattern.error.limited.1", GTValues.VN[GTValues.LV])
                 .addTooltip("gregtech.multiblock.pattern.error.limited.0", GTValues.VN[voltageTier])
         }
+
+        /**
+         * Optional predicate of [MultiblockControllerBase.states], allowed to check states with
+         * two blocks: one block and air.
+         *
+         * @param symbol        Symbol to get a `BlockInfo` in `formStructure()`.
+         * @param allowedStates Allowed state of states checking.
+         * @return              The `blockMatcher` param in `FactoryBlockPattern`.
+         *
+         * @author Gate Guardian
+         */
+        @JvmStatic
+        fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate { blockWorldState ->
+            val state: IBlockState = blockWorldState.blockState
+            if (state.block is VariantActiveBlock<*>)
+                blockWorldState.matchContext.getOrPut("VABlock") { LinkedList<BlockPos>().add(blockWorldState.pos) }
+            if (allowedStates.contains(state))
+                return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
+            return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
+        }.also { getCandidates(*allowedStates) }
 
     }
 

@@ -33,6 +33,7 @@ import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
+import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.GreenSapphire
@@ -102,6 +103,7 @@ import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
@@ -190,6 +192,12 @@ class GTLiteMaterialFlags
         @JvmField
         val GENERATE_FUEL_ROD: MaterialFlag = MaterialFlag.Builder("generate_fuel_rod")
             .requireProps(PropertyKey.DUST)
+            .build()
+
+        // Used to generate nanites.
+        @JvmField
+        val GENERATE_NANITE: MaterialFlag = MaterialFlag.Builder("generate_nanite")
+            .requireProps(PropertyKey.INGOT)
             .build()
 
         @ApiStatus.Internal
@@ -326,6 +334,10 @@ class GTLiteMaterialFlags
             GarnetYellow.addFlags(GENERATE_LENS)
             Monazite.addFlags(GENERATE_LENS)
             Zircon.addFlags(GENERATE_LENS)
+
+            // nanite
+            Silver.addFlags(GENERATE_NANITE)
+            Gold.addFlags(GENERATE_NANITE)
 
             // plate
             Clay.addFlags(GENERATE_PLATE)

@@ -1226,6 +1226,7 @@ recipemap.component_assembly_line.name=Component Assembly Line
 recipemap.cosmic_ray_detector.name=Cosmic Ray Detector
 recipemap.stellar_forge.name=Stellar Forge
 recipemap.bio_simulator.name=Bio Simulator
+recipemap.pcb_factory.name=PCB Factory
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -1249,6 +1250,9 @@ gtlitecore.recipe.advanced_fusion_tier=Level:
 gtlitecore.recipe.component_assembly_line_tier=Component Assembly Casing Tier: %s
 
 gtlitecore.recipe.height=Minimum Height: %s
+
+gtlitecore.recipe.pcb_factory_tier=Structure Tier:
+gtlitecore.recipe.required_bio_upgrade=Required Bio Chamber Upgrade
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher
@@ -2427,6 +2431,7 @@ item.material.oreprefix.fuelRodQuadruple=Quadruple %s Fuel Rod
 item.material.oreprefix.fuelRodDepletedSingle=Depleted %s Fuel Rod
 item.material.oreprefix.fuelRodDepletedDouble=Double Depleted %s Fuel Rod
 item.material.oreprefix.fuelRodDepletedQuadruple=Quadruple Depleted %s Fuel Rod
+item.material.oreprefix.nanite=%s Nanite
 
 # Materials
 gtlitecore.material.adamantium=Adamantium

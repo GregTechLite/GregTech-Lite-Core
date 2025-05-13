@@ -13,6 +13,7 @@ class RecipePropertyStorages
             ComponentAssemblyLineTieredPropertyStorage.loadProperties()
             CircuitPatternPropertyStorage.loadProperties()
             FusionEUToStartPropertyStorage.loadProperties()
+            PCBFactoryTieredPropertyStorage.loadProperties()
         }
 
     }

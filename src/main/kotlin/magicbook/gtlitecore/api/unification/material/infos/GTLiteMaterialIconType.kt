@@ -42,6 +42,9 @@ class GTLiteMaterialIconType
         @JvmField
         val fuelRodDepletedQuadruple = MaterialIconType("fuelRodDepletedQuadruple")
 
+        @JvmField
+        val nanite = MaterialIconType("nanite")
+
     }
 
 }
