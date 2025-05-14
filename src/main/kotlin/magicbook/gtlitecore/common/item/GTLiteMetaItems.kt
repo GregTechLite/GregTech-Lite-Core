@@ -364,6 +364,8 @@ class GTLiteMetaItems
         lateinit var CARBON_ALLOTROPE_MIXTURE: MetaItem<*>.MetaValueItem
         lateinit var GRAPHENE_ALIGNED_CNT: MetaItem<*>.MetaValueItem
         lateinit var QUANTUM_ANOMALY: MetaItem<*>.MetaValueItem
+        lateinit var RAW_TESSERACT: MetaItem<*>.MetaValueItem
+        lateinit var ENERGISED_TESSERACT: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -1039,6 +1041,8 @@ class GTLiteMetaItems
                 })
 
             QUANTUM_ANOMALY = GTLITE_ITEMS.addItem(5009, "material.particle.quantum_anomaly")
+            RAW_TESSERACT = GTLITE_ITEMS.addItem(5010, "material.particle.raw_tesseract")
+            ENERGISED_TESSERACT = GTLITE_ITEMS.addItem(5011, "material.particle.energised_tesseract")
 
             // 9001-10000: Miscellaneous Foods.
 

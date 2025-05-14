@@ -5,6 +5,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -49,6 +50,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium2
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Fs
@@ -59,6 +61,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Sh
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.SpNt
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tsx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
@@ -303,6 +306,22 @@ class GTLiteElementMaterials
                     GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                     GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
                 .rotorStats(144.0F, 2.4F, 786432)
+                .build()
+
+            // 15 Transcendent Metal
+            TranscendentMetal = Material.Builder(15, gtliteId("transcendent_metal"))
+                .ingot()
+                .liquid()
+                .color(0x1A1A1A).iconSet(METALLIC) // TODO Rotated animations.
+                .element(Tsx)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR,
+                    GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
+                .blast { b ->
+                    b.temp(16101, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                        .blastStats(VA[UXV], 3 * MINUTE)
+                        .vacuumStats(VA[UIV], 2 * MINUTE)
+                }
                 .build()
 
         }

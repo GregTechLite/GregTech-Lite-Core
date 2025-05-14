@@ -73,6 +73,7 @@ import magicbook.gtlitecore.loader.recipe.chain.ShirabonChain
 import magicbook.gtlitecore.loader.recipe.chain.SilicaGelChain
 import magicbook.gtlitecore.loader.recipe.chain.SiliconNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
+import magicbook.gtlitecore.loader.recipe.chain.TesseractsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
 import magicbook.gtlitecore.loader.recipe.chain.ZylonChain
@@ -265,6 +266,7 @@ class RecipeManager
             SiliconNitrideChain.init()
             NanitesChain.init()
             AntimatterChain.init()
+            TesseractsChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

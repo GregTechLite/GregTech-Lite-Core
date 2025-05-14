@@ -46,6 +46,7 @@ import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
@@ -76,6 +77,7 @@ import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Promethium
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.Roentgenium
@@ -86,6 +88,7 @@ import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
@@ -126,6 +129,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
@@ -279,7 +283,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0xB4B414).iconSet(SHINY)
                 .components(Chrome, 13, Nickel, 3, Molybdenum, 2, Copper, 10, Tungsten, 2, Steel, 20)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(5400, BlastProperty.GasTier.HIGH) // HSS-G
                         .blastStats(VA[IV], 48 * SECOND)
@@ -412,7 +416,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x37BF7E).iconSet(SHINY)
                 .components(VanadiumSteel, 4, Niobium, 2, Chrome, 3, Nickel, 4)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(4800, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
                         .blastStats(VA[IV], 34 * SECOND)
@@ -910,6 +914,21 @@ class GTLiteSecondDegreeMaterials
                 .toolStats(MaterialToolProperty.Builder.of(12.0F, 7.0F, 2304, 3)
                     .enchantability(16).build())
                 .itemPipeProperties(288, 3F)
+                .build()
+
+            // 4048 Abyssalloy
+            Abyssalloy = Material.Builder(4048, gtliteId("abyssalloy"))
+                .ingot()
+                .fluid()
+                .color(0x9E706A).iconSet(METALLIC)
+                .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, Bronze, 5,
+                    IncoloyMA956, 5, Iodine, 1, Germanium, 1, Radon, 1)
+                .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING)
+                .blast { b ->
+                    b.temp(12625, BlastProperty.GasTier.HIGHEST) // Adamantium
+                        .blastStats(VA[UIV], 4 * MINUTE)
+                        .vacuumStats(VA[UEV], 2 * MINUTE + 30 * SECOND)
+                }
                 .build()
 
         }

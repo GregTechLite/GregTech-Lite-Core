@@ -1070,6 +1070,10 @@ metaitem.material.mixture.carbon_allotrope.name=碳同素异构体混合物
 metaitem.material.plate.graphene_aligned_cnt.name=石墨烯排列碳纳米管
 metaitem.material.particle.quantum_anomaly.name=量子反常
 metaitem.material.particle.quantum_anomaly.tooltip=实体化对称破缺
+metaitem.material.particle.raw_tesseract.name=粗制超立方体
+metaitem.material.particle.raw_tesseract.tooltip=四维工程学的初次实践
+metaitem.material.particle.energised_tesseract.name=充能超立方体
+metaitem.material.particle.energised_tesseract.tooltip=真正的四维结构
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -2501,6 +2505,7 @@ gtlitecore.material.magnetium=磁素
 gtlitecore.material.rhugnor=鲁格诺
 gtlitecore.material.hypogen=海珀珍
 gtlitecore.material.shirabon=调律源金
+gtlitecore.material.transcendent_metal=超时空金属
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2870,6 +2875,7 @@ gtlitecore.material.light_superheavy_alloy=超重元素-轻合金
 gtlitecore.material.heavy_superheavy_alloy=超重元素-重合金
 gtlitecore.material.precious_metal_alloy=贵金属合金
 gtlitecore.material.nitinol_60=镍钛诺-60
+gtlitecore.material.abyssalloy=渊狱合金
 
 gtlitecore.material.limestone=石灰岩
 gtlitecore.material.komatiite=科马提岩

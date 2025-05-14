@@ -50,6 +50,7 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Invar
+import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
@@ -84,6 +85,7 @@ import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Promethium
+import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
@@ -99,6 +101,7 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stone
 import gregtech.api.unification.material.Materials.Strontium
@@ -124,6 +127,7 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
@@ -864,6 +868,22 @@ class MixerRecipes
                 .output(dust, Nitinol60, 5)
                 .EUt(VA[EV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Abyssal Alloy
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(dust, StainlessSteel, 5)
+                .input(dust, TungstenCarbide, 5)
+                .input(dust, Nichrome, 5)
+                .input(dust, Bronze, 5)
+                .input(dust, IncoloyMA956, 5)
+                .input(dust, Iodine)
+                .input(dust, Germanium)
+                .fluidInputs(Radon.getFluid(1000))
+                .output(dust, Abyssalloy, 28)
+                .EUt(VA[UIV].toLong())
+                .duration(2 * MINUTE + 30 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

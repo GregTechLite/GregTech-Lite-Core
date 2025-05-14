@@ -27,6 +27,7 @@ import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
+import magicbook.gtlitecore.api.recipe.ui.StellarForgeUI
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.core.sound.GTLiteSoundEvents
@@ -815,15 +816,11 @@ class GTLiteRecipeMaps
         @JvmStatic
         @get:JvmName("STELLAR_FORGE_RECIPES")
         val STELLAR_FORGE_RECIPES = RecipeMapBuilder("stellar_forge", SimpleRecipeBuilder())
-            .itemInputs(6)
-            .itemOutputs(6)
-            .fluidInputs(6)
-            .fluidOutputs(6)
-            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false)
-            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, true)
-            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
-            .fluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, true)
-            .progressBar(GTLiteGuiTextures.PROGRESS_BAR_NOVA_EXPLOSION)
+            .ui { StellarForgeUI(it) }
+            .itemInputs(9)
+            .itemOutputs(9)
+            .fluidInputs(9)
+            .fluidOutputs(9)
             .sound(GTLiteSoundEvents.STELLAR_FORGE)
             .build()
 

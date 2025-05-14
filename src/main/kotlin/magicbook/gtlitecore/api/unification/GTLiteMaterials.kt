@@ -29,6 +29,7 @@ class GTLiteMaterials
         lateinit var Rhugnor: Material
         lateinit var Hypogen: Material
         lateinit var Shirabon: Material
+        lateinit var TranscendentMetal: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material
@@ -381,6 +382,7 @@ class GTLiteMaterials
         lateinit var SuperheavyAlloyB: Material
         lateinit var PreciousMetalAlloy: Material
         lateinit var Nitinol60: Material
+        lateinit var Abyssalloy: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

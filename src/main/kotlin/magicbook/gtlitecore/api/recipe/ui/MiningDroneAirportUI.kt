@@ -17,7 +17,7 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
 
     init
     {
-        this.setFluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
+        setFluidSlotOverlay(GuiTextures.FURNACE_OVERLAY_2, false)
     }
 
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,
@@ -25,8 +25,8 @@ class MiningDroneAirportUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recip
     {
         val builder = ModularUI.Builder(GuiTextures.BACKGROUND, 176, 156)
             .widget(RecipeProgressWidget(200, 18 + 27, 0 + 4, 34, 63, GTLiteGuiTextures.PROGRESS_BAR_MINING_DRONE, progressBarMoveType(), recipeMap()))
-        this.addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
-        this.addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
+        addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
+        addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
     }
 

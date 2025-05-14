@@ -36,6 +36,9 @@ class GTLiteElements
         @JvmStatic
         val Sh: Element = Elements.add(230, 306, "Shirabon", "Sh⏧")
 
+        @JvmStatic
+        val Tsx: Element = Elements.add(360, 360, "TranscendentMetal", "TsЖ")
+
     }
 
 }
