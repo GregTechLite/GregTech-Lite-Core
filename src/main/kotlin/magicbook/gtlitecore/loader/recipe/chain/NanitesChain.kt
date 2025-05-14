@@ -8,6 +8,7 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NetherStar
@@ -27,21 +28,30 @@ import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NANO_FORGE_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 
 /**
- * Generate rules for making nanite recipes:
- * - 1) Just to be consumed.
- * - 2) Nanites meant to be consumed should either have a short duration or a big output.
- * - 3) Nanites which aren't consumed should have a long duration and output less than 16.
- * - 4) Nanites always take UU Matter as a fluid and a lot of power to make.
- * Here, for the mod, Nano Forge will ignore maximum working voltage tiers. In the mod, we
- * reduce duration of all recipes.
+ * Nanites recipes for Nano Forge.
  *
- * @author BlueWeabo (original author from GT5u)
+ * Here's all nanites recipes for several recipes which used nanites as components, it is based on the
+ * same name ore prefix in [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial). The original author
+ * of Nano Forge and PCB Factory is [BlueWeabo](https://github.com/BlueWeabo), here's the general rules
+ * for all nanites recipes (the presenter is also BlueWeabo):
+ * - Nanites meant to be consumed should either have a short duration or a big output;
+ * - Nanites which aren't consumed should have a long duration and output less than 16;
+ * - Nanites always take UU Matter as a fluid and a lot of power to make;
+ * - Nanites always take UU Matter as a fluid and a lot of power to make;
+ *
+ * In our environment, the duration of one nanite recipes should be less than 100s for default. As we
+ * have known, we don't want player required more times for this machine, pay more energy is enough.
+ *
+ * @see magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoForge
+ *
+ * @author BlueWeabo (original author in GT5u)
  */
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class NanitesChain
@@ -106,6 +116,18 @@ class NanitesChain
                 .EUt(100_000_000) // UXV
                 .duration(1 * MINUTE)
                 .tier(3)
+                .buildAndRegister()
+
+            // Glowstone Nanite (for Optoelectronic SoC for Optical Circuits)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, LithiumNiobate)
+                .input(block, Glowstone, 16)
+                .input(ADVANCED_SYSTEM_ON_CHIP, 64)
+                .fluidInputs(UUMatter.getFluid(50_000))
+                .output(nanite, Glowstone, 64)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(2)
                 .buildAndRegister()
 
         }
