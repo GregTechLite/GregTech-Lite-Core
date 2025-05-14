@@ -15,6 +15,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcidicSaltWater
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleCaneSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BFGF
@@ -105,6 +106,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OrangeExtr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PurpleDrink
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
@@ -119,6 +121,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RichNitrog
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubyJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaWater
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SemistableAntimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodioIndene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SteamCrackedSodioIndene
@@ -884,6 +887,30 @@ class GTLiteUnknownCompositionMaterials
             ResonantStrangeMeson = Material.Builder(13010, gtliteId("resonant_strange_meson"))
                 .plasma(FluidBuilder()
                     .temperature(1_600_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13011 Protomatter
+            Protomatter = Material.Builder(13011, gtliteId("protomatter"))
+                .plasma(FluidBuilder()
+                    .temperature(1_000_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13012 Semistable Antimatter
+            SemistableAntimatter = Material.Builder(13012, gtliteId("semistable_antimatter"))
+                .plasma(FluidBuilder()
+                    .temperature(1_500_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13013 Antimatter
+            Antimatter = Material.Builder(13013, gtliteId("antimatter"))
+                .plasma(FluidBuilder()
+                    .temperature(2_000_000_000)
                     .translation("gregtech.fluid.generic")
                     .customStill())
                 .build()

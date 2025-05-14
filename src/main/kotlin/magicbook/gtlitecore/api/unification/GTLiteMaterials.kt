@@ -722,6 +722,9 @@ class GTLiteMaterials
         lateinit var StableBaryonicMatter: Material
         lateinit var HighEnergyQuarkGluonPlasma: Material
         lateinit var ResonantStrangeMeson: Material
+        lateinit var Protomatter: Material
+        lateinit var SemistableAntimatter: Material
+        lateinit var Antimatter: Material
 
         lateinit var DimensionallyShiftedSuperfluid: Material
 

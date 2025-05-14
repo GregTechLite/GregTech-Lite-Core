@@ -6,6 +6,7 @@ import magicbook.gtlitecore.loader.recipe.chain.AcetyleneChain
 import magicbook.gtlitecore.loader.recipe.chain.ActiniumSuperhydrideChain
 import magicbook.gtlitecore.loader.recipe.chain.AlloysChain
 import magicbook.gtlitecore.loader.recipe.chain.AmmoniaChain
+import magicbook.gtlitecore.loader.recipe.chain.AntimatterChain
 import magicbook.gtlitecore.loader.recipe.chain.BETSPerrhenateChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
@@ -263,6 +264,7 @@ class RecipeManager
             LuTmYVOChain.init()
             SiliconNitrideChain.init()
             NanitesChain.init()
+            AntimatterChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

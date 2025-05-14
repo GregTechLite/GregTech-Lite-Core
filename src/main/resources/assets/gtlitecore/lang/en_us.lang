@@ -3218,6 +3218,9 @@ gtlitecore.material.hadronic_resonant_gas=Hadronic Resonant Gas
 gtlitecore.material.stable_baryonic_matter=Stable Baryonic Matter
 gtlitecore.material.high_energy_quark_gluon_plasma=High Energy Quark-Gluon Plasma
 gtlitecore.material.resonant_strange_meson=Resonant Strange Meson
+gtlitecore.material.protomatter=Protomatter
+gtlitecore.material.semistable_antimatter=Semistable Antimatter
+gtlitecore.material.antimatter=Antimatter
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 

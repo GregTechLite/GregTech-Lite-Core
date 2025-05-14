@@ -3219,6 +3219,9 @@ gtlitecore.material.hadronic_resonant_gas=强子共振气体
 gtlitecore.material.stable_baryonic_matter=稳定重子物质
 gtlitecore.material.high_energy_quark_gluon_plasma=高能夸克-胶子等离子体
 gtlitecore.material.resonant_strange_meson=共振奇异介子
+gtlitecore.material.protomatter=原始物质
+gtlitecore.material.semistable_antimatter=半稳态反物质
+gtlitecore.material.antimatter=反物质
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 
