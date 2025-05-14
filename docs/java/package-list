@@ -19,6 +19,7 @@ magicbook.gtlitecore.api.utils.maps
 magicbook.gtlitecore.api.utils.math
 magicbook.gtlitecore.api.utils.reflect
 magicbook.gtlitecore.api.utils.stream
+magicbook.gtlitecore.api.utils.tuples
 magicbook.gtlitecore.api.worldgen
 magicbook.gtlitecore.api.worldgen.feature
 magicbook.gtlitecore.client
@@ -33,6 +34,7 @@ magicbook.gtlitecore.client.renderer.handler
 magicbook.gtlitecore.client.renderer.texture.cube
 magicbook.gtlitecore.client.renderer.texture.custom
 magicbook.gtlitecore.client.shader
+magicbook.gtlitecore.client.utils
 magicbook.gtlitecore.common
 magicbook.gtlitecore.common.block.blocks
 magicbook.gtlitecore.common.block.blocks.explosive
@@ -45,6 +47,7 @@ magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 magicbook.gtlitecore.common.metatileentity.part
 magicbook.gtlitecore.common.metatileentity.single
 magicbook.gtlitecore.common.worldgen
+magicbook.gtlitecore.common.worldgen.crops
 magicbook.gtlitecore.common.worldgen.trees
 magicbook.gtlitecore.core
 magicbook.gtlitecore.core.advancement
