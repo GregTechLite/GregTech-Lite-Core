@@ -1068,6 +1068,8 @@ metaitem.material.dust.sand.name=Sand Dust
 metaitem.material.dust.mud_ball.name=Mud Ball
 metaitem.material.mixture.carbon_allotrope.name=Carbon Allotrope Mixture
 metaitem.material.plate.graphene_aligned_cnt.name=Graphene Aligned Carbon Nanotube
+metaitem.material.particle.quantum_anomaly.name=Quantum Anomaly
+metaitem.material.particle.quantum_anomaly.tooltip=实体化对称破缺
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
@@ -3215,6 +3217,7 @@ gtlitecore.material.gluons=Gluons
 gtlitecore.material.hadronic_resonant_gas=Hadronic Resonant Gas
 gtlitecore.material.stable_baryonic_matter=Stable Baryonic Matter
 gtlitecore.material.high_energy_quark_gluon_plasma=High Energy Quark-Gluon Plasma
+gtlitecore.material.resonant_strange_meson=Resonant Strange Meson
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 

@@ -363,6 +363,7 @@ class GTLiteMetaItems
         lateinit var MUD_BALL: MetaItem<*>.MetaValueItem
         lateinit var CARBON_ALLOTROPE_MIXTURE: MetaItem<*>.MetaValueItem
         lateinit var GRAPHENE_ALIGNED_CNT: MetaItem<*>.MetaValueItem
+        lateinit var QUANTUM_ANOMALY: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -1036,6 +1037,8 @@ class GTLiteMetaItems
                     tl.add("§e(C" + FormattingUtility.subDigits("6") + "H" + FormattingUtility.subDigits("4") + ")"
                         + FormattingUtility.subDigits("7") + "C" + FormattingUtility.subDigits("12"))
                 })
+
+            QUANTUM_ANOMALY = GTLITE_ITEMS.addItem(5009, "material.particle.quantum_anomaly")
 
             // 9001-10000: Miscellaneous Foods.
 

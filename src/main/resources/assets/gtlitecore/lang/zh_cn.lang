@@ -1068,6 +1068,8 @@ metaitem.material.dust.sand.name=细沙堆
 metaitem.material.dust.mud_ball.name=泥
 metaitem.material.mixture.carbon_allotrope.name=碳同素异构体混合物
 metaitem.material.plate.graphene_aligned_cnt.name=石墨烯排列碳纳米管
+metaitem.material.particle.quantum_anomaly.name=量子反常
+metaitem.material.particle.quantum_anomaly.tooltip=实体化对称破缺
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -3216,6 +3218,7 @@ gtlitecore.material.gluons=胶子
 gtlitecore.material.hadronic_resonant_gas=强子共振气体
 gtlitecore.material.stable_baryonic_matter=稳定重子物质
 gtlitecore.material.high_energy_quark_gluon_plasma=高能夸克-胶子等离子体
+gtlitecore.material.resonant_strange_meson=共振奇异介子
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 

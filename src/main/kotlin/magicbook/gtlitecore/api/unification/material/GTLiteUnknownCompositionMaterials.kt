@@ -113,6 +113,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthC
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthHydroxidesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RichAmmoniaMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RichNitrogenMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubyJuice
@@ -876,6 +877,14 @@ class GTLiteUnknownCompositionMaterials
                 .plasma(FluidBuilder()
                     .translation("gregtech.fluid.generic")
                     .temperature(2_000_000_000) // In reality world, Q-G plasma has 15000000000~20000000000 MeV by theory, so we transform it as K.
+                    .customStill())
+                .build()
+
+            // 13010 Resonant Strange Meson
+            ResonantStrangeMeson = Material.Builder(13010, gtliteId("resonant_strange_meson"))
+                .plasma(FluidBuilder()
+                    .temperature(1_600_000_000)
+                    .translation("gregtech.fluid.generic")
                     .customStill())
                 .build()
 
