@@ -29,8 +29,11 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BASIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BASIL_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BEAN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BEAN_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACKBERRY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACK_CURRANT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACK_PEPPER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLACK_PEPPER_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BLUEBERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COCONUT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_CHERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COFFEE_SEED
@@ -38,8 +41,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CORN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CORN_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COTTON
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COTTON_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRANBERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CUCUMBER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CUCUMBER_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ELDERBERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GARLIC_BULB
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GARLIC_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAPE
@@ -48,6 +53,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HORSERADISH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HORSERADISH_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LEMON
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LIME
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LINGONBERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MANGO
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NUTMEG
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OLIVE
@@ -58,12 +64,16 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OREGANO
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OREGANO_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PEA
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PEA_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RASPBERRY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RED_CURRANT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RICE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RICE_SEED
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SOYBEAN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SOY_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.STRAWBERRY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TOMATO
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TOMATO_SEED
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WHITE_CURRANT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WHITE_GRAPE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WHITE_GRAPE_SEED
 import net.minecraft.block.Block
@@ -325,6 +335,56 @@ class GreenhouseRecipeProducer
             addGreenhouseRecipes(COTTON_SEED.getStackForm(6),
                 COTTON.getStackForm(12),
                 COTTON_SEED.getStackForm(6))
+
+            // Blueberry
+            addGreenhouseRecipes(BLUEBERRY.getStackForm(6),
+                BLUEBERRY.getStackForm(12),
+                BLUEBERRY.getStackForm(6))
+
+            // Blackberry
+            addGreenhouseRecipes(BLACKBERRY.getStackForm(6),
+                BLACKBERRY.getStackForm(12),
+                BLACKBERRY.getStackForm(6))
+
+            // Raspberry
+            addGreenhouseRecipes(RASPBERRY.getStackForm(6),
+                RASPBERRY.getStackForm(12),
+                RASPBERRY.getStackForm(6))
+
+            // Strawberry
+            addGreenhouseRecipes(STRAWBERRY.getStackForm(6),
+                STRAWBERRY.getStackForm(12),
+                STRAWBERRY.getStackForm(6))
+
+            // Red Currant
+            addGreenhouseRecipes(RED_CURRANT.getStackForm(6),
+                RED_CURRANT.getStackForm(12),
+                RED_CURRANT.getStackForm(6))
+
+            // Black Currant
+            addGreenhouseRecipes(BLACK_CURRANT.getStackForm(6),
+                BLACK_CURRANT.getStackForm(12),
+                BLACK_CURRANT.getStackForm(6))
+
+            // White Currant
+            addGreenhouseRecipes(WHITE_CURRANT.getStackForm(6),
+                WHITE_CURRANT.getStackForm(12),
+                WHITE_CURRANT.getStackForm(6))
+
+            // Lingonberry
+            addGreenhouseRecipes(LINGONBERRY.getStackForm(6),
+                LINGONBERRY.getStackForm(12),
+                LINGONBERRY.getStackForm(6))
+
+            // Elderberry
+            addGreenhouseRecipes(ELDERBERRY.getStackForm(6),
+                ELDERBERRY.getStackForm(12),
+                ELDERBERRY.getStackForm(6))
+
+            // Cranberry
+            addGreenhouseRecipes(CRANBERRY.getStackForm(6),
+                CRANBERRY.getStackForm(12),
+                CRANBERRY.getStackForm(6))
 
         }
 
