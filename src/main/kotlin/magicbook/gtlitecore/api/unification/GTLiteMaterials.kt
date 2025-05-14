@@ -331,6 +331,7 @@ class GTLiteMaterials
         lateinit var BismuthChalcogenide: Material
         lateinit var PlutoniumTrihydride: Material
         lateinit var PlutoniumPhosphide: Material
+        lateinit var Phosphine: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -593,7 +594,10 @@ class GTLiteMaterials
         lateinit var Phosphorene: Material
         lateinit var Methyltrichlorosilane: Material
         lateinit var DiethylSulfide: Material
-        lateinit var Phosphine: Material
+        lateinit var Guaiacol: Material
+        lateinit var Xylenol: Material
+        lateinit var Creosol: Material
+        lateinit var Methoxycreosol: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
@@ -622,6 +626,9 @@ class GTLiteMaterials
 
         lateinit var Carbon5Fraction: Material
         lateinit var DimerizedCarbon5Fraction: Material
+        lateinit var OliveOil: Material
+        lateinit var Fat: Material
+        lateinit var Mud: Material
 
         lateinit var FreeElectronGas: Material
         lateinit var FermionicUUMatter: Material

@@ -1174,9 +1174,10 @@ metaitem.dried_large_coffee_gem_chipped.name=干燥大粒咖啡豆
 metaitem.roasted_small_coffee_round.name=烘焙小粒咖啡豆
 metaitem.roasted_large_coffee_gem_chipped.name=烘焙大粒咖啡豆
 metaitem.ground_coffee_dust.name=咖啡粉
-metaitem.graham_cracker_dough_crushed_centrifuged.name=全麦饼干面团
+metaitem.graham_cracker_dough_crushed.name=全麦饼干面团
 metaitem.graham_cracker_chunk_plate_dense.name=全麦饼干胚
 metaitem.graham_cracker_slice_plate.name=全麦饼干片
+metaitem.animal_fat_ingot.name=动物脂肪块
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3071,6 +3072,10 @@ gtlitecore.material.fullerene_polymer_matrix=富勒烯聚合物基质（FPM）
 gtlitecore.material.phosphorene=磷烯
 gtlitecore.material.methyltrichlorosilane=甲基三氯硅烷
 gtlitecore.material.diethyl_sulfide=二乙硫醚
+gtlitecore.material.guaiacol=愈创木酚
+gtlitecore.material.xylenol=二甲酚
+gtlitecore.material.creosol=甲酚
+gtlitecore.material.methoxycreosol=甲氧甲酚
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3099,6 +3104,9 @@ gtlitecore.material.butter=黄油
 
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
+gtlitecore.material.olive_oil=橄榄油
+gtlitecore.material.fat=脂肪
+gtlitecore.material.mud=泥浆
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质

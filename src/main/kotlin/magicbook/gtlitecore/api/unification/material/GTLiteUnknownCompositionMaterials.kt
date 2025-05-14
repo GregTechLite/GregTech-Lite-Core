@@ -44,6 +44,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimensiona
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimerizedCarbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedBedrockSootSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Gluons
@@ -80,11 +81,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumNaqu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylamineMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mud
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadahGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaEnergetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OliveOil
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
@@ -280,7 +283,26 @@ class GTLiteUnknownCompositionMaterials
                 .flags(FLAMMABLE)
                 .build()
 
-            // 12052-12100 for misc unknown composition materials.
+            // 12052 Olive Oil
+            OliveOil = Material.Builder(12052, gtliteId("olive_oil"))
+                .liquid()
+                .color(0x969D56)
+                .build()
+
+            // 12053 Fat
+            Fat = Material.Builder(12053, gtliteId("fat"))
+                .liquid()
+                .color(0xFFF200)
+                .build()
+                .setFormula("C57H110O6", true)
+
+            // 12054 Mud
+            Mud = Material.Builder(12054, gtliteId("mud"))
+                .liquid()
+                .color(0x2C2B01)
+                .build()
+
+            // 12055-12100 for misc unknown composition materials.
             // ...
 
             // 12101 Free Electron Gas

@@ -89,6 +89,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNano
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creosol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeHexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cyclooctadiene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cycloparaphenylene
@@ -149,6 +150,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glucose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glyoxal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrignardReagent
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Guaiacol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexabenzylhexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexafluoropropylene
@@ -168,6 +170,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LinoleicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MalonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methoxycreosol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylFormate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylhydrazine
@@ -240,6 +243,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylg
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TrimethyltinChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Triphenylphosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Truxene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Xylenol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -1736,6 +1740,34 @@ class GTLiteOrganicChemistryMaterials
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
                 .setFormula("(C2H5)2S", true)
+
+            // 8185 Guaiacol
+            Guaiacol = Material.Builder(8185, gtliteId("guaiacol"))
+                .liquid()
+                .color(0xA63A00)
+                .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
+                .build()
+
+            // 8186 Xylenol
+            Xylenol = Material.Builder(8186, gtliteId("xylenol"))
+                .liquid()
+                .color(0xCF7D10)
+                .components(Carbon, 8, Hydrogen, 10, Oxygen, 1)
+                .build()
+
+            // 8187 Creosol
+            Creosol = Material.Builder(8187, gtliteId("creosol"))
+                .liquid()
+                .color(0x704E46)
+                .components(Carbon, 7, Hydrogen, 8, Oxygen, 1)
+                .build()
+
+            // 8188 Methoxycreosol
+            Methoxycreosol = Material.Builder(8188, gtliteId("methoxycreosol"))
+                .liquid()
+                .color(0xAF4617)
+                .components(Carbon, 8, Hydrogen, 10, Oxygen, 2)
+                .build()
 
         }
 

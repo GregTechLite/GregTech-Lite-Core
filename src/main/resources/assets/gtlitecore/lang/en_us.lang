@@ -1174,9 +1174,10 @@ metaitem.dried_large_coffee_gem_chipped.name=Dried Large Coffee Bean
 metaitem.roasted_small_coffee_round.name=Roasted Small Coffee Bean
 metaitem.roasted_large_coffee_gem_chipped.name=Roasted Large Coffee Bean
 metaitem.ground_coffee_dust.name=Ground Coffee dust
-metaitem.graham_cracker_dough_crushed_centrifuged.name=Graham Cracker Dough
+metaitem.graham_cracker_dough_crushed.name=Graham Cracker Dough
 metaitem.graham_cracker_chunk_plate_dense.name=Graham Cracker Chunk
 metaitem.graham_cracker_slice_plate.name=Graham Cracker Slice
+metaitem.animal_fat_ingot.name=Animal Fat Chunk
 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
@@ -3069,6 +3070,10 @@ gtlitecore.material.fullerene_polymer_matrix=Fullerene Polymer Matrix (FPM)
 gtlitecore.material.phosphorene=Phosphorene
 gtlitecore.material.methyltrichlorosilane=Methyltrichlorosilane
 gtlitecore.material.diethyl_sulfide=Diethyl Sulfide
+gtlitecore.material.guaiacol=Guaiacol
+gtlitecore.material.xylenol=Xylenol
+gtlitecore.material.creosol=Creosol
+gtlitecore.material.methoxycreosol=Methoxycreosol
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3097,6 +3102,9 @@ gtlitecore.material.butter=Butter
 
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
+gtlitecore.material.olive_oil=Olive Oil
+gtlitecore.material.fat=Fat
+gtlitecore.material.mud=Mud
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter

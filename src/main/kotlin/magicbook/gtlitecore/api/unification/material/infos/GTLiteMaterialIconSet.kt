@@ -46,6 +46,9 @@ class GTLiteMaterialIconSet
         @JvmField
         val ENRICHED = MaterialIconSet("enriched", null, true)
 
+        @JvmField
+        val ORGANIC = MaterialIconSet("organic", null, true)
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)
