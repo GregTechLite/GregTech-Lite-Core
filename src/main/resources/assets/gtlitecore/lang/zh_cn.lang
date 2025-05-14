@@ -1135,6 +1135,7 @@ metaitem.food.utensil.dirty_ceramic_bowl.name=脏瓷碗
 metaitem.food.utensil.paper_cone.name=滤纸
 metaitem.food.utensil.component.clay_cup.name=粘土杯
 metaitem.food.utensil.ceramic_cup.name=瓷杯
+metaitem.food.utensil.plastic_bottle.name=塑料瓶
 
 metaitem.food.drink.grape_juice.name=葡萄汁
 metaitem.food.drink.grape_juice.tooltip=富含糖分
@@ -1148,6 +1149,14 @@ metaitem.food.drink.vodka.name=伏特加
 metaitem.food.drink.vodka.tooltip=生命之水
 metaitem.food.drink.coffee_cup.name=杯装咖啡
 metaitem.food.drink.coffee_cup.tooltip=罐装咖啡因
+metaitem.food.drink.orange_juice.name=橙汁
+metaitem.food.drink.orange_juice.tooltip=喝橙汁的葡萄牙人.mp4
+metaitem.food.drink.etirps.name=碧雪™
+metaitem.food.drink.etirps.tooltip=众所周知的汽水
+metaitem.food.drink.sparkling_water.name=气泡水
+metaitem.food.drink.sparkling_water.tooltip=耶！汽水！
+metaitem.food.drink.cranberry_etirps.name=蔓越莓味碧雪™
+metaitem.food.drink.cranberry_etirps.tooltip=另一种风味
 
 metaitem.food.polenta.name=玉米糊
 metaitem.food.polenta.tooltip.1=常见于意大利料理中，被称为波轮塔（Polenta）。
@@ -1178,6 +1187,7 @@ metaitem.graham_cracker_dough_crushed.name=全麦饼干面团
 metaitem.graham_cracker_chunk_plate_dense.name=全麦饼干胚
 metaitem.graham_cracker_slice_plate.name=全麦饼干片
 metaitem.animal_fat_ingot.name=动物脂肪块
+metaitem.zest_dust.name=碎果皮
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3107,6 +3117,15 @@ gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
 gtlitecore.material.olive_oil=橄榄油
 gtlitecore.material.fat=脂肪
 gtlitecore.material.mud=泥浆
+gtlitecore.material.lemon_extract=柠檬提取液
+gtlitecore.material.lime_extract=酸橙提取液
+gtlitecore.material.orange_extract=橙汁
+gtlitecore.material.lemon_lime_mixture=柠檬-酸橙混合液
+gtlitecore.material.lemon_lime_soda_syrup=柠檬-酸橙苏打糖浆
+gtlitecore.material.etirps=碧雪™
+gtlitecore.material.cranberry_extract=蔓越莓提取液
+gtlitecore.material.cranberry_soda_syrup=蔓越莓苏打糖浆
+gtlitecore.material.cranberry_etirps=蔓越莓味碧雪™
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质

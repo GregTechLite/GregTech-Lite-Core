@@ -81,8 +81,10 @@ import magicbook.gtlitecore.loader.recipe.chain.food.ChloroauricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.food.CoffeeChain
 import magicbook.gtlitecore.loader.recipe.chain.food.CornChain
 import magicbook.gtlitecore.loader.recipe.chain.food.CreosoteChain
+import magicbook.gtlitecore.loader.recipe.chain.food.EtirpsChain
 import magicbook.gtlitecore.loader.recipe.chain.food.GrahamCrackersChain
 import magicbook.gtlitecore.loader.recipe.chain.food.MilkChain
+import magicbook.gtlitecore.loader.recipe.chain.food.OrangesChain
 import magicbook.gtlitecore.loader.recipe.chain.food.PurpleDrinkChain
 import magicbook.gtlitecore.loader.recipe.chain.food.SugarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.UtensilsChain
@@ -275,6 +277,8 @@ class RecipeManager
             ChloroauricAcidChain.init()
             CreosoteChain.init()
             AnimalFatChain.init()
+            OrangesChain.init()
+            EtirpsChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

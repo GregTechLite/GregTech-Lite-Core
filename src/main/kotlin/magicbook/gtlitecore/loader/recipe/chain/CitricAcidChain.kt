@@ -1,10 +1,8 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -13,7 +11,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FormicAcid
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.LEMON
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CitricAcidChain
@@ -34,14 +31,6 @@ class CitricAcidChain
                 .fluidOutputs(Hydrogen.getFluid(2000))
                 .EUt(VA[EV].toLong())
                 .duration(12 * SECOND)
-                .buildAndRegister()
-
-            // Raw processing of lemon. // TODO rebalanced it.
-            EXTRACTOR_RECIPES.recipeBuilder()
-                .input(LEMON)
-                .fluidOutputs(CitricAcid.getFluid(10))
-                .EUt(VA[HV].toLong())
-                .duration(24 * SECOND)
                 .buildAndRegister()
         }
 

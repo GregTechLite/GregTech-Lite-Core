@@ -5,6 +5,7 @@ import gregtech.api.items.metaitem.MetaOreDictItem.OreDictValueItem
 import gregtech.api.items.metaitem.StandardMetaItem
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
+import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.crushed
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -44,6 +45,7 @@ class GTLiteMetaOreDictItems
         lateinit var GRAHAM_CRACKER_CHUNK: OreDictValueItem
         lateinit var GRAHAM_CRACKER_SLICE: OreDictValueItem
         lateinit var ANIMAL_FAT: OreDictValueItem
+        lateinit var ZEST_DUST: OreDictValueItem
 
         @JvmStatic
         fun init()
@@ -103,6 +105,9 @@ class GTLiteMetaOreDictItems
 
             ANIMAL_FAT = GTLITE_OREDICT_ITEMS.addOreDictItem(16, "animal_fat",
                 0xFFF200, ORGANIC, ingot, "C57H110O6")
+
+            ZEST_DUST = GTLITE_OREDICT_ITEMS.addOreDictItem(17, "zest",
+                0xD8FF4A, FINE, dust)
 
         }
 

@@ -1,13 +1,20 @@
 package magicbook.gtlitecore.loader.recipe.chain.food
 
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BOTTLE
+import gregtech.common.items.MetaItems.SHAPE_MOLD_BOTTLE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CERAMIC_BOWL
@@ -15,6 +22,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CERAMIC_CUP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CLAY_BOWL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CLAY_CUP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIRTY_CERAMIC_BOWL
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PLASTIC_BOTTLE
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -51,6 +59,23 @@ class UtensilsChain
                 .output(CERAMIC_BOWL)
                 .EUt(VA[LV].toLong())
                 .duration(1 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // Plastic Bottle
+            EXTRUDER_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_EXTRUDER_BOTTLE)
+                .input(ingot, Polyethylene)
+                .output(PLASTIC_BOTTLE)
+                .EUt(VA[LV].toLong())
+                .duration(1 * SECOND + 12 * TICK)
+                .buildAndRegister()
+
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_BOTTLE)
+                .fluidInputs(Polyethylene.getFluid(L))
+                .output(PLASTIC_BOTTLE)
+                .EUt(4) // ULV
+                .duration(12 * TICK)
                 .buildAndRegister()
 
         }

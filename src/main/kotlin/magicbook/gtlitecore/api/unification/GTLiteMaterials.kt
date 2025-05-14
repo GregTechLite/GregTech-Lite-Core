@@ -629,6 +629,15 @@ class GTLiteMaterials
         lateinit var OliveOil: Material
         lateinit var Fat: Material
         lateinit var Mud: Material
+        lateinit var LemonExtract: Material
+        lateinit var LimeExtract: Material
+        lateinit var OrangeExtract: Material
+        lateinit var LemonLimeMixture: Material
+        lateinit var LemonLimeSodaSyrup: Material
+        lateinit var Etirps: Material
+        lateinit var CranberryExtract: Material
+        lateinit var CranberrySodaSyrup: Material
+        lateinit var CranberryEtirps: Material
 
         lateinit var FreeElectronGas: Material
         lateinit var FermionicUUMatter: Material

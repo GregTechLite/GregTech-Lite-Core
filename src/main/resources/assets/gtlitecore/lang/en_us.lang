@@ -1135,6 +1135,7 @@ metaitem.food.utensil.dirty_ceramic_bowl.name=Dirty Ceramic Bowl
 metaitem.food.utensil.paper_cone.name=Paper Cone
 metaitem.food.utensil.component.clay_cup.name=Clay Cup
 metaitem.food.utensil.ceramic_cup.name=Ceramic Cup
+metaitem.food.utensil.plastic_bottle.name=Plastic Bottle
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
@@ -1148,6 +1149,14 @@ metaitem.food.drink.vodka.name=Vodka
 metaitem.food.drink.vodka.tooltip=Water of Life
 metaitem.food.drink.coffee_cup.name=A Cup of Coffee
 metaitem.food.drink.coffee_cup.tooltip=罐装咖啡因
+metaitem.food.drink.orange_juice.name=Orange Juice
+metaitem.food.drink.orange_juice.tooltip=喝橙汁的葡萄牙人.mp4
+metaitem.food.drink.etirps.name=Etirps™
+metaitem.food.drink.etirps.tooltip=众所周知的汽水
+metaitem.food.drink.sparkling_water.name=Sparking Water
+metaitem.food.drink.sparkling_water.tooltip=耶！汽水！
+metaitem.food.drink.cranberry_etirps.name=Cranberry Etirps™
+metaitem.food.drink.cranberry_etirps.tooltip=另一种风味
 
 metaitem.food.polenta.name=Polenta
 metaitem.food.polenta.tooltip.1=Commonly found in Italian cuisine and called it by Polenta.
@@ -1178,6 +1187,7 @@ metaitem.graham_cracker_dough_crushed.name=Graham Cracker Dough
 metaitem.graham_cracker_chunk_plate_dense.name=Graham Cracker Chunk
 metaitem.graham_cracker_slice_plate.name=Graham Cracker Slice
 metaitem.animal_fat_ingot.name=Animal Fat Chunk
+metaitem.zest_dust.name=Zest Dust
 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
@@ -3105,6 +3115,15 @@ gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
 gtlitecore.material.olive_oil=Olive Oil
 gtlitecore.material.fat=Fat
 gtlitecore.material.mud=Mud
+gtlitecore.material.lemon_extract=Lemon Extract
+gtlitecore.material.lime_extract=Lime Extract
+gtlitecore.material.orange_extract=Orange Juice
+gtlitecore.material.lemon_lime_mixture=Lemon-Lime Mixture
+gtlitecore.material.lemon_lime_soda_syrup=Lemon-Lime Soda Syrup
+gtlitecore.material.etirps=Etirps™
+gtlitecore.material.cranberry_extract=Cranberry Extract
+gtlitecore.material.cranberry_soda_syrup=Cranberry Soda Syrup
+gtlitecore.material.cranberry_etirps=Cranberry Etirps™
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter

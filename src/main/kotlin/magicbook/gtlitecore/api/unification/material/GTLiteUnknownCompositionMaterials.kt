@@ -38,12 +38,16 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedLig
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedLightTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedMediumEnrichedTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedMediumTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CranberryEtirps
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CranberryExtract
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CranberrySodaSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeNaquadahFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimerizedCarbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedBedrockSootSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Etirps
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
@@ -63,6 +67,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HighEnergyQuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Latex
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LemonExtract
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LemonLimeMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LemonLimeSodaSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightEnrichedTaraniumFuel
@@ -71,6 +78,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightNaqua
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaraniumGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LimeExtract
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityEnrichedNaquadahEmulsion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityNaquadriaEmulsion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumBedrockSmoke
@@ -88,6 +96,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NaquadriaE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutronProtonFermiSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OganessonBreedingBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OliveOil
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OrangeExtract
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
@@ -269,6 +278,8 @@ class GTLiteUnknownCompositionMaterials
                 .color(0xFFEF82)
                 .build()
 
+            // ...
+
             // 12050 Carbon 5 Fraction
             Carbon5Fraction = Material.Builder(12050, gtliteId("carbon_5_fraction"))
                 .liquid()
@@ -302,7 +313,61 @@ class GTLiteUnknownCompositionMaterials
                 .color(0x2C2B01)
                 .build()
 
-            // 12055-12100 for misc unknown composition materials.
+            // 12055 Lemon Extract
+            LemonExtract = Material.Builder(12055, gtliteId("lemon_extract"))
+                .liquid()
+                .color(0xFCE80A)
+                .build()
+
+            // 12056 Lime Extract
+            LimeExtract = Material.Builder(12056, gtliteId("lime_extract"))
+                .liquid()
+                .color(0x85F218)
+                .build()
+
+            // 12057 Orange Extract
+            OrangeExtract = Material.Builder(12057, gtliteId("orange_extract"))
+                .liquid()
+                .color(0xFF6100)
+                .build()
+
+            // 12058 Lemon-Lime Mixture
+            LemonLimeMixture = Material.Builder(12058, gtliteId("lemon_lime_mixture"))
+                .liquid()
+                .color(0xBDDB5A)
+                .build()
+
+            // 12059 Lemon-Lime Soda Syrup
+            LemonLimeSodaSyrup = Material.Builder(12059, gtliteId("lemon_lime_soda_syrup"))
+                .liquid()
+                .color(0x76FF0D)
+                .build()
+
+            // 12060 Etirps™ (Sprite)
+            Etirps = Material.Builder(12060, gtliteId("etirps"))
+                .liquid()
+                .color(0xB0FF73)
+                .build()
+
+            // 12061 Cranberry Extract
+            CranberryExtract = Material.Builder(12061, gtliteId("cranberry_extract"))
+                .liquid()
+                .color(0x8C0D22)
+                .build()
+
+            // 12062 Cranberry Soda Syrup
+            CranberrySodaSyrup = Material.Builder(12062, gtliteId("cranberry_soda_syrup"))
+                .liquid()
+                .color(0x8C0D22)
+                .build()
+
+            // 12063 Cranberry Etirps™ (Sprite)
+            CranberryEtirps = Material.Builder(12063, gtliteId("cranberry_etirps"))
+                .liquid()
+                .color(averageRGB(2, CranberryExtract.materialRGB, 0xBBDDBB))
+                .build()
+
+            // 12064-12100 for misc unknown composition materials.
             // ...
 
             // 12101 Free Electron Gas

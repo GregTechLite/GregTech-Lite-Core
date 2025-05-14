@@ -430,6 +430,7 @@ class GTLiteMetaItems
         lateinit var PAPER_CONE: MetaItem<*>.MetaValueItem
         lateinit var CLAY_CUP: MetaItem<*>.MetaValueItem
         lateinit var CERAMIC_CUP: MetaItem<*>.MetaValueItem
+        lateinit var PLASTIC_BOTTLE: MetaItem<*>.MetaValueItem
 
         lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
         lateinit var RED_WINE: MetaItem<*>.MetaValueItem
@@ -437,6 +438,10 @@ class GTLiteMetaItems
         lateinit var POTATO_JUICE: MetaItem<*>.MetaValueItem
         lateinit var VODKA: MetaItem<*>.MetaValueItem
         lateinit var COFFEE_CUP: MetaItem<*>.MetaValueItem
+        lateinit var ORANGE_JUICE: MetaItem<*>.MetaValueItem
+        lateinit var ETIRPS: MetaItem<*>.MetaValueItem
+        lateinit var SPARKLING_WATER: MetaItem<*>.MetaValueItem
+        lateinit var CRANBERRY_ETIRPS: MetaItem<*>.MetaValueItem
 
         lateinit var POLENTA: MetaItem<*>.MetaValueItem
 
@@ -1370,6 +1375,7 @@ class GTLiteMetaItems
             PAPER_CONE = GTLITE_ITEMS.addItem(9404, "food.utensil.paper_cone")
             CLAY_CUP = GTLITE_ITEMS.addItem(9405, "food.utensil.component.clay_cup")
             CERAMIC_CUP = GTLITE_ITEMS.addItem(9406, "food.utensil.ceramic_cup")
+            PLASTIC_BOTTLE = GTLITE_ITEMS.addItem(9407, "food.utensil.plastic_bottle")
 
             // 9451-9500: Drinks
             GRAPE_JUICE = GTLITE_ITEMS.addItem(9451, "food.drink.grape_juice")
@@ -1405,6 +1411,25 @@ class GTLiteMetaItems
                     RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0),
                     RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            ORANGE_JUICE = GTLITE_ITEMS.addItem(9457, "food.drink.orange_juice")
+                .addComponents(FoodBehavior(3, 0.3F, true, true, ItemStack(Items.GLASS_BOTTLE)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            ETIRPS = GTLITE_ITEMS.addItem(9458, "food.drink.etirps")
+                .addComponents(FoodBehavior(2, 0.4f, true, true, PLASTIC_BOTTLE.stackForm,
+                    RandomPotionEffect(MobEffects.SPEED, 1 * MINUTE, 2, 0)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            SPARKLING_WATER = GTLITE_ITEMS.addItem(9459, "food.drink.sparkling_water")
+                .addComponents(FoodBehavior(2, 0.3F, true, true, PLASTIC_BOTTLE.stackForm,
+                    RandomPotionEffect(MobEffects.SPEED, 30 * SECOND, 1, 0)))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            CRANBERRY_ETIRPS = GTLITE_ITEMS.addItem(9460, "food.drink.cranberry_etirps")
+                .addComponents(FoodBehavior(3, 0.4f, true, true, PLASTIC_BOTTLE.stackForm,
+                    RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
+                    RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80)))
 
             // 9501-9550: Congees and Soups
             POLENTA = GTLITE_ITEMS.addItem(9501, "food.polenta")
