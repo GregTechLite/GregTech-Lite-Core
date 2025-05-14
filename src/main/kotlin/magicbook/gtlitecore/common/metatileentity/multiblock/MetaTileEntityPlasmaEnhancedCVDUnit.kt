@@ -9,6 +9,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -149,6 +150,7 @@ class MetaTileEntityPlasmaEnhancedCVDUnit(metaTileEntityId: ResourceLocation?) :
         super.initializeAbilities()
         val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
+        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         energyContainer = EnergyContainerList(inputEnergy)
     }
 

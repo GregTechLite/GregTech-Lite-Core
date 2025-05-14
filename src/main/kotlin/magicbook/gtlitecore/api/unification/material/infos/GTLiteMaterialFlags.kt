@@ -414,6 +414,7 @@ class GTLiteMaterialFlags
             Meitnerium.addFlags(GENERATE_DOUBLE_PLATE)
             Bohrium.addFlags(GENERATE_DOUBLE_PLATE)
             Nobelium.addFlags(GENERATE_DOUBLE_PLATE)
+            Trinium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -440,6 +441,7 @@ class GTLiteMaterialFlags
             Rhenium.addFlags(GENERATE_DENSE)
             Duranium.addFlags(GENERATE_DENSE)
             Naquadria.addFlags(GENERATE_DENSE)
+            Trinium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)

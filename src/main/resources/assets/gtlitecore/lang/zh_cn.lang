@@ -1956,12 +1956,24 @@ gtlitecore.machine.pcb_factory.tooltip.10=调整机器的线宽（默认§f100μ
 gtlitecore.machine.pcb_factory.tooltip.11=- 线宽每缩短§f25μm§7，配方时间就减少§f20%%§7，耗能就增加§f50%%§7；
 gtlitecore.machine.pcb_factory.tooltip.12=- 线宽每放宽§f25μm§7，配方时间就增加§f20%%§7，耗能就减少§f10%%§7；
 gtlitecore.machine.pcb_factory.tooltip.13=机器的最小线宽为§f25μm§7，最大线宽为§f200μm§7。
-gtlitecore.machine.pcb_factory.tooltip.14=§f如果你不知道如何获得纳米蜂群，请搜索§3纳米锻炉§f。
+gtlitecore.machine.pcb_factory.tooltip.14=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.pcb_factory.tooltip.15=§f如果你不知道如何获得纳米蜂群，请搜索§3纳米锻炉§f。
 
 gtlitecore.machine.pcb_factory.structure_info=结构等级：%s (线宽：%sμm)
 gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
 gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
 gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
+
+gtlitecore.machine.nano_forge.name=纳米锻炉
+gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
+gtlitecore.machine.nano_forge.tooltip.2=你需要先制作§3碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
+gtlitecore.machine.nano_forge.tooltip.3=纳米锻炉无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
+gtlitecore.machine.nano_forge.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.nano_forge.tooltip.5=带有多级附属结构，附属结构的等级限制了最大配方等级。
+gtlitecore.machine.nano_forge.tooltip.6=2级与3级纳米锻炉分别具有§e64§7与§e256§7并行。
+gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级时，进行§d无损超频§7。
+
+gtlitecore.machine.nano_forge.structure_info=结构等级：%s
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能

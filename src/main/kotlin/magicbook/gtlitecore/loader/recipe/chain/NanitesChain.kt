@@ -22,6 +22,7 @@ import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NANO_FORGE_RECIPES
@@ -55,7 +56,7 @@ class NanitesChain
             // The first recipe for Carbon Nanite, used to assemble Nano Forge.
             ASSEMBLY_LINE_RECIPES.recipeBuilder()
                 .input(circuit, MarkerMaterials.Tier.UV, 4)
-                .input(ROBOT_ARM_UV, 8)
+                .input(ROBOT_ARM_ZPM, 8)
                 .input(STEM_CELLS, 32)
                 .input(ring, NaquadahAlloy, 16)
                 .input(stick, NaquadahAlloy, 8)

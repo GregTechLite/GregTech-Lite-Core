@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -100,6 +101,7 @@ class MetaTileEntityComponentAssemblyLine(metaTileEntityId: ResourceLocation?) :
     {
         super.initializeAbilities()
         val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }

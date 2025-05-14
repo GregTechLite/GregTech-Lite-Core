@@ -1,6 +1,8 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.ULV
+import gregtech.api.capability.IEnergyContainer
+import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.gui.GuiTextures
@@ -10,6 +12,13 @@ import gregtech.api.gui.widgets.WidgetGroup
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockDisplayText
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
@@ -63,8 +72,6 @@ import net.minecraft.world.World
 import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.floor
-import kotlin.time.times
-
 
 /**
  * TODO Redo structure pattern checking with Mui2 and patterning structures when GTCEu merged related
@@ -135,7 +142,7 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityPCBFactory(metaTileEntityId)
 
     /**
-     * PCB Factory has a asynchronous upgrade system, which used 3 params to control it:
+     * PCB Factory has an asynchronous upgrade system, which used 3 params to control it:
      * - [mainUpgradeNumber]: Main structure tier predicate (3);
      * - [auxiliaryUpgradeNumber]: Auxiliary structure tier predicate (1);
      * - [coolingUpgradeNumber]: Cooling structure tier predicate (2).
@@ -167,6 +174,15 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
         coolingUpgradeNumber = 0
     }
 
+    override fun initializeAbilities()
+    {
+        super.initializeAbilities()
+        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(INPUT_LASER))
+        energyContainer = EnergyContainerList(inputEnergy)
+    }
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("              gHHHg  nTTTn       ", "              gPPPg  nQQQn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gJJJg  nRRRn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gIIIg  nTTTn       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
         .aisle("              HHHHH  TTTTT       ", "              PIIIP  QOOOQ       ", "               III    OOO        ", "               III    OOO        ", "              JIIIJ  ROOOR       ", "               III    OOO        ", "               III    OOO        ", "               PPP    QQQ        ", "               III    TTT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
@@ -191,7 +207,13 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
         // T1 Main structure
         .where('C', states(casingState) // Iridium casing
             .setMinGlobalLimited(40)
-            .or(autoAbilities()))
+            .or(abilities(MAINTENANCE_HATCH)
+                .setExactLimit(1))
+            .or(abilities(INPUT_ENERGY)
+                .setMaxGlobalLimited(2))
+            .or(abilities(INPUT_LASER)
+                .setMaxGlobalLimited(1))
+            .or(abilities(IMPORT_ITEMS, EXPORT_ITEMS, IMPORT_FLUIDS)))
         .where('c', states(secondCasingState)) // Plascrete
         .where('D', states(thirdCasingState)) // Grate casing
         .where('F', frames(HSLASteel))
@@ -358,6 +380,7 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.12"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.13"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.14"))
+        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.15"))
     }
 
     override fun addDisplayText(textList: MutableList<ITextComponent>?)
@@ -496,8 +519,6 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
             }
             return parallelBase
         }
-
-
 
     }
 
