@@ -16,7 +16,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Copper
@@ -30,8 +29,6 @@ import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
-import gregtech.api.unification.material.Materials.NaquadahEnriched
-import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium

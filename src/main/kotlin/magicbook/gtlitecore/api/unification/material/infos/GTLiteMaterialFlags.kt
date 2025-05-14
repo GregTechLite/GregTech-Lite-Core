@@ -34,7 +34,6 @@ import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
-import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite

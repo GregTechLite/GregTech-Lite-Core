@@ -7,7 +7,6 @@ import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
-import gregtech.api.pattern.BlockWorldState
 import gregtech.api.pattern.TraceabilityPredicate
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier
@@ -16,7 +15,6 @@ import magicbook.gtlitecore.api.utils.StructureUtility.Companion.getCandidates
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.math.BlockPos
 import java.util.*
-import java.util.function.Predicate
 import java.util.function.Supplier
 
 @Suppress("MISSING_DEPENDENCY_CLASS")

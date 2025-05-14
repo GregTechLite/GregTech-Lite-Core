@@ -39,9 +39,7 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
-import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_ELECTROLYZING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
-import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD

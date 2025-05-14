@@ -5,7 +5,6 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.items.metaitem.MetaItem

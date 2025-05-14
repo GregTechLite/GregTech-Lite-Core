@@ -15,9 +15,9 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockMultiblockCasing

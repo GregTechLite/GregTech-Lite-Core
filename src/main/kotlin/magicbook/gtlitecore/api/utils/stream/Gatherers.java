@@ -1,7 +1,9 @@
 package magicbook.gtlitecore.api.utils.stream;
 
 import java.util.Arrays;
-import java.util.List;;
+import java.util.List;
+
+;
 
 /**
  * Implementations of {@link Gatherer} that provide useful intermediate operations, such as

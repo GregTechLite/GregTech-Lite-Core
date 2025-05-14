@@ -21,7 +21,6 @@ import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
-import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP

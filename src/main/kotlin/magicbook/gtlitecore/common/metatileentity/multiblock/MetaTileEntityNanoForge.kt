@@ -1,13 +1,10 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues
 import gregtech.api.GTValues.ULV
-import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VOC
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
-import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -25,9 +22,7 @@ import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.util.GTUtility
 import gregtech.api.util.GTUtility.getFloorTierByVoltage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.LEFT

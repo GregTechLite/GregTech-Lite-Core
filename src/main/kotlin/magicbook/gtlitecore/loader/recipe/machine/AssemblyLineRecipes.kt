@@ -41,7 +41,6 @@ import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
-import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
@@ -55,7 +54,6 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
-import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
@@ -207,7 +205,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_U
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
-import java.awt.Dimension
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class AssemblyLineRecipes

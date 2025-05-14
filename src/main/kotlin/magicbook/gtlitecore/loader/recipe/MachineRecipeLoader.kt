@@ -39,7 +39,6 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Electrum
-import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.GlycerylTrinitrate
@@ -338,7 +337,6 @@ import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV

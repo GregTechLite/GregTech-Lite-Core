@@ -6,7 +6,6 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
-import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
@@ -46,18 +45,15 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
-import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
-import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
-import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.BURNER_REACTOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
@@ -100,7 +96,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumRoentgeniumChloride
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -122,7 +117,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MAGNETIC_DOMAI
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_COMPUTER_UIV
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_MAINFRAME_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_PROCESSOR_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
