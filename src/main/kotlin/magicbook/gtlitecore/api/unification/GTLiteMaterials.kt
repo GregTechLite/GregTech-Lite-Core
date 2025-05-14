@@ -598,6 +598,11 @@ class GTLiteMaterials
         lateinit var Xylenol: Material
         lateinit var Creosol: Material
         lateinit var Methoxycreosol: Material
+        lateinit var Phenothiazine: Material
+        lateinit var IsopropylChloride: Material
+        lateinit var PhenothiazinePropylChloride: Material
+        lateinit var Promethazine: Material
+        lateinit var Codeine: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
@@ -623,7 +628,7 @@ class GTLiteMaterials
         lateinit var Polenta: Material
         lateinit var Coffee: Material
         lateinit var Butter: Material
-
+        lateinit var PurpleDrink: Material
         lateinit var Carbon5Fraction: Material
         lateinit var DimerizedCarbon5Fraction: Material
         lateinit var OliveOil: Material
@@ -638,6 +643,11 @@ class GTLiteMaterials
         lateinit var CranberryExtract: Material
         lateinit var CranberrySodaSyrup: Material
         lateinit var CranberryEtirps: Material
+        lateinit var CoughSyrup: Material
+        lateinit var AppleSyrup: Material
+        lateinit var CaneSyrup: Material
+        lateinit var AppleCaneSyrup: Material
+        lateinit var HardAppleCandySyrup: Material
 
         lateinit var FreeElectronGas: Material
         lateinit var FermionicUUMatter: Material

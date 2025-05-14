@@ -449,6 +449,7 @@ class GTLiteMetaItems
 
         lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
         lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
+        lateinit var HARD_APPLE_CANDY: MetaItem<*>.MetaValueItem
 
         @JvmStatic
         fun init()
@@ -1471,6 +1472,12 @@ class GTLiteMetaItems
                         RandomPotionEffect(MobEffects.SATURATION, 8 * MINUTE, 127, 100 - 100),
                         RandomPotionEffect(MobEffects.LUCK, 10 * MINUTE, 127, 100 - 100)))
                 .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), { GTLiteTextures.HALO }, true))
+                .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
+
+            HARD_APPLE_CANDY = GTLITE_ITEMS.addItem(9603, "food.hard_apple_candy")
+                .addComponents(FoodBehavior(3, 0.5f)
+                    .setEatingDuration(1 * SECOND + 4 * TICK)
+                    .setPotionEffects(RandomPotionEffect(MobEffects.REGENERATION, 1 * MINUTE, 1, 50)))
                 .setCreativeTabs(GTLiteAPI.TAB_GTLITE_FOOD as CreativeTabs)
 
         }

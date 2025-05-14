@@ -15,6 +15,8 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcidicSaltWater
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleCaneSyrup
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BFGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BZMedium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BedrockGas
@@ -27,11 +29,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUM
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CAT
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaneSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChalcogenAnodeMud
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CleanBedrockSootSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CleanEnrichedBedrockSootSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Coffee
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CoughSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedHeavyEnrichedTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedHeavyTaraniumGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrackedLightEnrichedTaraniumGas
@@ -56,6 +60,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapeJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenhouseGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HadronicResonantGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HardAppleCandySyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyEnrichedTaraniumFuel
@@ -100,6 +105,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OrangeExtr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PurpleDrink
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuasifissioningPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RainbowSap
@@ -278,7 +284,11 @@ class GTLiteUnknownCompositionMaterials
                 .color(0xFFEF82)
                 .build()
 
-            // ...
+            // 12049 Purple Drink
+            PurpleDrink = Material.Builder(12049, gtliteId("purple_drink"))
+                .liquid()
+                .color(0xB405FF)
+                .build()
 
             // 12050 Carbon 5 Fraction
             Carbon5Fraction = Material.Builder(12050, gtliteId("carbon_5_fraction"))
@@ -367,7 +377,37 @@ class GTLiteUnknownCompositionMaterials
                 .color(averageRGB(2, CranberryExtract.materialRGB, 0xBBDDBB))
                 .build()
 
-            // 12064-12100 for misc unknown composition materials.
+            // 12064 Cough Syrup
+            CoughSyrup = Material.Builder(12064, gtliteId("cough_syrup"))
+                .liquid()
+                .color(0x5C1B5E)
+                .build()
+
+            // 12065 Apple Syrup
+            AppleSyrup = Material.Builder(12065, gtliteId("apple_syrup"))
+                .liquid()
+                .color(0xF2E1AC)
+                .build()
+
+            // 12065 Cane Syrup
+            CaneSyrup = Material.Builder(12066, gtliteId("cane_syrup"))
+                .liquid()
+                .color(0xF2F1DC)
+                .build()
+
+            // 12066 Apple-Cane Syrup
+            AppleCaneSyrup = Material.Builder(12067, gtliteId("apple_cane_syrup"))
+                .liquid()
+                .color(0xE7F5AE)
+                .build()
+
+            // 12067 Hard Apple Candy Syrup
+            HardAppleCandySyrup = Material.Builder(12068, gtliteId("hard_apple_candy_syrup"))
+                .liquid()
+                .color(0x78E32B)
+                .build()
+
+            // 12068-12100 for misc unknown composition materials.
             // ...
 
             // 12101 Free Electron Gas

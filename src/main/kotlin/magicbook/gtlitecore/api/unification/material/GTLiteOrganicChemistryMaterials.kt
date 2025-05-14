@@ -89,6 +89,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNano
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Codeine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creosol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeHexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cyclooctadiene
@@ -165,6 +166,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indanone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Isochloropropane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IsopropylAlcohol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IsopropylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
@@ -192,6 +194,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ParaXylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotPSS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotTMA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pentane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phenothiazine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenothiazinePropylChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylC61ButyricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylC61ButyricStyrene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylpentanoicAcid
@@ -210,6 +214,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polystyren
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polytetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PretreatedZylon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Promethazine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pyridine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PyromelliticDianhydride
@@ -1767,6 +1772,48 @@ class GTLiteOrganicChemistryMaterials
                 .liquid()
                 .color(0xAF4617)
                 .components(Carbon, 8, Hydrogen, 10, Oxygen, 2)
+                .build()
+
+            // 8189 Phenothiazine
+            Phenothiazine = Material.Builder(8189, gtliteId("phenothiazine"))
+                .dust()
+                .color(0x67735C).iconSet(FINE)
+                .components(Carbon, 12, Hydrogen, 9, Nitrogen, 1, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C12H9NS", true)
+
+            // 8190 Isopropyl Chloride
+            IsopropylChloride = Material.Builder(8190, gtliteId("isopropyl_chloride"))
+                .liquid()
+                .color(0x17B868)
+                .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(CH3)2CHCl", true)
+
+            // 8191 10-Phenothiazine-2-Propyl Chloride
+            PhenothiazinePropylChloride = Material.Builder(8191, gtliteId("phenothiazine_propyl_chloride"))
+                .liquid()
+                .color(0x444E1D)
+                .components(Carbon, 15, Hydrogen, 14, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8192 Promethazine
+            Promethazine = Material.Builder(8192, gtliteId("promethazine"))
+                .dust()
+                .color(0x92E829).iconSet(SHINY)
+                .components(Carbon, 17, Hydrogen, 20, Nitrogen, 2, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8193 Codeine
+            Codeine = Material.Builder(8193, gtliteId("codeine"))
+                .dust()
+                .color(0xFADEF2)
+                .components(Carbon, 18, Hydrogen, 21, Nitrogen, 1, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
                 .build()
 
         }

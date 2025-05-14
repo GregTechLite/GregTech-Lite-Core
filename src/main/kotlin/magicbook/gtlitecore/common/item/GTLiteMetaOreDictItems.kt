@@ -6,6 +6,7 @@ import gregtech.api.items.metaitem.StandardMetaItem
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
+import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.crushed
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -16,6 +17,7 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.round
 import magicbook.gtlitecore.api.GTLiteAPI
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ORGANIC
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
@@ -46,6 +48,11 @@ class GTLiteMetaOreDictItems
         lateinit var GRAHAM_CRACKER_SLICE: OreDictValueItem
         lateinit var ANIMAL_FAT: OreDictValueItem
         lateinit var ZEST_DUST: OreDictValueItem
+        lateinit var POPPY_DUST: OreDictValueItem
+        lateinit var APPLE_PULP: OreDictValueItem
+        lateinit var HARD_APPLE_CANDY_CHUNK: OreDictValueItem
+        lateinit var HARD_APPLE_CANDY_PLATE: OreDictValueItem
+        lateinit var HARD_APPLE_CANDY_DUST: OreDictValueItem
 
         @JvmStatic
         fun init()
@@ -108,6 +115,21 @@ class GTLiteMetaOreDictItems
 
             ZEST_DUST = GTLITE_OREDICT_ITEMS.addOreDictItem(17, "zest",
                 0xD8FF4A, FINE, dust)
+
+            POPPY_DUST = GTLITE_OREDICT_ITEMS.addOreDictItem(18, "poppy",
+                0x940801, ROUGH, dust)
+
+            APPLE_PULP = GTLITE_OREDICT_ITEMS.addOreDictItem(19, "apple_pulp",
+                0xCCCC99, NANOPARTICLES, dust)
+
+            HARD_APPLE_CANDY_CHUNK = GTLITE_OREDICT_ITEMS.addOreDictItem(20, "hard_apple_candy_chunk",
+                0x78E32B, ROUGH, plateDense)
+
+            HARD_APPLE_CANDY_PLATE = GTLITE_OREDICT_ITEMS.addOreDictItem(21, "hard_apple_candy",
+                0x78E32B, ROUGH, plate)
+
+            HARD_APPLE_CANDY_DUST = GTLITE_OREDICT_ITEMS.addOreDictItem(22, "hard_apple_candy",
+                0x78E32B, NANOPARTICLES, dust)
 
         }
 

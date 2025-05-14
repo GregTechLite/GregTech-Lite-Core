@@ -1169,6 +1169,8 @@ metaitem.food.golden_strawberry.name=金草莓
 metaitem.food.golden_strawberry.tooltip=比金苹果更好
 metaitem.food.moon_berry.name=月莓
 metaitem.food.moon_berry.tooltip=哇哦！
+metaitem.food.hard_apple_candy.name=苹果硬糖
+metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=玉米粒
@@ -1188,6 +1190,11 @@ metaitem.graham_cracker_chunk_plate_dense.name=全麦饼干胚
 metaitem.graham_cracker_slice_plate.name=全麦饼干片
 metaitem.animal_fat_ingot.name=动物脂肪块
 metaitem.zest_dust.name=碎果皮
+metaitem.poppy_dust.name=虞美人粉
+metaitem.apple_pulp_dust.name=苹果果肉末
+metaitem.hard_apple_candy_chunk_plate_dense.name=苹果硬糖胚
+metaitem.hard_apple_candy_plate.name=苹果硬糖片
+metaitem.hard_apple_candy_dust.name=苹果硬糖碎
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3086,6 +3093,11 @@ gtlitecore.material.guaiacol=愈创木酚
 gtlitecore.material.xylenol=二甲酚
 gtlitecore.material.creosol=甲酚
 gtlitecore.material.methoxycreosol=甲氧甲酚
+gtlitecore.material.phenothiazine=吩噻嗪
+gtlitecore.material.isopropyl_chloride=异丙基氯
+gtlitecore.material.phenothiazine_propyl_chloride=10-(2-氯丙基)-吩噻嗪
+gtlitecore.material.promethazine=异丙嗪
+gtlitecore.material.codeine=可待因
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3111,7 +3123,7 @@ gtlitecore.material.vodka=伏特加
 gtlitecore.material.polenta=玉米糊
 gtlitecore.material.coffee=咖啡
 gtlitecore.material.butter=黄油
-
+gtlitecore.material.purple_drink=紫色饮料
 gtlitecore.material.carbon_5_fraction=碳5馏分
 gtlitecore.material.dimerized_carbon_5_fraction=二聚化碳5馏分
 gtlitecore.material.olive_oil=橄榄油
@@ -3126,6 +3138,11 @@ gtlitecore.material.etirps=碧雪™
 gtlitecore.material.cranberry_extract=蔓越莓提取液
 gtlitecore.material.cranberry_soda_syrup=蔓越莓苏打糖浆
 gtlitecore.material.cranberry_etirps=蔓越莓味碧雪™
+gtlitecore.material.cough_syrup=止咳糖浆
+gtlitecore.material.apple_syrup=苹果糖浆
+gtlitecore.material.cane_syrup=甘蔗糖浆
+gtlitecore.material.apple_cane_syrup=苹果-甘蔗糖浆
+gtlitecore.material.hard_apple_candy_syrup=苹果硬糖糖浆
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质

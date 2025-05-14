@@ -1169,6 +1169,8 @@ metaitem.food.golden_strawberry.name=Golden Strawberry
 metaitem.food.golden_strawberry.tooltip=Better than Golden Apple
 metaitem.food.moon_berry.name=Moon Berry
 metaitem.food.moon_berry.tooltip=WOW!
+metaitem.food.hard_apple_candy.name=Hard Apple Candy
+metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernel
@@ -1188,6 +1190,11 @@ metaitem.graham_cracker_chunk_plate_dense.name=Graham Cracker Chunk
 metaitem.graham_cracker_slice_plate.name=Graham Cracker Slice
 metaitem.animal_fat_ingot.name=Animal Fat Chunk
 metaitem.zest_dust.name=Zest Dust
+metaitem.poppy_dust.name=Poppy Dust
+metaitem.apple_pulp_dust.name=Apple Pulp Dust
+metaitem.hard_apple_candy_chunk_plate_dense.name=Hard Apple Candy Chunk
+metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
+metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
@@ -3084,6 +3091,12 @@ gtlitecore.material.guaiacol=Guaiacol
 gtlitecore.material.xylenol=Xylenol
 gtlitecore.material.creosol=Creosol
 gtlitecore.material.methoxycreosol=Methoxycreosol
+gtlitecore.material.phenothiazine=Phenothiazine
+gtlitecore.material.isopropyl_chloride=Isopropyl Chloride
+gtlitecore.material.phenothiazine_propyl_chloride=10-Phenothiazine-2-Propyl Chloride
+gtlitecore.material.promethazine=Promethazine
+gtlitecore.material.codeine=Codeine
+metaitem.apple_pulp_dust.name=Apple Pulp Dust
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3109,7 +3122,7 @@ gtlitecore.material.vodka=Vodka
 gtlitecore.material.polenta=Polenta
 gtlitecore.material.coffee=Coffee
 gtlitecore.material.butter=Butter
-
+gtlitecore.material.purple_drink=Purple Drink
 gtlitecore.material.carbon_5_fraction=Carbon 5 Fraction
 gtlitecore.material.dimerized_carbon_5_fraction=Dimerized Carbon 5 Fraction
 gtlitecore.material.olive_oil=Olive Oil
@@ -3124,6 +3137,11 @@ gtlitecore.material.etirps=Etirps™
 gtlitecore.material.cranberry_extract=Cranberry Extract
 gtlitecore.material.cranberry_soda_syrup=Cranberry Soda Syrup
 gtlitecore.material.cranberry_etirps=Cranberry Etirps™
+gtlitecore.material.cough_syrup=Cough Syrup
+gtlitecore.material.apple_syrup=Apple Syrup
+gtlitecore.material.cane_syrup=Cane Syrup
+gtlitecore.material.apple_cane_syrup=Apple-Cane Syrup
+gtlitecore.material.hard_apple_candy_syrup=Hard Apple Candy Syrup
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
