@@ -1945,6 +1945,27 @@ gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4=升级部件外壳或电�
 gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
 gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.6=每提高1个§e泵外壳等级§7与§e力场外壳等级§7，每次运行可以多处理§l32§r§7个物品。
 
+gtlitecore.machine.pcb_factory.name=PCB Factory
+gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
+gtlitecore.machine.pcb_factory.tooltip.2=带有多级附属结构，附属结构的等级限制了最大配方等级。
+gtlitecore.machine.pcb_factory.tooltip.3=2级与3级PCB工厂支持放置额外的§f纳米蜂群§7来增加并行数：
+gtlitecore.machine.pcb_factory.tooltip.4=- 2级：每放入1个§6银纳米蜂群§7，并行数增加2；
+gtlitecore.machine.pcb_factory.tooltip.5=- 3级：每放入1个§a金纳米蜂群§7，并行数增加4；
+gtlitecore.machine.pcb_factory.tooltip.6=需要升级§d冷却结构§7才能解锁机器的超频功能：
+gtlitecore.machine.pcb_factory.tooltip.7=- 建造§b水冷塔§7后，解锁配方的§f默认超频§7功能；
+gtlitecore.machine.pcb_factory.tooltip.8=- 建造§9空冻塔§7后，解锁配方的§5无损超频§7功能；
+gtlitecore.machine.pcb_factory.tooltip.9=建造§2生物室§7以解锁高级电路板配方。
+gtlitecore.machine.pcb_factory.tooltip.10=调整机器的线宽（默认§f100μm§7，每次±§f25μm§7）以获得特殊效果：
+gtlitecore.machine.pcb_factory.tooltip.11=- 线宽每缩短§f25μm§7，配方时间就减少§f20%%§7，耗能就增加§f50%%§7；
+gtlitecore.machine.pcb_factory.tooltip.12=- 线宽每放宽§f25μm§7，配方时间就增加§f20%%§7，耗能就减少§f10%%§7；
+gtlitecore.machine.pcb_factory.tooltip.13=机器的最小线宽为§f25μm§7，最大线宽为§f200μm§7。
+gtlitecore.machine.pcb_factory.tooltip.14=§f如果你不知道如何获得纳米蜂群，请搜索§3纳米锻炉§f。
+
+gtlitecore.machine.pcb_factory.structure_info=结构等级：%s (线宽：%sμm)
+gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
+gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
+gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.

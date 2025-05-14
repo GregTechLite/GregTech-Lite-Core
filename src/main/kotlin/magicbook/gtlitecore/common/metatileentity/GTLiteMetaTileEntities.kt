@@ -46,6 +46,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityFusio
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaserInducedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityNanoscaleFabricator
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityPCBFactory
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityPlasmaEnhancedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySonicator
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityStellarForge
@@ -264,6 +265,7 @@ class GTLiteMetaTileEntities
         lateinit var COSMIC_RAY_DETECTOR: MetaTileEntityCosmicRayDetector
         lateinit var STELLAR_FORGE: MetaTileEntityStellarForge
         lateinit var PLASMA_ENHANCED_CVD_UNIT: MetaTileEntityPlasmaEnhancedCVDUnit
+        lateinit var PCB_FACTORY: MetaTileEntityPCBFactory
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -840,6 +842,9 @@ class GTLiteMetaTileEntities
             PLASMA_ENHANCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18024,
                 MetaTileEntityPlasmaEnhancedCVDUnit(GTLiteUtility.gtliteId("plasma_enhanced_cvd_unit")))
 
+            PCB_FACTORY = MetaTileEntities.registerMetaTileEntity(18025,
+                MetaTileEntityPCBFactory(GTLiteUtility.gtliteId("pcb_factory")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -1061,6 +1066,7 @@ class GTLiteMetaTileEntities
             COSMIC_RAY_DETECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             STELLAR_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             PLASMA_ENHANCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            PCB_FACTORY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
