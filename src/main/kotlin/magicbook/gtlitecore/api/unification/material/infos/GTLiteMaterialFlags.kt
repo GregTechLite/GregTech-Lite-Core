@@ -34,6 +34,7 @@ import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
+import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
@@ -344,6 +345,7 @@ class GTLiteMaterialFlags
             Carbon.addFlags(GENERATE_NANITE)
             Silver.addFlags(GENERATE_NANITE)
             Gold.addFlags(GENERATE_NANITE)
+            Glowstone.addFlags(GENERATE_NANITE)
 
             // plate
             Clay.addFlags(GENERATE_PLATE)

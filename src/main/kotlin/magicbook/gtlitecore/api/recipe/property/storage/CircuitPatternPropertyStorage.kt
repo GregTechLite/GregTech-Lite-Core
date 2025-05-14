@@ -123,7 +123,6 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(SAPPHIRE_MODULATOR))
             CircuitPatternProperty.register(getCircuit(CRYSTAL_SOC_SOCKET))
             CircuitPatternProperty.register(getCircuit(NEURO_PROCESSOR))
-            CircuitPatternProperty.register(getCircuit(OPTOELECTRONIC_SYSTEM_ON_CHIP))
 
         }
 

@@ -1289,21 +1289,6 @@ class CircuitAssemblyLineRecipeProducer
                 .circuit(getCircuit(NEURO_PROCESSOR))
                 .buildAndRegister()
 
-            // Optoelectronic SoC
-            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .input(OPTICAL_IMC_UNIT, 32)
-                .input(plate, CubicSiliconNitride, 16)
-                .input(PERIODICALLY_POLED_OPTICAL_CHIP, 32)
-                .input(ALL_OPTICAL_CASCADE_NOR_CHIP, 64)
-                .input(TOOL_DATA_ORB, 32)
-                .input(OPTICAL_FIBER, 64)
-                .fluidInputs(PCBCoolant.getFluid(4000))
-                .output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 32)
-                .EUt(VA[UEV].toLong())
-                .duration(30 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
-                .circuit(getCircuit(OPTOELECTRONIC_SYSTEM_ON_CHIP))
-                .buildAndRegister()
-
         }
 
         private fun addCircuit(circuit: MetaItem<*>.MetaValueItem)

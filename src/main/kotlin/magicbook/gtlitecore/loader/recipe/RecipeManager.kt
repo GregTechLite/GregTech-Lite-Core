@@ -70,6 +70,7 @@ import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
 import magicbook.gtlitecore.loader.recipe.chain.RubidiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.ShirabonChain
 import magicbook.gtlitecore.loader.recipe.chain.SilicaGelChain
+import magicbook.gtlitecore.loader.recipe.chain.SiliconNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.SuperheavyElementsChain
 import magicbook.gtlitecore.loader.recipe.chain.ThoriumYttriumGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.YBCOChain
@@ -256,6 +257,7 @@ class RecipeManager
             ShirabonChain.init()
             FullerenePolymerMatrixChain.init()
             LuTmYVOChain.init()
+            SiliconNitrideChain.init()
             NanitesChain.init()
 
             AdditivesChain.init()

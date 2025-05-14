@@ -35,6 +35,7 @@ import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY_WAFER
 import gregtech.common.items.MetaItems.SIMPLE_SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmYVO
@@ -409,6 +410,11 @@ class LaserEngraverRecipes
                 item.isItemEqual(OreDictUnifier.get(lens, NetherStar)) or
                         item.isItemEqual(OreDictUnifier.get(lens, CubicZirconia))
             }
+            // Disabled craftingLensGray ore dict of Cubic Silicon Nitride lens.
+            OreDictionary.getOres("craftingLensGray").removeIf { item ->
+                item.isItemEqual(OreDictUnifier.get(lens, CubicSiliconNitride))
+            }
+
             // Disabled craftingLensPink ore dict of Magneto Resonatic and Nd:YAG.
             OreDictionary.getOres("craftingLensPink").removeIf { item ->
                 item.isItemEqual(OreDictUnifier.get(lens, MagnetoResonatic)) or

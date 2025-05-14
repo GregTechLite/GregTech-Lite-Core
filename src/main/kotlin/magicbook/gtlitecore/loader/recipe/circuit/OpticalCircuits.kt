@@ -22,6 +22,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
+import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Americium
@@ -44,6 +45,7 @@ import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Germanium
+import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
@@ -128,6 +130,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumG
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadScandiumTantalate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MalonicAcid
@@ -148,6 +151,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetramethy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -561,42 +565,6 @@ class OpticalCircuits
 
         private fun systemOnChipRecipes()
         {
-            // Si + 3CH3Cl-> Si(CH3)Cl3 + C2H6
-            CHEMICAL_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(dust, Silicon)
-                .fluidInputs(Chloromethane.getFluid(3000))
-                .fluidOutputs(Methyltrichlorosilane.getFluid(1000))
-                .fluidOutputs(Ethane.getFluid(1000))
-                .EUt(96) // MV
-                .duration(12 * SECOND)
-                .buildAndRegister()
-
-            // 3Si(CH3)Cl3 + 4HNO3 -> h-Si3N4 + 9HCl + C3H4O4 + 8O
-            PLASMA_CVD_RECIPES.recipeBuilder()
-                .notConsumable(plate, Thallium)
-                .notConsumable(SHAPE_MOLD_PLATE)
-                .fluidInputs(Methyltrichlorosilane.getFluid(3000))
-                .fluidInputs(NitricAcid.getFluid(4000))
-                .fluidInputs(Argon.getPlasma(10000))
-                .output(plate, HexagonalSiliconNitride)
-                .output(dust, MalonicAcid, 11)
-                .fluidOutputs(HydrochloricAcid.getFluid(9000))
-                .fluidOutputs(Oxygen.getFluid(8000))
-                .EUt(VA[UV].toLong())
-                .duration(10 * SECOND)
-                .temperature(1250)
-                .buildAndRegister()
-
-            // h-Si3N4 -> c-Si3N4
-            CVD_RECIPES.recipeBuilder()
-                .input(dust, HexagonalSiliconNitride)
-                .output(gem, CubicSiliconNitride)
-                .EUt(VA[UHV].toLong())
-                .duration(5 * SECOND)
-                .temperature(3501)
-                .buildAndRegister()
-
             // 2CeO2 + 3NaHCO3 -> Ce2(CO3)3 + 3NaOH + O
             BURNER_REACTOR_RECIPES.recipeBuilder()
                 .input(dust, CeriumOxide, 6)
@@ -683,27 +651,25 @@ class OpticalCircuits
                 .buildAndRegister()
 
             // Optical IMC Unit
-            FORMING_PRESS_RECIPES.recipeBuilder()
-                .input(ULTRA_HIGHLY_ADVANCED_SOC_CHIP)
-                .input(ENGRAVED_LAPOTRON_CHIP, 6)
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, CubicSiliconNitride)
+                .input(ENGRAVED_LAPOTRON_CHIP)
+                .input(nanite, Glowstone)
                 .input(PHASE_CHANGE_RAM_CHIP, 2)
-                .input(springSmall, Moscovium)
-                .input(wireFine, MetastableOganesson, 4)
-                .output(OPTICAL_IMC_UNIT, 16)
+                .fluidInputs(LightQuarks.getFluid(500))
+                .output(OPTICAL_IMC_UNIT, 4)
                 .EUt(VA[UV].toLong())
                 .duration(10 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Optoelectronic SoC
-            CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+            // Optoelectronic System on Chip
+            FORMING_PRESS_RECIPES.recipeBuilder()
                 .input(OPTICAL_IMC_UNIT, 2)
-                .input(plate, CubicSiliconNitride)
                 .input(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
                 .input(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
-                .input(TOOL_DATA_ORB, 2)
+                .input(springSmall, Moscovium)
                 .input(OPTICAL_FIBER, 8)
-                .fluidInputs(PCBCoolant.getFluid(4000))
                 .output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 2)
                 .EUt(VA[UEV].toLong())
                 .duration(5 * SECOND)
