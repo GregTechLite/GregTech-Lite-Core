@@ -2,6 +2,7 @@ package magicbook.gtlitecore.api.unification.material.element
 
 import gregtech.api.unification.Element
 import gregtech.api.unification.Elements
+import magicbook.gtlitecore.api.utils.FormattingUtility
 
 class GTLiteElements
 {
@@ -38,6 +39,10 @@ class GTLiteElements
 
         @JvmStatic
         val Tsx: Element = Elements.add(360, 360, "TranscendentMetal", "TsЖ")
+        @JvmStatic
+        val Spx: Element = Elements.add(9999, 9999, "SpaceTime", FormattingUtility.format("gtlitecore.material.space_time.formula", "Reality is falling apart"))
+        @JvmStatic
+        val Crx: Element = Elements.add(3650, 3650, "Creon", "⸎")
 
     }
 

@@ -30,6 +30,8 @@ class GTLiteMaterials
         lateinit var Hypogen: Material
         lateinit var Shirabon: Material
         lateinit var TranscendentMetal: Material
+        lateinit var SpaceTime: Material
+        lateinit var Creon: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material
@@ -333,6 +335,7 @@ class GTLiteMaterials
         lateinit var PlutoniumTrihydride: Material
         lateinit var PlutoniumPhosphide: Material
         lateinit var Phosphine: Material
+        lateinit var Mellion: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -727,6 +730,9 @@ class GTLiteMaterials
         lateinit var Protomatter: Material
         lateinit var SemistableAntimatter: Material
         lateinit var Antimatter: Material
+        lateinit var SpatiallyEnlargedFluid: Material
+        lateinit var TachyonRichTemporalFluid: Material
+        lateinit var PrimordialMatter: Material
 
         lateinit var DimensionallyShiftedSuperfluid: Material
 

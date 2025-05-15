@@ -443,6 +443,7 @@ tile.fusion_casing_03.vacuum_mk5.name=Reactor Vacuum MK5
 tile.wire_coil.adamantium.name=Adamantium Wire Coil Block
 tile.wire_coil.infinity.name=Infinity Wire Coil Block
 tile.wire_coil.halkonite_steel.name=Halkonite Steel Wire Coil Block
+tile.wire_coil.space_time.name=Space Time Wire Coil Block
 
 tile.crucible.bronze.name=Bronze Crucible
 tile.crucible.invar.name=Invar Crucible
@@ -2508,6 +2509,9 @@ gtlitecore.material.rhugnor=Rhugnor
 gtlitecore.material.hypogen=Hypogen
 gtlitecore.material.shirabon=Shirabon
 gtlitecore.material.transcendent_metal=Transcendent Metal
+gtlitecore.material.space_time=Space Time
+gtlitecore.material.space_time.formula=§7Reality is falling apart
+gtlitecore.material.creon=Creon
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -2824,6 +2828,7 @@ gtlitecore.material.bismuth_chalcogenide=Bismuth Chalcogenide
 gtlitecore.material.plutonium_trihydride=Plutonium Trihydride
 gtlitecore.material.plutonium_phosphide=Plutonium Phosphide
 gtlitecore.material.phosphine=Phosphine
+gtlitecore.material.mellion=Mellion
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3227,6 +3232,9 @@ gtlitecore.material.resonant_strange_meson=Resonant Strange Meson
 gtlitecore.material.protomatter=Protomatter
 gtlitecore.material.semistable_antimatter=Semistable Antimatter
 gtlitecore.material.antimatter=Antimatter
+gtlitecore.material.spatially_enlarged_fluid=Spatially Enlarged Fluid
+gtlitecore.material.tachyon_rich_temporal_fluid=Tachyon Rich Temporal Fluid
+gtlitecore.material.primordial_matter=Primordial Matter
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 

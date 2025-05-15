@@ -202,7 +202,7 @@ class GTLiteMaterialProperties
                 Nihonium, Livermorium, Tennessine, Thulium, Promethium)
                 .forEach { addLiquid(it) }
 
-            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth)
+            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth, Thorium)
                 .forEach { addPlasma(it) }
 
             sequenceOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium)

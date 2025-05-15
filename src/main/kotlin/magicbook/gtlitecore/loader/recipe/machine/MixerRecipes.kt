@@ -11,6 +11,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
@@ -90,6 +91,7 @@ import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.Roentgenium
+import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -129,6 +131,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
@@ -142,6 +145,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Firestone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
@@ -163,6 +167,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
@@ -172,6 +177,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
@@ -308,6 +314,21 @@ class MixerRecipes
                 .output(dust, WoodsGlass, 13)
                 .EUt(VA[IV].toLong())
                 .duration(45 * SECOND)
+                .buildAndRegister()
+
+            // Mellion
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(dust, Rubidium, 11)
+                .input(dust, Tritanium, 11)
+                .input(dust, Adamantium, 7)
+                .input(dust, Firestone, 13)
+                .input(dust, MetastableOganesson, 13)
+                .input(dust, ActiniumSuperhydride, 8)
+                .fluidInputs(ResonantStrangeMeson.getFluid(1000))
+                .output(dust, Mellion, 64)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE)
                 .buildAndRegister()
 
             // Kovar

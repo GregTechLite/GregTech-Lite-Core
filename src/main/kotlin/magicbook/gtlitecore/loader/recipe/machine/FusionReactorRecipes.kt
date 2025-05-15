@@ -10,6 +10,7 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
@@ -53,6 +54,7 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Nitrogen
+import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
@@ -70,6 +72,7 @@ import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tennessine
+import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritium
@@ -318,7 +321,7 @@ class FusionReactorRecipes
                 .EUToStart(960_000_000L) // 960M EU, MK4
                 .buildAndRegister()
 
-            addPlasmaCoolantRecipe(Fermium, 38 * SECOND + 14 * TICK)
+            addPlasmaFuelRecipe(Fermium, 38 * SECOND + 14 * TICK)
             addPlasmaCoolantRecipe(Fermium, 19 * SECOND, true)
 
             // Se + F -> Tc (plasma)
@@ -406,6 +409,19 @@ class FusionReactorRecipes
 
             // ---------------------------------------------------------------------------------------------------------
             // Mark 5 Fusion
+
+            // Os + Si -> Th (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Osmium.getFluid(L))
+                .fluidInputs(Silicon.getFluid(L))
+                .fluidOutputs(Thorium.getPlasma(L))
+                .EUt(VH[UEV] / 2L)
+                .duration(13 * SECOND + 10 * TICK)
+                .EUToStart(1_800_000_000L) // 1800M EU, MK5
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Thorium, 52 * SECOND + 4 * TICK)
+            addPlasmaCoolantRecipe(Thorium, 26 * SECOND + 2 * TICK, true)
 
             // At + Ni -> Nh
             FUSION_RECIPES.recipeBuilder()

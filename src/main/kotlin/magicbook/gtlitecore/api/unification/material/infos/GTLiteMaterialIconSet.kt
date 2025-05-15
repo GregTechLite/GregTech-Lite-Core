@@ -49,6 +49,9 @@ class GTLiteMaterialIconSet
         @JvmField
         val ORGANIC = MaterialIconSet("organic", null, true)
 
+        @JvmField
+        val SPACETIME = MaterialIconSet("spacetime", null, true)
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

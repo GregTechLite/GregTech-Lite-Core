@@ -55,3 +55,5 @@
 | Hypogen*                                   | 33,554,432 (UIV)  | 16                    | 4                  | 8                 |
 | Superheavy Alloy (Light)*                  | 33,554,432 (UIV)  | 48                    | 5                  | 10                |
 | Superheavy Alloy (Heavy)*                  | 134,217,728 (UXV) | 64                    | 10                 | 20                |
+| Space Time*                                | 134,217,728 (UXV) | 96                    | 16                 | 32                |
+| Mellion*                                   | 134,217,728 (UXV) | 48                    | 12                 | 24                |

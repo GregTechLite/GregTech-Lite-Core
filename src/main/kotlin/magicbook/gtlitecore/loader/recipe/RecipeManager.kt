@@ -16,6 +16,7 @@ import magicbook.gtlitecore.loader.recipe.chain.CarbonNanotubeChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
+import magicbook.gtlitecore.loader.recipe.chain.CreonMellionChain
 import magicbook.gtlitecore.loader.recipe.chain.DegenerateRheniumChain
 import magicbook.gtlitecore.loader.recipe.chain.DiethylEtherChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
@@ -267,6 +268,7 @@ class RecipeManager
             NanitesChain.init()
             AntimatterChain.init()
             TesseractsChain.init()
+            CreonMellionChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

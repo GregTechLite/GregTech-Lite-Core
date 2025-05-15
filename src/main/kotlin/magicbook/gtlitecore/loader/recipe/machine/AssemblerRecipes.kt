@@ -12,6 +12,7 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
@@ -153,15 +154,18 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
@@ -199,6 +203,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_M
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UXV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_DRUM
@@ -413,6 +418,15 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // UXV Machine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(plate, Creon, 8)
+                .outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun machineHullRecipes()
@@ -448,6 +462,16 @@ class AssemblerRecipes
                 .input(cableGtSingle, SuperheavyAlloyA, 2)
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
                 .output(HULL[UIV])
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // UXV Machine Hull
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UXV))
+                .input(cableGtSingle, SuperheavyAlloyB, 2)
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
+                .output(HULL[UXV])
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
@@ -2021,6 +2045,16 @@ class AssemblerRecipes
                 .input(wireFine, QuantumchromodynamicallyConfinedMatter, 16)
                 .output(VOLTAGE_COIL_UIV)
                 .EUt(VA[UIV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // UXV Voltage Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(stick, Magnetium)
+                .input(wireFine, Mellion, 16)
+                .output(VOLTAGE_COIL_UXV)
+                .EUt(VA[UXV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
         }

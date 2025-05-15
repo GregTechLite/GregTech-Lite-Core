@@ -106,6 +106,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.OrangeExtr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphoreneSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polenta
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotatoJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PurpleDrink
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
@@ -123,8 +124,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SapphireJu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaWater
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SemistableAntimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodioIndene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpatiallyEnlargedFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SteamCrackedSodioIndene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TachyonRichTemporalFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UltralightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UnprocessedNdYAGSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vinegar
@@ -912,6 +915,27 @@ class GTLiteUnknownCompositionMaterials
                 .plasma(FluidBuilder()
                     .temperature(2_000_000_000)
                     .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13014 Spatially Enlarged Fluid
+            SpatiallyEnlargedFluid = Material.Builder(13014, gtliteId("spatially_enlarged_fluid"))
+                .liquid(FluidBuilder()
+                    .temperature(1)
+                    .customStill())
+                .build()
+
+            // 13015 Tachyon Rich Temporal Fluid
+            TachyonRichTemporalFluid = Material.Builder(13015, gtliteId("tachyon_rich_temporal_fluid"))
+                .liquid(FluidBuilder()
+                    .temperature(1)
+                    .customStill())
+                .build()
+
+            // 13016 Primordial Matter
+            PrimordialMatter = Material.Builder(13016, gtliteId("primordial_matter"))
+                .liquid(FluidBuilder()
+                    .temperature(2_000_000_000)
                     .customStill())
                 .build()
 

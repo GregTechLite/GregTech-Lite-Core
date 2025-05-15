@@ -5,6 +5,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
@@ -44,6 +45,7 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.Redstone
+import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
@@ -58,6 +60,7 @@ import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumStrontiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumTitanate
@@ -66,6 +69,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Firestone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
@@ -74,8 +78,11 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumBerylliumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumSodiumPotassiumFluorides
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
@@ -275,6 +282,22 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[UEV].toLong())
                 .duration(292 * SECOND + 10 * TICK)
                 .blastFurnaceTemp(14400) // Infinity
+                .buildAndRegister()
+
+            // Mellion
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(dust, Rubidium, 11)
+                .input(dust, Tritanium, 11)
+                .input(dust, Adamantium, 7)
+                .input(dust, Firestone, 13)
+                .input(dust, MetastableOganesson, 13)
+                .input(dust, ActiniumSuperhydride, 8)
+                .fluidInputs(ResonantStrangeMeson.getFluid(1000))
+                .fluidOutputs(Mellion.getFluid(L * 64))
+                .EUt(VA[UXV].toLong())
+                .duration(20 * SECOND)
+                .blastFurnaceTemp(16000)
                 .buildAndRegister()
 
         }

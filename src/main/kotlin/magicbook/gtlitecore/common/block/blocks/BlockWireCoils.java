@@ -105,7 +105,9 @@ public class BlockWireCoils extends VariantActiveBlock<BlockWireCoils.WireCoilTy
         // UEV: Infinity, 14400K (12600K + 1800K)
         INFINITY("infinity", 14400, 32, 16, GTLiteMaterials.Infinity),
         // UIV: Halkonite Steel, 16201K (14400K + 1801K)
-        HALKONITE_STEEL("halkonite_steel", 16201, 32, 32, GTLiteMaterials.HalkoniteSteel);
+        HALKONITE_STEEL("halkonite_steel", 16201, 32, 32, GTLiteMaterials.HalkoniteSteel),
+        // UXV: Space Time, 18000K (16201K + 1799K)
+        SPACE_TIME("space_time", 18000, 64, 32, GTLiteMaterials.SpaceTime);
 
         private final String name;
         private final int coilTemperature;

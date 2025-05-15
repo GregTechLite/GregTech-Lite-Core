@@ -39,6 +39,7 @@ import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
@@ -49,10 +50,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Crx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Fs
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Hy
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.If
@@ -60,6 +63,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Pu244
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Sh
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.SpNt
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Spx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tsx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
@@ -68,6 +72,7 @@ import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ENRICHED
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETIUM
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.SPACETIME
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -321,6 +326,38 @@ class GTLiteElementMaterials
                     b.temp(16101, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
                         .blastStats(VA[UXV], 3 * MINUTE)
                         .vacuumStats(VA[UIV], 2 * MINUTE)
+                }
+                .build()
+
+            // 16 Space Time
+            SpaceTime = Material.Builder(16, gtliteId("space_time"))
+                .ingot()
+                .liquid()
+                .iconSet(SPACETIME)
+                .element(Spx)
+                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .blast { b ->
+                    b.temp(16201, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                        .blastStats(VA[UXV], 4 * MINUTE + 30 * SECOND)
+                        .vacuumStats(VA[UIV], 3 * MINUTE + 25 * SECOND)
+                }
+                .cableProperties(V[UXV], 96,16)
+                .build()
+
+            // 17 Creon
+            Creon = Material.Builder(17, gtliteId("creon"))
+                .ingot()
+                .liquid()
+                .plasma()
+                .color(0x460046).iconSet(SHINY)
+                .element(Crx)
+                .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                    GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
+                .blast { b ->
+                    b.temp(16000, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                        .blastStats(VA[UXV], 2 * MINUTE + 40 * SECOND)
+                        .vacuumStats(VA[UIV], 1 * MINUTE + 45 * SECOND)
                 }
                 .build()
 

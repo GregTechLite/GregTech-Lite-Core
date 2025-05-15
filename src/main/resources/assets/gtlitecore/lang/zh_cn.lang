@@ -443,6 +443,7 @@ tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 tile.wire_coil.adamantium.name=精金线圈方块
 tile.wire_coil.infinity.name=无尽线圈方块
 tile.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
+tile.wire_coil.space_time.name=时空线圈方块
 
 tile.crucible.bronze.name=青铜坩埚
 tile.crucible.invar.name=殷钢坩埚
@@ -2506,6 +2507,9 @@ gtlitecore.material.rhugnor=鲁格诺
 gtlitecore.material.hypogen=海珀珍
 gtlitecore.material.shirabon=调律源金
 gtlitecore.material.transcendent_metal=超时空金属
+gtlitecore.material.space_time=时空
+gtlitecore.material.space_time.formula=§7现实正在分崩离析
+gtlitecore.material.creon=创律金属
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -2827,6 +2831,7 @@ gtlitecore.material.bismuth_chalcogenide=铋基硫族化合物
 gtlitecore.material.plutonium_trihydride=三氢化钚
 gtlitecore.material.plutonium_phosphide=磷化钚
 gtlitecore.material.phosphine=磷化氢
+gtlitecore.material.mellion=兆极合金
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3228,6 +3233,9 @@ gtlitecore.material.resonant_strange_meson=共振奇异介子
 gtlitecore.material.protomatter=原始物质
 gtlitecore.material.semistable_antimatter=半稳态反物质
 gtlitecore.material.antimatter=反物质
+gtlitecore.material.spatially_enlarged_fluid=扩大化空间流体
+gtlitecore.material.tachyon_rich_temporal_fluid=富快子时间流体
+gtlitecore.material.primordial_matter=流体本源物质
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 

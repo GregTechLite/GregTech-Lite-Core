@@ -8,6 +8,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -120,6 +121,7 @@ import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Trinium
+import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Vanadium
@@ -341,6 +343,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoRes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseMonoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ManganeseSulfate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MercuryCadmiumTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -3076,6 +3079,22 @@ class GTLiteFirstDegreeMaterials
                 .color(0xACB330)
                 .components(Phosphorus, 1, Hydrogen, 3)
                 .flags(DECOMPOSITION_BY_ELECTROLYZING, FLAMMABLE)
+                .build()
+
+            // 2302 Mellion
+            Mellion = Material.Builder(2302, gtliteId("mellion"))
+                .ingot()
+                .liquid()
+                .color(0x3C0505).iconSet(SHINY)
+                .components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13, ActiniumSuperhydride, 8)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE)
+                .blast { b ->
+                    b.temp(16000, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                        .blastStats(VA[UXV], 20 * SECOND)
+                        .vacuumStats(VA[UIV], 10 * SECOND)
+                }
+                .cableProperties(V[UXV], 48, 12)
                 .build()
 
         }
