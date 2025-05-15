@@ -410,6 +410,10 @@ tile.multiblock_casing_01.stellar_containment_casing.name=Stellar Containment Ma
 tile.multiblock_casing_01.stellar_containment_casing.tooltip=抵抗数百万开尔文的热量
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.name=Harmonic Phonon Transmission Casing
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.tooltip=Thermal Ripple Overdrive
+tile.multiblock_casing_01.particle_containment_casing.name=Particle Containment Casing
+tile.multiblock_casing_01.particle_containment_casing.tooltip=遏制外泄的高能粒子
+tile.multiblock_casing_01.particle_excitation_wire_coil.name=Particle Excitation Wire Coil Block
+tile.multiblock_casing_01.particle_excitation_wire_coil.tooltip=把高能粒子激发到最强态
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.active_unique_casing_01.temperature_controller.name=Nuclear Reactor Temperature Controller
@@ -487,6 +491,16 @@ tile.nuclear_reactor_core_02.einsteinium.name=Einsteinium Reactor Core
 tile.nuclear_reactor_core_02.fermium.name=Fermium Reactor Core
 tile.nuclear_reactor_core_02.mendelevium.name=Mendelevium Reactor Core
 
+tile.manipulator.neutron_pulse.name=Neutron Pulse Manipulator
+tile.manipulator.cosmic_fabric.name=Cosmic Fabric Manipulator
+tile.manipulator.infinity_infused.name=Infinity Infused Manipulator
+tile.manipulator.spacetime_continuum_ripper.name=Space-Time Continuum Ripper
+
+tile.shielding_core.neutron.name=Neutron Shielding Core
+tile.shielding_core.cosmic_fabric.name=Cosmic Fabric Shielding Core
+tile.shielding_core.infinity_infused.name=Infinity Infused Shielding Core
+tile.shielding_core.spacetime_bending_core.name=Space-Time Bending Core
+
 tile.glass_casing_01.pmma.name=PMMA Glass
 tile.glass_casing_01.pmma.tooltip=Acrylic Glass
 tile.glass_casing_01.bpa_polycarbonate.name=BPA Polycarbonate Glass
@@ -499,6 +513,7 @@ tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
 tile.glass_casing_01.silicon_carbide.name=Silicon Carbide Glass
 tile.glass_casing_01.woods.name=Woods Glass
 tile.glass_casing_01.lead_silicon.name=Lead Silicon Glass
+tile.glass_casing_01.force_field.name=Force Field Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
@@ -1075,6 +1090,13 @@ metaitem.material.particle.raw_tesseract.name=Raw Tesseract
 metaitem.material.particle.raw_tesseract.tooltip=四维工程学的初次实践
 metaitem.material.particle.energised_tesseract.name=Energised Tesseract
 metaitem.material.particle.energised_tesseract.tooltip=真正的四维结构
+metaitem.material.particle.hyperstable_self_healing_adhesive.name=Hyperstable Self-Healing Adhesive
+metaitem.material.particle.hyperstable_self_healing_adhesive.tooltip=Complete and selective adhesion, even when torn or damaged
+metaitem.material.particle.superconductor_rare_earth_composite.name=Superconductor Rare Earth Composite
+metaitem.material.particle.superconductor_rare_earth_composite.tooltip=Zero resistance to electrical and quantum flow, regardless of temperature
+metaitem.material.particle.black_body_naquadria_supersolid.name=Black Body Naquadria Supersolid
+metaitem.material.particle.black_body_naquadria_supersolid.tooltip=Flows like a fluid and reflects nothing, perfect absorption and transfer
+
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
@@ -1253,6 +1275,7 @@ recipemap.stellar_forge.name=Stellar Forge
 recipemap.bio_simulator.name=Bio Simulator
 recipemap.pcb_factory.name=PCB Factory
 recipemap.nano_forge.name=Nano Forge
+recipemap.quantum_force_transformer.name=Quantum Force Transformer
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -1281,6 +1304,8 @@ gtlitecore.recipe.pcb_factory_tier=Structure Tier:
 gtlitecore.recipe.required_bio_upgrade=Required Bio Chamber Upgrade
 
 gtlitecore.recipe.nano_forge_tier=Structure Tier:
+
+gtlitecore.recipe.quantum_force_transformer_tier=Structure Tier:
 
 # Machines
 gtlitecore.machine.polisher.lv.name=Basic Polisher

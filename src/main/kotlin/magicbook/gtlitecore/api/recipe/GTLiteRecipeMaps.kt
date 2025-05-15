@@ -24,6 +24,7 @@ import magicbook.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
+import magicbook.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
@@ -867,6 +868,21 @@ class GTLiteRecipeMaps
             .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
             .itemSlotOverlay(GuiTextures.CENTRIFUGE_OVERLAY, true)
             .sound(GTSoundEvents.FURNACE)
+            .build()
+
+        /**
+         * @zenProp quantum_force_transformer
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("QUANTUM_FORCE_TRANSFORMER_RECIPES")
+        val QUANTUM_FORCE_TRANSFORMER_RECIPES = RecipeMapBuilder("quantum_force_transformer", QuantumForceTransformerRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(6)
+            .fluidInputs(6)
+            .fluidOutputs(6)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
+            .sound(GTSoundEvents.ARC)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

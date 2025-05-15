@@ -15,6 +15,7 @@ class RecipePropertyStorages
             FusionEUToStartPropertyStorage.loadProperties()
             PCBFactoryTieredPropertyStorage.loadProperties()
             NanoForgeTieredPropertyStorage.loadProperties()
+            QuantumForceTransformerTieredPropertyStorage.loadProperties()
         }
 
     }

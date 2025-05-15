@@ -55,6 +55,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/harmonic_phonon_transmission_casing"
         }
+      },
+      "particle_containment_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/particle_containment_casing"
+        }
+      },
+      "particle_excitation_wire_coil": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/particle_excitation_wire_coil"
+        }
       }
     }
   }

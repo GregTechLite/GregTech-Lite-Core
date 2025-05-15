@@ -117,6 +117,16 @@ class GTLiteTraceabilityPredicate
             Comparator.comparing { s -> (GTLiteAPI.MAP_NUCLEAR_REACTOR_CORE[s] as WrappedIntTier).getIntTier() },
             "NuclearReactorCore", null) }
 
+        @JvmStatic
+        var MANIPULATOR = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_MANIPULATOR,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_MANIPULATOR[s] as WrappedIntTier).getIntTier() },
+            "Manipulator", null) }
+
+        @JvmStatic
+        var SHIELDING_CORE = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_SHIELDING_CORE,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_SHIELDING_CORE[s] as WrappedIntTier).getIntTier() },
+            "ShieldingCore", null) }
+
         // Overriden of original Cleanroom Casing by tiered stats predicate.
         @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,

@@ -23,6 +23,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01;
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02;
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03;
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02;
+import magicbook.gtlitecore.common.block.blocks.BlockManipulator;
 import magicbook.gtlitecore.common.block.blocks.BlockMotorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore01;
 import magicbook.gtlitecore.common.block.blocks.BlockNuclearReactorCore02;
@@ -31,6 +32,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockProcessorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing;
+import magicbook.gtlitecore.common.block.blocks.BlockShieldingCore;
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import net.minecraft.block.state.IBlockState;
@@ -92,6 +94,8 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_VACUUM = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_COMPONENT_CASING = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_NUCLEAR_REACTOR_CORE = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MANIPULATOR = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_SHIELDING_CORE = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
@@ -284,6 +288,20 @@ public class GTLiteAPI
         {
             MAP_NUCLEAR_REACTOR_CORE.put(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getState(tier),
                     new WrappedIntTier(tier, tier.ordinal() + 9));
+        }
+
+        // Manipulator
+        for (BlockManipulator.ManipulatorType tier : BlockManipulator.ManipulatorType.values())
+        {
+            MAP_MANIPULATOR.put(GTLiteMetaBlocks.MANIPULATOR.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        // Shielding Core
+        for (BlockShieldingCore.ShieldingCoreType tier : BlockShieldingCore.ShieldingCoreType.values())
+        {
+            MAP_SHIELDING_CORE.put(GTLiteMetaBlocks.SHIELDING_CORE.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
         }
 
         // cleanroomCasings

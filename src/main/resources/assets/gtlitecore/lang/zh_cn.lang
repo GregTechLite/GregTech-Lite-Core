@@ -410,6 +410,10 @@ tile.multiblock_casing_01.stellar_containment_casing.name=恒星热力容器机�
 tile.multiblock_casing_01.stellar_containment_casing.tooltip=抵抗数百万开尔文的热量
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.name=简谐声子传输机械方块
 tile.multiblock_casing_01.harmonic_phonon_transmission_casing.tooltip=热力波纹疾走
+tile.multiblock_casing_01.particle_containment_casing.name=粒子抑制机器外壳
+tile.multiblock_casing_01.particle_containment_casing.tooltip=遏制外泄的高能粒子
+tile.multiblock_casing_01.particle_excitation_wire_coil.name=粒子激发线圈方块
+tile.multiblock_casing_01.particle_excitation_wire_coil.tooltip=把高能粒子激发到最强态
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 tile.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
@@ -487,6 +491,16 @@ tile.nuclear_reactor_core_02.einsteinium.name=锿制反应堆堆芯
 tile.nuclear_reactor_core_02.fermium.name=镄制反应堆堆芯
 tile.nuclear_reactor_core_02.mendelevium.name=钔制反应堆堆芯
 
+tile.manipulator.neutron_pulse.name=中子脉冲控制方块
+tile.manipulator.cosmic_fabric.name=寰宇强化脉冲控制方块
+tile.manipulator.infinity_infused.name=无尽强化脉冲控制方块
+tile.manipulator.spacetime_continuum_ripper.name=时空连续体撕裂方块
+
+tile.shielding_core.neutron.name=中子屏蔽核心方块
+tile.shielding_core.cosmic_fabric.name=寰宇强化屏蔽核心方块
+tile.shielding_core.infinity_infused.name=无尽强化屏蔽核心方块
+tile.shielding_core.spacetime_bending_core.name=时空扭曲核心方块
+
 tile.glass_casing_01.pmma.name=PMMA玻璃
 tile.glass_casing_01.pmma.tooltip=亚克力玻璃
 tile.glass_casing_01.bpa_polycarbonate.name=BPA聚碳酸酯玻璃
@@ -499,6 +513,7 @@ tile.glass_casing_01.thorium_yttrium.name=钍钇玻璃
 tile.glass_casing_01.silicon_carbide.name=碳化硅玻璃
 tile.glass_casing_01.woods.name=伍兹玻璃
 tile.glass_casing_01.lead_silicon.name=铅硅玻璃
+tile.glass_casing_01.force_field.name=力场玻璃
 
 tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃
 tile.glass_casing_02.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
@@ -1075,6 +1090,12 @@ metaitem.material.particle.raw_tesseract.name=粗制超立方体
 metaitem.material.particle.raw_tesseract.tooltip=四维工程学的初次实践
 metaitem.material.particle.energised_tesseract.name=充能超立方体
 metaitem.material.particle.energised_tesseract.tooltip=真正的四维结构
+metaitem.material.particle.hyperstable_self_healing_adhesive.name=超稳态自修复粘合剂
+metaitem.material.particle.hyperstable_self_healing_adhesive.tooltip=选择性完全粘合，即使在撕裂或损坏时也有效
+metaitem.material.particle.superconductor_rare_earth_composite.name=复合稀土超导材料
+metaitem.material.particle.superconductor_rare_earth_composite.tooltip=可以超导传输电流及量子流，且不受温度影响
+metaitem.material.particle.black_body_naquadria_supersolid.name=超固态超能硅岩黑体
+metaitem.material.particle.black_body_naquadria_supersolid.tooltip=如液体般流动，不反射任何电磁波，完美地将其吸收与传递
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -1250,6 +1271,7 @@ recipemap.stellar_forge.name=恒星炎炀锻炉
 recipemap.bio_simulator.name=生物模拟室
 recipemap.pcb_factory.name=PCB工厂
 recipemap.nano_forge.name=纳米锻炉
+recipemap.quantum_force_transformer.name=量子操纵者
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1278,6 +1300,8 @@ gtlitecore.recipe.pcb_factory_tier=结构等级：
 gtlitecore.recipe.required_bio_upgrade=需要生物仓升级
 
 gtlitecore.recipe.nano_forge_tier=结构等级：
+
+gtlitecore.recipe.quantum_force_transformer_tier=结构等级：%s
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机

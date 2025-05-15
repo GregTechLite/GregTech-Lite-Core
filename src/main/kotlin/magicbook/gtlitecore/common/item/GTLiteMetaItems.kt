@@ -366,6 +366,9 @@ class GTLiteMetaItems
         lateinit var QUANTUM_ANOMALY: MetaItem<*>.MetaValueItem
         lateinit var RAW_TESSERACT: MetaItem<*>.MetaValueItem
         lateinit var ENERGISED_TESSERACT: MetaItem<*>.MetaValueItem
+        lateinit var STABLE_ADHESIVE: MetaItem<*>.MetaValueItem
+        lateinit var SUPERCONDUCTOR_COMPOSITE: MetaItem<*>.MetaValueItem
+        lateinit var NAQUADRIA_SUPERSOLID: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -1043,6 +1046,9 @@ class GTLiteMetaItems
             QUANTUM_ANOMALY = GTLITE_ITEMS.addItem(5009, "material.particle.quantum_anomaly")
             RAW_TESSERACT = GTLITE_ITEMS.addItem(5010, "material.particle.raw_tesseract")
             ENERGISED_TESSERACT = GTLITE_ITEMS.addItem(5011, "material.particle.energised_tesseract")
+            STABLE_ADHESIVE = GTLITE_ITEMS.addItem(5012, "material.particle.hyperstable_self_healing_adhesive")
+            SUPERCONDUCTOR_COMPOSITE = GTLITE_ITEMS.addItem(5013, "material.particle.superconductor_rare_earth_composite")
+            NAQUADRIA_SUPERSOLID = GTLITE_ITEMS.addItem(5014, "material.particle.black_body_naquadria_supersolid")
 
             // 9001-10000: Miscellaneous Foods.
 

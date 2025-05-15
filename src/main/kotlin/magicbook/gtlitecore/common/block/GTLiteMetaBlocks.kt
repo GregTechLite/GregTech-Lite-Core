@@ -25,6 +25,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockGregtechWall
+import magicbook.gtlitecore.common.block.blocks.BlockManipulator
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
@@ -39,6 +40,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockPumpCasing
 import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
+import magicbook.gtlitecore.common.block.blocks.BlockShieldingCore
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
@@ -177,6 +179,8 @@ class GTLiteMetaBlocks
         lateinit var CRUCIBLE: BlockCrucible
         lateinit var NUCLEAR_REACTOR_CORE_01: BlockNuclearReactorCore01
         lateinit var NUCLEAR_REACTOR_CORE_02: BlockNuclearReactorCore02
+        lateinit var MANIPULATOR: BlockManipulator
+        lateinit var SHIELDING_CORE: BlockShieldingCore
         lateinit var TRANSPARENT_CASING_01: BlockGlassCasing01
         lateinit var TRANSPARENT_CASING_02: BlockGlassCasing02
 
@@ -465,6 +469,14 @@ class GTLiteMetaBlocks
             (NUCLEAR_REACTOR_CORE_02 as? Block)?.setRegistryName("nuclear_reactor_core_02")
             (NUCLEAR_REACTOR_CORE_02 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            MANIPULATOR = BlockManipulator()
+            (MANIPULATOR as? Block)?.setRegistryName("manipulator")
+            (MANIPULATOR as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            SHIELDING_CORE = BlockShieldingCore()
+            (SHIELDING_CORE as? Block)?.setRegistryName("shielding_core")
+            (SHIELDING_CORE as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             TRANSPARENT_CASING_01 = BlockGlassCasing01()
             (TRANSPARENT_CASING_01 as? Block)?.setRegistryName("glass_casing_01")
             (TRANSPARENT_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -631,6 +643,8 @@ class GTLiteMetaBlocks
             WIRE_COIL.onModelRegister()
             NUCLEAR_REACTOR_CORE_01.onModelRegister()
             NUCLEAR_REACTOR_CORE_02.onModelRegister()
+            MANIPULATOR.onModelRegister()
+            SHIELDING_CORE.onModelRegister()
             SHEETED_FRAMES.values.distinct().forEach(BlockSheetedFrame::onModelRegister)
             WALLS.values.distinct().forEach(BlockGregtechWall::onModelRegister)
         }
