@@ -112,6 +112,7 @@ import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Tantalite
+import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.TinAlloy
@@ -383,6 +384,7 @@ class GTLiteMaterialFlags
             Lawrencium.addFlags(GENERATE_PLATE)
             Selenium.addFlags(GENERATE_PLATE)
             Nobelium.addFlags(GENERATE_PLATE)
+            Technetium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -416,6 +418,7 @@ class GTLiteMaterialFlags
             Bohrium.addFlags(GENERATE_DOUBLE_PLATE)
             Nobelium.addFlags(GENERATE_DOUBLE_PLATE)
             Trinium.addFlags(GENERATE_DOUBLE_PLATE)
+            Technetium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)

@@ -2829,6 +2829,10 @@ gtlitecore.material.plutonium_trihydride=Plutonium Trihydride
 gtlitecore.material.plutonium_phosphide=Plutonium Phosphide
 gtlitecore.material.phosphine=Phosphine
 gtlitecore.material.mellion=Mellion
+gtlitecore.material.lanthanum_fullerene_mixture=Lanthanum-Fullerene Mixture
+gtlitecore.material.lanthanum_embedded_fullerene=Lanthanum Embedded Fullerene
+gtlitecore.material.lanthanum_fullerene_nanotube=Lanthanum-Fullerene Nanotube
+gtlitecore.material.seaborgium_doped_carbon_nanotube=Seaborgium-doped Carbon Nanotube
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -2878,6 +2882,7 @@ gtlitecore.material.heavy_superheavy_alloy=Superheavy Alloy (Heavy)
 gtlitecore.material.precious_metal_alloy=Precious Metal Alloy
 gtlitecore.material.nitinol_60=Nitinol 60
 gtlitecore.material.abyssalloy=Abyssalloy
+gtlitecore.material.fullerene_superconductor=Fullerene Metal Superconductor
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

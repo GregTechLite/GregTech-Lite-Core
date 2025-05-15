@@ -124,6 +124,7 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Water
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
@@ -147,6 +148,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Firestone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
@@ -163,6 +165,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA9
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jasper
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
@@ -180,6 +183,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
@@ -905,6 +909,19 @@ class MixerRecipes
                 .output(dust, Abyssalloy, 28)
                 .EUt(VA[UIV].toLong())
                 .duration(2 * MINUTE + 30 * SECOND)
+                .buildAndRegister()
+
+            // Fullerene Superconductor
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, TitanSteel, 16)
+                .input(dust, LanthanumFullereneNanotube, 4)
+                .input(dust, SeaborgiumDopedCarbonNanotube, 4)
+                .input(dust, MetastableOganesson, 3)
+                .fluidInputs(Xenon.getPlasma(1000))
+                .output(dust, FullereneSuperconductor, 28)
+                .EUt(VA[UIV].toLong())
+                .duration(3 * MINUTE)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

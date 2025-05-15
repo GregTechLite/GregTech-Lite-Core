@@ -70,6 +70,7 @@ import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
@@ -105,6 +106,7 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zirconium
@@ -140,6 +142,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteelBase
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Grisium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
@@ -156,6 +159,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jasper
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -170,6 +174,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAll
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
@@ -929,6 +934,22 @@ class GTLiteSecondDegreeMaterials
                         .blastStats(VA[UIV], 4 * MINUTE)
                         .vacuumStats(VA[UEV], 2 * MINUTE + 30 * SECOND)
                 }
+                .build()
+
+            // 4049 Fullerene Superconductor
+            FullereneSuperconductor = Material.Builder(4049, gtliteId("fullerene_superconductor"))
+                .ingot()
+                .fluid()
+                .color(0x8BF743).iconSet(BRIGHT)
+                .components(TitanSteel, 16, LanthanumFullereneNanotube, 4, SeaborgiumDopedCarbonNanotube, 4,
+                    MetastableOganesson, 3, Xenon, 1)
+                .flags(DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES)
+                .blast { b ->
+                    b.temp(15900, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                        .blastStats(VA[UIV], 3 * MINUTE + 25 * SECOND)
+                        .vacuumStats(VA[UEV], 2 * MINUTE)
+                }
+                .cableProperties(V[UIV], 64, 0, true)
                 .build()
 
         }

@@ -313,6 +313,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jasper
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kaolinite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LaPrNdCeOxidesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Labradorite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumEmbeddedFullerene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGalliumManganate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
@@ -413,6 +416,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumOx
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScEuGdSmOxidesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeleniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGel
@@ -3095,6 +3099,41 @@ class GTLiteFirstDegreeMaterials
                         .vacuumStats(VA[UIV], 10 * SECOND)
                 }
                 .cableProperties(V[UXV], 48, 12)
+                .build()
+
+            // 2303 Lanthanum Fullerene Mixture
+            LanthanumFullereneMixture = Material.Builder(2303, gtliteId("lanthanum_fullerene_mixture"))
+                .dust()
+                .color(0xD26D8E).iconSet(BRIGHT)
+                .components(Carbon, 120, Hydrogen, 60, Lanthanum, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C60H30)2La2", true)
+
+            // 2304 Lanthanum Embedded Fullerene
+            LanthanumEmbeddedFullerene = Material.Builder(2304, gtliteId("lanthanum_embedded_fullerene"))
+                .dust()
+                .color(0x84FFAC).iconSet(BRIGHT)
+                .components(Carbon, 120, Lanthanum, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C60)2La2", true)
+
+            // 2305 Lanthanum Fullerene Nanotube
+            LanthanumFullereneNanotube = Material.Builder(2305, gtliteId("lanthanum_fullerene_nanotube"))
+                .polymer()
+                .color(0xD24473).iconSet(BRIGHT)
+                .components(Carbon, 108, Lanthanum, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C48C60La", true)
+
+            // 2306 Seaborgium-doped Carbon Nanotube
+            SeaborgiumDopedCarbonNanotube = Material.Builder(2306, gtliteId("seaborgium_doped_carbon_nanotube"))
+                .polymer()
+                .color(0x2C2C8C).iconSet(SHINY)
+                .components(Carbon, 48, Seaborgium, 1)
+                .flags(DISABLE_DECOMPOSITION)
                 .build()
 
         }

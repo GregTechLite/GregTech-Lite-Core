@@ -6,6 +6,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
@@ -45,12 +46,14 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
@@ -75,6 +78,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDope
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EthylenediaminePyrocatechol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HafniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IndiumPhosphate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
@@ -96,6 +100,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumRoentgeniumChloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -117,6 +122,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MAGNETIC_DOMAI
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_COMPUTER_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_MAINFRAME_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_PROCESSOR_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_CAPACITOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_SMD_DIODE
@@ -599,30 +605,84 @@ class SpintronicCircuits
                 .buildAndRegister()
 
             // Spintronic Mainframe
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(frameGt, Vibranium)
-            //     .input(SPINTRONIC_COMPUTER_UIV, 2)
-            //     .input(SPINTRONIC_SMD_DIODE, 64)
-            //     .input(SPINTRONIC_SMD_CAPACITOR, 64)
-            //     .input(SPINTRONIC_SMD_TRANSISTOR, 64)
-            //     .input(SPINTRONIC_SMD_RESISTOR, 64)
-            //     .input(SPINTRONIC_SMD_INDUCTOR, 64)
-            //     .input(foil, Fullerene, 64)
-            //     .input(SPIN_TRANSFER_TORQUE_RAM_CHIP, 48)
-            //     .input(wireGtDouble, scUiv)
-            //     .input(plate, Bohrium, 16)
-            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
-            //     .fluidInputs(Fullerene.getFluid(L * 32))
-            //     .fluidInputs(Zylon.getFluid(L * 16))
-            //     .fluidInputs(Adamantium.getFluid(L * 8))
-            //     .output(SPINTRONIC_MAINFRAME_UXV)
-            //     .EUt(VA[UIV].toLong())
-            //     .duration(1 * MINUTE + 30 * SECOND)
-            //     .stationResearch { r -> r
-            //         .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
-            //         .EUt(VA[UIV].toLong())
-            //         .CWUt(384) }
-            //     .buildAndRegister()
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Vibranium)
+                .input(SPINTRONIC_COMPUTER_UIV, 2)
+                .input(SPINTRONIC_SMD_DIODE, 64)
+                .input(SPINTRONIC_SMD_CAPACITOR, 64)
+                .input(SPINTRONIC_SMD_TRANSISTOR, 64)
+                .input(SPINTRONIC_SMD_RESISTOR, 64)
+                .input(SPINTRONIC_SMD_INDUCTOR, 64)
+                .input(foil, Fullerene, 64)
+                .input(SPIN_TRANSFER_TORQUE_RAM_CHIP, 48)
+                .input(wireGtDouble, FullereneSuperconductor, 16)
+                .input(plate, Bohrium, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
+                .fluidInputs(Fullerene.getFluid(L * 32))
+                .fluidInputs(Zylon.getFluid(L * 16))
+                .fluidInputs(Adamantium.getFluid(L * 8))
+                .output(SPINTRONIC_MAINFRAME_UXV)
+                .EUt(VA[UIV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
+                    .EUt(VA[UIV].toLong())
+                    .CWUt(384)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Vibranium)
+                .input(SPINTRONIC_COMPUTER_UIV, 2)
+                .input(COSMIC_SMD_DIODE, 16)
+                .input(COSMIC_SMD_CAPACITOR, 16)
+                .input(COSMIC_SMD_TRANSISTOR, 16)
+                .input(COSMIC_SMD_RESISTOR, 16)
+                .input(COSMIC_SMD_INDUCTOR, 16)
+                .input(foil, Fullerene, 64)
+                .input(SPIN_TRANSFER_TORQUE_RAM_CHIP, 48)
+                .input(wireGtDouble, FullereneSuperconductor, 16)
+                .input(plate, Bohrium, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
+                .fluidInputs(Fullerene.getFluid(L * 32))
+                .fluidInputs(Zylon.getFluid(L * 16))
+                .fluidInputs(Adamantium.getFluid(L * 8))
+                .output(SPINTRONIC_MAINFRAME_UXV)
+                .EUt(VA[UIV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
+                    .EUt(VA[UIV].toLong())
+                    .CWUt(384)
+                }
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Vibranium)
+                .input(SPINTRONIC_COMPUTER_UIV, 2)
+                .input(SUPRACAUSAL_SMD_DIODE, 4)
+                .input(SUPRACAUSAL_SMD_CAPACITOR, 4)
+                .input(SUPRACAUSAL_SMD_TRANSISTOR, 4)
+                .input(SUPRACAUSAL_SMD_RESISTOR, 4)
+                .input(SUPRACAUSAL_SMD_INDUCTOR, 4)
+                .input(foil, Fullerene, 64)
+                .input(SPIN_TRANSFER_TORQUE_RAM_CHIP, 48)
+                .input(wireGtDouble, FullereneSuperconductor, 16)
+                .input(plate, Bohrium, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
+                .fluidInputs(Fullerene.getFluid(L * 32))
+                .fluidInputs(Zylon.getFluid(L * 16))
+                .fluidInputs(Adamantium.getFluid(L * 8))
+                .output(SPINTRONIC_MAINFRAME_UXV)
+                .EUt(VA[UIV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
+                    .EUt(VA[UIV].toLong())
+                    .CWUt(384)
+                }
+                .buildAndRegister()
+
         }
 
     }

@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
@@ -55,6 +56,7 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Tritanium
+import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -70,10 +72,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTri
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EglinSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Firestone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GSTGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumBerylliumFluorides
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumFluoride
@@ -83,6 +87,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
@@ -298,6 +303,34 @@ class AlloyBlastSmelterRecipes
                 .EUt(VA[UXV].toLong())
                 .duration(20 * SECOND)
                 .blastFurnaceTemp(16000)
+                .buildAndRegister()
+
+            // Fullerene Superconductor
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(15)
+                .input(dust, TitanSteel, 16)
+                .input(dust, LanthanumFullereneNanotube, 4)
+                .input(dust, SeaborgiumDopedCarbonNanotube, 4)
+                .input(dust, MetastableOganesson, 3)
+                .fluidInputs(Xenon.getPlasma(1000))
+                .fluidInputs(Krypton.getFluid(280))
+                .fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
+                .EUt(VA[UIV].toLong())
+                .duration(2884 * SECOND + 7 * TICK)
+                .blastFurnaceTemp(15900) // Halkonite Steel
+                .buildAndRegister()
+
+            ALLOY_BLAST_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(dust, TitanSteel, 16)
+                .input(dust, LanthanumFullereneNanotube, 4)
+                .input(dust, SeaborgiumDopedCarbonNanotube, 4)
+                .input(dust, MetastableOganesson, 3)
+                .fluidInputs(Xenon.getPlasma(1000))
+                .fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
+                .EUt(VA[UIV].toLong())
+                .duration(4305 * SECOND)
+                .blastFurnaceTemp(15900) // Halkonite Steel
                 .buildAndRegister()
 
         }

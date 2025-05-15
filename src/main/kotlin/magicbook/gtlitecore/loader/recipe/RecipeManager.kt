@@ -12,7 +12,7 @@ import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.ButyllithiumChain
-import magicbook.gtlitecore.loader.recipe.chain.CarbonNanotubeChain
+import magicbook.gtlitecore.loader.recipe.chain.NanotubesChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
@@ -257,7 +257,7 @@ class RecipeManager
             HNIWChain.init()
             HMXChain.init()
             OctaazacubaneChain.init()
-            CarbonNanotubeChain.init()
+            NanotubesChain.init()
             InfinityChain.init()
             MagnetiumChain.init()
             HypogenChain.init()

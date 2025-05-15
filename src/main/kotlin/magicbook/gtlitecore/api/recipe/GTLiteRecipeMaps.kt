@@ -729,7 +729,7 @@ class GTLiteRecipeMaps
         @JvmStatic
         @get:JvmName("PLASMA_CVD_RECIPES")
         val PLASMA_CVD_RECIPES = RecipeMapBuilder("plasma_enhanced_cvd_unit", NoCoilTemperatureRecipeBuilder())
-            .itemInputs(2)
+            .itemInputs(3)
             .itemOutputs(3)
             .fluidInputs(3)
             .fluidOutputs(3)

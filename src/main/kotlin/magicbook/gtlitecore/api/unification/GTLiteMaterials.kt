@@ -336,6 +336,10 @@ class GTLiteMaterials
         lateinit var PlutoniumPhosphide: Material
         lateinit var Phosphine: Material
         lateinit var Mellion: Material
+        lateinit var LanthanumFullereneMixture: Material
+        lateinit var LanthanumEmbeddedFullerene: Material
+        lateinit var LanthanumFullereneNanotube: Material
+        lateinit var SeaborgiumDopedCarbonNanotube: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -386,6 +390,7 @@ class GTLiteMaterials
         lateinit var PreciousMetalAlloy: Material
         lateinit var Nitinol60: Material
         lateinit var Abyssalloy: Material
+        lateinit var FullereneSuperconductor: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material
