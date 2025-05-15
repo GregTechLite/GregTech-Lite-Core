@@ -101,6 +101,12 @@ class StructureUtility
         fun nuclearReactorCores() = GTLiteTraceabilityPredicate.NUCLEAR_REACTOR_CORE.get()
 
         @JvmStatic
+        fun manipulators() = GTLiteTraceabilityPredicate.MANIPULATOR.get()
+
+        @JvmStatic
+        fun shieldingCores() = GTLiteTraceabilityPredicate.SHIELDING_CORE.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

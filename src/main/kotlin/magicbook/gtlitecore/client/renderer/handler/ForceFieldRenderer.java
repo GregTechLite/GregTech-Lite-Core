@@ -1,7 +1,7 @@
 package magicbook.gtlitecore.client.renderer.handler;
 
+import gregtech.client.renderer.IRenderSetup;
 import gregtech.client.shader.postprocessing.BloomEffect;
-import magicbook.gtlitecore.client.shader.IBloomRenderFast;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -10,16 +10,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 @SideOnly(Side.CLIENT)
-public enum ForceFieldRenderer implements IBloomRenderFast
+public enum ForceFieldRenderer implements IRenderSetup
 {
 
     INSTANCE;
-
-    @Override
-    public int customBloomStyle()
-    {
-        return 2;
-    }
 
     float lastBrightnessX;
     float lastBrightnessY;

@@ -2027,6 +2027,18 @@ gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级�
 
 gtlitecore.machine.nano_forge.structure_info=结构等级：%s
 
+gtlitecore.machine.quantum_force_transformer.name=量子操纵者
+gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位
+gtlitecore.machine.quantum_force_transformer.tooltip.2=每种配方都具有各自的催化剂，它们不会被消耗，仅用于为量子操纵者提供配方识别。
+gtlitecore.machine.quantum_force_transformer.tooltip.3=脉冲控制方块决定了最大的可执行配方等级，屏蔽核心方块决定了配方产出的概率。
+gtlitecore.machine.quantum_force_transformer.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.quantum_force_transformer.tooltip.5=每提高1个§e脉冲控制方块等级§7，配方所需时间就变为原本的§l75%%§r§7。
+gtlitecore.machine.quantum_force_transformer.tooltip.6=每提高1个§e屏蔽核心方块等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.quantum_force_transformer.tooltip.7=§f结构底层放置输入仓室，结构顶层放置输出仓室
+
+gtlitecore.machine.quantum_force_transformer.manipulator_info=脉冲控制方块等级：%s
+gtlitecore.machine.quantum_force_transformer.shielding_core_info=屏蔽核心方块等级：%s
+
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
 gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。

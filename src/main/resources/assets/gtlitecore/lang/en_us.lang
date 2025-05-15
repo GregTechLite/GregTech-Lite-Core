@@ -1097,7 +1097,6 @@ metaitem.material.particle.superconductor_rare_earth_composite.tooltip=Zero resi
 metaitem.material.particle.black_body_naquadria_supersolid.name=Black Body Naquadria Supersolid
 metaitem.material.particle.black_body_naquadria_supersolid.tooltip=Flows like a fluid and reflects nothing, perfect absorption and transfer
 
-
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
 metaitem.food.fruit.mango.name=Mango
@@ -2029,6 +2028,18 @@ gtlitecore.machine.nano_forge.tooltip.5=2级与3级纳米锻炉分别具有§e64
 gtlitecore.machine.nano_forge.tooltip.6=当结构等级大于配方要求等级时，进行§d无损超频§7。
 
 gtlitecore.machine.nano_forge.structure_info=Structure Tier: %s
+
+gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
+gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位
+gtlitecore.machine.quantum_force_transformer.tooltip.2=每种配方都具有各自的催化剂，它们不会被消耗，仅用于为量子操纵者提供配方识别。
+gtlitecore.machine.quantum_force_transformer.tooltip.3=脉冲控制方块决定了最大的可执行配方等级，屏蔽核心方块决定了配方产出的概率。
+gtlitecore.machine.quantum_force_transformer.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.quantum_force_transformer.tooltip.5=每提高1个§e脉冲控制方块等级§7，配方所需时间就变为原本的§l75%%§r§7。
+gtlitecore.machine.quantum_force_transformer.tooltip.6=每提高1个§e屏蔽核心方块等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.quantum_force_transformer.tooltip.7=§f结构底层放置输入仓室，结构顶层放置输出仓室
+
+gtlitecore.machine.quantum_force_transformer.manipulator_info=Manipulator Tier: %s
+gtlitecore.machine.quantum_force_transformer.shielding_core_info=Shielding Core Tier: %s
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

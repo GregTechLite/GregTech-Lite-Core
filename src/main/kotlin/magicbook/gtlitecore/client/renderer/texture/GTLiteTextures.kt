@@ -134,6 +134,8 @@ class GTLiteTextures
         @JvmField
         val LARGE_ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/large_rocket_engine")
 
+        @JvmField
+        val QUANTUM_FORCE_TRANSFORMER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/quantum_force_transformer")
 
         @JvmField
         val ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("generators/rocket_engine")
@@ -261,6 +263,9 @@ class GTLiteTextures
 
         @JvmField
         val NAQUADAH_ALLOY_CASING = GTLiteSimpleOverlayRenderer("casings/metal/naquadah_alloy")
+
+        @JvmField
+        val PARTICLE_CONTAINMENT_CASING = GTLiteSimpleOverlayRenderer("casings/special/particle_containment_casing")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")
@@ -307,6 +312,8 @@ class GTLiteTextures
         lateinit var COSMIC_8: TextureAtlasSprite
         lateinit var COSMIC_9: TextureAtlasSprite
 
+        lateinit var FORCE_FIELD: TextureAtlasSprite
+
         @JvmStatic
         fun register(textureMap: TextureMap)
         {
@@ -324,6 +331,8 @@ class GTLiteTextures
             COSMIC_9 = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/cosmic_9"))
             COSMIC = arrayOf(COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4, COSMIC_5, COSMIC_6,
                 COSMIC_7, COSMIC_8, COSMIC_9)
+
+            FORCE_FIELD = textureMap.registerSprite(GTLiteUtility.gtliteId("shaders/force_field"))
         }
 
         @JvmStatic

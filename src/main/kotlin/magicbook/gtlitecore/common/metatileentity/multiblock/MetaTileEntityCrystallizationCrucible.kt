@@ -274,7 +274,6 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
 
     override fun hasMufflerMechanics() = true
 
-
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
     override fun getCurrentTemperature(): Int = temperature
