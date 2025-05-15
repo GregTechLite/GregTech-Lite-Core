@@ -1989,6 +1989,9 @@ gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
 gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
 gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
 
+gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
+gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+
 gtlitecore.machine.nano_forge.name=纳米锻炉
 gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
 gtlitecore.machine.nano_forge.tooltip.2=你需要先制作§3碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
