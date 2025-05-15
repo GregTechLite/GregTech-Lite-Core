@@ -2,9 +2,13 @@ package magicbook.gtlitecore.client.shader
 
 import magicbook.gtlitecore.api.utils.GTLiteLog
 import magicbook.gtlitecore.api.utils.GTLiteUtility
+import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.OpenGlHelper
+import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL20
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 /**
  * Wrapped the OpenGL ShaderProgram with vertex/fragment shader file names.
@@ -88,7 +92,7 @@ class ShaderProgram
             GTLiteLog.logger.error("Could not create shader of type '$shaderType' from '$fileName': '${getProgramLogInfo(program)}")
             return 0
         }
-        val code = GTLiteUtility.loadFile(GTLiteUtility.getId(domain, fileName))
+        val code = loadFile(GTLiteUtility.getId(domain, fileName))
         if (code == null)
         {
             GL20.glDeleteShader(shader)
@@ -122,6 +126,29 @@ class ShaderProgram
         if (index < 0)
             throw NullPointerException("No attribute exists with name: '$name'")
         return index
+    }
+
+    private fun loadFile(location: ResourceLocation): String?
+    {
+        try
+        {
+            val code = StringBuilder()
+            val inputStream = Minecraft.getMinecraft().resourceManager.getResource(location).inputStream
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            var line: String?
+            while ((reader.readLine().also { line = it }) != null)
+            {
+                code.append(line)
+                code.append('\n')
+            }
+            reader.close()
+            return code.toString()
+        }
+        catch (exception: Exception)
+        {
+            GTLiteLog.logger.error("Could not load shader file!", exception)
+        }
+        return null
     }
 
 }

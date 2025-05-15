@@ -23,6 +23,7 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
@@ -58,6 +59,7 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -65,6 +67,7 @@ import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
@@ -81,6 +84,7 @@ import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
@@ -152,6 +156,7 @@ import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
@@ -196,6 +201,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Transcende
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.copy
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.HOUR
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -217,6 +224,12 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_U
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UXV
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_1048576
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_16777216
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_INPUT_HATCH_4194304
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_1048576
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_16777216
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_4194304
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
@@ -2227,17 +2240,107 @@ class AssemblyLineRecipes
 
         private fun laserHatchesRecipes()
         {
-            // TODO
+            // Ultimate laser hatches consists 4194304A-16777216A.
+            for (tier in IV..UXV) // TODO OpV-MAX recipes
+            {
+                val actualTier = tier - IV // Because laser hatch start at IV stage.
+                // 4194304A Laser Target Hatch
+                ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 32)
+                    .fluidInputs(Neutronium.getFluid(L * (actualTier + 1)))
+                    .output(LASER_INPUT_HATCH_4194304[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(32 * MINUTE)
+                    .scannerResearch { r ->
+                        r.researchStack(LASER_INPUT_HATCH_1048576[actualTier]!!.stackForm)
+                            .EUt(VA[IV].toLong())
+                            .duration(1 * MINUTE)
+                    }
+                    .buildAndRegister()
 
-            // 4194304A IV Laser Target Hatch
+                // 4194304A Laser Source Hatch
+                ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 32)
+                    .fluidInputs(Neutronium.getFluid(L * (actualTier + 1)))
+                    .output(LASER_OUTPUT_HATCH_4194304[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(32 * MINUTE)
+                    .scannerResearch { r ->
+                        r.researchStack(LASER_OUTPUT_HATCH_1048576[actualTier]!!.stackForm)
+                            .EUt(VA[IV].toLong())
+                            .duration(1 * MINUTE)
+                    }
+                    .buildAndRegister()
 
-            // 4194304A IV Laser Source Hatch
+                // 16777216A Laser Target Hatch
+                ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 64)
+                    .fluidInputs(SpaceTime.getFluid(L * (actualTier + 1)))
+                    .output(LASER_INPUT_HATCH_16777216[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(1 * HOUR + 4 * MINUTE)
+                    .stationResearch { r ->
+                        r.researchStack(LASER_INPUT_HATCH_4194304[actualTier]!!.stackForm)
+                            .EUt(VA[UV].toLong())
+                            .CWUt(32)
+                    }
+                    .buildAndRegister()
 
-            // ---------------------------------------------------------------------------------------------------------
+                // 16777216A Laser Source Hatch
+                ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .input(lens, Diamond, 64)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 64)
+                    .fluidInputs(SpaceTime.getFluid(L * (actualTier + 1)))
+                    .output(LASER_OUTPUT_HATCH_16777216[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(1 * HOUR + 4 * MINUTE)
+                    .stationResearch { r ->
+                        r.researchStack(LASER_OUTPUT_HATCH_4194304[actualTier]!!.stackForm)
+                            .EUt(VA[UV].toLong())
+                            .CWUt(32)
+                    }
+                    .buildAndRegister()
 
-            // 16777216A IV Laser Target Hatch
-
-            // 16777216A IV Laser Source Hatch
+            }
 
         }
 

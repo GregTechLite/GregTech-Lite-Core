@@ -25,6 +25,7 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadah
@@ -32,9 +33,11 @@ import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.SamariumMagnetic
@@ -111,6 +114,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThalliumBariumCalciumCuprate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.init.Blocks
@@ -277,6 +281,52 @@ class CraftingComponents
             UXV to UnificationEntry(springSmall, SuperheavyAlloyB),
             // OpV to UnificationEntry(springSmall, Tritanium),
             // MAX to UnificationEntry(springSmall, Tritanium)
+        ).toMap())
+
+        // CABLE_COMPONENT
+        // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
+        //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
+        //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyA, 12: SuperheavyAlloyB,
+        //      13-14: TODO
+        val CABLE_COMPONENT = CraftingComponent.Component(sequenceOf(
+            ULV to UnificationEntry(cableGtSingle, RedAlloy),
+            LV  to UnificationEntry(cableGtSingle, Tin),
+            MV  to UnificationEntry(cableGtSingle, Copper),
+            HV  to UnificationEntry(cableGtSingle, Gold),
+            EV  to UnificationEntry(cableGtSingle, Aluminium),
+            IV  to UnificationEntry(cableGtSingle, Tungsten),
+            LuV to UnificationEntry(cableGtSingle, NiobiumTitanium),
+            ZPM to UnificationEntry(cableGtSingle, VanadiumGallium),
+            UV  to UnificationEntry(cableGtSingle, YttriumBariumCuprate),
+            UHV to UnificationEntry(cableGtSingle, Europium),
+            UEV to UnificationEntry(cableGtSingle, Seaborgium),
+            UIV to UnificationEntry(cableGtSingle, SuperheavyAlloyA),
+            UXV to UnificationEntry(cableGtSingle, SuperheavyAlloyB),
+            // OpV to UnificationEntry(cableGtSingle, Tritanium),
+            // MAX to UnificationEntry(cableGtSingle, Tritanium)
+        ).toMap())
+
+        // PLATE_COMPONENT
+        // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium
+        //      5: TungstenSteel, 6: HSSS, 7: Osmiridium, 8: Tritanium, 9: Adamantium,
+        //      10: CosmicNeutronium, 11: HeavyQuarkDegenerateMatter, 12: TranscendentMetal,
+        //      13-14: TODO
+        val PLATE_COMPONENT = CraftingComponent.Component(sequenceOf(
+            ULV to UnificationEntry(plate, WroughtIron),
+            LV  to UnificationEntry(plate, Steel),
+            MV  to UnificationEntry(plate, Aluminium),
+            HV  to UnificationEntry(plate, StainlessSteel),
+            EV  to UnificationEntry(plate, Titanium),
+            IV  to UnificationEntry(plate, TungstenSteel),
+            LuV to UnificationEntry(plate, HSSS),
+            ZPM to UnificationEntry(plate, Osmiridium),
+            UV  to UnificationEntry(plate, Tritanium),
+            UHV to UnificationEntry(plate, Adamantium),
+            UEV to UnificationEntry(plate, CosmicNeutronium),
+            UIV to UnificationEntry(plate, HeavyQuarkDegenerateMatter),
+            UXV to UnificationEntry(plate, TranscendentMetal),
+            // OpV to UnificationEntry(plate, Tritanium),
+            // MAX to UnificationEntry(plate, Tritanium)
         ).toMap())
 
         fun setCraftingComponents()

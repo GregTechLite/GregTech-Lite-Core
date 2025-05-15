@@ -74,8 +74,10 @@ import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Zircaloy4
+import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtOctal
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -104,6 +106,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
+import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMachineCasing
@@ -147,8 +150,15 @@ import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_1024
+import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_256
+import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_4096
+import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_1024
+import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_256
+import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_4096
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
+import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
@@ -170,7 +180,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
-import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.copy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -601,8 +611,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.UEV),
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.UIV),
                 GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.UXV),
-                GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.OpV),
-                GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.MAX))
+                GTLiteMetaBlocks.MOTOR_CASING.getItemVariant(BlockMotorCasing.MotorCasingTier.OpV)) // TODO MAX
 
             for (i in motorCasings.indices)
             {
@@ -611,7 +620,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(ring, Steel, 2)
-                    .input(GTLiteUtility.getMotorByTier(i + 1))
+                    .inputs(CraftingComponent.MOTOR.getIngredient(i + 1) as ItemStack)
                     .outputs(motorCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -634,8 +643,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.UEV),
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.UIV),
                 GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.UXV),
-                GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.OpV),
-                GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.MAX))
+                GTLiteMetaBlocks.PISTON_CASING.getItemVariant(BlockPistonCasing.PistonCasingTier.OpV)) // TODO MAX
 
             for (i in pistonCasings.indices)
             {
@@ -644,7 +652,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(gearSmall, Steel, 2)
-                    .input(GTLiteUtility.getPistonByTier(i + 1))
+                    .inputs(CraftingComponent.PISTON.getIngredient(i + 1) as ItemStack)
                     .outputs(pistonCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -667,8 +675,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.UEV),
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.UIV),
                 GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.UXV),
-                GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.OpV),
-                GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.MAX))
+                GTLiteMetaBlocks.PUMP_CASING.getItemVariant(BlockPumpCasing.PumpCasingTier.OpV)) // TODO MAX
 
             for (i in pumpCasings.indices)
             {
@@ -677,7 +684,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(rotor, Steel, 2)
-                    .input(GTLiteUtility.getPumpByTier(i + 1))
+                    .inputs(CraftingComponent.PUMP.getIngredient(i + 1) as ItemStack)
                     .outputs(pumpCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -700,8 +707,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.UEV),
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.UIV),
                 GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.UXV),
-                GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.OpV),
-                GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.MAX))
+                GTLiteMetaBlocks.CONVEYOR_CASING.getItemVariant(BlockConveyorCasing.ConveyorCasingTier.OpV)) // TODO MAX
 
             for (i in conveyorCasings.indices)
             {
@@ -710,7 +716,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(round, Steel, 2)
-                    .input(GTLiteUtility.getConveyorByTier(i + 1))
+                    .inputs(CraftingComponent.CONVEYOR.getIngredient(i + 1) as ItemStack)
                     .outputs(conveyorCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -733,8 +739,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.UEV),
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.UIV),
                 GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.UXV),
-                GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.OpV),
-                GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.MAX))
+                GTLiteMetaBlocks.ROBOT_ARM_CASING.getItemVariant(BlockRobotArmCasing.RobotArmCasingTier.OpV)) // TODO MAX
 
             for (i in robotArmCasings.indices)
             {
@@ -743,7 +748,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(gear, Steel, 2)
-                    .input(GTLiteUtility.getRobotArmByTier(i + 1))
+                    .inputs(CraftingComponent.ROBOT_ARM.getIngredient(i + 1) as ItemStack)
                     .outputs(robotArmCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -766,8 +771,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.UEV),
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.UIV),
                 GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.UXV),
-                GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.OpV),
-                GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.MAX))
+                GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(BlockEmitterCasing.EmitterCasingTier.OpV)) // TODO MAX
 
             for (i in emitterCasings.indices)
             {
@@ -776,7 +780,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(foil, Steel, 2)
-                    .input(GTLiteUtility.getEmitterByTier(i + 1))
+                    .inputs(CraftingComponent.EMITTER.getIngredient(i + 1) as ItemStack)
                     .outputs(emitterCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -799,8 +803,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.UEV),
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.UIV),
                 GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.UXV),
-                GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.OpV),
-                GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.MAX))
+                GTLiteMetaBlocks.SENSOR_CASING.getItemVariant(BlockSensorCasing.SensorCasingTier.OpV)) // TODO MAX
 
             for (i in sensorCasings.indices)
             {
@@ -809,7 +812,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(wireFine, Steel, 2)
-                    .input(GTLiteUtility.getSensorByTier(i + 1))
+                    .inputs(CraftingComponent.SENSOR.getIngredient(i + 1) as ItemStack)
                     .outputs(sensorCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -832,8 +835,7 @@ class AssemblerRecipes
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.UEV),
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.UIV),
                 GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.UXV),
-                GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.OpV),
-                GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.MAX))
+                GTLiteMetaBlocks.FIELD_GEN_CASING.getItemVariant(BlockFieldGenCasing.FieldGenCasingTier.OpV)) // TODO MAX
 
             for (i in fieldGenCasings.indices)
             {
@@ -842,7 +844,7 @@ class AssemblerRecipes
                     .input(frameGt, Steel)
                     .input(plate, Steel, 4)
                     .input(wireGtSingle, Steel, 2)
-                    .input(GTLiteUtility.getFieldGenByTier(i + 1))
+                    .inputs(CraftingComponent.FIELD_GENERATOR.getIngredient(i + 1) as ItemStack)
                     .outputs(fieldGenCasings[i])
                     .EUt(VA[LV].toLong())
                     .duration(2 * SECOND + 10 * TICK)
@@ -1647,19 +1649,101 @@ class AssemblerRecipes
 
         private fun laserHatchesRecipes()
         {
-            // Advanced laser hatches which has amperage beyond 1048576A is for higher tier
-            // than it tier, 256A-1048576A is for its tier.
-            for (tier in IV .. UEV) // TODO Change UEV to OpV when contents are completed.
+            // Add recipes for original laser hatches in GTCEu.
+            for (tier in UHV..UXV) // TODO OpV-MAX recipes
             {
-                val actualTier = tier - 5
+                val actualTier = tier - IV // Because laser hatch start at IV stage.
+                // 256A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .input(lens, Diamond)
+                    .inputs(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack)
+                    .inputs(CraftingComponent.PUMP.getIngredient(tier) as ItemStack)
+                    .input(cableGtSingle, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_INPUT_HATCH_256[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                // 256A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .input(lens, Diamond)
+                    .inputs(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack)
+                    .inputs(CraftingComponent.PUMP.getIngredient(tier) as ItemStack)
+                    .input(cableGtSingle, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_OUTPUT_HATCH_256[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                // 1024A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 2)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 2))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 2))
+                    .input(cableGtDouble, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_INPUT_HATCH_1024[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
+
+                // 1024A Laser Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 2)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 2))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 2))
+                    .input(cableGtDouble, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_OUTPUT_HATCH_1024[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(30 * SECOND)
+                    .buildAndRegister()
+
+                // 4096A Laser Target Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 4)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 4))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 4))
+                    .input(cableGtQuadruple, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_INPUT_HATCH_4096[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
+
+                // 4096A Large Source Hatch
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .input(lens, Diamond, 4)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 4))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 4))
+                    .input(cableGtQuadruple, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
+                    .output(LASER_OUTPUT_HATCH_4096[actualTier])
+                    .EUt(VA[tier].toLong())
+                    .duration(1 * MINUTE)
+                    .buildAndRegister()
+            }
+            // Advanced laser hatches consists of 16384A-1048576A, these recipes is added
+            // for these parts.
+            for (tier in IV..UXV) // TODO OpV-MAX recipes
+            {
+                val actualTier = tier - IV // Because laser hatch start at IV stage.
                 // 16384A Laser Target Hatch
                 ASSEMBLER_RECIPES.recipeBuilder()
                     .circuitMeta(4)
                     .input(HULL[tier])
                     .input(lens, Diamond, 8)
-                    .input(GTLiteUtility.getSensorByTier(tier), 8)
-                    .input(GTLiteUtility.getPumpByTier(tier), 8)
-                    .input(cableGtOctal, GTLiteUtility.getCableByTier(tier), 4)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 8))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 8))
+                    .input(cableGtOctal, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                     .output(LASER_INPUT_HATCH_16384[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(2 * MINUTE)
@@ -1670,9 +1754,9 @@ class AssemblerRecipes
                     .circuitMeta(4)
                     .input(HULL[tier])
                     .input(lens, Diamond, 8)
-                    .input(GTLiteUtility.getEmitterByTier(tier), 8)
-                    .input(GTLiteUtility.getPumpByTier(tier), 8)
-                    .input(cableGtOctal, GTLiteUtility.getCableByTier(tier), 4)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 8))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 8))
+                    .input(cableGtOctal, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                     .output(LASER_OUTPUT_HATCH_16384[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(2 * MINUTE)
@@ -1683,9 +1767,9 @@ class AssemblerRecipes
                     .circuitMeta(5)
                     .input(HULL[tier])
                     .input(lens, Diamond, 16)
-                    .input(GTLiteUtility.getSensorByTier(tier), 16)
-                    .input(GTLiteUtility.getPumpByTier(tier), 16)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 4)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 16))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 16))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                     .output(LASER_INPUT_HATCH_65536[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(4 * MINUTE)
@@ -1696,9 +1780,9 @@ class AssemblerRecipes
                     .circuitMeta(5)
                     .input(HULL[tier])
                     .input(lens, Diamond, 16)
-                    .input(GTLiteUtility.getEmitterByTier(tier), 16)
-                    .input(GTLiteUtility.getPumpByTier(tier), 16)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 4)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 16))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 16))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                     .output(LASER_OUTPUT_HATCH_65536[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(4 * MINUTE)
@@ -1709,9 +1793,9 @@ class AssemblerRecipes
                     .circuitMeta(6)
                     .input(HULL[tier])
                     .input(lens, Diamond, 32)
-                    .input(GTLiteUtility.getSensorByTier(tier), 32)
-                    .input(GTLiteUtility.getPumpByTier(tier), 32)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 8)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 32))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 32))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 8)
                     .output(LASER_INPUT_HATCH_262144[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(8 * MINUTE)
@@ -1722,9 +1806,9 @@ class AssemblerRecipes
                     .circuitMeta(6)
                     .input(HULL[tier])
                     .input(lens, Diamond, 32)
-                    .input(GTLiteUtility.getEmitterByTier(tier), 32)
-                    .input(GTLiteUtility.getSensorByTier(tier), 32)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 8)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 32))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 32))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 8)
                     .output(LASER_OUTPUT_HATCH_262144[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(8 * MINUTE)
@@ -1735,9 +1819,9 @@ class AssemblerRecipes
                     .circuitMeta(7)
                     .input(HULL[tier])
                     .input(lens, Diamond, 64)
-                    .input(GTLiteUtility.getSensorByTier(tier), 64)
-                    .input(GTLiteUtility.getPumpByTier(tier), 64)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 16)
+                    .inputs(copy(CraftingComponent.SENSOR.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 16)
                     .output(LASER_INPUT_HATCH_1048576[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(16 * MINUTE)
@@ -1748,9 +1832,9 @@ class AssemblerRecipes
                     .circuitMeta(7)
                     .input(HULL[tier])
                     .input(lens, Diamond, 64)
-                    .input(GTLiteUtility.getEmitterByTier(tier), 64)
-                    .input(GTLiteUtility.getPumpByTier(tier), 64)
-                    .input(cableGtHex, GTLiteUtility.getCableByTier(tier), 16)
+                    .inputs(copy(CraftingComponent.EMITTER.getIngredient(tier) as ItemStack, 64))
+                    .inputs(copy(CraftingComponent.PUMP.getIngredient(tier) as ItemStack, 64))
+                    .input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 16)
                     .output(LASER_OUTPUT_HATCH_1048576[actualTier])
                     .EUt(VA[tier].toLong())
                     .duration(16 * MINUTE)
