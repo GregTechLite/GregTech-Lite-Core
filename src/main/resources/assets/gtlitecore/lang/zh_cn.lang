@@ -721,6 +721,7 @@ metaitem.tool.catalyst.rare_metal_group.name=金属萃取催化剂
 metaitem.tool.catalyst.naquadah.name=硅岩分离催化剂
 metaitem.tool.catalyst.raw_intelligence.name=原生智能催化剂
 metaitem.tool.catalyst.biological_intelligence.name=生物智能催化剂
+metaitem.tool.catalyst.high_explosive.name=烈性炸药催化剂
 
 metaitem.fuel_rod.empty.name=空燃料棒
 
@@ -1122,6 +1123,8 @@ metaitem.material.particle.superconductor_rare_earth_composite.name=复合稀土
 metaitem.material.particle.superconductor_rare_earth_composite.tooltip=可以超导传输电流及量子流，且不受温度影响
 metaitem.material.particle.black_body_naquadria_supersolid.name=超固态超能硅岩黑体
 metaitem.material.particle.black_body_naquadria_supersolid.tooltip=如液体般流动，不反射任何电磁波，完美地将其吸收与传递
+metaitem.material.particle.timepiece.name=时间碎片
+metaitem.material.particle.timepiece.tooltip=当心戴帽子的孩子
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子

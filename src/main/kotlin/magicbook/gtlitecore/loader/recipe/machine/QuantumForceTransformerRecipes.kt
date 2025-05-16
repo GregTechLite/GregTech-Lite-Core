@@ -11,6 +11,7 @@ import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Agar
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Antimony
@@ -42,6 +43,7 @@ import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Glue
+import gregtech.api.unification.material.Materials.GlycerylTrinitrate
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
@@ -145,19 +147,23 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.STEM_CELLS
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.QUANTUM_FORCE_TRANSFORMER_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Blood
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonK
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotPSS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PedotTMA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
@@ -182,6 +188,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_ADVAN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_ADVANCED_RUBBER_POLYMER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_BASE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_BIOLOGICAL_INTELLIGENCE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_HIGH_EXPLOSIVE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_NAQUADAH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_PLASTIC_POLYMER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_PLATINUM_GROUP
@@ -576,6 +583,24 @@ class QuantumForceTransformerRecipes
                 .tier(3)
                 .buildAndRegister()
 
+            // High Explosives
+            QUANTUM_FORCE_TRANSFORMER_RECIPES.recipeBuilder()
+                .notConsumable(CATALYST_HIGH_EXPLOSIVE)
+                .input(dust, Actinium, 32)
+                .input(dust, Carbon, 64)
+                .fluidInputs(Oxygen.getFluid(16000))
+                .fluidInputs(Hydrogen.getFluid(16000))
+                .fluidInputs(Nitrogen.getFluid(16000))
+                .chancedOutput(dust, Hexanitrohexaaxaisowurtzitane, 64, 2500, 0)
+                .chancedOutput(dust, Octaazacubane, 64, 2500, 0)
+                .chancedOutput(dust, ActiniumSuperhydride, 64, 2500, 0)
+                .chancedFluidOutput(CyclotetramethyleneTetranitroamine.getFluid(128000), 2500, 0)
+                .chancedFluidOutput(GlycerylTrinitrate.getFluid(256000), 2500, 0)
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .tier(2)
+                .buildAndRegister()
+
         }
 
         private fun catalystRecipes()
@@ -836,6 +861,20 @@ class QuantumForceTransformerRecipes
                 .fluidInputs(Hypogen.getFluid(L * 4))
                 .output(CATALYST_BIOLOGICAL_INTELLIGENCE)
                 .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // High Explosive Catalyst
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(21)
+                .input(CATALYST_BASE)
+                .input(dust, Hexanitrohexaaxaisowurtzitane, 64)
+                .input(dust, Octaazacubane, 64)
+                .input(nanite, Carbon, 16)
+                .fluidInputs(CosmicNeutronium.getFluid(L * 4))
+                .output(CATALYST_HIGH_EXPLOSIVE)
+                .EUt(VA[UHV].toLong())
                 .duration(10 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()

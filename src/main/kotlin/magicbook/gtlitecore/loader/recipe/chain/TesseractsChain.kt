@@ -55,11 +55,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.LEPTONIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.QUANTUM_CHROMODYNAMIC_CHARGE
+import magicbook.gtlitecore.common.block.blocks.BlockManipulator
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RAW_TESSERACT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TIMEPIECE
 import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -260,7 +263,32 @@ class TesseractsChain
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
-            // TODO Spatially Enlarged Fluid/TachyonRichTemporalFluid converting with QFT and Stellar Forge.
+            // Spatially Enlarged Fluid/Tachyon Rich Temporal Fluid converting.
+            STELLAR_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(GTLiteMetaBlocks.MANIPULATOR.getItemVariant(BlockManipulator.ManipulatorType.SPACETIME_CONTINUUM_RIPPER))
+                .input(ENERGISED_TESSERACT, 2)
+                .input(TIMEPIECE, 16)
+                .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
+                .fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 4096))
+                .fluidInputs(SpaceTime.getFluid(L * 1024))
+                .output(RAW_TESSERACT)
+                .fluidOutputs(TachyonRichTemporalFluid.getFluid(L * 4096))
+                .EUt(VA[MAX].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            STELLAR_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(GTLiteMetaBlocks.MANIPULATOR.getItemVariant(BlockManipulator.ManipulatorType.SPACETIME_CONTINUUM_RIPPER))
+                .input(ENERGISED_TESSERACT, 2)
+                .input(QUANTUM_ANOMALY, 16)
+                .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
+                .fluidInputs(TachyonRichTemporalFluid.getFluid(L * 4096))
+                .fluidInputs(SpaceTime.getFluid(L * 1024))
+                .output(RAW_TESSERACT)
+                .fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 4096))
+                .EUt(VA[MAX].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
 
             // Primordial Matter
             STELLAR_FORGE_RECIPES.recipeBuilder()

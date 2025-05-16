@@ -878,11 +878,24 @@ metaitem.tool.memory_card.shulker.name=Memory Card (Shulker)
 metaitem.tool.memory_card.wither.name=Memory Card (Wither)
 metaitem.tool.memory_card.ender_dragon.name=Memory Card (Ender Dragon)
 
-metaitem.tool.catalyst.base.name=催化剂载体
-metaitem.tool.catalyst.rubber_polymer.name=橡胶聚合催化剂
-metaitem.tool.catalyst.advanced_rubber_polymer.name=特种橡胶催化剂
-metaitem.tool.catalyst.plastic_polymer.name=塑料聚合催化剂
-metaitem.tool.catalyst.advanced_plastic_polymer.name=终极增塑催化剂
+metaitem.tool.catalyst.base.name=Catalyst Base
+metaitem.tool.catalyst.rubber_polymer.name=Rubber Polymer Catalyst
+metaitem.tool.catalyst.advanced_rubber_polymer.name=Advanced Rubber Polymer Catalyst
+metaitem.tool.catalyst.plastic_polymer.name=Plastic Polymer Catalyst
+metaitem.tool.catalyst.advanced_plastic_polymer.name=Advanced Plastic Polymer Catalyst
+metaitem.tool.catalyst.ultimate_plastic_polymer.name=Ultimate Plastic Polymer Catalyst
+metaitem.tool.catalyst.platinum_group.name=Platinum Group Catalyst
+metaitem.tool.catalyst.radioactive.name=Radioactive Catalyst
+metaitem.tool.catalyst.advanced_radioactive.name=Advanced Radioactive Catalyst
+metaitem.tool.catalyst.ultimate_radioactive.name=Ultimate Radioactive Catalyst
+metaitem.tool.catalyst.titanium_tungsten_indium.name=Titanium Tungsten Indium Catalyst
+metaitem.tool.catalyst.adhesion_promoter.name=Adhesion Promoter Catalyst
+metaitem.tool.catalyst.rare_earth_group.name=Rare Earth Group Catalyst
+metaitem.tool.catalyst.rare_metal_group.name=Rare Metal Group Catalyst
+metaitem.tool.catalyst.naquadah.name=Naquadah Catalyst
+metaitem.tool.catalyst.raw_intelligence.name=Raw Intelligence Catalyst
+metaitem.tool.catalyst.biological_intelligence.name=Biological Intelligence Catalyst
+metaitem.tool.catalyst.high_explosive.name=High Explosive Catalyst
 
 metaitem.fuel_rod.empty.name=Empty Fuel Rod
 
@@ -1110,6 +1123,8 @@ metaitem.material.particle.superconductor_rare_earth_composite.name=Superconduct
 metaitem.material.particle.superconductor_rare_earth_composite.tooltip=Zero resistance to electrical and quantum flow, regardless of temperature
 metaitem.material.particle.black_body_naquadria_supersolid.name=Black Body Naquadria Supersolid
 metaitem.material.particle.black_body_naquadria_supersolid.tooltip=Flows like a fluid and reflects nothing, perfect absorption and transfer
+metaitem.material.particle.timepiece.name=Timepiece
+metaitem.material.particle.timepiece.tooltip=Beware of the kid with the hat
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange

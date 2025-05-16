@@ -209,6 +209,7 @@ class GTLiteMetaItems
         lateinit var CATALYST_NAQUADAH: MetaItem<*>.MetaValueItem
         lateinit var CATALYST_RAW_INTELLIGENCE: MetaItem<*>.MetaValueItem
         lateinit var CATALYST_BIOLOGICAL_INTELLIGENCE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_HIGH_EXPLOSIVE: MetaItem<*>.MetaValueItem
 
         lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
 
@@ -387,6 +388,7 @@ class GTLiteMetaItems
         lateinit var STABLE_ADHESIVE: MetaItem<*>.MetaValueItem
         lateinit var SUPERCONDUCTOR_COMPOSITE: MetaItem<*>.MetaValueItem
         lateinit var NAQUADRIA_SUPERSOLID: MetaItem<*>.MetaValueItem
+        lateinit var TIMEPIECE: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -913,6 +915,9 @@ class GTLiteMetaItems
             CATALYST_BIOLOGICAL_INTELLIGENCE = GTLITE_ITEMS.addItem(687, "tool.catalyst.biological_intelligence")
                 .addOreDict("catalystBiologicalIntelligence")
 
+            CATALYST_HIGH_EXPLOSIVE = GTLITE_ITEMS.addItem(688, "tool.catalyst.high_explosive")
+                .addOreDict("catalystHighExplosive")
+
             // 701-800: Batteries.
             FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")
 
@@ -1119,6 +1124,7 @@ class GTLiteMetaItems
             STABLE_ADHESIVE = GTLITE_ITEMS.addItem(5012, "material.particle.hyperstable_self_healing_adhesive")
             SUPERCONDUCTOR_COMPOSITE = GTLITE_ITEMS.addItem(5013, "material.particle.superconductor_rare_earth_composite")
             NAQUADRIA_SUPERSOLID = GTLITE_ITEMS.addItem(5014, "material.particle.black_body_naquadria_supersolid")
+            TIMEPIECE = GTLITE_ITEMS.addItem(5015, "material.particle.timepiece")
 
             // 9001-10000: Miscellaneous Foods.
 
