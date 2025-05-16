@@ -84,6 +84,8 @@ import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
@@ -122,6 +124,7 @@ import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_UIV
 import gregtech.common.items.MetaItems.EMITTER_UV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
+import gregtech.common.items.MetaItems.ENERGY_CLUSTER
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
@@ -183,6 +186,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
@@ -207,6 +211,10 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
+import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
+import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
@@ -248,6 +256,7 @@ class AssemblyLineRecipes
             energyHatchesRecipes()
             laserHatchesRecipes()
             coALCasingRecipes()
+            antimatterCasingRecipes()
             wireCoilRecipes()
         }
 
@@ -2529,6 +2538,74 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // TODO OpV-MAX CoAL Casing
+        }
+
+        private fun antimatterCasingRecipes()
+        {
+            // Antimatter Containment Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PMMA, 16))
+                .input(stickLong, Infinity, 4)
+                .input(stickLong, CosmicNeutronium, 12)
+                .input(EMITTER_UEV, 4)
+                .input(wireGtQuadruple, VibraniumTritaniumActiniumIronSuperhydride, 16)
+                .fluidInputs(Bedrockium.getFluid(L * 16))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ANTIMATTER_CONTAINMENT, 64))
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PMMA))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Gravity Stabilization Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(BlockMetalCasing03.MetalCasingType.NEUTRONIUM, 16))
+                .input(SENSOR_UEV, 2)
+                .input(ENERGY_CLUSTER)
+                .input(plate, Infinity, 4)
+                .input(gear, Infinity)
+                .input(gearSmall, Infinity, 2)
+                .input(GRAVI_STAR, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(wireGtQuadruple, VibraniumTritaniumActiniumIronSuperhydride, 16)
+                .fluidInputs(Bedrockium.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(L * 16))
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.GRAVITY_STABILIZATION_CASING, 64))
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(BlockMetalCasing03.MetalCasingType.NEUTRONIUM))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Protomatter Activation Coil
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL, 16))
+                .input(ELECTRIC_PUMP_UEV, 2)
+                .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 8)
+                .input(plateDense, Infinity)
+                .input(rotor, Hypogen, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(FIELD_GENERATOR_UEV, 4)
+                .fluidInputs(Bedrockium.getFluid(L * 16))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(L * 8))
+                .fluidInputs(Protomatter.getFluid(500))
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.PROTOMATTER_ACTIVATION_COIL, 32))
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
         }
 
         private fun wireCoilRecipes()

@@ -5,6 +5,7 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.V
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.BlastRecipeBuilder
@@ -25,6 +26,7 @@ import magicbook.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
+import magicbook.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
@@ -883,6 +885,20 @@ class GTLiteRecipeMaps
             .fluidOutputs(6)
             .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
             .sound(GTSoundEvents.ARC)
+            .build()
+
+        /**
+         * @zenProp antimatter_forge
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ANTIMATTER_FORGE_RECIPES")
+        val ANTIMATTER_FORGE_RECIPES = RecipeMapBuilder("antimatter_forge", SimpleRecipeBuilder())
+            .ui { AntimatterForgeUI(it) }
+            .itemInputs(1)
+            .fluidInputs(21)
+            .fluidOutputs(1)
+            .sound(GTLiteSoundEvents.STELLAR_FORGE)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

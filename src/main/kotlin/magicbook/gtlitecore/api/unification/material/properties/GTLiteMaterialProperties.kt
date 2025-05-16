@@ -100,6 +100,7 @@ import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumBisulfate
 import gregtech.api.unification.material.Materials.SodiumPersulfate
@@ -112,6 +113,7 @@ import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Thulium
+import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
@@ -189,7 +191,7 @@ class GTLiteMaterialProperties
                 Magnesium, Francium, Thallium, Barium, Lutetium, Californium, Radium,
                 Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium,
                 Astatine, Nobelium, Lawrencium, Mercury, Roentgenium, Moscovium,
-                Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine)
+                Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine, Sulfur)
                 .forEach { addIngot(it) }
 
             sequenceOf(Iodine).forEach { addDust(it) }
@@ -199,13 +201,14 @@ class GTLiteMaterialProperties
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
                 Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium,
-                Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium)
+                Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium, Tellurium)
                 .forEach { addLiquid(it) }
 
-            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth, Thorium)
+            sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth, Thorium, Silver, Titanium,
+                Lead)
                 .forEach { addPlasma(it) }
 
-            sequenceOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium)
+            sequenceOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium, Sulfur)
                 .forEach { addLiquidAndPlasma(it) }
 
             // Let andradite can generate in world natural.

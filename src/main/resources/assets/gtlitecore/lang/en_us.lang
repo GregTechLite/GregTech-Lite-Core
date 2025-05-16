@@ -414,6 +414,10 @@ tile.multiblock_casing_01.particle_containment_casing.name=Particle Containment 
 tile.multiblock_casing_01.particle_containment_casing.tooltip=遏制外泄的高能粒子
 tile.multiblock_casing_01.particle_excitation_wire_coil.name=Particle Excitation Wire Coil Block
 tile.multiblock_casing_01.particle_excitation_wire_coil.tooltip=把高能粒子激发到最强态
+tile.multiblock_casing_01.gravity_stabilization_casing.name=Gravity Stabilization Casing
+tile.multiblock_casing_01.gravity_stabilization_casing.tooltip=稳定巨大质量变化造成的空间扭曲现象
+tile.multiblock_casing_01.protomatter_activation_coil.name=Protomatter Activation Coil Block
+tile.multiblock_casing_01.protomatter_activation_coil.tooltip=彻底激发正反物质湮灭
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.active_unique_casing_01.temperature_controller.name=Nuclear Reactor Temperature Controller
@@ -522,6 +526,7 @@ tile.glass_casing_01.woods.name=Woods Glass
 tile.glass_casing_01.lead_silicon.name=Lead Silicon Glass
 tile.glass_casing_01.quantum.name=Quantum Glass
 tile.glass_casing_01.force_field.name=Force Field Glass
+tile.glass_casing_01.antimatter_containment.name=Antimatter Containment Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
 tile.glass_casing_02.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
@@ -1304,6 +1309,7 @@ recipemap.bio_simulator.name=Bio Simulator
 recipemap.pcb_factory.name=PCB Factory
 recipemap.nano_forge.name=Nano Forge
 recipemap.quantum_force_transformer.name=Quantum Force Transformer
+recipemap.antimatter_forge.name=Antimatter Stabilization Sequencer
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2069,6 +2075,14 @@ gtlitecore.machine.quantum_force_transformer.tooltip.7=§f结构底层放置输�
 
 gtlitecore.machine.quantum_force_transformer.manipulator_info=Manipulator Tier: %s
 gtlitecore.machine.quantum_force_transformer.shielding_core_info=Shielding Core Tier: %s
+
+gtlitecore.machine.antimatter_forge.name=Semistable Antimatter Stabilization Sequencer
+gtlitecore.machine.antimatter_forge.tooltip.1=使用巨量的能量稳定化原始物质，并使之成为半稳态反物质
+gtlitecore.machine.antimatter_forge.tooltip.2=需要尽可能多地输入不同种类的§f等离子体§7来使得原始物质的质量变大。
+gtlitecore.machine.antimatter_forge.tooltip.3=输入的等离子体的种类越多，原始物质向半稳态反物质的转换比率就越高。
+gtlitecore.machine.antimatter_forge.tooltip.4=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
+gtlitecore.machine.antimatter_forge.tooltip.5=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.antimatter_forge.tooltip.6=没有并行上限，机器将会尽可能尝试多地进行并行。
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

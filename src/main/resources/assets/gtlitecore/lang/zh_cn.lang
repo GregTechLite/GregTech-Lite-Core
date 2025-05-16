@@ -414,6 +414,10 @@ tile.multiblock_casing_01.particle_containment_casing.name=粒子抑制机器外
 tile.multiblock_casing_01.particle_containment_casing.tooltip=遏制外泄的高能粒子
 tile.multiblock_casing_01.particle_excitation_wire_coil.name=粒子激发线圈方块
 tile.multiblock_casing_01.particle_excitation_wire_coil.tooltip=把高能粒子激发到最强态
+tile.multiblock_casing_01.gravity_stabilization_casing.name=引力稳定机械方块
+tile.multiblock_casing_01.gravity_stabilization_casing.tooltip=稳定巨大质量变化造成的空间扭曲现象
+tile.multiblock_casing_01.protomatter_activation_coil.name=原始物质活化线圈方块
+tile.multiblock_casing_01.protomatter_activation_coil.tooltip=彻底激发正反物质湮灭
 
 tile.active_unique_casing_01.heat_vent.name=散热片
 tile.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
@@ -522,6 +526,7 @@ tile.glass_casing_01.woods.name=伍兹玻璃
 tile.glass_casing_01.lead_silicon.name=铅硅玻璃
 tile.glass_casing_01.quantum.name=量子玻璃
 tile.glass_casing_01.force_field.name=力场玻璃
+tile.glass_casing_01.antimatter_containment.name=反物质隔离玻璃
 
 tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃
 tile.glass_casing_02.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
@@ -1301,6 +1306,7 @@ recipemap.bio_simulator.name=生物模拟室
 recipemap.pcb_factory.name=PCB工厂
 recipemap.nano_forge.name=纳米锻炉
 recipemap.quantum_force_transformer.name=量子操纵者
+recipemap.antimatter_forge.name=反物质稳定化编序器
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2067,6 +2073,14 @@ gtlitecore.machine.quantum_force_transformer.tooltip.7=§f结构底层放置输�
 
 gtlitecore.machine.quantum_force_transformer.manipulator_info=脉冲控制方块等级：%s
 gtlitecore.machine.quantum_force_transformer.shielding_core_info=屏蔽核心方块等级：%s
+
+gtlitecore.machine.antimatter_forge.name=半稳态反物质稳定化编序器
+gtlitecore.machine.antimatter_forge.tooltip.1=使用巨量的能量稳定化原始物质，并使之成为半稳态反物质
+gtlitecore.machine.antimatter_forge.tooltip.2=需要尽可能多地输入不同种类的§f等离子体§7来使得原始物质的质量变大。
+gtlitecore.machine.antimatter_forge.tooltip.3=输入的等离子体的种类越多，原始物质向半稳态反物质的转换比率就越高。
+gtlitecore.machine.antimatter_forge.tooltip.4=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
+gtlitecore.machine.antimatter_forge.tooltip.5=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.antimatter_forge.tooltip.6=没有并行上限，机器将会尽可能尝试多地进行并行。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能

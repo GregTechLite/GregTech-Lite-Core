@@ -47,6 +47,8 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -144,8 +146,10 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
         .where(' ', any())
         .build()
 
+    @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NAQUADAH_ALLOY_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
         val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
@@ -191,8 +195,8 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
     }
 
     override fun addInformation(stack: ItemStack?,
-                                world: World?, tooltip:
-                                MutableList<String>,
+                                world: World?,
+                                tooltip: MutableList<String>,
                                 advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -236,9 +240,6 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
                 && recipe.getProperty(NanoForgeTieredProperty.getInstance(), 0)!! <= mainUpgradeNumber
     }
 
-    /**
-     * FIXME Confirm MAX+ voltage and ensure it be well.
-     */
     inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 

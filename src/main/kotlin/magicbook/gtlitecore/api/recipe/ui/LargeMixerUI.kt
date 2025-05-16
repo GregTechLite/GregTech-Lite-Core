@@ -16,8 +16,8 @@ class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap, t
 
     init
     {
-        this.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
-        this.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
+        setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
+        setItemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
     }
 
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,
@@ -25,8 +25,8 @@ class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap, t
     {
         val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 203)
             .widget(RecipeProgressWidget(200, 74, 45, 22, 22, progressBarTexture(), progressBarMoveType(), recipeMap()))
-        this.addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
-        this.addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
+        addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
+        addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
     }
 

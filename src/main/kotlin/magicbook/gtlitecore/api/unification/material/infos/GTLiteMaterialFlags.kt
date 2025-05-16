@@ -116,6 +116,7 @@ import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
+import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Topaz
@@ -391,6 +392,7 @@ class GTLiteMaterialFlags
             Nobelium.addFlags(GENERATE_PLATE)
             Technetium.addFlags(GENERATE_PLATE)
             Uranium238.addFlags(GENERATE_PLATE)
+            Thulium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

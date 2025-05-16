@@ -67,6 +67,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/particle_excitation_wire_coil"
         }
+      },
+      "gravity_stabilization_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/gravity_stabilization_casing"
+        }
+      },
+      "protomatter_activation_coil": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/protomatter_activation_coil"
+        }
       }
     }
   }

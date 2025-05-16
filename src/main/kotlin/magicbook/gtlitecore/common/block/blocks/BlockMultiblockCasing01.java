@@ -52,7 +52,9 @@ public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing0
         STELLAR_CONTAINMENT_CASING("stellar_containment_casing"),
         HARMONIC_PHONON_TRANSMISSION_CASING("harmonic_phonon_transmission_casing"),
         PARTICLE_CONTAINMENT_CASING("particle_containment_casing"),
-        PARTICLE_EXCITATION_WIRE_COIL("particle_excitation_wire_coil");
+        PARTICLE_EXCITATION_WIRE_COIL("particle_excitation_wire_coil"),
+        GRAVITY_STABILIZATION_CASING("gravity_stabilization_casing"),
+        PROTOMATTER_ACTIVATION_COIL("protomatter_activation_coil");
 
         private final String name;
     }

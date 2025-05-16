@@ -2,12 +2,35 @@ package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
+import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Bismuth
+import gregtech.api.unification.material.Materials.Boron
+import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.Fermium
+import gregtech.api.unification.material.Materials.Helium
+import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Niobium
+import gregtech.api.unification.material.Materials.Nitrogen
+import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.Radon
+import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.Thorium
+import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Zinc
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ANTIMATTER_FORGE_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HighEnergyQuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SemistableAntimatter
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 
@@ -39,7 +62,106 @@ class AntimatterChain
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Protomatter -> Semistable Antimatter TODO
+            // Protomatter -> Semistable Antimatter
+            ANTIMATTER_FORGE_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .fluidInputs(Protomatter.getFluid(1000))
+                .fluidInputs(Helium.getPlasma(1000))
+                .fluidInputs(Iron.getPlasma(1000))
+                .fluidInputs(Calcium.getPlasma(1000))
+                .fluidInputs(Niobium.getPlasma(1000)) // 1
+                .fluidOutputs(SemistableAntimatter.getFluid(100))
+                .EUt(145_149_830) // OpV
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_FORGE_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .fluidInputs(Protomatter.getFluid(10000))
+                .fluidInputs(Helium.getPlasma(1000))
+                .fluidInputs(Iron.getPlasma(1000))
+                .fluidInputs(Calcium.getPlasma(1000))
+                .fluidInputs(Niobium.getPlasma(1000)) // 1
+                .fluidInputs(Radon.getPlasma(1000))
+                .fluidInputs(Nickel.getPlasma(1000))
+                .fluidInputs(Boron.getPlasma(1000))
+                .fluidInputs(Sulfur.getPlasma(1000)) // 2
+                .fluidOutputs(SemistableAntimatter.getFluid(1000))
+                .EUt(667_684_600) // MAX
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_FORGE_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .fluidInputs(Protomatter.getFluid(100_000))
+                .fluidInputs(Helium.getPlasma(1000))
+                .fluidInputs(Iron.getPlasma(1000))
+                .fluidInputs(Calcium.getPlasma(1000))
+                .fluidInputs(Niobium.getPlasma(1000)) // 1
+                .fluidInputs(Radon.getPlasma(1000))
+                .fluidInputs(Nickel.getPlasma(1000))
+                .fluidInputs(Boron.getPlasma(1000))
+                .fluidInputs(Sulfur.getPlasma(1000)) // 2
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidInputs(Zinc.getPlasma(1000))
+                .fluidInputs(Silver.getPlasma(1000))
+                .fluidInputs(Titanium.getPlasma(1000)) // 3
+                .fluidOutputs(SemistableAntimatter.getFluid(10000))
+                .EUt(2_693_264_510) // MAX+
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_FORGE_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .fluidInputs(Protomatter.getFluid(1_000_000))
+                .fluidInputs(Helium.getPlasma(1000))
+                .fluidInputs(Iron.getPlasma(1000))
+                .fluidInputs(Calcium.getPlasma(1000))
+                .fluidInputs(Niobium.getPlasma(1000)) // 1
+                .fluidInputs(Radon.getPlasma(1000))
+                .fluidInputs(Nickel.getPlasma(1000))
+                .fluidInputs(Boron.getPlasma(1000))
+                .fluidInputs(Sulfur.getPlasma(1000)) // 2
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidInputs(Zinc.getPlasma(1000))
+                .fluidInputs(Silver.getPlasma(1000))
+                .fluidInputs(Titanium.getPlasma(1000)) // 3
+                .fluidInputs(Americium.getPlasma(1000))
+                .fluidInputs(Bismuth.getPlasma(1000))
+                .fluidInputs(Oxygen.getPlasma(1000))
+                .fluidInputs(Tin.getPlasma(1000)) // 4
+                .fluidOutputs(SemistableAntimatter.getFluid(100_000))
+                .EUt(10_730_073_930) // MAX+
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_FORGE_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .fluidInputs(Protomatter.getFluid(10_000_000))
+                .fluidInputs(Helium.getPlasma(1000))
+                .fluidInputs(Iron.getPlasma(1000))
+                .fluidInputs(Calcium.getPlasma(1000))
+                .fluidInputs(Niobium.getPlasma(1000)) // 1
+                .fluidInputs(Radon.getPlasma(1000))
+                .fluidInputs(Nickel.getPlasma(1000))
+                .fluidInputs(Boron.getPlasma(1000))
+                .fluidInputs(Sulfur.getPlasma(1000)) // 2
+                .fluidInputs(Nitrogen.getPlasma(1000))
+                .fluidInputs(Zinc.getPlasma(1000))
+                .fluidInputs(Silver.getPlasma(1000))
+                .fluidInputs(Titanium.getPlasma(1000)) // 3
+                .fluidInputs(Americium.getPlasma(1000))
+                .fluidInputs(Bismuth.getPlasma(1000))
+                .fluidInputs(Oxygen.getPlasma(1000))
+                .fluidInputs(Tin.getPlasma(1000)) // 4
+                .fluidInputs(Thorium.getPlasma(1000))
+                .fluidInputs(Lead.getPlasma(1000))
+                .fluidInputs(Neptunium.getPlasma(1000))
+                .fluidInputs(Fermium.getPlasma(1000)) // 5
+                .fluidOutputs(SemistableAntimatter.getFluid(1_000_000))
+                .EUt(42_767_675_200) // MAX+
+                .duration(5 * SECOND)
+                .buildAndRegister()
 
             // Semistable Antimatter -> Antimatter TODO
 

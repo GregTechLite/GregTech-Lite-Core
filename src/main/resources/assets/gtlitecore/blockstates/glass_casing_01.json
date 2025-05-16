@@ -92,6 +92,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/force_field"
         }
+      },
+      "antimatter_containment": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/antimatter_containment"
+        }
       }
     }
   }

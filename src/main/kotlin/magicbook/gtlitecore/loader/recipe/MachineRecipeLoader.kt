@@ -288,8 +288,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA956
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -2228,6 +2230,17 @@ class MachineRecipeLoader
                         .EUt(VA[IV].toLong())
                         .duration(1 * MINUTE)
                 }
+                .buildAndRegister()
+
+            // Infinity Cooling Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(frameGt, Hypogen)
+                .input(rotor, Infinity, 2)
+                .input(plate, Thulium, 6)
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.INFINITY_COOLING_CASING, 2))
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
             // Quantum Force Transformer

@@ -3,6 +3,7 @@ package magicbook.gtlitecore.client.renderer.texture
 import codechicken.lib.texture.TextureUtils
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer
 import gregtech.client.renderer.texture.cube.SidedCubeRenderer
+import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtech.client.renderer.texture.custom.DrumRenderer
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -138,11 +139,13 @@ class GTLiteTextures
         val QUANTUM_FORCE_TRANSFORMER_OVERLAY = OrientedOverlayRenderer("machines/multiblock/quantum_force_transformer")
 
         @JvmField
+        val ANTIMATTER_FORGE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/antimatter_forge")
+
+        @JvmField
         val ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("generators/rocket_engine")
 
         @JvmField
         val NAQUADAH_REACTOR_OVERLAY = OrientedOverlayRenderer("generators/naquadah_reactor")
-
         // =============================================================================================================
         @JvmField
         val REINFORCED_TREATED_WOOD_WALL = SidedCubeRenderer("casings/reinforced_treated_wood_wall")
@@ -266,6 +269,15 @@ class GTLiteTextures
 
         @JvmField
         val PARTICLE_CONTAINMENT_CASING = GTLiteSimpleOverlayRenderer("casings/special/particle_containment_casing")
+
+
+
+
+        @JvmField
+        val ANTIMATTER_FORGE_TEXTURE = SimpleOverlayRenderer("machines/multiblock/antimatter_forge/base/antimatter")
+
+        @JvmField
+        val ANTIMATTER_FORGE_ACTIVE_TEXTURE = SimpleOverlayRenderer("machines/multiblock/antimatter_forge/base/antimatter_active")
         // =============================================================================================================
         @JvmField
         val PLASTIC_CAN_OVERLAY = SimpleSidedCubeRenderer("storage/drums/plastic_can_top")

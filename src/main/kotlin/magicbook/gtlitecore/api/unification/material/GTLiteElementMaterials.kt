@@ -298,8 +298,8 @@ class GTLiteElementMaterials
                     .temperature(11530))
                 .color(0xDC784B).iconSet(ENRICHED) // Opacity: 5-10-15-20-25-30-35
                 .element(Hy)
-                .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_FRAME)
                 .cableProperties(V[UIV], 16, 4)
                 .build()
 

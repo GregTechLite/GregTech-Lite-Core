@@ -20,6 +20,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.Beryllium
@@ -42,6 +43,7 @@ import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Magnesium
@@ -68,9 +70,12 @@ import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
@@ -140,6 +145,19 @@ class FusionReactorRecipes
             // ---------------------------------------------------------------------------------------------------------
             // MK2 Fusion Reactions
 
+            // Al + Li -> S (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Aluminium.getFluid(16))
+                .fluidInputs(Lithium.getFluid(16))
+                .fluidOutputs(Sulfur.getPlasma(L))
+                .EUt(VA[LuV] / 3L)
+                .duration(SECOND + 12 * TICK)
+                .EUToStart(240_000_000L) // 240M EU, MK2
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Sulfur, 5 * SECOND + 12 * TICK)
+            addPlasmaCoolantRecipe(Sulfur, 2 * SECOND + 18 * TICK, true)
+
             // Co + Si -> Nb (plasma)
             FUSION_RECIPES.recipeBuilder()
                 .fluidInputs(Cobalt.getFluid(L))
@@ -165,6 +183,19 @@ class FusionReactorRecipes
 
             addPlasmaFuelRecipe(Zinc, 4 * SECOND + 18 * TICK);
             addPlasmaCoolantRecipe(Zinc, 2 * SECOND + 9 * TICK, true)
+
+            // Al + F -> Ti (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Aluminium.getFluid(L))
+                .fluidInputs(Fluorine.getFluid(L))
+                .fluidOutputs(Titanium.getPlasma(L))
+                .EUt(49152) // ZPM
+                .duration(8 * SECOND)
+                .EUToStart(300_000_000L) // 300M EU, MK2
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Titanium, 7 * SECOND + 12 * TICK)
+            addPlasmaCoolantRecipe(Titanium, 3 * SECOND + 6 * TICK, true)
 
             // Ne (plasma) + Co -> Rb (plasma)
             FUSION_RECIPES.recipeBuilder()
@@ -264,6 +295,19 @@ class FusionReactorRecipes
 
             addPlasmaFuelRecipe(Bismuth, 9 * SECOND + 4 * TICK)
             addPlasmaCoolantRecipe(Bismuth, 5 * SECOND + 8 * TICK, true)
+
+            // Au + As -> Ag (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Gold.getFluid(L))
+                .fluidInputs(Arsenic.getFluid(L))
+                .fluidOutputs(Silver.getPlasma(L))
+                .EUt(49152) // ZPM
+                .duration(16 * TICK)
+                .EUToStart(350_000_000L) // 360M EU, MK3
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Silver, 8 * SECOND + 8 * TICK)
+            addPlasmaCoolantRecipe(Silver, 4 * SECOND + 4 * TICK, true)
 
             // Pu241 + He -> Cm
             FUSION_RECIPES.recipeBuilder()
@@ -422,6 +466,19 @@ class FusionReactorRecipes
 
             addPlasmaFuelRecipe(Thorium, 52 * SECOND + 4 * TICK)
             addPlasmaCoolantRecipe(Thorium, 26 * SECOND + 2 * TICK, true)
+
+            // Te + Zn -> Pb (plasma)
+            FUSION_RECIPES.recipeBuilder()
+                .fluidInputs(Tellurium.getFluid(L))
+                .fluidInputs(Zinc.getFluid(L))
+                .fluidOutputs(Lead.getPlasma(L))
+                .EUt(VA[UEV].toLong())
+                .duration(12 * SECOND)
+                .EUToStart(1_800_000_000L) // 1800M EU, MK5
+                .buildAndRegister()
+
+            addPlasmaFuelRecipe(Lead, 46 * SECOND + 8 * TICK);
+            addPlasmaCoolantRecipe(Lead, 18 * SECOND + 4 * TICK, true)
 
             // At + Ni -> Nh
             FUSION_RECIPES.recipeBuilder()
