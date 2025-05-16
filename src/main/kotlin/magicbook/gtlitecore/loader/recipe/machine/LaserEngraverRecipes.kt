@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
@@ -11,16 +12,24 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
+import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.NetherStar
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Sapphire
+import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.ore.OrePrefix.craftingLens
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtech.api.unification.ore.OrePrefix.lens
+import gregtech.api.unification.ore.OrePrefix.springSmall
+import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC_WAFER
@@ -37,19 +46,27 @@ import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LuTmYVO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrHoYLF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.gemSolitary
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ADVANCED_RAM_WAFER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_DIAMOND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.HASSIUM_WAFER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_WAFER
@@ -350,6 +367,56 @@ class LaserEngraverRecipes
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
+            // Femto Power Integrate Circuit (FPIC) Wafer
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, PrHoYLF)
+                .input(NEUTRONIUM_WAFER)
+                .output(FEMTO_PIC_WAFER)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE + 20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, PrHoYLF)
+                .input(HASSIUM_WAFER)
+                .output(FEMTO_PIC_WAFER, 4)
+                .EUt(VA[UEV].toLong())
+                .duration(20 * SECOND)
+                .buildAndRegister()
+
+            // Femto Power Integrate Circuit (FPIC) Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(FEMTO_PIC_WAFER)
+                .output(FEMTO_PIC_CHIP, 2)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Atto Power Integrate Circuit (APIC) Wafer
+            LASER_ENGRAVER_RECIPES.recipeBuilder()
+                .notConsumable(lens, NdYAG)
+                .input(FEMTO_PIC_WAFER)
+                .input(springSmall, Taranium)
+                .input(wireFine, MetastableOganesson, 4)
+                .fluidInputs(Neutronium.getFluid(L))
+                .fluidInputs(FreeElectronGas.getFluid(4000))
+                .output(ATTO_PIC_WAFER)
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Atto Power Integrate Circuit (APIC) Chip
+            CUTTER_RECIPES.recipeBuilder()
+                .input(ATTO_PIC_WAFER)
+                .output(ATTO_PIC_CHIP, 2)
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
             // Engraved Diamond Chip
             LASER_ENGRAVER_RECIPES.recipeBuilder()
                 .notConsumable(lens, Diamond)
@@ -423,6 +490,10 @@ class LaserEngraverRecipes
             // Disabled craftingLensRed ore dict of Lu/Tm:YVO
             OreDictionary.getOres("craftingLensRed").removeIf { item ->
                 item.isItemEqual(OreDictUnifier.get(lens, LuTmYVO))
+            }
+            // Disabled craftingLensLightBlue ore dict of Pr/Ho:YLF
+            OreDictionary.getOres("craftingLensLightBlue").removeIf { item ->
+                item.isItemEqual(OreDictUnifier.get(lens, PrHoYLF))
             }
 
         }

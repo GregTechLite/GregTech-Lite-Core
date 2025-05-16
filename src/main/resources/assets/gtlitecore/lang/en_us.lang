@@ -1257,6 +1257,7 @@ metaitem.apple_pulp_dust.name=Apple Pulp Dust
 metaitem.hard_apple_candy_chunk_plate_dense.name=Hard Apple Candy Chunk
 metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
 metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
+metaitem.apple_pulp_dust.name=Apple Pulp Dust
 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
@@ -2915,6 +2916,8 @@ gtlitecore.material.lanthanum_fullerene_mixture=Lanthanum-Fullerene Mixture
 gtlitecore.material.lanthanum_embedded_fullerene=Lanthanum Embedded Fullerene
 gtlitecore.material.lanthanum_fullerene_nanotube=Lanthanum-Fullerene Nanotube
 gtlitecore.material.seaborgium_doped_carbon_nanotube=Seaborgium-doped Carbon Nanotube
+gtlitecore.material.pr_ho_y_nitrates_solution=Praseodymium-Holmium-Yttrium Nitrates Solution
+gtlitecore.material.pr_ho_ylf=Praseodymium/Holmium-doped Yttrium Lithium Fluoride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3196,7 +3199,8 @@ gtlitecore.material.isopropyl_chloride=Isopropyl Chloride
 gtlitecore.material.phenothiazine_propyl_chloride=10-Phenothiazine-2-Propyl Chloride
 gtlitecore.material.promethazine=Promethazine
 gtlitecore.material.codeine=Codeine
-metaitem.apple_pulp_dust.name=Apple Pulp Dust
+gtlitecore.material.ammonium_fluoride=Ammonium Fluoride
+gtlitecore.material.ammonium_bifluoride=Ammonium Bifluoride
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

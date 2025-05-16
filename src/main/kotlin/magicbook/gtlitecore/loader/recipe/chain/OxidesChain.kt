@@ -39,6 +39,7 @@ import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Hafnia
+import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Lutetium
@@ -49,6 +50,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
+import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -79,12 +81,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumO
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HolmiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
@@ -458,6 +462,28 @@ class OxidesChain
                 .input(dust, Thulium, 2)
                 .fluidInputs(Oxygen.getFluid(3000))
                 .output(dust, ThuliumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of Pr2O3, do not push player used REE distillation.
+            // 2Pr + 3O -> Pr2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Praseodymium, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, PraseodymiumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
+            // Add another choice of Ho2O3, do not push player used REE distillation.
+            // 2Ho + 3O -> Ho2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Holmium, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, HolmiumOxide, 5)
                 .EUt(VA[MV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()

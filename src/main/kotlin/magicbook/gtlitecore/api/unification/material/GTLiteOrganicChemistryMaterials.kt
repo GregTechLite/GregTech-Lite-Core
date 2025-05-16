@@ -64,7 +64,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcetylChlo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Acetylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AminooxyaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aminophenol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumBifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCyanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Benzaldehyde
@@ -1816,6 +1818,23 @@ class GTLiteOrganicChemistryMaterials
                 .components(Carbon, 18, Hydrogen, 21, Nitrogen, 1, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
+
+            // 8194 Ammonium Fluoride
+            AmmoniumFluoride = Material.Builder(8194, gtliteId("ammonium_fluoride"))
+                .dust()
+                .color(averageRGB(2, Ammonia.materialRGB, Fluorine.materialRGB))
+                .components(Nitrogen, 1, Hydrogen, 4, Fluorine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8195 Ammonium Bifluoride
+            AmmoniumBifluoride = Material.Builder(8195, gtliteId("ammonium_bifluoride"))
+                .dust()
+                .color(0x055370).iconSet(FINE)
+                .components(Nitrogen, 1, Hydrogen, 5, Fluorine, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("NH4HF2", true)
 
         }
 

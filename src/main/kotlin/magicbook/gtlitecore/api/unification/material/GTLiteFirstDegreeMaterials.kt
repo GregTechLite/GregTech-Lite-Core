@@ -394,6 +394,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumP
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumSulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTertbutoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTetrachloroplatinate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrHoYLF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrHoYNitratesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
@@ -3135,6 +3137,25 @@ class GTLiteFirstDegreeMaterials
                 .components(Carbon, 48, Seaborgium, 1)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
+
+            // 2307 Praseodymium-Holmium-Yttrium Nitrates Solution
+            PrHoYNitratesSolution = Material.Builder(2307, gtliteId("pr_ho_y_nitrates_solution"))
+                .liquid()
+                .colorAverage()
+                .components(Praseodymium, 2, Nitrogen, 30, Oxygen, 105, Holmium, 2, Yttrium, 6, Hydrogen, 30)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(Pr(NO3)3)2(Ho(NO3)3)2(Y(NO3)3)6(H2O)15", true)
+
+            // 2308 Pr/Ho:YLF
+            PrHoYLF = Material.Builder(2308, gtliteId("pr_ho_ylf"))
+                .gem()
+                .color(Praseodymium.materialRGB + Holmium.materialRGB + Yttrium.materialRGB
+                        + Lithium.materialRGB).iconSet(RUBY)
+                .components(Praseodymium, 1, Holmium, 1, Lithium, 1, Yttrium, 1, Fluorine, 4)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+                .build()
+                .setFormula("Pr/Ho:YLF", true)
 
         }
 

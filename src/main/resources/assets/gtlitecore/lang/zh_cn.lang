@@ -2918,6 +2918,8 @@ gtlitecore.material.lanthanum_fullerene_mixture=镧-富勒烯混合物
 gtlitecore.material.lanthanum_embedded_fullerene=镧嵌合富勒烯
 gtlitecore.material.lanthanum_fullerene_nanotube=镧-富勒烯纳米管
 gtlitecore.material.seaborgium_doped_carbon_nanotube=钅喜掺杂的碳纳米管
+gtlitecore.material.pr_ho_y_nitrates_solution=硝酸镨-钬-钇溶液
+gtlitecore.material.pr_ho_ylf=镨钬掺杂的氟化钇锂
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3198,6 +3200,8 @@ gtlitecore.material.isopropyl_chloride=异丙基氯
 gtlitecore.material.phenothiazine_propyl_chloride=10-(2-氯丙基)-吩噻嗪
 gtlitecore.material.promethazine=异丙嗪
 gtlitecore.material.codeine=可待因
+gtlitecore.material.ammonium_fluoride=氟化铵
+gtlitecore.material.ammonium_bifluoride=氟化氢铵
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

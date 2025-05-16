@@ -64,6 +64,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PedotChain
 import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.PotassiumPermanganateChain
+import magicbook.gtlitecore.loader.recipe.chain.PrHoYLFChain
 import magicbook.gtlitecore.loader.recipe.chain.QuantumDotsChain
 import magicbook.gtlitecore.loader.recipe.chain.QuarksChain
 import magicbook.gtlitecore.loader.recipe.chain.ReactorModeratorChain
@@ -270,6 +271,7 @@ class RecipeManager
             AntimatterChain.init()
             TesseractsChain.init()
             CreonMellionChain.init()
+            PrHoYLFChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

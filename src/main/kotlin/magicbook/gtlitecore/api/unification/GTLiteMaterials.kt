@@ -340,6 +340,8 @@ class GTLiteMaterials
         lateinit var LanthanumEmbeddedFullerene: Material
         lateinit var LanthanumFullereneNanotube: Material
         lateinit var SeaborgiumDopedCarbonNanotube: Material
+        lateinit var PrHoYNitratesSolution: Material
+        lateinit var PrHoYLF: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -613,6 +615,8 @@ class GTLiteMaterials
         lateinit var PhenothiazinePropylChloride: Material
         lateinit var Promethazine: Material
         lateinit var Codeine: Material
+        lateinit var AmmoniumFluoride: Material
+        lateinit var AmmoniumBifluoride: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
