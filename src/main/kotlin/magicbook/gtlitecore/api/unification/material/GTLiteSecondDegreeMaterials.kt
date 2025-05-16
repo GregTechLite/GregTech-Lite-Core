@@ -242,7 +242,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x80C880).iconSet(METALLIC)
                 .components(Nickel, 3, Chrome, 7, Molybdenum, 10, Invar, 10, Nichrome, 13)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(2425, BlastProperty.GasTier.LOW) // Kanthal
                         .blastStats(VA[HV], 25 * SECOND)
@@ -477,7 +477,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x56566A).iconSet(METALLIC)
                 .components(Tantalum, 1, Carbon, 1)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
                         .blastStats(VA[EV], 60 * SECOND)
@@ -622,8 +622,8 @@ class GTLiteSecondDegreeMaterials
                 .color(0x160740).iconSet(SHINY)
                 .components(NaquadahEnriched, 4, Ruridit, 2, Rutherfordium, 1)
                 .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
-                    GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR,
-                    GENERATE_FRAME, GENERATE_RING)
+                    GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                    GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_RING)
                 .blast { b ->
                     b.temp(9001, BlastProperty.GasTier.HIGHER) // Trinium
                         .blastStats(VA[ZPM], 1 * MINUTE + 40 * SECOND)
@@ -787,7 +787,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0xC4A415).iconSet(SHINY)
                 .components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UEV], 1 * MINUTE + 15 * SECOND)
@@ -816,7 +816,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .colorAverage().iconSet(METALLIC)
                 .components(Hafnium, 1, Carbon, 1)
-                .flags(DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_BOLT_SCREW)
                 .blast { b ->
                     b.temp(4090, BlastProperty.GasTier.MID) // RTM Alloy
                         .blastStats(VA[EV], 1 * MINUTE + 5 * SECOND)
@@ -897,6 +897,7 @@ class GTLiteSecondDegreeMaterials
                         + Osmium.materialRGB).iconSet(BRIGHT)
                 .components(Ruthenium, 1, Rhodium, 1, Palladium, 1, Silver, 1,
                     Osmium, 1, Iridium, 1, Platinum, 1, Gold, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
                 .blast { b ->
                     b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
                         .blastStats(VA[UV], 1 * MINUTE)
@@ -928,7 +929,7 @@ class GTLiteSecondDegreeMaterials
                 .color(0x9E706A).iconSet(METALLIC)
                 .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, Bronze, 5,
                     IncoloyMA956, 5, Iodine, 1, Germanium, 1, Radon, 1)
-                .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING)
+                .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING)
                 .blast { b ->
                     b.temp(12625, BlastProperty.GasTier.HIGHEST) // Adamantium
                         .blastStats(VA[UIV], 4 * MINUTE)

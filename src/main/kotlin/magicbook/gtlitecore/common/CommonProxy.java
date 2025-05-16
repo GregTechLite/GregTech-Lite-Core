@@ -126,6 +126,7 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.FUSION_CASING_01);
         registry.register(GTLiteMetaBlocks.FUSION_CASING_02);
         registry.register(GTLiteMetaBlocks.FUSION_CASING_03);
+        registry.register(GTLiteMetaBlocks.COMPUTER_CASING_01);
         registry.register(GTLiteMetaBlocks.WIRE_COIL);
         registry.register(GTLiteMetaBlocks.CRUCIBLE);
         registry.register(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING);
@@ -230,6 +231,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING_03, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.COMPUTER_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.WIRE_COIL, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.CRUCIBLE, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING, VariantItemBlock::new));

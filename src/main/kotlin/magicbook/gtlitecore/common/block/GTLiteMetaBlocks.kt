@@ -14,6 +14,7 @@ import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOv
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
+import magicbook.gtlitecore.common.block.blocks.BlockComputerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
 import magicbook.gtlitecore.common.block.blocks.BlockDust
@@ -174,6 +175,7 @@ class GTLiteMetaBlocks
         lateinit var FUSION_CASING_01: BlockFusionCasing01
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
+        lateinit var COMPUTER_CASING_01: BlockComputerCasing01
         lateinit var WIRE_COIL: BlockWireCoils
         lateinit var COMPONENT_ASSEMBLY_CASING: BlockComponentAssemblyCasing
         lateinit var CRUCIBLE: BlockCrucible
@@ -449,6 +451,10 @@ class GTLiteMetaBlocks
             (FUSION_CASING_03 as? Block)?.setRegistryName("fusion_casing_03")
             (FUSION_CASING_03 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            COMPUTER_CASING_01 = BlockComputerCasing01()
+            (COMPUTER_CASING_01 as? Block)?.setRegistryName("computer_casing_01")
+            (COMPUTER_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             WIRE_COIL = BlockWireCoils()
             (WIRE_COIL as? Block)?.setRegistryName("wire_coil")
             (WIRE_COIL as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -626,6 +632,7 @@ class GTLiteMetaBlocks
             registerItemModel(BOILER_CASING_01)
             registerItemModel(TURBINE_CASING_01)
             registerItemModel(TURBINE_CASING_02)
+            registerItemModel(COMPUTER_CASING_01)
             registerItemModel(CRUCIBLE)
             registerItemModel(COMPONENT_ASSEMBLY_CASING)
             registerItemModel(TRANSPARENT_CASING_01)

@@ -79,6 +79,13 @@
           "all": "gtlitecore:blocks/casings/glass/lead_silicon"
         }
       },
+      "quantum": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/quantum"
+        }
+      },
       "force_field": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,

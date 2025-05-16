@@ -125,6 +125,7 @@ import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
+import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.VanadiumSteel
@@ -217,6 +218,7 @@ class GTLiteMaterialFlags
             Duranium.addFlags(GENERATE_BOLT_SCREW)
             Inconel718.addFlags(GENERATE_BOLT_SCREW)
             Neptunium.addFlags(GENERATE_BOLT_SCREW)
+            Uranium235.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -385,6 +387,7 @@ class GTLiteMaterialFlags
             Selenium.addFlags(GENERATE_PLATE)
             Nobelium.addFlags(GENERATE_PLATE)
             Technetium.addFlags(GENERATE_PLATE)
+            Uranium238.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -419,6 +422,7 @@ class GTLiteMaterialFlags
             Nobelium.addFlags(GENERATE_DOUBLE_PLATE)
             Trinium.addFlags(GENERATE_DOUBLE_PLATE)
             Technetium.addFlags(GENERATE_DOUBLE_PLATE)
+            Seaborgium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -446,6 +450,7 @@ class GTLiteMaterialFlags
             Duranium.addFlags(GENERATE_DENSE)
             Naquadria.addFlags(GENERATE_DENSE)
             Trinium.addFlags(GENERATE_DENSE)
+            Osmiridium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)
@@ -484,6 +489,7 @@ class GTLiteMaterialFlags
             Curium.addFlags(GENERATE_ROD)
             Californium.addFlags(GENERATE_ROD)
             Moscovium.addFlags(GENERATE_ROD)
+            Uranium235.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

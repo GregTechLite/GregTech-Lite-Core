@@ -118,6 +118,7 @@ public class BlockGlassCasing01 extends VariantBlock<BlockGlassCasing01.GlassTyp
         SILICON_CARBIDE("silicon_carbide", GTValues.EV),
         WOODS("woods", GTValues.LuV),
         LEAD_SILICON("lead_silicon", GTValues.EV),
+        QUANTUM("quantum", GTValues.UHV),
         FORCE_FIELD("force_field", GTValues.UEV);
 
         private final String name;

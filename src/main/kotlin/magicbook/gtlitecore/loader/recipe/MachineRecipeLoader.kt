@@ -124,6 +124,7 @@ import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
@@ -138,6 +139,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockCleanroomCasing
+import gregtech.common.blocks.BlockComputerCasing
 import gregtech.common.blocks.BlockFireboxCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
@@ -186,7 +188,9 @@ import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
@@ -257,6 +261,7 @@ import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
@@ -297,6 +302,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polymethylmethacrylate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
@@ -326,9 +332,11 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.NAQUADRIA_CH
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.QUANTUM_CHROMODYNAMIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.TARANIUM_CHARGE
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockComputerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing03
+import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
@@ -339,6 +347,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_E
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
@@ -417,6 +426,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PCB_FACTORY
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PLASMA_ENHANCED_CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.POLISHER
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.QUANTUM_FORCE_TRANSFORMER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.REPLICATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROASTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ROCKET_ENGINE
@@ -2219,6 +2229,30 @@ class MachineRecipeLoader
                         .duration(1 * MINUTE)
                 }
                 .buildAndRegister()
+
+            // Quantum Force Transformer
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(LARGE_MASS_FABRICATOR)
+                .inputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.PARTICLE_EXCITATION_WIRE_COIL))
+                .input(circuit, MarkerMaterials.Tier.UEV, 8)
+                .input(ELECTRIC_PUMP_UEV, 4)
+                .input(FIELD_GENERATOR_UEV, 4)
+                .input(QUANTUM_ANOMALY)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 10))
+                .fluidInputs(Pikyonium64B.getFluid(L * 32))
+                .output(QUANTUM_FORCE_TRANSFORMER)
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.PARTICLE_EXCITATION_WIRE_COIL))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+
+
+
 
         }
 

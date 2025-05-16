@@ -297,7 +297,8 @@ class GTLiteElementMaterials
                     .temperature(11530))
                 .color(0xDC784B).iconSet(ENRICHED) // Opacity: 5-10-15-20-25-30-35
                 .element(Hy)
-                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(STD_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE)
                 .cableProperties(V[UIV], 16, 4)
                 .build()
 
@@ -335,7 +336,8 @@ class GTLiteElementMaterials
                 .liquid()
                 .iconSet(SPACETIME)
                 .element(Spx)
-                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(16201, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
                         .blastStats(VA[UXV], 4 * MINUTE + 30 * SECOND)

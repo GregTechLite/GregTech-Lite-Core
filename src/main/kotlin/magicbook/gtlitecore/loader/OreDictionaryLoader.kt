@@ -237,14 +237,16 @@ class OreDictionaryLoader
             OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TRITANIUM_BOROSILICATE))
             OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ZBLAN))
             OreDictionary.registerOre("glassUv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.GST))
-            // UHV: PMMA Glass, Neutronium reinforced Borosilicate Glass, Erbium-doped ZBLAN Glass, Praseodymium-doped ZBLAN Glass
+            // UHV: PMMA Glass, Neutronium reinforced Borosilicate Glass, Erbium-doped ZBLAN Glass, Praseodymium-doped ZBLAN Glass, Quantum Glass
             OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PMMA))
             OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.NEUTRONIUM_BOROSILICATE))
             OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ERBIUM_ZBLAN))
             OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.PRASEODYMIUM_ZBLAN))
-            // UEV: CBDO Polycarbonate Glass, Cosmic Neutronium reinforced Borosilicate Glass
+            OreDictionary.registerOre("glassUhv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.QUANTUM))
+            // UEV: CBDO Polycarbonate Glass, Cosmic Neutronium reinforced Borosilicate Glass, Force Field Glass
             OreDictionary.registerOre("glassUev", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.CBDO_POLYCARBONATE))
             OreDictionary.registerOre("glassUev", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.COSMIC_NEUTRONIUM_BOROSILICATE))
+            OreDictionary.registerOre("glassUev", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.FORCE_FIELD))
             // UIV: CBDO Polycarbonate Glass, Infinity reinforced Borosilicate Glass
             OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.CBDO_POLYCARBONATE))
             OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.INFINITY_BOROSILICATE))

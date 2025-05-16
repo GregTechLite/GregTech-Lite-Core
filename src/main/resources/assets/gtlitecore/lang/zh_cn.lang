@@ -444,6 +444,13 @@ tile.fusion_casing_03.vacuum_mk3.name=反应堆真空室 MK3
 tile.fusion_casing_03.vacuum_mk4.name=反应堆真空室 MK4
 tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 
+tile.computer_casing_01.molecular_casing.name=分子机器外壳
+tile.computer_casing_01.molecular_casing.tooltip=阻止高能物质
+tile.computer_casing_01.molecular_coil.name=分子线圈方块
+tile.computer_casing_01.molecular_coil.tooltip=用这个线圈！
+tile.computer_casing_01.hollow_casing.name=中空机械方块
+tile.computer_casing_01.hollow_casing.tooltip=有史以来最先进的管道
+
 tile.wire_coil.adamantium.name=精金线圈方块
 tile.wire_coil.infinity.name=无尽线圈方块
 tile.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
@@ -513,6 +520,7 @@ tile.glass_casing_01.thorium_yttrium.name=钍钇玻璃
 tile.glass_casing_01.silicon_carbide.name=碳化硅玻璃
 tile.glass_casing_01.woods.name=伍兹玻璃
 tile.glass_casing_01.lead_silicon.name=铅硅玻璃
+tile.glass_casing_01.quantum.name=量子玻璃
 tile.glass_casing_01.force_field.name=力场玻璃
 
 tile.glass_casing_02.borosilicate.name=硼硅酸盐玻璃

@@ -444,6 +444,13 @@ tile.fusion_casing_03.vacuum_mk3.name=Reactor Vacuum MK3
 tile.fusion_casing_03.vacuum_mk4.name=Reactor Vacuum MK4
 tile.fusion_casing_03.vacuum_mk5.name=Reactor Vacuum MK5
 
+tile.computer_casing_01.molecular_casing.name=Molecular Machine Casing
+tile.computer_casing_01.molecular_casing.tooltip=Stops high-energy matters
+tile.computer_casing_01.molecular_coil.name=Molecular Coil Block
+tile.computer_casing_01.molecular_coil.tooltip=Use this coil!
+tile.computer_casing_01.hollow_casing.name=Hollow Machine Casing
+tile.computer_casing_01.hollow_casing.tooltip=Most advanced pipe ever
+
 tile.wire_coil.adamantium.name=Adamantium Wire Coil Block
 tile.wire_coil.infinity.name=Infinity Wire Coil Block
 tile.wire_coil.halkonite_steel.name=Halkonite Steel Wire Coil Block
@@ -513,6 +520,7 @@ tile.glass_casing_01.thorium_yttrium.name=Thorium Yttrium Glass
 tile.glass_casing_01.silicon_carbide.name=Silicon Carbide Glass
 tile.glass_casing_01.woods.name=Woods Glass
 tile.glass_casing_01.lead_silicon.name=Lead Silicon Glass
+tile.glass_casing_01.quantum.name=Quantum Glass
 tile.glass_casing_01.force_field.name=Force Field Glass
 
 tile.glass_casing_02.borosilicate.name=Borosilicate Glass
