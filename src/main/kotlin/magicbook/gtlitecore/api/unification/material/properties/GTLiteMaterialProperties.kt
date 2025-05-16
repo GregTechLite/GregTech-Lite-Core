@@ -363,6 +363,8 @@ class GTLiteMaterialProperties
 
             Lawrencium.materialRGB = 0xBF4655
 
+            Tellurium.materialRGB = 0xE2D8C1
+
             // Modified Graphene formula.
             Graphene.setFormula("C8", true)
 
