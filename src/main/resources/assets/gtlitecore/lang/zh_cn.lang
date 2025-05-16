@@ -704,6 +704,24 @@ metaitem.tool.memory_card.shulker.name=潜影壳意识存储卡
 metaitem.tool.memory_card.wither.name=凋零意识存储卡
 metaitem.tool.memory_card.ender_dragon.name=末影龙意识存储卡
 
+metaitem.tool.catalyst.base.name=催化剂载体
+metaitem.tool.catalyst.rubber_polymer.name=橡胶聚合催化剂
+metaitem.tool.catalyst.advanced_rubber_polymer.name=特种橡胶催化剂
+metaitem.tool.catalyst.plastic_polymer.name=塑料聚合催化剂
+metaitem.tool.catalyst.advanced_plastic_polymer.name=高级塑料催化剂
+metaitem.tool.catalyst.ultimate_plastic_polymer.name=终极增塑催化剂
+metaitem.tool.catalyst.platinum_group.name=铂族金属催化剂
+metaitem.tool.catalyst.radioactive.name=放射活化催化剂
+metaitem.tool.catalyst.advanced_radioactive.name=裂变激发催化剂
+metaitem.tool.catalyst.ultimate_radioactive.name=超重反应催化剂
+metaitem.tool.catalyst.titanium_tungsten_indium.name=钛钨铟催化剂
+metaitem.tool.catalyst.adhesion_promoter.name=粘合促进催化剂
+metaitem.tool.catalyst.rare_earth_group.name=稀土金属催化剂
+metaitem.tool.catalyst.rare_metal_group.name=金属萃取催化剂
+metaitem.tool.catalyst.naquadah.name=硅岩分离催化剂
+metaitem.tool.catalyst.raw_intelligence.name=原生智能催化剂
+metaitem.tool.catalyst.biological_intelligence.name=生物智能催化剂
+
 metaitem.fuel_rod.empty.name=空燃料棒
 
 metaitem.board.gooware.name=聚酰亚胺电路基板
@@ -1309,7 +1327,7 @@ gtlitecore.recipe.required_bio_upgrade=需要生物仓升级
 
 gtlitecore.recipe.nano_forge_tier=结构等级：
 
-gtlitecore.recipe.quantum_force_transformer_tier=结构等级：%s
+gtlitecore.recipe.quantum_force_transformer_tier=结构等级：
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机

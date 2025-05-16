@@ -1724,6 +1724,7 @@ class GTLiteOrganicChemistryMaterials
             // 8182 Phosphorene
             Phosphorene = Material.Builder(8182, gtliteId("phosphorene"))
                 .polymer()
+                .liquid()
                 .color(0x273239).iconSet(SHINY)
                 .components(Phosphorus, 4)
                 .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)

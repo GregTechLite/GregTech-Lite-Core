@@ -298,6 +298,9 @@ class MetaTileEntityQuantumForceTransformer(metaTileEntityId: ResourceLocation?)
         recipe.chancedOutputs.chancedEntries.forEach { chanceEntry ->
             min(chanceEntry.chance * shieldingCoreTier, 10000)
         }
+        recipe.chancedFluidOutputs.chancedEntries.forEach { chanceEntry ->
+            min(chanceEntry.chance * shieldingCoreTier, 10000)
+        }
         return super.checkRecipe(recipe, consumeIfSuccess)
                 && recipe.getProperty(QuantumForceTransformerTieredProperty.getInstance(), 0)!! <= manipulatorTier
     }

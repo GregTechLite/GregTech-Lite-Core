@@ -8,12 +8,15 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NetherStar
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
+import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -22,16 +25,20 @@ import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
+import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NANO_FORGE_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 
 /**
@@ -94,7 +101,7 @@ class NanitesChain
                 .tier(1)
                 .buildAndRegister()
 
-            // Silver Nanite (for PCB Factory T2 recipes)
+            // Silver Nanite (for PCB Factory T2 recipes, some QFT Catalysts)
             NANO_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(lens, HexagonalBoronNitride)
                 .input(block, Silver, 8)
@@ -110,7 +117,7 @@ class NanitesChain
             NANO_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(lens, HexagonalSiliconNitride)
                 .input(block, Gold, 8)
-                .input(ULTRA_HIGHLY_ADVANCED_SOC_CHIP, 64)
+                .input(HIGHLY_ADVANCED_SOC, 64)
                 .fluidInputs(UUMatter.getFluid(300_000))
                 .output(nanite, Gold)
                 .EUt(100_000_000) // UXV
@@ -118,7 +125,7 @@ class NanitesChain
                 .tier(3)
                 .buildAndRegister()
 
-            // Glowstone Nanite (for Optoelectronic SoC for Optical Circuits)
+            // Glowstone Nanite (for Optoelectronic SoC for Optical Circuits and some QFT Catalysts)
             NANO_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(lens, LithiumNiobate)
                 .input(block, Glowstone, 16)
@@ -127,6 +134,46 @@ class NanitesChain
                 .output(nanite, Glowstone, 64)
                 .EUt(50_000_000) // UXV
                 .duration(1 * MINUTE + 30 * SECOND)
+                .tier(2)
+                .buildAndRegister()
+
+            // Neutronium Nanite (for some QFT Catalysts and UXV+ component recipes)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, CubicZirconia)
+                .input(block, Neutronium, 8)
+                .input(ADVANCED_SYSTEM_ON_CHIP, 64)
+                .input(ADVANCED_SYSTEM_ON_CHIP, 32)
+                .fluidInputs(UUMatter.getFluid(200_000))
+                .output(nanite, Neutronium)
+                .EUt(100_000_000) // UIV
+                .duration(50 * SECOND)
+                .tier(1)
+                .buildAndRegister()
+
+            // Copper Nanite (for some QFT Catalysts)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, Topaz)
+                .input(block, Copper, 8)
+                .input(SYSTEM_ON_CHIP, 64)
+                .input(SYSTEM_ON_CHIP, 64)
+                .fluidInputs(UUMatter.getFluid(120_000))
+                .output(nanite, Copper)
+                .EUt(10_000_000) // UIV
+                .duration(30 * SECOND)
+                .tier(1)
+                .buildAndRegister()
+
+            // Transcendent Metal Nanite (for some QFT Catalysts)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(ENERGISED_TESSERACT)
+                .input(block, TranscendentMetal, 8)
+                .input(HIGHLY_ADVANCED_SOC, 64)
+                .input(HIGHLY_ADVANCED_SOC, 64)
+                .input(HIGHLY_ADVANCED_SOC, 64)
+                .fluidInputs(UUMatter.getFluid(2_000_000))
+                .output(nanite, TranscendentMetal)
+                .EUt(1_000_000_000) // MAX
+                .duration(2 * MINUTE + 30 * SECOND)
                 .tier(2)
                 .buildAndRegister()
 

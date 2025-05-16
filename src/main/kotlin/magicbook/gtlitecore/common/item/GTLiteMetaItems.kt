@@ -192,6 +192,24 @@ class GTLiteMetaItems
         lateinit var MEMORY_CARD_WITHER: MetaItem<*>.MetaValueItem
         lateinit var MEMORY_CARD_ENDER_DRAGON: MetaItem<*>.MetaValueItem
 
+        lateinit var CATALYST_BASE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_RUBBER_POLYMER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ADVANCED_RUBBER_POLYMER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_PLASTIC_POLYMER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ADVANCED_PLASTIC_POLYMER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ULTIMATE_PLASTIC_POLYMER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_PLATINUM_GROUP: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_RADIOACTIVE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ADVANCED_RADIOACTIVE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ULTIMATE_RADIOACTIVE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_TITANIUM_TUNGSTEN_INDIUM: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_ADHESION_PROMOTER: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_RARE_EARTH_GROUP: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_RARE_METAL_GROUP: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_NAQUADAH: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_RAW_INTELLIGENCE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_BIOLOGICAL_INTELLIGENCE: MetaItem<*>.MetaValueItem
+
         lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
@@ -842,6 +860,58 @@ class GTLiteMetaItems
             MEMORY_CARD_SHULKER = GTLITE_ITEMS.addItem(653, "tool.memory_card.shulker")
             MEMORY_CARD_WITHER = GTLITE_ITEMS.addItem(654, "tool.memory_card.wither")
             MEMORY_CARD_ENDER_DRAGON = GTLITE_ITEMS.addItem(655, "tool.memory_card.ender_dragon")
+
+            // ...
+            CATALYST_BASE = GTLITE_ITEMS.addItem(671, "tool.catalyst.base")
+                .addOreDict("catalystBase")
+
+            CATALYST_RUBBER_POLYMER = GTLITE_ITEMS.addItem(672, "tool.catalyst.rubber_polymer")
+                .addOreDict("catalystRubberPolymer")
+
+            CATALYST_ADVANCED_RUBBER_POLYMER = GTLITE_ITEMS.addItem(673, "tool.catalyst.advanced_rubber_polymer")
+                .addOreDict("catalystAdvancedRubberPolymer")
+
+            CATALYST_PLASTIC_POLYMER = GTLITE_ITEMS.addItem(674, "tool.catalyst.plastic_polymer")
+                .addOreDict("catalystPlasticPolymer")
+
+            CATALYST_ADVANCED_PLASTIC_POLYMER = GTLITE_ITEMS.addItem(675, "tool.catalyst.advanced_plastic_polymer")
+                .addOreDict("catalystAdvancedPlasticPolymer")
+
+            CATALYST_ULTIMATE_PLASTIC_POLYMER = GTLITE_ITEMS.addItem(676, "tool.catalyst.ultimate_plastic_polymer")
+                .addOreDict("catalystUltimatePlasticPolymer")
+
+            CATALYST_PLATINUM_GROUP = GTLITE_ITEMS.addItem(677, "tool.catalyst.platinum_group")
+                .addOreDict("catalystPlatinumGroup")
+
+            CATALYST_RADIOACTIVE = GTLITE_ITEMS.addItem(678, "tool.catalyst.radioactive")
+                .addOreDict("catalystRadioactive")
+
+            CATALYST_ADVANCED_RADIOACTIVE = GTLITE_ITEMS.addItem(679, "tool.catalyst.advanced_radioactive")
+                .addOreDict("catalystAdvancedRadioactive")
+
+            CATALYST_ULTIMATE_RADIOACTIVE = GTLITE_ITEMS.addItem(680, "tool.catalyst.ultimate_radioactive")
+                .addOreDict("catalystUltimateRadioactive")
+
+            CATALYST_TITANIUM_TUNGSTEN_INDIUM = GTLITE_ITEMS.addItem(681, "tool.catalyst.titanium_tungsten_indium")
+                .addOreDict("catalystTitaniumTungstenIndium")
+
+            CATALYST_ADHESION_PROMOTER = GTLITE_ITEMS.addItem(682, "tool.catalyst.adhesion_promoter")
+                .addOreDict("catalystAdhesionPromoter")
+
+            CATALYST_RARE_EARTH_GROUP = GTLITE_ITEMS.addItem(683, "tool.catalyst.rare_earth_group")
+                .addOreDict("catalystRareEarthGroup")
+
+            CATALYST_RARE_METAL_GROUP = GTLITE_ITEMS.addItem(684, "tool.catalyst.rare_metal_group")
+                .addOreDict("catalystRareMetalGroup")
+
+            CATALYST_NAQUADAH = GTLITE_ITEMS.addItem(685, "tool.catalyst.naquadah")
+                .addOreDict("catalystNaquadah")
+
+            CATALYST_RAW_INTELLIGENCE = GTLITE_ITEMS.addItem(686, "tool.catalyst.raw_intelligence")
+                .addOreDict("catalystRawIntelligence")
+
+            CATALYST_BIOLOGICAL_INTELLIGENCE = GTLITE_ITEMS.addItem(687, "tool.catalyst.biological_intelligence")
+                .addOreDict("catalystBiologicalIntelligence")
 
             // 701-800: Batteries.
             FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")

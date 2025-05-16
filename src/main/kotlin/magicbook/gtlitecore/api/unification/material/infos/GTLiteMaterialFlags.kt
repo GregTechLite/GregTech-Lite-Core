@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.CobaltBrass
+import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
@@ -349,6 +350,8 @@ class GTLiteMaterialFlags
             Silver.addFlags(GENERATE_NANITE)
             Gold.addFlags(GENERATE_NANITE)
             Glowstone.addFlags(GENERATE_NANITE)
+            Neutronium.addFlags(GENERATE_NANITE)
+            Copper.addFlags(GENERATE_NANITE)
 
             // plate
             Clay.addFlags(GENERATE_PLATE)

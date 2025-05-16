@@ -878,6 +878,12 @@ metaitem.tool.memory_card.shulker.name=Memory Card (Shulker)
 metaitem.tool.memory_card.wither.name=Memory Card (Wither)
 metaitem.tool.memory_card.ender_dragon.name=Memory Card (Ender Dragon)
 
+metaitem.tool.catalyst.base.name=催化剂载体
+metaitem.tool.catalyst.rubber_polymer.name=橡胶聚合催化剂
+metaitem.tool.catalyst.advanced_rubber_polymer.name=特种橡胶催化剂
+metaitem.tool.catalyst.plastic_polymer.name=塑料聚合催化剂
+metaitem.tool.catalyst.advanced_plastic_polymer.name=终极增塑催化剂
+
 metaitem.fuel_rod.empty.name=Empty Fuel Rod
 
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component

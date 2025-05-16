@@ -127,6 +127,7 @@ import magicbook.gtlitecore.loader.recipe.machine.MixerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.MobExtractorRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PackerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.PolisherRecipes
+import magicbook.gtlitecore.loader.recipe.machine.QuantumForceTransformerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.StellarForgeRecipes
 import magicbook.gtlitecore.loader.recipe.machine.VacuumChamberRecipes
 import magicbook.gtlitecore.loader.recipe.machine.WiremillRecipes
@@ -348,6 +349,7 @@ class RecipeManager
             LoomRecipes.init()
             MobExtractorRecipes.init()
             PolisherRecipes.init()
+            QuantumForceTransformerRecipes.init()
             StellarForgeRecipes.init()
             VacuumChamberRecipes.init()
 

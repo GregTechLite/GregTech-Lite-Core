@@ -67,6 +67,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tsx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.GENERATE_NANITE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ENRICHED
@@ -322,7 +323,7 @@ class GTLiteElementMaterials
                 .element(Tsx)
                 .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR,
                     GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
-                    GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE, GENERATE_NANITE)
                 .blast { b ->
                     b.temp(16101, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
                         .blastStats(VA[UXV], 3 * MINUTE)
