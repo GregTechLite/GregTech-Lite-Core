@@ -1,7 +1,7 @@
 package magicbook.gtlitecore.common.worldgen.trees
 
-import gregtech.common.ConfigHolder
 import magicbook.gtlitecore.api.worldgen.AbstractWorldGenerator
+import magicbook.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -25,9 +25,6 @@ class WorldGeneratorTree(notify: Boolean, tree: AbstractTree?) : AbstractWorldGe
         }
     }
 
-    override fun enabledGenerator(): Boolean // TODO Owner ConfigHolders?
-    {
-        return !ConfigHolder.worldgen.disableRubberTreeGeneration
-    }
+    override fun enabledGenerator(): Boolean = !GTLiteConfigHolder.worldgen.disableAdditionTreesGeneration
 
 }

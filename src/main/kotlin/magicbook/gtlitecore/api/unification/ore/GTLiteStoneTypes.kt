@@ -24,56 +24,56 @@ class GTLiteStoneTypes
                 { stoneState(GTLiteStoneVariantBlock.StoneType.LIMESTONE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.LIMESTONE)
-                }, true)
+                }, false)
 
             val KOMATIITE = StoneType(13, "komatiite", SoundType.STONE,
                 GTLiteOrePrefix.oreKomatiite, GTLiteMaterials.Komatiite,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.KOMATIITE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.KOMATIITE)
-                }, true)
+                }, false)
 
             val GREEN_SCHIST = StoneType(14, "green_schist", SoundType.STONE,
                 GTLiteOrePrefix.oreGreenSchist, GTLiteMaterials.GreenSchist,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.GREEN_SCHIST) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.GREEN_SCHIST)
-                }, true)
+                }, false)
 
             val BLUE_SCHIST = StoneType(15, "blue_schist", SoundType.STONE,
                 GTLiteOrePrefix.oreBlueSchist, GTLiteMaterials.BlueSchist,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.BLUE_SCHIST) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.BLUE_SCHIST)
-                }, true)
+                }, false)
 
             val KIMBERLITE = StoneType(16, "kimberlite", SoundType.STONE,
                 GTLiteOrePrefix.oreKimberlite, GTLiteMaterials.Kimberlite,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.KIMBERLITE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.KIMBERLITE)
-                }, true)
+                }, false)
 
             val QUARTZITE = StoneType(17, "quartzite", SoundType.STONE,
                 GTLiteOrePrefix.oreQuartzite, Materials.Quartzite,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.QUARTZITE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.QUARTZITE)
-                }, true)
+                }, false)
 
             val SLATE = StoneType(18, "slate", SoundType.STONE,
                 GTLiteOrePrefix.oreSlate, GTLiteMaterials.Slate,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.SLATE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.SLATE)
-                }, true)
+                }, false)
 
             val SHALE = StoneType(19, "shale", SoundType.STONE,
                 GTLiteOrePrefix.oreShale, GTLiteMaterials.Shale,
                 { stoneState(GTLiteStoneVariantBlock.StoneType.SHALE) },
                 { state: IBlockState? ->
                     stonePredicate(state, GTLiteStoneVariantBlock.StoneType.SHALE)
-                }, true)
+                }, false)
 
         }
 

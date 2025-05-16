@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.mixin.jei;
 
+import magicbook.gtlitecore.core.GTLiteConfigHolder;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import mezz.jei.plugins.vanilla.ingredients.item.ItemStackRenderer;
 import net.minecraft.client.Minecraft;
@@ -47,8 +48,10 @@ public class ItemStackRendererMixin implements IIngredientRenderer<ItemStack>
             RenderHelper.enableGUIStandardItemLighting();
             FontRenderer fontRenderer = getFontRenderer(mc, ingredient);
             mc.getRenderItem().renderItemAndEffectIntoGUI(null, ingredient, x, y);
-            // Change RenderItem.renderItemAndEffectIntoGUI calling to utility method.
-            gtlitecore$renderItemAndEffectIntoGui(fontRenderer, ingredient, x, y);
+            if (GTLiteConfigHolder.compat.jeiCompat.scaleableFontRenderer)
+                gtlitecore$renderItemAndEffectIntoGui(fontRenderer, ingredient, x, y);
+            else
+                mc.getRenderItem().renderItemOverlayIntoGUI(fontRenderer, ingredient, x, y, null);
             GlStateManager.disableBlend();
             RenderHelper.disableStandardItemLighting();
         }

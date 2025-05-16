@@ -44,7 +44,6 @@ public class BlockPrimitiveCasing extends VariantBlock<BlockPrimitiveCasing.Prim
     public enum PrimitiveCasingType implements IStringSerializable, IStateHarvestLevel
     {
         REINFORCED_TREATED_WOOD_WALL("reinforced_treated_wood_wall", 0);
-        // TODO adobe bricks.
 
         private final String name;
         private final int harvestLevel;
