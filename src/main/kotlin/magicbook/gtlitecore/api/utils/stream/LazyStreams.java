@@ -10,12 +10,16 @@ import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.utils.tuples.Pair;
 import one.util.streamex.StreamEx;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Spliterator;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
@@ -150,16 +154,113 @@ public final class LazyStreams
     }
 
     /**
+     * Zip elements with sorted indexes of an upstream.
      *
-     * @param stream
-     * @return
-     * @param <T>
+     * @param stream The Upstream.
+     * @return       New stream which elements is the zip-ed elements.
+     *
+     * @param <T>    The type of upstream.
      */
     public static <T> Stream<Pair<T, Integer>> zipWithIndex(final Stream<T> stream)
     {
-        class State { int index; }
-        return gatherer(stream, Gatherer.ofSequential(State::new,
+        return gatherer(stream, Gatherer.ofSequential(() -> new Object() { int index; },
                 (state, element, downstream) -> downstream.push(Pair.of(element, state.index++))));
+    }
+
+    /**
+     * Zip elements with the next index of an upstream.
+     *
+     * @param stream The Upstream.
+     * @return       New stream which elements is the zip-ed elements.
+     *
+     * @param <T>    The type of upstream.
+     */
+    public static <T> Stream<Pair<T, T>> zipWithNext(final Stream<T> stream)
+    {
+        return gatherer(stream, Gatherer.ofSequential(() -> new Object() { T prev; boolean first = true; },
+                (state, element, downstream) -> {
+                    if (!state.first)
+                        downstream.push(Pair.of(state.prev, element));
+                    state.prev = element;
+                    state.first = false;
+                    return true;
+                }));
+    }
+
+    /**
+     *
+     * @param stream
+     * @param mapper
+     * @return
+     *
+     * @param <T>
+     * @param <R>
+     */
+    public static <T, R> Stream<R> mapConcat(Stream<T> stream, Function<T, ? extends Collection<R>> mapper)
+    {
+        return gatherer(stream, Gatherer.ofSequential(() -> new Object() { Iterator<R> currentIterator; },
+                (state, element, downstream) -> {
+                    Collection<R> collection = mapper.apply(element);
+                    if (collection != null)
+                    {
+                        state.currentIterator = collection.iterator();
+                        while (state.currentIterator.hasNext())
+                            downstream.push(state.currentIterator.next());
+                    }
+                    return true;
+                }));
+    }
+
+    /**
+     *
+     * @param stream
+     * @param intervalMillis
+     * @return
+     *
+     * @param <T>
+     */
+    public static <T> Stream<T> throttle(Stream<T> stream, long intervalMillis)
+    {
+        return gatherer(stream, Gatherer.ofSequential(() -> new Object() { long lastTime = Long.MIN_VALUE; },
+                (state, element, downstream) -> {
+                    long currentTime = System.currentTimeMillis();
+                    if (currentTime - state.lastTime >= intervalMillis)
+                    {
+                        state.lastTime = currentTime;
+                        downstream.push(element);
+                    }
+                    return true;
+                }));
+    }
+
+    /**
+     *
+     * @param stream
+     * @param batchSize
+     * @return
+     *
+     * @param <T>
+     */
+    public static <T> Stream<List<T>> batch(Stream<T> stream, int batchSize)
+    {
+        return gatherer(stream, Gatherer.ofSequential(
+                () -> new ArrayList<T>(batchSize),
+                (state, element, downstream) -> {
+                    state.add(element);
+                    if (state.size() >= batchSize)
+                    {
+                        downstream.push(new ArrayList<>(state));
+                        state.clear();
+                    }
+                    return true;
+                },
+                (state, downstream) -> {
+                    if (!state.isEmpty())
+                    {
+                        downstream.push(new ArrayList<>(state));
+                    }
+                }
+        ));
     }
 
 }
