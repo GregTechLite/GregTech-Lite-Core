@@ -11,6 +11,7 @@ import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Neutronium
@@ -30,6 +31,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NANO_FORGE_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
@@ -150,20 +152,33 @@ class NanitesChain
                 .tier(1)
                 .buildAndRegister()
 
-            // Copper Nanite (for some QFT Catalysts)
+            // Copper Nanite (for some QFT Catalysts and Mag Matter)
             NANO_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(lens, Topaz)
                 .input(block, Copper, 8)
                 .input(SYSTEM_ON_CHIP, 64)
                 .input(SYSTEM_ON_CHIP, 64)
                 .fluidInputs(UUMatter.getFluid(120_000))
-                .output(nanite, Copper)
+                .output(nanite, Copper, 16)
                 .EUt(10_000_000) // UIV
                 .duration(30 * SECOND)
                 .tier(1)
                 .buildAndRegister()
 
-            // Transcendent Metal Nanite (for some QFT Catalysts)
+            // Iron Nanite (for Harmonic Phonon Matter blasting)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, CubicBoronNitride)
+                .input(block, Iron, 8)
+                .input(HIGHLY_ADVANCED_SOC, 64)
+                .input(HIGHLY_ADVANCED_SOC, 64)
+                .fluidInputs(UUMatter.getFluid(400_000))
+                .output(nanite, Iron, 4)
+                .EUt(50_000_000) // UXV
+                .duration(30 * SECOND)
+                .tier(2)
+                .buildAndRegister()
+
+            // Transcendent Metal Nanite (for some QFT Catalysts and Phonon Crystal Seed)
             NANO_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(ENERGISED_TESSERACT)
                 .input(block, TranscendentMetal, 8)

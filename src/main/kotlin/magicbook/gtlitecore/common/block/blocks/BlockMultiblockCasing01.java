@@ -50,7 +50,7 @@ public class BlockMultiblockCasing01 extends VariantBlock<BlockMultiblockCasing0
         REFLECTIVE_SURFACE_CASING("reflective_surface_casing"),
         INFINITY_COOLING_CASING("infinity_cooling_casing"),
         STELLAR_CONTAINMENT_CASING("stellar_containment_casing"),
-        HARMONIC_PHONON_TRANSMISSION_CASING("harmonic_phonon_transmission_casing"),
+        THERMAL_ENERGY_TRANSMISSION_CASING("thermal_energy_transmission_casing"),
         PARTICLE_CONTAINMENT_CASING("particle_containment_casing"),
         PARTICLE_EXCITATION_WIRE_COIL("particle_excitation_wire_coil"),
         GRAVITY_STABILIZATION_CASING("gravity_stabilization_casing"),

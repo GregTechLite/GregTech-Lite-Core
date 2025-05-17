@@ -343,6 +343,7 @@ class GTLiteMaterials
         lateinit var SeaborgiumDopedCarbonNanotube: Material
         lateinit var PrHoYNitratesSolution: Material
         lateinit var PrHoYLF: Material
+        lateinit var HarmonicPhononMatter: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material

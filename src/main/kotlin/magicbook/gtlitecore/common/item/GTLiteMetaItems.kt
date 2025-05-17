@@ -389,6 +389,8 @@ class GTLiteMetaItems
         lateinit var SUPERCONDUCTOR_COMPOSITE: MetaItem<*>.MetaValueItem
         lateinit var NAQUADRIA_SUPERSOLID: MetaItem<*>.MetaValueItem
         lateinit var TIMEPIECE: MetaItem<*>.MetaValueItem
+        lateinit var ZENITH_STAR: MetaItem<*>.MetaValueItem
+        lateinit var PHONONIC_SEED_CRYSTAL: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -1125,6 +1127,8 @@ class GTLiteMetaItems
             SUPERCONDUCTOR_COMPOSITE = GTLITE_ITEMS.addItem(5013, "material.particle.superconductor_rare_earth_composite")
             NAQUADRIA_SUPERSOLID = GTLITE_ITEMS.addItem(5014, "material.particle.black_body_naquadria_supersolid")
             TIMEPIECE = GTLITE_ITEMS.addItem(5015, "material.particle.timepiece")
+            ZENITH_STAR = GTLITE_ITEMS.addItem(5016, "material.gem.zenith_star")
+            PHONONIC_SEED_CRYSTAL = GTLITE_ITEMS.addItem(5017, "material.seed_crystal.phononic")
 
             // 9001-10000: Miscellaneous Foods.
 

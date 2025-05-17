@@ -291,6 +291,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumD
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapheneOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HRAMagnesium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HarmonicPhononMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyAlkaliChloridesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkEnrichedMixture
@@ -500,6 +501,7 @@ import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.C
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.GENERATE_BOULE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.BEDROCKIUM
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.GLITCH
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ROASTED
@@ -3156,6 +3158,22 @@ class GTLiteFirstDegreeMaterials
                 .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
                 .build()
                 .setFormula("Pr/Ho:YLF", true)
+
+            // 2309 Harmonic Phonon Matter
+            HarmonicPhononMatter = Material.Builder(2309, gtliteId("harmonic_phonon_matter"))
+                .ingot()
+                .liquid(FluidBuilder()
+                    .temperature(2_000_000_000)
+                    .translation("gregtech.fluid.generic")).iconSet(GLITCH)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                    GENERATE_FRAME)
+                .cableProperties(V[UXV], 72, 18)
+                .blast { b ->
+                    b.temp(16000, BlastProperty.GasTier.HIGHEST)
+                        .blastStats(VA[UXV], 2 * MINUTE)
+                        .vacuumStats(VA[UXV], 30 * SECOND)
+                }
+                .build()
 
         }
 

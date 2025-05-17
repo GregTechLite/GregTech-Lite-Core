@@ -354,6 +354,7 @@ class GTLiteMaterialFlags
             Glowstone.addFlags(GENERATE_NANITE)
             Neutronium.addFlags(GENERATE_NANITE)
             Copper.addFlags(GENERATE_NANITE)
+            Iron.addFlags(GENERATE_NANITE)
 
             // plate
             Clay.addFlags(GENERATE_PLATE)

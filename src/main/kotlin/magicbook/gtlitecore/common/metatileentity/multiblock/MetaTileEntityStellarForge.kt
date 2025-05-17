@@ -82,7 +82,7 @@ class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMa
             get() = MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)
 
         private val coilState
-            get() = GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getState(BlockMultiblockCasing01.MultiblockCasingType.HARMONIC_PHONON_TRANSMISSION_CASING)
+            get() = GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getState(BlockMultiblockCasing01.MultiblockCasingType.THERMAL_ENERGY_TRANSMISSION_CASING)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityStellarForge(metaTileEntityId)

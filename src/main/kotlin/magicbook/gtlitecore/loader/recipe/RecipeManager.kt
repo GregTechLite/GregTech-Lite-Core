@@ -61,6 +61,7 @@ import magicbook.gtlitecore.loader.recipe.chain.PMMAChain
 import magicbook.gtlitecore.loader.recipe.chain.PalladiumAcetateChain
 import magicbook.gtlitecore.loader.recipe.chain.ParticlesChain
 import magicbook.gtlitecore.loader.recipe.chain.PedotChain
+import magicbook.gtlitecore.loader.recipe.chain.PhononChain
 import magicbook.gtlitecore.loader.recipe.chain.PhosphorusChain
 import magicbook.gtlitecore.loader.recipe.chain.PolymersChain
 import magicbook.gtlitecore.loader.recipe.chain.PotassiumPermanganateChain
@@ -273,6 +274,7 @@ class RecipeManager
             TesseractsChain.init()
             CreonMellionChain.init()
             PrHoYLFChain.init()
+            PhononChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()

@@ -50,10 +50,10 @@
           "all": "gtlitecore:blocks/casings/special/stellar_containment_casing"
         }
       },
-      "harmonic_phonon_transmission_casing": {
+      "thermal_energy_transmission_casing": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/harmonic_phonon_transmission_casing"
+          "all": "gtlitecore:blocks/casings/special/thermal_energy_transmission_casing"
         }
       },
       "particle_containment_casing": {

@@ -181,6 +181,12 @@ class GTLiteOrePrefix
             OrePrefix.dustTiny.setIgnored(GTLiteMaterials.Magnetium)
             OrePrefix.nugget.setIgnored(GTLiteMaterials.Magnetium)
             OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Magnetium)
+
+            // Deleted MagMatter dusts, nugget.
+            OrePrefix.dust.setIgnored(GTLiteMaterials.MagMatter)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.MagMatter)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.MagMatter)
+            OrePrefix.nugget.setIgnored(GTLiteMaterials.MagMatter)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high
