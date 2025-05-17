@@ -94,6 +94,7 @@ import magicbook.gtlitecore.loader.recipe.chain.food.SugarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.UtensilsChain
 import magicbook.gtlitecore.loader.recipe.chain.food.VinegarChain
 import magicbook.gtlitecore.loader.recipe.chain.food.WinesChain
+import magicbook.gtlitecore.loader.recipe.circuit.CosmicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.CrystalCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.ElectronicCircuits
 import magicbook.gtlitecore.loader.recipe.circuit.GoowareCircuits
@@ -322,6 +323,7 @@ class RecipeManager
             GoowareCircuits.init()
             OpticalCircuits.init()
             SpintronicCircuits.init()
+            CosmicCircuits.init()
 
             // Original GregTech machine recipes.
             AlloySmelterRecipes.init()

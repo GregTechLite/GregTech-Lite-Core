@@ -52,6 +52,9 @@ class GTLiteMaterialIconSet
         @JvmField
         val SPACETIME = MaterialIconSet("spacetime", null, true)
 
+        @JvmField
+        val MAGMATTER = MaterialIconSetWithRenderer("magmatter", null, true,
+            HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

@@ -944,7 +944,8 @@ class GTLiteSecondDegreeMaterials
                 .color(0x8BF743).iconSet(BRIGHT)
                 .components(TitanSteel, 16, LanthanumFullereneNanotube, 4, SeaborgiumDopedCarbonNanotube, 4,
                     MetastableOganesson, 3, Xenon, 1)
-                .flags(DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE)
                 .blast { b ->
                     b.temp(15900, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
                         .blastStats(VA[UIV], 3 * MINUTE + 25 * SECOND)

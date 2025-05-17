@@ -32,6 +32,7 @@ class GTLiteMaterials
         lateinit var TranscendentMetal: Material
         lateinit var SpaceTime: Material
         lateinit var Creon: Material
+        lateinit var MagMatter: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material

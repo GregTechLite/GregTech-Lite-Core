@@ -57,3 +57,4 @@
 | Superheavy Alloy (Heavy)*                  | 134,217,728 (UXV) | 64                    | 10                 | 20                |
 | Space Time*                                | 134,217,728 (UXV) | 96                    | 16                 | 32                |
 | Mellion*                                   | 134,217,728 (UXV) | 48                    | 12                 | 24                |
+| Mag Matter*                                | 134,217,728 (UXV) | 56                    | 14                 | 28                |

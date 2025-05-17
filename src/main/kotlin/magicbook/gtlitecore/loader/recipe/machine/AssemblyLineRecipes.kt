@@ -129,6 +129,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.GRAVI_STAR
@@ -173,6 +174,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimensiona
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyN
@@ -180,6 +182,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -187,6 +190,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
@@ -446,21 +450,30 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UXV
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(ENERGISED_TESSERACT)
-            //     .input(stickLong, Magnetium, 2)
-            //     .input(stickLong, TranscendentMetal, 8)
-            //     .input(ring, TranscendentMetal, 16)
-            //     .input(round, TranscendentMetal, 32)
-            //     .input(wireFine, MagMatter, 64)
-            //     .input(wireFine, MagMatter, 64)
-            //     .input(wireFine, MagMatter, 64)
-            //     .input(wireFine, MagMatter, 64)
-            //     .input(cableGtSingle, SuperheavyAlloyB, 2)
-            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
-            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            //     .fluidInputs(PrimordialMatter.getFluid(L * 16))
-            //     .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ENERGISED_TESSERACT)
+                .input(stickLong, Magnetium, 2)
+                .input(stickLong, TranscendentMetal, 8)
+                .input(ring, TranscendentMetal, 16)
+                .input(round, TranscendentMetal, 32)
+                .input(wireFine, MagMatter, 64)
+                .input(wireFine, MagMatter, 64)
+                .input(wireFine, MagMatter, 64)
+                .input(wireFine, MagMatter, 64)
+                .input(cableGtSingle, SuperheavyAlloyB, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .fluidInputs(PrimordialMatter.getFluid(L * 16))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+                .output(ELECTRIC_MOTOR_UXV)
+                .EUt(20_000_000) // UIV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_MOTOR_UIV)
+                        .EUt(VA[UIV].toLong())
+                        .CWUt(96)
+                }
+                .buildAndRegister()
 
             // OpV
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1742,6 +1755,29 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UIV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, HeavyQuarkDegenerateMatter)
+                .input(plateDouble, HeavyQuarkDegenerateMatter, 8)
+                .input(GRAVI_STAR, 4)
+                .input(EMITTER_UIV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 2)
+                .input(wireFine, FullereneSuperconductor, 64)
+                .input(wireFine, FullereneSuperconductor, 64)
+                .input(wireFine, FullereneSuperconductor, 64)
+                .input(wireFine, FullereneSuperconductor, 32)
+                .input(cableGtSingle, SuperheavyAlloyA, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8))
+                .fluidInputs(CarbonNanotube.getFluid(L * 2))
+                .output(FIELD_GENERATOR_UIV)
+                .EUt(6_000_000) // UEV
+                .duration(40 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(FIELD_GENERATOR_UEV)
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(64)
+                }
+                .buildAndRegister()
 
             // UXV
 
