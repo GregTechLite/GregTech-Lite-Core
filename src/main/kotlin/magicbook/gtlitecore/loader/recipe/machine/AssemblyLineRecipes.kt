@@ -694,6 +694,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // UXV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_UXV)
+                .input(plate, TranscendentMetal, 8)
+                .input(ring, TranscendentMetal, 16)
+                .input(round, TranscendentMetal, 32)
+                .input(stick, TranscendentMetal, 8)
+                .input(gear, TranscendentMetal, 2)
+                .input(gearSmall, TranscendentMetal, 4)
+                .input(cableGtSingle, SuperheavyAlloyB, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .fluidInputs(PrimordialMatter.getFluid(L * 16))
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+                .output(ELECTRIC_PISTON_UXV)
+                .EUt(20_000_000) // UIV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_PISTON_UIV)
+                        .EUt(VA[UIV].toLong())
+                        .CWUt(96)
+                }
+                .buildAndRegister()
 
             // OpV
 

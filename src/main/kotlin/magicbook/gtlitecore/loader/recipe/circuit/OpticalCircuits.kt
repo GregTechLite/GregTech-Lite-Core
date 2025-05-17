@@ -795,7 +795,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_ASSEMBLY_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(64)
+                        .CWUt(32)
                 }
                 .buildAndRegister()
 
@@ -816,7 +816,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_ASSEMBLY_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(64)
+                        .CWUt(32)
                 }
                 .buildAndRegister()
 
@@ -842,7 +842,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(256)
+                        .CWUt(64)
                 }
                 .buildAndRegister()
 
@@ -867,7 +867,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(256)
+                        .CWUt(64)
                 }
                 .buildAndRegister()
 
@@ -892,7 +892,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(256)
+                        .CWUt(64)
                 }
                 .buildAndRegister()
 
@@ -917,7 +917,7 @@ class OpticalCircuits
                 .stationResearch { r ->
                     r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(256)
+                        .CWUt(64)
                 }
                 .buildAndRegister()
 

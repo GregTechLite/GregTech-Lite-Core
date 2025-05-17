@@ -22,6 +22,7 @@ import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -113,6 +114,8 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.QUANTUM_STAR
+import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
@@ -436,6 +439,9 @@ class GregtechOverrideRecipeLoader
                 }
                 .buildAndRegister()
 
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, FUSION_REACTOR[1].stackForm)
+
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL),
                     OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV, 4),
@@ -560,6 +566,9 @@ class GregtechOverrideRecipeLoader
                 .buildAndRegister()
 
             // Adjust energy cluster recipes, allowed it used all UV-tier circuits.
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_MODULE.stackForm)
+
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(WETWARE_CIRCUIT_BOARD.stackForm,
                     OreDictUnifier.get(plate, Americium, 16),
@@ -598,11 +607,14 @@ class GregtechOverrideRecipeLoader
                 .stationResearch { r ->
                     r.researchStack(ENERGY_MODULE.stackForm)
                         .EUt(VA[ZPM].toLong())
-                        .CWUt(96)
+                        .CWUt(32)
                 }
                 .buildAndRegister()
 
             // Ultimate Battery
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, ENERGY_CLUSTER.stackForm)
+
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(OreDictUnifier.get(plateDouble, Darmstadtium, 16),
                     OreDictUnifier.get(circuit, MarkerMaterials.Tier.UHV, 4),
@@ -643,7 +655,7 @@ class GregtechOverrideRecipeLoader
                 .stationResearch { r ->
                     r.researchStack(ENERGY_CLUSTER.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(144)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 

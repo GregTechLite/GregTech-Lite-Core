@@ -12,6 +12,7 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Bacteria
@@ -63,6 +64,7 @@ import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.STEM_CELLS
+import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.WETWARE_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
@@ -375,6 +377,9 @@ class WetwareCircuits
                 .buildAndRegister()
 
             // UHV Wetware Mainframe
+            GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
+                TOOL_DATA_MODULE.stackForm, WETWARE_SUPER_COMPUTER_UV.stackForm)
+
             GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
                 arrayOf(OreDictUnifier.get(frameGt, Tritanium, 2),
                     WETWARE_SUPER_COMPUTER_UV.getStackForm(2),

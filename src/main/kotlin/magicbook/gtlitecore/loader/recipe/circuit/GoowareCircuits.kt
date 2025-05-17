@@ -448,7 +448,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
                         .EUt(VA[UV].toLong())
-                        .CWUt(16)
+                        .CWUt(24)
                 }
                 .buildAndRegister()
 
@@ -468,7 +468,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
                         .EUt(VA[UV].toLong())
-                        .CWUt(16)
+                        .CWUt(24)
                 }
                 .buildAndRegister()
 
@@ -493,7 +493,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(192)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -517,7 +517,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(192)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -541,7 +541,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(192)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -565,7 +565,7 @@ class GoowareCircuits
                 .stationResearch { r ->
                     r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
                         .EUt(VA[UHV].toLong())
-                        .CWUt(192)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 

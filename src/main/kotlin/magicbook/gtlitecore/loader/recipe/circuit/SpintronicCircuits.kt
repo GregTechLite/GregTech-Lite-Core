@@ -556,7 +556,7 @@ class SpintronicCircuits
                 .stationResearch { r ->
                     r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(128)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -578,7 +578,7 @@ class SpintronicCircuits
                 .stationResearch { r ->
                     r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(128)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -600,7 +600,7 @@ class SpintronicCircuits
                 .stationResearch { r ->
                     r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
-                        .CWUt(128)
+                        .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -627,7 +627,7 @@ class SpintronicCircuits
                 .stationResearch { r -> r
                     .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
                     .EUt(VA[UIV].toLong())
-                    .CWUt(384)
+                    .CWUt(96)
                 }
                 .buildAndRegister()
 
@@ -653,7 +653,7 @@ class SpintronicCircuits
                 .stationResearch { r -> r
                     .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
                     .EUt(VA[UIV].toLong())
-                    .CWUt(384)
+                    .CWUt(96)
                 }
                 .buildAndRegister()
 
@@ -679,7 +679,7 @@ class SpintronicCircuits
                 .stationResearch { r -> r
                     .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
                     .EUt(VA[UIV].toLong())
-                    .CWUt(384)
+                    .CWUt(96)
                 }
                 .buildAndRegister()
 
