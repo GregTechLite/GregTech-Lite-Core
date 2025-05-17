@@ -79,6 +79,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/protomatter_activation_coil"
         }
+      },
+      "antimatter_annihilation_matrix": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/antimatter_annihilation_matrix"
+        }
       }
     }
   }

@@ -417,7 +417,9 @@ tile.multiblock_casing_01.particle_excitation_wire_coil.tooltip=把高能粒子�
 tile.multiblock_casing_01.gravity_stabilization_casing.name=Gravity Stabilization Casing
 tile.multiblock_casing_01.gravity_stabilization_casing.tooltip=稳定巨大质量变化造成的空间扭曲现象
 tile.multiblock_casing_01.protomatter_activation_coil.name=Protomatter Activation Coil Block
-tile.multiblock_casing_01.protomatter_activation_coil.tooltip=彻底激发正反物质湮灭
+tile.multiblock_casing_01.protomatter_activation_coil.tooltip=充分活化原始物质
+tile.multiblock_casing_01.antimatter_annihilation_matrix.name=Antimatter Annihilation Matrix
+tile.multiblock_casing_01.antimatter_annihilation_matrix.tooltip=彻底激发正反物质湮灭
 
 tile.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.active_unique_casing_01.temperature_controller.name=Nuclear Reactor Temperature Controller
@@ -1317,6 +1319,7 @@ recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
 recipemap.nuclear_reactor.name=Nuclear Reactor
 recipemap.rocket_engine.name=Rocket Engine
 recipemap.naquadah_reactor.name=Naquadah Reactor
+recipemap.antimatter_generator.name=Antimatter Annihilation
 
 # Recipe Properties
 gtlitecore.recipe.blocks=Effective Blocks: %s
@@ -2084,6 +2087,18 @@ gtlitecore.machine.antimatter_forge.tooltip.3=输入的等离子体的种类越�
 gtlitecore.machine.antimatter_forge.tooltip.4=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
 gtlitecore.machine.antimatter_forge.tooltip.5=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
 gtlitecore.machine.antimatter_forge.tooltip.6=没有并行上限，机器将会尽可能尝试多地进行并行。
+
+gtlitecore.machine.antimatter_generator.name=Shielded Lagrangian Annihilation Matrix
+gtlitecore.machine.antimatter_generator.tooltip.1=通过湮灭物质与反物质的方式发电，需要按一定比例消耗两种物质。
+gtlitecore.machine.antimatter_generator.tooltip.2=每次工作将会消耗§6所有输入§7的物质与反物质。
+gtlitecore.machine.antimatter_generator.tooltip.3=允许使用任意种类的§f动力仓§7或§f激光源仓§7输出能量，可以使用多个激光源仓进行输出。
+gtlitecore.machine.antimatter_generator.tooltip.4=每单位反物质的基础发电量为§e1,000,000,000,000EU§7，而具体发电量取决于提供的物质：
+gtlitecore.machine.antimatter_generator.tooltip.5=- §a铅等离子体§7：1.0
+gtlitecore.machine.antimatter_generator.tooltip.6=- §a熔融无尽§7：1.5
+gtlitecore.machine.antimatter_generator.tooltip.7=- §a熔融调律源金§7：2.0
+gtlitecore.machine.antimatter_generator.tooltip.8=- §a原始恒星等离子体物质§7：4.0
+gtlitecore.machine.antimatter_generator.tooltip.9=使用§f原始物质§7或§f半稳态反物质§7作为反物质湮灭时会§c降低§7基础发电量。
+gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量不会超过§e9.2e18EU§7，但机器将会尽可能尝试多地进行并行。
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.

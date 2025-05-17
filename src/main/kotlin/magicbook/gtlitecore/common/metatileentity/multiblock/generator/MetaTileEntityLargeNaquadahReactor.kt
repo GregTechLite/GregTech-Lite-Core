@@ -123,7 +123,7 @@ class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : 
     override fun addDisplayText(textList: MutableList<ITextComponent>?)
     {
         val recipeLogic = recipeMapWorkable as LargeNaquadahReactorWorkableHandler
-        val builder = MultiblockDisplayText.builder(textList, isStructureFormed)
+        MultiblockDisplayText.builder(textList, isStructureFormed)
             .setWorkingStatus(recipeLogic.isWorkingEnabled, recipeLogic.isActive)
             .addEnergyProductionLine(V[UHV], recipeLogic.recipeEUt)
             .addFuelNeededLine(recipeLogic.recipeFluidInputInfo, recipeLogic.previousRecipeDuration)

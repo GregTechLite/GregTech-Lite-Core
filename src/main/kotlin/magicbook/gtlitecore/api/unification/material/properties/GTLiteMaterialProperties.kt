@@ -47,6 +47,7 @@ import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Graphene
+import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
@@ -124,6 +125,7 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
+import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
@@ -179,10 +181,13 @@ class GTLiteMaterialProperties
     companion object
     {
 
+        /**
+         * We modified some features of `MaterialProperty`, [DustProperty] can be overridden to [IngotProperty]
+         * or [GemProperty] now, please see: [magicbook.gtlitecore.mixin.gregtech.MaterialPropertiesMixin.setProperty].
+         */
         fun setMaterialProperties()
         {
-            // DustProperty can be overridden to IngotProperty or GemProperty yet,
-            // please see: MaterialPropertiesMixin#setProperty().
+            // Ingot Property
             sequenceOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238,
                 Selenium, Tellurium, Lanthanum, Cerium, Praseodymium, Promethium,
                 Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
@@ -194,8 +199,10 @@ class GTLiteMaterialProperties
                 Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine, Sulfur)
                 .forEach { addIngot(it) }
 
+            // Dust Property
             sequenceOf(Iodine).forEach { addDust(it) }
 
+            // Liquid
             sequenceOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate,
                 Germanium, Rutherfordium, Dubnium, Curium, Seaborgium, Bohrium, Selenium,
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
@@ -204,15 +211,28 @@ class GTLiteMaterialProperties
                 Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium, Tellurium)
                 .forEach { addLiquid(it) }
 
+            // Plasma
             sequenceOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth, Thorium, Silver, Titanium,
                 Lead)
                 .forEach { addPlasma(it) }
 
+            // Liquid & Plasma
             sequenceOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium, Sulfur)
                 .forEach { addLiquidAndPlasma(it) }
 
-            // Let andradite can generate in world natural.
-            Andradite.setProperty(PropertyKey.ORE, OreProperty())
+            // Ore Property
+            Andradite.setProperty(PropertyKey.ORE, OreProperty()) // New world gen ores
+            Biotite.setProperty(PropertyKey.ORE, OreProperty()) // New world gen ores
+            Ferrosilite.setProperty(PropertyKey.ORE, OreProperty()) // New world gen ores
+            Uvarovite.setProperty(PropertyKey.ORE, OreProperty()) // New world gen ores
+            Plutonium239.setProperty(PropertyKey.ORE, OreProperty()) // New world gen ores
+
+            Uranium.setProperty(PropertyKey.ORE, OreProperty()) // For Mining Drone Airport
+            Plutonium241.setProperty(PropertyKey.ORE, OreProperty()) // For Mining Drone Airport
+            Chrome.setProperty(PropertyKey.ORE, OreProperty()) // For Mining Drone Airport
+            Cadmium.setProperty(PropertyKey.ORE, OreProperty()) // For Mining Drone Airport
+
+            // Ore Byproducts
             var oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Andradite, Andradite, Calcium)
 
@@ -301,74 +321,36 @@ class GTLiteMaterialProperties
             oreProp = Orpiment.getProperty(PropertyKey.ORE)
             oreProp.setOreByProducts(Sulfur, Antimony, Realgar)
 
-            // Modified Biotite and Mica properties.
-            Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
-            Biotite.setProperty(PropertyKey.ORE, OreProperty())
-            Biotite.getProperty(PropertyKey.ORE).setOreByProducts(Phlogopite, Muscovite, Biotite)
+            oreProp = Biotite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Phlogopite, Muscovite, Biotite)
 
-            Mica.setFormula("KAl2(AlSi3O10)F2", true)
+            oreProp = Ferrosilite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Ferrosilite, SiliconDioxide, Iron)
 
-            // Modified Ferrosilite properties.
-            Ferrosilite.setProperty(PropertyKey.ORE, OreProperty())
-            Ferrosilite.getProperty(PropertyKey.ORE).setOreByProducts(Ferrosilite, SiliconDioxide, Iron)
+            oreProp = Uvarovite.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Quartzite, Uvarovite, Lizardite)
 
-            // Modified Bauxite formulas.
-            Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
+            oreProp = Uranium.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Uranium, Uranium238, Uranium235)
 
-            // Modified Uvarovite properties.
-            Uvarovite.setProperty(PropertyKey.ORE, OreProperty())
-            Uvarovite.getProperty(PropertyKey.ORE).setOreByProducts(Quartzite, Uvarovite, Lizardite)
+            oreProp = Plutonium239.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
 
-            // Modified molybdenite properties.
-            Molybdenite.getProperty(PropertyKey.ORE).directSmeltResult = null
+            oreProp = Plutonium241.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Plutonium241, Plutonium239, Plutonium241)
 
-            // Modified plutonium-239 properties.
-            Uranium.setProperty(PropertyKey.ORE, OreProperty())
-            Uranium.getProperty(PropertyKey.ORE).setOreByProducts(Uranium, Uranium238, Uranium235)
-            Plutonium239.setProperty(PropertyKey.ORE, OreProperty())
-            Plutonium239.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium239, Plutonium239, Plutonium241)
-            Plutonium241.setProperty(PropertyKey.ORE, OreProperty())
-            Plutonium241.getProperty(PropertyKey.ORE).setOreByProducts(Plutonium241, Plutonium239, Plutonium241)
+            oreProp = Thorium.getProperty(PropertyKey.ORE)
+            oreProp.setOreByProducts(Uraninite, Lead, Actinium)
 
-            // Modified thorium byproducts.
-            Thorium.getProperty(PropertyKey.ORE).setOreByProducts(Uraninite, Lead, Actinium)
+            // Direct Smelt Result
+            oreProp = Molybdenite.getProperty(PropertyKey.ORE)
+            oreProp.directSmeltResult = null
 
-            // Add new ore properties.
-            Chrome.setProperty(PropertyKey.ORE, OreProperty())
-            Cadmium.setProperty(PropertyKey.ORE, OreProperty())
+            // Magnetic Property
+            ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT)
+                .magneticMaterial = ChromiumGermaniumTellurideMagnetic
 
-            // Add fluid pipe properties.
-            Inconel718.setProperty(PropertyKey.FLUID_PIPE,
-                FluidPipeProperties(2010, 175,
-                    true, true, true, false))
-
-            RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
-                FluidPipeProperties(6120, 225, true, true, true, false))
-
-            // Modified rare earth elements color.
-            Promethium.materialRGB = 0x24B535
-            Promethium.materialIconSet = MaterialIconSet.SHINY
-            Dysprosium.materialRGB = 0xDD79DD
-            Erbium.materialRGB = 0xCC6633
-            Holmium.materialRGB = 0xC38E2F
-            Terbium.materialRGB = 0xA274A2
-            Thulium.materialRGB = 0x596BC2
-            Thulium.materialIconSet = MaterialIconSet.SHINY
-
-            Lutetium.materialIconSet = MaterialIconSet.SHINY
-
-            // Modified superheavy elements color.
-            Nobelium.materialRGB = 0xF6B5FF
-            Nobelium.materialIconSet = MaterialIconSet.SHINY
-
-            Lawrencium.materialRGB = 0xBF4655
-
-            Tellurium.materialRGB = 0xE2D8C1
-
-            // Modified Graphene formula.
-            Graphene.setFormula("C8", true)
-
-            // Add blast properties.
+            // Blast Properties
             Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
             Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
 
@@ -399,32 +381,50 @@ class GTLiteMaterialProperties
             RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
             RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
 
-            // Modified platinum group related materials' formula.
-            PalladiumRaw.setFormula("PdCl2", true);
-            RarestMetalMixture.setFormula("IrOs?", true);
-            IridiumMetalResidue.setFormula("Ir2O3", true)
+            // Fluid Pipe Properties
+            Inconel718.setProperty(PropertyKey.FLUID_PIPE,
+                FluidPipeProperties(2010, 175,
+                    true, true, true, false))
 
-            // Change color of Raw Growth Medium.
-            RawGrowthMedium.materialRGB = 0x0B2E12
+            RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
+                FluidPipeProperties(6120, 225, true, true, true, false))
 
-            // Add tool properties.
-            Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
-            Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
-
-            // Add cable properties.
+            // Wire Properties
             Rutherfordium.setProperty(PropertyKey.WIRE, WireProperties(V[ZPM].toInt(), 8, 2))
             Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16))
 
-            // Add magnetic properties.
-            ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT).magneticMaterial = ChromiumGermaniumTellurideMagnetic
+            // Tool Properties
+            Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
+            Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
 
-            // Change color of Meitnerium.
+            // Formulas
+            Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
+            Mica.setFormula("KAl2(AlSi3O10)F2", true)
+            Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
+            Graphene.setFormula("C8", true)
+            PalladiumRaw.setFormula("PdCl2", true)
+            RarestMetalMixture.setFormula("IrOs?", true)
+            IridiumMetalResidue.setFormula("Ir2O3", true)
+
+            // Material RGBs
+            Promethium.materialRGB = 0x24B535
+            Dysprosium.materialRGB = 0xDD79DD
+            Erbium.materialRGB = 0xCC6633
+            Holmium.materialRGB = 0xC38E2F
+            Terbium.materialRGB = 0xA274A2
+            Thulium.materialRGB = 0x596BC2
+            Nobelium.materialRGB = 0xF6B5FF
+            Lawrencium.materialRGB = 0xBF4655
+            Tellurium.materialRGB = 0xE2D8C1
+            RawGrowthMedium.materialRGB = 0x0B2E12
             Meitnerium.materialRGB = 0x9C1E55
 
+            // Material Icon Sets
+            Promethium.materialIconSet = MaterialIconSet.SHINY
+            Thulium.materialIconSet = MaterialIconSet.SHINY
+            Lutetium.materialIconSet = MaterialIconSet.SHINY
+            Nobelium.materialIconSet = MaterialIconSet.SHINY
         }
-
-        // -------------------------------------------------------------------------------------------------------------
-        // Quick-path of add MaterialProperty to a material.
 
         /**
          * Add ingot for a material which do not have [IngotProperty].
@@ -438,12 +438,24 @@ class GTLiteMaterialProperties
          */
         private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
 
+        /**
+         *
+         */
         private fun addGem(material: Material) = material.setProperty(PropertyKey.GEM, GemProperty())
 
+        /**
+         *
+         */
         private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
 
+        /**
+         *
+         */
         private fun addLiquid(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
 
+        /**
+         *
+         */
         private fun addGas(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.GAS, FluidBuilder()))
 
         /**

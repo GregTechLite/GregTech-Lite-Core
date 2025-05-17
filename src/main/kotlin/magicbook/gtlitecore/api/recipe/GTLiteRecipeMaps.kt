@@ -976,6 +976,19 @@ class GTLiteRecipeMaps
             .generator()
             .build()
 
+        /**
+         * @zenProp antimatter_generator
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("ANTIMATTER_GENERATOR_FUELS")
+        val ANTIMATTER_GENERATOR_FUELS = RecipeMapBuilder("antimatter_generator", FuelRecipeBuilder())
+            .fluidInputs(2)
+            .allowEmptyOutputs()
+            .sound(GTSoundEvents.ARC)
+            .generator()
+            .build()
+
         // -------------------------------------------------------------------------------------------------------------
         @JvmStatic
         fun preInit()
@@ -1132,6 +1145,9 @@ class GTLiteRecipeMaps
             RecipeMaps.VACUUM_RECIPES.maxFluidOutputs = 2
 
             RecipeMaps.POLARIZER_RECIPES.maxFluidInputs = 1
+
+            RecipeMaps.COMPRESSOR_RECIPES.maxFluidInputs = 1
+            RecipeMaps.COMPRESSOR_RECIPES.maxFluidOutputs = 1
 
             // If EnderIO is loaded, then add a fluid slots for XP juice outputs.
             BIO_SIMULATOR_RECIPES.maxFluidOutputs = 1

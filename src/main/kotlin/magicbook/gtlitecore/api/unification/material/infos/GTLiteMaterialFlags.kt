@@ -55,6 +55,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lapis
 import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lazurite
+import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Malachite
 import gregtech.api.unification.material.Materials.Manganese
@@ -393,6 +394,7 @@ class GTLiteMaterialFlags
             Technetium.addFlags(GENERATE_PLATE)
             Uranium238.addFlags(GENERATE_PLATE)
             Thulium.addFlags(GENERATE_PLATE)
+            Livermorium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -428,6 +430,7 @@ class GTLiteMaterialFlags
             Trinium.addFlags(GENERATE_DOUBLE_PLATE)
             Technetium.addFlags(GENERATE_DOUBLE_PLATE)
             Seaborgium.addFlags(GENERATE_DOUBLE_PLATE)
+            Livermorium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)
@@ -456,6 +459,7 @@ class GTLiteMaterialFlags
             Naquadria.addFlags(GENERATE_DENSE)
             Trinium.addFlags(GENERATE_DENSE)
             Osmiridium.addFlags(GENERATE_DENSE)
+            Livermorium.addFlags(GENERATE_DENSE)
 
             // ring
             Duranium.addFlags(GENERATE_RING)

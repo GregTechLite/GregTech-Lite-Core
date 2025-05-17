@@ -1,10 +1,11 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
-import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
+import gregtech.api.recipes.RecipeMaps.COMPRESSOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bismuth
@@ -27,10 +28,14 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Zinc
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ANTIMATTER_FORGE_RECIPES
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.ANTIMATTER_GENERATOR_FUELS
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HighEnergyQuarkGluonPlasma
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SemistableAntimatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 
@@ -163,7 +168,83 @@ class AntimatterChain
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
-            // Semistable Antimatter -> Antimatter TODO
+            // Semistable Antimatter -> Antimatter
+            COMPRESSOR_RECIPES.recipeBuilder()
+                .fluidInputs(SemistableAntimatter.getFluid(1000))
+                .fluidOutputs(Antimatter.getFluid(100))
+                .EUt(VA[UEV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Antimatter annihilation.
+
+            // 1.0
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Protomatter.getFluid(1))
+                .fluidInputs(Lead.getPlasma(1000))
+                .EUt(1_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(SemistableAntimatter.getFluid(1))
+                .fluidInputs(Lead.getPlasma(1000))
+                .EUt(1_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Antimatter.getFluid(1))
+                .fluidInputs(Lead.getPlasma(1000))
+                .EUt(1_000_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // 1.5
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Protomatter.getFluid(1))
+                .fluidInputs(Infinity.getFluid(L * 4))
+                .EUt(1_500_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(SemistableAntimatter.getFluid(1))
+                .fluidInputs(Infinity.getFluid(L * 4))
+                .EUt(1_500_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Antimatter.getFluid(1))
+                .fluidInputs(Infinity.getFluid(L * 4))
+                .EUt(1_500_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // 2.0
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Protomatter.getFluid(1))
+                .fluidInputs(Shirabon.getFluid(L * 4))
+                .EUt(2_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(SemistableAntimatter.getFluid(1))
+                .fluidInputs(Shirabon.getFluid(L * 4))
+                .EUt(2_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Antimatter.getFluid(1))
+                .fluidInputs(Shirabon.getFluid(L * 4))
+                .EUt(2_000_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // 4.0 TODO Raw Star Matter?
 
         }
 

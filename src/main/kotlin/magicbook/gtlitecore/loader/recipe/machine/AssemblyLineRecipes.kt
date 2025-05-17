@@ -162,6 +162,7 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
@@ -211,6 +212,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
+import magicbook.gtlitecore.common.block.blocks.BlockComputerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
@@ -2601,6 +2603,29 @@ class AssemblyLineRecipes
                 .duration(30 * SECOND)
                 .stationResearch { r ->
                     r.researchStack(GTLiteMetaBlocks.FUSION_CASING_01.getItemVariant(BlockFusionCasing01.FusionCasingType.ULTIMATE_FUSION_COIL))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Antimatter Annihilation Matrix
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.COMPUTER_CASING_01.getItemVariant(BlockComputerCasing01.ComputerCasingType.MOLECULAR_COIL, 16))
+                .input(foil, Hypogen, 64)
+                .input(EMITTER_UEV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(frameGt, Infinity, 4)
+                .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 8)
+                .input(SENSOR_UEV, 2)
+                .input(rotor, Infinity, 4)
+                .fluidInputs(CosmicNeutronium.getFluid(L * 10))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(Antimatter.getFluid(200))
+                .outputs(GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(BlockMultiblockCasing01.MultiblockCasingType.ANTIMATTER_ANNIHILATION_MATRIX, 64))
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPUTER_CASING_01.getItemVariant(BlockComputerCasing01.ComputerCasingType.MOLECULAR_COIL))
                         .EUt(VA[UEV].toLong())
                         .CWUt(32)
                 }

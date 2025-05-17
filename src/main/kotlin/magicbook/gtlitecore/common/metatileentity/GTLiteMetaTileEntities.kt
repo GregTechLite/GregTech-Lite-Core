@@ -90,6 +90,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEn
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeSifter
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityLargeWiremill
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityVolcanus
+import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityAntimatterGenerator
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityLargeNaquadahReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityLargeRocketEngine
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
@@ -272,6 +273,7 @@ class GTLiteMetaTileEntities
         lateinit var NANO_FORGE: MetaTileEntityNanoForge
         lateinit var QUANTUM_FORCE_TRANSFORMER: MetaTileEntityQuantumForceTransformer
         lateinit var ANTIMATTER_FORGE: MetaTileEntityAntimatterForge
+        lateinit var ANTIMATTER_GENERATOR: MetaTileEntityAntimatterGenerator
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -860,6 +862,9 @@ class GTLiteMetaTileEntities
             ANTIMATTER_FORGE = MetaTileEntities.registerMetaTileEntity(18028,
                 MetaTileEntityAntimatterForge(GTLiteUtility.gtliteId("antimatter_forge")))
 
+            ANTIMATTER_GENERATOR = MetaTileEntities.registerMetaTileEntity(18029,
+                MetaTileEntityAntimatterGenerator(GTLiteUtility.gtliteId("antimatter_generator")))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -1085,6 +1090,7 @@ class GTLiteMetaTileEntities
             NANO_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             QUANTUM_FORCE_TRANSFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ANTIMATTER_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            ANTIMATTER_GENERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
