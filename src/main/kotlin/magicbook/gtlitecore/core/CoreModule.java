@@ -114,6 +114,8 @@ public class CoreModule implements IModule
     @Override
     public void init(FMLInitializationEvent event)
     {
+        if (GTValues.isClientSide())
+            GTLiteMetaBlocks.registerColors();
         DungeonLootLoader.init();
         GTLiteMetaTileEntities.postInit();
         GTLiteCoverBehaviors.init();
