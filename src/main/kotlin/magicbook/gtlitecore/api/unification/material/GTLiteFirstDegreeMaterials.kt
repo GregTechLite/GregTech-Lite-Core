@@ -3164,7 +3164,8 @@ class GTLiteFirstDegreeMaterials
                 .ingot()
                 .liquid(FluidBuilder()
                     .temperature(2_000_000_000)
-                    .translation("gregtech.fluid.generic")).iconSet(GLITCH)
+                    .translation("gregtech.fluid.generic"))
+                .iconSet(GLITCH)
                 .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
                     GENERATE_FRAME)
                 .cableProperties(V[UXV], 72, 18)

@@ -778,6 +778,7 @@ metaitem.mining_drone.max.name=§c§lMAX§f Mining Drone
 metaitem.mining_drone.max.tooltip=Planetary belt ore extractor
 
 metaitem.tool.component.grinder.boron_nitride.name=Boron Nitride Grinder
+metaitem.tool.component.grinder.halkonite_steel.name=Halkonite Steel Grinder
 
 metaitem.tool.disposable.saw.name=Disposable Saw
 metaitem.tool.disposable.saw.tooltip=Disposable Tool for crafting recipes

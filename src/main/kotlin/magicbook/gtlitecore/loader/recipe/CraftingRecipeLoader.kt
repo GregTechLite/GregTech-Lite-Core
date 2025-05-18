@@ -96,10 +96,13 @@ import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aegirine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeterodiamond
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
@@ -129,6 +132,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WIRE_CUTTER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_WRENCH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_BORON_NITRIDE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COMPONENT_GRINDER_HALKONITE_STEEL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_ADAMANTIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_COSMIC_NEUTRONIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CREDIT_INFINITY
@@ -657,6 +661,13 @@ class CraftingRecipeLoader
                 'P', UnificationEntry(plate, CubicBoronNitride),
                 'D', UnificationEntry(plateDouble, Bedrockium),
                 'G', UnificationEntry(gem, CubicHeterodiamond))
+
+            // Halkonite Steel Grinder
+            ModHandler.addShapedRecipe("halkonite_steel_grinder", COMPONENT_GRINDER_HALKONITE_STEEL.stackForm,
+                "PDP", "DGD", "PDP",
+                'P', UnificationEntry(plate, HalkoniteSteel),
+                'D', UnificationEntry(plateDouble, CosmicNeutronium),
+                'G', UnificationEntry(gem, CubicSiliconNitride))
 
             // UEV Machine Casing
             ModHandler.addShapedRecipe(true, "casing_uev", MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.UEV),

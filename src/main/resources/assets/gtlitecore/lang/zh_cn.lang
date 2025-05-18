@@ -880,6 +880,7 @@ metaitem.mining_drone.max.name=采矿无人机（§c§lMAX§f）
 metaitem.mining_drone.max.tooltip=行星带资源提取器
 
 metaitem.tool.component.grinder.boron_nitride.name=氮化硼磨头
+metaitem.tool.component.grinder.halkonite_steel.name=赫利孔钢磨头
 
 metaitem.tool.disposable.saw.name=一次性锯
 metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具

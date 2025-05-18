@@ -11,6 +11,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Materials.Aluminium
@@ -80,6 +81,7 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.gemFlawless
 import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
@@ -95,6 +97,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UXV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
@@ -106,6 +109,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
@@ -117,6 +121,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
@@ -128,6 +133,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
@@ -139,6 +145,7 @@ import gregtech.common.items.MetaItems.EMITTER_UEV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_UIV
 import gregtech.common.items.MetaItems.EMITTER_UV
+import gregtech.common.items.MetaItems.EMITTER_UXV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_EV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_HV
@@ -148,6 +155,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_MV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.GRAVI_STAR
@@ -163,6 +171,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UIV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_HV
@@ -174,6 +183,7 @@ import gregtech.common.items.MetaItems.SENSOR_UEV
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.SENSOR_UIV
 import gregtech.common.items.MetaItems.SENSOR_UV
+import gregtech.common.items.MetaItems.SENSOR_UXV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.COMPONENT_ASSEMBLY_LINE_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
@@ -184,26 +194,36 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HarmonicPhononMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_EV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_HV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_IV
@@ -214,7 +234,9 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_U
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_CIRCUIT_ZPM
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ZENITH_STAR
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -445,6 +467,25 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UXV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(ENERGISED_TESSERACT, 64)
+                .input(stickLong, Magnetium, 64) // 64x (2x stickLong)
+                .input(stickLong, Magnetium, 64)
+                .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                .fluidInputs(TranscendentMetal.getFluid(144 * 8 * 64 // stickLongX: [(144L) * 8 * 64]
+                    + 36 * 16 * 64 // ringX: [(36L) * 16 * 64]
+                    + 18 * 32 * 64)) // roundX: [(18L) * 32 * 64]
+                .fluidInputs(MagMatter.getFluid(18 * (64 + 64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 64) * 64]
+                .output(ELECTRIC_MOTOR_UXV, 64)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 45 * SECOND)
+                .tier(UXV)
+                .buildAndRegister()
 
             // OpV
 
@@ -651,6 +692,27 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UXV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(ELECTRIC_MOTOR_UXV, 64)
+                .input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+                .input(plateDouble, TranscendentMetal, 64)
+                .input(plateDouble, TranscendentMetal, 64)
+                .input(plateDouble, TranscendentMetal, 64)
+                .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                .fluidInputs(TranscendentMetal.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
+                    + 18 * 32 * 64 // roundX: [(18L) * 32 * 64]
+                    + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
+                    + 144 * 4 * 64)) // gearSmallX: [(144L) * 4 * 64]
+                .output(ELECTRIC_PISTON_UXV)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 45 * SECOND)
+                .tier(UXV)
+                .buildAndRegister()
 
             // OpV
 
@@ -873,6 +935,7 @@ class ComponentAssemblyLineRecipeProducer
                     .output(ELECTRIC_PUMP_UEV, 64)
                     .EUt(VA[UEV].toLong())
                     .duration(1 * MINUTE + 30 * SECOND)
+                    .tier(UEV)
                     .buildAndRegister()
             }
 
@@ -898,10 +961,37 @@ class ComponentAssemblyLineRecipeProducer
                     .output(ELECTRIC_PUMP_UIV, 64)
                     .EUt(VA[UIV].toLong())
                     .duration(1 * MINUTE + 30 * SECOND)
+                    .tier(UIV)
                     .buildAndRegister()
             }
 
             // UXV
+            for (rubber in arrayOf( // ringX: [(36L) * 64 * 64]
+                PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 64),
+                PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 64)))
+            {
+                COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .circuitMeta(3)
+                    .input(ELECTRIC_MOTOR_UXV, 64)
+                    .input(plateDense, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+                    .input(plateDense, TranscendentMetal, 64)
+                    .input(plateDense, TranscendentMetal, 64)
+                    .input(plateDense, TranscendentMetal, 64)
+                    .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                    .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                    .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                    .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                    .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                    .fluidInputs(rubber)
+                    .fluidInputs(TranscendentMetal.getFluid(18 * 16 * 64 // screwX: [(18L) * 16 * 64]
+                        + 576 * 2 * 64)) // rotorX: [(576L) * 2 * 64]
+                    .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(864 * 4 * 64)) // pipeLargeFluidX: [(864L) * 4 * 64]
+                    .output(ELECTRIC_PUMP_UXV)
+                    .EUt(VA[UXV].toLong())
+                    .duration(1 * MINUTE + 45 * SECOND)
+                    .tier(UXV)
+                    .buildAndRegister()
+            }
 
             // OpV
 
@@ -1150,6 +1240,33 @@ class ComponentAssemblyLineRecipeProducer
             }
 
             // UXV
+            for (rubber in arrayOf( // plateX: [(144L) * 64 * 64]
+                PolytetramethyleneGlycolRubber.getFluid(L * 64 * 64),
+                PolyphosphonitrileFluoroRubber.getFluid(L * 64 * 64)))
+            {
+                COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                    .circuitMeta(4)
+                    .input(ELECTRIC_MOTOR_UXV, 64)
+                    .input(ELECTRIC_MOTOR_UXV, 64)
+                    .input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+                    .input(plateDouble, TranscendentMetal, 64)
+                    .input(plateDouble, TranscendentMetal, 64)
+                    .input(plateDouble, TranscendentMetal, 64)
+                    .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                    .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                    .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                    .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                    .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                    .fluidInputs(rubber)
+                    .fluidInputs(TranscendentMetal.getFluid(36 * 32 * 64 // ringX: [(36L) * 32 * 64]
+                        + 18 * 64 * 64 // roundX: [(18L) * 64 * 64]
+                        + 18 * 16 * 64)) // screwX: [(18L) * 16 * 64]
+                    .output(CONVEYOR_MODULE_UXV, 64)
+                    .EUt(VA[UXV].toLong())
+                    .duration(1 * MINUTE + 45 * SECOND)
+                    .tier(UXV)
+                    .buildAndRegister()
+            }
 
             // OpV
 
@@ -1336,7 +1453,7 @@ class ComponentAssemblyLineRecipeProducer
                 .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
                 .fluidInputs(CosmicNeutronium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                     + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
-                    + 144 * 3 * 64)) // gearSmallX: [(144L) * 3 * 64]
+                    + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64]
                 .output(ROBOT_ARM_UEV, 64)
                 .EUt(VA[UEV].toLong())
                 .duration(1 * MINUTE + 30 * SECOND)
@@ -1359,7 +1476,7 @@ class ComponentAssemblyLineRecipeProducer
                 .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
                 .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                         + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
-                        + 144 * 3 * 64)) // gearSmallX: [(144L) * 3 * 64]
+                        + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64]
                 .output(ROBOT_ARM_UIV, 64)
                 .EUt(VA[UIV].toLong())
                 .duration(1 * MINUTE + 30 * SECOND)
@@ -1367,6 +1484,27 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UXV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(5)
+                .input(ELECTRIC_MOTOR_UXV, 64)
+                .input(ELECTRIC_MOTOR_UXV, 64)
+                .input(ELECTRIC_PISTON_UXV, 64)
+                .input(WRAP_CIRCUIT_UXV, 4) // 64x circuitX = 4x wrappedCircuitX
+                .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+                .input(WRAP_CIRCUIT_UEV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+                .input(cableGtHex, SuperheavyAlloyB, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128 * 64)) // 18432 * 64
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                .fluidInputs(TranscendentMetal.getFluid(L * 8 * 64 // stickLongX: [(144L) * 8 * 64]
+                    + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
+                    + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64)
+                .output(ROBOT_ARM_UXV, 64)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 45 * SECOND)
+                .tier(UXV)
+                .buildAndRegister()
 
             // OpV
 
@@ -1563,6 +1701,23 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UXV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(6)
+                .input(ELECTRIC_MOTOR_UXV, 64)
+                .input(ZENITH_STAR, 64)
+                .input(WRAP_CIRCUIT_UXV , 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+                .input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                .fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+                .fluidInputs(Mellion.getFluid(144 * 16 * 64)) // stickLongX: [(144L) * 16 * 64]
+                .fluidInputs(SpaceTime.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
+                .output(EMITTER_UXV, 64)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 45 * SECOND)
+                .tier(UXV)
+                .buildAndRegister()
 
             // OpV
 
@@ -1759,6 +1914,23 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UXV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(7)
+                .input(ELECTRIC_MOTOR_UXV, 64)
+                .input(ZENITH_STAR, 64)
+                .input(WRAP_CIRCUIT_UXV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+                .input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                .fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+                .fluidInputs(Mellion.getFluid(L * 16)) // plateX: [(144L) * 16 * 64]
+                .fluidInputs(HarmonicPhononMatter.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
+                .output(SENSOR_UXV, 64)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 45 * SECOND)
+                .tier(UXV)
+                .buildAndRegister()
 
             // OpV
 
@@ -1935,6 +2107,27 @@ class ComponentAssemblyLineRecipeProducer
                 .buildAndRegister()
 
             // UIV
+            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(GRAVI_STAR, 64)
+                .input(GRAVI_STAR, 64)
+                .input(GRAVI_STAR, 64)
+                .input(GRAVI_STAR, 64)
+                .input(EMITTER_UIV, 64)
+                .input(EMITTER_UIV, 64)
+                .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+                .input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 576 * 64
+                .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+                        + 288 * 8 * 64)) // plateDoubleX: [(288) * 8 * 64]
+                .fluidInputs(FullereneSuperconductor.getFluid(18 * (64 + 64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 32) * 64]
+                .output(FIELD_GENERATOR_UIV, 64)
+                .EUt(VA[UIV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(UIV)
+                .buildAndRegister()
 
             // UXV
 

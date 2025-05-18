@@ -105,6 +105,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -606,8 +607,8 @@ class CraftingComponents
             // Old: 0-2: Diamond, 3-4: COMPONENT_GRINDER_DIAMOND,
             //      5: COMPONENT_GRINDER_TUNGSTEN
             // New: 0-2 Diamond, 3-4: COMPONENT_GRINDER_DIAMOND,
-            //      5-8: COMPONENT_GRINDER_TUNGSTEN,
-            //      9-11: COMPONENT_GRINDER_BORON_NITRIDE, 12-14: TODO
+            //      5-8: COMPONENT_GRINDER_TUNGSTEN, 9-11: COMPONENT_GRINDER_BORON_NITRIDE,
+            //      12-14: COMPONENT_GRINDER_HALKONITE_STEEL
             CraftingComponent.GRINDER.appendIngredients(sequenceOf(
                 LuV to MetaItems.COMPONENT_GRINDER_TUNGSTEN.stackForm,
                 ZPM to MetaItems.COMPONENT_GRINDER_TUNGSTEN.stackForm,
@@ -615,9 +616,9 @@ class CraftingComponents
                 UHV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
                 UEV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
                 UIV to GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE.stackForm,
-                // UXV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
-                // OpV to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm,
-                // MAX to MetaItems.COMPONENT_GRINDER_DIAMOND.stackForm
+                UXV to GTLiteMetaItems.COMPONENT_GRINDER_HALKONITE_STEEL.stackForm,
+                OpV to GTLiteMetaItems.COMPONENT_GRINDER_HALKONITE_STEEL.stackForm,
+                MAX to GTLiteMetaItems.COMPONENT_GRINDER_HALKONITE_STEEL.stackForm
             ).toMap())
 
             // SAWBLADE
@@ -671,12 +672,12 @@ class CraftingComponents
             // New: 0-1: Tin, 2: Copper, 3: Silver, 4: Steel, 5: Graphene,
             //      6: NiobiumNitride, 7: VanadiumGallium, 8: YttriumBariumCuprate,
             //      9: ThalliumBariumCalciumCuprate, 10: CosmicNeutronium,
-            //      11: Hypogen, 12-14: TODO
+            //      11: Hypogen, 12: MagMatter, 13-14: TODO
             CraftingComponent.COIL_ELECTRIC.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(wireGtOctal, ThalliumBariumCalciumCuprate),
                 UEV to UnificationEntry(wireGtOctal, CosmicNeutronium),
                 UIV to UnificationEntry(wireGtHex, Hypogen),
-                // UXV to UnificationEntry(wireGtHex, Tritanium),
+                UXV to UnificationEntry(wireGtHex, MagMatter),
                 // OpV to UnificationEntry(wireGtHex, Tritanium),
                 // MAX to UnificationEntry(wireGtHex, Tritanium)
             ).toMap())
