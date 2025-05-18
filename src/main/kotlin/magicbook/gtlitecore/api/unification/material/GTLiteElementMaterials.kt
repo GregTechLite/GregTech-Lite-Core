@@ -367,6 +367,16 @@ class GTLiteElementMaterials
                         .blastStats(VA[UXV], 2 * MINUTE + 40 * SECOND)
                         .vacuumStats(VA[UIV], 1 * MINUTE + 45 * SECOND)
                 }
+                .toolStats(MaterialToolProperty.Builder.of(160.0F, 320.0F, 62914560, 20)
+                    .attackSpeed(0.2F).enchantability(40)
+                    .enchantment(Enchantments.SHARPNESS, 20)
+                    .enchantment(Enchantments.SWEEPING, 20)
+                    .enchantment(Enchantments.LOOTING, 20)
+                    .enchantment(Enchantments.FORTUNE, 20)
+                    .magnetic()
+                    .unbreakable()
+                    .build())
+                .rotorStats(576.0F, 64.0F, 62914560)
                 .build()
 
             // 18 Mag Matter

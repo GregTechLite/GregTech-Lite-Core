@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import magicbook.gtlitecore.api.utils.Mods
+import magicbook.gtlitecore.core.GTLiteConfigHolder
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
 import magicbook.gtlitecore.loader.recipe.chain.AcetyleneChain
 import magicbook.gtlitecore.loader.recipe.chain.ActiniumSuperhydrideChain
@@ -186,7 +187,9 @@ class RecipeManager
             MassReplicationRecipeProducer.produce()
 
             CircuitAssemblyLineRecipeProducer.produce()
-            if (Mods.AppliedEnergistics2.isModLoaded())
+
+            if (Mods.AppliedEnergistics2.isModLoaded()
+                && GTLiteConfigHolder.compat.ae2Compat.addProcessorCALRecipes)
                 AppEngCALRecipeProducer.produce()
 
             WrapItemRecipeProducer.produce()
