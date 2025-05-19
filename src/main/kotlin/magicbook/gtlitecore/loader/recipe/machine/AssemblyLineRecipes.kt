@@ -236,6 +236,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_U
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UXV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
@@ -2036,7 +2037,7 @@ class AssemblyLineRecipes
                 .input(toolHeadDrill, Adamantium, 16)
                 .input(cableGtQuadruple, Seaborgium, 2)
                 .input(circuit, MarkerMaterials.Tier.UEV, 4)
-                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
                 .fluidInputs(DrillingFluid.getFluid(32000))
                 .output(MINING_DRONE_UEV)
                 .EUt(VA[UEV].toLong())
@@ -2060,7 +2061,7 @@ class AssemblyLineRecipes
                 .input(toolHeadDrill, Rhugnor, 16)
                 .input(cableGtQuadruple, SuperheavyAlloyA, 2)
                 .input(circuit, MarkerMaterials.Tier.UIV, 4)
-                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
                 .fluidInputs(DrillingFluid.getFluid(64000))
                 .output(MINING_DRONE_UIV)
                 .EUt(VA[UIV].toLong())
@@ -2069,6 +2070,30 @@ class AssemblyLineRecipes
                     r.researchStack(MINING_DRONE_UEV.stackForm)
                         .EUt(VA[UEV].toLong())
                         .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // UXV Mining Drone
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Creon)
+                .input(plateDouble, Creon, 32)
+                .input(round, Creon, 64)
+                .input(EMITTER_UXV, 2)
+                .input(SENSOR_UXV, 2)
+                .input(ROBOT_ARM_UXV, 2)
+                .input(rotor, Creon, 8)
+                .input(toolHeadDrill, Creon, 16)
+                .input(cableGtQuadruple, SuperheavyAlloyB, 2)
+                .input(circuit, MarkerMaterials.Tier.UXV, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(128000))
+                .output(MINING_DRONE_UXV)
+                .EUt(VA[UXV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_UIV.stackForm)
+                        .EUt(VA[UIV].toLong())
+                        .CWUt(96)
                 }
                 .buildAndRegister()
 
