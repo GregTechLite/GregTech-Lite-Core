@@ -1,8 +1,5 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
-import com.cleanroommc.modularui.factory.PosGuiData
-import com.cleanroommc.modularui.screen.ModularPanel
-import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import gregtech.api.capability.IControllable
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -11,15 +8,11 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials.StainlessSteel
-import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockMetalCasing
 import gregtech.common.blocks.MetaBlocks
-import magicbook.gtlitecore.api.gui.GTLiteMuiTextures
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIBuilder
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIFactory
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CATALYTIC_REFORMER_RECIPES
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side

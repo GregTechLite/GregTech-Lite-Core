@@ -12,7 +12,6 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
-import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -21,11 +20,7 @@ import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Sapphire
-import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.ore.OrePrefix.craftingLens
-import gregtech.api.unification.ore.OrePrefix.dust
-import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.springSmall

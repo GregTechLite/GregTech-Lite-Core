@@ -13,7 +13,6 @@ import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.ButyllithiumChain
-import magicbook.gtlitecore.loader.recipe.chain.NanotubesChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
 import magicbook.gtlitecore.loader.recipe.chain.CitricAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.CosmicNeutroniumChain
@@ -51,6 +50,7 @@ import magicbook.gtlitecore.loader.recipe.chain.MicaInsulatorChain
 import magicbook.gtlitecore.loader.recipe.chain.MutatedLivingSolderChain
 import magicbook.gtlitecore.loader.recipe.chain.NanitesChain
 import magicbook.gtlitecore.loader.recipe.chain.NanoparticlesChain
+import magicbook.gtlitecore.loader.recipe.chain.NanotubesChain
 import magicbook.gtlitecore.loader.recipe.chain.NdYAGChain
 import magicbook.gtlitecore.loader.recipe.chain.OctaazacubaneChain
 import magicbook.gtlitecore.loader.recipe.chain.OilsChain

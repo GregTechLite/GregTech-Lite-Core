@@ -1,7 +1,5 @@
 package magicbook.gtlitecore.loader.recipe.circuit
 
-import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
-
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class CosmicCircuits
 {

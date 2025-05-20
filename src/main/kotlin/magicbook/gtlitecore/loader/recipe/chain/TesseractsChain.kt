@@ -36,7 +36,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAllo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeliumNeon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IncoloyMA813
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity

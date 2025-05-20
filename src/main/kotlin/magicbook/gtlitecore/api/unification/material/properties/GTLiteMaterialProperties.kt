@@ -47,7 +47,6 @@ import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Graphene
-import gregtech.api.unification.material.Materials.Hafnium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Iodine
@@ -125,7 +124,6 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
-import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty

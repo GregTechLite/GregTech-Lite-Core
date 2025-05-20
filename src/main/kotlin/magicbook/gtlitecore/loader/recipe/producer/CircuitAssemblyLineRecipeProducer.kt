@@ -28,7 +28,6 @@ import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
-import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
@@ -86,11 +85,9 @@ import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ALL_OPTICAL_CASCADE_NOR_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CIRCUIT_PATTERN
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_ASSEMBLY_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_COMPUTER_UXV
@@ -105,11 +102,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_PROCES
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_ASSEMBLY_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_COMPUTER_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_FIBER
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_IMC_UNIT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFRAME_UIV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTOELECTRONIC_SYSTEM_ON_CHIP
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PERIODICALLY_POLED_OPTICAL_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV

@@ -11,11 +11,9 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
-import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Iron
@@ -23,7 +21,6 @@ import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.PolyphenyleneSulfide
 import gregtech.api.unification.material.Materials.PolyvinylChloride
-import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
@@ -31,7 +28,6 @@ import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
-import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
@@ -60,10 +56,7 @@ import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LAMINATOR_RECI
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.LARGE_MIXER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Gluons
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HarmonicPhononMatter
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyLeptonMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium

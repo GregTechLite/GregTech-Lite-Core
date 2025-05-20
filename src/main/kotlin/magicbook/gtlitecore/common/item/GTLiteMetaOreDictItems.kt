@@ -3,11 +3,9 @@ package magicbook.gtlitecore.common.item
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.items.metaitem.MetaOreDictItem.OreDictValueItem
 import gregtech.api.items.metaitem.StandardMetaItem
-import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
-import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.crushed
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gemChipped

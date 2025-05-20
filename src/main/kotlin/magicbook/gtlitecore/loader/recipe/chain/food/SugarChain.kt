@@ -4,7 +4,6 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES

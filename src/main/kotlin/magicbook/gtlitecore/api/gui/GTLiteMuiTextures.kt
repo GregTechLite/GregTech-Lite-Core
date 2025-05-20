@@ -5,7 +5,6 @@ import com.cleanroommc.modularui.drawable.UITexture
 import com.cleanroommc.modularui.screen.viewport.GuiContext
 import com.cleanroommc.modularui.theme.WidgetTheme
 import gregtech.api.GTValues
-import gregtech.api.mui.GTGuiTextures.IDs
 import magicbook.gtlitecore.api.gui.theme.DisplayGuiTheme
 import kotlin.math.min
 
@@ -22,6 +21,7 @@ class GTLiteMuiTextures
 
     companion object
     {
+        // Animated Textures
 
         /**
          * @see gregtech.api.gui.GuiTextures.GREGTECH_LOGO_BLINKING_YELLOW
@@ -39,6 +39,8 @@ class GTLiteMuiTextures
             "textures/gui/icon/gregtech_logo_blinking_red.png",
             17, 34, false, 36)
 
+        // -------------------------------------------------------------------------------------------------------------
+        // Base Textures
 
         @JvmField
         val DISPLAY: UITexture = UITexture.Builder()
@@ -65,49 +67,62 @@ class GTLiteMuiTextures
             .adaptable(2)
             .build()
 
+        /**
+         * @see magicbook.gtlitecore.api.gui.GTLiteGuiTextures.PRIMITIVE_FLUID_SLOT
+         */
+        @JvmField
+        val PRIMITIVE_FLUID_SLOT: UITexture = fullImage(
+            "textures/gui/primitive/primitive_fluid_slot.png")
 
+        // -------------------------------------------------------------------------------------------------------------
+        // Progress Bar Textures
 
         /**
          * @see gregtech.api.gui.GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR
          */
-        val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR: UITexture = UITexture.fullImage(GTValues.MODID,
+        @JvmField
+        val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR: UITexture = fullImage(
             "textures/gui/primitive/progress_bar_primitive_blast_furnace.png")
 
-        /**
-         * @see magicbook.gtlitecore.api.gui.GTLiteGuiTextures.PRIMITIVE_FLUID_SLOT
-         */
-        val PRIMITIVE_FLUID_SLOT: UITexture = UITexture.fullImage(GTValues.MODID,
-            "textures/gui/primitive/primitive_fluid_slot.png")
+        // -------------------------------------------------------------------------------------------------------------
+        // Overlay Textures
 
         /**
          * @see gregtech.api.gui.GuiTextures.PRIMITIVE_INGOT_OVERLAY
          */
-        val PRIMITIVE_INGOT_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+        @JvmField
+        val PRIMITIVE_INGOT_OVERLAY: UITexture = fullImage(
             "textures/gui/primitive/overlay_primitive_ingot.png")
 
         /**
          * @see gregtech.api.gui.GuiTextures.PRIMITIVE_DUST_OVERLAY
          */
-        val PRIMITIVE_DUST_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+        @JvmField
+        val PRIMITIVE_DUST_OVERLAY: UITexture = fullImage(
             "textures/gui/primitive/overlay_primitive_dust.png")
 
         /**
          * @see gregtech.api.gui.GuiTextures.PRIMITIVE_FURNACE_OVERLAY
          */
-        val PRIMITIVE_FURNACE_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+        @JvmField
+        val PRIMITIVE_FURNACE_OVERLAY: UITexture = fullImage(
             "textures/gui/primitive/overlay_primitive_furnace.png")
 
         /**
          * TODO Add GuiTexture supported of this sprite.
          */
-        val PRIMITIVE_INT_CIRCUIT_OVERLAY: UITexture = UITexture.fullImage(GTValues.MODID,
+        @JvmField
+        val PRIMITIVE_INT_CIRCUIT_OVERLAY: UITexture = fullImage(
             "textures/gui/primitive/int_circuit_overlay_primitive.png")
+
+        // -------------------------------------------------------------------------------------------------------------
+        // Widget Textures
 
         /**
          * @see gregtech.api.gui.GuiTextures.BUTTON_POWER_DETAIL
          */
         @JvmField
-        val BUTTON_POWER_DETAIL: UITexture = UITexture.fullImage(GTValues.MODID,
+        val BUTTON_POWER_DETAIL: UITexture = fullImage(
             "textures/gui/widget/button_power_detail.png")
 
         /**
@@ -136,7 +151,7 @@ class GTLiteMuiTextures
          * @see gregtech.api.gui.GuiTextures.BUTTON_VOID_NONE
          */
         @JvmField
-        val OVERLAY_VOID_NONE: UITexture = UITexture.fullImage(GTValues.MODID,
+        val OVERLAY_VOID_NONE: UITexture = fullImage(
             "textures/gui/widget/button_void_none.png")
 
         /**
@@ -150,10 +165,14 @@ class GTLiteMuiTextures
             18, 36, 18, 18, false)
 
         @JvmField
-        val OVERLAY_NO_FLEX: UITexture = UITexture.fullImage(GTValues.MODID,
+        val OVERLAY_NO_FLEX: UITexture = fullImage(
             "textures/gui/widget/button_no_flex.png", false)
 
         // -------------------------------------------------------------------------------------------------------------
+        private fun fullImage(path: String) = fullImage(path, false)
+
+        private fun fullImage(path: String, canApplyTheme: Boolean) = UITexture.fullImage(GTValues.MODID, path, canApplyTheme)
+
         private fun slice(path: String,
                           imageWidth: Int, imageHeight: Int,
                           sliceWidth: Int, sliceHeight: Int,

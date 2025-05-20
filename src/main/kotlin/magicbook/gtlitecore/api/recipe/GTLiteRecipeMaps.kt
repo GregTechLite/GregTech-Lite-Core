@@ -5,7 +5,6 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.V
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.builders.BlastRecipeBuilder

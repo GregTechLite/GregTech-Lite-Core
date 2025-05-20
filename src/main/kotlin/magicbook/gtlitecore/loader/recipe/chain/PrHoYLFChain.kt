@@ -1,13 +1,11 @@
 package magicbook.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.HV
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
-import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Beryllium
@@ -15,11 +13,9 @@ import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.NitricAcid
-import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_DEHYDRATOR_RECIPES
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CHEMICAL_PLANT_RECIPES
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CVD_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumBifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumNitrate

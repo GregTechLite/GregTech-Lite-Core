@@ -113,7 +113,6 @@ import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Strontium
-import gregtech.api.unification.material.Materials.Styrene
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
@@ -178,7 +177,6 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
-import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -203,8 +201,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_ULTIM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NAQUADRIA_SUPERSOLID
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.STABLE_ADHESIVE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPERCONDUCTOR_COMPOSITE
-import magicbook.gtlitecore.loader.recipe.chain.RubbersChain
-import magicbook.gtlitecore.loader.recipe.chain.ShirabonChain
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class QuantumForceTransformerRecipes
