@@ -15,6 +15,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.util.GTUtility
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
+import magicbook.gtlitecore.api.recipe.builder.AccelerationOrbitRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.AdvancedFusionRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
 import magicbook.gtlitecore.api.recipe.builder.ComponentAssemblyLineRecipeBuilder
@@ -29,6 +30,7 @@ import magicbook.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import magicbook.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import magicbook.gtlitecore.api.recipe.ui.LargeMixerUI
 import magicbook.gtlitecore.api.recipe.ui.MiningDroneAirportUI
+import magicbook.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import magicbook.gtlitecore.api.recipe.ui.StellarForgeUI
 import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.utils.GTLiteUtility
@@ -898,6 +900,20 @@ class GTLiteRecipeMaps
             .fluidInputs(21)
             .fluidOutputs(1)
             .sound(GTLiteSoundEvents.STELLAR_FORGE)
+            .build()
+
+        /**
+         * @zenProp space_assembler
+         */
+        @ZenProperty
+        @JvmStatic
+        @get:JvmName("SPACE_ASSEMBLER_RECIPES")
+        val SPACE_ASSEMBLER_RECIPES = RecipeMapBuilder("space_assembler", AccelerationOrbitRecipeBuilder())
+            .ui { SpaceAssemblerUI(it) }
+            .itemInputs(16)
+            .itemOutputs(1)
+            .fluidInputs(4)
+            .sound(GTSoundEvents.ASSEMBLER)
             .build()
 
         // -------------------------------------------------------------------------------------------------------------

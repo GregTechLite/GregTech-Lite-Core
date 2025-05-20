@@ -11,6 +11,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.client.model.ItemModelHelper
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModel
 import magicbook.gtlitecore.client.model.ItemModelHelper.registerItemModelWithOverride
+import magicbook.gtlitecore.common.block.blocks.BlockAccelerationOrbit
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
@@ -42,6 +43,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockRobotArmCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
 import magicbook.gtlitecore.common.block.blocks.BlockShieldingCore
+import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
@@ -176,6 +178,8 @@ class GTLiteMetaBlocks
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
         lateinit var COMPUTER_CASING_01: BlockComputerCasing01
+        lateinit var SPACE_ELEVATOR_CASING: BlockSpaceElevatorCasing
+        lateinit var ACCELERATION_ORBIT: BlockAccelerationOrbit
         lateinit var WIRE_COIL: BlockWireCoils
         lateinit var COMPONENT_ASSEMBLY_CASING: BlockComponentAssemblyCasing
         lateinit var CRUCIBLE: BlockCrucible
@@ -455,6 +459,14 @@ class GTLiteMetaBlocks
             (COMPUTER_CASING_01 as? Block)?.setRegistryName("computer_casing_01")
             (COMPUTER_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            SPACE_ELEVATOR_CASING = BlockSpaceElevatorCasing()
+            (SPACE_ELEVATOR_CASING as? Block)?.setRegistryName("space_elevator_casing")
+            (SPACE_ELEVATOR_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            ACCELERATION_ORBIT = BlockAccelerationOrbit()
+            (ACCELERATION_ORBIT as? Block)?.setRegistryName("acceleration_orbit")
+            (ACCELERATION_ORBIT as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             WIRE_COIL = BlockWireCoils()
             (WIRE_COIL as? Block)?.setRegistryName("wire_coil")
             (WIRE_COIL as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -633,6 +645,7 @@ class GTLiteMetaBlocks
             registerItemModel(TURBINE_CASING_01)
             registerItemModel(TURBINE_CASING_02)
             registerItemModel(COMPUTER_CASING_01)
+            registerItemModel(SPACE_ELEVATOR_CASING)
             registerItemModel(CRUCIBLE)
             registerItemModel(COMPONENT_ASSEMBLY_CASING)
             registerItemModel(TRANSPARENT_CASING_01)
@@ -647,6 +660,7 @@ class GTLiteMetaBlocks
             FUSION_CASING_01.onModelRegister()
             FUSION_CASING_02.onModelRegister()
             FUSION_CASING_03.onModelRegister()
+            ACCELERATION_ORBIT.onModelRegister()
             WIRE_COIL.onModelRegister()
             NUCLEAR_REACTOR_CORE_01.onModelRegister()
             NUCLEAR_REACTOR_CORE_02.onModelRegister()

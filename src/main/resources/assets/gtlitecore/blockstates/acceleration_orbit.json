@@ -1,0 +1,100 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=mk1": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk1_side",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=mk1": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "bot_side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk1_side",
+        "top_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "top_side": "gtlitecore:blocks/casings/space/acceleration_orbit_bloom",
+        "bot_bottom": "#bot_side",
+        "top_bottom": "#top_side"
+      }
+    },
+    "active=false,variant=mk2": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk2_side",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=mk2": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "bot_side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk2_side",
+        "top_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "top_side": "gtlitecore:blocks/casings/space/acceleration_orbit_bloom",
+        "bot_bottom": "#bot_side",
+        "top_bottom": "#top_side"
+      }
+    },
+    "active=false,variant=mk3": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk3_side",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=mk3": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "bot_side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk3_side",
+        "top_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "top_side": "gtlitecore:blocks/casings/space/acceleration_orbit_bloom",
+        "bot_bottom": "#bot_side",
+        "top_bottom": "#top_side"
+      }
+    },
+    "active=false,variant=mk4": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk4_side",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=mk4": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "bot_side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk4_side",
+        "top_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "top_side": "gtlitecore:blocks/casings/space/acceleration_orbit_bloom",
+        "bot_bottom": "#bot_side",
+        "top_bottom": "#top_side"
+      }
+    },
+    "active=false,variant=mk5": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk5_side",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=mk5": {
+      "model": "gregtech:cube_2_layer_bottom_top",
+      "textures": {
+        "bot_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "bot_side": "gtlitecore:blocks/casings/space/acceleration_orbit_mk5_side",
+        "top_up": "gtlitecore:blocks/casings/space/acceleration_orbit_top",
+        "top_side": "gtlitecore:blocks/casings/space/acceleration_orbit_bloom",
+        "bot_bottom": "#bot_side",
+        "top_bottom": "#top_side"
+      }
+    }
+  }
+}

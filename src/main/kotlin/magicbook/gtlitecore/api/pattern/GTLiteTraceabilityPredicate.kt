@@ -127,6 +127,11 @@ class GTLiteTraceabilityPredicate
             Comparator.comparing { s -> (GTLiteAPI.MAP_SHIELDING_CORE[s] as WrappedIntTier).getIntTier() },
             "ShieldingCore", null) }
 
+        @JvmStatic
+        var ACCELERATION_ORBIT = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_ACCELERATION_ORBIT,
+            Comparator.comparing { s -> (GTLiteAPI.MAP_ACCELERATION_ORBIT[s] as WrappedIntTier).getIntTier() },
+            "AccelerationOrbit", null) }
+
         // Overriden of original Cleanroom Casing by tiered stats predicate.
         @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,

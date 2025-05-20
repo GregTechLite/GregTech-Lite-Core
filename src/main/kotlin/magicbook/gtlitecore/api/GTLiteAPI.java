@@ -15,6 +15,7 @@ import magicbook.gtlitecore.api.module.IModuleManager;
 import magicbook.gtlitecore.api.network.INetworkHandler;
 import magicbook.gtlitecore.api.sound.ISoundManager;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
+import magicbook.gtlitecore.common.block.blocks.BlockAccelerationOrbit;
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing;
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing;
@@ -96,6 +97,7 @@ public class GTLiteAPI
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_NUCLEAR_REACTOR_CORE = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_MANIPULATOR = new Object2ObjectOpenHashMap<>();
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_SHIELDING_CORE = new Object2ObjectOpenHashMap<>();
+    public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_ACCELERATION_ORBIT = new Object2ObjectOpenHashMap<>();
 
     public static final Object2ObjectOpenHashMap<IBlockState, IBlockTier> MAP_CLEANROOM_CASING = new Object2ObjectOpenHashMap<>();
     /* -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+- */
@@ -301,6 +303,13 @@ public class GTLiteAPI
         for (BlockShieldingCore.ShieldingCoreType tier : BlockShieldingCore.ShieldingCoreType.values())
         {
             MAP_SHIELDING_CORE.put(GTLiteMetaBlocks.SHIELDING_CORE.getState(tier),
+                    new WrappedIntTier(tier, tier.ordinal() + 1));
+        }
+
+        // Acceleration Orbit
+        for (BlockAccelerationOrbit.OrbitTier tier : BlockAccelerationOrbit.OrbitTier.values())
+        {
+            MAP_ACCELERATION_ORBIT.put(GTLiteMetaBlocks.ACCELERATION_ORBIT.getState(tier),
                     new WrappedIntTier(tier, tier.ordinal() + 1));
         }
 

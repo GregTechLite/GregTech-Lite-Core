@@ -1,0 +1,35 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "high_strength_concrete": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/space/high_strength_concrete"
+        }
+      },
+      "elevator_base_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/space/elevator_base_casing"
+        }
+      },
+      "elevator_support_structure": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/space/elevator_support_structure_top",
+          "side": "gtlitecore:blocks/casings/space/elevator_support_structure_side",
+          "bottom": "#top"
+        }
+      },
+      "elevator_internal_structure": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/space/elevator_internal_structure_top",
+          "side": "gtlitecore:blocks/casings/space/elevator_internal_structure_side",
+          "bottom": "#top"
+        }
+      }
+    }
+  }
+}

@@ -457,6 +457,26 @@ tile.computer_casing_01.molecular_coil.tooltip=用这个线圈！
 tile.computer_casing_01.hollow_casing.name=中空机械方块
 tile.computer_casing_01.hollow_casing.tooltip=有史以来最先进的管道
 
+tile.space_elevator_casing.high_strength_concrete.name=超强混凝土地板
+tile.space_elevator_casing.high_strength_concrete.tooltip=地基的最适宜材料/n§d§l牢固又耐用
+tile.space_elevator_casing.elevator_base_casing.name=太空电梯基座机械方块
+tile.space_elevator_casing.elevator_base_casing.tooltip=强度足以支持太空电梯/n§d§l向月球出发
+tile.space_elevator_casing.elevator_support_structure.name=太空电梯支撑结构机械方块
+tile.space_elevator_casing.elevator_support_structure.tooltip=防止太空电梯坍塌/n§d§l希望这些东西有足够的强度
+tile.space_elevator_casing.elevator_internal_structure.name=太空电梯内部结构机械方块
+tile.space_elevator_casing.elevator_internal_structure.tooltip=强化太空电梯的结构/n§d§l外观看上去也不错！
+
+tile.acceleration_orbit.mk1.name=太空电梯加速轨道 MK1
+tile.acceleration_orbit.mk1.tooltip=解锁更多模块槽位与等级/n§d§l冲破大气层！§7/n为太空电梯解锁6个模块槽位
+tile.acceleration_orbit.mk2.name=太空电梯加速轨道 MK2
+tile.acceleration_orbit.mk2.tooltip=解锁更多模块槽位与等级/n§d§l加速的新境界§7/n为太空电梯解锁12个模块槽位
+tile.acceleration_orbit.mk3.name=太空电梯加速轨道 MK3
+tile.acceleration_orbit.mk3.tooltip=解锁更多模块槽位与等级/n§d§l遨游天际§7/n为太空电梯解锁15个模块槽位
+tile.acceleration_orbit.mk4.name=太空电梯加速轨道 MK4
+tile.acceleration_orbit.mk4.tooltip=解锁更多模块槽位与等级/n§d§l我即速度§7/n为太空电梯解锁18个模块槽位
+tile.acceleration_orbit.mk5.name=太空电梯加速轨道 MK5
+tile.acceleration_orbit.mk5.tooltip=解锁更多模块槽位与等级/n§d§l哦耶！§7/n为太空电梯解锁24个模块槽位
+
 tile.wire_coil.adamantium.name=精金线圈方块
 tile.wire_coil.infinity.name=无尽线圈方块
 tile.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
@@ -1314,6 +1334,7 @@ recipemap.pcb_factory.name=PCB工厂
 recipemap.nano_forge.name=纳米锻炉
 recipemap.quantum_force_transformer.name=量子操纵者
 recipemap.antimatter_forge.name=反物质稳定化编序器
+recipemap.space_assembler.name=太空组装模块
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1345,6 +1366,8 @@ gtlitecore.recipe.required_bio_upgrade=需要生物仓升级
 gtlitecore.recipe.nano_forge_tier=结构等级：
 
 gtlitecore.recipe.quantum_force_transformer_tier=结构等级：
+
+gtlitecore.recipe.acceleration_orbit_tier=加速轨道等级：%s
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
@@ -2101,6 +2124,21 @@ gtlitecore.machine.antimatter_generator.tooltip.7=- §a熔融调律源金§7：2
 gtlitecore.machine.antimatter_generator.tooltip.8=- §a原始恒星等离子体物质§7：4.0
 gtlitecore.machine.antimatter_generator.tooltip.9=使用§f原始物质§7或§f半稳态反物质§7作为反物质湮灭时会§c降低§7基础发电量。
 gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量不会超过§e9.2e18EU§7，但机器将会尽可能尝试多地进行并行。
+
+gtlitecore.machine.space_elevator.name=太空电梯
+
+gtlitecore.machine.space_elevator.extension_info=启用扩展结构
+
+gtlitecore.machine.space_assembler_module.mk1.name=太空组装模块 MK1
+gtlitecore.machine.space_assembler_module.mk1.tooltip.1=§d§l为什么我又要在太空里组装东西啊？§7
+gtlitecore.machine.space_assembler_module.mk2.name=太空组装模块 MK2
+gtlitecore.machine.space_assembler_module.mk2.tooltip.1=§d§l这真的有必要吗？§7
+gtlitecore.machine.space_assembler_module.mk3.name=太空组装模块 MK3
+gtlitecore.machine.space_assembler_module.mk3.tooltip.1=§d§l我想我们永远也不会知道§7
+
+gtlitecore.machine.space_assembler_module.tooltip=将太空组装功能添加到太空电梯。
+gtlitecore.machine.space_assembler_module.max_parallel=运行电压：%s§7，最大并行数：§e%s§7
+gtlitecore.machine.space_assembler_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能

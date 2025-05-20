@@ -107,6 +107,9 @@ class StructureUtility
         fun shieldingCores() = GTLiteTraceabilityPredicate.SHIELDING_CORE.get()
 
         @JvmStatic
+        fun accelerationOrbits() = GTLiteTraceabilityPredicate.ACCELERATION_ORBIT.get()
+
+        @JvmStatic
         fun cleanroomCasings() = GTLiteTraceabilityPredicate.CLEANROOM_CASING.get()
     }
 

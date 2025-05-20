@@ -328,6 +328,10 @@ class GTLiteGuiTextures
             "textures/gui/primitive/button_circuit_minus_primitive.png")
 
         @JvmField
+        val BUTTON_ELEVATOR_EXTENSION: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/button_elevator_extension.png")
+
+        @JvmField
         val FUSION_REACTOR_MK4_TITLE: TextureArea = TextureArea.fullImage(
             "textures/gui/widget/fusion_reactor_mk4_title")
 

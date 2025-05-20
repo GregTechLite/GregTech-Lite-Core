@@ -142,6 +142,12 @@ class GTLiteTextures
         val ANTIMATTER_FORGE_OVERLAY = OrientedOverlayRenderer("machines/multiblock/antimatter_forge")
 
         @JvmField
+        val SPACE_ELEVATOR_OVERLAY = OrientedOverlayRenderer("machines/multiblock/space_elevator")
+
+        @JvmField
+        val SPACE_ASSEMBLER_OVERLAY = SimpleOverlayRenderer("machines/multiblock/space_elevator/space_assembler/overlay_side")
+
+        @JvmField
         val ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("generators/rocket_engine")
 
         @JvmField
@@ -270,7 +276,8 @@ class GTLiteTextures
         @JvmField
         val PARTICLE_CONTAINMENT_CASING = GTLiteSimpleOverlayRenderer("casings/special/particle_containment_casing")
 
-
+        @JvmField
+        val SPACE_ELEVATOR_BASE_CASING = GTLiteSimpleOverlayRenderer("casings/space/elevator_base_casing")
 
 
         @JvmField

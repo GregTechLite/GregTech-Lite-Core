@@ -5,6 +5,9 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.ZPM
 import gregtech.api.block.machines.MachineItemBlock
@@ -52,6 +55,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityPCBFa
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityPlasmaEnhancedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityQuantumForceTransformer
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySonicator
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntitySpaceElevator
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityStellarForge
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAdvancedFusionReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.advanced.MetaTileEntityAlloyBlastSmelter
@@ -95,6 +99,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileE
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityLargeRocketEngine
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
+import magicbook.gtlitecore.common.metatileentity.multiblock.module.MetaTileEntitySpaceAssembler
 import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityIndustrialPrimitiveBlastFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamAlloySmelter
@@ -274,6 +279,10 @@ class GTLiteMetaTileEntities
         lateinit var QUANTUM_FORCE_TRANSFORMER: MetaTileEntityQuantumForceTransformer
         lateinit var ANTIMATTER_FORGE: MetaTileEntityAntimatterForge
         lateinit var ANTIMATTER_GENERATOR: MetaTileEntityAntimatterGenerator
+        lateinit var SPACE_ELEVATOR: MetaTileEntitySpaceElevator
+        lateinit var SPACE_ASSEMBLER_MK1: MetaTileEntitySpaceAssembler
+        lateinit var SPACE_ASSEMBLER_MK2: MetaTileEntitySpaceAssembler
+        lateinit var SPACE_ASSEMBLER_MK3: MetaTileEntitySpaceAssembler
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -865,6 +874,18 @@ class GTLiteMetaTileEntities
             ANTIMATTER_GENERATOR = MetaTileEntities.registerMetaTileEntity(18029,
                 MetaTileEntityAntimatterGenerator(GTLiteUtility.gtliteId("antimatter_generator")))
 
+            SPACE_ELEVATOR = MetaTileEntities.registerMetaTileEntity(18030,
+                MetaTileEntitySpaceElevator(GTLiteUtility.gtliteId("space_elevator")))
+
+            SPACE_ASSEMBLER_MK1 = MetaTileEntities.registerMetaTileEntity(18031,
+                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk1"), UHV, 1, 1))
+
+            SPACE_ASSEMBLER_MK2 = MetaTileEntities.registerMetaTileEntity(18032, // For spintronic soc?
+                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk2"), UEV, 2, 3))
+
+            SPACE_ASSEMBLER_MK3 = MetaTileEntities.registerMetaTileEntity(18033, // For cosmic circuits, so it is UIV.
+                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk3"), UIV, 3, 5))
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 
@@ -1091,6 +1112,10 @@ class GTLiteMetaTileEntities
             QUANTUM_FORCE_TRANSFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ANTIMATTER_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             ANTIMATTER_GENERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SPACE_ELEVATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SPACE_ASSEMBLER_MK1.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SPACE_ASSEMBLER_MK2.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            SPACE_ASSEMBLER_MK3.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
 
             LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
             LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
