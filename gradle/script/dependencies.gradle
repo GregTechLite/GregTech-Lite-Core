@@ -2,7 +2,7 @@
 dependencies {
 
     // Modular UI 2.5.0-rc4
-    api('com.cleanroommc:modularui:2.5.0-rc4')
+    implementation rfg.deobf('com.cleanroommc:modularui:2.5.0-rc4')
 
     // Code Chicken Lib 3.2.3.358
     // Schedule removal this dependencies when GTCEu update next version.

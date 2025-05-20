@@ -18,7 +18,9 @@
     "gregtech.MetaTileEntityDrumAccessor",
     "gregtech.FuelRecipeLogicMixin",
     "gregtech.MetaTileEntityNetworkSwitchMixin",
-    "jei.ItemStackRendererMixin"
+    "jei.ItemStackRendererMixin",
+    "modularui.IconMixin",
+    "modularui.DelegateIconMixin"
   ],
   "server": [],
   "client": [
