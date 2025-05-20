@@ -25,7 +25,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityCatalyticReformer(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, CATALYTIC_REFORMER_RECIPES), IControllable
 {
@@ -64,42 +63,42 @@ class MetaTileEntityCatalyticReformer(metaTileEntityId: ResourceLocation?) : Rec
 
     override fun hasMufflerMechanics() = true
 
-    @Suppress("UnstableApiUsage")
-    override fun usesMui2() = true
+    // @Suppress("UnstableApiUsage")
+    // override fun usesMui2() = true
 
-    override fun buildUI(guiData: PosGuiData, guiSyncManager: PanelSyncManager): ModularPanel
-    {
-        return MultiblockUIFactory(this)
-            .configureDisplayText(this::configureDisplayText)
-            .configureWarningText(this::configureWarningText)
-            .configureErrorText(this::configureErrorText)
-            .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY)
-    }
+    // override fun buildUI(guiData: PosGuiData, guiSyncManager: PanelSyncManager): ModularPanel
+    // {
+    //     return MultiblockUIFactory(this)
+    //         .configureDisplayText(this::configureDisplayText)
+    //         .configureWarningText(this::configureWarningText)
+    //         .configureErrorText(this::configureErrorText)
+    //         .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY)
+    // }
 
-    private fun configureDisplayText(builder: MultiblockUIBuilder)
-    {
-        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
-            .addEnergyUsageLine(getEnergyContainer())
-            .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
-            .addParallelsLine(recipeMapWorkable.parallelLimit)
-            .addWorkingStatusLine()
-            .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
-    }
+    // private fun configureDisplayText(builder: MultiblockUIBuilder)
+    // {
+    //     builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+    //         .addEnergyUsageLine(getEnergyContainer())
+    //         .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+    //         .addParallelsLine(recipeMapWorkable.parallelLimit)
+    //         .addWorkingStatusLine()
+    //         .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
+    // }
 
-    private fun configureWarningText(builder: MultiblockUIBuilder)
-    {
-        builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy)
-        builder.addMaintenanceProblemLines(maintenanceProblems, true)
-    }
+    // private fun configureWarningText(builder: MultiblockUIBuilder)
+    // {
+    //     builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy)
+    //     builder.addMaintenanceProblemLines(maintenanceProblems, true)
+    // }
 
-    private fun configureErrorText(builder: MultiblockUIBuilder)
-    {
-        builder.structureFormed(isStructureFormed)
-        if (hasMufflerMechanics())
-            builder.addMufflerObstructedLine(!isMufflerFaceFree)
-        if (hasMaintenanceMechanics())
-            builder.addMaintenanceProblemLines(maintenanceProblems, false)
-    }
+    // private fun configureErrorText(builder: MultiblockUIBuilder)
+    // {
+    //     builder.structureFormed(isStructureFormed)
+    //     if (hasMufflerMechanics())
+    //         builder.addMufflerObstructedLine(!isMufflerFaceFree)
+    //     if (hasMaintenanceMechanics())
+    //         builder.addMaintenanceProblemLines(maintenanceProblems, false)
+    // }
 
     override fun isWorkingEnabled(): Boolean = recipeMapWorkable.isWorkingEnabled
 
