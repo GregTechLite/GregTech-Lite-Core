@@ -4,7 +4,15 @@ magicbook.gtlitecore.api.advancement.impl
 magicbook.gtlitecore.api.block
 magicbook.gtlitecore.api.block.impl
 magicbook.gtlitecore.api.capability.logic
+magicbook.gtlitecore.api.gui.adapter
+magicbook.gtlitecore.api.gui.drawable
+magicbook.gtlitecore.api.gui.factory
+magicbook.gtlitecore.api.gui.key
+magicbook.gtlitecore.api.gui.sync
+magicbook.gtlitecore.api.gui.theme
+magicbook.gtlitecore.api.gui.widget
 magicbook.gtlitecore.api.metatileentity
+magicbook.gtlitecore.api.metatileentity.multiblock
 magicbook.gtlitecore.api.module
 magicbook.gtlitecore.api.network
 magicbook.gtlitecore.api.pattern.predicate
@@ -68,3 +76,4 @@ magicbook.gtlitecore.loader.recipe.producer
 magicbook.gtlitecore.mixin.gregtech
 magicbook.gtlitecore.mixin.jei
 magicbook.gtlitecore.mixin.minecraft
+magicbook.gtlitecore.mixin.modularui
