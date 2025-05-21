@@ -3,6 +3,16 @@ package magicbook.gtlitecore.common.metatileentity.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.api.drawable.IKey;
+import com.cleanroommc.modularui.factory.PosGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
+import com.cleanroommc.modularui.value.sync.IntSyncValue;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.cleanroommc.modularui.widgets.ButtonWidget;
+import com.cleanroommc.modularui.widgets.CycleButtonWidget;
+import gregtech.api.capability.GregtechDataCodes;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IOpticalComputationHatch;
@@ -20,12 +30,16 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import lombok.Getter;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.IModuleProvider;
 import magicbook.gtlitecore.api.capability.IModuleReceiver;
 import magicbook.gtlitecore.api.gui.GTLiteGuiTextures;
+import magicbook.gtlitecore.api.gui.GTLiteMuiTextures;
+import magicbook.gtlitecore.api.gui.factory.MultiblockUIBuilder;
+import magicbook.gtlitecore.api.gui.factory.MultiblockUIFactory;
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing;
@@ -35,7 +49,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.ApiStatus;
@@ -54,7 +70,7 @@ import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.StructureUtility.accelerationOrbits;
 import static magicbook.gtlitecore.integration.groovyscript.hooks.GrSRecipeHooks.SECOND;
 
-public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase implements IModuleProvider
+public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase implements IModuleProvider, IControllable
 {
 
     protected IEnergyContainer energyContainer;
@@ -64,6 +80,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     protected int orbitTier;
 
     private boolean isExtended = false;
+    private boolean isWorkingEnabled = false; // TODO Impl?
 
     private final Collection<IModuleReceiver> moduleReceivers = ConcurrentHashMap.newKeySet();
 
@@ -390,9 +407,28 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     }
 
     @Override
+    public boolean isWorkingEnabled()
+    {
+        return isWorkingEnabled;
+    }
+
+    @Override
+    public void setWorkingEnabled(boolean workingEnabled)
+    {
+        if (isWorkingEnabled != workingEnabled)
+        {
+            isWorkingEnabled = workingEnabled;
+            markDirty();
+            if (getWorld() != null && !getWorld().isRemote)
+                writeCustomData(GregtechDataCodes.WORKING_ENABLED, buf -> buf.writeBoolean(isWorkingEnabled));
+        }
+    }
+
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data)
     {
-        data.setBoolean("extended", isExtended);
+        data.setBoolean("isExtended", isExtended);
+        data.setBoolean("isWorkingEnabled", isWorkingEnabled);
         return super.writeToNBT(data);
     }
 
@@ -400,7 +436,8 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     public void readFromNBT(NBTTagCompound data)
     {
         super.readFromNBT(data);
-        this.isExtended = data.getBoolean("extended");
+        this.isExtended = data.getBoolean("isExtended");
+        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled");
     }
 
     @Override
@@ -408,6 +445,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     {
         super.writeInitialSyncData(buf);
         buf.writeBoolean(this.isExtended);
+        buf.writeBoolean(this.isWorkingEnabled);
     }
 
     @Override
@@ -415,15 +453,65 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
     {
         super.receiveInitialSyncData(buf);
         this.isExtended = buf.readBoolean();
+        this.isWorkingEnabled = buf.readBoolean();
     }
 
-    @NotNull
     @Override
-    protected Widget getFlexButton(int x, int y, int width, int height)
+    public void receiveCustomData(int dataId, PacketBuffer buf)
     {
-        return new ImageCycleButtonWidget(173, 125, 18, 18,
-                GTLiteGuiTextures.BUTTON_ELEVATOR_EXTENSION, this::isExtended, this::setExtended)
-                .setTooltipHoverString("gtlitecore.machine.space_elevator.extension_info");
+        super.receiveCustomData(dataId, buf);
+        if (dataId == GregtechDataCodes.WORKING_ENABLED)
+        {
+            this.isWorkingEnabled = buf.readBoolean();
+            scheduleRenderUpdate();
+        }
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing side)
+    {
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE)
+            return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
+        return super.getCapability(capability, side);
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    @Override
+    public boolean usesMui2()
+    {
+        return true;
+    }
+
+    @Override
+    public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
+    {
+        return new MultiblockUIFactory(this)
+                .configureDisplayText(this::configureDisplayText)
+                .configureErrorText(this::configureErrorText)
+                .createFlexButton((posGuiData, panelSyncManager) -> { // structure extension button.
+                    BooleanSyncValue extensionSync = new BooleanSyncValue(this::isExtended, this::setExtended);
+
+                    return new CycleButtonWidget()
+                            .stateCount(2)
+                            .stateBackground(false, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
+                            .stateBackground(true, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
+                            .value(extensionSync)
+                            .addTooltipLine(IKey.lang("gtlitecore.machine.space_elevator.extension_info"));
+
+                })
+                .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
+    }
+
+    protected void configureDisplayText(MultiblockUIBuilder builder)
+    {
+        builder.setWorkingStatus(isWorkingEnabled(), isActive())
+                .addEnergyUsageLine(energyContainer)
+                .addWorkingStatusLine();
+    }
+
+    protected void configureErrorText(MultiblockUIBuilder builder)
+    {
+        builder.structureFormed(isStructureFormed());
     }
 
     private boolean checkModules()

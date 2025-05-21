@@ -168,6 +168,16 @@ class GTLiteMuiTextures
         val OVERLAY_NO_FLEX: UITexture = fullImage(
             "textures/gui/widget/button_no_flex.png", false)
 
+        /**
+         * false = DISABLED <br></br>
+         * true = ENABLED <br></br>
+         *
+         * @see magicbook.gtlitecore.api.gui.GTLiteGuiTextures.BUTTON_ELEVATOR_EXTENSION
+         */
+        @JvmField
+        val BUTTON_ELEVATOR_EXTENSION: Array<UITexture?> = slice("textures/gui/widget/button_elevator_extension.png",
+            18, 36, 18, 18, false)
+
         // -------------------------------------------------------------------------------------------------------------
         private fun fullImage(path: String) = fullImage(path, false)
 
