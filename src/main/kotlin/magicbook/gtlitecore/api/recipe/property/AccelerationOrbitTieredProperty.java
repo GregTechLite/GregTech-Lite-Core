@@ -2,6 +2,7 @@ package magicbook.gtlitecore.api.recipe.property;
 
 import gregtech.api.recipes.properties.RecipeProperty;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagInt;
 import org.apache.commons.lang3.Validate;
@@ -48,7 +49,7 @@ public class AccelerationOrbitTieredProperty extends RecipeProperty<Integer>
     @Override
     public void drawInfo(Minecraft mc, int x, int y, int color, Object value)
     {
-        mc.fontRenderer.drawString("gtlitecore.recipe.acceleration_orbit_tier"
+        mc.fontRenderer.drawString(I18n.format("gtlitecore.recipe.acceleration_orbit_tier")
                 + getTier(castValue(value)), x, y, color);
     }
 

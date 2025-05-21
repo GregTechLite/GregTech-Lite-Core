@@ -238,6 +238,10 @@ class GTLiteMetaItems
         lateinit var TOPOLOGICAL_INSULATOR_TUBE: MetaItem<*>.MetaValueItem
         lateinit var CONDENSATE_CONTAINMENT_UNIT: MetaItem<*>.MetaValueItem
         lateinit var BOSE_EINSTEIN_CONDENSATE: MetaItem<*>.MetaValueItem
+        lateinit var EXCITATION_MAINTAINER: MetaItem<*>.MetaValueItem
+        lateinit var X_RAY_WAVEGUIDE: MetaItem<*>.MetaValueItem
+        lateinit var RYDBERG_SPINOR_ARRAY: MetaItem<*>.MetaValueItem
+        lateinit var EXOTIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
 
@@ -348,6 +352,7 @@ class GTLiteMetaItems
         lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
         lateinit var WRAP_OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_ESR_COMPUTATION_UNIT: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_ENGRAVED_LAPOTRON_CHIP: MetaItem<*>.MetaValueItem
         lateinit var WRAP_ENGRAVED_DIAMOND_CHIP: MetaItem<*>.MetaValueItem
@@ -358,6 +363,7 @@ class GTLiteMetaItems
         lateinit var WRAP_CRYSTAL_SOC: MetaItem<*>.MetaValueItem
         lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
         lateinit var WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var WRAP_EXOTIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
         lateinit var WRAP_CIRCUIT_LV: MetaItem<*>.MetaValueItem
@@ -954,6 +960,10 @@ class GTLiteMetaItems
             TOPOLOGICAL_INSULATOR_TUBE = GTLITE_ITEMS.addItem(1131, "circuit.component.topological_insulator_tube")
             CONDENSATE_CONTAINMENT_UNIT = GTLITE_ITEMS.addItem(1132, "circuit.component.condensate_containment_unit")
             BOSE_EINSTEIN_CONDENSATE = GTLITE_ITEMS.addItem(1133, "circuit.component.bose_einstein_condensate")
+            EXCITATION_MAINTAINER = GTLITE_ITEMS.addItem(1134, "circuit.component.excitation_maintainer")
+            X_RAY_WAVEGUIDE = GTLITE_ITEMS.addItem(1135, "circuit.component.x_ray_waveguide")
+            RYDBERG_SPINOR_ARRAY = GTLITE_ITEMS.addItem(1136, "circuit.component.rydberg_spinor_array")
+            EXOTIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(1137, "circuit.component.exotic_system_on_chip")
 
             // 2001-2500: Boules and Wafers.
             HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
@@ -1076,6 +1086,8 @@ class GTLiteMetaItems
             WRAP_NONLINEAR_CHEMICAL_OSCILLATOR = GTLITE_ITEMS.addItem(3104, "wrap.circuit.component.nonlinear_chemical_oscillator")
             WRAP_OPTICAL_LASER_CONTROL_UNIT = GTLITE_ITEMS.addItem(3105, "wrap.circuit.component.optical_laser_control_unit")
             WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(3106, "wrap.circuit.component.optoelectronic_system_on_chip")
+            WRAP_ESR_COMPUTATION_UNIT = GTLITE_ITEMS.addItem(3107, "wrap.circuit.component.esr_computation_unit")
+            WRAP_EXOTIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(3108, "wrap.circuit.component.exotic_system_on_chip")
 
             WRAP_CIRCUIT_ULV = GTLITE_ITEMS.addItem(3201, "wrap.circuit.generic.ulv")
             WRAP_CIRCUIT_LV = GTLITE_ITEMS.addItem(3202, "wrap.circuit.generic.lv")

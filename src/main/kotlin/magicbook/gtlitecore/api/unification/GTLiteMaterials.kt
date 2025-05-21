@@ -344,6 +344,10 @@ class GTLiteMaterials
         lateinit var PrHoYNitratesSolution: Material
         lateinit var PrHoYLF: Material
         lateinit var HarmonicPhononMatter: Material
+        lateinit var TrichlorocyclopentadienylTitanium: Material
+        lateinit var SilverPerchlorate: Material
+        lateinit var PhotopolymerSolution: Material
+        lateinit var SodiumBromide: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -619,6 +623,9 @@ class GTLiteMaterials
         lateinit var Codeine: Material
         lateinit var AmmoniumFluoride: Material
         lateinit var AmmoniumBifluoride: Material
+        lateinit var NDifluorophenylpyrrole: Material
+        lateinit var TetraethylammoniumBromide: Material
+        lateinit var Phenylsodium: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

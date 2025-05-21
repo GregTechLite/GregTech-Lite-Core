@@ -968,6 +968,14 @@ metaitem.circuit.component.condensate_containment_unit.name=凝聚态物质遏�
 metaitem.circuit.component.condensate_containment_unit.tooltip=电磁蒸发冷却
 metaitem.circuit.component.bose_einstein_condensate.name=Bose-Einstein Condensate
 metaitem.circuit.component.bose_einstein_condensate.tooltip=在§b170nK§7下有整整2,000个§cRb-87§7原子！
+metaitem.circuit.component.excitation_maintainer.name=Excitation Maintainer
+metaitem.circuit.component.excitation_maintainer.tooltip=提供最稳定的磁场
+metaitem.circuit.component.x_ray_waveguide.name=X-Ray Waveguide
+metaitem.circuit.component.x_ray_waveguide.tooltip=无损传播超高频X射线
+metaitem.circuit.component.rydberg_spinor_array.name=Rydberg Spinor Array
+metaitem.circuit.component.rydberg_spinor_array.tooltip=Super Spinor Storage
+metaitem.circuit.component.exotic_system_on_chip.name=Exotic SoC
+metaitem.circuit.component.exotic_system_on_chip.tooltip=量子反常自旋计算单元
 
 metaitem.boule.hassium.name=Hassium-doped Monocrystalline Silicon Boule
 
@@ -1114,6 +1122,8 @@ metaitem.wrap.circuit.component.neuro_processor.name=Wrap Neuro Processor
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=Wrap Nonlinear Chemical Oscillator
 metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Laser Control Unit
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=Wrap Optoelectronic System On Chip
+metaitem.wrap.circuit.component.esr_computation_unit.name=Wrap ESR Computation Unit
+metaitem.wrap.circuit.component.exotic_system_on_chip.name=Wrap Exotic SoC
 
 metaitem.wrap.circuit.generic.ulv.name=Wrap §8ULV§f Circuit
 metaitem.wrap.circuit.generic.lv.name=Wrap §7LV§f Circuit
@@ -2978,6 +2988,10 @@ gtlitecore.material.seaborgium_doped_carbon_nanotube=Seaborgium-doped Carbon Nan
 gtlitecore.material.pr_ho_y_nitrates_solution=Praseodymium-Holmium-Yttrium Nitrates Solution
 gtlitecore.material.pr_ho_ylf=Praseodymium/Holmium-doped Yttrium Lithium Fluoride
 gtlitecore.material.harmonic_phonon_matter=Harmonic Phonon Matter (HPM)
+gtlitecore.material.gtlitecore.material.trichlorocyclopentadienyl_titanium=Trichlorocyclopentadienyl Titanium
+gtlitecore.material.silver_perchlorate=Silver Perchlorate
+gtlitecore.material.photopolymer_solution=Photopolymer Solution
+gtlitecore.material.sodium_bromide=Sodium Bromide
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3261,6 +3275,9 @@ gtlitecore.material.promethazine=Promethazine
 gtlitecore.material.codeine=Codeine
 gtlitecore.material.ammonium_fluoride=Ammonium Fluoride
 gtlitecore.material.ammonium_bifluoride=Ammonium Bifluoride
+gtlitecore.material.n_difluorophenylpyrrole=N-Difluorophenylpyrrole
+gtlitecore.material.tetraethylammonium_bromide=Tetraethylammonium Bromide (TEAB)
+gtlitecore.material.phenylsodium=Phenylsodium
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

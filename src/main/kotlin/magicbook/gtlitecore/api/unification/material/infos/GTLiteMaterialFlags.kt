@@ -116,6 +116,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Thulium
@@ -272,6 +273,7 @@ class GTLiteMaterialFlags
             Moscovium.addFlags(GENERATE_FOIL)
             Graphene.addFlags(GENERATE_FOIL)
             Dubnium.addFlags(GENERATE_FOIL)
+            Tennessine.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)

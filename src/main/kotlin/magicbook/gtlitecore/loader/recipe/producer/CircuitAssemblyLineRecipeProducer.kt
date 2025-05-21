@@ -9,6 +9,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
@@ -85,6 +86,9 @@ import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -136,6 +140,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_LAPOTRON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ESR_COMPUTATION_UNIT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXOTIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXTREME_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOD_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_CAPACITOR
@@ -143,6 +149,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_INFINITE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
@@ -170,6 +177,9 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONI
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_INDUCTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_RESISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SPINTRONIC_SMD_TRANSISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_CAPACITOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_RESISTOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_SUPRACAUSAL_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_UHASOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ULTIMATE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_WETWARE_CIRCUIT_BOARD
@@ -1051,7 +1061,6 @@ class CircuitAssemblyLineRecipeProducer
 
             // Gooware Mainframe
 
-
             // T9: Optical
 
             // Optical Processor
@@ -1152,6 +1161,74 @@ class CircuitAssemblyLineRecipeProducer
                 .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
                 .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
                 .buildAndRegister()
+
+            // Optical Computer
+
+            // Optical Mainframe
+
+            // T10: Spintronic
+
+            // Spintronic Processor
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ESR_COMPUTATION_UNIT)
+                .input(WRAP_CRYSTAL_SOC)
+                .input(WRAP_SPINTRONIC_SMD_RESISTOR, 16)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16)
+                .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 16)
+                .input(wireFine, CarbonNanotube, 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+                .output(SPINTRONIC_PROCESSOR_UHV, 64)
+                .EUt(VA[UEV].toLong())
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ESR_COMPUTATION_UNIT)
+                .input(WRAP_CRYSTAL_SOC)
+                .input(WRAP_COSMIC_SMD_RESISTOR, 4)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 4)
+                .input(WRAP_COSMIC_SMD_TRANSISTOR, 4)
+                .input(wireFine, CarbonNanotube, 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+                .output(SPINTRONIC_PROCESSOR_UHV, 64)
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ESR_COMPUTATION_UNIT)
+                .input(WRAP_CRYSTAL_SOC)
+                .input(WRAP_SUPRACAUSAL_SMD_RESISTOR)
+                .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR)
+                .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
+                .input(wireFine, CarbonNanotube, 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+                .output(SPINTRONIC_PROCESSOR_UHV, 64)
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+                .buildAndRegister()
+
+            CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(WRAP_ESR_COMPUTATION_UNIT)
+                .input(WRAP_EXOTIC_SYSTEM_ON_CHIP)
+                .input(wireFine, CarbonNanotube, 64)
+                .input(bolt, Vibranium, 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+                .output(SPINTRONIC_PROCESSOR_UHV, 64)
+                .output(SPINTRONIC_PROCESSOR_UHV, 64)
+                .EUt(VA[UIV].toLong())
+                .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+                .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+                .buildAndRegister()
+
+            // Spintronic Processor Assembly
+
+            // Spintronic Computer
+
+            // Spintronic Mainframe
 
             // ---------------------------------------------------------------------------------------------------------
 

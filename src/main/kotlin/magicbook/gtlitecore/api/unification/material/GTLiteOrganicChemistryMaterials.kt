@@ -9,6 +9,7 @@ import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
+import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Butene
@@ -181,6 +182,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylhydr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MethylhydrazineNitrateRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methylparatoluate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methyltrichlorosilane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NDifluorophenylpyrrole
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NHydroxysuccinimide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
@@ -201,6 +203,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phenothiaz
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylC61ButyricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylC61ButyricStyrene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhenylpentanoicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phenylsodium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosgene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphonitrilicChlorideTrimer
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphorene
@@ -234,6 +237,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Terephthal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylAlcohol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetraacetyldinitrosohexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoethane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetraethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumHydroxide
@@ -1836,6 +1840,31 @@ class GTLiteOrganicChemistryMaterials
                 .build()
                 .setFormula("NH4HF2", true)
 
+            // 8196 N-Difluorophenylpyrrole
+            NDifluorophenylpyrrole = Material.Builder(8196, gtliteId("n_difluorophenylpyrrole"))
+                .liquid()
+                .color(0x6D837E)
+                .components(Carbon, 10, Hydrogen, 7, Fluorine, 2, Nitrogen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8197 Tetraethylammonium Bromide
+            TetraethylammoniumBromide = Material.Builder(8197, gtliteId("tetraethylammonium_bromide"))
+                .liquid()
+                .color(0xCC3399)
+                .components(Carbon, 8, Hydrogen, 20, Nitrogen, 1, Bromine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("N(CH2CH3)4Br", true)
+
+            // 8198 Phenylsodium
+            Phenylsodium = Material.Builder(8198, gtliteId("phenylsodium"))
+                .liquid()
+                .colorAverage()
+                .components(Benzene, 1, Sodium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C6H5Na", true)
         }
 
     }

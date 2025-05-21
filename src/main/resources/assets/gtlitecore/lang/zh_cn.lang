@@ -968,6 +968,14 @@ metaitem.circuit.component.condensate_containment_unit.name=凝聚态物质遏�
 metaitem.circuit.component.condensate_containment_unit.tooltip=电磁蒸发冷却
 metaitem.circuit.component.bose_einstein_condensate.name=玻色-爱因斯坦凝聚态物质遏制装置
 metaitem.circuit.component.bose_einstein_condensate.tooltip=在§b170nK§7下有整整2,000个§cRb-87§7原子！
+metaitem.circuit.component.excitation_maintainer.name=励磁容器
+metaitem.circuit.component.excitation_maintainer.tooltip=提供最稳定的磁场
+metaitem.circuit.component.x_ray_waveguide.name=X射线导波管
+metaitem.circuit.component.x_ray_waveguide.tooltip=无损传播超高频X射线
+metaitem.circuit.component.rydberg_spinor_array.name=里德堡旋量集群
+metaitem.circuit.component.rydberg_spinor_array.tooltip=超级旋量存储器
+metaitem.circuit.component.exotic_system_on_chip.name=奇异SoC
+metaitem.circuit.component.exotic_system_on_chip.tooltip=量子反常自旋计算单元
 
 metaitem.boule.hassium.name=钅黑掺杂的单晶硅
 
@@ -1114,6 +1122,8 @@ metaitem.wrap.circuit.component.neuro_processor.name=封装神经处理单元
 metaitem.wrap.circuit.component.nonlinear_chemical_oscillator.name=封装非线性化学振荡器
 metaitem.wrap.circuit.component.optical_laser_control_unit.name=封装光学激光控制单元
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=封装光电子SoC
+metaitem.wrap.circuit.component.esr_computation_unit.name=封装电子自旋共振计算单元
+metaitem.wrap.circuit.component.exotic_system_on_chip.name=封装奇异SoC
 
 metaitem.wrap.circuit.generic.ulv.name=封装电路板（§8ULV§f）
 metaitem.wrap.circuit.generic.lv.name=封装电路板（§7LV§f）
@@ -2980,6 +2990,10 @@ gtlitecore.material.seaborgium_doped_carbon_nanotube=钅喜掺杂的碳纳米管
 gtlitecore.material.pr_ho_y_nitrates_solution=硝酸镨-钬-钇溶液
 gtlitecore.material.pr_ho_ylf=镨钬掺杂的氟化钇锂
 gtlitecore.material.harmonic_phonon_matter=简谐声子物质（HPM）
+gtlitecore.material.trichlorocyclopentadienyl_titanium=环戊二烯三氯化钛
+gtlitecore.material.silver_perchlorate=高氯酸银
+gtlitecore.material.photopolymer_solution=光聚合物溶液
+gtlitecore.material.sodium_bromide=溴化钠
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3262,6 +3276,9 @@ gtlitecore.material.promethazine=异丙嗪
 gtlitecore.material.codeine=可待因
 gtlitecore.material.ammonium_fluoride=氟化铵
 gtlitecore.material.ammonium_bifluoride=氟化氢铵
+gtlitecore.material.n_difluorophenylpyrrole=N-二氟苯基吡咯
+gtlitecore.material.tetraethylammonium_bromide=四乙基溴化铵（TEAB）
+gtlitecore.material.phenylsodium=苯基钠
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

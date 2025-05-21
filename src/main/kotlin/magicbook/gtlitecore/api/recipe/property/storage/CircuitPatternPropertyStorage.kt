@@ -30,6 +30,10 @@ import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import magicbook.gtlitecore.api.recipe.property.CircuitPatternProperty
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_ASSEMBLY_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_COMPUTER_UXV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_MAINFRAME_OpV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.COSMIC_PROCESSOR_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_SOC_SOCKET
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIAMOND_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_ASSEMBLY_UV
@@ -42,6 +46,14 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_MAINFR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_PROCESSOR_UV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RUBY_MODULATOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SAPPHIRE_MODULATOR
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_ASSEMBLY_UEV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_COMPUTER_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_MAINFRAME_UXV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SPINTRONIC_PROCESSOR_UHV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_ASSEMBLY_UXV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_COMPUTER_OpV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_MAINFRAME_MAX
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPRACAUSAL_PROCESSOR_UIV
 import magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer.Companion.getCircuit
 
 class CircuitPatternPropertyStorage
@@ -106,10 +118,22 @@ class CircuitPatternPropertyStorage
             CircuitPatternProperty.register(getCircuit(OPTICAL_MAINFRAME_UIV))
 
             // T10: Spintronic
+            CircuitPatternProperty.register(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+            CircuitPatternProperty.register(getCircuit(SPINTRONIC_ASSEMBLY_UEV))
+            CircuitPatternProperty.register(getCircuit(SPINTRONIC_COMPUTER_UIV))
+            CircuitPatternProperty.register(getCircuit(SPINTRONIC_MAINFRAME_UXV))
 
             // T11: Cosmic
+            CircuitPatternProperty.register(getCircuit(COSMIC_PROCESSOR_UEV))
+            CircuitPatternProperty.register(getCircuit(COSMIC_ASSEMBLY_UIV))
+            CircuitPatternProperty.register(getCircuit(COSMIC_COMPUTER_UXV))
+            CircuitPatternProperty.register(getCircuit(COSMIC_MAINFRAME_OpV))
 
             // T12: Supracausal
+            CircuitPatternProperty.register(getCircuit(SUPRACAUSAL_PROCESSOR_UIV))
+            CircuitPatternProperty.register(getCircuit(SUPRACAUSAL_ASSEMBLY_UXV))
+            CircuitPatternProperty.register(getCircuit(SUPRACAUSAL_COMPUTER_OpV))
+            CircuitPatternProperty.register(getCircuit(SUPRACAUSAL_MAINFRAME_MAX))
 
             // Applied Energistics 2 Processors
 

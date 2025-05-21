@@ -16,6 +16,7 @@ class RecipePropertyStorages
             PCBFactoryTieredPropertyStorage.loadProperties()
             NanoForgeTieredPropertyStorage.loadProperties()
             QuantumForceTransformerTieredPropertyStorage.loadProperties()
+            AccelerationOrbitTieredPropertyStorage.loadProperties()
         }
 
     }

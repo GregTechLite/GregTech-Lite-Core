@@ -65,6 +65,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CRYSTAL_INTERF
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_DIAMOND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENGRAVED_SAPPHIRE_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ESR_COMPUTATION_UNIT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.EXOTIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GOOWARE_SMD_CAPACITOR
@@ -139,6 +141,8 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_RUBY_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ENGRAVED_SAPPHIRE_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EPOXY_BOARD
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ESR_COMPUTATION_UNIT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXOTIC_SYSTEM_ON_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_EXTREME_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_FIBER_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_FPIC_CHIP
@@ -314,6 +318,8 @@ class WrapItemRecipeProducer
             wrapItems[NONLINEAR_CHEMICAL_OSCILLATOR] = WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
             wrapItems[OPTICAL_LASER_CONTROL_UNIT] = WRAP_OPTICAL_LASER_CONTROL_UNIT
             wrapItems[OPTOELECTRONIC_SYSTEM_ON_CHIP] = WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
+            wrapItems[ESR_COMPUTATION_UNIT] = WRAP_ESR_COMPUTATION_UNIT
+            wrapItems[EXOTIC_SYSTEM_ON_CHIP] = WRAP_EXOTIC_SYSTEM_ON_CHIP
 
             // Add all Wrap Items.
             wrapItems.forEach { (originalItem, wrapItem) -> addRecipe(originalItem, wrapItem) }

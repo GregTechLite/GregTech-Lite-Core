@@ -377,6 +377,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pertechnet
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phlogopite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Phosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhosphorusTrichloride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PhotopolymerSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Picotite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlatinumGroupConcentrate
@@ -427,11 +428,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGelB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverPerchlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverTetrafluoroborate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzanide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCarbonate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumChlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumCyanide
@@ -475,6 +478,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TinDichlor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TinTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TraceRheniumFlue
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TrichlorocyclopentadienylTitanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TriniumTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TungstenTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UranylChlorideSolution
@@ -1241,6 +1245,7 @@ class GTLiteFirstDegreeMaterials
             // 2085 Cadmium Selenide
             CadmiumSelenide = Material.Builder(2085, gtliteId("cadmium_selenide"))
                 .dust()
+                .liquid()
                 .color(0x983034).iconSet(METALLIC)
                 .components(Cadmium, 1, Selenium, 1)
                 .build()
@@ -2933,7 +2938,8 @@ class GTLiteFirstDegreeMaterials
                     .customStill())
                 .color(0x5DBD3A).iconSet(BRIGHT)
                 .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
-                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND)
+                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL)
                 .rotorStats(48.0f, 16.0f, 983040)
                 .fluidPipeProperties(200_000, 10000, true, true, true, true)
                 .build()
@@ -3137,7 +3143,7 @@ class GTLiteFirstDegreeMaterials
                 .polymer()
                 .color(0x2C2C8C).iconSet(SHINY)
                 .components(Carbon, 48, Seaborgium, 1)
-                .flags(DISABLE_DECOMPOSITION)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
                 .build()
 
             // 2307 Praseodymium-Holmium-Yttrium Nitrates Solution
@@ -3176,6 +3182,37 @@ class GTLiteFirstDegreeMaterials
                 }
                 .build()
 
+            // 2310 Trichlorocyclopentadienyl Titanium
+            TrichlorocyclopentadienylTitanium = Material.Builder(2310, gtliteId("trichlorocyclopentadienyl_titanium"))
+                .dust()
+                .color(0xE600F2).iconSet(SHINY)
+                .components(Carbon, 10, Hydrogen, 10, Chlorine, 3, Titanium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C5H5)2Cl3Ti", true)
+
+            // 2311 Silver Perchlorate
+            SilverPerchlorate = Material.Builder(2311, gtliteId("silver_perchlorate"))
+                .dust()
+                .color(0xFFFFFF).iconSet(SHINY)
+                .components(Silver, 1, Chlorine, 1, Oxygen, 4)
+                .build()
+
+            // 2312 Photopolymer Solution
+            PhotopolymerSolution = Material.Builder(2312, gtliteId("photopolymer_solution"))
+                .liquid()
+                .color(0x5E1D29)
+                .components(Carbon, 149, Hydrogen, 97, Nitrogen, 10, Oxygen, 2, Titanium, 1, Boron, 1, Fluorine, 20)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C149H97N10O2(TiBF20)", true)
+
+            // 2313 Sodium Bromide
+            SodiumBromide = Material.Builder(2313, gtliteId("sodium_bromide"))
+                .dust()
+                .color(0xE3B9F7).iconSet(ROUGH)
+                .components(Sodium, 1, Bromine, 1)
+                .build()
         }
 
     }
