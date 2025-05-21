@@ -451,11 +451,11 @@ tile.fusion_casing_03.vacuum_mk4.name=反应堆真空室 MK4
 tile.fusion_casing_03.vacuum_mk5.name=反应堆真空室 MK5
 
 tile.computer_casing_01.molecular_casing.name=分子机器外壳
-tile.computer_casing_01.molecular_casing.tooltip=阻止高能物质
+tile.computer_casing_01.molecular_casing.tooltip=阻止高能物质/n§b§l也阻止了辐射与物理冲击
 tile.computer_casing_01.molecular_coil.name=分子线圈方块
-tile.computer_casing_01.molecular_coil.tooltip=用这个线圈！
+tile.computer_casing_01.molecular_coil.tooltip=用这个线圈！/n§b§l虽然不能用于电力高炉
 tile.computer_casing_01.hollow_casing.name=中空机械方块
-tile.computer_casing_01.hollow_casing.tooltip=有史以来最先进的管道
+tile.computer_casing_01.hollow_casing.tooltip=有史以来最先进的管道/n§b§l可用作加速器通道
 
 tile.space_elevator_casing.high_strength_concrete.name=超强混凝土地板
 tile.space_elevator_casing.high_strength_concrete.tooltip=地基的最适宜材料/n§d§l牢固又耐用

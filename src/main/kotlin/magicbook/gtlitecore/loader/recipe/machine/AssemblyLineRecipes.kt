@@ -14,6 +14,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
@@ -22,6 +23,7 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bohrium
+import gregtech.api.unification.material.Materials.Concrete
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DrillingFluid
@@ -56,9 +58,11 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
+import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -87,6 +91,9 @@ import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.blocks.BlockCleanroomCasing
+import gregtech.common.blocks.BlockComputerCasing
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
@@ -179,6 +186,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HarmonicPhononMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
@@ -220,12 +229,14 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.HOUR
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
+import magicbook.gtlitecore.common.block.blocks.BlockAccelerationOrbit
 import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockComputerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockFusionCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockGlassCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
+import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
@@ -268,6 +279,7 @@ class AssemblyLineRecipes
             energyHatchesRecipes()
             laserHatchesRecipes()
             coALCasingRecipes()
+            spaceElevatorCasingRecipes()
             antimatterCasingRecipes()
             wireCoilRecipes()
         }
@@ -2739,6 +2751,194 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // TODO OpV-MAX CoAL Casing
+        }
+
+        private fun spaceElevatorCasingRecipes()
+        {
+            // High Strength Concrete
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.PLASCRETE))
+                .input(plate, HDCS, 8)
+                .fluidInputs(Adamantium.getFluid(L))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.HIGH_STRENGTH_CONCRETE))
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Space Elevator Base Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Neutronium, 8)
+                .input(screw, Palladium, 32)
+                .input(plate, Pikyonium64B, 64)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(ELECTRIC_PISTON_UV, 2)
+                .input(ring, Adamantium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(2000))
+                .fluidInputs(Iridium.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING, 16))
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(BlockMetalCasing03.MetalCasingType.OSMIRIDIUM))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // Support Structure Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, Neutronium, 8)
+                .input(bolt, Naquadria, 16)
+                .input(stickLong, Neutronium, 8)
+                .input(plateDouble, Osmiridium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(1000))
+                .fluidInputs(Iridium.getFluid(L * 10))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.SUPPORT_STRUCTURE_CASING, 16))
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(OreDictUnifier.get(frameGt, Neutronium))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(8)
+                }
+                .buildAndRegister()
+
+            // Internal Support Structure Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING, 8))
+                .input(bolt, Palladium, 16)
+                .input(plateDouble, Neutronium, 8)
+                .input(ring, HSLASteel, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(Concrete.getFluid(L * 10))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.INTERNAL_STRUCTURE_CASING, 16))
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(12)
+                }
+                .buildAndRegister()
+
+            // Acceleration Orbit MK1
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ELECTRIC_MOTOR_UV, 4)
+                .input(ring, Neutronium, 8)
+                .input(stick, Neutronium, 4)
+                .input(circuit, MarkerMaterials.Tier.UV)
+                .input(screw, Neutronium, 16)
+                .input(plate, Osmiridium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(Naquadria.getFluid(L * 10))
+                .fluidInputs(Lubricant.getFluid(16000))
+                .outputs(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK1, 8))
+                .EUt(VA[UV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // Acceleration Orbit MK2
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ELECTRIC_MOTOR_UHV, 4)
+                .input(ring, Adamantium, 8)
+                .input(stick, Adamantium, 4)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .input(screw, CosmicNeutronium, 16)
+                .input(plate, Osmiridium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(Taranium.getFluid(L * 10))
+                .fluidInputs(Lubricant.getFluid(16000))
+                .outputs(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK2, 8))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK1))
+                        .EUt(VA[UV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // Acceleration Orbit MK3
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ELECTRIC_MOTOR_UEV, 4)
+                .input(ring, CosmicNeutronium, 8)
+                .input(stick, CosmicNeutronium, 4)
+                .input(circuit, MarkerMaterials.Tier.UEV)
+                .input(screw, Infinity, 16)
+                .input(plate, Osmiridium, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(MetastableHassium.getFluid(L * 10))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .outputs(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK3, 8))
+                .EUt(VA[UEV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK2))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Acceleration Orbit MK4
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ELECTRIC_MOTOR_UIV, 4)
+                .input(ring, HeavyQuarkDegenerateMatter, 8)
+                .input(stick, HeavyQuarkDegenerateMatter, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(screw, TranscendentMetal, 16)
+                .input(plate, Pikyonium64B, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 10))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .outputs(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK4, 8))
+                .EUt(VA[UIV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK3))
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+            // Acceleration Orbit MK5
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ELECTRIC_MOTOR_UXV, 4)
+                .input(ring, TranscendentMetal, 8)
+                .input(stick, TranscendentMetal, 4)
+                .input(circuit, MarkerMaterials.Tier.UXV)
+                .input(screw, SpaceTime, 16)
+                .input(plate, Pikyonium64B, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .fluidInputs(PrimordialMatter.getFluid(L * 10))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .outputs(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK5, 8))
+                .EUt(VA[UXV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.ACCELERATION_ORBIT.getItemVariant(BlockAccelerationOrbit.OrbitTier.MK4))
+                        .EUt(VA[UIV].toLong())
+                        .CWUt(64)
+                }
+                .buildAndRegister()
+
         }
 
         private fun antimatterCasingRecipes()

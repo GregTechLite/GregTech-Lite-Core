@@ -159,6 +159,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
@@ -203,7 +204,9 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_MV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UIV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
@@ -311,10 +314,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium2
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RubidiumTitanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Staballoy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
@@ -350,11 +356,13 @@ import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockMetalCasing03
 import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockPrimitiveCasing
+import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CASTING_MOLD_EMPTY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
@@ -444,6 +452,10 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SAP_COLLECTOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SLICER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SONICATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ASSEMBLER_MK1
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ASSEMBLER_MK2
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ASSEMBLER_MK3
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ELEVATOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ALLOY_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ENGINE
@@ -2330,6 +2342,110 @@ class MachineRecipeLoader
                     r.researchStack(LARGE_NAQUADAH_REACTOR.stackForm)
                         .EUt(VA[UEV].toLong())
                         .CWUt(128)
+                }
+                .buildAndRegister()
+
+            // Space Elevator
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING, 8))
+                .input(frameGt, Neutronium, 16)
+                .input(FIELD_GENERATOR_UV, 4)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .input(plateDouble, Vibranium, 32)
+                .input(plateDouble, Bedrockium, 32)
+                .input(PICO_PIC_CHIP, 64)
+                .input(ELECTRIC_MOTOR_UV, 8)
+                .input(screw, Adamantium, 24)
+                .fluidInputs(SolderingAlloy.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(16000))
+                .fluidInputs(Lubricant.getFluid(32000))
+                .fluidInputs(Iridium.getFluid(L * 10))
+                .output(SPACE_ELEVATOR)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_AIRPORT.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Space Assembler Module MK1
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ASSEMBLER[UHV], 4)
+                .input(CIRCUIT_ASSEMBLER[UHV], 4)
+                .input(gear, CosmicNeutronium, 8)
+                .input(gearSmall, CosmicNeutronium, 16)
+                .input(ROBOT_ARM_UHV, 8)
+                .input(CONVEYOR_MODULE_UHV, 16)
+                .input(circuit, MarkerMaterials.Tier.UHV, 8)
+                .input(circuit, MarkerMaterials.Tier.UV, 16)
+                .input(frameGt, Neutronium, 8)
+                .input(screw, Neutronium, 32)
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .fluidInputs(Naquadria.getFluid(L * 9))
+                .fluidInputs(Lubricant.getFluid(16000))
+                .output(SPACE_ASSEMBLER_MK1)
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ASSEMBLER[UHV].stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Space Assembler Module MK2
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ASSEMBLER[UEV], 4)
+                .input(CIRCUIT_ASSEMBLER[UEV], 4)
+                .input(gear, Infinity, 8)
+                .input(gearSmall, Infinity, 16)
+                .input(ROBOT_ARM_UEV, 8)
+                .input(CONVEYOR_MODULE_UEV, 16)
+                .input(circuit, MarkerMaterials.Tier.UEV, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 16)
+                .input(frameGt, Vibranium, 8)
+                .input(screw, Vibranium, 32)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 9))
+                .fluidInputs(Taranium.getFluid(L * 9))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .output(SPACE_ASSEMBLER_MK2)
+                .EUt(VA[UEV].toLong())
+                .duration(2 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(SPACE_ASSEMBLER_MK1.stackForm)
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+            // Space Assembler Module MK3
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.BASE_CASING))
+                .input(ASSEMBLER[UIV], 4)
+                .input(CIRCUIT_ASSEMBLER[UIV], 4)
+                .input(gear, SpaceTime, 8)
+                .input(gearSmall, SpaceTime, 16)
+                .input(ROBOT_ARM_UIV, 8)
+                .input(CONVEYOR_MODULE_UIV, 16)
+                .input(circuit, MarkerMaterials.Tier.UIV, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 16)
+                .input(frameGt, Shirabon, 8)
+                .input(screw, Shirabon, 32)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 9))
+                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 9))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                .output(SPACE_ASSEMBLER_MK3)
+                .EUt(VA[UIV].toLong())
+                .duration(5 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
+                        .EUt(VA[UIV].toLong())
+                        .CWUt(64)
                 }
                 .buildAndRegister()
 

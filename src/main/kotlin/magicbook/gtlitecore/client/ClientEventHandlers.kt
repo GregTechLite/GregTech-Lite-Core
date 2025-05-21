@@ -25,32 +25,39 @@ class ClientEventHandlers
         PipeRenderer.initializeRestrictor(textureMap)
     }
 
-    @SubscribeEvent
-    fun addMaterialFormula(event: ItemTooltipEvent)
+    companion object
     {
-        val stack = event.itemStack
-        if (stack.item is SheetedFrameItemBlock)
+
+        @Suppress("KotlinConstantConditions")
+        @SubscribeEvent
+        fun addItemTooltips(event: ItemTooltipEvent)
         {
-            val unificationEntry = OreDictUnifier.getUnificationEntry(stack)
-            if (unificationEntry?.material != null)
+            val stack = event.itemStack
+            // Add material formulas for sheetedFrameX.
+            if (stack.item is SheetedFrameItemBlock)
             {
-                if (unificationEntry.material?.chemicalFormula != null
-                    && unificationEntry.material?.chemicalFormula!!.isNotEmpty())
+                val unificationEntry = OreDictUnifier.getUnificationEntry(stack)
+                if (unificationEntry?.material != null)
                 {
-                    event.toolTip.add("§e" + unificationEntry.material!!.chemicalFormula)
+                    if (unificationEntry.material?.chemicalFormula != null
+                        && unificationEntry.material?.chemicalFormula!!.isNotEmpty())
+                    {
+                        event.toolTip.add("§e" + unificationEntry.material!!.chemicalFormula)
+                    }
                 }
             }
-        }
-        else if (stack.item is MaterialItemBlock
-            && stack.item.registryName!!.path.startsWith("meta_block_wall_gt"))
-        {
-            val tUnificationEntry = OreDictUnifier.getUnificationEntry(stack)
-            if (tUnificationEntry?.material != null)
+            // Add material formulas for wallGtX
+            if (stack.item is MaterialItemBlock
+                && stack.item.registryName!!.path.startsWith("meta_block_wall_gt"))
             {
-                if (tUnificationEntry.material?.chemicalFormula != null
-                    && tUnificationEntry.material?.chemicalFormula!!.isNotEmpty())
+                val unificationEntry = OreDictUnifier.getUnificationEntry(stack)
+                if (unificationEntry?.material != null)
                 {
-                    event.toolTip.add("§e" + tUnificationEntry.material!!.chemicalFormula)
+                    if (unificationEntry.material?.chemicalFormula != null
+                        && unificationEntry.material?.chemicalFormula!!.isNotEmpty())
+                    {
+                        event.toolTip.add("§e" + unificationEntry.material!!.chemicalFormula)
+                    }
                 }
             }
         }

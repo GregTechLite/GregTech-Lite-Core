@@ -77,7 +77,7 @@ public class MultiblockUIFactory
         configureDisplayText(builder -> builder.title(mte.getMetaFullName()).structureFormed(mte.isStructureFormed()));
     }
 
-    private Widget<?> createIndicator(PanelSyncManager syncManager)
+    protected Widget<?> createIndicator(PanelSyncManager syncManager)
     {
         if (warningText == NO_OP && errorText == NO_OP)
         {

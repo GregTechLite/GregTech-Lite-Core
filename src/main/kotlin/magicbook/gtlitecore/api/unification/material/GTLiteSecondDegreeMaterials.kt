@@ -407,7 +407,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x808080).iconSet(METALLIC)
                 .components(Invar, 2, Vanadium, 1, Titanium, 1, Molybdenum, 1)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_RING)
                 .blast { b ->
                     b.temp(1711, BlastProperty.GasTier.LOW) // Kanthal
                         .blastStats(VA[HV], 25 * SECOND)

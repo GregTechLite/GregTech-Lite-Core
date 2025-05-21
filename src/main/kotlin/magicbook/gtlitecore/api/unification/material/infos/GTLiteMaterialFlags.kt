@@ -82,6 +82,7 @@ import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
@@ -222,6 +223,7 @@ class GTLiteMaterialFlags
             Inconel718.addFlags(GENERATE_BOLT_SCREW)
             Neptunium.addFlags(GENERATE_BOLT_SCREW)
             Uranium235.addFlags(GENERATE_BOLT_SCREW)
+            Palladium.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
