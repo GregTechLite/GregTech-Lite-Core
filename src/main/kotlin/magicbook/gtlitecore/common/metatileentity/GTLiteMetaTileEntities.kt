@@ -886,6 +886,16 @@ class GTLiteMetaTileEntities
             SPACE_ASSEMBLER_MK3 = MetaTileEntities.registerMetaTileEntity(18033, // For cosmic circuits, so it is UIV.
                 MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk3"), UIV, 3, 5))
 
+            // SPACE_MINER_MK1
+            // SPACE_MINER_MK2
+            // SPACE_MINER_MK3
+
+            // SPACE_PUMP_MK1
+            // SPACE_PUMP_MK2
+            // SPACE_PUMP_MK3
+
+            // DYSON_SWARM_GROUND_UNIT
+
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
 

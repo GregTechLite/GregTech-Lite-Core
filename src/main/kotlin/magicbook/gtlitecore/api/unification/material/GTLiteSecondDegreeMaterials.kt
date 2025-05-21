@@ -786,7 +786,7 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0xC4A415).iconSet(SHINY)
                 .components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .blast { b ->
                     b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
                         .blastStats(VA[UEV], 1 * MINUTE + 15 * SECOND)
@@ -896,7 +896,7 @@ class GTLiteSecondDegreeMaterials
                         + Osmium.materialRGB).iconSet(BRIGHT)
                 .components(Ruthenium, 1, Rhodium, 1, Palladium, 1, Silver, 1,
                     Osmium, 1, Iridium, 1, Platinum, 1, Gold, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
                 .blast { b ->
                     b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
                         .blastStats(VA[UV], 1 * MINUTE)

@@ -75,6 +75,7 @@ import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
 import gregtech.api.unification.material.Materials.Nobelium
@@ -225,6 +226,7 @@ class GTLiteMaterialFlags
             Neptunium.addFlags(GENERATE_BOLT_SCREW)
             Uranium235.addFlags(GENERATE_BOLT_SCREW)
             Palladium.addFlags(GENERATE_BOLT_SCREW)
+            NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -400,6 +402,7 @@ class GTLiteMaterialFlags
             Uranium238.addFlags(GENERATE_PLATE)
             Thulium.addFlags(GENERATE_PLATE)
             Livermorium.addFlags(GENERATE_PLATE)
+            Nihonium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

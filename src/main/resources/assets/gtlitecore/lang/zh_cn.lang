@@ -1377,7 +1377,7 @@ gtlitecore.recipe.nano_forge_tier=结构等级：
 
 gtlitecore.recipe.quantum_force_transformer_tier=结构等级：
 
-gtlitecore.recipe.acceleration_orbit_tier=加速轨道等级：%s
+gtlitecore.recipe.acceleration_orbit_tier=加速轨道等级：
 
 # Machines
 gtlitecore.machine.polisher.lv.name=基础抛光机
