@@ -11,6 +11,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
+import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
@@ -33,6 +34,7 @@ import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropi
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Lubricant
@@ -170,7 +172,9 @@ import gregtech.common.items.MetaItems.VOLTAGE_COIL_UV
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
@@ -186,6 +190,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HSLASteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
@@ -239,6 +244,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockMultiblockCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_IV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
@@ -280,6 +286,7 @@ class AssemblyLineRecipes
             laserHatchesRecipes()
             coALCasingRecipes()
             spaceElevatorCasingRecipes()
+            dysonSwarmCasingRecipes()
             antimatterCasingRecipes()
             wireCoilRecipes()
         }
@@ -2939,6 +2946,30 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
+        }
+
+        private fun dysonSwarmCasingRecipes()
+        {
+            // Dyson Swarm Energy Receiver Base Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(POWER_TRANSFORMER[UHV])
+                .input(FEMTO_PIC_CHIP, 64)
+                .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 4)
+                .input(VOLTAGE_COIL_UHV, 64)
+                .input(VOLTAGE_COIL_UHV, 64)
+                .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 50000))
+                .fluidInputs(GelidCryotheum.getFluid(16000))
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(POWER_TRANSFORMER[UHV].stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
         }
 
         private fun antimatterCasingRecipes()
