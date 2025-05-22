@@ -30,14 +30,20 @@ import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
+import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Fermium
+import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Helium
+import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Lubricant
+import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -49,6 +55,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -58,12 +65,15 @@ import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.SodiumPotassium
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
+import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
 import gregtech.api.unification.material.Materials.VanadiumGallium
+import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
@@ -95,6 +105,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockCleanroomCasing
 import gregtech.common.blocks.BlockComputerCasing
+import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
@@ -172,9 +183,16 @@ import gregtech.common.items.MetaItems.VOLTAGE_COIL_UV
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HIGH_PERFORMANCE_COMPUTING_ARRAY
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_CONTROLLER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_EXTENDER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_PROXY
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
@@ -201,6 +219,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyX
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuarkDegenerateMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
@@ -209,12 +228,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Rhugnor
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumPotassiumEutatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
@@ -222,6 +243,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Stellite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -268,6 +290,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_16777216
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_4194304
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
+import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 
@@ -2957,9 +2980,9 @@ class AssemblyLineRecipes
                 .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 4)
                 .input(VOLTAGE_COIL_UHV, 64)
                 .input(VOLTAGE_COIL_UHV, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
                 .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 50000))
                 .fluidInputs(GelidCryotheum.getFluid(16000))
-                .fluidInputs(SolderingAlloy.getFluid(L * 80))
                 .fluidInputs(UUMatter.getFluid(8000))
                 .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING, 16))
                 .EUt(VA[UHV].toLong())
@@ -2970,6 +2993,157 @@ class AssemblyLineRecipes
                         .CWUt(24)
                 }
                 .buildAndRegister()
+
+            // Dyson Swarm Module Deployment Unit Base Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV])
+                .input(circuit, MarkerMaterials.Tier.UEV, 4)
+                .input(ELECTRIC_PUMP_UHV, 16)
+                .input(QUANTUM_TANK[UHV], 2)
+                .input(CONVEYOR_MODULE_UHV, 16)
+                .input(QUANTUM_CHEST[UHV], 2)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Lubricant.getFluid(50000))
+                .fluidInputs(GelidCryotheum.getFluid(FluidStorageKeys.LIQUID, 16000))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(QUANTUM_CHEST[UHV].stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(32)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Module Deployment Unit Core
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV], 4)
+                .input(QUANTUM_STORAGE_CONTROLLER, 8)
+                .input(QUANTUM_STORAGE_PROXY, 16)
+                .input(QUANTUM_STORAGE_EXTENDER, 16)
+                .input(CONVEYOR_MODULE_UHV, 8)
+                .input(ROBOT_ARM_UHV, 8)
+                .input(ELECTRIC_PISTON_UHV, 8)
+                .input(plateDouble, Rhugnor, 4)
+                .input(foil, QuantumAlloy, 32)
+                .input(screw, Tairitsium, 24)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Lubricant.getFluid(50000))
+                .fluidInputs(Bedrockium.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_CORE))
+                .EUt(VA[UHV].toLong())
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(QUANTUM_STORAGE_CONTROLLER.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(48)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Module Deployment Unit Superconducting Magnet
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(block, SamariumCobalt, 8)
+                .input(wireGtHex, RutheniumTriniumAmericiumNeutronate, 16)
+                .input(FEMTO_PIC_CHIP, 64)
+                .input(circuit, MarkerMaterials.Tier.UEV, 4)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Lubricant.getFluid(50000))
+                .fluidInputs(TitanSteel.getFluid(L * 20))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_SUPERCONDUCTING_MAGNET, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(POLARIZER[UHV].stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Control Center Base Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[UHV], 4)
+                .input(HIGH_PERFORMANCE_COMPUTING_ARRAY, 8)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(screw, Roentgenium, 16)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Holmium.getFluid(L * 40))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_CONTROL_CENTER_BASE_CASING, 16))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Control Center Primary Windings
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.COMPUTER_CASING_01.getItemVariant(BlockComputerCasing01.ComputerCasingType.MOLECULAR_COIL, 4))
+                .input(FEMTO_PIC_CHIP, 8)
+                .input(foil, Dysprosium, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Kevlar.getFluid(L * 24))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_CONTROL_CENTER_PRIMARY_WINDINGS, 4))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(VOLTAGE_COIL_UHV.stackForm)
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(8)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Control Center Secondary Windings
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL, 4))
+                .input(spring, TantalumHafniumSeaborgiumCarbide, 8)
+                .input(foil, Erbium, 64)
+                .input(foil, HastelloyX78, 64)
+                .input(foil, Fermium, 64)
+                .input(foil, PreciousMetalAlloy, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(Gadolinium.getFluid(L * 16))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_CONTROL_CENTER_SECONDARY_WINDINGS, 4))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(12)
+                }
+                .buildAndRegister()
+
+            // Dyson Swarm Control Center Toroid Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, MetastableOganesson, 4)
+                .input(foil, Terbium, 64)
+                .input(foil, Ytterbium, 64)
+                .input(foil, Lutetium, 64)
+                .input(foil, CosmicNeutronium, 64)
+                .input(screw, MetastableFlerovium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 80))
+                .fluidInputs(UUMatter.getFluid(8000))
+                .outputs(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING.getItemVariant(BlockSpaceElevatorCasing.CasingType.DYSON_SWARM_CONTROL_CENTER_TOROID_CASING, 64))
+                .EUt(VA[UHV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(OreDictUnifier.get(frameGt, MetastableOganesson))
+                        .EUt(VA[UHV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
         }
 
         private fun antimatterCasingRecipes()

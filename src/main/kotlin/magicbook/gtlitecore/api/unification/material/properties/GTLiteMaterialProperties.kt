@@ -206,7 +206,8 @@ class GTLiteMaterialProperties
                 Francium, Thallium, Sodium, Californium, Radium, Scandium, Polonium, Actinium,
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
                 Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium,
-                Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium, Tellurium)
+                Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium, Tellurium,
+                Holmium, Erbium, Gadolinium)
                 .forEach { addLiquid(it) }
 
             // Plasma
@@ -416,12 +417,6 @@ class GTLiteMaterialProperties
             Tellurium.materialRGB = 0xE2D8C1
             RawGrowthMedium.materialRGB = 0x0B2E12
             Meitnerium.materialRGB = 0x9C1E55
-
-            // Material Icon Sets
-            Promethium.materialIconSet = MaterialIconSet.SHINY
-            Thulium.materialIconSet = MaterialIconSet.SHINY
-            Lutetium.materialIconSet = MaterialIconSet.SHINY
-            Nobelium.materialIconSet = MaterialIconSet.SHINY
         }
 
         /**

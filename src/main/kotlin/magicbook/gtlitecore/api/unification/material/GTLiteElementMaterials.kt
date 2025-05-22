@@ -177,7 +177,7 @@ class GTLiteElementMaterials
                 .color(0xE61C24).iconSet(SHINY)
                 .element(Og)
                 .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING,
-                    GENERATE_DOUBLE_PLATE)
+                    GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
                 .blast { b ->
                     b.temp(12380, BlastProperty.GasTier.HIGHEST) // Adamantium
                         .blastStats(VA[UEV], 2 * MINUTE)

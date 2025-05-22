@@ -1,6 +1,11 @@
 package magicbook.gtlitecore.api.unification.material.infos
 
 import gregtech.api.unification.material.Materials.BismuthBronze
+import gregtech.api.unification.material.Materials.Lutetium
+import gregtech.api.unification.material.Materials.Nobelium
+import gregtech.api.unification.material.Materials.Promethium
+import gregtech.api.unification.material.Materials.Terbium
+import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -82,6 +87,11 @@ class GTLiteMaterialIconSet
         {
             BismuthBronze.materialIconSet = MaterialIconSet.METALLIC
             Uranium238.materialIconSet = MaterialIconSet.METALLIC
+            Terbium.materialIconSet = MaterialIconSet.SHINY
+            Promethium.materialIconSet = MaterialIconSet.SHINY
+            Thulium.materialIconSet = MaterialIconSet.SHINY
+            Lutetium.materialIconSet = MaterialIconSet.SHINY
+            Nobelium.materialIconSet = MaterialIconSet.SHINY
         }
 
     }

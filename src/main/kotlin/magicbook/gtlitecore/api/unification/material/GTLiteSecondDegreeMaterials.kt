@@ -640,7 +640,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x0F0F0F).iconSet(BRIGHT)
                 .components(Stellite, 15, Jasper, 5, Gallium, 5, Americium, 5, Palladium, 5, Bismuth, 5, Germanium, 5, SiliconCarbide, 5)
-                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
+                .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
+                    GENERATE_FOIL)
                 .blast { b ->
                     b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
                         .blastStats(VA[UHV], 58 * SECOND)
@@ -732,7 +733,7 @@ class GTLiteSecondDegreeMaterials
                 .components(NaquadahAlloy, 10, Rhenium, 5, Naquadria, 4, Gadolinium, 3,
                     Strontium, 2, Polonium, 3, Rutherfordium, 2, Fermium, 1)
                 .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR,
-                    GENERATE_RING)
+                    GENERATE_RING, GENERATE_FOIL)
                 .blast { b ->
                     b.temp(12300, BlastProperty.GasTier.HIGHEST) // Adamantium
                         .blastStats(VA[UHV], 44 * SECOND)
@@ -843,8 +844,8 @@ class GTLiteSecondDegreeMaterials
                 .fluid()
                 .color(0x2C2C2C).iconSet(SHINY)
                 .components(TantalumCarbide, 12, HafniumCarbide, 3, SeaborgiumCarbide, 1)
-                .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                    GENERATE_FRAME)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
+                    GENERATE_FRAME, GENERATE_SPRING)
                 .blast { b ->
                     b.temp(12900, BlastProperty.GasTier.HIGHEST) // Infinity (Adamantium)
                         .blastStats(VA[UHV], 36 * SECOND)
