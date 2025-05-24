@@ -234,6 +234,7 @@ class GTLiteMaterialFlags
             Palladium.addFlags(GENERATE_BOLT_SCREW)
             NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW)
             Roentgenium.addFlags(GENERATE_BOLT_SCREW)
+            NeodymiumMagnetic.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)

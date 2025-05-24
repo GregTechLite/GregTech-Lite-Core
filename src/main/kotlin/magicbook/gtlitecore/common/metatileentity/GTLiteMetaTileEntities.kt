@@ -46,6 +46,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCatal
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityComponentAssemblyLine
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCosmicRayDetector
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityCrystallizationCrucible
+import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityEnergyInfuser
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityFusionReactors
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityLaserInducedCVDUnit
 import magicbook.gtlitecore.common.metatileentity.multiblock.MetaTileEntityMiningDroneAirport
@@ -283,6 +284,8 @@ class GTLiteMetaTileEntities
         lateinit var SPACE_ASSEMBLER_MK1: MetaTileEntitySpaceAssembler
         lateinit var SPACE_ASSEMBLER_MK2: MetaTileEntitySpaceAssembler
         lateinit var SPACE_ASSEMBLER_MK3: MetaTileEntitySpaceAssembler
+
+        lateinit var ENERGY_INFUSER: MetaTileEntityEnergyInfuser
 
         lateinit var LARGE_FORGE_HAMMER: MetaTileEntityLargeForgeHammer
         lateinit var LARGE_BENDER: MetaTileEntityLargeBender
@@ -886,15 +889,18 @@ class GTLiteMetaTileEntities
             SPACE_ASSEMBLER_MK3 = MetaTileEntities.registerMetaTileEntity(18033, // For cosmic circuits, so it is UIV.
                 MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk3"), UIV, 3, 5))
 
-            // SPACE_MINER_MK1
-            // SPACE_MINER_MK2
-            // SPACE_MINER_MK3
+            // SPACE_MINER_MK1 18034
+            // SPACE_MINER_MK2 18035
+            // SPACE_MINER_MK3 18036
 
-            // SPACE_PUMP_MK1
-            // SPACE_PUMP_MK2
-            // SPACE_PUMP_MK3
+            // SPACE_PUMP_MK1 18037
+            // SPACE_PUMP_MK2 18038
+            // SPACE_PUMP_MK3 18039
 
-            // DYSON_SWARM_GROUND_UNIT
+            // DYSON_SWARM_GROUND_UNIT 18040
+
+            ENERGY_INFUSER = MetaTileEntities.registerMetaTileEntity(18041,
+                MetaTileEntityEnergyInfuser(GTLiteUtility.gtliteId("energy_infuser")))
 
             LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
                 MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))

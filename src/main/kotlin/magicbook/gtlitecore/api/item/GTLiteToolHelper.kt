@@ -2,6 +2,9 @@ package magicbook.gtlitecore.api.item
 
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.properties.PropertyKey
+import net.minecraft.item.ItemStack
+
+
 
 class GTLiteToolHelper
 {
@@ -31,6 +34,17 @@ class GTLiteToolHelper
             if (!material.hasProperty(PropertyKey.TOOL))
                 throw IllegalArgumentException("Material ${material.name} does not have ToolProperty!")
             return material.getProperty(PropertyKey.TOOL).toolDurability / 2
+        }
+
+        /**
+         * Check if the stack has full durability, means it is not damaged (first, it must be
+         * not repairable).
+         */
+        @JvmStatic
+        fun isItemHasFullDurability(stack: ItemStack): Boolean
+        {
+            val item = stack.item
+            return !item.isRepairable || item.getDamage(stack) <= 0
         }
 
     }

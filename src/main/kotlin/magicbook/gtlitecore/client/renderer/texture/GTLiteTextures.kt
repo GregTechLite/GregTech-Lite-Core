@@ -279,6 +279,8 @@ class GTLiteTextures
         @JvmField
         val SPACE_ELEVATOR_BASE_CASING = GTLiteSimpleOverlayRenderer("casings/space/elevator_base_casing")
 
+        @JvmField
+        val MOLECULAR_CASING = GTLiteSimpleOverlayRenderer("casings/special/molecular_casing")
 
         @JvmField
         val ANTIMATTER_FORGE_TEXTURE = SimpleOverlayRenderer("machines/multiblock/antimatter_forge/base/antimatter")

@@ -2169,6 +2169,11 @@ gtlitecore.machine.space_assembler_module.tooltip=将太空组装功能添加到
 gtlitecore.machine.space_assembler_module.max_parallel=运行电压：%s§7，最大并行数：§e%s§7
 gtlitecore.machine.space_assembler_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
 
+gtlitecore.machine.energy_infuser.name=Energy Infuser
+gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
+gtlitecore.machine.energy_infuser.tooltip.2=可以使用§dUU物质§7来修复已损失耐久度的物品。
+gtlitecore.machine.energy_infuser.tooltip.3=§4嘿！如果你不想丢掉你的物品和装备的话，不要使用ME输入总线！§7
+
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_forge_hammer.tooltip.1=Update Component Casing or Voltage tier to improve machine performance.
 gtlitecore.machine.large_forge_hammer.tooltip.2=When Voltage tier >= §3UV§7 tier, then enabled §bPerfect Overclock§7.

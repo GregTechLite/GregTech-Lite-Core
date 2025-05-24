@@ -14,6 +14,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
+import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.items.OreDictNames
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.ModHandler
@@ -47,6 +48,7 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Invar
@@ -63,6 +65,7 @@ import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
@@ -142,6 +145,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockBoilerCasing
 import gregtech.common.blocks.BlockCleanroomCasing
+import gregtech.common.blocks.BlockComputerCasing
 import gregtech.common.blocks.BlockFireboxCasing
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.BlockGlassCasing
@@ -220,6 +224,7 @@ import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
+import gregtech.common.metatileentities.MetaTileEntities.ACTIVE_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -228,6 +233,7 @@ import gregtech.common.metatileentities.MetaTileEntities.AUTOCLAVE
 import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
+import gregtech.common.metatileentities.MetaTileEntities.CHARGER
 import gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
@@ -388,6 +394,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CRYSTALLIZATION_CRUCIBLE
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CVD_UNIT
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ELECTRIC_IMPLOSION_COMPRESSOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.ENERGY_INFUSER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FOOD_PROCESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK4
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.FUSION_REACTOR_MK5
@@ -2446,6 +2453,27 @@ class MachineRecipeLoader
                     r.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
                         .EUt(VA[UIV].toLong())
                         .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // ...
+
+            // Energy Infuser
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ACTIVE_TRANSFORMER)
+                .inputs(GTLiteMetaBlocks.COMPUTER_CASING_01.getItemVariant(BlockComputerCasing01.ComputerCasingType.MOLECULAR_COIL, 8))
+                .inputs(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING, 8))
+                .input(screw, NeodymiumMagnetic, 16)
+                .fluidInputs(Electrum.getFluid(L * 18))
+                .fluidInputs(Europium.getFluid(L * 13))
+                .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+                .output(ENERGY_INFUSER)
+                .EUt(100_000) // ZPM
+                .duration(5 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(CHARGER[ZPM].stackForm)
+                        .EUt(VA[ZPM].toLong())
+                        .CWUt(12)
                 }
                 .buildAndRegister()
 

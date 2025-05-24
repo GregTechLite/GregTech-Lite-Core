@@ -5,6 +5,7 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
 import net.minecraftforge.common.config.Config.RequiresMcRestart;
+import net.minecraftforge.common.config.Config.RangeInt;
 
 @Config(modid = GTLiteValues.MODID,
         name = GTLiteValues.MODID + '/' + GTLiteValues.MODID) // Put configurations to the total files with module configurations.
@@ -64,6 +65,30 @@ public class GTLiteConfigHolder
 
     public static class MachineOptions
     {
+
+        @Comment({"Modifiable settings for Energy Infuser, consists of maximum repaired damage, energy consumed and UU Matter consumed."})
+        @Name("Energy Infuser Options")
+        public EnergyInfuser energyInfuser = new EnergyInfuser();
+
+        public static class EnergyInfuser
+        {
+
+            @Comment({"Maximum repaired durability of Energy Infuser during one working.", "Default: 1000"})
+            @Name("Maximum durability repair during one working")
+            @RangeInt(min = 1)
+            public int maxRepairedDamagePerWorking = 1000;
+
+            @Comment({"Energy consumed (GTEU) per one durability which be repaired in Energy Infuser", "Default: 1000"})
+            @Name("Energy consumed per one durability")
+            @RangeInt(min = 1)
+            public int energyConsumedPerDurability = 1000;
+
+            @Comment({"UU Matter consumed per one durability which be repaired in Energy Infuser", "Default: 1"})
+            @Name("UU Matter consumed per one durability")
+            @RangeInt(min = 1)
+            public int uuMatterConsumedPerDurability = 1;
+
+        }
 
     }
 
