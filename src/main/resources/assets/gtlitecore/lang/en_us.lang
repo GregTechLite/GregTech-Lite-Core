@@ -2157,6 +2157,9 @@ gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量�
 gtlitecore.machine.space_elevator.name=Space Elevator
 
 gtlitecore.machine.space_elevator.extension_info=Enabled Extension Structure
+gtlitecore.machine.space_elevator.enable_module=Enabled All Modules
+gtlitecore.machine.space_elevator.disable_module=Disabled All Modules
+gtlitecore.machine.space_elevator.refresh_structure_pattern=Force Refresh Structure Pattern
 
 gtlitecore.machine.space_assembler_module.mk1.name=太空组装模块 MK1
 gtlitecore.machine.space_assembler_module.mk1.tooltip.1=§d§l为什么我又要在太空里组装东西啊？§7

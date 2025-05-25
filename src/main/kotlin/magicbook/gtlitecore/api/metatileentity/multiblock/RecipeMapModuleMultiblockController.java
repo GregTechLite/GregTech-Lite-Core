@@ -6,6 +6,7 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerHandler;
+import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
@@ -31,12 +32,12 @@ import java.util.List;
 
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 
-public abstract class RecipeMapModuleMultiblockController extends RecipeMapMultiblockController implements IModuleReceiver, IControllable
+public abstract class RecipeMapModuleMultiblockController extends RecipeMapMultiblockController implements IModuleReceiver
 {
 
-    private final int tier;
-    private final int moduleTier;
-    private final int minCasingTier;
+    protected final int tier;
+    protected final int moduleTier;
+    protected final int minCasingTier;
 
     protected IModuleProvider moduleProvider;
 
@@ -94,20 +95,20 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
         }
         else
         {
-            return energyContainer;
+            return this.energyContainer;
         }
     }
 
     @Override
     public void sentWorkingDisabled()
     {
-        recipeMapWorkable.setWorkingEnabled(false);
+        this.recipeMapWorkable.setWorkingEnabled(false);
     }
 
     @Override
     public void sentWorkingEnabled()
     {
-        recipeMapWorkable.setWorkingEnabled(true);
+        this.recipeMapWorkable.setWorkingEnabled(true);
     }
 
     @Override
@@ -122,17 +123,13 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
         super.updateFormedValid();
         if (getOffsetTimer() % SECOND == 0 && getModuleProvider() != null)
         {
-            if (energyContainer.getEnergyCapacity() != energyContainer.getEnergyStored()
-                    && getModuleProvider().getSubEnergyContainer().getEnergyStored() > energyConsumed * SECOND)
+            if (this.energyContainer.getEnergyCapacity() != this.energyContainer.getEnergyStored()
+                    && getModuleProvider().getSubEnergyContainer().getEnergyStored() > this.energyConsumed * SECOND)
             {
-                long simulate = energyContainer.getEnergyCapacity() - energyContainer.getEnergyStored();
+                long simulate = this.energyContainer.getEnergyCapacity() - this.energyContainer.getEnergyStored();
                 getModuleProvider().getSubEnergyContainer().removeEnergy(simulate);
-                energyContainer.addEnergy(simulate);
+                this.energyContainer.addEnergy(simulate);
             }
-        }
-        else if (getModuleProvider() == null)
-        {
-            recipeMapWorkable.setWorkingEnabled(false);
         }
     }
 
@@ -152,21 +149,9 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
     }
 
     @Override
-    public boolean isWorkingEnabled()
-    {
-        return recipeMapWorkable.isWorkingEnabled();
-    }
-
-    @Override
-    public void setWorkingEnabled(boolean workingEnabled)
-    {
-        recipeMapWorkable.setWorkingEnabled(workingEnabled);
-    }
-
-    @Override
     public IModuleProvider getModuleProvider()
     {
-        return moduleProvider;
+        return this.moduleProvider;
     }
 
     @Override
@@ -175,46 +160,46 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
         this.moduleProvider = provider;
     }
 
-    @SuppressWarnings("UnstableApiUsage")
-    @Override
-    public boolean usesMui2()
-    {
-        return true;
-    }
+    // @SuppressWarnings("UnstableApiUsage")
+    // @Override
+    // public boolean usesMui2()
+    // {
+    //     return true;
+    // }
 
-    @Override
-    public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
-    {
-        return new MultiblockUIFactory(this)
-                .configureDisplayText(this::configureDisplayText)
-                .configureWarningText(this::configureWarningText)
-                .configureErrorText(this::configureErrorText)
-                .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
-    }
+    // @Override
+    // public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
+    // {
+    //     return new MultiblockUIFactory(this)
+    //             .configureDisplayText(this::configureDisplayText)
+    //             .configureWarningText(this::configureWarningText)
+    //             .configureErrorText(this::configureErrorText)
+    //             .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
+    // }
 
-    protected void configureDisplayText(MultiblockUIBuilder builder)
-    {
-        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
-                .addEnergyUsageLine(getEnergyContainer())
-                .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
-                .addParallelsLine(recipeMapWorkable.getParallelLimit())
-                .addWorkingStatusLine()
-                .addProgressLine(recipeMapWorkable.getProgress(), recipeMapWorkable.getMaxProgress());
-    }
+    // protected void configureDisplayText(MultiblockUIBuilder builder)
+    // {
+    //     builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
+    //             .addEnergyUsageLine(getEnergyContainer())
+    //             .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
+    //             .addParallelsLine(recipeMapWorkable.getParallelLimit())
+    //             .addWorkingStatusLine()
+    //             .addProgressLine(recipeMapWorkable.getProgress(), recipeMapWorkable.getMaxProgress());
+    // }
 
-    protected void configureWarningText(MultiblockUIBuilder builder)
-    {
-        builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy());
-        builder.addMaintenanceProblemLines(getMaintenanceProblems(), true);
-    }
+    // protected void configureWarningText(MultiblockUIBuilder builder)
+    // {
+    //     builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy());
+    //     builder.addMaintenanceProblemLines(getMaintenanceProblems(), true);
+    // }
 
-    protected void configureErrorText(MultiblockUIBuilder builder)
-    {
-        builder.structureFormed(isStructureFormed());
-        if (hasMufflerMechanics())
-            builder.addMufflerObstructedLine(!isMufflerFaceFree());
-        if (hasMaintenanceMechanics())
-            builder.addMaintenanceProblemLines(getMaintenanceProblems(), false);
-    }
+    // protected void configureErrorText(MultiblockUIBuilder builder)
+    // {
+    //     builder.structureFormed(isStructureFormed());
+    //     if (hasMufflerMechanics())
+    //         builder.addMufflerObstructedLine(!isMufflerFaceFree());
+    //     if (hasMaintenanceMechanics())
+    //         builder.addMaintenanceProblemLines(getMaintenanceProblems(), false);
+    // }
 
 }

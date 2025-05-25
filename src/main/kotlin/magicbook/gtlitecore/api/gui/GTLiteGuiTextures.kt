@@ -332,6 +332,18 @@ class GTLiteGuiTextures
             "textures/gui/widget/button_elevator_extension.png")
 
         @JvmField
+        val BUTTON_DISABLE_MODULE: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/button_disable_module.png")
+
+        @JvmField
+        val BUTTON_ENABLE_MODULE: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/button_enable_module.png")
+
+        @JvmField
+        val BUTTON_REFRESH_STRUCTURE_PATTERN: TextureArea = TextureArea.fullImage(
+            "textures/gui/widget/button_refresh_structure_pattern.png")
+
+        @JvmField
         val FUSION_REACTOR_MK4_TITLE: TextureArea = TextureArea.fullImage(
             "textures/gui/widget/fusion_reactor_mk4_title")
 
