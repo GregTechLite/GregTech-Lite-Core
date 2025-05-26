@@ -7,7 +7,9 @@ import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.gui.Widget;
 import gregtech.api.gui.resources.TextureArea;
+import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -161,6 +163,12 @@ public class MetaTileEntitySpaceAssembler extends RecipeMapModuleMultiblockContr
         if (moduleTier == 1) return "MK1";
         else if (moduleTier == 2) return "MK2";
         else return "MK3";
+    }
+
+    @Override
+    public boolean canBeDistinct()
+    {
+        return true;
     }
 
     protected class SpaceAssemblerRecipeLogic extends MultiblockRecipeLogic

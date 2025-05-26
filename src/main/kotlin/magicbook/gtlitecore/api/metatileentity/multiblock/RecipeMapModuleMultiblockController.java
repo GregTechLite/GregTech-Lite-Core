@@ -1,34 +1,21 @@
 package magicbook.gtlitecore.api.metatileentity.multiblock;
 
-import com.cleanroommc.modularui.factory.PosGuiData;
-import com.cleanroommc.modularui.screen.ModularPanel;
-import com.cleanroommc.modularui.value.sync.PanelSyncManager;
-import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerHandler;
-import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.gui.Widget;
+import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
-import lombok.Getter;
-import lombok.Setter;
 import magicbook.gtlitecore.api.capability.IModuleProvider;
 import magicbook.gtlitecore.api.capability.IModuleReceiver;
-import magicbook.gtlitecore.api.gui.GTLiteMuiTextures;
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIBuilder;
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIFactory;
-import net.minecraft.item.ItemStack;
+import magicbook.gtlitecore.api.gui.GTLiteGuiTextures;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 
@@ -142,6 +129,15 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
     @Override
     protected abstract ICubeRenderer getFrontOverlay();
 
+    @NotNull
+    @Override
+    protected Widget getFlexButton(int x, int y, int width, int height)
+    {
+        return new ClickButtonWidget(173, 125, 18, 18, "", data -> reinitializeStructurePattern())
+                .setButtonTexture(GTLiteGuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                .setTooltipText("gtlitecore.machine.space_elevator.refresh_structure_pattern");
+    }
+
     @Override
     public boolean hasMaintenanceMechanics()
     {
@@ -159,47 +155,5 @@ public abstract class RecipeMapModuleMultiblockController extends RecipeMapMulti
     {
         this.moduleProvider = provider;
     }
-
-    // @SuppressWarnings("UnstableApiUsage")
-    // @Override
-    // public boolean usesMui2()
-    // {
-    //     return true;
-    // }
-
-    // @Override
-    // public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
-    // {
-    //     return new MultiblockUIFactory(this)
-    //             .configureDisplayText(this::configureDisplayText)
-    //             .configureWarningText(this::configureWarningText)
-    //             .configureErrorText(this::configureErrorText)
-    //             .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
-    // }
-
-    // protected void configureDisplayText(MultiblockUIBuilder builder)
-    // {
-    //     builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled(), recipeMapWorkable.isActive())
-    //             .addEnergyUsageLine(getEnergyContainer())
-    //             .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.getMaxVoltage()))
-    //             .addParallelsLine(recipeMapWorkable.getParallelLimit())
-    //             .addWorkingStatusLine()
-    //             .addProgressLine(recipeMapWorkable.getProgress(), recipeMapWorkable.getMaxProgress());
-    // }
-
-    // protected void configureWarningText(MultiblockUIBuilder builder)
-    // {
-    //     builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy());
-    //     builder.addMaintenanceProblemLines(getMaintenanceProblems(), true);
-    // }
-
-    // protected void configureErrorText(MultiblockUIBuilder builder)
-    // {
-    //     builder.structureFormed(isStructureFormed());
-    //     if (hasMufflerMechanics())
-    //         builder.addMufflerObstructedLine(!isMufflerFaceFree());
-    //     if (hasMaintenanceMechanics())
-    //         builder.addMaintenanceProblemLines(getMaintenanceProblems(), false);
-    // }
 
 }
