@@ -70,19 +70,19 @@ class AntimatterChain
             // Protomatter -> Semistable Antimatter
             ANTIMATTER_FORGE_RECIPES.recipeBuilder()
                 .circuitMeta(1)
-                .fluidInputs(Protomatter.getFluid(1000))
+                .fluidInputs(Protomatter.getFluid(1000)) // 100 : 1
                 .fluidInputs(Helium.getPlasma(1000))
                 .fluidInputs(Iron.getPlasma(1000))
                 .fluidInputs(Calcium.getPlasma(1000))
                 .fluidInputs(Niobium.getPlasma(1000)) // 1
-                .fluidOutputs(SemistableAntimatter.getFluid(100))
+                .fluidOutputs(SemistableAntimatter.getFluid(10))
                 .EUt(145_149_830) // OpV
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
             ANTIMATTER_FORGE_RECIPES.recipeBuilder()
                 .circuitMeta(2)
-                .fluidInputs(Protomatter.getFluid(10000))
+                .fluidInputs(Protomatter.getFluid(10000)) // 10 : 1
                 .fluidInputs(Helium.getPlasma(1000))
                 .fluidInputs(Iron.getPlasma(1000))
                 .fluidInputs(Calcium.getPlasma(1000))
@@ -98,7 +98,7 @@ class AntimatterChain
 
             ANTIMATTER_FORGE_RECIPES.recipeBuilder()
                 .circuitMeta(3)
-                .fluidInputs(Protomatter.getFluid(100_000))
+                .fluidInputs(Protomatter.getFluid(100_000)) // 1 : 1
                 .fluidInputs(Helium.getPlasma(1000))
                 .fluidInputs(Iron.getPlasma(1000))
                 .fluidInputs(Calcium.getPlasma(1000))
@@ -111,14 +111,14 @@ class AntimatterChain
                 .fluidInputs(Zinc.getPlasma(1000))
                 .fluidInputs(Silver.getPlasma(1000))
                 .fluidInputs(Titanium.getPlasma(1000)) // 3
-                .fluidOutputs(SemistableAntimatter.getFluid(10000))
+                .fluidOutputs(SemistableAntimatter.getFluid(100_000))
                 .EUt(2_693_264_510) // MAX+
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
             ANTIMATTER_FORGE_RECIPES.recipeBuilder()
                 .circuitMeta(4)
-                .fluidInputs(Protomatter.getFluid(1_000_000))
+                .fluidInputs(Protomatter.getFluid(1_000_000)) // 1 : 10
                 .fluidInputs(Helium.getPlasma(1000))
                 .fluidInputs(Iron.getPlasma(1000))
                 .fluidInputs(Calcium.getPlasma(1000))
@@ -135,14 +135,14 @@ class AntimatterChain
                 .fluidInputs(Bismuth.getPlasma(1000))
                 .fluidInputs(Oxygen.getPlasma(1000))
                 .fluidInputs(Tin.getPlasma(1000)) // 4
-                .fluidOutputs(SemistableAntimatter.getFluid(100_000))
+                .fluidOutputs(SemistableAntimatter.getFluid(10_000_000))
                 .EUt(10_730_073_930) // MAX+
                 .duration(5 * SECOND)
                 .buildAndRegister()
 
             ANTIMATTER_FORGE_RECIPES.recipeBuilder()
                 .circuitMeta(5)
-                .fluidInputs(Protomatter.getFluid(10_000_000))
+                .fluidInputs(Protomatter.getFluid(10_000_000)) // 1 : 100
                 .fluidInputs(Helium.getPlasma(1000))
                 .fluidInputs(Iron.getPlasma(1000))
                 .fluidInputs(Calcium.getPlasma(1000))
@@ -163,7 +163,7 @@ class AntimatterChain
                 .fluidInputs(Lead.getPlasma(1000))
                 .fluidInputs(Neptunium.getPlasma(1000))
                 .fluidInputs(Fermium.getPlasma(1000)) // 5
-                .fluidOutputs(SemistableAntimatter.getFluid(1_000_000))
+                .fluidOutputs(SemistableAntimatter.getFluid(1_000_000_000))
                 .EUt(42_767_675_200) // MAX+
                 .duration(5 * SECOND)
                 .buildAndRegister()
@@ -180,20 +180,6 @@ class AntimatterChain
 
             // 1.0
             ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(Protomatter.getFluid(1))
-                .fluidInputs(Lead.getPlasma(1000))
-                .EUt(1_000_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(SemistableAntimatter.getFluid(1))
-                .fluidInputs(Lead.getPlasma(1000))
-                .EUt(1_000_000_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
                 .fluidInputs(Antimatter.getFluid(1))
                 .fluidInputs(Lead.getPlasma(1000))
                 .EUt(1_000_000_000_000)
@@ -202,20 +188,6 @@ class AntimatterChain
 
             // 1.5
             ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(Protomatter.getFluid(1))
-                .fluidInputs(Infinity.getFluid(L * 4))
-                .EUt(1_500_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(SemistableAntimatter.getFluid(1))
-                .fluidInputs(Infinity.getFluid(L * 4))
-                .EUt(1_500_000_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
                 .fluidInputs(Antimatter.getFluid(1))
                 .fluidInputs(Infinity.getFluid(L * 4))
                 .EUt(1_500_000_000_000)
@@ -223,20 +195,6 @@ class AntimatterChain
                 .buildAndRegister()
 
             // 2.0
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(Protomatter.getFluid(1))
-                .fluidInputs(Shirabon.getFluid(L * 4))
-                .EUt(2_000_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
-            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-                .fluidInputs(SemistableAntimatter.getFluid(1))
-                .fluidInputs(Shirabon.getFluid(L * 4))
-                .EUt(2_000_000_000)
-                .duration(10 * SECOND)
-                .buildAndRegister()
-
             ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
                 .fluidInputs(Antimatter.getFluid(1))
                 .fluidInputs(Shirabon.getFluid(L * 4))
