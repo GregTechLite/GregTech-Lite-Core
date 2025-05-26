@@ -1112,10 +1112,12 @@ class GTLiteRecipeMaps
             // (2,6,1,6) -> (2,6,2,6)
             RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
 
-            // (1,6,0,0) -> (1,9,2,2)
+            // (1,6,0,0) -> (2,9,2,2)
+            RecipeMaps.SIFTER_RECIPES.maxInputs = 2
             RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
             RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
             RecipeMaps.SIFTER_RECIPES.maxFluidOutputs = 2
+            RecipeMaps.SIFTER_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
 
             // (1,1,0,0) -> (2,2,2,2)
             RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2
