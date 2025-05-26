@@ -1317,8 +1317,14 @@ metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
+item.gt.tool.combination_wrench.name=%s Combination Wrench
+item.gt.tool.universal_spade.name=%s Universal Spade
+item.gt.tool.flint_and_steel.name=%s Flint And Steel
+item.gt.tool.club.name=%s Club
 
 gt.tool.class.rolling_pin=Rolling Pin
+gt.tool.class.flint_and_steel=Flint And Steel
+gt.tool.class.club=Club
 
 # Recipe Maps
 recipemap.polisher.name=Polisher
@@ -2155,6 +2161,17 @@ gtlitecore.machine.antimatter_generator.tooltip.9=使用§f原始物质§7或§f
 gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量不会超过§e9.2e18EU§7，但机器将会尽可能尝试多地进行并行。
 
 gtlitecore.machine.space_elevator.name=Space Elevator
+gtlitecore.machine.space_elevator.tooltip.1=允许安装若干个各种类型的§a太空电梯模块§7并异步运行。
+gtlitecore.machine.space_elevator.tooltip.2=每个太空电梯模块都有独立的输入/输出空间，同种模块不会共用输入/输出空间。
+gtlitecore.machine.space_elevator.tooltip.3=默认情况下至多可以安装§f12§7个模块，提高加速轨道等级以提高可安装的模块数量。
+gtlitecore.machine.space_elevator.tooltip.4=加速轨道等级限制了可安装的模块等级与最大模块数量。
+gtlitecore.machine.space_elevator.tooltip.5=所有模块的能量都从太空电梯中抽取，其自身也具有一定能量缓存空间。
+gtlitecore.machine.space_elevator.tooltip.6=当加速轨道等级大于§eMK3§7时允许开启扩展模式，在控制器中点击按钮以开启对应的结构检测。
+gtlitecore.machine.space_elevator.tooltip.7=扩展模式会拓展太空电梯的整体结构，此时至多可安装§f24§7个模块。
+gtlitecore.machine.space_elevator.tooltip.8=在太空电梯控制器中可以同时开启/关闭所有模块，也可以在各个模块的控制器中单独控制。
+
+gtlitecore.machine.space_elevator.acceleration_orbit_tier=Acceleration Orbit Tier: §eMK%s§f
+gtlitecore.machine.space_elevator.max_module_count=Maximum Installed Module Count: §a%s§f
 
 gtlitecore.machine.space_elevator.extension_info=Enabled Extension Structure
 gtlitecore.machine.space_elevator.enable_module=Enabled All Modules

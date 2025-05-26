@@ -3,9 +3,11 @@ package magicbook.gtlitecore.api.recipe.ui
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.ModularUI
+import gregtech.api.gui.widgets.ImageWidget
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.ui.RecipeMapUI
+import magicbook.gtlitecore.api.gui.GTLiteGuiTextures
 import net.minecraftforge.items.IItemHandlerModifiable
 import org.jetbrains.annotations.ApiStatus
 
@@ -19,6 +21,7 @@ class SpaceAssemblerUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap
     {
         val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 176)
             .widget(ProgressWidget(200, 80, 1, 54, 72, GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE, ProgressWidget.MoveType.HORIZONTAL))
+            .widget(ImageWidget(8 + 18 * 7, 1 + 18 * 3, 18, 18, GTLiteGuiTextures.SPACE_ELEVATOR_LOGO))
         addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder

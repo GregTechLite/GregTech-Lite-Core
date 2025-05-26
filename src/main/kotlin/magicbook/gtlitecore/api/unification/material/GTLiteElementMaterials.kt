@@ -124,7 +124,7 @@ class GTLiteElementMaterials
                 .element(Vb)
                 .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR,
                     GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
-                    GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROUND)
+                    GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROUND, GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(12001, BlastProperty.GasTier.HIGHER) // Adamantium
                         .blastStats(VA[UHV], 75 * SECOND)
@@ -177,7 +177,7 @@ class GTLiteElementMaterials
                 .color(0xE61C24).iconSet(SHINY)
                 .element(Og)
                 .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING,
-                    GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
+                    GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(12380, BlastProperty.GasTier.HIGHEST) // Adamantium
                         .blastStats(VA[UEV], 2 * MINUTE)
@@ -286,7 +286,7 @@ class GTLiteElementMaterials
                     .temperature(9025))
                 .color(0xBE00FF).iconSet(METALLIC)
                 .flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE)
+                    GENERATE_FINE_WIRE, GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR)
                 .element(Fs)
                 .toolStats(MaterialToolProperty.Builder.of(76.0F, 110.0F, 165888, 9)
                     .enchantment(Enchantments.EFFICIENCY, 6)

@@ -18,7 +18,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -35,6 +38,15 @@ public class CommonProxy
     {
         GTLiteRecipeMaps.preInit();
         GTLiteMetaOreDictItems.register();
+    }
+
+    @SubscribeEvent
+    public static void syncConfigValues(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if (event.getModID().equals(GTLiteValues.MODID))
+        {
+            ConfigManager.sync(GTLiteValues.MODID, Config.Type.INSTANCE);
+        }
     }
 
     @SubscribeEvent

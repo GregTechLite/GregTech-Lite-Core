@@ -24,6 +24,7 @@ import magicbook.gtlitecore.core.module.GTLiteModules;
 import magicbook.gtlitecore.core.network.NetworkHandler;
 import magicbook.gtlitecore.core.sound.GTLiteSoundEvents;
 import magicbook.gtlitecore.core.sound.SoundManager;
+import magicbook.gtlitecore.loader.VanillaDropsLoader;
 import magicbook.gtlitecore.loader.dungeon.DungeonLootLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -125,6 +126,7 @@ public class CoreModule implements IModule
     public void postInit(FMLPostInitializationEvent event)
     {
         GTLiteBehaviors.addBehaviors();
+        VanillaDropsLoader.addSeedDrops();
     }
 
     @Override

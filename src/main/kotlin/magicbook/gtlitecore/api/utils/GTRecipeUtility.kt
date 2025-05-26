@@ -1,11 +1,43 @@
 package magicbook.gtlitecore.api.utils
 
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.ZPM
+import gregtech.api.items.metaitem.MetaItem
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.ingredients.GTRecipeInput
+import gregtech.api.recipes.ingredients.GTRecipeItemInput
+import gregtech.api.recipes.ingredients.GTRecipeOreInput
+import gregtech.api.unification.material.Materials.Glue
+import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
+import gregtech.common.metatileentities.MetaTileEntities.HULL
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTRecipeUtility
 {
 
@@ -52,6 +84,226 @@ class GTRecipeUtility
         {
             GTRecipeHandler.removeRecipesByInputs(RecipeMaps.MIXER_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
             GTRecipeHandler.removeRecipesByInputs(GTLiteRecipeMaps.LARGE_MIXER_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
+        }
+
+        /**
+         * @param tier The tier of io bus/hatch, used voltage tier as default.
+         * @param input The input bus/hatch mte.
+         * @param output The output bus/hatch mte.
+         * @param extraInput Extra input object for recipes, checked via [getGTRecipeInput].
+         */
+        @JvmStatic
+        fun addIOHatchRecipes(tier: Int, input: MetaTileEntity, output: MetaTileEntity, extraInput: Any)
+        {
+            val extra = getGTRecipeInput(extraInput)
+            // Glue recipes for ULV-LV
+            if (tier <= LV)
+            {
+                val glueAmount = if (tier == ULV) 250 else 500
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Glue.getFluid(glueAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Glue.getFluid(glueAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // Polyethylene (PE) recipes for HV and below.
+            if (tier <= HV)
+            {
+                val plasticAmount = getGTHatchFluidAmount(tier + 4)
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polyethylene.getFluid(plasticAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polyethylene.getFluid(plasticAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // Polytetrafluoroethylene (PTFE) recipes for LuV and below.
+            if (tier <= LuV)
+            {
+                val ptfeAmount = getGTHatchFluidAmount(tier + 3)
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polytetrafluoroethylene.getFluid(ptfeAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polytetrafluoroethylene.getFluid(ptfeAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // Polybenzimidazole (PBI) recipes for UV and below.
+            if (tier <= UV)
+            {
+                val pbiAmount = getGTHatchFluidAmount(tier)
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polybenzimidazole.getFluid(pbiAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Polybenzimidazole.getFluid(pbiAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // Kevlar recipes for UEV and below.
+            if (tier <= UEV)
+            {
+                val kevlarAmount = getGTHatchFluidAmount(tier - 1)
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Kevlar.getFluid(kevlarAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(Kevlar.getFluid(kevlarAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // Fullerene Polymer Matrix (FPM) recipes for UXV and below.
+            if (tier <= UXV)
+            {
+                val fpmAmount = getGTHatchFluidAmount(tier - 2)
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(1)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(FullerenePolymerMatrix.getFluid(fpmAmount))
+                    .output(input)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+
+                ASSEMBLER_RECIPES.recipeBuilder()
+                    .circuitMeta(2)
+                    .input(HULL[tier])
+                    .inputs(extra)
+                    .fluidInputs(FullerenePolymerMatrix.getFluid(fpmAmount))
+                    .output(output)
+                    .EUt(VA[tier].toLong())
+                    .duration(15 * SECOND)
+                    .buildAndRegister()
+            }
+            // TODO Cosmic Fabric recipes for MAX and below.
+            if (tier <= MAX)
+            {
+                val cosmicFabricAmount = getGTHatchFluidAmount(tier - 4)
+                // ASSEMBLER_RECIPES.recipeBuilder()
+                //     .circuitMeta(1)
+                //     .input(HULL[tier])
+                //     .inputs(extra)
+                //     .fluidInputs(CosmicFabric.getFluid(cosmicFabricAmount))
+                //     .output(input)
+                //     .EUt(VA[tier])
+                //     .duration(15 * SECOND)
+                //     .buildAndRegister()
+
+                // ASSEMBLER_RECIPES.recipeBuilder()
+                //     .circuitMeta(2)
+                //     .input(HULL[tier])
+                //     .inputs(extra)
+                //     .fluidInputs(CosmicFabric.getFluid(cosmicFabricAmount))
+                //     .output(output)
+                //     .EUt(VA[tier])
+                //     .duration(15 * SECOND)
+                //     .buildAndRegister()
+            }
+        }
+
+        /**
+         * Check if the input is compatible with GT format.
+         *
+         * All allowed format of an inputs:
+         * - Vanilla [ItemStack].
+         * - Gregtech [MetaItem.MetaValueItem].
+         * - Ore Dictionary used [String].
+         */
+        @JvmStatic
+        fun getGTRecipeInput(extraInput: Any): GTRecipeInput = when (extraInput)
+        {
+            is ItemStack -> GTRecipeItemInput(extraInput) // Common item stack.
+            is MetaItem<*>.MetaValueItem -> GTRecipeItemInput(extraInput.stackForm) // GT meta item.
+            is String -> GTRecipeOreInput(extraInput) // Ore dictionary.
+            else -> throw IllegalArgumentException()
+        }
+
+        /**
+         * Get fluid amount of io hatch consumed by its tier.
+         */
+        @JvmStatic
+        fun getGTHatchFluidAmount(offsetTier: Int) = when (offsetTier) {
+            ULV -> 4
+            LV -> L / 16  // 9
+            MV -> L / 8   // 18
+            HV -> L / 4   // 36
+            EV -> L / 2   // 72
+            IV -> L       // 144
+            LuV -> L * 2  // 288
+            ZPM -> L * 3  // 432
+            UV -> L * 4   // 576
+            UHV -> L * 5  // 720
+            UEV -> L * 6  // 864
+            UIV -> L * 7  // 1008
+            UXV -> L * 8  // 1152
+            OpV -> L * 9  // 1296
+            MAX -> L * 10 // 1440
+            else -> 1
         }
 
     }

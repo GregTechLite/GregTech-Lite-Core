@@ -103,6 +103,7 @@ class OreRecipeHandler
                 if (material.hasFlag(MaterialFlags.HIGH_SIFTER_OUTPUT))
                 {
                     RecipeMaps.SIFTER_RECIPES.recipeBuilder()
+                        .circuitMeta(1)
                         .input(purifiedPrefix, material)
                         .chancedOutput(solitaryStack, 100, 50)
                         .chancedOutput(exquisiteStack, 500, 150)
@@ -114,10 +115,26 @@ class OreRecipeHandler
                         .EUt(VH[LV].toLong())
                         .duration(20 * SECOND)
                         .buildAndRegister()
+
+                    RecipeMaps.SIFTER_RECIPES.recipeBuilder()
+                        .circuitMeta(2)
+                        .input(purifiedPrefix, material)
+                        .fluidInputs(GTLiteMaterials.ZephyreanAerotheum.getFluid(250))
+                        .chancedOutput(solitaryStack, 200, 100)
+                        .chancedOutput(exquisiteStack, 1000, 300)
+                        .chancedOutput(flawlessStack, 3000, 400)
+                        .outputs(gemStack)
+                        .chancedOutput(flawedStack, 4000, 1000)
+                        .chancedOutput(chippedStack, 6000, 700)
+                        .chancedOutput(dustStack, 5000, 1000)
+                        .EUt(VH[LV].toLong())
+                        .duration(10 * SECOND)
+                        .buildAndRegister()
                 }
                 else
                 {
                     RecipeMaps.SIFTER_RECIPES.recipeBuilder()
+                        .circuitMeta(1)
                         .input(purifiedPrefix, material)
                         .chancedOutput(solitaryStack, 50, 25)
                         .chancedOutput(exquisiteStack, 300, 100)
@@ -128,6 +145,21 @@ class OreRecipeHandler
                         .chancedOutput(dustStack, 5000, 750)
                         .EUt(VH[LV].toLong())
                         .duration(20 * SECOND)
+                        .buildAndRegister()
+
+                    RecipeMaps.SIFTER_RECIPES.recipeBuilder()
+                        .circuitMeta(2)
+                        .input(purifiedPrefix, material)
+                        .fluidInputs(GTLiteMaterials.ZephyreanAerotheum.getFluid(250))
+                        .chancedOutput(solitaryStack, 100, 50)
+                        .chancedOutput(exquisiteStack, 600, 200)
+                        .chancedOutput(flawlessStack, 2000, 300)
+                        .chancedOutput(gemStack, 7000, 1000)
+                        .chancedOutput(flawedStack, 5000, 600)
+                        .chancedOutput(chippedStack, 7000, 800)
+                        .outputs(dustStack)
+                        .EUt(VH[LV].toLong())
+                        .duration(10 * SECOND)
                         .buildAndRegister()
                 }
             }

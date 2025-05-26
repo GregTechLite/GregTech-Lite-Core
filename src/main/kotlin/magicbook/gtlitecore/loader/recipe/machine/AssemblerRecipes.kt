@@ -18,9 +18,11 @@ import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.store.FluidStorageKeys
+import gregtech.api.items.OreDictNames
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
@@ -171,6 +173,10 @@ import gregtech.common.items.MetaItems.SENSOR_LV
 import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.TOOL_DATA_STICK
 import gregtech.common.items.MetaItems.VACUUM_TUBE
+import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
@@ -179,6 +185,8 @@ import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
 import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_1024
 import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_256
 import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_4096
@@ -186,7 +194,17 @@ import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_1024
 import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_256
 import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_4096
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
+import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.STEEL_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.VACUUM_CHAMBER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
@@ -240,6 +258,7 @@ import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.copy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.GTRecipeUtility.Companion.addIOHatchRecipes
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockActiveUniqueCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockBoilerCasing01
@@ -309,6 +328,7 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_DYNAMO_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SUBSTATION_ENERGY_HATCH_64A
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.TUNGSTEN_DRUM
+import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -1475,11 +1495,65 @@ class AssemblerRecipes
 
         private fun itemHatchesRecipes()
         {
-            // ...
+            // Remove original recipes for UHV Item Import/Export Bus.
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(HULL[UHV].stackForm, QUANTUM_CHEST[LV].stackForm,
+                    IntCircuitIngredient.getIntegratedCircuit(1)),
+                arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(HULL[UHV].stackForm, QUANTUM_CHEST[LV].stackForm,
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
+                arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+            // Add recipes for UHV-OpV Item Import/Export Bus, and add high-tier plastics recipes for
+            // the original recipes.
+            addIOHatchRecipes(ULV, ITEM_IMPORT_BUS[ULV], ITEM_EXPORT_BUS[ULV], OreDictNames.chestWood.toString())
+            addIOHatchRecipes(LV,  ITEM_IMPORT_BUS[LV],  ITEM_EXPORT_BUS[LV],  OreDictNames.chestWood.toString())
+            addIOHatchRecipes(MV,  ITEM_IMPORT_BUS[MV],  ITEM_EXPORT_BUS[MV],  BRONZE_CRATE.stackForm)
+            addIOHatchRecipes(HV,  ITEM_IMPORT_BUS[HV],  ITEM_EXPORT_BUS[HV],  STEEL_CRATE.stackForm)
+            addIOHatchRecipes(EV,  ITEM_IMPORT_BUS[EV],  ITEM_EXPORT_BUS[EV],  ALUMINIUM_CRATE.stackForm)
+            addIOHatchRecipes(IV,  ITEM_IMPORT_BUS[IV],  ITEM_EXPORT_BUS[IV],  STAINLESS_STEEL_CRATE.stackForm)
+            addIOHatchRecipes(LuV, ITEM_IMPORT_BUS[LuV], ITEM_EXPORT_BUS[LuV], TITANIUM_CRATE.stackForm)
+            addIOHatchRecipes(ZPM, ITEM_IMPORT_BUS[ZPM], ITEM_EXPORT_BUS[ZPM], TUNGSTENSTEEL_CRATE.stackForm)
+            addIOHatchRecipes(UV,  ITEM_IMPORT_BUS[UV],  ITEM_EXPORT_BUS[UV],  QUANTUM_CHEST[ULV].stackForm)
+            addIOHatchRecipes(UHV, ITEM_IMPORT_BUS[UHV], ITEM_EXPORT_BUS[UHV], QUANTUM_CHEST[LV].stackForm)
+            addIOHatchRecipes(UEV, ITEM_IMPORT_BUS[UEV], ITEM_EXPORT_BUS[UEV], QUANTUM_CHEST[MV].stackForm)
+            addIOHatchRecipes(UIV, ITEM_IMPORT_BUS[UIV], ITEM_EXPORT_BUS[UIV], QUANTUM_CHEST[HV].stackForm)
+            addIOHatchRecipes(UXV, ITEM_IMPORT_BUS[UXV], ITEM_EXPORT_BUS[UXV], QUANTUM_CHEST[EV].stackForm)
+            addIOHatchRecipes(OpV, ITEM_IMPORT_BUS[OpV], ITEM_EXPORT_BUS[OpV], QUANTUM_CHEST[IV].stackForm)
         }
 
         private fun fluidHatchesRecipes()
         {
+            // Remove original recipes for UHV Fluid Import/Export Hatch.
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(HULL[UHV].stackForm, QUANTUM_TANK[LV].stackForm,
+                    IntCircuitIngredient.getIntegratedCircuit(1)),
+                arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+                arrayOf(HULL[UHV].stackForm, QUANTUM_TANK[LV].stackForm,
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
+                arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+            // Add recipes for UHV-OpV Fluid Import/Export Hatch, and add high-tier plastics recipes for
+            // the original recipes.
+            addIOHatchRecipes(ULV, FLUID_IMPORT_HATCH[ULV], FLUID_EXPORT_HATCH[ULV], ItemStack(Blocks.GLASS))
+            addIOHatchRecipes(LV,  FLUID_IMPORT_HATCH[LV],  FLUID_EXPORT_HATCH[LV],  ItemStack(Blocks.GLASS))
+            addIOHatchRecipes(MV,  FLUID_IMPORT_HATCH[MV],  FLUID_EXPORT_HATCH[MV],  BRONZE_DRUM.stackForm)
+            addIOHatchRecipes(HV,  FLUID_IMPORT_HATCH[HV],  FLUID_EXPORT_HATCH[HV],  STEEL_DRUM.stackForm)
+            addIOHatchRecipes(EV,  FLUID_IMPORT_HATCH[EV],  FLUID_EXPORT_HATCH[EV],  ALUMINIUM_DRUM.stackForm)
+            addIOHatchRecipes(IV,  FLUID_IMPORT_HATCH[IV],  FLUID_EXPORT_HATCH[IV],  STAINLESS_STEEL_DRUM.stackForm)
+            addIOHatchRecipes(LuV, FLUID_IMPORT_HATCH[LuV], FLUID_EXPORT_HATCH[LuV], TITANIUM_DRUM.stackForm)
+            addIOHatchRecipes(ZPM, FLUID_IMPORT_HATCH[ZPM], FLUID_EXPORT_HATCH[ZPM], TUNGSTENSTEEL_DRUM.stackForm)
+            addIOHatchRecipes(UV,  FLUID_IMPORT_HATCH[UV],  FLUID_EXPORT_HATCH[UV],  QUANTUM_TANK[ULV].stackForm)
+            addIOHatchRecipes(UHV, FLUID_IMPORT_HATCH[UHV], FLUID_EXPORT_HATCH[UHV], QUANTUM_TANK[LV].stackForm)
+            addIOHatchRecipes(UEV, FLUID_IMPORT_HATCH[UEV], FLUID_EXPORT_HATCH[UEV], QUANTUM_TANK[MV].stackForm)
+            addIOHatchRecipes(UIV, FLUID_IMPORT_HATCH[UIV], FLUID_EXPORT_HATCH[UIV], QUANTUM_TANK[HV].stackForm)
+            addIOHatchRecipes(UXV, FLUID_IMPORT_HATCH[UXV], FLUID_EXPORT_HATCH[UXV], QUANTUM_TANK[EV].stackForm)
+            addIOHatchRecipes(OpV, FLUID_IMPORT_HATCH[OpV], FLUID_EXPORT_HATCH[OpV], QUANTUM_TANK[IV].stackForm)
+
             // ULV Quadruple Input Hatch
             ASSEMBLER_RECIPES.recipeBuilder()
                 .circuitMeta(4)
