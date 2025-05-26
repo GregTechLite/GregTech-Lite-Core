@@ -2186,6 +2186,13 @@ gtlitecore.machine.space_assembler_module.tooltip=将太空组装功能添加到
 gtlitecore.machine.space_assembler_module.max_parallel=运行电压：%s§7，最大并行数：§e%s§7
 gtlitecore.machine.space_assembler_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
 
+gtlitecore.machine.space_pump_module.mk1.name=太空钻井模块 MK1
+gtlitecore.machine.space_pump_module.mk2.name=太空钻井模块 MK2
+gtlitecore.machine.space_pump_module.mk3.name=太空钻井模块 MK3
+
+gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
+gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
+
 gtlitecore.machine.energy_infuser.name=能量注入器
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
 gtlitecore.machine.energy_infuser.tooltip.2=可以使用§dUU物质§7来修复已损失耐久度的物品。

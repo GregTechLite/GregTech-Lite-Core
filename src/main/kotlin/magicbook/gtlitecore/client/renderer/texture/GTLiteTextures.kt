@@ -148,6 +148,9 @@ class GTLiteTextures
         val SPACE_ASSEMBLER_OVERLAY = SimpleOverlayRenderer("machines/multiblock/space_elevator/space_assembler/overlay_side")
 
         @JvmField
+        val SPACE_PUMP_OVERLAY = SimpleOverlayRenderer("machines/multiblock/space_elevator/space_pump/overlay_side")
+
+        @JvmField
         val ROCKET_ENGINE_OVERLAY = OrientedOverlayRenderer("generators/rocket_engine")
 
         @JvmField

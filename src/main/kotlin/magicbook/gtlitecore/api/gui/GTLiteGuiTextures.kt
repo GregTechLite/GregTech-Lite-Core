@@ -34,6 +34,14 @@ class GTLiteGuiTextures
         val PRIMITIVE_FLUID_SLOT: TextureArea = TextureArea.fullImage(
             "textures/gui/primitive/primitive_fluid_slot.png")
 
+        /**
+         * An irregular version of [gregtech.api.gui.GuiTextures.BACKGROUND],
+         * this is used for [magicbook.gtlitecore.common.metatileentity.multiblock.module.MetaTileEntitySpacePump].
+         */
+        @JvmField
+        val BACKGROUND_IRREGULAR: TextureArea = TextureArea.fullImage(
+            "textures/gui/base/background_irregular.png")
+
         // -------------------------------------------------------------------------------------------------------------
         // Icon textures.
         @JvmField

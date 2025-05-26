@@ -36,9 +36,9 @@ import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase implements IModuleReceiver, IWorkable, IControllable
 {
 
-    private final int tier;
-    private final int moduleTier;
-    private final int minCasingTier;
+    protected final int tier;
+    protected final int moduleTier;
+    protected final int minCasingTier;
 
     @Getter
     @Setter
@@ -275,28 +275,28 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
         return (int) ((1.0F * getProgress() / getMaxProgress()) * 100);
     }
 
-    @SuppressWarnings("UnstableApiUsage")
-    @Override
-    public boolean usesMui2()
-    {
-        return true;
-    }
+    // @SuppressWarnings("UnstableApiUsage")
+    // @Override
+    // public boolean usesMui2()
+    // {
+    //     return true;
+    // }
 
-    @Override
-    public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
-    {
-        return new MultiblockUIFactory(this)
-                .configureDisplayText(this::configureDisplayText)
-                .configureWarningText(this::configureWarningText)
-                .configureErrorText(this::configureErrorText)
-                .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
-    }
+    // @Override
+    // public ModularPanel buildUI(PosGuiData guiData, PanelSyncManager guiSyncManager)
+    // {
+    //     return new MultiblockUIFactory(this)
+    //             .configureDisplayText(this::configureDisplayText)
+    //             .configureWarningText(this::configureWarningText)
+    //             .configureErrorText(this::configureErrorText)
+    //             .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY);
+    // }
 
-    protected abstract void configureDisplayText(MultiblockUIBuilder builder);
+    // protected abstract void configureDisplayText(MultiblockUIBuilder builder);
 
-    protected abstract void configureWarningText(MultiblockUIBuilder builder);
+    // protected abstract void configureWarningText(MultiblockUIBuilder builder);
 
-    protected abstract void configureErrorText(MultiblockUIBuilder builder);
+    // protected abstract void configureErrorText(MultiblockUIBuilder builder);
 
     @SideOnly(Side.CLIENT)
     @NotNull

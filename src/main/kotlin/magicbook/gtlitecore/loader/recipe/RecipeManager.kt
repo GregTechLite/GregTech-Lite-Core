@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.loader.recipe
 
+import magicbook.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.core.GTLiteConfigHolder
 import magicbook.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
@@ -370,6 +371,9 @@ class RecipeManager
             VanillaOverrideRecipeLoader.init()
             GregtechOverrideRecipeLoader.init()
             RecipeConflicts.init()
+
+            // Initialized recipe frontends.
+            SpacePumpRecipeFrontend.init()
         }
 
     }

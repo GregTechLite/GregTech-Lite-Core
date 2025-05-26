@@ -101,6 +101,7 @@ import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileE
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntityNuclearReactor
 import magicbook.gtlitecore.common.metatileentity.multiblock.generator.MetaTileEntitySteamEngine
 import magicbook.gtlitecore.common.metatileentity.multiblock.module.MetaTileEntitySpaceAssembler
+import magicbook.gtlitecore.common.metatileentity.multiblock.module.MetaTileEntitySpacePump
 import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityCoagulationTank
 import magicbook.gtlitecore.common.metatileentity.multiblock.primitive.MetaTileEntityIndustrialPrimitiveBlastFurnace
 import magicbook.gtlitecore.common.metatileentity.multiblock.steam.MetaTileEntitySteamAlloySmelter
@@ -284,6 +285,10 @@ class GTLiteMetaTileEntities
         lateinit var SPACE_ASSEMBLER_MK1: MetaTileEntitySpaceAssembler
         lateinit var SPACE_ASSEMBLER_MK2: MetaTileEntitySpaceAssembler
         lateinit var SPACE_ASSEMBLER_MK3: MetaTileEntitySpaceAssembler
+
+        lateinit var SPACE_PUMP_MK1: MetaTileEntitySpacePump
+        lateinit var SPACE_PUMP_MK2: MetaTileEntitySpacePump
+        lateinit var SPACE_PUMP_MK3: MetaTileEntitySpacePump
 
         lateinit var ENERGY_INFUSER: MetaTileEntityEnergyInfuser
 
@@ -893,9 +898,14 @@ class GTLiteMetaTileEntities
             // SPACE_MINER_MK2 18035
             // SPACE_MINER_MK3 18036
 
-            // SPACE_PUMP_MK1 18037
-            // SPACE_PUMP_MK2 18038
-            // SPACE_PUMP_MK3 18039
+            SPACE_PUMP_MK1 = MetaTileEntities.registerMetaTileEntity(18037,
+                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk1"), UV, 1, 1))
+
+            SPACE_PUMP_MK2 = MetaTileEntities.registerMetaTileEntity(18038,
+                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk2"), UHV, 2, 2))
+
+            SPACE_PUMP_MK3 = MetaTileEntities.registerMetaTileEntity(18039,
+                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk3"), UEV, 3, 4))
 
             // DYSON_SWARM_GROUND_UNIT 18040
 

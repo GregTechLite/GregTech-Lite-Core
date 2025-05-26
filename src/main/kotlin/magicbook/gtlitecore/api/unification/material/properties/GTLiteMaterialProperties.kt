@@ -40,6 +40,7 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.EnderPearl
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Fermium
 import gregtech.api.unification.material.Materials.Ferrosilite
@@ -207,7 +208,7 @@ class GTLiteMaterialProperties
                 Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
                 Lawrencium, Ytterbium, Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium,
                 Nihonium, Livermorium, Tennessine, Thulium, Promethium, Barium, Tellurium,
-                Holmium, Erbium, Gadolinium)
+                Holmium, Erbium, Gadolinium, EnderPearl)
                 .forEach { addLiquid(it) }
 
             // Plasma
