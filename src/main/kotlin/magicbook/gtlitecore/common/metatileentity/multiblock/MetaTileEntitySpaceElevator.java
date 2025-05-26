@@ -9,7 +9,7 @@ import gregtech.api.capability.IOpticalComputationProvider;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.gui.Widget;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.AdvancedTextWidget;
 import gregtech.api.gui.widgets.ClickButtonWidget;
 import gregtech.api.gui.widgets.ImageCycleButtonWidget;
@@ -18,12 +18,15 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.common.ConfigHolder;
 import lombok.Getter;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
 import magicbook.gtlitecore.api.capability.IModuleProvider;
@@ -34,18 +37,25 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -431,7 +441,7 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                 .label(9, 9, getMetaFullName(), 0xFFFFFF)
 
                 .widget(new AdvancedTextWidget(9, 20, this::addDisplayText, 0xFFFFFFF)
-                        .setMaxWidthLimit(220)
+                        .setMaxWidthLimit(181)
                         .setClickHandler(this::handleDisplayClick))
 
                 .widget(new ClickButtonWidget(173, 125, 18, 18, "", data -> reinitializeStructurePattern())
@@ -449,6 +459,79 @@ public class MetaTileEntitySpaceElevator extends MultiblockWithDisplayBase imple
                         .setTooltipText("gtlitecore.machine.space_elevator.disable_module"))
 
                 .bindPlayerInventory(player.inventory, 125);
+    }
+
+    @Override
+    protected void addDisplayText(List<ITextComponent> textList)
+    {
+        MultiblockDisplayText.builder(textList, isStructureFormed())
+                .addCustom(tl -> {
+                    if (isStructureFormed()) // Add acceleration orbit infos and modules infos for debug.
+                    {
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                                "gtlitecore.machine.space_elevator.acceleration_orbit_tier", orbitTier));
+                        tl.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                                "gtlitecore.machine.space_elevator.max_module_count", getMaxModules()));
+
+                        // Only for debug mode to test extended structure pattern checking module and
+                        // other module checking situation.
+                        if (!this.moduleReceivers.isEmpty() && ConfigHolder.misc.debug)
+                        {
+                            List<String> moduleNames = new ArrayList<>();
+                            List<String> uniqueNames = new ArrayList<>();
+                            this.moduleReceivers.forEach(receiver -> {
+                                moduleNames.add(receiver.getDisplayCountName());
+                                if (!uniqueNames.contains(moduleNames.get(moduleNames.indexOf(receiver.getDisplayCountName()))))
+                                {
+                                    uniqueNames.add(receiver.getDisplayCountName());
+                                }
+                                uniqueNames.forEach(receiverName -> {
+                                    tl.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                                            receiverName, Collections.frequency(moduleNames, receiverName)));
+                                });
+                            });
+                        }
+
+                    }
+                });
+    }
+
+    @Override
+    public void addInformation(ItemStack stack,
+                               @Nullable World world,
+                               @NotNull List<String> tooltip,
+                               boolean advanced)
+    {
+        super.addInformation(stack, world, tooltip, advanced);
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.1"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.2"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.3"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.4"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.5"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.6"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.7"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.8"));
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getWarningLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getErrorLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
     }
 
     private void disabledAllModules()

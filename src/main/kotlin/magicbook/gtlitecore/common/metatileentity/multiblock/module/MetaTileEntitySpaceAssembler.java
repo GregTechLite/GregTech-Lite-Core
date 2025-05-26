@@ -7,6 +7,7 @@ import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -15,6 +16,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.Recipe;
 import gregtech.client.renderer.ICubeRenderer;
+import magicbook.gtlitecore.api.gui.GTLiteGuiTextures;
 import magicbook.gtlitecore.api.metatileentity.multiblock.RecipeMapModuleMultiblockController;
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import magicbook.gtlitecore.api.recipe.property.AccelerationOrbitTieredProperty;
@@ -32,8 +34,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static gregtech.api.GTValues.VNF;
@@ -94,6 +94,27 @@ public class MetaTileEntitySpaceAssembler extends RecipeMapModuleMultiblockContr
     protected ICubeRenderer getFrontOverlay()
     {
         return GTLiteTextures.SPACE_ELEVATOR_OVERLAY;
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getWarningLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
+    }
+
+    @NotNull
+    @Override
+    protected TextureArea getErrorLogo()
+    {
+        return GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK;
     }
 
     @Override

@@ -35,6 +35,16 @@ class GTLiteGuiTextures
             "textures/gui/primitive/primitive_fluid_slot.png")
 
         // -------------------------------------------------------------------------------------------------------------
+        // Icon textures.
+        @JvmField
+        val SPACE_ELEVATOR_LOGO: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_elevator_logo.png")
+
+        @JvmField
+        val SPACE_ELEVATOR_LOGO_DARK: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_elevator_logo_dark.png")
+
+        // -------------------------------------------------------------------------------------------------------------
         // Overlay textures.
 
         /**
