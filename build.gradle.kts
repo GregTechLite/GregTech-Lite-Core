@@ -29,58 +29,7 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-// The grouping mod name of project, like "org.authorname.examplemod", and the folder structure
-// of the mod will be: folder "org" -> folder "authorname" -> folder "examplemod" -> mod files.
-val modGroup: String by project
-
-// The id of mod, used to generate the mod files (dev, source and jar file), different with the
-// modId setting of the main class of mod, but ensure two setting be same otherwise you know
-// what you want to do in this setting.
-val modId: String by project
-
-// The version of mod, used to generate the mod files (dev, source and jar file), different with
-// the modVersion setting of the main class of mod, but ensure two setting be same otherwise you
-// know what you want to do in this setting.
-val modVersion: String by project
-
-// The archive base name of mod, warning: this is not same as the modName setting in main class
-// completely, do not confuse two settings.
-val modName: String by project
-
-// The version of Minecraft in develop environment, this setting cannot control FML version.
-val minecraftVersion: String by project
-
-// The userName setting of develop environment, the UUID will be looked up automatically.
-val userName: String by project
-
-// The generateTokenPath setting, this option is the path of RFG Tags class.
-val generateTokenPath: String by project
-
-// The usesMixins setting.
-val usesMixins: String by project
-
-// The usesAccessTransformer setting.
-val usesAccessTransformer: String by project
-
-// The usesCoreMod setting.
-val usesCoreMod: String by project
-
-// The includeMod setting.
-val includeMod: String by project
-
-// The coreModPluginPath setting.
-val coreModPluginPath: String by project
-
-// The shadowJar settings.
-val usesShadowJar: String by project
-
-// Shadow implementation const.
-val shadowImplementation = "shadowImplementation"
-
-// Apply shadowJar plugin.
-if (usesShadowJar.toBoolean()) {
-    apply(plugin = "com.github.johnrengelman.shadow")
-}
+val embed = "embed"
 
 // Java settings.
 java {
@@ -91,25 +40,10 @@ java {
     }
     // Generate sources and Javadocs jars when building and publishing.
     withSourcesJar()
-    // withJavadocJar()
 }
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
-}
-
-configurations {
-    val embed = create("embed")
-    implementation.configure {
-        extendsFrom(embed)
-    }
-    // Process shadowJar implementations.
-    if (usesShadowJar.toBoolean()) {
-        val shadowImplementation = create(shadowImplementation)
-        implementation.configure {
-            extendsFrom(shadowImplementation)
-        }
-    }
 }
 
 // These sourceSet settings allowed javaCompiler read Kotlin source,
@@ -123,6 +57,13 @@ sourceSets {
         kotlin {
             srcDir("src/main/kotlin")
         }
+    }
+}
+
+configurations {
+    val embed = create(embed)
+    implementation {
+        extendsFrom(embed)
     }
 }
 
@@ -164,44 +105,9 @@ minecraft {
     injectedTags.put("MOD_NAME", modName)
 }
 
-// Generate a RFG Tags class.
-tasks.injectTags.configure {
-    outputClassName.set(generateTokenPath)
-}
-
-repositories {
-    maven {
-        name = "CleanroomMC Maven"
-        url = uri("https://maven.cleanroommc.com")
-    }
-    maven {
-        name = "SpongePowered Maven"
-        url = uri("https://repo.spongepowered.org/maven")
-    }
-    maven {
-        name = "CurseMaven"
-        url = uri("https://cursemaven.com")
-        content {
-            includeGroup("curse.maven")
-        }
-    }
-    maven {
-        name = "BlameJared Maven"
-        url = uri("https://maven.blamejared.com")
-    }
-    maven {
-        name = "GTCEu Maven"
-        url = uri("https://maven.gtceu.com")
-    }
-    mavenLocal() // Must be last for caching to work.
-}
+repositories()
 
 dependencies {
-    // Before the dependencies.gradle script loading, add Forgelin to the dependencies.
-    implementation(libs.forgelin) {
-        exclude("net.minecraftforge")
-    }
-
     // Mixins dependency settings.
     if (usesMixins.toBoolean()) {
         annotationProcessor(libs.asm)
@@ -216,12 +122,13 @@ dependencies {
         }
     }
 
-    // Apply dependencies from gradle scripts.
-//    apply("dependencies.gradle.kts")
+    implementation(libs.forgelin) {
+        exclude("net.minecraftforge")
+    }
     implementation(deobf(libs.modularui))
     api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
     api(libs.groovyScript) {
-        isTransitive = true
+        isTransitive = false
     }
     api(libs.craftTweaker2)
     api(deobf(libs.ctm))
@@ -229,23 +136,19 @@ dependencies {
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei) // Transformed JEI dependencies from buildscripts option.
     implementation(libs.theOneProbe) // Transformed TOP dependencies from buildscripts option.
-    // This mod is a utility mod which used to downland resources from any URL, and move it to a hidden folder.
-    implementation(libs.assetMover)
     runtimeOnly(deobf(libs.smoothFonts))
     runtimeOnly(deobf(libs.betterQuestingUnofficial))
 
     // Several global dependencies.
-    compileOnlyApi(libs.jetbrainsAnnotations) {
-        annotationProcessor(this)
-    }
-    compileOnlyApi(libs.lombok) {
-        annotationProcessor(this)
-    }
+    compileOnlyApi(libs.jetbrainsAnnotations)
+    annotationProcessor(libs.jetbrainsAnnotations)
 
-    shadowImplementation(libs.streamex)
-    shadowImplementation(libs.jheaps)
-    shadowImplementation(libs.joml)
-    compileOnly(libs.kotson)
+    compileOnlyApi(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    embed(libs.streamex)
+    embed(libs.jheaps)
+    embed(libs.joml)
 }
 
 fun DependencyHandler.deobf(dependencyNotation: Any): Any {
@@ -271,6 +174,17 @@ if (usesAccessTransformer.toBoolean()) {
             tasks.deobfuscateMergedJarToSrg.get().accessTransformerFiles.from(at)
             tasks.srgifyBinpatchedJar.get().accessTransformerFiles.from(at)
         }
+    }
+}
+
+tasks {
+    // Generate a RFG Tags class.
+    injectTags {
+        outputClassName.set(generateTokenPath)
+    }
+
+    processIdeaSettings {
+        dependsOn(injectTags)
     }
 }
 
@@ -309,41 +223,40 @@ tasks.withType<Jar> {
         }
         attributes(attributeMap)
     }
-    // Add all embedded dependencies into the jar.
-    from(provider {
-        configurations.getByName("embed").map {
-            if (it.isDirectory()) it else zipTree(it)
-        }
-    })
 }
 
 // Shadowed external packages to internal packages to resolved class not found when
 // the mod is running at other environments.
 if (usesShadowJar.toBoolean()) {
     tasks.withType<ShadowJar> {
-        // Add shadowJar dependencies include and minimize settings at there.
-        dependencies {
-            include(dependency("one.util:streamex:.*"))
-            include(dependency("org.jheaps:jheaps:0.14:.*"))
-            include(dependency("org.joml:joml:1.10.4:.*"))
-            exclude(dependency(files("libs/gregtech-1.12.2-master.jar")))
-        }
-
+        configurations = listOf(project.configurations["embed"])
         mergeServiceFiles()
         mergeGroovyExtensionModules()
+        minimize()
+    }
 
-        minimize {
-            exclude(dependency("one.util:streamex.*"))
-            exclude(dependency("org.jheaps:jheaps.*"))
-            exclude(dependency("org.joml:joml.*"))
-        }
+    // Add shadowJar to processing assemble of the mod process.
+    tasks.assemble {
+        dependsOn(tasks.shadowJar)
     }
 }
 
-// Add shadowJar to processing assemble of the mod process.
-if (usesShadowJar.toBoolean()) {
-    tasks.assemble {
-        dependsOn(tasks.shadowJar)
+// Add JavaDocs/KDocs generate merger in Java/Kotlin mixed programming environment.
+tasks.withType<DokkaTask> {
+    outputDirectory.set(buildDir.resolve("docs"))
+    dokkaSourceSets {
+        configureEach {
+            // Allowed Dokka read two sourceSets.
+            sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
+            // Java 8 External Docs.
+            externalDocumentationLink(
+                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL()
+            )
+            // Kotlin StdLib External Docs.
+            externalDocumentationLink(
+                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL()
+            )
+        }
     }
 }
 
@@ -379,29 +292,6 @@ idea {
                     )
                 }
             }
-        }
-    }
-}
-
-tasks.named("processIdeaSettings").configure {
-    dependsOn("injectTags")
-}
-
-// Add JavaDocs/KDocs generate merger in Java/Kotlin mixed programming environment.
-tasks.withType<DokkaTask>().configureEach {
-    outputDirectory.set(buildDir.resolve("docs"))
-    dokkaSourceSets {
-        configureEach {
-            // Allowed Dokka read two sourceSets.
-            sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
-            // Java 8 External Docs.
-            externalDocumentationLink(
-                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL()
-            )
-            // Kotlin StdLib External Docs.
-            externalDocumentationLink(
-                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL()
-            )
         }
     }
 }

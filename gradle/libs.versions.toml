@@ -9,12 +9,10 @@ lombok = "1.18.24"
 streamex = "0.8.3"
 jheaps = "0.14"
 joml = "1.10.4"
-kotson = "2.5.0"
 
 # Mods
 forgelin = "2.1.0.0"
 mixinBooter = "9.1"
-assetMover = "2.5"
 modularui = "2.5.0-rc4"
 codeChickenLib = "3.2.3.358"
 groovyScript = "1.2.0-hotfix1"
@@ -42,11 +40,9 @@ lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" 
 streamex = { group = "one.util", name = "streamex", version.ref = "streamex" }
 jheaps = { group = "org.jheaps", name = "jheaps", version.ref = "jheaps" }
 joml = { group = "org.joml", name = "joml", version.ref = "joml" }
-kotson = { group = "com.github.salomonbrys.kotson", name = "kotson", version.ref = "kotson" }
 
 forgelin = { group = "io.github.chaosunity.forgelin", name = "Forgelin-Continuous", version.ref = "forgelin" }
 mixinBooter = { group = "zone.rong", name = "mixinbooter", version.ref = "mixinBooter" }
-assetMover = { group = "com.cleanroommc", name = "assetmover", version.ref = "assetMover" }
 modularui = { group = "com.cleanroommc", name = "modularui", version.ref = "modularui" }
 codeChickenLib = { group = "codechicken", name = "codechickenlib", version.ref = "codeChickenLib" }
 groovyScript = { group = "com.cleanroommc", name = "groovyscript", version.ref = "groovyScript" }
