@@ -58,6 +58,7 @@ public class MetaTileEntitySpaceAssembler extends RecipeMapModuleMultiblockContr
     {
         this.inputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
         this.inputFluidInventory = new FluidTankList(allowSameFluidFillForOutputs(), getAbilities(MultiblockAbility.IMPORT_FLUIDS));
+        this.extendedFluidInputs = extendedImportFluidList(inputFluidInventory);
         this.outputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
     }
 
