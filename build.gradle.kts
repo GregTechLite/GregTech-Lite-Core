@@ -120,6 +120,15 @@ tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
 }
 
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies,
+// so we need to explicitly enable the behavior.
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+}
+
 configurations {
     val embed = create("embed")
     implementation.configure {
@@ -323,7 +332,7 @@ tasks.withType<Jar> {
             attributeMap["FMLCorePlugin"] = coreModPluginPath
             if (includeMod.toBoolean()) {
                 attributeMap["FMLCorePluginContainsFMLMod"] = true.toString()
-                attributeMap["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames[0] == "build").toString()
+                attributeMap["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
             }
         }
         if (usesAccessTransformer.toBoolean()) {
