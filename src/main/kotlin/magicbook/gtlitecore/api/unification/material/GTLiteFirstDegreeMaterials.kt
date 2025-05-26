@@ -1101,7 +1101,8 @@ class GTLiteFirstDegreeMaterials
                 .color(0xFE71A9).iconSet(SHINY)
                 .components(Lithium, 2, Titanium, 1, Oxygen, 3)
                 .flags(EXT2_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
-                    GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING)
+                    GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING, GENERATE_SMALL_GEAR,
+                    GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(3100, BlastProperty.GasTier.MID) // Nichrome
                         .blastStats(VA[EV], 16 * SECOND)

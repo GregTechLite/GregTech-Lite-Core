@@ -2,6 +2,7 @@ package magicbook.gtlitecore.loader.recipe.handler
 
 import gregtech.api.items.toolitem.IGTTool
 import gregtech.api.recipes.ModHandler
+import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
@@ -12,6 +13,8 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.ToolItems
 import magicbook.gtlitecore.api.unification.material.properties.GTLiteToolPropertyAdder
 import magicbook.gtlitecore.common.item.GTLiteToolItems
+import net.minecraft.init.Items
+import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS", "MISSING_DEPENDENCY_SUPERCLASS")
 class ToolRecipeHandler
@@ -34,14 +37,52 @@ class ToolRecipeHandler
         {
             if (material.hasProperty(PropertyKey.INGOT))
             {
+
+                if (material.hasFlags(MaterialFlags.GENERATE_PLATE))
+                {
+                    // Combination Wrench
+                    addToolRecipe(material, GTLiteToolItems.COMBINATION_WRENCH, true,
+                        "PhP", "IPI", "fP ",
+                        'I', UnificationEntry(OrePrefix.ingot, material),
+                        'P', UnificationEntry(OrePrefix.plate, material))
+                }
+
                 if (material.hasFlag(MaterialFlags.GENERATE_ROD))
                 {
-                    // Rolling pin.
+                    // Rolling Pin
                     addToolRecipe(material, GTLiteToolItems.ROLLING_PIN, true,
                         "  R", " I ", "R f",
                         'R', UnificationEntry(OrePrefix.stick, material),
                         'I', UnificationEntry(OrePrefix.ingot, material))
+
+                    // Club
+                    addToolRecipe(material, GTLiteToolItems.CLUB, true,
+                        "hII", "III", "RIf",
+                        'I', UnificationEntry(OrePrefix.ingot, material),
+                        'R', UnificationEntry(OrePrefix.stick, material))
                 }
+
+                if (material.hasFlags(MaterialFlags.GENERATE_PLATE) && material.hasFlags(MaterialFlags.GENERATE_ROD))
+                {
+                    // Universal Spade
+                    addToolRecipe(material, GTLiteToolItems.UNIVERSAL_SPADE, true,
+                        "hPP", "DRP", "RDf",
+                        'P', UnificationEntry(OrePrefix.plate, material),
+                        'R', UnificationEntry(OrePrefix.stick, material),
+                        'D', UnificationEntry(OrePrefix.dye, MarkerMaterials.Color.Blue))
+                }
+
+                if (material.hasFlags(MaterialFlags.GENERATE_SPRING_SMALL) && material.hasFlags(MaterialFlags.GENERATE_SMALL_GEAR)
+                    && material != Materials.Steel) // Do not generate Steel Flint And Steel because the vanilla Flint And Steel is Steel yet.
+                {
+                    // Flint And Steel
+                    addToolRecipe(material, GTLiteToolItems.FLINT_AND_STEEL, false,
+                        " G ", " F ", " S ",
+                        'G', UnificationEntry(OrePrefix.gearSmall, material),
+                        'S', UnificationEntry(OrePrefix.springSmall, material),
+                        'F', ItemStack(Items.FLINT))
+                }
+
             }
         }
 

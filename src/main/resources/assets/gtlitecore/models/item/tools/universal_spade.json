@@ -1,0 +1,7 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+      "layer0": "gtlitecore:items/tools/universal_spade",
+      "layer1": "gtlitecore:items/tools/universal_spade_overlay"
+    }
+  }

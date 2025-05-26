@@ -1313,8 +1313,14 @@ metaitem.hard_apple_candy_dust.name=苹果硬糖碎
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
+item.gt.tool.combination_wrench.name=%s组合扳手
+item.gt.tool.universal_spade.name=%s万用铲
+item.gt.tool.flint_and_steel.name=%s打火石
+item.gt.tool.club.name=%s棒槌
 
 gt.tool.class.rolling_pin=擀面杖
+gt.tool.class.flint_and_steel=打火石
+gt.tool.class.club=棒槌
 
 # Recipe Maps
 recipemap.polisher.name=抛光机

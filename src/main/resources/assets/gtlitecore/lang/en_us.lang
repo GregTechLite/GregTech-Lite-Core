@@ -1317,8 +1317,14 @@ metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
+item.gt.tool.combination_wrench.name=%s Combination Wrench
+item.gt.tool.universal_spade.name=%s Universal Spade
+item.gt.tool.flint_and_steel.name=%s Flint And Steel
+item.gt.tool.club.name=%s Club
 
 gt.tool.class.rolling_pin=Rolling Pin
+gt.tool.class.flint_and_steel=Flint And Steel
+gt.tool.class.club=Club
 
 # Recipe Maps
 recipemap.polisher.name=Polisher

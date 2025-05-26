@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
@@ -24,6 +25,7 @@ import gregtech.api.unification.material.Materials.CobaltBrass
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Curium
+import gregtech.api.unification.material.Materials.DamascusSteel
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Dubnium
@@ -104,6 +106,7 @@ import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Roentgenium
+import gregtech.api.unification.material.Materials.RoseGold
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
@@ -119,6 +122,7 @@ import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
+import gregtech.api.unification.material.Materials.SterlingSilver
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tennessine
@@ -133,6 +137,7 @@ import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenCarbide
+import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
@@ -339,6 +344,17 @@ class GTLiteMaterialFlags
             HSSE.addFlags(GENERATE_SMALL_GEAR)
             Duranium.addFlags(GENERATE_SMALL_GEAR)
             Einsteinium.addFlags(GENERATE_SMALL_GEAR)
+            Invar.addFlags(GENERATE_SMALL_GEAR)
+            SterlingSilver.addFlags(GENERATE_SMALL_GEAR)
+            RoseGold.addFlags(GENERATE_SMALL_GEAR)
+            Ultimet.addFlags(GENERATE_SMALL_GEAR)
+            WroughtIron.addFlags(GENERATE_SMALL_GEAR)
+            TungstenCarbide.addFlags(GENERATE_SMALL_GEAR)
+            RedSteel.addFlags(GENERATE_SMALL_GEAR)
+            BlueSteel.addFlags(GENERATE_SMALL_GEAR)
+            DamascusSteel.addFlags(GENERATE_SMALL_GEAR)
+            CobaltBrass.addFlags(GENERATE_SMALL_GEAR)
+            VanadiumSteel.addFlags(GENERATE_SMALL_GEAR)
 
             // lens/craftingLens
             CertusQuartz.addFlags(GENERATE_LENS)
@@ -541,6 +557,9 @@ class GTLiteMaterialFlags
             Magnesium.addFlags(GENERATE_LONG_ROD)
             Duranium.addFlags(GENERATE_LONG_ROD)
             Mendelevium.addFlags(GENERATE_LONG_ROD)
+            DamascusSteel.addFlags(GENERATE_LONG_ROD)
+            RedSteel.addFlags(GENERATE_LONG_ROD)
+            BlueSteel.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
@@ -558,6 +577,24 @@ class GTLiteMaterialFlags
             Duranium.addFlags(GENERATE_SPRING_SMALL)
             Cupronickel.addFlags(GENERATE_SPRING_SMALL)
             Moscovium.addFlags(GENERATE_SPRING_SMALL)
+            Titanium.addFlags(GENERATE_SPRING_SMALL)
+            Neutronium.addFlags(GENERATE_SPRING_SMALL)
+            Naquadah.addFlags(GENERATE_SPRING_SMALL)
+            Bronze.addFlags(GENERATE_SPRING_SMALL)
+            Invar.addFlags(GENERATE_SPRING_SMALL)
+            SterlingSilver.addFlags(GENERATE_SPRING_SMALL)
+            RoseGold.addFlags(GENERATE_SPRING_SMALL)
+            StainlessSteel.addFlags(GENERATE_SPRING_SMALL)
+            Ultimet.addFlags(GENERATE_SPRING_SMALL)
+            TungstenCarbide.addFlags(GENERATE_SPRING_SMALL)
+            RedSteel.addFlags(GENERATE_SPRING_SMALL)
+            BlueSteel.addFlags(GENERATE_SPRING_SMALL)
+            HSSE.addFlags(GENERATE_SPRING_SMALL)
+            DamascusSteel.addFlags(GENERATE_SPRING_SMALL)
+            TungstenSteel.addFlags(GENERATE_SPRING_SMALL)
+            CobaltBrass.addFlags(GENERATE_SPRING_SMALL)
+            VanadiumSteel.addFlags(GENERATE_SPRING_SMALL)
+            NaquadahAlloy.addFlags(GENERATE_SPRING_SMALL)
 
             // wireFine
             Titanium.addFlags(GENERATE_FINE_WIRE)
