@@ -3520,6 +3520,11 @@ gtlitecore.tooltip.crop.berry_bush.4=附近8格内至少需要一格空气，它
 gtlitecore.tooltip.quit_message=你确定要退出游戏吗？
 gtlitecore.tooltip.modpack_name=格雷科技精简版
 
+gtlitecore.jei.space_pump_module.name=太空钻井模块
+gtlitecore.jei.space_pump_module.planet_id=行星参数：#%s
+gtlitecore.jei.space_pump_module.fluid_id=流体参数：#%s
+gtlitecore.jei.space_pump_module.fluid_amount=抽取速率：%s/秒
+
 # Creative Tabs
 itemGroup.gtlite=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器

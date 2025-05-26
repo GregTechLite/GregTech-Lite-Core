@@ -3512,6 +3512,11 @@ gtlitecore.tooltip.crop.berry_bush.4=附近8格内至少需要一格空气，它
 gtlitecore.tooltip.quit_message=Are you sure you want to exit the game?
 gtlitecore.tooltip.modpack_name=GregTech Lite
 
+gtlitecore.jei.space_pump_module.name=Space Pump Module
+gtlitecore.jei.space_pump_module.planet_id=Planet Id: #%s
+gtlitecore.jei.space_pump_module.fluid_id=Fluid Id: #%s
+gtlitecore.jei.space_pump_module.fluid_amount=Extract Speed: %s/s
+
 # Creative Tabs
 itemGroup.gtlite=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines
