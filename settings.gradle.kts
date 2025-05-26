@@ -20,14 +20,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
 }
 
-dependencyResolutionManagement { 
-    versionCatalogs { 
-        create("libs") {
-            version("kotlinVersion", settings.extra.properties["kotlinVersion"].toString())
-        }
-    }
-}
-
 // Due to an IntelliJ bug, this has to be done
 // rootProject.name = archives_base_name
 rootProject.name = rootProject.projectDir.getName()

@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
@@ -6,35 +7,26 @@ import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
 import java.net.URI
 
-// This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
-// as language mixed programming support (Java and Kotlin), some annotation processors and packages,
-// like JetBrains Annotation and Lombok.
-
-// The author of this TemplateEnvDevKt port version is Magic_Sweepy, and this gradle template is only
-// used for this project, thanks for Kyle Lin make the original gradle template.
-
-buildscript { 
-    repositories {
-        mavenCentral()
-    }
-
-    // Used Kotlin 2.1.0 as default setting.
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${libs.versions.kotlinVersion}")
-    }
-}
+/**
+ * This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
+ * as language mixed programming support (Java and Kotlin), some annotation processors and packages,
+ * like JetBrains Annotation and Lombok.
+ *
+ * The author of this TemplateEnvDevKt port version is Magic_Sweepy, and this gradle template is only
+ * used for this project, thanks for Kyle Lin make the original gradle template.
+ */
 
 plugins {
     id("java")
     id("java-library")
-    kotlin("jvm") version libs.versions.kotlinVersion
+    kotlin("jvm") version libs.versions.kotlin.get()
     id("maven-publish")
-    id("org.jetbrains.gradle.plugin.idea-ext") version "1.1.7"
     id("eclipse")
-    id("com.gtnewhorizons.retrofuturagradle") version "1.3.27"
-    id("com.matthewprenger.cursegradle") version "1.4.0"
-    id("org.jetbrains.dokka") version "1.9.10"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    alias(libs.plugins.ideaExt)
+    alias(libs.plugins.retrofuturaGradle)
+    alias(libs.plugins.curseGradle)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.shadow)
 }
 
 // The grouping mod name of project, like "org.authorname.examplemod", and the folder structure
@@ -61,28 +53,14 @@ val minecraftVersion: String by project
 // The userName setting of develop environment, the UUID will be looked up automatically.
 val userName: String by project
 
-// The kotlinVersion setting is only writable in settings.gradle.kts.
-
-// The forgeVersion setting, this option control the supported lib version of Kotlin in Minecraft.
-val forgelinVersion: String by project
-
 // The generateTokenPath setting, this option is the path of RFG Tags class.
 val generateTokenPath: String by project
 
 // The usesMixins setting.
 val usesMixins: String by project
 
-// The mixinBooterVersion setting.
-val mixinBooterVersion: String by project
-
 // The usesAccessTransformer setting.
 val usesAccessTransformer: String by project
-
-// The usesAssetMover setting, AssetMover is a mod used to downland resources.
-val usesAssetMover: String by project
-
-// The assetMoverVersion setting.
-val assetMoverVersion: String by project
 
 // The usesCoreMod setting.
 val usesCoreMod: String by project
@@ -118,15 +96,6 @@ java {
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
-}
-
-// IDEA no longer automatically downloads sources/javadoc jars for dependencies,
-// so we need to explicitly enable the behavior.
-idea {
-    module {
-        isDownloadJavadoc = true
-        isDownloadSources = true
-    }
 }
 
 configurations {
@@ -229,70 +198,69 @@ repositories {
 
 dependencies {
     // Before the dependencies.gradle script loading, add Forgelin to the dependencies.
-    implementation("io.github.chaosunity.forgelin:Forgelin-Continuous:${forgelinVersion}") {
+    implementation(libs.forgelin) {
         exclude("net.minecraftforge")
     }
 
     // Mixins dependency settings.
     if (usesMixins.toBoolean()) {
-        implementation("zone.rong:mixinbooter:9.1")
-
-        val mixin = modUtils.enableMixins("zone.rong:mixinbooter:${mixinBooterVersion}", "mixins.${modName}.refmap.json") as String
-        api(mixin) {
-            isTransitive = true
-        }
-        annotationProcessor("org.ow2.asm:asm-debug-all:5.2")
-        annotationProcessor("com.google.guava:guava:24.1.1-jre")
-        annotationProcessor("com.google.code.gson:gson:2.8.6")
-        annotationProcessor(mixin) {
+        annotationProcessor(libs.asm)
+        annotationProcessor(libs.guava)
+        annotationProcessor(libs.gson)
+        val mixinBooter = modUtils.enableMixins(libs.mixinBooter, "mixins.${modName}.refmap.json") as Provider<*>
+        api(mixinBooter) {
             isTransitive = false
         }
-    }
-
-    // AssetMover settings.
-    if (usesAssetMover.toBoolean()) {
-        implementation("com.cleanroommc:assetmover:${assetMoverVersion}")
+        annotationProcessor(mixinBooter) {
+            isTransitive = false
+        }
     }
 
     // Apply dependencies from gradle scripts.
-    apply("gradle/script/dependencies.gradle")
+//    apply("dependencies.gradle.kts")
+    implementation(deobf(libs.modularui))
+    api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
+    api(libs.groovyScript) {
+        isTransitive = true
+    }
+    api(libs.craftTweaker2)
+    api(deobf(libs.ctm))
+    implementation(deobf(files("libs/gregtech-1.12.2-master.jar")))
+    implementation(deobf(libs.ae2ExtendedLife))
+    implementation(libs.jei) // Transformed JEI dependencies from buildscripts option.
+    implementation(libs.theOneProbe) // Transformed TOP dependencies from buildscripts option.
+    // This mod is a utility mod which used to downland resources from any URL, and move it to a hidden folder.
+    implementation(libs.assetMover)
+    runtimeOnly(deobf(libs.smoothFonts))
+    runtimeOnly(deobf(libs.betterQuestingUnofficial))
 
     // Several global dependencies.
+    compileOnlyApi(libs.jetbrainsAnnotations) {
+        annotationProcessor(this)
+    }
+    compileOnlyApi(libs.lombok) {
+        annotationProcessor(this)
+    }
 
-    // JetBrains Annotations 24.1.0
-    compileOnlyApi("org.jetbrains:annotations:24.1.0")
-    annotationProcessor("org.jetbrains:annotations:24.1.0")
+    shadowImplementation(libs.streamex)
+    shadowImplementation(libs.jheaps)
+    shadowImplementation(libs.joml)
+    compileOnly(libs.kotson)
+}
 
-    // Lombok 1.18.24
-    compileOnly("org.projectlombok:lombok:1.18.24")
-    annotationProcessor("org.projectlombok:lombok:1.18.24")
+fun DependencyHandler.deobf(dependencyNotation: Any): Any {
+    if (dependencyNotation is Provider<*>) {
+        return deobf(dependencyNotation.get())
+    }
 
-    // StreamEx 0.8.3
-    implementation("one.util:streamex:0.8.3")
-
-    // JHeaps 0.14
-    implementation("org.jheaps:jheaps:0.14")
-
-    // JOML 1.10.4
-    implementation("org.joml:joml:1.10.4")
-
-    // Kotson 2.5.0
-    compileOnly("com.github.salomonbrys.kotson:kotson:2.5.0")
-
-    // Processing shadowJar dependencies.
-    if (usesShadowJar.toBoolean()) {
-        // Hint: if usesShadowJar setting is enabled, please modify the shadowJar implementation
-        // at dependencies part.
-        shadowImplementation("one.util:streamex:0.8.3") {
-            isTransitive = false
-        }
-        shadowImplementation("org.jheaps:jheaps:0.14") {
-            isTransitive = false
-        }
-        shadowImplementation("org.joml:joml:1.10.4") {
-            isTransitive = false
+    var depSpec = dependencyNotation
+    if (dependencyNotation is Dependency) {
+        depSpec = "${dependencyNotation.group}:${dependencyNotation.name}:${dependencyNotation.version}"
+        if (dependencyNotation is DependencyVariant) {
+            depSpec += ":${dependencyNotation.classifier}"
         }
     }
+    return rfg.deobf(depSpec)
 }
 
 // Adds Access Transformer files to tasks.
@@ -332,7 +300,8 @@ tasks.withType<Jar> {
             attributeMap["FMLCorePlugin"] = coreModPluginPath
             if (includeMod.toBoolean()) {
                 attributeMap["FMLCorePluginContainsFMLMod"] = true.toString()
-                attributeMap["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
+                attributeMap["ForceLoadAsMod"] =
+                    (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
             }
         }
         if (usesAccessTransformer.toBoolean()) {
@@ -381,6 +350,10 @@ if (usesShadowJar.toBoolean()) {
 idea {
     module {
         inheritOutputDirs = true
+        // IDEA no longer automatically downloads sources/javadoc jars for dependencies,
+        // so we need to explicitly enable the behavior.
+        isDownloadSources = true
+        isDownloadJavadoc = true
     }
     project {
         settings {
@@ -423,10 +396,12 @@ tasks.withType<DokkaTask>().configureEach {
             sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
             // Java 8 External Docs.
             externalDocumentationLink(
-                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL())
+                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL()
+            )
             // Kotlin StdLib External Docs.
             externalDocumentationLink(
-                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL())
+                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL()
+            )
         }
     }
 }
