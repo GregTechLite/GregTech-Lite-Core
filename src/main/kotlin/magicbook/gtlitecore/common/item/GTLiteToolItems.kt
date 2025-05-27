@@ -11,7 +11,6 @@ import gregtech.common.items.tool.RotateRailBehavior
 import gregtech.core.sound.GTSoundEvents
 import magicbook.gtlitecore.api.utils.GTLiteValues
 import magicbook.gtlitecore.common.item.behavior.FlintAndSteelToolBehavior
-import net.minecraft.enchantment.EnumEnchantmentType
 import net.minecraft.entity.monster.EntityGolem
 import net.minecraft.init.SoundEvents
 

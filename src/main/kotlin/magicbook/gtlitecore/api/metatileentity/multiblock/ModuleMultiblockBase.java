@@ -1,8 +1,5 @@
 package magicbook.gtlitecore.api.metatileentity.multiblock;
 
-import com.cleanroommc.modularui.factory.PosGuiData;
-import com.cleanroommc.modularui.screen.ModularPanel;
-import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
@@ -13,15 +10,11 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
-import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import lombok.Getter;
 import lombok.Setter;
 import magicbook.gtlitecore.api.capability.IModuleProvider;
 import magicbook.gtlitecore.api.capability.IModuleReceiver;
-import magicbook.gtlitecore.api.gui.GTLiteMuiTextures;
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIBuilder;
-import magicbook.gtlitecore.api.gui.factory.MultiblockUIFactory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumFacing;

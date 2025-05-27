@@ -125,7 +125,6 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
-import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidPipeProperties

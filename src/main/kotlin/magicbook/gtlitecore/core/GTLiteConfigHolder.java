@@ -4,8 +4,8 @@ import magicbook.gtlitecore.api.utils.GTLiteValues;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
-import net.minecraftforge.common.config.Config.RequiresMcRestart;
 import net.minecraftforge.common.config.Config.RangeInt;
+import net.minecraftforge.common.config.Config.RequiresMcRestart;
 
 @Config(modid = GTLiteValues.MODID,
         name = GTLiteValues.MODID + '/' + GTLiteValues.MODID) // Put configurations to the total files with module configurations.

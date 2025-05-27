@@ -184,7 +184,6 @@ import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HIGH_PERFORMANCE_COMPUTING_ARRAY
-import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
@@ -290,7 +289,6 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_16777216
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.LASER_OUTPUT_HATCH_4194304
 import magicbook.gtlitecore.loader.recipe.machine.AssemblyLineRecipes.Companion.researchStack
-import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval
 

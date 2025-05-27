@@ -149,7 +149,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_GOOWARE_SMD_TRANSISTOR
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_HIGHLY_ADVANCED_SOC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_ILC_CHIP
-import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_INFINITE_CIRCUIT_BOARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NAND_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NANO_CPU_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_NEURO_PROCESSOR
