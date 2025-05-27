@@ -2166,7 +2166,8 @@ class AssemblyLineRecipes
                 .scannerResearch { r -> r
                     .researchStack(ENERGY_INPUT_HATCH[IV])
                     .EUt(VA[HV].toLong())
-                    .duration(1 * MINUTE) }
+                    .duration(1 * MINUTE)
+                }
                 .buildAndRegister()
 
             // LuV Dynamo Hatch
@@ -2425,7 +2426,7 @@ class AssemblyLineRecipes
                 .stationResearch { r -> r
                     .researchStack(ENERGY_INPUT_HATCH[UEV])
                     .EUt(VA[UEV].toLong())
-                    .CWUt(64)
+                    .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -2444,7 +2445,7 @@ class AssemblyLineRecipes
                 .stationResearch { r -> r
                     .researchStack(ENERGY_OUTPUT_HATCH[UEV])
                     .EUt(VA[UEV].toLong())
-                    .CWUt(64)
+                    .CWUt(48)
                 }
                 .buildAndRegister()
 
@@ -2463,7 +2464,7 @@ class AssemblyLineRecipes
                 .stationResearch { r -> r
                     .researchStack(ENERGY_INPUT_HATCH[UIV])
                     .EUt(VA[UIV].toLong())
-                    .CWUt(128)
+                    .CWUt(64)
                 }
                 .buildAndRegister()
 
@@ -2482,7 +2483,7 @@ class AssemblyLineRecipes
                 .stationResearch { r -> r
                     .researchStack(ENERGY_OUTPUT_HATCH[UIV])
                     .EUt(VA[UIV].toLong())
-                    .CWUt(128)
+                    .CWUt(64)
                 }
                 .buildAndRegister()
 
