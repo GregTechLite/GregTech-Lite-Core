@@ -1169,6 +1169,8 @@ class GTLiteRecipeMaps
             // If EnderIO is loaded, then add a fluid slots for XP juice outputs.
             BIO_SIMULATOR_RECIPES.maxFluidOutputs = 1
 
+            RecipeMaps.CHEMICAL_BATH_RECIPES.maxInputs = 2
+
         }
 
     }

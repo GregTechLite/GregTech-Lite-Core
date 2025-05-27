@@ -99,6 +99,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/antimatter_containment"
         }
+      },
+      "greenhouse": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/greenhouse"
+        }
       }
     }
   }

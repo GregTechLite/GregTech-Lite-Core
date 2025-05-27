@@ -15,6 +15,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.AntimonyTrioxide
+import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.BandedIron
@@ -51,6 +52,7 @@ import gregtech.api.unification.material.Materials.Pentlandite
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.PhosphorusPentoxide
 import gregtech.api.unification.material.Materials.Praseodymium
+import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
@@ -88,6 +90,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
@@ -204,6 +207,36 @@ class OxidesChain
                 .fluidOutputs(SulfurDioxide.getFluid(1000))
                 .EUt(VA[MV].toLong())
                 .duration(6 * SECOND)
+                .buildAndRegister()
+
+            // Other recipes for As2O3.
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Arsenic, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, ArsenicTrioxide, 5)
+                .EUt(VA[LV].toLong())
+                .duration(4 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // As2S3 + 9O -> As2O3 + 3SO2
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Orpiment, 5)
+                .fluidInputs(Oxygen.getFluid(6000))
+                .output(dust, ArsenicTrioxide, 5)
+                .fluidOutputs(SulfurDioxide.getFluid(3000))
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND + 15 * TICK)
+                .buildAndRegister()
+
+            // As4S4 + 14O -> 2As2O3 + 4SO2
+            ROASTER_RECIPES.recipeBuilder()
+                .input(dust, Realgar, 8)
+                .fluidInputs(Oxygen.getFluid(14000))
+                .output(dust, ArsenicTrioxide, 10)
+                .fluidOutputs(SulfurDioxide.getFluid(4000))
+                .EUt(VA[LV].toLong())
+                .duration(4 * SECOND)
                 .buildAndRegister()
 
             // Remove ZrSiO4 blasting recipes.

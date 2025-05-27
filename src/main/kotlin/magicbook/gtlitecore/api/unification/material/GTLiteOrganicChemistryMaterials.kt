@@ -40,6 +40,7 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -95,6 +96,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Codeine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creosol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CrudeHexanitrohexaaxaisowurtzitane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyanIndigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cyclooctadiene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cycloparaphenylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
@@ -125,6 +127,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylam
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimethylformamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrodipropanyloxybenzene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dinitrotoluene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DirectBrown77
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Durene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EDTA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Edot
@@ -167,6 +170,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroquino
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hydroxyquinoline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indanone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Isochloropropane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IsopropylAlcohol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.IsopropylChloride
@@ -185,6 +189,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Methyltric
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NDifluorophenylpyrrole
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NHydroxysuccinimide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NMethylPyrrolidone
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Naphthylamine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nigrosin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitroaniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitrotoluene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octaazacubane
@@ -227,6 +233,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolypho
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sarcosine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSulfanilate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Succinimide
@@ -237,6 +244,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Terephthal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylAlcohol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetraacetyldinitrosohexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoethane
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoindigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetraethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumChloride
@@ -1865,6 +1873,65 @@ class GTLiteOrganicChemistryMaterials
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
                 .setFormula("C6H5Na", true)
+
+            // 8199 Indigo
+            Indigo = Material.Builder(8199, gtliteId("indigo"))
+                .dust()
+                .color(0x0000FF).iconSet(DULL)
+                .components(Carbon, 16, Hydrogen, 10, Nitrogen, 2, Oxygen, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8200 Tetrabromoindigo
+            Tetrabromoindigo = Material.Builder(8200, gtliteId("tetrabromoindigo"))
+                .dust()
+                .colorAverage().iconSet(DULL)
+                .components(Indigo, 1, Bromine, 4)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C16H6Br4N2O2", true)
+
+            // 8201 Cyan Indigo
+            CyanIndigo = Material.Builder(8201, gtliteId("cyan_indigo"))
+                .dust()
+                .color(0x1661AB).iconSet(DULL)
+                .components(Indigo, 1, Tetrabromoindigo, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C16H10N2O2)2Br4", true)
+
+            // 8202 Nigrosin
+            Nigrosin = Material.Builder(8202, gtliteId("nigrosin"))
+                .dust()
+                .color(0x000000).iconSet(DULL)
+                .components(Carbon, 36, Hydrogen, 26, Nitrogen, 5, Chlorine, 1, Sodium, 2, Sulfur, 2, Oxygen, 6)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8203 Sodium Sulfanilate
+            SodiumSulfanilate = Material.Builder(8203, gtliteId("sodium_sulfanilate"))
+                .dust()
+                .color(0xE49879).iconSet(SHINY)
+                .components(Carbon, 6, Hydrogen, 6, Nitrogen, 1, Sodium, 1, Oxygen, 3, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8204 Naphthylamine
+            Naphthylamine = Material.Builder(8204, gtliteId("naphthylamine"))
+                .liquid()
+                .color(0xE3E81C)
+                .components(Carbon, 10, Hydrogen, 9, Nitrogen, 1)
+                .build()
+                .setFormula("C10H8NH", true)
+
+            // 8205 Direct Brown 77
+            DirectBrown77 = Material.Builder(8205, gtliteId("direct_brown_77"))
+                .dust()
+                .color(0x663300).iconSet(DULL)
+                .components(Carbon, 26, Hydrogen, 19, Nitrogen, 6, Sodium, 1, Oxygen, 3, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
         }
 
     }

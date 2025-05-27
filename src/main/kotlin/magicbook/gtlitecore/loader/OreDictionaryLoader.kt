@@ -59,17 +59,24 @@ import gregtech.common.blocks.MetaBlocks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyanIndigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DirectBrown77
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Erythrosine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorescein
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nigrosin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Orpiment
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrussianBlue
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScheelesGreen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.utils.Mods
@@ -155,6 +162,7 @@ class OreDictionaryLoader
             // Orange
             OreDictionary.registerOre("dyeOrange", OreDictUnifier.get(dust, BrownLimonite))
             OreDictionary.registerOre("dyeOrange", OreDictUnifier.get(dust, YellowLimonite))
+            // TODO Diketopyrrolopyrrole?
 
             // Magenta
 
@@ -177,30 +185,37 @@ class OreDictionaryLoader
             OreDictionary.registerOre("dyeLightGray", OreDictUnifier.get(dust, Barite))
 
             // Cyan
+            OreDictionary.registerOre("dyeCyan", OreDictUnifier.get(dust, CyanIndigo))
 
             // Purple
+            // TODO Mauveine?
 
             // Blue
             OreDictionary.registerOre("dyeBlue", OreDictUnifier.get(dust, CobaltAluminate)) // "Cobalt Blue"
             OreDictionary.registerOre("dyeBlue", OreDictUnifier.get(dust, Azurite)) // "Copper Blue"
-            // TODO Prussian Blue?
+            OreDictionary.registerOre("dyeBlue", OreDictUnifier.get(dust, PrussianBlue))
+            OreDictionary.registerOre("dyeBlue", OreDictUnifier.get(dust, Indigo))
+            // TODO Indanthrone Blue?
 
             // Brown
             OreDictionary.registerOre("dyeBrown", OreDictUnifier.get(dust, BandedIron))
             OreDictionary.registerOre("dyeBrown", OreDictUnifier.get(dust, Sienna))
+            OreDictionary.registerOre("dyeBrown", OreDictUnifier.get(dust, DirectBrown77))
 
             // Green
             OreDictionary.registerOre("dyeGreen", OreDictUnifier.get(dust, Malachite))
-            // TODO Scheele Green?
+            OreDictionary.registerOre("dyeGreen", OreDictUnifier.get(dust, ScheelesGreen))
 
             // Red
             OreDictionary.registerOre("dyeRed", OreDictUnifier.get(dust, Cinnabar))
             OreDictionary.registerOre("dyeRed", OreDictUnifier.get(dust, Realgar))
             OreDictionary.registerOre("dyeRed", OreDictUnifier.get(dust, BurntSienna))
+            OreDictionary.registerOre("dyeRed", OreDictUnifier.get(dust, Erythrosine))
 
             // Black
             OreDictionary.registerOre("dyeBlack", OreDictUnifier.get(dust, Carbon))
             OreDictionary.registerOre("dyeBlack", OreDictUnifier.get(dust, Graphite))
+            OreDictionary.registerOre("dyeBlack", OreDictUnifier.get(dust, Nigrosin))
 
         }
 
@@ -211,9 +226,10 @@ class OreDictionaryLoader
             // MV: Glass (vanilla), Cleanroom Glass
             OreDictionary.registerOre("glassMv", Blocks.GLASS)
             OreDictionary.registerOre("glassMv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.CLEANROOM_GLASS))
-            // HV: Tempered Glass, Borosilicate Glass
+            // HV: Tempered Glass, Borosilicate Glass, Greenhouse Glass
             OreDictionary.registerOre("glassHv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
             OreDictionary.registerOre("glassHv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
+            OreDictionary.registerOre("glassHv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.GREENHOUSE))
             // EV: Tempered Glass, Titanium reinforced Borosilicate Glass
             OreDictionary.registerOre("glassEv", MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
             OreDictionary.registerOre("glassEv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.SILICON_CARBIDE))

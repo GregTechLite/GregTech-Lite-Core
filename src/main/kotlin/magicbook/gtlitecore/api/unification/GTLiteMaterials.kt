@@ -351,6 +351,10 @@ class GTLiteMaterials
         lateinit var SodiumBromide: Material
         lateinit var BlackDwarfMatter: Material
         lateinit var WhiteDwarfMatter: Material
+        lateinit var PotassiumFerrocyanideTrihydrate: Material
+        lateinit var PrussianBlue: Material
+        lateinit var CopperArsenite: Material
+        lateinit var ScheelesGreen: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -629,6 +633,13 @@ class GTLiteMaterials
         lateinit var NDifluorophenylpyrrole: Material
         lateinit var TetraethylammoniumBromide: Material
         lateinit var Phenylsodium: Material
+        lateinit var Indigo: Material
+        lateinit var Tetrabromoindigo: Material
+        lateinit var CyanIndigo: Material
+        lateinit var Nigrosin: Material
+        lateinit var SodiumSulfanilate: Material
+        lateinit var Naphthylamine: Material
+        lateinit var DirectBrown77: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

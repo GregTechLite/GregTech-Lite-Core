@@ -257,6 +257,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGe
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Clinochlore
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperArsenite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperDichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperGalliumIndiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperNitrate
@@ -390,6 +391,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PlutoniumT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PoloniumNitrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumBromate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFerrocyanideTrihydrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumFormate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumHydroxide
@@ -404,6 +406,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Praseodymi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PromethiumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrussianBlue
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PurifiedPlatinumGroupConcentrate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RP1RocketFuel
@@ -422,6 +425,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumOx
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScEuGdSmOxidesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumTitaniumMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScheelesGreen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeleniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
@@ -3240,6 +3244,42 @@ class GTLiteFirstDegreeMaterials
                 .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_NANITE)
                 .cableProperties(V[OpV], 108, 36)
                 .build()
+
+            // 2316 Potassium Ferrocyanide Trihydrate
+            PotassiumFerrocyanideTrihydrate = Material.Builder(2316, gtliteId("potassium_ferrocyanide_trihydrate"))
+                .dust()
+                .color(0x0069B2).iconSet(ROUGH)
+                .components(Potassium, 4, Iron, 1, Carbon, 6, Nitrogen, 6, Water, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("K4Fe(CN)6(H2O)3", true)
+
+            // 2317 Prussian Blue
+            PrussianBlue = Material.Builder(2317, gtliteId("prussian_blue"))
+                .dust()
+                .color(0x003153).iconSet(SHINY)
+                .components(Iron, 7, Carbon, 18, Nitrogen, 18)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("Fe4[Fe(CN)6]3", true)
+
+            // 2318 Copper Arsenite
+            CopperArsenite = Material.Builder(2318, gtliteId("copper_arsenite"))
+                .dust()
+                .color(0x66FF66).iconSet(ROUGH)
+                .components(Copper, 3, Arsenic, 2, Oxygen, 8)
+                .build()
+                .setFormula("Cu3(AsO4)2", true)
+
+            // 2319 Scheeles' Green
+            ScheelesGreen = Material.Builder(2319, gtliteId("scheeles_green"))
+                .dust()
+                .liquid()
+                .color(0x00FF00).iconSet(DULL)
+                .components(Arsenic, 1, Copper, 1, Hydrogen, 1, Oxygen, 3)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
         }
 
     }

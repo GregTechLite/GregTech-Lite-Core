@@ -120,7 +120,8 @@ public class BlockGlassCasing01 extends VariantBlock<BlockGlassCasing01.GlassTyp
         LEAD_SILICON("lead_silicon", GTValues.EV),
         QUANTUM("quantum", GTValues.UHV),
         FORCE_FIELD("force_field", GTValues.UEV),
-        ANTIMATTER_CONTAINMENT("antimatter_containment", GTValues.UIV);
+        ANTIMATTER_CONTAINMENT("antimatter_containment", GTValues.UIV),
+        GREENHOUSE("greenhouse", GTValues.HV);
 
         private final String name;
         private final int tier;

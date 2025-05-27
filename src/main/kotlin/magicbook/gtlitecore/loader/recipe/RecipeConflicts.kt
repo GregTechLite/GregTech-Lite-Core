@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader.recipe
 
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
@@ -18,6 +19,9 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Polydimethylsiloxane
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Silicon
+import gregtech.api.unification.material.Materials.SodiumBisulfate
+import gregtech.api.unification.material.Materials.SodiumHydroxide
+import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -83,6 +87,21 @@ class RecipeConflicts
                 .fluidOutputs(Butyraldehyde.getFluid(1000))
                 .EUt(VA[HV].toLong())
                 .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Conflicts between NaHSO4 and C6H6NNaO3S.
+            GTRecipeUtility.removeChemicalRecipes(
+                arrayOf(OreDictUnifier.get(dust, SodiumHydroxide, 3)),
+                arrayOf(SulfuricAcid.getFluid(1000)))
+
+            CHEMICAL_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, SodiumHydroxide, 3)
+                .fluidInputs(SulfuricAcid.getFluid(1000))
+                .output(dust, SodiumBisulfate, 7)
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(VA[LV].toLong())
+                .duration(5 * SECOND)
                 .buildAndRegister()
 
         }
