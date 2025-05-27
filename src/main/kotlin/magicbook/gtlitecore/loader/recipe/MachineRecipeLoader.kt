@@ -166,6 +166,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
+import gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
@@ -225,6 +226,7 @@ import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.metatileentities.MetaTileEntities.ACTIVE_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.ADVANCED_FLUID_DRILLING_RIG
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -307,6 +309,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Inconel625
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumTitanate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -463,6 +466,9 @@ import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Compani
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ASSEMBLER_MK2
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ASSEMBLER_MK3
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_ELEVATOR
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_PUMP_MK1
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_PUMP_MK2
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.SPACE_PUMP_MK3
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ALLOY_SMELTER
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_COMPRESSOR
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.STEAM_ENGINE
@@ -2453,6 +2459,97 @@ class MachineRecipeLoader
                     r.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
                         .EUt(VA[UIV].toLong())
                         .CWUt(64)
+                }
+                .buildAndRegister()
+
+            // Space Pump Module MK1
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ADVANCED_FLUID_DRILLING_RIG)
+                .input(COVER_ENDER_FLUID_LINK, 2)
+                .input(frameGt, Neutronium, 4)
+                .input(circuit, MarkerMaterials.Tier.UHV, 4)
+                .input(ELECTRIC_PUMP_UV, 2)
+                .input(gear, Neutronium, 4)
+                .input(screw, Bedrockium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 9))
+                .fluidInputs(Adamantium.getFluid(L * 4))
+                .output(SPACE_PUMP_MK1)
+                .EUt(VA[UV].toLong())
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ADVANCED_FLUID_DRILLING_RIG.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(16)
+                }
+                .buildAndRegister()
+
+            // Space Pump Module MK2
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(SPACE_PUMP_MK1, 4)
+                .input(frameGt, Vibranium, 8)
+                .input(circuit, MarkerMaterials.Tier.UEV, 16)
+                .input(ELECTRIC_PUMP_UHV, 8)
+                .input(gear, Vibranium, 8)
+                .input(screw, Taranium, 64)
+                .input(plateDouble, CosmicNeutronium, 8)
+                .fluidInputs(SolderingAlloy.getFluid(L * 32))
+                .output(SPACE_PUMP_MK2)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE)
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ADVANCED_FLUID_DRILLING_RIG, 4)
+                .input(COVER_ENDER_FLUID_LINK, 8)
+                .input(frameGt, Vibranium, 4)
+                .input(circuit, MarkerMaterials.Tier.UEV, 16)
+                .input(ELECTRIC_PUMP_UHV, 8)
+                .input(gear, Vibranium, 4)
+                .input(screw, Taranium, 64)
+                .fluidInputs(SolderingAlloy.getFluid(L * 32))
+                .fluidInputs(CosmicNeutronium.getFluid(L * 16))
+                .output(SPACE_PUMP_MK2)
+                .EUt(VA[UHV].toLong())
+                .duration(2 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(SPACE_PUMP_MK1.stackForm)
+                        .EUt(VA[UV].toLong())
+                        .CWUt(24)
+                }
+                .buildAndRegister()
+
+            // Space Pump Module MK3
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .input(SPACE_PUMP_MK2, 4)
+                .input(frameGt, Infinity, 8)
+                .input(circuit, MarkerMaterials.Tier.UIV, 16)
+                .input(ELECTRIC_PUMP_UEV, 8)
+                .input(gear, Infinity, 8)
+                .input(screw, Magnetium, 64)
+                .input(plateDouble, Rhugnor, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+                .output(SPACE_PUMP_MK3)
+                .EUt(VA[UEV].toLong())
+                .duration(5 * MINUTE)
+                .buildAndRegister()
+
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ADVANCED_FLUID_DRILLING_RIG, 16)
+                .input(COVER_ENDER_FLUID_LINK, 32)
+                .input(frameGt, Infinity, 4)
+                .input(circuit, MarkerMaterials.Tier.UIV, 16)
+                .input(ELECTRIC_PUMP_UEV, 8)
+                .input(gear, Infinity, 4)
+                .input(screw, Magnetium, 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+                .fluidInputs(Rhugnor.getFluid(L * 32))
+                .output(SPACE_PUMP_MK3)
+                .EUt(VA[UEV].toLong())
+                .duration(5 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(SPACE_PUMP_MK2.stackForm)
+                        .EUt(VA[UEV].toLong())
+                        .CWUt(32)
                 }
                 .buildAndRegister()
 

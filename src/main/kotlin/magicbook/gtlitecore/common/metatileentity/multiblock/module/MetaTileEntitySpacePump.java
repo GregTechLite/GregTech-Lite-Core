@@ -28,20 +28,25 @@ import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static gregtech.api.GTValues.VNF;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
 
@@ -147,6 +152,39 @@ public class MetaTileEntitySpacePump extends ModuleMultiblockBase
     }
 
     @Override
+    public void addInformation(ItemStack stack,
+                               @Nullable World world,
+                               @NotNull List<String> tooltip,
+                               boolean advanced)
+    {
+        super.addInformation(stack, world, tooltip, advanced);
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.1"));
+        if (moduleTier == 1)
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.mk1.tooltip.1"));
+        else if (moduleTier == 2)
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.mk2.tooltip.1"));
+        else
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.mk3.tooltip.1"));
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.2"));
+        if (moduleTier == 1)
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.3"));
+        else
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.4"));
+        if (moduleTier == 3)
+            tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.5"));
+
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.max_parallel", VNF[tier]));
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.orbit_tier", getOrbitTier(moduleTier)));
+    }
+
+    private String getOrbitTier(int moduleTier)
+    {
+        if (moduleTier == 1) return "MK1";
+        else if (moduleTier == 2) return "MK2";
+        else return "MK4";
+    }
+
+    @Override
     protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer)
     {
         ModularUI.Builder builder = ModularUI.builder(GTLiteGuiTextures.BACKGROUND_IRREGULAR, 311, 208)
@@ -172,34 +210,104 @@ public class MetaTileEntitySpacePump extends ModuleMultiblockBase
         // Voiding Mode Button
         builder.widget(new ImageCycleButtonWidget(173, 161, 18, 18, GuiTextures.BUTTON_VOID_MULTIBLOCK,
                 4, this::getVoidingMode, this::setVoidingMode)
-                .setTooltipHoverString(MultiblockWithDisplayBase::getVoidingModeTooltip));
+                        .setTooltipHoverString(MultiblockWithDisplayBase::getVoidingModeTooltip));
 
         // Sub Screen for setting (planet, fluid).
+        builder.label(198 + 62 - 18 * 2 - 18 - 9, 36 - 12, "gtlitecore.machine.space_pump_module.configuration", 0x1F1E33)
+                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_1))
+                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_2))
+                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 2, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_3))
+                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 3, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_4));
+
         ServerWidgetGroup planetGroup1 = new ServerWidgetGroup(() -> true);
-        planetGroup1.addWidget(new ImageWidget(198 + 62 - 18 * 2, 36, 53, 20, GuiTextures.DISPLAY)
+        planetGroup1.addWidget(new ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36, 53 / 2, 20, GuiTextures.DISPLAY)
                 .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"));
 
-        planetGroup1.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2, 42, 51, 20,
+        planetGroup1.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42, 51 / 2, 20,
                 () -> getPlanetValue(0), s -> setPlanetValue(0, s))
                 .setCentered(true)
                 .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
                 .setMaxLength(3));
 
         ServerWidgetGroup fluidGroup1 = new ServerWidgetGroup(() -> true);
-        fluidGroup1.addWidget(new ImageWidget(198 + 62 - 18 * 2, 36 + 36, 53, 20, GuiTextures.DISPLAY)
+        fluidGroup1.addWidget(new ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36, 53 / 2, 20, GuiTextures.DISPLAY)
                 .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"));
 
-        fluidGroup1.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2, 42 + 36, 51, 20,
+        fluidGroup1.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42, 51 / 2, 20,
                 () -> getFluidValue(0), s -> setFluidValue(0, s))
                 .setCentered(true)
                 .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
                 .setMaxLength(3));
 
-
-        builder.widget(planetGroup1)
-                .widget(fluidGroup1);
+        builder.widget(planetGroup1).widget(fluidGroup1);
 
         // For MK2/MK3, has more planetGroup to setting 2-4 planets and fluids.
+        if (moduleTier > 1)
+        {
+            ServerWidgetGroup planetGroup2 = new ServerWidgetGroup(() -> true);
+            planetGroup2.addWidget(new ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"));
+
+            planetGroup2.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22, 51 / 2, 20,
+                    () -> getPlanetValue(1), s -> setPlanetValue(1, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            ServerWidgetGroup fluidGroup2 = new ServerWidgetGroup(() -> true);
+            fluidGroup2.addWidget(new ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"));
+
+            fluidGroup2.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22, 51 / 2, 20,
+                    () -> getFluidValue(1), s -> setFluidValue(1, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            ServerWidgetGroup planetGroup3 = new ServerWidgetGroup(() -> true);
+            planetGroup3.addWidget(new ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22 * 2, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"));
+
+            planetGroup3.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22 * 2, 51 / 2, 20,
+                    () -> getPlanetValue(2), s -> setPlanetValue(2, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            ServerWidgetGroup fluidGroup3 = new ServerWidgetGroup(() -> true);
+            fluidGroup3.addWidget(new ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22 * 2, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"));
+
+            fluidGroup3.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22 * 2, 51 / 2, 20,
+                    () -> getFluidValue(2), s -> setFluidValue(2, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            ServerWidgetGroup planetGroup4 = new ServerWidgetGroup(() -> true);
+            planetGroup4.addWidget(new ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22 * 3, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"));
+
+            planetGroup4.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22 * 3, 51 / 2, 20,
+                    () -> getPlanetValue(3), s -> setPlanetValue(3, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            ServerWidgetGroup fluidGroup4 = new ServerWidgetGroup(() -> true);
+            fluidGroup4.addWidget(new ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22 * 3, 53 / 2, 20, GuiTextures.DISPLAY)
+                    .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"));
+
+            fluidGroup4.addWidget(new TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22 * 3, 51 / 2, 20,
+                    () -> getFluidValue(3), s -> setFluidValue(3, s))
+                    .setCentered(true)
+                    .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
+                    .setMaxLength(3));
+
+            builder.widget(planetGroup2).widget(fluidGroup2)
+                    .widget(planetGroup3).widget(fluidGroup3)
+                    .widget(planetGroup4).widget(fluidGroup4);
+        }
 
         builder.widget(new ClickButtonWidget(173, 125 + 18, 18, 18, "", data -> reinitializeStructurePattern())
                 .setButtonTexture(GTLiteGuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)

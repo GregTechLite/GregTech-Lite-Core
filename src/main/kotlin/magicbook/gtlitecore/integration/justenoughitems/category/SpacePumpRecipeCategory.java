@@ -15,6 +15,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Collections;
@@ -43,7 +44,7 @@ public final class SpacePumpRecipeCategory extends BasicRecipeCategory<SpacePump
     public SpacePumpRecipeCategory(IGuiHelper guiHelper)
     {
         super("space_pump_module", "gtlitecore.jei.space_pump_module.name",
-                guiHelper.createBlankDrawable(176, 166), guiHelper);
+                guiHelper.createBlankDrawable(176, 166 - 36), guiHelper);
         this.slot = guiHelper.drawableBuilder(GuiTextures.SLOT.imageLocation, 0, 0, 18, 18)
                 .setTextureSize(18, 18)
                 .build();

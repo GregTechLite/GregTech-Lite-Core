@@ -52,6 +52,22 @@ class GTLiteGuiTextures
         val SPACE_ELEVATOR_LOGO_DARK: TextureArea = TextureArea.fullImage(
             "textures/gui/icon/space_elevator_logo_dark.png")
 
+        @JvmField
+        val SPACE_PUMP_MODULE_1: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_pump_module_1.png")
+
+        @JvmField
+        val SPACE_PUMP_MODULE_2: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_pump_module_2.png")
+
+        @JvmField
+        val SPACE_PUMP_MODULE_3: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_pump_module_3.png")
+
+        @JvmField
+        val SPACE_PUMP_MODULE_4: TextureArea = TextureArea.fullImage(
+            "textures/gui/icon/space_pump_module_4.png")
+
         // -------------------------------------------------------------------------------------------------------------
         // Overlay textures.
 

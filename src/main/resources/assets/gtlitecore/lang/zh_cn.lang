@@ -2187,9 +2187,21 @@ gtlitecore.machine.space_assembler_module.max_parallel=运行电压：%s§7，�
 gtlitecore.machine.space_assembler_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
 
 gtlitecore.machine.space_pump_module.mk1.name=太空钻井模块 MK1
+gtlitecore.machine.space_pump_module.mk1.tooltip.1=§d§l彻底吸干气态行星§7
 gtlitecore.machine.space_pump_module.mk2.name=太空钻井模块 MK2
+gtlitecore.machine.space_pump_module.mk2.tooltip.1=§d§l疯狂吮吸§7
 gtlitecore.machine.space_pump_module.mk3.name=太空钻井模块 MK3
+gtlitecore.machine.space_pump_module.mk3.tooltip.1=§d§l吸干抹净§7
 
+gtlitecore.machine.space_pump_module.tooltip.1=将太空钻井功能添加到太空电梯。
+gtlitecore.machine.space_pump_module.tooltip.2=设定行星与流体类型以决定输出流体
+gtlitecore.machine.space_pump_module.tooltip.3=升级钻井模块等级以解锁更多的流体输出
+gtlitecore.machine.space_pump_module.tooltip.4=可以同时设定4种输出流体类型
+gtlitecore.machine.space_pump_module.tooltip.5=工作速度提高4倍
+gtlitecore.machine.space_pump_module.max_parallel=运行电压：%s§7
+gtlitecore.machine.space_pump_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
+
+gtlitecore.machine.space_pump_module.configuration=配置界面
 gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
 gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
 
