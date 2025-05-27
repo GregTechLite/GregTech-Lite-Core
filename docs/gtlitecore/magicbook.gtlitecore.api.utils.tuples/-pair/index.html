@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Pair</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            gtlitecore
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="gtlitecore::magicbook.gtlitecore.api.utils.tuples/Pair///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">gtlitecore</a><span class="delimiter">/</span><a href="../index.html">magicbook.gtlitecore.api.utils.tuples</a><span class="delimiter">/</span><span class="current">Pair</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Pair</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">V</a><span class="token operator">&gt;</span> : <a href="../../magicbook.gtlitecore.api.utils.functions/-bi-functor/index.html">BiFunctor</a><span class="token operator">&lt;</span><a href="../../magicbook.gtlitecore.api.utils.functions/-bi-functor/index.html">T1</a><span class="token punctuation">, </span><a href="../../magicbook.gtlitecore.api.utils.functions/-bi-functor/index.html">T2</a><span class="token punctuation">, </span><a href="../../magicbook.gtlitecore.api.utils.functions/-bi-functor/index.html">F</a><span class="token operator">&gt; </span>, <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html">Serializable</a></div><p class="paragraph">A functional enhancement of <span data-unresolved-link="org.apache.commons.lang3.tuple/Pair///PointingToDeclaration/">org.apache.commons.lang3.tuple.Pair</span>. </p><p class="paragraph"> This class is a &quot;pair&quot; structure like <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html">Map.Entry</a>, it is suitable for serialization and functional programming operations. For example: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+    // Bob is a 24 year old woman.
+    Pair&lt;String, Integer&gt; bobAge = Pair.of(&quot;Bob&quot;, 12)
+            .mapKey(String::toLowerCase) // &quot;Bob&quot; -&gt; &quot;bob&quot;.
+            .mapValue(v -&gt; v * 2); // 12 -&gt; 24.
+    // List of all (key, value) =&gt; (name, age) ages.
+    List&lt;Pair&lt;String, Integer&gt;&gt; ages = Arrays.asList(bobAge);
+    // Another convenient operation is transform a pair list to map.
+    Map&lt;String, Integer&gt; map = Pair.toMap(ages);
+</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div> This structure is an implementation of 2-Functor (<a href="../../magicbook.gtlitecore.api.utils.functions/-bi-functor/index.html">BiFunctor</a>).<span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Magic_Sweepy</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-61878305%2FConstructors%2F769193423" anchor-label="Pair" id="-61878305%2FConstructors%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-pair.html"><span><span>Pair</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-61878305%2FConstructors%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="index.html">K</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="index.html">V</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-134761646%2FFunctions%2F769193423" anchor-label="combine" id="-134761646%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="combine.html"><span><span>combine</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-134761646%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="combine.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="combine.html">V</a><span class="token operator">&gt; </span><a href="combine.html"><span class="token function">combine</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">keys<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="combine.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">values<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="combine.html">V</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="combine.html">K</a><span class="token punctuation">, </span><a href="combine.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1345962197%2FFunctions%2F769193423" anchor-label="count" id="1345962197%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count.html"><span><span>count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1345962197%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="count.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="count.html">V</a><span class="token operator">&gt; </span><a href="count.html"><span class="token function">count</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="count.html">K</a><span class="token punctuation">, </span><a href="count.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="count.html">K</a><span class="token punctuation">, </span><a href="count.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-long/index.html">Long</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="362560056%2FFunctions%2F769193423" anchor-label="countAndThen" id="362560056%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count-and-then.html"><span>count</span><wbr></wbr><span>And</span><wbr></wbr><span><span>Then</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="362560056%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="count-and-then.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="count-and-then.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="count-and-then.html">R</a><span class="token operator">&gt; </span><a href="count-and-then.html"><span class="token function">countAndThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="count-and-then.html">K</a><span class="token punctuation">, </span><a href="count-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="count-and-then.html">K</a><span class="token punctuation">, </span><a href="count-and-then.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">mapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="count-and-then.html">K</a><span class="token punctuation">, </span><a href="count-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="count-and-then.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="count-and-then.html">R</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="971593109%2FFunctions%2F769193423" anchor-label="countByKey" id="971593109%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count-by-key.html"><span>count</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="971593109%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="count-by-key.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="count-by-key.html">V</a><span class="token operator">&gt; </span><a href="count-by-key.html"><span class="token function">countByKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="count-by-key.html">K</a><span class="token punctuation">, </span><a href="count-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="count-by-key.html">K</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html">Long</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-790260569%2FFunctions%2F769193423" anchor-label="countByValue" id="-790260569%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="count-by-value.html"><span>count</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-790260569%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="count-by-value.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="count-by-value.html">V</a><span class="token operator">&gt; </span><a href="count-by-value.html"><span class="token function">countByValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="count-by-value.html">K</a><span class="token punctuation">, </span><a href="count-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="count-by-value.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html">Long</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1791979340%2FFunctions%2F769193423" anchor-label="distinctByKey" id="1791979340%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="distinct-by-key.html"><span>distinct</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1791979340%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="distinct-by-key.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="distinct-by-key.html">V</a><span class="token operator">&gt; </span><a href="distinct-by-key.html"><span class="token function">distinctByKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="distinct-by-key.html">K</a><span class="token punctuation">, </span><a href="distinct-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="distinct-by-key.html">K</a><span class="token punctuation">, </span><a href="distinct-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1621892254%2FFunctions%2F769193423" anchor-label="distinctByValue" id="1621892254%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="distinct-by-value.html"><span>distinct</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1621892254%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="distinct-by-value.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="distinct-by-value.html">V</a><span class="token operator">&gt; </span><a href="distinct-by-value.html"><span class="token function">distinctByValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="distinct-by-value.html">K</a><span class="token punctuation">, </span><a href="distinct-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="distinct-by-value.html">K</a><span class="token punctuation">, </span><a href="distinct-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-316319668%2FFunctions%2F769193423" anchor-label="filter" id="-316319668%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter.html"><span><span>filter</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-316319668%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="filter.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="filter.html">V</a><span class="token operator">&gt; </span><a href="filter.html"><span class="token function">filter</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter.html">K</a><span class="token punctuation">, </span><a href="filter.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiPredicate.html">BiPredicate</a><span class="token operator">&lt;</span><a href="filter.html">K</a><span class="token punctuation">, </span><a href="filter.html">V</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter.html">K</a><span class="token punctuation">, </span><a href="filter.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="288390821%2FFunctions%2F769193423" anchor-label="filterByKey" id="288390821%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-by-key.html"><span>filter</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="288390821%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="filter-by-key.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="filter-by-key.html">V</a><span class="token operator">&gt; </span><a href="filter-by-key.html"><span class="token function">filterByKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-by-key.html">K</a><span class="token punctuation">, </span><a href="filter-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">keyPredicate<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">Predicate</a><span class="token operator">&lt;</span><a href="filter-by-key.html">K</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-by-key.html">K</a><span class="token punctuation">, </span><a href="filter-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1124295170%2FFunctions%2F769193423" anchor-label="filterByValue" id="1124295170%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-by-value.html"><span>filter</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1124295170%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="filter-by-value.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="filter-by-value.html">V</a><span class="token operator">&gt; </span><a href="filter-by-value.html"><span class="token function">filterByValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-by-value.html">K</a><span class="token punctuation">, </span><a href="filter-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">valuePredicate<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">Predicate</a><span class="token operator">&lt;</span><a href="filter-by-value.html">V</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-by-value.html">K</a><span class="token punctuation">, </span><a href="filter-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2000806965%2FFunctions%2F769193423" anchor-label="filterIndexed" id="-2000806965%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-indexed.html"><span>filter</span><wbr></wbr><span><span>Indexed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2000806965%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="filter-indexed.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="filter-indexed.html">V</a><span class="token operator">&gt; </span><a href="filter-indexed.html"><span class="token function">filterIndexed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-indexed.html">K</a><span class="token punctuation">, </span><a href="filter-indexed.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="filter-indexed.html">K</a><span class="token punctuation">, </span><a href="filter-indexed.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="filter-indexed.html">K</a><span class="token punctuation">, </span><a href="filter-indexed.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="684632047%2FFunctions%2F769193423" anchor-label="find" id="684632047%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find.html"><span><span>find</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="684632047%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="find.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="find.html">V</a><span class="token operator">&gt; </span><a href="find.html"><span class="token function">find</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find.html">K</a><span class="token punctuation">, </span><a href="find.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="find.html">K</a><span class="token punctuation">, </span><a href="find.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find.html">K</a><span class="token punctuation">, </span><a href="find.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2132280921%2FFunctions%2F769193423" anchor-label="findByKey" id="-2132280921%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-by-key.html"><span>find</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2132280921%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="find-by-key.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="find-by-key.html">V</a><span class="token operator">&gt; </span><a href="find-by-key.html"><span class="token function">findByKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find-by-key.html">K</a><span class="token punctuation">, </span><a href="find-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">key<span class="token operator">: </span><a href="find-by-key.html">K</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find-by-key.html">K</a><span class="token punctuation">, </span><a href="find-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1544003918%2FFunctions%2F769193423" anchor-label="findByValue" id="1544003918%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="find-by-value.html"><span>find</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1544003918%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="find-by-value.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="find-by-value.html">V</a><span class="token operator">&gt; </span><a href="find-by-value.html"><span class="token function">findByValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find-by-value.html">K</a><span class="token punctuation">, </span><a href="find-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="find-by-value.html">V</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html">Optional</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="find-by-value.html">K</a><span class="token punctuation">, </span><a href="find-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1874105462%2FFunctions%2F769193423" anchor-label="flatten" id="1874105462%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="flatten.html"><span><span>flatten</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1874105462%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="flatten.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="flatten.html">V</a><span class="token operator">&gt; </span><a href="flatten.html"><span class="token function">flatten</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">nestedPairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="flatten.html">K</a><span class="token punctuation">, </span><a href="flatten.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="flatten.html">K</a><span class="token punctuation">, </span><a href="flatten.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-96808697%2FFunctions%2F769193423" anchor-label="forEach" id="-96808697%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="for-each.html"><span>for</span><wbr></wbr><span><span>Each</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-96808697%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="for-each.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="for-each.html">V</a><span class="token operator">&gt; </span><a href="for-each.html"><span class="token function">forEach</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="for-each.html">K</a><span class="token punctuation">, </span><a href="for-each.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="for-each.html">K</a><span class="token punctuation">, </span><a href="for-each.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1165709562%2FFunctions%2F769193423" anchor-label="forEachIf" id="1165709562%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="for-each-if.html"><span>for</span><wbr></wbr><span>Each</span><wbr></wbr><span><span>If</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1165709562%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="for-each-if.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="for-each-if.html">V</a><span class="token operator">&gt; </span><a href="for-each-if.html"><span class="token function">forEachIf</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="for-each-if.html">K</a><span class="token punctuation">, </span><a href="for-each-if.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="for-each-if.html">K</a><span class="token punctuation">, </span><a href="for-each-if.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="for-each-if.html">K</a><span class="token punctuation">, </span><a href="for-each-if.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1633918894%2FFunctions%2F769193423" anchor-label="forEachParallel" id="1633918894%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="for-each-parallel.html"><span>for</span><wbr></wbr><span>Each</span><wbr></wbr><span><span>Parallel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1633918894%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="for-each-parallel.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="for-each-parallel.html">V</a><span class="token operator">&gt; </span><a href="for-each-parallel.html"><span class="token function">forEachParallel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="for-each-parallel.html">K</a><span class="token punctuation">, </span><a href="for-each-parallel.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="for-each-parallel.html">K</a><span class="token punctuation">, </span><a href="for-each-parallel.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="299283368%2FFunctions%2F769193423" anchor-label="generate" id="299283368%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="generate.html"><span><span>generate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="299283368%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="generate.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="generate.html">V</a><span class="token operator">&gt; </span><a href="generate.html"><span class="token function">generate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">keyClazz<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><a href="generate.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">valueClazz<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Class</a><span class="token operator">&lt;</span><a href="generate.html">V</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">elements<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="generate.html">K</a><span class="token punctuation">, </span><a href="generate.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="730811912%2FFunctions%2F769193423" anchor-label="groupingBy" id="730811912%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grouping-by.html"><span>grouping</span><wbr></wbr><span><span>By</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="730811912%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by.html">G</a><span class="token operator">&gt; </span><a href="grouping-by.html"><span class="token function">groupingBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">classifier<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html">BiFunction</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token punctuation">, </span><a href="grouping-by.html">G</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="grouping-by.html">G</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by.html">G</a><span class="token operator">&gt; </span><a href="grouping-by.html"><span class="token function">groupingBy</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">classifier<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="grouping-by.html">G</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="grouping-by.html">G</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by.html">K</a><span class="token punctuation">, </span><a href="grouping-by.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-81111985%2FFunctions%2F769193423" anchor-label="groupingByAndThen" id="-81111985%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="grouping-by-and-then.html"><span>grouping</span><wbr></wbr><span>By</span><wbr></wbr><span>And</span><wbr></wbr><span><span>Then</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-81111985%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by-and-then.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by-and-then.html">G</a><span class="token operator">&gt; </span><a href="grouping-by-and-then.html"><span class="token function">groupingByAndThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">classifier<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">G</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">G</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="grouping-by-and-then.html">V</a><span class="token operator">&gt; </span><a href="grouping-by-and-then.html"><span class="token function">groupingByAndThen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">predicate<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-predicate/index.html">TriPredicate</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html">Boolean</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="grouping-by-and-then.html">K</a><span class="token punctuation">, </span><a href="grouping-by-and-then.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1116934736%2FFunctions%2F769193423" anchor-label="keys" id="1116934736%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="keys.html"><span><span>keys</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1116934736%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="keys.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="keys.html">V</a><span class="token operator">&gt; </span><a href="keys.html"><span class="token function">keys</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="keys.html">K</a><span class="token punctuation">, </span><a href="keys.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="keys.html">K</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-410057377%2FFunctions%2F769193423" anchor-label="keySet" id="-410057377%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="key-set.html"><span>key</span><wbr></wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-410057377%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="key-set.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="key-set.html">V</a><span class="token operator">&gt; </span><a href="key-set.html"><span class="token function">keySet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="key-set.html">K</a><span class="token punctuation">, </span><a href="key-set.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html">Set</a><span class="token operator">&lt;</span><a href="key-set.html">K</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1971789892%2FFunctions%2F769193423" anchor-label="map" id="-1971789892%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map.html"><span><span>map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1971789892%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map.html">R1</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map.html">R2</a><span class="token operator">&gt; </span><a href="map.html"><span class="token function">map</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">keyMapper<span class="token operator">: </span><span class="token punctuation">(</span><a href="index.html">K</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map.html">R1</a><span class="token punctuation">, </span></span><span class="parameter ">valueMapper<span class="token operator">: </span><span class="token punctuation">(</span><a href="index.html">V</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map.html">R2</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map.html">R1</a><span class="token punctuation">, </span><a href="map.html">R2</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="355890753%2FFunctions%2F769193423" anchor-label="mapKey" id="355890753%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-key.html"><span>map</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="355890753%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-key.html">R</a><span class="token operator">&gt; </span><a href="map-key.html"><span class="token function">mapKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">keyMapper<span class="token operator">: </span><span class="token punctuation">(</span><a href="index.html">K</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map-key.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map-key.html">R</a><span class="token punctuation">, </span><a href="index.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1597211590%2FFunctions%2F769193423" anchor-label="mapValue" id="-1597211590%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-value.html"><span>map</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1597211590%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-value.html">R</a><span class="token operator">&gt; </span><a href="map-value.html"><span class="token function">mapValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">valueMapper<span class="token operator">: </span><span class="token punctuation">(</span><a href="index.html">V</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map-value.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="index.html">K</a><span class="token punctuation">, </span><a href="map-value.html">R</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1676513453%2FFunctions%2F769193423" anchor-label="mapValues" id="1676513453%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-values.html"><span>map</span><wbr></wbr><span><span>Values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1676513453%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-values.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map-values.html">V1</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map-values.html">V2</a><span class="token operator">&gt; </span><a href="map-values.html"><span class="token function">mapValues</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map-values.html">K</a><span class="token punctuation">, </span><a href="map-values.html">V1</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">mapper<span class="token operator">: </span><span class="token punctuation">(</span><a href="map-values.html">V1</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map-values.html">V2</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map-values.html">K</a><span class="token punctuation">, </span><a href="map-values.html">V2</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="203237260%2FFunctions%2F769193423" anchor-label="mapValuesWithKey" id="203237260%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-values-with-key.html"><span>map</span><wbr></wbr><span>Values</span><wbr></wbr><span>With</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="203237260%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-values-with-key.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map-values-with-key.html">V1</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map-values-with-key.html">V2</a><span class="token operator">&gt; </span><a href="map-values-with-key.html"><span class="token function">mapValuesWithKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map-values-with-key.html">K</a><span class="token punctuation">, </span><a href="map-values-with-key.html">V1</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">mapper<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html">BiFunction</a><span class="token operator">&lt;</span><a href="map-values-with-key.html">K</a><span class="token punctuation">, </span><a href="map-values-with-key.html">V1</a><span class="token punctuation">, </span><a href="map-values-with-key.html">V2</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="map-values-with-key.html">K</a><span class="token punctuation">, </span><a href="map-values-with-key.html">V2</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-37897502%2FFunctions%2F769193423" anchor-label="merge" id="-37897502%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="merge.html"><span><span>merge</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-37897502%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="merge.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="merge.html">V</a><span class="token operator">&gt; </span><a href="merge.html"><span class="token function">merge</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs1<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="merge.html">K</a><span class="token punctuation">, </span><a href="merge.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">pairs2<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="merge.html">K</a><span class="token punctuation">, </span><a href="merge.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">mergeFunction<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/BinaryOperator.html">BinaryOperator</a><span class="token operator">&lt;</span><a href="merge.html">V</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="merge.html">K</a><span class="token punctuation">, </span><a href="merge.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="400124092%2FFunctions%2F769193423" anchor-label="of" id="400124092%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="of.html"><span><span>of</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="400124092%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="of.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="of.html">V</a><span class="token operator">&gt; </span><a href="of.html"><span class="token function">of</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">k<span class="token operator">: </span><a href="of.html">K</a><span class="token punctuation">, </span></span><span class="parameter ">v<span class="token operator">: </span><a href="of.html">V</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="of.html">K</a><span class="token punctuation">, </span><a href="of.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1313561484%2FFunctions%2F769193423" anchor-label="ofNotNull" id="1313561484%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="of-not-null.html"><span>of</span><wbr></wbr><span>Not</span><wbr></wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1313561484%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="of-not-null.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="of-not-null.html">V</a><span class="token operator">&gt; </span><a href="of-not-null.html"><span class="token function">ofNotNull</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">k<span class="token operator">: </span><a href="of-not-null.html">K</a><span class="token punctuation">, </span></span><span class="parameter ">v<span class="token operator">: </span><a href="of-not-null.html">V</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="of-not-null.html">K</a><span class="token punctuation">, </span><a href="of-not-null.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1665466228%2FFunctions%2F769193423" anchor-label="ofReverse" id="1665466228%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="of-reverse.html"><span>of</span><wbr></wbr><span><span>Reverse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1665466228%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="of-reverse.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="of-reverse.html">V</a><span class="token operator">&gt; </span><a href="of-reverse.html"><span class="token function">ofReverse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">k<span class="token operator">: </span><a href="of-reverse.html">K</a><span class="token punctuation">, </span></span><span class="parameter ">v<span class="token operator">: </span><a href="of-reverse.html">V</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="of-reverse.html">V</a><span class="token punctuation">, </span><a href="of-reverse.html">K</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1526457150%2FFunctions%2F769193423" anchor-label="reverse" id="-1526457150%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="reverse.html"><span><span>reverse</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1526457150%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="reverse.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="reverse.html">V</a><span class="token operator">&gt; </span><a href="reverse.html"><span class="token function">reverse</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="reverse.html">K</a><span class="token punctuation">, </span><a href="reverse.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="reverse.html">V</a><span class="token punctuation">, </span><a href="reverse.html">K</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="247878890%2FFunctions%2F769193423" anchor-label="sortByKey" id="247878890%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sort-by-key.html"><span>sort</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Key</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="247878890%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="sort-by-key.html">K</a><span class="token operator"> : </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Comparable</a><span class="token operator">&lt;</span><span class="token keyword">in </span><a href="sort-by-key.html">K</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword"></span><a href="sort-by-key.html">V</a><span class="token operator">&gt; </span><a href="sort-by-key.html"><span class="token function">sortByKey</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="sort-by-key.html">K</a><span class="token punctuation">, </span><a href="sort-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="sort-by-key.html">K</a><span class="token punctuation">, </span><a href="sort-by-key.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-494923076%2FFunctions%2F769193423" anchor-label="sortByValue" id="-494923076%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="sort-by-value.html"><span>sort</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Value</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-494923076%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="sort-by-value.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="sort-by-value.html">V</a><span class="token operator"> : </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Comparable</a><span class="token operator">&lt;</span><span class="token keyword">in </span><a href="sort-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator">&gt; </span><a href="sort-by-value.html"><span class="token function">sortByValue</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="sort-by-value.html">K</a><span class="token punctuation">, </span><a href="sort-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="sort-by-value.html">K</a><span class="token punctuation">, </span><a href="sort-by-value.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="76541306%2FFunctions%2F769193423" anchor-label="split" id="76541306%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="split.html"><span><span>split</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="76541306%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="split.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="split.html">V</a><span class="token operator">&gt; </span><a href="split.html"><span class="token function">split</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="split.html">K</a><span class="token punctuation">, </span><a href="split.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="split.html">K</a><span class="token operator">&gt;</span><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="split.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1918612449%2FFunctions%2F769193423" anchor-label="toJson" id="-1918612449%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-json.html"><span>to</span><wbr></wbr><span><span>Json</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1918612449%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="to-json.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-json.html">V</a><span class="token operator">&gt; </span><a href="to-json.html"><span class="token function">toJson</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="to-json.html">K</a><span class="token punctuation">, </span><a href="to-json.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">keyMapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="to-json.html">K</a><span class="token punctuation">, </span><a href="to-json.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">valueMapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="to-json.html">K</a><span class="token punctuation">, </span><a href="to-json.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2008531391%2FFunctions%2F769193423" anchor-label="toMap" id="-2008531391%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-map.html"><span>to</span><wbr></wbr><span><span>Map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2008531391%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="to-map.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-map.html">V</a><span class="token operator">&gt; </span><a href="to-map.html"><span class="token function">toMap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="to-map.html">K</a><span class="token punctuation">, </span><a href="to-map.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="to-map.html">K</a><span class="token punctuation">, </span><a href="to-map.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1565459191%2FFunctions%2F769193423" anchor-label="toMapIndexed" id="1565459191%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-map-indexed.html"><span>to</span><wbr></wbr><span>Map</span><wbr></wbr><span><span>Indexed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1565459191%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="to-map-indexed.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-map-indexed.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-map-indexed.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-map-indexed.html">S</a><span class="token operator">&gt; </span><a href="to-map-indexed.html"><span class="token function">toMapIndexed</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="to-map-indexed.html">K</a><span class="token punctuation">, </span><a href="to-map-indexed.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">keyMapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="to-map-indexed.html">K</a><span class="token punctuation">, </span><a href="to-map-indexed.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="to-map-indexed.html">R</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">valueMapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="to-map-indexed.html">K</a><span class="token punctuation">, </span><a href="to-map-indexed.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="to-map-indexed.html">S</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="to-map-indexed.html">R</a><span class="token punctuation">, </span><a href="to-map-indexed.html">S</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1104411290%2FFunctions%2F769193423" anchor-label="toTree" id="1104411290%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-tree.html"><span>to</span><wbr></wbr><span><span>Tree</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1104411290%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="to-tree.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-tree.html">V</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="to-tree.html">R</a><span class="token operator">&gt; </span><a href="to-tree.html"><span class="token function">toTree</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="to-tree.html">K</a><span class="token punctuation">, </span><a href="to-tree.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">keyMapper<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-function/index.html">TriFunction</a><span class="token operator">&lt;</span><a href="to-tree.html">K</a><span class="token punctuation">, </span><a href="to-tree.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token punctuation">, </span><a href="to-tree.html">R</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="to-tree.html">R</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">Map</a><span class="token operator">&lt;</span><a href="to-tree.html">R</a><span class="token punctuation">, </span><a href="to-tree.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1311971330%2FFunctions%2F769193423" anchor-label="values" id="-1311971330%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="values.html"><span><span>values</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1311971330%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="values.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="values.html">V</a><span class="token operator">&gt; </span><a href="values.html"><span class="token function">values</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="values.html">K</a><span class="token punctuation">, </span><a href="values.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="values.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1873422221%2FFunctions%2F769193423" anchor-label="valueSet" id="1873422221%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="value-set.html"><span>value</span><wbr></wbr><span><span>Set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1873422221%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="value-set.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="value-set.html">V</a><span class="token operator">&gt; </span><a href="value-set.html"><span class="token function">valueSet</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="value-set.html">K</a><span class="token punctuation">, </span><a href="value-set.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html">Set</a><span class="token operator">&lt;</span><a href="value-set.html">V</a><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-246516031%2FFunctions%2F769193423" anchor-label="writeToFile" id="-246516031%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-to-file.html"><span>write</span><wbr></wbr><span>To</span><wbr></wbr><span><span>File</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-246516031%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="write-to-file.html">K</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="write-to-file.html">V</a><span class="token operator">&gt; </span><a href="write-to-file.html"><span class="token function">writeToFile</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pairs<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="index.html">Pair</a><span class="token operator">&lt;</span><a href="write-to-file.html">K</a><span class="token punctuation">, </span><a href="write-to-file.html">V</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">filePath<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">consumer<span class="token operator">: </span><a href="../../magicbook.gtlitecore.api.utils.functions/-tri-consumer/index.html">TriConsumer</a><span class="token operator">&lt;</span><a href="write-to-file.html">K</a><span class="token punctuation">, </span><a href="write-to-file.html">V</a><span class="token punctuation">, </span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html">Integer</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

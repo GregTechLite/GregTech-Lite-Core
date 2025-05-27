@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Functor</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            gtlitecore
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/main">jvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="gtlitecore::magicbook.gtlitecore.api.utils.functions/Functor///PointingToDeclaration//769193423">
+  <div class="breadcrumbs"><a href="../../../index.html">gtlitecore</a><span class="delimiter">/</span><a href="../index.html">magicbook.gtlitecore.api.utils.functions</a><span class="delimiter">/</span><span class="current">Functor</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Functor</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html"><span class="token annotation builtin">FunctionalInterface</span></a></div></div><span class="token keyword">interface </span><a href="index.html">Functor</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="index.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="index.html">F</a><span class="token operator"> : </span><a href="index.html">Functor</a><span class="token operator">&lt;</span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token punctuation">, </span><span class="token keyword">out </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin-stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator">&gt;</span></div><p class="paragraph">Functor</p><span class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">Magic_Sweepy </p><p class="paragraph">The functional interface <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html">Function</a> is <code class="lang-kotlin">f: T -&gt; R</code>, which <code class="lang-kotlin">T</code> is type of the param input, and <code class="lang-kotlin">R</code> is type of return value. For example, if we want to transform a <code class="lang-kotlin">String</code> to <code class="lang-kotlin">Integer</code>, then we can define below: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+        Function&lt;String, Integer&gt; function = Integer::parseInt;
+    </code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div>Then we should input a param <code class="lang-kotlin">&quot;testString&quot;</code> in &quot;domain&quot; <code class="lang-kotlin">T</code>, and then, the function <code class="lang-kotlin">Function&lt;String, Integer&gt;</code> will map it to <code class="lang-kotlin">R</code>, i.e. <div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+        Integer result = function.apply(&quot;testString&quot;);
+    </code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div>In this code, <code class="lang-kotlin">Integer</code> is <code class="lang-kotlin">R</code>, and <code class="lang-kotlin">String</code> is <code class="lang-kotlin">T</code>. Functor is a higher version of <code class="lang-kotlin">Function</code>. <p class="paragraph">Functor is a higher version of <code class="lang-kotlin">Function</code>, <code class="lang-kotlin">T</code> means the param type, such as: if <code class="lang-kotlin">T</code> is <code class="lang-kotlin">Integer</code>, then <code class="lang-kotlin">Functor&lt;T, F&gt;</code> will consists of a integer value maybe; <code class="lang-kotlin">F</code> is the type of <code class="lang-kotlin">Functor&lt;T, F&gt;</code>, and another constraint is <code class="lang-kotlin">F</code> must be the subtype of <code class="lang-kotlin">Functor&lt;T, F&gt;</code>. The method <a href="map.html">map</a> is not like <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html#apply-T-">apply</a>, it will contain a function <code class="lang-kotlin">Function&lt;T, R&gt;</code>, i.e. <code class="lang-kotlin">f: T -&gt; R</code>, and then map it to <code class="lang-kotlin">F</code>, this method will transform value of <code class="lang-kotlin">Functor</code>, return a new <code class="lang-kotlin">Functor</code> which consists of the transformed value. For example, if we create a class which implements this class: </p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+        public class FunctorImpl implements Functor&lt;String, Functor&gt; {
+            private String value;
+
+            public FunctorImpl(String value) {
+                this.value = value;
+            }
+
+            
+            public &lt;R&gt; FunctorImpl map(Function&lt;String, R&gt; function) {
+                R result = function.apply(value);
+                return new Functor(result.toString());
+            }
+        }
+    </code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div>The <code class="lang-kotlin">FunctorImpl</code> has same function with the example about <code class="lang-kotlin">Function</code>, in this example, <code class="lang-kotlin">FunctorImpl</code> is a <code class="lang-kotlin">Functor</code> which consists <code class="lang-kotlin">String</code> value, and its <a href="map.html">map</a> method return a new <code class="lang-kotlin">FunctorImpl</code>, i.e. <div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">
+        FunctorImpl functor = new FunctorImpl(&quot;testString&quot;);
+        FunctorImpl mappedFunctor = functor.map(Integer::parseInt);
+    </code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div>You can see that <code class="lang-kotlin">&quot;testString&quot;</code> in <code class="lang-kotlin">String</code>, this example returns a new <code class="lang-kotlin">FunctorImpl</code> which consists of <code class="lang-kotlin">&quot;testString&quot;</code>. </span><span class="kdoc-tag"><h4 class="">Since</h4><p class="paragraph">1.0.0</p></span></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-2016973076%2FFunctions%2F769193423" anchor-label="map" id="-2016973076%2FFunctions%2F769193423" data-filterable-set=":dokkaHtml/main"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map.html"><span><span>map</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2016973076%2FFunctions%2F769193423"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map.html">R</a><span class="token operator">&gt; </span><a href="map.html"><span class="token function">map</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">f<span class="token operator">: </span><span class="token punctuation">(</span><a href="index.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="map.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">F</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2025 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -5,7 +5,6 @@ import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
-import java.net.URI
 
 /**
  * This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
@@ -241,19 +240,11 @@ if (usesShadowJar.toBoolean()) {
 
 // Add JavaDocs/KDocs generate merger in Java/Kotlin mixed programming environment.
 tasks.withType<DokkaTask> {
-    outputDirectory.set(buildDir.resolve("docs"))
+    outputDirectory.set(projectDir.resolve("docs"))
     dokkaSourceSets {
         configureEach {
             // Allowed Dokka read two sourceSets.
             sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
-            // Java 8 External Docs.
-            externalDocumentationLink(
-                url = URI("https://docs.oracle.com/en/java/javase/8/docs/api/").toURL()
-            )
-            // Kotlin StdLib External Docs.
-            externalDocumentationLink(
-                url = URI("https://kotlinlang.org/api/latest/jvm/stdlib/").toURL()
-            )
         }
     }
 }
