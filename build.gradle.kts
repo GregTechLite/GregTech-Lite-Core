@@ -243,6 +243,7 @@ if (usesShadowJar.toBoolean()) {
             doLast {
                 shadowJarFile.get().asFile.delete()
             }
+            dependsOn(shadowJar)
         }
     }
 }
