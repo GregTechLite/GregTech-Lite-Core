@@ -26,6 +26,5 @@ fun Project.repositories() {
             name = "GTCEu Maven"
             url = uri("https://maven.gtceu.com")
         }
-        mavenLocal() // Must be last for caching to work.
     }
 }

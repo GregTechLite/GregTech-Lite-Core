@@ -1,5 +1,7 @@
 pluginManagement {
     repositories {
+        gradlePluginPortal()
+        mavenCentral()
         maven {
             // RetroFuturaGradle
             name = "GTNH Maven"
@@ -9,15 +11,12 @@ pluginManagement {
                 includeGroup("com.gtnewhorizons.retrofuturagradle")
             }
         }
-        gradlePluginPortal()
-        mavenCentral()
-        mavenLocal()
     }
 }
 
 plugins {
     // Automatic toolchain provisioning
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.9.0"
 }
 
 // Due to an IntelliJ bug, this has to be done

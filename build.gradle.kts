@@ -31,7 +31,6 @@ plugins {
 
 val embed = "embed"
 
-// Java settings.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
@@ -67,12 +66,9 @@ configurations {
     }
 }
 
-// Starting to initialize Minecraft settings.
 minecraft {
-    // Set minecraftVersion to mcVersion setting.
     mcVersion.set(minecraftVersion)
 
-    // MCP Mappings.
     mcpMappingChannel.set("stable")
     mcpMappingVersion.set("39")
 
@@ -92,6 +88,8 @@ minecraft {
         args += "-Dmixin.checks.interfaces=true"
         args += "-Dmixin.debug.export=true"
     }
+//    args += "-XXaltjvm=dcevm"
+//    args += "-XX:+AllowEnhancedClassRedefinition"
     extraRunJvmArguments.addAll(args)
 
     // Include and use dependencies' Access Transformer files
@@ -108,7 +106,6 @@ minecraft {
 repositories()
 
 dependencies {
-    // Mixins dependency settings.
     if (usesMixins.toBoolean()) {
         annotationProcessor(libs.asm)
         annotationProcessor(libs.guava)
@@ -127,19 +124,20 @@ dependencies {
     }
     implementation(deobf(libs.modularui))
     api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
-    api(libs.groovyScript) {
-        isTransitive = false
-    }
-    api(libs.craftTweaker2)
-    api(deobf(libs.ctm))
     implementation(deobf(files("libs/gregtech-1.12.2-master.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
-    implementation(libs.jei) // Transformed JEI dependencies from buildscripts option.
-    implementation(libs.theOneProbe) // Transformed TOP dependencies from buildscripts option.
+    implementation(libs.jei)
+    implementation(libs.theOneProbe)
+
+    runtimeOnly(deobf(libs.ctm))
     runtimeOnly(deobf(libs.smoothFonts))
     runtimeOnly(deobf(libs.betterQuestingUnofficial))
 
-    // Several global dependencies.
+    compileOnly(libs.groovyScript) {
+        isTransitive = false
+    }
+    compileOnly(libs.craftTweaker2)
+
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
 
