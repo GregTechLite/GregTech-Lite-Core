@@ -1,5 +1,6 @@
 package magicbook.gtlitecore.api.utils
 
+import magicbook.gtlitecore.api.GTLiteTags
 import java.util.*
 
 class GTLiteValues
@@ -8,9 +9,9 @@ class GTLiteValues
     companion object
     {
 
-        const val MODID = "gtlitecore"
-        const val NAME = "GregTech Lite Core"
-        const val VERSION = "1.0.0"
+        const val MODID = GTLiteTags.MOD_ID
+        const val NAME = GTLiteTags.MOD_NAME
+        const val VERSION = GTLiteTags.VERSION
 
         const val TICK = 1
         const val SECOND = 20 * TICK

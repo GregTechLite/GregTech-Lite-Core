@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
@@ -38,6 +37,10 @@ java {
     }
     // Generate sources and Javadocs jars when building and publishing.
     withSourcesJar()
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -109,7 +112,7 @@ dependencies {
         annotationProcessor(libs.asm)
         annotationProcessor(libs.guava)
         annotationProcessor(libs.gson)
-        val mixinBooter = modUtils.enableMixins(libs.mixinBooter, "mixins.${modName}.refmap.json") as Provider<*>
+        val mixinBooter = modUtils.enableMixins(libs.mixinBooter, "mixins.${modId}.refmap.json") as Provider<*>
         api(mixinBooter) {
             isTransitive = false
         }
@@ -192,10 +195,11 @@ tasks.withType<ProcessResources> {
     inputs.property("mcversion", minecraft.mcVersion)
 
     // Replace various properties in mcmod.info and pack.mcmeta if applicable.
-    filesMatching(arrayListOf("mcmod.info", "pack.mcmeta")) {
+    filesMatching(arrayListOf("mcmod.info", "pack.mcmeta", "mixins.${modId}.early.json", "mixins.${modId}.late.json")) {
         expand(
             "version" to modVersion,
-            "mcversion" to minecraft.mcVersion
+            "mcversion" to minecraft.mcVersion,
+            "modid" to modId
         )
     }
 
@@ -225,16 +229,21 @@ tasks.withType<Jar> {
 // Shadowed external packages to internal packages to resolved class not found when
 // the mod is running at other environments.
 if (usesShadowJar.toBoolean()) {
-    tasks.withType<ShadowJar> {
-        configurations = listOf(project.configurations["embed"])
-        mergeServiceFiles()
-        mergeGroovyExtensionModules()
-        minimize()
-    }
+    tasks {
+        shadowJar {
+            configurations = listOf(project.configurations["embed"])
+            mergeServiceFiles()
+            mergeGroovyExtensionModules()
+            minimize()
+        }
 
-    // Add shadowJar to processing assemble of the mod process.
-    tasks.assemble {
-        dependsOn(tasks.shadowJar)
+        reobfJar {
+            val shadowJarFile = shadowJar.get().archiveFile
+            inputJar.set(shadowJarFile)
+            doLast {
+                shadowJarFile.get().asFile.delete()
+            }
+        }
     }
 }
 

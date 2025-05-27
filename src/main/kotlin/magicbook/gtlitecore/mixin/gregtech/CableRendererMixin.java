@@ -171,7 +171,7 @@ public abstract class CableRendererMixin
      *
      * @author Magic_Sweepy
      */
-    @Inject(method = "getParticleTexture*",
+    @Inject(method = "getParticleTexture(Lgregtech/api/pipenet/tile/IPipeTile;)Lorg/apache/commons/lang3/tuple/Pair;",
             at = @At(value = "RETURN"),
             cancellable = true)
     private void onGetParticleTexture(IPipeTile<?, ?> pipeTile,
