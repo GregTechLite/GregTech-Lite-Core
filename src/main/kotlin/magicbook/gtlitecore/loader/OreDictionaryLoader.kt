@@ -251,8 +251,8 @@ class OreDictionaryLoader
             OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.CBDO_POLYCARBONATE))
             OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.INFINITY_BOROSILICATE))
             OreDictionary.registerOre("glassUiv", GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(BlockGlassCasing01.GlassType.ANTIMATTER_CONTAINMENT))
-            // UXV: NaN
-            // ...
+            // UXV: Transcendent Metal reinforced Borosilicate Glass
+            OreDictionary.registerOre("glassUxv", GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TRANSCENDENT_METAL_BOROSILICATE))
             // OpV: NaN
             // ...
             // MAX: NaN

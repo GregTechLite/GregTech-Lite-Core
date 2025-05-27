@@ -8,6 +8,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.ALLOY_SMELTER_RECIPES
@@ -26,6 +27,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ErbiumDopedZBLANGlass
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PraseodymiumDopedZBLANGlass
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZBLANGlass
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -177,6 +179,16 @@ class AlloySmelterRecipes
                 .EUt(VA[UIV].toLong())
                 .duration(5 * SECOND)
                 .buildAndRegister()
+
+            // Transcendent Metal reinforced Borosilicate Glass
+            ALLOY_SMELTER_RECIPES.recipeBuilder()
+                .inputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.BOROSILICATE))
+                .input(plate, TranscendentMetal, 4)
+                .outputs(GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(BlockGlassCasing02.GlassType.TRANSCENDENT_METAL_BOROSILICATE))
+                .EUt(VA[UXV].toLong())
+                .duration(5 * SECOND)
+                .buildAndRegister()
+
         }
 
     }

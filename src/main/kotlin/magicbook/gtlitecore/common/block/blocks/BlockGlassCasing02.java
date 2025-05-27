@@ -114,8 +114,9 @@ public class BlockGlassCasing02 extends VariantBlock<BlockGlassCasing02.GlassTyp
         TRITANIUM_BOROSILICATE("tritanium_borosilicate", GTValues.UV),
         NEUTRONIUM_BOROSILICATE("neutronium_borosilicate", GTValues.UHV),
         COSMIC_NEUTRONIUM_BOROSILICATE("cosmic_neutronium_borosilicate", GTValues.UEV),
-        INFINITY_BOROSILICATE("infinity_borosilicate", GTValues.UIV);
-        // TODO UXV-MAX
+        INFINITY_BOROSILICATE("infinity_borosilicate", GTValues.UIV),
+        TRANSCENDENT_METAL_BOROSILICATE("transcendent_metal_borosilicate", GTValues.UXV);
+        // TODO OpV-MAX
 
         private final String name;
         private final int tier;

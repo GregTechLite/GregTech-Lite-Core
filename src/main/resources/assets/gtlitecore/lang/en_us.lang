@@ -575,6 +575,7 @@ tile.glass_casing_02.tritanium_borosilicate.name=Tritanium reinforced Borosilica
 tile.glass_casing_02.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
 tile.glass_casing_02.cosmic_neutronium_borosilicate.name=Cosmic Neutronium reinforced Borosilicate Glass
 tile.glass_casing_02.infinity_borosilicate.name=Infinity reinforced Borosilicate Glass
+tile.glass_casing_02.transcendent_metal_borosilicate.name=Transcendent Metal Borosilicate Glass
 
 tile.naquadria_charge.name=Naquadria Charge
 tile.naquadria_charge.tooltip.1=以高能爆炸物诱导超能硅岩释放巨量的能量。

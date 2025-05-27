@@ -64,6 +64,13 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/infinity_borosilicate"
         }
+      },
+      "transcendent_metal_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/transcendent_metal_borosilicate"
+        }
       }
     }
   }
