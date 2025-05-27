@@ -1,3 +1,4 @@
+import com.gtnewhorizons.retrofuturagradle.mcp.ReobfuscatedJar
 import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
@@ -28,6 +29,9 @@ plugins {
 }
 
 val embed = "embed"
+
+group = "magicbook"
+version = modVersion
 
 java {
     toolchain {
@@ -238,13 +242,14 @@ if (usesShadowJar.toBoolean()) {
         }
 
         reobfJar {
-            val shadowJarFile = shadowJar.get().archiveFile
-            inputJar.set(shadowJarFile)
-            doLast {
-                shadowJarFile.get().asFile.delete()
-            }
-            dependsOn(shadowJar)
+            inputJar.set(shadowJar.get().archiveFile)
         }
+    }
+
+    // Remove shadow jar from java component
+    val javaComponent = components["java"] as AdhocComponentWithVariants
+    javaComponent.withVariantsFromConfiguration(configurations.shadowRuntimeElements.get()) {
+        skip()
     }
 }
 
@@ -291,6 +296,14 @@ idea {
                     )
                 }
             }
+        }
+    }
+}
+
+publishing {
+    publications {
+        register<MavenPublication>("mavenJava") {
+            from(components["java"])
         }
     }
 }
