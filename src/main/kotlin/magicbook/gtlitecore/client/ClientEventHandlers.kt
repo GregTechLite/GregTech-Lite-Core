@@ -47,7 +47,7 @@ class ClientEventHandlers
                 }
             }
             // Add material formulas for wallGtX
-            if (stack.item is MaterialItemBlock
+            else if (stack.item is MaterialItemBlock
                 && stack.item.registryName!!.path.startsWith("meta_block_wall_gt"))
             {
                 val unificationEntry = OreDictUnifier.getUnificationEntry(stack)

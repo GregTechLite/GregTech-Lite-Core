@@ -33,6 +33,7 @@ class GTLiteMaterials
         lateinit var SpaceTime: Material
         lateinit var Creon: Material
         lateinit var MagMatter: Material
+        lateinit var Universium: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material
@@ -348,6 +349,8 @@ class GTLiteMaterials
         lateinit var SilverPerchlorate: Material
         lateinit var PhotopolymerSolution: Material
         lateinit var SodiumBromide: Material
+        lateinit var BlackDwarfMatter: Material
+        lateinit var WhiteDwarfMatter: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -751,6 +754,8 @@ class GTLiteMaterials
         lateinit var SpatiallyEnlargedFluid: Material
         lateinit var TachyonRichTemporalFluid: Material
         lateinit var PrimordialMatter: Material
+        lateinit var RawStarMatter: Material
+        lateinit var MagnetohydrodynamicallyConstrainedStarMatter: Material
 
         lateinit var DimensionallyShiftedSuperfluid: Material
 

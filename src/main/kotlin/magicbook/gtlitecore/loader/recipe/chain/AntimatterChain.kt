@@ -34,6 +34,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HighEnergy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Protomatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuarkGluonPlasma
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawStarMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SemistableAntimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -202,7 +203,13 @@ class AntimatterChain
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
-            // 4.0 TODO Raw Star Matter?
+            // 4.0
+            ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
+                .fluidInputs(Antimatter.getFluid(1))
+                .fluidInputs(RawStarMatter.getFluid(L * 4))
+                .EUt(4_000_000_000_000)
+                .duration(10 * SECOND)
+                .buildAndRegister()
 
         }
 

@@ -110,7 +110,7 @@ Node8[CoreModule] --> Node12[All Mod Contents]
 
 Thanks for all the credit authors, it's your hard work that has brought about these wonderful contents:
 
-- Dynamic circuits textures, infinity, cosmic neutronium, halkonite steel, space time and eternity textures, optical memory texture, some multiblock structures, some machine overlay textures, Power IC textures, Space Elevator multiblock, Component Assembly Line multiblock, e.t.c, are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
+- Dynamic circuits textures, infinity, cosmic neutronium, halkonite steel, space time and eternity textures, optical memory texture, some multiblock structures, some machine overlay textures, Power IC textures, Space Elevator multiblock, Component Assembly Line multiblock, Custom Glyphs, e.t.c, are from [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial),
   this mod is on [GNU LGPL-3.0 License](https://github.com/GTNewHorizons/GT5-Unofficial/blob/master/LICENSE.txt).
 - Laser textures, Nanoscale Fabricator overlay textures, Burner Reactor and Cryogenic Reactor overlay textures, a part of laminator and loom overlay textures, Rolling Pin textures and Crucible textures, Bedrock Drilling Rig multiblock are from [GregTech 6](https://github.com/GregTech6/gregtech6),
   this mod is on [GNU GPL-3.0 License](https://github.com/GregTech6/gregtech6/blob/master/LICENSE).

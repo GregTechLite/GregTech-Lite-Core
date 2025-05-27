@@ -2721,6 +2721,8 @@ gtlitecore.material.space_time=时空
 gtlitecore.material.space_time.formula=§7现实正在分崩离析
 gtlitecore.material.creon=创律金属
 gtlitecore.material.mag_matter=纯磁物质
+gtlitecore.material.universium=宇宙素
+gtlitecore.material.universium.formula=§7把整个宇宙握在手心
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -3054,6 +3056,8 @@ gtlitecore.material.trichlorocyclopentadienyl_titanium=环戊二烯三氯化钛
 gtlitecore.material.silver_perchlorate=高氯酸银
 gtlitecore.material.photopolymer_solution=光聚合物溶液
 gtlitecore.material.sodium_bromide=溴化钠
+gtlitecore.material.black_dwarf_matter=黑矮星物质
+gtlitecore.material.white_dwarf_matter=白矮星物质
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3464,6 +3468,8 @@ gtlitecore.material.antimatter=反物质
 gtlitecore.material.spatially_enlarged_fluid=扩大化空间流体
 gtlitecore.material.tachyon_rich_temporal_fluid=富快子时间流体
 gtlitecore.material.primordial_matter=流体本源物质
+gtlitecore.material.condensed_raw_stellar_plasma_mixture=浓缩原始恒星等离子体混合物
+gtlitecore.material.magnetohydrodynamically_constrained_star_matter=磁流体动力学约束恒星物质（MHDCSM）
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 

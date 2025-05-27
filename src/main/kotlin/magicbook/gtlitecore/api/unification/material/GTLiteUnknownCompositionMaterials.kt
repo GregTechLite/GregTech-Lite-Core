@@ -2,6 +2,7 @@ package magicbook.gtlitecore.api.unification.material
 
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.SaltWater
@@ -11,6 +12,18 @@ import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
+import gregtech.api.unification.material.info.MaterialFlags.NO_UNIFICATION
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
@@ -87,6 +100,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LightTaran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LimeExtract
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityEnrichedNaquadahEmulsion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LowPurityNaquadriaEmulsion
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetohydrodynamicallyConstrainedStarMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumEnrichedBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MediumEnrichedTaraniumFuel
@@ -114,6 +128,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Quasifissi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RainbowSap
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthChloridesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthHydroxidesSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawStarMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
@@ -133,6 +148,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Unprocesse
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vinegar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vodka
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MHDCSM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 
@@ -937,6 +953,25 @@ class GTLiteUnknownCompositionMaterials
                 .liquid(FluidBuilder()
                     .temperature(2_000_000_000)
                     .customStill())
+                .build()
+
+            // 13017 Condensed Raw Stellar Plasma Mixture
+            RawStarMatter = Material.Builder(13017, gtliteId("condensed_raw_stellar_plasma_mixture"))
+                .plasma(FluidBuilder()
+                    .temperature(2_000_000_000)
+                    .translation("gregtech.fluid.generic")
+                    .customStill())
+                .build()
+
+            // 13018 Magnetohydrodynamically Constrained Star Matter (MHDCSM)
+            MagnetohydrodynamicallyConstrainedStarMatter = Material.Builder(13018, gtliteId("magnetohydrodynamically_constrained_star_matter"))
+                .ingot()
+                .plasma(FluidBuilder()
+                    .temperature(2_000_000_000))
+                .iconSet(MHDCSM)
+                .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
+                    GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
                 .build()
 
             // ...

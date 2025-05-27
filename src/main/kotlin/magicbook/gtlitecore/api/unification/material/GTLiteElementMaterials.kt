@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.api.unification.material
 
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -54,6 +55,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Crx
@@ -68,6 +70,7 @@ import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Comp
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Spx
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tn
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Tsx
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ux
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Vb
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.GENERATE_NANITE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
@@ -77,6 +80,7 @@ import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGMATTER
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETIUM
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.SPACETIME
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.UNIVERSIUM
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -389,6 +393,17 @@ class GTLiteElementMaterials
                     GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_RING,
                     GENERATE_ROTOR, GENERATE_FRAME)
                 .cableProperties(V[UXV], 56, 14)
+                .build()
+
+            // 19 Universium
+            Universium = Material.Builder(19, gtliteId("universium"))
+                .ingot()
+                .liquid()
+                .iconSet(UNIVERSIUM)
+                .element(Ux)
+                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                    GENERATE_NANITE)
+                .cableProperties(V[OpV], 144, 8)
                 .build()
 
         }

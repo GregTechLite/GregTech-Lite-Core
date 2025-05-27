@@ -65,6 +65,20 @@ class GTLiteMaterialIconSet
         val GLITCH = MaterialIconSetWithRenderer("glitch", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
+        @JvmField
+        val MHDCSM = MaterialIconSet("mhdcsm", null, true)
+
+        @JvmField
+        val BLACK_DWARF = MaterialIconSetWithRenderer("black_dwarf", null, true,
+            HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+
+        @JvmField
+        val WHITE_DWARF = MaterialIconSetWithRenderer("white_dwarf", null, true,
+            HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), { GTLiteTextures.HALO }, true))
+
+        @JvmField
+        val UNIVERSIUM = MaterialIconSet("universium", null, true)
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

@@ -5,6 +5,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
@@ -225,6 +226,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthCha
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthStrontiumCalciumCuprate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BluePhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlueVitriol
@@ -490,6 +492,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumU
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VioletPhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WaelzOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WaelzSlag
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhiteDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhitePhosphorus
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Wollastonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WoodsGlass
@@ -503,12 +506,15 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZSM5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZincRichSphalerite
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.DISABLE_CRYSTALLIZATION
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.GENERATE_BOULE
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.GENERATE_NANITE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.BEDROCKIUM
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.BLACK_DWARF
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.GLITCH
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETO
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.NANOPARTICLES
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ROASTED
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.WHITE_DWARF
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -3213,6 +3219,26 @@ class GTLiteFirstDegreeMaterials
                 .dust()
                 .color(0xE3B9F7).iconSet(ROUGH)
                 .components(Sodium, 1, Bromine, 1)
+                .build()
+
+            // 2314 Black Dwarf Matter
+            BlackDwarfMatter = Material.Builder(2314, gtliteId("black_dwarf_matter"))
+                .ingot()
+                .fluid()
+                .iconSet(BLACK_DWARF)
+                .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                    GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND,
+                    GENERATE_NANITE)
+                .build()
+
+            // 2315 White Dwarf Matter
+            WhiteDwarfMatter = Material.Builder(2315, gtliteId("white_dwarf_matter"))
+                .ingot()
+                .fluid()
+                .iconSet(WHITE_DWARF)
+                .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_NANITE)
+                .cableProperties(V[OpV], 108, 36)
                 .build()
         }
 

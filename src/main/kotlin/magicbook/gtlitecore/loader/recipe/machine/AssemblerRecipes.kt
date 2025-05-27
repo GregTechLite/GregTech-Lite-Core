@@ -212,6 +212,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
@@ -251,6 +252,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Transcende
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhiteDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
@@ -295,6 +297,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NAQUADRIA_SUPE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.STABLE_ADHESIVE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPERCONDUCTOR_COMPOSITE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
@@ -524,6 +527,15 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // OpV Machine Casing
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(plate, BlackDwarfMatter, 8)
+                .outputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV))
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun machineHullRecipes()
@@ -572,6 +584,8 @@ class AssemblerRecipes
                 .EUt(VH[LV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
+
+            // TODO OpV Machine Hull
         }
 
         private fun pipeCasingRecipes()
@@ -2556,6 +2570,16 @@ class AssemblerRecipes
                 .input(wireFine, Mellion, 16)
                 .output(VOLTAGE_COIL_UXV)
                 .EUt(VA[UXV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // OpV Voltage Coil
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(stick, Magnetium)
+                .input(wireFine, WhiteDwarfMatter, 16)
+                .output(VOLTAGE_COIL_OpV)
+                .EUt(VA[OpV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
         }

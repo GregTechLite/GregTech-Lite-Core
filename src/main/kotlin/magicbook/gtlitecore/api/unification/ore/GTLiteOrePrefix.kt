@@ -187,6 +187,12 @@ class GTLiteOrePrefix
             OrePrefix.dustSmall.setIgnored(GTLiteMaterials.MagMatter)
             OrePrefix.dustTiny.setIgnored(GTLiteMaterials.MagMatter)
             OrePrefix.nugget.setIgnored(GTLiteMaterials.MagMatter)
+
+            // Deleted MHDCSM dusts, nugget.
+            OrePrefix.dust.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+            OrePrefix.dustSmall.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+            OrePrefix.dustTiny.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+            OrePrefix.nugget.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
         }
 
         // Let these setters be later than setOrePrefixInfos() because recipe generated at high

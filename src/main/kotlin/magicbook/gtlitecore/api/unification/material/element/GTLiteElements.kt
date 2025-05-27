@@ -46,6 +46,9 @@ class GTLiteElements
         @JvmStatic
         val Crx: Element = Elements.add(3650, 3650, "Creon", "⸎")
 
+        @JvmStatic
+        val Ux: Element = Elements.add(36524, 36524, "Universium", FormattingUtility.format("gtlitecore.material.universium.formula", "Hold the Universe in the Palm of your Hand"))
+
     }
 
 }
