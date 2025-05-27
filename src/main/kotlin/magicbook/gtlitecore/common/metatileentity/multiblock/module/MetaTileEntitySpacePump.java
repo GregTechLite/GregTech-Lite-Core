@@ -220,10 +220,14 @@ public class MetaTileEntitySpacePump extends ModuleMultiblockBase
 
         // Sub Screen for setting (planet, fluid).
         builder.label(198 + 62 - 18 * 2 - 18 - 9, 36 - 12, "gtlitecore.machine.space_pump_module.configuration", 0x1F1E33)
-                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_1))
-                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_2))
+                .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_1));
+
+        if (moduleTier > 1)
+        {
+            builder.widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_2))
                 .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 2, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_3))
                 .widget(new ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 3, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_4));
+        }
 
         ServerWidgetGroup planetGroup1 = new ServerWidgetGroup(() -> true);
         planetGroup1.addWidget(new ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36, 53 / 2, 20, GuiTextures.DISPLAY)
