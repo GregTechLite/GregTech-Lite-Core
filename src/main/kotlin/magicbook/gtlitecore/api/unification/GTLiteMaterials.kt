@@ -420,6 +420,18 @@ class GTLiteMaterials
         lateinit var ActiniumGroupAlloyB: Material
         lateinit var CinobiteA243: Material
         lateinit var Lafium: Material
+        lateinit var AlkaliGroupAlloy: Material
+        lateinit var AlkaliEarthGroupAlloy: Material
+        lateinit var TransitionAlloyA: Material
+        lateinit var TransitionAlloyB: Material
+        lateinit var TransitionAlloy: Material
+        lateinit var RefractoryAlloy: Material
+        lateinit var ToxicAlloy: Material
+        lateinit var RareEarthAlloy: Material
+        lateinit var NonMetallicMixtureA: Material
+        lateinit var NonMetallicMixtureB: Material
+        lateinit var NobleGasMixture: Material
+        lateinit var Periodicium: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

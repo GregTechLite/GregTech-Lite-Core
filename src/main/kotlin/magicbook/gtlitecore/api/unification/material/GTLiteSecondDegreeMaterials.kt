@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -23,13 +24,21 @@ import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Argon
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Astatine
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Berkelium
+import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bohrium
+import gregtech.api.unification.material.Materials.Boron
+import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Cadmium
+import gregtech.api.unification.material.Materials.Caesium
+import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Cerium
+import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Copernicium
@@ -44,6 +53,7 @@ import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Fermium
+import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Gallium
@@ -52,20 +62,24 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
+import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Inconel718
+import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Lutetium
+import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Mendelevium
@@ -77,15 +91,18 @@ import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
+import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NiobiumNitride
+import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
@@ -96,10 +113,12 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Protactinium
+import gregtech.api.unification.material.Materials.Radium
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.Roentgenium
+import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.Rutherfordium
@@ -107,13 +126,17 @@ import gregtech.api.unification.material.Materials.STD_METAL
 import gregtech.api.unification.material.Materials.Samarium
 import gregtech.api.unification.material.Materials.Scandium
 import gregtech.api.unification.material.Materials.Seaborgium
+import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
+import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thallium
@@ -132,6 +155,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
@@ -149,6 +173,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.NO_UNIFICATION
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
+import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
@@ -158,6 +183,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AlkaliEarthGroupAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AlkaliGroupAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETSPerrhenate
@@ -197,10 +224,16 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MolybdenumDisilicide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Monel500
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nitinol60
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NobleGasMixture
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NonMetallicMixtureA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NonMetallicMixtureB
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Periodicium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedPhosphorus
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RefractoryAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ReneN5
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeaborgiumDopedCarbonNanotube
@@ -216,6 +249,10 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ToxicAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TransitionAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TransitionAlloyA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TransitionAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trinaquadalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tumbaga
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
@@ -1084,6 +1121,157 @@ class GTLiteSecondDegreeMaterials
                 }
                 .fluidPipeProperties(10640, 960, true, true, true, true)
                 .build()
+
+            // 4056 Alkali Group Alloy
+            AlkaliGroupAlloy = Material.Builder(4056, gtliteId("alkali_group_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(SHINY)
+                .components(Lithium, 1, Sodium, 1, Potassium, 1, Rubidium, 1, Caesium, 1, Francium, 1)
+                .blast { b ->
+                    b.temp(6600, BlastProperty.GasTier.HIGH) // Naquadah
+                        .blastStats(VA[IV], 20 * SECOND)
+                        .vacuumStats(VA[HV], 10 * SECOND)
+                }
+                .build()
+
+            // 4057 Alkali Earth Group Alloy
+            AlkaliEarthGroupAlloy = Material.Builder(4057, gtliteId("alkali_earth_group_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(SHINY)
+                .components(Beryllium, 1, Magnesium, 1, Calcium, 1, Strontium, 1, Barium, 1, Radium, 1)
+                .blast { b ->
+                    b.temp(7400, BlastProperty.GasTier.HIGH) // Trinium (Naquadah)
+                        .blastStats(VA[LuV], 25 * SECOND)
+                        .vacuumStats(VA[EV], 15 * SECOND)
+                }
+                .build()
+
+            // 4058 Light Transition Alloy
+            TransitionAlloyA = Material.Builder(4058, gtliteId("light_transition_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(METALLIC)
+                .components(Titanium, 1, Vanadium, 1, Chrome, 1, Manganese, 1, Iron, 1, Cobalt, 1,
+                    Nickel, 1, Copper, 1)
+                .blast { b ->
+                    b.temp(8800, BlastProperty.GasTier.HIGH) // Trinium
+                        .blastStats(VA[ZPM], 30 * SECOND)
+                        .vacuumStats(VA[IV], 20 * SECOND)
+                }
+                .build()
+
+            // 4059 Heavy Transition Alloy
+            TransitionAlloyB = Material.Builder(4059, gtliteId("heavy_transition_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(METALLIC)
+                .components(Aluminium, 1, Zinc, 1, Gallium, 1, Germanium, 1, Cadmium, 1, Indium, 1,
+                    Tin, 1, Antimony, 1)
+                .blast { b ->
+                    b.temp(8800, BlastProperty.GasTier.HIGH) // Trinium
+                        .blastStats(VA[ZPM], 30 * SECOND)
+                        .vacuumStats(VA[IV], 20 * SECOND)
+                }
+                .build()
+
+            // 4060 Transition Alloy
+            TransitionAlloy = Material.Builder(4060, gtliteId("transition_alloy"))
+                .dust()
+                .colorAverage().iconSet(METALLIC)
+                .components(TransitionAlloyA, 1, TransitionAlloyB, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("TiVCrMnFeCoNiCuAlZnGaGeCdInSnSb", true)
+
+            // 4061 Refractory Alloy
+            RefractoryAlloy = Material.Builder(4061, gtliteId("refractory_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(DULL)
+                .components(Zirconium, 1, Niobium, 1, Molybdenum, 1, Technetium, 1, Hafnium, 1, Tantalum, 1,
+                    Tungsten, 1, Rhenium, 1)
+                .blast { b ->
+                    b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
+                        .blastStats(VA[UV], 35 * SECOND)
+                        .vacuumStats(VA[LuV], 25 * SECOND)
+                }
+                .build()
+
+            // 4062 Toxic Alloy
+            ToxicAlloy = Material.Builder(4062, gtliteId("toxic_alloy"))
+                .ingot()
+                .fluid()
+                .colorAverage().iconSet(METALLIC)
+                .components(Arsenic, 1, Tellurium, 1, Mercury, 1, Thallium, 1, Lead, 1, Bismuth, 1, Polonium, 1,
+                    Astatine, 1)
+                .blast { b ->
+                    b.temp(10800, BlastProperty.GasTier.HIGHEST) // Tritanium
+                    .blastStats(VA[UHV], 40 * SECOND)
+                    .vacuumStats(VA[ZPM], 30 * SECOND)
+                }
+                .build()
+
+            // 4063 Rare Earth Alloy
+            RareEarthAlloy = Material.Builder(4063, gtliteId("rare_earth_alloy"))
+                .dust()
+                .colorAverage().iconSet(METALLIC)
+                .components(LanthanumGroupAlloyA, 1, LanthanumGroupAlloyB, 1, ActiniumGroupAlloyA, 1,
+                    ActiniumGroupAlloyB, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("LaCePrNdPmSmEuGdTbDyHoErTmYbLuScYAcThPaUNpPuAmCmBkCfEsFmMdNoLr", true)
+
+            // 4064 Light Non-Metallic Mixture
+            NonMetallicMixtureA = Material.Builder(4064, gtliteId("light_non_metallic_mixture"))
+                .gas(FluidBuilder()
+                    .name("gregtech.fluid.generic"))
+                .colorAverage()
+                .components(Hydrogen, 1, Nitrogen, 1, Oxygen, 1, Fluorine, 1, Chlorine, 1, Bromine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 4065 Heavy Non-Metallic Mixture
+            NonMetallicMixtureB = Material.Builder(4065, gtliteId("heavy_non_metallic_mixture"))
+                .liquid()
+                .colorAverage()
+                .components(Boron, 1, Carbon, 1, Silicon, 1, Phosphorus, 1, Sulfur, 1, Selenium, 1,
+                    Iodine, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 4066 Noble Gas Mixture
+            NobleGasMixture = Material.Builder(4066, gtliteId("noble_gas_mixture"))
+                .gas(FluidBuilder()
+                    .translation("gregtech.fluid.generic"))
+                .colorAverage()
+                .components(Helium, 1, Neon, 1, Argon, 1, Krypton, 1, Xenon, 1, Radon, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 4067 Periodicium
+            Periodicium = Material.Builder(4067, gtliteId("periodicium"))
+                .ingot()
+                .fluid()
+                .color(0x3D4BF6).iconSet(BRIGHT)
+                .components(AlkaliGroupAlloy, 1, AlkaliEarthGroupAlloy, 1, TransitionAlloy, 1,
+                    RefractoryAlloy, 1, PreciousMetalAlloy, 1, ToxicAlloy, 1, RareEarthAlloy, 1,
+                    SuperheavyAlloyA, 1, SuperheavyAlloyB, 1, NonMetallicMixtureA, 1,
+                    NonMetallicMixtureB, 1, NobleGasMixture, 1)
+                .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_SPRING,
+                    GENERATE_SPRING_SMALL)
+                .cableProperties(V[OpV], 118, 2)
+                .blast { b ->
+                    b.temp(18000, BlastProperty.GasTier.HIGHEST) // Space Time
+                        .blastStats(VA[UXV], 10 * SECOND)
+                        .vacuumStats(VA[UEV], 2 * SECOND + 10 * TICK)
+                }
+                .build()
+                .setFormula("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGe"
+                    + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
+                    + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
+                    + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
 
         }
 

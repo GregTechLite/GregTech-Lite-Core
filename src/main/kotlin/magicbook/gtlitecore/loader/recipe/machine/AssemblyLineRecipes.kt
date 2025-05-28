@@ -144,6 +144,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.EMITTER_OpV
 import gregtech.common.items.MetaItems.EMITTER_UEV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_UIV
@@ -172,6 +173,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
+import gregtech.common.items.MetaItems.SENSOR_OpV
 import gregtech.common.items.MetaItems.SENSOR_UEV
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.SENSOR_UIV
@@ -237,6 +239,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Metastable
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Periodicium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pikyonium64B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
@@ -280,6 +283,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.FEMTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MICA_INSULATOR_FOIL
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_IV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_LuV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_UIV
@@ -2147,7 +2151,31 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO UXV-MAX Mining Drones
+            // OpV Mining Drone
+            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            //     .input(frameGt, BlackDwarfMatter)
+            //     .input(plateDouble, BlackDwarfMatter, 32)
+            //     .input(round, BlackDwarfMatter, 64)
+            //     .input(EMITTER_OpV, 2)
+            //     .input(SENSOR_OpV, 2)
+            //     .input(ROBOT_ARM_OpV, 2)
+            //     .input(rotor, BlackDwarfMatter, 8)
+            //     .input(toolHeadDrill, ..., 16)
+            //     .input(cableGtQuadruple, Periodicium, 2)
+            //     .input(circuit, MarkerMaterials.Tier.OpV, 4)
+            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+            //     .fluidInputs(DrillingFluid.getFluid(256000))
+            //     .output(MINING_DRONE_OpV)
+            //     .EUt(VA[OpV].toLong())
+            //     .duration(30 * SECOND)
+            //     .stationResearch { r ->
+            //         r.researchStack(MINING_DRONE_UXV.stackForm)
+            //             .EUt(VA[UXV].toLong())
+            //             .CWUt(128)
+            //     }
+            //     .buildAndRegister()
+
+            // TODO MAX Mining Drones
         }
 
         private fun energyHatchesRecipes()
@@ -2790,31 +2818,31 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO OpV CoAL Casing
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(frameGt, BlackDwarfMatter)
-            //     .input(plateDense, BlackDwarfMatter, 6)
-            //     .input(ROBOT_ARM_OpV, 8)
-            //     .input(ELECTRIC_PISTON_OpV, 10)
-            //     .input(ELECTRIC_MOTOR_OpV, 16)
-            //     .input(gear, BlackDwarfMatter, 4)
-            //     .input(gearSmall, BlackDwarfMatter, 16)
-            //     .input(cableGtQuadruple, Perodicium, 8)
-            //     .input(circuit, MarkerMaterials.Tier.OpV, 8)
-            //     .input(circuit, MarkerMaterials.Tier.UXV, 16)
-            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
-            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
-            //     .fluidInputs(Abyssalloy.getFluid(L * 12))
-            //     .fluidInputs(Lafium.getFluid(L * 8))
-            //     .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.OpV, 4))
-            //     .EUt(VA[OpV].toLong())
-            //     .duration(32 * SECOND)
-            //     .stationResearch { r ->
-            //         r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UXV))
-            //             .EUt(VA[UXV].toLong())
-            //             .CWUt(96)
-            //     }
-            //     .buildAndRegister()
+            // OpV CoAL Casing
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, BlackDwarfMatter)
+                .input(plateDense, BlackDwarfMatter, 6)
+                .input(ROBOT_ARM_OpV, 8)
+                .input(ELECTRIC_PISTON_OpV, 10)
+                .input(ELECTRIC_MOTOR_OpV, 16)
+                .input(gear, BlackDwarfMatter, 4)
+                .input(gearSmall, BlackDwarfMatter, 16)
+                .input(cableGtQuadruple, Periodicium, 8)
+                .input(circuit, MarkerMaterials.Tier.OpV, 8)
+                .input(circuit, MarkerMaterials.Tier.UXV, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+                .fluidInputs(Abyssalloy.getFluid(L * 12))
+                .fluidInputs(Lafium.getFluid(L * 8))
+                .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.OpV, 4))
+                .EUt(VA[OpV].toLong())
+                .duration(32 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UXV))
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(96)
+                }
+                .buildAndRegister()
 
             // TODO MAX CoAL Casing
         }

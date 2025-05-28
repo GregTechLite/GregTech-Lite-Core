@@ -235,6 +235,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableOganesson
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MutatedLivingSolder
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Periodicium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polymethylmethacrylate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PreciousMetalAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumAlloy
@@ -586,6 +587,14 @@ class AssemblerRecipes
                 .buildAndRegister()
 
             // TODO OpV Machine Hull
+            // ASSEMBLER_RECIPES.recipeBuilder()
+            //     .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV))
+            //     .input(cableGtSingle, Periodicium, 2)
+            //     .fluidInputs(CosmicFabric.getFluid(L * 2))
+            //     .output(HULL[OpV])
+            //     .EUt(VH[LV].toLong())
+            //     .duration(2 * SECOND + 10 * TICK)
+            //     .buildAndRegister()
         }
 
         private fun pipeCasingRecipes()
