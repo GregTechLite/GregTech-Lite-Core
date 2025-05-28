@@ -479,6 +479,7 @@ class GTLiteMaterialFlags
             Technetium.addFlags(GENERATE_DOUBLE_PLATE)
             Seaborgium.addFlags(GENERATE_DOUBLE_PLATE)
             Livermorium.addFlags(GENERATE_DOUBLE_PLATE)
+            Moscovium.addFlags(GENERATE_DOUBLE_PLATE)
 
             // plateDense
             WroughtIron.addFlags(GENERATE_DENSE)

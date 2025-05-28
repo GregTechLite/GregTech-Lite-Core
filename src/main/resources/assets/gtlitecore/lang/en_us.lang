@@ -1225,6 +1225,8 @@ metaitem.material.seed_crystal.phononic.name=Harmonic Phononic Seed Crystal
 metaitem.material.seed_crystal.phononic.tooltip=它具有完美的导热性，但似乎破坏了凝聚态物理的世界观
 metaitem.material.foil.nanosilicon_cathode.name=Nanosilicon Cathode
 metaitem.material.foil.nanosilicon_cathode.tooltip=Successful Application of Carbon Nanotube
+metaitem.material.plate.highly_dense_polymer_plate.name=Highly Dense Polymer Plate
+metaitem.material.plate.highly_dense_polymer_plate.tooltip=比你能想象的到的板材更坚硬
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange
@@ -3110,6 +3112,8 @@ gtlitecore.material.lanthanum_zirconate=Lanthanum Zirconate
 gtlitecore.material.moscovium_iridiate=Moscovium Iridiate
 gtlitecore.material.hydromoscovic_acid=Hydromoscovic Acid
 gtlitecore.material.strontium_europium_nihonate=Strontium Europium Nihonate
+gtlitecore.material.neutronium_doped_carbon_nanotube=Neutronium-doped Carbon Nanotube
+gtlitecore.material.cosmic_fabric=Cosmic Fabric
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250

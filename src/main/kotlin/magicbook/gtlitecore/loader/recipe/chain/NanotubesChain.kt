@@ -6,10 +6,12 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.metatileentity.multiblock.CleanroomType
@@ -44,6 +46,8 @@ import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Isoprene
 import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Methane
+import gregtech.api.unification.material.Materials.Moscovium
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
@@ -97,6 +101,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MalonicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutroniumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Octene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PalladiumBisdibenzylidieneacetone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PotassiumTetrachloroplatinate
@@ -129,6 +134,7 @@ class NanotubesChain
             cntProcess()
             seaborgiumCNTProcess()
             lanthanumFullereneNTProcess()
+            neutroniumCNTProcess()
         }
 
         private fun bipyridineProcess()
@@ -538,6 +544,38 @@ class NanotubesChain
                 .duration(1 * SECOND + 5 * TICK)
                 .temperature(7944)
                 .buildAndRegister()
+        }
+
+        private fun neutroniumCNTProcess()
+        {
+
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plate, Moscovium)
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .input(dust, Neutronium)
+                .fluidInputs(Acetylene.getFluid(3000))
+                .fluidInputs(Cycloparaphenylene.getFluid(7000))
+                .fluidInputs(Nitrogen.getPlasma(10000))
+                .output(ingot, NeutroniumDopedCarbonNanotube)
+                .EUt(VA[UXV].toLong())
+                .duration(5 * SECOND)
+                .temperature(3302)
+                .buildAndRegister()
+
+            PLASMA_CVD_RECIPES.recipeBuilder()
+                .notConsumable(plateDouble, Moscovium)
+                .notConsumable(SHAPE_MOLD_INGOT)
+                .input(dust, Neutronium)
+                .fluidInputs(Acetylene.getFluid(12000))
+                .fluidInputs(Cycloparaphenylene.getFluid(28000))
+                .fluidInputs(Nitrogen.getPlasma(40000))
+                .output(ingot, NeutroniumDopedCarbonNanotube, 4)
+                .fluidOutputs(Ammonia.getFluid(40000))
+                .EUt(VA[OpV].toLong())
+                .duration(1 * SECOND + 5 * TICK)
+                .temperature(8208)
+                .buildAndRegister()
+
         }
 
     }

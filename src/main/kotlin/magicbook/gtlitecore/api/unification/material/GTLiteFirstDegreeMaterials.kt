@@ -75,6 +75,7 @@ import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NitricAcid
@@ -267,6 +268,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperArse
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperDichloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperGalliumIndiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CopperNitrate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicFabric
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cryolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeterodiamond
@@ -371,6 +373,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeodymiumDopedYttriumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeodymiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Nephelite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NeutroniumDopedCarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NiobiumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NitroniumTetrafluoroborate
@@ -3371,6 +3374,25 @@ class GTLiteFirstDegreeMaterials
                         .blastStats(VA[UHV], 33 * SECOND)
                         .vacuumStats(VA[UV], 12 * SECOND + 15 * TICK)
                 }
+                .build()
+
+            // 2328 Neutronium-doped Carbon Nanotube
+            NeutroniumDopedCarbonNanotube = Material.Builder(2328, gtliteId("neutronium_doped_carbon_nanotube"))
+                .polymer()
+                .liquid()
+                .color(0xDFDFDF).iconSet(SHINY)
+                .components(Carbon, 48, Neutronium, 1)
+                .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+                .build()
+
+            // 2329 Cosmic Fabric
+            CosmicFabric = Material.Builder(2329, gtliteId("cosmic_fabric"))
+                .polymer()
+                .liquid()
+                .plasma()
+                .color(0x9E19CF)
+                .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL,
+                    GENERATE_FINE_WIRE)
                 .build()
 
         }

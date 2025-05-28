@@ -363,6 +363,8 @@ class GTLiteMaterials
         lateinit var MoscoviumIridiate: Material
         lateinit var HydromoscovicAcid: Material
         lateinit var StrontiumEuropiumNihonate: Material
+        lateinit var NeutroniumDopedCarbonNanotube: Material
+        lateinit var CosmicFabric: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material

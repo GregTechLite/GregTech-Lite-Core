@@ -210,6 +210,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarf
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CinobiteA243
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicFabric
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
@@ -234,6 +235,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumG
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetohydrodynamicallyConstrainedStarMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
@@ -261,9 +263,12 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.VibraniumTritaniumActiniumIronSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhiteDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.copy
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.HOUR
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
@@ -537,24 +542,33 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(ENERGISED_TESSERACT)
-            //     .input(stickLong, Magnetium, 2)
-            //     .input(stickLong, MagnetoHydrodynamicallyConstrainedStarMatter, 8)
-            //     .input(ring, MagnetoHydrodynamicallyConstrainedStarMatter, 16)
-            //     .input(round, MagnetoHydrodynamicallyConstrainedStarMatter, 32)
-            //     .input(wireFine, Universium, 64)
-            //     .input(wireFine, Universium, 64)
-            //     .input(wireFine, Universium, 64)
-            //     .input(wireFine, Universium, 64)
-            //     .input(wireFine, Universium, 64)
-            //     .input(wireFine, Universium, 64)
-            //     .input(cableGtSingle, Periodicium, 2)
-            //     .input(nanite, Neutronium, 4)
-            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
-            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
-            //     .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
-            //     .fluidInputs(CosmicFabric.getFluid(L * 8))
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ENERGISED_TESSERACT)
+                .input(stickLong, Magnetium, 2)
+                .input(stickLong, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(ring, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+                .input(round, MagnetohydrodynamicallyConstrainedStarMatter, 32)
+                .input(wireFine, Universium, 64)
+                .input(wireFine, Universium, 64)
+                .input(wireFine, Universium, 64)
+                .input(wireFine, Universium, 64)
+                .input(wireFine, Universium, 64)
+                .input(wireFine, Universium, 64)
+                .input(cableGtSingle, Periodicium, 2)
+                .input(nanite, Neutronium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(ELECTRIC_MOTOR_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_MOTOR_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
             // ASSEMBLY_LINE_RECIPES.recipeBuilder()

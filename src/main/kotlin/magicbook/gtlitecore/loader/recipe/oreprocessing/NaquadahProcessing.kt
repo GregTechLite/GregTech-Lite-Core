@@ -460,8 +460,6 @@ class NaquadahProcessing
                 .duration(1 * MINUTE)
                 .buildAndRegister()
 
-            // TODO Naquadah fuels as Naquadah Reactor fuels.
-
             // Naquadah gas as gas turbine fuels.
             GAS_TURBINE_FUELS.recipeBuilder()
                 .fluidInputs(NaquadahGas.getFluid(24))

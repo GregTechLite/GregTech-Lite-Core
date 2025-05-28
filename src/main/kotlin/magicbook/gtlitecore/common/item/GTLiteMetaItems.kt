@@ -412,6 +412,7 @@ class GTLiteMetaItems
         lateinit var ZENITH_STAR: MetaItem<*>.MetaValueItem
         lateinit var PHONONIC_SEED_CRYSTAL: MetaItem<*>.MetaValueItem
         lateinit var NANOSILICON_CATHODE: MetaItem<*>.MetaValueItem
+        lateinit var HIGHLY_DENSE_POLYMER_PLATE: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -1172,6 +1173,8 @@ class GTLiteMetaItems
             PHONONIC_SEED_CRYSTAL = GTLITE_ITEMS.addItem(5017, "material.seed_crystal.phononic")
             NANOSILICON_CATHODE = GTLITE_ITEMS.addItem(5018, "material.foil.nanosilicon_cathode")
                 .addOreDict("foilNanosiliconCathode")
+            HIGHLY_DENSE_POLYMER_PLATE = GTLITE_ITEMS.addItem(5019, "material.plate.highly_dense_polymer_plate")
+                .addOreDict("plateHighlyDensePolymer")
 
             // 9001-10000: Miscellaneous Foods.
 

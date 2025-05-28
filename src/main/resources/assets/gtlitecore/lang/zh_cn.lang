@@ -1227,6 +1227,8 @@ metaitem.material.seed_crystal.phononic.name=简谐声子晶种
 metaitem.material.seed_crystal.phononic.tooltip=它具有完美的导热性，但似乎破坏了凝聚态物理的世界观
 metaitem.material.foil.nanosilicon_cathode.name=纳米硅阴极
 metaitem.material.foil.nanosilicon_cathode.tooltip=碳纳米管的成功应用
+metaitem.material.plate.highly_dense_polymer_plate.name=高密度聚合物板
+metaitem.material.plate.highly_dense_polymer_plate.tooltip=比你能想象的到的板材更坚硬
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子
@@ -3114,6 +3116,8 @@ gtlitecore.material.lanthanum_zirconate=锆酸镧
 gtlitecore.material.moscovium_iridiate=铱酸镆
 gtlitecore.material.hydromoscovic_acid=氢镆酸
 gtlitecore.material.strontium_europium_nihonate=钅尔酸锶铕
+gtlitecore.material.neutronium_doped_carbon_nanotube=中子掺杂的碳纳米管
+gtlitecore.material.cosmic_fabric=寰宇织网
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

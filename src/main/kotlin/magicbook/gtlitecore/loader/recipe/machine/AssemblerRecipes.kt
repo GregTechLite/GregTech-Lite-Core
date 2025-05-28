@@ -214,6 +214,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAllo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicFabric
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
@@ -586,15 +587,15 @@ class AssemblerRecipes
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
 
-            // TODO OpV Machine Hull
-            // ASSEMBLER_RECIPES.recipeBuilder()
-            //     .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV))
-            //     .input(cableGtSingle, Periodicium, 2)
-            //     .fluidInputs(CosmicFabric.getFluid(L * 2))
-            //     .output(HULL[OpV])
-            //     .EUt(VH[LV].toLong())
-            //     .duration(2 * SECOND + 10 * TICK)
-            //     .buildAndRegister()
+            //  OpV Machine Hull
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(MetaBlocks.MACHINE_CASING.getItemVariant(BlockMachineCasing.MachineCasingType.OpV))
+                .input(cableGtSingle, Periodicium, 2)
+                .fluidInputs(CosmicFabric.getFluid(L * 2))
+                .output(HULL[OpV])
+                .EUt(VH[LV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
         }
 
         private fun pipeCasingRecipes()
