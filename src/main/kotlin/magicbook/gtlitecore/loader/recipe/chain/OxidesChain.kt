@@ -36,9 +36,11 @@ import gregtech.api.unification.material.Materials.CobaltOxide
 import gregtech.api.unification.material.Materials.Cobaltite
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.CupricOxide
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Ferrosilite
 import gregtech.api.unification.material.Materials.Gallium
 import gregtech.api.unification.material.Materials.Garnierite
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Hafnia
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Lanthanum
@@ -60,6 +62,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Stibnite
+import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.Tantalum
@@ -82,7 +85,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BariumOxid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BerylliumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTrioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CeriumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EuropiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GalliumDioxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GermaniumDioxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HolmiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Iron3Sulfate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumOxide
@@ -95,6 +100,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Praseodymi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScandiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumOxide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StrontiumOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumPentoxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tenorite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ThoriumDioxide
@@ -532,6 +538,17 @@ class OxidesChain
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
 
+            // Add another choice of Eu2O3, do not push player used REE distillation.
+            // 2Eu + 3O -> Eu2O3
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, Europium, 2)
+                .fluidInputs(Oxygen.getFluid(3000))
+                .output(dust, EuropiumOxide, 5)
+                .EUt(VA[MV].toLong())
+                .duration(2 * SECOND + 10 * TICK)
+                .buildAndRegister()
+
             // Th + 2O -> ThO2
             ROASTER_RECIPES.recipeBuilder()
                 .circuitMeta(2)
@@ -570,6 +587,26 @@ class OxidesChain
                 .output(dust, SilverOxide, 3)
                 .EUt(VA[LV].toLong())
                 .duration(4 * SECOND + 5 * TICK)
+                .buildAndRegister()
+
+            // Ge + 2O -> GeO2
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, Germanium)
+                .fluidInputs(Oxygen.getFluid(2000))
+                .output(dust, GermaniumDioxide, 3)
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND)
+                .buildAndRegister()
+
+            // Sr + O -> SrO
+            ROASTER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, Strontium)
+                .fluidInputs(Oxygen.getFluid(1000))
+                .output(dust, StrontiumOxide, 2)
+                .EUt(VA[LV].toLong())
+                .duration(2 * SECOND)
                 .buildAndRegister()
 
         }

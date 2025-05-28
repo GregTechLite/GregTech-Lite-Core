@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures" : {
+    "layer0": "gtlitecore:items/metaitems/wafer.chip.excited_exotic_atom_restrict_central_processing_unit"
+  }
+}

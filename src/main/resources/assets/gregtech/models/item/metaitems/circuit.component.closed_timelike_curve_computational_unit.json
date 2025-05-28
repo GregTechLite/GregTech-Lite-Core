@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures" : {
+    "layer0": "gtlitecore:items/metaitems/circuit.component.closed_timelike_curve_computational_unit"
+  }
+}

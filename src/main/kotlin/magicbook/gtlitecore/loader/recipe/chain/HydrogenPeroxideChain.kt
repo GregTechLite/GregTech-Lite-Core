@@ -40,7 +40,7 @@ class HydrogenPeroxideChain
             // C6H4(CO2H)2 -> C6H4(CO)2O + H2O
             CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
                 .fluidInputs(PhthalicAcid.getFluid(1000))
-                .output(dust, PhthalicAnhydride, 13)
+                .output(dust, PhthalicAnhydride, 15)
                 .fluidOutputs(Water.getFluid(1000))
                 .EUt(VA[HV].toLong())
                 .duration(10 * SECOND)
@@ -87,7 +87,7 @@ class HydrogenPeroxideChain
         {
             // C6H4(CO)2O + C6H5Et -> C6H4(CO)2C6H3Et + H2O
             CHEMICAL_RECIPES.recipeBuilder()
-                .input(dust, PhthalicAnhydride, 13)
+                .input(dust, PhthalicAnhydride, 15)
                 .fluidInputs(Ethylbenzene.getFluid(1000))
                 .fluidOutputs(Ethylanthraquinone.getFluid(1000))
                 .fluidOutputs(Water.getFluid(1000))

@@ -133,7 +133,7 @@ class KaptonChain
             // C8H4O3 -> C16H6O6 + 2H
             CHEMICAL_RECIPES.recipeBuilder()
                 .notConsumable(dust, Palladium)
-                .input(dust, PhthalicAnhydride, 13)
+                .input(dust, PhthalicAnhydride, 15)
                 .output(dust, BiphenylTetracarboxylicAcidDianhydride, 28)
                 .fluidOutputs(Hydrogen.getFluid(2000))
                 .EUt(VA[HV].toLong())

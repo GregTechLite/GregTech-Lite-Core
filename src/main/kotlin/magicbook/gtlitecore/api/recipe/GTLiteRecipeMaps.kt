@@ -680,7 +680,7 @@ class GTLiteRecipeMaps
         @get:JvmName("MOLECULAR_BEAM_RECIPES")
         val MOLECULAR_BEAM_RECIPES = RecipeMapBuilder("nanoscale_fabricator", NoCoilTemperatureRecipeBuilder())
             .itemInputs(6)
-            .itemOutputs(1)
+            .itemOutputs(2)
             .fluidInputs(2)
             .itemSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_1, false)
             .itemSlotOverlay(GTLiteGuiTextures.NANOSCALE_OVERLAY_1, true)

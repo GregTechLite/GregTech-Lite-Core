@@ -242,6 +242,14 @@ class GTLiteMetaItems
         lateinit var X_RAY_WAVEGUIDE: MetaItem<*>.MetaValueItem
         lateinit var RYDBERG_SPINOR_ARRAY: MetaItem<*>.MetaValueItem
         lateinit var EXOTIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var SCINTILLATOR_CRYSTAL: MetaItem<*>.MetaValueItem
+        lateinit var SCINTILLATOR: MetaItem<*>.MetaValueItem
+        lateinit var NUCLEAR_CLOCK: MetaItem<*>.MetaValueItem
+        lateinit var CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var MANIFOLD_OSCILLATORY_POWER_CELL: MetaItem<*>.MetaValueItem
+        lateinit var CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT: MetaItem<*>.MetaValueItem
+        lateinit var COSMIC_INFORMATION_MODULE: MetaItem<*>.MetaValueItem
+        lateinit var HOLOGRAPHIC_INFORMATION_IMC: MetaItem<*>.MetaValueItem
 
         lateinit var HASSIUM_BOULE: MetaItem<*>.MetaValueItem
 
@@ -271,6 +279,11 @@ class GTLiteMetaItems
         lateinit var PERIODICALLY_POLED_OPTICAL_CHIP: MetaItem<*>.MetaValueItem
         lateinit var SPIN_TRANSFER_TORQUE_RAM_CHIP: MetaItem<*>.MetaValueItem
         lateinit var MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var EXOTIC_ATOM_RESTRICT_CPU_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var EXCITED_EXOTIC_ATOM_RESTRICT_CPU_WAFER: MetaItem<*>.MetaValueItem
+        lateinit var EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP: MetaItem<*>.MetaValueItem
+        lateinit var EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP: MetaItem<*>.MetaValueItem
 
         lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
         lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -398,6 +411,7 @@ class GTLiteMetaItems
         lateinit var TIMEPIECE: MetaItem<*>.MetaValueItem
         lateinit var ZENITH_STAR: MetaItem<*>.MetaValueItem
         lateinit var PHONONIC_SEED_CRYSTAL: MetaItem<*>.MetaValueItem
+        lateinit var NANOSILICON_CATHODE: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -964,6 +978,14 @@ class GTLiteMetaItems
             X_RAY_WAVEGUIDE = GTLITE_ITEMS.addItem(1135, "circuit.component.x_ray_waveguide")
             RYDBERG_SPINOR_ARRAY = GTLITE_ITEMS.addItem(1136, "circuit.component.rydberg_spinor_array")
             EXOTIC_SYSTEM_ON_CHIP = GTLITE_ITEMS.addItem(1137, "circuit.component.exotic_system_on_chip")
+            SCINTILLATOR_CRYSTAL = GTLITE_ITEMS.addItem(1138, "circuit.component.scintillator_crystal")
+            SCINTILLATOR = GTLITE_ITEMS.addItem(1139, "circuit.component.scintillator")
+            NUCLEAR_CLOCK = GTLITE_ITEMS.addItem(1140, "circuit.component.nuclear_clock")
+            CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT = GTLITE_ITEMS.addItem(1141, "circuit.component.closed_timelike_curve_guidance_unit")
+            MANIFOLD_OSCILLATORY_POWER_CELL = GTLITE_ITEMS.addItem(1142, "circuit.component.manifold_oscillatory_power_cell")
+            CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT = GTLITE_ITEMS.addItem(1143, "circuit.component.closed_timelike_curve_computational_unit")
+            COSMIC_INFORMATION_MODULE = GTLITE_ITEMS.addItem(1144, "circuit.component.cosmic_information_module")
+            HOLOGRAPHIC_INFORMATION_IMC = GTLITE_ITEMS.addItem(1145, "circuit.component.holographic_information_imc")
 
             // 2001-2500: Boules and Wafers.
             HASSIUM_BOULE = GTLITE_ITEMS.addItem(2001, "boule.hassium")
@@ -994,6 +1016,11 @@ class GTLiteMetaItems
             PERIODICALLY_POLED_OPTICAL_CHIP = GTLITE_ITEMS.addItem(2409, "wafer.chip.periodically_poled_optical_chip")
             SPIN_TRANSFER_TORQUE_RAM_CHIP = GTLITE_ITEMS.addItem(2410, "wafer.chip.spin_transfer_torque_ram")
             MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP = GTLITE_ITEMS.addItem(2411, "wafer.chip.magnetic_domain_wall_inversion_nand")
+            EXOTIC_ATOM_RESTRICT_CPU_WAFER = GTLITE_ITEMS.addItem(2412, "wafer.exotic_atom_restrict_central_processing_unit")
+            EXCITED_EXOTIC_ATOM_RESTRICT_CPU_WAFER = GTLITE_ITEMS.addItem(2413, "wafer.excited_exotic_atom_restrict_central_processing_unit")
+            EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP = GTLITE_ITEMS.addItem(2414, "wafer.chip.excited_exotic_atom_restrict_central_processing_unit")
+            AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP = GTLITE_ITEMS.addItem(2415, "wafer.chip.amplitude_duality_disturbance_ram")
+            EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP = GTLITE_ITEMS.addItem(2416, "wafer.chip.excitation_spectrum_composite_logical_gate")
 
             // 3001-5000: Wrap Components
             WRAP_COATED_BOARD = GTLITE_ITEMS.addItem(3001, "wrap.board.coated")
@@ -1143,6 +1170,8 @@ class GTLiteMetaItems
             TIMEPIECE = GTLITE_ITEMS.addItem(5015, "material.particle.timepiece")
             ZENITH_STAR = GTLITE_ITEMS.addItem(5016, "material.gem.zenith_star")
             PHONONIC_SEED_CRYSTAL = GTLITE_ITEMS.addItem(5017, "material.seed_crystal.phononic")
+            NANOSILICON_CATHODE = GTLITE_ITEMS.addItem(5018, "material.foil.nanosilicon_cathode")
+                .addOreDict("foilNanosiliconCathode")
 
             // 9001-10000: Miscellaneous Foods.
 

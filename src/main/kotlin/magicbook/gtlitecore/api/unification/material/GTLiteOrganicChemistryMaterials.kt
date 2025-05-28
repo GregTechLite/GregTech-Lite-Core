@@ -49,6 +49,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMELTING
 import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
@@ -232,6 +233,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Pyromellit
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawPolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RhodamineB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sarcosine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSulfanilate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
@@ -245,6 +247,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TertbutylA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetraacetyldinitrosohexaazaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoethane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrabromoindigo
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetracene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetraethylammoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tetrahydrofuran
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TetramethylammoniumChloride
@@ -1630,7 +1633,7 @@ class GTLiteOrganicChemistryMaterials
                 .color(0x05090C).iconSet(BRIGHT)
                 .components(Carbon, 48)
                 .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                    GENERATE_LONG_ROD, GENERATE_SPRING)
+                    GENERATE_LONG_ROD, GENERATE_SPRING, GENERATE_SPRING_SMALL)
                 .cableProperties(V[UIV], 8, 6)
                 .build()
 
@@ -1929,6 +1932,21 @@ class GTLiteOrganicChemistryMaterials
                 .dust()
                 .color(0x663300).iconSet(DULL)
                 .components(Carbon, 26, Hydrogen, 19, Nitrogen, 6, Sodium, 1, Oxygen, 3, Sulfur, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8206 Tetracene
+            Tetracene = Material.Builder(8206, gtliteId("tetracene"))
+                .dust()
+                .color(0x99801A).iconSet(SHINY)
+                .components(Carbon, 18, Hydrogen, 12)
+                .build()
+
+            // 8207 Rhodamine B
+            RhodamineB = Material.Builder(8207, gtliteId("rhodamine_b"))
+                .dust()
+                .color(0xFC2020).iconSet(SHINY)
+                .components(Carbon, 28, Hydrogen, 31, Chlorine, 1, Nitrogen, 2, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
                 .build()
 

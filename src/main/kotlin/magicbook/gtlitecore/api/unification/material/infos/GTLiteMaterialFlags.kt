@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
@@ -22,6 +23,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.CobaltBrass
+import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Curium
@@ -295,6 +297,7 @@ class GTLiteMaterialFlags
             Terbium.addFlags(GENERATE_FOIL)
             Ytterbium.addFlags(GENERATE_FOIL)
             Lutetium.addFlags(GENERATE_FOIL)
+            Cadmium.addFlags(GENERATE_FOIL)
 
             // frameGt
             Potin.addFlags(GENERATE_FRAME)
@@ -438,6 +441,8 @@ class GTLiteMaterialFlags
             Terbium.addFlags(GENERATE_PLATE)
             Ytterbium.addFlags(GENERATE_PLATE)
             Lutetium.addFlags(GENERATE_PLATE)
+            Cadmium.addFlags(GENERATE_PLATE)
+            Copernicium.addFlags(GENERATE_PLATE)
 
             // plateDouble
             Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

@@ -89,6 +89,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Alumina
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmorphousBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthChalcogenide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BismuthTelluride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSelenide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CadmiumSulfide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCeriumCobaltIndium
@@ -415,14 +416,14 @@ class SpintronicCircuits
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
-            // Bi + Sb + 2Te + S -> BiSbTe2S
+            // 2Bi2Te3 + 3Sb + 3S -> 3BiSbTe2S + Bi
             MOLECULAR_BEAM_RECIPES.recipeBuilder()
                 .notConsumable(plate, CadmiumSulfide)
-                .input(dust, Bismuth)
-                .input(dust, Antimony)
-                .input(dust, Tellurium, 2)
-                .input(dust, Sulfur)
-                .output(dust, BismuthChalcogenide, 5)
+                .input(dust, BismuthTelluride, 10)
+                .input(dust, Antimony, 3)
+                .input(dust, Sulfur, 3)
+                .output(dust, BismuthChalcogenide, 15)
+                .output(dust, Bismuth)
                 .EUt(VA[UV].toLong())
                 .duration(4 * SECOND)
                 .temperature(4876)

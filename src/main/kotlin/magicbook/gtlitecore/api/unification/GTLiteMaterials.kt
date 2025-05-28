@@ -355,6 +355,14 @@ class GTLiteMaterials
         lateinit var PrussianBlue: Material
         lateinit var CopperArsenite: Material
         lateinit var ScheelesGreen: Material
+        lateinit var CaesiumIodide: Material
+        lateinit var ThalliumThuliumDopedCaesiumIodide: Material
+        lateinit var CadmiumTungstate: Material
+        lateinit var BismuthGermanate: Material
+        lateinit var LanthanumZirconate: Material
+        lateinit var MoscoviumIridiate: Material
+        lateinit var HydromoscovicAcid: Material
+        lateinit var StrontiumEuropiumNihonate: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -406,6 +414,12 @@ class GTLiteMaterials
         lateinit var Nitinol60: Material
         lateinit var Abyssalloy: Material
         lateinit var FullereneSuperconductor: Material
+        lateinit var LanthanumGroupAlloyA: Material
+        lateinit var LanthanumGroupAlloyB: Material
+        lateinit var ActiniumGroupAlloyA: Material
+        lateinit var ActiniumGroupAlloyB: Material
+        lateinit var CinobiteA243: Material
+        lateinit var Lafium: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material
@@ -640,6 +654,8 @@ class GTLiteMaterials
         lateinit var SodiumSulfanilate: Material
         lateinit var Naphthylamine: Material
         lateinit var DirectBrown77: Material
+        lateinit var Tetracene: Material
+        lateinit var RhodamineB: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material

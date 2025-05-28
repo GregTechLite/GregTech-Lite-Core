@@ -378,6 +378,7 @@ class LaserEngraverRecipes
                 .output(FEMTO_PIC_WAFER, 4)
                 .EUt(VA[UEV].toLong())
                 .duration(20 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Femto Power Integrate Circuit (FPIC) Chip

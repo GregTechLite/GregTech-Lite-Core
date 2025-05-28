@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -117,6 +118,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UXV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_OpV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UIV
@@ -125,6 +127,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LUV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_OpV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
@@ -160,6 +163,7 @@ import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.QUANTUM_STAR
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
+import gregtech.common.items.MetaItems.ROBOT_ARM_OpV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UIV
@@ -194,12 +198,16 @@ import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_PROXY
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.loaders.recipe.CraftingComponent
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Bedrockium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChromiumGermaniumTellurideMagnetic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CinobiteA243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
@@ -219,6 +227,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuark
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lafium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyA
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Mellion
@@ -2767,7 +2778,7 @@ class AssemblyLineRecipes
                 .input(circuit, MarkerMaterials.Tier.UIV, 16)
                 .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
                 .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
-                .fluidInputs(Abyssalloy.getFluid(L * 12))
+                .fluidInputs(CinobiteA243.getFluid(L * 12))
                 .fluidInputs(QuantumAlloy.getFluid(L * 8))
                 .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UXV, 4))
                 .EUt(VA[UXV].toLong())
@@ -2779,7 +2790,33 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
-            // TODO OpV-MAX CoAL Casing
+            // TODO OpV CoAL Casing
+            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            //     .input(frameGt, BlackDwarfMatter)
+            //     .input(plateDense, BlackDwarfMatter, 6)
+            //     .input(ROBOT_ARM_OpV, 8)
+            //     .input(ELECTRIC_PISTON_OpV, 10)
+            //     .input(ELECTRIC_MOTOR_OpV, 16)
+            //     .input(gear, BlackDwarfMatter, 4)
+            //     .input(gearSmall, BlackDwarfMatter, 16)
+            //     .input(cableGtQuadruple, Perodicium, 8)
+            //     .input(circuit, MarkerMaterials.Tier.OpV, 8)
+            //     .input(circuit, MarkerMaterials.Tier.UXV, 16)
+            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
+            //     .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+            //     .fluidInputs(Abyssalloy.getFluid(L * 12))
+            //     .fluidInputs(Lafium.getFluid(L * 8))
+            //     .outputs(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.OpV, 4))
+            //     .EUt(VA[OpV].toLong())
+            //     .duration(32 * SECOND)
+            //     .stationResearch { r ->
+            //         r.researchStack(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING.getItemVariant(BlockComponentAssemblyCasing.ComponentCasingType.UXV))
+            //             .EUt(VA[UXV].toLong())
+            //             .CWUt(96)
+            //     }
+            //     .buildAndRegister()
+
+            // TODO MAX CoAL Casing
         }
 
         private fun spaceElevatorCasingRecipes()
@@ -3153,6 +3190,7 @@ class AssemblyLineRecipes
                 .input(stickLong, Infinity, 4)
                 .input(stickLong, CosmicNeutronium, 12)
                 .input(EMITTER_UEV, 4)
+                .input(foil, LanthanumGroupAlloyA, 24)
                 .input(wireGtQuadruple, VibraniumTritaniumActiniumIronSuperhydride, 16)
                 .fluidInputs(Bedrockium.getFluid(L * 16))
                 .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
@@ -3176,6 +3214,7 @@ class AssemblyLineRecipes
                 .input(gearSmall, Infinity, 2)
                 .input(GRAVI_STAR, 4)
                 .input(circuit, MarkerMaterials.Tier.UIV)
+                .input(foil, LanthanumGroupAlloyB, 8)
                 .input(wireGtQuadruple, VibraniumTritaniumActiniumIronSuperhydride, 16)
                 .fluidInputs(Bedrockium.getFluid(L * 16))
                 .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(L * 16))
@@ -3198,6 +3237,7 @@ class AssemblyLineRecipes
                 .input(rotor, Hypogen, 4)
                 .input(circuit, MarkerMaterials.Tier.UIV)
                 .input(FIELD_GENERATOR_UEV, 4)
+                .input(foil, ActiniumGroupAlloyA, 16)
                 .fluidInputs(Bedrockium.getFluid(L * 16))
                 .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(L * 8))
                 .fluidInputs(Protomatter.getFluid(500))
@@ -3221,6 +3261,7 @@ class AssemblyLineRecipes
                 .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 8)
                 .input(SENSOR_UEV, 2)
                 .input(rotor, Infinity, 4)
+                .input(foil, ActiniumGroupAlloyB, 16)
                 .fluidInputs(CosmicNeutronium.getFluid(L * 10))
                 .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
                 .fluidInputs(Antimatter.getFluid(200))
