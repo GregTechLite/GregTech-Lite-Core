@@ -26,8 +26,10 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMAL
 import gregtech.api.unification.material.info.MaterialFlags.NO_UNIFICATION
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
+import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AcidicSaltWater
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AlgaeMixture
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleCaneSyrup
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AppleSyrup
@@ -41,6 +43,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodCells
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BosonicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrownAlgae
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CAT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaneSyrup
@@ -65,12 +68,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Dimensiona
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimerizedCarbon5Fraction
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedBedrockSootSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EscherichiaColi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Etirps
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FermionicUUMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FreeElectronGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Gluons
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GrapeJuice
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenAlgae
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenSapphireJuice
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GreenhouseGas
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HadronicResonantGas
@@ -129,6 +134,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RainbowSap
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthChloridesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RareEarthHydroxidesSolution
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawStarMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedAlgae
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedWine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ResonantStrangeMeson
@@ -142,6 +148,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodioInden
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpatiallyEnlargedFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StableBaryonicMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SteamCrackedSodioIndene
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StreptococcusPyogenes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TachyonRichTemporalFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UltralightBedrockSmoke
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.UnprocessedNdYAGSolution
@@ -516,7 +523,44 @@ class GTLiteUnknownCompositionMaterials
                 .color(0x2C4D24).iconSet(ROUGH)
                 .build()
 
-            // 12114-12130 for other biological components.
+            // 12114 Streptococcus Pyogenes
+            StreptococcusPyogenes = Material.Builder(12114, gtliteId("streptococcus_pyogenes"))
+                .dust()
+                .color(0x999933).iconSet(ROUGH)
+                .build()
+
+            // 12115 Escherichia Coli
+            EscherichiaColi = Material.Builder(12115, gtliteId("escherichia_coli"))
+                .dust()
+                .color(0x398C47).iconSet(DULL)
+                .build()
+
+            // 12116 Green Algae
+            GreenAlgae = Material.Builder(12116, gtliteId("green_algae"))
+                .dust()
+                .color(0x228B22).iconSet(METALLIC)
+                .build()
+
+            // 12117 Brown Algae
+            BrownAlgae = Material.Builder(12117, gtliteId("brown_algae"))
+                .dust()
+                .color(0xA52A2A).iconSet(METALLIC)
+                .build()
+
+            // 12118 Red Algae
+            RedAlgae = Material.Builder(12118, gtliteId("red_algae"))
+                .dust()
+                .color(0xF08080).iconSet(METALLIC)
+                .build()
+
+            // 12119 Algae Mixture
+            AlgaeMixture = Material.Builder(12119, gtliteId("algae_mixture"))
+                .liquid()
+                .color(averageRGB(3, GreenAlgae.materialRGB, BrownAlgae.materialRGB,
+                    RedAlgae.materialRGB)).iconSet(DULL)
+                .build()
+
+            // 12115-12130 for other biological components.
             // ...
 
             // 12131 MethylamineMixture

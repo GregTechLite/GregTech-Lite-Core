@@ -365,6 +365,9 @@ class GTLiteMaterials
         lateinit var StrontiumEuropiumNihonate: Material
         lateinit var NeutroniumDopedCarbonNanotube: Material
         lateinit var CosmicFabric: Material
+        lateinit var SiliconNanoparticles: Material
+        lateinit var SodiumAlginate: Material
+        lateinit var CalciumAlginate: Material
 
         // 4001-6000: Second Degree Materials
         lateinit var Kovar: Material
@@ -670,6 +673,12 @@ class GTLiteMaterials
         lateinit var DirectBrown77: Material
         lateinit var Tetracene: Material
         lateinit var RhodamineB: Material
+        lateinit var CetaneTrimethylAmmoniumBromide: Material
+        lateinit var Sorbose: Material
+        lateinit var AscorbicAcid: Material
+        lateinit var DehydroascorbicAcid: Material
+        lateinit var Cellulose: Material
+        lateinit var Xylose: Material
 
         // 12001-14000: Unknown Composition Materials
         lateinit var Latex: Material
@@ -729,6 +738,12 @@ class GTLiteMaterials
         lateinit var BrevibacteriumFlavum: Material
         lateinit var Yeast: Material
         lateinit var CupriavidusNecator: Material
+        lateinit var StreptococcusPyogenes: Material
+        lateinit var EscherichiaColi: Material
+        lateinit var GreenAlgae: Material
+        lateinit var BrownAlgae: Material
+        lateinit var RedAlgae: Material
+        lateinit var AlgaeMixture: Material
 
         lateinit var MethylamineMixture: Material
         lateinit var BZMedium: Material

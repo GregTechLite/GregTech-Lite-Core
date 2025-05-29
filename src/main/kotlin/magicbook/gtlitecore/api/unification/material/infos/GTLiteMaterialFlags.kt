@@ -91,6 +91,7 @@ import gregtech.api.unification.material.Materials.Opal
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
@@ -549,6 +550,7 @@ class GTLiteMaterialFlags
             Moscovium.addFlags(GENERATE_ROD)
             Uranium235.addFlags(GENERATE_ROD)
             Roentgenium.addFlags(GENERATE_ROD)
+            Nickel.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)
@@ -566,6 +568,7 @@ class GTLiteMaterialFlags
             DamascusSteel.addFlags(GENERATE_LONG_ROD)
             RedSteel.addFlags(GENERATE_LONG_ROD)
             BlueSteel.addFlags(GENERATE_LONG_ROD)
+            Nickel.addFlags(GENERATE_LONG_ROD)
 
             // spring
             TinAlloy.addFlags(GENERATE_SPRING)
@@ -575,6 +578,8 @@ class GTLiteMaterialFlags
             Magnesium.addFlags(GENERATE_SPRING)
             Duranium.addFlags(GENERATE_SPRING)
             Mendelevium.addFlags(GENERATE_SPRING)
+            Platinum.addFlags(GENERATE_SPRING)
+            Nickel.addFlags(GENERATE_SPRING)
 
             // springSmall
             WroughtIron.addFlags(GENERATE_SPRING_SMALL)

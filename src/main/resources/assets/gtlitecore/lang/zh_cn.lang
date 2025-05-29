@@ -746,6 +746,8 @@ metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
 metaitem.tool.petri_dish.electric_signal.name=电信号培养皿
+metaitem.tool.petri_dish.streptococcus_pyogenes.name=酿脓链球菌培养皿
+metaitem.tool.petri_dish.escherichia_coli.name=大肠杆菌培养皿
 
 metaitem.tool.memory_card.base.name=意识存储卡
 metaitem.tool.memory_card.zombie.name=僵尸意识存储卡
@@ -3118,6 +3120,9 @@ gtlitecore.material.hydromoscovic_acid=氢镆酸
 gtlitecore.material.strontium_europium_nihonate=钅尔酸锶铕
 gtlitecore.material.neutronium_doped_carbon_nanotube=中子掺杂的碳纳米管
 gtlitecore.material.cosmic_fabric=寰宇织网
+gtlitecore.material.silicon_nanoparticles=硅纳米粒子
+gtlitecore.material.sodium_alginate=海藻酸钠
+gtlitecore.material.calcium_alginate=海藻酸钙
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3430,6 +3435,12 @@ gtlitecore.material.naphthylamine=萘胺
 gtlitecore.material.direct_brown_77=直接棕77
 gtlitecore.material.tetracene=并四苯
 gtlitecore.material.rhodamine_b=罗丹明B
+gtlitecore.material.cetane_trimethyl_ammonium_bromide=十六烷基三甲基溴化铵（CTAB）
+gtlitecore.material.sorbose=山梨糖
+gtlitecore.material.ascorbic_acid=抗坏血酸
+gtlitecore.material.dehydroascorbic_acid=脱氢抗坏血酸
+gtlitecore.material.cellulose=纤维素
+gtlitecore.material.xylose=木糖
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3489,6 +3500,12 @@ gtlitecore.material.rare_earth_chlorides_solution=稀土氯化物溶液
 gtlitecore.material.brevibacterium_flavum=黄色短杆菌
 gtlitecore.material.yeast=酵母
 gtlitecore.material.cupriavidus_necator=贪铜钩虫菌
+gtlitecore.material.streptococcus_pyogenes=酿脓链球菌
+gtlitecore.material.escherichia_coli=大肠杆菌
+gtlitecore.material.green_algae=绿藻
+gtlitecore.material.brown_algae=褐藻
+gtlitecore.material.red_algae=红藻
+gtlitecore.material.algae_mixture=富藻混合液
 
 gtlitecore.material.methylamine_mixture=甲胺混合物
 gtlitecore.material.bz_medium=别洛索夫-扎鲍京斯基振荡反应液

@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.CREDIT_COPPER
 import gregtech.common.items.MetaItems.CREDIT_GOLD
@@ -20,7 +21,9 @@ import gregtech.common.items.MetaItems.CREDIT_PLATINUM
 import gregtech.common.items.MetaItems.CREDIT_SILVER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_MOLD_CREDIT
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cellulose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
@@ -50,7 +53,10 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_ROD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_ROUND
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_SCREW
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SHAPE_MOLD_TURBINE_BLADE
+import net.minecraft.init.Items
+import net.minecraft.item.ItemStack
 
+@Suppress("MISSING_DEPENDENCY_CLASS")
 class FormingPressRecipes
 {
 
@@ -337,6 +343,15 @@ class FormingPressRecipes
                 .output(CREDIT_INFINITY, 4)
                 .EUt(VH[LV].toLong())
                 .duration(5 * SECOND)
+                .buildAndRegister()
+
+            // Paper
+            FORMING_PRESS_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_MOLD_PLATE)
+                .input(dust, Cellulose)
+                .outputs(ItemStack(Items.PAPER))
+                .EUt(4) // ULV
+                .duration(10 * SECOND)
                 .buildAndRegister()
 
         }

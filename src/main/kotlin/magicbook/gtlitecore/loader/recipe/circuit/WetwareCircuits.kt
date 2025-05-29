@@ -187,20 +187,16 @@ class WetwareCircuits
                 arrayOf(SterileGrowthMedium.getFluid(500),
                     Bacteria.getFluid(500)))
 
-            for (bacteria in arrayOf(BrevibacteriumFlavum,
-                CupriavidusNecator))
-            {
-                CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-                    .input(dust, bacteria)
-                    .fluidInputs(SterileGrowthMedium.getFluid(100))
-                    .fluidInputs(Bacteria.getFluid(500))
-                    .output(STEM_CELLS, 64)
-                    .fluidOutputs(BacterialSludge.getFluid(500))
-                    .EUt(VA[LuV].toLong())
-                    .duration(15 * SECOND)
-                    .cleanroom(CleanroomType.CLEANROOM)
-                    .buildAndRegister()
-            }
+            CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
+                .input("dustBacterial")
+                .fluidInputs(SterileGrowthMedium.getFluid(100))
+                .fluidInputs(Bacteria.getFluid(500))
+                .output(STEM_CELLS, 64)
+                .fluidOutputs(BacterialSludge.getFluid(500))
+                .EUt(VA[LuV].toLong())
+                .duration(15 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
 
             // Neuro Process
             GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,

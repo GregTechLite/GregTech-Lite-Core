@@ -57,12 +57,15 @@ import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.MetaBlocks
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Azurite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BurntSienna
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CobaltAluminate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyanIndigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DirectBrown77
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Erythrosine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EscherichiaColi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fluorescein
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Indigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadChromate
@@ -78,6 +81,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polytetram
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrussianBlue
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ScheelesGreen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sienna
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StreptococcusPyogenes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.utils.Mods
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
@@ -147,6 +151,13 @@ class OreDictionaryLoader
                 OreDictionary.registerOre("dustRadioactive", OreDictUnifier.get(dust, material))
                 OreDictionary.registerOre("dustSmallRadioactive", OreDictUnifier.get(dustSmall, material))
                 OreDictionary.registerOre("dustTinyRadioactive", OreDictUnifier.get(dustTiny, material))
+            }
+
+            // Bacterial dusts.
+            for (material in arrayOf(BrevibacteriumFlavum, CupriavidusNecator,
+                StreptococcusPyogenes, EscherichiaColi))
+            {
+                OreDictionary.registerOre("dustBacterial", OreDictUnifier.get(dust, material))
             }
 
         }

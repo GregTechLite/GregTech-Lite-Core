@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Bastnasite
 import gregtech.api.unification.material.Materials.BatteryAlloy
 import gregtech.api.unification.material.Materials.Bauxite
 import gregtech.api.unification.material.Materials.Berkelium
+import gregtech.api.unification.material.Materials.Biomass
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Calcium
@@ -56,6 +57,7 @@ import gregtech.api.unification.material.Materials.Lanthanum
 import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lutetium
+import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
@@ -114,6 +116,7 @@ import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
+import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalum
 import gregtech.api.unification.material.Materials.Technetium
@@ -147,15 +150,24 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.STEM_CELLS
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.QUANTUM_FORCE_TRANSFORMER_RECIPES
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AscorbicAcid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BFGF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Biotin
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Blood
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CAT
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cellulose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EscherichiaColi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fructose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glucose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hexanitrohexaaxaisowurtzitane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.KaptonE
@@ -174,9 +186,13 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyphosph
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polystyrene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sorbose
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StreptococcusPyogenes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Xylose
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
@@ -558,6 +574,44 @@ class QuantumForceTransformerRecipes
                 .tier(2)
                 .buildAndRegister()
 
+            QUANTUM_FORCE_TRANSFORMER_RECIPES.recipeBuilder()
+                .notConsumable(CATALYST_RAW_INTELLIGENCE)
+                .input(dust, Yeast, 32)
+                .input(dust, Meat, 32)
+                .fluidInputs(DistilledWater.getFluid(16000))
+                .chancedOutput(dust, BrevibacteriumFlavum, 64, 2500, 0)
+                .chancedOutput(dust, CupriavidusNecator, 64, 2500, 0)
+                .chancedOutput(dust, StreptococcusPyogenes, 64, 2500, 0)
+                .chancedOutput(dust, EscherichiaColi, 64, 2500, 0)
+                .chancedOutput(dust, Sugar, 64, 2500, 0)
+                .chancedOutput(dust, Sugar, 64, 2500, 0)
+                .chancedFluidOutput(BFGF.getFluid(64000), 2500, 0)
+                .chancedFluidOutput(EGF.getFluid(64000), 2500, 0)
+                .chancedFluidOutput(CAT.getFluid(128000), 2500, 0)
+                .chancedFluidOutput(Biomass.getFluid(256000), 2500, 0)
+                .chancedFluidOutput(Blood.getFluid(256000), 2500, 0)
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .tier(2)
+                .buildAndRegister()
+
+            QUANTUM_FORCE_TRANSFORMER_RECIPES.recipeBuilder()
+                .notConsumable(CATALYST_RAW_INTELLIGENCE)
+                .input(dust, Sugar, 64)
+                .fluidInputs(Hydrogen.getFluid(16000))
+                .fluidInputs(Oxygen.getFluid(16000))
+                .chancedOutput(dust, Glucose, 64, 2500, 0)
+                .chancedOutput(dust, Fructose, 64, 2500, 0)
+                .chancedOutput(dust, Sorbose, 64, 2500, 0)
+                .chancedOutput(dust, Xylose, 64, 2500, 0)
+                .chancedOutput(dust, Cellulose, 64, 2500, 0)
+                .chancedOutput(dust, Biotin, 64, 2500, 0)
+                .chancedFluidOutput(AscorbicAcid.getFluid(64000), 2500, 0)
+                .EUt(VA[UHV].toLong())
+                .duration(20 * SECOND)
+                .tier(2)
+                .buildAndRegister()
+
             // Biological Intelligence
             QUANTUM_FORCE_TRANSFORMER_RECIPES.recipeBuilder()
                 .notConsumable(CATALYST_BIOLOGICAL_INTELLIGENCE)
@@ -853,6 +907,8 @@ class QuantumForceTransformerRecipes
                 .input(CATALYST_BASE)
                 .input(dust, BrevibacteriumFlavum, 64)
                 .input(dust, CupriavidusNecator, 64)
+                .input(dust, StreptococcusPyogenes, 64)
+                .input(dust, EscherichiaColi, 64)
                 .input(nanite, TranscendentMetal)
                 .fluidInputs(Hypogen.getFluid(L * 4))
                 .output(CATALYST_BIOLOGICAL_INTELLIGENCE)

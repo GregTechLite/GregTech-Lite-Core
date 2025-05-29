@@ -250,6 +250,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumCer
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHexachlorotinate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumHydroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CaesiumIodide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumAlginate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumDifluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CalciumHydroxide
@@ -443,12 +444,14 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SeleniumDi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SelenousAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilicaGelBase
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconNanoparticles
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SiliconTetrachloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverChloride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverOxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverPerchlorate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SilverTetrafluoroborate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAcetate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAlginate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAluminate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzanide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumAzide
@@ -3394,6 +3397,32 @@ class GTLiteFirstDegreeMaterials
                 .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL,
                     GENERATE_FINE_WIRE)
                 .build()
+
+            // 2330 Silicon Nanoparticles
+            SiliconNanoparticles = Material.Builder(2330, gtliteId("silicon_nanoparticles"))
+                .dust()
+                .color(Silicon.materialRGB).iconSet(NANOPARTICLES)
+                .components(Silicon, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 2331 Sodium Alginate
+            SodiumAlginate = Material.Builder(2331, gtliteId("sodium_alginate"))
+                .dust()
+                .color(0x663333).iconSet(ROUGH)
+                .components(Carbon, 6, Hydrogen, 7, Oxygen, 6, Sodium, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("C5H7O4COONa", true)
+
+            // 2332 Calcium Alginate
+            CalciumAlginate = Material.Builder(2332, gtliteId("calcium_alginate"))
+                .dust()
+                .color(0x654321).iconSet(ROUGH)
+                .components(Carbon, 12, Hydrogen, 14, Oxygen, 12, Calcium, 2)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+                .setFormula("(C5H7O4COO)2Ca", true)
 
         }
 

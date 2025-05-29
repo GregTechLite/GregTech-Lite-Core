@@ -176,6 +176,8 @@ class GTLiteMetaItems
         lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var CUPRIAVIDUS_NECATOR_PETRI_DISH: MetaItem<*>.MetaValueItem
         lateinit var ELECTRIC_SIGNAL_PETRI_DISH: MetaItem<*>.MetaValueItem
+        lateinit var STREPTOCOCCUS_PYOGENES_PETRI_DISH: MetaItem<*>.MetaValueItem
+        lateinit var ESCHERICHIA_COLI_PETRI_DISH: MetaItem<*>.MetaValueItem
 
         lateinit var MEMORY_CARD_BASE: MetaItem<*>.MetaValueItem
         lateinit var MEMORY_CARD_ZOMBIE: MetaItem<*>.MetaValueItem
@@ -869,6 +871,8 @@ class GTLiteMetaItems
             BREVIBACTERIUM_FLAVUM_PETRI_DISH = GTLITE_ITEMS.addItem(632, "tool.petri_dish.brevibacterium_flavum")
             CUPRIAVIDUS_NECATOR_PETRI_DISH = GTLITE_ITEMS.addItem(633, "tool.petri_dish.cupriavidus_necator")
             ELECTRIC_SIGNAL_PETRI_DISH = GTLITE_ITEMS.addItem(634, "tool.petri_dish.electric_signal")
+            STREPTOCOCCUS_PYOGENES_PETRI_DISH = GTLITE_ITEMS.addItem(635, "tool.petri_dish.streptococcus_pyogenes")
+            ESCHERICHIA_COLI_PETRI_DISH = GTLITE_ITEMS.addItem(636, "tool.petri_dish.escherichia_coli")
 
             // ...
 

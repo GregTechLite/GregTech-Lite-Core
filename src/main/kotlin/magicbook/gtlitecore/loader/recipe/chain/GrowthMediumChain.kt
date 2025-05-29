@@ -28,13 +28,16 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.BacterialSludge
 import gregtech.api.unification.material.Materials.Biomass
 import gregtech.api.unification.material.Materials.Clay
+import gregtech.api.unification.material.Materials.Collagen
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.EnrichedBacterialSludge
+import gregtech.api.unification.material.Materials.GelatinMixture
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Mutagen
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Nitrogen
+import gregtech.api.unification.material.Materials.PhosphoricAcid
 import gregtech.api.unification.material.Materials.RawGrowthMedium
 import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Sugar
@@ -57,20 +60,32 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodCells
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BloodPlasma
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BrevibacteriumFlavum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CAT
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cellulose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CupriavidusNecator
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EscherichiaColi
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glucose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Glutamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HydrogenPeroxide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LinoleicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PiranhaSolution
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RedAlgae
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sorbose
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StreptococcusPyogenes
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.api.utils.GTRecipeUtility
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.BREVIBACTERIUM_FLAVUM_PETRI_DISH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CUPRIAVIDUS_NECATOR_PETRI_DISH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.DIRTY_PETRI_DISH
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ESCHERICHIA_COLI_PETRI_DISH
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MUD_BALL
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.STREPTOCOCCUS_PYOGENES_PETRI_DISH
 import net.minecraft.init.Blocks
+import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
@@ -167,6 +182,25 @@ class GrowthMediumChain
                     .duration(20 * SECOND)
                     .cleanroom(CleanroomType.STERILE_CLEANROOM)
                     .buildAndRegister()
+
+            // Gelatin Mixture
+            GTRecipeUtility.removeMixerRecipes(
+                arrayOf(OreDictUnifier.get(dust, Collagen, 4)),
+                arrayOf(PhosphoricAcid.getFluid(1000),
+                    Water.getFluid(3000)))
+
+            MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(dust, Collagen, 4)
+                .input(dust, RedAlgae, 2)
+                .fluidInputs(PhosphoricAcid.getFluid(1000))
+                .fluidInputs(DistilledWater.getFluid(2000))
+                .fluidOutputs(GelatinMixture.getFluid(6000))
+                .EUt(VA[HV].toLong())
+                .duration(1 * MINUTE + 20 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
         }
 
         private fun bacteriasProcess()
@@ -244,6 +278,45 @@ class GrowthMediumChain
                 .EUt(VA[HV].toLong())
                 .duration(15 * SECOND)
                 .buildAndRegister()
+
+            // Streptococcus Pyogenes Petri Dish (for Sugar processing, it is not required in this chain).
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .input(PETRI_DISH)
+                .inputs(ItemStack(Items.ROTTEN_FLESH))
+                .fluidInputs(RawGrowthMedium.getFluid(100))
+                .output(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            PACKER_RECIPES.recipeBuilder()
+                .input(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
+                .output(dust, StreptococcusPyogenes)
+                .output(DIRTY_PETRI_DISH)
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+            // Escherichia Coli Petri Dish (for Succinic Acid processing, it is not required in this chain).
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .input(PETRI_DISH)
+                .input(dust, Meat)
+                .fluidInputs(RawGrowthMedium.getFluid(100))
+                .output(ESCHERICHIA_COLI_PETRI_DISH)
+                .EUt(VA[LuV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            PACKER_RECIPES.recipeBuilder()
+                .input(ESCHERICHIA_COLI_PETRI_DISH)
+                .output(dust, EscherichiaColi)
+                .output(DIRTY_PETRI_DISH)
+                .EUt(VA[HV].toLong())
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
         }
 
         private fun sterilizedGrowthMediumProcess()
@@ -326,6 +399,63 @@ class GrowthMediumChain
                 .fluidOutputs(SterileGrowthMedium.getFluid(64000))
                 .EUt(VA[ZPM].toLong())
                 .duration(10 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            // Sorbose
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, StreptococcusPyogenes)
+                .input(dust, Glucose, 24)
+                .output(dust, Sorbose, 24)
+                .EUt(VA[IV].toLong())
+                .duration(25 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            // Shallow copying of Streptococcus Pyogenes.
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, StreptococcusPyogenes)
+                .fluidInputs(RawGrowthMedium.getFluid(100))
+                .fluidInputs(DistilledWater.getFluid(1000))
+                .output(dust, StreptococcusPyogenes, 2)
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            // Succinic Acid
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(dust, EscherichiaColi)
+                .input(dust, Sugar)
+                .output(dust, SuccinicAcid, 14)
+                .EUt(VA[IV].toLong())
+                .duration(25 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            // Shallow copying of Escherichia Coli.
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(dust, EscherichiaColi)
+                .fluidInputs(RawGrowthMedium.getFluid(100))
+                .fluidInputs(DistilledWater.getFluid(1000))
+                .output(dust, EscherichiaColi, 2)
+                .EUt(VA[HV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.STERILE_CLEANROOM)
+                .buildAndRegister()
+
+            // Glucose
+            BIO_REACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(3)
+                .input(dust, EscherichiaColi)
+                .input(dust, Cellulose, 21)
+                .output(dust, Glucose, 24)
+                .EUt(VA[IV].toLong())
+                .duration(25 * SECOND)
                 .cleanroom(CleanroomType.STERILE_CLEANROOM)
                 .buildAndRegister()
 

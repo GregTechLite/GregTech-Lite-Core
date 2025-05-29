@@ -71,6 +71,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumBi
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumCyanate
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AmmoniumFluoride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Aniline
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AscorbicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BETS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Benzaldehyde
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BenzylBromide
@@ -91,6 +92,8 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butanol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Butyllithium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Carbamide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CarbonNanotube
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cellulose
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CetaneTrimethylAmmoniumBromide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ChloroaceticAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Chlorobutane
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CitricAcid
@@ -101,6 +104,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyanIndigo
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cyclooctadiene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cycloparaphenylene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DehydroascorbicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DenseHydrazineRocketFuel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Diacetyl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DiaminostilbenedisulfonicAcid
@@ -236,6 +240,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Resorcinol
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RhodamineB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sarcosine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SodiumSulfanilate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sorbose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAcid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuccinicAnhydride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Succinimide
@@ -266,6 +271,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Trimethylt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Triphenylphosphine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Truxene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Xylenol
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Xylose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -1948,6 +1954,49 @@ class GTLiteOrganicChemistryMaterials
                 .color(0xFC2020).iconSet(SHINY)
                 .components(Carbon, 28, Hydrogen, 31, Chlorine, 1, Nitrogen, 2, Oxygen, 3)
                 .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8208 Cetane Trimethyl Ammonium Bromide
+            CetaneTrimethylAmmoniumBromide = Material.Builder(8208, gtliteId("cetane_trimethyl_ammonium_bromide"))
+                .liquid()
+                .color(0x949494)
+                .components(Carbon, 19, Hydrogen, 42, Bromine, 1, Nitrogen, 1)
+                .flags(DISABLE_DECOMPOSITION)
+                .build()
+
+            // 8209 Sorbose
+            Sorbose = Material.Builder(8209, gtliteId("sorbose"))
+                .dust()
+                .color(0xFFFFFF).iconSet(METALLIC)
+                .components(Carbon, 6, Hydrogen, 12, Oxygen, 6)
+                .build()
+
+            // 8210 Ascorbic Acid
+            AscorbicAcid = Material.Builder(8210, gtliteId("ascorbic_acid"))
+                .liquid()
+                .color(0xE6CD00)
+                .components(Carbon, 6, Hydrogen, 8, Oxygen, 6)
+                .build()
+
+            // 8211 Dehydroascorbic Acid
+            DehydroascorbicAcid = Material.Builder(8211, gtliteId("dehydroascorbic_acid"))
+                .liquid()
+                .color(AscorbicAcid.materialRGB - 10)
+                .components(Carbon, 6, Hydrogen, 6, Oxygen, 6)
+                .build()
+
+            // 8212 Cellulose
+            Cellulose = Material.Builder(8212, gtliteId("cellulose"))
+                .dust()
+                .color(0xE2EBD9).iconSet(ROUGH)
+                .components(Carbon, 6, Hydrogen, 10, Oxygen, 5)
+                .build()
+
+            // 8213 Xylose
+            Xylose = Material.Builder(8213, gtliteId("xylose"))
+                .dust()
+                .color(0xDFDFDF).iconSet(ROUGH)
+                .components(Carbon, 5, Hydrogen, 10, Oxygen, 5)
                 .build()
 
         }

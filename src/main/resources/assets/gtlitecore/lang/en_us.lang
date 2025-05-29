@@ -921,6 +921,8 @@ metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish
 metaitem.tool.petri_dish.electric_signal.name=Electric Signal Petri Dish
+metaitem.tool.petri_dish.streptococcus_pyogenes.name=Streptococcus Pyogenes Petri Dish
+metaitem.tool.petri_dish.escherichia_coli.name=Escherichia Coli Petri Dish
 
 metaitem.tool.memory_card.base.name=Memory Card
 metaitem.tool.memory_card.zombie.name=Memory Card (Zombie)
@@ -3114,6 +3116,9 @@ gtlitecore.material.hydromoscovic_acid=Hydromoscovic Acid
 gtlitecore.material.strontium_europium_nihonate=Strontium Europium Nihonate
 gtlitecore.material.neutronium_doped_carbon_nanotube=Neutronium-doped Carbon Nanotube
 gtlitecore.material.cosmic_fabric=Cosmic Fabric
+gtlitecore.material.silicon_nanoparticles=Silicon Nanoparticles
+gtlitecore.material.sodium_alginate=Sodium Alginate
+gtlitecore.material.calcium_alginate=Calcium Alginate
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3427,6 +3432,12 @@ gtlitecore.material.naphthylamine=Naphthylamine
 gtlitecore.material.direct_brown_77=Direct Brown 77
 gtlitecore.material.tetracene=Tetracene
 gtlitecore.material.rhodamine_b=Rhodamine B
+gtlitecore.material.cetane_trimethyl_ammonium_bromide=Cetane Trimethyl Ammonium Bromide (CTAB)
+gtlitecore.material.sorbose=Sorbose
+gtlitecore.material.ascorbic_acid=Ascorbic Acid
+gtlitecore.material.dehydroascorbic_acid=Dehydroascorbic Acid
+gtlitecore.material.cellulose=Cellulose
+gtlitecore.material.xylose=Xylose
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3486,6 +3497,12 @@ gtlitecore.material.rare_earth_chlorides_solution=Rare Earth Chlorides Solution
 gtlitecore.material.brevibacterium_flavum=Brevibacterium Flavum
 gtlitecore.material.yeast=Yeast
 gtlitecore.material.cupriavidus_necator=Cupriavidus Necator
+gtlitecore.material.streptococcus_pyogenes=Streptococcus Pyogenes
+gtlitecore.material.escherichia_coli=Escherichia Coli
+gtlitecore.material.green_algae=Green Algae
+gtlitecore.material.brown_algae=Brown Algae
+gtlitecore.material.red_algae=Red Algae
+gtlitecore.material.algae_mixture=Algae Rich Mixture
 
 gtlitecore.material.methylamine_mixture=Methylamine Mixture
 gtlitecore.material.bz_medium=Belousov-Zhabotinsky Oscillation Reaction Medium
