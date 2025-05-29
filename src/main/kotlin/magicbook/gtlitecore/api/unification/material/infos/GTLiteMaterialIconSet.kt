@@ -79,6 +79,10 @@ class GTLiteMaterialIconSet
         @JvmField
         val UNIVERSIUM = MaterialIconSet("universium", null, true)
 
+        @JvmField
+        val ETERNITY = MaterialIconSetWithRenderer("eternity", null, true,
+            HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+
         // ========================================== Unified MaterialIconSets =========================================
         @JvmField
         val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)

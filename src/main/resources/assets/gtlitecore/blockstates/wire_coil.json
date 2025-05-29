@@ -52,6 +52,19 @@
         "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_space_time",
         "top_all": "gtlitecore:blocks/casings/coil/machine_coil_space_time_bloom"
       }
+    },
+    "active=false,variant=eternity": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/coil/machine_coil_eternity"
+      }
+    },
+    "active=true,variant=eternity": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/coil/machine_coil_eternity",
+        "top_all": "gtlitecore:blocks/casings/coil/machine_coil_eternity_bloom"
+      }
     }
   }
 }

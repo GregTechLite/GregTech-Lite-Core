@@ -2091,7 +2091,7 @@ class AssemblerRecipes
         private fun laserHatchesRecipes()
         {
             // Add recipes for original laser hatches in GTCEu.
-            for (tier in UHV..UXV) // TODO OpV-MAX recipes
+            for (tier in UHV..OpV) // TODO MAX recipes
             {
                 val actualTier = tier - IV // Because laser hatch start at IV stage.
                 // 256A Laser Target Hatch
@@ -2174,7 +2174,7 @@ class AssemblerRecipes
             }
             // Advanced laser hatches consists of 16384A-1048576A, these recipes is added
             // for these parts.
-            for (tier in IV..UXV) // TODO OpV-MAX recipes
+            for (tier in IV..OpV) // TODO MAX recipes
             {
                 val actualTier = tier - IV // Because laser hatch start at IV stage.
                 // 16384A Laser Target Hatch

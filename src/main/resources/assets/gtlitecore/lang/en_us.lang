@@ -497,6 +497,7 @@ tile.wire_coil.adamantium.name=Adamantium Wire Coil Block
 tile.wire_coil.infinity.name=Infinity Wire Coil Block
 tile.wire_coil.halkonite_steel.name=Halkonite Steel Wire Coil Block
 tile.wire_coil.space_time.name=Space Time Wire Coil Block
+tile.wire_coil.eternity.name=Eternity Wire Coil Block
 
 tile.crucible.bronze.name=Bronze Crucible
 tile.crucible.invar.name=Invar Crucible
@@ -2791,6 +2792,7 @@ gtlitecore.material.creon=Creon
 gtlitecore.material.mag_matter=Mag Matter
 gtlitecore.material.universium=Universium
 gtlitecore.material.universium.formula=§7Hold the Universe in the Palm of your Hand
+gtlitecore.material.eternity=Eternity
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite

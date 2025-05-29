@@ -98,6 +98,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicFabr
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Eternity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HDCS
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
@@ -654,14 +655,14 @@ class CraftingComponents
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy
             // New: 0-1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome, 5: RTMAlloy,
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy, 9: Tritanium, 10: Adamantium,
-            //      11: Infinity, 12: HalkoniteSteel, 13: SpaceTime, 14: TODO
+            //      11: Infinity, 12: HalkoniteSteel, 13: SpaceTime, 14: Eternity
             CraftingComponent.COIL_HEATING.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(wireGtDouble, Tritanium),
                 UEV to UnificationEntry(wireGtDouble, Adamantium),
                 UIV to UnificationEntry(wireGtDouble, Infinity),
                 UXV to UnificationEntry(wireGtDouble, HalkoniteSteel),
                 OpV to UnificationEntry(wireGtDouble, SpaceTime),
-                // MAX to UnificationEntry(wireGtDouble, Tritanium)
+                MAX to UnificationEntry(wireGtDouble, Eternity)
             ).toMap())
 
             // COIL_HEATING_DOUBLE
@@ -669,14 +670,14 @@ class CraftingComponents
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy
             // New: 0-1: Copper, 2: Cupronickel, 3: Kanthal, 4: Nichrome, 5: RTMAlloy,
             //      6: HSSG, 7: Naquadah, 8: NaquadahAlloy, 9: Tritanium, 10: Adamantium,
-            //      11: Infinity, 12: HalkoniteSteel, 13: SpaceTime, 14: TODO
+            //      11: Infinity, 12: HalkoniteSteel, 13: SpaceTime, 14: Eternity
             CraftingComponent.COIL_HEATING_DOUBLE.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(wireGtQuadruple, Tritanium),
                 UEV to UnificationEntry(wireGtQuadruple, Adamantium),
                 UIV to UnificationEntry(wireGtQuadruple, Infinity),
                 UXV to UnificationEntry(wireGtQuadruple, HalkoniteSteel),
                 OpV to UnificationEntry(wireGtQuadruple, SpaceTime),
-                // MAX to UnificationEntry(wireGtQuadruple, Tritanium)
+                MAX to UnificationEntry(wireGtQuadruple, Eternity)
             ).toMap())
 
             // COIL_ELECTRIC

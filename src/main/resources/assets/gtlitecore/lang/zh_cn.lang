@@ -497,6 +497,7 @@ tile.wire_coil.adamantium.name=精金线圈方块
 tile.wire_coil.infinity.name=无尽线圈方块
 tile.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
 tile.wire_coil.space_time.name=时空线圈方块
+tile.wire_coil.eternity.name=永恒线圈方块
 
 tile.crucible.bronze.name=青铜坩埚
 tile.crucible.invar.name=殷钢坩埚
@@ -2790,6 +2791,7 @@ gtlitecore.material.creon=创律金属
 gtlitecore.material.mag_matter=纯磁物质
 gtlitecore.material.universium=宇宙素
 gtlitecore.material.universium.formula=§7把整个宇宙握在手心
+gtlitecore.material.eternity=永恒
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石

@@ -34,6 +34,7 @@ class GTLiteMaterials
         lateinit var Creon: Material
         lateinit var MagMatter: Material
         lateinit var Universium: Material
+        lateinit var Eternity: Material
 
         // 2001-4000: First Degree Materials
         lateinit var Dolomite: Material

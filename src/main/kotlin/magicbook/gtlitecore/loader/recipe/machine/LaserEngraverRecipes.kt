@@ -78,7 +78,7 @@ class LaserEngraverRecipes
     companion object
     {
 
-        fun init() // TODO Higher wafers for laser engravings beyond Neutronium (MK3 material).
+        fun init()
         {
             removeColoredLenses()
 

@@ -1,6 +1,7 @@
 package magicbook.gtlitecore.loader
 
 import gregtech.api.GTValues.M
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
@@ -96,6 +97,10 @@ class MaterialInfoLoader
             // Space Time coil cannot recycle the halkonite steel because it consumed molten halkonite steel but if add material
             // info of halkonite steel, then it will give halkonite steel dust, this is wrong.
 
+            OreDictUnifier.registerOre(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.ETERNITY),
+                ItemMaterialInfo(MaterialStack(GTLiteMaterials.Eternity, M * 8 + M), // 8x wireGtDoubleX + 8x screwX
+                    MaterialStack(GTLiteMaterials.SpaceTime, M * 4)))
+
             // Add material infos for all machine hulls.
             OreDictUnifier.registerOre(MetaTileEntities.HULL[UEV].stackForm,
                 ItemMaterialInfo(MaterialStack(GTLiteMaterials.Vibranium, M * 8), // 8x plateX
@@ -110,6 +115,11 @@ class MaterialInfoLoader
             OreDictUnifier.registerOre(MetaTileEntities.HULL[UXV].stackForm,
                 ItemMaterialInfo(MaterialStack(GTLiteMaterials.Creon, M * 8), // 8x plateX
                     MaterialStack(GTLiteMaterials.SuperheavyAlloyB, M), // 2x cableGtSingle
+                    MaterialStack(Materials.Rubber, M * 2)))
+
+            OreDictUnifier.registerOre(MetaTileEntities.HULL[OpV].stackForm,
+                ItemMaterialInfo(MaterialStack(GTLiteMaterials.BlackDwarfMatter, M * 8), // 8x plateX
+                    MaterialStack(GTLiteMaterials.Periodicium, M), // 2x cableGtSingle
                     MaterialStack(Materials.Rubber, M * 2)))
 
             // Loading all wood related material infos.

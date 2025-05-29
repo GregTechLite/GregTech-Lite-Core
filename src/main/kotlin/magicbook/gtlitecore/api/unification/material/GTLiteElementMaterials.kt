@@ -42,6 +42,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DegenerateRhenium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Eternity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
@@ -59,6 +60,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Ad
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Crx
+import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.En
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Fs
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.Hy
 import magicbook.gtlitecore.api.unification.material.element.GTLiteElements.Companion.If
@@ -76,6 +78,7 @@ import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.C
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.COSMIC
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.DEGENERATE
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ENRICHED
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ETERNITY
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.INFINITY
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGMATTER
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.MAGNETIUM
@@ -405,6 +408,16 @@ class GTLiteElementMaterials
                 .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                     GENERATE_NANITE)
                 .cableProperties(V[OpV], 144, 8)
+                .build()
+
+            // 20 Eternity
+            Eternity = Material.Builder(20, gtliteId("eternity"))
+                .ingot()
+                .liquid()
+                .iconSet(ETERNITY)
+                .element(En)
+                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_NANITE)
+                .cableProperties(V[OpV], 180, 40)
                 .build()
 
         }

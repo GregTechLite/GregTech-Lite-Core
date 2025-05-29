@@ -110,6 +110,7 @@ import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_OpV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
@@ -136,6 +137,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_OpV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
@@ -215,6 +217,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeut
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Creon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.DimensionallyShiftedSuperfluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EnrichedNaquadahAlloy
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Eternity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullerenePolymerMatrix
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.FullereneSuperconductor
@@ -233,6 +236,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lafium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyB
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Legendarium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetohydrodynamicallyConstrainedStarMatter
@@ -297,6 +301,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_U
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.MINING_DRONE_ZPM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NANO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.PICO_PIC_CHIP
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_OpV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
@@ -793,6 +798,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_OpV)
+                .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(ring, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+                .input(round, MagnetohydrodynamicallyConstrainedStarMatter, 32)
+                .input(stick, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(gear, MagnetohydrodynamicallyConstrainedStarMatter, 2)
+                .input(gearSmall, MagnetohydrodynamicallyConstrainedStarMatter, 4)
+                .input(cableGtSingle, Periodicium, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(ELECTRIC_PISTON_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_PISTON_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
         }
@@ -988,6 +1015,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_OpV)
+                .input(pipeLargeFluid, QuantumchromodynamicallyConfinedMatter, 4)
+                .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(screw, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+                .input("ringAnyAdvancedSyntheticRubber", 64)
+                .input("ringAnyAdvancedSyntheticRubber", 64)
+                .input(rotor, MagnetohydrodynamicallyConstrainedStarMatter, 2)
+                .input(cableGtSingle, Periodicium, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(ELECTRIC_PUMP_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ELECTRIC_PUMP_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
         }
@@ -1182,6 +1231,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ELECTRIC_MOTOR_OpV, 2)
+                .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(ring, MagnetohydrodynamicallyConstrainedStarMatter, 32)
+                .input(round, MagnetohydrodynamicallyConstrainedStarMatter, 64)
+                .input(screw, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+                .input(cableGtSingle, Periodicium, 2)
+                .input("plateAnyAdvancedSyntheticRubber", 64)
+                .input("plateAnyAdvancedSyntheticRubber", 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(CONVEYOR_MODULE_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(CONVEYOR_MODULE_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
 
@@ -1399,6 +1470,30 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(stickLong, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+                .input(gear, MagnetohydrodynamicallyConstrainedStarMatter, 2)
+                .input(gearSmall, MagnetohydrodynamicallyConstrainedStarMatter, 6)
+                .input(ELECTRIC_MOTOR_OpV, 2)
+                .input(ELECTRIC_PISTON_OpV)
+                .input(circuit, MarkerMaterials.Tier.OpV)
+                .input(circuit, MarkerMaterials.Tier.UXV, 2)
+                .input(circuit, MarkerMaterials.Tier.UIV, 4)
+                .input(cableGtSingle, Periodicium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(ROBOT_ARM_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(ROBOT_ARM_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
+
 
             // MAX
 
@@ -1606,6 +1701,30 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
+                .input(ELECTRIC_MOTOR_OpV)
+                .input(stickLong, BlackDwarfMatter, 16)
+                .input(ZENITH_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.OpV, 2)
+                .input(foil, WhiteDwarfMatter, 64)
+                .input(foil, WhiteDwarfMatter, 64)
+                .input(foil, WhiteDwarfMatter, 64)
+                .input(foil, WhiteDwarfMatter, 64)
+                .input(foil, WhiteDwarfMatter, 32)
+                .input(cableGtSingle, Periodicium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(EMITTER_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(EMITTER_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
         }
@@ -1809,6 +1928,30 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
+                .input(ELECTRIC_MOTOR_OpV)
+                .input(plate, BlackDwarfMatter, 16)
+                .input(ZENITH_STAR, 2)
+                .input(circuit, MarkerMaterials.Tier.OpV, 2)
+                .input(foil, Eternity, 64)
+                .input(foil, Eternity, 64)
+                .input(foil, Eternity, 64)
+                .input(foil, Eternity, 64)
+                .input(foil, Eternity, 32)
+                .input(cableGtSingle, Periodicium, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+                .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+                .fluidInputs(CosmicFabric.getFluid(L * 8))
+                .output(SENSOR_OpV)
+                .EUt(50_000_000) // UXV
+                .duration(1 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(SENSOR_UXV)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // MAX
 
@@ -2150,7 +2293,7 @@ class AssemblyLineRecipes
                 .input(SENSOR_UXV, 2)
                 .input(ROBOT_ARM_UXV, 2)
                 .input(rotor, Creon, 8)
-                .input(toolHeadDrill, Creon, 16)
+                .input(toolHeadDrill, Legendarium, 16)
                 .input(cableGtQuadruple, SuperheavyAlloyB, 2)
                 .input(circuit, MarkerMaterials.Tier.UXV, 4)
                 .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
@@ -2166,28 +2309,28 @@ class AssemblyLineRecipes
                 .buildAndRegister()
 
             // OpV Mining Drone
-            // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            //     .input(frameGt, BlackDwarfMatter)
-            //     .input(plateDouble, BlackDwarfMatter, 32)
-            //     .input(round, BlackDwarfMatter, 64)
-            //     .input(EMITTER_OpV, 2)
-            //     .input(SENSOR_OpV, 2)
-            //     .input(ROBOT_ARM_OpV, 2)
-            //     .input(rotor, BlackDwarfMatter, 8)
-            //     .input(toolHeadDrill, ..., 16)
-            //     .input(cableGtQuadruple, Periodicium, 2)
-            //     .input(circuit, MarkerMaterials.Tier.OpV, 4)
-            //     .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
-            //     .fluidInputs(DrillingFluid.getFluid(256000))
-            //     .output(MINING_DRONE_OpV)
-            //     .EUt(VA[OpV].toLong())
-            //     .duration(30 * SECOND)
-            //     .stationResearch { r ->
-            //         r.researchStack(MINING_DRONE_UXV.stackForm)
-            //             .EUt(VA[UXV].toLong())
-            //             .CWUt(128)
-            //     }
-            //     .buildAndRegister()
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(frameGt, BlackDwarfMatter)
+                .input(plateDouble, BlackDwarfMatter, 32)
+                .input(round, BlackDwarfMatter, 64)
+                .input(EMITTER_OpV, 2)
+                .input(SENSOR_OpV, 2)
+                .input(ROBOT_ARM_OpV, 2)
+                .input(rotor, BlackDwarfMatter, 8)
+                .input(toolHeadDrill, Creon, 16)
+                .input(cableGtQuadruple, Periodicium, 2)
+                .input(circuit, MarkerMaterials.Tier.OpV, 4)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+                .fluidInputs(DrillingFluid.getFluid(256000))
+                .output(MINING_DRONE_OpV)
+                .EUt(VA[OpV].toLong())
+                .duration(30 * SECOND)
+                .stationResearch { r ->
+                    r.researchStack(MINING_DRONE_UXV.stackForm)
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(128)
+                }
+                .buildAndRegister()
 
             // TODO MAX Mining Drones
         }
@@ -2540,12 +2683,50 @@ class AssemblyLineRecipes
                 }
                 .buildAndRegister()
 
+            // OpV Energy Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[OpV])
+                .input(cableGtSingle, Periodicium, 4)
+                .input(FEMTO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.OpV)
+                .input(VOLTAGE_COIL_OpV, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 640))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(80000))
+                .output(ENERGY_INPUT_HATCH[OpV])
+                .EUt(VA[UXV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_INPUT_HATCH[UXV])
+                    .EUt(VA[UXV].toLong())
+                    .CWUt(96)
+                }
+                .buildAndRegister()
+
+            // OpV Energy Hatch
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(HULL[OpV])
+                .input(spring, Periodicium, 4)
+                .input(FEMTO_PIC_CHIP, 4)
+                .input(circuit, MarkerMaterials.Tier.OpV)
+                .input(VOLTAGE_COIL_OpV, 2)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 640))
+                .fluidInputs(SodiumPotassiumEutatic.getFluid(80000))
+                .output(ENERGY_OUTPUT_HATCH[OpV])
+                .EUt(VA[UXV].toLong())
+                .duration(10 * SECOND)
+                .stationResearch { r -> r
+                    .researchStack(ENERGY_OUTPUT_HATCH[UXV])
+                    .EUt(VA[UXV].toLong())
+                    .CWUt(96)
+                }
+                .buildAndRegister()
+
         }
 
         private fun laserHatchesRecipes()
         {
             // Ultimate laser hatches consists 4194304A-16777216A.
-            for (tier in IV..UXV) // TODO OpV-MAX recipes
+            for (tier in IV..OpV) // TODO MAX recipes
             {
                 val actualTier = tier - IV // Because laser hatch start at IV stage.
                 // 4194304A Laser Target Hatch
@@ -3375,15 +3556,40 @@ class AssemblyLineRecipes
                         .CWUt(64)
                 }
                 .buildAndRegister()
+
+            // Eternity Wire Coil Block
+            ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(circuit, MarkerMaterials.Tier.UXV)
+                .input(wireGtDouble, Eternity, 8)
+                .input(screw, Eternity, 8)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .input(MICA_INSULATOR_FOIL, 64)
+                .fluidInputs(SpaceTime.getFluid(L * 4))
+                .outputs(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.ETERNITY))
+                .EUt(VA[OpV].toLong())
+                .duration(2 * MINUTE)
+                .stationResearch { r ->
+                    r.researchStack(GTLiteMetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoils.WireCoilType.SPACE_TIME))
+                        .EUt(VA[UXV].toLong())
+                        .CWUt(96)
+                }
+                .buildAndRegister()
+
         }
 
         /**
          * Extension function of [ResearchRecipeBuilder.researchStack], allowed this function
          * accepted [MetaItem.MetaValueItem] (original value must accept [ItemStack]).
          */
-        @ScheduledForRemoval(inVersion = "Next GTCEu Update")
-        @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
-                    replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
+        // @ScheduledForRemoval(inVersion = "Next GTCEu Update")
+        // @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
+        //             replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
         @JvmStatic
         private fun <T : ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.researchStack(metaValueItem: MetaItem<*>.MetaValueItem): ResearchRecipeBuilder<T>
         {
@@ -3395,9 +3601,9 @@ class AssemblyLineRecipes
          * Extension function of [ResearchRecipeBuilder.researchStack], allowed this function
          * accepted [MetaTileEntity] (original value must accept [ItemStack]).
          */
-        @ScheduledForRemoval(inVersion = "Next GTCEu Update")
-        @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
-            replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
+        // @ScheduledForRemoval(inVersion = "Next GTCEu Update")
+        // @Deprecated(message = "This extension function is scheduled for removal when GTCEu merged the convert functions for RecipeBuilder.",
+        //     replaceWith = ReplaceWith("gregtech.api.recipes.builders.ResearchRecipeBuilder.researchStack"))
         @JvmStatic
         private fun <T : ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.researchStack(metaTileEntity: MetaTileEntity): ResearchRecipeBuilder<T>
         {

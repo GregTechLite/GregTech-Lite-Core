@@ -4,6 +4,7 @@ import gregtech.api.GTValues
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UXV
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
@@ -106,6 +107,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Forsterite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HalkoniteSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Jade
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kovar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Periodicium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Prasiolite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SuperheavyAlloyA
@@ -158,6 +160,7 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SLICER_BLADE_S
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UEV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UHV
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UIV
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.VOLTAGE_COIL_UXV
 import magicbook.gtlitecore.common.item.GTLiteToolItems
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.CHROME_DRUM
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.COPPER_CRATE
@@ -714,6 +717,14 @@ class CraftingRecipeLoader
                 'W', UnificationEntry(cableGtSingle, SuperheavyAlloyB),
                 'U', UnificationEntry(cableGtSingle, SuperheavyAlloyA))
 
+            // UXV Transformer
+            ModHandler.addShapedRecipe(true, "transformer_uxv", TRANSFORMER[UXV].stackForm,
+                "PUU", "WH ", "PUU",
+                'H', HULL[UXV].stackForm,
+                'P', PICO_PIC_CHIP,
+                'W', UnificationEntry(cableGtSingle, Periodicium),
+                'U', UnificationEntry(cableGtSingle, SuperheavyAlloyB))
+
             // UHV Hi-Amp Transformer
             ModHandler.addShapedRecipe(true, "hi_amp_transformer_uhv", HI_AMP_TRANSFORMER[UHV].stackForm,
                 "CUU", "WV ", "CUU",
@@ -738,7 +749,15 @@ class CraftingRecipeLoader
                 'W', UnificationEntry(cableGtQuadruple, SuperheavyAlloyB),
                 'U', UnificationEntry(cableGtQuadruple, SuperheavyAlloyA))
 
-            // TODO UXV-OpV Transformers
+            // UXV Hi-Amp Transformer
+            ModHandler.addShapedRecipe(true, "hi_amp_transformer_uxv", HI_AMP_TRANSFORMER[UXV].stackForm,
+                "CUU", "WV ", "CUU",
+                'C', VOLTAGE_COIL_UXV,
+                'V', TRANSFORMER[UXV].stackForm,
+                'W', UnificationEntry(cableGtQuadruple, Periodicium),
+                'U', UnificationEntry(cableGtQuadruple, SuperheavyAlloyB))
+
+            // TODO OpV Transformers
 
             // Adamantium Credit
             ModHandler.addShapelessRecipe("credit_adamantium_alt", CREDIT_ADAMANTIUM.stackForm,

@@ -1,0 +1,14 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "BLOOM",
+    "gregtech": true,
+    "textures": [
+      "gtlitecore:blocks/casings/coil/machine_coil_eternity_bloom_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
+    }
+  }
+}
