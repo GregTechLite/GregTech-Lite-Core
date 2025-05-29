@@ -49,6 +49,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Electrotine
@@ -97,6 +98,7 @@ import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nihonium
@@ -214,6 +216,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LeadBismuthEutatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Legendarium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
@@ -246,6 +249,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Superheavy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TectonicPetrotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
@@ -1074,7 +1078,6 @@ class MixerRecipes
                 .output(dust, AlkaliGroupAlloy, 6)
                 .EUt(VA[IV].toLong())
                 .duration(10 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Alkali Earth Group Alloy
@@ -1089,7 +1092,6 @@ class MixerRecipes
                 .output(dust, AlkaliEarthGroupAlloy, 6)
                 .EUt(VA[LuV].toLong())
                 .duration(20 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Light Transition Alloy
@@ -1106,7 +1108,6 @@ class MixerRecipes
                 .output(dust, TransitionAlloyA, 8)
                 .EUt(VA[ZPM].toLong())
                 .duration(40 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Heavy Transition Alloy
@@ -1123,7 +1124,6 @@ class MixerRecipes
                 .output(dust, TransitionAlloyB, 8)
                 .EUt(VA[ZPM].toLong())
                 .duration(40 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Transition Alloy
@@ -1150,7 +1150,6 @@ class MixerRecipes
                 .output(dust, RefractoryAlloy, 8)
                 .EUt(VA[UV].toLong())
                 .duration(1 * MINUTE + 20 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Toxic Alloy
@@ -1167,7 +1166,6 @@ class MixerRecipes
                 .output(dust, ToxicAlloy, 8)
                 .EUt(VA[UHV].toLong())
                 .duration(1 * MINUTE + 40 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Rare Earth Alloy
@@ -1180,7 +1178,6 @@ class MixerRecipes
                 .output(dust, RareEarthAlloy, 32)
                 .EUt(VA[IV].toLong())
                 .duration(2 * SECOND + 10 * TICK)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Light Non-Metallic Mixture
@@ -1195,7 +1192,6 @@ class MixerRecipes
                 .fluidOutputs(NonMetallicMixtureA.getFluid(6000))
                 .EUt(VA[LuV].toLong())
                 .duration(45 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Heavy Non-Metallic Mixture
@@ -1211,7 +1207,6 @@ class MixerRecipes
                 .fluidOutputs(NonMetallicMixtureB.getFluid(7000))
                 .EUt(VA[LuV].toLong())
                 .duration(45 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Noble Gas Mixture
@@ -1226,7 +1221,6 @@ class MixerRecipes
                 .fluidOutputs(NobleGasMixture.getFluid(6000))
                 .EUt(VA[ZPM].toLong())
                 .duration(1 * MINUTE)
-                .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()
 
             // Periodicium
@@ -1251,7 +1245,22 @@ class MixerRecipes
                 .fluidOutputs(Tritanium.getFluid(L)) // From Superheavy Alloy B.
                 .EUt(VA[UXV].toLong())
                 .duration(1 * MINUTE)
-                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Legendarium
+            LARGE_MIXER_RECIPES.recipeBuilder()
+                .circuitMeta(8)
+                .input(dust, Naquadria)
+                .input(dust, Trinium)
+                .input(dust, Duranium)
+                .input(dust, Tritanium)
+                .input(dust, Neutronium)
+                .input(dust, Adamantium)
+                .input(dust, Vibranium)
+                .input(dust, Taranium)
+                .output(dust, Legendarium, 8)
+                .EUt(VA[UXV].toLong())
+                .duration(1 * MINUTE + 30 * SECOND)
                 .buildAndRegister()
 
             // Blazing Pyrotheum

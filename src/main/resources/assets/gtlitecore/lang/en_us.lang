@@ -3206,6 +3206,7 @@ gtlitecore.material.light_non_metallic_mixture=Non Metallic Mixture (Light)
 gtlitecore.material.heavy_non_metallic_mixture=Non Metallic Mixture (Heavy)
 gtlitecore.material.noble_gas_mixture=Noble Gas Mixture
 gtlitecore.material.periodicium=Periodicium
+gtlitecore.material.legendarium=Legendarium
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite

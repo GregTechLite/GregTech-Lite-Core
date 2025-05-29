@@ -106,6 +106,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HeavyQuark
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Legendarium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LutetiumManganeseGermanium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetium
@@ -637,13 +638,14 @@ class CraftingComponents
             //      5: TungstenCarbide, 6: HSSE, 7: NaquadahAlloy, 8: Duranium
             // New: 0: Bronze, 1: CobaltBrass, 2: VanadiumSteel, 3: BlueSteel, 4: Ultimet,
             //      5: TungstenCarbide, 6: HSSE, 7: NaquadahAlloy, 8: Duranium,
-            //      9: CubicBoronNitride, 10: HDCS, 11: HastelloyK243, 12: Creon, 13-14: TODO
+            //      9: CubicBoronNitride, 10: HDCS, 11: HastelloyK243, 12: Legendarium,
+            //      13: Creon, 14: TODO
             CraftingComponent.SAWBLADE.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(toolHeadBuzzSaw, CubicBoronNitride),
                 UEV to UnificationEntry(toolHeadBuzzSaw, HDCS),
                 UIV to UnificationEntry(toolHeadBuzzSaw, HastelloyK243),
-                UXV to UnificationEntry(toolHeadBuzzSaw, Creon),
-                // OpV to UnificationEntry(toolHeadBuzzSaw, Tritanium),
+                UXV to UnificationEntry(toolHeadBuzzSaw, Legendarium),
+                OpV to UnificationEntry(toolHeadBuzzSaw, Creon),
                 // MAX to UnificationEntry(toolHeadBuzzSaw, Tritanium)
             ).toMap())
 

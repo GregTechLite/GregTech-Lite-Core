@@ -437,6 +437,7 @@ class GTLiteMaterials
         lateinit var NonMetallicMixtureB: Material
         lateinit var NobleGasMixture: Material
         lateinit var Periodicium: Material
+        lateinit var Legendarium: Material
 
         // 6001-8000: Third Degree Materials
         lateinit var Limestone: Material

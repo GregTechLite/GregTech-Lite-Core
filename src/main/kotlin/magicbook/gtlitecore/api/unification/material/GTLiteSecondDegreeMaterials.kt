@@ -46,6 +46,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Dubnium
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Dysprosium
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.EXT_METAL
@@ -93,6 +94,7 @@ import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nihonium
@@ -183,6 +185,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumGroupAlloyB
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ActiniumSuperhydride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Adamantium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AlkaliEarthGroupAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AlkaliGroupAlloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.AluminiumBronze
@@ -216,6 +219,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lafium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumFullereneNanotube
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyA
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LanthanumGroupAlloyB
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Legendarium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MaragingSteel250
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
@@ -246,6 +250,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Tairitsium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Talonite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHafniumSeaborgiumCarbide
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumTungstenCarbide
@@ -261,6 +266,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Watertight
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ZirconiumCarbide
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags.Companion.NO_ALLOY_BLAST_RECIPES
+import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.ENRICHED
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet.Companion.HALKONITE
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
@@ -1272,6 +1278,26 @@ class GTLiteSecondDegreeMaterials
                     + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
                     + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
                     + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
+
+            // 4068 Legendarium
+            Legendarium = Material.Builder(4068, gtliteId("legendarium"))
+                .ingot()
+                .fluid()
+                .color(0xF58FDA).iconSet(ENRICHED)
+                .components(Naquadria, 1, Trinium, 1, Duranium, 1, Tritanium, 1, Neutronium, 1,
+                    Adamantium, 1, Vibranium, 1, Taranium, 1)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_RING,
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL)
+                .blast { b ->
+                    b.temp(17800, BlastProperty.GasTier.HIGHEST) // Space Time
+                        .blastStats(VA[UXV], 1 * MINUTE + 20 * SECOND)
+                        .vacuumStats(VA[UEV], 40 * SECOND)
+                }
+                .toolStats(MaterialToolProperty.Builder.of(180.0F, 90.0F, 97600, 20)
+                    .attackSpeed(0.4F).enchantability(42)
+                    .magnetic()
+                    .build())
+                .build()
 
         }
 
