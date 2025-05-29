@@ -22,6 +22,7 @@ import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.recipes.RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES
 import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
@@ -33,6 +34,7 @@ import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Concrete
 import gregtech.api.unification.material.Materials.Curium
+import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Einsteinium
@@ -73,12 +75,15 @@ import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
@@ -124,6 +129,7 @@ import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LARGE_PLASMA_TURBINE
 import gregtech.loaders.recipe.CraftingComponent
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Lignite
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Plutonium244
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polyetheretherketone
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Vibranium
@@ -656,6 +662,55 @@ class GregtechOverrideRecipeLoader
                         .EUt(VA[UHV].toLong())
                         .CWUt(48)
                 }
+                .buildAndRegister()
+
+            // Allowed to use lignite to produce steel.
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(ingot, Iron)
+                .input(gem, Lignite, 2)
+                .output(ingot, Steel)
+                .output(dustTiny, DarkAsh, 2)
+                .duration(90 * SECOND)
+                .buildAndRegister()
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(ingot, Iron)
+                .input(dust, Lignite, 2)
+                .output(ingot, Steel)
+                .output(dustTiny, DarkAsh, 2)
+                .duration(90 * SECOND)
+                .buildAndRegister()
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(ingot, WroughtIron)
+                .input(gem, Lignite, 2)
+                .output(ingot, Steel)
+                .output(dustTiny, DarkAsh, 2)
+                .duration(40 * SECOND)
+                .buildAndRegister()
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(ingot, WroughtIron)
+                .input(dust, Lignite, 2)
+                .output(ingot, Steel)
+                .output(dustTiny, DarkAsh, 2)
+                .duration(40 * SECOND)
+                .buildAndRegister()
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(block, Iron)
+                .input(block, Lignite, 2)
+                .output(block, Steel)
+                .output(dust, DarkAsh, 2)
+                .duration(810 * SECOND)
+                .buildAndRegister()
+
+            PRIMITIVE_BLAST_FURNACE_RECIPES.recipeBuilder()
+                .input(block, WroughtIron)
+                .input(block, Lignite, 2)
+                .output(block, Steel)
+                .output(dust, DarkAsh, 2)
+                .duration(360 * SECOND)
                 .buildAndRegister()
 
         }
