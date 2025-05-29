@@ -10,6 +10,7 @@
     "gregtech.JustEnoughItemsModuleMixin",
     "gregtech.OreConfigUtilsMixin",
     "gregtech.MaterialPropertiesMixin",
+    "gregtech.AbstractRecipeLogicMixin",
     "gregtech.PartsRecipeHandlerMixin",
     "gregtech.MaterialRecipeHandlerMixin",
     "gregtech.OreRecipeHandlerMixin",
