@@ -113,6 +113,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Magnetohyd
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableFlerovium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MetastableHassium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Periodicium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.QuantumchromodynamicallyConfinedMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SamariumCobalt
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
@@ -502,14 +503,15 @@ class CraftingComponents
             //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah
             // New: 0-1: Bronze, 2: Steel, 3: StainlessSteel, 4: Titanium, 5: TungstenSteel,
             //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah, 9: Europium, 10: Duranium,
-            //      11: Neutronium, 12: HeavyQuarkDegenerateMatter, 13-14: TODO
+            //      11: Neutronium, 12: HeavyQuarkDegenerateMatter,
+            //      13: QuantumchromodynamicallyConfinedMatter, 14: TranscendentMetal
             CraftingComponent.PIPE_NORMAL.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(pipeNormalFluid, Europium),
                 UEV to UnificationEntry(pipeNormalFluid, Duranium),
                 UIV to UnificationEntry(pipeNormalFluid, Neutronium),
                 UXV to UnificationEntry(pipeNormalFluid, HeavyQuarkDegenerateMatter),
-                // OpV to UnificationEntry(pipeNormalFluid, Tritanium),
-                // MAX to UnificationEntry(pipeNormalFluid, Tritanium)
+                OpV to UnificationEntry(pipeNormalFluid, QuantumchromodynamicallyConfinedMatter),
+                MAX to UnificationEntry(pipeNormalFluid, TranscendentMetal)
             ).toMap())
 
             // PIPE_LARGE
@@ -517,14 +519,15 @@ class CraftingComponents
             //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah
             // New: 0-1: Bronze, 2: Steel, 3: StainlessSteel, 4: Titanium, 5: TungstenSteel,
             //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah, 9: Europium, 10: Duranium,
-            //      11: Neutronium, 12: HeavyQuarkDegenerateMatter, 13-14: TODO
+            //      11: Neutronium, 12: HeavyQuarkDegenerateMatter,
+            //      13: QuantumchromodynamicallyConfinedMatter, 14: TranscendentMetal
             CraftingComponent.PIPE_LARGE.appendIngredients(sequenceOf(
                 UHV to UnificationEntry(pipeLargeFluid, Europium),
                 UEV to UnificationEntry(pipeLargeFluid, Duranium),
                 UIV to UnificationEntry(pipeLargeFluid, Neutronium),
                 UXV to UnificationEntry(pipeLargeFluid, HeavyQuarkDegenerateMatter),
-                // OpV to UnificationEntry(pipeLargeFluid, Tritanium),
-                // MAX to UnificationEntry(pipeLargeFluid, Tritanium)
+                OpV to UnificationEntry(pipeLargeFluid, QuantumchromodynamicallyConfinedMatter),
+                MAX to UnificationEntry(pipeLargeFluid, TranscendentMetal)
             ).toMap())
 
             // GLASS

@@ -785,6 +785,25 @@ metaitem.tool.catalyst.biological_intelligence.name=生物智能催化剂
 metaitem.tool.catalyst.high_explosive.name=烈性炸药催化剂
 
 metaitem.fuel_rod.empty.name=空燃料棒
+metaitem.battery.hull.uhv.name=小型中子电池外壳
+metaitem.battery.hull.uhv.tooltip=一个空的§4UHV§7电池外壳
+metaitem.battery.hull.uev.name=中型中子电池外壳
+metaitem.battery.hull.uev.tooltip=一个空的§aUEV§7电池外壳
+metaitem.battery.hull.uiv.name=大型中子电池外壳
+metaitem.battery.hull.uiv.tooltip=一个空的§2UIV§7电池外壳
+metaitem.battery.hull.uxv.name=小型无尽电池外壳
+metaitem.battery.hull.uxv.tooltip=一个空的§eUXV§7电池外壳
+metaitem.battery.hull.opv.name=中型无尽电池外壳
+metaitem.battery.hull.opv.tooltip=一个空的§9OpV§7电池外壳
+metaitem.battery.hull.max.name=大型无尽电池外壳
+metaitem.battery.hull.max.tooltip=一个空的§c§lMAX§7电池外壳
+
+metaitem.battery.uhv.neutronium.name=小型中子电池
+metaitem.battery.uev.neutronium.name=中型中子电池
+metaitem.battery.uiv.neutronium.name=大型中子电池
+metaitem.battery.uxv.infinity.name=小型无尽电池
+metaitem.battery.opv.infinity.name=中型无尽电池
+metaitem.battery.max.infinity.name=大型无尽电池
 
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜

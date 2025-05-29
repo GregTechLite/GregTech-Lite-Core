@@ -2978,8 +2978,9 @@ class GTLiteFirstDegreeMaterials
                 .ingot()
                 .liquid()
                 .color(0xF0A745).iconSet(BRIGHT)
-                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE)
                 .cableProperties(V[UIV], 24, 12)
+                .fluidPipeProperties(400_000, 20000, true, true, true, true)
                 .build()
 
             // 2285 Sodium Ethoxide

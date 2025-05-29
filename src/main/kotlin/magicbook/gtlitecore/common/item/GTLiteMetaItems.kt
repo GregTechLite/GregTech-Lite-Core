@@ -1,6 +1,15 @@
 package magicbook.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GregTechAPI
+import gregtech.api.creativetab.BaseCreativeTab
+import gregtech.api.items.metaitem.ElectricStats
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.StandardMetaItem
 import gregtech.api.unification.material.MarkerMaterials
@@ -9,6 +18,7 @@ import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.stack.ItemMaterialInfo
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.api.util.RandomPotionEffect
+import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
 import magicbook.gtlitecore.api.GTLiteAPI
 import magicbook.gtlitecore.api.utils.AnimatedTextHandler
@@ -215,6 +225,19 @@ class GTLiteMetaItems
         lateinit var CATALYST_HIGH_EXPLOSIVE: MetaItem<*>.MetaValueItem
 
         lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_SMALL_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_MEDIUM_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_LARGE_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_SMALL_INFINITY: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_MEDIUM_INFINITY: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_HULL_LARGE_INFINITY: MetaItem<*>.MetaValueItem
+
+        lateinit var BATTERY_UHV_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_UEV_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_UIV_NEUTRONIUM: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_UXV_INFINITY: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_OpV_INFINITY: MetaItem<*>.MetaValueItem
+        lateinit var BATTERY_MAX_INFINITY: MetaItem<*>.MetaValueItem
 
         lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
         lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
@@ -949,6 +972,50 @@ class GTLiteMetaItems
 
             // 701-800: Batteries.
             FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")
+            BATTERY_HULL_SMALL_NEUTRONIUM = GTLITE_ITEMS.addItem(702, "battery.hull.uhv")
+            BATTERY_HULL_MEDIUM_NEUTRONIUM = GTLITE_ITEMS.addItem(703, "battery.hull.uev")
+            BATTERY_HULL_LARGE_NEUTRONIUM = GTLITE_ITEMS.addItem(704, "battery.hull.uiv")
+            BATTERY_HULL_SMALL_INFINITY = GTLITE_ITEMS.addItem(705, "battery.hull.uxv")
+            BATTERY_HULL_MEDIUM_INFINITY = GTLITE_ITEMS.addItem(706, "battery.hull.opv")
+            BATTERY_HULL_LARGE_INFINITY = GTLITE_ITEMS.addItem(707, "battery.hull.max")
+
+            // ...
+
+            BATTERY_UHV_NEUTRONIUM = GTLITE_ITEMS.addItem(711, "battery.uhv.neutronium")
+                .addComponents(ElectricStats.createRechargeableBattery(10_485_760_000L, UHV))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.UHV)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
+
+            BATTERY_UEV_NEUTRONIUM = GTLITE_ITEMS.addItem(712, "battery.uev.neutronium")
+                .addComponents(ElectricStats.createRechargeableBattery(41_943_040_000L, UEV))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.UEV)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
+
+            BATTERY_UIV_NEUTRONIUM = GTLITE_ITEMS.addItem(713, "battery.uiv.neutronium")
+                .addComponents(ElectricStats.createRechargeableBattery(167_772_160_000L, UIV))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.UIV)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
+
+            BATTERY_UXV_INFINITY = GTLITE_ITEMS.addItem(714, "battery.uxv.infinity")
+                .addComponents(ElectricStats.createRechargeableBattery(671_088_640_000L, UXV))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.UXV)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
+
+            BATTERY_OpV_INFINITY = GTLITE_ITEMS.addItem(715, "battery.opv.infinity")
+                .addComponents(ElectricStats.createRechargeableBattery(2_684_354_560_000L, OpV))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.OpV)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
+
+            BATTERY_MAX_INFINITY = GTLITE_ITEMS.addItem(716, "battery.max.infinity")
+                .addComponents(ElectricStats.createRechargeableBattery(10_737_418_240_000L, MAX))
+                .setUnificationData(OrePrefix.battery, MarkerMaterials.Tier.MAX)
+                .setModelAmount(8)
+                .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS as CreativeTabs)
 
             // 1001-1100: ...
 

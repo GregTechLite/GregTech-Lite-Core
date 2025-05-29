@@ -338,6 +338,7 @@ class GTLiteElementMaterials
                         .blastStats(VA[UXV], 3 * MINUTE)
                         .vacuumStats(VA[UIV], 2 * MINUTE)
                 }
+                .fluidPipeProperties(800_000, 40000, true, true, true, true)
                 .build()
 
             // 16 Space Time

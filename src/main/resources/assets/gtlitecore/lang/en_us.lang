@@ -960,6 +960,25 @@ metaitem.tool.catalyst.biological_intelligence.name=Biological Intelligence Cata
 metaitem.tool.catalyst.high_explosive.name=High Explosive Catalyst
 
 metaitem.fuel_rod.empty.name=Empty Fuel Rod
+metaitem.battery.hull.uhv.name=Small Neutronium Battery Hull
+metaitem.battery.hull.uhv.tooltip=An empty §4UHV§7 battery hull
+metaitem.battery.hull.uev.name=Medium Neutronium Battery Hull
+metaitem.battery.hull.uev.tooltip=An empty §aUEV§7 battery hull
+metaitem.battery.hull.uiv.name=Large Neutronium Battery Hull
+metaitem.battery.hull.uiv.tooltip=An empty §2UIV§7 battery hull
+metaitem.battery.hull.uxv.name=Small Infinity Battery Hull
+metaitem.battery.hull.uxv.tooltip=An empty §eUXV§7 battery hull
+metaitem.battery.hull.opv.name=Medium Infinity Battery Hull
+metaitem.battery.hull.opv.tooltip=An empty §9OpV§7 battery hull
+metaitem.battery.hull.max.name=Large Infinity Battery Hull
+metaitem.battery.hull.max.tooltip=An empty §c§lMAX§7 battery hull
+
+metaitem.battery.uhv.neutronium.name=Small Neutronium Battery
+metaitem.battery.uev.neutronium.name=Medium Neutronium Battery
+metaitem.battery.uiv.neutronium.name=Large Neutronium Battery
+metaitem.battery.uxv.infinity.name=Small Infinity Battery
+metaitem.battery.opv.infinity.name=Medium Infinity Battery
+metaitem.battery.max.infinity.name=Large Infinity Battery
 
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror

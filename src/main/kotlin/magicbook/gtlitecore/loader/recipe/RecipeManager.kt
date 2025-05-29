@@ -14,6 +14,7 @@ import magicbook.gtlitecore.loader.recipe.chain.AscorbicAcidChain
 import magicbook.gtlitecore.loader.recipe.chain.BETSPerrhenateChain
 import magicbook.gtlitecore.loader.recipe.chain.BSCCOChain
 import magicbook.gtlitecore.loader.recipe.chain.BZMediumChain
+import magicbook.gtlitecore.loader.recipe.chain.BatteriesChain
 import magicbook.gtlitecore.loader.recipe.chain.BoronNitrideChain
 import magicbook.gtlitecore.loader.recipe.chain.ButyllithiumChain
 import magicbook.gtlitecore.loader.recipe.chain.ChloridesChain
@@ -288,6 +289,7 @@ class RecipeManager
             CosmicFabricChain.init()
             AscorbicAcidChain.init()
             AlgaeChain.init()
+            BatteriesChain.init()
 
             AdditivesChain.init()
             UtensilsChain.init()
