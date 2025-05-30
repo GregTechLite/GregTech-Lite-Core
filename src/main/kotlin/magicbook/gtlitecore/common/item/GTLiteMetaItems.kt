@@ -223,6 +223,7 @@ class GTLiteMetaItems
         lateinit var CATALYST_RAW_INTELLIGENCE: MetaItem<*>.MetaValueItem
         lateinit var CATALYST_BIOLOGICAL_INTELLIGENCE: MetaItem<*>.MetaValueItem
         lateinit var CATALYST_HIGH_EXPLOSIVE: MetaItem<*>.MetaValueItem
+        lateinit var CATALYST_TEMPORAL_HARMONY: MetaItem<*>.MetaValueItem
 
         lateinit var FUEL_ROD_EMPTY: MetaItem<*>.MetaValueItem
         lateinit var BATTERY_HULL_SMALL_NEUTRONIUM: MetaItem<*>.MetaValueItem
@@ -438,6 +439,7 @@ class GTLiteMetaItems
         lateinit var PHONONIC_SEED_CRYSTAL: MetaItem<*>.MetaValueItem
         lateinit var NANOSILICON_CATHODE: MetaItem<*>.MetaValueItem
         lateinit var HIGHLY_DENSE_POLYMER_PLATE: MetaItem<*>.MetaValueItem
+        lateinit var GRAVITON_SHARD: MetaItem<*>.MetaValueItem
 
         lateinit var BANANA: MetaItem<*>.MetaValueItem
         lateinit var ORANGE: MetaItem<*>.MetaValueItem
@@ -970,6 +972,9 @@ class GTLiteMetaItems
             CATALYST_HIGH_EXPLOSIVE = GTLITE_ITEMS.addItem(688, "tool.catalyst.high_explosive")
                 .addOreDict("catalystHighExplosive")
 
+            CATALYST_TEMPORAL_HARMONY = GTLITE_ITEMS.addItem(689, "tool.catalyst.temporal_harmony")
+                .addOreDict("catalystTemporalHarmony")
+
             // 701-800: Batteries.
             FUEL_ROD_EMPTY = GTLITE_ITEMS.addItem(701, "fuel_rod.empty")
             BATTERY_HULL_SMALL_NEUTRONIUM = GTLITE_ITEMS.addItem(702, "battery.hull.uhv")
@@ -1246,6 +1251,9 @@ class GTLiteMetaItems
                 .addOreDict("foilNanosiliconCathode")
             HIGHLY_DENSE_POLYMER_PLATE = GTLITE_ITEMS.addItem(5019, "material.plate.highly_dense_polymer_plate")
                 .addOreDict("plateHighlyDensePolymer")
+            GRAVITON_SHARD = GTLITE_ITEMS.addItem(5020, "material.gem.graviton_shard")
+                .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+                .addOreDict("gemGravitonShard")
 
             // 9001-10000: Miscellaneous Foods.
 

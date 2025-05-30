@@ -1982,8 +1982,8 @@ class GTLiteFirstDegreeMaterials
                 .ingot()
                 .fluid()
                 .iconSet(BEDROCKIUM)
-                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR,
-                    GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
+                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME,
+                    GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
                         .blastStats(VA[ZPM], 50 * SECOND)

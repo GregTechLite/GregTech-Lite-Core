@@ -6,6 +6,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
@@ -163,6 +164,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Cupriavidu
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CyclotetramethyleneTetranitroamine
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EGF
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.EscherichiaColi
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Eternity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fat
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fructose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Fullerene
@@ -185,12 +187,16 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polymethyl
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolyphosphonitrileFluoroRubber
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Polystyrene
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PolytetramethyleneGlycolRubber
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Shirabon
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Sorbose
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.StreptococcusPyogenes
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Strontianite
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TachyonRichTemporalFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitaniumCarbide
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Xylose
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Yeast
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zylon
@@ -211,12 +217,16 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_RARE_
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_RARE_METAL_GROUP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_RAW_INTELLIGENCE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_RUBBER_POLYMER
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_TEMPORAL_HARMONY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_TITANIUM_TUNGSTEN_INDIUM
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_ULTIMATE_PLASTIC_POLYMER
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.CATALYST_ULTIMATE_RADIOACTIVE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.GRAVITON_SHARD
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.NAQUADRIA_SUPERSOLID
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.STABLE_ADHESIVE
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.SUPERCONDUCTOR_COMPOSITE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TIMEPIECE
 
 @Suppress("MISSING_DEPENDENCY_CLASS")
 class QuantumForceTransformerRecipes
@@ -651,6 +661,21 @@ class QuantumForceTransformerRecipes
                 .tier(2)
                 .buildAndRegister()
 
+            // Temporal Harmony
+            QUANTUM_FORCE_TRANSFORMER_RECIPES.recipeBuilder()
+                .notConsumable(CATALYST_TEMPORAL_HARMONY)
+                .input(GRAVITON_SHARD)
+                .input(ENERGISED_TESSERACT)
+                .fluidInputs(PrimordialMatter.getFluid(L * 8))
+                .chancedOutput(dust, Shirabon, 64, 2500, 0)
+                .chancedOutput(TIMEPIECE, 1, 2500, 0)
+                .chancedFluidOutput(Eternity.getFluid(L * 64), 2500, 0)
+                .chancedFluidOutput(TachyonRichTemporalFluid.getFluid(L * 128), 2500, 0)
+                .EUt(VA[UIV].toLong())
+                .duration(20 * SECOND)
+                .tier(4)
+                .buildAndRegister()
+
         }
 
         private fun catalystRecipes()
@@ -927,6 +952,20 @@ class QuantumForceTransformerRecipes
                 .fluidInputs(CosmicNeutronium.getFluid(L * 4))
                 .output(CATALYST_HIGH_EXPLOSIVE)
                 .EUt(VA[UHV].toLong())
+                .duration(10 * SECOND)
+                .cleanroom(CleanroomType.CLEANROOM)
+                .buildAndRegister()
+
+            // Temporal Harmony Catalyst
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(21)
+                .input(CATALYST_BASE)
+                .input(dust, Shirabon, 64)
+                .input(nanite, Universium)
+                .input(TIMEPIECE)
+                .fluidInputs(SpaceTime.getFluid(L * 4))
+                .output(CATALYST_TEMPORAL_HARMONY)
+                .EUt(VA[UXV].toLong())
                 .duration(10 * SECOND)
                 .cleanroom(CleanroomType.CLEANROOM)
                 .buildAndRegister()

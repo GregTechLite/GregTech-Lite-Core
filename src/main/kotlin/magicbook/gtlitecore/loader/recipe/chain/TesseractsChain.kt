@@ -24,9 +24,11 @@ import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.STELLAR_FORGE_RECIPES
@@ -34,6 +36,7 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Abyssalloy
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.ArceusAlloy2B
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CosmicNeutronium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.GelidCryotheum
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HastelloyK243
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Hypogen
@@ -50,7 +53,9 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TantalumHa
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Taranium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TitanSteel
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Zeron100
+import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
@@ -58,6 +63,7 @@ import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.LEPTONIC_CHARGE
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks.Companion.QUANTUM_CHROMODYNAMIC_CHARGE
 import magicbook.gtlitecore.common.block.blocks.BlockManipulator
+import magicbook.gtlitecore.common.block.blocks.BlockShieldingCore
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.RAW_TESSERACT
@@ -264,6 +270,19 @@ class TesseractsChain
 
             // Spatially Enlarged Fluid/Tachyon Rich Temporal Fluid converting.
             STELLAR_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(GTLiteMetaBlocks.SHIELDING_CORE.getItemVariant(BlockShieldingCore.ShieldingCoreType.SPACETIME_BENDING_CORE))
+                .input(plateDense, Taranium)
+                .input(gem, CubicZirconia, 32)
+                .input(nanite, Universium)
+                .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
+                .fluidInputs(TachyonRichTemporalFluid.getFluid(L * 1024))
+                .output(TIMEPIECE, 3)
+                .fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 1024))
+                .EUt(VA[UXV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            STELLAR_FORGE_RECIPES.recipeBuilder()
                 .notConsumable(GTLiteMetaBlocks.MANIPULATOR.getItemVariant(BlockManipulator.ManipulatorType.SPACETIME_CONTINUUM_RIPPER))
                 .input(ENERGISED_TESSERACT, 2)
                 .input(TIMEPIECE, 16)
@@ -272,7 +291,7 @@ class TesseractsChain
                 .fluidInputs(SpaceTime.getFluid(L * 1024))
                 .output(RAW_TESSERACT)
                 .fluidOutputs(TachyonRichTemporalFluid.getFluid(L * 4096))
-                .EUt(VA[MAX].toLong())
+                .EUt(VA[UXV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
 
@@ -285,7 +304,7 @@ class TesseractsChain
                 .fluidInputs(SpaceTime.getFluid(L * 1024))
                 .output(RAW_TESSERACT)
                 .fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 4096))
-                .EUt(VA[MAX].toLong())
+                .EUt(VA[UXV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()
 

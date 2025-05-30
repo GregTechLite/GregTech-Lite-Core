@@ -243,6 +243,9 @@ class GTLiteMaterialFlags
             NaquadahEnriched.addFlags(GENERATE_BOLT_SCREW)
             Roentgenium.addFlags(GENERATE_BOLT_SCREW)
             NeodymiumMagnetic.addFlags(GENERATE_BOLT_SCREW)
+            Nihonium.addFlags(GENERATE_BOLT_SCREW)
+            Seaborgium.addFlags(GENERATE_BOLT_SCREW)
+            Mendelevium.addFlags(GENERATE_BOLT_SCREW)
 
             // boule
             Diamond.addFlags(GENERATE_BOULE)
@@ -551,6 +554,7 @@ class GTLiteMaterialFlags
             Uranium235.addFlags(GENERATE_ROD)
             Roentgenium.addFlags(GENERATE_ROD)
             Nickel.addFlags(GENERATE_ROD)
+            Nihonium.addFlags(GENERATE_ROD)
 
             // stickLong
             Chrome.addFlags(GENERATE_LONG_ROD)

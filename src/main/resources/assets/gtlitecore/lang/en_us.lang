@@ -459,6 +459,12 @@ tile.computer_casing_01.molecular_coil.name=Molecular Coil Block
 tile.computer_casing_01.molecular_coil.tooltip=Use this coil!
 tile.computer_casing_01.hollow_casing.name=Hollow Machine Casing
 tile.computer_casing_01.hollow_casing.tooltip=Most advanced pipe ever
+tile.computer_casing_01.reinforced_temporal_structure_casing.name=Reinforced Temporal Structure Machine Casing
+tile.computer_casing_01.reinforced_temporal_structure_casing.tooltip=时间虫洞的具现化/n§9§l抵抗时间膨胀差造成的时间剪切
+tile.computer_casing_01.reinforced_spatial_structure_casing.name=Reinforced Spatial Structure Machine Casing
+tile.computer_casing_01.reinforced_spatial_structure_casing.tooltip=宇宙大爆炸不能撼动它分毫/n§9§l抵抗内部空间膨胀差造成的空间剪切
+tile.computer_casing_01.infinite_spacetime_energy_boundary_casing.name=Infinite Spacetime Boundary Machine Casing
+tile.computer_casing_01.infinite_spacetime_energy_boundary_casing.tooltip=在时空区域之间提供稳定的桥梁/n§9§l同时存在于多个维度中
 
 tile.space_elevator_casing.high_strength_concrete.name=超强混凝土地板
 tile.space_elevator_casing.high_strength_concrete.tooltip=地基的最适宜材料/n§d§l牢固又耐用
@@ -962,6 +968,7 @@ metaitem.tool.catalyst.naquadah.name=Naquadah Catalyst
 metaitem.tool.catalyst.raw_intelligence.name=Raw Intelligence Catalyst
 metaitem.tool.catalyst.biological_intelligence.name=Biological Intelligence Catalyst
 metaitem.tool.catalyst.high_explosive.name=High Explosive Catalyst
+metaitem.tool.catalyst.temporal_harmony.name=Temporal Harmony Catalyst
 
 metaitem.fuel_rod.empty.name=Empty Fuel Rod
 metaitem.battery.hull.uhv.name=Small Neutronium Battery Hull
@@ -1252,6 +1259,8 @@ metaitem.material.foil.nanosilicon_cathode.name=Nanosilicon Cathode
 metaitem.material.foil.nanosilicon_cathode.tooltip=Successful Application of Carbon Nanotube
 metaitem.material.plate.highly_dense_polymer_plate.name=Highly Dense Polymer Plate
 metaitem.material.plate.highly_dense_polymer_plate.tooltip=比你能想象的到的板材更坚硬
+metaitem.material.gem.graviton_shard.name=Graviton Shard
+metaitem.material.gem.graviton_shard.tooltip=Dimensional Fracture
 
 metaitem.food.fruit.banana.name=Banana
 metaitem.food.fruit.orange.name=Orange

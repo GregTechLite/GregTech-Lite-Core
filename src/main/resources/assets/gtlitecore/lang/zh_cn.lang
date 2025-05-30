@@ -459,6 +459,12 @@ tile.computer_casing_01.molecular_coil.name=分子线圈方块
 tile.computer_casing_01.molecular_coil.tooltip=用这个线圈！/n§b§l虽然不能用于电力高炉
 tile.computer_casing_01.hollow_casing.name=中空机械方块
 tile.computer_casing_01.hollow_casing.tooltip=有史以来最先进的管道/n§b§l可用作加速器通道
+tile.computer_casing_01.reinforced_temporal_structure_casing.name=强化时间结构机械方块
+tile.computer_casing_01.reinforced_temporal_structure_casing.tooltip=时间虫洞的具现化/n§9§l抵抗时间膨胀差造成的时间剪切
+tile.computer_casing_01.reinforced_spatial_structure_casing.name=强化空间结构机械方块
+tile.computer_casing_01.reinforced_spatial_structure_casing.tooltip=宇宙大爆炸不能撼动它分毫/n§9§l抵抗内部空间膨胀差造成的空间剪切
+tile.computer_casing_01.infinite_spacetime_energy_boundary_casing.name=无尽时空能量边界机械方块
+tile.computer_casing_01.infinite_spacetime_energy_boundary_casing.tooltip=在时空区域之间提供稳定的桥梁/n§9§l同时存在于多个维度中
 
 tile.space_elevator_casing.high_strength_concrete.name=超强混凝土地板
 tile.space_elevator_casing.high_strength_concrete.tooltip=地基的最适宜材料/n§d§l牢固又耐用
@@ -787,6 +793,7 @@ metaitem.tool.catalyst.naquadah.name=硅岩分离催化剂
 metaitem.tool.catalyst.raw_intelligence.name=原生智能催化剂
 metaitem.tool.catalyst.biological_intelligence.name=生物智能催化剂
 metaitem.tool.catalyst.high_explosive.name=烈性炸药催化剂
+metaitem.tool.catalyst.temporal_harmony.name=时间谐波催化剂
 
 metaitem.fuel_rod.empty.name=空燃料棒
 metaitem.battery.hull.uhv.name=小型中子电池外壳
@@ -1254,6 +1261,8 @@ metaitem.material.foil.nanosilicon_cathode.name=纳米硅阴极
 metaitem.material.foil.nanosilicon_cathode.tooltip=碳纳米管的成功应用
 metaitem.material.plate.highly_dense_polymer_plate.name=高密度聚合物板
 metaitem.material.plate.highly_dense_polymer_plate.tooltip=比你能想象的到的板材更坚硬
+metaitem.material.gem.graviton_shard.name=引力子碎片
+metaitem.material.gem.graviton_shard.tooltip=维度裂隙
 
 metaitem.food.fruit.banana.name=香蕉
 metaitem.food.fruit.orange.name=橙子

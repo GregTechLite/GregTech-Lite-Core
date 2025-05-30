@@ -21,6 +21,24 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/hollow_casing"
         }
+      },
+      "reinforced_temporal_structure_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/reinforced_temporal_structure_casing"
+        }
+      },
+      "reinforced_spatial_structure_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/reinforced_spatial_structure_casing"
+        }
+      },
+      "infinite_spacetime_energy_boundary_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/infinite_spacetime_energy_boundary_casing"
+        }
       }
     }
   }

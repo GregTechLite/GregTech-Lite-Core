@@ -496,6 +496,7 @@ class GTLiteRecipeMaps
             .itemInputs(6)
             .fluidInputs(1)
             .itemOutputs(2)
+            .fluidOutputs(1)
             .itemSlotOverlay(GuiTextures.IMPLOSION_OVERLAY_1, false)
             .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true)
             .fluidSlotOverlay(GuiTextures.IMPLOSION_OVERLAY_2, false)

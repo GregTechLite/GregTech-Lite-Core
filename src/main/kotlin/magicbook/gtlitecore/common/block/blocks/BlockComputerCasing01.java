@@ -45,7 +45,10 @@ public class BlockComputerCasing01 extends VariantBlock<BlockComputerCasing01.Co
     {
         MOLECULAR_CASING("molecular_casing"),
         MOLECULAR_COIL("molecular_coil"),
-        HOLLOW_CASING("hollow_casing");
+        HOLLOW_CASING("hollow_casing"),
+        REINFORCED_TEMPORAL_STRUCTURE_CASING("reinforced_temporal_structure_casing"),
+        REINFORCED_SPATIAL_STRUCTURE_CASING("reinforced_spatial_structure_casing"),
+        INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING("infinite_spacetime_energy_boundary_casing");
 
         private final String name;
     }

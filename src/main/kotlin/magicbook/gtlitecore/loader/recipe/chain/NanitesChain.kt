@@ -31,16 +31,37 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.NANO_FORGE_RECIPES
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Antimatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.BlackDwarfMatter
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicBoronNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicHeterodiamond
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicSiliconNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.CubicZirconia
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Eternity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalBoronNitride
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.HexagonalSiliconNitride
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Infinity
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.LithiumNiobate
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.MagnetoResonatic
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.NdYAG
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrHoYLF
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.PrimordialMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.RawStarMatter
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpaceTime
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.SpatiallyEnlargedFluid
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TachyonRichTemporalFluid
 import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.TranscendentMetal
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Universium
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.WhiteDwarfMatter
 import magicbook.gtlitecore.api.unification.ore.GTLiteOrePrefix.Companion.nanite
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ATTO_PIC_CHIP
 import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.ENERGISED_TESSERACT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.OPTICAL_IMC_UNIT
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.QUANTUM_ANOMALY
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TIMEPIECE
+import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.TOPOLOGICAL_INSULATOR_TUBE
 
 /**
  * Nanites recipes for Nano Forge.
@@ -189,6 +210,74 @@ class NanitesChain
                 .EUt(1_000_000_000) // MAX
                 .duration(2 * MINUTE + 30 * SECOND)
                 .tier(2)
+                .buildAndRegister()
+
+            // White Dwarf Matter Nanite (for MHDCSM recipe)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, NdYAG)
+                .notConsumable(lens, MagnetoResonatic)
+                .notConsumable(QUANTUM_ANOMALY)
+                .input(block, WhiteDwarfMatter, 8)
+                .input(ATTO_PIC_CHIP, 64)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(UUMatter.getFluid(500_000))
+                .fluidInputs(RawStarMatter.getFluid(50_000))
+                .fluidInputs(TachyonRichTemporalFluid.getFluid(L * 5))
+                .output(nanite, WhiteDwarfMatter, 16)
+                .EUt(2_000_000_000) // MAX
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(3)
+                .buildAndRegister()
+
+            // Black Dwarf Matter Nanite (for MHDCSM recipe)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, CubicHeterodiamond)
+                .notConsumable(lens, MagnetoResonatic)
+                .notConsumable(QUANTUM_ANOMALY)
+                .input(block, BlackDwarfMatter, 8)
+                .input(ATTO_PIC_CHIP, 64)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(UUMatter.getFluid(500_000))
+                .fluidInputs(RawStarMatter.getFluid(50_000))
+                .fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 5))
+                .output(nanite, BlackDwarfMatter, 16)
+                .EUt(2_000_000_000) // MAX
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(3)
+                .buildAndRegister()
+
+            // Universium Nanite (for MHDCSM recipe)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, PrHoYLF)
+                .notConsumable(QUANTUM_ANOMALY)
+                .input(block, Universium, 8)
+                .input(TOPOLOGICAL_INSULATOR_TUBE, 16)
+                .input(OPTICAL_IMC_UNIT, 16)
+                .input(circuit, MarkerMaterials.Tier.UHV)
+                .fluidInputs(SpaceTime.getFluid(L))
+                .fluidInputs(Infinity.getFluid(L * 4))
+                .fluidInputs(PrimordialMatter.getFluid(64_000))
+                .output(nanite, Universium, 16)
+                .EUt(2_000_000_000) // MAX
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(3)
+                .buildAndRegister()
+
+            // Eternity Nanite (for MHDCSM advanced recipe)
+            NANO_FORGE_RECIPES.recipeBuilder()
+                .notConsumable(lens, CubicSiliconNitride)
+                .notConsumable(QUANTUM_ANOMALY)
+                .input(nanite, TranscendentMetal)
+                .input(block, Eternity, 8)
+                .input(ATTO_PIC_CHIP, 64)
+                .input(TIMEPIECE, 4)
+                .fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 8))
+                .fluidInputs(Antimatter.getFluid(50_000))
+                .fluidInputs(PrimordialMatter.getFluid(64_000))
+                .output(nanite, Eternity, 16)
+                .EUt(2_000_000_000) // MAX
+                .duration(1 * MINUTE + 30 * SECOND)
+                .tier(3)
                 .buildAndRegister()
 
         }

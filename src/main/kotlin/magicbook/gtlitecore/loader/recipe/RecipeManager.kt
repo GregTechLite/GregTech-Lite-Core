@@ -27,6 +27,7 @@ import magicbook.gtlitecore.loader.recipe.chain.DiethylEtherChain
 import magicbook.gtlitecore.loader.recipe.chain.DyesChain
 import magicbook.gtlitecore.loader.recipe.chain.EDTAChain
 import magicbook.gtlitecore.loader.recipe.chain.EtchingMaterialsChain
+import magicbook.gtlitecore.loader.recipe.chain.EternityChain
 import magicbook.gtlitecore.loader.recipe.chain.EthyleneGlycolChain
 import magicbook.gtlitecore.loader.recipe.chain.FEPChain
 import magicbook.gtlitecore.loader.recipe.chain.FullereneChain
@@ -48,6 +49,7 @@ import magicbook.gtlitecore.loader.recipe.chain.LeadSiliconGlassChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumNiobateChain
 import magicbook.gtlitecore.loader.recipe.chain.LithiumTitanateChain
 import magicbook.gtlitecore.loader.recipe.chain.LuTmYVOChain
+import magicbook.gtlitecore.loader.recipe.chain.MHDCSMChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetiumChain
 import magicbook.gtlitecore.loader.recipe.chain.MagnetoResonaticChain
 import magicbook.gtlitecore.loader.recipe.chain.MethylamineChain
@@ -307,6 +309,8 @@ class RecipeManager
             AnimalFatChain.init()
             OrangesChain.init()
             EtirpsChain.init()
+            MHDCSMChain.init()
+            EternityChain.init()
 
             AluminiumSodiumProcessing.init()
             PotassiumProcessing.init()

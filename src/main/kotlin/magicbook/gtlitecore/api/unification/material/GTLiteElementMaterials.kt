@@ -203,7 +203,7 @@ class GTLiteElementMaterials
                 .plasma()
                 .color(0x2D3A9D).iconSet(BRIGHT)
                 .element(Hs)
-                .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE)
                 .blast { b -> b
                     .temp(12000, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 4 * MINUTE + 30 * SECOND)
@@ -416,7 +416,9 @@ class GTLiteElementMaterials
                 .liquid()
                 .iconSet(ETERNITY)
                 .element(En)
-                .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_NANITE)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                    GENERATE_NANITE, GENERATE_ROTOR, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_GEAR,
+                    GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND)
                 .cableProperties(V[OpV], 180, 40)
                 .build()
 

@@ -17,6 +17,8 @@ import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.springSmall
@@ -76,6 +78,24 @@ class HalkoniteSteelChain
                 .output(plate, HalkoniteSteel)
                 .EUt(VA[UEV].toLong())
                 .duration(8 * SECOND)
+                .buildAndRegister()
+
+            // Bedrockium Double Plate -> Halkonite Steel Double Plate
+            FORGE_HAMMER_RECIPES.recipeBuilder()
+                .input(plateDouble, Bedrockium)
+                .fluidInputs(HalkoniteSteel.getFluid(L * 2))
+                .output(plateDouble, HalkoniteSteel)
+                .EUt(VA[UEV].toLong())
+                .duration(16 * SECOND)
+                .buildAndRegister()
+
+            // Bedrockium Dense Plate -> Halkonite Steel Dense Plate
+            FORGE_HAMMER_RECIPES.recipeBuilder()
+                .input(plateDense, Bedrockium)
+                .fluidInputs(HalkoniteSteel.getFluid(L * 9))
+                .output(plateDense, HalkoniteSteel)
+                .EUt(VA[UEV].toLong())
+                .duration(1 * MINUTE + 12 * SECOND)
                 .buildAndRegister()
 
             // Bedrockium Stick -> Halkonite Steel Stick

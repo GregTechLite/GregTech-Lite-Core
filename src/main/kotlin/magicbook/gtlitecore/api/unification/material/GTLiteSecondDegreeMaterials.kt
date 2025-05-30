@@ -795,7 +795,7 @@ class GTLiteSecondDegreeMaterials
                     .vacuumStats(VA[UHV], 20 * SECOND)
                 }
                 .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME,
-                    GENERATE_SPRING, GENERATE_SPRING_SMALL)
+                    GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
                 .cableProperties(V[UIV], 48, 64, false)
                 .build()
                 .setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true) // Fix a little formula problem from P4.
@@ -1286,8 +1286,8 @@ class GTLiteSecondDegreeMaterials
                 .color(0xF58FDA).iconSet(ENRICHED)
                 .components(Naquadria, 1, Trinium, 1, Duranium, 1, Tritanium, 1, Neutronium, 1,
                     Adamantium, 1, Vibranium, 1, Taranium, 1)
-                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_RING,
-                    GENERATE_SPRING, GENERATE_SPRING_SMALL)
+                .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR,
+                    GENERATE_SMALL_GEAR, GENERATE_RING, GENERATE_SPRING, GENERATE_SPRING_SMALL)
                 .blast { b ->
                     b.temp(17800, BlastProperty.GasTier.HIGHEST) // Space Time
                         .blastStats(VA[UXV], 1 * MINUTE + 20 * SECOND)
