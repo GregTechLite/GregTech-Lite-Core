@@ -214,6 +214,9 @@ tile.gtlite_wood_fence_gate.coconut.name=Coconut Wood Fence Gate
 tile.gtlite_wood_fence_gate.rainbow.name=Rainbow Wood Fence Gate
 
 tile.dust_block.name=Dust Block
+tile.dimension_display.overworld.name=T1: Overworld
+tile.dimension_display.nether.name=T2: Nether
+tile.dimension_display.end.name=T3: End
 
 tile.motor_casing.lv.name=§7LV§f Electric Motor Casing
 tile.motor_casing.mv.name=§bMV§f Electric Motor Casing

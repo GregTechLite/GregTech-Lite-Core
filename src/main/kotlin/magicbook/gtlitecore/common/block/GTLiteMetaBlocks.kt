@@ -18,6 +18,7 @@ import magicbook.gtlitecore.common.block.blocks.BlockComponentAssemblyCasing
 import magicbook.gtlitecore.common.block.blocks.BlockComputerCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockConveyorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockCrucible
+import magicbook.gtlitecore.common.block.blocks.BlockDimensionDisplay
 import magicbook.gtlitecore.common.block.blocks.BlockDust
 import magicbook.gtlitecore.common.block.blocks.BlockEmitterCasing
 import magicbook.gtlitecore.common.block.blocks.BlockFieldGenCasing
@@ -142,6 +143,9 @@ class GTLiteMetaBlocks
         lateinit var RAINBOW_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
 
         lateinit var DUST_BLOCK: BlockDust
+        lateinit var DIMENSION_DISPLAY_OVERWORLD: BlockDimensionDisplay
+        lateinit var DIMENSION_DISPLAY_NETHER: BlockDimensionDisplay
+        lateinit var DIMENSION_DISPLAY_END: BlockDimensionDisplay
 
         @JvmField
         val SHEETED_FRAMES = hashMapOf<Material, BlockSheetedFrame>()
@@ -363,6 +367,21 @@ class GTLiteMetaBlocks
             DUST_BLOCK = BlockDust()
             (DUST_BLOCK as? Block)?.setRegistryName("dust_block")
             (DUST_BLOCK as? Block)?.setTranslationKey("dust_block")
+
+            DIMENSION_DISPLAY_OVERWORLD = BlockDimensionDisplay("Ow")
+            (DIMENSION_DISPLAY_OVERWORLD as? Block)?.setRegistryName("dimension_display_overworld")
+            (DIMENSION_DISPLAY_OVERWORLD as? Block)?.setTranslationKey("dimension_display.overworld")
+            (DIMENSION_DISPLAY_OVERWORLD as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
+
+            DIMENSION_DISPLAY_NETHER = BlockDimensionDisplay("Ne")
+            (DIMENSION_DISPLAY_NETHER as? Block)?.setRegistryName("dimension_display_nether")
+            (DIMENSION_DISPLAY_NETHER as? Block)?.setTranslationKey("dimension_display.nether")
+            (DIMENSION_DISPLAY_NETHER as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
+
+            DIMENSION_DISPLAY_END = BlockDimensionDisplay("ED")
+            (DIMENSION_DISPLAY_END as? Block)?.setRegistryName("dimension_display_end")
+            (DIMENSION_DISPLAY_END as? Block)?.setTranslationKey("dimension_display.end")
+            (DIMENSION_DISPLAY_END as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE_DECORATION)
 
             // Sheeted frame
             createGeneratedBlock({ m -> m.hasProperty(PropertyKey.DUST) && m.hasFlag(MaterialFlags.GENERATE_FRAME) },
@@ -625,6 +644,15 @@ class GTLiteMetaBlocks
 
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DUST_BLOCK), 0,
                 ModelResourceLocation(DUST_BLOCK.registryName!!, "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DIMENSION_DISPLAY_OVERWORLD), 0,
+                ModelResourceLocation(DIMENSION_DISPLAY_OVERWORLD.registryName!!, "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DIMENSION_DISPLAY_NETHER), 0,
+                ModelResourceLocation(DIMENSION_DISPLAY_NETHER.registryName!!, "inventory"))
+
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(DIMENSION_DISPLAY_END), 0,
+                ModelResourceLocation(DIMENSION_DISPLAY_END.registryName!!, "inventory"))
 
             // Common variant blocks.
             registerItemModel(MOTOR_CASING)

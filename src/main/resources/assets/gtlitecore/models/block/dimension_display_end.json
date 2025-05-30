@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "gtlitecore:blocks/misc/dimension/end/south",
+    "down": "gtlitecore:blocks/misc/dimension/end/down",
+    "up": "gtlitecore:blocks/misc/dimension/end/up",
+    "north": "gtlitecore:blocks/misc/dimension/end/north",
+    "south": "gtlitecore:blocks/misc/dimension/end/south",
+    "west": "gtlitecore:blocks/misc/dimension/end/west",
+    "east": "gtlitecore:blocks/misc/dimension/end/east"
+  }
+}

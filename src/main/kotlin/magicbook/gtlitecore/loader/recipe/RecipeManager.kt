@@ -127,6 +127,7 @@ import magicbook.gtlitecore.loader.recipe.machine.CircuitAssemblerRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CrystallizationCrucibleRecipes
 import magicbook.gtlitecore.loader.recipe.machine.CutterRecipes
 import magicbook.gtlitecore.loader.recipe.machine.ExtruderRecipes
+import magicbook.gtlitecore.loader.recipe.machine.EyeOfHarmonyRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FluidSolidifierRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FormingPressRecipes
 import magicbook.gtlitecore.loader.recipe.machine.FusionReactorRecipes
@@ -369,6 +370,7 @@ class RecipeManager
             BathCondenserRecipes.init()
             BioSimulatorRecipes.init()
             CrystallizationCrucibleRecipes.init()
+            EyeOfHarmonyRecipes.init()
             LoomRecipes.init()
             MobExtractorRecipes.init()
             PolisherRecipes.init()

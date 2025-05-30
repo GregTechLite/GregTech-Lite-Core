@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "gtlitecore:blocks/misc/dimension/overworld/south",
+    "down": "gtlitecore:blocks/misc/dimension/overworld/down",
+    "up": "gtlitecore:blocks/misc/dimension/overworld/up",
+    "north": "gtlitecore:blocks/misc/dimension/overworld/north",
+    "south": "gtlitecore:blocks/misc/dimension/overworld/south",
+    "west": "gtlitecore:blocks/misc/dimension/overworld/west",
+    "east": "gtlitecore:blocks/misc/dimension/overworld/east"
+  }
+}

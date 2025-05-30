@@ -10,6 +10,7 @@ import magicbook.gtlitecore.api.utils.GTLiteValues;
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks;
 import magicbook.gtlitecore.common.block.blocks.GTLiteCropVariantBlock;
 import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock;
+import magicbook.gtlitecore.common.block.itemblocks.DimensionDisplayItemBlock;
 import magicbook.gtlitecore.common.block.itemblocks.SheetedFrameItemBlock;
 import magicbook.gtlitecore.common.item.GTLiteMetaItems;
 import magicbook.gtlitecore.common.item.GTLiteMetaOreDictItems;
@@ -103,6 +104,9 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE);
 
         registry.register(GTLiteMetaBlocks.DUST_BLOCK);
+        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_OVERWORLD);
+        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_NETHER);
+        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_END);
 
         // TODO Crops?...
 
@@ -213,6 +217,9 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
 
         registry.register(createItemBlock(GTLiteMetaBlocks.DUST_BLOCK, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
 
         StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
                 .distinct()

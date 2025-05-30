@@ -214,6 +214,9 @@ tile.gtlite_wood_fence_gate.coconut.name=椰子木栅栏门
 tile.gtlite_wood_fence_gate.rainbow.name=彩虹木栅栏门
 
 tile.dust_block.name=尘土块
+tile.dimension_display.overworld.name=T1：主世界
+tile.dimension_display.nether.name=T2：下界
+tile.dimension_display.end.name=T3：末地
 
 tile.motor_casing.lv.name=电动马达方块（§7LV§f）
 tile.motor_casing.mv.name=电动马达方块（§bMV§f）

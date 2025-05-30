@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "gtlitecore:blocks/misc/dimension/nether/south",
+    "down": "gtlitecore:blocks/misc/dimension/nether/down",
+    "up": "gtlitecore:blocks/misc/dimension/nether/up",
+    "north": "gtlitecore:blocks/misc/dimension/nether/north",
+    "south": "gtlitecore:blocks/misc/dimension/nether/south",
+    "west": "gtlitecore:blocks/misc/dimension/nether/west",
+    "east": "gtlitecore:blocks/misc/dimension/nether/east"
+  }
+}
