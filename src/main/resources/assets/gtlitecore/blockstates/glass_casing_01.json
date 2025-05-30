@@ -87,10 +87,12 @@
         }
       },
       "force_field": {
-        "model": "minecraft:cube_all",
+        "model": "minecraft:cube_bottom_top",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/force_field"
+          "top": "gtlitecore:blocks/casings/glass/force_field_top",
+          "side": "gtlitecore:blocks/casings/glass/force_field_side",
+          "bottom": "#top"
         }
       },
       "antimatter_containment": {
