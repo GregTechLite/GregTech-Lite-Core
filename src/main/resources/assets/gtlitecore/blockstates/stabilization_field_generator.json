@@ -1,0 +1,61 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "crude": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/crude"
+        }
+      },
+      "primitive": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/primitive"
+        }
+      },
+      "stable": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/stable"
+        }
+      },
+      "advanced": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/advanced"
+        }
+      },
+      "superb": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/superb"
+        }
+      },
+      "exotic": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/exotic"
+        }
+      },
+      "perfect": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/perfect"
+        }
+      },
+      "tipler": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/tipler"
+        }
+      },
+      "gallifreyan": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/stabilization/gallifreyan"
+        }
+      }
+    }
+  }
+}

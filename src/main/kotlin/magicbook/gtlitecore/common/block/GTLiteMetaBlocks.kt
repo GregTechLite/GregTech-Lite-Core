@@ -45,6 +45,9 @@ import magicbook.gtlitecore.common.block.blocks.BlockSensorCasing
 import magicbook.gtlitecore.common.block.blocks.BlockSheetedFrame
 import magicbook.gtlitecore.common.block.blocks.BlockShieldingCore
 import magicbook.gtlitecore.common.block.blocks.BlockSpaceElevatorCasing
+import magicbook.gtlitecore.common.block.blocks.BlockSpacetimeCompressionFieldGenerator
+import magicbook.gtlitecore.common.block.blocks.BlockStabilizationFieldGenerator
+import magicbook.gtlitecore.common.block.blocks.BlockTimeAccelerationFieldGenerator
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing02
 import magicbook.gtlitecore.common.block.blocks.BlockWireCoils
@@ -182,6 +185,9 @@ class GTLiteMetaBlocks
         lateinit var FUSION_CASING_02: BlockFusionCasing02
         lateinit var FUSION_CASING_03: BlockFusionCasing03
         lateinit var COMPUTER_CASING_01: BlockComputerCasing01
+        lateinit var SPACETIME_COMPRESSION_FIELD_GENERATOR: BlockSpacetimeCompressionFieldGenerator
+        lateinit var TIME_ACCELERATION_FIELD_GENERATOR: BlockTimeAccelerationFieldGenerator
+        lateinit var STABILIZATION_FIELD_GENERATOR: BlockStabilizationFieldGenerator
         lateinit var SPACE_ELEVATOR_CASING: BlockSpaceElevatorCasing
         lateinit var ACCELERATION_ORBIT: BlockAccelerationOrbit
         lateinit var WIRE_COIL: BlockWireCoils
@@ -478,6 +484,18 @@ class GTLiteMetaBlocks
             (COMPUTER_CASING_01 as? Block)?.setRegistryName("computer_casing_01")
             (COMPUTER_CASING_01 as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
 
+            SPACETIME_COMPRESSION_FIELD_GENERATOR = BlockSpacetimeCompressionFieldGenerator()
+            (SPACETIME_COMPRESSION_FIELD_GENERATOR as? Block)?.setRegistryName("spacetime_compression_field_generator")
+            (SPACETIME_COMPRESSION_FIELD_GENERATOR as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            TIME_ACCELERATION_FIELD_GENERATOR = BlockTimeAccelerationFieldGenerator()
+            (TIME_ACCELERATION_FIELD_GENERATOR as? Block)?.setRegistryName("time_acceleration_field_generator")
+            (TIME_ACCELERATION_FIELD_GENERATOR as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
+            STABILIZATION_FIELD_GENERATOR = BlockStabilizationFieldGenerator()
+            (STABILIZATION_FIELD_GENERATOR as? Block)?.setRegistryName("stabilization_field_generator")
+            (STABILIZATION_FIELD_GENERATOR as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
+
             SPACE_ELEVATOR_CASING = BlockSpaceElevatorCasing()
             (SPACE_ELEVATOR_CASING as? Block)?.setRegistryName("space_elevator_casing")
             (SPACE_ELEVATOR_CASING as? Block)?.setCreativeTab(GTLiteAPI.TAB_GTLITE)
@@ -673,6 +691,9 @@ class GTLiteMetaBlocks
             registerItemModel(TURBINE_CASING_01)
             registerItemModel(TURBINE_CASING_02)
             registerItemModel(COMPUTER_CASING_01)
+            registerItemModel(SPACETIME_COMPRESSION_FIELD_GENERATOR)
+            registerItemModel(TIME_ACCELERATION_FIELD_GENERATOR)
+            registerItemModel(STABILIZATION_FIELD_GENERATOR)
             registerItemModel(SPACE_ELEVATOR_CASING)
             registerItemModel(CRUCIBLE)
             registerItemModel(COMPONENT_ASSEMBLY_CASING)

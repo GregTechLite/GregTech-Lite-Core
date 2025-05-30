@@ -143,6 +143,9 @@ public class CommonProxy
         registry.register(GTLiteMetaBlocks.FUSION_CASING_02);
         registry.register(GTLiteMetaBlocks.FUSION_CASING_03);
         registry.register(GTLiteMetaBlocks.COMPUTER_CASING_01);
+        registry.register(GTLiteMetaBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR);
+        registry.register(GTLiteMetaBlocks.TIME_ACCELERATION_FIELD_GENERATOR);
+        registry.register(GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR);
         registry.register(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING);
         registry.register(GTLiteMetaBlocks.ACCELERATION_ORBIT);
         registry.register(GTLiteMetaBlocks.WIRE_COIL);
@@ -253,6 +256,9 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING_03, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.COMPUTER_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.TIME_ACCELERATION_FIELD_GENERATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.SPACE_ELEVATOR_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.ACCELERATION_ORBIT, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteMetaBlocks.WIRE_COIL, VariantItemBlock::new));
