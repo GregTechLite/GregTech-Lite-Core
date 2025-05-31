@@ -15,8 +15,10 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_CELL
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.KEVLAR_CAN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PBI_CAN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PE_CAN
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.Companion.PTFE_CAN
@@ -95,6 +97,15 @@ class ExtruderRecipes
                 .notConsumable(SHAPE_EXTRUDER_CELL)
                 .input(ingot, Polybenzimidazole, 6)
                 .output(PBI_CAN)
+                .EUt(VA[LV].toLong())
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            // Kevlar Plastic Can
+            EXTRUDER_RECIPES.recipeBuilder()
+                .notConsumable(SHAPE_EXTRUDER_CELL)
+                .input(ingot, Kevlar, 6)
+                .output(KEVLAR_CAN)
                 .EUt(VA[LV].toLong())
                 .duration(10 * SECOND)
                 .buildAndRegister()

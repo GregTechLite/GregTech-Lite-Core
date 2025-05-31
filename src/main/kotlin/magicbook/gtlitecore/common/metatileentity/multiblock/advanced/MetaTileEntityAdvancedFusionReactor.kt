@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.GTValues.ULV
-import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -51,12 +50,10 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, ADVANCED_FUSION_RECIPES)
 {
 
@@ -139,7 +136,7 @@ class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) :
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }
@@ -192,7 +189,7 @@ class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) :
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("               ", "               ", "     c2C2c     ", "     c2C2c     ", "               ", "               ")
             .aisle("               ", "       C       ", "   8cvvvvvc8   ", "   8cvvvvvc8   ", "       C       ", "               ")
@@ -221,26 +218,23 @@ class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) :
         val count = AtomicInteger()
         StreamEx.of(fusionCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('c', b)
-                    builder.where('b', b)
-                    builder.where('X', fusionCoils[count.get()])
-                    builder.where('C', cryostats[count.get()])
-                    builder.where('d', divertors[count.get()])
-                    builder.where('v', vacuums[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('c', b)
+                builder.where('b', b)
+                builder.where('X', fusionCoils[count.get()])
+                builder.where('C', cryostats[count.get()])
+                builder.where('d', divertors[count.get()])
+                builder.where('v', vacuums[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update() {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (fusionCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -280,10 +274,7 @@ class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) :
             vacuumTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.1"))
@@ -318,7 +309,7 @@ class MetaTileEntityAdvancedFusionReactor(metaTileEntityId: ResourceLocation?) :
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class AdvancedFusionRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class AdvancedFusionRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
         override fun getOverclockingDurationFactor() = 0.125

@@ -60,12 +60,10 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, ALLOY_BLAST_RECIPES), IHeatingCoil
 {
 
@@ -163,7 +161,7 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
                 .aisle(" CEC ", " HHH ", " UUU ", " HHH ", " CCC ")
                 .aisle("CCCCC", "H   H", "U   U", "H   H", "CCCCC")
@@ -183,23 +181,20 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
         val count = AtomicInteger()
         StreamEx.of(pumpCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('P', b)
-                    builder.where('H', heatingCoils[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('P', b)
+                builder.where('H', heatingCoils[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (pumpCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -236,8 +231,7 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
     override fun addDisplayText(textList: List<ITextComponent>)
     {
         MultiblockDisplayText.builder(textList, isStructureFormed)
-            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled,
-                recipeMapWorkable.isActive)
+            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
             .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { tl ->
@@ -246,7 +240,7 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
                     val temperatureInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers(temperature))
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
                 }
             }
             .addParallelsLine(recipeMapWorkable.parallelLimit)
@@ -260,7 +254,7 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
         val temperatureInfo = translationWithColor(TextFormatting.RED,
             formatNumbers(temperature.toLong()) + " K")
         textList.add(translationWithColor(TextFormatting.GRAY,
-            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
         return textList
     }
 
@@ -273,19 +267,19 @@ class MetaTileEntityAlloyBlastSmelter(metaTileEntityId: ResourceLocation?) : Rec
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    override fun getCurrentTemperature(): Int = temperature
+    override fun getCurrentTemperature() = temperature
 
-    inner class AlloyBlastSmelterRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(metaTileEntity)
+    private inner class AlloyBlastSmelterRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= GTValues.V[GTValues.UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= GTValues.V[GTValues.UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {
             super.setMaxProgress(floor(maxProgress * 0.8.pow(coilTier)).toInt())
         }
 
-        override fun getParallelLimit(): Int = 16 * pumpCasingTier
+        override fun getParallelLimit() = 16 * pumpCasingTier
 
     }
 

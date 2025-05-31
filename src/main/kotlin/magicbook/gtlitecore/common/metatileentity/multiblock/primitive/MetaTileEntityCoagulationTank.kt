@@ -58,7 +58,6 @@ import net.minecraftforge.items.ItemHandlerHelper.insertItem
 import net.minecraftforge.items.ItemStackHandler
 import kotlin.math.min
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : RecipeMapPrimitiveMultiblockController(metaTileEntityId, COAGULATION_RECIPES), IGhostSlotConfigurable
 {
 
@@ -88,12 +87,11 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
         actualImportItems = null
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun getImportItems(): IItemHandlerModifiable
     {
         if (actualImportItems == null)
             actualImportItems = if (circuitInventory == null) super.getImportItems()
-                else ItemHandlerList((listOf(super.getImportItems() as IItemHandlerModifiable, circuitInventory)) as MutableList<IItemHandler>)
+                else ItemHandlerList((listOf(super.getImportItems(), circuitInventory)))
         return actualImportItems!!
     }
 
@@ -129,14 +127,13 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
             recipeMapWorkable.isActive, recipeMapWorkable.isWorkingEnabled)
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun update()
     {
         super.update()
         if (offsetTimer % 5 * TICK == 0L && isStructureFormed)
         {
             // Extracted all fluids which in import hatches to fluid container.
-            for (tank: IFluidTank in getAbilities(IMPORT_FLUIDS))
+            for (tank in getAbilities(IMPORT_FLUIDS))
             {
                 if (tank.fluid != null)
                 {
@@ -152,11 +149,10 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
                 }
             }
             // Do same thing for export items.
-            for (i in 0 until (exportItems as IItemHandlerModifiable).slots)
+            for (i in 0 until exportItems.slots)
             {
-                val stack = (exportItems as IItemHandlerModifiable).getStackInSlot(i)
-                exportItems.setStackInSlot(i, insertItem(ItemHandlerList(getAbilities(EXPORT_ITEMS)
-                            as MutableList<out IItemHandler>) as IItemHandler, stack, false))
+                val stack = exportItems.getStackInSlot(i)
+                exportItems.setStackInSlot(i, insertItem(ItemHandlerList(getAbilities(EXPORT_ITEMS)), stack, false))
             }
             fillInternalTankFromFluidContainer()
         }
@@ -172,7 +168,7 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
             return
 
         circuitInventory!!.circuitValue = config
-        if (!(world as World).isRemote) markDirty()
+        if (!world.isRemote) markDirty()
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
@@ -197,7 +193,7 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
                 {
                     var stack = currentCircuitInventory.getStackInSlot(i)
                     if (stack.isEmpty) continue
-                    stack = insertItem(importItems as IItemHandler, stack, false)
+                    stack = insertItem(importItems, stack, false)
                     circuitInventory!!.setCircuitValueFromStack(stack)
                 }
             }
@@ -219,10 +215,10 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
         // Inventory syncers for item import/export slots.
         guiSyncManager.registerSlotGroup("item_inv", 3)
         // Tank syncers for fluid import slots.
-        val tankSyncManager1 = GTFluidSlot.sync(importFluids.getTankAt(0) as IFluidTank)
+        val tankSyncManager1 = GTFluidSlot.sync(importFluids.getTankAt(0))
             .showAmount(true)
             .accessibility(true, true)
-        val tankSyncManager2 = GTFluidSlot.sync(importFluids.getTankAt(1) as IFluidTank)
+        val tankSyncManager2 = GTFluidSlot.sync(importFluids.getTankAt(1))
             .showAmount(true)
             .accessibility(true, true)
         return GTGuis.createPanel(this, 176, 166)
@@ -261,7 +257,7 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
                 .background(GTLiteMuiTextures.PRIMITIVE_FLUID_SLOT))
             // Ghost circuit slots (1)
             .child(GhostCircuitSlotWidget()
-                .slot(circuitInventory as IItemHandlerModifiable, 0)
+                .slot(circuitInventory, 0)
                 .background(GTGuiTextures.SLOT_PRIMITIVE, GTLiteMuiTextures.PRIMITIVE_INT_CIRCUIT_OVERLAY)
                 .pos(124, 62))
             // Recipe progress bar
@@ -285,12 +281,12 @@ class MetaTileEntityCoagulationTank(metaTileEntityId: ResourceLocation?) : Recip
         tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.4"))
     }
 
-    inner class CoagulationTankRecipeLogic(metaTileEntity: RecipeMapPrimitiveMultiblockController, recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(metaTileEntity, recipeMap)
+    private inner class CoagulationTankRecipeLogic(metaTileEntity: RecipeMapPrimitiveMultiblockController, recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(metaTileEntity, recipeMap)
     {
 
         override fun getParallelLimit(): Int = (getMetaTileEntity() as MetaTileEntityCoagulationTank).size
 
-        override fun getMaxParallelVoltage(): Long = 2147432767L // Long.MAX_VALUE - 50800 EU
+        override fun getMaxParallelVoltage(): Long = 2_147_432_767L // Long.MAX_VALUE - 50800 EU
 
         override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.MULTIPLY
 

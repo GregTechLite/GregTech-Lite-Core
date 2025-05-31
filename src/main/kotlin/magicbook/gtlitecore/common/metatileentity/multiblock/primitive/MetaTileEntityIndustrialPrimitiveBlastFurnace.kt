@@ -30,7 +30,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityIndustrialPrimitiveBlastFurnace(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, PRIMITIVE_BLAST_FURNACE_RECIPES)
 {
 
@@ -97,12 +96,12 @@ class MetaTileEntityIndustrialPrimitiveBlastFurnace(metaTileEntityId: ResourceLo
         tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.4"))
     }
 
-    inner class IndustrialPBFRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : NoEnergyMultiblockRecipeLogic(metaTileEntity)
+    private inner class IndustrialPBFRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : NoEnergyMultiblockRecipeLogic(metaTileEntity)
     {
 
         override fun getParallelLimit() = (getMetaTileEntity() as MetaTileEntityIndustrialPrimitiveBlastFurnace).size
 
-        override fun getMaxParallelVoltage(): Long = 2147432767L // Long.MAX_VALUE - 50800 EU
+        override fun getMaxParallelVoltage(): Long = 2_147_432_767L // Long.MAX_VALUE - 50800 EU
 
         override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.MULTIPLY
 

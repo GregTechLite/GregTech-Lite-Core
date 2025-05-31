@@ -40,11 +40,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
 {
 
@@ -91,11 +89,11 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
         .where('C', states(casingState)
             .setMinGlobalLimited(8)
             .or(autoAbilities(true, true, true, true, true, false, false)))
-            .where('G', states(secondCasingState))
-            .where('F', fieldGenCasings())
-            .where('#', air())
-            .where(' ', any())
-            .build()
+        .where('G', states(secondCasingState))
+        .where('F', fieldGenCasings())
+        .where('#', air())
+        .where(' ', any())
+        .build()
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.BABBIT_ALLOY_CASING
@@ -105,7 +103,7 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
                 .aisle(" CEC ", " CCC ", " CCC ")
                 .aisle("CCCCC", "C   C", "CGCGC")
@@ -122,14 +120,14 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
                 .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[ULV], EnumFacing.SOUTH)
         GTLiteAPI.MAP_FIELD_GEN_CASING.entries
             .sortedBy { entry -> (entry.value as WrappedIntTier).getIntTier() }
-            .forEach(Consumer { entry -> shapeInfo.add(builder.where('F', entry.key).build()) })
+            .forEach { entry -> shapeInfo.add(builder.where('F', entry.key).build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote && casingTier == 0)
+        if (world.isRemote && casingTier == 0)
             writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
     }
 
@@ -154,10 +152,7 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
         casingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.1"))
@@ -168,7 +163,7 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
 
     override fun canBeDistinct() = true
 
-    inner class LargeElectromagnetRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class LargeElectromagnetRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
         override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5

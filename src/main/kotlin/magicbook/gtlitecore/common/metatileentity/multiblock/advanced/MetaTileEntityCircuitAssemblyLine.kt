@@ -36,9 +36,7 @@ import net.minecraft.util.SoundEvent
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import net.minecraftforge.items.IItemHandler
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityCircuitAssemblyLine(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(CIRCUIT_ASSEMBLER_RECIPES, CIRCUIT_ASSEMBLY_LINE_RECIPES))
 {
 
@@ -62,7 +60,7 @@ class MetaTileEntityCircuitAssemblyLine(metaTileEntityId: ResourceLocation?) : M
             get() = MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.LAMINATED_GLASS)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntityCircuitAssemblyLine(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityCircuitAssemblyLine(metaTileEntityId)
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start(FRONT, UP, RIGHT)
         .aisle("FIF", "RTR", "SYG")
@@ -103,10 +101,7 @@ class MetaTileEntityCircuitAssemblyLine(metaTileEntityId: ResourceLocation?) : M
     }
 
     @SideOnly(Side.CLIENT)
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"));
@@ -129,14 +124,12 @@ class MetaTileEntityCircuitAssemblyLine(metaTileEntityId: ResourceLocation?) : M
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    @Suppress("UNCHECKED_CAST")
     override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
     {
         return if (getRecipeMap() == CIRCUIT_ASSEMBLY_LINE_RECIPES)
         {
-            val itemInputs = ItemHandlerList(getAbilities(IMPORT_ITEMS) as MutableList<IItemHandler>)
+            val itemInputs = ItemHandlerList(getAbilities(IMPORT_ITEMS))
             val targetStack = recipe.getProperty(CircuitPatternProperty.INSTANCE, null)
-
             val hasTargetCircuitPattern = targetStack?.let { stack ->
                 (0 until itemInputs.slots).any { i ->
                     val currentStack: ItemStack = itemInputs.getStackInSlot(i)
@@ -151,7 +144,7 @@ class MetaTileEntityCircuitAssemblyLine(metaTileEntityId: ResourceLocation?) : M
 
     fun getInputInventorySize() = getAbilities(IMPORT_ITEMS).size
 
-    inner class CircuitAssemblyLineRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class CircuitAssemblyLineRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity, true)
     {
 
         override fun setMaxProgress(maxProgress: Int)

@@ -1,34 +1,40 @@
-package magicbook.gtlitecore.common.metatileentity.part;
+package magicbook.gtlitecore.common.metatileentity.part
 
-import gregtech.api.capability.IControllable;
-import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
-import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiFluidHatch;
-import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.IFluidTank;
+import gregtech.api.capability.IControllable
+import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiFluidHatch
+import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.item.ItemStack
+import net.minecraft.util.NonNullList
+import net.minecraft.util.ResourceLocation
+import net.minecraftforge.fluids.IFluidTank
 
-public class MetaTileEntityAdvancedMultiFluidHatch extends MetaTileEntityMultiFluidHatch implements IMultiblockAbilityPart<IFluidTank>, IControllable
+class MetaTileEntityAdvancedMultiFluidHatch(metaTileEntityId: ResourceLocation?, tier: Int, numSlots: Int, isExportHatch: Boolean) : MetaTileEntityMultiFluidHatch(metaTileEntityId, tier, numSlots, isExportHatch), IMultiblockAbilityPart<IFluidTank>, IControllable
 {
 
-    public MetaTileEntityAdvancedMultiFluidHatch(ResourceLocation metaTileEntityId, int tier, int numSlots, boolean isExportHatch)
+    override fun getSubItems(creativeTab: CreativeTabs, subItems: NonNullList<ItemStack>)
     {
-        super(metaTileEntityId, tier, numSlots, isExportHatch);
-    }
-
-    @Override
-    public void getSubItems(CreativeTabs creativeTab, NonNullList<ItemStack> subItems)
-    {
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH)
-            if (hatch != null) subItems.add(hatch.getStackForm());
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH)
-            if (hatch != null) subItems.add(hatch.getStackForm());
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH)
-            if (hatch != null) subItems.add(hatch.getStackForm());
-        for (MetaTileEntityMultiFluidHatch hatch : GTLiteMetaTileEntities.NONUPLE_FLUID_EXPORT_HATCH)
-            if (hatch != null) subItems.add(hatch.getStackForm());
+        for (hatch in GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH)
+        {
+            if (hatch != null)
+                subItems.add(hatch.stackForm)
+        }
+        for (hatch in GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH)
+        {
+            if (hatch != null)
+                subItems.add(hatch.stackForm)
+        }
+        for (hatch in GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH)
+        {
+            if (hatch != null)
+                subItems.add(hatch.stackForm)
+        }
+        for (hatch in GTLiteMetaTileEntities.NONUPLE_FLUID_EXPORT_HATCH)
+        {
+            if (hatch != null)
+                subItems.add(hatch.stackForm)
+        }
     }
 
 }

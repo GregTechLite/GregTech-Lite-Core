@@ -2613,6 +2613,7 @@ gtlitecore.machine.drum.iridium.name=Iridium Drum
 gtlitecore.machine.plastic_can.polyethylene.name=Polyethylene Plastic Can
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=Polytetrafluoroethylene Plastic Can
 gtlitecore.machine.plastic_can.polybenzimidazole.name=Polybenzimidazole Plastic Can
+gtlitecore.machine.plastic_can.kevlar.name=Kevlar Plastic Can
 
 gtlitecore.machine.crate.iron.name=Iron Crate
 gtlitecore.machine.crate.copper.name=Copper Crate

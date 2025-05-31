@@ -8,7 +8,6 @@ import gregtech.api.GTValues.V
 import gregtech.api.GregTechAPI
 import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.IHeatingCoil
-import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -59,17 +58,14 @@ import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidStack
-import net.minecraftforge.fluids.capability.IFluidHandler
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, BLAST_RECIPES), IHeatingCoil
 {
 
@@ -156,7 +152,7 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("DED", "CCC", "CCC", "DDD")
             .aisle("DDD", "CMC", "CMC", "DOD")
@@ -173,23 +169,21 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
         val count = AtomicInteger()
         StreamEx.of(motorCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('M', b)
-                    builder.where('C', heatingCoils[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('M', b)
+                builder.where('C', heatingCoils[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote) {
+        if (world.isRemote)
+        {
             if (motorCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
             if (coilTier == 0)
@@ -210,10 +204,7 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
             coilTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.1"))
@@ -230,8 +221,7 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
     override fun addDisplayText(textList: List<ITextComponent>)
     {
         MultiblockDisplayText.builder(textList, isStructureFormed)
-            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled,
-                recipeMapWorkable.isActive)
+            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
             .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { tl ->
@@ -240,17 +230,18 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
                     val temperatureInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers(temperature))
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
+
                     // TODO Impl of IProgressBarMultiblock to replaced it.
                     if (getInputFluidInventory() != null)
                     {
-                        val pyrotheumStack: FluidStack? = (getInputFluidInventory() as IFluidHandler)
-                            .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
+                        val pyrotheumStack: FluidStack? = getInputFluidInventory().drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
                         val pyrotheumAmount = pyrotheumStack?.amount ?: 0
                         val amountInfo = stringWithColor(TextFormatting.GREEN,
                             formatNumbers(pyrotheumAmount) + " L")
+
                         tl.add(translationWithColor(TextFormatting.GRAY,
-                            "gtlitecore.machine.volcanus.pyrotheum_amount", amountInfo) as ITextComponent)
+                            "gtlitecore.machine.volcanus.pyrotheum_amount", amountInfo))
                     }
                 }
             }
@@ -265,13 +256,12 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
             .addCustom { tl ->
                 if (isStructureFormed)
                 {
-                    val pyrotheumStack: FluidStack? = (getInputFluidInventory() as IFluidHandler)
-                        .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
+                    val pyrotheumStack: FluidStack? = getInputFluidInventory().drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
                     if (pyrotheumStack == null || pyrotheumStack.amount == 0)
                     {
                         val warnInfo = translationWithColor(TextFormatting.YELLOW,
                             "gtlitecore.machine.volcanus.pyrotheum_warning")
-                        tl.add(warnInfo as ITextComponent)
+                        tl.add(warnInfo)
                     }
                 }
             }
@@ -282,8 +272,9 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
         val textList = super.getDataInfo()
         val temperatureInfo = translationWithColor(TextFormatting.RED,
             formatNumbers(temperature) + " K")
+
         textList.add(translationWithColor(TextFormatting.GRAY,
-            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
         return textList
     }
 
@@ -293,12 +284,12 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    override fun getCurrentTemperature(): Int = temperature
+    override fun getCurrentTemperature() = temperature
 
     override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
         = temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0)!!
 
-    inner class VolcanusRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(metaTileEntity)
+    private inner class VolcanusRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(metaTileEntity)
     {
 
         private val mte = metaTileEntity as MetaTileEntityVolcanus
@@ -307,21 +298,23 @@ class MetaTileEntityVolcanus(metaTileEntityId: ResourceLocation?) : RecipeMapMul
         {
             if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                val inputTank: IMultipleTankHandler = mte.getInputFluidInventory()
-                val pyrotheumStack: FluidStack = BlazingPyrotheum.getFluid(2)
-                if (pyrotheumStack.isFluidStackIdentical((inputTank as IFluidHandler)
-                        .drain(pyrotheumStack, false)))
+                val inputTank = mte.getInputFluidInventory()
+                val pyrotheumStack = BlazingPyrotheum.getFluid(2)
+                if (pyrotheumStack.isFluidStackIdentical(inputTank.drain(pyrotheumStack, false)))
                 {
-                    (inputTank as IFluidHandler).drain(pyrotheumStack, true)
-                    if (++this.progressTime > maxProgressTime)
+                    inputTank.drain(pyrotheumStack, true)
+                    if (++progressTime > maxProgressTime)
                         completeRecipe()
                 }
-                else return
+                else
+                {
+                    return
+                }
                 drawEnergy(recipeEUt, false)
             }
         }
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {

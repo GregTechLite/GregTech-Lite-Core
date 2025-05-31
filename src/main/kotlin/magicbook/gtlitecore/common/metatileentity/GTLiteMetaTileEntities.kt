@@ -9,7 +9,8 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.ZPM
+import gregtech.api.GTValues.V
+import gregtech.api.GTValues.VN
 import gregtech.api.block.machines.MachineItemBlock
 import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity
@@ -17,6 +18,20 @@ import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Chrome
+import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
+import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -34,7 +49,9 @@ import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
 import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps
+import magicbook.gtlitecore.api.unification.GTLiteMaterials.Companion.Kevlar
 import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
 import magicbook.gtlitecore.common.block.GTLiteMetaBlocks
 import magicbook.gtlitecore.common.block.blocks.BlockTurbineCasing01
@@ -115,75 +132,55 @@ import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntitySteamSapC
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityExtender
 import magicbook.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
-import net.minecraft.creativetab.CreativeTabs
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler
 import net.minecraftforge.items.CapabilityItemHandler
-import java.util.*
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMetaTileEntities
 {
 
     companion object
     {
-
-        // ======================================= GREGTECH METATILEENTITIES ID LIST =======================================
-
-        // - Gregtech (Vanilla)                           1     - 1999
-        // - Gregicality (Multiblocks & Science)          2000  - 3999
-        // - Integration Modules of GregTech              4000  - 4499
-        // - Gregic Addition CEu                          4500  - 8499
-        // - GregTech Food Option                         8500  - 8999
-        // - HtmlTech                                     9000  - 9499
-        // - PCM's Ore Addon                              9500  - 9999
-        // - GCM                                          10000 - 10099
-        // - MechTech                                     10100 - 10499
-        // - MultiblockTweaker                            10500 - 10999
-        // - Gregtech Lite Core (THIS)                    14000 - 20000
-        // - Integration Modules of Gregtech Lite Core    20001 - 25000
-        // - CraftTweaker (MultiblockTweaker)             32000 - 32767
-
-        // =================================================================================================================
-
-        // Single machines.
-        val POLISHER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        // Single Machines
+        val POLISHER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val SLICER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val TOOL_CASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(5)
-        val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val LAMINATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val CHEMICAL_DEHYDRATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val LOOM = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val LAMINATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val CHEMICAL_DEHYDRATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val STEAM_VULCANIZING_PRESS = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
-        val VULCANIZING_PRESS = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val VULCANIZING_PRESS = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val STEAM_VACUUM_CHAMBER = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
-        val VACUUM_CHAMBER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val VACUUM_CHAMBER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val STEAM_SAP_COLLECTOR = arrayOfNulls<PseudoMultiSteamMachineMetaTileEntity>(2)
         val SAP_COLLECTOR = arrayOfNulls<PseudoMultiMachineMetaTileEntity>(5)
-        val GREENHOUSE = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val BIO_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val GREENHOUSE = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val BIO_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val STEAM_ROASTER = arrayOfNulls<SimpleSteamMachineMetaTileEntity>(2)
-        val ROASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val BURNER_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val BATH_CONDENSER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val CRYOGENIC_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val MASS_FABRICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val REPLICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val FOOD_PROCESSOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val MULTICOOKER = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
-        val MOB_EXTRACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(GTValues.V.size - 1)
+        val ROASTER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val BURNER_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val BATH_CONDENSER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val CRYOGENIC_REACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val MASS_FABRICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val REPLICATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val FOOD_PROCESSOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val MULTICOOKER = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
+        val MOB_EXTRACTOR = arrayOfNulls<SimpleMachineMetaTileEntity>(V.size - 1)
         val BIO_SIMULATOR = arrayOfNulls<SimpleMachineMetaTileEntity>(6)
         val ROCKET_ENGINE = arrayOfNulls<SimpleGeneratorMetaTileEntity>(3)
         val NAQUADAH_REACTOR = arrayOfNulls<SimpleGeneratorMetaTileEntity>(4)
 
+        // Several single MTEs.
         lateinit var IRON_DRUM: MetaTileEntityDrum
         lateinit var COPPER_DRUM: MetaTileEntityDrum
         lateinit var LEAD_DRUM: MetaTileEntityDrum
         lateinit var CHROME_DRUM: MetaTileEntityDrum
         lateinit var TUNGSTEN_DRUM: MetaTileEntityDrum
         lateinit var IRIDIUM_DRUM: MetaTileEntityDrum
-        // TODO More higher drum like Naquadah, Duranium and Neutronium?
+
         lateinit var PE_CAN: MetaTileEntityPlasticCan
         lateinit var PTFE_CAN: MetaTileEntityPlasticCan
         lateinit var PBI_CAN: MetaTileEntityPlasticCan
+        lateinit var KEVLAR_CAN: MetaTileEntityPlasticCan
 
         lateinit var IRON_CRATE: MetaTileEntityCrate
         lateinit var COPPER_CRATE: MetaTileEntityCrate
@@ -201,57 +198,35 @@ class GTLiteMetaTileEntities
         lateinit var INVENTORY_TANK_EXTENDER: MetaTileEntityExtender
         lateinit var UNIVERSAL_EXTENDER: MetaTileEntityExtender
 
-        @JvmField
         val BUFFER = arrayOfNulls<MetaTileEntityBuffer>(3)
 
-        @JvmField
+        // Multiblock Parts.
         val ENERGY_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
-        @JvmField
         val DYNAMO_HATCH_4A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(4)
-        @JvmField
         val ENERGY_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @JvmField
         val DYNAMO_HATCH_16A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @JvmField
         val SUBSTATION_ENERGY_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
-        @JvmField
         val SUBSTATION_DYNAMO_HATCH_64A = arrayOfNulls<MetaTileEntityAdvancedEnergyHatch>(5)
 
-        @JvmField
         val QUADRUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @JvmField
         val QUADRUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @JvmField
         val NONUPLE_FLUID_IMPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
-        @JvmField
         val NONUPLE_FLUID_EXPORT_HATCH = arrayOfNulls<MetaTileEntityAdvancedMultiFluidHatch>(4)
 
-        @JvmField
-        val LASER_INPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_INPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_INPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_INPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_INPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_INPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
-        @JvmField
-        val LASER_OUTPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10) // IV-OpV
+        val LASER_INPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_16384 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_INPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_65536 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_INPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_262144 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_INPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_1048576 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_INPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_4194304 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_INPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
+        val LASER_OUTPUT_HATCH_16777216 = arrayOfNulls<MetaTileEntityAdvancedLaserHatch>(10)
 
-        // Multiblock machines.
+        // Multiblock Machines.
         lateinit var COAGULATION_TANK: MetaTileEntityCoagulationTank
         lateinit var STEAM_COMPRESSOR: MetaTileEntitySteamCompressor
         lateinit var STEAM_ALLOY_SMELTER: MetaTileEntitySteamAlloySmelter
@@ -334,697 +309,682 @@ class GTLiteMetaTileEntities
         @JvmStatic
         fun preInit()
         {
-            MachineItemBlock.addCreativeTab(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            MachineItemBlock.addCreativeTab(GTLiteAPI.TAB_GTLITE_MACHINE)
         }
 
         @JvmStatic
         fun init()
         {
-            // 14001-14015: Polisher
-            MetaTileEntities.registerSimpleMetaTileEntity(POLISHER, 14003, // 14001-14002 for Steam Machines.
+            // 1-2000: Simple Machines
+
+            // 1-15: Polisher
+            MetaTileEntities.registerSimpleMetaTileEntity(POLISHER, 3, // 1-2 for Steam Machines.
                 "polisher", GTLiteRecipeMaps.POLISHER_RECIPES,
                 GTLiteTextures.POLISHER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.hvCappedTankSizeFunction)
 
-            // 14016-14030: Slicer
-            MetaTileEntities.registerSimpleMetaTileEntity(SLICER, 14018, // 14016-14017 for Steam Machines.
+            // 16-30: Slicer
+            MetaTileEntities.registerSimpleMetaTileEntity(SLICER, 18, // 16-17 for Steam Machines.
                 "slicer", GTLiteRecipeMaps.SLICER_RECIPES,
                 GTLiteTextures.SLICER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.hvCappedTankSizeFunction)
 
-            // 14031-14045: Tool Caster
-            TOOL_CASTER[0] = MetaTileEntities.registerMetaTileEntity(14033,
-                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.lv"),
-                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
-                    GTValues.LV, true, GTUtility.defaultTankSizeFunction))
+            // 31-45: Tool Caster
+            for (tier in 0..4) // LV-IV
+            {
+                TOOL_CASTER[tier] = MetaTileEntities.registerMetaTileEntity(33 + tier, // 31-32 for Steam Machines.
+                    SimpleMachineMetaTileEntity(gtliteId("tool_cast.${VN[tier + 1].lowercase()}"),
+                        GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
+                        tier + 1, true, GTUtility.defaultTankSizeFunction))
+            }
 
-            TOOL_CASTER[1] = MetaTileEntities.registerMetaTileEntity(14034,
-                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.mv"),
-                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
-                    GTValues.MV, true, GTUtility.defaultTankSizeFunction))
-
-            TOOL_CASTER[2] = MetaTileEntities.registerMetaTileEntity(14035,
-                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.hv"),
-                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
-                    GTValues.HV, true, GTUtility.defaultTankSizeFunction))
-
-            TOOL_CASTER[3] = MetaTileEntities.registerMetaTileEntity(14036,
-                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.ev"),
-                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
-                    GTValues.EV, true, GTUtility.defaultTankSizeFunction))
-
-            TOOL_CASTER[4] = MetaTileEntities.registerMetaTileEntity(14037,
-                SimpleMachineMetaTileEntity(GTLiteUtility.gtliteId("tool_caster.iv"),
-                    GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
-                    GTValues.IV, true, GTUtility.defaultTankSizeFunction))
-
-            // 14046-14060: Loom
-            MetaTileEntities.registerSimpleMetaTileEntity(LOOM, 14048, // 14046-14047 for Steam Machines.
+            // 46-60: Loom
+            MetaTileEntities.registerSimpleMetaTileEntity(LOOM, 48, // 46-47 for Steam Machines.
                 "loom", GTLiteRecipeMaps.LOOM_RECIPES,
                 GTLiteTextures.LOOM_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
-            // 14061-14075: Laminator
-            MetaTileEntities.registerSimpleMetaTileEntity(LAMINATOR, 14063, // 14061-14062 for Steam Machines.
+            // 61-75: Laminator
+            MetaTileEntities.registerSimpleMetaTileEntity(LAMINATOR, 63, // 61-62 for Steam Machines.
                 "laminator", GTLiteRecipeMaps.LAMINATOR_RECIPES,
                 GTLiteTextures.LAMINATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
-            // 14076-14090: Chemical Dehydrator
-            MetaTileEntities.registerSimpleMetaTileEntity(CHEMICAL_DEHYDRATOR, 14078, // 14076-14077 for Steam Machines.
+            // 76-90: Chemical Dehydrator
+            MetaTileEntities.registerSimpleMetaTileEntity(CHEMICAL_DEHYDRATOR, 78, // 76-77 for Steam Machines.
                 "chemical_dehydrator", GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES,
                 GTLiteTextures.CHEMICAL_DEHYDRATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14091-14105: Vulcanizing Press
-            registerSteamMetaTileEntity(STEAM_VULCANIZING_PRESS, 14091,
+            // 91-105: Vulcanizing Press
+            registerSteamMetaTileEntity(STEAM_VULCANIZING_PRESS, 91,
                 "vulcanizing_press", GTLiteRecipeMaps.VULCANIZATION_RECIPES,
                 SteamProgressBarIndicators.ARROW_MULTIPLE,
                 GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true)
 
-            MetaTileEntities.registerSimpleMetaTileEntity(VULCANIZING_PRESS, 14093,
+            MetaTileEntities.registerSimpleMetaTileEntity(VULCANIZING_PRESS, 93,
                 "vulcanizing_press", GTLiteRecipeMaps.VULCANIZATION_RECIPES,
                 GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
-            // 14106-14120: Vacuum Chamber
-            registerSteamMetaTileEntity(STEAM_VACUUM_CHAMBER, 14106,
+            // 106-120: Vacuum Chamber
+            registerSteamMetaTileEntity(STEAM_VACUUM_CHAMBER, 106,
                 "vacuum_chamber", GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES,
                 SteamProgressBarIndicators.COMPRESS,
                 Textures.GAS_COLLECTOR_OVERLAY, false)
 
-            MetaTileEntities.registerSimpleMetaTileEntity(VACUUM_CHAMBER, 14108,
+            MetaTileEntities.registerSimpleMetaTileEntity(VACUUM_CHAMBER, 108,
                 "vacuum_chamber", GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES,
                 Textures.GAS_COLLECTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
-            // 14121-14135: Sap Collector
-            STEAM_SAP_COLLECTOR[0] = MetaTileEntities.registerMetaTileEntity(14121,
-                MetaTileEntitySteamSapCollector(GTLiteUtility.gtliteId("sap_collector.bronze"), false))
+            // 121-135: Sap Collector
+            STEAM_SAP_COLLECTOR[0] = MetaTileEntities.registerMetaTileEntity(121,
+                MetaTileEntitySteamSapCollector(gtliteId("sap_collector.bronze"), false))
+            STEAM_SAP_COLLECTOR[1] = MetaTileEntities.registerMetaTileEntity(122,
+                MetaTileEntitySteamSapCollector(gtliteId("sap_collector.steel"), true))
 
-            STEAM_SAP_COLLECTOR[1] = MetaTileEntities.registerMetaTileEntity(14122,
-                MetaTileEntitySteamSapCollector(GTLiteUtility.gtliteId("sap_collector.steel"), true))
+            for (tier in 0..4) // LV-IV
+            {
+                SAP_COLLECTOR[tier] = MetaTileEntities.registerMetaTileEntity(123 + tier,
+                    MetaTileEntitySapCollector(gtliteId("sap_collector.${VN[tier + 1].lowercase()}"), tier))
+            }
 
-            SAP_COLLECTOR[0] = MetaTileEntities.registerMetaTileEntity(14123,
-                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.lv"), GTValues.LV))
-
-            SAP_COLLECTOR[1] = MetaTileEntities.registerMetaTileEntity(14124,
-                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.mv"), GTValues.MV))
-
-            SAP_COLLECTOR[2] = MetaTileEntities.registerMetaTileEntity(14125,
-                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.hv"), GTValues.HV))
-
-            SAP_COLLECTOR[3] = MetaTileEntities.registerMetaTileEntity(14126,
-                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.ev"), GTValues.EV))
-
-            SAP_COLLECTOR[4] = MetaTileEntities.registerMetaTileEntity(14127,
-                MetaTileEntitySapCollector(GTLiteUtility.gtliteId("sap_collector.iv"), GTValues.IV))
-
-            // 14136-14150: Greenhouse
-            MetaTileEntities.registerSimpleMetaTileEntity(GREENHOUSE, 14138, // 14136-14137 for Steam Machines.
+            // 136-150: Greenhouse
+            MetaTileEntities.registerSimpleMetaTileEntity(GREENHOUSE, 138, // 136-137 for Steam Machines.
                 "greenhouse", GTLiteRecipeMaps.GREENHOUSE_RECIPES,
                 Textures.FERMENTER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14151-14165: Bio Reactor
-            MetaTileEntities.registerSimpleMetaTileEntity(BIO_REACTOR, 14153, // 14151-14152 for Steam Machines.
+            // 151-165: Bio Reactor
+            MetaTileEntities.registerSimpleMetaTileEntity(BIO_REACTOR, 153, // 151-152 for Steam Machines.
                 "bio_reactor", GTLiteRecipeMaps.BIO_REACTOR_RECIPES,
                 GTLiteTextures.BIO_REACTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.steamGeneratorTankSizeFunction)
 
-            // 14166-14180: Roaster
-            registerSteamMetaTileEntity(STEAM_ROASTER, 14166,
+            // 166-180: Roaster
+            registerSteamMetaTileEntity(STEAM_ROASTER, 166,
                 "roaster", GTLiteRecipeMaps.ROASTER_RECIPES,
                 SteamProgressBarIndicators.ARROW,
                 GTLiteTextures.ROASTER_OVERLAY, true)
 
-            MetaTileEntities.registerSimpleMetaTileEntity(ROASTER, 14168,
+            MetaTileEntities.registerSimpleMetaTileEntity(ROASTER, 168,
                 "roaster", GTLiteRecipeMaps.ROASTER_RECIPES,
                 GTLiteTextures.ROASTER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14181-14195: Burner Reactor
-            MetaTileEntities.registerSimpleMetaTileEntity(BURNER_REACTOR, 14183, // 14181-14182 for Steam Machines.
+            // 181-195: Burner Reactor
+            MetaTileEntities.registerSimpleMetaTileEntity(BURNER_REACTOR, 183, // 181-182 for Steam Machines.
                 "burner_reactor", GTLiteRecipeMaps.BURNER_REACTOR_RECIPES,
                 GTLiteTextures.BURNER_REACTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14196-14210: Bath Condenser
-            MetaTileEntities.registerSimpleMetaTileEntity(BATH_CONDENSER, 14198, // 14196-14197 for Steam Machines.
+            // 196-210: Bath Condenser
+            MetaTileEntities.registerSimpleMetaTileEntity(BATH_CONDENSER, 198, // 196-197 for Steam Machines.
                 "bath_condenser", GTLiteRecipeMaps.BATH_CONDENSER_RECIPES,
                 GTLiteTextures.BATH_CONDENSER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14211-14225: Cryogenic Reactor
-            MetaTileEntities.registerSimpleMetaTileEntity(CRYOGENIC_REACTOR, 14213, // 14211-14212 for Steam Machines.
+            // 211-225: Cryogenic Reactor
+            MetaTileEntities.registerSimpleMetaTileEntity(CRYOGENIC_REACTOR, 213, // 211-212 for Steam Machines.
                 "cryogenic_reactor", GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES,
                 GTLiteTextures.CRYOGENIC_REACTOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.defaultTankSizeFunction)
 
-            // 14226-14240: Mass Fabricator
-            MetaTileEntities.registerSimpleMetaTileEntity(MASS_FABRICATOR, 14228, // 14226-14227 for Steam Machines.
+            // 226-240: Mass Fabricator
+            MetaTileEntities.registerSimpleMetaTileEntity(MASS_FABRICATOR, 228, // 226-227 for Steam Machines.
                 "mass_fabricator", RecipeMaps.MASS_FABRICATOR_RECIPES,
                 Textures.MASS_FABRICATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
-            // 14241-14255: Replicator
-            MetaTileEntities.registerSimpleMetaTileEntity(REPLICATOR, 14243, // 14241-14242 for Steam Machines.
+            // 241-255: Replicator
+            MetaTileEntities.registerSimpleMetaTileEntity(REPLICATOR, 243, // 241-242 for Steam Machines.
                 "replicator", RecipeMaps.REPLICATOR_RECIPES,
                 Textures.REPLICATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
-            // 14256-14270: Food Processor
-            MetaTileEntities.registerSimpleMetaTileEntity(FOOD_PROCESSOR, 14258, // 14256-14257 for Steam Machines.
+            // 256-270: Food Processor
+            MetaTileEntities.registerSimpleMetaTileEntity(FOOD_PROCESSOR, 258, // 256-257 for Steam Machines.
                 "food_processor", GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES,
                 GTLiteTextures.FOOD_PROCESSOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
-            // 14271-14285: Multicooker
-            MetaTileEntities.registerSimpleMetaTileEntity(MULTICOOKER, 14273, // 14271-14272 for Steam Machines.
+            // 271-285: Multicooker
+            MetaTileEntities.registerSimpleMetaTileEntity(MULTICOOKER, 273, // 271-272 for Steam Machines.
                 "multicooker", GTLiteRecipeMaps.MULTICOOKER_RECIPES,
                 GTLiteTextures.MULTICOOKER_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
-            // 14286-14300: Mob Extractor
-            for (i in 1 .. GTValues.OpV)
+            // 286-300: Mob Extractor
+            for (tier in 0..13) // LV-OpV
             {
-                val voltageName = GTValues.VN[i].lowercase(Locale.getDefault())
-                MOB_EXTRACTOR[i] = MetaTileEntities.registerMetaTileEntity(14288 + i, // 14286-14287 for Steam Machines.
-                    MetaTileEntityMobExtractor(GTLiteUtility.gtliteId("mob_extractor.$voltageName"), GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                        GTLiteTextures.MOB_EXTRACTOR_OVERLAY, i, false, GTUtility.largeTankSizeFunction))
+                MOB_EXTRACTOR[tier] = MetaTileEntities.registerMetaTileEntity(288 + tier, // 286-287 for Steam Machines.
+                    MetaTileEntityMobExtractor(gtliteId("mob_extractor.${VN[tier + 1].lowercase()}"),
+                        GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES, GTLiteTextures.MOB_EXTRACTOR_OVERLAY, tier + 1,
+                        false, GTUtility.largeTankSizeFunction))
             }
 
-            // 14301-14315: Bio Simulator
-            MetaTileEntities.registerSimpleMetaTileEntity(BIO_SIMULATOR, 14303, // 14301-14302 for Steam Machines.
+            // 301-315: Bio Simulator
+            MetaTileEntities.registerSimpleMetaTileEntity(BIO_SIMULATOR, 303, // 301-302 for Steam Machines.
                 "bio_simulator", GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES,
                 GTLiteTextures.BIO_SIMULATOR_OVERLAY, true,
                 GTLiteUtility::gtliteId, GTUtility.largeTankSizeFunction)
 
-            // 14316-14330: Rocket Engine
-            ROCKET_ENGINE[0] = MetaTileEntities.registerMetaTileEntity(14320, // 14316-14317 for Steam Machines, 14318-14319 for LV-MV Machines.
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("rocket_engine.hv"), GTLiteRecipeMaps.ROCKET_ENGINE_FUELS,
-                    GTLiteTextures.ROCKET_ENGINE_OVERLAY, HV, GTUtility.genericGeneratorTankSizeFunction))
+            // 316-330: Rocket Engine
+            for (tier in 0..2) // HV-EV
+            {
+                ROCKET_ENGINE[tier] = MetaTileEntities.registerMetaTileEntity(320 + tier, // 316-317 for Steam Machines, 318-319 for LV-MV Machines.
+                    SimpleGeneratorMetaTileEntity(gtliteId("rocket_engine.${VN[tier + HV].lowercase()}"),
+                        GTLiteRecipeMaps.ROCKET_ENGINE_FUELS, GTLiteTextures.ROCKET_ENGINE_OVERLAY,
+                        tier + HV, GTUtility.genericGeneratorTankSizeFunction))
+            }
 
-            ROCKET_ENGINE[1] = MetaTileEntities.registerMetaTileEntity(14321,
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("rocket_engine.ev"), GTLiteRecipeMaps.ROCKET_ENGINE_FUELS,
-                    GTLiteTextures.ROCKET_ENGINE_OVERLAY, EV, GTUtility.genericGeneratorTankSizeFunction))
+            // 331-345: Naquadah Reactor
+            for (tier in 0..3) // IV-UV
+            {
+                NAQUADAH_REACTOR[tier] = MetaTileEntities.registerMetaTileEntity(337 + tier, // 331-332 for Steam Machines, 333-336 for LV-EV Machines.
+                    SimpleGeneratorMetaTileEntity(gtliteId("naquadah_reactor.${VN[tier + IV].lowercase()}"),
+                        GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS, GTLiteTextures.NAQUADAH_REACTOR_OVERLAY,
+                        tier + IV, GTUtility.genericGeneratorTankSizeFunction))
+            }
 
-            ROCKET_ENGINE[2] = MetaTileEntities.registerMetaTileEntity(14322,
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("rocket_engine.iv"), GTLiteRecipeMaps.ROCKET_ENGINE_FUELS,
-                    GTLiteTextures.ROCKET_ENGINE_OVERLAY, IV, GTUtility.genericGeneratorTankSizeFunction))
+            // ---------------------------------------------------------------------------------------------------------
+            // 2001-4000: Several single MTEs.
 
-            // 14331-14345: Naquadah Reactor
-            NAQUADAH_REACTOR[0] = MetaTileEntities.registerMetaTileEntity(14337, // 14331-14332 for Steam Machines, 14333-14336 for LV-EV Machines.
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.iv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
-                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, IV, GTUtility.genericGeneratorTankSizeFunction))
-
-            NAQUADAH_REACTOR[1] = MetaTileEntities.registerMetaTileEntity(14338,
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.luv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
-                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, LuV, GTUtility.genericGeneratorTankSizeFunction))
-
-            NAQUADAH_REACTOR[2] = MetaTileEntities.registerMetaTileEntity(14339,
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.zpm"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
-                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, ZPM, GTUtility.genericGeneratorTankSizeFunction))
-
-            NAQUADAH_REACTOR[3] = MetaTileEntities.registerMetaTileEntity(14340,
-                SimpleGeneratorMetaTileEntity(GTLiteUtility.gtliteId("naquadah_reactor.uv"), GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
-                    GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, UV, GTUtility.genericGeneratorTankSizeFunction))
-
-            // ...
-
-            // 15001-15050: Drums and Crates.
-            IRON_DRUM = MetaTileEntities.registerMetaTileEntity(15001,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.iron"),
+            // 2001-2050: Drums and Crates
+            IRON_DRUM = MetaTileEntities.registerMetaTileEntity(2001,
+                MetaTileEntityDrum(gtliteId("drum.iron"),
                     PropertyFluidFilter(1811, true, true, false, false),
-                    false, Materials.Iron.materialRGB, 12000))
+                    false, Iron.materialRGB, 12_000))
 
-            COPPER_DRUM = MetaTileEntities.registerMetaTileEntity(15002,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.copper"), Materials.Copper, 16000))
+            COPPER_DRUM = MetaTileEntities.registerMetaTileEntity(2002,
+                MetaTileEntityDrum(gtliteId("drum.copper"), Copper, 16_000))
 
-            LEAD_DRUM = MetaTileEntities.registerMetaTileEntity(15003,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.lead"), Materials.Lead, 24000))
+            LEAD_DRUM = MetaTileEntities.registerMetaTileEntity(2003,
+                MetaTileEntityDrum(gtliteId("drum.lead"), Lead, 24_000))
 
-            CHROME_DRUM = MetaTileEntities.registerMetaTileEntity(15004,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.chrome"), Materials.Chrome, 96000))
+            CHROME_DRUM = MetaTileEntities.registerMetaTileEntity(2004,
+                MetaTileEntityDrum(gtliteId("drum.chrome"), Chrome, 96_000))
 
-            TUNGSTEN_DRUM = MetaTileEntities.registerMetaTileEntity(15005,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.tungsten"), Materials.Tungsten, 768000))
+            TUNGSTEN_DRUM = MetaTileEntities.registerMetaTileEntity(2005,
+                MetaTileEntityDrum(gtliteId("drum.tungsten"), Tungsten, 768_000))
 
-            IRIDIUM_DRUM = MetaTileEntities.registerMetaTileEntity(15006,
-                MetaTileEntityDrum(GTLiteUtility.gtliteId("drum.iridium"), Materials.Iridium, 1536000))
-
-            // ...
-
-            PE_CAN = MetaTileEntities.registerMetaTileEntity(15015,
-                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polyethylene"), Materials.Polyethylene, 64000))
-
-            PTFE_CAN = MetaTileEntities.registerMetaTileEntity(15016,
-                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polytetrafluoroethylene"), Materials.Polytetrafluoroethylene, 128000))
-
-            PBI_CAN = MetaTileEntities.registerMetaTileEntity(15017,
-                MetaTileEntityPlasticCan(GTLiteUtility.gtliteId("plastic_can.polybenzimidazole"), Materials.Polybenzimidazole, 256000))
-
-            // ...
-            IRON_CRATE = MetaTileEntities.registerMetaTileEntity(15021,
-                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.iron"), Materials.Iron, 45, 9))
-
-            COPPER_CRATE = MetaTileEntities.registerMetaTileEntity(15022,
-                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.copper"), Materials.Copper, 36, 9))
-
-            SILVER_CRATE = MetaTileEntities.registerMetaTileEntity(15023,
-                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.silver"), Materials.Silver, 63, 9))
-
-            GOLD_CRATE = MetaTileEntities.registerMetaTileEntity(15024,
-                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.gold"), Materials.Gold, 81, 9))
-
-            DIAMOND_CRATE = MetaTileEntities.registerMetaTileEntity(15025,
-                MetaTileEntityCrate(GTLiteUtility.gtliteId("crate.diamond"), Materials.Diamond, 100, 10))
+            IRIDIUM_DRUM = MetaTileEntities.registerMetaTileEntity(2006,
+                MetaTileEntityDrum(gtliteId("drum.iridium"), Iridium, 1_536_000))
 
             // ...
 
-            // 15051-15060: I/O hatch proxies.
-            INVENTORY_BRIDGE = MetaTileEntities.registerMetaTileEntity(15051,
-                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.inventory"),
+            PE_CAN = MetaTileEntities.registerMetaTileEntity(2016,
+                MetaTileEntityPlasticCan(gtliteId("plastic_can.polyethylene"), Polyethylene, 64_000))
+
+            PTFE_CAN = MetaTileEntities.registerMetaTileEntity(2017,
+                MetaTileEntityPlasticCan(gtliteId("plastic_can.polytetrafluoroethylene"), Polytetrafluoroethylene, 128_000))
+
+            PBI_CAN = MetaTileEntities.registerMetaTileEntity(2018,
+                MetaTileEntityPlasticCan(gtliteId("plastic_can.polybenzimidazole"), Polybenzimidazole, 256_000))
+
+            KEVLAR_CAN = MetaTileEntities.registerMetaTileEntity(2019,
+                MetaTileEntityPlasticCan(gtliteId("plastic_can.kevlar"), Kevlar, 512_000))
+
+            // ...
+
+            IRON_CRATE = MetaTileEntities.registerMetaTileEntity(2026,
+                MetaTileEntityCrate(gtliteId("crate.iron"), Iron, 45, 9))
+
+            COPPER_CRATE = MetaTileEntities.registerMetaTileEntity(2027,
+                MetaTileEntityCrate(gtliteId("crate.copper"), Copper, 36, 9))
+
+            SILVER_CRATE = MetaTileEntities.registerMetaTileEntity(2028,
+                MetaTileEntityCrate(gtliteId("crate.silver"), Silver, 63, 9))
+
+            GOLD_CRATE = MetaTileEntities.registerMetaTileEntity(2029,
+                MetaTileEntityCrate(gtliteId("crate.gold"), Gold, 81, 9))
+
+            DIAMOND_CRATE = MetaTileEntities.registerMetaTileEntity(2030,
+                MetaTileEntityCrate(gtliteId("crate.diamond"), Diamond, 100, 10))
+
+            // ...
+
+            // 2051-2060: Import/Export Proxies
+            INVENTORY_BRIDGE = MetaTileEntities.registerMetaTileEntity(2051,
+                MetaTileEntityBridge(gtliteId("bridge.inventory"),
                     { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
-                    GTLiteTextures.INVENTORY_BRIDGE, Materials.Steel))
+                    GTLiteTextures.INVENTORY_BRIDGE, Steel))
 
-            TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(15052,
-                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.tank"),
+            TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(2052,
+                MetaTileEntityBridge(gtliteId("bridge.tank"),
                     { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-                    GTLiteTextures.TANK_BRIDGE, Materials.Steel))
+                    GTLiteTextures.TANK_BRIDGE, Steel))
 
-            INVENTORY_TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(15053,
-                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.inventory_tank"),
+            INVENTORY_TANK_BRIDGE = MetaTileEntities.registerMetaTileEntity(2053,
+                MetaTileEntityBridge(gtliteId("bridge.inventory_tank"),
                     { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-                    GTLiteTextures.INVENTORY_TANK_BRIDGE, Materials.Steel))
+                    GTLiteTextures.INVENTORY_TANK_BRIDGE, Steel))
 
-            UNIVERSAL_BRIDGE = MetaTileEntities.registerMetaTileEntity(15054,
-                MetaTileEntityBridge(GTLiteUtility.gtliteId("bridge.universal"),
+            UNIVERSAL_BRIDGE = MetaTileEntities.registerMetaTileEntity(2054,
+                MetaTileEntityBridge(gtliteId("bridge.universal"),
                     { true },
-                    GTLiteTextures.UNIVERSAL_BRIDGE, Materials.Aluminium))
+                    GTLiteTextures.UNIVERSAL_BRIDGE, Aluminium))
 
-            INVENTORY_EXTENDER = MetaTileEntities.registerMetaTileEntity(15055,
-                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.inventory"),
+            INVENTORY_EXTENDER = MetaTileEntities.registerMetaTileEntity(2055,
+                MetaTileEntityExtender(gtliteId("extender.inventory"),
                     { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
                     GTLiteTextures.INVENTORY_EXTENDER, Materials.Steel))
 
-            TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(15056,
-                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.tank"),
+            TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(2056,
+                MetaTileEntityExtender(gtliteId("extender.tank"),
                     { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-                    GTLiteTextures.TANK_EXTENDER, Materials.Steel))
+                    GTLiteTextures.TANK_EXTENDER, Steel))
 
-            INVENTORY_TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(15057,
-                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.inventory_tank"),
+            INVENTORY_TANK_EXTENDER = MetaTileEntities.registerMetaTileEntity(2057,
+                MetaTileEntityExtender(gtliteId("extender.inventory_tank"),
                     { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-                    GTLiteTextures.INVENTORY_TANK_EXTENDER, Materials.Steel))
+                    GTLiteTextures.INVENTORY_TANK_EXTENDER, Steel))
 
-            UNIVERSAL_EXTENDER = MetaTileEntities.registerMetaTileEntity(15058,
-                MetaTileEntityExtender(GTLiteUtility.gtliteId("extender.universal"),
+            UNIVERSAL_EXTENDER = MetaTileEntities.registerMetaTileEntity(2058,
+                MetaTileEntityExtender(gtliteId("extender.universal"),
                     { true },
-                    GTLiteTextures.UNIVERSAL_EXTENDER, Materials.Aluminium))
+                    GTLiteTextures.UNIVERSAL_EXTENDER, Aluminium))
 
-            // 15061-15075: Advanced buffers.
-            BUFFER[0] = MetaTileEntities.registerMetaTileEntity(15061,
-                MetaTileEntityBuffer(GTLiteUtility.gtliteId("buffer.ev"), GTValues.EV))
-            BUFFER[1] = MetaTileEntities.registerMetaTileEntity(15062,
-                MetaTileEntityBuffer(GTLiteUtility.gtliteId("buffer.iv"), GTValues.IV))
-
-            // ...
-
-            // 16001-17000: Energy/Dynamo Hatches.
-
-            // 16001-16004: LV-HV 4A Energy Hatches.
-            ENERGY_HATCH_4A[0] = MetaTileEntities.registerMetaTileEntity(16001,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.ulv"), GTValues.ULV, 4, false))
-            ENERGY_HATCH_4A[1] = MetaTileEntities.registerMetaTileEntity(16002,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.lv"), GTValues.LV, 4, false))
-            ENERGY_HATCH_4A[2] = MetaTileEntities.registerMetaTileEntity(16003,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.mv"), GTValues.MV, 4, false))
-            ENERGY_HATCH_4A[3] = MetaTileEntities.registerMetaTileEntity(16004,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_4a.hv"), GTValues.HV, 4, false))
-
-            // 16005-16008: LV-HV 4A Dynamo Hatches.
-            DYNAMO_HATCH_4A[0] = MetaTileEntities.registerMetaTileEntity(16005,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.ulv"), GTValues.ULV, 4, true))
-            DYNAMO_HATCH_4A[1] = MetaTileEntities.registerMetaTileEntity(16006,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.lv"), GTValues.LV, 4, true))
-            DYNAMO_HATCH_4A[2] = MetaTileEntities.registerMetaTileEntity(16007,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.mv"), GTValues.MV, 4, true))
-            DYNAMO_HATCH_4A[3] = MetaTileEntities.registerMetaTileEntity(16008,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_4a.hv"), GTValues.HV, 4, true))
-
-            // 16009-16013: LV-EV 16A Energy Hatches.
-            ENERGY_HATCH_16A[0] = MetaTileEntities.registerMetaTileEntity(16009,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.ulv"), GTValues.ULV, 16, false))
-            ENERGY_HATCH_16A[1] = MetaTileEntities.registerMetaTileEntity(16010,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.lv"), GTValues.LV, 16, false))
-            ENERGY_HATCH_16A[2] = MetaTileEntities.registerMetaTileEntity(16011,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.mv"), GTValues.MV, 16, false))
-            ENERGY_HATCH_16A[3] = MetaTileEntities.registerMetaTileEntity(16012,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.hv"), GTValues.HV, 16, false))
-            ENERGY_HATCH_16A[4] = MetaTileEntities.registerMetaTileEntity(16013,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.input_16a.ev"), GTValues.EV, 16, false))
-
-            // 16014-16018: LV-EV 16A Dynamo Hatches.
-            DYNAMO_HATCH_16A[0] = MetaTileEntities.registerMetaTileEntity(16014,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.ulv"), GTValues.ULV, 16, true))
-            DYNAMO_HATCH_16A[1] = MetaTileEntities.registerMetaTileEntity(16015,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.lv"), GTValues.LV, 16, true))
-            DYNAMO_HATCH_16A[2] = MetaTileEntities.registerMetaTileEntity(16016,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.mv"), GTValues.MV, 16, true))
-            DYNAMO_HATCH_16A[3] = MetaTileEntities.registerMetaTileEntity(16017,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.hv"), GTValues.HV, 16, true))
-            DYNAMO_HATCH_16A[4] = MetaTileEntities.registerMetaTileEntity(16018,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("energy_hatch.output_16a.ev"), GTValues.EV, 16, true))
-
-            // 16019-16023 : LV-EV 64A Substation Energy Hatches.
-            SUBSTATION_ENERGY_HATCH_64A[0] = MetaTileEntities.registerMetaTileEntity(16019,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.ulv"), GTValues.ULV, 64, false))
-            SUBSTATION_ENERGY_HATCH_64A[1] = MetaTileEntities.registerMetaTileEntity(16020,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.lv"), GTValues.LV, 64, false))
-            SUBSTATION_ENERGY_HATCH_64A[2] = MetaTileEntities.registerMetaTileEntity(16021,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.mv"), GTValues.MV, 64, false))
-            SUBSTATION_ENERGY_HATCH_64A[3] = MetaTileEntities.registerMetaTileEntity(16022,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.hv"), GTValues.HV, 64, false))
-            SUBSTATION_ENERGY_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16023,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.input_64a.ev"), GTValues.EV, 64, false))
-
-            // 16024-16028: LV-EV 64A Substation Dynamo Hatches.
-            SUBSTATION_DYNAMO_HATCH_64A[0] = MetaTileEntities.registerMetaTileEntity(16024,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ulv"), GTValues.ULV, 64, true))
-            SUBSTATION_DYNAMO_HATCH_64A[1] = MetaTileEntities.registerMetaTileEntity(16025,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.lv"), GTValues.LV, 64, true))
-            SUBSTATION_DYNAMO_HATCH_64A[2] = MetaTileEntities.registerMetaTileEntity(16026,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.mv"), GTValues.MV, 64, true))
-            SUBSTATION_DYNAMO_HATCH_64A[3] = MetaTileEntities.registerMetaTileEntity(16027,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.hv"), GTValues.HV, 64, true))
-            SUBSTATION_DYNAMO_HATCH_64A[4] = MetaTileEntities.registerMetaTileEntity(16028,
-                MetaTileEntityAdvancedEnergyHatch(GTLiteUtility.gtliteId("substation_hatch.output_64a.ev"), GTValues.EV, 64, true))
-
-            // 16031-16140: IV-OpV Higher amperage laser hatches.
-            for (i in 0 until 9)
+            // 2061-2065: Advanced Buffers
+            for (tier in 0..1) // EV-IV
             {
-                val j = i + GTValues.IV
-                val voltageName = GTValues.VN[j].lowercase(Locale.getDefault())
-                LASER_INPUT_HATCH_16384[i] = MetaTileEntities.registerMetaTileEntity(16031 + i,
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_16384a.$voltageName"), j, 16384, false))
-                LASER_OUTPUT_HATCH_16384[i] = MetaTileEntities.registerMetaTileEntity(16040 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_16384a.$voltageName"), j, 16384, true))
-                LASER_INPUT_HATCH_65536[i] = MetaTileEntities.registerMetaTileEntity(16049 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_65536a.$voltageName"), j, 65536, false))
-                LASER_OUTPUT_HATCH_65536[i] = MetaTileEntities.registerMetaTileEntity(16058 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_65536a.$voltageName"), j, 65536, true))
-                LASER_INPUT_HATCH_262144[i] = MetaTileEntities.registerMetaTileEntity(16067 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_262144a.$voltageName"), j, 262144, false))
-                LASER_OUTPUT_HATCH_262144[i] = MetaTileEntities.registerMetaTileEntity(16076 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_262144a.$voltageName"), j, 262144, true))
-                LASER_INPUT_HATCH_1048576[i] = MetaTileEntities.registerMetaTileEntity(16085 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_1048576a.$voltageName"), j, 1048576, false))
-                LASER_OUTPUT_HATCH_1048576[i] = MetaTileEntities.registerMetaTileEntity(16094 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_1048576a.$voltageName"), j, 1048576, true))
-                LASER_INPUT_HATCH_4194304[i] = MetaTileEntities.registerMetaTileEntity(16103 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_4194304a.$voltageName"), j, 4194304, false))
-                LASER_OUTPUT_HATCH_4194304[i] = MetaTileEntities.registerMetaTileEntity(16112 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_4194304a.$voltageName"), j, 4194304, true))
-                LASER_INPUT_HATCH_16777216[i] = MetaTileEntities.registerMetaTileEntity(16121 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.target_16777216a.$voltageName"), j, 16777216, false))
-                LASER_OUTPUT_HATCH_16777216[i] = MetaTileEntities.registerMetaTileEntity(16130 + i, // +9
-                    MetaTileEntityAdvancedLaserHatch(GTLiteUtility.gtliteId("laser_hatch.source_16777216a.$voltageName"), j, 16777216, true))
+                BUFFER[tier] = MetaTileEntities.registerMetaTileEntity(2061 + tier,
+                    MetaTileEntityBuffer(gtliteId("buffer.${VN[tier + EV].lowercase()}"), tier + EV))
             }
 
-            // 17001-17100: Item/Fluid Hatches.
-            QUADRUPLE_FLUID_IMPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17001,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.ulv"), GTValues.ULV, 4, false))
-            QUADRUPLE_FLUID_IMPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17002,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.lv"), GTValues.LV, 4, false))
-            QUADRUPLE_FLUID_IMPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17003,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.mv"), GTValues.MV, 4, false))
-            QUADRUPLE_FLUID_IMPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17004,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_4x.hv"), GTValues.HV, 4, false))
+            // ---------------------------------------------------------------------------------------------------------
+            // 4001-10000: Multiblock Parts
 
-            QUADRUPLE_FLUID_EXPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17005,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.ulv"), GTValues.ULV, 4, true))
-            QUADRUPLE_FLUID_EXPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17006,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.lv"), GTValues.LV, 4, true))
-            QUADRUPLE_FLUID_EXPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17007,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.mv"), GTValues.MV, 4, true))
-            QUADRUPLE_FLUID_EXPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17008,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_4x.hv"), GTValues.HV, 4, true))
+            // 4001-5000: (Wireless/Substation) Energy/Dynamo Hatches and Laser Target/Source Hatches.
 
-            NONUPLE_FLUID_IMPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17009,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.ulv"), GTValues.ULV, 9, false))
-            NONUPLE_FLUID_IMPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17010,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.lv"), GTValues.LV, 9, false))
-            NONUPLE_FLUID_IMPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17011,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.mv"), GTValues.MV, 9, false))
-            NONUPLE_FLUID_IMPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17012,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.import_9x.hv"), GTValues.HV, 9, false))
+            // 4001-4004: ULV-HV 4A Energy Hatches.
+            for (tier in 0..3)
+            {
+                ENERGY_HATCH_4A[tier] = MetaTileEntities.registerMetaTileEntity(4001 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("energy_hatch.input_4a.${VN[tier].lowercase()}"),
+                        tier, 4, false))
+            }
 
-            NONUPLE_FLUID_EXPORT_HATCH[0] = MetaTileEntities.registerMetaTileEntity(17013,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.ulv"), GTValues.ULV, 9, true))
-            NONUPLE_FLUID_EXPORT_HATCH[1] = MetaTileEntities.registerMetaTileEntity(17014,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.lv"), GTValues.LV, 9, true))
-            NONUPLE_FLUID_EXPORT_HATCH[2] = MetaTileEntities.registerMetaTileEntity(17015,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.mv"), GTValues.MV, 9, true))
-            NONUPLE_FLUID_EXPORT_HATCH[3] = MetaTileEntities.registerMetaTileEntity(17016,
-                MetaTileEntityAdvancedMultiFluidHatch(GTLiteUtility.gtliteId("fluid_hatch.export_9x.hv"), GTValues.HV, 9, true))
+            // 4005-4008: ULV-HV 4A Dynamo Hatches
+            for (tier in 0..3)
+            {
+                DYNAMO_HATCH_4A[tier] = MetaTileEntities.registerMetaTileEntity(4005 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("energy_hatch.output_4a.${VN[tier].lowercase()}"),
+                        tier, 4, true))
+            }
 
-            // 18001-20000 Multiblocks
-            COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(18001,
-                MetaTileEntityCoagulationTank(GTLiteUtility.gtliteId("coagulation_tank")))
+            // 4009-4013: ULV-EV 16A Energy Hatches.
+            for (tier in 0..4)
+            {
+                ENERGY_HATCH_16A[tier] = MetaTileEntities.registerMetaTileEntity(4009 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("energy_hatch.input_16a.${VN[tier].lowercase()}"),
+                        tier, 16, false))
+            }
 
-            STEAM_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18002,
-                MetaTileEntitySteamCompressor(GTLiteUtility.gtliteId("steam_compressor")))
+            // 4014-4018: ULV-EV 16A Dynamo Hatches.
+            for (tier in 0..4)
+            {
+                DYNAMO_HATCH_16A[tier] = MetaTileEntities.registerMetaTileEntity(4014 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("energy_hatch.output_16a.${VN[tier].lowercase()}"),
+                        tier, 16, true))
+            }
 
-            STEAM_ALLOY_SMELTER = MetaTileEntities.registerMetaTileEntity(18003,
-                MetaTileEntitySteamAlloySmelter(GTLiteUtility.gtliteId("steam_alloy_smelter")))
+            // 4019-4023 : ULV-EV 64A Substation Energy Hatches.
+            for (tier in 0..4)
+            {
+                SUBSTATION_ENERGY_HATCH_64A[tier] = MetaTileEntities.registerMetaTileEntity(4019 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("substation_hatch.input_64a.${VN[tier].lowercase()}"),
+                        tier, 64, false))
+            }
 
-            STEAM_ENGINE = MetaTileEntities.registerMetaTileEntity(18004,
-                MetaTileEntitySteamEngine(GTLiteUtility.gtliteId("steam_engine")))
+            // 4024-4028: ULV-EV 64A Substation Dynamo Hatches.
+            for (tier in 0..4)
+            {
+                SUBSTATION_DYNAMO_HATCH_64A[tier] = MetaTileEntities.registerMetaTileEntity(4024 + tier,
+                    MetaTileEntityAdvancedEnergyHatch(gtliteId("substation_hatch.output_64a.${VN[tier].lowercase()}"),
+                        tier, 64, true))
+            }
 
-            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = MetaTileEntities.registerMetaTileEntity(18005,
-                MetaTileEntityIndustrialPrimitiveBlastFurnace(GTLiteUtility.gtliteId("industrial_primitive_blast_furnace")))
+            // 4031-4140: IV-OpV Hi-Amp Laser Target/Source Hatches.
+            for (tier in 0..8)
+            {
+                val voltageTier = tier + IV
+                val voltageName = VN[voltageTier].lowercase()
 
-            MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(18006,
-                MetaTileEntityMiningDroneAirport(GTLiteUtility.gtliteId("mining_drone_airport")))
+                LASER_INPUT_HATCH_16384[tier] = MetaTileEntities.registerMetaTileEntity(4031 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_16384a.${voltageName}"),
+                        voltageTier, 16_384, false))
 
-            // 18007 ...
+                LASER_OUTPUT_HATCH_16384[tier] = MetaTileEntities.registerMetaTileEntity(4040 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_16384a.${voltageName}"),
+                        voltageTier, 16_384, true))
 
-            NUCLEAR_REACTOR = MetaTileEntities.registerMetaTileEntity(18008,
-                MetaTileEntityNuclearReactor(GTLiteUtility.gtliteId("nuclear_reactor")))
+                LASER_INPUT_HATCH_65536[tier] = MetaTileEntities.registerMetaTileEntity(4049 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_65536a.${voltageName}"),
+                        voltageTier, 65_536, false))
 
-            HOT_COOLANT_TURBINE = MetaTileEntities.registerMetaTileEntity(18009,
-                MetaTileEntityLargeTurbine(GTLiteUtility.gtliteId("large_turbine.hot_coolant"), GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS, EV,
+                LASER_OUTPUT_HATCH_65536[tier] = MetaTileEntities.registerMetaTileEntity(4058 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_65536a.${voltageName}"),
+                        voltageTier, 65_536, true))
+
+                LASER_INPUT_HATCH_262144[tier] = MetaTileEntities.registerMetaTileEntity(4067 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_262144a.${voltageName}"),
+                        voltageTier, 262_144, false))
+
+                LASER_OUTPUT_HATCH_262144[tier] = MetaTileEntities.registerMetaTileEntity(4076 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_262144a.${voltageName}"),
+                        voltageTier, 262_144, true))
+
+                LASER_INPUT_HATCH_1048576[tier] = MetaTileEntities.registerMetaTileEntity(4085 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_1048576a.${voltageName}"),
+                        voltageTier, 1_048_576, false))
+
+                LASER_OUTPUT_HATCH_1048576[tier] = MetaTileEntities.registerMetaTileEntity(4094 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_1048576a.${voltageName}"),
+                        voltageTier, 1_048_576, true))
+
+                LASER_INPUT_HATCH_4194304[tier] = MetaTileEntities.registerMetaTileEntity(4103 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_4194304a.${voltageName}"),
+                        voltageTier, 4_194_304, false))
+
+                LASER_OUTPUT_HATCH_4194304[tier] = MetaTileEntities.registerMetaTileEntity(4112 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_4194304a.${voltageName}"),
+                        voltageTier, 4_194_304, true))
+
+                LASER_INPUT_HATCH_16777216[tier] = MetaTileEntities.registerMetaTileEntity(4121 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.target_16777216a.${voltageName}"),
+                        voltageTier, 16_777_216, false))
+
+                LASER_OUTPUT_HATCH_16777216[tier] = MetaTileEntities.registerMetaTileEntity(4130 + tier,
+                    MetaTileEntityAdvancedLaserHatch(gtliteId("laser_hatch.source_16777216a.${voltageName}"),
+                        voltageTier, 16_777_216, true))
+            }
+
+            // TODO Wireless Energy/Dynamo Hatches
+
+            // 5001-5100: Item Import/Export Buses and Fluid Import/Export Hatches
+
+            // 5001-5004: ULV-HV Quadruple Fluid Import Hatches
+            for (tier in 0..3)
+            {
+                QUADRUPLE_FLUID_IMPORT_HATCH[tier] = MetaTileEntities.registerMetaTileEntity(5001 + tier,
+                    MetaTileEntityAdvancedMultiFluidHatch(gtliteId("fluid_hatch.import_4x.${VN[tier].lowercase()}"),
+                        tier, 4, false))
+            }
+
+            // 5005-5008: ULV-HV Quadruple Fluid Export Hatches
+            for (tier in 0..3)
+            {
+                QUADRUPLE_FLUID_EXPORT_HATCH[tier] = MetaTileEntities.registerMetaTileEntity(5005 + tier,
+                    MetaTileEntityAdvancedMultiFluidHatch(gtliteId("fluid_hatch.export_4x.${VN[tier].lowercase()}"),
+                        tier, 4, true))
+            }
+
+            // 5009-5012: ULV-HV Nonuple Fluid Import Hatches
+            for (tier in 0..3)
+            {
+                NONUPLE_FLUID_IMPORT_HATCH[tier] = MetaTileEntities.registerMetaTileEntity(5009 + tier,
+                    MetaTileEntityAdvancedMultiFluidHatch(gtliteId("fluid_hatch.import_9x.${VN[tier].lowercase()}"),
+                        tier, 9, false))
+            }
+
+            // 5013-5016: ULV-HV Nonuple Fluid Export Hatches
+            for (tier in 0..3)
+            {
+                NONUPLE_FLUID_EXPORT_HATCH[tier] = MetaTileEntities.registerMetaTileEntity(5013 + tier,
+                    MetaTileEntityAdvancedMultiFluidHatch(gtliteId("fluid_hatch.export_9x.${VN[tier].lowercase()}"),
+                        tier, 9, true))
+            }
+
+            // ---------------------------------------------------------------------------------------------------------
+            // 10001-20000 Multiblock Machines
+
+            COAGULATION_TANK = MetaTileEntities.registerMetaTileEntity(10001,
+                MetaTileEntityCoagulationTank(gtliteId("coagulation_tank")))
+
+            STEAM_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(10002,
+                MetaTileEntitySteamCompressor(gtliteId("steam_compressor")))
+
+            STEAM_ALLOY_SMELTER = MetaTileEntities.registerMetaTileEntity(10003,
+                MetaTileEntitySteamAlloySmelter(gtliteId("steam_alloy_smelter")))
+
+            STEAM_ENGINE = MetaTileEntities.registerMetaTileEntity(10004,
+                MetaTileEntitySteamEngine(gtliteId("steam_engine")))
+
+            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = MetaTileEntities.registerMetaTileEntity(10005,
+                MetaTileEntityIndustrialPrimitiveBlastFurnace(gtliteId("industrial_primitive_blast_furnace")))
+
+            MINING_DRONE_AIRPORT = MetaTileEntities.registerMetaTileEntity(10006,
+                MetaTileEntityMiningDroneAirport(gtliteId("mining_drone_airport")))
+
+            // 10007 ...
+
+            NUCLEAR_REACTOR = MetaTileEntities.registerMetaTileEntity(10008,
+                MetaTileEntityNuclearReactor(gtliteId("nuclear_reactor")))
+
+            HOT_COOLANT_TURBINE = MetaTileEntities.registerMetaTileEntity(10009,
+                MetaTileEntityLargeTurbine(gtliteId("large_turbine.hot_coolant"),
+                    GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS, EV,
                     MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_TURBINE_CASING),
                     MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_GEARBOX),
                     Textures.STABLE_TITANIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
-            SUPERCRITICAL_FLUID_TURBINE = MetaTileEntities.registerMetaTileEntity(18010,
-                MetaTileEntityLargeTurbine(GTLiteUtility.gtliteId("large_turbine.supercritical_fluid"), GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS, LuV,
+            SUPERCRITICAL_FLUID_TURBINE = MetaTileEntities.registerMetaTileEntity(10010,
+                MetaTileEntityLargeTurbine(gtliteId("large_turbine.supercritical_fluid"),
+                    GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS, LuV,
                     GTLiteMetaBlocks.TURBINE_CASING_01.getState(BlockTurbineCasing01.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_TURBINE),
                     GTLiteMetaBlocks.TURBINE_CASING_02.getState(BlockTurbineCasing02.TurbineCasingType.RHODIUM_PLATED_PALLADIUM_GEARBOX),
                     GTLiteTextures.RHODIUM_PLATED_PALLADIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
-            CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(18011,
-                MetaTileEntityCatalyticReformer(GTLiteUtility.gtliteId("catalytic_reformer")))
+            CATALYTIC_REFORMER = MetaTileEntities.registerMetaTileEntity(10011,
+                MetaTileEntityCatalyticReformer(gtliteId("catalytic_reformer")))
 
-            CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18012,
-                MetaTileEntityCVDUnit(GTLiteUtility.gtliteId("cvd_unit")))
+            CVD_UNIT = MetaTileEntities.registerMetaTileEntity(10012,
+                MetaTileEntityCVDUnit(gtliteId("cvd_unit")))
 
-            CRYSTALLIZATION_CRUCIBLE = MetaTileEntities.registerMetaTileEntity(18013,
-                MetaTileEntityCrystallizationCrucible(GTLiteUtility.gtliteId("crystallization_crucible")))
+            CRYSTALLIZATION_CRUCIBLE = MetaTileEntities.registerMetaTileEntity(10013,
+                MetaTileEntityCrystallizationCrucible(gtliteId("crystallization_crucible")))
 
-            NANOSCALE_FABRICATOR = MetaTileEntities.registerMetaTileEntity(18014,
-                MetaTileEntityNanoscaleFabricator(GTLiteUtility.gtliteId("nanoscale_fabricator")))
+            NANOSCALE_FABRICATOR = MetaTileEntities.registerMetaTileEntity(10014,
+                MetaTileEntityNanoscaleFabricator(gtliteId("nanoscale_fabricator")))
 
-            SONICATOR = MetaTileEntities.registerMetaTileEntity(18015,
-                MetaTileEntitySonicator(GTLiteUtility.gtliteId("sonicator")))
+            SONICATOR = MetaTileEntities.registerMetaTileEntity(10015,
+                MetaTileEntitySonicator(gtliteId("sonicator")))
 
-            LASER_INDUCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18016,
-                MetaTileEntityLaserInducedCVDUnit(GTLiteUtility.gtliteId("laser_induced_cvd_unit")))
+            LASER_INDUCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(10016,
+                MetaTileEntityLaserInducedCVDUnit(gtliteId("laser_induced_cvd_unit")))
 
-            BEDROCK_DRILLING_RIG = MetaTileEntities.registerMetaTileEntity(18017,
-                MetaTileEntityBedrockDrillingRig(GTLiteUtility.gtliteId("bedrock_drilling_rig")))
+            BEDROCK_DRILLING_RIG = MetaTileEntities.registerMetaTileEntity(10017,
+                MetaTileEntityBedrockDrillingRig(gtliteId("bedrock_drilling_rig")))
 
-            FUSION_REACTOR_MK4 = MetaTileEntities.registerMetaTileEntity(18018,
-                MetaTileEntityFusionReactors(GTLiteUtility.gtliteId("fusion_reactor.uhv"), GTValues.UHV))
+            FUSION_REACTOR_MK4 = MetaTileEntities.registerMetaTileEntity(10018,
+                MetaTileEntityFusionReactors(gtliteId("fusion_reactor.uhv"), GTValues.UHV))
 
-            FUSION_REACTOR_MK5 = MetaTileEntities.registerMetaTileEntity(18019,
-                MetaTileEntityFusionReactors(GTLiteUtility.gtliteId("fusion_reactor.uev"), GTValues.UEV))
+            FUSION_REACTOR_MK5 = MetaTileEntities.registerMetaTileEntity(10019,
+                MetaTileEntityFusionReactors(gtliteId("fusion_reactor.uev"), GTValues.UEV))
 
-            ADVANCED_FUSION_REACTOR = MetaTileEntities.registerMetaTileEntity(18020,
-                MetaTileEntityAdvancedFusionReactor(GTLiteUtility.gtliteId("advanced_fusion_reactor")))
+            ADVANCED_FUSION_REACTOR = MetaTileEntities.registerMetaTileEntity(10020,
+                MetaTileEntityAdvancedFusionReactor(gtliteId("advanced_fusion_reactor")))
 
-            COMPONENT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(18021,
-                MetaTileEntityComponentAssemblyLine(GTLiteUtility.gtliteId("component_assembly_line")))
+            COMPONENT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(10021,
+                MetaTileEntityComponentAssemblyLine(gtliteId("component_assembly_line")))
 
-            COSMIC_RAY_DETECTOR = MetaTileEntities.registerMetaTileEntity(18022,
-                MetaTileEntityCosmicRayDetector(GTLiteUtility.gtliteId("cosmic_ray_detector")))
+            COSMIC_RAY_DETECTOR = MetaTileEntities.registerMetaTileEntity(10022,
+                MetaTileEntityCosmicRayDetector(gtliteId("cosmic_ray_detector")))
 
-            STELLAR_FORGE = MetaTileEntities.registerMetaTileEntity(18023,
-                MetaTileEntityStellarForge(GTLiteUtility.gtliteId("stellar_forge")))
+            STELLAR_FORGE = MetaTileEntities.registerMetaTileEntity(10023,
+                MetaTileEntityStellarForge(gtliteId("stellar_forge")))
 
-            PLASMA_ENHANCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(18024,
-                MetaTileEntityPlasmaEnhancedCVDUnit(GTLiteUtility.gtliteId("plasma_enhanced_cvd_unit")))
+            PLASMA_ENHANCED_CVD_UNIT = MetaTileEntities.registerMetaTileEntity(10024,
+                MetaTileEntityPlasmaEnhancedCVDUnit(gtliteId("plasma_enhanced_cvd_unit")))
 
-            PCB_FACTORY = MetaTileEntities.registerMetaTileEntity(18025,
-                MetaTileEntityPCBFactory(GTLiteUtility.gtliteId("pcb_factory")))
+            PCB_FACTORY = MetaTileEntities.registerMetaTileEntity(10025,
+                MetaTileEntityPCBFactory(gtliteId("pcb_factory")))
 
-            NANO_FORGE = MetaTileEntities.registerMetaTileEntity(18026,
-                MetaTileEntityNanoForge(GTLiteUtility.gtliteId("nano_forge")))
+            NANO_FORGE = MetaTileEntities.registerMetaTileEntity(10026,
+                MetaTileEntityNanoForge(gtliteId("nano_forge")))
 
-            QUANTUM_FORCE_TRANSFORMER = MetaTileEntities.registerMetaTileEntity(18027,
-                MetaTileEntityQuantumForceTransformer(GTLiteUtility.gtliteId("quantum_force_transformer")))
+            QUANTUM_FORCE_TRANSFORMER = MetaTileEntities.registerMetaTileEntity(10027,
+                MetaTileEntityQuantumForceTransformer(gtliteId("quantum_force_transformer")))
 
-            ANTIMATTER_FORGE = MetaTileEntities.registerMetaTileEntity(18028,
-                MetaTileEntityAntimatterForge(GTLiteUtility.gtliteId("antimatter_forge")))
+            ANTIMATTER_FORGE = MetaTileEntities.registerMetaTileEntity(10028,
+                MetaTileEntityAntimatterForge(gtliteId("antimatter_forge")))
 
-            ANTIMATTER_GENERATOR = MetaTileEntities.registerMetaTileEntity(18029,
-                MetaTileEntityAntimatterGenerator(GTLiteUtility.gtliteId("antimatter_generator")))
+            ANTIMATTER_GENERATOR = MetaTileEntities.registerMetaTileEntity(10029,
+                MetaTileEntityAntimatterGenerator(gtliteId("antimatter_generator")))
 
-            SPACE_ELEVATOR = MetaTileEntities.registerMetaTileEntity(18030,
-                MetaTileEntitySpaceElevator(GTLiteUtility.gtliteId("space_elevator")))
+            SPACE_ELEVATOR = MetaTileEntities.registerMetaTileEntity(10030,
+                MetaTileEntitySpaceElevator(gtliteId("space_elevator")))
 
-            SPACE_ASSEMBLER_MK1 = MetaTileEntities.registerMetaTileEntity(18031,
-                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk1"), UHV, 1, 1))
+            SPACE_ASSEMBLER_MK1 = MetaTileEntities.registerMetaTileEntity(10031,
+                MetaTileEntitySpaceAssembler(gtliteId("space_assembler_module.mk1"),
+                    UHV, 1, 1))
 
-            SPACE_ASSEMBLER_MK2 = MetaTileEntities.registerMetaTileEntity(18032, // For spintronic soc?
-                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk2"), UEV, 2, 3))
+            SPACE_ASSEMBLER_MK2 = MetaTileEntities.registerMetaTileEntity(10032,
+                MetaTileEntitySpaceAssembler(gtliteId("space_assembler_module.mk2"),
+                    UEV, 2, 3))
 
-            SPACE_ASSEMBLER_MK3 = MetaTileEntities.registerMetaTileEntity(18033, // For cosmic circuits, so it is UIV.
-                MetaTileEntitySpaceAssembler(GTLiteUtility.gtliteId("space_assembler_module.mk3"), UIV, 3, 5))
+            SPACE_ASSEMBLER_MK3 = MetaTileEntities.registerMetaTileEntity(10033,
+                MetaTileEntitySpaceAssembler(gtliteId("space_assembler_module.mk3"),
+                    UIV, 3, 5))
 
-            // SPACE_MINER_MK1 18034
-            // SPACE_MINER_MK2 18035
-            // SPACE_MINER_MK3 18036
+            // SPACE_MINER_MK1 10034
+            // SPACE_MINER_MK2 10035
+            // SPACE_MINER_MK3 10036
 
-            SPACE_PUMP_MK1 = MetaTileEntities.registerMetaTileEntity(18037,
-                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk1"), UV, 1, 1))
+            SPACE_PUMP_MK1 = MetaTileEntities.registerMetaTileEntity(10037,
+                MetaTileEntitySpacePump(gtliteId("space_pump_module.mk1"),
+                    UV, 1, 1))
 
-            SPACE_PUMP_MK2 = MetaTileEntities.registerMetaTileEntity(18038,
-                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk2"), UHV, 2, 2))
+            SPACE_PUMP_MK2 = MetaTileEntities.registerMetaTileEntity(10038,
+                MetaTileEntitySpacePump(gtliteId("space_pump_module.mk2"),
+                    UHV, 2, 2))
 
-            SPACE_PUMP_MK3 = MetaTileEntities.registerMetaTileEntity(18039,
-                MetaTileEntitySpacePump(GTLiteUtility.gtliteId("space_pump_module.mk3"), UEV, 3, 4))
+            SPACE_PUMP_MK3 = MetaTileEntities.registerMetaTileEntity(10039,
+                MetaTileEntitySpacePump(gtliteId("space_pump_module.mk3"),
+                    UEV, 3, 4))
 
-            // DYSON_SWARM_GROUND_UNIT 18040
+            // DYSON_SWARM_GROUND_UNIT 10040
 
-            ENERGY_INFUSER = MetaTileEntities.registerMetaTileEntity(18041,
-                MetaTileEntityEnergyInfuser(GTLiteUtility.gtliteId("energy_infuser")))
+            ENERGY_INFUSER = MetaTileEntities.registerMetaTileEntity(10041,
+                MetaTileEntityEnergyInfuser(gtliteId("energy_infuser")))
 
-            LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(18101,
-                MetaTileEntityLargeForgeHammer(GTLiteUtility.gtliteId("large_forge_hammer")))
+            // ...
 
-            LARGE_BENDER = MetaTileEntities.registerMetaTileEntity(18102,
-                MetaTileEntityLargeBender(GTLiteUtility.gtliteId("large_bender")))
+            LARGE_FORGE_HAMMER = MetaTileEntities.registerMetaTileEntity(10101,
+                MetaTileEntityLargeForgeHammer(gtliteId("large_forge_hammer")))
 
-            LARGE_CUTTER = MetaTileEntities.registerMetaTileEntity(18103,
-                MetaTileEntityLargeCutter(GTLiteUtility.gtliteId("large_cutter")))
+            LARGE_BENDER = MetaTileEntities.registerMetaTileEntity(10102,
+                MetaTileEntityLargeBender(gtliteId("large_bender")))
 
-            LARGE_EXTRUDER = MetaTileEntities.registerMetaTileEntity(18104,
-                MetaTileEntityLargeExtruder(GTLiteUtility.gtliteId("large_extruder")))
+            LARGE_CUTTER = MetaTileEntities.registerMetaTileEntity(10103,
+                MetaTileEntityLargeCutter(gtliteId("large_cutter")))
 
-            LARGE_WIREMILL = MetaTileEntities.registerMetaTileEntity(18105,
-                MetaTileEntityLargeWiremill(GTLiteUtility.gtliteId("large_wiremill")))
+            LARGE_EXTRUDER = MetaTileEntities.registerMetaTileEntity(10104,
+                MetaTileEntityLargeExtruder(gtliteId("large_extruder")))
 
-            LARGE_MIXER = MetaTileEntities.registerMetaTileEntity(18106,
-                MetaTileEntityLargeMixer(GTLiteUtility.gtliteId("large_mixer")))
+            LARGE_WIREMILL = MetaTileEntities.registerMetaTileEntity(10105,
+                MetaTileEntityLargeWiremill(gtliteId("large_wiremill")))
 
-            LARGE_EXTRACTOR = MetaTileEntities.registerMetaTileEntity(18107,
-                MetaTileEntityLargeExtractor(GTLiteUtility.gtliteId("large_extractor")))
+            LARGE_MIXER = MetaTileEntities.registerMetaTileEntity(10106,
+                MetaTileEntityLargeMixer(gtliteId("large_mixer")))
 
-            LARGE_ASSEMBLER = MetaTileEntities.registerMetaTileEntity(18108,
-                MetaTileEntityLargeAssembler(GTLiteUtility.gtliteId("large_assembler")))
+            LARGE_EXTRACTOR = MetaTileEntities.registerMetaTileEntity(10107,
+                MetaTileEntityLargeExtractor(gtliteId("large_extractor")))
 
-            LARGE_LASER_ENGRAVER = MetaTileEntities.registerMetaTileEntity(18109,
-                MetaTileEntityLargeLaserEngraver(GTLiteUtility.gtliteId("large_laser_engraver")))
+            LARGE_ASSEMBLER = MetaTileEntities.registerMetaTileEntity(10108,
+                MetaTileEntityLargeAssembler(gtliteId("large_assembler")))
 
-            LARGE_FLUID_SOLIDIFIER = MetaTileEntities.registerMetaTileEntity(18110,
-                MetaTileEntityLargeFluidSolidifier(GTLiteUtility.gtliteId("large_fluid_solidifier")))
+            LARGE_LASER_ENGRAVER = MetaTileEntities.registerMetaTileEntity(10109,
+                MetaTileEntityLargeLaserEngraver(gtliteId("large_laser_engraver")))
 
-            LARGE_BREWERY = MetaTileEntities.registerMetaTileEntity(18111,
-                MetaTileEntityLargeBrewery(GTLiteUtility.gtliteId("large_brewery")))
+            LARGE_FLUID_SOLIDIFIER = MetaTileEntities.registerMetaTileEntity(10110,
+                MetaTileEntityLargeFluidSolidifier(gtliteId("large_fluid_solidifier")))
 
-            LARGE_AUTOCLAVE = MetaTileEntities.registerMetaTileEntity(18112,
-                MetaTileEntityLargeAutoclave(GTLiteUtility.gtliteId("large_autoclave")))
+            LARGE_BREWERY = MetaTileEntities.registerMetaTileEntity(10111,
+                MetaTileEntityLargeBrewery(gtliteId("large_brewery")))
 
-            LARGE_ARC_FURNACE = MetaTileEntities.registerMetaTileEntity(18113,
-                MetaTileEntityLargeArcFurnace(GTLiteUtility.gtliteId("large_arc_furnace")))
+            LARGE_AUTOCLAVE = MetaTileEntities.registerMetaTileEntity(10112,
+                MetaTileEntityLargeAutoclave(gtliteId("large_autoclave")))
 
-            LARGE_MACERATOR = MetaTileEntities.registerMetaTileEntity(18114,
-                MetaTileEntityLargeMacerator(GTLiteUtility.gtliteId("large_macerator")))
+            LARGE_ARC_FURNACE = MetaTileEntities.registerMetaTileEntity(10113,
+                MetaTileEntityLargeArcFurnace(gtliteId("large_arc_furnace")))
 
-            LARGE_CENTRIFUGE = MetaTileEntities.registerMetaTileEntity(18115,
-                MetaTileEntityLargeCentrifuge(GTLiteUtility.gtliteId("large_centrifuge")))
+            LARGE_MACERATOR = MetaTileEntities.registerMetaTileEntity(10114,
+                MetaTileEntityLargeMacerator(gtliteId("large_macerator")))
 
-            LARGE_SIFTER = MetaTileEntities.registerMetaTileEntity(18116,
-                MetaTileEntityLargeSifter(GTLiteUtility.gtliteId("large_sifter")))
+            LARGE_CENTRIFUGE = MetaTileEntities.registerMetaTileEntity(10115,
+                MetaTileEntityLargeCentrifuge(gtliteId("large_centrifuge")))
 
-            LARGE_ELECTROLYZER = MetaTileEntities.registerMetaTileEntity(18117,
-                MetaTileEntityLargeElectrolyzer(GTLiteUtility.gtliteId("large_electrolyzer")))
+            LARGE_SIFTER = MetaTileEntities.registerMetaTileEntity(10116,
+                MetaTileEntityLargeSifter(gtliteId("large_sifter")))
 
-            LARGE_ORE_WASHER = MetaTileEntities.registerMetaTileEntity(18118,
-                MetaTileEntityLargeOreWasher(GTLiteUtility.gtliteId("large_ore_washer")))
+            LARGE_ELECTROLYZER = MetaTileEntities.registerMetaTileEntity(10117,
+                MetaTileEntityLargeElectrolyzer(gtliteId("large_electrolyzer")))
 
-            LARGE_ELECTROMAGNET = MetaTileEntities.registerMetaTileEntity(18119,
-                MetaTileEntityLargeElectromagnet(GTLiteUtility.gtliteId("large_electromagnet")))
+            LARGE_ORE_WASHER = MetaTileEntities.registerMetaTileEntity(10118,
+                MetaTileEntityLargeOreWasher(gtliteId("large_ore_washer")))
 
-            LARGE_DISTILLERY = MetaTileEntities.registerMetaTileEntity(18120,
-                MetaTileEntityLargeDistillery(GTLiteUtility.gtliteId("large_distillery")))
+            LARGE_ELECTROMAGNET = MetaTileEntities.registerMetaTileEntity(10119,
+                MetaTileEntityLargeElectromagnet(gtliteId("large_electromagnet")))
 
-            LARGE_BIO_REACTOR = MetaTileEntities.registerMetaTileEntity(18121,
-                MetaTileEntityLargeBioReactor(GTLiteUtility.gtliteId("large_bio_reactor")))
+            LARGE_DISTILLERY = MetaTileEntities.registerMetaTileEntity(10120,
+                MetaTileEntityLargeDistillery(gtliteId("large_distillery")))
 
-            LARGE_PACKER = MetaTileEntities.registerMetaTileEntity(18122,
-                MetaTileEntityLargePacker(GTLiteUtility.gtliteId("large_packer")))
+            LARGE_BIO_REACTOR = MetaTileEntities.registerMetaTileEntity(10121,
+                MetaTileEntityLargeBioReactor(gtliteId("large_bio_reactor")))
 
-            LARGE_GAS_COLLECTOR = MetaTileEntities.registerMetaTileEntity(18123,
-                MetaTileEntityLargeGasCollector(GTLiteUtility.gtliteId("large_gas_collector")))
+            LARGE_PACKER = MetaTileEntities.registerMetaTileEntity(10122,
+                MetaTileEntityLargePacker(gtliteId("large_packer")))
 
-            LARGE_ROCK_BREAKER = MetaTileEntities.registerMetaTileEntity(18124,
-                MetaTileEntityLargeRockBreaker(GTLiteUtility.gtliteId("large_rock_breaker")))
+            LARGE_GAS_COLLECTOR = MetaTileEntities.registerMetaTileEntity(10123,
+                MetaTileEntityLargeGasCollector(gtliteId("large_gas_collector")))
 
-            LARGE_BURNER_REACTOR = MetaTileEntities.registerMetaTileEntity(18125,
-                MetaTileEntityLargeBurnerReactor(GTLiteUtility.gtliteId("large_burner_reactor")))
+            LARGE_ROCK_BREAKER = MetaTileEntities.registerMetaTileEntity(10124,
+                MetaTileEntityLargeRockBreaker(gtliteId("large_rock_breaker")))
 
-            LARGE_CRYOGENIC_REACTOR = MetaTileEntities.registerMetaTileEntity(18126,
-                MetaTileEntityLargeCryogenicReactor(GTLiteUtility.gtliteId("large_cryogenic_reactor")))
+            LARGE_BURNER_REACTOR = MetaTileEntities.registerMetaTileEntity(10125,
+                MetaTileEntityLargeBurnerReactor(gtliteId("large_burner_reactor")))
 
-            ELECTRIC_IMPLOSION_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(18127,
-                MetaTileEntityElectricImplosionCompressor(GTLiteUtility.gtliteId("electric_implosion_compressor")))
+            LARGE_CRYOGENIC_REACTOR = MetaTileEntities.registerMetaTileEntity(10126,
+                MetaTileEntityLargeCryogenicReactor(gtliteId("large_cryogenic_reactor")))
 
-            ALLOY_BLAST_SMELTER = MetaTileEntities.registerMetaTileEntity(18128,
-                MetaTileEntityAlloyBlastSmelter(GTLiteUtility.gtliteId("alloy_blast_smelter")))
+            ELECTRIC_IMPLOSION_COMPRESSOR = MetaTileEntities.registerMetaTileEntity(10127,
+                MetaTileEntityElectricImplosionCompressor(gtliteId("electric_implosion_compressor")))
 
-            VOLCANUS = MetaTileEntities.registerMetaTileEntity(18129,
-                MetaTileEntityVolcanus(GTLiteUtility.gtliteId("volcanus")))
+            ALLOY_BLAST_SMELTER = MetaTileEntities.registerMetaTileEntity(10128,
+                MetaTileEntityAlloyBlastSmelter(gtliteId("alloy_blast_smelter")))
 
-            CRYOGENIC_FREEZER = MetaTileEntities.registerMetaTileEntity(18130,
-                MetaTileEntityCryogenicFreezer(GTLiteUtility.gtliteId("cryogenic_freezer")))
+            VOLCANUS = MetaTileEntities.registerMetaTileEntity(10129,
+                MetaTileEntityVolcanus(gtliteId("volcanus")))
 
-            CHEMICAL_PLANT = MetaTileEntities.registerMetaTileEntity(18131,
-                MetaTileEntityChemicalPlant(GTLiteUtility.gtliteId("chemical_plant")))
+            CRYOGENIC_FREEZER = MetaTileEntities.registerMetaTileEntity(10130,
+                MetaTileEntityCryogenicFreezer(gtliteId("cryogenic_freezer")))
 
-            INDUSTRIAL_COKE_OVEN = MetaTileEntities.registerMetaTileEntity(18132,
-                MetaTileEntityIndustrialCokeOven(GTLiteUtility.gtliteId("industrial_coke_oven")))
+            CHEMICAL_PLANT = MetaTileEntities.registerMetaTileEntity(10131,
+                MetaTileEntityChemicalPlant(gtliteId("chemical_plant")))
 
-            LARGE_MASS_FABRICATOR = MetaTileEntities.registerMetaTileEntity(18133,
-                MetaTileEntityLargeMassFabricator(GTLiteUtility.gtliteId("large_mass_fabricator")))
+            INDUSTRIAL_COKE_OVEN = MetaTileEntities.registerMetaTileEntity(10132,
+                MetaTileEntityIndustrialCokeOven(gtliteId("industrial_coke_oven")))
 
-            LARGE_REPLICATOR = MetaTileEntities.registerMetaTileEntity(18134,
-                MetaTileEntityLargeReplicator(GTLiteUtility.gtliteId("large_replicator")))
+            LARGE_MASS_FABRICATOR = MetaTileEntities.registerMetaTileEntity(10133,
+                MetaTileEntityLargeMassFabricator(gtliteId("large_mass_fabricator")))
 
-            CIRCUIT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(18135,
-                MetaTileEntityCircuitAssemblyLine(GTLiteUtility.gtliteId("circuit_assembly_line")))
+            LARGE_REPLICATOR = MetaTileEntities.registerMetaTileEntity(10134,
+                MetaTileEntityLargeReplicator(gtliteId("large_replicator")))
 
-            LARGE_FOOD_PROCESSOR = MetaTileEntities.registerMetaTileEntity(18136,
-                MetaTileEntityLargeFoodProcessor(GTLiteUtility.gtliteId("large_food_processor")))
+            CIRCUIT_ASSEMBLY_LINE = MetaTileEntities.registerMetaTileEntity(10135,
+                MetaTileEntityCircuitAssemblyLine(gtliteId("circuit_assembly_line")))
 
-            LARGE_ROCKET_ENGINE = MetaTileEntities.registerMetaTileEntity(18137,
-                MetaTileEntityLargeRocketEngine(GTLiteUtility.gtliteId("large_rocket_engine")))
+            LARGE_FOOD_PROCESSOR = MetaTileEntities.registerMetaTileEntity(10136,
+                MetaTileEntityLargeFoodProcessor(gtliteId("large_food_processor")))
 
-            LARGE_NAQUADAH_REACTOR = MetaTileEntities.registerMetaTileEntity(18138,
-                MetaTileEntityLargeNaquadahReactor(GTLiteUtility.gtliteId("large_naquadah_reactor")))
+            LARGE_ROCKET_ENGINE = MetaTileEntities.registerMetaTileEntity(10137,
+                MetaTileEntityLargeRocketEngine(gtliteId("large_rocket_engine")))
+
+            LARGE_NAQUADAH_REACTOR = MetaTileEntities.registerMetaTileEntity(10138,
+                MetaTileEntityLargeNaquadahReactor(gtliteId("large_naquadah_reactor")))
 
             // ADVANCED_ASSEMBLY_LINE
 
@@ -1033,152 +993,153 @@ class GTLiteMetaTileEntities
         @JvmStatic
         fun postInit()
         {
-            POLISHER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            SLICER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            TOOL_CASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LOOM.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LAMINATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            CHEMICAL_DEHYDRATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            STEAM_VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            STEAM_VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            STEAM_SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            GREENHOUSE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            BIO_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            STEAM_ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            BURNER_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            BATH_CONDENSER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            CRYOGENIC_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            MASS_FABRICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            REPLICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            FOOD_PROCESSOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            MULTICOOKER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            MOB_EXTRACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            BIO_SIMULATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            ROCKET_ENGINE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            NAQUADAH_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            POLISHER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            SLICER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            TOOL_CASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LOOM.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LAMINATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            CHEMICAL_DEHYDRATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            STEAM_VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            VULCANIZING_PRESS.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            STEAM_VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            VACUUM_CHAMBER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            STEAM_SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            SAP_COLLECTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            GREENHOUSE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            BIO_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            STEAM_ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            ROASTER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            BURNER_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            BATH_CONDENSER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            CRYOGENIC_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            MASS_FABRICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            REPLICATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            FOOD_PROCESSOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            MULTICOOKER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            MOB_EXTRACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            BIO_SIMULATOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            ROCKET_ENGINE.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            NAQUADAH_REACTOR.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
 
-            IRON_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            COPPER_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LEAD_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CHROME_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            TUNGSTEN_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            IRIDIUM_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            IRON_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            COPPER_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LEAD_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CHROME_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            TUNGSTEN_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            IRIDIUM_DRUM.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            PE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            PTFE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            PBI_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            PE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            PTFE_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            PBI_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            KEVLAR_CAN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            INVENTORY_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            TANK_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            INVENTORY_TANK_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            UNIVERSAL_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            INVENTORY_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            TANK_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            INVENTORY_TANK_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            UNIVERSAL_BRIDGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            INVENTORY_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            TANK_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            INVENTORY_TANK_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            UNIVERSAL_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            INVENTORY_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            TANK_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            INVENTORY_TANK_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            UNIVERSAL_EXTENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            BUFFER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            BUFFER.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
 
-            ENERGY_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            DYNAMO_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            ENERGY_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            DYNAMO_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            SUBSTATION_ENERGY_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            SUBSTATION_DYNAMO_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            ENERGY_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            DYNAMO_HATCH_4A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            ENERGY_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            DYNAMO_HATCH_16A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            SUBSTATION_ENERGY_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            SUBSTATION_DYNAMO_HATCH_64A.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
 
-            LASER_INPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_INPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_INPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_INPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_INPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_INPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            LASER_OUTPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            LASER_INPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_16384.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_INPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_65536.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_INPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_262144.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_INPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_1048576.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_INPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_4194304.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_INPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            LASER_OUTPUT_HATCH_16777216.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
 
-            QUADRUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            QUADRUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            NONUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
-            NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs) }
+            QUADRUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            QUADRUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            NONUPLE_FLUID_IMPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
+            NONUPLE_FLUID_EXPORT_HATCH.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE) }
 
-            COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            STEAM_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            STEAM_ALLOY_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            STEAM_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            NUCLEAR_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            HOT_COOLANT_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SUPERCRITICAL_FLUID_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            COAGULATION_TANK.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            STEAM_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            STEAM_ALLOY_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            STEAM_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            MINING_DRONE_AIRPORT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            NUCLEAR_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            HOT_COOLANT_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SUPERCRITICAL_FLUID_TURBINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SONICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LASER_INDUCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            BEDROCK_DRILLING_RIG.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            FUSION_REACTOR_MK4.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            FUSION_REACTOR_MK5.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            ADVANCED_FUSION_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            COMPONENT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            COSMIC_RAY_DETECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            STELLAR_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            PLASMA_ENHANCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            PCB_FACTORY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            NANO_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            QUANTUM_FORCE_TRANSFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            ANTIMATTER_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            ANTIMATTER_GENERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SPACE_ELEVATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SPACE_ASSEMBLER_MK1.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SPACE_ASSEMBLER_MK2.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            SPACE_ASSEMBLER_MK3.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            CATALYTIC_REFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CRYSTALLIZATION_CRUCIBLE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            NANOSCALE_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SONICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LASER_INDUCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            BEDROCK_DRILLING_RIG.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            FUSION_REACTOR_MK4.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            FUSION_REACTOR_MK5.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            ADVANCED_FUSION_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            COMPONENT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            COSMIC_RAY_DETECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            STELLAR_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            PLASMA_ENHANCED_CVD_UNIT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            PCB_FACTORY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            NANO_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            QUANTUM_FORCE_TRANSFORMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            ANTIMATTER_FORGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            ANTIMATTER_GENERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SPACE_ELEVATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SPACE_ASSEMBLER_MK1.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SPACE_ASSEMBLER_MK2.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            SPACE_ASSEMBLER_MK3.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
 
-            LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_CUTTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_EXTRUDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_WIREMILL.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_MIXER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_EXTRACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ASSEMBLER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_LASER_ENGRAVER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_FLUID_SOLIDIFIER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_BREWERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_AUTOCLAVE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ARC_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_MACERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_CENTRIFUGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_SIFTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ELECTROLYZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ORE_WASHER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ELECTROMAGNET.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_DISTILLERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_PACKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_GAS_COLLECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ROCK_BREAKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_BURNER_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_CRYOGENIC_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            ELECTRIC_IMPLOSION_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            ALLOY_BLAST_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            VOLCANUS.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_MASS_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            CIRCUIT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_FOOD_PROCESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_ROCKET_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
-            LARGE_NAQUADAH_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE as CreativeTabs)
+            LARGE_FORGE_HAMMER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_BENDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_CUTTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_EXTRUDER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_WIREMILL.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_MIXER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_EXTRACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ASSEMBLER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_LASER_ENGRAVER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_FLUID_SOLIDIFIER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_BREWERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_AUTOCLAVE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ARC_FURNACE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_MACERATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_CENTRIFUGE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_SIFTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ELECTROLYZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ORE_WASHER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ELECTROMAGNET.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_DISTILLERY.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_PACKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_GAS_COLLECTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ROCK_BREAKER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_BURNER_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_CRYOGENIC_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            ELECTRIC_IMPLOSION_COMPRESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            ALLOY_BLAST_SMELTER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            VOLCANUS.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CRYOGENIC_FREEZER.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CHEMICAL_PLANT.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            INDUSTRIAL_COKE_OVEN.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_MASS_FABRICATOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            CIRCUIT_ASSEMBLY_LINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_FOOD_PROCESSOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_ROCKET_ENGINE.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
+            LARGE_NAQUADAH_REACTOR.addAdditionalCreativeTabs(GTLiteAPI.TAB_GTLITE_MACHINE)
         }
 
         private fun registerSteamMetaTileEntity(machines: Array<SimpleSteamMachineMetaTileEntity?>, startId: Int,

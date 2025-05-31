@@ -2612,6 +2612,7 @@ gtlitecore.machine.drum.iridium.name=铱桶
 gtlitecore.machine.plastic_can.polyethylene.name=聚乙烯塑料桶
 gtlitecore.machine.plastic_can.polytetrafluoroethylene.name=聚四氟乙烯塑料桶
 gtlitecore.machine.plastic_can.polybenzimidazole.name=聚苯并咪唑塑料桶
+gtlitecore.machine.plastic_can.kevlar.name=凯芙拉塑料桶
 
 gtlitecore.machine.crate.iron.name=铁板条箱
 gtlitecore.machine.crate.copper.name=铜板条箱

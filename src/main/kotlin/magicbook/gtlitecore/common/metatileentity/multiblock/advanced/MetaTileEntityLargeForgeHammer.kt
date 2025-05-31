@@ -37,11 +37,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityLargeForgeHammer(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
 {
 
@@ -93,7 +91,7 @@ class MetaTileEntityLargeForgeHammer(metaTileEntityId: ResourceLocation?) : Mult
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("SME", "I J", "KPL", "CCC")
             .where('S', GTLiteMetaTileEntities.LARGE_FORGE_HAMMER, EnumFacing.SOUTH)
@@ -106,14 +104,14 @@ class MetaTileEntityLargeForgeHammer(metaTileEntityId: ResourceLocation?) : Mult
             .where('L', MetaTileEntities.FLUID_EXPORT_HATCH[ULV], EnumFacing.SOUTH)
         GTLiteAPI.MAP_PISTON_CASING.entries
             .sortedBy { entry -> (entry.value as WrappedIntTier).getIntTier() }
-            .forEach(Consumer { entry -> shapeInfo.add(builder.where('P', entry.key).build()) })
+            .forEach { entry -> shapeInfo.add(builder.where('P', entry.key).build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote && casingTier == 0)
+        if (world.isRemote && casingTier == 0)
             writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
     }
 
@@ -138,10 +136,7 @@ class MetaTileEntityLargeForgeHammer(metaTileEntityId: ResourceLocation?) : Mult
         casingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.large_forge_hammer.tooltip.1"))
@@ -152,10 +147,10 @@ class MetaTileEntityLargeForgeHammer(metaTileEntityId: ResourceLocation?) : Mult
 
     override fun canBeDistinct() = true
 
-    inner class LargeForgeHammerRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class LargeForgeHammerRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {
