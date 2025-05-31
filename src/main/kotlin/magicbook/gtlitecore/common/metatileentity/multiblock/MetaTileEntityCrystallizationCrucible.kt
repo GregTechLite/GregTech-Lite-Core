@@ -68,7 +68,6 @@ import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, CRYSTALLIZATION_RECIPES), IHeatingCoil
 {
 
@@ -182,23 +181,20 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
         val count = AtomicInteger()
         StreamEx.of(motorCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('M', b)
-                    builder.where('H', heatingCoils[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('M', b)
+                builder.where('H', heatingCoils[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (motorCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -220,10 +216,7 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
             coilTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.1"))
@@ -239,8 +232,7 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
     override fun addDisplayText(textList: List<ITextComponent>)
     {
         MultiblockDisplayText.builder(textList, isStructureFormed)
-            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled,
-                recipeMapWorkable.isActive)
+            .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
             .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { tl ->
@@ -249,7 +241,7 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
                     val temperatureInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers(temperature))
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
                 }
             }
             .addParallelsLine(recipeMapWorkable.parallelLimit)
@@ -263,7 +255,7 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
         val temperatureInfo = translationWithColor(TextFormatting.RED,
             formatNumbers(temperature) + " K")
         textList.add(translationWithColor(TextFormatting.GRAY,
-            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo) as ITextComponent)
+            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
         return textList
     }
 
@@ -276,12 +268,12 @@ class MetaTileEntityCrystallizationCrucible(metaTileEntityId: ResourceLocation?)
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    override fun getCurrentTemperature(): Int = temperature
+    override fun getCurrentTemperature() = temperature
 
-    inner class CrystallizationCrucibleRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(metaTileEntity)
+    private inner class CrystallizationCrucibleRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {

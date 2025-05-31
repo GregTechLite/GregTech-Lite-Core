@@ -30,7 +30,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityAntimatterGenerator(metaTileEntityId: ResourceLocation?) : FuelMultiblockController(metaTileEntityId, ANTIMATTER_GENERATOR_FUELS, MAX)
 {
 
@@ -131,10 +130,7 @@ class MetaTileEntityAntimatterGenerator(metaTileEntityId: ResourceLocation?) : F
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ANTIMATTER_FORGE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_generator.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_generator.tooltip.2"))
@@ -154,7 +150,7 @@ class MetaTileEntityAntimatterGenerator(metaTileEntityId: ResourceLocation?) : F
 
     override fun hasMaintenanceMechanics() = false
 
-    inner class AntimatterGeneratorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
+    private inner class AntimatterGeneratorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
     {
 
         override fun isAllowOverclocking() = true

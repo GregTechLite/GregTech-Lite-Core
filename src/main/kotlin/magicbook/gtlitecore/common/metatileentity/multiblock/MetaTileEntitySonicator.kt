@@ -52,7 +52,6 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntitySonicator(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, SONICATION_RECIPES)
 {
 
@@ -169,30 +168,27 @@ class MetaTileEntitySonicator(metaTileEntityId: ResourceLocation?) : RecipeMapMu
         val count = AtomicInteger()
         StreamEx.of(motorCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('M', b)
-                    builder.where('Q', pumpCasings[count.get()])
-                    builder.where('G', borosilicateGlasses[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('M', b)
+                builder.where('Q', pumpCasings[count.get()])
+                builder.where('G', borosilicateGlasses[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
-            if (this.motorCasingTier == 0)
+            if (motorCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
-            if (this.pumpCasingTier == 0)
+            if (pumpCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_SUB_TIERED_MACHINE) { _: PacketBuffer? -> }
-            if (this.glassTier == 0)
+            if (glassTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_MINOR_TIERED_MACHINE) { _: PacketBuffer? -> }
         }
     }
@@ -214,10 +210,7 @@ class MetaTileEntitySonicator(metaTileEntityId: ResourceLocation?) : RecipeMapMu
             glassTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.sonicator.tooltip.1"))
@@ -230,17 +223,17 @@ class MetaTileEntitySonicator(metaTileEntityId: ResourceLocation?) : RecipeMapMu
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class SonicatorRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class SonicatorRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (glassTier >= GTValues.UV - 3) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (glassTier >= GTValues.UV - 3) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {
             super.setMaxProgress(floor(maxProgress * 0.8.pow(min(motorCasingTier, pumpCasingTier))).toInt())
         }
 
-        override fun getParallelLimit(): Int = 4 * getTierByVoltage(maxVoltage)
+        override fun getParallelLimit() = 4 * getTierByVoltage(maxVoltage)
 
     }
 

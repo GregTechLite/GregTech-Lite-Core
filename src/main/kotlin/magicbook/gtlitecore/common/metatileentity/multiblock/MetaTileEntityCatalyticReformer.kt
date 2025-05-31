@@ -1,6 +1,5 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.capability.IControllable
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
@@ -18,8 +17,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
-class MetaTileEntityCatalyticReformer(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, CATALYTIC_REFORMER_RECIPES), IControllable
+class MetaTileEntityCatalyticReformer(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, CATALYTIC_REFORMER_RECIPES)
 {
 
     companion object
@@ -55,49 +53,5 @@ class MetaTileEntityCatalyticReformer(metaTileEntityId: ResourceLocation?) : Rec
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
     override fun hasMufflerMechanics() = true
-
-    // @Suppress("UnstableApiUsage")
-    // override fun usesMui2() = true
-
-    // override fun buildUI(guiData: PosGuiData, guiSyncManager: PanelSyncManager): ModularPanel
-    // {
-    //     return MultiblockUIFactory(this)
-    //         .configureDisplayText(this::configureDisplayText)
-    //         .configureWarningText(this::configureWarningText)
-    //         .configureErrorText(this::configureErrorText)
-    //         .buildUI(guiData, guiSyncManager, GTLiteMuiTextures.DISPLAY)
-    // }
-
-    // private fun configureDisplayText(builder: MultiblockUIBuilder)
-    // {
-    //     builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
-    //         .addEnergyUsageLine(getEnergyContainer())
-    //         .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
-    //         .addParallelsLine(recipeMapWorkable.parallelLimit)
-    //         .addWorkingStatusLine()
-    //         .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
-    // }
-
-    // private fun configureWarningText(builder: MultiblockUIBuilder)
-    // {
-    //     builder.addLowPowerLine(recipeMapWorkable.isHasNotEnoughEnergy)
-    //     builder.addMaintenanceProblemLines(maintenanceProblems, true)
-    // }
-
-    // private fun configureErrorText(builder: MultiblockUIBuilder)
-    // {
-    //     builder.structureFormed(isStructureFormed)
-    //     if (hasMufflerMechanics())
-    //         builder.addMufflerObstructedLine(!isMufflerFaceFree)
-    //     if (hasMaintenanceMechanics())
-    //         builder.addMaintenanceProblemLines(maintenanceProblems, false)
-    // }
-
-    override fun isWorkingEnabled(): Boolean = recipeMapWorkable.isWorkingEnabled
-
-    override fun setWorkingEnabled(workingEnabled: Boolean)
-    {
-        recipeMapWorkable.isWorkingEnabled = workingEnabled
-    }
 
 }

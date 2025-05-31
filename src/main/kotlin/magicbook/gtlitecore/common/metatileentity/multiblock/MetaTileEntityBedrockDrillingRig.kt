@@ -59,11 +59,9 @@ import net.minecraftforge.items.IItemHandlerModifiable
 import one.util.streamex.StreamEx
 import org.jetbrains.annotations.ApiStatus
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityBedrockDrillingRig(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, DRILLING_RECIPES)
 {
 
@@ -181,7 +179,6 @@ class MetaTileEntityBedrockDrillingRig(metaTileEntityId: ResourceLocation?) : Re
         return@TraceabilityPredicate true
     }
 
-
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.SOLID_STEEL_CASING
 
@@ -190,7 +187,7 @@ class MetaTileEntityBedrockDrillingRig(metaTileEntityId: ResourceLocation?) : Re
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("       ", "XXXXXXX", "X     X", "X     X", "X     X", "X     X", "X     X", "XXXXXXX")
             .aisle("       ", "X     X", "       ", " F   F ", "       ", "       ", "       ", "X  F  X")
@@ -215,23 +212,20 @@ class MetaTileEntityBedrockDrillingRig(metaTileEntityId: ResourceLocation?) : Re
         val count = AtomicInteger()
         StreamEx.of(pistonCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('O', b)
-                    builder.where('Q', motorCasings[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('O', b)
+                builder.where('Q', motorCasings[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (pistonCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -274,7 +268,7 @@ class MetaTileEntityBedrockDrillingRig(metaTileEntityId: ResourceLocation?) : Re
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class BedrockDrillingRigWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class BedrockDrillingRigWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
     {
 
         override fun getMetaTileEntity() = super.getMetaTileEntity() as MetaTileEntityBedrockDrillingRig

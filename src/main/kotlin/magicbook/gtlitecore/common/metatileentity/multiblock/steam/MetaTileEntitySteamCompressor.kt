@@ -23,7 +23,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntitySteamCompressor(metaTileEntityId: ResourceLocation?) : RecipeMapSteamMultiblockController(metaTileEntityId, COMPRESSOR_RECIPES, CONVERSION_RATE)
 {
 

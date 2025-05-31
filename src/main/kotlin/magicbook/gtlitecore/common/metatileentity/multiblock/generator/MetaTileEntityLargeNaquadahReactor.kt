@@ -24,6 +24,7 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.util.TextComponentUtil.stringWithColor
 import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtech.api.util.TextFormattingUtil.formatNumbers
@@ -51,7 +52,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : FuelMultiblockController(metaTileEntityId, NAQUADAH_REACTOR_FUELS, UV), IProgressBarMultiblock
 {
 
@@ -130,15 +130,12 @@ class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : 
             .addCustom { tl ->
                 if (isStructureFormed && recipeLogic.isPlasmaOxygenBoosted)
                     tl.add(translationWithColor(TextFormatting.AQUA,
-                        "gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted") as ITextComponent)
+                        "gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted"))
             }
             .addWorkingStatusLine()
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.universal.tooltip.base_production_eut", V[UHV]))
@@ -155,7 +152,7 @@ class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : 
         var plasmaOxygenAmount = IntArray(2)
         if (inputFluidInventory != null)
         {
-            val plasmaOxygenStack = Materials.Oxygen.getPlasma(Int.MAX_VALUE)
+            val plasmaOxygenStack = Oxygen.getPlasma(Int.MAX_VALUE)
             plasmaOxygenAmount = getTotalFluidAmount(plasmaOxygenStack, inputFluidInventory)
         }
         return if (plasmaOxygenAmount[1] != 0) 1.0 * plasmaOxygenAmount[0] / plasmaOxygenAmount[1] else 0.0
@@ -167,7 +164,7 @@ class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : 
         var plasmaOxygenCapacity = 0
         if (isStructureFormed && inputFluidInventory != null)
         {
-            val plasmaOxygenStack = Materials.Oxygen.getPlasma(Int.MAX_VALUE)
+            val plasmaOxygenStack = Oxygen.getPlasma(Int.MAX_VALUE)
             val plasmaOxygenAmount = getTotalFluidAmount(plasmaOxygenStack, inputFluidInventory)
             plasmaOxygenStored = plasmaOxygenAmount[0]
             plasmaOxygenCapacity = plasmaOxygenAmount[1]
@@ -176,19 +173,19 @@ class MetaTileEntityLargeNaquadahReactor(metaTileEntityId: ResourceLocation?) : 
             formatNumbers(plasmaOxygenStored) + " / " + formatNumbers(plasmaOxygenCapacity) + " L")
 
         hoverList.add(translationWithColor(TextFormatting.GRAY,
-            "gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount", plasmaOxygenInfo) as ITextComponent)
+            "gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount", plasmaOxygenInfo))
     }
 
     override fun getProgressBarTexture(index: Int): TextureArea = GTLiteGuiTextures.PROGRESS_BAR_LNR_PLASMA_OXYGEN
 
-    inner class LargeNaquadahReactorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
+    private inner class LargeNaquadahReactorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
     {
 
         private var naquadahReactor: MetaTileEntityLargeNaquadahReactor? = null
 
         var isPlasmaOxygenBoosted = false
 
-        private val PLASMA_OXYGEN_STACK: FluidStack = Materials.Oxygen.getPlasma(50)
+        private val PLASMA_OXYGEN_STACK: FluidStack = Oxygen.getPlasma(50)
 
         init
         {

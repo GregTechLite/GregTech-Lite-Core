@@ -19,6 +19,9 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.CarbonDioxide
+import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.LiquidAir
 import gregtech.api.util.TextComponentUtil.stringWithColor
 import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtech.api.util.TextFormattingUtil.formatNumbers
@@ -42,7 +45,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : FuelMultiblockController(metaTileEntityId, ROCKET_ENGINE_FUELS, IV), IProgressBarMultiblock
 {
 
@@ -99,14 +101,14 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
     override fun addDisplayText(textList: MutableList<ITextComponent>?)
     {
         val recipeLogic = recipeMapWorkable as LargeRocketEngineWorkableHandler
-        val builder = MultiblockDisplayText.builder(textList, isStructureFormed)
+        MultiblockDisplayText.builder(textList, isStructureFormed)
             .setWorkingStatus(recipeLogic.isWorkingEnabled, recipeLogic.isActive)
             .addEnergyProductionLine(V[LuV], recipeLogic.recipeEUt)
             .addFuelNeededLine(recipeLogic.recipeFluidInputInfo, recipeLogic.previousRecipeDuration)
             .addCustom { tl ->
                 if (isStructureFormed && recipeLogic.isHydrogenBoosted)
                     tl.add(translationWithColor(TextFormatting.AQUA,
-                        "gtlitecore.machine.large_rocket_engine.hydrogen_boosted") as ITextComponent)
+                        "gtlitecore.machine.large_rocket_engine.hydrogen_boosted"))
             }
             .addWorkingStatusLine()
     }
@@ -133,7 +135,7 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                 var hydrogenAmount = IntArray(2)
                 if (inputFluidInventory != null)
                 {
-                    val hydrogenStack = Materials.Hydrogen.getFluid(Int.MAX_VALUE)
+                    val hydrogenStack = Hydrogen.getFluid(Int.MAX_VALUE)
                     hydrogenAmount = getTotalFluidAmount(hydrogenStack, inputFluidInventory)
                 }
                 return if (hydrogenAmount[1] != 0) 1.0 * hydrogenAmount[0] / hydrogenAmount[1] else 0.0
@@ -142,7 +144,7 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                 var liquidAirAmount = IntArray(2)
                 if (inputFluidInventory != null)
                 {
-                    val liquidAirStack = Materials.LiquidAir.getFluid(Int.MAX_VALUE)
+                    val liquidAirStack = LiquidAir.getFluid(Int.MAX_VALUE)
                     liquidAirAmount = getTotalFluidAmount(liquidAirStack, inputFluidInventory)
                 }
                 return if (liquidAirAmount[1] != 0) 1.0 * liquidAirAmount[0] / liquidAirAmount[1] else 0.0
@@ -151,7 +153,7 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                 var carbonDioxideAmount = IntArray(2)
                 if (inputFluidInventory != null)
                 {
-                    val carbonDioxideStack = Materials.CarbonDioxide.getFluid(Int.MAX_VALUE)
+                    val carbonDioxideStack = CarbonDioxide.getFluid(Int.MAX_VALUE)
                     carbonDioxideAmount = getTotalFluidAmount(carbonDioxideStack, inputFluidInventory)
                 }
                 return if (carbonDioxideAmount[1] != 0) 1.0 * carbonDioxideAmount[0] / carbonDioxideAmount[1] else 0.0
@@ -168,7 +170,7 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                 var hydrogenCapacity = 0
                 if (isStructureFormed && inputFluidInventory != null)
                 {
-                    val hydrogenStack = Materials.Hydrogen.getFluid(Int.MAX_VALUE)
+                    val hydrogenStack = Hydrogen.getFluid(Int.MAX_VALUE)
                     val hydrogenAmount = getTotalFluidAmount(hydrogenStack, inputFluidInventory)
                     hydrogenStored = hydrogenAmount[0]
                     hydrogenCapacity = hydrogenAmount[1]
@@ -177,14 +179,14 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                     formatNumbers(hydrogenStored) + " / " + formatNumbers(hydrogenCapacity) + " L")
 
                 hoverList.add(translationWithColor(TextFormatting.GRAY,
-                    "gtlitecore.machine.large_rocket_engine.hydrogen_amount", hydrogenInfo) as ITextComponent)
+                    "gtlitecore.machine.large_rocket_engine.hydrogen_amount", hydrogenInfo))
             }
             1 -> {
                 var liquidAirStored = 0
                 var liquidAirCapacity = 0
                 if (isStructureFormed && inputFluidInventory != null)
                 {
-                    val liquidAirStack = Materials.LiquidAir.getFluid(Int.MAX_VALUE)
+                    val liquidAirStack = LiquidAir.getFluid(Int.MAX_VALUE)
                     val liquidAirAmount = getTotalFluidAmount(liquidAirStack, inputFluidInventory)
                     liquidAirStored = liquidAirAmount[0]
                     liquidAirCapacity = liquidAirAmount[1]
@@ -193,14 +195,14 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                     formatNumbers(liquidAirStored) + " / " + formatNumbers(liquidAirCapacity) + " L")
 
                 hoverList.add(translationWithColor(TextFormatting.GRAY,
-                    "gtlitecore.machine.large_rocket_engine.liquid_air_amount", liquidAirInfo) as ITextComponent)
+                    "gtlitecore.machine.large_rocket_engine.liquid_air_amount", liquidAirInfo))
             }
             else -> {
                 var carbonDioxideStored = 0
                 var carbonDioxideCapacity = 0
                 if (isStructureFormed && inputFluidInventory != null)
                 {
-                    val carbonDioxideStack = Materials.CarbonDioxide.getFluid(Int.MAX_VALUE)
+                    val carbonDioxideStack = CarbonDioxide.getFluid(Int.MAX_VALUE)
                     val carbonDioxideAmount = getTotalFluidAmount(carbonDioxideStack, inputFluidInventory)
                     carbonDioxideStored = carbonDioxideAmount[0]
                     carbonDioxideCapacity = carbonDioxideAmount[1]
@@ -209,7 +211,7 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
                     formatNumbers(carbonDioxideStored) + " / " + formatNumbers(carbonDioxideCapacity) + " L")
 
                 hoverList.add(translationWithColor(TextFormatting.GRAY,
-                    "gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount", carbonDioxideInfo) as ITextComponent)
+                    "gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount", carbonDioxideInfo))
             }
         }
     }
@@ -228,9 +230,9 @@ class MetaTileEntityLargeRocketEngine(metaTileEntityId: ResourceLocation?) : Fue
 
         var isHydrogenBoosted = false
 
-        private val HYDROGEN_STACK: FluidStack = Materials.Hydrogen.getFluid(80)
-        private val LIQUID_AIR_STACK: FluidStack = Materials.LiquidAir.getFluid(8000)
-        private val CARBON_DIOXIDE_STACK: FluidStack = Materials.CarbonDioxide.getFluid(200)
+        private val HYDROGEN_STACK: FluidStack = Hydrogen.getFluid(80)
+        private val LIQUID_AIR_STACK: FluidStack = LiquidAir.getFluid(8000)
+        private val CARBON_DIOXIDE_STACK: FluidStack = CarbonDioxide.getFluid(200)
 
         init
         {

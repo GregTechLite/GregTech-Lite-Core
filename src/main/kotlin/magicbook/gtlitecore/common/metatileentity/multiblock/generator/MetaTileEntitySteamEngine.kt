@@ -6,6 +6,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.RecipeMaps.STEAM_TURBINE_FUELS
@@ -24,7 +25,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultiblockController(metaTileEntityId, STEAM_TURBINE_FUELS, MV)
 {
 
@@ -50,7 +50,7 @@ class MetaTileEntitySteamEngine(metaTileEntityId: ResourceLocation) : FuelMultib
             .or(autoAbilities(false, true, true, true, true, true, false)))
         .where('G', states(gearboxCasingState))
         .where('E', energyOutputPredicate(MV))
-        .where('M', abilities(MultiblockAbility.MUFFLER_HATCH))
+        .where('M', abilities(MUFFLER_HATCH))
         .where(' ', any())
         .build()
 

@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.capabilities.Capability
 import java.util.function.Predicate
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityBridge(metaTileEntityId: ResourceLocation,
                            capabilityFilter: Predicate<Capability<*>>,
                            private val renderer: ICubeRenderer,

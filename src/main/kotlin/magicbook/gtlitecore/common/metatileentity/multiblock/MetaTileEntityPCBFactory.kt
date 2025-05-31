@@ -11,7 +11,6 @@ import gregtech.api.gui.widgets.ClickButtonWidget
 import gregtech.api.gui.widgets.WidgetGroup
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
@@ -69,15 +68,12 @@ import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
-import net.minecraftforge.items.IItemHandler
-import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.floor
 
 /**
  * TODO Redo structure pattern checking with Mui2 and patterning structures when GTCEu merged related
  *      pull (patterning MTEs and Mui2 rework).
  */
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, PCB_FACTORY_RECIPES)
 {
 
@@ -360,10 +356,7 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
         return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.1"))
@@ -397,15 +390,15 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
                     if (coolingUpgradeNumber > 0)
                     {
                         tl.add(translationWithColor(TextFormatting.AQUA,
-                            "gtlitecore.machine.pcb_factory.structure_cooling") as ITextComponent)
+                            "gtlitecore.machine.pcb_factory.structure_cooling"))
                         if (coolingUpgradeNumber == 2)
                             tl.add(translationWithColor(TextFormatting.BLUE,
-                                "gtlitecore.machine.pcb_factory.structure_thermosink") as ITextComponent)
+                                "gtlitecore.machine.pcb_factory.structure_thermosink"))
                     }
                     // Auxiliary structure tier
                     if (auxiliaryUpgradeNumber == 1)
                         tl.add(translationWithColor(TextFormatting.GREEN,
-                            "gtlitecore.machine.pcb_factory.structure_bio_chamber") as ITextComponent)
+                            "gtlitecore.machine.pcb_factory.structure_bio_chamber"))
                 }
             }
             .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
@@ -437,10 +430,10 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
                 && recipe.getProperty(PCBFactoryAuxiliaryTieredProperty.getInstance(), 0)!! <= auxiliaryUpgradeNumber
     }
 
-    inner class PCBFactoryRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class PCBFactoryRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = when (coolingUpgradeNumber)
+        override fun getOverclockingDurationFactor() = when (coolingUpgradeNumber)
         {
             0 -> 1.0  // Non OC
             1 -> 0.5 // Normal OC
@@ -448,10 +441,7 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
             else -> 0.0 // Error OC
         }
 
-        override fun getParallelLimit(): Int
-        {
-            return calculateParallelByNanites()
-        }
+        override fun getParallelLimit() = calculateParallelByNanites()
 
         override fun setMaxProgress(maxProgress: Int)
         {
@@ -499,8 +489,8 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
 
         private fun calculateParallelByNanites(): Int
         {
-            val itemInputInventory: List<IItemHandlerModifiable> = getAbilities(MultiblockAbility.IMPORT_ITEMS)
-            val itemInputs: IItemHandlerModifiable = ItemHandlerList(itemInputInventory as List<IItemHandler>)
+            val itemInputInventory = getAbilities(IMPORT_ITEMS)
+            val itemInputs = ItemHandlerList(itemInputInventory)
             var parallelBase = 0
             for (i in 0 until itemInputs.slots)
             {
@@ -509,7 +499,6 @@ class MetaTileEntityPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapM
                 {
                     if (itemInputs.getStackInSlot(i).isItemEqual(OreDictUnifier.get(nanite, Silver)))
                         return parallelBase * 2
-
                 }
                 if (mainUpgradeNumber == 3)
                 {

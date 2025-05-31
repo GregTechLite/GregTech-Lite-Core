@@ -62,7 +62,6 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityPlasmaEnhancedCVDUnit(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(PLASMA_CVD_RECIPES, CRYSTALLIZATION_RECIPES, MOLECULAR_BEAM_RECIPES, SONICATION_RECIPES))
 {
 
@@ -208,25 +207,22 @@ class MetaTileEntityPlasmaEnhancedCVDUnit(metaTileEntityId: ResourceLocation?) :
         val count = AtomicInteger()
         StreamEx.of(emitterCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('R', b)
-                    builder.where('T', sensorCasings[count.get()])
-                    builder.where('F', fieldGenCasings[count.get()])
-                    builder.where('P', pumpCasings[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('R', b)
+                builder.where('T', sensorCasings[count.get()])
+                builder.where('F', fieldGenCasings[count.get()])
+                builder.where('P', pumpCasings[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (emitterCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -260,10 +256,7 @@ class MetaTileEntityPlasmaEnhancedCVDUnit(metaTileEntityId: ResourceLocation?) :
             pumpCasingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"));
@@ -278,7 +271,7 @@ class MetaTileEntityPlasmaEnhancedCVDUnit(metaTileEntityId: ResourceLocation?) :
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class PlasmaEnhancedCVDRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class PlasmaEnhancedCVDRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity, true)
     {
 
         override fun setMaxProgress(maxProgress: Int)

@@ -18,7 +18,6 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import org.apache.commons.lang3.ArrayUtils
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityPlasticCan : MetaTileEntityDrum
 {
 
@@ -27,19 +26,18 @@ class MetaTileEntityPlasticCan : MetaTileEntityDrum
     constructor(metaTileEntityId: ResourceLocation?, material: Material,
                 tankSize: Int) : super(metaTileEntityId, material, tankSize)
     {
-        this.inner = this as MetaTileEntityDrumAccessor
+        inner = this as MetaTileEntityDrumAccessor
     }
 
     constructor(metaTileEntityId: ResourceLocation?, fluidFilter: IPropertyFluidFilter,
                 color: Int, tankSize: Int) : super(metaTileEntityId, fluidFilter, false, color, tankSize)
     {
-        this.inner = this as MetaTileEntityDrumAccessor
+        inner = this as MetaTileEntityDrumAccessor
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): MetaTileEntity
-        = MetaTileEntityPlasticCan(this.metaTileEntityId, this.inner.fluidFilter,
-                this.inner.color, this.inner.tankSize)
-
+        = MetaTileEntityPlasticCan(metaTileEntityId, inner.fluidFilter,
+                inner.color, inner.tankSize)
 
     override fun renderMetaTileEntity(renderState: CCRenderState,
                                       translation: Matrix4,

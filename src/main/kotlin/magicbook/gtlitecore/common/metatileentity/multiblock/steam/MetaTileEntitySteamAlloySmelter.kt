@@ -23,7 +23,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : RecipeMapSteamMultiblockController(metaTileEntityId, ALLOY_SMELTER_RECIPES, CONVERSION_RATE)
 {
 
@@ -66,10 +65,7 @@ class MetaTileEntitySteamAlloySmelter(metaTileEntityId: ResourceLocation) : Reci
 
     override fun getItemOutputLimit() = 1
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.multiblock.steam_.duration_modifier"))

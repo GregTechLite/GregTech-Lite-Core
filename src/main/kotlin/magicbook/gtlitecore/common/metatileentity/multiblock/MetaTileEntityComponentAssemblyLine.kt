@@ -1,6 +1,5 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -52,9 +51,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Consumer
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityComponentAssemblyLine(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, COMPONENT_ASSEMBLY_LINE_RECIPES)
 {
 
@@ -100,7 +97,7 @@ class MetaTileEntityComponentAssemblyLine(metaTileEntityId: ResourceLocation?) :
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
@@ -192,7 +189,7 @@ class MetaTileEntityComponentAssemblyLine(metaTileEntityId: ResourceLocation?) :
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("HHHHHHHHH", "H  HKH  H", "H       H", "H       H", "H       H", "H       H", "HH     HH", " HHHHHHH ", "         ", "         ")
             .aisle("HHHHHHHHH", "A       A", "A  HHH  A", "A       A", "A       A", "A       A", "H       H", "E       E", " EHHHHHE ", "         ")
@@ -244,16 +241,16 @@ class MetaTileEntityComponentAssemblyLine(metaTileEntityId: ResourceLocation?) :
             .where('P', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.EAST)
         GTLiteAPI.MAP_COMPONENT_CASING.entries
             .sortedBy { entry -> (entry.value as WrappedIntTier).getIntTier() }
-            .forEach(Consumer { entry ->
+            .forEach { entry ->
                 shapeInfo.add(builder.where('B', entry.key).build())
-            })
+            }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote && casingTier == 0)
+        if (world.isRemote && casingTier == 0)
             writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
     }
 

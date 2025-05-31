@@ -70,7 +70,6 @@ import java.util.function.Predicate
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, MOLECULAR_BEAM_RECIPES)
 {
 
@@ -198,12 +197,13 @@ class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : R
         }) { BlockCrucible.CrucibleType.entries
                 .sortedBy { it.temperature }
                 .map { BlockInfo(GTLiteMetaBlocks.CRUCIBLE.getState(it), null) }
-                .toTypedArray() }
+                .toTypedArray()
+    }
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
     {
-        if (sourcePart is MetaTileEntityItemBus && (sourcePart.exportItems as IItemHandlerModifiable).getSlots() == 0)
+        if (sourcePart is MetaTileEntityItemBus && sourcePart.exportItems.getSlots() == 0)
             return GTLiteTextures.HSLA_STEEL_CASING
         return GTLiteTextures.TITANIUM_TUNGSTEN_CARBIDE_CASING
     }
@@ -240,17 +240,14 @@ class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : R
         val count = AtomicInteger()
         StreamEx.of(emitterCasings)
             .map { b  ->
-                if (builder != null)
-                {
-                    builder.where('Z', b)
-                    builder.where('R', robotArmCasings[count.get()])
-                    builder.where('C', crucibles[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('Z', b)
+                builder.where('R', robotArmCasings[count.get()])
+                builder.where('C', crucibles[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
@@ -279,10 +276,7 @@ class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : R
             robotArmCasingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.1"))
@@ -307,14 +301,14 @@ class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : R
                     val temperatureInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers(temperature.toLong()) + "K")
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gtlitecore.machine.nanoscale_fabricator.average_temperature", temperatureInfo) as ITextComponent)
+                        "gtlitecore.machine.nanoscale_fabricator.average_temperature", temperatureInfo))
                     // Average temperature infos.
                     val temperatureLowerInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers((temperature - 250).toLong()) + "K")
                     val temperatureUpperInfo = stringWithColor(TextFormatting.RED,
                         formatNumbers((temperature + 250).toLong()) + "K")
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gtlitecore.machine.nanoscale_fabricator.temperature_range", temperatureLowerInfo, temperatureUpperInfo) as ITextComponent)
+                        "gtlitecore.machine.nanoscale_fabricator.temperature_range", temperatureLowerInfo, temperatureUpperInfo))
                 }
             }
             .addParallelsLine(recipeMapWorkable.parallelLimit)
@@ -326,7 +320,7 @@ class MetaTileEntityNanoscaleFabricator(metaTileEntityId: ResourceLocation?) : R
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class NanoscaleFabricatorRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class NanoscaleFabricatorRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
     {
 
         override fun checkRecipe(recipe: Recipe): Boolean

@@ -51,6 +51,8 @@ import static gregtech.api.util.RelativeDirection.UP;
 import static magicbook.gtlitecore.api.utils.GTLiteUtility.getOrDefault;
 import static magicbook.gtlitecore.api.utils.StructureUtility.pumpCasings;
 
+// FIXME When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
+//       recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
 public class MetaTileEntityLargeDistillery extends MultiMapMultiblockController implements IDistillationTower
 {
 

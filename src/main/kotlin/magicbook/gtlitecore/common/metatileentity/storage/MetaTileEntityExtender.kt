@@ -22,7 +22,6 @@ import net.minecraftforge.common.capabilities.Capability
 import org.jetbrains.annotations.Nullable
 import java.util.function.Predicate
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
                              capabilityFilter: Predicate<Capability<*>>,
                              private val renderer: ExtenderRenderer,
@@ -39,9 +38,7 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntityExtender(metaTileEntityId, capabilityFilter, renderer, baseColor)
 
     override fun getDelegatingFacing(facing: EnumFacing?): EnumFacing?
-    {
-        return if (facing === getFrontFacing()) inputFacing else getFrontFacing()
-    }
+        = if (facing === getFrontFacing()) inputFacing else getFrontFacing()
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
@@ -58,10 +55,9 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     {
         if (!playerIn.isSneaking)
         {
-            if (getInputFacing() === facing
-                || facing === getFrontFacing())
+            if (getInputFacing() === facing || facing === getFrontFacing())
                 return false
-            if (!(world as World).isRemote)
+            if (!world.isRemote)
                 setInputFacing(facing)
             return true
         }
@@ -78,7 +74,7 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        this.inputFacing = EnumFacing.VALUES[data.getInteger("InputFacing")]
+        inputFacing = EnumFacing.VALUES[data.getInteger("InputFacing")]
     }
 
     override fun writeInitialSyncData(buf: PacketBuffer)
@@ -90,7 +86,7 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     override fun receiveInitialSyncData(buf: PacketBuffer)
     {
         super.receiveInitialSyncData(buf)
-        this.inputFacing = EnumFacing.VALUES[buf.readByte().toInt()]
+        inputFacing = EnumFacing.VALUES[buf.readByte().toInt()]
     }
 
     override fun receiveCustomData(dataId: Int,  buf: PacketBuffer)
@@ -98,7 +94,7 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
         super.receiveCustomData(dataId, buf)
         if (dataId == GregtechDataCodes.UPDATE_OUTPUT_FACING)
         {
-            this.inputFacing = EnumFacing.VALUES[buf.readByte().toInt()]
+            inputFacing = EnumFacing.VALUES[buf.readByte().toInt()]
             scheduleRenderUpdate()
         }
     }
@@ -109,7 +105,7 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     override fun setFrontFacing(frontFacing: EnumFacing)
     {
         super.setFrontFacing(frontFacing)
-        if (this.inputFacing == null)
+        if (inputFacing == null)
         {
             // Set initial input facing as opposite to output (front).
             setInputFacing(frontFacing.opposite)
@@ -124,10 +120,10 @@ class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
     fun setInputFacing(inputFacing: EnumFacing)
     {
         this.inputFacing = inputFacing
-        if (!(world as World).isRemote)
+        if (!world.isRemote)
         {
             notifyBlockUpdate()
-            writeCustomData(GregtechDataCodes.UPDATE_OUTPUT_FACING) { buf -> (buf as PacketBuffer).writeByte(inputFacing.index) }
+            writeCustomData(GregtechDataCodes.UPDATE_OUTPUT_FACING) { buf: PacketBuffer -> buf.writeByte(inputFacing.index) }
             markDirty()
         }
     }

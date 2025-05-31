@@ -32,7 +32,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityMiningDroneAirport(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, MINING_DRONE_RECIPES)
 {
 
@@ -90,7 +89,7 @@ class MetaTileEntityMiningDroneAirport(metaTileEntityId: ResourceLocation?) : Re
 
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
-        val shapeInfos = arrayListOf<MultiblockShapeInfo>()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("    F     F", "    F     F", "     FCCCF ", "     F   F ", "           ", "           ")
             .aisle("F          ", "F          ", "FFFFFCXXXCF", " AEAF     F", " AAA       ", "           ")
@@ -112,18 +111,12 @@ class MetaTileEntityMiningDroneAirport(metaTileEntityId: ResourceLocation?) : Re
             .where('I', MetaTileEntities.ITEM_IMPORT_BUS[0], EnumFacing.SOUTH)
             .where('J', MetaTileEntities.ITEM_EXPORT_BUS[0], EnumFacing.SOUTH)
             .where('K', MetaTileEntities.FLUID_IMPORT_HATCH[0], EnumFacing.SOUTH)
-        if (builder != null)
-        {
-            shapeInfos.add(builder.shallowCopy().where('C', casingState).build())
-            shapeInfos.add(builder.build())
-        }
-        return shapeInfos
+        shapeInfo.add(builder.shallowCopy().where('C', casingState).build())
+        shapeInfo.add(builder.build())
+        return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.1"))

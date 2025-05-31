@@ -166,7 +166,7 @@ class MetaTileEntityLargeElectromagnet(metaTileEntityId: ResourceLocation?) : Mu
     private inner class LargeElectromagnetRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {

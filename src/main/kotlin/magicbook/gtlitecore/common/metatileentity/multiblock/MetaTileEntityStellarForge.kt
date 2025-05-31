@@ -53,7 +53,6 @@ import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, STELLAR_FORGE_RECIPES)
 {
 
@@ -164,7 +163,7 @@ class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMa
 
     override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("                   ", "       AQQQA       ", "        Q Q        ", "       AQQQA       ", "                   ", "                   ", "                   ", "                   ", "                   ", "                   ", "                   ", "                   ", "       AQQQA       ", "        Q Q        ", "       AQQQA       ", "                   ")
             .aisle("        A A        ", "     AA     AA     ", "       CCCCC       ", "     AA     AA     ", "        AAA        ", "        D D        ", "        D D        ", "        D D        ", "        D D        ", "        D D        ", "        D D        ", "        AAA        ", "     AA     AA     ", "       CCCCC       ", "     AA     AA     ", "        A A        ")
@@ -200,23 +199,20 @@ class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMa
         val count = AtomicInteger()
         StreamEx.of(emitterCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('H', b)
-                    builder.where('G', fieldGenCasings!![count.get()])
-                }
+                builder.where('H', b)
+                builder.where('G', fieldGenCasings[count.get()])
                 count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (emitterCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -238,10 +234,7 @@ class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMa
             fieldGenCasingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
@@ -259,7 +252,7 @@ class MetaTileEntityStellarForge(metaTileEntityId: ResourceLocation?) : RecipeMa
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class StellarForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class StellarForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
     {
 
         override fun setMaxProgress(maxProgress: Int)

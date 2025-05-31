@@ -58,7 +58,6 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityLaserInducedCVDUnit(metaTileEntityId: ResourceLocation?) : MultiMapMultiblockController(metaTileEntityId, arrayOf(LASER_CVD_RECIPES, CRYSTALLIZATION_RECIPES, MOLECULAR_BEAM_RECIPES, SONICATION_RECIPES))
 {
 
@@ -178,24 +177,21 @@ class MetaTileEntityLaserInducedCVDUnit(metaTileEntityId: ResourceLocation?) : M
         val count = AtomicInteger()
         StreamEx.of(emitterCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('R', b)
-                    builder.where('P', pumpCasings[count.get()])
-                    builder.where('T', sensorCasings[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('R', b)
+                builder.where('P', pumpCasings[count.get()])
+                builder.where('T', sensorCasings[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (emitterCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -242,10 +238,10 @@ class MetaTileEntityLaserInducedCVDUnit(metaTileEntityId: ResourceLocation?) : M
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class LaserInducedCVDRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class LaserInducedCVDRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {

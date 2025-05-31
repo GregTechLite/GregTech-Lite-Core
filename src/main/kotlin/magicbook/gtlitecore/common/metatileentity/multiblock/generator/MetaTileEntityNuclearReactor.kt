@@ -60,7 +60,6 @@ import kotlin.math.max
  * - Fermium 3x
  * - Mendelevium 3.2x
  */
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityNuclearReactor(metaTileEntityId: ResourceLocation?) : FuelMultiblockController(metaTileEntityId, NUCLEAR_FUELS, EV)
 {
 
@@ -123,9 +122,9 @@ class MetaTileEntityNuclearReactor(metaTileEntityId: ResourceLocation?) : FuelMu
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.NUCLEAR_REACTOR_OVERLAY
 
-    override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
+    override fun getMatchingShapes(): List<MultiblockShapeInfo>
     {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
+        val shapeInfo = ArrayList<MultiblockShapeInfo>()
         val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
             .aisle("EMC", "DDD", "CGC", "CGC", "CGC", "CGC", "CGC", "CGC", "CCC")
             .aisle("CCC", "DDD", "GXG", "GXG", "GXG", "GXG", "GXG", "GXG", "COC")
@@ -150,7 +149,7 @@ class MetaTileEntityNuclearReactor(metaTileEntityId: ResourceLocation?) : FuelMu
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote && coreTier == 0)
+        if (world.isRemote && coreTier == 0)
             writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
     }
 
@@ -216,11 +215,10 @@ class MetaTileEntityNuclearReactor(metaTileEntityId: ResourceLocation?) : FuelMu
         else -> 0.0 // Ensure it not cause problem for workableHandler progress max value.
     }
 
-    inner class NuclearReactorWorkableHandler(metaTileEntity: RecipeMapMultiblockController) : MultiblockFuelRecipeLogic(metaTileEntity)
+    private inner class NuclearReactorWorkableHandler(metaTileEntity: RecipeMapMultiblockController) : MultiblockFuelRecipeLogic(metaTileEntity)
     {
 
         override fun getMaxVoltage() = max(super.getMaxVoltage().toDouble(), super.getMaxVoltage() * getBoostedFromCoreTier(coreTier)).toLong()
-
 
         override fun getParallelLimit() = Int.MAX_VALUE
 

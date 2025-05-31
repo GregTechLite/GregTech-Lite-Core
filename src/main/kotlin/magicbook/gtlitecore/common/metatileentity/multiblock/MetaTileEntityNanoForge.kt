@@ -2,7 +2,6 @@ package magicbook.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VOC
-import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -51,7 +50,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, NANO_FORGE_RECIPES)
 {
 
@@ -97,7 +95,7 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
@@ -194,10 +192,7 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
         return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.1"))
@@ -216,8 +211,7 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
                 if (isStructureFormed)
                 {
                     tl.add(translationWithColor(TextFormatting.GRAY,
-                        "gtlitecore.machine.nano_forge.structure_info",
-                        mainUpgradeNumber) as ITextComponent)
+                        "gtlitecore.machine.nano_forge.structure_info", mainUpgradeNumber))
                 }
             }
             .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
@@ -240,17 +234,17 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
                 && recipe.getProperty(NanoForgeTieredProperty.getInstance(), 0)!! <= mainUpgradeNumber
     }
 
-    inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getOverclockingDurationFactor(): Double = if (forcePerfectOC) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (forcePerfectOC) 0.25 else 0.5
 
         /**
          * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
          * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
          * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
          */
-        override fun getMaximumOverclockVoltage(): Long = maxVoltage
+        override fun getMaximumOverclockVoltage() = maxVoltage
 
         /**
          * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
@@ -264,15 +258,15 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
             {
                 val voltage: Long
                 val amperage: Long
-                if (energyContainer.getInputVoltage() > energyContainer.getOutputVoltage())
+                if (energyContainer.inputVoltage > energyContainer.outputVoltage)
                 {
-                    voltage = energyContainer.getInputVoltage()
-                    amperage = energyContainer.getInputAmperage()
+                    voltage = energyContainer.inputVoltage
+                    amperage = energyContainer.inputAmperage
                 }
                 else
                 {
-                    voltage = energyContainer.getOutputVoltage()
-                    amperage = energyContainer.getOutputAmperage()
+                    voltage = energyContainer.outputVoltage
+                    amperage = energyContainer.outputAmperage
                 }
 
                 return if (amperage == 1L)
@@ -293,7 +287,7 @@ class MetaTileEntityNanoForge(metaTileEntityId: ResourceLocation?) : RecipeMapMu
                 energyContainer.outputVoltage.toDouble()).toLong()
         }
 
-        override fun getParallelLimit(): Int = if (mainUpgradeNumber == 1) 64 else 256
+        override fun getParallelLimit() = if (mainUpgradeNumber == 1) 64 else 256
 
     }
 

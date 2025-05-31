@@ -51,7 +51,6 @@ import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityCVDUnit(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, CVD_RECIPES)
 {
 
@@ -155,23 +154,20 @@ class MetaTileEntityCVDUnit(metaTileEntityId: ResourceLocation?) : RecipeMapMult
         val count = AtomicInteger()
         StreamEx.of(emitterCasings)
             .map { b ->
-                if (builder != null)
-                {
-                    builder.where('E', b)
-                    builder.where('P', pumpCasings[count.get()])
-                    count.getAndIncrement()
-                }
+                builder.where('E', b)
+                builder.where('P', pumpCasings[count.get()])
+                count.getAndIncrement()
                 builder
             }
             .nonNull()
-            .forEach(Consumer { b -> shapeInfo.add(b.build()) })
+            .forEach { b -> shapeInfo.add(b.build()) }
         return shapeInfo
     }
 
     override fun update()
     {
         super.update()
-        if ((world as World).isRemote)
+        if (world.isRemote)
         {
             if (emitterCasingTier == 0)
                 writeCustomData(GTLiteDataCodes.INITIALIZE_TIERED_MACHINE) { _: PacketBuffer? -> }
@@ -193,10 +189,7 @@ class MetaTileEntityCVDUnit(metaTileEntityId: ResourceLocation?) : RecipeMapMult
             pumpCasingTier = buf.readInt()
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.1"))
@@ -210,7 +203,7 @@ class MetaTileEntityCVDUnit(metaTileEntityId: ResourceLocation?) : RecipeMapMult
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    inner class CVDUnitRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class CVDUnitRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
         override fun getOverclockingDurationFactor(): Double = if (maxVoltage >= V[UV]) 0.25 else 0.5

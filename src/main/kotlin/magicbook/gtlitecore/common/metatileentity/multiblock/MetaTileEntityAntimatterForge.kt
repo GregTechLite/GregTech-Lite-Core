@@ -1,7 +1,6 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.VOC
-import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -31,7 +30,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, ANTIMATTER_FORGE_RECIPES)
 {
 
@@ -59,7 +57,7 @@ class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : Recip
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         energyContainer = EnergyContainerList(inputEnergy)
@@ -149,10 +147,7 @@ class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : Recip
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ANTIMATTER_FORGE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.1"))
@@ -169,7 +164,7 @@ class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : Recip
 
     override fun hasMaintenanceMechanics() = false
 
-    inner class AntimatterForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class AntimatterForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
     {
 
         /**
@@ -177,7 +172,7 @@ class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : Recip
          * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
          * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
          */
-        override fun getMaximumOverclockVoltage(): Long = maxVoltage
+        override fun getMaximumOverclockVoltage() = maxVoltage
 
         /**
          * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
@@ -220,9 +215,8 @@ class MetaTileEntityAntimatterForge(metaTileEntityId: ResourceLocation?) : Recip
                 energyContainer.outputVoltage.toDouble()).toLong()
         }
 
-        override fun getParallelLimit(): Int = Int.MAX_VALUE
+        override fun getParallelLimit() = Int.MAX_VALUE
 
     }
-
 
 }
