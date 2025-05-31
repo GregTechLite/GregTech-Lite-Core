@@ -7,7 +7,6 @@ import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty
 import magicbook.gtlitecore.api.recipe.property.value.PseudoMultiPropertyValues
 import net.minecraft.block.state.IBlockState
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class PseudoMultiRecipeBuilder : RecipeBuilder<PseudoMultiRecipeBuilder>
 {
 

@@ -47,7 +47,7 @@ import kotlin.math.min
  *
  * @see [gregtech.api.recipes.RecipeMaps]
  */
-@Suppress("MISSING_DEPENDENCY_CLASS", "UnstableApiUsage")
+@Suppress("UnstableApiUsage")
 @ZenClass("mods.gtlitecore.recipe.RecipeMaps")
 @ZenRegister
 class GTLiteRecipeMaps
@@ -56,6 +56,9 @@ class GTLiteRecipeMaps
     companion object
     {
 
+        /**
+         * Used to auto-generate all recipes of advanced fusion reactor from original fusion recipes.
+         */
         private var COOLANTS = mutableMapOf<FluidStack, FluidStack>().apply {
             put(Materials.Steam.getFluid(570), GTLiteMaterials.SupercriticalSteam.getFluid(570))
             put(GTLiteMaterials.SodiumPotassiumEutatic.getFluid(120), GTLiteMaterials.SupercriticalSodiumPotassiumEutatic.getFluid(120))
@@ -66,17 +69,9 @@ class GTLiteRecipeMaps
         // -------------------------------------------------------------------------------------------------------------
 
         /**
-         * @apiNote The original design of polisher is to separate some "less typical"
-         *          cutting machine/lathe recipes (because the input of these recipes may
-         *          be blown off by cutting blade or crushed by the lathe!). For example,
-         *          lathing gem to lens is a typical processing for this design described,
-         *          it is a little alien, polishing is natural than lathing.
-         *
          * @zenProp polisher
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("POLISHER_RECIPES")
         val POLISHER_RECIPES = RecipeMapBuilder("polisher", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(2)
@@ -121,16 +116,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote The original design of slicer is same as polisher, this machine can use
-         *          metal blade to cutting some soft materials like plastic or fruit. However,
-         *          it is also contained some functions from bender and lathe, e.g. plate or
-         *          stick of some plastics, this is natural for reality world.
-         *
          * @zenProp slicer
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("SLICER_RECIPES")
         val SLICER_RECIPES = RecipeMapBuilder("slicer", SimpleRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(2)
@@ -176,16 +164,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote At first, the function of this recipe maps is designed in forge hammer
-         *          recipe map, and this we find this is not a good choice to build these
-         *          producer for disposable tools, so we create a new machine and its recipe
-         *          map for these producer. The original idea of this machine is from
-         *          GT:NH modpack, but we redo logic part to let these recipes look finely.
          * @zenProp tool_caster
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("TOOL_CASTER_RECIPES")
         val TOOL_CASTER_RECIPES = RecipeMapBuilder("tool_caster", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(9)
@@ -196,16 +177,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote Loom is a steam age romantic style machine which will contain some works
-         *          from hand-crafting wire combination, packer and wiremill. This machine can
-         *          also make plant ball to vanilla grasses, like grass and tall grass,
-         *          make string to net, e.t.c. Loom and laminator split wiremill related
-         *          recipes, just like slicer and polisher.
          * @zenProp loom
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("LOOM_RECIPES")
         val LOOM_RECIPES = RecipeMapBuilder("loom", SimpleRecipeBuilder())
             .itemInputs(3)
             .itemOutputs(2)
@@ -218,16 +192,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote Just like assembler, laminator used to wrap wire with rubbers, it is
-         *          separated from assembler recipes (this is useful for resolved conflicts
-         *          in assembler). Laminator and loom is the container of original wiremill
-         *          recipes both. The original idea of this machine is from GregTech6, and
-         *          vulcanizing press is another rubber industry machine.
          * @zenProp laminator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("LAMINATOR_RECIPES")
         val LAMINATOR_RECIPES = RecipeMapBuilder("laminator", SimpleRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(1)
@@ -239,15 +206,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote This recipe map merged dryer and chemical dehydrator two recipe maps
-         *          actually, so it can also call by chemical dryer or food dryer; similar
-         *          to this, coagulate processing is also used this recipe map (means
-         *          it contained some functions of autoclave yet).
          * @zenProp chemical_dehydrator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CHEMICAL_DEHYDRATOR_RECIPES")
         val CHEMICAL_DEHYDRATOR_RECIPES = RecipeMapBuilder("chemical_dehydrator", SimpleRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(6)
@@ -261,15 +222,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote Vulcanization processing used to process rubber with sulfur or other
-         *          fluids, for some synthetic rubber, this recipe needs other chemistry
-         *          components. This machine has steam version, the first rubber is from
-         *          this recipe map.
          * @zenProp vulcanizing_press
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("VULCANIZATION_RECIPES")
         val VULCANIZATION_RECIPES = RecipeMapBuilder("vulcanizing_press", SimpleRecipeBuilder())
             .itemInputs(4)
             .itemOutputs(2)
@@ -282,16 +237,9 @@ class GTLiteRecipeMaps
             .build()
 
         /**
-         * @apiNote Vacuum Chamber can be a chemical reactor, also can be an assembler,
-         *          this is a very simple container of chemistry in reality world which
-         *          will called by vacuum generate processing yet. This machine has steam
-         *          machines, it is the prepare work of vacuum tube, which is your first
-         *          circuits in total GregTech circuits.
          * @zenProp vacuum_chamber
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("VACUUM_CHAMBER_RECIPES")
         val VACUUM_CHAMBER_RECIPES = RecipeMapBuilder("vacuum_chamber", SimpleRecipeBuilder())
             .itemInputs(4)
             .itemOutputs(1)
@@ -306,8 +254,6 @@ class GTLiteRecipeMaps
          * @zenProp sap_collector
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("SAP_COLLECTOR_RECIPES")
         val SAP_COLLECTOR_RECIPES = RecipeMapBuilder("sap_collector", PseudoMultiRecipeBuilder())
             .itemOutputs(2)
             .fluidInputs(1)
@@ -320,8 +266,6 @@ class GTLiteRecipeMaps
          * @zenProp coagulation_tank
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("COAGULATION_RECIPES")
         val COAGULATION_RECIPES = RecipeMapBuilder("coagulation_tank", PrimitiveRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(1)
@@ -333,8 +277,6 @@ class GTLiteRecipeMaps
          * @zenProp greenhouse
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("GREENHOUSE_RECIPES")
         val GREENHOUSE_RECIPES = RecipeMapBuilder("greenhouse", SimpleRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(4)
@@ -348,8 +290,6 @@ class GTLiteRecipeMaps
          * @zenProp bio_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("BIO_REACTOR_RECIPES")
         val BIO_REACTOR_RECIPES = RecipeMapBuilder("bio_reactor", SimpleRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(1)
@@ -368,8 +308,6 @@ class GTLiteRecipeMaps
          * @zenProp roaster
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ROASTER_RECIPES")
         val ROASTER_RECIPES = RecipeMapBuilder("roaster", SimpleRecipeBuilder())
             .itemInputs(3)
             .itemOutputs(3)
@@ -386,8 +324,6 @@ class GTLiteRecipeMaps
          * @zenProp burner_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("BURNER_REACTOR_RECIPES")
         val BURNER_REACTOR_RECIPES = RecipeMapBuilder("burner_reactor", SimpleRecipeBuilder())
             .itemInputs(3)
             .itemOutputs(3)
@@ -406,8 +342,6 @@ class GTLiteRecipeMaps
          * @zenProp bath_condenser
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("BATH_CONDENSER_RECIPES")
         val BATH_CONDENSER_RECIPES = RecipeMapBuilder("bath_condenser", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(1)
@@ -423,8 +357,6 @@ class GTLiteRecipeMaps
          * @zenProp cryogenic_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CRYOGENIC_REACTOR_RECIPES")
         val CRYOGENIC_REACTOR_RECIPES = RecipeMapBuilder("cryogenic_reactor", SimpleRecipeBuilder())
             .itemInputs(3)
             .itemOutputs(3)
@@ -441,8 +373,6 @@ class GTLiteRecipeMaps
          * @zenProp large_mixer
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("LARGE_MIXER_RECIPES")
         val LARGE_MIXER_RECIPES = RecipeMapBuilder("large_mixer", SimpleRecipeBuilder())
             .ui { LargeMixerUI(it) }
             .itemInputs(9)
@@ -458,8 +388,6 @@ class GTLiteRecipeMaps
          * @zenProp catalytic_reformer
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CATALYTIC_REFORMER_RECIPES")
         val CATALYTIC_REFORMER_RECIPES = RecipeMapBuilder("catalytic_reformer", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(0)
@@ -474,8 +402,6 @@ class GTLiteRecipeMaps
          * @zenProp large_gas_collector
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("LARGE_GAS_COLLECTOR_RECIPES")
         val LARGE_GAS_COLLECTOR_RECIPES = RecipeMapBuilder("large_gas_collector", SimpleRecipeBuilder())
             .itemInputs(2)
             .fluidOutputs(4)
@@ -490,8 +416,6 @@ class GTLiteRecipeMaps
          * @zenProp electric_implosion_compressor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ELECTRIC_IMPLOSION_RECIPES")
         val ELECTRIC_IMPLOSION_RECIPES = RecipeMapBuilder("electric_implosion_compressor", SimpleRecipeBuilder())
             .itemInputs(6)
             .fluidInputs(1)
@@ -546,8 +470,6 @@ class GTLiteRecipeMaps
          * @see magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ALLOY_BLAST_RECIPES")
         val ALLOY_BLAST_RECIPES = RecipeMapBuilder("alloy_blast_smelter", BlastRecipeBuilder())
             .itemInputs(9)
             .fluidInputs(3)
@@ -563,8 +485,6 @@ class GTLiteRecipeMaps
          * @zenProp chemical_plant
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CHEMICAL_PLANT_RECIPES")
         val CHEMICAL_PLANT_RECIPES = RecipeMapBuilder("chemical_plant", SimpleRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(4)
@@ -583,8 +503,6 @@ class GTLiteRecipeMaps
          * @zenProp circuit_assembly_line
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CIRCUIT_ASSEMBLY_LINE_RECIPES")
         val CIRCUIT_ASSEMBLY_LINE_RECIPES = RecipeMapBuilder("circuit_assembly_line", CircuitAssemblyLineRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(6)
@@ -598,8 +516,6 @@ class GTLiteRecipeMaps
          * @zenProp food_processor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("FOOD_PROCESSOR_RECIPES")
         val FOOD_PROCESSOR_RECIPES = RecipeMapBuilder("food_processor", SimpleRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(2)
@@ -615,8 +531,6 @@ class GTLiteRecipeMaps
          * @zenProp multicooker
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("MULTICOOKER_RECIPES")
         val MULTICOOKER_RECIPES = RecipeMapBuilder("multicooker", SimpleRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(3)
@@ -632,8 +546,6 @@ class GTLiteRecipeMaps
          * @zenProp mining_drone_airport
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("MINING_DRONE_RECIPES")
         val MINING_DRONE_RECIPES = RecipeMapBuilder("mining_drone_airport", SimpleRecipeBuilder())
             .ui { MiningDroneAirportUI(it) }
             .itemInputs(4)
@@ -646,8 +558,6 @@ class GTLiteRecipeMaps
          * @zenProp cvd_unit
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CVD_RECIPES")
         val CVD_RECIPES = RecipeMapBuilder("cvd_unit", NoCoilTemperatureRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(3)
@@ -661,8 +571,6 @@ class GTLiteRecipeMaps
          * @zenProp crystallization_crucible
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("CRYSTALLIZATION_RECIPES")
         val CRYSTALLIZATION_RECIPES = RecipeMapBuilder("crystallization_crucible", BlastRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(1)
@@ -677,8 +585,6 @@ class GTLiteRecipeMaps
          * @zenProp nanoscale_fabricator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("MOLECULAR_BEAM_RECIPES")
         val MOLECULAR_BEAM_RECIPES = RecipeMapBuilder("nanoscale_fabricator", NoCoilTemperatureRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(2)
@@ -695,8 +601,6 @@ class GTLiteRecipeMaps
          * @zenProp sonicator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("SONICATION_RECIPES")
         val SONICATION_RECIPES = RecipeMapBuilder("sonicator", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(1)
@@ -715,8 +619,6 @@ class GTLiteRecipeMaps
          * @zenProp laser_induced_cvd_unit
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("LASER_CVD_RECIPES")
         val LASER_CVD_RECIPES = RecipeMapBuilder("laser_induced_cvd_unit", NoCoilTemperatureRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(3)
@@ -731,8 +633,6 @@ class GTLiteRecipeMaps
          * @zenProp plasma_enhanced_cvd_unit
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("PLASMA_CVD_RECIPES")
         val PLASMA_CVD_RECIPES = RecipeMapBuilder("plasma_enhanced_cvd_unit", NoCoilTemperatureRecipeBuilder())
             .itemInputs(3)
             .itemOutputs(3)
@@ -747,8 +647,6 @@ class GTLiteRecipeMaps
          * @zenProp mob_extractor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("MOB_EXTRACTOR_RECIPES")
         val MOB_EXTRACTOR_RECIPES = RecipeMapBuilder("mob_extractor", MobProximityRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(1)
@@ -762,8 +660,6 @@ class GTLiteRecipeMaps
          * @zenProp bedrock_drilling_rig
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("DRILLING_RECIPES")
         val DRILLING_RECIPES = RecipeMapBuilder("bedrock_drilling_rig", SimpleRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(1)
@@ -777,8 +673,6 @@ class GTLiteRecipeMaps
          * @zenProp advanced_fusion_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ADVANCED_FUSION_RECIPES")
         val ADVANCED_FUSION_RECIPES = RecipeMapBuilder("advanced_fusion_reactor", AdvancedFusionRecipeBuilder())
             .fluidInputs(3)
             .fluidOutputs(2)
@@ -791,8 +685,6 @@ class GTLiteRecipeMaps
          * @zenProp component_assembly_line
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("COMPONENT_ASSEMBLY_LINE_RECIPES")
         val COMPONENT_ASSEMBLY_LINE_RECIPES = RecipeMapBuilder("component_assembly_line", ComponentAssemblyLineRecipeBuilder())
             .ui { ComponentAssemblyLineUI(it) }
             .itemInputs(12)
@@ -805,8 +697,6 @@ class GTLiteRecipeMaps
          * @zenProp cosmic_ray_detector
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("COSMIC_RAY_DETECTING_RECIPES")
         val COSMIC_RAY_DETECTING_RECIPES = RecipeMapBuilder("cosmic_ray_detector", MinimumHeightRecipeBuilder())
             .itemInputs(1)
             .fluidOutputs(1)
@@ -818,8 +708,6 @@ class GTLiteRecipeMaps
          * @zenProp stellar_forge
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("STELLAR_FORGE_RECIPES")
         val STELLAR_FORGE_RECIPES = RecipeMapBuilder("stellar_forge", SimpleRecipeBuilder())
             .ui { StellarForgeUI(it) }
             .itemInputs(9)
@@ -833,8 +721,6 @@ class GTLiteRecipeMaps
          * @zenProp bio_simulator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("BIO_SIMULATOR_RECIPES")
         val BIO_SIMULATOR_RECIPES = RecipeMapBuilder("bio_simulator", SimpleRecipeBuilder())
             .itemInputs(2)
             .itemOutputs(1)
@@ -847,8 +733,6 @@ class GTLiteRecipeMaps
          * @zenProp pcb_factory
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("PCB_FACTORY_RECIPES")
         val PCB_FACTORY_RECIPES = RecipeMapBuilder("pcb_factory", PCBFactoryRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(9)
@@ -863,8 +747,6 @@ class GTLiteRecipeMaps
          * @zenProp nano_forge
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("NANO_FORGE_RECIPES")
         val NANO_FORGE_RECIPES = RecipeMapBuilder("nano_forge", NanoForgeRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(1)
@@ -878,8 +760,6 @@ class GTLiteRecipeMaps
          * @zenProp quantum_force_transformer
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("QUANTUM_FORCE_TRANSFORMER_RECIPES")
         val QUANTUM_FORCE_TRANSFORMER_RECIPES = RecipeMapBuilder("quantum_force_transformer", QuantumForceTransformerRecipeBuilder())
             .itemInputs(6)
             .itemOutputs(6)
@@ -893,8 +773,6 @@ class GTLiteRecipeMaps
          * @zenProp antimatter_forge
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ANTIMATTER_FORGE_RECIPES")
         val ANTIMATTER_FORGE_RECIPES = RecipeMapBuilder("antimatter_forge", SimpleRecipeBuilder())
             .ui { AntimatterForgeUI(it) }
             .itemInputs(1)
@@ -907,8 +785,6 @@ class GTLiteRecipeMaps
          * @zenProp space_assembler
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("SPACE_ASSEMBLER_RECIPES")
         val SPACE_ASSEMBLER_RECIPES = RecipeMapBuilder("space_assembler", AccelerationOrbitRecipeBuilder())
             .ui { SpaceAssemblerUI(it) }
             .itemInputs(16)
@@ -923,8 +799,6 @@ class GTLiteRecipeMaps
          * @zenProp high_pressure_steam_turbine
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("HOT_COOLANT_TURBINE_FUELS")
         val HOT_COOLANT_TURBINE_FUELS = RecipeMapBuilder("hot_coolant_turbine", FuelRecipeBuilder())
             .fluidInputs(1)
             .fluidOutputs(1)
@@ -939,8 +813,6 @@ class GTLiteRecipeMaps
          * @zenProp supercritical_fluid_turbine
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("SUPERCRITICAL_FLUID_TURBINE_FUELS")
         val SUPERCRITICAL_FLUID_TURBINE_FUELS = RecipeMapBuilder("supercritical_fluid_turbine", FuelRecipeBuilder())
             .fluidInputs(1)
             .fluidOutputs(1)
@@ -955,8 +827,6 @@ class GTLiteRecipeMaps
          * @zenProp nuclear_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("NUCLEAR_FUELS")
         val NUCLEAR_FUELS = RecipeMapBuilder("nuclear_reactor", FuelRecipeBuilder())
             .itemInputs(1)
             .itemOutputs(1)
@@ -970,8 +840,6 @@ class GTLiteRecipeMaps
          * @zenProp rocket_engine
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ROCKET_ENGINE_FUELS")
         val ROCKET_ENGINE_FUELS = RecipeMapBuilder("rocket_engine", FuelRecipeBuilder())
             .fluidInputs(1)
             .allowEmptyOutputs()
@@ -983,8 +851,6 @@ class GTLiteRecipeMaps
          * @zenProp naquadah_reactor
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("NAQUADAH_REACTOR_FUELS")
         val NAQUADAH_REACTOR_FUELS = RecipeMapBuilder("naquadah_reactor", FuelRecipeBuilder())
             .fluidInputs(1)
             .allowEmptyOutputs()
@@ -996,8 +862,6 @@ class GTLiteRecipeMaps
          * @zenProp antimatter_generator
          */
         @ZenProperty
-        @JvmStatic
-        @get:JvmName("ANTIMATTER_GENERATOR_FUELS")
         val ANTIMATTER_GENERATOR_FUELS = RecipeMapBuilder("antimatter_generator", FuelRecipeBuilder())
             .fluidInputs(2)
             .allowEmptyOutputs()

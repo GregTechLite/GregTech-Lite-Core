@@ -15,13 +15,10 @@ class CircuitPatternProperty : RecipeProperty<ItemStack>(KEY, ItemStack::class.j
 
         const val KEY = "circuit"
 
-        @JvmField
         val registeredCircuits = hashSetOf<ItemStack>()
 
-        @JvmField
         val INSTANCE = CircuitPatternProperty()
 
-        @JvmStatic
         fun register(stack: ItemStack)
         {
             registeredCircuits.add(stack)

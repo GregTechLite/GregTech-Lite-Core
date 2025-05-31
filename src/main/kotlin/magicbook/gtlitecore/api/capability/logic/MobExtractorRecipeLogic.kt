@@ -8,7 +8,6 @@ import gregtech.api.recipes.RecipeMap
 import magicbook.gtlitecore.common.metatileentity.single.MetaTileEntityMobExtractor
 import java.util.function.Supplier
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MobExtractorRecipeLogic(metaTileEntity: MetaTileEntity, recipeMap: RecipeMap<*>, energyContainer: Supplier<IEnergyContainer>) : RecipeLogicEnergy(metaTileEntity, recipeMap, energyContainer)
 {
 

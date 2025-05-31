@@ -333,7 +333,7 @@ class GTLiteMetaTileEntities
             for (tier in 0..4) // LV-IV
             {
                 TOOL_CASTER[tier] = MetaTileEntities.registerMetaTileEntity(33 + tier, // 31-32 for Steam Machines.
-                    SimpleMachineMetaTileEntity(gtliteId("tool_cast.${VN[tier + 1].lowercase()}"),
+                    SimpleMachineMetaTileEntity(gtliteId("tool_caster.${VN[tier + 1].lowercase()}"),
                         GTLiteRecipeMaps.TOOL_CASTER_RECIPES, GTLiteTextures.TOOL_CASTER_OVERLAY,
                         tier + 1, true, GTUtility.defaultTankSizeFunction))
             }
@@ -387,7 +387,7 @@ class GTLiteMetaTileEntities
             for (tier in 0..4) // LV-IV
             {
                 SAP_COLLECTOR[tier] = MetaTileEntities.registerMetaTileEntity(123 + tier,
-                    MetaTileEntitySapCollector(gtliteId("sap_collector.${VN[tier + 1].lowercase()}"), tier))
+                    MetaTileEntitySapCollector(gtliteId("sap_collector.${VN[tier + 1].lowercase()}"), tier + 1))
             }
 
             // 136-150: Greenhouse
@@ -456,7 +456,7 @@ class GTLiteMetaTileEntities
                 GTLiteUtility::gtliteId, GTUtility.genericGeneratorTankSizeFunction)
 
             // 286-300: Mob Extractor
-            for (tier in 0..13) // LV-OpV
+            for (tier in 0..12) // LV-OpV
             {
                 MOB_EXTRACTOR[tier] = MetaTileEntities.registerMetaTileEntity(288 + tier, // 286-287 for Steam Machines.
                     MetaTileEntityMobExtractor(gtliteId("mob_extractor.${VN[tier + 1].lowercase()}"),

@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class MobOnTopProperty private constructor() : RecipeProperty<ResourceLocation>(KEY, ResourceLocation::class.java)
 {
 

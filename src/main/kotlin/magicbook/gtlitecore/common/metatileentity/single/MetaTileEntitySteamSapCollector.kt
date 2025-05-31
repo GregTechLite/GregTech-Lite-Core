@@ -1,145 +1,103 @@
-package magicbook.gtlitecore.common.metatileentity.single;
+package magicbook.gtlitecore.common.metatileentity.single
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.capability.impl.NotifiableItemStackHandler;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicators;
-import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity;
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
-import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import codechicken.lib.raytracer.CuboidRayTraceResult
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
+import gregtech.api.capability.impl.FluidTankList
+import gregtech.api.capability.impl.NotifiableItemStackHandler
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import magicbook.gtlitecore.api.gui.indicator.SteamProgressBarIndicators
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_RECIPES
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import net.minecraft.client.resources.I18n
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
+import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
+import net.minecraftforge.fluids.FluidTank
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.items.IItemHandlerModifiable
 
-import java.util.List;
-
-public class MetaTileEntitySteamSapCollector extends PseudoMultiSteamMachineMetaTileEntity
+class MetaTileEntitySteamSapCollector(metaTileEntityId: ResourceLocation?,
+                                      isHighPressure: Boolean) : PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteTextures.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
 {
+    private val sapCollectionAmount: Long = if (isHighPressure) 6L else 3L
 
-    private final long sapCollectionAmount;
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): PseudoMultiSteamMachineMetaTileEntity = MetaTileEntitySteamSapCollector(metaTileEntityId, isHighPressure)
 
-    public MetaTileEntitySteamSapCollector(ResourceLocation metaTileEntityId, boolean isHighPressure)
+    override fun createImportItemHandler(): IItemHandlerModifiable = NotifiableItemStackHandler(this, 1, this, false)
+
+    override fun createExportItemHandler(): IItemHandlerModifiable = NotifiableItemStackHandler(this, 1, this, true)
+
+    override fun createExportFluidHandler(): FluidTankList = FluidTankList(false, FluidTank(16_000))
+
+    override fun addNotifiedInput(input: Any?)
     {
-        super(metaTileEntityId, GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES(),
-                SteamProgressBarIndicators.EXTRACTION, GTLiteTextures.SAP_COLLECTOR_OVERLAY, false, isHighPressure);
-        this.sapCollectionAmount = isHighPressure ? 6L : 3L;
-    }
-
-    @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
-    {
-        return new MetaTileEntitySteamSapCollector(this.metaTileEntityId, this.isHighPressure);
-    }
-
-    @Override
-    protected IItemHandlerModifiable createImportItemHandler()
-    {
-        return new NotifiableItemStackHandler(this, 1, this, false);
-    }
-
-    @Override
-    protected IItemHandlerModifiable createExportItemHandler()
-    {
-        return new NotifiableItemStackHandler(this, 1, this, true);
-    }
-
-    @Override
-    protected FluidTankList createExportFluidHandler()
-    {
-        return new FluidTankList(false, new FluidTank(16000));
-    }
-
-    @Override
-    public void addNotifiedInput(Object input) {
-        super.addNotifiedInput(input);
-        this.onNeighborChanged();
+        super.addNotifiedInput(input)
+        onNeighborChanged()
     }
 
     @SideOnly(Side.CLIENT)
-    @Override
-    public void renderMetaTileEntity(CCRenderState renderState,
-                                     Matrix4 translation,
-                                     IVertexOperation[] pipeline)
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
     {
-        super.renderMetaTileEntity(renderState, translation, pipeline);
-        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation,
-                pipeline, this.getFrontFacing(), this.isActive(), true);
+        super.renderMetaTileEntity(renderState, translation, pipeline)
+        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
+            getFrontFacing(), isActive(), true)
     }
 
-    @Override
-    public boolean isValidFrontFacing(EnumFacing facing)
+    override fun isValidFrontFacing(facing: EnumFacing?): Boolean
     {
         return super.isValidFrontFacing(facing)
-                && facing != this.workableHandler.getVentingSide()
-                && facing != this.workableHandler.getVentingSide().getOpposite();
+                && facing != workableHandler.ventingSide
+                && facing != workableHandler.ventingSide.opposite
     }
 
-    @Override
-    public void setFrontFacing(EnumFacing frontFacing)
+    override fun setFrontFacing(frontFacing: EnumFacing)
     {
-        super.setFrontFacing(frontFacing);
-        if (this.workableHandler.getVentingSide() == frontFacing
-                || this.workableHandler.getVentingSide() == frontFacing.getOpposite())
+        super.setFrontFacing(frontFacing)
+        if (workableHandler.ventingSide == frontFacing
+            || workableHandler.ventingSide == frontFacing.opposite)
         {
-            this.workableHandler.setVentingSide(frontFacing.rotateY());
+            workableHandler.ventingSide = frontFacing.rotateY()
         }
     }
 
-    @Override
-    public boolean onWrenchClick(EntityPlayer playerIn,
-                                 EnumHand hand, EnumFacing facing,
-                                 CuboidRayTraceResult hitResult)
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean
     {
-        if (!playerIn.isSneaking())
+        if (!playerIn.isSneaking)
         {
-            if (this.workableHandler.getVentingSide() == facing)
+            if (workableHandler.ventingSide == facing)
             {
-                return false;
+                return false
             }
-            else if (this.hasFrontFacing() && facing == this.getFrontFacing()
-                    || facing == this.getFrontFacing().getOpposite())
+            else if (hasFrontFacing() && facing == getFrontFacing()
+                || facing == getFrontFacing().opposite)
             {
-                return false;
+                return false
             }
             else
             {
-                if (!this.getWorld().isRemote)
-                    this.workableHandler.setVentingSide(facing);
-                return true;
+                if (!world.isRemote)
+                    workableHandler.ventingSide = facing
+                return true
             }
-
         }
         else
         {
-            return super.onWrenchClick(playerIn, hand, facing, hitResult);
+            return super.onWrenchClick(playerIn, hand, facing, hitResult)
         }
-
     }
 
-    @Override
-    public void addInformation(ItemStack stack,
-                               @Nullable World world,
-                               @NotNull List<String> tooltip,
-                               boolean advanced)
+    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection"));
-        tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection_amount", this.sapCollectionAmount));
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection"))
+        tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection_amount", sapCollectionAmount))
     }
 
 }

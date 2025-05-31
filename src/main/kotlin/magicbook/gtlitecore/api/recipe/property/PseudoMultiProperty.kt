@@ -7,7 +7,6 @@ import net.minecraft.client.resources.I18n
 import net.minecraft.nbt.NBTBase
 import net.minecraft.nbt.NBTTagString
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class PseudoMultiProperty private constructor() : RecipeProperty<PseudoMultiPropertyValues>(KEY, PseudoMultiPropertyValues::class.java)
 {
 
@@ -16,7 +15,6 @@ class PseudoMultiProperty private constructor() : RecipeProperty<PseudoMultiProp
 
         const val KEY = "blocks"
 
-        @JvmField
         val INSTANCE = PseudoMultiProperty()
 
     }

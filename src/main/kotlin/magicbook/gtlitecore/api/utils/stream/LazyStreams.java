@@ -5,9 +5,9 @@ import gregtech.api.block.IHeatingCoilBlockStats;
 import it.unimi.dsi.fastutil.objects.AbstractObject2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import kotlin.Pair;
 import magicbook.gtlitecore.api.GTLiteAPI;
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier;
-import magicbook.gtlitecore.api.utils.tuples.Pair;
 import one.util.streamex.StreamEx;
 
 import java.util.ArrayList;
@@ -164,7 +164,7 @@ public final class LazyStreams
     public static <T> Stream<Pair<T, Integer>> zipWithIndex(final Stream<T> stream)
     {
         return gatherer(stream, Gatherer.ofSequential(() -> new Object() { int index; },
-                (state, element, downstream) -> downstream.push(Pair.of(element, state.index++))));
+                (state, element, downstream) -> downstream.push(new Pair<>(element, state.index++))));
     }
 
     /**
@@ -180,7 +180,7 @@ public final class LazyStreams
         return gatherer(stream, Gatherer.ofSequential(() -> new Object() { T prev; boolean first = true; },
                 (state, element, downstream) -> {
                     if (!state.first)
-                        downstream.push(Pair.of(state.prev, element));
+                        downstream.push(new Pair<>(state.prev, element));
                     state.prev = element;
                     state.first = false;
                     return true;

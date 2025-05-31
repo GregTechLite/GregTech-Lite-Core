@@ -1,82 +1,60 @@
-package magicbook.gtlitecore.common.metatileentity.single;
+package magicbook.gtlitecore.common.metatileentity.single
 
-import gregtech.api.capability.impl.AbstractRecipeLogic;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import gregtech.client.renderer.ICubeRenderer;
-import magicbook.gtlitecore.api.capability.logic.MobExtractorRecipeLogic;
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
-import magicbook.gtlitecore.api.recipe.property.MobOnTopProperty;
-import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-import org.jetbrains.annotations.NotNull;
+import gregtech.api.capability.impl.AbstractRecipeLogic
+import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMap
+import gregtech.client.renderer.ICubeRenderer
+import magicbook.gtlitecore.api.capability.logic.MobExtractorRecipeLogic
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.MOB_EXTRACTOR_RECIPES
+import magicbook.gtlitecore.api.recipe.property.MobOnTopProperty
+import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityList
+import net.minecraft.entity.EntityLivingBase
+import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.AxisAlignedBB
+import java.util.function.Function
+import java.util.function.Supplier
 
-import java.util.List;
-import java.util.function.Function;
-
-import static magicbook.gtlitecore.api.utils.GTLiteValues.TICK;
-
-public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity
+class MetaTileEntityMobExtractor(metaTileEntityId: ResourceLocation, recipeMap: RecipeMap<*>?,
+                                 renderer: ICubeRenderer?, tier: Int, hasFrontFacing: Boolean,
+                                 tankScalingFunction: Function<Int?, Int?>?) : SimpleMachineMetaTileEntity(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
 {
 
-    private AxisAlignedBB boundingBox;
-    private EntityLivingBase entityAttackable;
-    private List<Entity> entities;
+    private var boundingBox: AxisAlignedBB? = null
+    private var entityAttackable: EntityLivingBase? = null
+    private var entities: MutableList<Entity>? = null
+    private val entitiesInProximity: MutableList<Entity>
+        get()
+        {
+            if (boundingBox == null)
+                boundingBox = AxisAlignedBB(pos.up())
+            return world.getEntitiesWithinAABB(Entity::class.java, boundingBox)
+        }
 
-    public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap,
-                                      ICubeRenderer renderer, int tier, boolean hasFrontFacing,
-                                      Function<Integer, Integer> tankScalingFunction)
-    {
-        super(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction);
-    }
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityMobExtractor(metaTileEntityId, MOB_EXTRACTOR_RECIPES, GTLiteTextures.MOB_EXTRACTOR_OVERLAY,
+        tier, hasFrontFacing(), tankScalingFunction)
 
-    @Override
-    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity)
-    {
-        return new MetaTileEntityMobExtractor(this.metaTileEntityId, GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES(),
-                GTLiteTextures.MOB_EXTRACTOR_OVERLAY, this.getTier(), this.hasFrontFacing(), this.getTankScalingFunction());
-    }
+    override fun createWorkable(recipeMap: RecipeMap<*>): AbstractRecipeLogic = MobExtractorRecipeLogic(this, recipeMap, Supplier { energyContainer })
 
-    @Override
-    protected AbstractRecipeLogic createWorkable(RecipeMap<?> recipeMap)
+    fun checkRecipe(recipe: Recipe): Boolean
     {
-        return new MobExtractorRecipeLogic(this, recipeMap, () -> energyContainer);
-    }
+        val entityId = recipe.getProperty<ResourceLocation>(MobOnTopProperty.INSTANCE, null)
+        if (entities == null || offsetTimer % 5 * TICK == 0L)
+            entities = entitiesInProximity
 
-    public boolean checkRecipe(@NotNull Recipe recipe)
-    {
-        ResourceLocation entityId = recipe.getProperty(MobOnTopProperty.INSTANCE, null);
-        if (this.entities == null || this.getOffsetTimer() % 5 * TICK == 0)
-            this.entities = getEntitiesInProximity();
-        // Prepare to causeDamage if needed, this is still TODO.
-        for (Entity entity : entities)
+        for (entity in entities!!)
         {
             if (EntityList.isMatchingName(entity, entityId))
             {
-                if (entity instanceof EntityLivingBase)
-                    entityAttackable = (EntityLivingBase) entity;
-                else
-                    entityAttackable = null;
-                return true;
+                entityAttackable = entity as? EntityLivingBase
+                return true
             }
         }
-        return false;
+        return false
     }
-
-    protected List<Entity> getEntitiesInProximity()
-    {
-        if (boundingBox == null)
-            boundingBox = new AxisAlignedBB(this.getPos().up());
-        return this.getWorld().getEntitiesWithinAABB(Entity.class, boundingBox);
-    }
-
-    // TODO damageEntity?
 
 }

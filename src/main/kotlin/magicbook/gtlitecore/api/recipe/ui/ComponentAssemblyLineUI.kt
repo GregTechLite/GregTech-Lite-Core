@@ -11,7 +11,7 @@ import net.minecraftforge.items.IItemHandlerModifiable
 import org.jetbrains.annotations.ApiStatus
 
 @ApiStatus.Internal
-@Suppress("UnstableApiUsage", "MISSING_DEPENDENCY_CLASS")
+@Suppress("UnstableApiUsage")
 class ComponentAssemblyLineUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap, true, true, true, true, false)
 {
 

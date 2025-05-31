@@ -1,148 +1,101 @@
-package magicbook.gtlitecore.common.metatileentity.single;
+package magicbook.gtlitecore.common.metatileentity.single
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.capability.impl.FluidTankList;
-import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity;
-import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps;
-import magicbook.gtlitecore.api.utils.GTLiteUtility;
-import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import codechicken.lib.raytracer.CuboidRayTraceResult
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
+import gregtech.api.capability.impl.FluidTankList
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
+import magicbook.gtlitecore.api.recipe.GTLiteRecipeMaps.Companion.SAP_COLLECTOR_RECIPES
+import magicbook.gtlitecore.api.utils.GTLiteUtility
+import magicbook.gtlitecore.client.renderer.texture.GTLiteTextures
+import net.minecraft.client.resources.I18n
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
+import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
+import net.minecraftforge.fluids.FluidTank
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.items.IItemHandlerModifiable
+import net.minecraftforge.items.ItemStackHandler
 
-import java.util.List;
-
-public class MetaTileEntitySapCollector extends PseudoMultiMachineMetaTileEntity
+class MetaTileEntitySapCollector(metaTileEntityId: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, GTLiteTextures.SAP_COLLECTOR_OVERLAY, tier, true, GTLiteUtility.collectorTankSizeFunction)
 {
 
-    public MetaTileEntitySapCollector(ResourceLocation metaTileEntityId, int tier)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): PseudoMultiMachineMetaTileEntity = MetaTileEntitySapCollector(metaTileEntityId, tier)
+
+    override fun createImportItemHandler(): IItemHandlerModifiable = ItemStackHandler(1)
+
+    override fun createExportItemHandler(): IItemHandlerModifiable = ItemStackHandler(1)
+
+    override fun createExportFluidHandler(): FluidTankList = FluidTankList(false, FluidTank(16000))
+
+    override fun addNotifiedInput(input: Any?)
     {
-        super(metaTileEntityId, GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES(),
-                GTLiteTextures.SAP_COLLECTOR_OVERLAY, tier, true,
-                GTLiteUtility.collectorTankSizeFunction);
+        super.addNotifiedInput(input)
+        onNeighborChanged()
     }
 
-    @NotNull
-    @Override
-    public MetaTileEntity createMetaTileEntity(@Nullable IGregTechTileEntity tileEntity)
-    {
-        return new MetaTileEntitySapCollector(this.metaTileEntityId, this.getTier());
-    }
-
-    @Override
-    protected IItemHandlerModifiable createImportItemHandler()
-    {
-        return new ItemStackHandler(1);
-    }
-
-    @Override
-    protected IItemHandlerModifiable createExportItemHandler()
-    {
-        return new ItemStackHandler(1);
-    }
-
-    @Override
-    protected FluidTankList createExportFluidHandler()
-    {
-        return new FluidTankList(false, new FluidTank(16000));
-    }
-
-    @Override
-    public void addNotifiedInput(Object input)
-    {
-        super.addNotifiedInput(input);
-        this.onNeighborChanged();
-    }
-
-    @Override
-    public boolean isValidFrontFacing(EnumFacing facing)
+    override fun isValidFrontFacing(facing: EnumFacing?): Boolean
     {
         return super.isValidFrontFacing(facing)
-                && facing != getOutputFacingFluids().getOpposite()
-                && facing != getOutputFacingItems().getOpposite();
+                && facing != outputFacingFluids.opposite && facing != outputFacingItems.opposite
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void setFrontFacing(EnumFacing frontFacing)
+    @Suppress("Deprecation")
+    override fun setFrontFacing(frontFacing: EnumFacing)
     {
-        super.setFrontFacing(frontFacing);
-        if (this.getOutputFacingFluids() == frontFacing.getOpposite()
-                || this.getOutputFacingItems() == frontFacing.getOpposite())
-            this.setOutputFacing(frontFacing.rotateY());
+        super.setFrontFacing(frontFacing)
+        if (outputFacingFluids == frontFacing.opposite
+            || outputFacingItems == frontFacing.opposite)
+            outputFacing = frontFacing.rotateY()
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean onWrenchClick(EntityPlayer playerIn,
-                                 EnumHand hand, EnumFacing facing,
-                                 CuboidRayTraceResult hitResult)
+    @Suppress("deprecation")
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean
     {
-        if (!playerIn.isSneaking())
+        if (!playerIn.isSneaking)
         {
-            if (this.getOutputFacing() == facing)
+            if (outputFacing == facing)
             {
-                return false;
+                return false
             }
-            else if (this.hasFrontFacing() && facing == this.getFrontFacing()
-                      || facing == this.getFrontFacing().getOpposite())
+            else if (hasFrontFacing() && facing == getFrontFacing()
+                || facing == getFrontFacing().opposite)
             {
-                return false;
+                return false
             }
             else
             {
-                if (!this.getWorld().isRemote)
-                    this.setOutputFacing(facing);
-                return true;
+                if (!world.isRemote)
+                    outputFacing = facing
+                return true
             }
         }
         else
         {
-            return super.onWrenchClick(playerIn, hand, facing, hitResult);
+            return super.onWrenchClick(playerIn, hand, facing, hitResult)
         }
     }
 
     @SideOnly(Side.CLIENT)
-    @Override
-    public void renderMetaTileEntity(CCRenderState renderState,
-                                     Matrix4 translation,
-                                     IVertexOperation[] pipeline)
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
     {
-        super.renderMetaTileEntity(renderState, translation, pipeline);
-        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState,
-                translation, pipeline, this.getFrontFacing(), this.isActive(), true);
+        super.renderMetaTileEntity(renderState, translation, pipeline)
+        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
+            getFrontFacing(), isActive(), true)
     }
 
-    @Override
-    public void addInformation(ItemStack stack,
-                               @Nullable World player,
-                               List<String> tooltip,
-                               boolean advanced)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced);
-        tooltip.set(1, I18n.format("gtlitecore.machine.sap_collector.sap_collection"));
+        super.addInformation(stack, player, tooltip, advanced)
+        tooltip[1] = I18n.format("gtlitecore.machine.sap_collector.sap_collection")
     }
 
-    @Override
-    public boolean getIsWeatherOrTerrainResistant()
-    {
-        return true;
-    }
+    override fun getIsWeatherOrTerrainResistant() = true
 
 }

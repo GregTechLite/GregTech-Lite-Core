@@ -1,47 +1,33 @@
-package magicbook.gtlitecore.api.capability.logic;
+package magicbook.gtlitecore.api.capability.logic
 
-import gregtech.api.capability.IEnergyContainer;
-import gregtech.api.capability.impl.RecipeLogicEnergy;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity;
-import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty;
-import org.jetbrains.annotations.NotNull;
+import gregtech.api.capability.IEnergyContainer
+import gregtech.api.capability.impl.RecipeLogicEnergy
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMap
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
+import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty
+import magicbook.gtlitecore.api.recipe.property.value.PseudoMultiPropertyValues
+import java.util.function.Supplier
 
-import java.util.function.Supplier;
-
-public class PseudoMultiRecipeLogic extends RecipeLogicEnergy
+class PseudoMultiRecipeLogic(private val pseudoMetaTileEntity: PseudoMultiMachineMetaTileEntity, recipeMap: RecipeMap<*>?, energyContainer: Supplier<IEnergyContainer?>?) : RecipeLogicEnergy(pseudoMetaTileEntity, recipeMap, energyContainer)
 {
 
-    private final PseudoMultiMachineMetaTileEntity pseudoMetaTileEntity;
-
-    public PseudoMultiRecipeLogic(PseudoMultiMachineMetaTileEntity metaTileEntity,
-                                  RecipeMap<?> recipeMap,
-                                  Supplier<IEnergyContainer> energyContainer)
+    override fun checkRecipe(recipe: Recipe): Boolean
     {
-        super(metaTileEntity, recipeMap, energyContainer);
-        this.pseudoMetaTileEntity = metaTileEntity;
-    }
+        if (pseudoMetaTileEntity.targetBlockState == null)
+            return false // If world was remote or null then return.
 
-    @Override
-    public boolean checkRecipe(@NotNull Recipe recipe)
-    {
-        if (this.pseudoMetaTileEntity.getTargetBlockState() == null)
-            return false; // If world was remote or null then return.
         // If no property was given don't check if state matches.
         return !recipe.hasProperty(PseudoMultiProperty.INSTANCE)
-                || recipe.getProperty(PseudoMultiProperty.INSTANCE, null)
-                        .getValidBlockStates().contains(this.pseudoMetaTileEntity.getTargetBlockState())
-                && super.checkRecipe(recipe);
+                || recipe.getProperty(PseudoMultiProperty.INSTANCE, null)!!
+                        .getValidBlockStates().contains(pseudoMetaTileEntity.targetBlockState) && super.checkRecipe(recipe)
     }
 
-    @Override
-    protected boolean canProgressRecipe()
+    override fun canProgressRecipe(): Boolean
     {
-        return this.previousRecipe == null
-                || !this.previousRecipe.hasProperty(PseudoMultiProperty.INSTANCE)
-                || this.previousRecipe.getProperty(PseudoMultiProperty.INSTANCE, null).getValidBlockStates()
-                        .contains(this.pseudoMetaTileEntity.getTargetBlockState()) && super.canProgressRecipe();
+        return previousRecipe == null || !previousRecipe.hasProperty(PseudoMultiProperty.INSTANCE)
+                || previousRecipe.getProperty(PseudoMultiProperty.INSTANCE, null)!!
+                    .getValidBlockStates().contains(pseudoMetaTileEntity.targetBlockState) && super.canProgressRecipe()
     }
 
 }

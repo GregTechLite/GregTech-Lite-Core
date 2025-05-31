@@ -1,62 +1,41 @@
-package magicbook.gtlitecore.api.capability.logic;
+package magicbook.gtlitecore.api.capability.logic
 
-import gregtech.api.capability.impl.RecipeLogicSteam;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.RecipeMap;
-import lombok.Getter;
-import lombok.Setter;
-import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity;
-import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fluids.IFluidTank;
-import org.jetbrains.annotations.NotNull;
+import gregtech.api.capability.impl.RecipeLogicSteam
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMap
+import magicbook.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
+import magicbook.gtlitecore.api.recipe.property.PseudoMultiProperty
+import net.minecraft.util.EnumFacing
+import net.minecraftforge.fluids.IFluidTank
 
-@Getter
-@Setter
-public class PseudoMultiSteamRecipeLogic extends RecipeLogicSteam
+class PseudoMultiSteamRecipeLogic(val pseudoMetaTileEntity: PseudoMultiSteamMachineMetaTileEntity, recipeMap: RecipeMap<*>?, isHighPressure: Boolean, steamFluidTank: IFluidTank?, conversionRate: Double) : RecipeLogicSteam(pseudoMetaTileEntity, recipeMap, isHighPressure, steamFluidTank, conversionRate)
 {
 
-    private final PseudoMultiSteamMachineMetaTileEntity pseudoMetaTileEntity;
-
-    public PseudoMultiSteamRecipeLogic(PseudoMultiSteamMachineMetaTileEntity metaTileEntity, RecipeMap<?> recipeMap,
-                                       boolean isHighPressure,
-                                       IFluidTank steamFluidTank,
-                                       double conversionRate)
+    override fun checkRecipe(recipe: Recipe): Boolean
     {
-        super(metaTileEntity, recipeMap, isHighPressure, steamFluidTank, conversionRate);
-        this.pseudoMetaTileEntity = metaTileEntity;
-    }
+        if (pseudoMetaTileEntity.targetBlockState == null)
+            return false // If world was remote or null.
 
-    @Override
-    public boolean checkRecipe(@NotNull Recipe recipe)
-    {
-        if (this.pseudoMetaTileEntity.getTargetBlockState() == null)
-            return false; // If world was remote or null.
         // If no property was given don't check if state matches.
         return !recipe.hasProperty(PseudoMultiProperty.INSTANCE)
-                || recipe.getProperty(PseudoMultiProperty.INSTANCE, null)
-                        .getValidBlockStates().contains(this.pseudoMetaTileEntity.getTargetBlockState())
-                                && super.checkRecipe(recipe);
+                || recipe.getProperty(PseudoMultiProperty.INSTANCE, null)!!
+                    .getValidBlockStates().contains(pseudoMetaTileEntity.targetBlockState) && super.checkRecipe(recipe)
     }
 
-    @Override
-    protected boolean canProgressRecipe()
+    override fun canProgressRecipe(): Boolean
     {
         // Recipe stalled due to valid block removal will complete on world reload.
-        return this.previousRecipe == null
-                || !this.previousRecipe.hasProperty(PseudoMultiProperty.INSTANCE)
-                || this.previousRecipe.getProperty(PseudoMultiProperty.INSTANCE, null)
-                        .getValidBlockStates().contains(this.pseudoMetaTileEntity.getTargetBlockState())
-                            && super.canProgressRecipe();
+        return previousRecipe == null || !previousRecipe.hasProperty(PseudoMultiProperty.INSTANCE)
+                || previousRecipe.getProperty(PseudoMultiProperty.INSTANCE, null)!!
+                    .getValidBlockStates().contains(pseudoMetaTileEntity.targetBlockState) && super.canProgressRecipe()
     }
 
-    @Override
-    public void onFrontFacingSet(EnumFacing newFrontFacing)
+    override fun onFrontFacingSet(newFrontFacing: EnumFacing)
     {
-        super.onFrontFacingSet(newFrontFacing);
-        if (this.getVentingSide() == this.pseudoMetaTileEntity.getFrontFacing()
-                || this.getVentingSide() == this.pseudoMetaTileEntity.getFrontFacing().getOpposite())
-            this.setVentingSide(newFrontFacing.rotateY());
+        super.onFrontFacingSet(newFrontFacing)
+        if (ventingSide == pseudoMetaTileEntity.getFrontFacing()
+            || ventingSide == pseudoMetaTileEntity.getFrontFacing().opposite)
+            ventingSide = newFrontFacing.rotateY()
     }
 
 }
