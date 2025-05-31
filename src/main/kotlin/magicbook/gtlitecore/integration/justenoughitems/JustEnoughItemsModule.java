@@ -1,9 +1,9 @@
 package magicbook.gtlitecore.integration.justenoughitems;
 
+import kotlin.Pair;
 import magicbook.gtlitecore.api.module.Module;
 import magicbook.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend;
 import magicbook.gtlitecore.api.utils.GTLiteValues;
-import magicbook.gtlitecore.api.utils.tuples.Pair;
 import magicbook.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import magicbook.gtlitecore.core.module.GTLiteModules;
 import magicbook.gtlitecore.integration.IntegrationSubModule;
@@ -64,16 +64,18 @@ public class JustEnoughItemsModule extends IntegrationSubModule implements IModP
                 .filter(info -> {
                     Pair<Integer, Integer> infoKey = info.getKey();
                     FluidStack infoValue = info.getValue();
-                    return infoKey != null && infoKey.getKey() != null && infoKey.getValue() != null
+                    return infoKey != null
+                            && infoKey.getFirst() != null
+                            && infoKey.getSecond() != null
                             && infoValue != null;
                 })
                 // k1 > k2: (k1, v1), (k2, v1); v1 > v2: (k1, v1), (k1, v2)
-                .sorted(Comparator.comparingInt((Map.Entry<Pair<Integer, Integer>, FluidStack> info) -> info.getKey().getKey()) // planetId
-                        .thenComparingInt(info -> info.getKey().getValue())) // fluidId
+                .sorted(Comparator.comparingInt((Map.Entry<Pair<Integer, Integer>, FluidStack> info) -> info.getKey().getFirst()) // planetId
+                        .thenComparingInt(info -> info.getKey().getSecond())) // fluidId
                 .map(info -> {
                     Pair<Integer, Integer> infoKey = info.getKey();
                     FluidStack infoValue = info.getValue();
-                    return new SpacePumpRecipeWrapper(infoKey.getKey(), infoKey.getValue(), infoValue);
+                    return new SpacePumpRecipeWrapper(infoKey.getFirst(), infoKey.getSecond(), infoValue);
                 })
                 .distinct()
                 .toList();

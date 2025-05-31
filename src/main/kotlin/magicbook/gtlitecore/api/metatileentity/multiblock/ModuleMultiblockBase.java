@@ -26,23 +26,19 @@ import org.jetbrains.annotations.NotNull;
 
 import static magicbook.gtlitecore.api.utils.GTLiteValues.SECOND;
 
-public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase implements IModuleReceiver, IWorkable, IControllable
-{
+public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase implements IModuleReceiver, IWorkable, IControllable {
 
     protected final int tier;
     protected final int moduleTier;
     protected final int minCasingTier;
 
-    @Getter
-    @Setter
     protected IModuleProvider moduleProvider;
 
     protected IEnergyContainer energyContainer;
     protected final long energyConsumed;
 
     protected boolean isActive;
-    @Setter
-    @Getter
+
     protected int maxProgress;
     protected int progressTime = 0;
     protected boolean isWorkingEnabled = false;
@@ -54,8 +50,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
      *                      tiered status predicate.
      */
     public ModuleMultiblockBase(ResourceLocation metaTileEntityId, int tier,
-                                int moduleTier, int minCasingTier)
-    {
+                                int moduleTier, int minCasingTier) {
         super(metaTileEntityId);
         this.tier = tier;
         this.moduleTier = moduleTier;
@@ -67,8 +62,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    protected void formStructure(PatternMatchContext context)
-    {
+    protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         initializeAbilities();
     }
@@ -76,19 +70,16 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     protected abstract void initializeAbilities();
 
     @Override
-    public void checkStructurePattern()
-    {
+    public void checkStructurePattern() {
         super.checkStructurePattern();
-        if (getModuleProvider() != null)
-        {
+        if (getModuleProvider() != null) {
             if (getModuleProvider().getCasingTier() >= this.minCasingTier)
                 super.checkStructurePattern();
         }
     }
 
     @Override
-    public void invalidateStructure()
-    {
+    public void invalidateStructure() {
         super.invalidateStructure();
         setModuleProvider(null);
     }
@@ -98,38 +89,28 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     protected abstract BlockPattern createStructurePattern();
 
     @Override
-    protected void updateFormedValid()
-    {
-        if (getOffsetTimer() % SECOND == 0 && getModuleProvider() != null)
-        {
+    protected void updateFormedValid() {
+        if (getOffsetTimer() % SECOND == 0 && getModuleProvider() != null) {
             if (energyContainer.getEnergyCapacity() != energyContainer.getEnergyStored()
-                    && getModuleProvider().getSubEnergyContainer().getEnergyStored() > energyConsumed * SECOND)
-            {
+                    && getModuleProvider().getSubEnergyContainer().getEnergyStored() > energyConsumed * SECOND) {
                 long simulate = energyContainer.getEnergyCapacity() - energyContainer.getEnergyStored();
                 energyContainer.addEnergy(simulate);
             }
-        }
-        else if (getModuleProvider() == null)
-        {
+        } else if (getModuleProvider() == null) {
             setWorkingEnabled(false);
         }
     }
 
-    public IEnergyContainer getEnergyContainer()
-    {
-        if (getModuleProvider() == null || getModuleProvider().getSubEnergyContainer() == null)
-        {
+    public IEnergyContainer getEnergyContainer() {
+        if (getModuleProvider() == null || getModuleProvider().getSubEnergyContainer() == null) {
             return new EnergyContainerHandler(this, 0, 0, 0, 0, 0);
-        }
-        else
-        {
+        } else {
             return energyContainer;
         }
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing side)
-    {
+    public <T> T getCapability(Capability<T> capability, EnumFacing side) {
         if (capability == GregtechTileCapabilities.CAPABILITY_WORKABLE)
             return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(this);
         if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE)
@@ -138,8 +119,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound data)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         data.setInteger("progressTime", progressTime);
         data.setInteger("maxProgress", maxProgress);
@@ -149,8 +129,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound data)
-    {
+    public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         progressTime = data.getInteger("progressTime");
         maxProgress = data.getInteger("maxProgress");
@@ -159,8 +138,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public void writeInitialSyncData(PacketBuffer buf)
-    {
+    public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
         buf.writeInt(progressTime);
         buf.writeInt(maxProgress);
@@ -169,8 +147,7 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public void receiveInitialSyncData(PacketBuffer buf)
-    {
+    public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
         progressTime = buf.readInt();
         maxProgress = buf.readInt();
@@ -179,31 +156,24 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public void receiveCustomData(int dataId, PacketBuffer buf)
-    {
+    public void receiveCustomData(int dataId, PacketBuffer buf) {
         super.receiveCustomData(dataId, buf);
-        if (dataId == GregtechDataCodes.WORKABLE_ACTIVE)
-        {
+        if (dataId == GregtechDataCodes.WORKABLE_ACTIVE) {
             setActive(buf.readBoolean());
             scheduleRenderUpdate();
-        }
-        else if (dataId == GregtechDataCodes.WORKING_ENABLED)
-        {
+        } else if (dataId == GregtechDataCodes.WORKING_ENABLED) {
             setWorkingEnabled(buf.readBoolean());
             scheduleRenderUpdate();
         }
     }
 
     @Override
-    public boolean isActive()
-    {
+    public boolean isActive() {
         return isActive && isWorkingEnabled();
     }
 
-    public void setActive(boolean active)
-    {
-        if (isActive != active)
-        {
+    public void setActive(boolean active) {
+        if (isActive != active) {
             isActive = active;
             markDirty();
             if (getWorld() != null && !getWorld().isRemote)
@@ -212,20 +182,17 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public int getProgress()
-    {
+    public int getProgress() {
         return progressTime;
     }
 
     @Override
-    public boolean isWorkingEnabled()
-    {
+    public boolean isWorkingEnabled() {
         return isWorkingEnabled;
     }
 
     @Override
-    public void setWorkingEnabled(boolean workingEnabled)
-    {
+    public void setWorkingEnabled(boolean workingEnabled) {
         initializeAbilities();
         isWorkingEnabled = workingEnabled;
         markDirty();
@@ -233,11 +200,9 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
             writeCustomData(GregtechDataCodes.WORKING_ENABLED, buf -> buf.writeBoolean(workingEnabled));
     }
 
-    protected boolean drainEnergy(boolean simulate, long energy)
-    {
+    protected boolean drainEnergy(boolean simulate, long energy) {
         long result = energyContainer.getEnergyStored() - energy;
-        if (result >= 0L && result <= energyContainer.getEnergyCapacity())
-        {
+        if (result >= 0L && result <= energyContainer.getEnergyCapacity()) {
             if (!simulate)
                 energyContainer.changeEnergy(-energy);
             return true;
@@ -245,11 +210,9 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
         return false;
     }
 
-    protected boolean drainEnergy(boolean simulate)
-    {
+    protected boolean drainEnergy(boolean simulate) {
         long result = energyContainer.getEnergyStored() - energyContainer.getInputVoltage();
-        if (result >= 0L && result <= energyContainer.getEnergyCapacity())
-        {
+        if (result >= 0L && result <= energyContainer.getEnergyCapacity()) {
             if (!simulate)
                 energyContainer.changeEnergy(-energyContainer.getInputVoltage());
             return true;
@@ -258,13 +221,11 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     }
 
     @Override
-    public String getDisplayCountName()
-    {
+    public String getDisplayCountName() {
         return getMetaName() + ".display_count";
     }
 
-    public int getProgressPercent()
-    {
+    public int getProgressPercent() {
         return (int) ((1.0F * getProgress() / getMaxProgress()) * 100);
     }
 
@@ -301,21 +262,38 @@ public abstract class ModuleMultiblockBase extends MultiblockWithDisplayBase imp
     public abstract ICubeRenderer getBaseTexture(IMultiblockPart sourcePart);
 
     @Override
-    public boolean hasMaintenanceMechanics()
-    {
+    public boolean hasMaintenanceMechanics() {
         return false;
     }
 
     @Override
-    public void sentWorkingDisabled()
-    {
+    public void sentWorkingDisabled() {
         setWorkingEnabled(false);
     }
 
     @Override
-    public void sentWorkingEnabled()
-    {
+    public void sentWorkingEnabled() {
         setWorkingEnabled(true);
+    }
+
+    public IModuleProvider getModuleProvider()
+    {
+        return this.moduleProvider;
+    }
+
+    public int getMaxProgress()
+    {
+        return this.maxProgress;
+    }
+
+    public void setModuleProvider(IModuleProvider moduleProvider)
+    {
+        this.moduleProvider = moduleProvider;
+    }
+
+    public void setMaxProgress(int maxProgress)
+    {
+        this.maxProgress = maxProgress;
     }
 
 }
