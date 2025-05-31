@@ -14,9 +14,9 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.LEFT
-import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.ConfigHolder

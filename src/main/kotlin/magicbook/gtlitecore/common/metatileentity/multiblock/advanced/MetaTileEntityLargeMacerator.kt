@@ -1,10 +1,8 @@
 package magicbook.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
-import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -13,18 +11,15 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
-import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
 import gregtech.common.metatileentities.MetaTileEntities
-import lombok.Getter
 import magicbook.gtlitecore.api.GTLiteAPI
-import magicbook.gtlitecore.api.block.IBlockTier
 import magicbook.gtlitecore.api.block.impl.WrappedIntTier
 import magicbook.gtlitecore.api.capability.GTLiteDataCodes
-import magicbook.gtlitecore.api.utils.GTLiteUtility
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.consistent
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.getOrDefault
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.maxLength
@@ -46,8 +41,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
-import java.util.function.Supplier
 import kotlin.math.floor
 import kotlin.math.pow
 

@@ -13,9 +13,9 @@ import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.LEFT
-import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.api.util.TextComponentUtil.stringWithColor
 import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtech.api.util.TextFormattingUtil.formatNumbers

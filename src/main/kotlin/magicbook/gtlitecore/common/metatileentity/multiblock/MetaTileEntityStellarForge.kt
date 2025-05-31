@@ -49,7 +49,6 @@ import net.minecraft.util.SoundEvent
 import net.minecraft.world.World
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.pow
 

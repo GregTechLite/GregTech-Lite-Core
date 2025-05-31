@@ -159,7 +159,6 @@ import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconSet
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.averageRGB
 import magicbook.gtlitecore.api.utils.GTLiteUtility.Companion.gtliteId
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteUnknownCompositionMaterials
 {
 

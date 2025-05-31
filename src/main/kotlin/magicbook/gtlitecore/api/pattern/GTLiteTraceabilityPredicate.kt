@@ -17,123 +17,101 @@ import net.minecraft.util.math.BlockPos
 import java.util.*
 import java.util.function.Supplier
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteTraceabilityPredicate
 {
 
     companion object
     {
 
-        @JvmStatic
         var MOTOR_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_MOTOR_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_MOTOR_CASING[s] as WrappedIntTier).getIntTier() },
             "MotorCasing", null)
         }
 
-        @JvmStatic
         var PISTON_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_PISTON_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_PISTON_CASING[s] as WrappedIntTier).getIntTier() },
             "PistonCasing", null)
         }
 
-        @JvmStatic
         var PUMP_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_PUMP_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_PUMP_CASING[s] as WrappedIntTier).getIntTier() },
             "PumpCasing", null)
         }
 
-        @JvmStatic
         var CONVEYOR_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CONVEYOR_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_CONVEYOR_CASING[s] as WrappedIntTier).getIntTier() },
             "ConveyorCasing", null)
         }
 
-        @JvmStatic
         var ROBOT_ARM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_ROBOT_ARM_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_ROBOT_ARM_CASING[s] as WrappedIntTier).getIntTier() },
             "RobotArmCasing", null)
         }
 
-        @JvmStatic
         var EMITTER_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_EMITTER_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_EMITTER_CASING[s] as WrappedIntTier).getIntTier() },
             "EmitterCasing", null)
         }
 
-        @JvmStatic
         var SENSOR_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_SENSOR_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_SENSOR_CASING[s] as WrappedIntTier).getIntTier() },
             "SensorCasing", null)
         }
 
-        @JvmStatic
         var FIELD_GEN_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_FIELD_GEN_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_FIELD_GEN_CASING[s] as WrappedIntTier).getIntTier() },
             "FieldGenCasing", null)
         }
 
-        @JvmStatic
         var PROCESSOR_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_PROCESSOR_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_PROCESSOR_CASING[s] as WrappedIntTier).getIntTier() },
             "ProcessorCasing", null) }
 
-        @JvmStatic
         var BOROSILICATE_GLASS = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_BOROSILICATE_GLASS,
             Comparator.comparing { s -> (GTLiteAPI.MAP_BOROSILICATE_GLASS[s] as WrappedIntTier).getIntTier() },
             "BorosilicateGlass", null) }
 
-        @JvmStatic
         var FUSION_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_FUSION_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_FUSION_CASING[s] as WrappedIntTier).getIntTier() },
             "FusionCasing", null) }
 
-        @JvmStatic
         var FUSION_COIL = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_FUSION_COIL,
             Comparator.comparing { s -> (GTLiteAPI.MAP_FUSION_COIL[s] as WrappedIntTier).getIntTier() },
             "FusionCoil", null) }
 
-        @JvmStatic
         var CRYOSTAT = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CRYOSTAT,
             Comparator.comparing { s -> (GTLiteAPI.MAP_CRYOSTAT[s] as WrappedIntTier).getIntTier() },
             "Cryostat", null) }
 
-        @JvmStatic
         var DIVERTOR = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_DIVERTOR,
             Comparator.comparing { s -> (GTLiteAPI.MAP_DIVERTOR[s] as WrappedIntTier).getIntTier() },
             "Divertor", null) }
 
-        @JvmStatic
         var VACUUM = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_VACUUM,
             Comparator.comparing { s -> (GTLiteAPI.MAP_VACUUM[s] as WrappedIntTier).getIntTier() },
             "Vacuum", null) }
 
-        @JvmStatic
         var COMPONENT_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_COMPONENT_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_COMPONENT_CASING[s] as WrappedIntTier).getIntTier() },
             "ComponentAssemblyCasing", null) }
 
-        @JvmStatic
         var NUCLEAR_REACTOR_CORE = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_NUCLEAR_REACTOR_CORE,
             Comparator.comparing { s -> (GTLiteAPI.MAP_NUCLEAR_REACTOR_CORE[s] as WrappedIntTier).getIntTier() },
             "NuclearReactorCore", null) }
 
-        @JvmStatic
         var MANIPULATOR = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_MANIPULATOR,
             Comparator.comparing { s -> (GTLiteAPI.MAP_MANIPULATOR[s] as WrappedIntTier).getIntTier() },
             "Manipulator", null) }
 
-        @JvmStatic
         var SHIELDING_CORE = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_SHIELDING_CORE,
             Comparator.comparing { s -> (GTLiteAPI.MAP_SHIELDING_CORE[s] as WrappedIntTier).getIntTier() },
             "ShieldingCore", null) }
 
-        @JvmStatic
         var ACCELERATION_ORBIT = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_ACCELERATION_ORBIT,
             Comparator.comparing { s -> (GTLiteAPI.MAP_ACCELERATION_ORBIT[s] as WrappedIntTier).getIntTier() },
             "AccelerationOrbit", null) }
 
         // Overriden of original Cleanroom Casing by tiered stats predicate.
-        @JvmField
         var CLEANROOM_CASING = Supplier { TierTraceabilityPredicate(GTLiteAPI.MAP_CLEANROOM_CASING,
             Comparator.comparing { s -> (GTLiteAPI.MAP_CLEANROOM_CASING[s] as WrappedIntTier).getIntTier() },
             "CleanroomCasing", null) }
@@ -174,10 +152,8 @@ class GTLiteTraceabilityPredicate
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.states
          * @see gregtech.api.pattern.FactoryBlockPattern.setRepeatable
          */
-        @JvmStatic
         fun scaleIndicatorPredicate() = scaleIndicatorPredicate("length")
 
-        @JvmStatic
         fun scaleIndicatorPredicate(contextName: String) = TraceabilityPredicate { blockWorldState ->
             if (TraceabilityPredicate.AIR.test(blockWorldState))
             {
@@ -226,10 +202,8 @@ class GTLiteTraceabilityPredicate
          * @see gregtech.api.metatileentity.multiblock.MultiblockControllerBase.states
          * @see gregtech.api.pattern.FactoryBlockPattern.setRepeatable
          */
-        @JvmStatic
         fun scaleIndicatorPredicate(state: IBlockState) = scaleIndicatorPredicate("length")
 
-        @JvmStatic
         fun scaleIndicatorPredicate(state: IBlockState, contextName: String) = TraceabilityPredicate { blockWorldState ->
             if (MultiblockControllerBase.states(state).test(blockWorldState))
             {
@@ -249,7 +223,6 @@ class GTLiteTraceabilityPredicate
          *
          * @author Magic_Sweepy
          */
-        @JvmStatic
         fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate
         {
             val abilities = MultiblockAbility.REGISTRY[MultiblockAbility.OUTPUT_ENERGY]
@@ -273,7 +246,6 @@ class GTLiteTraceabilityPredicate
          *
          * @author Gate Guardian
          */
-        @JvmStatic
         fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate { blockWorldState ->
             val state: IBlockState = blockWorldState.blockState
             if (state.block is VariantActiveBlock<*>)

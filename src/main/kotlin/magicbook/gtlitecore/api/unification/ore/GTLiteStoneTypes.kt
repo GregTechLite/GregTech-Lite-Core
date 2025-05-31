@@ -8,7 +8,7 @@ import magicbook.gtlitecore.common.block.blocks.GTLiteStoneVariantBlock
 import net.minecraft.block.SoundType
 import net.minecraft.block.state.IBlockState
 
-@Suppress("MISSING_DEPENDENCY_CLASS", "unused")
+@Suppress("unused")
 class GTLiteStoneTypes
 {
 

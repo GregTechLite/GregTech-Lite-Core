@@ -47,7 +47,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import one.util.streamex.StreamEx
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow

@@ -22,7 +22,6 @@ import gregtech.api.metatileentity.multiblock.MultiblockDisplayText
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.util.TextComponentUtil.stringWithColor

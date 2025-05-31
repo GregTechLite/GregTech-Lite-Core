@@ -16,91 +16,49 @@ class GTLiteMaterialIconSet
 
     companion object
     {
-        // ======================================== Generalized MaterialIconSets =======================================
-        @JvmField
+        val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)
+        val CRYOTHEUM = MaterialIconSet("cryotheum", null, true)
+        val PETROTHEUM = MaterialIconSet("petrotheum", null, true)
+        val AEROTHEUM = MaterialIconSet("aerotheum", null, true)
+        val MAGNETO = MaterialIconSet("magneto", null, true)
         val NANOPARTICLES = MaterialIconSet("nanoparticles", null, true)
-
-        @JvmField
         val ROASTED = MaterialIconSet("roasted", null, true)
-
-        @JvmField
         val BEDROCKIUM = MaterialIconSet("bedrockium", null, true)
-
-        @JvmField
         val SUPERCRITICAL = MaterialIconSet("supercritical", null, true)
+        val DEGENERATE = MaterialIconSet("degenerate", null, true)
+        val ENRICHED = MaterialIconSet("enriched", null, true)
+        val ORGANIC = MaterialIconSet("organic", null, true)
+        val SPACETIME = MaterialIconSet("spacetime", null, true)
+        val MHDCSM = MaterialIconSet("mhdcsm", null, true)
+        val UNIVERSIUM = MaterialIconSet("universium", null, true)
 
-        @JvmField
         val COSMIC = MaterialIconSetWithRenderer("cosmic", null, true,
             HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
 
-        @JvmField
         val INFINITY = MaterialIconSetWithRenderer("infinity", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
         val HALKONITE = MaterialIconSetWithRenderer("halkonite", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
-        val DEGENERATE = MaterialIconSet("degenerate", null, true)
-
-        @JvmField
         val MAGNETIUM = MaterialIconSetWithRenderer("magnetium", null, true,
             HaloRenderItemBehavior(10, 0xF8F8D500.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
-        val ENRICHED = MaterialIconSet("enriched", null, true)
-
-        @JvmField
-        val ORGANIC = MaterialIconSet("organic", null, true)
-
-        @JvmField
-        val SPACETIME = MaterialIconSet("spacetime", null, true)
-
-        @JvmField
         val MAGMATTER = MaterialIconSetWithRenderer("magmatter", null, true,
             HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
 
-        @JvmField
         val GLITCH = MaterialIconSetWithRenderer("glitch", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
-        val MHDCSM = MaterialIconSet("mhdcsm", null, true)
-
-        @JvmField
         val BLACK_DWARF = MaterialIconSetWithRenderer("black_dwarf", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
         val WHITE_DWARF = MaterialIconSetWithRenderer("white_dwarf", null, true,
             HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), { GTLiteTextures.HALO }, true))
 
-        @JvmField
-        val UNIVERSIUM = MaterialIconSet("universium", null, true)
-
-        @JvmField
         val ETERNITY = MaterialIconSetWithRenderer("eternity", null, true,
             HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
-        // ========================================== Unified MaterialIconSets =========================================
-        @JvmField
-        val PYROTHEUM = MaterialIconSet("pyrotheum", null, true)
-
-        @JvmField
-        val CRYOTHEUM = MaterialIconSet("cryotheum", null, true)
-
-        @JvmField
-        val PETROTHEUM = MaterialIconSet("petrotheum", null, true)
-
-        @JvmField
-        val AEROTHEUM = MaterialIconSet("aerotheum", null, true)
-
-        @JvmField
-        val MAGNETO = MaterialIconSet("magneto", null, true)
-
-        // =============================================================================================================
-        @JvmStatic
         fun setMaterialIconSets()
         {
             BismuthBronze.materialIconSet = MaterialIconSet.METALLIC

@@ -61,11 +61,9 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import net.minecraftforge.items.IItemHandlerModifiable
 import one.util.streamex.StreamEx
 import org.jetbrains.annotations.ApiStatus
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.function.Consumer
 import java.util.function.Predicate
 import kotlin.math.floor
 import kotlin.math.pow

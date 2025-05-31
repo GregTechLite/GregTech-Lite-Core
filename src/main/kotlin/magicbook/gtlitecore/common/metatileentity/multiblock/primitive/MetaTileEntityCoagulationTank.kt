@@ -49,10 +49,8 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.common.util.Constants
 import net.minecraftforge.fluids.FluidStack
-import net.minecraftforge.fluids.IFluidTank
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemHandlerHelper.insertItem
 import net.minecraftforge.items.ItemStackHandler

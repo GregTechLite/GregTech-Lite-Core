@@ -12,54 +12,44 @@ import magicbook.gtlitecore.api.unification.GTLiteMaterials
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialFlags
 import magicbook.gtlitecore.api.unification.material.infos.GTLiteMaterialIconType
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteOrePrefix
 {
 
     companion object
     {
 
-        @JvmField
         val gemSolitary = OrePrefix("gemSolitary", M * 8, null,
             GTLiteMaterialIconType.gemSolitary, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasGemProperty)
 
-        @JvmField
         val oreLimestone: OrePrefix = OrePrefix("oreLimestone", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreKomatiite: OrePrefix = OrePrefix("oreKomatiite", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreGreenSchist: OrePrefix = OrePrefix("oreGreenSchist", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreBlueSchist: OrePrefix = OrePrefix("oreBlueSchist", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreKimberlite: OrePrefix = OrePrefix("oreKimberlite", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreQuartzite: OrePrefix = OrePrefix("oreQuartzite", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreSlate: OrePrefix = OrePrefix("oreSlate", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
 
-        @JvmField
         val oreShale: OrePrefix = OrePrefix("oreShale", -1, null,
             MaterialIconType.ore, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasOreProperty)
@@ -74,49 +64,40 @@ class GTLiteOrePrefix
             GTLiteMaterialIconType.wallGt, OrePrefix.Flags.ENABLE_UNIFICATION) { m ->
             m.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
 
-        @JvmField
         val seedCrystal: OrePrefix = OrePrefix("seedCrystal", M / 9, null,
             GTLiteMaterialIconType.seedCrystal, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasGemProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_BOULE)
                     || (m.hasFlags(MaterialFlags.CRYSTALLIZABLE) && !m.hasFlags(GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION))})
 
-        @JvmField
         val boule: OrePrefix = OrePrefix("boule", M * 4, null,
             GTLiteMaterialIconType.boule, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasGemProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_BOULE)
                     || (m.hasFlags(MaterialFlags.CRYSTALLIZABLE) && !m.hasFlags(GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION))})
 
-        @JvmField
         val fuelRodSingle: OrePrefix = OrePrefix("fuelRodSingle", M * 2, null,
             GTLiteMaterialIconType.fuelRodSingle, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val fuelRodDouble: OrePrefix = OrePrefix("fuelRodDouble", M * 4, null,
             GTLiteMaterialIconType.fuelRodDouble, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val fuelRodQuadruple: OrePrefix = OrePrefix("fuelRodQuadruple", M * 8, null,
             GTLiteMaterialIconType.fuelRodQuadruple, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val fuelRodDepletedSingle: OrePrefix = OrePrefix("fuelRodDepletedSingle", M * 2, null,
             GTLiteMaterialIconType.fuelRodDepletedSingle, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val fuelRodDepletedDouble: OrePrefix = OrePrefix("fuelRodDepletedDouble", M * 4, null,
             GTLiteMaterialIconType.fuelRodDouble, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val fuelRodDepletedQuadruple: OrePrefix = OrePrefix("fuelRodDepletedQuadruple", M * 8, null,
             GTLiteMaterialIconType.fuelRodQuadruple, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_FUEL_ROD) })
 
-        @JvmField
         val nanite: OrePrefix = OrePrefix("nanite", -1, null,
             GTLiteMaterialIconType.nanite, OrePrefix.Flags.ENABLE_UNIFICATION,
             OrePrefix.Conditions.hasDustProperty.and { m -> m.hasFlags(GTLiteMaterialFlags.GENERATE_NANITE) })

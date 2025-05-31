@@ -542,7 +542,6 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.MINUTE
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteFirstDegreeMaterials
 {
 

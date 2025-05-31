@@ -8,7 +8,6 @@ import magicbook.gtlitecore.api.unification.material.GTLiteSecondDegreeMaterials
 import magicbook.gtlitecore.api.unification.material.GTLiteThirdDegreeMaterials
 import magicbook.gtlitecore.api.unification.material.GTLiteUnknownCompositionMaterials
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteMaterials
 {
 
@@ -817,7 +816,6 @@ class GTLiteMaterials
 
         lateinit var DimensionallyShiftedSuperfluid: Material
 
-        @JvmStatic
         fun init()
         {
             GTLiteElementMaterials.init() // 1-2000

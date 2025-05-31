@@ -14,9 +14,9 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
-import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
 import gregtech.common.blocks.BlockBoilerCasing

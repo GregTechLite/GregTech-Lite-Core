@@ -10,9 +10,9 @@ import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.LEFT
-import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.ConfigHolder

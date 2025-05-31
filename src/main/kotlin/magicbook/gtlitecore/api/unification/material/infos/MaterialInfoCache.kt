@@ -130,7 +130,6 @@ class MaterialInfoCache
     companion object
     {
 
-        @JvmStatic
         val periodicTableMaterials = arrayListOf<Material>()
 
         fun build()

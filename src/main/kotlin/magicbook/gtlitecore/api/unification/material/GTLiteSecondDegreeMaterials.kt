@@ -275,7 +275,6 @@ import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.SECOND
 import magicbook.gtlitecore.api.utils.GTLiteValues.Companion.TICK
 import net.minecraft.init.Enchantments
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class GTLiteSecondDegreeMaterials
 {
 
