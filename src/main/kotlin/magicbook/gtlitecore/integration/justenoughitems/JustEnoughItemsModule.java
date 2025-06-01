@@ -64,10 +64,7 @@ public class JustEnoughItemsModule extends IntegrationSubModule implements IModP
                 .filter(info -> {
                     Pair<Integer, Integer> infoKey = info.getKey();
                     FluidStack infoValue = info.getValue();
-                    return infoKey != null
-                            && infoKey.getFirst() != null
-                            && infoKey.getSecond() != null
-                            && infoValue != null;
+                    return infoKey.getFirst() != null && infoKey.getSecond() != null;
                 })
                 // k1 > k2: (k1, v1), (k2, v1); v1 > v2: (k1, v1), (k1, v2)
                 .sorted(Comparator.comparingInt((Map.Entry<Pair<Integer, Integer>, FluidStack> info) -> info.getKey().getFirst()) // planetId

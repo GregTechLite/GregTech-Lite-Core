@@ -10,7 +10,7 @@ import gregtech.api.GTValues.VH
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
+import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
@@ -62,7 +62,6 @@ import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class BioSimulatorRecipes
 {
 
@@ -94,7 +93,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Zombie
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.ROTTEN_FLESH)
                 .output(MEMORY_CARD_ZOMBIE)
@@ -103,7 +102,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Skeleton
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.BONE)
                 .output(MEMORY_CARD_SKELETON)
@@ -112,7 +111,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Creeper
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.GUNPOWDER)
                 .output(MEMORY_CARD_CREEPER)
@@ -121,7 +120,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Slime
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.SLIME_BALL)
                 .output(MEMORY_CARD_SLIME)
@@ -130,7 +129,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Spider
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.SPIDER_EYE)
                 .output(MEMORY_CARD_SPIDER)
@@ -139,7 +138,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Blaze
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.BLAZE_POWDER)
                 .output(MEMORY_CARD_BLAZE)
@@ -148,7 +147,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Ghast
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.GHAST_TEAR)
                 .output(MEMORY_CARD_GHAST)
@@ -157,7 +156,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Guardian
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.PRISMARINE_SHARD)
                 .output(MEMORY_CARD_GUARDIAN)
@@ -166,7 +165,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Wither Skeleton
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.SKULL, 1, 1)
                 .output(MEMORY_CARD_WITHER_SKELETON)
@@ -175,7 +174,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Witch
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.GLASS_BOTTLE)
                 .output(MEMORY_CARD_WITCH)
@@ -184,7 +183,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Enderman
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.ENDER_EYE)
                 .output(MEMORY_CARD_ENDERMAN)
@@ -193,7 +192,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Shulker
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.SHULKER_SHELL)
                 .output(MEMORY_CARD_SHULKER)
@@ -202,7 +201,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Wither
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .input(Items.NETHER_STAR)
                 .output(MEMORY_CARD_WITHER)
@@ -211,7 +210,7 @@ class BioSimulatorRecipes
                 .buildAndRegister()
 
             // Ender Dragon
-            CANNER_RECIPES.recipeBuilder()
+            SCANNER_RECIPES.recipeBuilder()
                 .input(MEMORY_CARD_BASE)
                 .inputs(ItemStack(Blocks.DRAGON_EGG))
                 .output(MEMORY_CARD_ENDER_DRAGON)

@@ -31,7 +31,6 @@ import magicbook.gtlitecore.common.item.GTLiteMetaItems.Companion.WRAP_PHENOLIC_
 /**
  * @see [magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer]
  */
-@Suppress("MISSING_DEPENDENCY_CLASS")
 class AppEngCALRecipeProducer
 {
 

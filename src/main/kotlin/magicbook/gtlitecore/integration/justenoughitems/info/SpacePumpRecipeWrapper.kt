@@ -1,39 +1,32 @@
-package magicbook.gtlitecore.integration.justenoughitems.info;
+package magicbook.gtlitecore.integration.justenoughitems.info
 
-import lombok.Getter;
-import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.ingredients.VanillaTypes;
-import mezz.jei.api.recipe.IRecipeWrapper;
-import net.minecraftforge.fluids.FluidStack;
+import mezz.jei.api.ingredients.IIngredients
+import mezz.jei.api.ingredients.VanillaTypes
+import mezz.jei.api.recipe.IRecipeWrapper
+import net.minecraftforge.fluids.FluidStack
+import javax.annotation.ParametersAreNonnullByDefault
 
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-@Getter
-@ParametersAreNonnullByDefault
-public final class SpacePumpRecipeWrapper implements IRecipeWrapper
+/**
+ * @param planetId Planet Id in frontend.
+ * @param fluidId  Fluid Id in frontend.
+ * @param fluid    FluidStack in frontend.
+ *
+ * @see magicbook.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
+ */
+class SpacePumpRecipeWrapper(@JvmField val planetId: Int, @JvmField val fluidId: Int, @JvmField val fluid: FluidStack) : IRecipeWrapper
 {
 
-    private final int planetId;
-    private final int fluidId;
-    private final FluidStack fluid;
-    private final List<List<FluidStack>> fluids = new ArrayList<>();
+    val fluids = ArrayList<MutableList<FluidStack>>()
 
-    public SpacePumpRecipeWrapper(int planetId, int fluidId, FluidStack fluid)
+    init
     {
-        this.planetId = planetId;
-        this.fluidId = fluidId;
-        this.fluid = fluid;
-        this.fluids.add(Collections.singletonList(fluid));
+        fluids.add(mutableListOf<FluidStack>(fluid))
     }
 
-    @Override
-    public void getIngredients(IIngredients ingredients)
+    override fun getIngredients(ingredients: IIngredients)
     {
-        ingredients.setInputLists(VanillaTypes.FLUID, fluids);
-        ingredients.setOutputLists(VanillaTypes.FLUID, fluids);
+        ingredients.setInputLists(VanillaTypes.FLUID, fluids)
+        ingredients.setOutputLists(VanillaTypes.FLUID, fluids)
     }
 
 }
