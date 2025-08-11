@@ -1,0 +1,38 @@
+{
+  "package": "gregtechlite.gtlitecore.mixins.gregtech",
+  "required": true,
+  "refmap": "mixins.gtlitecore.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.3",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "AccessorMetaTileEntityDrum",
+    "MixinCoreModule",
+    "MixinJustEnoughItemsModule",
+    "MixinBlockPattern",
+    "MixinMultiblockControllerBase",
+    "MixinFuelRecipeLogic",
+    "MixinMaterialProperties",
+    "MixinOreConfigUtils",
+    "MixinMetaTileEntityNetworkSwitch",
+    "MixinMaterialRecipeHandler",
+    "MixinPartsRecipeHandler",
+    "MixinOreRecipeHandler",
+    "MixinWireCombiningHandler",
+    "MixinWireRecipeHandler"
+  ],
+  "server": [],
+  "client": [
+    "client.AccessorMetaBlocks",
+    "client.MixinBlockGlassCasing",
+    "client.MixinBlockGlassCasingType",
+    "client.MixinCableRenderer",
+    "client.MixinItemPipeRenderer",
+    "client.MixinFluidPipeRenderer",
+    "client.MixinMetaItem",
+    "client.MixinMetaPrefixItem",
+    "client.MixinMetaValueItem",
+    "client.MixinGTMaterialFluid",
+    "client.MixinMetaTileEntityFusionReactor"
+  ]
+}

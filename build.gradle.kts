@@ -1,4 +1,3 @@
-import com.gtnewhorizons.retrofuturagradle.mcp.ReobfuscatedJar
 import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
@@ -6,13 +5,13 @@ import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
 
-/**
+/*
  * This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
  * as language mixed programming support (Java and Kotlin), some annotation processors and packages,
  * like JetBrains Annotation and Lombok.
  *
- * The author of this TemplateEnvDevKt port version is Magic_Sweepy, and this gradle template is only
- * used for this project, thanks for Kyle Lin make the original gradle template.
+ * The author of this TemplateEnvDevKt port version is Magic_Sweepy and Gate Guardian, and this gradle
+ * template is only used for this project, thanks for Kyle Lin make the original gradle template.
  */
 
 plugins {
@@ -33,6 +32,8 @@ val embed = "embed"
 group = "magicbook"
 version = modVersion
 
+// Mixed programming environment not supported Jabel or other same functional dependencies, we used Java 8
+// as default. Do not change this settings otherwise you know what you are doing.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
@@ -51,13 +52,12 @@ tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
 }
 
-// These sourceSet settings allowed javaCompiler read Kotlin source,
-// but kotlinCompiler cannot read Java source. As default, we build
-// programming structures in Kotlin source.
+// Used specified sourceSet of two languages as default, should put all Java class in 'java' and all Kotlin
+// class to 'kotlin' sourceSets. Do not change these settings, this is only for javaCompiler and kotlinCompiler.
 sourceSets {
     main {
         java {
-            srcDirs("src/main/java", "src/main/kotlin")
+            srcDir("src/main/java")
         }
         kotlin {
             srcDir("src/main/kotlin")
@@ -84,7 +84,7 @@ minecraft {
     // Add any additional tweaker classes here.
     // extraTweakClasses.add("org.spongepowered.asm.launch.MixinTweaker")
 
-    // Add various JVM arguments here for runtime
+    // Add various JVM arguments here for runtime.
     val args = mutableListOf("-ea:${group}")
     if (usesCoreMod.toBoolean()) {
         args += "-Dfml.coreMods.load=$coreModPluginPath"
@@ -94,8 +94,9 @@ minecraft {
         args += "-Dmixin.checks.interfaces=true"
         args += "-Dmixin.debug.export=true"
     }
-//    args += "-XXaltjvm=dcevm"
-//    args += "-XX:+AllowEnhancedClassRedefinition"
+    // args += "-XXaltjvm=dcevm"
+    // args += "-XX:+AllowEnhancedClassRedefinition"
+    args += "-Dterminal.jline=true"
     extraRunJvmArguments.addAll(args)
 
     // Include and use dependencies' Access Transformer files
@@ -104,7 +105,7 @@ minecraft {
     // Add any properties you want to swap out for a dynamic value at build time here.
     // Any properties here will be added to a class at build time, the name can be configured below.
 
-    injectedTags.put("VERSION", modVersion)
+    injectedTags.put("MOD_VERSION", modVersion)
     injectedTags.put("MOD_ID", modId)
     injectedTags.put("MOD_NAME", modName)
 }
@@ -130,7 +131,8 @@ dependencies {
     }
     implementation(deobf(libs.modularui))
     api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
-    implementation(deobf(files("libs/gregtech-1.12.2-master.jar")))
+    implementation(deobf(files("libs/magicbook-1.12.2-1.0.0.jar")))
+    implementation(deobf(files("libs/gregtech-1.12.2-master-#2823.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
@@ -142,6 +144,7 @@ dependencies {
     compileOnly(libs.groovyScript) {
         isTransitive = false
     }
+
     compileOnly(libs.craftTweaker2)
 
     compileOnlyApi(libs.jetbrainsAnnotations)

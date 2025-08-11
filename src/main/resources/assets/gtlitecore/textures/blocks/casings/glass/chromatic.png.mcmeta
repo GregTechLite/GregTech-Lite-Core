@@ -1,0 +1,17 @@
+{
+  "animation": {
+    "interpolate": true,
+    "frametime": 5
+  },
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "TRANSLUCENT",
+    "textures": [
+      "gtlitecore:blocks/casings/glass/chromatic_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
+    }
+  }
+}

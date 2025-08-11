@@ -1,0 +1,13 @@
+{
+  "package": "gregtechlite.gtlitecore.mixins.jei",
+  "required": true,
+  "refmap": "mixins.gtlitecore.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.3",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinItemStackRenderer"
+  ],
+  "server": [],
+  "client": []
+}

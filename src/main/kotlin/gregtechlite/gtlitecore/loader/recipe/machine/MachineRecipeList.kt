@@ -1,0 +1,50 @@
+package gregtechlite.gtlitecore.loader.recipe.machine
+
+internal object MachineRecipeList
+{
+
+    // @formatter:off
+
+    fun init()
+    {
+        AlloySmelterRecipes.init()
+        AssemblerRecipes.init()
+        AssemblyLineRecipes.init()
+        AutoclaveRecipes.init()
+        BenderRecipes.init()
+        CannerRecipes.init()
+        CentrifugeRecipes.init()
+        ChemicalBathRecipes.init()
+        CircuitAssemblerRecipes.init()
+        CutterRecipes.init()
+        DistilleryRecipes.init()
+        ExtruderRecipes.init()
+        FluidSolidifierRecipes.init()
+        FormingPressRecipes.init()
+        FusionReactorRecipes.init()
+        GasCollectorRecipes.init()
+        LaserEngraverRecipes.init()
+        MixerRecipes.init()
+        PackerRecipes.init()
+        PrimitiveBlastFurnaceRecipes.init()
+        SifterRecipes.init()
+        WiremillRecipes.init()
+
+        AlloyBlastSmelterRecipes.init()
+        BathCondenserRecipes.init()
+        BioSimulatorRecipes.init()
+        CrystallizationCrucibleRecipes.init()
+        EyeOfHarmonyRecipes.init()
+        LoomRecipes.init()
+        MobExtractorRecipes.init()
+        PolisherRecipes.init()
+        QuantumForceTransformerRecipes.init()
+        SapCollectorRecipes.init()
+        SpaceAssemblerRecipes.init()
+        StellarForgeRecipes.init()
+        VacuumChamberRecipes.init()
+    }
+
+    // @formatter:on
+
+}

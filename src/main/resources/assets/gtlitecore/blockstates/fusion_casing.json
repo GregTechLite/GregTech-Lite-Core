@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=mk4": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_4"
+      }
+    },
+    "active=true,variant=mk4": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_4",
+        "top_all": "gregtech:blocks/casings/fusion/machine_casing_fusion_bloom"
+      }
+    },
+    "active=false,variant=mk5": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_5"
+      }
+    },
+    "active=true,variant=mk5": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/fusion/fusion_machine_casing_5",
+        "top_all": "gregtech:blocks/casings/fusion/machine_casing_fusion_bloom"
+      }
+    }
+  }
+}

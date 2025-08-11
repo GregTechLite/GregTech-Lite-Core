@@ -1,0 +1,15 @@
+{
+  "package": "gregtechlite.gtlitecore.mixins.minecraft",
+  "required": true,
+  "refmap": "mixins.gtlitecore.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.3",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [],
+  "server": [],
+  "client": [
+    "client.AccessorModelLoader",
+    "client.MixinMinecraft",
+    "client.MixinBlockGlass"
+  ]
+}

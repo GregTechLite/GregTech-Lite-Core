@@ -1,0 +1,14 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "nano_shielding_frame": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/nano_shielding_frame"
+        }
+      }
+    }
+  }
+}

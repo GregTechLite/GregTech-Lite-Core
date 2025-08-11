@@ -1,0 +1,29 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=advanced": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/advanced_fusion_coil"
+      }
+    },
+    "active=true,variant=advanced": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/advanced_fusion_coil"
+      }
+    },
+    "active=false,variant=ultimate": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/ultimate_fusion_coil"
+      }
+    },
+    "active=true,variant=ultimate": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/fusion/ultimate_fusion_coil"
+      }
+    }
+  }
+}

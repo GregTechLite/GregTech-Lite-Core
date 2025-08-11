@@ -1,0 +1,192 @@
+package gregtechlite.gtlitecore.common.metatileentity.multiblock
+
+import gregtech.api.GTValues.*
+import gregtech.api.block.IHeatingCoilBlockStats
+import gregtech.api.capability.IHeatingCoil
+import gregtech.api.capability.impl.HeatingCoilRecipeLogic
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.properties.impl.TemperatureProperty
+import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.KeyUtil
+import gregtech.api.util.TextComponentUtil.translationWithColor
+import gregtech.api.util.TextFormattingUtil.formatNumbers
+import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.renderer.texture.Textures
+import gregtech.common.blocks.BlockWireCoil
+import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
+import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
+import net.minecraft.client.resources.I18n
+import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.ITextComponent
+import net.minecraft.util.text.TextFormatting
+import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.pow
+
+class MultiblockCrystallizationCrucible(id: ResourceLocation)
+    : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
+{
+
+    private var motorCasingTier = 0
+    private var coilTier = 0
+    private var temperature = 0
+    private var tier = 0
+
+    init
+    {
+        this.recipeMapWorkable = CrystallizationCrucibleRecipeLogic(this)
+    }
+
+    companion object
+    {
+        private val casingState
+            get() = GTMetalCasing.TITANIUM_STABLE.state
+
+        private val uniqueCasingState
+            get() = ActiveUniqueCasing.HEAT_VENT.state
+    }
+
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCrystallizationCrucible(metaTileEntityId)
+
+    override fun formStructure(context: PatternMatchContext)
+    {
+        super.formStructure(context)
+        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+
+        val coilType = context.get<Any>(HEATING_COIL_STATS)
+        if (coilType is IHeatingCoilBlockStats)
+        {
+            this.coilTier = coilType.tier
+            this.temperature = coilType.coilTemperature
+        }
+        else
+        {
+            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
+            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
+        }
+
+        this.tier = minOf(motorCasingTier, coilTier)
+        this.temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
+    }
+
+    override fun invalidateStructure()
+    {
+        super.invalidateStructure()
+        this.motorCasingTier = 0
+        this.temperature = 0
+    }
+
+    // @formatter:off
+
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
+        .aisle("CCCCC", "F   F", "F   F", "CCCCC")
+        .aisle("CCCCC", " UHU ", " UHU ", "CCCCC")
+        .aisle("CCCCC", " HMH ", " HMH ", "CCOCC")
+        .aisle("CCCCC", " UHU ", " UHU ", "CCCCC")
+        .aisle("CCSCC", "F   F", "F   F", "CCCCC")
+        .where('S', selfPredicate())
+        .where('C', states(casingState)
+            .setMinGlobalLimited(32)
+            .or(autoAbilities(true, true, true, true, true, false, false)))
+        .where('U', states(uniqueCasingState))
+        .where('O', abilities(MUFFLER_HATCH))
+        .where('F', frames(Titanium))
+        .where('M', motorCasings())
+        .where('H', heatingCoils())
+        .where(' ', any())
+        .build()
+
+    // @formatter:on
+
+    @SideOnly(Side.CLIENT)
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.STABLE_TITANIUM_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.CRYSTALLIZATION_CRUCIBLE_OVERLAY
+
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    {
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.crystallization_crucible.tooltip.5"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"))
+        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"))
+    }
+
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+            .addEnergyUsageLine(energyContainer)
+            .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+            .addCustom { keyManager, syncer ->
+                if (isStructureFormed)
+                {
+                    val temperatureKey = KeyUtil.number(TextFormatting.RED,
+                        syncer.syncInt(currentTemperature).toLong(), "K")
+                    keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
+                        "gregtech.multiblock.blast_furnace.max_temperature", temperatureKey))
+                }
+            }
+            .addParallelsLine(recipeMapWorkable.parallelLimit)
+            .addWorkingStatusLine()
+            .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
+            .addRecipeOutputLine(recipeMapWorkable)
+    }
+
+    override fun getDataInfo(): List<ITextComponent>
+    {
+        val textList = super.getDataInfo()
+        val temperatureInfo = translationWithColor(TextFormatting.RED,
+            formatNumbers(temperature) + " K")
+        textList.add(translationWithColor(TextFormatting.GRAY,
+            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
+        return textList
+    }
+
+    override fun canBeDistinct() = true
+
+    override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
+        = temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0)!!
+
+    override fun hasMufflerMechanics() = true
+
+    override fun getCurrentTemperature() = temperature
+
+    private inner class CrystallizationCrucibleRecipeLogic(mte: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(mte)
+    {
+
+        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+
+        override fun setMaxProgress(maxProgress: Int)
+        {
+            super.setMaxProgress(floor(maxProgress * 0.8.pow(motorCasingTier)).toInt())
+        }
+
+        override fun getParallelLimit() = 8 * coilTier
+
+    }
+
+}

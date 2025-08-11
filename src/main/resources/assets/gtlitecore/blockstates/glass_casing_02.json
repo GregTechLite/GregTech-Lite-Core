@@ -2,74 +2,118 @@
   "forge_marker": 1,
   "variants": {
     "variant": {
-      "borosilicate": {
+      "pmma": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/pmma"
         }
       },
-      "titanium_borosilicate": {
+      "bpa_polycarbonate": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/titanium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/bpa_polycarbonate"
         }
       },
-      "tungsten_steel_borosilicate": {
+      "cbdo_polycarbonate": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/tungsten_steel_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/cbdo_polycarbonate"
         }
       },
-      "rhodium_plated_palladium_borosilicate": {
+      "zblan": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/rhodium_plated_palladium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/zblan"
         }
       },
-      "osmiridium_borosilicate": {
+      "erbium_zblan": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/osmiridium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/erbium_zblan"
         }
       },
-      "tritanium_borosilicate": {
+      "praseodymium_zblan": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/tritanium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/praseodymium_zblan"
         }
       },
-      "neutronium_borosilicate": {
+      "gst": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/neutronium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/gst"
         }
       },
-      "cosmic_neutronium_borosilicate": {
+      "thorium_yttrium": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/cosmic_neutronium_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/thorium_yttrium"
         }
       },
-      "infinity_borosilicate": {
+      "silicon_carbide": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/infinity_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/silicon_carbide"
         }
       },
-      "transcendent_metal_borosilicate": {
+      "woods": {
         "model": "minecraft:cube_all",
         "ambientocclusion": false,
         "textures": {
-          "all": "gtlitecore:blocks/casings/glass/transcendent_metal_borosilicate"
+          "all": "gtlitecore:blocks/casings/glass/woods"
+        }
+      },
+      "lead_silicon": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/lead_silicon"
+        }
+      },
+      "quantum": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/quantum"
+        }
+      },
+      "force_field": {
+        "model": "minecraft:cube_bottom_top",
+        "ambientocclusion": false,
+        "textures": {
+          "top": "gtlitecore:blocks/casings/glass/force_field_top",
+          "side": "gtlitecore:blocks/casings/glass/force_field_side",
+          "bottom": "#top"
+        }
+      },
+      "antimatter_containment": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/antimatter_containment"
+        }
+      },
+      "greenhouse": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/greenhouse"
+        }
+      },
+      "chromatic": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/chromatic"
         }
       }
     }

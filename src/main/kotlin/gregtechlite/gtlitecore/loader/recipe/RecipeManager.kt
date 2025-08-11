@@ -1,0 +1,57 @@
+package gregtechlite.gtlitecore.loader.recipe
+
+import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
+import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.loader.recipe.chain.ChemistryRecipeList
+import gregtechlite.gtlitecore.loader.recipe.circuit.CircuitRecipeList
+import gregtechlite.gtlitecore.loader.recipe.component.ComponentRecipeList
+import gregtechlite.gtlitecore.loader.recipe.foodprocessing.FoodProcessingList
+import gregtechlite.gtlitecore.loader.recipe.machine.GTMetaTileEntityLoader
+import gregtechlite.gtlitecore.loader.recipe.machine.MachineRecipeList
+import gregtechlite.gtlitecore.loader.recipe.machine.MachineRecipeLoader
+import gregtechlite.gtlitecore.loader.recipe.machine.casing.MachineCasingRecipeList
+import gregtechlite.gtlitecore.loader.recipe.oreprocessing.OreProcessingList
+import gregtechlite.gtlitecore.loader.recipe.producer.RecipeProducerList
+
+internal object RecipeManager
+{
+
+    // @formatter:off
+
+    fun init()
+    {
+        GTLiteLog.logger.debug("Starting to load all Crafting recipes...")
+        CraftingRecipeLoader.init()
+        GTWoodRecipeLoader.init()
+
+        GTLiteLog.logger.debug("Starting to load all RecipeProducers...")
+        RecipeProducerList.init()
+
+        GTLiteLog.logger.debug("Starting to load all MetaTileEntity recipes...")
+        GTMetaTileEntityLoader.init()
+        MachineRecipeLoader.init()
+        MachineCasingRecipeList.init()
+
+        GTLiteLog.logger.debug("Starting to load all Chemistry, Ore and Food Processings...")
+        ChemistryRecipeList.init()
+        OreProcessingList.init()
+        FoodProcessingList.init()
+
+        GTLiteLog.logger.debug("Starting to load all Machine and its CraftingComponent recipes...")
+        ComponentRecipeList.init()
+        MachineRecipeList.init()
+
+        GTLiteLog.logger.debug("Starting to load all Circuit recipes...")
+        CircuitRecipeList.init()
+
+        GTLiteLog.logger.debug("Starting to load all Override recipes and resolve all Recipe Conflicts...")
+        OverrideRecipeLoader.init()
+        RecipeConflicts.init()
+
+        GTLiteLog.logger.debug("Starting to load all Pseudo Recipes...")
+        SpacePumpRecipeFrontend.init()
+    }
+
+    // @formatter:on
+
+}

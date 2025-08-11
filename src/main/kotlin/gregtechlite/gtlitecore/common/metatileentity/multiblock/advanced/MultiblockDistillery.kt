@@ -1,0 +1,239 @@
+package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
+
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
+import gregtech.api.capability.IDistillationTower
+import gregtech.api.capability.IMultipleTankHandler
+import gregtech.api.capability.impl.DistillationTowerLogicHandler
+import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
+import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
+import gregtech.api.util.GTTransferUtils.addItemsToItemHandler
+import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.RelativeDirection.RIGHT
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.UP
+import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.renderer.texture.Textures
+import gregtech.client.utils.TooltipHelper
+import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
+import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import net.minecraft.block.state.IBlockState
+import net.minecraft.client.resources.I18n
+import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.function.Function
+import kotlin.math.floor
+import kotlin.math.pow
+
+// FIXME When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
+//       recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
+class MultiblockDistillery(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
+{
+
+    private var workableHandler: DistillationTowerLogicHandler?
+
+    private var casingTier = 0
+
+    companion object
+    {
+        private val casingState: IBlockState?
+            get() = MetalCasing.SILICON_CARBIDE.state
+
+        private val pipeCasingState: IBlockState?
+            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+    }
+
+    init
+    {
+        this.recipeMapWorkable = LargeDistilleryRecipeLogic(this)
+        this.workableHandler = DistillationTowerLogicHandler(this)
+    }
+
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockDistillery(metaTileEntityId)
+
+    override fun formStructure(context: PatternMatchContext)
+    {
+        super.formStructure(context)
+        if (this.structurePattern == null) return
+        if (this.usesAdvancedHatchLogic())
+        {
+            this.workableHandler?.determineLayerCount(this.structurePattern!!)
+            this.workableHandler?.determineOrderedFluidOutputs()
+        }
+        this.casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+    }
+
+    override fun invalidateStructure()
+    {
+        super.invalidateStructure()
+        if (this.workableHandler != null)
+            this.workableHandler!!.invalidate()
+        this.casingTier = 0
+    }
+
+    // @formatter:off
+
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start(RIGHT, FRONT, UP)
+        .aisle("DSD", "DQD", "DDD")
+        .aisle("CCC", "CPC", "CCC").setRepeatable(1, 11)
+        .aisle("CCC", "CCC", "CCC")
+        .where('S', selfPredicate())
+        .where('D', states(casingState)
+            .or(abilities(IMPORT_ITEMS)
+                    .setMaxGlobalLimited(1)
+                    .setPreviewCount(0))
+            .or(abilities(EXPORT_ITEMS)
+                    .setMaxGlobalLimited(1))
+            .or(abilities(INPUT_ENERGY)
+                    .setMinGlobalLimited(1)
+                    .setMaxGlobalLimited(4))
+            .or(abilities(IMPORT_FLUIDS)
+                    .setExactLimit(1)))
+        .where('C', states(casingState)
+            .or(abilities(EXPORT_FLUIDS)
+                    .setMaxLayerLimited(1, 1))
+            .or(autoAbilities(true, false)))
+        .where('P', states(pipeCasingState))
+        .where('Q', pumpCasings())
+        .build()
+
+    // @formatter:on
+
+    /**
+     * Used if Multiblock Part Abilities need to be sorted a certain way, like Distillation
+     * Tower and Assembly Line.
+     *
+     * There will be *consequences* if this is changed. Make sure to set the logic (workable)
+     * handler to one with a property overriden.
+     *
+     * @see DistillationTowerLogicHandler.determineOrderedFluidOutputs
+     */
+    override fun multiblockPartSorter(): Function<BlockPos?, Int?>?
+    {
+        return UP.getSorter(getFrontFacing(), getUpwardsFacing(), isFlipped())
+    }
+
+    /**
+     * Whether this Multiblock Structure can be rotated or face upwards.
+     *
+     * There will be *consequences* if this is changed. Make sure to set the logic (workable)
+     * handler to one with a property overriden.
+     *
+     * @see DistillationTowerLogicHandler.determineOrderedFluidOutputs
+     */
+    override fun allowsExtendedFacing() = false
+
+    override fun allowSameFluidFillForOutputs() = !this.usesAdvancedHatchLogic()
+
+    override fun getFluidOutputLimit(): Int
+    {
+        return if (this.workableHandler != null && this.usesAdvancedHatchLogic())
+            this.workableHandler!!.layerCount
+        else
+            super.getFluidOutputLimit()
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SILICON_CARBIDE_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = Textures.DISTILLATION_TOWER_OVERLAY
+
+    /**
+     * When current RecipeMap is Distillation Tower, then enabled special logic for
+     * the hatches. Otherwise, used common hatches logic.
+     *
+     * @see DistillationTowerLogicHandler
+     */
+    private fun usesAdvancedHatchLogic() = this.currentRecipeMap === DISTILLATION_RECIPES
+
+    override fun addInformation(stack: ItemStack?,
+                                player: World?,
+                                tooltip: MutableList<String?>,
+                                advanced: Boolean)
+    {
+        super.addInformation(stack, player, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.2") + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.5"))
+    }
+
+    override fun canBeDistinct(): Boolean = false
+
+    private inner class LargeDistilleryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
+    {
+
+        override fun outputRecipeOutputs()
+        {
+            if (usesAdvancedHatchLogic())
+            {
+                addItemsToItemHandler(getOutputInventory(), false, itemOutputs)
+                workableHandler?.applyFluidToOutputs(fluidOutputs, true)
+            }
+            else
+            {
+                super.outputRecipeOutputs()
+            }
+        }
+
+        override fun checkOutputSpaceFluids(recipe: Recipe,
+                                            exportFluids: IMultipleTankHandler): Boolean
+        {
+            if (usesAdvancedHatchLogic())
+            {
+                // We have already trimmed fluid outputs at this time.
+                if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
+                    !workableHandler!!.applyFluidToOutputs(recipe.allFluidOutputs, false))
+                {
+                    this.isOutputsFull = true
+                    return false
+                }
+                return true
+            }
+            return super.checkOutputSpaceFluids(recipe, exportFluids)
+        }
+
+        override fun getOutputTank(): IMultipleTankHandler?
+        {
+            if (usesAdvancedHatchLogic())
+                return workableHandler?.fluidTanks
+            return super.getOutputTank()
+        }
+
+        override fun getOverclockingDurationFactor() = if ((maxVoltage >= V[UV] && usesAdvancedHatchLogic()) || !usesAdvancedHatchLogic()) 0.25 else 0.5
+
+        override fun setMaxProgress(maxProgress: Int)
+        {
+            super.setMaxProgress((floor(maxProgress * 0.5.pow(getTierByVoltage(maxVoltage).toDouble()))).toInt())
+        }
+
+        override fun getParallelLimit() = 16 * casingTier
+
+    }
+
+}

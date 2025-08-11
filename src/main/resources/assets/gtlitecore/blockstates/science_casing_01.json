@@ -1,0 +1,51 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "molecular_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/molecular_casing"
+        }
+      },
+      "molecular_coil": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/science/molecular_coil_top",
+          "side": "gtlitecore:blocks/casings/science/molecular_coil_side",
+          "bottom": "#top"
+        }
+      },
+      "hollow_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/hollow_casing"
+        }
+      },
+      "reinforced_temporal_structure_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/reinforced_temporal_structure_casing"
+        }
+      },
+      "reinforced_spatial_structure_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/reinforced_spatial_structure_casing"
+        }
+      },
+      "infinite_spacetime_energy_boundary_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/infinite_spacetime_energy_boundary_casing"
+        }
+      },
+      "dimensional_bridge_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/dimensional_bridge_casing"
+        }
+      }
+    }
+  }
+}

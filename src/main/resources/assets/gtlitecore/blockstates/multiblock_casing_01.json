@@ -85,6 +85,18 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/special/antimatter_annihilation_matrix"
         }
+      },
+      "lattice_qcd_thermal_shielding_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/lattice_qcd_thermal_shielding_casing"
+        }
+      },
+      "hamilton_killing_flow_control_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/hamilton_killing_flow_control_casing"
+        }
       }
     }
   }

@@ -1,0 +1,14 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "TRANSLUCENT",
+    "textures": [
+      "gtlitecore:blocks/casings/glass/nano_shielding_frame_ctm"
+    ],
+    "extra": {
+      "connect_inside": true,
+      "light": 4
+    }
+  }
+}
