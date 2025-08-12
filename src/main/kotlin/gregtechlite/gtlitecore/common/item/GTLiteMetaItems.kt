@@ -17,6 +17,7 @@ import gregtech.api.unification.stack.MaterialStack
 import gregtech.api.unification.stack.RecyclingData
 import gregtech.api.util.RandomPotionEffect
 import gregtech.api.util.SmallDigits
+import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
 import gregtechlite.gtlitecore.api.MINUTE
@@ -28,12 +29,14 @@ import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import gregtechlite.gtlitecore.common.item.behavior.FoodBehavior
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.StructureWriterBehavior
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
 import net.minecraft.init.MobEffects
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.ItemStack
+import org.lwjgl.input.Keyboard
 
 object GTLiteMetaItems
 {
@@ -243,6 +246,8 @@ object GTLiteMetaItems
     lateinit var BATTERY_UXV_INFINITY: MetaItem<*>.MetaValueItem
     lateinit var BATTERY_OpV_INFINITY: MetaItem<*>.MetaValueItem
     lateinit var BATTERY_MAX_INFINITY: MetaItem<*>.MetaValueItem
+
+    lateinit var STRUCTURE_WRITER: MetaItem<*>.MetaValueItem
 
     lateinit var VACUUM_TUBE_COMPONENT: MetaItem<*>.MetaValueItem
     lateinit var DIELECTRIC_MIRROR: MetaItem<*>.MetaValueItem
@@ -1064,7 +1069,30 @@ object GTLiteMetaItems
             .setModelAmount(8)
             .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
-        // 1001-1100: ...
+        // 1001-1100: Debug Tools
+        STRUCTURE_WRITER = item(1001, "debug.structure_writer")
+            .addComponents(StructureWriterBehavior)
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.1"));
+                lines.add(TooltipHelper.BLINKING_CYAN.toString() + I18n.format("metaitem.debug.structure_writer.tooltip.2"));
+
+                if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
+                {
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.3"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.4"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.5"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.6"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.7"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.8"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.9"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.10"));
+                }
+                else
+                {
+                    lines.add(I18n.format("gregtech.tooltip.hold_shift"));
+                }
+            })
+        .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS);
 
         // 1101-2000: Circuit Components.
         VACUUM_TUBE_COMPONENT = item(1101, "circuit.component.vacuum_tube_component")

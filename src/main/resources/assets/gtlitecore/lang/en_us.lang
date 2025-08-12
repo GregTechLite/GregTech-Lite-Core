@@ -1069,6 +1069,23 @@ metaitem.battery.uxv.infinity.name=Small Infinity Battery
 metaitem.battery.opv.infinity.name=Medium Infinity Battery
 metaitem.battery.max.infinity.name=Large Infinity Battery
 
+metaitem.debug.structure_writer.name=Multiblock Structure Writer
+metaitem.debug.structure_writer.tooltip.1=你需要§5绝§d对§4天§c马§e行§a空§b的§3想§9象§1能§5力§7来使用它
+metaitem.debug.structure_writer.tooltip.2=Only for Developer!
+metaitem.debug.structure_writer.tooltip.3=手持此工具时§r鼠标右键§7选中一个起始方块作为坐标原点，
+metaitem.debug.structure_writer.tooltip.4=重复上述操作将会§9框选§7出从坐标原点到指定坐标处的一片范围；
+metaitem.debug.structure_writer.tooltip.5=手持此工具时§r鼠标右键§7非方块区域来打开GUI。
+metaitem.debug.structure_writer.tooltip.6=该工具具有两种导出模式：日志（Log文件）与Json文件，
+metaitem.debug.structure_writer.tooltip.7=均会将框选区域内的方块以§rFactoryBlockPattern§7可用的方式导出，
+metaitem.debug.structure_writer.tooltip.8=导出后的格式化代码可以直接作为多方块结构使用。
+metaitem.debug.structure_writer.tooltip.9=在GUI界面点击§6沿Y轴旋转§7以调整多方块结构的总体方位，
+metaitem.debug.structure_writer.tooltip.10=对§b格雷科技5§7的多方块结构的场合尤其有效。
+metaitem.debug.structure_writer.export_to_log=Export to log
+metaitem.debug.structure_writer.export_to_json=Export to JSON
+metaitem.debug.structure_writer.rotate_along_y_axis=Rotate along Y-axis
+metaitem.debug.structure_writer.empty=Empty
+metaitem.debug.structure_writer.structure_scale=Scale: §e%s§fx§e%s§fx§e%s§f (LxHxW)
+
 metaitem.circuit.component.vacuum_tube_component.name=Vacuum Tube Component
 metaitem.circuit.component.dielectric_mirror.name=Dielectric Mirror
 metaitem.circuit.component.dielectric_mirror.tooltip=Bragg Mirror

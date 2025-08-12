@@ -894,6 +894,23 @@ metaitem.battery.uxv.infinity.name=小型无尽电池
 metaitem.battery.opv.infinity.name=中型无尽电池
 metaitem.battery.max.infinity.name=大型无尽电池
 
+metaitem.debug.structure_writer.name=多方块结构导出工具
+metaitem.debug.structure_writer.tooltip.1=你需要§5绝§d对§4天§c马§e行§a空§b的§3想§9象§1能§5力§7来使用它
+metaitem.debug.structure_writer.tooltip.2=仅供开发者使用！
+metaitem.debug.structure_writer.tooltip.3=手持此工具时§r鼠标右键§7选中一个起始方块作为坐标原点，
+metaitem.debug.structure_writer.tooltip.4=重复上述操作将会§9框选§7出从坐标原点到指定坐标处的一片范围；
+metaitem.debug.structure_writer.tooltip.5=手持此工具时§r鼠标右键§7非方块区域来打开GUI。
+metaitem.debug.structure_writer.tooltip.6=该工具具有两种导出模式：日志（Log文件）与Json文件，
+metaitem.debug.structure_writer.tooltip.7=均会将框选区域内的方块以§rFactoryBlockPattern§7可用的方式导出，
+metaitem.debug.structure_writer.tooltip.8=导出后的格式化代码可以直接作为多方块结构使用。
+metaitem.debug.structure_writer.tooltip.9=在GUI界面点击§6沿Y轴旋转§7以调整多方块结构的总体方位，
+metaitem.debug.structure_writer.tooltip.10=对§b格雷科技5§7的多方块结构的场合尤其有效。
+metaitem.debug.structure_writer.export_to_log=导出为日志
+metaitem.debug.structure_writer.export_to_json=导出为JSON
+metaitem.debug.structure_writer.rotate_along_y_axis=沿Y轴旋转
+metaitem.debug.structure_writer.empty=无
+metaitem.debug.structure_writer.structure_scale=大小：§e%s§fx§e%s§fx§e%s§f（长x高x宽）
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板

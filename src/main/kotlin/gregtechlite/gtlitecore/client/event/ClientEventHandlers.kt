@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.client.event
 
 import gregtech.api.unification.OreDictUnifier
+import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import gregtechlite.gtlitecore.common.block.base.BlockMetalWall
@@ -9,6 +10,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.item.ItemBlock
 import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.client.event.GuiScreenEvent
+import net.minecraftforge.client.event.RenderWorldLastEvent
 import net.minecraftforge.event.entity.player.ItemTooltipEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
@@ -63,6 +65,12 @@ object ClientEventHandlers
             }
             cosmicUVs.flip()
         }
+    }
+
+    @SubscribeEvent
+    fun onRenderWorldLast(event: RenderWorldLastEvent)
+    {
+        StructureSelectRenderer.render(event)
     }
 
     @SubscribeEvent
