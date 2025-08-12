@@ -4,10 +4,12 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.M
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
+import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.OreDictUnifier
@@ -15,6 +17,7 @@ import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
+import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
@@ -35,11 +38,14 @@ import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropert
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_OCTAGONAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_STRIPES
 import net.minecraft.item.ItemStack
+import kotlin.math.max
 
 object MaterialRecipeHandler
 {
@@ -74,6 +80,7 @@ object MaterialRecipeHandler
         // -------------------------------------------------------------------------------------------------------------
         OrePrefix.dust.addProcessingHandler(PropertyKey.DUST, this::processDust)
         OrePrefix.ingot.addProcessingHandler(GTLitePropertyKey.ALLOY_BLAST, this::generateABSRecipes)
+        OrePrefix.dust.addProcessingHandler(PropertyKey.DUST, this::generateMBFRecipes)
     }
 
     /**
@@ -425,6 +432,96 @@ object MaterialRecipeHandler
     {
         if (material.hasProperty(PropertyKey.BLAST))
             property.recipeProducer.produce(material, material.getProperty(PropertyKey.BLAST))
+    }
+
+    private fun generateMBFRecipes(dustPrefix: OrePrefix, material: Material, property: DustProperty)
+    {
+        if (material.hasProperty(PropertyKey.INGOT))
+        {
+            if (!material.hasAnyOfFlags(MaterialFlags.FLAMMABLE, MaterialFlags.NO_SMELTING))
+            {
+                val ingotStack = OreDictUnifier.get(OrePrefix.ingot, material)
+                var blastTemp = material.blastTemperature
+
+                if (!ingotStack.isEmpty)
+                {
+                    if (blastTemp == 0)
+                        blastTemp += 1200
+
+                    val blastProp = material.getProperty(PropertyKey.BLAST)
+                    if (blastProp != null)
+                    {
+                        var duration = blastProp.durationOverride
+                        if (duration <= 0)
+                        {
+                            duration = max(1, material.mass * blastTemp / 50).toInt()
+                        }
+
+                        var eut = blastProp.eUtOverride
+                        if (eut <= 0) eut = VA[MV]
+
+                        // Still output ingotStack now, otherwise ingot has or not ingotHot.
+                        GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+                           .circuitMeta(1)
+                           .input(dustPrefix, material)
+                           .outputs(ingotStack)
+                           .EUt(eut)
+                           .duration(duration * 0.5)
+                           .blastFurnaceTemp(blastTemp)
+                           .buildAndRegister()
+
+                        if (material.hasFluid())
+                        {
+                            // If material has fluid, then allowed to get molten fluid.
+                            GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+                                .circuitMeta(2)
+                                .input(dustPrefix, material)
+                                .fluidOutputs(material.getFluid(L))
+                                .EUt(eut)
+                                .duration(duration * 0.5)
+                                .blastFurnaceTemp(blastTemp)
+                                .buildAndRegister()
+
+                            // Another choice, if player has too many ingotStacks, then MBF can blast material like fluid
+                            // extractor, i.e. ingotStack -> fluidStack.
+                            GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+                                .circuitMeta(4)
+                                .inputs(ingotStack)
+                                .fluidOutputs(material.getFluid(L))
+                                .EUt(eut)
+                                .duration(duration * 0.5)
+                                .blastFurnaceTemp(blastTemp)
+                                .buildAndRegister()
+
+                            // If material has plasma, then plasma is also.
+                            if (material.getFluid(FluidStorageKeys.PLASMA) != null)
+                            {
+                                GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+                                    .circuitMeta(3)
+                                    .input(dustPrefix, material)
+                                    .fluidOutputs(material.getPlasma(L))
+                                    .EUt(eut)
+                                    .duration(duration * 0.5)
+                                    .blastFurnaceTemp(blastTemp)
+                                    .buildAndRegister()
+
+                                // Just like fluid secondary choice, plasma is also.
+                                GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+                                    .circuitMeta(5)
+                                    .inputs(ingotStack)
+                                    .fluidOutputs(material.getPlasma(L))
+                                    .EUt(eut)
+                                    .duration(duration * 0.5)
+                                    .blastFurnaceTemp(blastTemp)
+                                    .buildAndRegister()
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()

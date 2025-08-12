@@ -335,7 +335,7 @@ object GTLiteElementMaterials
                 GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
                 GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE, GENERATE_NANITE)
             .blast { b ->
-                b.temp(16101, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                b.temp(23500, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 3 * MINUTE)
                     .vacuumStats(VA[UIV], 2 * MINUTE)
             }
@@ -369,7 +369,7 @@ object GTLiteElementMaterials
                 GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                 GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
             .blast { b ->
-                b.temp(16000, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                b.temp(24000, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 2 * MINUTE + 40 * SECOND)
                     .vacuumStats(VA[UIV], 1 * MINUTE + 45 * SECOND)
             }

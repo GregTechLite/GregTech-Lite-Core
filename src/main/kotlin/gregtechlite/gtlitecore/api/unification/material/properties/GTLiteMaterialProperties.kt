@@ -1,10 +1,13 @@
 package gregtechlite.gtlitecore.api.unification.material.properties
 
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
@@ -376,6 +379,24 @@ object GTLiteMaterialProperties
 
         RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
         RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
+
+        Fermium.setProperty(PropertyKey.BLAST, BlastProperty(9500))
+        Fermium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
+        Fermium.getProperty(PropertyKey.BLAST).durationOverride = 22 * SECOND
+        Fermium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+        Fermium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 12 * SECOND
+
+        Neptunium.setProperty(PropertyKey.BLAST, BlastProperty(3440))
+        Neptunium.getProperty(PropertyKey.BLAST).setEutOverride(VA[EV])
+        Neptunium.getProperty(PropertyKey.BLAST).durationOverride = 14 * SECOND
+        Neptunium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[MV])
+        Neptunium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 6 * SECOND + 5 * TICK
+
+        Technetium.setProperty(PropertyKey.BLAST, BlastProperty(2800))
+        Technetium.getProperty(PropertyKey.BLAST).setEutOverride(VA[IV])
+        Technetium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+        Technetium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[HV])
+        Technetium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 4 * SECOND + 10 * TICK
 
         // Fluid Pipe Properties
         Inconel718.setProperty(PropertyKey.FLUID_PIPE,

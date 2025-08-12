@@ -4,12 +4,15 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -26,6 +29,7 @@ import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Lubricant
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
@@ -52,6 +56,9 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
@@ -60,17 +67,32 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_16A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
@@ -857,7 +879,369 @@ internal object GTMetaTileEntityLoader
             .duration(10 * SECOND)
             .buildAndRegister()
 
-        // TODO UEV-OpV Adjustable Transformer
+        // UEV Adjustable Transformer
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UEV])
+            .input(ELECTRIC_PUMP_LuV)
+            .input(cableGtOctal, SuperheavyAlloyA)
+            .input(cableGtOctal, Seaborgium, 2)
+            .input(springSmall, Seaborgium)
+            .input(spring, SuperheavyAlloyA)
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            .output(POWER_TRANSFORMER[UEV])
+            .EUt(VA[UEV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // UIV Adjustable Transformer
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UIV])
+            .input(ELECTRIC_PUMP_LuV)
+            .input(cableGtOctal, SuperheavyAlloyB)
+            .input(cableGtOctal, SuperheavyAlloyA, 2)
+            .input(springSmall, SuperheavyAlloyA)
+            .input(spring, SuperheavyAlloyB)
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            .output(POWER_TRANSFORMER[UIV])
+            .EUt(VA[UIV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // UXV Adjustable Transformer
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UXV])
+            .input(ELECTRIC_PUMP_ZPM)
+            .input(cableGtOctal, Periodicium)
+            .input(cableGtOctal, SuperheavyAlloyB, 2)
+            .input(springSmall, SuperheavyAlloyB)
+            .input(spring, Periodicium)
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            .output(POWER_TRANSFORMER[UXV])
+            .EUt(VA[UXV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // TODO OpV Adjustable Transformer
+
+        // 4A UEV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_INPUT_HATCH[UEV])
+            .input(wireGtQuadruple, Seaborgium, 2)
+            .input(plate, Vibranium, 2)
+            .output(ENERGY_INPUT_HATCH_4A[UEV])
+            .EUt(VA[UHV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A UIV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_INPUT_HATCH[UIV])
+            .input(wireGtQuadruple, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 2)
+            .output(ENERGY_INPUT_HATCH_4A[UIV])
+            .EUt(VA[UEV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A UXV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_INPUT_HATCH[UXV])
+            .input(wireGtQuadruple, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 2)
+            .output(ENERGY_INPUT_HATCH_4A[UXV])
+            .EUt(VA[UIV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A OpV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_INPUT_HATCH[OpV])
+            .input(wireGtQuadruple, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 2)
+            .output(ENERGY_INPUT_HATCH_4A[OpV])
+            .EUt(VA[UXV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 16A UHV Energy Hatch
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            *arrayOf(HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_4A[UHV].getStackForm(2),
+                    OreDictUnifier.get(wireGtOctal, Europium, 2),
+                    OreDictUnifier.get(plate, Neutronium, 4)))
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UHV])
+            .input(ENERGY_INPUT_HATCH_4A[UHV], 2)
+            .input(wireGtOctal, Europium, 2)
+            .input(plate, Neutronium, 4)
+            .output(ENERGY_INPUT_HATCH_16A[UHV])
+            .EUt(VA[UV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UEV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UEV])
+            .input(ENERGY_INPUT_HATCH_4A[UEV], 2)
+            .input(wireGtOctal, Seaborgium, 2)
+            .input(plate, Vibranium, 4)
+            .output(ENERGY_INPUT_HATCH_16A[UEV])
+            .EUt(VA[UHV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UIV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UIV])
+            .input(ENERGY_INPUT_HATCH_4A[UIV], 2)
+            .input(wireGtOctal, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 4)
+            .output(ENERGY_INPUT_HATCH_16A[UIV])
+            .EUt(VA[UEV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UXV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UXV])
+            .input(ENERGY_INPUT_HATCH_4A[UXV], 2)
+            .input(wireGtOctal, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 4)
+            .output(ENERGY_INPUT_HATCH_16A[UXV])
+            .EUt(VA[UIV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A OpV Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[OpV])
+            .input(ENERGY_INPUT_HATCH_4A[OpV], 2)
+            .input(wireGtOctal, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 4)
+            .output(ENERGY_INPUT_HATCH_16A[OpV])
+            .EUt(VA[UXV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 64A UHV Substation Energy Hatch
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            *arrayOf(POWER_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_16A[UHV].stackForm,
+                     OreDictUnifier.get(wireGtHex, Europium, 2),
+                     OreDictUnifier.get(plate, Neutronium, 6)))
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UHV])
+            .input(ENERGY_INPUT_HATCH_16A[UHV])
+            .input(wireGtHex, Europium, 2)
+            .input(plate, Neutronium, 6)
+            .output(SUBSTATION_ENERGY_INPUT_HATCH[UHV])
+            .EUt(VA[UV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UEV Substation Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UEV])
+            .input(ENERGY_INPUT_HATCH_16A[UEV])
+            .input(wireGtHex, Seaborgium, 2)
+            .input(plate, Vibranium, 6)
+            .output(SUBSTATION_ENERGY_INPUT_HATCH[UEV])
+            .EUt(VA[UHV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UIV Substation Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UIV])
+            .input(ENERGY_INPUT_HATCH_16A[UIV])
+            .input(wireGtHex, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 6)
+            .output(SUBSTATION_ENERGY_INPUT_HATCH[UIV])
+            .EUt(VA[UEV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UXV Substation Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UXV])
+            .input(ENERGY_INPUT_HATCH_16A[UXV])
+            .input(wireGtHex, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 6)
+            .output(SUBSTATION_ENERGY_INPUT_HATCH[UXV])
+            .EUt(VA[UIV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A OpV Substation Energy Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[OpV])
+            .input(ENERGY_INPUT_HATCH_16A[OpV])
+            .input(wireGtHex, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 6)
+            .output(SUBSTATION_ENERGY_INPUT_HATCH[OpV])
+            .EUt(VA[UXV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 4A UEV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_OUTPUT_HATCH[UEV])
+            .input(wireGtQuadruple, Seaborgium, 2)
+            .input(plate, Vibranium, 2)
+            .output(ENERGY_OUTPUT_HATCH_4A[UEV])
+            .EUt(VA[UHV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A UIV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_OUTPUT_HATCH[UIV])
+            .input(wireGtQuadruple, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 2)
+            .output(ENERGY_OUTPUT_HATCH_4A[UIV])
+            .EUt(VA[UEV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A UXV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_OUTPUT_HATCH[UXV])
+            .input(wireGtQuadruple, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 2)
+            .output(ENERGY_OUTPUT_HATCH_4A[UXV])
+            .EUt(VA[UIV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 4A OpV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(ENERGY_OUTPUT_HATCH[OpV])
+            .input(wireGtQuadruple, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 2)
+            .output(ENERGY_OUTPUT_HATCH_4A[OpV])
+            .EUt(VA[UXV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // 16A UHV Dynamo Hatch
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            *arrayOf(HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_4A[UHV].stackForm,
+                     OreDictUnifier.get(wireGtOctal, Europium, 2),
+                     OreDictUnifier.get(plate, Neutronium, 4)))
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UHV])
+            .input(ENERGY_OUTPUT_HATCH_4A[UHV])
+            .input(wireGtOctal, Europium, 2)
+            .input(plate, Neutronium, 4)
+            .output(ENERGY_OUTPUT_HATCH_16A[UHV])
+            .EUt(VA[UV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UEV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UEV])
+            .input(ENERGY_OUTPUT_HATCH_4A[UEV])
+            .input(wireGtOctal, Seaborgium, 2)
+            .input(plate, Vibranium, 4)
+            .output(ENERGY_OUTPUT_HATCH_16A[UEV])
+            .EUt(VA[UHV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UIV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UIV])
+            .input(ENERGY_OUTPUT_HATCH_4A[UIV])
+            .input(wireGtOctal, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 4)
+            .output(ENERGY_OUTPUT_HATCH_16A[UIV])
+            .EUt(VA[UEV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A UXV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[UXV])
+            .input(ENERGY_OUTPUT_HATCH_4A[UXV])
+            .input(wireGtOctal, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 4)
+            .output(ENERGY_OUTPUT_HATCH_16A[UXV])
+            .EUt(VA[UIV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 16A OpV Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[OpV])
+            .input(ENERGY_OUTPUT_HATCH_4A[OpV])
+            .input(wireGtOctal, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 4)
+            .output(ENERGY_OUTPUT_HATCH_16A[OpV])
+            .EUt(VA[UXV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        // 64A UHV Substation Dynamo Hatch
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            *arrayOf(POWER_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_16A[UHV].stackForm,
+                     OreDictUnifier.get(wireGtHex, Europium, 2),
+                     OreDictUnifier.get(plate, Neutronium, 6)))
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UHV])
+            .input(ENERGY_OUTPUT_HATCH_16A[UHV])
+            .input(wireGtHex, Europium, 2)
+            .input(plate, Neutronium, 6)
+            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UHV])
+            .EUt(VA[UV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UEV Substation Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UEV])
+            .input(ENERGY_OUTPUT_HATCH_16A[UEV])
+            .input(wireGtHex, Seaborgium, 2)
+            .input(plate, Vibranium, 6)
+            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UEV])
+            .EUt(VA[UHV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UIV Substation Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UIV])
+            .input(ENERGY_OUTPUT_HATCH_16A[UIV])
+            .input(wireGtHex, SuperheavyAlloyA, 2)
+            .input(plate, Shirabon, 6)
+            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UIV])
+            .EUt(VA[UEV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A UXV Substation Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[UXV])
+            .input(ENERGY_OUTPUT_HATCH_16A[UXV])
+            .input(wireGtHex, SuperheavyAlloyB, 2)
+            .input(plate, Creon, 6)
+            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UXV])
+            .EUt(VA[UIV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // 64A OpV Substation Dynamo Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(POWER_TRANSFORMER[OpV])
+            .input(ENERGY_OUTPUT_HATCH_16A[OpV])
+            .input(wireGtHex, Periodicium, 2)
+            .input(plate, BlackDwarfMatter, 6)
+            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[OpV])
+            .EUt(VA[UXV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
 
     }
 

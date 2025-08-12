@@ -3143,7 +3143,7 @@ object GTLiteFirstDegreeMaterials
             .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
                 GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(16000, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                b.temp(22000, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 20 * SECOND)
                     .vacuumStats(VA[UIV], 10 * SECOND)
             }
@@ -3215,7 +3215,7 @@ object GTLiteFirstDegreeMaterials
                 GENERATE_FRAME)
             .cableProperties(V[UXV], 72, 18)
             .blast { b ->
-                b.temp(16000, BlastProperty.GasTier.HIGHEST)
+                b.temp(26000, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 2 * MINUTE)
                     .vacuumStats(VA[UXV], 30 * SECOND)
             }

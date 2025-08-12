@@ -250,8 +250,12 @@ object GTLiteOrePrefix
         OrePrefix.nugget.setIgnored(GTLiteMaterials.MagMatter)
         OrePrefix.nugget.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
 
+        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.TranscendentMetal)
         OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HalkoniteSteel)
         OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Magnetium)
+        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Mellion)
+        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Creon)
+        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HarmonicPhononMatter)
 
     }
 

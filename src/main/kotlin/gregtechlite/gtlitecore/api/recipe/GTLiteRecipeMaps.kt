@@ -807,6 +807,21 @@ object GTLiteRecipeMaps
         .sound(GTSoundEvents.ASSEMBLER)
         .build()
 
+    /**
+     * @zenProperty entrodynamically_phase_changer
+     */
+    @ZenProperty
+    @JvmField
+    val TOPOLOGICAL_ORDER_CHANGING_RECIPES: RecipeMap<BlastRecipeBuilder> = RecipeMapBuilder("entrodynamically_phase_changer", BlastRecipeBuilder())
+        .itemInputs(6)
+        .itemOutputs(1)
+        .fluidInputs(1)
+        .fluidOutputs(1)
+        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_PHASE_CHANGE)
+        .sound(GTSoundEvents.FURNACE)
+        .build()
+        .setSmallRecipeMap(RecipeMaps.BLAST_RECIPES)
+
     // endregion
 
     // region Generator Fuel RecipeMaps

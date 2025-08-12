@@ -134,6 +134,8 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
+import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
@@ -142,6 +144,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -174,6 +177,7 @@ import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
+import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
@@ -214,6 +218,7 @@ import gregtech.common.metatileentities.MetaTileEntities.MIXER
 import gregtech.common.metatileentities.MetaTileEntities.ORE_WASHER
 import gregtech.common.metatileentities.MetaTileEntities.PACKER
 import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
+import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.PRIMITIVE_BLAST_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
@@ -221,24 +226,28 @@ import gregtech.common.metatileentities.MetaTileEntities.SCANNER
 import gregtech.common.metatileentities.MetaTileEntities.SIFTER
 import gregtech.common.metatileentities.MetaTileEntities.STEAM_ALLOY_SMELTER_BRONZE
 import gregtech.common.metatileentities.MetaTileEntities.STEAM_COMPRESSOR_BRONZE
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CinobiteA243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FranciumCaesiumCadmiumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Grisium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
@@ -267,12 +276,15 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Staballoy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tairitsium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Talonite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
@@ -286,11 +298,13 @@ import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ADVANCED_FUSION_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ALLOY_BLAST_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ANTIMATTER_FORGE
@@ -311,6 +325,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CVD_UNIT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ELECTRIC_IMPLOSION_COMPRESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_INFUSER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENTRODYNAMICALLY_PHASE_CHANGER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSION_REACTOR_MK4
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSION_REACTOR_MK5
@@ -1451,6 +1466,37 @@ internal object MachineRecipeLoader
                 r.researchStack(CHARGER[ZPM].stackForm)
                     .EUt(VA[ZPM])
                     .CWUt(12)
+            }
+            .buildAndRegister()
+
+        // Entrodynamically Phase Changer
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(ANTIMATTER_FORGE, 4)
+            .input(STELLAR_FORGE, 16)
+            .input(VOLCANUS, 64)
+            .input(ULTIMATE_BATTERY, 2)
+            .input(plateDense, SuperheavyAlloyA, 4)
+            .input(plateDense, SuperheavyAlloyB, 4)
+            .input(plateDense, Abyssalloy, 4)
+            .input(plateDense, CinobiteA243, 4)
+            .input(ELECTRIC_PUMP_UIV, 16)
+            .input(ELECTRIC_PISTON_UIV, 16)
+            .input(SUBSTATION_ENERGY_INPUT_HATCH[UIV], 8)
+            .input(POWER_TRANSFORMER[UIV], 8)
+            .input(wireGtHex, FullereneSuperconductor, 16)
+            .input(VOLTAGE_COIL_UIV, 32)
+            .input(circuit, Tier.UIV, 16)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 100))
+            .fluidInputs(CosmicNeutronium.getFluid(L * 400))
+            .fluidInputs(HalkoniteSteel.getFluid(L * 80))
+            .fluidInputs(Shirabon.getFluid(L * 40))
+            .output(ENTRODYNAMICALLY_PHASE_CHANGER)
+            .EUt(VA[UIV])
+            .duration(5 * MINUTE)
+            .stationResearch { r ->
+                r.researchStack(ANTIMATTER_GENERATOR.stackForm)
+                    .EUt(VA[UEV])
+                    .CWUt(64)
             }
             .buildAndRegister()
 

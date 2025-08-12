@@ -103,11 +103,12 @@ object GTLiteTextures
     val ROCKET_ENGINE_OVERLAY = orientedOverlay("generators/rocket_engine")
     @JvmField
     val NAQUADAH_REACTOR_OVERLAY = orientedOverlay("generators/naquadah_reactor")
-
     @JvmField
     val SPACE_ASSEMBLER_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_assembler/overlay_side")
     @JvmField
     val SPACE_PUMP_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_pump/overlay_side")
+    @JvmField
+    val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = orientedOverlay("machines/multiblock/entrodynamically_phase_changer")
 
     // endregion
 
@@ -199,11 +200,12 @@ object GTLiteTextures
     val SPACE_ELEVATOR_BASE_CASING = simpleOverlay("casings/aerospace/elevator_base_casing")
     @JvmField
     val MOLECULAR_CASING = simpleOverlay("casings/science/molecular_casing")
-
     @JvmField
     val ANTIMATTER_FORGE_TEXTURE = simpleOverlay("machines/multiblock/antimatter_forge/base/antimatter")
     @JvmField
     val ANTIMATTER_FORGE_ACTIVE_TEXTURE = simpleOverlay("machines/multiblock/antimatter_forge/base/antimatter_active")
+    @JvmField
+    val LATTICE_QCD_THERMAL_SHIELDING_CASING = simpleOverlay("casings/entropy/lattice_qcd_thermal_shielding_casing")
 
     // endregion
 

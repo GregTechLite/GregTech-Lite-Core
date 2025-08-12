@@ -34,6 +34,7 @@ internal object MachineRecipeList
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
         CrystallizationCrucibleRecipes.init()
+        EntrodynamicallyPhaseChangerRecipes.init()
         EyeOfHarmonyRecipes.init()
         LoomRecipes.init()
         MobExtractorRecipes.init()

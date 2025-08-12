@@ -74,6 +74,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NAQUADRIA_SUPERSOLID
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PHONONIC_SEED_CRYSTAL
@@ -86,6 +87,8 @@ internal object PhononChain
 
     fun init()
     {
+
+        // Phononic Seed Crystal
         AUTOCLAVE_RECIPES.recipeBuilder()
             .input(nanite, TranscendentMetal)
             .input(dust, Mellion, 32)
@@ -116,29 +119,25 @@ internal object PhononChain
                 IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        BLAST_RECIPES.recipeBuilder()
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(dust, HarmonicPhononMatter),
+            IntCircuitIngredient.getIntegratedCircuit(1))
+
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(dust, HarmonicPhononMatter),
+            IntCircuitIngredient.getIntegratedCircuit(2))
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
             .input(PHONONIC_SEED_CRYSTAL)
             .input(nanite, Iron)
             .input(dust, NetherStar, 16)
             .fluidInputs(Mellion.getFluid(L * 16))
-            .output(ingotHot, HarmonicPhononMatter, 4)
+            .output(ingot, HarmonicPhononMatter, 4)
             .fluidOutputs(StableBaryonicMatter.getFluid(800))
             .EUt(VA[UXV])
             .duration(20 * SECOND)
-            .blastFurnaceTemp(16000)
-            .buildAndRegister()
-
-        GTRecipeHandler.removeRecipesByInputs(VACUUM_RECIPES,
-            arrayOf(OreDictUnifier.get(ingotHot, HarmonicPhononMatter)),
-            arrayOf(Helium.getFluid(FluidStorageKeys.LIQUID, 500)))
-
-        VACUUM_RECIPES.recipeBuilder()
-            .input(ingotHot, HarmonicPhononMatter)
-            .fluidInputs(HeavyQuarks.getFluid(500))
-            .fluidInputs(GelidCryotheum.getFluid(1000))
-            .output(ingot, HarmonicPhononMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
+            .blastFurnaceTemp(26000)
             .buildAndRegister()
 
         // MagMatter liquid.

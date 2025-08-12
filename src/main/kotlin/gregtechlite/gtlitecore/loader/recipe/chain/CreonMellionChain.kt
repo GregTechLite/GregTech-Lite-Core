@@ -25,6 +25,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import net.minecraft.item.ItemStack
 
@@ -72,21 +73,41 @@ internal object CreonMellionChain
             .duration(5 * SECOND)
             .buildAndRegister()
 
-        // dustMellion -> ingotHotMellion
+        // Mellion
+        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+            OreDictUnifier.get(dust, Mellion),
+            IntCircuitIngredient.getIntegratedCircuit(1))
+
         GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
             arrayOf(OreDictUnifier.get(dust, Mellion),
                 IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        // ingotHotMellion -> ingotMellion
-        VACUUM_RECIPES.recipeBuilder()
-            .input(ingotHot, Mellion, 9)
-            .fluidInputs(Creon.getPlasma(L * 9))
-            .output(ingot, Mellion, 9)
-            .fluidOutputs(Creon.getFluid(L * 9))
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(dust, Mellion),
+            IntCircuitIngredient.getIntegratedCircuit(1))
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(dust, Mellion)
+            .fluidInputs(Creon.getPlasma(L))
+            .output(ingot, Mellion)
+            .fluidOutputs(Creon.getFluid(L))
             .EUt(VA[UIV])
             .duration(10 * SECOND)
+            .blastFurnaceTemp(22000)
             .buildAndRegister()
+
+        // Creon
+        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+            OreDictUnifier.get(dust, Creon),
+            IntCircuitIngredient.getIntegratedCircuit(1))
+
+        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+            arrayOf(OreDictUnifier.get(dust, Creon),
+            IntCircuitIngredient.getIntegratedCircuit(2)),
+            arrayOf(Krypton.getFluid(10)))
+
     }
 
     // @formatter:on

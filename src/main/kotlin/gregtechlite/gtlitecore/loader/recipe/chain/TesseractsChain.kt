@@ -60,6 +60,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
@@ -173,7 +174,7 @@ internal object TesseractsChain
 
     private fun transcendentMetalProcess()
     {
-        // dustTranscendentMetal
+        // Raw Tesseract -> Transcendent Metal dust
         MACERATOR_RECIPES.recipeBuilder()
             .input(RAW_TESSERACT)
             .output(dust, TranscendentMetal, 8)
@@ -181,7 +182,7 @@ internal object TesseractsChain
             .duration(5 * SECOND)
             .buildAndRegister()
 
-        // ingotHotTranscendentMetal
+        // Transcendent Metal dust -> Transcendent Metal ingot
         GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
             OreDictUnifier.get(dust, TranscendentMetal),
             IntCircuitIngredient.getIntegratedCircuit(1))
@@ -191,29 +192,27 @@ internal object TesseractsChain
                 IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        BLAST_RECIPES.recipeBuilder()
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(dust, TranscendentMetal),
+            IntCircuitIngredient.getIntegratedCircuit(1))
+
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(dust, TranscendentMetal),
+            IntCircuitIngredient.getIntegratedCircuit(2))
+
+        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+            OreDictUnifier.get(ingot, TranscendentMetal),
+            IntCircuitIngredient.getIntegratedCircuit(4))
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(dust, TranscendentMetal)
             .fluidInputs(Technetium.getPlasma(L * 4))
-            .output(ingotHot, TranscendentMetal)
+            .output(ingot, TranscendentMetal)
             .fluidOutputs(Technetium.getFluid(L * 4))
             .EUt(VA[UXV])
-            .duration(3 * MINUTE)
-            .blastFurnaceTemp(16101)
-            .buildAndRegister()
-
-        // ingotTranscendentMetal
-        GTRecipeHandler.removeRecipesByInputs(VACUUM_RECIPES,
-            arrayOf(OreDictUnifier.get(ingotHot, TranscendentMetal)),
-            arrayOf(Helium.getFluid(FluidStorageKeys.LIQUID, 500)))
-
-        VACUUM_RECIPES.recipeBuilder()
-            .input(ingotHot, TranscendentMetal)
-            .fluidInputs(TitanSteel.getFluid(L))
-            .fluidInputs(GelidCryotheum.getFluid(1000))
-            .output(ingot, TranscendentMetal)
-            .EUt(VA[UIV])
-            .duration(1 * SECOND)
+            .duration(1 * MINUTE)
+            .blastFurnaceTemp(23500)
             .buildAndRegister()
 
     }

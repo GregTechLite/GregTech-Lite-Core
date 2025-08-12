@@ -91,6 +91,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.Multib
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockRocketEngine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNuclearReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockSteamEngine
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEntrodynamicallyPhaseChanger
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpacePump
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockCoagulationTank
@@ -292,6 +293,8 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_FOOD_PROCESSOR: MultiblockFoodProcessor
     lateinit var LARGE_ROCKET_ENGINE: MultiblockRocketEngine
     lateinit var LARGE_NAQUADAH_REACTOR: MultiblockNaquadahReactor
+
+    lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
 
     fun preInit()
     {
@@ -795,6 +798,9 @@ object GTLiteMetaTileEntities
         LARGE_ROCKET_ENGINE = register(10137, MultiblockRocketEngine(GTLiteMod.id("large_rocket_engine")))
         LARGE_NAQUADAH_REACTOR = register(10138, MultiblockNaquadahReactor(GTLiteMod.id("large_naquadah_reactor")))
 
+        // ...
+
+        ENTRODYNAMICALLY_PHASE_CHANGER = register(10201, MultiblockEntrodynamicallyPhaseChanger(GTLiteMod.id("entrodynamically_phase_changer")))
     }
 
     // @formatter:on

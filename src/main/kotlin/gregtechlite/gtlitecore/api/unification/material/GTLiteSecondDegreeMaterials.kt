@@ -941,7 +941,7 @@ object GTLiteSecondDegreeMaterials
             .components(Rutherfordium, 1, Dubnium, 1, Seaborgium, 1, Bohrium, 1, MetastableHassium, 1,
                 Meitnerium, 1, Darmstadtium, 1, Roentgenium, 1)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL)
+                GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
                 b.temp(13800, BlastProperty.GasTier.HIGHEST) // Infinity
                     .blastStats(VA[UIV], 48 * SECOND)
@@ -958,7 +958,7 @@ object GTLiteSecondDegreeMaterials
             .components(Copernicium, 1, Nihonium, 1, MetastableFlerovium, 1, Moscovium, 1,
                 Livermorium, 1, Tennessine, 1, MetastableOganesson, 1)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL)
+                GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
                 b.temp(15400, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
                     .blastStats(VA[UXV], 1 * MINUTE + 36 * SECOND)
@@ -1008,7 +1008,8 @@ object GTLiteSecondDegreeMaterials
             .color(0x9E706A).iconSet(METALLIC)
             .components(StainlessSteel, 5, TungstenCarbide, 5, Nichrome, 5, Bronze, 5,
                 IncoloyMA956, 5, Iodine, 1, Germanium, 1, Radon, 1)
-            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
                 b.temp(12625, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UIV], 4 * MINUTE)
@@ -1102,7 +1103,7 @@ object GTLiteSecondDegreeMaterials
             .components(Zeron100, 8, Naquadria, 4, Gadolinium, 3, Aluminium, 2, Mercury, 1,
                 Tin, 1, Titanium, 6, Osmiridium, 1)
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_RING,
-                GENERATE_SPRING_SMALL)
+                GENERATE_SPRING_SMALL, GENERATE_DENSE)
             .blast { r ->
                 r.temp(11465, BlastProperty.GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 1 * MINUTE + 25 * SECOND)
