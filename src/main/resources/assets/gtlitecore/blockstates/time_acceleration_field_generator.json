@@ -5,55 +5,55 @@
       "crude": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/crude"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/crude"
         }
       },
       "primitive": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/primitive"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/primitive"
         }
       },
       "stable": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/stable"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/stable"
         }
       },
       "advanced": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/advanced"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/advanced"
         }
       },
       "superb": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/superb"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/superb"
         }
       },
       "exotic": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/exotic"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/exotic"
         }
       },
       "perfect": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/perfect"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/perfect"
         }
       },
       "tipler": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/tipler"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/tipler"
         }
       },
       "gallifreyan": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/time_acceleration/gallifreyan"
+          "all": "gtlitecore:blocks/casings/time_acceleration_field_generator/gallifreyan"
         }
       }
     }

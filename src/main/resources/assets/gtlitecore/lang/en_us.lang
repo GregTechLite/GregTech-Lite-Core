@@ -1440,13 +1440,13 @@ metaitem.crop.lingonberry.name=Lingonberry
 metaitem.crop.elderberry.name=Elderberry
 metaitem.crop.cranberry.name=Cranberry
 
-metaitem.food.utensil.component.clay_bowl.name=Clay Bowl
-metaitem.food.utensil.ceramic_bowl.name=Ceramic Bowl
-metaitem.food.utensil.dirty_ceramic_bowl.name=Dirty Ceramic Bowl
-metaitem.food.utensil.paper_cone.name=Paper Cone
-metaitem.food.utensil.component.clay_cup.name=Clay Cup
-metaitem.food.utensil.ceramic_cup.name=Ceramic Cup
-metaitem.food.utensil.plastic_bottle.name=Plastic Bottle
+metaitem.food.tableware.component.clay_bowl.name=Clay Bowl
+metaitem.food.tableware.ceramic_bowl.name=Ceramic Bowl
+metaitem.food.tableware.dirty_ceramic_bowl.name=Dirty Ceramic Bowl
+metaitem.food.tableware.paper_cone.name=Paper Cone
+metaitem.food.tableware.component.clay_cup.name=Clay Cup
+metaitem.food.tableware.ceramic_cup.name=Ceramic Cup
+metaitem.food.tableware.plastic_bottle.name=Plastic Bottle
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar

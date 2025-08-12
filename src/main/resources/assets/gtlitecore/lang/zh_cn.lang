@@ -1442,13 +1442,13 @@ metaitem.crop.lingonberry.name=越橘
 metaitem.crop.elderberry.name=接骨木果
 metaitem.crop.cranberry.name=蔓越莓
 
-metaitem.food.utensil.component.clay_bowl.name=粘土碗
-metaitem.food.utensil.ceramic_bowl.name=瓷碗
-metaitem.food.utensil.dirty_ceramic_bowl.name=脏瓷碗
-metaitem.food.utensil.paper_cone.name=滤纸
-metaitem.food.utensil.component.clay_cup.name=粘土杯
-metaitem.food.utensil.ceramic_cup.name=瓷杯
-metaitem.food.utensil.plastic_bottle.name=塑料瓶
+metaitem.food.tableware.component.clay_bowl.name=粘土碗
+metaitem.food.tableware.ceramic_bowl.name=瓷碗
+metaitem.food.tableware.dirty_ceramic_bowl.name=脏瓷碗
+metaitem.food.tableware.paper_cone.name=滤纸
+metaitem.food.tableware.component.clay_cup.name=粘土杯
+metaitem.food.tableware.ceramic_cup.name=瓷杯
+metaitem.food.tableware.plastic_bottle.name=塑料瓶
 
 metaitem.food.drink.grape_juice.name=葡萄汁
 metaitem.food.drink.grape_juice.tooltip=富含糖分

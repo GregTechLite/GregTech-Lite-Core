@@ -5,55 +5,55 @@
       "crude": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/crude"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/crude"
         }
       },
       "primitive": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/primitive"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/primitive"
         }
       },
       "stable": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/stable"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/stable"
         }
       },
       "advanced": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/advanced"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/advanced"
         }
       },
       "superb": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/superb"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/superb"
         }
       },
       "exotic": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/exotic"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/exotic"
         }
       },
       "perfect": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/perfect"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/perfect"
         }
       },
       "tipler": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/tipler"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/tipler"
         }
       },
       "gallifreyan": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/stabilization/gallifreyan"
+          "all": "gtlitecore:blocks/casings/stabilization_field_generator/gallifreyan"
         }
       }
     }

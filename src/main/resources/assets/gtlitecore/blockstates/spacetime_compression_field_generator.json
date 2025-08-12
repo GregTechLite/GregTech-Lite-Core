@@ -5,55 +5,55 @@
       "crude": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/crude"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/crude"
         }
       },
       "primitive": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/primitive"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/primitive"
         }
       },
       "stable": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/stable"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/stable"
         }
       },
       "advanced": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/advanced"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/advanced"
         }
       },
       "superb": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/superb"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/superb"
         }
       },
       "exotic": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/exotic"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/exotic"
         }
       },
       "perfect": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/perfect"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/perfect"
         }
       },
       "tipler": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/tipler"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/tipler"
         }
       },
       "gallifreyan": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/spacetime_compression/gallifreyan"
+          "all": "gtlitecore:blocks/casings/spacetime_compression_field_generator/gallifreyan"
         }
       }
     }

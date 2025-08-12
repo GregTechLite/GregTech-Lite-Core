@@ -1656,14 +1656,14 @@ object GTLiteMetaItems
 
         // ...
 
-        // 9401-9450: Utensils
-        CLAY_BOWL = item(9401, "food.utensil.component.clay_bowl")
-        CERAMIC_BOWL = item(9402, "food.utensil.ceramic_bowl")
-        DIRTY_CERAMIC_BOWL = item(9403, "food.utensil.dirty_ceramic_bowl")
-        PAPER_CONE = item(9404, "food.utensil.paper_cone")
-        CLAY_CUP = item(9405, "food.utensil.component.clay_cup")
-        CERAMIC_CUP = item(9406, "food.utensil.ceramic_cup")
-        PLASTIC_BOTTLE = item(9407, "food.utensil.plastic_bottle")
+        // 9401-9450: Tableware
+        CLAY_BOWL = item(9401, "food.tableware.component.clay_bowl")
+        CERAMIC_BOWL = item(9402, "food.tableware.ceramic_bowl")
+        DIRTY_CERAMIC_BOWL = item(9403, "food.tableware.dirty_ceramic_bowl")
+        PAPER_CONE = item(9404, "food.tableware.paper_cone")
+        CLAY_CUP = item(9405, "food.tableware.component.clay_cup")
+        CERAMIC_CUP = item(9406, "food.tableware.ceramic_cup")
+        PLASTIC_BOTTLE = item(9407, "food.tableware.plastic_bottle")
 
         // 9451-9500: Drinks
         GRAPE_JUICE = item(9451, "food.drink.grape_juice")

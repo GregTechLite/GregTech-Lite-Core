@@ -4,7 +4,7 @@
     "type": "CTM",
     "layer": "CUTOUT",
     "textures": [
-      "gtlitecore:blocks/casings/special/particle_containment_casing_ctm"
+      "gtlitecore:blocks/casings/quantum/particle_containment_casing_ctm"
     ],
     "extra": {
       "connect_inside": true

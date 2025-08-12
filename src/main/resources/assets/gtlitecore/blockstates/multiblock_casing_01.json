@@ -59,43 +59,43 @@
       "particle_containment_casing": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/particle_containment_casing"
+          "all": "gtlitecore:blocks/casings/quantum/particle_containment_casing"
         }
       },
       "particle_excitation_wire_coil": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/particle_excitation_wire_coil"
+          "all": "gtlitecore:blocks/casings/quantum/particle_excitation_wire_coil"
         }
       },
       "gravity_stabilization_casing": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/gravity_stabilization_casing"
+          "all": "gtlitecore:blocks/casings/antimatter/gravity_stabilization_casing"
         }
       },
       "protomatter_activation_coil": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/protomatter_activation_coil"
+          "all": "gtlitecore:blocks/casings/antimatter/protomatter_activation_coil"
         }
       },
       "antimatter_annihilation_matrix": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/antimatter_annihilation_matrix"
+          "all": "gtlitecore:blocks/casings/antimatter/antimatter_annihilation_matrix"
         }
       },
       "lattice_qcd_thermal_shielding_casing": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/lattice_qcd_thermal_shielding_casing"
+          "all": "gtlitecore:blocks/casings/entropy/lattice_qcd_thermal_shielding_casing"
         }
       },
       "hamilton_killing_flow_control_casing": {
         "model": "minecraft:cube_all",
         "textures": {
-          "all": "gtlitecore:blocks/casings/special/hamilton_killing_flow_control_casing"
+          "all": "gtlitecore:blocks/casings/entropy/hamilton_killing_flow_control_casing"
         }
       }
     }

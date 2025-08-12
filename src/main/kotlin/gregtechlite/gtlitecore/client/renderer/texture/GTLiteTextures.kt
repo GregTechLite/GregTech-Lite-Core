@@ -194,7 +194,7 @@ object GTLiteTextures
     @JvmField
     val NAQUADAH_ALLOY_CASING = simpleOverlay("casings/metal/naquadah_alloy")
     @JvmField
-    val PARTICLE_CONTAINMENT_CASING = simpleOverlay("casings/special/particle_containment_casing")
+    val PARTICLE_CONTAINMENT_CASING = simpleOverlay("casings/quantum/particle_containment_casing")
     @JvmField
     val SPACE_ELEVATOR_BASE_CASING = simpleOverlay("casings/aerospace/elevator_base_casing")
     @JvmField

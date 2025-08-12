@@ -4,54 +4,54 @@
     "active=false,variant=neutron_pulse": {
       "model": "minecraft:cube_bottom_top",
       "textures": {
-        "top": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_top",
-        "side": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_side",
+        "top": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_top",
+        "side": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_side",
         "bottom": "#top"
       }
     },
     "active=true,variant=neutron_pulse": {
       "model": "gregtech:cube_2_layer_bottom_top",
       "textures": {
-        "bot_up": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_top",
-        "bot_side": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_side",
+        "bot_up": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_top",
+        "bot_side": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_side",
         "bot_bottom": "#bot_up",
-        "top_up": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_top",
-        "top_side": "gtlitecore:blocks/casings/special/neutron_pulse_manipulator_side_bloom",
+        "top_up": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_top",
+        "top_side": "gtlitecore:blocks/casings/quantum/neutron_pulse_manipulator_side_bloom",
         "top_bottom": "#top_up"
       }
     },
     "active=false,variant=cosmic_fabric": {
       "model": "minecraft:cube_bottom_top",
       "textures": {
-        "top": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_top",
-        "side": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_side",
+        "top": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_top",
+        "side": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_side",
         "bottom": "#top"
       }
     },
     "active=true,variant=cosmic_fabric": {
       "model": "gregtech:cube_2_layer_bottom_top",
       "textures": {
-        "bot_up": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_top",
-        "bot_side": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_side",
+        "bot_up": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_top",
+        "bot_side": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_side",
         "bot_bottom": "#bot_up",
-        "top_up": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_top",
-        "top_side": "gtlitecore:blocks/casings/special/cosmic_fabric_manipulator_side_bloom",
+        "top_up": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_top",
+        "top_side": "gtlitecore:blocks/casings/quantum/cosmic_fabric_manipulator_side_bloom",
         "top_bottom": "#top_up"
       }
     },
     "active=false,variant=infinity_infused": {
       "model": "minecraft:cube_bottom_top",
       "textures": {
-        "top": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_top",
-        "side": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_side",
+        "top": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_top",
+        "side": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_side",
         "bottom": "#top"
       }
     },
     "active=true,variant=infinity_infused": {
       "model": "gregtech:cube_2_layer_bottom_top",
       "textures": {
-        "bot_up": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_top",
-        "bot_side": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_side",
+        "bot_up": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_top",
+        "bot_side": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_side",
         "bot_bottom": "#bot_up",
         "top_up": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_top",
         "top_side": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_side_bloom",
@@ -61,19 +61,19 @@
     "active=false,variant=spacetime_continuum_ripper": {
       "model": "minecraft:cube_bottom_top",
       "textures": {
-        "top": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_top",
-        "side": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_side",
+        "top": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_top",
+        "side": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_side",
         "bottom": "#top"
       }
     },
     "active=true,variant=spacetime_continuum_ripper": {
       "model": "gregtech:cube_2_layer_bottom_top",
       "textures": {
-        "bot_up": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_top",
-        "bot_side": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_side",
+        "bot_up": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_top",
+        "bot_side": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_side",
         "bot_bottom": "#bot_up",
-        "top_up": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_top",
-        "top_side": "gtlitecore:blocks/casings/special/spacetime_continuum_ripper_side_bloom",
+        "top_up": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_top",
+        "top_side": "gtlitecore:blocks/casings/quantum/spacetime_continuum_ripper_side_bloom",
         "top_bottom": "#top_up"
       }
     }
