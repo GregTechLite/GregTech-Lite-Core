@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.loader.recipe
 import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Graphene
@@ -10,14 +11,17 @@ import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
@@ -60,6 +64,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
@@ -79,6 +84,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_ADAMANTIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_COSMIC_NEUTRONIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_INFINITY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_VIBRANIUM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DRAIN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
@@ -484,6 +490,20 @@ internal object CraftingRecipeLoader
 
         ModHandler.addShapelessRecipe("credit_infinity", CREDIT_COSMIC_NEUTRONIUM.getStackForm(8),
             CREDIT_INFINITY.stackForm)
+
+        // Air Vent
+        ModHandler.addShapedRecipe(true, "air_vent", AIR_VENT.stackForm,
+            "SPS", "SRS", "SwS",
+            'R', UnificationEntry(rotor, Steel),
+            'S', UnificationEntry(stick, Steel),
+            'P', UnificationEntry(pipeSmallFluid, Bronze))
+
+        // Drain
+        ModHandler.addShapedRecipe(true, "drain", DRAIN.stackForm,
+            "SSS", "BPB", "SSS",
+            'B', ItemStack(Blocks.IRON_BARS),
+            'P', UnificationEntry(pipeSmallFluid, Bronze),
+            'S', UnificationEntry(stick, Iron))
 
     }
 

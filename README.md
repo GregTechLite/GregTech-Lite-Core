@@ -79,6 +79,7 @@ Thanks for all the credit authors, it's your hard work that has brought about th
     - Laser Emitter, Rolling Pin, Club, Universal Spade, Combination Wrench textures.
     - Some machine overlay textures, e.g. *Nanoscale Fabricator*, *Large Burner Reactor*, *Large Cryogenic Reactor* and a part of *Laminator*, *Loom* textures.
     - Crucible block textures, the model of these blocks referenced with **GCYS**.
+    - Some cover textures, e.g. *Air Vent* and *Drain*.
 - [**GregTechFoodOption**](https://github.com/bruberu/GregTechFoodOption), referenced textures and some world generator codes, this mod is on [GNU LGPL-3.0 License](https://github.com/bruberu/GregTechFoodOption/blob/master/LICENSE.txt),
   All references of the mod consists of the following contents:
     - Saplings, leaves, logs, planks and some tree related texture bases.

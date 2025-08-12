@@ -92,6 +92,8 @@ object GTLiteMetaItems
     lateinit var FIELD_GENERATOR_MAX: MetaItem<*>.MetaValueItem
     lateinit var EMITTER_MAX: MetaItem<*>.MetaValueItem
     lateinit var SENSOR_MAX: MetaItem<*>.MetaValueItem
+    lateinit var AIR_VENT: MetaItem<*>.MetaValueItem
+    lateinit var DRAIN: MetaItem<*>.MetaValueItem
 
     lateinit var GOOWARE_BOARD: MetaItem<*>.MetaValueItem
     lateinit var OPTICAL_BOARD: MetaItem<*>.MetaValueItem
@@ -660,13 +662,42 @@ object GTLiteMetaItems
 
         // 107-200: Covers.
         ELECTRIC_MOTOR_MAX = item(107, "electric.motor.max")
+
         ELECTRIC_PUMP_MAX = item(108, "electric.pump.max")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.electric.pump.tooltip"));
+                lines.add(I18n.format("gregtech.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20))
+            })
+
         CONVEYOR_MODULE_MAX = item(109, "conveyor.module.max")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.conveyor.module.tooltip"));
+                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16));
+            })
+
         ELECTRIC_PISTON_MAX = item(110, "electric.piston.max")
+
         ROBOT_ARM_MAX = item(111, "robot.arm.max")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.robot.arm.tooltip"));
+                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16));
+            })
+
         FIELD_GENERATOR_MAX = item(112, "field.generator.max")
         EMITTER_MAX = item(113, "emitter.max")
         SENSOR_MAX = item(114, "sensor.max")
+
+        AIR_VENT = item(115, "cover.air_vent")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.air_vent.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.air_vent.tooltip.2", 100));
+            })
+
+        DRAIN = item(116, "cover.drain")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.drain.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.drain.tooltip.2", 500))
+            })
 
         // 201-210: Boards and Circuit Boards.
         GOOWARE_BOARD = item(201, "board.gooware")
@@ -1256,13 +1287,13 @@ object GTLiteMetaItems
             .addOreDict("dustMudBall")
 
         CARBON_ALLOTROPE_MIXTURE = item(5007, "material.mixture.carbon_allotrope")
-            .addComponents(TooltipBehavior { tl ->
-                tl.add("§eC" + SmallDigits.toSmallDownNumbers("96"))
+            .addComponents(TooltipBehavior { lines ->
+                lines.add("§eC" + SmallDigits.toSmallDownNumbers("96"))
             })
 
         GRAPHENE_ALIGNED_CNT = item(5008, "material.plate.graphene_aligned_cnt")
-            .addComponents(TooltipBehavior { tl ->
-                tl.add(
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(
                     "§e(C" + SmallDigits.toSmallDownNumbers("6") + "H" + SmallDigits.toSmallDownNumbers("4") + ")"
                             + SmallDigits.toSmallDownNumbers("7") + "C" + SmallDigits.toSmallDownNumbers("12")
                 )

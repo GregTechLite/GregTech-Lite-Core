@@ -760,6 +760,12 @@ metaitem.robot.arm.max.name=§c§lMAX§r§f Robot Arm
 metaitem.field.generator.max.name=§c§lMAX§r§f Field Generator
 metaitem.emitter.max.name=§c§lMAX§r§f Emitter
 metaitem.sensor.max.name=§c§lMAX§r§f Sensor
+metaitem.cover.air_vent.name=Air Vent
+metaitem.cover.air_vent.tooltip.1=作§f覆盖板§7时向管道或机器内§f通入空气§7，空气类型视当前§f维度§7而定。
+metaitem.cover.air_vent.tooltip.2=§bTransfer Rate: §f%,d L/s
+metaitem.cover.drain.name=Drain
+metaitem.cover.drain.tooltip.1=作§f覆盖板§7时向管道或机器内§f抽入水§7，需要朝向面有§f水方块存在§7。
+metaitem.cover.drain.tooltip.2=§bExtract Rate: §f%,d L/s
 
 metaitem.board.gooware.name=Kapton™ Board
 metaitem.board.gooware.tooltip=DuPont™ Pyralux® TK Laminate Film

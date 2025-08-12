@@ -760,6 +760,12 @@ metaitem.robot.arm.max.name=机械臂（§c§lMAX§r§f）
 metaitem.field.generator.max.name=力场发生器（§c§lMAX§r§f）
 metaitem.emitter.max.name=发射器（§c§lMAX§r§f）
 metaitem.sensor.max.name=传感器（§c§lMAX§r§f）
+metaitem.cover.air_vent.name=通风口
+metaitem.cover.air_vent.tooltip.1=作§f覆盖板§7时向管道或机器内§f通入空气§7，空气类型视当前§f维度§7而定。
+metaitem.cover.air_vent.tooltip.2=§b传输速率：§f%,d L/s
+metaitem.cover.drain.name=排水口
+metaitem.cover.drain.tooltip.1=作§f覆盖板§7时向管道或机器内§f抽入水§7，需要朝向面有§f水方块存在§7。
+metaitem.cover.drain.tooltip.2=§b抽取速率：§f%,d L/s
 
 metaitem.tool.circuit_pattern.name=电路模板
 metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据

@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.texture.TextureMap
 object GTLiteTextures
 {
 
+    // region Machine Overlay Textures
     @JvmField
     val POLISHER_OVERLAY = orientedOverlay("machines/polisher")
     @JvmField
@@ -108,7 +109,9 @@ object GTLiteTextures
     @JvmField
     val SPACE_PUMP_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_pump/overlay_side")
 
-    /* -------------------------------------------------------------------------------------------------------------- */
+    // endregion
+
+    // region Machine Casing Textures
     @JvmField
     val REINFORCED_TREATED_WOOD_WALL = sidedCubeOverlay("casings/reinforced_treated_wood_wall")
 
@@ -202,6 +205,15 @@ object GTLiteTextures
     @JvmField
     val ANTIMATTER_FORGE_ACTIVE_TEXTURE = simpleOverlay("machines/multiblock/antimatter_forge/base/antimatter_active")
 
+    // endregion
+
+    // region Cover Textures
+    @JvmField
+    val COVER_DRAIN = simpleOverlay("covers/cover_drain")
+
+    // endregion
+
+    // region Special Renderer Textures
     @JvmField
     val PLASTIC_CAN_OVERLAY = simpleSidedCubeOverlay("storage/drums/plastic_can_top")
     @JvmField
@@ -223,7 +235,9 @@ object GTLiteTextures
     @JvmField
     val UNIVERSAL_EXTENDER = ExtenderRenderer("storage/extenders/universal")
 
-    /* -------------------------------------------------------------------------------------------------------------- */
+    // endregion
+
+    // region Atlas Sprite Textures
     lateinit var HALO: TextureAtlasSprite
     lateinit var HALO_NOISE: TextureAtlasSprite
     lateinit var COSMIC: Array<TextureAtlasSprite>
@@ -239,6 +253,8 @@ object GTLiteTextures
     lateinit var COSMIC_9: TextureAtlasSprite
 
     lateinit var FORCE_FIELD: TextureAtlasSprite
+
+    // endregion
 
     fun register(textureMap: TextureMap)
     {
