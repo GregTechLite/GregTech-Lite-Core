@@ -6,7 +6,9 @@ import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
 import gregtech.api.capability.IMultipleRecipeMaps;
 import gregtech.api.capability.impl.AbstractRecipeLogic;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.metatileentity.MetaTileEntity;
+import gregtech.api.metatileentity.SteamMetaTileEntity;
 import gregtech.api.metatileentity.registry.MTERegistry;
 import gregtech.api.mui.GregTechGuiTransferHandler;
 import gregtech.api.recipes.Recipe;
@@ -16,6 +18,7 @@ import gregtech.api.recipes.category.ICategoryOverride;
 import gregtech.api.recipes.ingredients.GTRecipeOreInput;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.recipes.machines.IScannerRecipeMap;
+import gregtech.api.recipes.machines.RecipeMapFurnace;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.worldgen.config.BedrockFluidDepositDefinition;
@@ -39,7 +42,9 @@ import gregtech.integration.jei.recipe.FacadeRegistryPlugin;
 import gregtech.integration.jei.recipe.GTRecipeWrapper;
 import gregtech.integration.jei.recipe.IntCircuitCategory;
 import gregtech.integration.jei.recipe.IntCircuitRecipeWrapper;
+import gregtech.integration.jei.recipe.RecipeMapCategory;
 import gregtech.integration.jei.utils.ModularUIGuiHandler;
+import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientRegistry;
@@ -83,6 +88,8 @@ public abstract class MixinJustEnoughItemsModule
 
     @Shadow
     public static IIngredientRegistry ingredientRegistry;
+
+    @Shadow public static IGuiHelper guiHelper;
 
     /**
      * @author Magic_Sweepy
@@ -155,7 +162,7 @@ public abstract class MixinJustEnoughItemsModule
                 ICategoryOverride override = (ICategoryOverride) metaTileEntity;
                 for (RecipeMap<?> recipeMap : override.getJEIRecipeMapCategoryOverrides())
                 {
-                    registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
+                    gtlitecore$registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
                 }
                 if (override.getJEICategoryOverrides().length != 0)
                     registry.addRecipeCatalyst(metaTileEntity.getStackForm(), override.getJEICategoryOverrides());
@@ -172,7 +179,7 @@ public abstract class MixinJustEnoughItemsModule
                     ICategoryOverride override = (ICategoryOverride) workableCapability;
                     for (RecipeMap<?> recipeMap : override.getJEIRecipeMapCategoryOverrides())
                     {
-                        registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
+                        gtlitecore$registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
                     }
                     if (override.getJEICategoryOverrides().length != 0)
                         registry.addRecipeCatalyst(metaTileEntity.getStackForm(),
@@ -187,11 +194,11 @@ public abstract class MixinJustEnoughItemsModule
                     {
                         for (RecipeMap<?> recipeMap : ((IMultipleRecipeMaps) metaTileEntity).getAvailableRecipeMaps())
                         {
-                            registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
+                            gtlitecore$registerRecipeMapCatalyst(registry, recipeMap, metaTileEntity);
                         }
                     } else if (logic.getRecipeMap() != null)
                     {
-                        registerRecipeMapCatalyst(registry, logic.getRecipeMap(), metaTileEntity);
+                        gtlitecore$registerRecipeMapCatalyst(registry, logic.getRecipeMap(), metaTileEntity);
                     }
                 }
             }
@@ -326,7 +333,55 @@ public abstract class MixinJustEnoughItemsModule
         return sortedMTEs;
     }
 
-    @Shadow
-    protected abstract void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity);
+    /**
+     * Fixes incorrect uniqueId of {@code GTRecipeCategory}.
+     * <p>
+     * TODO FIXME Remove this changing when GTCEu fixes this problem.
+     */
+    @Unique
+    private void gtlitecore$registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity mte)
+    {
+        for (GTRecipeCategory category : recipeMap.getRecipesByCategory().keySet())
+        {
+            RecipeMapCategory jeiCategory = RecipeMapCategory.getCategoryFor(category);
+            if (jeiCategory != null)
+            {
+                registry.addRecipeCatalyst(mte.getStackForm(), jeiCategory.getUid());
+            }
+        }
+
+        if (recipeMap instanceof RecipeMapFurnace)
+        {
+            registry.addRecipeCatalyst(mte.getStackForm(), VanillaRecipeCategoryUid.SMELTING);
+            return;
+        }
+        if (recipeMap.getSmallRecipeMap() != null) {
+            registry.addRecipeCatalyst(mte.getStackForm(),
+                    GTValues.MODID + "." + recipeMap.getSmallRecipeMap().unlocalizedName);
+            return;
+        }
+
+        for (GTRecipeCategory category : recipeMap.getRecipesByCategory().keySet())
+        {
+            RecipeMapCategory jeiCategory = RecipeMapCategory.getCategoryFor(category);
+            // don't allow a Steam Machine to be a JEI tab icon
+            if (jeiCategory != null && !(mte instanceof SteamMetaTileEntity))
+            {
+                Object icon = category.getJEIIcon();
+                if (icon instanceof TextureArea)
+                {
+                    TextureArea textureArea = (TextureArea) icon;
+                    icon = guiHelper.drawableBuilder(textureArea.imageLocation, 0, 0, 18, 18)
+                            .setTextureSize(18, 18)
+                            .build();
+                }
+                else if (icon == null)
+                {
+                    icon = mte.getStackForm();
+                }
+                jeiCategory.setIcon(icon);
+            }
+        }
+    }
 
 }

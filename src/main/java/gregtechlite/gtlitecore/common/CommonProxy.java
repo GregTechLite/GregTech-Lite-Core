@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.common.blocks.MaterialItemBlock;
 import gregtechlite.gtlitecore.api.block.TranslatableVariantItemBlock;
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeBackends;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix;
 import gregtechlite.gtlitecore.api.GTLiteLog;
@@ -44,7 +45,7 @@ public class CommonProxy
 
     public void onInit()
     {
-        GTLiteRecipeMaps.onRecipeMapBuild();
+        GTLiteRecipeBackends.init();
     }
 
     @SubscribeEvent

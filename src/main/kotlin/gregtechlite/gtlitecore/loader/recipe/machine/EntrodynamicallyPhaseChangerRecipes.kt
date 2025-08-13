@@ -1,20 +1,33 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
+import gregtech.api.unification.material.Materials.Acetone
+import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Argon
+import gregtech.api.unification.material.Materials.BacterialSludge
 import gregtech.api.unification.material.Materials.Bismuth
 import gregtech.api.unification.material.Materials.Boron
+import gregtech.api.unification.material.Materials.Butene
 import gregtech.api.unification.material.Materials.Calcium
+import gregtech.api.unification.material.Materials.DissolvedCalciumAcetate
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.EnrichedBacterialSludge
+import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Helium
+import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Isoprene
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Neon
@@ -25,9 +38,11 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Radon
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -40,9 +55,24 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminatedFullerene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azafullerene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbon5Fraction
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberryEtirps
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberrySodaSyrup
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dicyclopentadiene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5Fraction
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Forsterite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HardAppleCandySyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeSodaSyrup
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ResonantStrangeMeson
 
 object EntrodynamicallyPhaseChangerRecipes
 {
@@ -564,7 +594,140 @@ object EntrodynamicallyPhaseChangerRecipes
 
         // region Fluid Heater Recipes
 
-        // TODO
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Acetone.getFluid(1000))
+            .fluidOutputs(Ethenone.getFluid(1000))
+            .EUt(VA[LV])
+            .duration(5 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(DissolvedCalciumAcetate.getFluid(2000))
+            .fluidOutputs(Acetone.getFluid(2000))
+            .EUt(VA[LV])
+            .duration(5 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Ice.getFluid(L))
+            .fluidOutputs(Water.getFluid(L))
+            .EUt(4) // ULV
+            .duration(16 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Water.getFluid(1000))
+            .fluidOutputs(Steam.getFluid(16000))
+            .EUt(VA[LV])
+            .duration(14 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(DistilledWater.getFluid(1000))
+            .fluidOutputs(Steam.getFluid(16000))
+            .EUt(VA[LV])
+            .duration(14 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Air.getFluid(1000))
+            .fluidOutputs(GreenhouseGas.getFluid(1000))
+            .EUt(VA[MV])
+            .duration(12 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Carbon5Fraction.getFluid(1000))
+            .fluidOutputs(DimerizedCarbon5Fraction.getFluid(870))
+            .EUt(VA[LV])
+            .duration(6 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Dicyclopentadiene.getFluid(1000))
+            .fluidOutputs(Isoprene.getFluid(2000))
+            .EUt(VA[LV])
+            .duration(1 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(Butene.getFluid(2000))
+            .fluidOutputs(Octene.getFluid(1000))
+            .EUt(VA[MV])
+            .duration(6 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(BacterialSludge.getFluid(2000))
+            .fluidOutputs(EnrichedBacterialSludge.getFluid(2000))
+            .EUt(VA[EV])
+            .duration(3 * SECOND + 4 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(HadronicResonantGas.getFluid(2000))
+            .fluidOutputs(ResonantStrangeMeson.getFluid(1000))
+            .EUt(VA[UEV])
+            .duration(5 * SECOND)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(AminatedFullerene.getFluid(1000))
+            .fluidOutputs(Azafullerene.getFluid(1000))
+            .EUt(VA[IV])
+            .duration(1 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(AppleCaneSyrup.getFluid(2000))
+            .fluidOutputs(HardAppleCandySyrup.getFluid(1000))
+            .EUt(VA[LV])
+            .duration(2 * SECOND + 2 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(LemonLimeSodaSyrup.getFluid(1000))
+            .fluidOutputs(Etirps.getFluid(1000))
+            .EUt(VA[LV])
+            .duration(5 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(CranberrySodaSyrup.getFluid(1000))
+            .fluidOutputs(CranberryEtirps.getFluid(1000))
+            .EUt(VA[LV])
+            .duration(5 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
 
         // endregion
 

@@ -1,8 +1,6 @@
 package gregtechlite.gtlitecore.api.recipe
 
 import crafttweaker.annotations.ZenRegister
-import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.V
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMap
@@ -35,10 +33,8 @@ import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
 import net.minecraft.init.SoundEvents
-import net.minecraftforge.fluids.FluidStack
 import stanhebben.zenscript.annotations.ZenClass
 import stanhebben.zenscript.annotations.ZenProperty
 import kotlin.math.max
@@ -56,21 +52,6 @@ object GTLiteRecipeMaps
 {
 
     // @formatter:off
-
-    // region Recipe Backends
-
-    /**
-     * Used to auto-generate all recipes of advanced fusion reactor from original fusion recipes.
-     */
-    private var COOLANTS = mutableMapOf<FluidStack, FluidStack>().apply {
-        put(Materials.Steam.getFluid(570), GTLiteMaterials.SupercriticalSteam.getFluid(570))
-        put(GTLiteMaterials.SodiumPotassiumEutatic.getFluid(120), GTLiteMaterials.SupercriticalSodiumPotassiumEutatic.getFluid(120))
-        put(GTLiteMaterials.LeadBismuthEutatic.getFluid(60), GTLiteMaterials.SupercriticalLeadBismuthEutatic.getFluid(60))
-        put(GTLiteMaterials.LithiumBerylliumFluorides.getFluid(55), GTLiteMaterials.SupercriticalLithiumBerylliumFluorides.getFluid(55))
-        put(GTLiteMaterials.LithiumSodiumPotassiumFluorides.getFluid(50), GTLiteMaterials.SupercriticalLithiumSodiumPotassiumFluorides.getFluid(50))
-    }
-
-    // endregion
 
     // region Single Machine RecipeMaps
 
@@ -508,15 +489,15 @@ object GTLiteRecipeMaps
     /**
      * @zenProp alloy_blast_smelter
      *
-     * @see magicbook.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.NO_ALLOY_BLAST_RECIPES
-     * @see magicbook.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY
-     * @see magicbook.gtlitecore.api.unification.material.properties.GTLitePropertyKey.ALLOY_BLAST
-     * @see magicbook.gtlitecore.api.unification.material.properties.AlloyBlastProperty
-     * @see magicbook.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
-     * @see magicbook.gtlitecore.loader.recipe.producer.AlloyBlastRecipeProducer
-     * @see magicbook.gtlitecore.loader.recipe.producer.CustomAlloyBlastRecipeProducer
-     * @see magicbook.gtlitecore.loader.recipe.handler.MaterialRecipeHandler.generateABSRecipes
-     * @see magicbook.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
+     * @see gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.NO_ALLOY_BLAST_RECIPES
+     * @see gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY
+     * @see gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey.ALLOY_BLAST
+     * @see gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastProperty
+     * @see gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
+     * @see gregtechlite.gtlitecore.loader.recipe.producer.AlloyBlastRecipeProducer
+     * @see gregtechlite.gtlitecore.loader.recipe.producer.CustomAlloyBlastRecipeProducer
+     * @see gregtechlite.gtlitecore.loader.recipe.handler.MaterialRecipeHandler.generateABSRecipes
+     * @see gregtechlite.gtlitecore.loader.recipe.machine.AlloyBlastSmelterRecipes
      */
     @ZenProperty
     @JvmField
@@ -907,111 +888,6 @@ object GTLiteRecipeMaps
         .build()
 
     // endregion
-
-    @JvmStatic
-    fun onRecipeMapBuild()
-    {
-        // Copying mixer recipes to large mixer recipe map.
-        RecipeMaps.MIXER_RECIPES.onRecipeBuild(GTLiteMod.id("mixer_copy")) { recipeBuilder ->
-            LARGE_MIXER_RECIPES.recipeBuilder()
-                .inputs(*recipeBuilder.inputs.toTypedArray())
-                .fluidInputs(recipeBuilder.fluidInputs)
-                .outputs(recipeBuilder.outputs)
-                .chancedOutputs(recipeBuilder.chancedOutputs)
-                .fluidOutputs(recipeBuilder.fluidOutputs)
-                .chancedFluidOutputs(recipeBuilder.chancedFluidOutputs)
-                .cleanroom(recipeBuilder.cleanroom)
-                .duration(recipeBuilder.duration)
-                .EUt(recipeBuilder.eUt)
-                .buildAndRegister()
-        }
-
-        // Copying cvd recipes to laser-induced/plasma-enriched cvd recipe map.
-        CVD_RECIPES.onRecipeBuild(GTLiteMod.id("advanced_cvd_copy")) { recipeBuilder ->
-
-            val inputsCopied = recipeBuilder.inputs.toTypedArray()
-            val fluidInputsCopied = recipeBuilder.fluidInputs
-            val outputsCopied = recipeBuilder.outputs
-            val chancedOutputsCopied = recipeBuilder.chancedOutputs
-            val fluidOutputsCopied = recipeBuilder.fluidOutputs
-            val chancedFluidOutputsCopied = recipeBuilder.chancedFluidOutputs
-            val cleanroomCopied = recipeBuilder.cleanroom
-            val eUtCopied = recipeBuilder.eUt
-            val durationCopied = recipeBuilder.duration
-            val temperatureCopied = recipeBuilder.getTemperature()
-
-            // Laser-Induced CVD recipes required laser-induced gas for protective and ensure transmissive correct.
-            for (laserInducedGas in arrayOf(
-                Materials.Helium.getFluid(16000),
-                Materials.Neon.getFluid(16000),
-                Materials.Argon.getFluid(16000),
-                Materials.Krypton.getFluid(16000),
-                Materials.Xenon.getFluid(16000)))
-            {
-                LASER_CVD_RECIPES.recipeBuilder()
-                    .inputs(*inputsCopied)
-                    .fluidInputs(fluidInputsCopied)
-                    .notConsumable(laserInducedGas)
-                    .outputs(outputsCopied)
-                    .chancedOutputs(chancedOutputsCopied)
-                    .fluidOutputs(fluidOutputsCopied)
-                    .chancedFluidOutputs(chancedFluidOutputsCopied)
-                    .cleanroom(cleanroomCopied)
-                    .EUt(eUtCopied)
-                    .duration(durationCopied)
-                    .temperature(temperatureCopied)
-                    .hidden()
-                    .buildAndRegister()
-            }
-
-            // Plasma-enhanced CVD recipes.
-            PLASMA_CVD_RECIPES.recipeBuilder()
-                .inputs(*inputsCopied)
-                .fluidInputs(fluidInputsCopied)
-                .outputs(outputsCopied)
-                .chancedOutputs(chancedOutputsCopied)
-                .fluidOutputs(fluidOutputsCopied)
-                .chancedFluidOutputs(chancedFluidOutputsCopied)
-                .cleanroom(cleanroomCopied)
-                .EUt(eUtCopied)
-                .duration(durationCopied)
-                .temperature(temperatureCopied)
-                .hidden()
-                .buildAndRegister()
-        }
-
-        // Add advanced fusion reactor recipes from fusion reactor recipes.
-        RecipeMaps.FUSION_RECIPES.onRecipeBuild(GTLiteMod.id("adv_fusion_moderator")) { recipeBuilder ->
-            val euStart = recipeBuilder.euToStart + recipeBuilder.eUt * recipeBuilder.duration // (euToStart + EUt * duration) * euReturn / 100
-            val tier = when (recipeBuilder.euToStart)
-            {
-                in 0L .. 160_000_000L -> 1 // MK1
-                in 160_000_001L .. 320_000_000L -> 2 // MK2
-                in 320_000_001L .. 640_000_000L -> 3 // MK3
-                in 640_000_001L .. 1_280_000_000L -> 4 // MK4
-                in 1_280_000_001L .. 2_560_000_000L -> 5 // MK5
-                else -> 0 // Error
-            }
-
-            COOLANTS.forEach { (inputFluid, outputFluid) ->
-                val amount = max((euStart / (V[EV] * 10000)) * inputFluid.amount, 1).toInt()
-                ADVANCED_FUSION_RECIPES.recipeBuilder()
-                    .inputs(*recipeBuilder.inputs.toTypedArray())
-                    .fluidInputs(recipeBuilder.fluidInputs)
-                    .fluidInputs(FluidStack(inputFluid, amount))
-                    .outputs(recipeBuilder.outputs)
-                    .chancedOutputs(recipeBuilder.chancedOutputs)
-                    .fluidOutputs(recipeBuilder.fluidOutputs)
-                    .fluidOutputs(FluidStack(outputFluid, amount))
-                    .chancedFluidOutputs(recipeBuilder.chancedFluidOutputs)
-                    .cleanroom(recipeBuilder.cleanroom)
-                    .duration(recipeBuilder.duration)
-                    .EUt(recipeBuilder.eUt)
-                    .tier(tier)
-                    .buildAndRegister()
-            }
-        }
-    }
 
     @JvmStatic
     fun preInit()
