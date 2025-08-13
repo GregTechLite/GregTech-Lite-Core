@@ -3148,6 +3148,7 @@ object GTLiteFirstDegreeMaterials
                     .vacuumStats(VA[UIV], 10 * SECOND)
             }
             .cableProperties(V[UXV], 48, 12)
+            .itemPipeProperties(16, 2048F)
             .build()
 
         // 2303 Lanthanum Fullerene Mixture

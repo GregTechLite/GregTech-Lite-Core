@@ -47,7 +47,6 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
-import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
@@ -68,9 +67,6 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
-import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import gregtech.api.unification.ore.OrePrefix.wireGtOctal
-import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
@@ -89,10 +85,6 @@ import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HULL
@@ -104,7 +96,6 @@ import gregtech.common.metatileentities.MetaTileEntities.LASER_INPUT_HATCH_4096
 import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_1024
 import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_256
 import gregtech.common.metatileentities.MetaTileEntities.LASER_OUTPUT_HATCH_4096
-import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_CRATE
@@ -113,7 +104,6 @@ import gregtech.common.metatileentities.MetaTileEntities.STEEL_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
@@ -152,10 +142,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UXV
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DYNAMO_HATCH_16A
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DYNAMO_HATCH_4A
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_HATCH_16A
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_HATCH_4A
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_1048576
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_16384
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_262144
@@ -168,8 +154,6 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONU
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SUBSTATION_DYNAMO_HATCH_64A
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SUBSTATION_ENERGY_HATCH_64A
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -444,308 +428,12 @@ internal object AssemblerRecipes
 
     private fun hiAmpEnergyHatchesRecipes()
     {
-        // ULV 4A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[ULV])
-            .input(wireGtQuadruple, RedAlloy, 2)
-            .input(plate, WroughtIron, 2)
-            .output(ENERGY_HATCH_4A[0])
-            .EUt(1L)
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // LV 4A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[LV])
-            .input(wireGtQuadruple, Tin, 2)
-            .input(plate, Steel, 2)
-            .output(ENERGY_HATCH_4A[1])
-            .EUt(VA[ULV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // MV 4A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[MV])
-            .input(wireGtQuadruple, Copper, 2)
-            .input(plate, Aluminium, 2)
-            .output(ENERGY_HATCH_4A[2])
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // HV 4A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[HV])
-            .input(wireGtQuadruple, Gold, 2)
-            .input(plate, StainlessSteel, 2)
-            .output(ENERGY_HATCH_4A[3])
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // ULV 16A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[ULV])
-            .input(ENERGY_HATCH_4A[0])
-            .input(wireGtOctal, RedAlloy, 2)
-            .input(plate, WroughtIron, 4)
-            .output(ENERGY_HATCH_16A[0])
-            .EUt(1L)
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // LV 16A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[LV])
-            .input(ENERGY_HATCH_4A[1])
-            .input(wireGtOctal, Tin, 2)
-            .input(plate, Steel, 4)
-            .output(ENERGY_HATCH_16A[1])
-            .EUt(VA[ULV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // MV 16A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[MV])
-            .input(ENERGY_HATCH_4A[2])
-            .input(wireGtOctal, Copper, 2)
-            .input(plate, Aluminium, 4)
-            .output(ENERGY_HATCH_16A[2])
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // HV 16A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[HV])
-            .input(ENERGY_HATCH_4A[3])
-            .input(wireGtOctal, Gold, 2)
-            .input(plate, StainlessSteel, 4)
-            .output(ENERGY_HATCH_16A[3])
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // EV 16A Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[EV])
-            .input(ENERGY_INPUT_HATCH_4A[0])
-            .input(wireGtOctal, Aluminium, 2)
-            .input(plate, Titanium, 4)
-            .output(ENERGY_HATCH_16A[4])
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // ULV 64A Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[ULV])
-            .input(ENERGY_HATCH_16A[0])
-            .input(wireGtHex, RedAlloy, 2)
-            .input(plate, WroughtIron, 6)
-            .output(SUBSTATION_ENERGY_HATCH_64A[0])
-            .EUt(1L)
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // LV 64A Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[LV])
-            .input(ENERGY_HATCH_16A[1])
-            .input(wireGtHex, Tin, 2)
-            .input(plate, Steel, 6)
-            .output(SUBSTATION_ENERGY_HATCH_64A[1])
-            .EUt(VA[ULV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // MV 64A Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[MV])
-            .input(ENERGY_HATCH_16A[2])
-            .input(wireGtHex, Copper, 2)
-            .input(plate, Aluminium, 6)
-            .output(SUBSTATION_ENERGY_HATCH_64A[2])
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // HV 64A Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[HV])
-            .input(ENERGY_HATCH_16A[3])
-            .input(wireGtHex, Gold, 2)
-            .input(plate, StainlessSteel, 6)
-            .output(SUBSTATION_ENERGY_HATCH_64A[3])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // EV 64A Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[EV])
-            .input(ENERGY_HATCH_16A[4])
-            .input(wireGtHex, Aluminium, 2)
-            .input(plate, Titanium, 6)
-            .output(SUBSTATION_ENERGY_HATCH_64A[4])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        // ...
     }
 
     private fun hiAmpDynamoHatchesRecipes()
     {
-        // ULV 4A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[ULV])
-            .input(wireGtQuadruple, RedAlloy, 2)
-            .input(plate, WroughtIron, 2)
-            .output(DYNAMO_HATCH_4A[0])
-            .EUt(1L)
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // LV 4A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[LV])
-            .input(wireGtQuadruple, Tin, 2)
-            .input(plate, Steel, 2)
-            .output(DYNAMO_HATCH_4A[1])
-            .EUt(VA[ULV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // MV 4A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[MV])
-            .input(wireGtQuadruple, Copper, 2)
-            .input(plate, Aluminium, 2)
-            .output(DYNAMO_HATCH_4A[2])
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // HV 4A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[HV])
-            .input(wireGtQuadruple, Gold, 2)
-            .input(plate, StainlessSteel, 2)
-            .output(DYNAMO_HATCH_4A[3])
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
-        // ULV 16A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[ULV])
-            .input(DYNAMO_HATCH_4A[0])
-            .input(wireGtOctal, RedAlloy, 2)
-            .input(plate, WroughtIron, 4)
-            .output(DYNAMO_HATCH_16A[0])
-            .EUt(1L)
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // LV 16A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[LV])
-            .input(DYNAMO_HATCH_4A[1])
-            .input(wireGtOctal, Tin, 2)
-            .input(plate, Steel, 4)
-            .output(DYNAMO_HATCH_16A[1])
-            .EUt(VA[ULV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // MV 16A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[MV])
-            .input(DYNAMO_HATCH_4A[2])
-            .input(wireGtOctal, Copper, 2)
-            .input(plate, Aluminium, 4)
-            .output(DYNAMO_HATCH_16A[2])
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // HV 16A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[HV])
-            .input(DYNAMO_HATCH_4A[3])
-            .input(wireGtOctal, Gold, 2)
-            .input(plate, StainlessSteel, 4)
-            .output(DYNAMO_HATCH_16A[3])
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // EV 16A Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(TRANSFORMER[EV])
-            .input(ENERGY_OUTPUT_HATCH_4A[0])
-            .input(wireGtOctal, Aluminium, 2)
-            .input(plate, Titanium, 4)
-            .output(DYNAMO_HATCH_16A[4])
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
-        // ULV 64A Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[ULV])
-            .input(DYNAMO_HATCH_16A[0])
-            .input(wireGtHex, RedAlloy, 2)
-            .input(plate, WroughtIron, 6)
-            .output(SUBSTATION_DYNAMO_HATCH_64A[0])
-            .EUt(1L)
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // LV 64A Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[LV])
-            .input(DYNAMO_HATCH_16A[1])
-            .input(wireGtHex, Tin, 2)
-            .input(plate, Steel, 6)
-            .output(SUBSTATION_DYNAMO_HATCH_64A[1])
-            .EUt(VA[ULV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // MV 64A Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[MV])
-            .input(DYNAMO_HATCH_16A[2])
-            .input(wireGtHex, Copper, 2)
-            .input(plate, Aluminium, 6)
-            .output(SUBSTATION_DYNAMO_HATCH_64A[2])
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // HV 64A Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[HV])
-            .input(DYNAMO_HATCH_16A[3])
-            .input(wireGtHex, Gold, 2)
-            .input(plate, StainlessSteel, 6)
-            .output(SUBSTATION_DYNAMO_HATCH_64A[3])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // EV 64A Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[EV])
-            .input(DYNAMO_HATCH_16A[4])
-            .input(wireGtHex, Aluminium, 2)
-            .input(plate, Titanium, 6)
-            .output(SUBSTATION_DYNAMO_HATCH_64A[4])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        // ...
     }
 
     private fun laserHatchesRecipes()

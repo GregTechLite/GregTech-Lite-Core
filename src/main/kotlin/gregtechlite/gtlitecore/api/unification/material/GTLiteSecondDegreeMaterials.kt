@@ -764,6 +764,7 @@ object GTLiteSecondDegreeMaterials
                 .attackSpeed(0.4F).enchantability(32)
                 .enchantment(Enchantments.FIRE_ASPECT, 3)
                 .magnetic().build())
+            .itemPipeProperties(576, 72F)
             .build()
 
         // 4034 Tairitsium
@@ -909,12 +910,13 @@ object GTLiteSecondDegreeMaterials
             .fluid()
             .color(0x4059EA).iconSet(METALLIC)
             .components(Seaborgium, 1, Carbon, 1)
-            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL)
+            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_DOUBLE_PLATE)
             .blast { b ->
                 b.temp(8500, BlastProperty.GasTier.HIGH) // Trinium
                     .blastStats(VA[ZPM], 45 * SECOND)
                     .vacuumStats(VA[IV], 22 * SECOND + 10 * TICK)
             }
+            .itemPipeProperties(288, 48F)
             .build()
 
         // 4043 Tantalum Hafnium Seaborgium Carbide
@@ -1015,6 +1017,7 @@ object GTLiteSecondDegreeMaterials
                     .blastStats(VA[UIV], 4 * MINUTE)
                     .vacuumStats(VA[UEV], 2 * MINUTE + 30 * SECOND)
             }
+            .itemPipeProperties(4096, 576F)
             .build()
 
         // 4049 Fullerene Superconductor

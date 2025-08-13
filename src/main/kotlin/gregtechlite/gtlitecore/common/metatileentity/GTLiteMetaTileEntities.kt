@@ -98,9 +98,9 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.Multib
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockAdvancedPrimitiveBlastFurnace
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMultiblockAlloySmelter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMultiblockCompressor
-import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLaserHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.single.SteamMachineSapCollector
@@ -189,13 +189,6 @@ object GTLiteMetaTileEntities
     lateinit var BUFFER: Array<MetaTileEntityBuffer>
 
     // Multiblock Parts.
-    lateinit var ENERGY_HATCH_4A: Array<PartMachineAdvancedEnergyHatch>
-    lateinit var DYNAMO_HATCH_4A: Array<PartMachineAdvancedEnergyHatch>
-    lateinit var ENERGY_HATCH_16A: Array<PartMachineAdvancedEnergyHatch>
-    lateinit var DYNAMO_HATCH_16A: Array<PartMachineAdvancedEnergyHatch>
-    lateinit var SUBSTATION_ENERGY_HATCH_64A: Array<PartMachineAdvancedEnergyHatch>
-    lateinit var SUBSTATION_DYNAMO_HATCH_64A: Array<PartMachineAdvancedEnergyHatch>
-
     lateinit var LASER_INPUT_HATCH_16384: Array<PartMachineAdvancedLaserHatch>
     lateinit var LASER_OUTPUT_HATCH_16384: Array<PartMachineAdvancedLaserHatch>
     lateinit var LASER_INPUT_HATCH_65536: Array<PartMachineAdvancedLaserHatch>
@@ -213,6 +206,8 @@ object GTLiteMetaTileEntities
     lateinit var QUADRUPLE_FLUID_EXPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
     lateinit var NONUPLE_FLUID_IMPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
     lateinit var NONUPLE_FLUID_EXPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
+
+    lateinit var HUGE_ITEM_IMPORT_BUS: Array<PartMachineHugeItemBus>
 
     // Multiblock Machines.
     lateinit var COAGULATION_TANK: MultiblockCoagulationTank
@@ -569,44 +564,6 @@ object GTLiteMetaTileEntities
         // -------------------------------------------------------------------------------------------------------------
         // 4001-10000: Multiblock Parts
 
-        // 4001-5000: (Wireless/Substation) Energy/Dynamo Hatches and Laser Target/Source Hatches.
-
-        // 4001-4004: ULV-HV 4A Energy Hatches.
-        ENERGY_HATCH_4A = register(4001, 0..3) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("energy_hatch.input_4a.${VN[it].lowercase()}"),
-                                           it, 4, false)
-        }
-
-        // 4005-4008: ULV-HV 4A Dynamo Hatches
-        DYNAMO_HATCH_4A = register(4005, 0..3) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("energy_hatch.output_4a.${VN[it].lowercase()}"),
-                                           it, 4, true)
-        }
-
-        // 4009-4013: ULV-EV 16A Energy Hatches.
-        ENERGY_HATCH_16A = register(4009, 0..4) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("energy_hatch.input_16a.${VN[it].lowercase()}"),
-                                           it, 16, false)
-        }
-
-        // 4014-4018: ULV-EV 16A Dynamo Hatches.
-        DYNAMO_HATCH_16A = register(4014, 0..4) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("energy_hatch.output_16a.${VN[it].lowercase()}"),
-                                           it, 16, true)
-        }
-
-        // 4019-4023 : ULV-EV 64A Substation Energy Hatches.
-        SUBSTATION_ENERGY_HATCH_64A = register(4019, 0..4) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("substation_hatch.input_64a.${VN[it].lowercase()}"),
-                                           it, 64, false)
-        }
-
-        // 4024-4028: ULV-EV 64A Substation Dynamo Hatches.
-        SUBSTATION_DYNAMO_HATCH_64A = register(4024, 0..4) {
-            PartMachineAdvancedEnergyHatch(GTLiteMod.id("substation_hatch.output_64a.${VN[it].lowercase()}"),
-                                           it, 64, true)
-        }
-
         // 4031-4140: IV-OpV Hi-Amp Laser Target/Source Hatches.
         LASER_INPUT_HATCH_16384 = register(4031, 0..8) {
             PartMachineAdvancedLaserHatch(GTLiteMod.id("laser_hatch.target_16384a.${VN[it + IV].lowercase()}"),
@@ -694,6 +651,11 @@ object GTLiteMetaTileEntities
         NONUPLE_FLUID_EXPORT_HATCH = register(5013, 0..3) {
             PartMachineAdvancedMultiFluidHatch(GTLiteMod.id("fluid_hatch.export_9x.${VN[it].lowercase()}"),
                                                it, 9, true)
+        }
+
+        // 5017-5032: ULV-OpV Huge Item Import Buses
+        HUGE_ITEM_IMPORT_BUS = register(5017, 0..13) {
+            PartMachineHugeItemBus(GTLiteMod.id("huge_item_bus.import.${VN[it].lowercase()}"), it)
         }
 
         // -------------------------------------------------------------------------------------------------------------

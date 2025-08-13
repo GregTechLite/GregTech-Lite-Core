@@ -2775,40 +2775,6 @@ gtlitecore.machine.delegator.delegating_face.down=路由面：下
 gtlitecore.machine.buffer.ev.name=进阶缓存器 III
 gtlitecore.machine.buffer.iv.name=精英缓存器
 
-gtlitecore.machine.energy_hatch.input_4a.ulv.name=4安能源仓（§8ULV§r）
-gtlitecore.machine.energy_hatch.input_4a.lv.name=4安能源仓（§7LV§r）
-gtlitecore.machine.energy_hatch.input_4a.mv.name=4安能源仓（§bMV§r）
-gtlitecore.machine.energy_hatch.input_4a.hv.name=4安能源仓（§6HV§r）
-
-gtlitecore.machine.energy_hatch.output_4a.ulv.name=4安动力仓（§8ULV§r）
-gtlitecore.machine.energy_hatch.output_4a.lv.name=4安动力仓（§7LV§r）
-gtlitecore.machine.energy_hatch.output_4a.mv.name=4安动力仓（§bMV§r）
-gtlitecore.machine.energy_hatch.output_4a.hv.name=4安动力仓（§6HV§r）
-
-gtlitecore.machine.energy_hatch.input_16a.ulv.name=16安能源仓（§8ULV§r）
-gtlitecore.machine.energy_hatch.input_16a.lv.name=16安能源仓（§7LV§r）
-gtlitecore.machine.energy_hatch.input_16a.mv.name=16安能源仓（§bMV§r）
-gtlitecore.machine.energy_hatch.input_16a.hv.name=16安能源仓（§6HV§r）
-gtlitecore.machine.energy_hatch.input_16a.ev.name=16安能源仓（§5EV§r）
-
-gtlitecore.machine.energy_hatch.output_16a.ulv.name=16安动力仓（§8ULV§r）
-gtlitecore.machine.energy_hatch.output_16a.lv.name=16安动力仓（§7LV§r）
-gtlitecore.machine.energy_hatch.output_16a.mv.name=16安动力仓（§bMV§r）
-gtlitecore.machine.energy_hatch.output_16a.hv.name=16安动力仓（§6HV§r）
-gtlitecore.machine.energy_hatch.output_16a.ev.name=16安动力仓（§5EV§r）
-
-gtlitecore.machine.substation_hatch.input_64a.ulv.name=64安变电能源仓（§8ULV§r）
-gtlitecore.machine.substation_hatch.input_64a.lv.name=64安变电能源仓（§7LV§r）
-gtlitecore.machine.substation_hatch.input_64a.mv.name=64安变电能源仓（§bMV§r）
-gtlitecore.machine.substation_hatch.input_64a.hv.name=64安变电能源仓（§6HV§r）
-gtlitecore.machine.substation_hatch.input_64a.ev.name=64安变电能源仓（§5EV§r）
-
-gtlitecore.machine.substation_hatch.output_64a.ulv.name=64安变电动力仓（§8ULV§r）
-gtlitecore.machine.substation_hatch.output_64a.lv.name=64安变电动力仓（§7LV§r）
-gtlitecore.machine.substation_hatch.output_64a.mv.name=64安变电动力仓（§bMV§r）
-gtlitecore.machine.substation_hatch.output_64a.hv.name=64安变电动力仓（§6HV§r）
-gtlitecore.machine.substation_hatch.output_64a.ev.name=64安变电动力仓（§5EV§r）
-
 gtlitecore.machine.laser_hatch.target_16384a.iv.name=16384A激光靶仓（§1IV§r）
 gtlitecore.machine.laser_hatch.target_16384a.luv.name=16384A激光靶仓（§dLuV§r）
 gtlitecore.machine.laser_hatch.target_16384a.zpm.name=16384A激光靶仓（§cZPM§r）
@@ -2942,6 +2908,24 @@ gtlitecore.machine.fluid_hatch.export_9x.ulv.name=九重输出仓（§8ULV§r）
 gtlitecore.machine.fluid_hatch.export_9x.lv.name=九重输出仓（§7LV§r）
 gtlitecore.machine.fluid_hatch.export_9x.mv.name=九重输出仓（§bMV§r）
 gtlitecore.machine.fluid_hatch.export_9x.hv.name=九重输出仓（§6HV§r）
+
+gtlitecore.machine.huge_item_bus.import.ulv.name=巨型输入总线（§8ULV§r）
+gtlitecore.machine.huge_item_bus.import.lv.name=巨型输入总线（§7LV§r）
+gtlitecore.machine.huge_item_bus.import.mv.name=巨型输入总线（§bMV§r）
+gtlitecore.machine.huge_item_bus.import.hv.name=巨型输入总线（§6HV§r）
+gtlitecore.machine.huge_item_bus.import.ev.name=巨型输入总线（§5EV§r）
+gtlitecore.machine.huge_item_bus.import.iv.name=巨型输入总线（§1IV§r）
+gtlitecore.machine.huge_item_bus.import.luv.name=巨型输入总线（§dLuV§r）
+gtlitecore.machine.huge_item_bus.import.zpm.name=巨型输入总线（§cZPM§r）
+gtlitecore.machine.huge_item_bus.import.uv.name=巨型输入总线（§3UV§r）
+gtlitecore.machine.huge_item_bus.import.uhv.name=巨型输入总线（§4UHV§r）
+gtlitecore.machine.huge_item_bus.import.uev.name=巨型输入总线（§aUEV§r）
+gtlitecore.machine.huge_item_bus.import.uiv.name=巨型输入总线（§2UIV§r）
+gtlitecore.machine.huge_item_bus.import.uxv.name=巨型输入总线（§eUXV§r）
+gtlitecore.machine.huge_item_bus.import.opv.name=巨型输入总线（§9OpV§r）
+
+gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
+gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s

@@ -32,6 +32,7 @@ import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.Crucible
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
@@ -118,7 +119,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
             .setMinGlobalLimited(36))
         .where('G', states(glassState))
         .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS[ULV])
-            // TODO .or(metaTileEntities(GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS[ULV]))
+            .or(metaTileEntities(GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS[ULV]))
             .or(states(secondCasingState)))
         .where('C', states(secondCasingState)
             .or(cruciblePredicate()))
