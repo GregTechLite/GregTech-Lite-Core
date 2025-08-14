@@ -29,6 +29,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.colorAverage
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
@@ -40,6 +41,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSmoke
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSootSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BloodCells
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BloodPlasma
@@ -92,6 +94,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarks
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyTaraniumFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyTaraniumGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Latex
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
@@ -124,6 +127,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutronProtonFerm
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreedingBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OrangeExtract
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Paraffin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhosphoreneSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotatoJuice
@@ -158,6 +162,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vodka
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Yeast
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MHDCSM
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.WAX
 
 object GTLiteUnknownCompositionMaterials
 {
@@ -228,7 +233,26 @@ object GTLiteUnknownCompositionMaterials
             .build()
             .setFormula("CAT", false)
 
-        // 12027-12030 for other misc biological materials
+        // 12027 Kerogen
+        Kerogen = Material.Builder(12027, GTLiteMod.id("kerogen"))
+            .liquid(FluidBuilder().temperature(302))
+            .color(0xA7A7A7).iconSet(DULL)
+            .build()
+
+        // 12028 Paraffin
+        Paraffin = Material.Builder(12028, GTLiteMod.id("paraffin"))
+            .dust(0, 40 * SECOND)
+            .color(0xD2D2FA).iconSet(WAX)
+            .flags(FLAMMABLE)
+            .build()
+
+        // 12029 Bitumen
+        Bitumen = Material.Builder(12029, GTLiteMod.id("bitumen"))
+            .dust()
+            .color(0x2D2D05).iconSet(WAX)
+            .build()
+
+        // 12030 for other misc biological materials
         // ...
 
         // 12031 Green Sapphire Juice

@@ -96,6 +96,7 @@ internal object ChemistryRecipeList
         BlackHolesChain.init()
         HeavyConductiveMixtureChain.init()
         PolymerInsulatorChain.init()
+        KerogenChain.init()
     }
 
     // @formatter:on

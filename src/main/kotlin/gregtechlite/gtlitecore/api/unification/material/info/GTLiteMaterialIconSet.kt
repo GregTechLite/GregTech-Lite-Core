@@ -79,6 +79,9 @@ object GTLiteMaterialIconSet
     @JvmField
     val MAGNETIUM = iconSet("magnetium")
 
+    @JvmStatic
+    val WAX = iconSet("wax")
+
     // endregion
 
     // region Renderer Suitable Texture IconSets

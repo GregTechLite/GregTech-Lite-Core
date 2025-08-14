@@ -1592,6 +1592,7 @@ recipemap.nuclear_reactor.name=Nuclear Reactor
 recipemap.rocket_engine.name=Rocket Engine
 recipemap.naquadah_reactor.name=Naquadah Reactor
 recipemap.antimatter_generator.name=Antimatter Annihilation
+recipemap.acid_generator.name=Acid Generator
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -2201,6 +2202,13 @@ gtlitecore.machine.naquadah_reactor.zpm.tooltip=Required naquadah fuels or taran
 gtlitecore.machine.naquadah_reactor.uv.name=Ultimate Naquadah Reactor
 gtlitecore.machine.naquadah_reactor.uv.tooltip=Required naquadah fuels or taranium fuels
 
+gtlitecore.machine.acid_generator.mv.name=Basic Acid Generator
+gtlitecore.machine.acid_generator.mv.tooltip=Required acid matters
+gtlitecore.machine.acid_generator.hv.name=Advanced Acid Generator
+gtlitecore.machine.acid_generator.hv.tooltip=Required acid matters
+gtlitecore.machine.acid_generator.ev.name=Turbine Acid Generator
+gtlitecore.machine.acid_generator.ev.tooltip=Required acid matters
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Place §fInput Hatch§7 and §fOutput Bus§7 for automation
@@ -2717,6 +2725,8 @@ gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能�
 
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=氧等离子体正在催化硅岩释放能量。
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体存量：%s
+
+gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -3662,6 +3672,7 @@ gtlitecore.material.trisaminoethylamine=Trisaminoethylamine
 gtlitecore.material.tertbutyl_azidoformate=Tertbutyl Azidoformate
 gtlitecore.material.aminated_fullerene=Aminated Fullerene
 gtlitecore.material.azafullerene=Azafullerene
+gtlitecore.material.fulvic_acid=Fulvic Acid
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3673,7 +3684,9 @@ gtlitecore.material.blood_plasma=Blood Plasma
 gtlitecore.material.bfgf=Basic Fibroblast Growth Factor (bFGF)
 gtlitecore.material.egf=Epidermal Growth Factor (EGF)
 gtlitecore.material.cat=Catalase (CAT)
-
+gtlitecore.material.kerogen=Kerogen
+gtlitecore.material.paraffin=Paraffin
+gtlitecore.material.bitumen=Bitumen
 gtlitecore.material.green_sapphire_juice=Green Sapphire Juice
 gtlitecore.material.sapphire_juice=Sapphire Juice
 gtlitecore.material.ruby_juice=Ruby Juice

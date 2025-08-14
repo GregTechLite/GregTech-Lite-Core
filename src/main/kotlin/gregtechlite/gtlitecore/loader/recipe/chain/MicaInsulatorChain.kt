@@ -123,8 +123,6 @@ internal object MicaInsulatorChain
             .duration(5 * SECOND)
             .buildAndRegister()
 
-        // TODO Advanced recipes of mica insulators.
-
     }
 
     // @formatter:on

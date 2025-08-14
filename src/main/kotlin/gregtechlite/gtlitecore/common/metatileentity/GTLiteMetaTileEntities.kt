@@ -86,6 +86,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSifter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockWiremill
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockVolcanus
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockAcidGenerator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockAntimatterGenerator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNaquadahReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockRocketEngine
@@ -156,6 +157,7 @@ object GTLiteMetaTileEntities
     lateinit var BIO_SIMULATOR: Array<SimpleMachineMetaTileEntity>
     lateinit var ROCKET_ENGINE: Array<SimpleGeneratorMetaTileEntity>
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
+    lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
 
     // Several single MTEs.
     lateinit var IRON_DRUM: MetaTileEntityDrum
@@ -288,6 +290,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_FOOD_PROCESSOR: MultiblockFoodProcessor
     lateinit var LARGE_ROCKET_ENGINE: MultiblockRocketEngine
     lateinit var LARGE_NAQUADAH_REACTOR: MultiblockNaquadahReactor
+    lateinit var LARGE_ACID_GENERATOR: MultiblockAcidGenerator
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
 
@@ -463,6 +466,14 @@ object GTLiteMetaTileEntities
             SimpleGeneratorMetaTileEntity(GTLiteMod.id("naquadah_reactor.${VN[it + IV].lowercase()}"),
                                           GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
                                           GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, it + IV,
+                                          genericGeneratorTankSizeFunction)
+        }
+
+        // 346-360: Acid Generator (MV-EV)
+        ACID_GENERATOR = register(349, 0..2) {
+            SimpleGeneratorMetaTileEntity(GTLiteMod.id("acid_generator.${VN[it + MV].lowercase()}"),
+                                          GTLiteRecipeMaps.ACID_GENERATOR_FUELS,
+                                          GTLiteTextures.ACID_GENERATOR_OVERLAY, it + MV,
                                           genericGeneratorTankSizeFunction)
         }
 
@@ -759,6 +770,7 @@ object GTLiteMetaTileEntities
         LARGE_FOOD_PROCESSOR = register(10136, MultiblockFoodProcessor(GTLiteMod.id("large_food_processor")))
         LARGE_ROCKET_ENGINE = register(10137, MultiblockRocketEngine(GTLiteMod.id("large_rocket_engine")))
         LARGE_NAQUADAH_REACTOR = register(10138, MultiblockNaquadahReactor(GTLiteMod.id("large_naquadah_reactor")))
+        LARGE_ACID_GENERATOR = register(10139, MultiblockAcidGenerator(GTLiteMod.id("large_acid_generator")))
 
         // ...
 

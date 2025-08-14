@@ -10,6 +10,7 @@ import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
@@ -24,6 +25,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
+import net.minecraft.item.ItemStack
 
 internal object RecyclingDataLoader
 {
@@ -105,6 +107,10 @@ internal object RecyclingDataLoader
             RecyclingData(MaterialStack(BlackDwarfMatter, M * 8), // 8x plateX
                           MaterialStack(Periodicium, M), // 2x cableGtSingle
                           MaterialStack(Rubber, M * 2)))
+
+        // Asphalt recycling data.
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(ItemStack(MetaBlocks.ASPHALT),
+            RecyclingData(MaterialStack(Bitumen, M * 4)))
 
         // Sheeted Frames recycling datas.
         GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (material, block) ->

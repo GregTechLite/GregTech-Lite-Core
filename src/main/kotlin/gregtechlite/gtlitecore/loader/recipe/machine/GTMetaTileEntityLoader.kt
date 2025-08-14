@@ -53,6 +53,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SterlingSilver
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritanium
@@ -160,6 +161,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UXV
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ACID_GENERATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BATH_CONDENSER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_SIMULATOR
@@ -512,6 +514,17 @@ internal object GTMetaTileEntityLoader
             'F', CraftingComponent.FIELD_GENERATOR,
             'W', CraftingComponent.CABLE,
             'H', CraftingComponent.HULL)
+
+        // Acid Generator
+        MetaTileEntityLoader.registerMachineRecipe(true, ACID_GENERATOR,
+            "APX", "BHW", "XQW",
+            'H', CraftingComponent.HULL,
+            'P', OreDictUnifier.get(plate, Sulfur),
+            'Q', CraftingComponents.PLATE_COMPONENT,
+            'A', CraftingComponent.PUMP,
+            'X', CraftingComponent.CIRCUIT,
+            'W', CraftingComponent.CABLE,
+            'B', CraftingComponent.PIPE_REACTOR)
 
         // -------------------------------------------------------------------------------------------------------------
 

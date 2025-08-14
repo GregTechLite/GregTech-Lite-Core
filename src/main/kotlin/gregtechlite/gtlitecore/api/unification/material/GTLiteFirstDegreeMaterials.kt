@@ -738,7 +738,7 @@ object GTLiteFirstDegreeMaterials
 
         // 2020 Lignite
         Lignite = Material.Builder(2020, GTLiteMod.id("lignite"))
-            .gem(0, 1600)
+            .gem(0, 80 * SECOND)
             .ore()
             .color(6571590)
             .iconSet(LIGNITE)

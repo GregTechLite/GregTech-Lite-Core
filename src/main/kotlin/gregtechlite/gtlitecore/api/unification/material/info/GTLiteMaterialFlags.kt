@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.BismuthBronze
+import gregtech.api.unification.material.Materials.BlackBronze
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
@@ -126,6 +127,7 @@ import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.SterlingSilver
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tennessine
@@ -442,6 +444,7 @@ object GTLiteMaterialFlags
         Lutetium.addFlags(GENERATE_PLATE)
         Cadmium.addFlags(GENERATE_PLATE)
         Copernicium.addFlags(GENERATE_PLATE)
+        Sulfur.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -508,6 +511,7 @@ object GTLiteMaterialFlags
         Trinium.addFlags(GENERATE_DENSE)
         Osmiridium.addFlags(GENERATE_DENSE)
         Livermorium.addFlags(GENERATE_DENSE)
+        CobaltBrass.addFlags(GENERATE_DENSE)
 
         // ring
         Duranium.addFlags(GENERATE_RING)
@@ -579,6 +583,7 @@ object GTLiteMaterialFlags
         Mendelevium.addFlags(GENERATE_SPRING)
         Platinum.addFlags(GENERATE_SPRING)
         Nickel.addFlags(GENERATE_SPRING)
+        BlackBronze.addFlags(GENERATE_SPRING)
 
         // springSmall
         WroughtIron.addFlags(GENERATE_SPRING_SMALL)

@@ -109,6 +109,8 @@ object GTLiteTextures
     val SPACE_PUMP_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_pump/overlay_side")
     @JvmField
     val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = orientedOverlay("machines/multiblock/entrodynamically_phase_changer")
+    @JvmField
+    val ACID_GENERATOR_OVERLAY = orientedOverlay("generators/acid_generator")
 
     // endregion
 

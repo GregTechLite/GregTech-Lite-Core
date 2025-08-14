@@ -1590,6 +1590,7 @@ recipemap.nuclear_reactor.name=核反应堆
 recipemap.rocket_engine.name=火箭引擎
 recipemap.naquadah_reactor.name=硅岩反应堆
 recipemap.antimatter_generator.name=正反物质湮灭
+recipemap.acid_generator.name=酸性发电机
 
 # Recipe Properties
 gtlitecore.recipe.blocks=有效方块：%s
@@ -2199,6 +2200,13 @@ gtlitecore.machine.naquadah_reactor.zpm.tooltip=需要硅岩燃料或塔兰金�
 gtlitecore.machine.naquadah_reactor.uv.name=极限硅岩反应堆
 gtlitecore.machine.naquadah_reactor.uv.tooltip=需要硅岩燃料或塔兰金属燃料
 
+gtlitecore.machine.acid_generator.mv.name=基础酸性发电机
+gtlitecore.machine.acid_generator.mv.tooltip=需要酸性物质
+gtlitecore.machine.acid_generator.hv.name=进阶酸性发电机
+gtlitecore.machine.acid_generator.hv.tooltip=需要酸性物质
+gtlitecore.machine.acid_generator.ev.name=涡轮酸性发电机
+gtlitecore.machine.acid_generator.ev.tooltip=需要酸性物质
+
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
@@ -2716,6 +2724,8 @@ gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能�
 
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=氧等离子体正在催化硅岩释放能量。
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体存量：%s
+
+gtlitecore.machine.large_acid_generator.name=大型酸性发电机
 
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -3665,6 +3675,7 @@ gtlitecore.material.trisaminoethylamine=三(2-氨基乙基)胺
 gtlitecore.material.tertbutyl_azidoformate=叠氮甲酸叔丁酯
 gtlitecore.material.aminated_fullerene=胺化富勒烯
 gtlitecore.material.azafullerene=氮杂富勒烯
+gtlitecore.material.fulvic_acid=黄腐酸
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3676,7 +3687,9 @@ gtlitecore.material.blood_plasma=血浆
 gtlitecore.material.bfgf=碱性成纤维细胞生长因子（bFGF）
 gtlitecore.material.egf=表皮细胞生长因子（EGF）
 gtlitecore.material.cat=过氧化氢酶（CAT）
-
+gtlitecore.material.kerogen=油母质
+gtlitecore.material.paraffin=石蜡
+gtlitecore.material.bitumen=沥青
 gtlitecore.material.green_sapphire_juice=绿色蓝宝石汁
 gtlitecore.material.sapphire_juice=蓝宝石汁
 gtlitecore.material.ruby_juice=红宝石汁

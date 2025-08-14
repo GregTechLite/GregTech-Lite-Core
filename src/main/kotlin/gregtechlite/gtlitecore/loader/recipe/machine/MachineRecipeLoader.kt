@@ -22,11 +22,14 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Berkelium
+import gregtech.api.unification.material.Materials.BlackBronze
+import gregtech.api.unification.material.Materials.BlackSteel
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
+import gregtech.api.unification.material.Materials.CobaltBrass
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Cupronickel
 import gregtech.api.unification.material.Materials.Darmstadtium
@@ -305,6 +308,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ACID_GENERATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ADVANCED_FUSION_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ALLOY_BLAST_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ANTIMATTER_FORGE
@@ -332,6 +336,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSI
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HOT_COOLANT_TURBINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_COKE_OVEN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ACID_GENERATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ARC_FURNACE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ASSEMBLER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_AUTOCLAVE
@@ -1499,6 +1504,16 @@ internal object MachineRecipeLoader
                     .CWUt(64)
             }
             .buildAndRegister()
+
+        // Large Acid Generator
+        ModHandler.addShapedRecipe(true, "large_acid_generator", LARGE_ACID_GENERATOR.stackForm,
+            "SDS", "PAP", "WQW",
+            'A', ACID_GENERATOR[MV].stackForm,
+            'D', UnificationEntry(plateDense, CobaltBrass),
+            'W', UnificationEntry(cableGtSingle, BlackSteel),
+            'S', UnificationEntry(spring, BlackBronze),
+            'P', ELECTRIC_PUMP_EV,
+            'Q', UnificationEntry(pipeNormalFluid, Tungsten))
 
     }
 

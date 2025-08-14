@@ -887,6 +887,18 @@ object GTLiteRecipeMaps
         .generator()
         .build()
 
+    /**
+     * @zenProp acid_generator
+     */
+    @ZenProperty
+    @JvmField
+    val ACID_GENERATOR_FUELS = RecipeMapBuilder("acid_generator", FuelRecipeBuilder())
+        .fluidInputs(1)
+        .allowEmptyOutputs()
+        .sound(GTSoundEvents.BATH)
+        .generator()
+        .build()
+
     // endregion
 
     @JvmStatic

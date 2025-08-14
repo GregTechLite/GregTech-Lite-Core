@@ -30,6 +30,7 @@ internal object MachineRecipeList
         SifterRecipes.init()
         WiremillRecipes.init()
 
+        AcidGeneratorRecipes.init()
         AlloyBlastSmelterRecipes.init()
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()

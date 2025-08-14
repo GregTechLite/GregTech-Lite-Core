@@ -162,6 +162,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FormicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fructose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FulvicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GammaButyrolactone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GeodesicPolyarene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glucose
@@ -2077,6 +2078,14 @@ object GTLiteOrganicChemistryMaterials
             .liquid()
             .color(0x8A7A1A)
             .components(Carbon, 60, Nitrogen, 12, Hydrogen, 12)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8224 Fulvic Acid
+        FulvicAcid = Material.Builder(8224, GTLiteMod.id("fulvic_acid"))
+            .liquid(FluidBuilder().temperature(312))
+            .color(0x59492F)
+            .components(Carbon, 14, Hydrogen, 12, Oxygen, 8)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 

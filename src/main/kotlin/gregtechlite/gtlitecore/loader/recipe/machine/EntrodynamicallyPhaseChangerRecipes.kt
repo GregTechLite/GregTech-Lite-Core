@@ -65,10 +65,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dicyclopentadiene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5Fraction
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Forsterite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FulvicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HardAppleCandySyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeSodaSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
@@ -726,6 +728,15 @@ object EntrodynamicallyPhaseChangerRecipes
             .fluidOutputs(CranberryEtirps.getFluid(1000))
             .EUt(VA[LV])
             .duration(5 * TICK)
+            .blastFurnaceTemp(1200)
+            .buildAndRegister()
+
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .fluidInputs(FulvicAcid.getFluid(100))
+            .fluidOutputs(Kerogen.getFluid(100))
+            .EUt(VA[LV])
+            .duration(2 * SECOND + 5 * TICK)
             .blastFurnaceTemp(1200)
             .buildAndRegister()
 

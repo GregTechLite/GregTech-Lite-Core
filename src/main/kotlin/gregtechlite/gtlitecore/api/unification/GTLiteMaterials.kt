@@ -712,6 +712,7 @@ object GTLiteMaterials
     lateinit var TertbutylAzidoformate: Material
     lateinit var AminatedFullerene: Material
     lateinit var Azafullerene: Material
+    lateinit var FulvicAcid: Material
 
     // endregion
 
@@ -726,6 +727,9 @@ object GTLiteMaterials
     lateinit var BFGF: Material
     lateinit var EGF: Material
     lateinit var CAT: Material
+    lateinit var Kerogen: Material
+    lateinit var Paraffin: Material
+    lateinit var Bitumen: Material
     lateinit var GreenSapphireJuice: Material
     lateinit var SapphireJuice: Material
     lateinit var RubyJuice: Material

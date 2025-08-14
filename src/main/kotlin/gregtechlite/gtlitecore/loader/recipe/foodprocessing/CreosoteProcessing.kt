@@ -29,6 +29,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylenol
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 
 internal object CreosoteProcessing
 {
@@ -46,7 +47,7 @@ internal object CreosoteProcessing
 
         DISTILLATION_RECIPES.recipeBuilder()
             .fluidInputs(Creosote.getFluid(1000))
-            .chancedOutput(dustTiny, Wood, 1, 1500, 0)
+            .chancedOutput(dustTiny, Bitumen, 1500, 0)
             .fluidOutputs(Xylenol.getFluid(600)) // C8H10O
             .fluidOutputs(Creosol.getFluid(400)) // C7H8O
             .fluidOutputs(Phenol.getFluid(200)) // C6H6O
