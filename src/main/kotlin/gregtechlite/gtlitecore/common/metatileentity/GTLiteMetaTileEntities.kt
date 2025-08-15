@@ -101,7 +101,10 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMulti
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMultiblockCompressor
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLaserHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.single.SteamMachineSapCollector
@@ -210,6 +213,13 @@ object GTLiteMetaTileEntities
     lateinit var NONUPLE_FLUID_EXPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
 
     lateinit var HUGE_ITEM_IMPORT_BUS: Array<PartMachineHugeItemBus>
+    lateinit var STERILE_CLEANING_MAINTENANCE_HATCH: PartMachineSterileCleaningMaintenanceHatch
+    lateinit var AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
+    lateinit var EXTREME_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
+    lateinit var INFINITE_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
+
+    lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
+    lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
 
     // Multiblock Machines.
     lateinit var COAGULATION_TANK: MultiblockCoagulationTank
@@ -667,6 +677,26 @@ object GTLiteMetaTileEntities
         // 5017-5032: ULV-OpV Huge Item Import Buses
         HUGE_ITEM_IMPORT_BUS = register(5017, 0..13) {
             PartMachineHugeItemBus(GTLiteMod.id("huge_item_bus.import.${VN[it].lowercase()}"), it)
+        }
+
+        // 5033: Sterile Cleaning Maintenance Hatch
+        STERILE_CLEANING_MAINTENANCE_HATCH = register(5033, PartMachineSterileCleaningMaintenanceHatch(GTLiteMod.id("maintenance_hatch_sterile_cleanroom_auto")))
+
+        // 5034-5036: Air Intake Hatches
+        AIR_INTAKE_HATCH = register(5034, PartMachineAirIntakeHatch(GTLiteMod.id("air_intake_hatch.basic"), HV, 256_000, 1_000))
+        EXTREME_AIR_INTAKE_HATCH = register(5035, PartMachineAirIntakeHatch(GTLiteMod.id("air_intake_hatch.extreme"), IV, 4_096_000, 16_000))
+        INFINITE_AIR_INTAKE_HATCH = register(5036, PartMachineAirIntakeHatch(GTLiteMod.id("air_intake_hatch.infinite"), ZPM, Int.MAX_VALUE, 256_000))
+
+        // 5037-5052: ULV-OpV Dual Input Hatches
+        DUAL_IMPORT_HATCH = register(5037, 0..13)
+        {
+            PartMachineDualHatch(GTLiteMod.id("dual_hatch.import.${VN[it].lowercase()}"), it, false)
+        }
+
+        // 5053-5068: ULV-OpV Dual Output Hatches
+        DUAL_EXPORT_HATCH = register(5053, 0..13)
+        {
+            PartMachineDualHatch(GTLiteMod.id("dual_hatch.export.${VN[it].lowercase()}"), it, true)
         }
 
         // -------------------------------------------------------------------------------------------------------------

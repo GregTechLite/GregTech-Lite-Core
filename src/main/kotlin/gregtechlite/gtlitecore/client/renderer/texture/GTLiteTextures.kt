@@ -111,7 +111,14 @@ object GTLiteTextures
     val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = orientedOverlay("machines/multiblock/entrodynamically_phase_changer")
     @JvmField
     val ACID_GENERATOR_OVERLAY = orientedOverlay("generators/acid_generator")
-
+    @JvmField
+    val STERILE_CLEANING_MAINTENANCE_OVERLAY = simpleOverlay("overlay/machine/overlay_maintenance_sterile_cleaning")
+    @JvmField
+    val AIR_INTAKE_HATCH_OVERLAY = simpleOverlay("overlay/machine/overlay_air_intake")
+    @JvmField
+    val DUAL_HATCH_INPUT_OVERLAY = simpleOverlay("overlay/machine/overlay_dual_hatch_input")
+    @JvmField
+    val DUAL_HATCH_OUTPUT_OVERLAY = simpleOverlay("overlay/machine/overlay_dual_hatch_output")
     // endregion
 
     // region Machine Casing Textures

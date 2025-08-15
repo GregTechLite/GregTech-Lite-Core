@@ -32,6 +32,7 @@ import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
@@ -46,6 +47,9 @@ import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
@@ -61,6 +65,7 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
@@ -89,11 +94,15 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.BLACKLIGHT
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_EV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_HV
@@ -108,21 +117,34 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
+import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_16A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
 import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.ROTOR_HOLDER
+import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import gregtechlite.gtlitecore.api.MINUTE
@@ -131,10 +153,13 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
@@ -152,7 +177,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
+import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
@@ -162,6 +189,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UXV
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ACID_GENERATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BATH_CONDENSER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_SIMULATOR
@@ -173,10 +201,14 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.COPP
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.COPPER_DRUM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYOGENIC_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DIAMOND_CRATE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_EXPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.EXTREME_AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.GOLD_CRATE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.GREENHOUSE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INFINITE_AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INVENTORY_BRIDGE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INVENTORY_EXTENDER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INVENTORY_TANK_BRIDGE
@@ -192,6 +224,8 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.POLISHER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.REPLICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ROASTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ROCKET_ENGINE
@@ -202,6 +236,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.STEA
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.STEAM_SAP_COLLECTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.STEAM_VACUUM_CHAMBER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.STEAM_VULCANIZING_PRESS
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.STERILE_CLEANING_MAINTENANCE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.TANK_BRIDGE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.TANK_EXTENDER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.TOOL_CASTER
@@ -1547,6 +1582,455 @@ internal object GTMetaTileEntityLoader
             .EUt(VA[MAX])
             .duration(5 * MINUTE)
             .buildAndRegister()
+
+        // Sterile Cleaning Maintenance Hatch
+        ModHandler.addShapedRecipe(true, "sterile_cleaning_maintenance_hatch", STERILE_CLEANING_MAINTENANCE_HATCH.stackForm,
+            "XBX", "RHR", "WMW",
+            'H', HULL[UV].stackForm,
+            'M', CLEANING_MAINTENANCE_HATCH.stackForm,
+            'B', BLACKLIGHT,
+            'R', ROBOT_ARM_UV,
+            'W', UnificationEntry(cableGtSingle, YttriumBariumCuprate),
+            'X', UnificationEntry(circuit, Tier.UV))
+
+        // Air Intake Hatch
+        ModHandler.addShapedRecipe(true, "air_intake_hatch", AIR_INTAKE_HATCH.stackForm,
+            "ADA", "QPQ", "XHX",
+            'H', FLUID_IMPORT_HATCH[HV].stackForm,
+            'P', ELECTRIC_PUMP_HV.stackForm,
+            'D', GTMultiblockCasing.GRATE_CASING.stack,
+            'A', AIR_VENT.stackForm,
+            'X', UnificationEntry(circuit, Tier.HV),
+            'Q', UnificationEntry(pipeNormalFluid, StainlessSteel))
+
+        // Extreme Air Intake Hatch
+        ModHandler.addShapedRecipe(true, "extreme_air_intake_hatch", EXTREME_AIR_INTAKE_HATCH.stackForm,
+            "ADA", "QPQ", "XHX",
+            'H', FLUID_IMPORT_HATCH[IV].stackForm,
+            'D', AIR_INTAKE_HATCH.stackForm,
+            'X', UnificationEntry(circuit, Tier.IV),
+            'P', ELECTRIC_PUMP_IV.stackForm,
+            'Q', UnificationEntry(pipeNormalFluid, Tungsten),
+            'A', UnificationEntry(rotor, TungstenSteel))
+
+        // Infinite Air Intake Hatch
+        ModHandler.addShapedRecipe(true, "infinite_air_intake_hatch", INFINITE_AIR_INTAKE_HATCH.stackForm,
+            "RDR", "QPQ", "XHX",
+            'H', FLUID_IMPORT_HATCH[ZPM].stackForm,
+            'P', ELECTRIC_PUMP_ZPM.stackForm,
+            'D', EXTREME_AIR_INTAKE_HATCH.stackForm,
+            'X', UnificationEntry(circuit, Tier.ZPM),
+            'R', UnificationEntry(rotor, NaquadahAlloy),
+            'Q', UnificationEntry(pipeNormalFluid, Iridium))
+
+        // TODO Remove Dual I/O Hatches when GTCEu PR#2769 merged.
+
+        // Dual Import/Export Hatch convert
+        for (voltage in ULV..OpV)
+        {
+            ModHandler.addShapedRecipe("dual_hatch_output_to_input_${DUAL_IMPORT_HATCH[voltage].tier}",
+                DUAL_IMPORT_HATCH[voltage].stackForm,
+                "d", "B",
+                'B', DUAL_EXPORT_HATCH[voltage].stackForm)
+
+            ModHandler.addShapedRecipe("dual_hatch_input_to_output_${DUAL_EXPORT_HATCH[voltage].tier}",
+                DUAL_EXPORT_HATCH[voltage].stackForm,
+                "d", "B",
+                'B', DUAL_IMPORT_HATCH[voltage].stackForm)
+        }
+
+        // ULV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[ULV])
+            .input(QUADRUPLE_FLUID_IMPORT_HATCH[ULV])
+            .input(BRONZE_DRUM)
+            .input(circuit, Tier.LV, 2)
+            .input(plate, WroughtIron, 4)
+            .fluidInputs(Glass.getFluid(L))
+            .output(DUAL_IMPORT_HATCH[ULV])
+            .EUt(VA[ULV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // ULV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[ULV])
+            .input(QUADRUPLE_FLUID_EXPORT_HATCH[ULV])
+            .input(BRONZE_DRUM)
+            .input(circuit, Tier.LV, 2)
+            .input(plate, WroughtIron, 4)
+            .fluidInputs(Glass.getFluid(L))
+            .output(DUAL_EXPORT_HATCH[ULV])
+            .EUt(VA[ULV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // LV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[LV])
+            .input(QUADRUPLE_FLUID_IMPORT_HATCH[LV])
+            .input(STEEL_DRUM)
+            .input(circuit, Tier.MV, 2)
+            .input(plate, Steel, 4)
+            .fluidInputs(Glass.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[LV])
+            .EUt(VA[LV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // LV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[LV])
+            .input(QUADRUPLE_FLUID_EXPORT_HATCH[LV])
+            .input(STEEL_DRUM)
+            .input(circuit, Tier.MV, 2)
+            .input(plate, Steel, 4)
+            .fluidInputs(Glass.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[LV])
+            .EUt(VA[LV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // MV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[MV])
+            .input(QUADRUPLE_FLUID_IMPORT_HATCH[MV])
+            .input(ALUMINIUM_DRUM)
+            .input(circuit, Tier.HV, 2)
+            .input(plate, Aluminium, 4)
+            .fluidInputs(Polyethylene.getFluid(L))
+            .output(DUAL_IMPORT_HATCH[MV])
+            .EUt(VA[MV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // MV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[MV])
+            .input(QUADRUPLE_FLUID_EXPORT_HATCH[MV])
+            .input(ALUMINIUM_DRUM)
+            .input(circuit, Tier.HV, 2)
+            .input(plate, Aluminium, 4)
+            .fluidInputs(Polyethylene.getFluid(L))
+            .output(DUAL_EXPORT_HATCH[MV])
+            .EUt(VA[MV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // HV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[HV])
+            .input(QUADRUPLE_FLUID_IMPORT_HATCH[HV])
+            .input(STAINLESS_STEEL_DRUM)
+            .input(circuit, Tier.EV, 2)
+            .input(plate, StainlessSteel, 4)
+            .fluidInputs(Polyethylene.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[HV])
+            .EUt(VA[HV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // HV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[HV])
+            .input(QUADRUPLE_FLUID_EXPORT_HATCH[HV])
+            .input(STAINLESS_STEEL_DRUM)
+            .input(circuit, Tier.EV, 2)
+            .input(plate, StainlessSteel, 4)
+            .fluidInputs(Polyethylene.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[HV])
+            .EUt(VA[HV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // EV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[EV])
+            .input(QUADRUPLE_IMPORT_HATCH[EV])
+            .input(TITANIUM_DRUM)
+            .input(circuit, Tier.IV, 2)
+            .input(plate, Titanium, 4)
+            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[EV])
+            .EUt(VA[EV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // EV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[EV])
+            .input(QUADRUPLE_EXPORT_HATCH[EV])
+            .input(TITANIUM_DRUM)
+            .input(circuit, Tier.IV, 2)
+            .input(plate, Titanium, 4)
+            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[EV])
+            .EUt(VA[EV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // IV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[IV])
+            .input(QUADRUPLE_IMPORT_HATCH[IV])
+            .input(TUNGSTENSTEEL_DRUM)
+            .input(circuit, Tier.LuV, 2)
+            .input(plate, TungstenSteel, 4)
+            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[IV])
+            .EUt(VA[IV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // IV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[IV])
+            .input(QUADRUPLE_EXPORT_HATCH[IV])
+            .input(TUNGSTENSTEEL_DRUM)
+            .input(circuit, Tier.LuV, 2)
+            .input(plate, TungstenSteel, 4)
+            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[IV])
+            .EUt(VA[IV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // LuV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[LuV])
+            .input(QUADRUPLE_IMPORT_HATCH[LuV])
+            .input(IRIDIUM_DRUM)
+            .input(circuit, Tier.ZPM, 2)
+            .input(plate, RhodiumPlatedPalladium, 4)
+            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[LuV])
+            .EUt(VA[LuV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // LuV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[LuV])
+            .input(QUADRUPLE_EXPORT_HATCH[LuV])
+            .input(IRIDIUM_DRUM)
+            .input(circuit, Tier.ZPM, 2)
+            .input(plate, RhodiumPlatedPalladium, 4)
+            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[LuV])
+            .EUt(VA[LuV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // ZPM Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[ZPM])
+            .input(QUADRUPLE_IMPORT_HATCH[ZPM])
+            .input(QUANTUM_TANK[ULV]) // Super Tank I
+            .input(circuit, Tier.UV, 2)
+            .input(plate, NaquadahAlloy, 4)
+            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[ZPM])
+            .EUt(VA[ZPM])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // ZPM Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[ZPM])
+            .input(QUADRUPLE_EXPORT_HATCH[ZPM])
+            .input(QUANTUM_TANK[ULV]) // Super Tank I
+            .input(circuit, Tier.UV, 2)
+            .input(plate, NaquadahAlloy, 4)
+            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[ZPM])
+            .EUt(VA[ZPM])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[UV])
+            .input(QUADRUPLE_IMPORT_HATCH[UV])
+            .input(QUANTUM_TANK[LV]) // Super Tank II
+            .input(circuit, Tier.UHV, 2)
+            .input(plate, Darmstadtium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 2))
+            .output(DUAL_IMPORT_HATCH[UV])
+            .EUt(VA[UV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[UV])
+            .input(QUADRUPLE_EXPORT_HATCH[UV])
+            .input(QUANTUM_TANK[LV]) // Super Tank II
+            .input(circuit, Tier.UHV, 2)
+            .input(plate, Darmstadtium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 2))
+            .output(DUAL_EXPORT_HATCH[UV])
+            .EUt(VA[UV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UHV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[UHV])
+            .input(QUADRUPLE_IMPORT_HATCH[UHV])
+            .input(QUANTUM_TANK[MV]) // Super Tank III
+            .input(circuit, Tier.UEV, 2)
+            .input(plate, Neutronium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[UHV])
+            .EUt(VA[UHV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UHV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[UHV])
+            .input(QUADRUPLE_EXPORT_HATCH[UHV])
+            .input(QUANTUM_TANK[MV]) // Super Tank III
+            .input(circuit, Tier.UEV, 2)
+            .input(plate, Neutronium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[UHV])
+            .EUt(VA[UHV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UEV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[UEV])
+            .input(QUADRUPLE_IMPORT_HATCH[UEV])
+            .input(QUANTUM_TANK[HV]) // Super Tank IV
+            .input(circuit, Tier.UIV, 2)
+            .input(plate, Vibranium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[UEV])
+            .EUt(VA[UEV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UEV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[UEV])
+            .input(QUADRUPLE_EXPORT_HATCH[UEV])
+            .input(QUANTUM_TANK[HV]) // Super Tank IV
+            .input(circuit, Tier.UIV, 2)
+            .input(plate, Vibranium, 4)
+            .fluidInputs(Kevlar.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[UEV])
+            .EUt(VA[UEV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UIV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[UIV])
+            .input(QUADRUPLE_IMPORT_HATCH[UIV])
+            .input(QUANTUM_TANK[EV]) // Super Tank V
+            .input(circuit, Tier.UXV, 2)
+            .input(plate, Shirabon, 4)
+            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[UIV])
+            .EUt(VA[UIV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UIV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[UIV])
+            .input(QUADRUPLE_EXPORT_HATCH[UIV])
+            .input(QUANTUM_TANK[EV]) // Super Tank V
+            .input(circuit, Tier.UXV, 2)
+            .input(plate, Shirabon, 4)
+            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[UIV])
+            .EUt(VA[UIV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UXV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[UXV])
+            .input(QUADRUPLE_IMPORT_HATCH[UXV])
+            .input(QUANTUM_TANK[IV]) // Quantum Tank I
+            .input(circuit, Tier.OpV, 2)
+            .input(plate, Creon, 4)
+            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[UXV])
+            .EUt(VA[UXV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // UXV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[UXV])
+            .input(QUADRUPLE_EXPORT_HATCH[UXV])
+            .input(QUANTUM_TANK[IV]) // Quantum Tank I
+            .input(circuit, Tier.OpV, 2)
+            .input(plate, Creon, 4)
+            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[UXV])
+            .EUt(VA[UXV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // OpV Dual Import Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(18)
+            .input(ITEM_IMPORT_BUS[OpV])
+            .input(QUADRUPLE_IMPORT_HATCH[OpV])
+            .input(QUANTUM_TANK[LuV]) // Quantum Tank II
+            .input(circuit, Tier.MAX, 2)
+            .input(plate, BlackDwarfMatter, 4)
+            .fluidInputs(CosmicFabric.getFluid(L * 4))
+            .output(DUAL_IMPORT_HATCH[OpV])
+            .EUt(VA[OpV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
+        // OpV Dual Export Hatch
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(19)
+            .input(ITEM_EXPORT_BUS[OpV])
+            .input(QUADRUPLE_EXPORT_HATCH[OpV])
+            .input(QUANTUM_TANK[LuV]) // Quantum Tank II
+            .input(circuit, Tier.MAX, 2)
+            .input(plate, BlackDwarfMatter, 4)
+            .fluidInputs(CosmicFabric.getFluid(L * 4))
+            .output(DUAL_EXPORT_HATCH[OpV])
+            .EUt(VA[OpV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
+
     }
 
     // @formatter:on

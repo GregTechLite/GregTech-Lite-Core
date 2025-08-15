@@ -97,7 +97,7 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.large_fluid_solidifier.tooltip.3"))
     }
 
-    override fun canBeDistinct() = false
+    override fun canBeDistinct() = true
 
     private inner class LargeFluidSolidifierRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {

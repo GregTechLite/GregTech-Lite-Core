@@ -2937,6 +2937,46 @@ gtlitecore.machine.huge_item_bus.import.opv.name=巨型输入总线（§9OpV§r�
 gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
 gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
 
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=自动无菌过滤维护仓
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=可以自动维护多方块结构，附带无菌清洁功能！
+
+gtlitecore.machine.air_intake_hatch.basic.name=进气仓
+gtlitecore.machine.air_intake_hatch.extreme.name=超级进气仓
+gtlitecore.machine.air_intake_hatch.infinite.name=极限进气仓
+
+gtlitecore.machine.air_intake_hatch.tooltip.1=带有收集空气功能的§f输入仓§7，空气类型视当前§f维度§7而定。
+gtlitecore.machine.air_intake_hatch.tooltip.2=§a传输速率：§f%,d L/轮
+
+gtlitecore.machine.dual_hatch.import.ulv.name=输入总成（§8ULV§r）
+gtlitecore.machine.dual_hatch.import.lv.name=输入总成（§7LV§r）
+gtlitecore.machine.dual_hatch.import.mv.name=输入总成（§bMV§r）
+gtlitecore.machine.dual_hatch.import.hv.name=输入总成（§6HV§r）
+gtlitecore.machine.dual_hatch.import.ev.name=输入总成（§5EV§r）
+gtlitecore.machine.dual_hatch.import.iv.name=输入总成（§1IV§r）
+gtlitecore.machine.dual_hatch.import.luv.name=输入总成（§dLuV§r）
+gtlitecore.machine.dual_hatch.import.zpm.name=输入总成（§cZPM§r）
+gtlitecore.machine.dual_hatch.import.uv.name=输入总成（§3UV§r）
+gtlitecore.machine.dual_hatch.import.uhv.name=输入总成（§4UHV§r）
+gtlitecore.machine.dual_hatch.import.uev.name=输入总成（§aUEV§r）
+gtlitecore.machine.dual_hatch.import.uiv.name=输入总成（§2UIV§r）
+gtlitecore.machine.dual_hatch.import.uxv.name=输入总成（§eUXV§r）
+gtlitecore.machine.dual_hatch.import.opv.name=输入总成（§9OpV§r）
+
+gtlitecore.machine.dual_hatch.export.ulv.name=输出总成（§8ULV§r）
+gtlitecore.machine.dual_hatch.export.lv.name=输出总成（§7LV§r）
+gtlitecore.machine.dual_hatch.export.mv.name=输出总成（§bMV§r）
+gtlitecore.machine.dual_hatch.export.hv.name=输出总成（§6HV§r）
+gtlitecore.machine.dual_hatch.export.ev.name=输出总成（§5EV§r）
+gtlitecore.machine.dual_hatch.export.iv.name=输出总成（§1IV§r）
+gtlitecore.machine.dual_hatch.export.luv.name=输出总成（§dLuV§r）
+gtlitecore.machine.dual_hatch.export.zpm.name=输出总成（§cZPM§r）
+gtlitecore.machine.dual_hatch.export.uv.name=输出总成（§3UV§r）
+gtlitecore.machine.dual_hatch.export.uhv.name=输出总成（§4UHV§r）
+gtlitecore.machine.dual_hatch.export.uev.name=输出总成（§aUEV§r）
+gtlitecore.machine.dual_hatch.export.uiv.name=输出总成（§2UIV§r）
+gtlitecore.machine.dual_hatch.export.uxv.name=输出总成（§eUXV§r）
+gtlitecore.machine.dual_hatch.export.opv.name=输出总成（§9OpV§r）
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
 item.material.oreprefix.oreLimestone=石灰岩%s矿石

@@ -2938,6 +2938,46 @@ gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§r Huge Item Import Bus
 gtlitecore.machine.huge_item_bus.import.tooltip=Item Input Bus for specialized storage space
 gtlitecore.machine.huge_item_bus.tooltip=§cWARNING: When too many items stored internally, this part will cause serious game lag./n§cPlease avoid unnecessary excessive storage of items.
 
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
+
+gtlitecore.machine.air_intake_hatch.basic.name=Air Intake Hatch
+gtlitecore.machine.air_intake_hatch.extreme.name=Extreme Air Intake Hatch
+gtlitecore.machine.air_intake_hatch.infinite.name=Infinite Air Intake Hatch
+
+gtlitecore.machine.air_intake_hatch.tooltip.1=带有收集空气功能的§f输入仓§7，空气类型视当前§f维度§7而定。
+gtlitecore.machine.air_intake_hatch.tooltip.2=§aTransfer Rate: §f%,d L/works
+
+gtlitecore.machine.dual_hatch.import.ulv.name=§8ULV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.lv.name=§7LV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.mv.name=§bMV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.hv.name=§6HV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.ev.name=§5EV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.iv.name=§1IV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.luv.name=§dLuV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.zpm.name=§cZPM§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.uv.name=§3UV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.uhv.name=§4UHV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.uev.name=§aUEV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.uiv.name=§2UIV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.uxv.name=§eUXV§r Dual Import Hatch
+gtlitecore.machine.dual_hatch.import.opv.name=§9OpV§r Dual Import Hatch
+
+gtlitecore.machine.dual_hatch.export.ulv.name=§8ULV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.lv.name=§7LV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.mv.name=§bMV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.hv.name=§6HV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.ev.name=§5EV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.iv.name=§1IV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.luv.name=§dLuV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.zpm.name=§cZPM§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.uv.name=§3UV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.uhv.name=§4UHV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.uev.name=§aUEV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§r Dual Export Hatch
+gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§r Dual Export Hatch
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
 item.material.oreprefix.oreLimestone=Limestone %s Ore

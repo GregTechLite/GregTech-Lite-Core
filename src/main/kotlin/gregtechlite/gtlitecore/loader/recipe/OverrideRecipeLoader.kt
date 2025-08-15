@@ -115,6 +115,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.QUANTUM_STAR
+import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
@@ -123,6 +124,8 @@ import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WOODEN_FORM_BRICK
 import gregtech.common.items.ToolItems
+import gregtech.common.metatileentities.MetaTileEntities.AUTO_MAINTENANCE_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LARGE_PLASMA_TURBINE
@@ -684,6 +687,16 @@ internal object OverrideRecipeLoader
                     .CWUt(48)
             }
             .buildAndRegister()
+
+        // Cleaning Maintenance Hatch
+        ModHandler.removeRecipeByName("gregtech:maintenance_hatch_cleaning")
+        ModHandler.addShapedRecipe(true, "cleaning_maintenance_hatch", CLEANING_MAINTENANCE_HATCH.stackForm,
+            "XAX", "RHR", "WXW",
+            'H', HULL[IV].stackForm,
+            'A', AUTO_MAINTENANCE_HATCH.stackForm,
+            'R', ROBOT_ARM_IV,
+            'W', UnificationEntry(cableGtSingle, Platinum),
+            'X', UnificationEntry(circuit, Tier.IV))
 
     }
 
