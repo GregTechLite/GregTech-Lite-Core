@@ -44,3 +44,13 @@ gregtech.machine.rotor_holder.uev.name=§aUEV§r转子支架
 gregtech.machine.rotor_holder.uiv.name=§2UIV§r转子支架
 gregtech.machine.rotor_holder.uxv.name=§eUXV§r转子支架
 gregtech.machine.rotor_holder.opv.name=§9OpV§r转子支架
+
+gregtech.multiblock.machine_mode=机器模式：%s
+gregtech.multiblock.multiple_recipemaps.header=机器模式：
+gregtech.multiblock.multiple_recipemaps.value=机器模式：
+gregtech.gui.multiblock.recipe_producing=产出：
+gregtech.multiblock.recipe_progress.seconds=处理时间：%,3.2fs / %,3.2fs（%,3.1f%%）
+gregtech.multiblock.recipe_progress.ticks=处理时间：%st / %st（%,3.1f%%）
+
+gregtech.multiblock.large_boiler.throttle_button.tooltip=配置锅炉节流
+gregtech.multiblock.large_boiler.throttle.title=锅炉节流阈值

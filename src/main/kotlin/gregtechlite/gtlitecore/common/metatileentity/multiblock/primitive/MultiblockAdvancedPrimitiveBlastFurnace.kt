@@ -9,6 +9,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.ParallelLogicType
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.mui.GTGuiTheme
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
@@ -72,6 +73,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PRIMITIVE_BLAST_FURNACE_OVERLAY
+
+    override fun getUITheme(): GTGuiTheme = GTGuiTheme.PRIMITIVE
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,

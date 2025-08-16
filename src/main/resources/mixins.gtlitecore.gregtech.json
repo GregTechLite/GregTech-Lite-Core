@@ -27,7 +27,9 @@
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityFluidHatch",
     "MixinMetaTileEntityItemBus",
-    "MixinMetaTileEntityMEInputBus"
+    "MixinMetaTileEntityMEInputBus",
+    "MixinMultiMapMultiblockController",
+    "MixinRecipeBuilder"
   ],
   "server": [],
   "client": [

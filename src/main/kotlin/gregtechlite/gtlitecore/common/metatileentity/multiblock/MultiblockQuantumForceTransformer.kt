@@ -161,9 +161,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
                                                             syncer.syncInt(manipulatorTier).toLong())
                     val shieldingCoreTierKey = KeyUtil.number(TextFormatting.GREEN,
                                                               syncer.syncInt(shieldingCoreTier).toLong())
-                    keyManager.add(KeyUtil.lang("gtlitecore.machine.quantum_force_transformer.manipulator_info",
+                    keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gtlitecore.machine.quantum_force_transformer.manipulator_info",
                                                 manipulatorTierKey))
-                    keyManager.add(KeyUtil.lang("gtlitecore.machine.quantum_force_transformer.shielding_core_info",
+                    keyManager.add(KeyUtil.lang(TextFormatting.GRAY, "gtlitecore.machine.quantum_force_transformer.shielding_core_info",
                                                 shieldingCoreTierKey))
                 }
             }
