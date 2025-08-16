@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.items.metaitem.MetaItem
-import gregtechlite.gtlitecore.common.block.base.GTLiteBerryBushVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteBerryBushBlock
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -16,10 +16,10 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
-class BerryCropSeedBehavior(berryBush: GTLiteBerryBushVariantBlock, seed: ItemStack, crop: ItemStack) : CropSeedBehavior(berryBush, seed, crop)
+class BerryCropSeedBehavior(berryBush: GTLiteBerryBushBlock, seed: ItemStack, crop: ItemStack) : CropSeedBehavior(berryBush, seed, crop)
 {
 
-    constructor(berryBush: GTLiteBerryBushVariantBlock,
+    constructor(berryBush: GTLiteBerryBushBlock,
                 seed: MetaItem<*>.MetaValueItem,
                 crop: MetaItem<*>.MetaValueItem) : this(berryBush, seed.stackForm, crop.stackForm)
 
@@ -53,7 +53,7 @@ class BerryCropSeedBehavior(berryBush: GTLiteBerryBushVariantBlock, seed: ItemSt
         BlockPos.getAllInBox(pos.up().east().north(), pos.up().west().south())
             .forEach { crop ->
                 if (crop == pos.up()
-                    || world.getBlockState(crop!!).getBlock() is GTLiteBerryBushVariantBlock)
+                    || world.getBlockState(crop!!).getBlock() is GTLiteBerryBushBlock)
                 {
                     val isBlocked = AtomicBoolean(true)
                     BlockPos.getAllInBox(crop.east().north(), crop.west().south())

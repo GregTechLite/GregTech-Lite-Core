@@ -45,8 +45,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BATTERY_HULL_LARGE_NEUTRONIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BOSE_EINSTEIN_CONDENSATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CONTAINED_EXOTIC_MATTER

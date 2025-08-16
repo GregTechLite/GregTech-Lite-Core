@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant.fusion
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -15,9 +15,9 @@ enum class FusionCoil(private val serializedName: String,
     ULTIMATE("ultimate");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.FUSION_COIL.getState(this)
+        get() = GTLiteBlocks.FUSION_COIL.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.FUSION_COIL.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.FUSION_COIL.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

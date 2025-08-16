@@ -10,9 +10,9 @@ import gregtech.api.unification.ore.OrePrefix.block
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.DIMENSION_DISPLAY_END
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.DIMENSION_DISPLAY_NETHER
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.DIMENSION_DISPLAY_OVERWORLD
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_END
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_NETHER
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 

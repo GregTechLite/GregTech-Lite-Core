@@ -5,8 +5,8 @@ import gregtech.api.unification.ore.StoneType
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.builder.StoneTypeBuilder
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
-import gregtechlite.gtlitecore.common.block.base.GTLiteStoneVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 import net.minecraft.block.SoundType
 import net.minecraft.block.state.IBlockState
 
@@ -107,12 +107,12 @@ object GTLiteStoneTypes
 
     private fun stoneState(stoneType: GTLiteStoneVariantBlock.StoneType): IBlockState
     {
-        return GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]!!.getState(stoneType)
+        return GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]!!.getState(stoneType)
     }
 
     private fun stonePredicate(state: IBlockState?, stoneType: GTLiteStoneVariantBlock.StoneType): Boolean
     {
-        val block = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]
+        val block = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]
         return state?.getBlock() === block && block?.getState(state) === stoneType
     }
 

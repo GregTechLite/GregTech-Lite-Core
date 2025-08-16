@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block.variant.component
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -29,12 +29,12 @@ enum class EmitterCasing(private val serializedName: String,
     MAX("max");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.EMITTER_CASING.getState(this)
+        get() = GTLiteBlocks.EMITTER_CASING.getState(this)
 
     override val tier: Int
         get() = ordinal + 1
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.EMITTER_CASING.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.EMITTER_CASING.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

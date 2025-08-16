@@ -49,9 +49,9 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Heterodiamond
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.TARANIUM_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
 import net.minecraft.item.ItemStack
 

@@ -39,7 +39,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 
 internal object MHDCSMChain
 {
@@ -241,7 +241,7 @@ internal object MHDCSMChain
             .buildAndRegister()
 
         // sheetedFrame
-        ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_sheeted_frame", GTLiteMetaBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(12),
+        ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
             'F', UnificationEntry(frameGt, MagnetohydrodynamicallyConstrainedStarMatter))
@@ -250,13 +250,13 @@ internal object MHDCSMChain
             .circuitMeta(10)
             .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 3)
             .input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
-            .outputs(GTLiteMetaBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6))
+            .outputs(GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6))
             .EUt(7) // ULV
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
 
         // wallGt
-        ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_wall_gt", GTLiteMetaBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6),
+        ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_wall_gt", GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
             'S', UnificationEntry(screw, MagnetohydrodynamicallyConstrainedStarMatter))
@@ -265,7 +265,7 @@ internal object MHDCSMChain
             .circuitMeta(11)
             .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 2)
             .input(screw, MagnetohydrodynamicallyConstrainedStarMatter)
-            .outputs(GTLiteMetaBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(3))
+            .outputs(GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(3))
             .EUt(7)
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()

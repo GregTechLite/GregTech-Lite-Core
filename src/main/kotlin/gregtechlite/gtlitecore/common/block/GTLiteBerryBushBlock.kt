@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.GTLiteLog
 import net.minecraft.block.Block
@@ -24,14 +24,14 @@ import kotlin.math.max
 import kotlin.math.min
 
 @Suppress("unused")
-open class GTLiteBerryBushVariantBlock protected constructor(name: String) : GTLiteCropVariantBlock(name)
+open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCropBlock(name)
 {
 
     private var isThorny = false // Thorny bush will hurt player when they run on it.
 
     init
     {
-        this.setTranslationKey("gtlite_berry_bush_$name")
+        this.setTranslationKey("gtlitecore.berry_bush_$name")
         this.setHardness(1f)
     }
 
@@ -44,7 +44,7 @@ open class GTLiteBerryBushVariantBlock protected constructor(name: String) : GTL
         private val LARGE_AABB = AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 0.9375, 0.9375)
         private val STEM_AABB = AxisAlignedBB(0.4325, 0.0, 0.4325, 0.5675, 0.25, 0.5675)
 
-        fun create(name: String) = GTLiteBerryBushVariantBlock(name)
+        fun create(name: String) = GTLiteBerryBushBlock(name)
     }
 
     override fun createBlockState() = BlockStateContainer(this, ageProperty, EFFICIENCY)
@@ -204,7 +204,7 @@ open class GTLiteBerryBushVariantBlock protected constructor(name: String) : GTL
 
     override fun neighborChanged(state: IBlockState, worldIn: World, pos: BlockPos, blockIn: Block, fromPos: BlockPos)
     {
-        if (worldIn.getBlockState(fromPos).getBlock() !is GTLiteBerryBushVariantBlock)
+        if (worldIn.getBlockState(fromPos).getBlock() !is GTLiteBerryBushBlock)
         {
             // We don't want crops transmuting to higher efficiencies.
             val newEfficiency = min(getEfficiencyByPos(worldIn, pos), getEfficiency(state))
@@ -220,7 +220,7 @@ open class GTLiteBerryBushVariantBlock protected constructor(name: String) : GTL
         return if (state.getProperties().get(EFFICIENCY) != null) state.getValue(EFFICIENCY) else -1
     }
 
-    fun setThorny(thorny: Boolean): GTLiteBerryBushVariantBlock
+    fun setThorny(thorny: Boolean): GTLiteBerryBushBlock
     {
         isThorny = thorny
         return this

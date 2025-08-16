@@ -1,7 +1,6 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.common.block.variant.WoodType
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import net.minecraft.block.BlockSlab
 import net.minecraft.block.SoundType
@@ -19,7 +18,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import java.util.*
 
-abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
+abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
 {
 
     companion object
@@ -31,7 +30,7 @@ abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
 
     init
     {
-        this.setTranslationKey("gtlite_wood_slab")
+        this.setTranslationKey("gtlitecore.wood_slab")
         this.setHardness(2.0F)
         this.setResistance(5.0F)
         this.setSoundType(SoundType.WOOD)
@@ -45,10 +44,10 @@ abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
     override fun damageDropped(state: IBlockState): Int = state.getValue(VARIANT).ordinal
 
     override fun getItemDropped(state: IBlockState, random: Random, fortune: Int): Item
-        = Item.getItemFromBlock(GTLiteMetaBlocks.WOOD_SLABS)
+        = Item.getItemFromBlock(GTLiteBlocks.WOOD_SLABS)
 
     override fun getTranslationKey(meta: Int): String
-        = "${super.getTranslationKey()}.${getTypeFromMeta(meta).name}".lowercase(Locale.getDefault())
+        = "${super.getTranslationKey()}.${getTypeFromMeta(meta).name}".lowercase()
 
     override fun getTypeForItem(stack: ItemStack): Comparable<*>
         = getTypeFromMeta(stack.metadata)
@@ -61,7 +60,7 @@ abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
         = WoodType.entries.forEach { t ->
             items.add(ItemStack(this, 1, t.ordinal)) }
 
-    class Double : GTLiteWoodSlabVariantBlock()
+    class Double : GTLiteWoodSlabBlock()
     {
 
         init
@@ -84,7 +83,7 @@ abstract class GTLiteWoodSlabVariantBlock : BlockSlab(Material.WOOD)
 
     }
 
-    class Half : GTLiteWoodSlabVariantBlock()
+    class Half : GTLiteWoodSlabBlock()
     {
 
         init

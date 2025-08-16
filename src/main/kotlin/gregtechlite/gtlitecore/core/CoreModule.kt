@@ -10,7 +10,7 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers
 import gregtechlite.gtlitecore.common.CommonProxy
 import gregtechlite.gtlitecore.common.EventHandlers
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.command.CommandMaterialComponent
 import gregtechlite.gtlitecore.common.cover.GTLiteCoverBehaviors
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
@@ -95,8 +95,8 @@ internal class CoreModule : IModule
         GTLiteMetaOreDictItems.init()
 
         logger.debug("Loading all MetaBlocks and MetaBlock Adapters")
-        GTLiteMetaBlocks.init()
-        GTLiteMetaBlocks.setFireInfos()
+        GTLiteBlocks.init()
+        GTLiteBlocks.setFireInfos()
 
         logger.debug("Adding custom StoneType of the mod to GregTech")
         GTLiteStoneTypes.init()
@@ -115,7 +115,7 @@ internal class CoreModule : IModule
     override fun init(event: FMLInitializationEvent)
     {
         logger.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks")
-        GTLiteMetaBlocks.registerColors()
+        GTLiteBlocks.registerColors()
 
         logger.debug("Adding the mod contents to vanilla Dungeon Looting Table")
         DungeonLootLoader.init()

@@ -24,10 +24,10 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.NAQUADRIA_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.TARANIUM_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.NAQUADRIA_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE
 import net.minecraft.item.ItemStack
 
 internal object DegenerateRheniumChain

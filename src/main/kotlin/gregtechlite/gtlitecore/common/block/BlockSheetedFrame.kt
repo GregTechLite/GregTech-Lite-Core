@@ -1,7 +1,7 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtech.api.recipes.ModHandler
-import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.api.unification.material.Materials
 import gregtech.common.blocks.properties.PropertyMaterial
 import gregtech.common.creativetab.GTCreativeTabs
@@ -13,6 +13,7 @@ import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.EnumPushReaction
+import net.minecraft.block.material.Material
 import net.minecraft.block.properties.PropertyEnum
 import net.minecraft.block.state.BlockFaceShape
 import net.minecraft.block.state.BlockStateContainer
@@ -39,47 +40,32 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Suppress("Deprecation") // TODO Used mixins accessor replaced obf helper?
-class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.material.Material.IRON)
+@Suppress("Deprecation", "PropertyName")
+class BlockSheetedFrame(materials: Array<GTMaterial>) : Block(Material.IRON)
 {
 
-    val variantProperty: PropertyMaterial
+    val VARIANT: PropertyMaterial = PropertyMaterial.create("variant", materials)
 
-    /**
-     * Modified Material, Harvest Tool and Sound Type by Block#getMaterial(),
-     * Block#getHarvestTool() and Block#getSoundType() because we should declare
-     * Gregtech material, when it is wooden material, then return axe and wood
-     * sound type, otherwise return wrench and metal sound type.
-     */
+    val SHEETED_FRAME_AXIS: PropertyEnum<FrameEnumAxis> = PropertyEnum.create("axis", FrameEnumAxis::class.java)
+
     init
     {
-        this.setHardness(3.0f)
-        this.setResistance(5.0f)
-        this.setTranslationKey("sheeted_frame")
-        this.setCreativeTab(GTCreativeTabs.TAB_GREGTECH_MATERIALS)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-
-        this.variantProperty = PropertyMaterial.create("variant", materials)
+        setHardness(3.0f)
+        setResistance(5.0f)
+        setTranslationKey("sheeted_frame")
+        setCreativeTab(GTCreativeTabs.TAB_GREGTECH_MATERIALS)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
         val stateContainer = this.createStateContainer()
         ObfuscationReflectionHelper.setPrivateValue(Block::class.java, this,
                                                     stateContainer, 21) // this.stateContainer
-        this.defaultState = stateContainer.baseState
+        defaultState = stateContainer.baseState
             .withProperty(SHEETED_FRAME_AXIS, FrameEnumAxis.Y)
-    }
-
-    companion object
-    {
-
-        val SHEETED_FRAME_AXIS: PropertyEnum<FrameEnumAxis> = PropertyEnum.create("axis", FrameEnumAxis::class.java)
-
-        fun getItem(blockState: IBlockState): ItemStack = blockState.toItem()
-
     }
 
     override fun createBlockState() = BlockStateContainer(this)
 
-    private fun createStateContainer() = BlockStateContainer(this, SHEETED_FRAME_AXIS, this.variantProperty)
+    private fun createStateContainer() = BlockStateContainer(this, SHEETED_FRAME_AXIS, this.VARIANT)
 
     override fun canCreatureSpawn(blockState: IBlockState,
                                   worldIn: IBlockAccess,
@@ -89,30 +75,26 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
     override fun onEntityCollision(worldIn: World,
                                    blockPos: BlockPos,
                                    blockState: IBlockState,
-                                   entityIn: Entity
-    )
+                                   entityIn: Entity)
     {
         entityIn.motionX = MathHelper.clamp(entityIn.motionX, -0.15, 0.15)
         entityIn.motionZ = MathHelper.clamp(entityIn.motionZ, -0.15, 0.15)
         entityIn.fallDistance = 0.0f
-        if (entityIn.motionY < -0.15) entityIn.motionY = -0.15
+        if (entityIn.motionY < -0.15)
+            entityIn.motionY = -0.15
 
-        if (entityIn.isSneaking && entityIn.motionY < 0.0) entityIn.motionY = 0.0
+        if (entityIn.isSneaking && entityIn.motionY < 0.0)
+            entityIn.motionY = 0.0
 
-        if (entityIn.collidedHorizontally) entityIn.motionY = 0.3
+        if (entityIn.collidedHorizontally)
+            entityIn.motionY = 0.3
     }
-
-    /**
-     * Called by ItemBlocks just before a block is actually set in the world, to allow for
-     * adjustments to the IBlockState.
-     */
 
     @Deprecated("Deprecated in Java")
     override fun getStateForPlacement(worldIn: World, blockPos: BlockPos,
                                       facing: EnumFacing,
                                       hitX: Float, hitY: Float, hitZ: Float, meta: Int,
-                                      placer: EntityLivingBase
-    ): IBlockState
+                                      placer: EntityLivingBase): IBlockState
     {
         return this.getStateFromMeta(meta).withProperty(SHEETED_FRAME_AXIS,
             FrameEnumAxis.Companion.fromFacingAxis(facing.axis))
@@ -128,10 +110,8 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
         var meta = meta
         if (meta > 15) meta = 0
         return this.defaultState
-            .withProperty(this.variantProperty, this.variantProperty
-                .allowedValues[meta and 3])
-            .withProperty(SHEETED_FRAME_AXIS,
-                FrameEnumAxis.entries[(meta and 15) ushr 2])
+            .withProperty(this.VARIANT, this.VARIANT.allowedValues[meta and 3])
+            .withProperty(SHEETED_FRAME_AXIS, FrameEnumAxis.entries[(meta and 15) ushr 2])
     }
 
     /**
@@ -141,8 +121,7 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
     override fun getMetaFromState(blockState: IBlockState): Int
     {
         var meta = (blockState.getValue(SHEETED_FRAME_AXIS).ordinal shl 2)
-        meta = meta or this.variantProperty.allowedValues
-            .indexOf(blockState.getValue(this.variantProperty))
+        meta = meta or this.VARIANT.allowedValues.indexOf(blockState.getValue(this.VARIANT))
         return meta
     }
 
@@ -165,30 +144,20 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
     override fun isOpaqueCube(blockState: IBlockState) = false
 
     @SideOnly(Side.CLIENT)
-    override fun getRenderLayer(): BlockRenderLayer
-    {
-        return BlockRenderLayer.CUTOUT_MIPPED
-    }
+    override fun getRenderLayer(): BlockRenderLayer = BlockRenderLayer.CUTOUT_MIPPED
 
-    override fun damageDropped(blockState: IBlockState): Int
-    {
-        return this.getMetaFromState(blockState)
-    }
-
+    override fun damageDropped(blockState: IBlockState): Int = this.getMetaFromState(blockState)
 
     @Deprecated("Deprecated in Java")
-    override fun getMaterial(blockState: IBlockState): net.minecraft.block.material.Material
+    override fun getMaterial(blockState: IBlockState): Material
     {
-        val material = blockState.getValue(this.variantProperty)
-        return if (ModHandler.isMaterialWood(material))
-            net.minecraft.block.material.Material.WOOD
-        else
-            super.getMaterial(blockState)
+        val material = blockState.getValue(this.VARIANT)
+        return if (ModHandler.isMaterialWood(material)) Material.WOOD else super.getMaterial(blockState)
     }
 
     override fun getHarvestTool(blockState: IBlockState): String?
     {
-        val material = blockState.getValue(this.variantProperty)
+        val material = blockState.getValue(this.VARIANT)
         return if (ModHandler.isMaterialWood(material)) "axe" else "wrench"
     }
 
@@ -199,36 +168,32 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
                               blockPos: BlockPos,
                               entity: Entity?): SoundType
     {
-        val material = blockState.getValue(this.variantProperty)
+        val material = blockState.getValue(this.VARIANT)
         return if (ModHandler.isMaterialWood(material)) SoundType.WOOD else SoundType.METAL
     }
 
     override fun getSubBlocks(creativeTab: CreativeTabs, stacks: NonNullList<ItemStack?>)
     {
         this.blockState.validStates
-            .filter { state ->
-                state.getValue(this.variantProperty) !== Materials.NULL
-                        && getMetaFromState(state) ushr 2 == 1
-            }
-            .forEach { state ->
-                stacks.add(getItem(state))
-            }
+            .filter { it.getValue(this.VARIANT) !== Materials.NULL
+                        && getMetaFromState(it) ushr 2 == 1 }
+            .forEach { stacks.add(it.toItem()) }
     }
 
-    fun getItem(material: Material): ItemStack = getItem(this.defaultState
-        .withProperty(this.variantProperty, material)
-        .withProperty(SHEETED_FRAME_AXIS, FrameEnumAxis.Y))
+    fun getItem(material: GTMaterial): ItemStack = this.defaultState
+        .withProperty(this.VARIANT, material)
+        .withProperty(SHEETED_FRAME_AXIS, FrameEnumAxis.Y).toItem()
 
-    fun getBlock(material: Material): IBlockState = this.defaultState
-        .withProperty(this.variantProperty, material)
+    fun getBlock(material: GTMaterial): IBlockState = this.defaultState
+        .withProperty(this.VARIANT, material)
         .withProperty(SHEETED_FRAME_AXIS, FrameEnumAxis.Y)
 
     /**
      * Only bottom two bits are relevant for getting material.
      */
-    fun getGTMaterial(meta: Int): Material = this.variantProperty.allowedValues[meta and 3]
+    fun getGTMaterial(meta: Int): GTMaterial = this.VARIANT.allowedValues[meta and 3]
 
-    fun getGTMaterial(blockState: IBlockState): Material = getGTMaterial(getMetaFromState(blockState))
+    fun getGTMaterial(blockState: IBlockState): GTMaterial = getGTMaterial(getMetaFromState(blockState))
 
     @Deprecated("Deprecated in Java")
     override fun getPushReaction(blockState: IBlockState) = EnumPushReaction.NORMAL
@@ -236,8 +201,7 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
     @Deprecated("Deprecated in Java")
     override fun getCollisionBoundingBox(blockState: IBlockState,
                                          worldIn: IBlockAccess,
-                                         blockPos: BlockPos
-    ): AxisAlignedBB? = when (getMetaFromState(blockState) ushr 2)
+                                         blockPos: BlockPos): AxisAlignedBB? = when (getMetaFromState(blockState) ushr 2)
     {
         0 -> AxisAlignedBB(0.05, 0.0, 0.00, 0.95, 1.0, 1.00)
         2 -> AxisAlignedBB(0.00, 0.0, 0.05, 1.0, 1.0, 0.95)
@@ -248,8 +212,7 @@ class BlockSheetedFrame(materials: Array<Material>) : Block(net.minecraft.block.
     override fun getBlockFaceShape(worldIn: IBlockAccess,
                                    blockState: IBlockState,
                                    blockPos: BlockPos,
-                                   face: EnumFacing
-    ) = BlockFaceShape.UNDEFINED
+                                   face: EnumFacing) = BlockFaceShape.UNDEFINED
 
     @SideOnly(Side.CLIENT)
     fun onModelRegister()

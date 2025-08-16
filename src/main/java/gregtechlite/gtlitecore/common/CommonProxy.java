@@ -7,11 +7,11 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeBackends;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix;
 import gregtechlite.gtlitecore.api.GTLiteLog;
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks;
-import gregtechlite.gtlitecore.common.block.base.GTLiteCropVariantBlock;
-import gregtechlite.gtlitecore.common.block.base.GTLiteStoneVariantBlock;
-import gregtechlite.gtlitecore.common.block.item.DimensionDisplayItemBlock;
-import gregtechlite.gtlitecore.common.block.item.SheetedFrameItemBlock;
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
+import gregtechlite.gtlitecore.common.block.GTLiteCropBlock;
+import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock;
+import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock;
+import gregtechlite.gtlitecore.common.item.SheetedFrameItemBlock;
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems;
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems;
 import net.minecraft.block.Block;
@@ -64,121 +64,121 @@ public class CommonProxy
         GTLiteLog.logger.info("Registering Blocks...");
 
         // Register all stones in GTLiteStoneVariant.
-        for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
+        for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
             registry.register(stone);
 
         // Register all tree components.
-        GTLiteMetaBlocks.LEAVES.forEach(registry::register);
-        GTLiteMetaBlocks.LOGS.forEach(registry::register);
-        GTLiteMetaBlocks.PLANKS.forEach(registry::register);
-        GTLiteMetaBlocks.SAPLINGS.forEach(registry::register);
+        GTLiteBlocks.LEAVES.forEach(registry::register);
+        GTLiteBlocks.LOGS.forEach(registry::register);
+        GTLiteBlocks.PLANKS.forEach(registry::register);
+        GTLiteBlocks.SAPLINGS.forEach(registry::register);
         // Register all crops.
-        GTLiteCropVariantBlock.CROPS.forEach(registry::register);
+        GTLiteCropBlock.CROPS.forEach(registry::register);
         // TODO berries registrate?
         // Wooden slabs.
-        registry.register(GTLiteMetaBlocks.WOOD_SLABS);
-        registry.register(GTLiteMetaBlocks.DOUBLE_WOOD_SLABS);
+        registry.register(GTLiteBlocks.WOOD_SLABS);
+        registry.register(GTLiteBlocks.DOUBLE_WOOD_SLABS);
         // Wooden stairs.
-        registry.register(GTLiteMetaBlocks.BANANA_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.MANGO_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.LEMON_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.LIME_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_STAIR);
-        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_STAIR);
+        registry.register(GTLiteBlocks.BANANA_WOOD_STAIR);
+        registry.register(GTLiteBlocks.ORANGE_WOOD_STAIR);
+        registry.register(GTLiteBlocks.MANGO_WOOD_STAIR);
+        registry.register(GTLiteBlocks.APRICOT_WOOD_STAIR);
+        registry.register(GTLiteBlocks.LEMON_WOOD_STAIR);
+        registry.register(GTLiteBlocks.LIME_WOOD_STAIR);
+        registry.register(GTLiteBlocks.OLIVE_WOOD_STAIR);
+        registry.register(GTLiteBlocks.NUTMEG_WOOD_STAIR);
+        registry.register(GTLiteBlocks.COCONUT_WOOD_STAIR);
+        registry.register(GTLiteBlocks.RAINBOW_WOOD_STAIR);
         // Wooden fences.
-        registry.register(GTLiteMetaBlocks.BANANA_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.MANGO_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.LEMON_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.LIME_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE);
-        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE);
+        registry.register(GTLiteBlocks.BANANA_WOOD_FENCE);
+        registry.register(GTLiteBlocks.ORANGE_WOOD_FENCE);
+        registry.register(GTLiteBlocks.MANGO_WOOD_FENCE);
+        registry.register(GTLiteBlocks.APRICOT_WOOD_FENCE);
+        registry.register(GTLiteBlocks.LEMON_WOOD_FENCE);
+        registry.register(GTLiteBlocks.LIME_WOOD_FENCE);
+        registry.register(GTLiteBlocks.OLIVE_WOOD_FENCE);
+        registry.register(GTLiteBlocks.NUTMEG_WOOD_FENCE);
+        registry.register(GTLiteBlocks.COCONUT_WOOD_FENCE);
+        registry.register(GTLiteBlocks.RAINBOW_WOOD_FENCE);
         // Wooden fence gates.
-        registry.register(GTLiteMetaBlocks.BANANA_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.ORANGE_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.MANGO_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.APRICOT_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.LEMON_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.LIME_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.OLIVE_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE);
-        registry.register(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.BANANA_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.ORANGE_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.MANGO_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.APRICOT_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.LEMON_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.LIME_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.OLIVE_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.NUTMEG_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.COCONUT_WOOD_FENCE_GATE);
+        registry.register(GTLiteBlocks.RAINBOW_WOOD_FENCE_GATE);
 
-        registry.register(GTLiteMetaBlocks.DUST_BLOCK);
-        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_OVERWORLD);
-        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_NETHER);
-        registry.register(GTLiteMetaBlocks.DIMENSION_DISPLAY_END);
-        registry.register(GTLiteMetaBlocks.NAQUADRIA_CHARGE);
-        registry.register(GTLiteMetaBlocks.TARANIUM_CHARGE);
-        registry.register(GTLiteMetaBlocks.LEPTONIC_CHARGE);
-        registry.register(GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
+        registry.register(GTLiteBlocks.DUST_BLOCK);
+        registry.register(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD);
+        registry.register(GTLiteBlocks.DIMENSION_DISPLAY_NETHER);
+        registry.register(GTLiteBlocks.DIMENSION_DISPLAY_END);
+        registry.register(GTLiteBlocks.NAQUADRIA_CHARGE);
+        registry.register(GTLiteBlocks.TARANIUM_CHARGE);
+        registry.register(GTLiteBlocks.LEPTONIC_CHARGE);
+        registry.register(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
 
         // TODO Crops?...
 
         // Sheeted frames.
-        StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
+        StreamEx.of(GTLiteBlocks.SHEETED_FRAMES.values())
                 .distinct()
                 .forEach(registry::register);
 
         // Gregtech Walls
-        StreamEx.of(GTLiteMetaBlocks.METAL_WALLS.values())
+        StreamEx.of(GTLiteBlocks.METAL_WALLS.values())
                 .distinct()
                 .forEach(registry::register);
 
         // Register all common variant blocks.
-        registry.register(GTLiteMetaBlocks.MOTOR_CASING);
-        registry.register(GTLiteMetaBlocks.PISTON_CASING);
-        registry.register(GTLiteMetaBlocks.PUMP_CASING);
-        registry.register(GTLiteMetaBlocks.CONVEYOR_CASING);
-        registry.register(GTLiteMetaBlocks.ROBOT_ARM_CASING);
-        registry.register(GTLiteMetaBlocks.EMITTER_CASING);
-        registry.register(GTLiteMetaBlocks.SENSOR_CASING);
-        registry.register(GTLiteMetaBlocks.FIELD_GEN_CASING);
-        registry.register(GTLiteMetaBlocks.PROCESSOR_CASING);
+        registry.register(GTLiteBlocks.MOTOR_CASING);
+        registry.register(GTLiteBlocks.PISTON_CASING);
+        registry.register(GTLiteBlocks.PUMP_CASING);
+        registry.register(GTLiteBlocks.CONVEYOR_CASING);
+        registry.register(GTLiteBlocks.ROBOT_ARM_CASING);
+        registry.register(GTLiteBlocks.EMITTER_CASING);
+        registry.register(GTLiteBlocks.SENSOR_CASING);
+        registry.register(GTLiteBlocks.FIELD_GEN_CASING);
+        registry.register(GTLiteBlocks.PROCESSOR_CASING);
 
-        registry.register(GTLiteMetaBlocks.PRIMITIVE_CASING);
-        registry.register(GTLiteMetaBlocks.METAL_CASING_01);
-        registry.register(GTLiteMetaBlocks.METAL_CASING_02);
-        registry.register(GTLiteMetaBlocks.METAL_CASING_03);
-        registry.register(GTLiteMetaBlocks.BOILER_CASING_01);
-        registry.register(GTLiteMetaBlocks.MULTIBLOCK_CASING_01);
-        registry.register(GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01);
-        registry.register(GTLiteMetaBlocks.TURBINE_CASING_01);
-        registry.register(GTLiteMetaBlocks.TURBINE_CASING_02);
+        registry.register(GTLiteBlocks.PRIMITIVE_CASING);
+        registry.register(GTLiteBlocks.METAL_CASING_01);
+        registry.register(GTLiteBlocks.METAL_CASING_02);
+        registry.register(GTLiteBlocks.METAL_CASING_03);
+        registry.register(GTLiteBlocks.BOILER_CASING_01);
+        registry.register(GTLiteBlocks.MULTIBLOCK_CASING_01);
+        registry.register(GTLiteBlocks.ACTIVE_UNIQUE_CASING_01);
+        registry.register(GTLiteBlocks.TURBINE_CASING_01);
+        registry.register(GTLiteBlocks.TURBINE_CASING_02);
 
-        registry.register(GTLiteMetaBlocks.FUSION_CASING);
-        registry.register(GTLiteMetaBlocks.FUSION_COIL);
-        registry.register(GTLiteMetaBlocks.FUSION_CRYOSTAT);
-        registry.register(GTLiteMetaBlocks.FUSION_DIVERTOR);
-        registry.register(GTLiteMetaBlocks.FUSION_VACUUM);
+        registry.register(GTLiteBlocks.FUSION_CASING);
+        registry.register(GTLiteBlocks.FUSION_COIL);
+        registry.register(GTLiteBlocks.FUSION_CRYOSTAT);
+        registry.register(GTLiteBlocks.FUSION_DIVERTOR);
+        registry.register(GTLiteBlocks.FUSION_VACUUM);
 
-        registry.register(GTLiteMetaBlocks.SCIENCE_CASING_01);
-        registry.register(GTLiteMetaBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR);
-        registry.register(GTLiteMetaBlocks.TIME_ACCELERATION_FIELD_GENERATOR);
-        registry.register(GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR);
+        registry.register(GTLiteBlocks.SCIENCE_CASING_01);
+        registry.register(GTLiteBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR);
+        registry.register(GTLiteBlocks.TIME_ACCELERATION_FIELD_GENERATOR);
+        registry.register(GTLiteBlocks.STABILIZATION_FIELD_GENERATOR);
 
-        registry.register(GTLiteMetaBlocks.AEROSPACE_CASING);
-        registry.register(GTLiteMetaBlocks.ACCELERATION_TRACK);
+        registry.register(GTLiteBlocks.AEROSPACE_CASING);
+        registry.register(GTLiteBlocks.ACCELERATION_TRACK);
 
-        registry.register(GTLiteMetaBlocks.WIRE_COIL);
-        registry.register(GTLiteMetaBlocks.CRUCIBLE);
-        registry.register(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING);
-        registry.register(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01);
-        registry.register(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02);
-        registry.register(GTLiteMetaBlocks.MANIPULATOR);
-        registry.register(GTLiteMetaBlocks.SHIELDING_CORE);
+        registry.register(GTLiteBlocks.WIRE_COIL);
+        registry.register(GTLiteBlocks.CRUCIBLE);
+        registry.register(GTLiteBlocks.COMPONENT_ASSEMBLY_CASING);
+        registry.register(GTLiteBlocks.NUCLEAR_REACTOR_CORE_01);
+        registry.register(GTLiteBlocks.NUCLEAR_REACTOR_CORE_02);
+        registry.register(GTLiteBlocks.MANIPULATOR);
+        registry.register(GTLiteBlocks.SHIELDING_CORE);
 
-        registry.register(GTLiteMetaBlocks.TRANSPARENT_CASING_01);
-        registry.register(GTLiteMetaBlocks.TRANSPARENT_CASING_02);
-        registry.register(GTLiteMetaBlocks.TRANSPARENT_CASING_03);
+        registry.register(GTLiteBlocks.TRANSPARENT_CASING_01);
+        registry.register(GTLiteBlocks.TRANSPARENT_CASING_02);
+        registry.register(GTLiteBlocks.TRANSPARENT_CASING_03);
     }
 
     @SubscribeEvent
@@ -189,117 +189,117 @@ public class CommonProxy
         // Register all items.
         GTLiteMetaItems.register();
         // Register all item blocks.
-        for (GTLiteStoneVariantBlock stone : GTLiteMetaBlocks.STONES.values())
+        for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
             registry.register(createItemBlock(stone, VariantItemBlock::new));
-        GTLiteMetaBlocks.LEAVES.forEach(t ->
+        GTLiteBlocks.LEAVES.forEach(t ->
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
-        GTLiteMetaBlocks.LOGS.forEach(t ->
+        GTLiteBlocks.LOGS.forEach(t ->
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
-        GTLiteMetaBlocks.SAPLINGS.forEach(t ->
+        GTLiteBlocks.SAPLINGS.forEach(t ->
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
-        GTLiteMetaBlocks.PLANKS.forEach(t ->
+        GTLiteBlocks.PLANKS.forEach(t ->
                 registry.register(createItemBlock(t, TranslatableVariantItemBlock::new)));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.WOOD_SLABS,
-                t -> new ItemSlab(t, t, GTLiteMetaBlocks.DOUBLE_WOOD_SLABS)));
+        registry.register(createItemBlock(GTLiteBlocks.WOOD_SLABS,
+                t -> new ItemSlab(t, t, GTLiteBlocks.DOUBLE_WOOD_SLABS)));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_STAIR, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BANANA_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ORANGE_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MANGO_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.APRICOT_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LEMON_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LIME_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.OLIVE_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NUTMEG_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.COCONUT_WOOD_STAIR, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.RAINBOW_WOOD_STAIR, ItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BANANA_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ORANGE_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MANGO_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.APRICOT_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LEMON_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LIME_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.OLIVE_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NUTMEG_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.COCONUT_WOOD_FENCE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.RAINBOW_WOOD_FENCE, ItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.BANANA_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ORANGE_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.MANGO_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.APRICOT_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LEMON_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LIME_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.OLIVE_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NUTMEG_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.COCONUT_WOOD_FENCE_GATE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BANANA_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ORANGE_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MANGO_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.APRICOT_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LEMON_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LIME_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.OLIVE_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NUTMEG_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.COCONUT_WOOD_FENCE_GATE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.RAINBOW_WOOD_FENCE_GATE, ItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.DUST_BLOCK, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TARANIUM_CHARGE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.LEPTONIC_CHARGE, ItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.DUST_BLOCK, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TARANIUM_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
 
-        StreamEx.of(GTLiteMetaBlocks.SHEETED_FRAMES.values())
+        StreamEx.of(GTLiteBlocks.SHEETED_FRAMES.values())
                 .distinct()
                 .map(b -> createItemBlock(b, SheetedFrameItemBlock::new))
                 .forEach(registry::register);
 
-        StreamEx.of(GTLiteMetaBlocks.METAL_WALLS.values())
+        StreamEx.of(GTLiteBlocks.METAL_WALLS.values())
                 .distinct()
                 .map(b -> createItemBlock(b, d -> new MaterialItemBlock(d, GTLiteOrePrefix.wallGt)))
                 .forEach(registry::register);
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.MOTOR_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.PISTON_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.PUMP_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.CONVEYOR_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ROBOT_ARM_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.EMITTER_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.SENSOR_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.FIELD_GEN_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.PROCESSOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MOTOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.PISTON_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.PUMP_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.CONVEYOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ROBOT_ARM_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.EMITTER_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.SENSOR_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FIELD_GEN_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.PROCESSOR_CASING, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.PRIMITIVE_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.METAL_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.METAL_CASING_02, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.METAL_CASING_03, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.BOILER_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.MULTIBLOCK_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TURBINE_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TURBINE_CASING_02, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.PRIMITIVE_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.METAL_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.METAL_CASING_02, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.METAL_CASING_03, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BOILER_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MULTIBLOCK_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ACTIVE_UNIQUE_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TURBINE_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TURBINE_CASING_02, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_COIL, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_CRYOSTAT, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_DIVERTOR, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.FUSION_VACUUM, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FUSION_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FUSION_COIL, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FUSION_CRYOSTAT, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FUSION_DIVERTOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.FUSION_VACUUM, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.SCIENCE_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TIME_ACCELERATION_FIELD_GENERATOR, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.SCIENCE_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.SPACETIME_COMPRESSION_FIELD_GENERATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TIME_ACCELERATION_FIELD_GENERATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.STABILIZATION_FIELD_GENERATOR, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.AEROSPACE_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.ACCELERATION_TRACK, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.AEROSPACE_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.ACCELERATION_TRACK, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.WIRE_COIL, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.CRUCIBLE, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.COMPONENT_ASSEMBLY_CASING, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.MANIPULATOR, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.SHIELDING_CORE, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.WIRE_COIL, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.CRUCIBLE, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.COMPONENT_ASSEMBLY_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NUCLEAR_REACTOR_CORE_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.NUCLEAR_REACTOR_CORE_02, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.MANIPULATOR, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.SHIELDING_CORE, VariantItemBlock::new));
 
-        registry.register(createItemBlock(GTLiteMetaBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
-        registry.register(createItemBlock(GTLiteMetaBlocks.TRANSPARENT_CASING_03, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_03, VariantItemBlock::new));
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

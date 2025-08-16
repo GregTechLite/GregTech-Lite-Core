@@ -6,19 +6,16 @@ import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
-import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Duranium
-import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Tritanium
@@ -26,7 +23,6 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.screw
@@ -37,7 +33,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyK243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813
@@ -51,7 +46,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TachyonRichTempor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tairitsium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zeron100
@@ -61,8 +55,8 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT

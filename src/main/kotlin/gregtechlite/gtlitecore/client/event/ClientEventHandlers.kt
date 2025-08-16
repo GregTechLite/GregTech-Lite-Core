@@ -4,8 +4,8 @@ import gregtech.api.unification.OreDictUnifier
 import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
-import gregtechlite.gtlitecore.common.block.base.BlockMetalWall
-import gregtechlite.gtlitecore.common.block.base.BlockSheetedFrame
+import gregtechlite.gtlitecore.common.block.BlockMetalWall
+import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.item.ItemBlock
 import net.minecraft.util.text.TextFormatting

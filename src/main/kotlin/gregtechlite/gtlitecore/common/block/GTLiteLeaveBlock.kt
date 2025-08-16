@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import com.google.common.collect.Lists
 import gregtech.core.CoreModule
@@ -7,7 +7,6 @@ import gregtechlite.magicbook.util.LeafDecayUpdate
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import net.minecraft.block.BlockLeaves
@@ -29,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
 @Suppress("Deprecation")
-class GTLiteLeaveVariantBlock(private val offset: Int) : BlockLeaves(), TranslatableBlock
+class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlock
 {
 
     companion object
@@ -41,7 +40,7 @@ class GTLiteLeaveVariantBlock(private val offset: Int) : BlockLeaves(), Translat
 
     init
     {
-        this.setTranslationKey("gtlite_leaves_$offset")
+        this.setTranslationKey("gtlitecore.leaves_$offset")
         this.setHardness(0.2f)
         this.setLightOpacity(1)
         this.defaultState = blockState.baseState
@@ -50,7 +49,7 @@ class GTLiteLeaveVariantBlock(private val offset: Int) : BlockLeaves(), Translat
             .withProperty(VARIANT, 0)
         this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
         // Add to LEAVES pool.
-        GTLiteMetaBlocks.LEAVES.add(this)
+        GTLiteBlocks.LEAVES.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): AbstractTree =
@@ -151,7 +150,7 @@ class GTLiteLeaveVariantBlock(private val offset: Int) : BlockLeaves(), Translat
     }
 
     override fun dropApple(worldIn: World, blockPos: BlockPos, blockState: IBlockState, chance: Int) = spawnAsEntity(
-        worldIn, blockPos, (blockState.block as GTLiteLeaveVariantBlock)
+        worldIn, blockPos, (blockState.block as GTLiteLeaveBlock)
             .getTreeFromState(blockState).getAppleDrop(chance)!!
     )
 

@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap
 import gregtech.api.GregTechAPI
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.block.VariantBlock
-import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.PropertyKey
@@ -12,25 +12,9 @@ import gregtechlite.magicbook.client.Games
 import gregtechlite.magicbook.util.Checks
 import gregtechlite.magicbook.util.Unchecks
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
-import gregtechlite.gtlitecore.common.block.base.BlockDimensionDisplay
-import gregtechlite.gtlitecore.common.block.base.BlockDust
-import gregtechlite.gtlitecore.common.block.base.BlockMetalWall
-import gregtechlite.gtlitecore.common.block.base.BlockSheetedFrame
-import gregtechlite.gtlitecore.common.block.base.GTLiteLeaveVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteLogVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLitePlankVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteSaplingVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteStoneVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteWoodFenceGateVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteWoodFenceVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteWoodSlabVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteWoodStairVariantBlock
-import gregtechlite.gtlitecore.common.block.base.BlockLeptonicCharge
-import gregtechlite.gtlitecore.common.block.base.BlockNaquadriaCharge
-import gregtechlite.gtlitecore.common.block.base.BlockQuantumChromodynamicCharge
-import gregtechlite.gtlitecore.common.block.base.BlockTaraniumCharge
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
@@ -71,8 +55,11 @@ import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import gregtechlite.gtlitecore.common.worldgen.trees.WorldGenTrees
 import gregtechlite.gtlitecore.mixins.gregtech.client.AccessorMetaBlocks
 import net.minecraft.block.Block
+import net.minecraft.block.BlockFalling
 import net.minecraft.block.BlockLog
 import net.minecraft.block.BlockSlab
+import net.minecraft.block.SoundType
+import net.minecraft.block.material.Material
 import net.minecraft.block.properties.IProperty
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.init.Blocks
@@ -84,7 +71,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
 
 @Suppress("Deprecation")
-object GTLiteMetaBlocks
+object GTLiteBlocks
 {
     // @formatter:off
 
@@ -95,56 +82,56 @@ object GTLiteMetaBlocks
 
     // Tree related blocks.
     @JvmField
-    val LEAVES = ArrayList<GTLiteLeaveVariantBlock>()
+    val LEAVES = ArrayList<GTLiteLeaveBlock>()
     @JvmField
-    val LOGS = ArrayList<GTLiteLogVariantBlock>()
+    val LOGS = ArrayList<GTLiteLogBlock>()
     @JvmField
-    val PLANKS = ArrayList<GTLitePlankVariantBlock>()
+    val PLANKS = ArrayList<GTLitePlankBlock>()
     @JvmField
-    val SAPLINGS = ArrayList<GTLiteSaplingVariantBlock>()
+    val SAPLINGS = ArrayList<GTLiteSaplingBlock>()
 
     // Wooden slabs.
-    lateinit var WOOD_SLABS: GTLiteWoodSlabVariantBlock
-    lateinit var DOUBLE_WOOD_SLABS: GTLiteWoodSlabVariantBlock
+    lateinit var WOOD_SLABS: GTLiteWoodSlabBlock
+    lateinit var DOUBLE_WOOD_SLABS: GTLiteWoodSlabBlock
 
     // Wooden stairs.
-    lateinit var BANANA_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var ORANGE_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var MANGO_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var APRICOT_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var LEMON_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var LIME_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var OLIVE_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var NUTMEG_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var COCONUT_WOOD_STAIR: GTLiteWoodStairVariantBlock
-    lateinit var RAINBOW_WOOD_STAIR: GTLiteWoodStairVariantBlock
+    lateinit var BANANA_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var ORANGE_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var MANGO_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var APRICOT_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var LEMON_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var LIME_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var OLIVE_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var NUTMEG_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var COCONUT_WOOD_STAIR: GTLiteWoodStairBlock
+    lateinit var RAINBOW_WOOD_STAIR: GTLiteWoodStairBlock
 
     // Wooden fences.
-    lateinit var BANANA_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var ORANGE_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var MANGO_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var APRICOT_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var LEMON_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var LIME_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var OLIVE_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var NUTMEG_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var COCONUT_WOOD_FENCE: GTLiteWoodFenceVariantBlock
-    lateinit var RAINBOW_WOOD_FENCE: GTLiteWoodFenceVariantBlock
+    lateinit var BANANA_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var ORANGE_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var MANGO_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var APRICOT_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var LEMON_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var LIME_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var OLIVE_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var NUTMEG_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var COCONUT_WOOD_FENCE: GTLiteWoodFenceBlock
+    lateinit var RAINBOW_WOOD_FENCE: GTLiteWoodFenceBlock
 
     // Wooden fence gates.
-    lateinit var BANANA_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var ORANGE_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var MANGO_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var APRICOT_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var LEMON_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var LIME_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var OLIVE_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var NUTMEG_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var COCONUT_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
-    lateinit var RAINBOW_WOOD_FENCE_GATE: GTLiteWoodFenceGateVariantBlock
+    lateinit var BANANA_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var ORANGE_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var MANGO_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var APRICOT_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var LEMON_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var LIME_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var OLIVE_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var NUTMEG_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var COCONUT_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
+    lateinit var RAINBOW_WOOD_FENCE_GATE: GTLiteWoodFenceGateBlock
 
     // Miscellaneous blocks.
-    lateinit var DUST_BLOCK: BlockDust
+    lateinit var DUST_BLOCK: Block
     lateinit var DIMENSION_DISPLAY_OVERWORLD: BlockDimensionDisplay
     lateinit var DIMENSION_DISPLAY_NETHER: BlockDimensionDisplay
     lateinit var DIMENSION_DISPLAY_END: BlockDimensionDisplay
@@ -155,11 +142,11 @@ object GTLiteMetaBlocks
 
     // GT format material blocks.
     @JvmField
-    val SHEETED_FRAMES = hashMapOf<Material, BlockSheetedFrame>()
+    val SHEETED_FRAMES = hashMapOf<GTMaterial, BlockSheetedFrame>()
     @JvmField
     val SHEETED_FRAME_BLOCKS = arrayListOf<BlockSheetedFrame>()
     @JvmField
-    val METAL_WALLS = hashMapOf<Material, BlockMetalWall>()
+    val METAL_WALLS = hashMapOf<GTMaterial, BlockMetalWall>()
     @JvmField
     val METAL_WALL_BLOCKS = arrayListOf<BlockMetalWall>()
 
@@ -220,23 +207,23 @@ object GTLiteMetaBlocks
         // Initialized tree related blocks.
         for (i in 0..(AbstractTree.trees.size - 1) / 4)
         {
-            val leaves = GTLiteLeaveVariantBlock(i)
-            leaves.setRegistryName("gtlite_leaves_$i")
+            val leaves = GTLiteLeaveBlock(i)
+            leaves.setRegistryName("leaves_$i")
         }
         for (i in 0..(AbstractTree.trees.size - 1) / 4)
         {
-            val log = GTLiteLogVariantBlock(i)
-            log.setRegistryName("gtlite_log_$i")
+            val log = GTLiteLogBlock(i)
+            log.setRegistryName("log_$i")
         }
         for (i in 0..(AbstractTree.trees.size - 1) / 8)
         {
-            val sapling = GTLiteSaplingVariantBlock(i)
-            sapling.setRegistryName("gtlite_sapling_$i")
+            val sapling = GTLiteSaplingBlock(i)
+            sapling.setRegistryName("sapling_$i")
         }
         for (i in 0..(AbstractTree.trees.size - 1) / 16)
         {
-            val planks = GTLitePlankVariantBlock(i)
-            planks.setRegistryName("gtlite_planks_$i")
+            val planks = GTLitePlankBlock(i)
+            planks.setRegistryName("planks_$i")
         }
 
         // Initialized crops and berries world generator features.
@@ -247,171 +234,177 @@ object GTLiteMetaBlocks
         AbstractTree.trees.forEach { it?.setupBlocks() }
 
         // Initialized wooden slabs.
-        WOOD_SLABS = GTLiteWoodSlabVariantBlock.Half()
-        WOOD_SLABS.setRegistryName("gtlite_wood_slab")
-        DOUBLE_WOOD_SLABS = GTLiteWoodSlabVariantBlock.Double()
-        DOUBLE_WOOD_SLABS.setRegistryName("gtlite_double_wood_slab")
+        WOOD_SLABS = GTLiteWoodSlabBlock.Half()
+        WOOD_SLABS.setRegistryName("wood_slab")
+        DOUBLE_WOOD_SLABS = GTLiteWoodSlabBlock.Double()
+        DOUBLE_WOOD_SLABS.setRegistryName("double_wood_slab")
 
         // Initialized wooden stairs.
-        BANANA_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(0))
-        BANANA_WOOD_STAIR.setRegistryName("gtlite_wood_stair_banana")
-        BANANA_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.banana")
+        BANANA_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(0))
+        BANANA_WOOD_STAIR.setRegistryName("wood_stair_banana")
+        BANANA_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.banana")
 
-        ORANGE_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(1))
-        ORANGE_WOOD_STAIR.setRegistryName("gtlite_wood_stair_orange")
-        ORANGE_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.orange")
+        ORANGE_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(1))
+        ORANGE_WOOD_STAIR.setRegistryName("wood_stair_orange")
+        ORANGE_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.orange")
 
-        MANGO_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(2))
-        MANGO_WOOD_STAIR.setRegistryName("gtlite_wood_stair_mango")
-        MANGO_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.mango")
+        MANGO_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(2))
+        MANGO_WOOD_STAIR.setRegistryName("wood_stair_mango")
+        MANGO_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.mango")
 
-        APRICOT_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(3))
-        APRICOT_WOOD_STAIR.setRegistryName("gtlite_wood_stair_apricot")
-        APRICOT_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.apricot")
+        APRICOT_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(3))
+        APRICOT_WOOD_STAIR.setRegistryName("wood_stair_apricot")
+        APRICOT_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.apricot")
 
-        LEMON_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(4))
-        LEMON_WOOD_STAIR.setRegistryName("gtlite_wood_stair_lemon")
-        LEMON_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.lemon")
+        LEMON_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(4))
+        LEMON_WOOD_STAIR.setRegistryName("wood_stair_lemon")
+        LEMON_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.lemon")
 
-        LIME_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(5))
-        LIME_WOOD_STAIR.setRegistryName("gtlite_wood_stair_lime")
-        LIME_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.lime")
+        LIME_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(5))
+        LIME_WOOD_STAIR.setRegistryName("wood_stair_lime")
+        LIME_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.lime")
 
-        OLIVE_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(6))
-        OLIVE_WOOD_STAIR.setRegistryName("gtlite_wood_stair_olive")
-        OLIVE_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.olive")
+        OLIVE_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(6))
+        OLIVE_WOOD_STAIR.setRegistryName("wood_stair_olive")
+        OLIVE_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.olive")
 
-        NUTMEG_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(7))
-        NUTMEG_WOOD_STAIR.setRegistryName("gtlite_wood_stair_nutmeg")
-        NUTMEG_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.nutmeg")
+        NUTMEG_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(7))
+        NUTMEG_WOOD_STAIR.setRegistryName("wood_stair_nutmeg")
+        NUTMEG_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.nutmeg")
 
-        COCONUT_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(8))
-        COCONUT_WOOD_STAIR.setRegistryName("gtlite_wood_stair_coconut")
-        COCONUT_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.coconut")
+        COCONUT_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(8))
+        COCONUT_WOOD_STAIR.setRegistryName("wood_stair_coconut")
+        COCONUT_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.coconut")
 
-        RAINBOW_WOOD_STAIR = GTLiteWoodStairVariantBlock(PLANKS[0].getStateFromMeta(9))
-        RAINBOW_WOOD_STAIR.setRegistryName("gtlite_wood_stair_rainbow")
-        RAINBOW_WOOD_STAIR.setTranslationKey("gtlite_wood_stair.rainbow")
+        RAINBOW_WOOD_STAIR = GTLiteWoodStairBlock(PLANKS[0].getStateFromMeta(9))
+        RAINBOW_WOOD_STAIR.setRegistryName("wood_stair_rainbow")
+        RAINBOW_WOOD_STAIR.setTranslationKey("gtlitecore.wood_stair.rainbow")
 
         // Initialized wooden fences.
-        BANANA_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        BANANA_WOOD_FENCE.setRegistryName("gtlite_wood_fence_banana")
-        BANANA_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.banana")
+        BANANA_WOOD_FENCE = GTLiteWoodFenceBlock()
+        BANANA_WOOD_FENCE.setRegistryName("wood_fence_banana")
+        BANANA_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.banana")
 
-        ORANGE_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        ORANGE_WOOD_FENCE.setRegistryName("gtlite_wood_fence_orange")
-        ORANGE_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.orange")
+        ORANGE_WOOD_FENCE = GTLiteWoodFenceBlock()
+        ORANGE_WOOD_FENCE.setRegistryName("wood_fence_orange")
+        ORANGE_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.orange")
 
-        MANGO_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        MANGO_WOOD_FENCE.setRegistryName("gtlite_wood_fence_mango")
-        MANGO_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.mango")
+        MANGO_WOOD_FENCE = GTLiteWoodFenceBlock()
+        MANGO_WOOD_FENCE.setRegistryName("wood_fence_mango")
+        MANGO_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.mango")
 
-        APRICOT_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        APRICOT_WOOD_FENCE.setRegistryName("gtlite_wood_fence_apricot")
-        APRICOT_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.apricot")
+        APRICOT_WOOD_FENCE = GTLiteWoodFenceBlock()
+        APRICOT_WOOD_FENCE.setRegistryName("wood_fence_apricot")
+        APRICOT_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.apricot")
 
-        LEMON_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        LEMON_WOOD_FENCE.setRegistryName("gtlite_wood_fence_lemon")
-        LEMON_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.lemon")
+        LEMON_WOOD_FENCE = GTLiteWoodFenceBlock()
+        LEMON_WOOD_FENCE.setRegistryName("wood_fence_lemon")
+        LEMON_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.lemon")
 
-        LIME_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        LIME_WOOD_FENCE.setRegistryName("gtlite_wood_fence_lime")
-        LIME_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.lime")
+        LIME_WOOD_FENCE = GTLiteWoodFenceBlock()
+        LIME_WOOD_FENCE.setRegistryName("wood_fence_lime")
+        LIME_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.lime")
 
-        OLIVE_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        OLIVE_WOOD_FENCE.setRegistryName("gtlite_wood_fence_olive")
-        OLIVE_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.olive")
+        OLIVE_WOOD_FENCE = GTLiteWoodFenceBlock()
+        OLIVE_WOOD_FENCE.setRegistryName("wood_fence_olive")
+        OLIVE_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.olive")
 
-        NUTMEG_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        NUTMEG_WOOD_FENCE.setRegistryName("gtlite_wood_fence_nutmeg")
-        NUTMEG_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.nutmeg")
+        NUTMEG_WOOD_FENCE = GTLiteWoodFenceBlock()
+        NUTMEG_WOOD_FENCE.setRegistryName("wood_fence_nutmeg")
+        NUTMEG_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.nutmeg")
 
-        COCONUT_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        COCONUT_WOOD_FENCE.setRegistryName("gtlite_wood_fence_coconut")
-        COCONUT_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.coconut")
+        COCONUT_WOOD_FENCE = GTLiteWoodFenceBlock()
+        COCONUT_WOOD_FENCE.setRegistryName("wood_fence_coconut")
+        COCONUT_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.coconut")
 
-        RAINBOW_WOOD_FENCE = GTLiteWoodFenceVariantBlock()
-        RAINBOW_WOOD_FENCE.setRegistryName("gtlite_wood_fence_rainbow")
-        RAINBOW_WOOD_FENCE.setTranslationKey("gtlite_wood_fence.rainbow")
+        RAINBOW_WOOD_FENCE = GTLiteWoodFenceBlock()
+        RAINBOW_WOOD_FENCE.setRegistryName("wood_fence_rainbow")
+        RAINBOW_WOOD_FENCE.setTranslationKey("gtlitecore.wood_fence.rainbow")
 
         // Initialized wooden fence gates.
-        BANANA_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        BANANA_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_banana")
-        BANANA_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.banana")
+        BANANA_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        BANANA_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_banana")
+        BANANA_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.banana")
 
-        ORANGE_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        ORANGE_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_orange")
-        ORANGE_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.orange")
+        ORANGE_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        ORANGE_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_orange")
+        ORANGE_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.orange")
 
-        MANGO_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        MANGO_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_mango")
-        MANGO_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.mango")
+        MANGO_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        MANGO_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_mango")
+        MANGO_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.mango")
 
-        APRICOT_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        APRICOT_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_apricot")
-        APRICOT_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.apricot")
+        APRICOT_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        APRICOT_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_apricot")
+        APRICOT_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.apricot")
 
-        LEMON_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        LEMON_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_lemon")
-        LEMON_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.lemon")
+        LEMON_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        LEMON_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_lemon")
+        LEMON_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.lemon")
 
-        LIME_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        LIME_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_lime")
-        LIME_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.lime")
+        LIME_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        LIME_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_lime")
+        LIME_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.lime")
 
-        OLIVE_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        OLIVE_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_olive")
-        OLIVE_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.olive")
+        OLIVE_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        OLIVE_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_olive")
+        OLIVE_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.olive")
 
-        NUTMEG_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        NUTMEG_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_nutmeg")
-        NUTMEG_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.nutmeg")
+        NUTMEG_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        NUTMEG_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_nutmeg")
+        NUTMEG_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.nutmeg")
 
-        COCONUT_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        COCONUT_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_coconut")
-        COCONUT_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.coconut")
+        COCONUT_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        COCONUT_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_coconut")
+        COCONUT_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.coconut")
 
-        RAINBOW_WOOD_FENCE_GATE = GTLiteWoodFenceGateVariantBlock()
-        RAINBOW_WOOD_FENCE_GATE.setRegistryName("gtlite_wood_fence_gate_rainbow")
-        RAINBOW_WOOD_FENCE_GATE.setTranslationKey("gtlite_wood_fence_gate.rainbow")
+        RAINBOW_WOOD_FENCE_GATE = GTLiteWoodFenceGateBlock()
+        RAINBOW_WOOD_FENCE_GATE.setRegistryName("wood_fence_gate_rainbow")
+        RAINBOW_WOOD_FENCE_GATE.setTranslationKey("gtlitecore.wood_fence_gate.rainbow")
 
         // Initialized miscellaneous blocks.
-        DUST_BLOCK = BlockDust()
-        DUST_BLOCK.setRegistryName("dust_block")
-        DUST_BLOCK.setTranslationKey("dust_block")
+        DUST_BLOCK = BlockFalling(Material.SAND).apply {
+            setRegistryName("dust_block")
+            setTranslationKey("$MOD_ID.dust_block")
+            setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
+            setHardness(0.4F)
+            setResistance(0.4F)
+            setSoundType(SoundType.SAND)
+            setHarvestLevel("shovel", 0)
+        }
 
         DIMENSION_DISPLAY_OVERWORLD = BlockDimensionDisplay("Ow")
         DIMENSION_DISPLAY_OVERWORLD.setRegistryName("dimension_display_overworld")
-        DIMENSION_DISPLAY_OVERWORLD.setTranslationKey("dimension_display.overworld")
+        DIMENSION_DISPLAY_OVERWORLD.setTranslationKey("gtlitecore.dimension_display.overworld")
         DIMENSION_DISPLAY_OVERWORLD.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
         DIMENSION_DISPLAY_NETHER = BlockDimensionDisplay("Ne")
         DIMENSION_DISPLAY_NETHER.setRegistryName("dimension_display_nether")
-        DIMENSION_DISPLAY_NETHER.setTranslationKey("dimension_display.nether")
+        DIMENSION_DISPLAY_NETHER.setTranslationKey("gtlitecore.dimension_display.nether")
         DIMENSION_DISPLAY_NETHER.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
         DIMENSION_DISPLAY_END = BlockDimensionDisplay("ED")
         DIMENSION_DISPLAY_END.setRegistryName("dimension_display_end")
-        DIMENSION_DISPLAY_END.setTranslationKey("dimension_display.end")
+        DIMENSION_DISPLAY_END.setTranslationKey("gtlitecore.dimension_display.end")
         DIMENSION_DISPLAY_END.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
         NAQUADRIA_CHARGE = BlockNaquadriaCharge()
-        NAQUADRIA_CHARGE.setTranslationKey("naquadria_charge")
+        NAQUADRIA_CHARGE.setTranslationKey("gtlitecore.naquadria_charge")
         NAQUADRIA_CHARGE.setRegistryName("naquadria_charge")
         NAQUADRIA_CHARGE.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
 
         TARANIUM_CHARGE = BlockTaraniumCharge()
-        TARANIUM_CHARGE.setTranslationKey("taranium_charge")
+        TARANIUM_CHARGE.setTranslationKey("gtlitecore.taranium_charge")
         TARANIUM_CHARGE.setRegistryName("taranium_charge")
         TARANIUM_CHARGE.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
 
         LEPTONIC_CHARGE = BlockLeptonicCharge()
-        LEPTONIC_CHARGE.setTranslationKey("leptonic_charge")
+        LEPTONIC_CHARGE.setTranslationKey("gtlitecore.leptonic_charge")
         LEPTONIC_CHARGE.setRegistryName("leptonic_charge")
         LEPTONIC_CHARGE.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
 
         QUANTUM_CHROMODYNAMIC_CHARGE = BlockQuantumChromodynamicCharge()
-        QUANTUM_CHROMODYNAMIC_CHARGE.setTranslationKey("quantum_chromodynamic_charge")
+        QUANTUM_CHROMODYNAMIC_CHARGE.setTranslationKey("gtlitecore.quantum_chromodynamic_charge")
         QUANTUM_CHROMODYNAMIC_CHARGE.setRegistryName("quantum_chromodynamic_charge")
         QUANTUM_CHROMODYNAMIC_CHARGE.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
 
@@ -602,7 +595,7 @@ object GTLiteMetaBlocks
     @JvmStatic
     fun registerColors()
     {
-        LEAVES.forEach(GTLiteLeaveVariantBlock::registerColors)
+        LEAVES.forEach(GTLiteLeaveBlock::registerColors)
         val blockColors = Games.blockColors()
         val itemColors = Games.itemColors()
 
@@ -707,7 +700,7 @@ object GTLiteMetaBlocks
         val block = VariantBlockFactory.make<T>(type)
         block.setRegistryName(name)
             .setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
-            .setTranslationKey(name)
+            .setTranslationKey("$MOD_ID.$name")
             .setHardness(5.0f)
             .setResistance(10.0f)
         return Unchecks.cast(block)
@@ -730,7 +723,7 @@ object GTLiteMetaBlocks
         val block = VariantBlockFactory.make<T>(type)
         block.setRegistryName(name)
             .setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
-            .setTranslationKey(name)
+            .setTranslationKey("$MOD_ID.$name")
             .setHardness(hardness)
             .setResistance(resistance)
         return Unchecks.cast(block)
@@ -740,10 +733,10 @@ object GTLiteMetaBlocks
 
     // region Material Block Factory Methods
 
-    private fun createGeneratedBlock(materialPredicate: (Material) -> Boolean,
-                                     blockGenerator: (Array<Material>, Int) -> Unit)
+    private fun createGeneratedBlock(materialPredicate: (GTMaterial) -> Boolean,
+                                     blockGenerator: (Array<GTMaterial>, Int) -> Unit)
     {
-        val blocksToGenerate = TreeMap<Int, Array<Material>>()
+        val blocksToGenerate = TreeMap<Int, Array<GTMaterial>>()
         GregTechAPI.materialManager.registeredMaterials.forEach { mat ->
             if (materialPredicate(mat))
             {
@@ -761,7 +754,7 @@ object GTLiteMetaBlocks
     }
 
 
-    private fun createSheetedFrameBlock(materials: Array<Material>, index: Int)
+    private fun createSheetedFrameBlock(materials: Array<GTMaterial>, index: Int)
     {
         val block = BlockSheetedFrame(materials).apply {
             this.registryName = GTLiteMod.id("meta_block_sheeted_frame_$index")
@@ -770,7 +763,7 @@ object GTLiteMetaBlocks
         SHEETED_FRAME_BLOCKS.add(block)
     }
 
-    private fun createMetalWallBlock(materials: Array<Material>, index: Int)
+    private fun createMetalWallBlock(materials: Array<GTMaterial>, index: Int)
     {
         val block = BlockMetalWall.create(materials)
         (block as? Block)?.registryName = GTLiteMod.id("meta_block_wall_gt_$index")

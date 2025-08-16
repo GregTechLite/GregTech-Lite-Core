@@ -4,7 +4,7 @@ import gregtech.api.GTValues.*
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -86,9 +86,9 @@ object GlassCasing
         TRANSCENDENT_METAL_BOROSILICATE("transcendent_metal_borosilicate", UXV); // TODO OpV-MAX
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.TRANSPARENT_CASING_01.getState(this)
+            get() = GTLiteBlocks.TRANSPARENT_CASING_01.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.TRANSPARENT_CASING_01.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.TRANSPARENT_CASING_01.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -121,9 +121,9 @@ object GlassCasing
         CHROMATIC("chromatic", UEV);
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.TRANSPARENT_CASING_02.getState(this)
+            get() = GTLiteBlocks.TRANSPARENT_CASING_02.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.TRANSPARENT_CASING_02.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.TRANSPARENT_CASING_02.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -141,9 +141,9 @@ object GlassCasing
         NANO_SHIELDING_FRAME("nano_shielding_frame", UXV);
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.TRANSPARENT_CASING_03.getState(this)
+            get() = GTLiteBlocks.TRANSPARENT_CASING_03.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.TRANSPARENT_CASING_03.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.TRANSPARENT_CASING_03.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 

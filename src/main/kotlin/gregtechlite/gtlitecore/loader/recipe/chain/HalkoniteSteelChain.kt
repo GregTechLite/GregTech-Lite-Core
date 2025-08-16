@@ -39,7 +39,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 
 internal object HalkoniteSteelChain
 {
@@ -296,7 +296,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Halkonite Steel Wall
-        ModHandler.addShapedRecipe(true, "halkonite_steel_wall_gt", GTLiteMetaBlocks.METAL_WALLS[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(6),
+        ModHandler.addShapedRecipe(true, "halkonite_steel_wall_gt", GTLiteBlocks.METAL_WALLS[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, HalkoniteSteel),
             'S', UnificationEntry(screw, HalkoniteSteel))
@@ -305,13 +305,13 @@ internal object HalkoniteSteelChain
             .circuitMeta(11)
             .input(plate, HalkoniteSteel, 2)
             .input(screw, HalkoniteSteel)
-            .outputs(GTLiteMetaBlocks.METAL_WALLS[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(3))
+            .outputs(GTLiteBlocks.METAL_WALLS[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(3))
             .EUt(7)
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
 
         // Halkonite Steel Sheeted Frame
-        ModHandler.addShapedRecipe(true, "halkonite_steel_sheeted_frame", GTLiteMetaBlocks.SHEETED_FRAMES[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(12),
+        ModHandler.addShapedRecipe(true, "halkonite_steel_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, HalkoniteSteel),
             'F', UnificationEntry(frameGt, HalkoniteSteel))
@@ -320,7 +320,7 @@ internal object HalkoniteSteelChain
             .circuitMeta(10)
             .input(plate, HalkoniteSteel, 3)
             .input(frameGt, HalkoniteSteel)
-            .outputs(GTLiteMetaBlocks.SHEETED_FRAMES[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(6))
+            .outputs(GTLiteBlocks.SHEETED_FRAMES[HalkoniteSteel]!!.getItem(HalkoniteSteel).copy(6))
             .EUt(7) // ULV
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()

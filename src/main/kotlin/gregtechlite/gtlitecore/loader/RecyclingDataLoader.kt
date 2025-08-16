@@ -23,7 +23,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
 import net.minecraft.item.ItemStack
 
@@ -113,7 +113,7 @@ internal object RecyclingDataLoader
             RecyclingData(MaterialStack(Bitumen, M * 4)))
 
         // Sheeted Frames recycling datas.
-        GTLiteMetaBlocks.SHEETED_FRAMES.entries.forEach { (material, block) ->
+        GTLiteBlocks.SHEETED_FRAMES.entries.forEach { (material, block) ->
             if (material == NULL) return@forEach
             block.getItem(material).let { stack ->
                 OreDictUnifier.registerOre(stack, GTLiteOrePrefix.sheetedFrame, material)
@@ -123,7 +123,7 @@ internal object RecyclingDataLoader
         }
 
         // Metal Walls recycling datas.
-        GTLiteMetaBlocks.METAL_WALLS.entries.forEach { (material, block) ->
+        GTLiteBlocks.METAL_WALLS.entries.forEach { (material, block) ->
             if (material == NULL) return@forEach
             block.getItem(material).let { stack ->
                 OreDictUnifier.registerOre(stack, GTLiteOrePrefix.wallGt, material)

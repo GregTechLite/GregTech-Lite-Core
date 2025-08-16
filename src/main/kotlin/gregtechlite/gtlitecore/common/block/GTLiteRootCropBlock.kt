@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.extension.copy
 import net.minecraft.block.properties.PropertyInteger
@@ -14,14 +14,14 @@ import net.minecraft.world.World
 import java.util.*
 
 @Suppress("unused")
-class GTLiteRootCropVariantBlock private constructor(name: String) : GTLiteCropVariantBlock(name)
+class GTLiteRootCropBlock private constructor(name: String) : GTLiteCropBlock(name)
 {
 
     companion object
     {
         private val DEFAULT_AGE_ROOT: PropertyInteger = PropertyInteger.create("age", 0, 7)
 
-        fun create(name: String) = GTLiteRootCropVariantBlock(name)
+        fun create(name: String) = GTLiteRootCropBlock(name)
     }
 
     override fun getDrops(drops: NonNullList<ItemStack?>,

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant.science
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -20,9 +20,9 @@ enum class ScienceCasing(private val serializedName: String,
     DIMENSIONAL_BRIDGE_CASING("dimensional_bridge_casing");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.SCIENCE_CASING_01.getState(this)
+        get() = GTLiteBlocks.SCIENCE_CASING_01.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.SCIENCE_CASING_01.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.SCIENCE_CASING_01.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

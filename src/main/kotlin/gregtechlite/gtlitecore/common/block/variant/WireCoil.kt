@@ -5,7 +5,7 @@ import gregtech.api.block.IStateHarvestLevel
 import gregtech.api.unification.material.Material
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -31,9 +31,9 @@ enum class WireCoil(private val serializedName: String,
     ETERNITY("eternity", 19800, 64, 64, GTLiteMaterials.Eternity);
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.WIRE_COIL.getState(this)
+        get() = GTLiteBlocks.WIRE_COIL.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.WIRE_COIL.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.WIRE_COIL.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

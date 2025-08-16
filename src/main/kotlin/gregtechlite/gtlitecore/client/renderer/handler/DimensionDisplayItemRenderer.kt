@@ -5,7 +5,7 @@ import codechicken.lib.render.CCModelState
 import codechicken.lib.render.item.IItemRenderer
 import codechicken.lib.util.TransformUtils
 import gregtechlite.magicbook.client.Games
-import gregtechlite.gtlitecore.common.block.item.DimensionDisplayItemBlock
+import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock
 import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms
 import net.minecraft.client.renderer.block.model.ModelResourceLocation

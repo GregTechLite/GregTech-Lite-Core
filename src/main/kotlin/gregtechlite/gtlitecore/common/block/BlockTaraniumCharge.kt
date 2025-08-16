@@ -1,9 +1,9 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtech.common.blocks.explosive.BlockGTExplosive
 import gregtech.common.entities.EntityGTExplosive
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.common.entity.explosive.EntityLeptonicCharge
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.common.entity.explosive.EntityTaraniumCharge
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.client.resources.I18n
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class BlockLeptonicCharge : BlockGTExplosive(Material.TNT, true, true, 1 * MINUTE)
+class BlockTaraniumCharge : BlockGTExplosive(Material.TNT, true, true, 30 * SECOND)
 {
 
     init
@@ -27,7 +27,7 @@ class BlockLeptonicCharge : BlockGTExplosive(Material.TNT, true, true, 1 * MINUT
         val x = pos.x + 0.5f
         val y = pos.y.toFloat()
         val z = pos.z + 0.5f
-        return EntityLeptonicCharge(world, x.toDouble(), y.toDouble(), z.toDouble(), exploder)
+        return EntityTaraniumCharge(world, x.toDouble(), y.toDouble(), z.toDouble(), exploder)
     }
 
     override fun addInformation(stack: ItemStack,
@@ -36,8 +36,8 @@ class BlockLeptonicCharge : BlockGTExplosive(Material.TNT, true, true, 1 * MINUT
                                 flag: ITooltipFlag)
     {
         super.addInformation(stack, world, tooltip, flag)
-        tooltip.add(I18n.format("tile.leptonic_charge.tooltip.1"))
-        tooltip.add(I18n.format("tile.leptonic_charge.tooltip.2"))
+        tooltip.add(I18n.format("tile.gtlitecore.taranium_charge.tooltip.1"))
+        tooltip.add(I18n.format("tile.gtlitecore.taranium_charge.tooltip.2"))
     }
 
 }

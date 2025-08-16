@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import net.minecraft.block.BlockStairs
@@ -7,7 +7,7 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 
-class GTLiteWoodStairVariantBlock(state: IBlockState) : BlockStairs(state)
+class GTLiteWoodStairBlock(state: IBlockState) : BlockStairs(state)
 {
 
     init

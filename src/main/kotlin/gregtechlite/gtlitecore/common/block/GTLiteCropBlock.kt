@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.MOD_ID
 import net.minecraft.block.BlockCrops
@@ -15,7 +15,7 @@ import net.minecraft.world.World
 import net.minecraftforge.common.EnumPlantType
 import java.util.*
 
-open class GTLiteCropVariantBlock protected constructor(name: String) : BlockCrops()
+open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 {
 
     var seedStack: ItemStack = ItemStack.EMPTY
@@ -24,7 +24,7 @@ open class GTLiteCropVariantBlock protected constructor(name: String) : BlockCro
     init
     {
         this.setRegistryName(MOD_ID, "crop_$name")
-        this.setTranslationKey("gtlite_crop_$name")
+        this.setTranslationKey("gtlitecore.crop_$name")
         this.defaultState = this.blockState.baseState
             .withProperty<Int, Int>(this.ageProperty, 0)
         CROPS.add(this)
@@ -37,9 +37,9 @@ open class GTLiteCropVariantBlock protected constructor(name: String) : BlockCro
         private val CROPS_AABB = AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.25, 1.0)
 
         @JvmField
-        var CROPS = ArrayList<GTLiteCropVariantBlock?>()
+        var CROPS = ArrayList<GTLiteCropBlock?>()
 
-        fun create(name: String) = GTLiteCropVariantBlock(name)
+        fun create(name: String) = GTLiteCropBlock(name)
 
     }
 

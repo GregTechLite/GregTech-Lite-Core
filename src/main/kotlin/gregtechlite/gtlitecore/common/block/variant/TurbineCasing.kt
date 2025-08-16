@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -23,9 +23,9 @@ object TurbineCasing
         RHODIUM_PLATED_PALLADIUM_TURBINE("rhodium_plated_palladium_turbine");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.TURBINE_CASING_01.getState(this)
+            get() = GTLiteBlocks.TURBINE_CASING_01.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.TURBINE_CASING_01.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.TURBINE_CASING_01.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -42,9 +42,9 @@ object TurbineCasing
         RHODIUM_PLATED_PALLADIUM_GEARBOX("rhodium_plated_palladium_gearbox");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.TURBINE_CASING_02.getState(this)
+            get() = GTLiteBlocks.TURBINE_CASING_02.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.TURBINE_CASING_02.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.TURBINE_CASING_02.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 

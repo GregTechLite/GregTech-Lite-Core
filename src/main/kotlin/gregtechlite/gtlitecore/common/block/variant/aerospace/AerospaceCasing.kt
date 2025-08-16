@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant.aerospace
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -25,9 +25,9 @@ enum class AerospaceCasing(private val serializedName: String,
     DYSON_SWARM_CONTROL_CENTER_TOROID_CASING("dyson_swarm_control_center_toroid_casing");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.AEROSPACE_CASING.getState(this)
+        get() = GTLiteBlocks.AEROSPACE_CASING.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.AEROSPACE_CASING.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.AEROSPACE_CASING.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

@@ -1,9 +1,9 @@
-package gregtechlite.gtlitecore.common.block.item
+package gregtechlite.gtlitecore.common.item
 
 import codechicken.lib.model.ModelRegistryHelper
 import gregtechlite.gtlitecore.client.renderer.IItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.handler.DimensionDisplayItemRenderer
-import gregtechlite.gtlitecore.common.block.base.BlockDimensionDisplay
+import gregtechlite.gtlitecore.common.block.BlockDimensionDisplay
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.item.ItemBlock

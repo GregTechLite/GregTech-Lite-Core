@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.worldgen.trees
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.worldgen.AbstractWorldGenerator
 import gregtechlite.gtlitecore.api.worldgen.feature.AbstractFeature
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.Block
 import net.minecraft.block.BlockLeaves
 import net.minecraft.block.BlockLog
@@ -37,7 +37,7 @@ abstract class AbstractTree(val name: String?, private val seed: Int) : Abstract
 
     val sapling: ItemStack
         // Get sapling item stack.
-        get() = ItemStack(GTLiteMetaBlocks.SAPLINGS[this.seed / 8], 1, (this.seed % 8) shl 1)
+        get() = ItemStack(GTLiteBlocks.SAPLINGS[this.seed / 8], 1, (this.seed % 8) shl 1)
 
     protected val naturalLeaveState: IBlockState
         get() = this.leaveState!!.withProperty(BlockLeaves.DECAYABLE, true)
@@ -156,13 +156,13 @@ abstract class AbstractTree(val name: String?, private val seed: Int) : Abstract
     @Suppress("Deprecation")
     fun setupBlocks()
     {
-        val leaves = GTLiteMetaBlocks.LEAVES[this.seed / 4]
+        val leaves = GTLiteBlocks.LEAVES[this.seed / 4]
         this.leaveState = leaves.getStateFromMeta(this.seed % 4 shl 2)
 
-        val logs = GTLiteMetaBlocks.LOGS[this.seed / 4]
+        val logs = GTLiteBlocks.LOGS[this.seed / 4]
         this.logState = logs.getStateFromMeta(this.seed % 4 shl 2)
 
-        val saplings = GTLiteMetaBlocks.SAPLINGS[this.seed / 8]
+        val saplings = GTLiteBlocks.SAPLINGS[this.seed / 8]
         this.saplingState = saplings.getStateFromMeta(this.seed % 8 shl 1)
     }
 

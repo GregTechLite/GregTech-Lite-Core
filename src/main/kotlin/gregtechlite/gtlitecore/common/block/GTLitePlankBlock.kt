@@ -1,8 +1,7 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import net.minecraft.block.Block
@@ -14,7 +13,7 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
 
-class GTLitePlankVariantBlock(private val offset: Int) : Block(Material.WOOD), TranslatableBlock
+class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), TranslatableBlock
 {
 
     companion object
@@ -26,13 +25,13 @@ class GTLitePlankVariantBlock(private val offset: Int) : Block(Material.WOOD), T
 
     init
     {
-        this.setTranslationKey("gtlite_planks_$offset")
+        this.setTranslationKey("gtlitecore.planks_$offset")
         this.setHardness(2.0f)
         this.setResistance(5.0f)
         this.setHarvestLevel("axe", 0)
         this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
         // Add to PLANKS pool.
-        GTLiteMetaBlocks.PLANKS.add(this)
+        GTLiteBlocks.PLANKS.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): AbstractTree =

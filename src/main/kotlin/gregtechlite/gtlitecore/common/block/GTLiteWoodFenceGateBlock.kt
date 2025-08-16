@@ -1,11 +1,11 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import net.minecraft.block.BlockFenceGate
 import net.minecraft.block.BlockPlanks
 import net.minecraft.block.SoundType
 
-class GTLiteWoodFenceGateVariantBlock : BlockFenceGate(BlockPlanks.EnumType.OAK)
+class GTLiteWoodFenceGateBlock : BlockFenceGate(BlockPlanks.EnumType.OAK)
 {
 
     init

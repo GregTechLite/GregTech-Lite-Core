@@ -53,8 +53,8 @@
         "bot_up": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_top",
         "bot_side": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_side",
         "bot_bottom": "#bot_up",
-        "top_up": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_top",
-        "top_side": "gtlitecore:blocks/casings/special/infinity_infused_manipulator_side_bloom",
+        "top_up": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_top",
+        "top_side": "gtlitecore:blocks/casings/quantum/infinity_infused_manipulator_side_bloom",
         "top_bottom": "#top_up"
       }
     },

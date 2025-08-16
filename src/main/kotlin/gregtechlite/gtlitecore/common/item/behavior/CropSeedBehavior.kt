@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.stats.IItemBehaviour
-import gregtechlite.gtlitecore.common.block.base.GTLiteCropVariantBlock
-import gregtechlite.gtlitecore.common.block.base.GTLiteRootCropVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteCropBlock
+import gregtechlite.gtlitecore.common.block.GTLiteRootCropBlock
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -14,7 +14,7 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-open class CropSeedBehavior(protected val cropBlock: GTLiteCropVariantBlock, seed: ItemStack, crop: ItemStack) : IItemBehaviour
+open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock, seed: ItemStack, crop: ItemStack) : IItemBehaviour
 {
 
     init
@@ -23,7 +23,7 @@ open class CropSeedBehavior(protected val cropBlock: GTLiteCropVariantBlock, see
         cropBlock.cropStack = crop
     }
 
-    constructor(cropBlock: GTLiteCropVariantBlock,
+    constructor(cropBlock: GTLiteCropBlock,
                 seed: MetaItem<*>.MetaValueItem,
                 crop: MetaItem<*>.MetaValueItem) : this(cropBlock, seed.stackForm, crop.stackForm)
 
@@ -46,7 +46,7 @@ open class CropSeedBehavior(protected val cropBlock: GTLiteCropVariantBlock, see
     override fun addInformation(stack: ItemStack?, lines: MutableList<String?>)
     {
         lines.add(I18n.format("gtlitecore.tooltip.crop.placeable_seed"))
-        if (this.cropBlock is GTLiteRootCropVariantBlock)
+        if (this.cropBlock is GTLiteRootCropBlock)
         {
             lines.add(I18n.format("gtlitecore.tooltip.crop.root_placeable_seed.1"))
             lines.add(I18n.format("gtlitecore.tooltip.crop.root_placeable_seed.2"))

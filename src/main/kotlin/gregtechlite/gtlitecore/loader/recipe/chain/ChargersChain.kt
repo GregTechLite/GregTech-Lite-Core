@@ -34,10 +34,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganess
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octaazacubane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.LEPTONIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.NAQUADRIA_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks.TARANIUM_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.NAQUADRIA_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE
 import net.minecraft.item.ItemStack
 
 internal object ChargersChain

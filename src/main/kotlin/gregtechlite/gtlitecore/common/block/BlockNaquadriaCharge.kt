@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtech.common.blocks.explosive.BlockGTExplosive
 import gregtech.common.entities.EntityGTExplosive
@@ -36,8 +36,8 @@ class BlockNaquadriaCharge : BlockGTExplosive(Material.TNT, true, true, 10 * SEC
                                 flag: ITooltipFlag)
     {
         super.addInformation(stack, world, tooltip, flag)
-        tooltip.add(I18n.format("tile.naquadria_charge.tooltip.1"))
-        tooltip.add(I18n.format("tile.naquadria_charge.tooltip.2"))
+        tooltip.add(I18n.format("tile.gtlitecore.naquadria_charge.tooltip.1"))
+        tooltip.add(I18n.format("tile.gtlitecore.naquadria_charge.tooltip.2"))
     }
 
 }

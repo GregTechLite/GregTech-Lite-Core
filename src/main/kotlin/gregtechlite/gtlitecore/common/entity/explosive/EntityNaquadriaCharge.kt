@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.common.entity.explosive
 
 import gregtech.common.entities.EntityGTExplosive
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.world.World
@@ -19,7 +19,7 @@ class EntityNaquadriaCharge(world: World?,
 
     override fun getRange() = 64
 
-    override fun getExplosiveState(): IBlockState = GTLiteMetaBlocks.NAQUADRIA_CHARGE.defaultState
+    override fun getExplosiveState(): IBlockState = GTLiteBlocks.NAQUADRIA_CHARGE.defaultState
 
 }
 

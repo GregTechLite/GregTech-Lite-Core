@@ -1,8 +1,8 @@
-package gregtechlite.gtlitecore.common.block.item
+package gregtechlite.gtlitecore.common.item
 
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
-import gregtechlite.gtlitecore.common.block.base.BlockSheetedFrame
+import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.item.ItemBlock
@@ -27,7 +27,7 @@ class SheetedFrameItemBlock(private val frameBlock: BlockSheetedFrame) : ItemBlo
 
     override fun getItemStackDisplayName(stack: ItemStack): String
     {
-        val material = getBlockState(stack).getValue(frameBlock.variantProperty)
+        val material = getBlockState(stack).getValue(frameBlock.VARIANT)
         return GTLiteOrePrefix.sheetedFrame.getLocalNameForItem(material)
     }
 

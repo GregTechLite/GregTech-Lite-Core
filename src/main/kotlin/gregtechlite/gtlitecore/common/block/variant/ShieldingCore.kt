@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block.variant
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -19,12 +19,12 @@ enum class ShieldingCore(private val serializedName: String,
     SPACETIME_BENDING_CORE("spacetime_bending_core");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.SHIELDING_CORE.getState(this)
+        get() = GTLiteBlocks.SHIELDING_CORE.getState(this)
 
     override val tier: Int
         get() = ordinal + 1
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.SHIELDING_CORE.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.SHIELDING_CORE.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

@@ -1,21 +1,21 @@
 package gregtechlite.gtlitecore.common.worldgen.crops
 
-import gregtechlite.gtlitecore.common.block.base.GTLiteBerryBushVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteBerryBushBlock
 import gregtechlite.gtlitecore.common.worldgen.features.TemperatureRainfallCondition
 
 object WorldGenBerries
 {
 
-    lateinit var BUSH_BLUEBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_BLACKBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_RASPBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_STRAWBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_RED_CURRANT: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_BLACK_CURRANT: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_WHITE_CURRANT: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_LINGONBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_ELDERBERRY: GTLiteBerryBushVariantBlock
-    lateinit var BUSH_CRANBERRY: GTLiteBerryBushVariantBlock
+    lateinit var BUSH_BLUEBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_BLACKBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_RASPBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_STRAWBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_RED_CURRANT: GTLiteBerryBushBlock
+    lateinit var BUSH_BLACK_CURRANT: GTLiteBerryBushBlock
+    lateinit var BUSH_WHITE_CURRANT: GTLiteBerryBushBlock
+    lateinit var BUSH_LINGONBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_ELDERBERRY: GTLiteBerryBushBlock
+    lateinit var BUSH_CRANBERRY: GTLiteBerryBushBlock
 
     lateinit var BLUEBERRY_BUSH: WorldGenBerry
     lateinit var BLACKBERRY_BUSH: WorldGenBerry
@@ -31,16 +31,16 @@ object WorldGenBerries
     internal fun init()
     {
         // Blocks
-        BUSH_BLUEBERRY = GTLiteBerryBushVariantBlock.create("blueberry")
-        BUSH_BLACKBERRY = GTLiteBerryBushVariantBlock.create("blackberry").setThorny(true)
-        BUSH_RASPBERRY = GTLiteBerryBushVariantBlock.create("raspberry").setThorny(true)
-        BUSH_STRAWBERRY = GTLiteBerryBushVariantBlock.create("strawberry")
-        BUSH_RED_CURRANT = GTLiteBerryBushVariantBlock.create("red_currant")
-        BUSH_BLACK_CURRANT = GTLiteBerryBushVariantBlock.create("black_currant")
-        BUSH_WHITE_CURRANT = GTLiteBerryBushVariantBlock.create("white_currant")
-        BUSH_LINGONBERRY = GTLiteBerryBushVariantBlock.create("lingonberry")
-        BUSH_ELDERBERRY = GTLiteBerryBushVariantBlock.create("elderberry")
-        BUSH_CRANBERRY = GTLiteBerryBushVariantBlock.create("cranberry")
+        BUSH_BLUEBERRY = GTLiteBerryBushBlock.create("blueberry")
+        BUSH_BLACKBERRY = GTLiteBerryBushBlock.create("blackberry").setThorny(true)
+        BUSH_RASPBERRY = GTLiteBerryBushBlock.create("raspberry").setThorny(true)
+        BUSH_STRAWBERRY = GTLiteBerryBushBlock.create("strawberry")
+        BUSH_RED_CURRANT = GTLiteBerryBushBlock.create("red_currant")
+        BUSH_BLACK_CURRANT = GTLiteBerryBushBlock.create("black_currant")
+        BUSH_WHITE_CURRANT = GTLiteBerryBushBlock.create("white_currant")
+        BUSH_LINGONBERRY = GTLiteBerryBushBlock.create("lingonberry")
+        BUSH_ELDERBERRY = GTLiteBerryBushBlock.create("elderberry")
+        BUSH_CRANBERRY = GTLiteBerryBushBlock.create("cranberry")
 
         // Worldgens
         BLUEBERRY_BUSH = WorldGenBerry(1000, BUSH_BLUEBERRY)

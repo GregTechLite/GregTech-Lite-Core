@@ -27,7 +27,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasing
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.Crucible
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -138,7 +138,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
         if (block is VariantBlock<*>)
         {
             val storedTemperature = blockWorldState.matchContext.getOrPut("Temperature", 0)
-            blockWorldState.matchContext["Temperature"] = GTLiteMetaBlocks.CRUCIBLE.getState(state).temperature + storedTemperature
+            blockWorldState.matchContext["Temperature"] = GTLiteBlocks.CRUCIBLE.getState(state).temperature + storedTemperature
             val storedCrucibleAmount = blockWorldState.matchContext.getOrPut("CrucibleAmount", 0)
             blockWorldState.matchContext["CrucibleAmount"] = 1 + storedCrucibleAmount
             return@Predicate true
@@ -146,7 +146,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
             return@Predicate false
         }) { Crucible.entries
                 .sortedBy { it.temperature }
-                .map { BlockInfo(GTLiteMetaBlocks.CRUCIBLE.getState(it), null) }
+                .map { BlockInfo(GTLiteBlocks.CRUCIBLE.getState(it), null) }
                 .toTypedArray()
     }
 

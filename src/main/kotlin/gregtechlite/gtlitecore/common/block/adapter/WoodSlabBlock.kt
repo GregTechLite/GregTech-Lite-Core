@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.adapter
 
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.common.registry.GameRegistry
@@ -23,11 +23,11 @@ enum class WoodSlabBlock : BlockVariant
     RAINBOW;
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.WOOD_SLABS.getStateFromMeta(this.ordinal)
+        get() = GTLiteBlocks.WOOD_SLABS.getStateFromMeta(this.ordinal)
 
     override fun getStack(count: Int): ItemStack
     {
-        return GameRegistry.makeItemStack("$MOD_ID:gtlite_wood_slab", this.ordinal, count, null)
+        return GameRegistry.makeItemStack("$MOD_ID:wood_slab", this.ordinal, count, null)
     }
 
 }

@@ -1,10 +1,10 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtech.api.block.VariantBlock
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
+import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
@@ -35,7 +35,7 @@ class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) :
     init
     {
         setRegistryName(stoneVariant.id)
-        setTranslationKey(stoneVariant.translationKey)
+        setTranslationKey("$MOD_ID.${stoneVariant.translationKey}")
         setHardness(stoneVariant.hardness)
         setResistance(stoneVariant.resistance)
         setSoundType(SoundType.STONE)
@@ -75,7 +75,7 @@ class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) :
     {
         return Item.getItemFromBlock(
             if (stoneVariant == StoneVariant.SMOOTH)
-                GTLiteMetaBlocks.STONES.get(StoneVariant.COBBLE) as Block else this)
+                GTLiteBlocks.STONES.get(StoneVariant.COBBLE) as Block else this)
     }
 
     enum class StoneType(private val serialName: String, val mapColor: MapColor) : IStringSerializable

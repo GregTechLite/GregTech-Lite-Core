@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block.variant
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -19,12 +19,12 @@ enum class Manipulator(private val serializedName: String,
     SPACETIME_CONTINUUM_RIPPER("spacetime_continuum_ripper");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.MANIPULATOR.getState(this)
+        get() = GTLiteBlocks.MANIPULATOR.getState(this)
 
     override val tier: Int
         get() = ordinal + 1
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.MANIPULATOR.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.MANIPULATOR.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

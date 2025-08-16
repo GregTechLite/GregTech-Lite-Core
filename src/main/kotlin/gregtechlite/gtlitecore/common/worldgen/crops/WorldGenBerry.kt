@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.worldgen.crops
 
 import gregtechlite.gtlitecore.api.worldgen.feature.AbstractFeature
 import gregtechlite.gtlitecore.api.worldgen.feature.FeatureCondition
-import gregtechlite.gtlitecore.common.block.base.GTLiteBerryBushVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteBerryBushBlock
 import gregtechlite.gtlitecore.common.worldgen.generator.GTLiteBerryGenerator
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import java.util.*
 
-open class WorldGenBerry(seed: Int, val berryBush: GTLiteBerryBushVariantBlock) : AbstractFeature(seed)
+open class WorldGenBerry(seed: Int, val berryBush: GTLiteBerryBushBlock) : AbstractFeature(seed)
 {
 
     init

@@ -33,7 +33,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 
 internal object MagnetiumChain
 {
@@ -214,7 +214,7 @@ internal object MagnetiumChain
             .buildAndRegister()
 
         // sheetedFrameMagnetium
-        ModHandler.addShapedRecipe(true, "magnetium_sheeted_frame", GTLiteMetaBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(12),
+        ModHandler.addShapedRecipe(true, "magnetium_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, Magnetium),
             'F', UnificationEntry(frameGt, Magnetium))
@@ -223,13 +223,13 @@ internal object MagnetiumChain
             .circuitMeta(10)
             .input(plate, Magnetium, 3)
             .input(frameGt, Magnetium)
-            .outputs(GTLiteMetaBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(6))
+            .outputs(GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(6))
             .EUt(7) // ULV
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
 
         // wallGtMagnetium
-        ModHandler.addShapedRecipe(true, "magnetium_wall_gt", GTLiteMetaBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(6),
+        ModHandler.addShapedRecipe(true, "magnetium_wall_gt", GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, Magnetium),
             'S', UnificationEntry(screw, Magnetium))
@@ -238,7 +238,7 @@ internal object MagnetiumChain
             .circuitMeta(11)
             .input(plate, Magnetium, 2)
             .input(screw, Magnetium)
-            .outputs(GTLiteMetaBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(3))
+            .outputs(GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(3))
             .EUt(7)
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()

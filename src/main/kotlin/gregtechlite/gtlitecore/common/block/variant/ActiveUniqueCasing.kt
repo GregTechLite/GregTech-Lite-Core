@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -15,9 +15,9 @@ enum class ActiveUniqueCasing(private val serializedName: String,
     TEMPERATURE_CONTROLLER("temperature_controller");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getState(this)
+        get() = GTLiteBlocks.ACTIVE_UNIQUE_CASING_01.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.ACTIVE_UNIQUE_CASING_01.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

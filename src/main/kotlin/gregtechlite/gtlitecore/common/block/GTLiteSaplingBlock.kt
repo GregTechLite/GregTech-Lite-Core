@@ -1,9 +1,8 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import net.minecraft.block.BlockBush
@@ -24,7 +23,7 @@ import net.minecraft.world.World
 import net.minecraftforge.common.EnumPlantType
 import java.util.*
 
-class GTLiteSaplingVariantBlock(private val offset: Int) : BlockBush(Material.LEAVES), IGrowable, TranslatableBlock
+class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), IGrowable, TranslatableBlock
 {
     companion object
     {
@@ -37,14 +36,14 @@ class GTLiteSaplingVariantBlock(private val offset: Int) : BlockBush(Material.LE
 
     init
     {
-        this.setTranslationKey("gtlite_sapling_$offset")
+        this.setTranslationKey("gtlitecore.sapling_$offset")
         this.setTickRandomly(true)
         this.setHardness(0.0f)
         this.setLightOpacity(1)
         this.setSoundType(SoundType.PLANT)
         this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
         // Add to SAPLINGS pool.
-        GTLiteMetaBlocks.SAPLINGS.add(this)
+        GTLiteBlocks.SAPLINGS.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): AbstractTree =

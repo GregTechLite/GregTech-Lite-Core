@@ -1,7 +1,8 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtech.api.items.toolitem.ToolClasses
 import gregtech.api.recipes.ModHandler
+import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.client.model.MaterialStateMapper
 import gregtech.client.model.modelfactories.MaterialBlockModelLoader
 import gregtech.common.ConfigHolder
@@ -31,16 +32,17 @@ abstract class BlockMetalWall private constructor() : BlockMaterialBase(Material
 
     init
     {
-        this.setTranslationKey("wall_gt")
-        this.setHardness(4.0f)
-        this.setResistance(8.0f)
-        this.setCreativeTab(GTCreativeTabs.TAB_GREGTECH_MATERIALS)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+        setTranslationKey("wall_gt")
+        setHardness(4.0f)
+        setResistance(8.0f)
+        setCreativeTab(GTCreativeTabs.TAB_GREGTECH_MATERIALS)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
     }
 
     companion object
     {
-        fun create(materials: Array<gregtech.api.unification.material.Material>): BlockMetalWall
+
+        fun create(materials: Array<GTMaterial>): BlockMetalWall
         {
             val property = PropertyMaterial.create("variant", materials)
             return object : BlockMetalWall()
@@ -48,6 +50,7 @@ abstract class BlockMetalWall private constructor() : BlockMaterialBase(Material
                 override fun getVariantProperty(): PropertyMaterial = property
             }
         }
+
     }
 
     override fun getHarvestTool(state: IBlockState): String
@@ -78,6 +81,7 @@ abstract class BlockMetalWall private constructor() : BlockMaterialBase(Material
 
     override fun getHarvestLevel(state: IBlockState) = 1
 
+    @Suppress("Deprecation")
     @Deprecated("Deprecated in Java")
     override fun getMaterial(state: IBlockState): Material
     {
@@ -95,8 +99,7 @@ abstract class BlockMetalWall private constructor() : BlockMaterialBase(Material
     override fun addInformation(stack: ItemStack,
                                 worldIn: World?,
                                 tooltip: MutableList<String?>,
-                                flagIn: ITooltipFlag
-    )
+                                flagIn: ITooltipFlag)
     {
         super.addInformation(stack, worldIn, tooltip, flagIn)
         if (ConfigHolder.misc.debug)

@@ -1,9 +1,8 @@
-package gregtechlite.gtlitecore.common.block.base
+package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import net.minecraft.block.BlockLog
@@ -14,7 +13,7 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
 
-class GTLiteLogVariantBlock(private val offset: Int) : BlockLog(), TranslatableBlock
+class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
 {
 
     companion object
@@ -26,13 +25,13 @@ class GTLiteLogVariantBlock(private val offset: Int) : BlockLog(), TranslatableB
 
     init
     {
-        this.setTranslationKey("gtlite_log_$offset")
+        this.setTranslationKey("gtlitecore.log_$offset")
         this.setHarvestLevel("axe", 0)
         this.defaultState = blockState.baseState
             .withProperty(LOG_AXIS, EnumAxis.Y)
         this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
         // Add to LOGS pool.
-        GTLiteMetaBlocks.LOGS.add(this)
+        GTLiteBlocks.LOGS.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): AbstractTree =

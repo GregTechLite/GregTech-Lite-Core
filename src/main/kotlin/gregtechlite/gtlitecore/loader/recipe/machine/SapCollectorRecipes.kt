@@ -9,7 +9,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.init.Blocks
 
 @Suppress("Deprecation")
@@ -42,7 +42,7 @@ internal object SapCollectorRecipes
             .EUt(VA[ULV])
             .duration(1 * SECOND)
             .blockStates("rainbow", arrayListOf(
-                GTLiteMetaBlocks.LOGS[2].getStateFromMeta(5)))
+                GTLiteBlocks.LOGS[2].getStateFromMeta(5)))
             .buildAndRegister()
     }
 

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -28,9 +28,9 @@ enum class MultiblockCasing(private val serializedName: String,
     HAMILTON_KILLING_FLOW_CONTROL_CASING("hamilton_killing_flow_control_casing");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getState(this)
+        get() = GTLiteBlocks.MULTIBLOCK_CASING_01.getState(this)
 
-    override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.MULTIBLOCK_CASING_01.getItemVariant(this, count)
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.MULTIBLOCK_CASING_01.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

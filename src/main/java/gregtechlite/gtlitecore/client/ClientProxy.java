@@ -5,7 +5,7 @@ import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram;
 import gregtechlite.gtlitecore.common.CommonProxy;
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks;
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event)
     {
-        GTLiteMetaBlocks.registerItemModels();
+        GTLiteBlocks.registerItemModels();
     }
 
 }

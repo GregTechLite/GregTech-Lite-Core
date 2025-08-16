@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block.variant
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -39,13 +39,13 @@ object NuclearReactorCore
         BERKELIUM("berkelium");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getState(this)
+            get() = GTLiteBlocks.NUCLEAR_REACTOR_CORE_01.getState(this)
 
         override val tier: Int
             get() = ordinal + 1
 
         override fun getStack(count: Int): ItemStack =
-            GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(this, count)
+            GTLiteBlocks.NUCLEAR_REACTOR_CORE_01.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -66,13 +66,13 @@ object NuclearReactorCore
         MENDELEVIUM("mendelevium");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getState(this)
+            get() = GTLiteBlocks.NUCLEAR_REACTOR_CORE_02.getState(this)
 
         override val tier: Int
             get() = ordinal + 9
 
         override fun getStack(count: Int): ItemStack =
-            GTLiteMetaBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(this, count)
+            GTLiteBlocks.NUCLEAR_REACTOR_CORE_02.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 

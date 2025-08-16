@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -113,9 +113,9 @@ object MetalCasing
         RED_STEEL("red_steel");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.METAL_CASING_01.getState(this)
+            get() = GTLiteBlocks.METAL_CASING_01.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.METAL_CASING_01.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.METAL_CASING_01.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -146,9 +146,9 @@ object MetalCasing
         TITANIUM_TUNGSTEN_CARBIDE("titanium_tungsten_carbide");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.METAL_CASING_02.getState(this)
+            get() = GTLiteBlocks.METAL_CASING_02.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.METAL_CASING_02.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.METAL_CASING_02.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 
@@ -172,9 +172,9 @@ object MetalCasing
         NITINOL_60("nitinol_60");
 
         override val state: IBlockState
-            get() = GTLiteMetaBlocks.METAL_CASING_03.getState(this)
+            get() = GTLiteBlocks.METAL_CASING_03.getState(this)
 
-        override fun getStack(count: Int): ItemStack = GTLiteMetaBlocks.METAL_CASING_03.getItemVariant(this, count)
+        override fun getStack(count: Int): ItemStack = GTLiteBlocks.METAL_CASING_03.getItemVariant(this, count)
 
         override fun getName(): String = serializedName
 

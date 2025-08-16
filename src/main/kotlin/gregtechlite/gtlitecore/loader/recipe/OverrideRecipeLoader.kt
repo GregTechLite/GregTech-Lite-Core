@@ -139,7 +139,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WoodsGlass
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_INDUCTOR
@@ -209,14 +209,14 @@ internal object OverrideRecipeLoader
         // Sand -> Dust Block
         FORGE_HAMMER_RECIPES.recipeBuilder()
             .inputs(ItemStack(Blocks.SAND))
-            .outputs(ItemStack(GTLiteMetaBlocks.DUST_BLOCK))
+            .outputs(ItemStack(GTLiteBlocks.DUST_BLOCK))
             .EUt(VH[LV])
             .duration(10 * TICK)
             .buildAndRegister()
 
         // Dust Block + H2O -> Clay
         CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .inputs(ItemStack(GTLiteMetaBlocks.DUST_BLOCK))
+            .inputs(ItemStack(GTLiteBlocks.DUST_BLOCK))
             .fluidInputs(Water.getFluid(1000))
             .outputs(ItemStack(Blocks.CLAY))
             .EUt(VA[LV])

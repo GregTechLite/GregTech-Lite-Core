@@ -20,8 +20,8 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
-import gregtechlite.gtlitecore.common.block.base.GTLiteStoneVariantBlock
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 
 // TODO Rebuild to StoneTypeEntry + StoneRecipeLoader?
 internal object StoneVariantRecipeProducer
@@ -34,20 +34,20 @@ internal object StoneVariantRecipeProducer
             
         for (variant in GTLiteStoneVariantBlock.StoneType.entries)
         {
-            val stoneSmooth = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]!!.getItemVariant(variant)
-            val stonePolished = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.POLISHED]!!.getItemVariant(variant)
-            val stoneChiseled = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.CHISELED]!!.getItemVariant(variant)
-            val cobblestone = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.COBBLE]!!.getItemVariant(variant)
-            val cobblestoneMossy = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.COBBLE_MOSSY]!!.getItemVariant(variant)
-            val bricks = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS]!!.getItemVariant(variant)
-            val bricksCracked = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_CRACKED]!!.getItemVariant(variant)
-            val bricksMossy = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_MOSSY]!!.getItemVariant(variant)
-            val bricksSmall = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_SMALL]!!.getItemVariant(variant)
-            val bricksSquare = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_SQUARE]!!.getItemVariant(variant)
-            val tiles = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.TILED]!!.getItemVariant(variant)
-            val tilesSmall = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.TILED_SMALL]!!.getItemVariant(variant)
-            val tilesWindmillA = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.WINDMILL_A]!!.getItemVariant(variant)
-            val tilesWindmillB = GTLiteMetaBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.WINDMILL_B]!!.getItemVariant(variant)
+            val stoneSmooth = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.SMOOTH]!!.getItemVariant(variant)
+            val stonePolished = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.POLISHED]!!.getItemVariant(variant)
+            val stoneChiseled = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.CHISELED]!!.getItemVariant(variant)
+            val cobblestone = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.COBBLE]!!.getItemVariant(variant)
+            val cobblestoneMossy = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.COBBLE_MOSSY]!!.getItemVariant(variant)
+            val bricks = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS]!!.getItemVariant(variant)
+            val bricksCracked = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_CRACKED]!!.getItemVariant(variant)
+            val bricksMossy = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_MOSSY]!!.getItemVariant(variant)
+            val bricksSmall = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_SMALL]!!.getItemVariant(variant)
+            val bricksSquare = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.BRICKS_SQUARE]!!.getItemVariant(variant)
+            val tiles = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.TILED]!!.getItemVariant(variant)
+            val tilesSmall = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.TILED_SMALL]!!.getItemVariant(variant)
+            val tilesWindmillA = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.WINDMILL_A]!!.getItemVariant(variant)
+            val tilesWindmillB = GTLiteBlocks.STONES[GTLiteStoneVariantBlock.StoneVariant.WINDMILL_B]!!.getItemVariant(variant)
 
             // Cobblestone smelting to smooth stone.
             ModHandler.addSmeltingRecipe(cobblestone, stoneSmooth)

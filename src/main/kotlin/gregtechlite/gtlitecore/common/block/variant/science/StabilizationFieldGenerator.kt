@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.variant.science
 
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.IStringSerializable
@@ -22,10 +22,10 @@ enum class StabilizationFieldGenerator(private val serializedName: String,
     GALLIFREYAN("gallifreyan");
 
     override val state: IBlockState
-        get() = GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR.getState(this)
+        get() = GTLiteBlocks.STABILIZATION_FIELD_GENERATOR.getState(this)
 
     override fun getStack(count: Int): ItemStack =
-        GTLiteMetaBlocks.STABILIZATION_FIELD_GENERATOR.getItemVariant(this, count)
+        GTLiteBlocks.STABILIZATION_FIELD_GENERATOR.getItemVariant(this, count)
 
     override fun getName(): String = serializedName
 

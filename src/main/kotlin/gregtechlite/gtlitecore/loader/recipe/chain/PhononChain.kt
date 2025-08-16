@@ -4,18 +4,15 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
-import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Copper
-import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Krypton
 import gregtech.api.unification.material.Materials.NetherStar
@@ -34,7 +31,6 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
@@ -55,9 +51,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarks
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
@@ -75,7 +69,7 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NAQUADRIA_SUPERSOLID
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PHONONIC_SEED_CRYSTAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TOPOLOGICAL_INSULATOR_TUBE
@@ -504,7 +498,7 @@ internal object PhononChain
             .buildAndRegister()
 
         // wallGtMagMatter
-        ModHandler.addShapedRecipe(true, "mag_matter_wall_gt", GTLiteMetaBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(6),
+        ModHandler.addShapedRecipe(true, "mag_matter_wall_gt", GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, MagMatter),
             'S', UnificationEntry(screw, MagMatter))
@@ -513,13 +507,13 @@ internal object PhononChain
             .circuitMeta(11)
             .input(plate, MagMatter, 2)
             .input(screw, MagMatter)
-            .outputs(GTLiteMetaBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(3))
+            .outputs(GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(3))
             .EUt(7)
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
 
         // Halkonite Steel Sheeted Frame
-        ModHandler.addShapedRecipe(true, "mag_matter_sheeted_frame", GTLiteMetaBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(12),
+        ModHandler.addShapedRecipe(true, "mag_matter_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, MagMatter),
             'F', UnificationEntry(frameGt, MagMatter))
@@ -528,7 +522,7 @@ internal object PhononChain
             .circuitMeta(10)
             .input(plate, MagMatter, 3)
             .input(frameGt, MagMatter)
-            .outputs(GTLiteMetaBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(6))
+            .outputs(GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(6))
             .EUt(7) // ULV
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()

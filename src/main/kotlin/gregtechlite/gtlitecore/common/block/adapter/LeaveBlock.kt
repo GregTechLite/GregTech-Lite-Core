@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block.adapter
 
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
-import gregtechlite.gtlitecore.common.block.GTLiteMetaBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.common.registry.GameRegistry
@@ -27,16 +27,16 @@ enum class LeaveBlock : BlockVariant
         {
             if (this.ordinal >= 8)
             {
-                GTLiteMetaBlocks.LEAVES[2].getStateFromMeta((this.ordinal - 8) * 4)
+                GTLiteBlocks.LEAVES[2].getStateFromMeta((this.ordinal - 8) * 4)
             }
             else
             {
-                GTLiteMetaBlocks.LEAVES[1].getStateFromMeta((this.ordinal - 4) * 4)
+                GTLiteBlocks.LEAVES[1].getStateFromMeta((this.ordinal - 4) * 4)
             }
         }
         else
         {
-            GTLiteMetaBlocks.LEAVES[0].getStateFromMeta(this.ordinal * 4)
+            GTLiteBlocks.LEAVES[0].getStateFromMeta(this.ordinal * 4)
         }
 
     override fun getStack(count: Int): ItemStack
@@ -45,16 +45,16 @@ enum class LeaveBlock : BlockVariant
         {
             if (this.ordinal >= 8)
             {
-                GameRegistry.makeItemStack("$MOD_ID:gtlite_leaves_2", (this.ordinal - 8) * 4, count, null)
+                GameRegistry.makeItemStack("$MOD_ID:leaves_2", (this.ordinal - 8) * 4, count, null)
             }
             else
             {
-                GameRegistry.makeItemStack("$MOD_ID:gtlite_leaves_1", (this.ordinal - 4) * 4, count, null)
+                GameRegistry.makeItemStack("$MOD_ID:leaves_1", (this.ordinal - 4) * 4, count, null)
             }
         }
         else
         {
-            GameRegistry.makeItemStack("$MOD_ID:gtlite_leaves_0", this.ordinal * 4, count, null)
+            GameRegistry.makeItemStack("$MOD_ID:leaves_0", this.ordinal * 4, count, null)
         }
     }
 
