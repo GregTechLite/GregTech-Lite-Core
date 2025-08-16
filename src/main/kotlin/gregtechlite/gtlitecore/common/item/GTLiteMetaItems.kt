@@ -336,6 +336,8 @@ object GTLiteMetaItems
     lateinit var EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP: MetaItem<*>.MetaValueItem
     lateinit var AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP: MetaItem<*>.MetaValueItem
     lateinit var EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var SPIN_FOAM_ANNIHILATED_RAM_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP: MetaItem<*>.MetaValueItem
 
     lateinit var WRAP_COATED_BOARD: MetaItem<*>.MetaValueItem
     lateinit var WRAP_PHENOLIC_BOARD: MetaItem<*>.MetaValueItem
@@ -1185,6 +1187,8 @@ object GTLiteMetaItems
         EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP = item(2414, "wafer.chip.excited_exotic_atom_restrict_central_processing_unit")
         AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP = item(2415, "wafer.chip.amplitude_duality_disturbance_ram")
         EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP = item(2416, "wafer.chip.excitation_spectrum_composite_logical_gate")
+        SPIN_FOAM_ANNIHILATED_RAM_CHIP = item(2417, "wafer.chip.spin_foam_annihilated_ram")
+        TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP = item(2418, "wafer.chip.temporal_scale_worldsheet_logical_gate")
 
         // 3001-5000: Wrap Components
         WRAP_COATED_BOARD = item(3001, "wrap.board.coated")

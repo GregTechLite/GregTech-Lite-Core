@@ -1242,6 +1242,10 @@ metaitem.wafer.chip.amplitude_duality_disturbance_ram.name=振幅对偶扰动随
 metaitem.wafer.chip.amplitude_duality_disturbance_ram.tooltip=振幅对偶扰动随机存取存储器
 metaitem.wafer.chip.excitation_spectrum_composite_logical_gate.name=激发谱豁免复合逻辑门（ESCLG）晶片
 metaitem.wafer.chip.excitation_spectrum_composite_logical_gate.tooltip=激发谱豁免复合逻辑门
+metaitem.wafer.chip.spin_foam_annihilated_ram.name=自旋泡沫消解随机存取存储器（SFARAM）晶片
+metaitem.wafer.chip.spin_foam_annihilated_ram.tooltip=自旋泡沫消解随机存取存储器
+metaitem.wafer.chip.temporal_scale_worldsheet_logical_gate.name=时间刻度世界面计算逻辑门（TSWLG）晶片
+metaitem.wafer.chip.temporal_scale_worldsheet_logical_gate.tooltip=时间刻度世界面转移逻辑门
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板

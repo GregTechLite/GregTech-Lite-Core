@@ -320,8 +320,8 @@ object GTLiteElementMaterials
             .color(0xE0156D).iconSet(BRIGHT)
             .element(Sh)
             .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
+                   GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING,
+                   GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_NANITE)
             .rotorStats(144.0F, 2.4F, 786432)
             .build()
 
@@ -366,8 +366,8 @@ object GTLiteElementMaterials
             .color(0x460046).iconSet(SHINY)
             .element(Crx)
             .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND)
+                   GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING,
+                   GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
                 b.temp(24000, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 2 * MINUTE + 40 * SECOND)

@@ -3141,7 +3141,7 @@ object GTLiteFirstDegreeMaterials
             .color(0x3C0505).iconSet(SHINY)
             .components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13, ActiniumSuperhydride, 8)
             .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                GENERATE_FINE_WIRE)
+                GENERATE_FINE_WIRE, GENERATE_NANITE)
             .blast { b ->
                 b.temp(22000, BlastProperty.GasTier.HIGHEST) // Error
                     .blastStats(VA[UXV], 20 * SECOND)
@@ -3271,7 +3271,8 @@ object GTLiteFirstDegreeMaterials
             .ingot()
             .fluid()
             .iconSet(WHITE_DWARF)
-            .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_NANITE)
+            .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                   GENERATE_FRAME, GENERATE_NANITE)
             .cableProperties(V[OpV], 108, 36)
             .build()
 

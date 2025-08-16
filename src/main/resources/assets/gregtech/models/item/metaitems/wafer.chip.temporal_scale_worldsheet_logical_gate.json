@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures" : {
+    "layer0": "gtlitecore:items/metaitems/wafer.chip.temporal_scale_worldsheet_logical_gate"
+  }
+}

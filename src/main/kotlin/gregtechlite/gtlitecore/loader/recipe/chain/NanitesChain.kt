@@ -58,13 +58,20 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumHexaboride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYVO
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAVITON_SHARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_IMC_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
@@ -313,6 +320,40 @@ internal object NanitesChain
             .output(nanite, MagMatter, 4)
             .EUt(2_000_000_000) // MAX
             .duration(2 * MINUTE)
+            .tier(3)
+            .buildAndRegister()
+
+        // Shirabon Nanite (for Supracausal Circuit Component recipes)
+        NANO_FORGE_RECIPES.recipeBuilder()
+            .notConsumable(lens, LanthanumHexaboride)
+            .notConsumable(QUANTUM_ANOMALY)
+            .input(nanite, Neutronium)
+            .input(block, Shirabon, 8)
+            .input(GRAVITON_SHARD)
+            .input(circuit, Tier.UHV)
+            .fluidInputs(Creon.getPlasma(L * 16))
+            .fluidInputs(WhiteDwarfMatter.getFluid(L * 64))
+            .fluidInputs(BlackDwarfMatter.getFluid(L * 64))
+            .output(nanite, Shirabon, 16)
+            .EUt(4_800_000_000) // MAX+
+            .duration(2 * MINUTE + 30 * SECOND)
+            .tier(3)
+            .buildAndRegister()
+
+        // Mellion Nanite (for Supracausal Circuit Component recipes)
+        NANO_FORGE_RECIPES.recipeBuilder()
+            .notConsumable(lens, LuTmYVO)
+            .notConsumable(ENERGISED_TESSERACT)
+            .input(nanite, Copper)
+            .input(block, Mellion, 8)
+            .input(GRAVITON_SHARD)
+            .input(circuit, Tier.UHV)
+            .fluidInputs(ActiniumSuperhydride.getPlasma(50_000))
+            .fluidInputs(RawStarMatter.getPlasma(50_000))
+            .fluidInputs(Universium.getFluid(L * 16))
+            .output(nanite, Mellion, 16)
+            .EUt(4_800_000_000) // MAX+
+            .duration(2 * MINUTE + 30 * SECOND)
             .tier(3)
             .buildAndRegister()
 

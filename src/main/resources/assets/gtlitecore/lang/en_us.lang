@@ -1240,6 +1240,10 @@ metaitem.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.name=Ex
 metaitem.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.tooltip=激发态奇异原子约束中央处理器
 metaitem.wafer.chip.amplitude_duality_disturbance_ram.name=Amplitude Duality Disturbance RAM
 metaitem.wafer.chip.amplitude_duality_disturbance_ram.tooltip=Amplitude Duality Disturbance Random Access Memory
+metaitem.wafer.chip.spin_foam_annihilated_ram.name=Spin Foam Annihilated RAM
+metaitem.wafer.chip.spin_foam_annihilated_ram.tooltip=Spin Foam Annihilated Random Access Memory
+metaitem.wafer.chip.temporal_scale_worldsheet_logical_gate.name=Temporal-Scale Worldsheet Transform Logical Gate
+metaitem.wafer.chip.temporal_scale_worldsheet_logical_gate.tooltip=Temporal-Scale Worldsheet Logical Gate
 
 metaitem.wrap.board.coated.name=封装覆膜电路基板
 metaitem.wrap.board.phenolic.name=封装酚醛树脂电路基板

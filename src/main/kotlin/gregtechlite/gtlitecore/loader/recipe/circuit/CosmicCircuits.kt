@@ -587,6 +587,7 @@ internal object CosmicCircuits
             .output(COSMIC_PROCESSOR_UEV, 4)
             .EUt(VA[UIV])
             .duration(10 * SECOND)
+            .cleanroom(CleanroomType.CLEANROOM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
@@ -600,6 +601,7 @@ internal object CosmicCircuits
             .output(COSMIC_PROCESSOR_UEV, 4)
             .EUt(VA[UIV])
             .duration(5 * SECOND)
+            .cleanroom(CleanroomType.CLEANROOM)
             .buildAndRegister()
 
         // Cosmic Assembly
