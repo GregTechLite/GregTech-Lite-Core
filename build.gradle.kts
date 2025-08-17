@@ -41,7 +41,7 @@ java {
         vendor.set(JvmVendorSpec.AZUL)
     }
     // Generate sources and Javadocs jars when building and publishing.
-    withSourcesJar()
+    // withSourcesJar()
 }
 
 kotlin {

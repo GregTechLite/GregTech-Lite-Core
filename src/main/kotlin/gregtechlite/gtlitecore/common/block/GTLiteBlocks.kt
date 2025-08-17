@@ -4,13 +4,10 @@ import com.google.common.collect.ImmutableMap
 import gregtech.api.GregTechAPI
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.block.VariantBlock
-import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.PropertyKey
-import gregtechlite.magicbook.client.Games
-import gregtechlite.magicbook.util.Checks
-import gregtechlite.magicbook.util.Unchecks
+import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
@@ -26,9 +23,10 @@ import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
-import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
+import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
+import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.component.ConveyorCasing
 import gregtechlite.gtlitecore.common.block.variant.component.EmitterCasing
 import gregtechlite.gtlitecore.common.block.variant.component.FieldGenCasing
@@ -43,17 +41,19 @@ import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCryostat
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionDivertor
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionVacuum
+import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.SpacetimeCompressionFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.StabilizationFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFieldGenerator
-import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
-import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.worldgen.crops.WorldGenBerries
 import gregtechlite.gtlitecore.common.worldgen.crops.WorldGenCrops
 import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
 import gregtechlite.gtlitecore.common.worldgen.trees.WorldGenTrees
-import gregtechlite.gtlitecore.mixins.gregtech.client.AccessorMetaBlocks
+import gregtechlite.magicbook.client.Games
+import gregtechlite.magicbook.util.Checks
+import gregtechlite.magicbook.util.Unchecks
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.block.Block
 import net.minecraft.block.BlockFalling
 import net.minecraft.block.BlockLog
@@ -69,6 +69,7 @@ import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
+import gregtech.api.unification.material.Material as GTMaterial
 
 @Suppress("Deprecation")
 object GTLiteBlocks
@@ -471,12 +472,12 @@ object GTLiteBlocks
     fun registerItemModels()
     {
         // Initialized stones and its variant blocks.
-        STONES.values.forEach(AccessorMetaBlocks::registerItemModel)
+        STONES.values.forEach(::registerItemModel)
 
         // Initialized tree related blocks.
-        LEAVES.forEach(AccessorMetaBlocks::registerItemModel)
-        SAPLINGS.forEach(AccessorMetaBlocks::registerItemModel)
-        SAPLINGS.forEach { block -> AccessorMetaBlocks.registerItemModel(block)
+        LEAVES.forEach(::registerItemModel)
+        SAPLINGS.forEach(::registerItemModel)
+        SAPLINGS.forEach { block -> registerItemModel(block)
             (0 .. 7).forEach { meta ->
                 ModelLoader.setCustomModelResourceLocation(
                     Item.getItemFromBlock(block), meta shl 1,
@@ -485,16 +486,14 @@ object GTLiteBlocks
         }
 
         LOGS.forEach { block ->
-            AccessorMetaBlocks.registerItemModelWithOverride(block,
-                mapOf(BlockLog.LOG_AXIS to BlockLog.EnumAxis.Y))
+            registerItemModelWithOverride(block, mapOf(BlockLog.LOG_AXIS to BlockLog.EnumAxis.Y))
         }
 
-        PLANKS.forEach(AccessorMetaBlocks::registerItemModel)
+        PLANKS.forEach(::registerItemModel)
 
         // Initialized wooden slabs.
-        AccessorMetaBlocks.registerItemModelWithOverride(WOOD_SLABS,
-            ImmutableMap.of<IProperty<*>, Comparable<*>>(BlockSlab.HALF,
-                    BlockSlab.EnumBlockHalf.BOTTOM))
+        registerItemModelWithOverride(WOOD_SLABS, ImmutableMap.of(
+            BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM))
 
         // Initialized wooden stairs.
         setModelLocation(BANANA_WOOD_STAIR)
@@ -538,40 +537,40 @@ object GTLiteBlocks
         setModelLocation(DIMENSION_DISPLAY_NETHER)
         setModelLocation(DIMENSION_DISPLAY_END)
 
-        AccessorMetaBlocks.registerItemModel(NAQUADRIA_CHARGE)
-        AccessorMetaBlocks.registerItemModel(TARANIUM_CHARGE)
-        AccessorMetaBlocks.registerItemModel(LEPTONIC_CHARGE)
-        AccessorMetaBlocks.registerItemModel(QUANTUM_CHROMODYNAMIC_CHARGE)
+        registerItemModel(NAQUADRIA_CHARGE)
+        registerItemModel(TARANIUM_CHARGE)
+        registerItemModel(LEPTONIC_CHARGE)
+        registerItemModel(QUANTUM_CHROMODYNAMIC_CHARGE)
 
         // Initialized meta blocks.
-        AccessorMetaBlocks.registerItemModel(MOTOR_CASING)
-        AccessorMetaBlocks.registerItemModel(PISTON_CASING)
-        AccessorMetaBlocks.registerItemModel(PUMP_CASING)
-        AccessorMetaBlocks.registerItemModel(CONVEYOR_CASING)
-        AccessorMetaBlocks.registerItemModel(ROBOT_ARM_CASING)
-        AccessorMetaBlocks.registerItemModel(EMITTER_CASING)
-        AccessorMetaBlocks.registerItemModel(SENSOR_CASING)
-        AccessorMetaBlocks.registerItemModel(FIELD_GEN_CASING)
-        AccessorMetaBlocks.registerItemModel(PROCESSOR_CASING)
+        registerItemModel(MOTOR_CASING)
+        registerItemModel(PISTON_CASING)
+        registerItemModel(PUMP_CASING)
+        registerItemModel(CONVEYOR_CASING)
+        registerItemModel(ROBOT_ARM_CASING)
+        registerItemModel(EMITTER_CASING)
+        registerItemModel(SENSOR_CASING)
+        registerItemModel(FIELD_GEN_CASING)
+        registerItemModel(PROCESSOR_CASING)
 
-        AccessorMetaBlocks.registerItemModel(PRIMITIVE_CASING)
-        AccessorMetaBlocks.registerItemModel(METAL_CASING_01)
-        AccessorMetaBlocks.registerItemModel(METAL_CASING_02)
-        AccessorMetaBlocks.registerItemModel(METAL_CASING_03)
-        AccessorMetaBlocks.registerItemModel(MULTIBLOCK_CASING_01)
-        AccessorMetaBlocks.registerItemModel(BOILER_CASING_01)
-        AccessorMetaBlocks.registerItemModel(TURBINE_CASING_01)
-        AccessorMetaBlocks.registerItemModel(TURBINE_CASING_02)
-        AccessorMetaBlocks.registerItemModel(SCIENCE_CASING_01)
-        AccessorMetaBlocks.registerItemModel(SPACETIME_COMPRESSION_FIELD_GENERATOR)
-        AccessorMetaBlocks.registerItemModel(TIME_ACCELERATION_FIELD_GENERATOR)
-        AccessorMetaBlocks.registerItemModel(STABILIZATION_FIELD_GENERATOR)
-        AccessorMetaBlocks.registerItemModel(AEROSPACE_CASING)
-        AccessorMetaBlocks.registerItemModel(CRUCIBLE)
-        AccessorMetaBlocks.registerItemModel(COMPONENT_ASSEMBLY_CASING)
-        AccessorMetaBlocks.registerItemModel(TRANSPARENT_CASING_01)
-        AccessorMetaBlocks.registerItemModel(TRANSPARENT_CASING_02)
-        AccessorMetaBlocks.registerItemModel(TRANSPARENT_CASING_03)
+        registerItemModel(PRIMITIVE_CASING)
+        registerItemModel(METAL_CASING_01)
+        registerItemModel(METAL_CASING_02)
+        registerItemModel(METAL_CASING_03)
+        registerItemModel(MULTIBLOCK_CASING_01)
+        registerItemModel(BOILER_CASING_01)
+        registerItemModel(TURBINE_CASING_01)
+        registerItemModel(TURBINE_CASING_02)
+        registerItemModel(SCIENCE_CASING_01)
+        registerItemModel(SPACETIME_COMPRESSION_FIELD_GENERATOR)
+        registerItemModel(TIME_ACCELERATION_FIELD_GENERATOR)
+        registerItemModel(STABILIZATION_FIELD_GENERATOR)
+        registerItemModel(AEROSPACE_CASING)
+        registerItemModel(CRUCIBLE)
+        registerItemModel(COMPONENT_ASSEMBLY_CASING)
+        registerItemModel(TRANSPARENT_CASING_01)
+        registerItemModel(TRANSPARENT_CASING_02)
+        registerItemModel(TRANSPARENT_CASING_03)
 
         ACTIVE_UNIQUE_CASING_01.onModelRegister()
         FUSION_CASING.onModelRegister()
@@ -766,9 +765,40 @@ object GTLiteBlocks
     private fun createMetalWallBlock(materials: Array<GTMaterial>, index: Int)
     {
         val block = BlockMetalWall.create(materials)
-        (block as? Block)?.registryName = GTLiteMod.id("meta_block_wall_gt_$index")
+        block.registryName = GTLiteMod.id("meta_block_wall_gt_$index")
         materials.forEach { METAL_WALLS[it] = block }
         METAL_WALL_BLOCKS.add(block)
+    }
+
+    // endregion
+
+    // region Block Model Factory Methods
+
+    @SideOnly(Side.CLIENT)
+    private fun registerItemModel(block: Block)
+    {
+        for (state in block.blockState.validStates)
+        {
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
+                block.getMetaFromState(state),
+                ModelResourceLocation(Checks.notnullM(block.getRegistryName()),
+                    MetaBlocks.statePropertiesToString(state.getProperties())))
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun registerItemModelWithOverride(block: Block,
+                                              stateOverrides: Map<IProperty<*>, Comparable<*>>)
+    {
+        for (state in block.blockState.validStates)
+        {
+            val stringProperties = Object2ObjectOpenHashMap(state.getProperties())
+            stringProperties.putAll(stateOverrides)
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
+                block.getMetaFromState(state),
+                ModelResourceLocation(Checks.notnullM(block.getRegistryName()),
+                    MetaBlocks.statePropertiesToString(stringProperties)))
+        }
     }
 
     // endregion

@@ -1,3 +1,4 @@
+@file:Suppress("Deprecation")
 package gregtechlite.gtlitecore.client.model
 
 import com.google.common.collect.HashBasedTable
@@ -6,7 +7,6 @@ import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.mixins.minecraft.client.AccessorModelLoader
 import gregtechlite.magicbook.integration.Mods
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.client.Minecraft
@@ -18,9 +18,11 @@ import net.minecraft.util.registry.IRegistry
 import net.minecraftforge.client.event.ModelBakeEvent
 import net.minecraftforge.client.event.TextureStitchEvent
 import net.minecraftforge.client.model.IModel
+import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.client.model.ModelLoaderRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.relauncher.ReflectionHelper
 import net.minecraftforge.fml.relauncher.Side
 
 /**
@@ -51,8 +53,7 @@ object MaterialBlockStateLoader
     }
 
     fun loadItemModel(iconType: MaterialIconType,
-                      iconSet: MaterialIconSet
-    ): ModelResourceLocation
+                      iconSet: MaterialIconSet): ModelResourceLocation
     {
         return ENTRIES.computeIfAbsent(ModelEntry(iconType, iconSet, null)) { modelEntry ->
             createModelId(modelEntry, "inventory")
@@ -76,16 +77,20 @@ object MaterialBlockStateLoader
             entry.modelCache = loadModel(event, entry)
     }
 
-    @Suppress("CAST_NEVER_SUCCEEDS", "Deprecation")
     @SubscribeEvent
     fun onModelBake(event: ModelBakeEvent)
     {
-        /*val stateModels = if (Mods.CTM.isActive) (event.modelLoader as AccessorModelLoader).stateModels else null*/
-        val stateModels: MutableMap<ModelResourceLocation, IModel>? = if (Mods.CTM.isActive)
-            (event.modelLoader as AccessorModelLoader).stateModels else null
-
         ENTRIES.entries.forEach { modelEntry ->
-            bakeAndRegister(event.modelRegistry, modelEntry.key?.modelCache, modelEntry.value, stateModels)
+            if (Mods.CTM.isActive)
+            {
+                val stateModels = ReflectionHelper.getPrivateValue<MutableMap<ModelResourceLocation, IModel>, ModelLoader>(
+                    ModelLoader::class.java, event.modelLoader, "stateModels", null)
+                bakeAndRegister(event.modelRegistry, modelEntry.key?.modelCache, modelEntry.value, stateModels)
+            }
+            else
+            {
+                bakeAndRegister(event.modelRegistry, modelEntry.key?.modelCache, modelEntry.value, null)
+            }
         }
     }
 
