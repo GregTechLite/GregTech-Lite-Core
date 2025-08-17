@@ -227,7 +227,7 @@ tasks.withType<Jar> {
             }
         }
         if (usesAccessTransformer.toBoolean()) {
-            attributeMap["FMLAT"] = modName + "_at.cfg"
+            attributeMap["FMLAT"] = modId + "_at.cfg"
         }
         attributes(attributeMap)
     }
