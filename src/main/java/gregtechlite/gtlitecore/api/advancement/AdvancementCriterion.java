@@ -4,7 +4,7 @@ import net.minecraft.advancements.ICriterionInstance;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 
-public interface IAdvancementCriterion extends ICriterionInstance
+public interface AdvancementCriterion extends ICriterionInstance
 {
 
     boolean test(EntityPlayerMP player);

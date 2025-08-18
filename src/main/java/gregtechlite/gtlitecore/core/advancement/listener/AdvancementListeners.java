@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.core.advancement.listener;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import gregtechlite.gtlitecore.api.advancement.IAdvancementCriterion;
+import gregtechlite.gtlitecore.api.advancement.AdvancementCriterion;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Internal
-public class AdvancementListeners<T extends IAdvancementCriterion>
+public class AdvancementListeners<T extends AdvancementCriterion>
 {
 
     private final PlayerAdvancements advancements;

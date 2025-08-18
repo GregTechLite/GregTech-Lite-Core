@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemComponent;
-import gregtechlite.gtlitecore.client.renderer.IItemRenderer;
-import gregtechlite.gtlitecore.client.renderer.IItemRendererManager;
+import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
+import gregtechlite.gtlitecore.client.renderer.ItemRendererManager;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,15 +12,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(value = MetaItem.MetaValueItem.class, remap = false)
-public abstract class MixinMetaValueItem implements IItemRenderer
+public abstract class MixinMetaValueItem implements CustomItemRenderer
 {
 
     @Unique
-    private IItemRendererManager gtlitecore$rendererManager;
+    private ItemRendererManager gtlitecore$rendererManager;
 
     @Unique
     @Override
-    public IItemRendererManager getRendererManager()
+    public ItemRendererManager getRendererManager()
     {
         return gtlitecore$rendererManager;
     }
@@ -36,9 +36,9 @@ public abstract class MixinMetaValueItem implements IItemRenderer
                                            int var3, int var4,
                                            IItemComponent itemComponent)
     {
-        if (itemComponent instanceof IItemRendererManager)
+        if (itemComponent instanceof ItemRendererManager)
         {
-            gtlitecore$rendererManager = (IItemRendererManager) itemComponent;
+            gtlitecore$rendererManager = (ItemRendererManager) itemComponent;
         }
     }
 

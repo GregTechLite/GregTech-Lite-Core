@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.client.renderer.handler;
 
 import codechicken.lib.model.ModelRegistryHelper;
-import gregtechlite.gtlitecore.client.model.IWrappedModelGetter;
+import gregtechlite.gtlitecore.client.model.WrappedModelGetter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -30,7 +30,7 @@ public abstract class WrappedItemRenderer extends PerspectiveAwareItemRenderer
         this.wrapped = model;
     }
 
-    public WrappedItemRenderer(IModelState state, IWrappedModelGetter getter)
+    public WrappedItemRenderer(IModelState state, WrappedModelGetter getter)
     {
         super(state);
         ModelRegistryHelper.registerPreBakeCallback(modelRegistry ->

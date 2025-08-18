@@ -1,10 +1,10 @@
 package gregtechlite.gtlitecore.core.module
 
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.module.IModule
+import gregtechlite.gtlitecore.api.module.CustomModule
 import net.minecraft.util.ResourceLocation
 
-abstract class BaseModule : IModule
+abstract class BaseModule : CustomModule
 {
 
     @get:JvmName("_dependencyUids")

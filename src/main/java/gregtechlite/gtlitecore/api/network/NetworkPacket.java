@@ -9,12 +9,12 @@ import net.minecraft.network.PacketBuffer;
  * To implement a new network packet, implement both {@link #encode} and {@link #decode} and register
  * the packet to object in API registry ({@link GTLiteAPI}). Additionally, do one of the following:
  * <ul>
- *     <li>If this network packet is to be received on the server side, implement {@link IServerExecutor}.</li>
- *     <li>If this network packet is to be received on the client side, implement {@link IClientExecutor}.</li>
+ *     <li>If this network packet is to be received on the server side, implement {@link ServerExecutor}.</li>
+ *     <li>If this network packet is to be received on the client side, implement {@link ClientExecutor}.</li>
  * </ul>
  * Lastly, add a no-args constructor to the network packet class.
  */
-public interface INetworkPacket
+public interface NetworkPacket
 {
 
     /**

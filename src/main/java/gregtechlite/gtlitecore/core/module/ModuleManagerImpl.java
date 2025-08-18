@@ -2,11 +2,12 @@ package gregtechlite.gtlitecore.core.module;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
+import gregtechlite.magicbook.util.SidedLogger;
 import gregtechlite.magicbook.util.Unchecks;
 import lombok.Getter;
-import gregtechlite.gtlitecore.api.module.IModule;
-import gregtechlite.gtlitecore.api.module.IModuleContainer;
-import gregtechlite.gtlitecore.api.module.IModuleManager;
+import gregtechlite.gtlitecore.api.module.CustomModule;
+import gregtechlite.gtlitecore.api.module.CustomModuleContainer;
+import gregtechlite.gtlitecore.api.module.ModuleManager;
 import gregtechlite.gtlitecore.api.module.Module;
 import gregtechlite.gtlitecore.api.module.ModuleContainer;
 import gregtechlite.gtlitecore.api.module.ModuleStage;
@@ -29,7 +30,6 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import one.util.streamex.MoreCollectors;
 import one.util.streamex.StreamEx;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.ApiStatus.Internal;
 
@@ -45,16 +45,15 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
-import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_NAME;
 
 @Internal
-public final class ModuleManager implements IModuleManager
+public final class ModuleManagerImpl implements ModuleManager
 {
 
     @Getter
-    public static final ModuleManager instance = new ModuleManager();
+    public static final ModuleManagerImpl instance = new ModuleManagerImpl();
 
-    private final Logger logger = LogManager.getLogger(MOD_NAME + " Module Loader");
+    private final Logger logger = new SidedLogger(MOD_ID + "-module-loader");
 
     // Module configuration file infos in default configuration folder.
     private static final String MODULE_CFG_FILE_NAME = "modules.cfg";
@@ -62,12 +61,12 @@ public final class ModuleManager implements IModuleManager
     private static File configFolder;
 
     // Stored cache of modules and module containers.
-    private Map<String, IModuleContainer> containers = new LinkedHashMap<>();
-    private final Map<ResourceLocation, IModule> sortedModules = new LinkedHashMap<>();
-    private final Set<IModule> loadedModules = new LinkedHashSet<>();
+    private Map<String, CustomModuleContainer> containers = new LinkedHashMap<>();
+    private final Map<ResourceLocation, CustomModule> sortedModules = new LinkedHashMap<>();
+    private final Set<CustomModule> loadedModules = new LinkedHashSet<>();
 
     // Current module container and stage.
-    private IModuleContainer currentContainer;
+    private CustomModuleContainer currentContainer;
     private ModuleStage currentStage = ModuleStage.C_SETUP;
 
     private Configuration config;
@@ -81,7 +80,7 @@ public final class ModuleManager implements IModuleManager
         return this.sortedModules.containsKey(namespace);
     }
 
-    public boolean isModuleEnabled(IModule module)
+    public boolean isModuleEnabled(CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
         String comment = this.getComment(module);
@@ -95,7 +94,7 @@ public final class ModuleManager implements IModuleManager
      * {@inheritDoc}
      */
     @Override
-    public IModuleContainer getLoadedContainer()
+    public CustomModuleContainer getLoadedContainer()
     {
         return this.currentContainer;
     }
@@ -122,7 +121,7 @@ public final class ModuleManager implements IModuleManager
      * {@inheritDoc}
      */
     @Override
-    public void registerContainer(IModuleContainer container)
+    public void registerContainer(CustomModuleContainer container)
     {
         if (this.currentStage != ModuleStage.C_SETUP)
         {
@@ -151,7 +150,7 @@ public final class ModuleManager implements IModuleManager
         this.currentStage = ModuleStage.M_SETUP;
         configFolder = new File(configDir, MOD_ID);
 
-        Map<String, List<IModule>> modules = this.getModules(dataTable);
+        Map<String, List<CustomModule>> modules = this.getModules(dataTable);
         this.configureModules(modules);
         StreamEx.of(this.loadedModules)
                 .peek(module -> this.currentContainer = this.containers.get(getContainerId(module)))
@@ -171,7 +170,7 @@ public final class ModuleManager implements IModuleManager
     public void onConstruction(FMLConstructionEvent event)
     {
         this.currentStage = ModuleStage.CONSTRUCTION;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Construction start");
@@ -184,13 +183,13 @@ public final class ModuleManager implements IModuleManager
     public void onPreInit(FMLPreInitializationEvent event)
     {
         this.currentStage = ModuleStage.PRE_INIT;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Registering packets");
             module.registerPackets();
         }
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Pre-Init start");
@@ -204,7 +203,7 @@ public final class ModuleManager implements IModuleManager
     public void onInit(FMLInitializationEvent event)
     {
         this.currentStage = ModuleStage.INIT;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Init start");
@@ -218,7 +217,7 @@ public final class ModuleManager implements IModuleManager
     public void onPostInit(FMLPostInitializationEvent event)
     {
         this.currentStage = ModuleStage.POST_INIT;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Post-Init start");
@@ -231,7 +230,7 @@ public final class ModuleManager implements IModuleManager
     public void onLoadComplete(FMLLoadCompleteEvent event)
     {
         currentStage = ModuleStage.LOAD_COMPLETE;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Load Complete start");
@@ -244,7 +243,7 @@ public final class ModuleManager implements IModuleManager
     public void onServerAboutToStart(FMLServerAboutToStartEvent event)
     {
         this.currentStage = ModuleStage.SERVER_ABOUT_TO_START;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Server About To Start start");
@@ -257,7 +256,7 @@ public final class ModuleManager implements IModuleManager
     public void onServerStarting(FMLServerStartingEvent event)
     {
         this.currentStage = ModuleStage.SERVER_STARTING;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Server Starting start");
@@ -270,7 +269,7 @@ public final class ModuleManager implements IModuleManager
     public void onServerStarted(FMLServerStartedEvent event)
     {
         this.currentStage = ModuleStage.SERVER_STARTED;
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.getLogger().debug("Server Started start");
@@ -282,7 +281,7 @@ public final class ModuleManager implements IModuleManager
     // Server Stopping Event means events will be loaded when Server is stopping.
     public void onServerStopping(FMLServerStoppingEvent event)
     {
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.serverStopping(event);
@@ -292,7 +291,7 @@ public final class ModuleManager implements IModuleManager
     // Server Stopped Event means events will be loaded when Server is stopped.
     public void onServerStopped(FMLServerStoppedEvent event)
     {
-        for (IModule module : this.loadedModules)
+        for (CustomModule module : this.loadedModules)
         {
             this.currentContainer = this.containers.get(getContainerId(module));
             module.serverStopped(event);
@@ -303,7 +302,7 @@ public final class ModuleManager implements IModuleManager
     {
         for (FMLInterModComms.IMCMessage message : messages)
         {
-            for (IModule module : loadedModules)
+            for (CustomModule module : loadedModules)
             {
                 if (module.processIMC(message))
                     break;
@@ -311,7 +310,7 @@ public final class ModuleManager implements IModuleManager
         }
     }
 
-    private String getComment(IModule module)
+    private String getComment(CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
         String comment = annotation.descriptions();
@@ -366,7 +365,7 @@ public final class ModuleManager implements IModuleManager
             try
             {
                 Class<?> clazz = Class.forName(data.getClassName());
-                this.registerContainer((IModuleContainer) clazz.newInstance());
+                this.registerContainer((CustomModuleContainer) clazz.newInstance());
             }
             catch (ClassNotFoundException
                    | IllegalAccessException
@@ -377,30 +376,30 @@ public final class ModuleManager implements IModuleManager
         }
     }
 
-    private static String getContainerId(IModule module)
+    private static String getContainerId(CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
         return annotation.containerId();
     }
 
-    private void configureModules(Map<String, List<IModule>> modules)
+    private void configureModules(Map<String, List<CustomModule>> modules)
     {
         Locale locale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
 
         Set<ResourceLocation> toLoad = new LinkedHashSet<>();
-        Set<IModule> modulesToLoad = new LinkedHashSet<>();
+        Set<CustomModule> modulesToLoad = new LinkedHashSet<>();
 
         Configuration config = getConfiguration();
         config.load();
         config.addCustomCategoryComment(MODULE_CFG_CATEGORY_NAME, "Module configuration file. "
                 + "Can individually enable/disable modules from GregTech Lite Core.");
 
-        for (IModuleContainer container : containers.values())
+        for (CustomModuleContainer container : containers.values())
         {
             String containerId = container.getId();
-            List<IModule> containerModules = modules.get(containerId);
-            IModule coreModule = getCoreModule(containerModules);
+            List<CustomModule> containerModules = modules.get(containerId);
+            CustomModule coreModule = getCoreModule(containerModules);
             if (coreModule == null)
             {
                 throw new IllegalStateException("Could not find CoreModule for ModuleContainer " + containerId);
@@ -411,10 +410,10 @@ public final class ModuleManager implements IModuleManager
                 containerModules.add(0, coreModule);
             }
             // Remove disabled modules and gather potential modules to load.
-            Iterator<IModule> iterator = containerModules.iterator();
+            Iterator<CustomModule> iterator = containerModules.iterator();
             while (iterator.hasNext())
             {
-                IModule module = iterator.next();
+                CustomModule module = iterator.next();
                 if (!this.isModuleEnabled(module))
                 {
                     iterator.remove();
@@ -427,7 +426,7 @@ public final class ModuleManager implements IModuleManager
             }
         }
 
-        Iterator<IModule> iterator;
+        Iterator<CustomModule> iterator;
         boolean changed;
         do
         {
@@ -435,7 +434,7 @@ public final class ModuleManager implements IModuleManager
             iterator = modulesToLoad.iterator();
             while (iterator.hasNext())
             {
-                IModule module = iterator.next();
+                CustomModule module = iterator.next();
                 Set<ResourceLocation> dependencies = module.getDependencyUids();
                 if (!toLoad.containsAll(dependencies))
                 {
@@ -455,7 +454,7 @@ public final class ModuleManager implements IModuleManager
             iterator = modulesToLoad.iterator();
             while (iterator.hasNext())
             {
-                IModule module = iterator.next();
+                CustomModule module = iterator.next();
                 if (sortedModules.keySet().containsAll(module.getDependencyUids()))
                 {
                     iterator.remove();
@@ -477,9 +476,9 @@ public final class ModuleManager implements IModuleManager
         Locale.setDefault(locale);
     }
 
-    private static IModule getCoreModule(List<IModule> modules)
+    private static CustomModule getCoreModule(List<CustomModule> modules)
     {
-        for (IModule module : modules)
+        for (CustomModule module : modules)
         {
             Module annotation = module.getClass().getAnnotation(Module.class);
             if (annotation.isCore())
@@ -491,7 +490,7 @@ public final class ModuleManager implements IModuleManager
     }
 
 
-    private List<IModule> getInstances(ASMDataTable dataTable)
+    private List<CustomModule> getInstances(ASMDataTable dataTable)
     {
         return StreamEx.of(dataTable.getAll(Module.class.getCanonicalName()))
                 .map(data -> {
@@ -510,7 +509,7 @@ public final class ModuleManager implements IModuleManager
                     try
                     {
                         Class<?> clazz = Class.forName(data.getClassName());
-                        return (IModule) clazz.newInstance();
+                        return (CustomModule) clazz.newInstance();
                     }
                     catch (ClassNotFoundException
                            | IllegalAccessException
@@ -530,7 +529,7 @@ public final class ModuleManager implements IModuleManager
                 .toList();
     }
 
-    private Map<String, List<IModule>> getModules(ASMDataTable dataTable)
+    private Map<String, List<CustomModule>> getModules(ASMDataTable dataTable)
     {
         return StreamEx.of(this.getInstances(dataTable))
                 .groupingBy(module -> {

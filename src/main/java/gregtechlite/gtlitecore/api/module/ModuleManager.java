@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.api.module;
 import gregtechlite.gtlitecore.GTLiteMod;
 import net.minecraft.util.ResourceLocation;
 
-public interface IModuleManager
+public interface ModuleManager
 {
 
     boolean isModuleEnabled(ResourceLocation namespace);
@@ -18,9 +18,9 @@ public interface IModuleManager
         return this.isModuleEnabled(new ResourceLocation(containerId, moduleId));
     }
 
-    void registerContainer(IModuleContainer container);
+    void registerContainer(CustomModuleContainer container);
 
-    IModuleContainer getLoadedContainer();
+    CustomModuleContainer getLoadedContainer();
 
     ModuleStage getStage();
 

@@ -4,7 +4,7 @@ import gregtechlite.magicbook.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.MOD_NAME
-import gregtechlite.gtlitecore.api.module.IModule
+import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers
@@ -18,13 +18,13 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems
 import gregtechlite.gtlitecore.common.item.behavior.GTLiteBehaviors
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
-import gregtechlite.gtlitecore.core.advancement.AdvancementManager
+import gregtechlite.gtlitecore.core.advancement.AdvancementManagerImpl
 import gregtechlite.gtlitecore.core.advancement.AdvancementTriggers
-import gregtechlite.gtlitecore.core.command.CommandManager
+import gregtechlite.gtlitecore.core.command.CommandManagerImpl
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_CORE
-import gregtechlite.gtlitecore.core.network.NetworkHandler
+import gregtechlite.gtlitecore.core.network.NetworkHandlerImpl
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
-import gregtechlite.gtlitecore.core.sound.SoundManager
+import gregtechlite.gtlitecore.core.sound.SoundManagerImpl
 import gregtechlite.gtlitecore.loader.VanillaDropsLoader
 import gregtechlite.gtlitecore.loader.dungeon.DungeonLootLoader
 import net.minecraftforge.common.MinecraftForge
@@ -45,12 +45,12 @@ import org.apache.logging.log4j.Logger
         name = MOD_NAME,
         descriptions = "Core Module of GregTech Lite Core Mod.",
         isCore = true)
-internal class CoreModule : IModule
+internal class CoreModule : CustomModule
 {
 
     init
     {
-        GTLiteAPI.networkHandler = NetworkHandler.getInstance()
+        GTLiteAPI.networkHandler = NetworkHandlerImpl.getInstance()
     }
 
     companion object
@@ -83,11 +83,11 @@ internal class CoreModule : IModule
     {
 
         logger.debug("Starting to construct Advancements and its AdvancementTriggers")
-        GTLiteAPI.advancementManager = AdvancementManager.getInstance()
+        GTLiteAPI.advancementManager = AdvancementManagerImpl.getInstance()
         AdvancementTriggers.register()
 
         logger.debug("Loading SoundEvents and Sound files")
-        GTLiteAPI.soundManager = SoundManager.getInstance()
+        GTLiteAPI.soundManager = SoundManagerImpl.getInstance()
         GTLiteSoundEvents.register()
 
         logger.debug("Loading all MetaItems and MetaOreDictItems")
@@ -144,7 +144,7 @@ internal class CoreModule : IModule
     override fun serverStarting(event: FMLServerStartingEvent)
     {
         logger.debug("Starting to construct Commands of the mod")
-        val commandManager = CommandManager.getInstance()
+        val commandManager = CommandManagerImpl.getInstance()
         GTLiteAPI.commandManager = commandManager
         commandManager.registerServerCommand(event)
         GTLiteAPI.commandManager.addCommand(CommandMaterialComponent())

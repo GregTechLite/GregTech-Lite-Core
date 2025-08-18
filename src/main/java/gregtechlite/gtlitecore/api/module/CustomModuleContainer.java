@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api.module;
 
-public interface IModuleContainer
+public interface CustomModuleContainer
 {
 
     /**

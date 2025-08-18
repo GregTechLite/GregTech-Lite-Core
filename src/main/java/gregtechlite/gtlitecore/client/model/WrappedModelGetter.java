@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 
-public interface IWrappedModelGetter
+public interface WrappedModelGetter
 {
 
     /**

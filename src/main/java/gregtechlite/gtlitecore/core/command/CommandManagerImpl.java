@@ -1,21 +1,21 @@
 package gregtechlite.gtlitecore.core.command;
 
-import gregtechlite.gtlitecore.api.command.ICommandManager;
+import gregtechlite.gtlitecore.api.command.CommandManager;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.server.command.CommandTreeBase;
 import org.jetbrains.annotations.ApiStatus.Internal;
 
 @Internal
-public class CommandManager implements ICommandManager
+public class CommandManagerImpl implements CommandManager
 {
 
-    private static final CommandManager INSTANCE = new CommandManager();
+    private static final CommandManagerImpl INSTANCE = new CommandManagerImpl();
     private final CommandTreeBase command = new Commands();
 
-    private CommandManager() {}
+    private CommandManagerImpl() {}
 
-    public static CommandManager getInstance()
+    public static CommandManagerImpl getInstance()
     {
         return INSTANCE;
     }

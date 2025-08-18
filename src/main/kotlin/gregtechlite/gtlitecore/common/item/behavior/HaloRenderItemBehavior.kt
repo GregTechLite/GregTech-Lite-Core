@@ -2,22 +2,18 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import codechicken.lib.model.ModelRegistryHelper
 import codechicken.lib.util.TransformUtils
-import gregtechlite.gtlitecore.client.model.IWrappedModelGetter
-import gregtechlite.gtlitecore.client.renderer.IHaloRenderBehavior
+import gregtechlite.gtlitecore.client.renderer.HaloRenderBehavior
 import gregtechlite.gtlitecore.client.renderer.handler.HaloItemRenderer
-import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.util.ResourceLocation
-import net.minecraft.util.registry.IRegistry
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Supplier
 
 class HaloRenderItemBehavior(private val haloSize: Int,
                              private val haloColor: Int,
                              private val supplier: () -> TextureAtlasSprite,
-                             private val drawPulse: Boolean) : IHaloRenderBehavior
+                             private val drawPulse: Boolean) : HaloRenderBehavior
 {
 
     override fun shouldDrawHalo(): Boolean = true

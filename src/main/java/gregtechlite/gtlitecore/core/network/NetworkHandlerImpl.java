@@ -3,10 +3,10 @@ package gregtechlite.gtlitecore.core.network;
 import io.netty.buffer.Unpooled;
 import gregtechlite.gtlitecore.api.GTLiteAPI;
 import gregtechlite.gtlitecore.api.module.ModuleStage;
-import gregtechlite.gtlitecore.api.network.IClientExecutor;
-import gregtechlite.gtlitecore.api.network.INetworkHandler;
-import gregtechlite.gtlitecore.api.network.INetworkPacket;
-import gregtechlite.gtlitecore.api.network.IServerExecutor;
+import gregtechlite.gtlitecore.api.network.ClientExecutor;
+import gregtechlite.gtlitecore.api.network.NetworkHandler;
+import gregtechlite.gtlitecore.api.network.NetworkPacket;
+import gregtechlite.gtlitecore.api.network.ServerExecutor;
 import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.core.CoreModule;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -31,28 +31,28 @@ import java.lang.reflect.InvocationTargetException;
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 
 @Internal
-public final class NetworkHandler implements INetworkHandler
+public final class NetworkHandlerImpl implements NetworkHandler
 {
 
-    private static final NetworkHandler INSTANCE = new NetworkHandler();
+    private static final NetworkHandlerImpl INSTANCE = new NetworkHandlerImpl();
 
     private final FMLEventChannel channel;
     private final PacketHandler packetHandler;
 
-    private NetworkHandler()
+    private NetworkHandlerImpl()
     {
         this.channel = NetworkRegistry.INSTANCE.newEventDrivenChannel(MOD_ID);
         this.channel.register(this);
         this.packetHandler = PacketHandler.getInstance();
     }
 
-    public static INetworkHandler getInstance()
+    public static NetworkHandler getInstance()
     {
         return INSTANCE;
     }
 
     @Override
-    public void registerPacket(Class<? extends INetworkPacket> packetClass)
+    public void registerPacket(Class<? extends NetworkPacket> packetClass)
     {
         if (GTLiteAPI.moduleManager.hasPassedStage(ModuleStage.PRE_INIT))
         {
@@ -60,8 +60,8 @@ public final class NetworkHandler implements INetworkHandler
             return;
         }
 
-        boolean hasServerExecutor = IServerExecutor.class.isAssignableFrom(packetClass);
-        boolean hasClientExecutor = IClientExecutor.class.isAssignableFrom(packetClass);
+        boolean hasServerExecutor = ServerExecutor.class.isAssignableFrom(packetClass);
+        boolean hasClientExecutor = ClientExecutor.class.isAssignableFrom(packetClass);
         if (hasServerExecutor && hasClientExecutor)
         {
             CoreModule.logger.error("Could not register packet {}, as it is both a Server and Client executor! Only one allowed. Skipping...", packetClass.getName());
@@ -76,43 +76,43 @@ public final class NetworkHandler implements INetworkHandler
     }
 
     @Override
-    public void sendToAll(INetworkPacket packet)
+    public void sendToAll(NetworkPacket packet)
     {
         this.channel.sendToAll(toFMLPacket(packet));
     }
 
     @Override
-    public void sendTo(INetworkPacket packet, EntityPlayerMP player)
+    public void sendTo(NetworkPacket packet, EntityPlayerMP player)
     {
         this.channel.sendTo(toFMLPacket(packet), player);
     }
 
     @Override
-    public void sendToAllAround(INetworkPacket packet, NetworkRegistry.TargetPoint point)
+    public void sendToAllAround(NetworkPacket packet, NetworkRegistry.TargetPoint point)
     {
         this.channel.sendToAllAround(toFMLPacket(packet), point);
     }
 
     @Override
-    public void sendToAllTracking(INetworkPacket packet, NetworkRegistry.TargetPoint point)
+    public void sendToAllTracking(NetworkPacket packet, NetworkRegistry.TargetPoint point)
     {
         this.channel.sendToAllTracking(toFMLPacket(packet), point);
     }
 
     @Override
-    public void sendToAllTracking(INetworkPacket packet, Entity entity)
+    public void sendToAllTracking(NetworkPacket packet, Entity entity)
     {
         this.channel.sendToAllTracking(toFMLPacket(packet), entity);
     }
 
     @Override
-    public void sendToDimension(INetworkPacket packet, int dimensionId)
+    public void sendToDimension(NetworkPacket packet, int dimensionId)
     {
         this.channel.sendToDimension(toFMLPacket(packet), dimensionId);
     }
 
     @Override
-    public void sendToServer(INetworkPacket packet)
+    public void sendToServer(NetworkPacket packet)
     {
         this.channel.sendToServer(toFMLPacket(packet));
     }
@@ -121,10 +121,10 @@ public final class NetworkHandler implements INetworkHandler
     @SideOnly(Side.CLIENT)
     public void onClientPacket(@NotNull FMLNetworkEvent.ClientCustomPacketEvent event) throws Exception
     {
-        INetworkPacket packet = toGTPacket(event.getPacket());
-        if (IClientExecutor.class.isAssignableFrom(packet.getClass()))
+        NetworkPacket packet = toGTPacket(event.getPacket());
+        if (ClientExecutor.class.isAssignableFrom(packet.getClass()))
         {
-            IClientExecutor executor = (IClientExecutor) packet;
+            ClientExecutor executor = (ClientExecutor) packet;
             NetHandlerPlayClient handler = (NetHandlerPlayClient) event.getHandler();
             IThreadListener threadListener = FMLCommonHandler.instance().getWorldThread(handler);
             if (threadListener.isCallingFromMinecraftThread())
@@ -137,10 +137,10 @@ public final class NetworkHandler implements INetworkHandler
     @SubscribeEvent
     public void onServerPacket(FMLNetworkEvent.@NotNull ServerCustomPacketEvent event) throws Exception
     {
-        INetworkPacket packet = toGTPacket(event.getPacket());
-        if (IServerExecutor.class.isAssignableFrom(packet.getClass()))
+        NetworkPacket packet = toGTPacket(event.getPacket());
+        if (ServerExecutor.class.isAssignableFrom(packet.getClass()))
         {
-            IServerExecutor executor = (IServerExecutor) packet;
+            ServerExecutor executor = (ServerExecutor) packet;
             NetHandlerPlayServer handler = (NetHandlerPlayServer) event.getHandler();
             IThreadListener threadListener = FMLCommonHandler.instance().getWorldThread(handler);
             if (threadListener.isCallingFromMinecraftThread())
@@ -151,7 +151,7 @@ public final class NetworkHandler implements INetworkHandler
     }
 
     @NotNull
-    private FMLProxyPacket toFMLPacket(@NotNull INetworkPacket packet)
+    private FMLProxyPacket toFMLPacket(@NotNull NetworkPacket packet)
     {
         PacketBuffer buf = new PacketBuffer(Unpooled.buffer());
         buf.writeVarInt(packetHandler.getPacketId(packet.getClass()));
@@ -160,12 +160,12 @@ public final class NetworkHandler implements INetworkHandler
     }
 
     @NotNull
-    private INetworkPacket toGTPacket(@NotNull FMLProxyPacket proxyPacket) throws NoSuchMethodException, InvocationTargetException,
+    private NetworkPacket toGTPacket(@NotNull FMLProxyPacket proxyPacket) throws NoSuchMethodException, InvocationTargetException,
                                                                                            InstantiationException, IllegalAccessException
     {
         PacketBuffer payload = (PacketBuffer) proxyPacket.payload();
-        Class<? extends INetworkPacket> clazz = packetHandler.getPacketClass(payload.readVarInt());
-        INetworkPacket packet = clazz.getConstructor().newInstance();
+        Class<? extends NetworkPacket> clazz = packetHandler.getPacketClass(payload.readVarInt());
+        NetworkPacket packet = clazz.getConstructor().newInstance();
         packet.decode(payload);
         if (payload.readableBytes() != 0)
             GTLiteLog.logger.error("NetworkHandler failed to finish reading packet with class {} and {} bytes remaining", clazz.getName(), payload.readableBytes());

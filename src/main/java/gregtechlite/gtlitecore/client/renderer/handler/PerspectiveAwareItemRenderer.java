@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.client.renderer.handler;
 
 import codechicken.lib.render.item.IItemRenderer;
 import com.google.common.collect.ImmutableList;
-import gregtechlite.gtlitecore.client.renderer.IEntityCallback;
-import gregtechlite.gtlitecore.client.renderer.IEntityItemTickCallback;
+import gregtechlite.gtlitecore.client.renderer.EntityCallback;
+import gregtechlite.gtlitecore.client.renderer.EntityItemTickCallback;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,7 +15,7 @@ import net.minecraftforge.common.model.IModelState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class PerspectiveAwareItemRenderer implements IItemRenderer, IEntityItemTickCallback
+public abstract class PerspectiveAwareItemRenderer implements IItemRenderer, EntityItemTickCallback
 {
 
     @Nullable
@@ -68,9 +68,9 @@ public abstract class PerspectiveAwareItemRenderer implements IItemRenderer, IEn
     private static class EntityCachingOverrideList extends ItemOverrideList
     {
 
-        private final IEntityCallback callback;
+        private final EntityCallback callback;
 
-        public EntityCachingOverrideList(IEntityCallback callback) {
+        public EntityCachingOverrideList(EntityCallback callback) {
             super(ImmutableList.of());
             this.callback = callback;
         }

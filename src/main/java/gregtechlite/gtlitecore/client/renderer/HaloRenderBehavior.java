@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public interface IHaloRenderBehavior extends IItemRendererManager
+public interface HaloRenderBehavior extends ItemRendererManager
 {
 
     /**

@@ -4,8 +4,8 @@ import gregtech.api.items.materialitem.MetaPrefixItem;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import it.unimi.dsi.fastutil.shorts.ShortIterator;
-import gregtechlite.gtlitecore.client.renderer.IItemRenderer;
-import gregtechlite.gtlitecore.client.renderer.IItemRendererManager;
+import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
+import gregtechlite.gtlitecore.client.renderer.ItemRendererManager;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,11 +34,11 @@ public abstract class MixinMetaPrefixItem extends StandardMetaItem
                                 short registrationKey,
                                 ResourceLocation resourceLocation)
     {
-        if (materialIconSet instanceof IItemRendererManager)
+        if (materialIconSet instanceof ItemRendererManager)
         {
-            IItemRendererManager rendererManager = (IItemRendererManager) materialIconSet;
+            ItemRendererManager rendererManager = (ItemRendererManager) materialIconSet;
             rendererManager.onRendererRegistry(resourceLocation);
-            metaItems.get(metaItem).addComponents(((IItemRenderer) materialIconSet).getRendererManager());
+            metaItems.get(metaItem).addComponents(((CustomItemRenderer) materialIconSet).getRendererManager());
         }
     }
 

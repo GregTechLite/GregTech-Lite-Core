@@ -2,9 +2,9 @@ package gregtechlite.gtlitecore.client.renderer.handler;
 
 import codechicken.lib.colour.Colour;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtechlite.gtlitecore.client.model.IWrappedModelGetter;
-import gregtechlite.gtlitecore.client.renderer.IHaloRenderBehavior;
-import gregtechlite.gtlitecore.client.renderer.IItemRenderer;
+import gregtechlite.gtlitecore.client.model.WrappedModelGetter;
+import gregtechlite.gtlitecore.client.renderer.HaloRenderBehavior;
+import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -27,7 +27,7 @@ public class HaloItemRenderer extends WrappedItemRenderer
         super(state, model);
     }
 
-    public HaloItemRenderer(IModelState state, IWrappedModelGetter getter)
+    public HaloItemRenderer(IModelState state, WrappedModelGetter getter)
     {
         super(state, getter);
     }
@@ -41,10 +41,10 @@ public class HaloItemRenderer extends WrappedItemRenderer
             if (transformType == ItemCameraTransforms.TransformType.GUI)
             {
                 MetaItem<?>.MetaValueItem valueItem = ((MetaItem<?>) stack.getItem()).getItem(stack);
-                IHaloRenderBehavior hri = null;
+                HaloRenderBehavior hri = null;
                 if (valueItem != null)
                 {
-                    hri = (IHaloRenderBehavior) ((IItemRenderer) valueItem).getRendererManager();
+                    hri = (HaloRenderBehavior) ((CustomItemRenderer) valueItem).getRendererManager();
                 }
 
                 if (hri != null) {

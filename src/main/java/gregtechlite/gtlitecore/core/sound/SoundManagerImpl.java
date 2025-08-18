@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.core.sound;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import gregtechlite.gtlitecore.api.GTLiteAPI;
-import gregtechlite.gtlitecore.api.sound.ISoundManager;
+import gregtechlite.gtlitecore.api.sound.SoundManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -19,10 +19,10 @@ import org.jetbrains.annotations.ApiStatus.Internal;
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 
 @Internal
-public class SoundManager implements ISoundManager
+public class SoundManagerImpl implements SoundManager
 {
 
-    private static final SoundManager INSTANCE = new SoundManager();
+    private static final SoundManagerImpl INSTANCE = new SoundManagerImpl();
 
     /**
      * Warning: This map cannot be marked with {@code SideOnly(Side.CLIENT)} because the server
@@ -31,9 +31,9 @@ public class SoundManager implements ISoundManager
      */
     private final Object2ObjectMap<BlockPos, ISound> sounds = new Object2ObjectOpenHashMap<>();
 
-    private SoundManager() {}
+    private SoundManagerImpl() {}
 
-    public static SoundManager getInstance()
+    public static SoundManagerImpl getInstance()
     {
         return INSTANCE;
     }

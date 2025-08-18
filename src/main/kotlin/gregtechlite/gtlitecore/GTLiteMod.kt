@@ -6,7 +6,7 @@ import gregtechlite.gtlitecore.api.MOD_NAME
 import gregtechlite.gtlitecore.api.MOD_VERSION
 import gregtechlite.gtlitecore.core.module.GTLiteModules
 import gregtechlite.gtlitecore.core.module.ModuleContainerRegistryEvent
-import gregtechlite.gtlitecore.core.module.ModuleManager
+import gregtechlite.gtlitecore.core.module.ModuleManagerImpl
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.ForgeVersion
 import net.minecraftforge.common.MinecraftForge
@@ -38,7 +38,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
 class GTLiteMod
 {
 
-     private lateinit var moduleManager: ModuleManager
+     private lateinit var moduleManager: ModuleManagerImpl
 
      init
      {
@@ -59,7 +59,7 @@ class GTLiteMod
      @Mod.EventHandler
      fun onConstruction(event: FMLConstructionEvent)
      {
-          this.moduleManager = ModuleManager.instance
+          this.moduleManager = ModuleManagerImpl.instance
           GTLiteAPI.moduleManager = this.moduleManager
           this.moduleManager.registerContainer(GTLiteModules())
           MinecraftForge.EVENT_BUS.post(ModuleContainerRegistryEvent())

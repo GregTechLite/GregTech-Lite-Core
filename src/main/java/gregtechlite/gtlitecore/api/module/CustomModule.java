@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public interface IModule
+public interface CustomModule
 {
     /**
      * What other modules this module depends on.

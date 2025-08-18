@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
  * Any item implementing this that also binds itself to TODO input model name here.
  * Will automatically have the CosmicShader applied to the mask with the given opacity.
  */
-public interface ICosmicRenderBehavior extends IItemRendererManager
+public interface CosmicRenderBehavior extends ItemRendererManager
 {
 
     /**

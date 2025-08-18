@@ -4,8 +4,8 @@ import com.google.common.collect.Maps;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import gregtechlite.gtlitecore.GTLiteMod;
-import gregtechlite.gtlitecore.api.advancement.IAdvancementCriterion;
-import gregtechlite.gtlitecore.api.advancement.IAdvancementTrigger;
+import gregtechlite.gtlitecore.api.advancement.AdvancementCriterion;
+import gregtechlite.gtlitecore.api.advancement.AdvancementTrigger;
 import gregtechlite.gtlitecore.core.advancement.listener.AdvancementListeners;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,14 +16,14 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 
 @Internal
-public class AdvancementTrigger<T extends IAdvancementCriterion> implements IAdvancementTrigger<T>
+public class AdvancementTriggerImpl<T extends AdvancementCriterion> implements AdvancementTrigger<T>
 {
 
     private final ResourceLocation id;
     private final T criterion;
     private final Map<PlayerAdvancements, AdvancementListeners<T>> listeners = Maps.newHashMap();
 
-    public AdvancementTrigger(String name, @NotNull T criterion)
+    public AdvancementTriggerImpl(String name, @NotNull T criterion)
     {
         this.id = GTLiteMod.id(name);
         this.criterion = criterion;

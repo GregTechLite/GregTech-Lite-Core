@@ -7,9 +7,9 @@ import codechicken.lib.util.ResourceUtils;
 import codechicken.lib.util.TransformUtils;
 import com.google.common.collect.ImmutableList;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtechlite.gtlitecore.client.model.IWrappedModelGetter;
-import gregtechlite.gtlitecore.client.renderer.ICosmicRenderBehavior;
-import gregtechlite.gtlitecore.client.renderer.IItemRenderer;
+import gregtechlite.gtlitecore.client.model.WrappedModelGetter;
+import gregtechlite.gtlitecore.client.renderer.CosmicRenderBehavior;
+import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -40,7 +40,7 @@ public class CosmicItemRenderer extends WrappedItemRenderer
         super(state, wrapped);
     }
 
-    public CosmicItemRenderer(IModelState state, IWrappedModelGetter getter)
+    public CosmicItemRenderer(IModelState state, WrappedModelGetter getter)
     {
         super(state, getter);
     }
@@ -73,10 +73,10 @@ public class CosmicItemRenderer extends WrappedItemRenderer
         renderModel(model, stack);
 
         MetaItem<?>.MetaValueItem valueItem = ((MetaItem<?>)stack.getItem()).getItem(stack);
-        ICosmicRenderBehavior cri = null;
+        CosmicRenderBehavior cri = null;
         if (valueItem != null)
         {
-            cri = (ICosmicRenderBehavior) ((IItemRenderer) valueItem).getRendererManager();
+            cri = (CosmicRenderBehavior) ((CustomItemRenderer) valueItem).getRendererManager();
         }
 
         if (cri != null)
@@ -118,10 +118,10 @@ public class CosmicItemRenderer extends WrappedItemRenderer
         renderModel(model, stack);
 
         MetaItem<?>.MetaValueItem valueItem = ((MetaItem<?>)stack.getItem()).getItem(stack);
-        ICosmicRenderBehavior cri = null;
+        CosmicRenderBehavior cri = null;
         if (valueItem != null)
         {
-            cri = (ICosmicRenderBehavior) ((IItemRenderer) valueItem).getRendererManager();
+            cri = (CosmicRenderBehavior) ((CustomItemRenderer) valueItem).getRendererManager();
         }
 
         if (cri != null)

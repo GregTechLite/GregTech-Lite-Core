@@ -1,14 +1,14 @@
 package gregtechlite.gtlitecore.api
 
 import gregtech.api.GregTechAPI
-import gregtechlite.gtlitecore.api.advancement.IAdvancementManager
+import gregtechlite.gtlitecore.api.advancement.AdvancementManager
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry.Companion.registerBlockVariants
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
-import gregtechlite.gtlitecore.api.command.ICommandManager
-import gregtechlite.gtlitecore.api.module.IModuleManager
-import gregtechlite.gtlitecore.api.network.INetworkHandler
-import gregtechlite.gtlitecore.api.sound.ISoundManager
+import gregtechlite.gtlitecore.api.command.CommandManager
+import gregtechlite.gtlitecore.api.module.ModuleManager
+import gregtechlite.gtlitecore.api.network.NetworkHandler
+import gregtechlite.gtlitecore.api.sound.SoundManager
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
@@ -46,19 +46,19 @@ object GTLiteAPI
     lateinit var instance: Any
 
     // Will be available at the Construction stage.
-    lateinit var moduleManager: IModuleManager
+    lateinit var moduleManager: ModuleManager
 
     // Will be available at the Pre-Initialization stage
-    lateinit var networkHandler: INetworkHandler
+    lateinit var networkHandler: NetworkHandler
 
     // Will be available at the Server-Starting stage.
-    lateinit var commandManager: ICommandManager
+    lateinit var commandManager: CommandManager
 
     // Will be available at the Pre-Initialization stage.
-    lateinit var advancementManager: IAdvancementManager
+    lateinit var advancementManager: AdvancementManager
 
     // Will be available at the Pre-Initialization stage.
-    lateinit var soundManager: ISoundManager
+    lateinit var soundManager: SoundManager
 
     // endregion
 

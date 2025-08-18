@@ -1,11 +1,11 @@
 package gregtechlite.gtlitecore.core.module
 
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.module.IModuleContainer
+import gregtechlite.gtlitecore.api.module.CustomModuleContainer
 import gregtechlite.gtlitecore.api.module.ModuleContainer
 
 @ModuleContainer
-internal class GTLiteModules : IModuleContainer
+internal class GTLiteModules : CustomModuleContainer
 {
 
     companion object

@@ -1,10 +1,10 @@
 package gregtechlite.gtlitecore.api.advancement.impl;
 
-import gregtechlite.gtlitecore.api.advancement.IAdvancementCriterion;
+import gregtechlite.gtlitecore.api.advancement.AdvancementCriterion;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class AbstractCriterion implements IAdvancementCriterion
+public abstract class AbstractCriterion implements AdvancementCriterion
 {
 
     private ResourceLocation id = new ResourceLocation("MISSING");

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.util.GTUtility;
-import gregtechlite.gtlitecore.client.renderer.IItemRenderer;
+import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +26,7 @@ public abstract class MixinMetaItem extends Item
                                             String postfix)
     {
         ResourceLocation resourceLocation = GTUtility.gregtechId(this.formatModelPath(metaValueItem) + postfix);
-        IItemRenderer itemRenderer = (IItemRenderer) metaValueItem;
+        CustomItemRenderer itemRenderer = (CustomItemRenderer) metaValueItem;
         if (itemRenderer.getRendererManager() != null)
         {
             itemRenderer.getRendererManager().onRendererRegistry(resourceLocation);

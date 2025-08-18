@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.common.item
 
 import codechicken.lib.model.ModelRegistryHelper
-import gregtechlite.gtlitecore.client.renderer.IItemRendererManager
+import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.handler.DimensionDisplayItemRenderer
 import gregtechlite.gtlitecore.common.block.BlockDimensionDisplay
 import net.minecraft.block.Block
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 
-class DimensionDisplayItemBlock(block: Block) : ItemBlock(block), IItemRendererManager
+class DimensionDisplayItemBlock(block: Block) : ItemBlock(block), ItemRendererManager
 {
 
     override fun onRendererRegistry(location: ResourceLocation)
