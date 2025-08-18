@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.StoneType
-import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.builder.StoneTypeBuilder
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -31,6 +30,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.Limestone)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.LIMESTONE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.LIMESTONE) }
+            .dropAsItem()
             .build()
 
         KOMATIITE = StoneTypeBuilder.builder(13, "komatiite")
@@ -39,6 +39,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.Komatiite)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.KOMATIITE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.KOMATIITE) }
+            .dropAsItem()
             .build()
 
         GREEN_SCHIST = StoneTypeBuilder.builder(14, "green_schist")
@@ -47,6 +48,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.GreenSchist)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.GREEN_SCHIST))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.GREEN_SCHIST) }
+            .dropAsItem()
             .build()
 
         BLUE_SCHIST = StoneTypeBuilder.builder(15, "blue_schist")
@@ -55,6 +57,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.BlueSchist)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.BLUE_SCHIST))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.BLUE_SCHIST) }
+            .dropAsItem()
             .build()
 
         KIMBERLITE = StoneTypeBuilder.builder(16, "kimberlite")
@@ -63,6 +66,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.Kimberlite)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.KIMBERLITE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.KIMBERLITE) }
+            .dropAsItem()
             .build()
 
         QUARTZITE = StoneTypeBuilder.builder(17, "quartzite")
@@ -71,6 +75,7 @@ object GTLiteStoneTypes
             .material(Materials.Quartzite)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.QUARTZITE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.QUARTZITE) }
+            .dropAsItem()
             .build()
 
         SLATE = StoneTypeBuilder.builder(18, "slate")
@@ -79,6 +84,7 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.Slate)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.SLATE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.SLATE) }
+            .dropAsItem()
             .build()
 
         SHALE = StoneTypeBuilder.builder(19, "shale")
@@ -87,19 +93,8 @@ object GTLiteStoneTypes
             .material(GTLiteMaterials.Shale)
             .state(stoneState(GTLiteStoneVariantBlock.StoneType.SHALE))
             .condition { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.SHALE) }
+            .dropAsItem()
             .build()
-
-        if (ConfigHolder.worldgen.allUniqueStoneTypes)
-        {
-            LIMESTONE.shouldBeDroppedAsItem = true
-            KOMATIITE.shouldBeDroppedAsItem = true
-            GREEN_SCHIST.shouldBeDroppedAsItem = true
-            BLUE_SCHIST.shouldBeDroppedAsItem = true
-            KIMBERLITE.shouldBeDroppedAsItem = true
-            QUARTZITE.shouldBeDroppedAsItem = true
-            SLATE.shouldBeDroppedAsItem = true
-            SHALE.shouldBeDroppedAsItem = true
-        }
 
     }
 
