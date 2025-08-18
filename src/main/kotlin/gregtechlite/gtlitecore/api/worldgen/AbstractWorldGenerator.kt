@@ -52,30 +52,34 @@ abstract class AbstractWorldGenerator protected constructor(notify: Boolean,
                          worldIn: World, blockPos: BlockPos): Int
     {
         val biome = worldIn.getBiome(blockPos)
-        val relevantCondition = conditions.first { it.isSatisfied(biome) }
+
+        // If feature conditions not satisfied any conditions, then return 0 as default.
+        val relevantCondition = conditions.firstOrNull { it.isSatisfied(biome) }
+        if (relevantCondition == null) return 0
+
         val treeStrength = this.feature.getRandomStrength(chunkX, chunkZ)
 
-        if (ConfigHolder.misc.debug) // Debug mode.
+        if (ConfigHolder.misc.debug)
         {
             if (relevantCondition.getPerlinCutoff(biome) < treeStrength)
             {
                 this.feature.updatePlacePercentage(true)
                 val perlinCutoff = relevantCondition.getPerlinCutoff(biome)
                 val maxFeatures = relevantCondition.getMaxFeatures()
-                return (ceil(maxFeatures - perlinCutoff * maxFeatures)).toInt()
+                return ceil(maxFeatures - perlinCutoff * maxFeatures).toInt()
             }
             else
             {
                 feature.updatePlacePercentage(false)
             }
         }
-        else // Common mode.
+        else
         {
             if (relevantCondition.getPerlinCutoff(biome) < treeStrength)
             {
                 val perlinCutoff = relevantCondition.getPerlinCutoff(biome)
                 val maxFeatures = relevantCondition.getMaxFeatures()
-                return (ceil(maxFeatures - perlinCutoff * maxFeatures)).toInt()
+                return ceil(maxFeatures - perlinCutoff * maxFeatures).toInt()
             }
         }
         return 0
