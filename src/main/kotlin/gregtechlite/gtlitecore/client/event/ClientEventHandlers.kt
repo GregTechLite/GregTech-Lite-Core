@@ -1,12 +1,16 @@
 package gregtechlite.gtlitecore.client.event
 
+import gregtech.api.GTValues.VOCNF
 import gregtech.api.unification.OreDictUnifier
 import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import gregtechlite.gtlitecore.common.block.BlockMetalWall
 import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
+import gregtechlite.gtlitecore.common.block.variant.GlassCasing
+import gregtechlite.magicbook.util.ItemUtil
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
+import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemBlock
 import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.client.event.GuiScreenEvent
@@ -27,7 +31,7 @@ object ClientEventHandlers
     var cosmicUVs: FloatBuffer = BufferUtils.createFloatBuffer(4 * 10)
 
     @SubscribeEvent
-    fun addItemTooltips(event: ItemTooltipEvent)
+    fun addFormulas(event: ItemTooltipEvent)
     {
         val stack = event.itemStack
         val tooltip = event.toolTip
@@ -42,9 +46,26 @@ object ClientEventHandlers
                 if (material?.chemicalFormula != null && material.chemicalFormula!!.isNotEmpty())
                     tooltip.add(TextFormatting.YELLOW.toString() + material.chemicalFormula)
             }
-            // TODO Glass Tier tooltips.
         }
 
+        // Added glass tier tooltips for all mod glasses.
+        GlassCasing.Enum01.entries
+            .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
+            .forEach { glass ->
+                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
+            }
+
+        GlassCasing.Enum02.entries
+            .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
+            .forEach { glass ->
+                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
+            }
+
+        GlassCasing.Enum03.entries
+            .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
+            .forEach { glass ->
+                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
+            }
     }
 
     @SubscribeEvent

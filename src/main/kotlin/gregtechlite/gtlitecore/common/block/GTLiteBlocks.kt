@@ -692,32 +692,12 @@ object GTLiteBlocks
      * @param type The registry type of the block.
      * @return     Simple [VariantBlock] which be initialized.
      */
-    private inline fun <reified T, R> simpleBlock(name: String, type: BlockVariantType): R where T : Enum<T>,
-                                                                                                 T : IStringSerializable,
-                                                                                                 R : VariantBlock<T>
-    {
-        val block = VariantBlockFactory.make<T>(type)
-        block.setRegistryName(name)
-            .setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
-            .setTranslationKey("$MOD_ID.$name")
-            .setHardness(5.0f)
-            .setResistance(10.0f)
-        return Unchecks.cast(block)
-    }
-
-    /**
-     * Create a simple [VariantBlock] with its type and properties.
-     *
-     * @param name       The serialized name for the registry name of the block.
-     * @param type       The registry type of the block.
-     * @param hardness   The hardness property of the block.
-     * @param resistance The resistance property of the block.
-     * @return           Simple [VariantBlock] which be initialized.
-     */
-    private inline fun <reified T, R> simpleBlock(name: String, type: BlockVariantType,
-                                                  hardness: Float, resistance: Float): R where T : Enum<T>,
-                                                                                               T : IStringSerializable,
-                                                                                               R : VariantBlock<T>
+    private inline fun <reified T, R> simpleBlock(name: String,
+                                                  type: BlockVariantType,
+                                                  hardness: Float = 5.0f,
+                                                  resistance: Float = 10.0f): R where T : Enum<T>,
+                                                                                      T : IStringSerializable,
+                                                                                      R : VariantBlock<T>
     {
         val block = VariantBlockFactory.make<T>(type)
         block.setRegistryName(name)
@@ -751,7 +731,6 @@ object GTLiteBlocks
         }
         blocksToGenerate.forEach { k, v -> blockGenerator(v, k) }
     }
-
 
     private fun createSheetedFrameBlock(materials: Array<GTMaterial>, index: Int)
     {
