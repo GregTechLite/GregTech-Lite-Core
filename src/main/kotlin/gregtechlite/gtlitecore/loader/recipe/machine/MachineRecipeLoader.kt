@@ -336,6 +336,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FOOD
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSION_REACTOR_MK4
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSION_REACTOR_MK5
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HOT_COOLANT_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HYDRAULIC_FRACKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_COKE_OVEN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ACID_GENERATOR
@@ -1524,6 +1525,15 @@ internal object MachineRecipeLoader
             'T', POWER_TRANSFORMER[HV].stackForm,
             'V', VOLTAGE_COIL_HV,
             'X', UnificationEntry(circuit, Tier.HV))
+
+        // Hydraulic Fracker
+        ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stackForm,
+            "CLC", "GHG", "PPP",
+            'C', UnificationEntry(circuit, Tier.EV),
+            'L', UnificationEntry(pipeLargeFluid, Titanium),
+            'G', UnificationEntry(gear, TantalumCarbide),
+            'H', HULL[EV].stackForm,
+            'P', ELECTRIC_PUMP_EV);
 
     }
 

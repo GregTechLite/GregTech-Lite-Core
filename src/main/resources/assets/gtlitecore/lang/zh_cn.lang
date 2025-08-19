@@ -2248,6 +2248,10 @@ gtlitecore.machine.large_turbine.hot_coolant.name=大型热冷却液涡轮
 
 gtlitecore.machine.large_turbine.supercritical_fluid.name=大型超临界流体涡轮
 
+gtlitecore.machine.hydraulic_fracker.name=压裂机
+gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
+gtlitecore.machine.hydraulic_fracker.tooltip.2=§e能量消耗：§f%s EU/t
+
 gtlitecore.machine.catalytic_reformer.name=催化重整机
 
 gtlitecore.machine.cvd_unit.name=化学气相沉积单元
@@ -3771,6 +3775,7 @@ gtlitecore.material.apple_syrup=苹果糖浆
 gtlitecore.material.cane_syrup=甘蔗糖浆
 gtlitecore.material.apple_cane_syrup=苹果-甘蔗糖浆
 gtlitecore.material.hard_apple_candy_syrup=苹果硬糖糖浆
+gtlitecore.material.fracturing_fluid=压裂液
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质

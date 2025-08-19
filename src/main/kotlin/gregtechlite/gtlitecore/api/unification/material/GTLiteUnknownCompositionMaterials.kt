@@ -76,6 +76,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FracturingFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapeJuice
@@ -459,7 +460,13 @@ object GTLiteUnknownCompositionMaterials
             .color(0x78E32B)
             .build()
 
-        // 12068-12100 for misc unknown composition materials.
+        // 12068 Fracturing Fluid
+        FracturingFluid = Material.Builder(12069, GTLiteMod.id("fracturing_fluid"))
+            .liquid()
+            .color(0x96D6D5)
+            .build()
+
+        // 12069-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas

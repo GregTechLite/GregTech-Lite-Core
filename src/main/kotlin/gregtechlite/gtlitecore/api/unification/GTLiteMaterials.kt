@@ -763,6 +763,7 @@ object GTLiteMaterials
     lateinit var CaneSyrup: Material
     lateinit var AppleCaneSyrup: Material
     lateinit var HardAppleCandySyrup: Material
+    lateinit var FracturingFluid: Material
 
     lateinit var FreeElectronGas: Material
     lateinit var FermionicUUMatter: Material

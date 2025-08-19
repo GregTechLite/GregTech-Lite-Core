@@ -553,7 +553,7 @@ object GTLiteSecondDegreeMaterials
             .fluid()
             .color(0x56566A).iconSet(METALLIC)
             .components(Tantalum, 1, Carbon, 1)
-            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME)
+            .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
                 b.temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
                     .blastStats(VA[EV], 60 * SECOND)

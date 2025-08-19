@@ -48,6 +48,7 @@ import gregtech.api.unification.material.Materials.Copernicium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Dysprosium
@@ -272,6 +273,8 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FracturingFluid
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
 
 internal object MixerRecipes
@@ -1313,6 +1316,29 @@ internal object MixerRecipes
             .EUt(VA[IV])
             .duration(5 * SECOND)
             .cleanroom(CleanroomType.CLEANROOM)
+            .buildAndRegister()
+
+        // Fracturing Fluid
+        MIXER_RECIPES.recipeBuilder()
+            .circuitMeta(4)
+            .input(dust, Alumina)
+            .input(dust, Iodine)
+            .input(SAND_DUST, 3)
+            .fluidInputs(Water.getFluid(1000))
+            .fluidOutputs(FracturingFluid.getFluid(1000))
+            .EUt(VA[EV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        MIXER_RECIPES.recipeBuilder()
+            .circuitMeta(4)
+            .input(dust, Alumina)
+            .input(dust, Iodine)
+            .input(SAND_DUST, 3)
+            .fluidInputs(DistilledWater.getFluid(1000))
+            .fluidOutputs(FracturingFluid.getFluid(1000))
+            .EUt(VA[EV])
+            .duration(5 * SECOND)
             .buildAndRegister()
 
     }

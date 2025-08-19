@@ -39,6 +39,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockCosmic
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockCrystallizationCrucible
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockEnergyInfuser
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockFusionReactor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockHydraulicFracker
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockLaserInducedCVDUnit
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockMiningDroneAirport
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockNanoForge
@@ -232,7 +233,7 @@ object GTLiteMetaTileEntities
     lateinit var HOT_COOLANT_TURBINE: MetaTileEntityLargeTurbine
     lateinit var SUPERCRITICAL_FLUID_TURBINE: MetaTileEntityLargeTurbine
     lateinit var MINING_DRONE_AIRPORT: MultiblockMiningDroneAirport
-
+    lateinit var HYDRAULIC_FRACKER: MultiblockHydraulicFracker
     lateinit var CATALYTIC_REFORMER: MultiblockCatalyticReformer
     lateinit var CVD_UNIT: MultiblockCVDUnit
     lateinit var CRYSTALLIZATION_CRUCIBLE: MultiblockCrystallizationCrucible
@@ -709,9 +710,7 @@ object GTLiteMetaTileEntities
         STEAM_ENGINE = register(10004, MultiblockSteamEngine(GTLiteMod.id("steam_engine")))
         INDUSTRIAL_PRIMITIVE_BLAST_FURNACE = register(10005, MultiblockAdvancedPrimitiveBlastFurnace(GTLiteMod.id("industrial_primitive_blast_furnace")))
         MINING_DRONE_AIRPORT = register(10006, MultiblockMiningDroneAirport(GTLiteMod.id("mining_drone_airport")))
-
-        // 10007 TODO Fracturing
-
+        HYDRAULIC_FRACKER = register(10007, MultiblockHydraulicFracker(GTLiteMod.id("hydraulic_fracker"), EV))
         NUCLEAR_REACTOR = register(10008, MultiblockNuclearReactor(GTLiteMod.id("nuclear_reactor")))
 
         HOT_COOLANT_TURBINE = register(10009, MetaTileEntityLargeTurbine(GTLiteMod.id("large_turbine.hot_coolant"),
