@@ -130,6 +130,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
@@ -182,6 +183,7 @@ import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER
+import gregtech.common.items.MetaItems.VOLTAGE_COIL_HV
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.metatileentities.MetaTileEntities.ACTIVE_TRANSFORMER
@@ -369,6 +371,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_SIFTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_ALLOY_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_COMPRESSOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_TRANSFORMER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_WIREMILL
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INDUCED_CVD_UNIT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_1048576
@@ -1514,6 +1517,13 @@ internal object MachineRecipeLoader
             'S', UnificationEntry(spring, BlackBronze),
             'P', ELECTRIC_PUMP_EV,
             'Q', UnificationEntry(pipeNormalFluid, Tungsten))
+
+        // Large Transformer
+        ModHandler.addShapedRecipe(true, "large_transformer", LARGE_TRANSFORMER.stackForm,
+            "VXV", "VTV", "VXV",
+            'T', POWER_TRANSFORMER[HV].stackForm,
+            'V', VOLTAGE_COIL_HV,
+            'X', UnificationEntry(circuit, Tier.HV))
 
     }
 

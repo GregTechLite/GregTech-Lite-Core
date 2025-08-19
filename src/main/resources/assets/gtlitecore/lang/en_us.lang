@@ -2732,6 +2732,10 @@ gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体�
 
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
+gtlitecore.machine.large_transformer.name=Large Transformer
+gtlitecore.machine.large_transformer.tooltip.1=Better than Single Transformers
+gtlitecore.machine.large_transformer.tooltip.2=Required §aEnergy Hatch§7 and §bDynamo Hatch§7 both to work.
+
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§a最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。

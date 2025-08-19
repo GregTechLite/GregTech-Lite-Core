@@ -2731,6 +2731,10 @@ gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体�
 
 gtlitecore.machine.large_acid_generator.name=大型酸性发电机
 
+gtlitecore.machine.large_transformer.name=大型变压器
+gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
+gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§a最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
