@@ -11,7 +11,7 @@ import java.util.function.Predicate
 import java.util.function.Function
 
 /**
- * Builder fo GTCEu [OrePrefix].
+ * Builder for GTCEu [OrePrefix].
  *
  * Supported CraftTweaker operands in ZrS scripts with this class.
  *
