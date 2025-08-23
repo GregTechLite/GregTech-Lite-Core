@@ -94,21 +94,20 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
 
     fun getEfficiencyByPos(worldIn: World, pos: BlockPos): Int
     {
-        val efficiencies = IntArray(EFFICIENCY.allowedValues.maxWith { a, b -> a.compareTo(b) } + 1)
+        val maxEfficiency = EFFICIENCY.allowedValues.max() ?: 0
+        val efficiencies = IntArray(maxEfficiency + 1)
+
         BlockPos.getAllInBox(pos.east().north(), pos.west().south())
             .forEach { blockPos ->
-                if (blockPos != pos && (getEfficiency(worldIn
-                    .getBlockState(blockPos)) + 1 < efficiencies.size))
+                if (blockPos != pos)
                 {
-                    efficiencies[getEfficiency(worldIn.getBlockState(blockPos))]++
-                }
+                    val efficiency = getEfficiency(worldIn.getBlockState(blockPos))
+                    if (efficiency in 0 until efficiencies.size)
+                        efficiencies[efficiency]++
             }
-        for (i in efficiencies.indices.reversed())
-        {
-            if (efficiencies[i] > 2)
-                return i
         }
-        return 0
+
+        return efficiencies.indices.reversed().firstOrNull { efficiencies[it] > 2 } ?: 0
     }
 
     override fun getBonemealAgeIncrease(worldIn: World) = 1
