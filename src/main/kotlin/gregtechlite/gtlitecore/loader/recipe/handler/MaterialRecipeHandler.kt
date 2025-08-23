@@ -158,7 +158,7 @@ object MaterialRecipeHandler
         RecipeMaps.ALLOY_SMELTER_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_MOLD_NUGGET)
             .input(ingotPrefix, material)
-            .output(OrePrefix.nugget, material)
+            .output(OrePrefix.nugget, material, 9)
             .EUt(GTUtility.scaleVoltage(VA[ULV].toLong(), workingTier))
             .duration(material.mass.toInt())
             .buildAndRegister()
