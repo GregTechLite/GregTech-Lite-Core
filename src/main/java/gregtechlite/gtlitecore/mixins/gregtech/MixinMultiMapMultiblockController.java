@@ -44,7 +44,7 @@ public abstract class MixinMultiMapMultiblockController extends RecipeMapMultibl
                             .tooltipBuilder(tooltip -> {
                                 RecipeMap<?> map = recipeMaps[activeMapIndex.getIntValue()];
 
-                                tooltip.add(LocalizationUtils.format("gregtech.multiblock.multiple_recipemaps.value")
+                                tooltip.add(LocalizationUtils.format("gregtech.multiblock.multiple_recipemaps.header")
                                         + " " + LocalizationUtils.format(map.getTranslationKey()));
 
                                 // IKey recipeMapKey = KeyUtil.lang(map.getTranslationKey());

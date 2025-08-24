@@ -40,7 +40,6 @@
     "client.MixinMetaItem",
     "client.MixinMetaPrefixItem",
     "client.MixinMetaValueItem",
-    "client.MixinGTMaterialFluid",
     "client.MixinMetaTileEntityFusionReactor"
   ]
 }
