@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.api.unification.material
 
 import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -88,6 +89,9 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconS
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
+import gregtechlite.gtlitecore.api.unification.material.element.GTLiteElements.Om
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.OMNIUM
 import net.minecraft.init.Enchantments
 
 object GTLiteElementMaterials
@@ -420,6 +424,15 @@ object GTLiteElementMaterials
             .cableProperties(V[OpV], 180, 40)
             .build()
 
+        // 21 Omnium
+        Omnium = Material.Builder(21, GTLiteMod.id("omnium"))
+            .ingot()
+            .liquid()
+            .iconSet(OMNIUM)
+            .element(Om)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
+            .cableProperties(V[MAX] - 1, 360, 20)
+            .build()
     }
 
     // @formatter:on

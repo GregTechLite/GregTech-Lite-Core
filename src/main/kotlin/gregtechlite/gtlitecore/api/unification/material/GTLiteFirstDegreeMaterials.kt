@@ -532,7 +532,6 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.GENERATE_NANITE
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.NO_ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.BEDROCKIUM
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.BLACK_DWARF
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.GLITCH
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MAGNETO
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.NANOPARTICLES
@@ -3259,7 +3258,7 @@ object GTLiteFirstDegreeMaterials
         BlackDwarfMatter = Material.Builder(2314, GTLiteMod.id("black_dwarf_matter"))
             .ingot()
             .fluid()
-            .iconSet(BLACK_DWARF)
+            .color(0x000000).iconSet(METALLIC)
             .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                 GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                 GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND,

@@ -65,6 +65,9 @@ object GTLiteElements
     @JvmField
     val En: Element   = add(100_000, 100_000, "Eternity", "En⦼")
 
+    @JvmField
+    val Om: Element   = add(2_097_152, 2_097_152, "Omnium", "Om⦼")
+
     // endregion
 
     // @formatter:on

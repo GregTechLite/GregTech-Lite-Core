@@ -1,5 +1,7 @@
 package gregtechlite.gtlitecore.api.unification.material
 
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.V
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.EXT2_METAL
@@ -150,6 +152,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNitrogenMixtu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubyJuice
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SapphireJuice
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelfInteractingDarkMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SemistableAntimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodioIndene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpatiallyEnlargedFluid
@@ -162,6 +165,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vodka
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Yeast
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.DARKMATTER
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MHDCSM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.WAX
 
@@ -1044,6 +1048,15 @@ object GTLiteUnknownCompositionMaterials
             .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
                 GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
                 GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
+            .build()
+
+        // 13019 Self-Interacting Dark Matter (SIDM)
+        SelfInteractingDarkMatter = Material.Builder(13019, GTLiteMod.id("self_interacting_dark_matter"))
+            .ingot()
+            .liquid()
+            .iconSet(DARKMATTER)
+            .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            .cableProperties(V[MAX] - 1, 488, 1)
             .build()
 
         // ...

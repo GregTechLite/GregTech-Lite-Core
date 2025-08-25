@@ -3042,6 +3042,7 @@ gtlitecore.material.mag_matter=纯磁物质
 gtlitecore.material.universium=宇宙素
 gtlitecore.material.universium.formula=§7把整个宇宙握在手心
 gtlitecore.material.eternity=永恒
+gtlitecore.material.omnium=万象
 
 gtlitecore.material.dolomite=白云石
 gtlitecore.material.tanzanite=坦桑石
@@ -3872,6 +3873,7 @@ gtlitecore.material.tachyon_rich_temporal_fluid=富快子时间流体
 gtlitecore.material.primordial_matter=流体本源物质
 gtlitecore.material.condensed_raw_stellar_plasma_mixture=浓缩原始恒星等离子体混合物
 gtlitecore.material.magnetohydrodynamically_constrained_star_matter=磁流体动力学约束恒星物质（MHDCSM）
+gtlitecore.material.self_interacting_dark_matter=自相互作用暗物质（SIDM）
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 

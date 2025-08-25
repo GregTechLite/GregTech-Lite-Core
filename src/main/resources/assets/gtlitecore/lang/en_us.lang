@@ -3042,6 +3042,7 @@ gtlitecore.material.mag_matter=Mag Matter
 gtlitecore.material.universium=Universium
 gtlitecore.material.universium.formula=§7Hold the Universe in the Palm of your Hand
 gtlitecore.material.eternity=Eternity
+gtlitecore.material.omnium=Omnium
 
 gtlitecore.material.dolomite=Dolomite
 gtlitecore.material.tanzanite=Tanzanite
@@ -3868,6 +3869,7 @@ gtlitecore.material.tachyon_rich_temporal_fluid=Tachyon Rich Temporal Fluid
 gtlitecore.material.primordial_matter=Primordial Matter
 gtlitecore.material.condensed_raw_stellar_plasma_mixture=Condensed Raw Stellar Plasma Mixture
 gtlitecore.material.magnetohydrodynamically_constrained_star_matter=Magnetohydrodynamically Constrained Star Matter (MHDCSM)
+gtlitecore.material.self_interacting_dark_matter=Self-Interacting Dark Matter (SIDM)
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 

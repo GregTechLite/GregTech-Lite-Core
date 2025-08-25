@@ -35,6 +35,7 @@ object GTLiteMaterials
     lateinit var MagMatter: Material
     lateinit var Universium: Material
     lateinit var Eternity: Material
+    lateinit var Omnium: Material
 
     // endregion
 
@@ -852,6 +853,7 @@ object GTLiteMaterials
     lateinit var PrimordialMatter: Material
     lateinit var RawStarMatter: Material
     lateinit var MagnetohydrodynamicallyConstrainedStarMatter: Material
+    lateinit var SelfInteractingDarkMatter: Material
 
     lateinit var DimensionallyShiftedSuperfluid: Material
 

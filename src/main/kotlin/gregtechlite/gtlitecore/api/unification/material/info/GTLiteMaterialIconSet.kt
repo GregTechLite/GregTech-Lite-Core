@@ -82,6 +82,9 @@ object GTLiteMaterialIconSet
     @JvmStatic
     val WAX = iconSet("wax")
 
+    @JvmStatic
+    val DARKMATTER = iconSet("darkmatter")
+
     // endregion
 
     // region Renderer Suitable Texture IconSets
@@ -104,10 +107,6 @@ object GTLiteMaterialIconSet
 
     @JvmField
     val GLITCH = MaterialIconSetWithRenderer("glitch", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
-
-    @JvmField
-    val BLACK_DWARF = MaterialIconSetWithRenderer("black_dwarf", null, true,
         HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
 
     @JvmField
