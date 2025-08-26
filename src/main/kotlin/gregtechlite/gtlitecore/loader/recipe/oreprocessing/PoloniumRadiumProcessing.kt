@@ -118,7 +118,7 @@ internal object PoloniumRadiumProcessing
 
         // UO2(NO3)2·H2O -> UO2(NO3)2 + H2O
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
+            .circuitMeta(1)
             .fluidInputs(UranylNitrateSolution.getFluid(1000))
             .output(dust, UranylNitrate, 10)
             .fluidOutputs(Water.getFluid(1000))

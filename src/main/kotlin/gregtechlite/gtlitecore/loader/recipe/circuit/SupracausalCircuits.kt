@@ -50,6 +50,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
@@ -58,7 +59,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumHexabori
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
@@ -317,7 +317,7 @@ internal object SupracausalCircuits
             .circuitMeta(2)
             .input(ADVANCED_RAM_CHIP, 8)
             .input(nanite, Shirabon)
-            .input(spring, Magnetium, 4)
+            .input(spring, HalkoniteSteel, 4)
             .input(foil, TranscendentMetal, 8)
             .input(wireFine, SpaceTime, 16)
             .fluidInputs(Eternity.getFluid(L * 4))
