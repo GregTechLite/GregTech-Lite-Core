@@ -427,7 +427,7 @@ object GTLiteRecipeMaps
      */
     @ZenProperty
     @JvmField
-    val LARGE_MIXER_RECIPES:RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("large_mixer", SimpleRecipeBuilder())
+    val LARGE_MIXER_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("large_mixer", SimpleRecipeBuilder())
         .ui { LargeMixerUI(it) }
         .itemInputs(9)
         .itemOutputs(1)

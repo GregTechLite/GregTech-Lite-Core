@@ -8,10 +8,15 @@ object GTLiteRecipeBackends
 {
 
     @JvmStatic
+    fun preInit()
+    {
+        LargeMixerRecipeBackend.init()
+    }
+
+    @JvmStatic
     fun init()
     {
         AdvancedFusionRecipeBackend.init()
-        LargeMixerRecipeBackend.init()
         CVDRecipeBackend.init()
     }
 

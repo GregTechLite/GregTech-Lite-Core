@@ -40,6 +40,7 @@ public class CommonProxy
     public void onPreInit()
     {
         GTLiteRecipeMaps.preInit();
+        GTLiteRecipeBackends.preInit();
         GTLiteMetaOreDictItems.register();
     }
 
