@@ -9,37 +9,26 @@ object GTLiteMaterialIconType
 
     @JvmField
     val gemSolitary = MaterialIconType("gemSolitary")
-
     @JvmField
     val sheetedFrame = MaterialIconType("sheetedFrame")
-
     @JvmField
     val wallGt = MaterialIconType("wallGt")
-
     @JvmField
     val seedCrystal = MaterialIconType("seedCrystal")
-
     @JvmField
     val boule = MaterialIconType("boule")
-
     @JvmField
-    val fuelRodSingle = MaterialIconType("fuelRodSingle")
-
+    val fuelRod = MaterialIconType("fuelRod")
     @JvmField
-    val fuelRodDouble = MaterialIconType("fuelRodDouble")
-
+    val fuelRodEnriched = MaterialIconType("fuelRodEnriched")
     @JvmField
-    val fuelRodQuadruple = MaterialIconType("fuelRodQuadruple")
-
+    val fuelRodHighDensity = MaterialIconType("fuelRodHighDensity")
     @JvmField
-    val fuelRodDepletedSingle = MaterialIconType("fuelRodDepletedSingle")
-
+    val fuelRodDepleted = MaterialIconType("fuelRodDepleted")
     @JvmField
-    val fuelRodDepletedDouble = MaterialIconType("fuelRodDepletedDouble")
-
+    val fuelRodEnrichedDepleted = MaterialIconType("fuelRodEnrichedDepleted")
     @JvmField
-    val fuelRodDepletedQuadruple = MaterialIconType("fuelRodDepletedQuadruple")
-
+    val fuelRodHighDensityDepleted = MaterialIconType("fuelRodHighDensityDepleted")
     @JvmField
     val nanite = MaterialIconType("nanite")
 

@@ -126,49 +126,49 @@ object GTLiteOrePrefix
         .build()
 
     @JvmField
-    val fuelRodSingle: OrePrefix = OrePrefixBuilder.builder("fuelRodSingle")
+    val fuelRod: OrePrefix = OrePrefixBuilder.builder("fuelRod")
         .materialAmount(M * 2)
-        .iconType(GTLiteMaterialIconType.fuelRodSingle)
+        .iconType(GTLiteMaterialIconType.fuelRod)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
 
     @JvmField
-    val fuelRodDouble: OrePrefix = OrePrefixBuilder.builder("fuelRodDouble")
+    val fuelRodEnriched: OrePrefix = OrePrefixBuilder.builder("fuelRodEnriched")
         .materialAmount(M * 4)
-        .iconType(GTLiteMaterialIconType.fuelRodDouble)
+        .iconType(GTLiteMaterialIconType.fuelRodEnriched)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
 
     @JvmField
-    val fuelRodQuadruple: OrePrefix = OrePrefixBuilder.builder("fuelRodQuadruple")
+    val fuelRodHighDensity: OrePrefix = OrePrefixBuilder.builder("fuelRodHighDensity")
         .materialAmount(M * 8)
-        .iconType(GTLiteMaterialIconType.fuelRodQuadruple)
+        .iconType(GTLiteMaterialIconType.fuelRodHighDensity)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
 
     @JvmField
-    val fuelRodDepletedSingle: OrePrefix = OrePrefixBuilder.builder("fuelRodDepletedSingle")
+    val fuelRodDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodDepleted")
         .materialAmount(M * 2)
-        .iconType(GTLiteMaterialIconType.fuelRodDepletedSingle)
+        .iconType(GTLiteMaterialIconType.fuelRodDepleted)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
 
     @JvmField
-    val fuelRodDepletedDouble: OrePrefix = OrePrefixBuilder.builder("fuelRodDepletedDouble")
+    val fuelRodEnrichedDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodEnrichedDepleted")
         .materialAmount(M * 4)
-        .iconType(GTLiteMaterialIconType.fuelRodDouble)
+        .iconType(GTLiteMaterialIconType.fuelRodEnrichedDepleted)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
 
     @JvmField
-    val fuelRodDepletedQuadruple: OrePrefix = OrePrefixBuilder.builder("fuelRodDepletedQuadruple")
+    val fuelRodHighDensityDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodHighDensityDepleted")
         .materialAmount(M * 8)
-        .iconType(GTLiteMaterialIconType.fuelRodQuadruple)
+        .iconType(GTLiteMaterialIconType.fuelRodHighDensityDepleted)
         .enableUnification()
         .condition(GTLiteConditions.hasFuelRodProperties)
         .build()
@@ -196,10 +196,10 @@ object GTLiteOrePrefix
     fun setOrePrefixInfos()
     {
         gemSolitary.maxStackSize = 8
-        fuelRodDouble.maxStackSize = 32
-        fuelRodQuadruple.maxStackSize = 16
-        fuelRodDepletedDouble.maxStackSize = 32
-        fuelRodDepletedQuadruple.maxStackSize = 16
+        fuelRodEnriched.maxStackSize = 32
+        fuelRodHighDensity.maxStackSize = 16
+        fuelRodEnrichedDepleted.maxStackSize = 32
+        fuelRodHighDensityDepleted.maxStackSize = 16
 
         /* ---------------------------------------------------------------------------------------------------------- */
 
@@ -257,6 +257,11 @@ object GTLiteOrePrefix
         OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Creon)
         OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HarmonicPhononMatter)
 
+        fuelRodDepleted.setIgnored(Materials.Graphite)
+
+        fuelRodEnrichedDepleted.setIgnored(Materials.Graphite)
+
+        fuelRodHighDensityDepleted.setIgnored(Materials.Graphite)
     }
 
     fun addToMetaItem()
@@ -264,12 +269,12 @@ object GTLiteOrePrefix
         MetaItems.addOrePrefix(gemSolitary)
         MetaItems.addOrePrefix(seedCrystal)
         MetaItems.addOrePrefix(boule)
-        MetaItems.addOrePrefix(fuelRodSingle)
-        MetaItems.addOrePrefix(fuelRodDouble)
-        MetaItems.addOrePrefix(fuelRodQuadruple)
-        MetaItems.addOrePrefix(fuelRodDepletedSingle)
-        MetaItems.addOrePrefix(fuelRodDepletedDouble)
-        MetaItems.addOrePrefix(fuelRodDepletedQuadruple)
+        MetaItems.addOrePrefix(fuelRod)
+        MetaItems.addOrePrefix(fuelRodEnriched)
+        MetaItems.addOrePrefix(fuelRodHighDensity)
+        MetaItems.addOrePrefix(fuelRodDepleted)
+        MetaItems.addOrePrefix(fuelRodEnrichedDepleted)
+        MetaItems.addOrePrefix(fuelRodHighDensityDepleted)
         MetaItems.addOrePrefix(nanite)
     }
 

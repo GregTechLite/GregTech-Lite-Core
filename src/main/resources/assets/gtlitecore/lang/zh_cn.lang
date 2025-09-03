@@ -2216,8 +2216,7 @@ gtlitecore.machine.acid_generator.ev.tooltip=需要酸性物质
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
-gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
-gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
+gtlitecore.machine.coagulation_tank.tooltip.3=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
 gtlitecore.machine.steam_compressor.name=大型蒸汽压缩机
 
@@ -2227,9 +2226,8 @@ gtlitecore.machine.steam_engine.name=工业蒸汽引擎
 
 gtlitecore.machine.industrial_primitive_blast_furnace.name=工业土高炉
 gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=闪速炼钢窑
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§r与§f输出总线§7进行自动化
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.4=每延长1片侧中层的片状结构，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§7与§f输出总线§7进行自动化
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=带有附属结构，每建造1座§6附属高炉§7，运行时间均会大幅缩减。
 
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与总控中心
@@ -3008,15 +3006,16 @@ item.material.oreprefix.oreQuartzite=石英岩%s矿石
 item.material.oreprefix.oreSlate=板岩%s矿石
 item.material.oreprefix.oreShale=页岩%s矿石
 item.material.oreprefix.sheetedFrame=%s板框箱
+item.material.oreprefix.sheetedFrame=%s板框箱
 item.material.oreprefix.wallGt=%s壁面
 item.material.oreprefix.seedCrystal=%s晶种
 item.material.oreprefix.boule=%s晶棒
-item.material.oreprefix.fuelRodSingle=%s燃料棒
-item.material.oreprefix.fuelRodDouble=双联%s燃料棒
-item.material.oreprefix.fuelRodQuadruple=四联%s燃料棒
-item.material.oreprefix.fuelRodDepletedSingle=枯竭%s燃料棒
-item.material.oreprefix.fuelRodDepletedDouble=双联枯竭%s燃料棒
-item.material.oreprefix.fuelRodDepletedQuadruple=四联枯竭%s燃料棒
+item.material.oreprefix.fuelRod=%s燃料棒
+item.material.oreprefix.fuelRodEnriched=浓缩%s燃料棒
+item.material.oreprefix.fuelRodHighDensity=高密度%s燃料棒
+item.material.oreprefix.fuelRodDepleted=枯竭%s燃料棒
+item.material.oreprefix.fuelRodEnrichedDepleted=枯竭浓缩%s燃料棒
+item.material.oreprefix.fuelRodHighDensityDepleted=枯竭高密度%s燃料棒
 item.material.oreprefix.nanite=%s纳米蜂群
 
 # Materials
@@ -3878,12 +3877,9 @@ gtlitecore.material.self_interacting_dark_matter=自相互作用暗物质（SIDM
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 
 # Material Overriden
-item.gregtech.material.graphite.fuelRodSingle=石墨慢化棒
-item.gregtech.material.graphite.fuelRodDouble=二联石墨慢化棒
-item.gregtech.material.graphite.fuelRodQuadruple=四联石墨慢化棒
-item.gregtech.material.graphite.fuelRodDepletedSingle=枯竭石墨慢化棒
-item.gregtech.material.graphite.fuelRodDepletedDouble=二联枯竭石墨慢化棒
-item.gregtech.material.graphite.fuelRodDepletedQuadruple=四联枯竭石墨慢化棒
+item.gregtech.material.graphite.fuelRod=石墨慢化棒
+item.gregtech.material.graphite.fuelRodEnriched=浓缩石墨慢化棒
+item.gregtech.material.graphite.fuelRodHighDensity=高密度石墨慢化棒
 
 # Fluids
 gtlitecore.fluid.molten=熔融%s

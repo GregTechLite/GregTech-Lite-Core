@@ -24,17 +24,15 @@ import gregtech.api.mui.GTGuiTheme
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.GTTransferUtils.addFluidsToFluidHandler
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.renderer.texture.Textures
 import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.airCounter
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 import net.minecraft.client.resources.I18n
@@ -55,8 +53,6 @@ import kotlin.math.min
 class MultiblockCoagulationTank(id: ResourceLocation)
     : RecipeMapPrimitiveMultiblockController(id, COAGULATION_RECIPES), IGhostSlotConfigurable
 {
-
-    private var size = 0
 
     private var circuitInventory: GhostCircuitItemStackHandler? = null
     private var actualImportItems: IItemHandlerModifiable? = null
@@ -90,28 +86,22 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         return actualImportItems!!
     }
 
-    override fun formStructure(context: PatternMatchContext)
-    {
-        super.formStructure(context)
-        size = context.getOrDefault("length", 1)
-    }
-
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "CCC", "CCC")
-        .aisle("CCC", "CIC", "C#C").setRepeatable(1, 16)
-        .aisle("CCC", "CSC", "CCC")
+        .aisle("CCC", "C*C", "C#C")
+        .aisle("CSC", "CCC", "CCC")
         .where('S', selfPredicate())
         .where('C', states(casingState)
             .or(abilities(IMPORT_FLUIDS, EXPORT_ITEMS)))
-        .where('I', airCounter())
         .where('#', air())
+        .where('*', air().or(SNOW_LAYER))
         .build()
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.REINFORCED_TREATED_WOOD_WALL
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = Textures.PRIMITIVE_PUMP_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.COAGULATION_TANK_OVERLAY
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
@@ -169,7 +159,6 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
-        data.setInteger("size", size)
         if (circuitInventory != null)
             circuitInventory!!.write(data)
         return data
@@ -178,7 +167,6 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        size = data.getInteger("size")
         if (circuitInventory != null)
         {
             if (data.hasKey("CircuitInventory", Constants.NBT.TAG_COMPOUND))
@@ -274,13 +262,13 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.4"))
+        tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 8))
     }
 
     private inner class CoagulationTankRecipeLogic(metaTileEntity: RecipeMapPrimitiveMultiblockController, recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(metaTileEntity, recipeMap)
     {
 
-        override fun getParallelLimit(): Int = (getMetaTileEntity() as MultiblockCoagulationTank).size
+        override fun getParallelLimit(): Int = 8
 
         override fun getMaxParallelVoltage(): Long = 2_147_432_767L // Long.MAX_VALUE - 50800 EU
 

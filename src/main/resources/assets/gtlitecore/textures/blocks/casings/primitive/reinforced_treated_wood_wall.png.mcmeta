@@ -1,0 +1,13 @@
+{
+  "ctm": {
+    "ctm_version": 1,
+    "type": "CTM",
+    "layer": "SOLID",
+    "textures": [
+      "gtlitecore:blocks/casings/primitive/reinforced_treated_wood_wall_ctm"
+    ],
+    "extra": {
+      "connect_inside": true
+    }
+  }
+}

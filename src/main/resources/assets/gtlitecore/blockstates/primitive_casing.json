@@ -3,11 +3,9 @@
   "variants": {
     "variant": {
       "reinforced_treated_wood_wall": {
-        "model": "minecraft:cube_bottom_top",
+        "model": "minecraft:cube_all",
         "textures": {
-          "top": "gtlitecore:blocks/casings/special/reinforced_treated_wood_wall_top",
-          "side": "gtlitecore:blocks/casings/special/reinforced_treated_wood_wall_side",
-          "bottom": "#top"
+          "all": "gtlitecore:blocks/casings/primitive/reinforced_treated_wood_wall"
         }
       }
     }

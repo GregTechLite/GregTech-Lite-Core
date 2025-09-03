@@ -20,7 +20,7 @@ object NuclearFuelRecipeHandler
 
     fun init()
     {
-        GTLiteOrePrefix.fuelRodSingle.addProcessingHandler(PropertyKey.DUST, this::processFuelRod)
+        GTLiteOrePrefix.fuelRod.addProcessingHandler(PropertyKey.DUST, this::processFuelRod)
     }
 
     private fun processFuelRod(fuelRodPrefix: OrePrefix, material: Material, property: DustProperty)
@@ -29,14 +29,14 @@ object NuclearFuelRecipeHandler
         CANNER_RECIPES.recipeBuilder()
             .input(GTLiteMetaItems.FUEL_ROD_EMPTY)
             .input(OrePrefix.dust, material, 4)
-            .output(GTLiteOrePrefix.fuelRodSingle, material)
+            .output(GTLiteOrePrefix.fuelRod, material)
             .EUt(VA[LV].toLong())
             .duration(20 * SECOND)
             .buildAndRegister()
 
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(1)
-            .input(GTLiteOrePrefix.fuelRodSingle, material)
+            .input(GTLiteOrePrefix.fuelRod, material)
             .output(OrePrefix.dust, material)
             .output(GTLiteMetaItems.FUEL_ROD_EMPTY)
             .EUt(7) // ULV
@@ -46,16 +46,16 @@ object NuclearFuelRecipeHandler
         // fuelRodDouble
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(2)
-            .input(GTLiteOrePrefix.fuelRodSingle, material, 2)
-            .output(GTLiteOrePrefix.fuelRodDouble, material)
+            .input(GTLiteOrePrefix.fuelRod, material, 2)
+            .output(GTLiteOrePrefix.fuelRodEnriched, material)
             .EUt(7) // ULV
             .duration(5 * SECOND)
             .buildAndRegister()
 
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(1)
-            .input(GTLiteOrePrefix.fuelRodDouble, material)
-            .output(GTLiteOrePrefix.fuelRodSingle, material, 2)
+            .input(GTLiteOrePrefix.fuelRodEnriched, material)
+            .output(GTLiteOrePrefix.fuelRod, material, 2)
             .EUt(7) // ULV
             .duration(7 * SECOND + 10 * TICK)
             .buildAndRegister()
@@ -63,32 +63,32 @@ object NuclearFuelRecipeHandler
         // fuelRodQuadruple
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(2)
-            .input(GTLiteOrePrefix.fuelRodDouble, material, 2)
-            .output(GTLiteOrePrefix.fuelRodQuadruple, material)
+            .input(GTLiteOrePrefix.fuelRodEnriched, material, 2)
+            .output(GTLiteOrePrefix.fuelRodHighDensity, material)
             .EUt(7) // ULV
             .duration(5 * SECOND)
             .buildAndRegister()
 
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(4)
-            .input(GTLiteOrePrefix.fuelRodSingle, material, 4)
-            .output(GTLiteOrePrefix.fuelRodQuadruple, material)
+            .input(GTLiteOrePrefix.fuelRod, material, 4)
+            .output(GTLiteOrePrefix.fuelRodHighDensity, material)
             .EUt(7) // ULV
             .duration(10 * SECOND)
             .buildAndRegister()
 
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(3)
-            .input(GTLiteOrePrefix.fuelRodQuadruple, material)
-            .output(GTLiteOrePrefix.fuelRodSingle, material, 4)
+            .input(GTLiteOrePrefix.fuelRodHighDensity, material)
+            .output(GTLiteOrePrefix.fuelRod, material, 4)
             .EUt(7) // ULV
             .duration(12 * SECOND + 10 * TICK)
             .buildAndRegister()
 
         PACKER_RECIPES.recipeBuilder()
             .circuitMeta(5)
-            .input(GTLiteOrePrefix.fuelRodQuadruple, material)
-            .output(GTLiteOrePrefix.fuelRodDouble, material, 2)
+            .input(GTLiteOrePrefix.fuelRodHighDensity, material)
+            .output(GTLiteOrePrefix.fuelRodEnriched, material, 2)
             .EUt(7) // ULV
             .duration(7 * SECOND + 10 * TICK)
             .buildAndRegister()

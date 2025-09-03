@@ -10,6 +10,7 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.PatternStringError
 import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.util.BlockInfo
+import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
@@ -19,6 +20,9 @@ import java.util.*
 
 object TraceabilityPredicates
 {
+
+    @JvmStatic
+    val SNOW_LAYER = TraceabilityPredicate { bws -> GTUtility.isBlockSnow(bws.blockState) }
 
     // region GTCEu Tiered Stats
 
@@ -93,6 +97,8 @@ object TraceabilityPredicates
 
     // endregion
 
+    // region Block Attribute Getter
+
     @JvmStatic
     fun tierBlock(registry: BlockAttributeRegistry<*>,
                   candidateFilter: (IBlockState) -> Boolean = { true },
@@ -135,6 +141,9 @@ object TraceabilityPredicates
         return getOrDefault<T>(registry.name, null)?.tier ?: default
     }
 
+    // endregion
+
+    // region Specified Block Counter
     @JvmStatic
     fun airCounter() = counter("length", TraceabilityPredicate.AIR)
 
@@ -147,6 +156,8 @@ object TraceabilityPredicates
         }
 
     }
+
+    // endregion
 
     @JvmStatic
     fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate

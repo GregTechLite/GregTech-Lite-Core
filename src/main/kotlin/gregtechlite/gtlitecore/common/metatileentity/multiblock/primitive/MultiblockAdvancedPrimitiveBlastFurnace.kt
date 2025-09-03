@@ -3,38 +3,44 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import gregtech.api.GTValues.ULV
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.ParallelLogicType
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.mui.GTGuiTheme
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.recipes.RecipeMaps.PRIMITIVE_BLAST_FURNACE_RECIPES
-import gregtech.api.util.GTUtility.isBlockSnow
+import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
+import gregtech.common.blocks.MetaBlocks
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
 import gregtechlite.gtlitecore.api.capability.logic.NoEnergyMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.airCounter
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.optionalStates
+import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTFireboxCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
 
 class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
     : RecipeMapMultiblockController(id, PRIMITIVE_BLAST_FURNACE_RECIPES)
 {
 
-    private var size = 0
+    private var auxiliaryFurnaceNumber = 0
 
     init
     {
@@ -45,6 +51,12 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
     {
         private val casingState
             get() = GTMetalCasing.PRIMITIVE_BRICKS.state
+
+        private val fireboxCasingState
+            get() = GTFireboxCasing.STEEL_FIREBOX.state
+
+        private val pipeCasingState
+            get() = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAdvancedPrimitiveBlastFurnace(metaTileEntityId)
@@ -52,20 +64,34 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        size = context.getOrDefault("length", 1)
+        if (context.get<String>("AuxiliaryFurnace1") != null)
+            auxiliaryFurnaceNumber += 1
+        if (context.get<String>("AuxiliaryFurnace2") != null)
+            auxiliaryFurnaceNumber += 1
     }
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
-        .aisle("CCC", "CCC", "CCC", "CCC")
-        .aisle("CCC", "C*C", "CIC", "C#C").setRepeatable(1, 16)
-        .aisle("CCC", "CSC", "CCC", "CCC")
+        .aisle("     DDD     ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ")
+        .aisle("    CDDDC    ", "    CDDDC    ", "    CDDDC    ", "     DDD     ", "             ", "             ", "             ", "             ", "             ")
+        .aisle("AAAGDDDDDJFFF", "GGG D###D JJJ", " G  D###D  J ", " G  D###D  J ", " G   DDD   J ", " G    D    J ", "      D      ", "      D      ", "      D      ")
+        .aisle("AAAGDDDDDJFFF", "GoGHD#o#DIJoJ", "G#G D###D J#J", "G#G D###D J#J", "G#G D###D J#J", "G#G  D#D  J#J", "     D#D     ", "     D#D     ", "     D#D     ")
+        .aisle("AAAGDDDDDJFFF", "GGG D###D JJJ", " G  D###D  J ", " G  D###D  J ", " G   DDD   J ", " G    D    J ", "      D      ", "      D      ", "      D      ")
+        .aisle("    CDDDC    ", "    CDSDC    ", "    CDDDC    ", "     DDD     ", "             ", "             ", "             ", "             ", "             ")
+        .aisle("     DDD     ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ")
         .where('S', selfPredicate())
-        .where('C', states(casingState)
-            .or(abilities(IMPORT_ITEMS, EXPORT_ITEMS)))
-        .where('I', airCounter())
-        .where('*', air()
-            .or(TraceabilityPredicate { bws -> isBlockSnow(bws.blockState) }))
+        .where('C', frames(Steel))
+        .where('D', states(casingState)
+            .setMinGlobalLimited(69)
+            .or(autoAbilities(false, false, true, true, false, false, false)))
+        .where('A', optionalStates("AuxiliaryFurnace1", fireboxCasingState))
+        .where('F', optionalStates("AuxiliaryFurnace2", fireboxCasingState))
+        .where('G', optionalStates("AuxiliaryFurnace1", casingState))
+        .where('J', optionalStates("AuxiliaryFurnace2", casingState))
+        .where('H', optionalStates("AuxiliaryFurnace1", pipeCasingState))
+        .where('I', optionalStates("AuxiliaryFurnace2", pipeCasingState))
         .where('#', air())
+        .where('o', air().or(SNOW_LAYER))
+        .where(' ', any())
         .build()
 
     @SideOnly(Side.CLIENT)
@@ -78,11 +104,39 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
-                                      pipeline: Array<out IVertexOperation>?)
+                                      pipeline: Array<out IVertexOperation>?, )
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing,
             recipeMapWorkable.isActive, recipeMapWorkable.isWorkingEnabled)
+    }
+
+    override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
+    {
+        val shapeInfo: MutableList<MultiblockShapeInfo> = arrayListOf()
+        val builder =  MultiblockShapeInfo.builder(RelativeDirection.RIGHT, RelativeDirection.DOWN, RelativeDirection.FRONT)
+            .aisle("     DDD     ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ")
+            .aisle("    CDDDC    ", "    CDDDC    ", "    CDDDC    ", "     DDD     ", "             ", "             ", "             ", "             ", "             ")
+            .aisle("AAAGDDDDDJFFF", "GGG D   D JJJ", " G  D   D  J ", " G  D   D  J ", " G   DDD   J ", " G    D    J ", "      D      ", "      D      ", "      D      ")
+            .aisle("AAAGDDDDDJFFF", "G GHD   DIJ J", "G G D   D J J", "G*G D   D J!J", "G G D   D J J", "G G  D D  J J", "     D D     ", "     D D     ", "     D D     ")
+            .aisle("AAAGDDDDDJFFF", "GGG D   D JJJ", " G  D   D  J ", " G  D   D  J ", " G   DDD   J ", " G    D    J ", "      D      ", "      D      ", "      D      ")
+            .aisle("    CDDDC    ", "    CXSYC    ", "    CDDDC    ", "     DDD     ", "             ", "             ", "             ", "             ", "             ")
+            .aisle("     DDD     ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ")
+            .where('S', GTLiteMetaTileEntities.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE, EnumFacing.SOUTH)
+            .where('C', MetaBlocks.FRAMES[Steel]!!.getBlock(Steel))
+            .where('D', casingState)
+            .where('X', ITEM_IMPORT_BUS[ULV], EnumFacing.SOUTH)
+            .where('Y', ITEM_EXPORT_BUS[ULV], EnumFacing.SOUTH)
+        shapeInfo.add(builder.build())
+        shapeInfo.add(builder.where('A', fireboxCasingState)
+                          .where('G', casingState)
+                          .where('H', pipeCasingState)
+                          .build())
+        shapeInfo.add(builder.where('F', fireboxCasingState)
+                          .where('I', pipeCasingState)
+                          .where('J', casingState)
+                          .build())
+        return shapeInfo
     }
 
     override fun hasMaintenanceMechanics() = false
@@ -96,21 +150,30 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.4"))
+    }
+
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+            .addWorkingStatusLine()
+            .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
+            .addRecipeOutputLine(recipeMapWorkable)
     }
 
     private inner class IndustrialPBFRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : NoEnergyMultiblockRecipeLogic(metaTileEntity)
     {
 
-        override fun getParallelLimit() = (getMetaTileEntity() as MultiblockAdvancedPrimitiveBlastFurnace).size
-
-        override fun getMaxParallelVoltage(): Long = 2_147_432_767L // Long.MAX_VALUE - 50800 EU
-
-        override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.MULTIPLY
-
         override fun setMaxProgress(maxProgress: Int)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow((getMetaTileEntity() as MultiblockAdvancedPrimitiveBlastFurnace).size)).toInt())
+            if (isStructureFormed)
+            {
+                maxProgressTime = when (auxiliaryFurnaceNumber)
+                {
+                    1 -> maxProgress / 8
+                    2 -> maxProgress / 16
+                    else -> maxProgress
+                }
+            }
         }
 
     }

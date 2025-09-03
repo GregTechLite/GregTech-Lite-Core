@@ -2216,8 +2216,7 @@ gtlitecore.machine.acid_generator.ev.tooltip=Required Acid Matters
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your Latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
-gtlitecore.machine.coagulation_tank.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
-gtlitecore.machine.coagulation_tank.tooltip.4=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
+gtlitecore.machine.coagulation_tank.tooltip.3=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
 
 gtlitecore.machine.steam_compressor.name=Large Steam Compressor
 
@@ -2225,11 +2224,10 @@ gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
 
 gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 
-gtlitecore.machine.industrial_primitive_blast_furnace.name=工业土高炉
+gtlitecore.machine.industrial_primitive_blast_furnace.name=Industrial Primitive Blast Furnace
 gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=闪速炼钢窑
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§r与§f输出总线§7进行自动化
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=竖侧中层的片状结构可以伸缩，每比原始结构多1片，就会增加§e1§7并行
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.4=每延长1片侧中层的片状结构，配方所需时间就变为原本的§l80%%§r§7。
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§7与§f输出总线§7进行自动化
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=带有附属结构，每建造1座§6附属高炉§7，运行时间均会大幅缩减。
 
 gtlitecore.machine.mining_drone_airport.name=采矿无人机坪
 gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与总控中心
@@ -3011,12 +3009,12 @@ item.material.oreprefix.sheetedFrame=Sheeted %s Frame
 item.material.oreprefix.wallGt=%s Wall
 item.material.oreprefix.seedCrystal=%s Crystal Seed
 item.material.oreprefix.boule=%s Boule
-item.material.oreprefix.fuelRodSingle=%s Fuel Rod
-item.material.oreprefix.fuelRodDouble=Double %s Fuel Rod
-item.material.oreprefix.fuelRodQuadruple=Quadruple %s Fuel Rod
-item.material.oreprefix.fuelRodDepletedSingle=Depleted %s Fuel Rod
-item.material.oreprefix.fuelRodDepletedDouble=Double Depleted %s Fuel Rod
-item.material.oreprefix.fuelRodDepletedQuadruple=Quadruple Depleted %s Fuel Rod
+item.material.oreprefix.fuelRod=%s Fuel Rod
+item.material.oreprefix.fuelRodEnriched=Enriched %s Fuel Rod
+item.material.oreprefix.fuelRodHighDensity=High Density %s Fuel Rod
+item.material.oreprefix.fuelRodDepleted=Depleted %s Fuel Rod
+item.material.oreprefix.fuelRodEnrichedDepleted=Depleted Enriched %s Fuel Rod
+item.material.oreprefix.fuelRodHighDensityDepleted=Depleted High Density %s Fuel Rod
 item.material.oreprefix.nanite=%s Nanite
 
 # Materials
@@ -3874,12 +3872,9 @@ gtlitecore.material.self_interacting_dark_matter=Self-Interacting Dark Matter (S
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 
 # Material Overriden
-item.gregtech.material.graphite.fuelRodSingle=Graphite Moderate Rod
-item.gregtech.material.graphite.fuelRodDouble=Double Graphite Moderate Rod
-item.gregtech.material.graphite.fuelRodQuadruple=Quadruple Graphite Moderate Rod
-item.gregtech.material.graphite.fuelRodDepletedSingle=Depleted Graphite Moderate Rod
-item.gregtech.material.graphite.fuelRodDepletedDouble=Double Depleted Graphite Moderate Rod
-item.gregtech.material.graphite.fuelRodDepletedQuadruple=Quadruple Depleted Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRod=Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodEnriched=Enriched Graphite Moderate Rod
+item.gregtech.material.graphite.fuelRodHighDensity=High Density Graphite Moderate Rod
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s

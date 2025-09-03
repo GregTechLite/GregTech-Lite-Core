@@ -110,6 +110,8 @@ object GTLiteTextures
     @JvmField
     val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = orientedOverlay("machines/multiblock/entrodynamically_phase_changer")
     @JvmField
+    val COAGULATION_TANK_OVERLAY = orientedOverlay("machines/multiblock/coagulation_tank")
+    @JvmField
     val ACID_GENERATOR_OVERLAY = orientedOverlay("generators/acid_generator")
     @JvmField
     val STERILE_CLEANING_MAINTENANCE_OVERLAY = simpleOverlay("overlay/machine/overlay_maintenance_sterile_cleaning")
@@ -123,8 +125,7 @@ object GTLiteTextures
 
     // region Machine Casing Textures
     @JvmField
-    val REINFORCED_TREATED_WOOD_WALL = sidedCubeOverlay("casings/reinforced_treated_wood_wall")
-
+    val REINFORCED_TREATED_WOOD_WALL = simpleOverlay("casings/primitive/reinforced_treated_wood_wall")
     @JvmField
     val MARAGING_STEEL_250_CASING = simpleOverlay("casings/metal/maraging_steel_250")
     @JvmField

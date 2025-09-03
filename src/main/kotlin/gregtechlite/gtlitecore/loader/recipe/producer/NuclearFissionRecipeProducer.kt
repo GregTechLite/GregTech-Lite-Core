@@ -52,12 +52,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSodiumPotassiumEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSteam
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDepletedDouble
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDepletedQuadruple
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDepletedSingle
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDouble
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodQuadruple
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodSingle
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnrichedDepleted
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensityDepleted
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDepleted
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnriched
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRod
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -133,9 +133,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(50), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(50))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Thorium)
+                .input(fuelRod, Thorium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Thorium)
+                .output(fuelRodDepleted, Thorium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[MV])
                 .duration(20 * SECOND)
@@ -151,9 +151,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(50 * 2), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(50 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Thorium)
+                .input(fuelRodEnriched, Thorium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Thorium)
+                .output(fuelRodEnrichedDepleted, Thorium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[HV] / 2L)
                 .duration(80 * SECOND)
@@ -169,9 +169,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(50 * 4), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(50 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Thorium)
+                .input(fuelRodHighDensity, Thorium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Thorium)
+                .output(fuelRodHighDensityDepleted, Thorium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[HV])
                 .duration(320 * SECOND)
@@ -180,7 +180,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleThorium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Thorium)
+            .input(fuelRodDepleted, Thorium)
             .output(dust, Steel, 2)
             .output(dust, Thorium, 2)
             .output(dust, Uranium238)
@@ -191,7 +191,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleThorium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Thorium)
+            .input(fuelRodEnrichedDepleted, Thorium)
             .output(dust, Steel, 4)
             .output(dust, Thorium, 4)
             .output(dust, Uranium238, 2)
@@ -202,7 +202,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleThorium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Thorium)
+            .input(fuelRodHighDensityDepleted, Thorium)
             .output(dust, Steel, 8)
             .output(dust, Thorium, 8)
             .output(dust, Uranium238, 4)
@@ -223,9 +223,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(170), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(170))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Protactinium)
+                .input(fuelRod, Protactinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Protactinium)
+                .output(fuelRodDepleted, Protactinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[MV])
                 .duration(30 * SECOND)
@@ -241,9 +241,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(170 * 2), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(170 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Protactinium)
+                .input(fuelRodEnriched, Protactinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Protactinium)
+                .output(fuelRodEnrichedDepleted, Protactinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[HV] / 2L)
                 .duration(120 * SECOND)
@@ -259,9 +259,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(170 * 4), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(170 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Protactinium)
+                .input(fuelRodHighDensity, Protactinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Protactinium)
+                .output(fuelRodHighDensityDepleted, Protactinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[HV])
                 .duration(480 * SECOND)
@@ -270,7 +270,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleProtactinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Protactinium)
+            .input(fuelRodDepleted, Protactinium)
             .output(dust, Steel, 2)
             .output(dust, Protactinium, 2)
             .output(dust, Uranium235)
@@ -281,7 +281,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleProtactinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Protactinium)
+            .input(fuelRodEnrichedDepleted, Protactinium)
             .output(dust, Steel, 4)
             .output(dust, Protactinium, 4)
             .output(dust, Uranium235, 2)
@@ -292,7 +292,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleProtactinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Protactinium)
+            .input(fuelRodHighDensityDepleted, Protactinium)
             .output(dust, Steel, 8)
             .output(dust, Protactinium, 8)
             .output(dust, Uranium235, 4)
@@ -313,9 +313,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(350), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(350))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Uranium)
+                .input(fuelRod, Uranium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Uranium)
+                .output(fuelRodDepleted, Uranium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[HV])
                 .duration(40 * SECOND)
@@ -331,9 +331,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(350 * 2), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(350 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Uranium)
+                .input(fuelRodEnriched, Uranium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Uranium)
+                .output(fuelRodEnrichedDepleted, Uranium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[EV])
                 .duration(160 * SECOND)
@@ -349,9 +349,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(350 * 4), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(350 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Uranium)
+                .input(fuelRodHighDensity, Uranium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Uranium)
+                .output(fuelRodHighDensityDepleted, Uranium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV])
                 .duration(640 * SECOND)
@@ -360,7 +360,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleUranium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Uranium)
+            .input(fuelRodDepleted, Uranium)
             .output(dust, Steel, 2)
             .output(dust, Uranium238, 2)
             .output(dust, Uranium235)
@@ -371,7 +371,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleUranium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Uranium)
+            .input(fuelRodEnrichedDepleted, Uranium)
             .output(dust, Steel, 4)
             .output(dust, Uranium238, 4)
             .output(dust, Uranium235, 2)
@@ -382,7 +382,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleUranium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Uranium)
+            .input(fuelRodHighDensityDepleted, Uranium)
             .output(dust, Steel, 8)
             .output(dust, Uranium238, 8)
             .output(dust, Uranium235, 4)
@@ -403,9 +403,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(570), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(570))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Neptunium)
+                .input(fuelRod, Neptunium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Neptunium)
+                .output(fuelRodDepleted, Neptunium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[EV])
                 .duration(15 * SECOND)
@@ -421,9 +421,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(570 * 2), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(570 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Neptunium)
+                .input(fuelRodEnriched, Neptunium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Neptunium)
+                .output(fuelRodEnrichedDepleted, Neptunium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV] / 2L)
                 .duration(60 * SECOND)
@@ -439,9 +439,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(570 * 4), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(570 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Neptunium)
+                .input(fuelRodHighDensity, Neptunium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Neptunium)
+                .output(fuelRodHighDensityDepleted, Neptunium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV])
                 .duration(240 * SECOND)
@@ -450,7 +450,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleNeptunium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Neptunium)
+            .input(fuelRodDepleted, Neptunium)
             .output(dust, Steel, 2)
             .output(dust, Neptunium, 2)
             .output(dust, Plutonium241)
@@ -461,7 +461,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleNeptunium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Neptunium)
+            .input(fuelRodEnrichedDepleted, Neptunium)
             .output(dust, Steel, 4)
             .output(dust, Neptunium, 4)
             .output(dust, Plutonium241, 2)
@@ -472,7 +472,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleNeptunium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Neptunium)
+            .input(fuelRodHighDensityDepleted, Neptunium)
             .output(dust, Steel, 8)
             .output(dust, Neptunium, 8)
             .output(dust, Plutonium241, 4)
@@ -493,9 +493,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(850), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(850))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Plutonium239)
+                .input(fuelRod, Plutonium239)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Plutonium239)
+                .output(fuelRodDepleted, Plutonium239)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[EV])
                 .duration(45 * SECOND)
@@ -511,9 +511,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(850 * 2), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(850 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Plutonium239)
+                .input(fuelRodEnriched, Plutonium239)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Plutonium239)
+                .output(fuelRodEnrichedDepleted, Plutonium239)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV] / 2L)
                 .duration(180 * SECOND)
@@ -529,9 +529,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(850 * 4), SuperheatedLithiumSodiumPotassiumFluorides.getFluid(850 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Plutonium239)
+                .input(fuelRodHighDensity, Plutonium239)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Plutonium239)
+                .output(fuelRodHighDensityDepleted, Plutonium239)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV])
                 .duration(720 * SECOND)
@@ -540,7 +540,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSinglePlutonium239 decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Plutonium239)
+            .input(fuelRodDepleted, Plutonium239)
             .output(dust, Steel, 2)
             .output(dust, Plutonium239, 2)
             .output(dust, Plutonium244)
@@ -551,7 +551,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoublePlutonium239 decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Plutonium239)
+            .input(fuelRodEnrichedDepleted, Plutonium239)
             .output(dust, Steel, 4)
             .output(dust, Plutonium239, 4)
             .output(dust, Plutonium244, 2)
@@ -562,7 +562,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadruplePlutonium239 decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Plutonium239)
+            .input(fuelRodHighDensityDepleted, Plutonium239)
             .output(dust, Steel, 8)
             .output(dust, Plutonium239, 8)
             .output(dust, Plutonium244, 4)
@@ -583,9 +583,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1250), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1250))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Americium)
+                .input(fuelRod, Americium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Americium)
+                .output(fuelRodDepleted, Americium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV])
                 .duration(48 * SECOND)
@@ -601,9 +601,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1250 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1250 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Americium)
+                .input(fuelRodEnriched, Americium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Americium)
+                .output(fuelRodEnrichedDepleted, Americium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[IV] * 2L)
                 .duration(192 * SECOND)
@@ -619,9 +619,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1250 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1250 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Americium)
+                .input(fuelRodHighDensity, Americium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Americium)
+                .output(fuelRodHighDensityDepleted, Americium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV])
                 .duration(768 * SECOND)
@@ -630,7 +630,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleAmericium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Americium)
+            .input(fuelRodDepleted, Americium)
             .output(dust, Steel, 2)
             .output(dust, Americium, 2)
             .output(dust, Lutetium)
@@ -641,7 +641,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleAmericium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Americium)
+            .input(fuelRodEnrichedDepleted, Americium)
             .output(dust, Steel, 4)
             .output(dust, Americium, 4)
             .output(dust, Lutetium, 2)
@@ -652,7 +652,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleAmericium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Americium)
+            .input(fuelRodHighDensityDepleted, Americium)
             .output(dust, Steel, 8)
             .output(dust, Americium, 8)
             .output(dust, Lutetium, 4)
@@ -673,9 +673,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1730), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1730))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Curium)
+                .input(fuelRod, Curium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Curium)
+                .output(fuelRodDepleted, Curium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] / 2L)
                 .duration(46 * SECOND)
@@ -691,9 +691,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1730 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1730 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Curium)
+                .input(fuelRodEnriched, Curium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Curium)
+                .output(fuelRodEnrichedDepleted, Curium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV])
                 .duration(184 * SECOND)
@@ -709,9 +709,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(1730 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(1730 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Curium)
+                .input(fuelRodHighDensity, Curium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Curium)
+                .output(fuelRodHighDensityDepleted, Curium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 2L)
                 .duration(736 * SECOND)
@@ -720,7 +720,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleCurium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Curium)
+            .input(fuelRodDepleted, Curium)
             .output(dust, Steel, 2)
             .output(dust, Curium, 2)
             .output(dust, Hafnium)
@@ -731,7 +731,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleCurium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Curium)
+            .input(fuelRodEnrichedDepleted, Curium)
             .output(dust, Steel, 4)
             .output(dust, Curium, 4)
             .output(dust, Hafnium, 2)
@@ -742,7 +742,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleCurium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Curium)
+            .input(fuelRodHighDensityDepleted, Curium)
             .output(dust, Steel, 8)
             .output(dust, Curium, 8)
             .output(dust, Hafnium, 4)
@@ -763,9 +763,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(2480), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Berkelium)
+                .input(fuelRod, Berkelium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Berkelium)
+                .output(fuelRodDepleted, Berkelium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] / 2L)
                 .duration(55 * SECOND)
@@ -781,9 +781,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(2480 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Berkelium)
+                .input(fuelRodEnriched, Berkelium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Berkelium)
+                .output(fuelRodEnrichedDepleted, Berkelium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV])
                 .duration(220 * SECOND)
@@ -799,9 +799,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(2480 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(2480 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Berkelium)
+                .input(fuelRodHighDensity, Berkelium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Berkelium)
+                .output(fuelRodHighDensityDepleted, Berkelium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 3L)
                 .duration(880 * SECOND)
@@ -810,7 +810,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleBerkelium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Berkelium)
+            .input(fuelRodDepleted, Berkelium)
             .output(dust, Steel, 2)
             .output(dust, Berkelium, 2)
             .output(dust, Rhenium)
@@ -821,7 +821,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleBerkelium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Berkelium)
+            .input(fuelRodEnrichedDepleted, Berkelium)
             .output(dust, Steel, 4)
             .output(dust, Berkelium, 4)
             .output(dust, Rhenium, 2)
@@ -832,7 +832,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleBerkelium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Berkelium)
+            .input(fuelRodHighDensityDepleted, Berkelium)
             .output(dust, Steel, 8)
             .output(dust, Berkelium, 8)
             .output(dust, Rhenium, 4)
@@ -853,9 +853,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(3360), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Californium)
+                .input(fuelRod, Californium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Californium)
+                .output(fuelRodDepleted, Californium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV])
                 .duration(64 * SECOND)
@@ -871,9 +871,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(3360 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Californium)
+                .input(fuelRodEnriched, Californium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Californium)
+                .output(fuelRodEnrichedDepleted, Californium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 3L)
                 .duration(256 * SECOND)
@@ -889,9 +889,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(3360 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(3360 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Californium)
+                .input(fuelRodHighDensity, Californium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Californium)
+                .output(fuelRodHighDensityDepleted, Californium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM])
                 .duration(1024 * SECOND)
@@ -900,7 +900,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleCalifornium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Californium)
+            .input(fuelRodDepleted, Californium)
             .output(dust, Steel, 2)
             .output(dust, Californium, 2)
             .output(dust, Scandium)
@@ -911,7 +911,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleCalifornium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Californium)
+            .input(fuelRodEnrichedDepleted, Californium)
             .output(dust, Steel, 4)
             .output(dust, Californium, 4)
             .output(dust, Scandium, 2)
@@ -922,7 +922,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleCalifornium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Californium)
+            .input(fuelRodHighDensityDepleted, Californium)
             .output(dust, Steel, 8)
             .output(dust, Californium, 8)
             .output(dust, Scandium, 4)
@@ -943,9 +943,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(4320), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Einsteinium)
+                .input(fuelRod, Einsteinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Einsteinium)
+                .output(fuelRodDepleted, Einsteinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 2L)
                 .duration(72 * SECOND)
@@ -961,9 +961,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(4320 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Einsteinium)
+                .input(fuelRodEnriched, Einsteinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Einsteinium)
+                .output(fuelRodEnrichedDepleted, Einsteinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 3L)
                 .duration(288 * SECOND)
@@ -979,9 +979,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(4320 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(4320 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Einsteinium)
+                .input(fuelRodHighDensity, Einsteinium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Einsteinium)
+                .output(fuelRodHighDensityDepleted, Einsteinium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM])
                 .duration(1152 * SECOND)
@@ -990,7 +990,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleEinsteinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Einsteinium)
+            .input(fuelRodDepleted, Einsteinium)
             .output(dust, Steel, 2)
             .output(dust, Einsteinium, 2)
             .output(dust, Polonium)
@@ -1001,7 +1001,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleEinsteinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Einsteinium)
+            .input(fuelRodEnrichedDepleted, Einsteinium)
             .output(dust, Steel, 4)
             .output(dust, Einsteinium, 4)
             .output(dust, Polonium, 2)
@@ -1012,7 +1012,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleEinsteinium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Einsteinium)
+            .input(fuelRodHighDensityDepleted, Einsteinium)
             .output(dust, Steel, 8)
             .output(dust, Einsteinium, 8)
             .output(dust, Polonium, 4)
@@ -1033,9 +1033,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(5340), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Fermium)
+                .input(fuelRod, Fermium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Fermium)
+                .output(fuelRodDepleted, Fermium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[LuV] * 3L)
                 .duration(80 * SECOND)
@@ -1051,9 +1051,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(5340 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Fermium)
+                .input(fuelRodEnriched, Fermium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Fermium)
+                .output(fuelRodEnrichedDepleted, Fermium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM])
                 .duration(320 * SECOND)
@@ -1069,9 +1069,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(5340 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(5340 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Fermium)
+                .input(fuelRodHighDensity, Fermium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Fermium)
+                .output(fuelRodHighDensityDepleted, Fermium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM] * 2L)
                 .duration(1280 * SECOND)
@@ -1080,7 +1080,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleFermium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Fermium)
+            .input(fuelRodDepleted, Fermium)
             .output(dust, Steel, 2)
             .output(dust, Fermium, 2)
             .output(dust, Astatine)
@@ -1091,7 +1091,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleFermium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Fermium)
+            .input(fuelRodEnrichedDepleted, Fermium)
             .output(dust, Steel, 4)
             .output(dust, Fermium, 4)
             .output(dust, Astatine, 2)
@@ -1102,7 +1102,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleFermium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Fermium)
+            .input(fuelRodHighDensityDepleted, Fermium)
             .output(dust, Steel, 8)
             .output(dust, Fermium, 8)
             .output(dust, Astatine, 4)
@@ -1123,9 +1123,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(6580), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodSingle, Mendelevium)
+                .input(fuelRod, Mendelevium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedSingle, Mendelevium)
+                .output(fuelRodDepleted, Mendelevium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM])
                 .duration(84 * SECOND)
@@ -1141,9 +1141,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(6580 * 2), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580 * 2))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodDouble, Mendelevium)
+                .input(fuelRodEnriched, Mendelevium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedDouble, Mendelevium)
+                .output(fuelRodEnrichedDepleted, Mendelevium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[ZPM] * 3L)
                 .duration(336 * SECOND)
@@ -1159,9 +1159,9 @@ internal object NuclearFissionRecipeProducer
             put(LithiumSodiumPotassiumFluorides.getFluid(6580 * 4), SupercriticalLithiumSodiumPotassiumFluorides.getFluid(6580 * 4))
         }.forEach { (coolant, hotCoolant) ->
             NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodQuadruple, Mendelevium)
+                .input(fuelRodHighDensity, Mendelevium)
                 .fluidInputs(coolant)
-                .output(fuelRodDepletedQuadruple, Mendelevium)
+                .output(fuelRodHighDensityDepleted, Mendelevium)
                 .fluidOutputs(hotCoolant)
                 .EUt(VA[UV])
                 .duration(1344 * SECOND)
@@ -1170,7 +1170,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodSingleMendelevium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedSingle, Mendelevium)
+            .input(fuelRodDepleted, Mendelevium)
             .output(dust, Steel, 2)
             .output(dust, Mendelevium, 2)
             .output(dust, Nobelium)
@@ -1181,7 +1181,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodDoubleMendelevium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedDouble, Mendelevium)
+            .input(fuelRodEnrichedDepleted, Mendelevium)
             .output(dust, Steel, 4)
             .output(dust, Mendelevium, 4)
             .output(dust, Nobelium, 2)
@@ -1192,7 +1192,7 @@ internal object NuclearFissionRecipeProducer
 
         // fuelRodQuadrupleMendelevium decomposition.
         THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepletedQuadruple, Mendelevium)
+            .input(fuelRodHighDensityDepleted, Mendelevium)
             .output(dust, Steel, 8)
             .output(dust, Mendelevium, 8)
             .output(dust, Nobelium, 4)

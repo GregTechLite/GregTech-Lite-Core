@@ -33,7 +33,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZirconiumCarbide
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodQuadruple
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
@@ -61,14 +61,14 @@ internal object NuclearCasingRecipes
         // Thorium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.thorium", NuclearReactorCore.THORIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Thorium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Thorium)
             .input(stickLong, StainlessSteel, 2)
@@ -80,14 +80,14 @@ internal object NuclearCasingRecipes
         // Protactinium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.protactinium", NuclearReactorCore.PROTACTINIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Protactinium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Protactinium)
             .input(stickLong, StainlessSteel, 2)
@@ -99,14 +99,14 @@ internal object NuclearCasingRecipes
         // Uranium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.uranium", NuclearReactorCore.URANIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Uranium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Uranium)
             .input(stickLong, StainlessSteel, 2)
@@ -118,14 +118,14 @@ internal object NuclearCasingRecipes
         // Neptunium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.neptunium", NuclearReactorCore.NEPTUNIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Neptunium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Neptunium)
             .input(stickLong, StainlessSteel, 2)
@@ -137,14 +137,14 @@ internal object NuclearCasingRecipes
         // Plutonium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.plutonium", NuclearReactorCore.PLUTONIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Plutonium239))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Plutonium239)
             .input(stickLong, StainlessSteel, 2)
@@ -156,14 +156,14 @@ internal object NuclearCasingRecipes
         // Americium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.americium", NuclearReactorCore.AMERICIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Americium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Americium)
             .input(stickLong, StainlessSteel, 2)
@@ -175,14 +175,14 @@ internal object NuclearCasingRecipes
         // Curium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.curium", NuclearReactorCore.CURIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Curium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Curium)
             .input(stickLong, StainlessSteel, 2)
@@ -194,14 +194,14 @@ internal object NuclearCasingRecipes
         // Berkelium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.berkelium", NuclearReactorCore.BERKELIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Berkelium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Berkelium)
             .input(stickLong, StainlessSteel, 2)
@@ -213,14 +213,14 @@ internal object NuclearCasingRecipes
         // Californium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.californium", NuclearReactorCore.CALIFORNIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Californium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Californium)
             .input(stickLong, StainlessSteel, 2)
@@ -232,14 +232,14 @@ internal object NuclearCasingRecipes
         // Einsteinium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.einsteinium", NuclearReactorCore.EINSTEINIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Einsteinium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Einsteinium)
             .input(stickLong, StainlessSteel, 2)
@@ -251,14 +251,14 @@ internal object NuclearCasingRecipes
         // Fermium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.fermium", NuclearReactorCore.FERMIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Fermium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Fermium)
             .input(stickLong, StainlessSteel, 2)
@@ -270,14 +270,14 @@ internal object NuclearCasingRecipes
         // Mendelevium Nuclear Reactor Core
         ModHandler.addShapedRecipe(true, "nuclear_reactor_core.mendelevium", NuclearReactorCore.MENDELEVIUM.stack,
             "PRP", "SDS", "PRP",
-            'R', UnificationEntry(fuelRodQuadruple, Graphite),
+            'R', UnificationEntry(fuelRodHighDensity, Graphite),
             'P', UnificationEntry(plateDense, StainlessSteel),
             'S', UnificationEntry(stickLong, StainlessSteel),
             'D', UnificationEntry(plateDense, Mendelevium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(22)
-            .input(fuelRodQuadruple, Graphite, 2)
+            .input(fuelRodHighDensity, Graphite, 2)
             .input(plateDense, StainlessSteel, 4)
             .input(plateDense, Mendelevium)
             .input(stickLong, StainlessSteel, 2)
