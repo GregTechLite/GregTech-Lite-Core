@@ -53,7 +53,7 @@ class MultiblockNuclearReactor(id: ResourceLocation)
     init
     {
         this.recipeMapWorkable = NuclearReactorWorkableHandler(this)
-        this.recipeMapWorkable.maximumOverclockVoltage = V[UHV] // TODO Should we confirm it is enough for EV-UV stages energy required?
+        this.recipeMapWorkable.maximumOverclockVoltage = V[MAX]
     }
 
     companion object

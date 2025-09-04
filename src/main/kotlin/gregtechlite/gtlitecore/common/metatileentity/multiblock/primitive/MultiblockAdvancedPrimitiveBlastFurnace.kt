@@ -100,7 +100,7 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PRIMITIVE_BLAST_FURNACE_OVERLAY
 
-    override fun getUITheme(): GTGuiTheme = GTGuiTheme.PRIMITIVE
+    override fun getUITheme(): GTGuiTheme = GTGuiTheme.STEEL
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,

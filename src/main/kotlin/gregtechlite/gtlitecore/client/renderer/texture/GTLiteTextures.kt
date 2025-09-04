@@ -2,226 +2,241 @@ package gregtechlite.gtlitecore.client.renderer.texture
 
 import codechicken.lib.texture.TextureUtils
 import gregtech.client.renderer.texture.custom.DrumRenderer
-import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.registerSprite
 import gregtechlite.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
 import gregtechlite.gtlitecore.client.util.orientedOverlay
-import gregtechlite.gtlitecore.client.util.sidedCubeOverlay
 import gregtechlite.gtlitecore.client.util.simpleOverlay
 import gregtechlite.gtlitecore.client.util.simpleSidedCubeOverlay
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.renderer.texture.TextureMap
 
+@Suppress("SameParameterValue")
 object GTLiteTextures
 {
 
-    // region Machine Overlay Textures
+    // region Single Machine Overlay Textures
+
     @JvmField
-    val POLISHER_OVERLAY = orientedOverlay("machines/polisher")
+    val POLISHER_OVERLAY = singleId("polisher")
     @JvmField
-    val SLICER_OVERLAY = orientedOverlay("machines/slicer")
+    val SLICER_OVERLAY = singleId("slicer")
     @JvmField
-    val TOOL_CASTER_OVERLAY = orientedOverlay("machines/tool_caster")
+    val TOOL_CASTER_OVERLAY = singleId("tool_caster")
     @JvmField
-    val LOOM_OVERLAY = orientedOverlay("machines/loom")
+    val LOOM_OVERLAY = singleId("loom")
     @JvmField
-    val LAMINATOR_OVERLAY = orientedOverlay("machines/laminator")
+    val LAMINATOR_OVERLAY = singleId("laminator")
     @JvmField
-    val CHEMICAL_DEHYDRATOR_OVERLAY = orientedOverlay("machines/chemical_dehydrator")
+    val CHEMICAL_DEHYDRATOR_OVERLAY = singleId("chemical_dehydrator")
     @JvmField
-    val VULCANIZING_PRESS_OVERLAY = orientedOverlay("machines/vulcanizing_press")
+    val VULCANIZING_PRESS_OVERLAY = singleId("vulcanizing_press")
     @JvmField
-    val SAP_COLLECTOR_OVERLAY = orientedOverlay("machines/sap_collector")
+    val SAP_COLLECTOR_OVERLAY = singleId("sap_collector")
     @JvmField
-    val BIO_REACTOR_OVERLAY = orientedOverlay("machines/bio_reactor")
+    val BIO_REACTOR_OVERLAY = singleId("bio_reactor")
     @JvmField
-    val ROASTER_OVERLAY = orientedOverlay("machines/roaster")
+    val ROASTER_OVERLAY = singleId("roaster")
     @JvmField
-    val BURNER_REACTOR_OVERLAY = orientedOverlay("machines/burner_reactor")
+    val BURNER_REACTOR_OVERLAY = singleId("burner_reactor")
     @JvmField
-    val BATH_CONDENSER_OVERLAY = orientedOverlay("machines/bath_condenser")
+    val BATH_CONDENSER_OVERLAY = singleId("bath_condenser")
     @JvmField
-    val CRYOGENIC_REACTOR_OVERLAY = orientedOverlay("machines/cryogenic_reactor")
+    val CRYOGENIC_REACTOR_OVERLAY = singleId("cryogenic_reactor")
     @JvmField
-    val FOOD_PROCESSOR_OVERLAY = orientedOverlay("machines/food_processor")
+    val FOOD_PROCESSOR_OVERLAY = singleId("food_processor")
     @JvmField
-    val MULTICOOKER_OVERLAY = orientedOverlay("machines/multicooker")
+    val MULTICOOKER_OVERLAY = singleId("multicooker")
     @JvmField
-    val MOB_EXTRACTOR_OVERLAY = orientedOverlay("machines/mob_extractor")
+    val MOB_EXTRACTOR_OVERLAY = singleId("mob_extractor")
     @JvmField
-    val LARGE_BREWERY_OVERLAY = orientedOverlay("machines/multiblock/large_brewery")
+    val BIO_SIMULATOR_OVERLAY = singleId("bio_simulator")
     @JvmField
-    val LARGE_AUTOCLAVE_OVERLAY = orientedOverlay("machines/multiblock/large_autoclave")
+    val ROCKET_ENGINE_OVERLAY = singleId("rocket_engine")
     @JvmField
-    val LARGE_ARC_FURNACE_OVERLAY = orientedOverlay("machines/multiblock/large_arc_furnace")
+    val NAQUADAH_REACTOR_OVERLAY = singleId("naquadah_reactor")
     @JvmField
-    val LARGE_MACERATOR_OVERLAY = orientedOverlay("machines/multiblock/large_macerator")
+    val ACID_GENERATOR_OVERLAY = singleId("acid_generator")
+
+    // endregion
+
+    // region Multiblock Machine Overlay Textures
+
     @JvmField
-    val LARGE_SIFTER_OVERLAY = orientedOverlay("machines/multiblock/large_sifter")
+    val ADVANCED_FUSION_REACTOR_OVERLAY = multiId("advanced_fusion_reactor")
     @JvmField
-    val LARGE_ELECTROLYZER_OVERLAY = orientedOverlay("machines/multiblock/large_electrolyzer")
+    val ALLOY_BLAST_SMELTER_OVERLAY = multiId("alloy_blast_smelter")
     @JvmField
-    val LARGE_ORE_WASHER_OVERLAY = orientedOverlay("machines/multiblock/large_ore_washer")
+    val ANTIMATTER_FORGE_OVERLAY = multiId("antimatter_forge")
     @JvmField
-    val LARGE_ELECTROMAGNET_OVERLAY = orientedOverlay("machines/multiblock/large_electromagnet")
+    val COAGULATION_TANK_OVERLAY = multiId("coagulation_tank")
     @JvmField
-    val LARGE_BURNER_REACTOR_OVERLAY = orientedOverlay("machines/multiblock/large_burner_reactor")
+    val COSMIC_RAY_DETECTOR_OVERLAY = multiId("cosmic_ray_detector")
     @JvmField
-    val LARGE_CRYOGENIC_REACTOR_OVERLAY = orientedOverlay("machines/multiblock/large_cryogenic_reactor")
+    val CRYSTALLIZATION_CRUCIBLE_OVERLAY = multiId("crystallization_crucible")
     @JvmField
-    val ALLOY_BLAST_SMELTER_OVERLAY = orientedOverlay("machines/multiblock/alloy_blast_smelter")
+    val CVD_UNIT_OVERLAY = multiId("cvd_unit")
     @JvmField
-    val INDUSTRIAL_COKE_OVEN_OVERLAY = orientedOverlay("machines/multiblock/industrial_coke_oven")
+    val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = multiId("entrodynamically_phase_changer")
     @JvmField
-    val MINING_DRONE_AIRPORT_OVERLAY = orientedOverlay("machines/multiblock/mining_drone_airport")
+    val INDUSTRIAL_COKE_OVEN_OVERLAY = multiId("industrial_coke_oven")
     @JvmField
-    val CVD_UNIT_OVERLAY = orientedOverlay("machines/multiblock/cvd_unit")
+    val LARGE_ARC_FURNACE_OVERLAY = multiId("large_arc_furnace")
     @JvmField
-    val CRYSTALLIZATION_CRUCIBLE_OVERLAY = orientedOverlay("machines/multiblock/crystallization_crucible")
+    val LARGE_AUTOCLAVE_OVERLAY = multiId("large_autoclave")
     @JvmField
-    val NANOSCALE_FABRICATOR_OVERLAY = orientedOverlay("machines/multiblock/nanoscale_fabricator")
+    val LARGE_BREWERY_OVERLAY = multiId("large_brewery")
     @JvmField
-    val SONICATOR_OVERLAY = orientedOverlay("machines/multiblock/sonicator")
+    val LARGE_BURNER_REACTOR_OVERLAY = multiId("large_burner_reactor")
     @JvmField
-    val ADVANCED_FUSION_REACTOR_OVERLAY = orientedOverlay("machines/multiblock/advanced_fusion_reactor")
+    val LARGE_CRYOGENIC_REACTOR_OVERLAY = multiId("large_cryogenic_reactor")
     @JvmField
-    val COSMIC_RAY_DETECTOR_OVERLAY = orientedOverlay("machines/multiblock/cosmic_ray_detector")
+    val LARGE_ELECTROLYZER_OVERLAY = multiId("large_electrolyzer")
     @JvmField
-    val STELLAR_FORGE_OVERLAY = orientedOverlay("machines/multiblock/stellar_forge")
+    val LARGE_ELECTROMAGNET_OVERLAY = multiId("large_electromagnet")
     @JvmField
-    val NUCLEAR_REACTOR_OVERLAY = orientedOverlay("machines/multiblock/nuclear_reactor")
+    val LARGE_MACERATOR_OVERLAY = multiId("large_macerator")
     @JvmField
-    val BIO_SIMULATOR_OVERLAY = orientedOverlay("machines/bio_simulator")
+    val LARGE_ORE_WASHER_OVERLAY = multiId("large_ore_washer")
     @JvmField
-    val LARGE_ROCKET_ENGINE_OVERLAY = orientedOverlay("machines/multiblock/large_rocket_engine")
+    val LARGE_ROCKET_ENGINE_OVERLAY = multiId("large_rocket_engine")
     @JvmField
-    val QUANTUM_FORCE_TRANSFORMER_OVERLAY = orientedOverlay("machines/multiblock/quantum_force_transformer")
+    val LARGE_SIFTER_OVERLAY = multiId("large_sifter")
     @JvmField
-    val ANTIMATTER_FORGE_OVERLAY = orientedOverlay("machines/multiblock/antimatter_forge")
+    val LARGE_STEAM_COMPRESSOR_OVERLAY = multiId("large_steam_compressor")
     @JvmField
-    val SPACE_ELEVATOR_OVERLAY = orientedOverlay("machines/multiblock/space_elevator")
+    val MINING_DRONE_AIRPORT_OVERLAY = multiId("mining_drone_airport")
     @JvmField
-    val ROCKET_ENGINE_OVERLAY = orientedOverlay("generators/rocket_engine")
+    val NANOSCALE_FABRICATOR_OVERLAY = multiId("nanoscale_fabricator")
     @JvmField
-    val NAQUADAH_REACTOR_OVERLAY = orientedOverlay("generators/naquadah_reactor")
+    val NUCLEAR_REACTOR_OVERLAY = multiId("nuclear_reactor")
     @JvmField
-    val SPACE_ASSEMBLER_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_assembler/overlay_side")
+    val QUANTUM_FORCE_TRANSFORMER_OVERLAY = multiId("quantum_force_transformer")
     @JvmField
-    val SPACE_PUMP_OVERLAY = simpleOverlay("machines/multiblock/space_elevator/space_pump/overlay_side")
+    val SONICATOR_OVERLAY = multiId("sonicator")
     @JvmField
-    val ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY = orientedOverlay("machines/multiblock/entrodynamically_phase_changer")
+    val SPACE_ELEVATOR_OVERLAY = multiId("space_elevator")
     @JvmField
-    val COAGULATION_TANK_OVERLAY = orientedOverlay("machines/multiblock/coagulation_tank")
+    val STELLAR_FORGE_OVERLAY = multiId("stellar_forge")
+
+    // endregion
+
+    // region Multiblock Part Overlay Textures
+
     @JvmField
-    val ACID_GENERATOR_OVERLAY = orientedOverlay("generators/acid_generator")
+    val ANTIMATTER_FORGE_TEXTURE = partId("antimatter_overlay")
     @JvmField
-    val STERILE_CLEANING_MAINTENANCE_OVERLAY = simpleOverlay("overlay/machine/overlay_maintenance_sterile_cleaning")
+    val ANTIMATTER_FORGE_ACTIVE_TEXTURE = partId("antimatter_overlay_active")
     @JvmField
-    val AIR_INTAKE_HATCH_OVERLAY = simpleOverlay("overlay/machine/overlay_air_intake")
+    val AIR_INTAKE_HATCH_OVERLAY = partId("air_intake_hatch_overlay")
     @JvmField
-    val DUAL_HATCH_INPUT_OVERLAY = simpleOverlay("overlay/machine/overlay_dual_hatch_input")
+    val DUAL_HATCH_INPUT_OVERLAY = partId("dual_hatch_input_overlay")
     @JvmField
-    val DUAL_HATCH_OUTPUT_OVERLAY = simpleOverlay("overlay/machine/overlay_dual_hatch_output")
+    val DUAL_HATCH_OUTPUT_OVERLAY = partId("dual_hatch_output_overlay")
+    @JvmField
+    val SPACE_ASSEMBLER_OVERLAY = partId("space_assembler_overlay")
+    @JvmField
+    val SPACE_PUMP_OVERLAY = partId("space_pump_overlay")
+    @JvmField
+    val STERILE_CLEANING_MAINTENANCE_OVERLAY = partId("sterile_cleaning_maintenance_hatch_overlay")
+
     // endregion
 
     // region Machine Casing Textures
+
     @JvmField
-    val REINFORCED_TREATED_WOOD_WALL = simpleOverlay("casings/primitive/reinforced_treated_wood_wall")
+    val REINFORCED_TREATED_WOOD_WALL = casingId("primitive/reinforced_treated_wood_wall")
     @JvmField
-    val MARAGING_STEEL_250_CASING = simpleOverlay("casings/metal/maraging_steel_250")
+    val MARAGING_STEEL_250_CASING = casingId("metal/maraging_steel_250")
     @JvmField
-    val INCONEL_625_CASING = simpleOverlay("casings/metal/inconel_625")
+    val INCONEL_625_CASING = casingId("metal/inconel_625")
     @JvmField
-    val BLUE_STEEL_CASING = simpleOverlay("casings/metal/blue_steel")
+    val BLUE_STEEL_CASING = casingId("metal/blue_steel")
     @JvmField
-    val STABALLOY_CASING = simpleOverlay("casings/metal/staballoy")
+    val STABALLOY_CASING = casingId("metal/staballoy")
     @JvmField
-    val TALONITE_CASING = simpleOverlay("casings/metal/talonite")
+    val TALONITE_CASING = casingId("metal/talonite")
     @JvmField
-    val IRIDIUM_CASING = simpleOverlay("casings/metal/iridium")
+    val IRIDIUM_CASING = casingId("metal/iridium")
     @JvmField
-    val ZERON_100_CASING = simpleOverlay("casings/metal/zeron_100")
+    val ZERON_100_CASING = casingId("metal/zeron_100")
     @JvmField
-    val WATERTIGHT_STEEL_CASING = simpleOverlay("casings/metal/watertight_steel")
+    val WATERTIGHT_STEEL_CASING = casingId("metal/watertight_steel")
     @JvmField
-    val STELLITE_CASING = simpleOverlay("casings/metal/stellite")
+    val STELLITE_CASING = casingId("metal/stellite")
     @JvmField
-    val TUMBAGA_CASING = simpleOverlay("casings/metal/tumbaga")
+    val TUMBAGA_CASING = casingId("metal/tumbaga")
     @JvmField
-    val EGLIN_STEEL_CASING = simpleOverlay("casings/metal/eglin_steel")
+    val EGLIN_STEEL_CASING = casingId("metal/eglin_steel")
     @JvmField
-    val POTIN_CASING = simpleOverlay("casings/metal/potin")
+    val POTIN_CASING = casingId("metal/potin")
     @JvmField
-    val GRISIUM_CASING = simpleOverlay("casings/metal/grisium")
+    val GRISIUM_CASING = casingId("metal/grisium")
     @JvmField
-    val BABBIT_ALLOY_CASING = simpleOverlay("casings/metal/babbit_alloy")
+    val BABBIT_ALLOY_CASING = casingId("metal/babbit_alloy")
     @JvmField
-    val SILICON_CARBIDE_CASING = simpleOverlay("casings/metal/silicon_carbide")
+    val SILICON_CARBIDE_CASING = casingId("metal/silicon_carbide")
     @JvmField
-    val RED_STEEL_CASING = simpleOverlay("casings/metal/red_steel")
+    val RED_STEEL_CASING = casingId("metal/red_steel")
     @JvmField
-    val HSLA_STEEL_CASING = simpleOverlay("casings/metal/hsla_steel")
+    val HSLA_STEEL_CASING = casingId("metal/hsla_steel")
     @JvmField
-    val KOVAR_CASING = simpleOverlay("casings/metal/kovar")
+    val KOVAR_CASING = casingId("metal/kovar")
     @JvmField
-    val BLACK_STEEL_CASING = simpleOverlay("casings/metal/black_steel")
+    val BLACK_STEEL_CASING = casingId("metal/black_steel")
     @JvmField
-    val INCOLOY_MA813_CASING = simpleOverlay("casings/metal/incoloy_ma813")
+    val INCOLOY_MA813_CASING = casingId("metal/incoloy_ma813")
     @JvmField
-    val MONEL_500_CASING = simpleOverlay("casings/metal/monel_500")
+    val MONEL_500_CASING = casingId("metal/monel_500")
     @JvmField
-    val INCOLOY_MA956_CASING = simpleOverlay("casings/metal/incoloy_ma956")
+    val INCOLOY_MA956_CASING = casingId("metal/incoloy_ma956")
     @JvmField
-    val ZIRCONIUM_CARBIDE_CASING = simpleOverlay("casings/metal/zirconium_carbide")
+    val ZIRCONIUM_CARBIDE_CASING = casingId("metal/zirconium_carbide")
     @JvmField
-    val HASTELLOY_C276_CASING = simpleOverlay("casings/metal/hastelloy_c276")
+    val HASTELLOY_C276_CASING = casingId("metal/hastelloy_c276")
     @JvmField
-    val HASTELLOY_X_CASING = simpleOverlay("casings/metal/hastelloy_x")
+    val HASTELLOY_X_CASING = casingId("metal/hastelloy_x")
     @JvmField
-    val POLYBENZIMIDAZOLE_CASING = simpleOverlay("casings/metal/polybenzimidazole")
+    val POLYBENZIMIDAZOLE_CASING = casingId("metal/polybenzimidazole")
     @JvmField
-    val ALUMINIUM_BRONZE_CASING = simpleOverlay("casings/metal/aluminium_bronze")
+    val ALUMINIUM_BRONZE_CASING = casingId("metal/aluminium_bronze")
     @JvmField
-    val HASTELLOY_N_CASING = simpleOverlay("casings/metal/hastelloy_n")
+    val HASTELLOY_N_CASING = casingId("metal/hastelloy_n")
     @JvmField
-    val RENE_N5_CASING = simpleOverlay("casings/metal/rene_n5")
+    val RENE_N5_CASING = casingId("metal/rene_n5")
     @JvmField
-    val BISMUTH_BRONZE_CASING = simpleOverlay("casings/metal/bismuth_bronze")
+    val BISMUTH_BRONZE_CASING = casingId("metal/bismuth_bronze")
     @JvmField
-    val BRASS_CASING = simpleOverlay("casings/metal/brass")
+    val BRASS_CASING = casingId("metal/brass")
     @JvmField
-    val TITANIUM_TUNGSTEN_CARBIDE_CASING = simpleOverlay("casings/metal/titanium_tungsten_carbide")
+    val TITANIUM_TUNGSTEN_CARBIDE_CASING = casingId("metal/titanium_tungsten_carbide")
     @JvmField
-    val COBALT_BRASS_CASING = simpleOverlay("casings/metal/cobalt_brass")
+    val COBALT_BRASS_CASING = casingId("metal/cobalt_brass")
     @JvmField
-    val QUANTUM_ALLOY_CASING = simpleOverlay("casings/metal/quantum_alloy")
+    val QUANTUM_ALLOY_CASING = casingId("metal/quantum_alloy")
     @JvmField
-    val INCONEL_718_CASING = simpleOverlay("casings/metal/inconel_718")
+    val INCONEL_718_CASING = casingId("metal/inconel_718")
     @JvmField
-    val RHODIUM_PLATED_PALLADIUM_CASING = simpleOverlay("casings/metal/rhodium_plated_palladium")
+    val RHODIUM_PLATED_PALLADIUM_CASING = casingId("metal/rhodium_plated_palladium")
     @JvmField
-    val TRINAQUADALLOY_CASING = simpleOverlay("casings/metal/trinaquadalloy")
+    val TRINAQUADALLOY_CASING = casingId("metal/trinaquadalloy")
     @JvmField
-    val NITINOL_60_CASING = simpleOverlay("casings/metal/nitinol_60")
+    val NITINOL_60_CASING = casingId("metal/nitinol_60")
     @JvmField
-    val NAQUADAH_ALLOY_CASING = simpleOverlay("casings/metal/naquadah_alloy")
+    val NAQUADAH_ALLOY_CASING = casingId("metal/naquadah_alloy")
     @JvmField
-    val PARTICLE_CONTAINMENT_CASING = simpleOverlay("casings/quantum/particle_containment_casing")
+    val PARTICLE_CONTAINMENT_CASING = casingId("quantum/particle_containment_casing")
     @JvmField
-    val SPACE_ELEVATOR_BASE_CASING = simpleOverlay("casings/aerospace/elevator_base_casing")
+    val SPACE_ELEVATOR_BASE_CASING = casingId("aerospace/elevator_base_casing")
     @JvmField
-    val MOLECULAR_CASING = simpleOverlay("casings/science/molecular_casing")
+    val MOLECULAR_CASING = casingId("science/molecular_casing")
     @JvmField
-    val ANTIMATTER_FORGE_TEXTURE = simpleOverlay("machines/multiblock/antimatter_forge/base/antimatter")
-    @JvmField
-    val ANTIMATTER_FORGE_ACTIVE_TEXTURE = simpleOverlay("machines/multiblock/antimatter_forge/base/antimatter_active")
-    @JvmField
-    val LATTICE_QCD_THERMAL_SHIELDING_CASING = simpleOverlay("casings/entropy/lattice_qcd_thermal_shielding_casing")
+    val LATTICE_QCD_THERMAL_SHIELDING_CASING = casingId("entropy/lattice_qcd_thermal_shielding_casing")
 
     // endregion
 
     // region Cover Textures
     @JvmField
-    val COVER_DRAIN = simpleOverlay("covers/cover_drain")
+    val COVER_DRAIN = coverId("cover_drain")
 
     // endregion
 
@@ -270,22 +285,22 @@ object GTLiteTextures
 
     fun register(textureMap: TextureMap)
     {
-        HALO = textureMap.registerSprite(GTLiteMod.id("shaders/halo"))
-        HALO_NOISE = textureMap.registerSprite(GTLiteMod.id("shaders/halo_noise"))
-        COSMIC_0 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_0"))
-        COSMIC_1 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_1"))
-        COSMIC_2 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_2"))
-        COSMIC_3 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_3"))
-        COSMIC_4 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_4"))
-        COSMIC_5 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_5"))
-        COSMIC_6 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_6"))
-        COSMIC_7 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_7"))
-        COSMIC_8 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_8"))
-        COSMIC_9 = textureMap.registerSprite(GTLiteMod.id("shaders/cosmic_9"))
-        COSMIC = arrayOf(COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4, COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8,
-                         COSMIC_9)
+        HALO = textureMap.registerSprite("shaders/halo")
+        HALO_NOISE = textureMap.registerSprite("shaders/halo_noise")
+        COSMIC_0 = textureMap.registerSprite("shaders/cosmic_0")
+        COSMIC_1 = textureMap.registerSprite("shaders/cosmic_1")
+        COSMIC_2 = textureMap.registerSprite("shaders/cosmic_2")
+        COSMIC_3 = textureMap.registerSprite("shaders/cosmic_3")
+        COSMIC_4 = textureMap.registerSprite("shaders/cosmic_4")
+        COSMIC_5 = textureMap.registerSprite("shaders/cosmic_5")
+        COSMIC_6 = textureMap.registerSprite("shaders/cosmic_6")
+        COSMIC_7 = textureMap.registerSprite("shaders/cosmic_7")
+        COSMIC_8 = textureMap.registerSprite("shaders/cosmic_8")
+        COSMIC_9 = textureMap.registerSprite("shaders/cosmic_9")
+        FORCE_FIELD = textureMap.registerSprite("shaders/force_field")
 
-        FORCE_FIELD = textureMap.registerSprite(GTLiteMod.id("shaders/force_field"))
+        COSMIC = arrayOf(COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4,
+                         COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9)
     }
 
     @JvmStatic
@@ -293,5 +308,24 @@ object GTLiteTextures
     {
         TextureUtils.addIconRegister(GTLiteTextures::register)
     }
+
+    // region Helper Methods
+
+    @JvmStatic
+    private fun singleId(path: String) = orientedOverlay("machines/$path")
+
+    @JvmStatic
+    private fun multiId(path: String) = orientedOverlay("machines/multiblock/$path")
+
+    @JvmStatic
+    private fun partId(path: String) = simpleOverlay("machines/part/$path")
+
+    @JvmStatic
+    private fun casingId(path: String) = simpleOverlay("casings/$path")
+
+    @JvmStatic
+    private fun coverId(path: String) = simpleOverlay("covers/$path")
+
+    // endregion
 
 }

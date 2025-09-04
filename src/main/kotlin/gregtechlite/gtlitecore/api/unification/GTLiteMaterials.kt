@@ -380,6 +380,8 @@ object GTLiteMaterials
     lateinit var AstatineAzide: Material
     lateinit var HolmiumIodide: Material
     lateinit var HeavyConductiveMixture: Material
+    lateinit var PlutoniumDioxide: Material
+    lateinit var MOX: Material
 
     // endregion
 

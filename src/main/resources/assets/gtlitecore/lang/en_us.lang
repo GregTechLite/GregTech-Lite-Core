@@ -3397,6 +3397,8 @@ gtlitecore.material.boron_carbide=Boron Carbide
 gtlitecore.material.astatine_azide=Astatine Azide
 gtlitecore.material.holmium_iodide=Holmium Iodide
 gtlitecore.material.heavy_conductive_mixture=Heavy Conductive Mixture
+gtlitecore.material.plutonium_dioxide=Plutonium Dioxide
+gtlitecore.material.mox=Uranium Plutonium Oxides Mixture (MOX)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3669,7 +3671,7 @@ gtlitecore.material.cycloparaphenylene=Cycloparaphenylene (CPP)
 gtlitecore.material.octene=1-Octene
 gtlitecore.material.carbon_nanotube=Carbon Nanotube (CNT)
 item.gtlitecore.material.carbon_nanotube.ingot=Carbon Nanotube (CNT) Bar
-item.gtlitecore.material.carbon_nanotube.nugget=碳纳米管（CNT）颗粒
+item.gtlitecore.material.carbon_nanotube.nugget=Carbon Nanotube (CNT) Pellet
 item.gtlitecore.material.carbon_nanotube.dust=碳纳米管（CNT）末
 item.gtlitecore.material.carbon_nanotube.dustSmall=小堆碳纳米管（CNT）末
 item.gtlitecore.material.carbon_nanotube.dustTiny=小撮碳纳米管（CNT）末

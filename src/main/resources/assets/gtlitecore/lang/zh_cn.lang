@@ -3403,6 +3403,8 @@ gtlitecore.material.boron_carbide=碳化硼
 gtlitecore.material.astatine_azide=叠氮化砹
 gtlitecore.material.holmium_iodide=碘化钬
 gtlitecore.material.heavy_conductive_mixture=重质导电混合物
+gtlitecore.material.plutonium_dioxide=二氧化钚
+gtlitecore.material.mox=氧化钚铀混合物（MOX）
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

@@ -87,6 +87,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Phosphorus
 import gregtech.api.unification.material.Materials.Platinum
+import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.Praseodymium
@@ -548,6 +549,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FranciumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyConductiveMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HolmiumIodide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumHexaboride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumDioxide
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CHROMATIC
 
 object GTLiteFirstDegreeMaterials
@@ -3490,6 +3493,22 @@ object GTLiteFirstDegreeMaterials
             .components(FranciumCarbide, 1, BoronCarbide, 1, AstatineAzide, 1,
                         HolmiumIodide, 1)
             .build()
+
+        // 2340 Plutonium Dioxide
+        PlutoniumDioxide = Material.Builder(2340, GTLiteMod.id("plutonium_dioxide"))
+            .dust()
+            .color(0xB02E41).iconSet(SHINY)
+            .components(Plutonium241, 1, Oxygen, 2)
+            .build()
+            .setFormula("PuO2", true)
+
+        // 2341 MOX
+        MOX = Material.Builder(2341, GTLiteMod.id("mox"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(PlutoniumDioxide, 1, Uraninite, 2)
+            .build()
+            .setFormula("(PuO2)(UO2)2", true)
 
     }
 

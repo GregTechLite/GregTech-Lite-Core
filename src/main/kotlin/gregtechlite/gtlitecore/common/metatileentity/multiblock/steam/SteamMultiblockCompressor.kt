@@ -12,6 +12,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.ConfigHolder
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.client.resources.I18n
@@ -22,7 +23,8 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class SteamMultiblockCompressor(id: ResourceLocation) : RecipeMapSteamMultiblockController(id, COMPRESSOR_RECIPES, CONVERSION_RATE)
+class SteamMultiblockCompressor(id: ResourceLocation)
+    : RecipeMapSteamMultiblockController(id, COMPRESSOR_RECIPES, CONVERSION_RATE)
 {
 
     init
@@ -58,7 +60,7 @@ class SteamMultiblockCompressor(id: ResourceLocation) : RecipeMapSteamMultiblock
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = Textures.COMPRESSOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_STEAM_COMPRESSOR_OVERLAY
 
     override fun hasMaintenanceMechanics() = false
 

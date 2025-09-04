@@ -1,8 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.steam
 
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.SteamMultiWorkable
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.ParallelLogicType
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -28,7 +31,12 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
 
     init
     {
-        recipeMapWorkable = SteamMultiWorkable(this, CONVERSION_RATE)
+        recipeMapWorkable = object : SteamMultiWorkable(this, CONVERSION_RATE)
+        {
+
+            override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.MULTIPLY
+
+        }
         recipeMapWorkable.parallelLimit = 8
     }
 

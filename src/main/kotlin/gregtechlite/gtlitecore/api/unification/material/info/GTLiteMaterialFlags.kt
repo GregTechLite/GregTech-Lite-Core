@@ -180,6 +180,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 
 object GTLiteMaterialFlags
 {
@@ -332,6 +333,8 @@ object GTLiteMaterialFlags
         Naquadah.addFlags(GENERATE_FUEL_ROD)
         NaquadahEnriched.addFlags(GENERATE_FUEL_ROD)
         Naquadria.addFlags(GENERATE_FUEL_ROD)
+
+        MOX.addFlags(GENERATE_FUEL_ROD)
 
         Graphite.addFlags(GENERATE_FUEL_ROD) // Moderate Rod
 
