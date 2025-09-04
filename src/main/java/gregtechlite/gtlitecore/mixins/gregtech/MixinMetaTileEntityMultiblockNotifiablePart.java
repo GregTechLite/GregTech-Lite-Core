@@ -14,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -34,6 +35,11 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
         super(metaTileEntityId, tier);
     }
 
+    /**
+     * @author Magic_Sweepy
+     * @reason Let {@link #addToMultiBlock} method read {@link #gtlitecore$getPartHandlers} to process dual handlers.
+     */
+    @Overwrite
     @Override
     public void addToMultiBlock(MultiblockControllerBase controllerBase)
     {
@@ -46,6 +52,11 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
         }
     }
 
+    /**
+     * @author Magic_Sweepy
+     * @reason Let {@link #removeFromMultiBlock} method read {@link #gtlitecore$getPartHandlers} to process dual handlers.
+     */
+    @Overwrite
     @Override
     public void removeFromMultiBlock(MultiblockControllerBase controllerBase)
     {
