@@ -241,7 +241,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicSiliconNitri
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyanIndigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiaminostilbenedisulfonicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Erythrosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorescein
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyEnrichedTaraniumFuel
@@ -845,8 +847,8 @@ internal object QuantumForceTransformerRecipes
             .chancedOutput(dust, Graphite, 64, 2500, 0)
             .chancedOutput(dust, Graphene, 64, 2500, 0)
             .chancedOutput(dust, Nigrosin, 64, 2500, 0)
-            .chancedOutput(dust, Salt, 64, 2500, 0)
-            .chancedOutput(dust, RockSalt, 64, 2500, 0)
+            .chancedOutput(dust, Diketopyrrolopyrrole, 64, 2500, 0)
+            .chancedOutput(dust, EosinY, 64, 2500, 0)
             .chancedFluidOutput(DyeBrown.getFluid(256000), 2500, 0)
             .chancedFluidOutput(DyeGreen.getFluid(256000), 2500, 0)
             .chancedFluidOutput(DyeRed.getFluid(256000), 2500, 0)
