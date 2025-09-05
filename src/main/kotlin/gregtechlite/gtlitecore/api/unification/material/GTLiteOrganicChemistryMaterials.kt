@@ -129,6 +129,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosp
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diiodobiphenyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diisopropylcarbodiimide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
@@ -142,6 +143,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DitertbutylDicarb
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EDTA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Edot
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Erythrosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
@@ -188,11 +190,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylSuccinate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LinoleicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
@@ -2086,6 +2090,37 @@ object GTLiteOrganicChemistryMaterials
             .liquid(FluidBuilder().temperature(312))
             .color(0x59492F)
             .components(Carbon, 14, Hydrogen, 12, Oxygen, 8)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8225 Mauveine
+        Mauveine = Material.Builder(8225, GTLiteMod.id("mauveine"))
+            .dust()
+            .color(0x660066).iconSet(DULL)
+            .components(Carbon, 26, Hydrogen, 23, Nitrogen, 4)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8226 Diketopyrrolopyrrole
+        Diketopyrrolopyrrole = Material.Builder(8226, GTLiteMod.id("diketopyrrolopyrrole"))
+            .dust()
+            .color(0xFF6600).iconSet(DULL)
+            .components(Carbon, 18, Hydrogen, 12, Nitrogen, 2, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8227 Isopropyl Succinate
+        IsopropylSuccinate = Material.Builder(8227, GTLiteMod.id("isopropyl_succinate"))
+            .liquid()
+            .color(0xB26680)
+            .components(Carbon, 7, Hydrogen, 12, Oxygen, 4)
+            .build()
+
+        // 8228 Eosin Y
+        EosinY = Material.Builder(8228, GTLiteMod.id("eosin_y"))
+            .dust()
+            .color(0xEAB4EB).iconSet(SHINY)
+            .components(Carbon, 20, Hydrogen, 6, Bromine, 4, Sodium, 2, Oxygen, 5)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 

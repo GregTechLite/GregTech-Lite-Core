@@ -121,6 +121,7 @@ internal object OxidesChain
     {
         carbonMonoxideProcessing()
         carbonDioxideProcessing()
+
         // Deleted original MgCO3 -> MgO + CO2 recipes in chemical reactor.
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(OreDictUnifier.get(dust, Magnesite, 5)))
@@ -133,11 +134,7 @@ internal object OxidesChain
             .duration(12 * SECOND)
             .buildAndRegister()
 
-        // Deleted original stibnite processing in EBF and simple recipes in chemical reactor.
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Stibnite)),
-            arrayOf(Oxygen.getFluid(3000)))
-
+        // Sb roasting.
         ROASTER_RECIPES.recipeBuilder()
             .input(dust, Stibnite)
             .fluidInputs(Oxygen.getFluid(3000))
@@ -161,16 +158,7 @@ internal object OxidesChain
             .duration(3 * SECOND)
             .buildAndRegister()
 
-        // Rework Chalcopyrite and Tetrahedrite recipes.
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Chalcopyrite),
-                OreDictUnifier.get(dust, SiliconDioxide)),
-            arrayOf(Oxygen.getFluid(3000)))
-
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Tetrahedrite)),
-            arrayOf(Oxygen.getFluid(3000)))
-
+        // Chalcopyrite and Tetrahedrite roasting.
         ROASTER_RECIPES.recipeBuilder()
             .input(dust, Chalcopyrite)
             .input(dust, SiliconDioxide)
@@ -193,10 +181,6 @@ internal object OxidesChain
             .buildAndRegister()
 
         // Cobaltite processing.
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Cobaltite)),
-            arrayOf(Oxygen.getFluid(3000)))
-
         ROASTER_RECIPES.recipeBuilder()
             .input(dust, Cobaltite)
             .fluidInputs(Oxygen.getFluid(3000))
@@ -282,10 +266,6 @@ internal object OxidesChain
             .buildAndRegister()
 
         // ZnS -> ZnO
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Sphalerite)),
-            arrayOf(Oxygen.getFluid(3000)))
-
         ROASTER_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(dust, Sphalerite)
@@ -308,10 +288,6 @@ internal object OxidesChain
             .buildAndRegister()
 
         // Ni9S8
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
-            arrayOf(OreDictUnifier.get(dust, Pentlandite)),
-            arrayOf(Oxygen.getFluid(3000)))
-
         ROASTER_RECIPES.recipeBuilder()
             .input(dust, Pentlandite)
             .fluidInputs(Oxygen.getFluid(3000))

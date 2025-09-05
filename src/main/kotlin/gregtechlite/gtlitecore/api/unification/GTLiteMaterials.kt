@@ -382,6 +382,8 @@ object GTLiteMaterials
     lateinit var HeavyConductiveMixture: Material
     lateinit var PlutoniumDioxide: Material
     lateinit var MOX: Material
+    lateinit var BariumManganate: Material
+    lateinit var BariumDichloride: Material
 
     // endregion
 
@@ -475,6 +477,7 @@ object GTLiteMaterials
     lateinit var ZephyreanAerotheum: Material
     lateinit var Sienna: Material
     lateinit var BurntSienna: Material
+    lateinit var ManganeseBlue: Material
 
     lateinit var SuperheatedSteam: Material
     lateinit var SuperheatedSodiumPotassiumEutatic: Material
@@ -716,6 +719,10 @@ object GTLiteMaterials
     lateinit var AminatedFullerene: Material
     lateinit var Azafullerene: Material
     lateinit var FulvicAcid: Material
+    lateinit var Mauveine: Material
+    lateinit var Diketopyrrolopyrrole: Material
+    lateinit var IsopropylSuccinate: Material
+    lateinit var EosinY: Material
 
     // endregion
 

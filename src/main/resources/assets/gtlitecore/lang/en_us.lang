@@ -3399,6 +3399,8 @@ gtlitecore.material.holmium_iodide=Holmium Iodide
 gtlitecore.material.heavy_conductive_mixture=Heavy Conductive Mixture
 gtlitecore.material.plutonium_dioxide=Plutonium Dioxide
 gtlitecore.material.mox=Uranium Plutonium Oxides Mixture (MOX)
+gtlitecore.material.barium_manganate=Barium Manganate
+gtlitecore.material.barium_dichloride=Barium Dichloride
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3484,6 +3486,7 @@ gtlitecore.material.tectonic_petrotheum=Tectonic Petrotheum
 gtlitecore.material.zephyrean_aerotheum=Zephyrean Aerotheum
 gtlitecore.material.sienna=Sienna
 gtlitecore.material.burnt_sienna=Burnt Sienna
+gtlitecore.material.manganese_blue=Manganese Blue
 
 gtlitecore.material.superheated_steam=Superheated Steam
 gtlitecore.material.superheated_sodium_potassium_eutatic=Superheated Eutatic Sodium Potassium
@@ -3733,6 +3736,9 @@ gtlitecore.material.tertbutyl_azidoformate=Tertbutyl Azidoformate
 gtlitecore.material.aminated_fullerene=Aminated Fullerene
 gtlitecore.material.azafullerene=Azafullerene
 gtlitecore.material.fulvic_acid=Fulvic Acid
+gtlitecore.material.mauveine=Mauveine
+gtlitecore.material.diketopyrrolopyrrole=Diketopyrrolopyrrole
+gtlitecore.material.eosin_y=Eosin Y
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

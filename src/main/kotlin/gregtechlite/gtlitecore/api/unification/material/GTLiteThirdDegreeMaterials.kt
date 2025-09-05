@@ -5,6 +5,7 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.BandedIron
+import gregtech.api.unification.material.Materials.Barite
 import gregtech.api.unification.material.Materials.Blaze
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.material.Materials.Clay
@@ -38,6 +39,7 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Augite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BurntSienna
@@ -55,6 +57,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseMonoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
@@ -219,7 +222,15 @@ object GTLiteThirdDegreeMaterials
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build()
 
-        // 6017-6025 for some misc materials in the future.
+        // 6017 Manganese Blue
+        ManganeseBlue = Material.Builder(6017, GTLiteMod.id("manganese_blue"))
+            .dust()
+            .color(0x80ABC5).iconSet(ROUGH)
+            .components(Barite, 1, BariumManganate, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
+            .build()
+
+        // 6018-6025 for some misc materials in the future.
         // ...
 
         // 6026 Superheated Steam

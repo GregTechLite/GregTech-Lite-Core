@@ -17,16 +17,22 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.BandedIron
+import gregtech.api.unification.material.Materials.Barite
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.CarbonDioxide
+import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.ChromiumTrioxide
 import gregtech.api.unification.material.Materials.CobaltOxide
 import gregtech.api.unification.material.Materials.DilutedSulfuricAcid
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iron3Chloride
 import gregtech.api.unification.material.Materials.Manganese
 import gregtech.api.unification.material.Materials.Massicot
+import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Naphthalene
 import gregtech.api.unification.material.Materials.NitrationMixture
 import gregtech.api.unification.material.Materials.NitricAcid
@@ -83,6 +89,23 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoindigo
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumDichloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonTetrachloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneDibromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylSuccinate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseBlue
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumManganate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumPermanganate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyridine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 
 internal object DyesChain
 {
@@ -101,6 +124,10 @@ internal object DyesChain
         nigrosinProcess() // Black
         directBrown77Process() // Brown
         scheelesGreenProcess() // Green
+        mauveineProcess() // Purple
+        diketopyrrolopyrroleProcess() // Orange
+        eosinYProcess() // Pink
+        manganeseBlueProcess() // Light Blue
     }
 
     private fun siennaProcess()
@@ -379,6 +406,99 @@ internal object DyesChain
             .fluidOutputs(Oxygen.getFluid(2000))
             .EUt(VA[MV])
             .duration(6 * SECOND)
+            .buildAndRegister()
+    }
+
+    private fun mauveineProcess()
+    {
+        // 4C6H5NH2 + 17Cl + 2CH4-> C26H23N4 + 13HCl + 4CCl4
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
+            .circuitMeta(13)
+            .fluidInputs(Aniline.getFluid(4000))
+            .fluidInputs(Chlorine.getFluid(17000))
+            .fluidInputs(Methane.getFluid(2000))
+            .output(dust, Mauveine, 53)
+            .fluidOutputs(HydrochloricAcid.getFluid(13000))
+            .fluidOutputs(CarbonTetrachloride.getFluid(4000))
+            .EUt(VA[IV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+    }
+
+    private fun diketopyrrolopyrroleProcess()
+    {
+        // C4H6O4 + 2C3H8O -> C7H12O4 + 2H2O
+        CHEMICAL_RECIPES.recipeBuilder()
+            .input(dust, SuccinicAcid, 14)
+            .fluidInputs(IsopropylAlcohol.getFluid(2000))
+            .fluidOutputs(IsopropylSuccinate.getFluid(1000))
+            .fluidOutputs(Water.getFluid(2000))
+            .EUt(VA[HV])
+            .duration(4 * SECOND + 10 * TICK)
+            .buildAndRegister()
+
+        // C7H12O4 + 2C5H5N + 5O -> C18H12N2O2 + CO2 + 5H2O
+        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
+            .fluidInputs(IsopropylSuccinate.getFluid(1000))
+            .fluidInputs(Pyridine.getFluid(2000))
+            .fluidInputs(Oxygen.getFluid(5000))
+            .output(dust, Diketopyrrolopyrrole, 34)
+            .fluidOutputs(CarbonDioxide.getFluid(1000))
+            .fluidOutputs(Ice.getFluid(5000))
+            .EUt(VA[EV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+    }
+
+    private fun eosinYProcess()
+    {
+
+        // 2C2H4Br2 + Na2O + C20H12O5 + 2O -> C20H6Br4Na2O5 + C4H9OH + 2H2O
+        BURNER_REACTOR_RECIPES.recipeBuilder()
+            .input(dust, SodiumOxide, 3)
+            .input(dust, Fluorescein, 37)
+            .fluidInputs(EthyleneDibromide.getFluid(2000))
+            .fluidInputs(Oxygen.getFluid(2000))
+            .output(dust, EosinY, 37)
+            .fluidOutputs(Butanol.getFluid(1000))
+            .fluidOutputs(Steam.getFluid(2000))
+            .EUt(VA[IV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+    }
+
+    private fun manganeseBlueProcess()
+    {
+        // Ba + 2Cl -> BaCl2
+        CHEMICAL_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(dust, Barium)
+            .fluidInputs(Chlorine.getFluid(2000))
+            .output(dust, BariumDichloride, 3)
+            .EUt(VA[LV])
+            .duration(2 * SECOND + 10 * TICK)
+            .buildAndRegister()
+
+        // BaCl2 + K2MnO4 -> BaMnO4 + 2KCl
+        CHEMICAL_RECIPES.recipeBuilder()
+            .input(dust, BariumDichloride, 3)
+            .input(dust, PotassiumManganate, 7)
+            .output(dust, BariumManganate, 6)
+            .output(dust, RockSalt, 4)
+            .EUt(VA[MV])
+            .duration(3 * SECOND)
+            .buildAndRegister()
+
+        // BaSO4 + BaMnO4 -> (BaSO4)(BaMnO4)
+        MIXER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(dust, Barite)
+            .input(dust, BariumManganate)
+            .output(dust, ManganeseBlue, 2)
+            .EUt(VA[LV])
+            .duration(10 * SECOND)
             .buildAndRegister()
     }
 

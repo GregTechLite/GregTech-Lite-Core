@@ -3405,6 +3405,8 @@ gtlitecore.material.holmium_iodide=碘化钬
 gtlitecore.material.heavy_conductive_mixture=重质导电混合物
 gtlitecore.material.plutonium_dioxide=二氧化钚
 gtlitecore.material.mox=氧化钚铀混合物（MOX）
+gtlitecore.material.barium_manganate=锰酸钡
+gtlitecore.material.barium_dichloride=二氯化钡
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3490,6 +3492,7 @@ gtlitecore.material.tectonic_petrotheum=板块之层岩
 gtlitecore.material.zephyrean_aerotheum=飞扬之清风
 gtlitecore.material.sienna=赭棕
 gtlitecore.material.burnt_sienna=赭红
+gtlitecore.material.manganese_blue=锰蓝
 
 gtlitecore.material.superheated_steam=过热蒸汽
 gtlitecore.material.superheated_sodium_potassium_eutatic=过热共晶钠钾合金
@@ -3738,6 +3741,10 @@ gtlitecore.material.tertbutyl_azidoformate=叠氮甲酸叔丁酯
 gtlitecore.material.aminated_fullerene=胺化富勒烯
 gtlitecore.material.azafullerene=氮杂富勒烯
 gtlitecore.material.fulvic_acid=黄腐酸
+gtlitecore.material.mauveine=苯胺紫
+gtlitecore.material.diketopyrrolopyrrole=吡咯并吡咯二酮
+gtlitecore.material.isopropyl_succinate=琥珀酸异丙酯
+gtlitecore.material.eosin_y=曙红Y
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

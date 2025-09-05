@@ -543,6 +543,8 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.colorAverage
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AstatineAzide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumDichloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FranciumCarbide
@@ -3509,6 +3511,20 @@ object GTLiteFirstDegreeMaterials
             .components(PlutoniumDioxide, 1, Uraninite, 2)
             .build()
             .setFormula("(PuO2)(UO2)2", true)
+
+        // 2342 Barium Manganate
+        BariumManganate = Material.Builder(2342, GTLiteMod.id("barium_manganate"))
+            .dust()
+            .colorAverage().iconSet(ROUGH)
+            .components(Barium, 1, Manganese, 1, Oxygen, 4)
+            .build()
+
+        // 2343 Barium Dichloride
+        BariumDichloride = Material.Builder(2343, GTLiteMod.id("barium_dichloride"))
+            .dust()
+            .colorAverage().iconSet(DULL)
+            .components(Barium, 1, Chlorine, 2)
+            .build()
 
     }
 
