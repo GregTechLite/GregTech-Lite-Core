@@ -453,11 +453,11 @@ gregtech.machine.laser_engraver.iv.name=§1精英§f精密激光蚀刻机
 gregtech.machine.laser_engraver.luv.name=§d先锋§f精密激光蚀刻机
 gregtech.machine.laser_engraver.zpm.name=§c大师§f精密激光蚀刻机
 gregtech.machine.laser_engraver.uv.name=§3终极§f精密激光蚀刻机
-gregtech.machine.laser_engraver.uhv.name=§4高科技§f激光蚀刻机
-gregtech.machine.laser_engraver.uev.name=§a次世代§f激光蚀刻机
-gregtech.machine.laser_engraver.uiv.name=§2史诗§f激光蚀刻机
-gregtech.machine.laser_engraver.uxv.name=§e传奇§f激光蚀刻机
-gregtech.machine.laser_engraver.opv.name=§9超凡§f激光蚀刻机
+gregtech.machine.laser_engraver.uhv.name=§4高科技§f精密激光蚀刻机
+gregtech.machine.laser_engraver.uev.name=§a次世代§f精密激光蚀刻机
+gregtech.machine.laser_engraver.uiv.name=§2史诗§f精密激光蚀刻机
+gregtech.machine.laser_engraver.uxv.name=§e传奇§f精密激光蚀刻机
+gregtech.machine.laser_engraver.opv.name=§9超凡§f精密激光蚀刻机
 
 gregtech.machine.laser_engraver.iv.tooltip=功率高达204万瓦
 gregtech.machine.laser_engraver.luv.tooltip=功率高达816万瓦
@@ -1320,8 +1320,6 @@ metaitem.sensor.uxv.name=§eUXV§f 传感器
 metaitem.sensor.opv.name=§9OpV§f 传感器
 
 metaitem.credit.neutronium.name=中子币
-metaitem.boule.neutronium.name=中子掺杂的单晶硅
-metaitem.wafer.neutronium.name=中子掺杂的晶圆
 
 item.gt.comb.neutronium.name=中子蜂窝
 for.bees.species.neutronium=中子
@@ -1329,15 +1327,15 @@ for.bees.species.neutronium=中子
 item.gt.comb.trinium.name=三元金属蜂窝
 for.bees.species.trinium=三元金属
 
-metaitem.cover.solar.panel.ulv.name=§8ULV§r 太阳能板
-metaitem.cover.solar.panel.lv.name=§7LV§r 太阳能板
-metaitem.cover.solar.panel.mv.name=§bMV§r 太阳能板
-metaitem.cover.solar.panel.hv.name=§6HV§r 太阳能板
-metaitem.cover.solar.panel.ev.name=§5EV§r 太阳能板
-metaitem.cover.solar.panel.iv.name=§1IV§r 太阳能板
-metaitem.cover.solar.panel.luv.name=§dLuV§r 太阳能板
-metaitem.cover.solar.panel.zpm.name=§cZPM§r 太阳能板
-metaitem.cover.solar.panel.uv.name=§3UV§r 太阳能板
+metaitem.cover.solar.panel.ulv.name=§8ULV§f 太阳能板
+metaitem.cover.solar.panel.lv.name=§7LV§f 太阳能板
+metaitem.cover.solar.panel.mv.name=§bMV§f 太阳能板
+metaitem.cover.solar.panel.hv.name=§6HV§f 太阳能板
+metaitem.cover.solar.panel.ev.name=§5EV§f 太阳能板
+metaitem.cover.solar.panel.iv.name=§1IV§f 太阳能板
+metaitem.cover.solar.panel.luv.name=§dLuV§f 太阳能板
+metaitem.cover.solar.panel.zpm.name=§cZPM§f 太阳能板
+metaitem.cover.solar.panel.uv.name=§3UV§f 太阳能板
 
 metaitem.board.coated.name=覆膜电路基板
 metaitem.board.coated.tooltip=膜层电路基底
@@ -1380,9 +1378,9 @@ metaitem.wafer.random_access_memory.tooltip=随机存取存储器原料
 metaitem.wafer.integrated_logic_circuit.name=集成逻辑电路（ILC）晶圆
 metaitem.wafer.integrated_logic_circuit.tooltip=集成逻辑电路原料
 metaitem.wafer.nano_central_processing_unit.name=纳米中央处理器（NCPU）晶圆
-metaitem.wafer.nano_central_processing_unit.tooltip=纳米CPU原料
+metaitem.wafer.nano_central_processing_unit.tooltip=纳米中央处理器原料
 metaitem.wafer.qbit_central_processing_unit.name=量子位中央处理器（QCPU）晶圆
-metaitem.wafer.qbit_central_processing_unit.tooltip=量子CPU原料
+metaitem.wafer.qbit_central_processing_unit.tooltip=量子位中央处理器原料
 metaitem.wafer.simple_system_on_chip.name=简易片上系统（SSoC）晶圆
 metaitem.wafer.simple_system_on_chip.tooltip=简易片上系统原料
 metaitem.wafer.system_on_chip.name=片上系统（SoC）晶圆
@@ -1512,11 +1510,11 @@ metaitem.boule.neutronium.tooltip=终极电路组件原料
 metaitem.wafer.silicon.name=硅晶圆
 metaitem.wafer.silicon.tooltip=电路组件原料
 metaitem.wafer.phosphorus.name=磷掺杂的硅晶圆
-metaitem.wafer.phosphorus.tooltip=电路组件原料
+metaitem.wafer.phosphorus.tooltip=高级电路组件原料
 metaitem.wafer.naquadah.name=硅岩掺杂的硅晶圆
-metaitem.wafer.naquadah.tooltip=电路组件原料
+metaitem.wafer.naquadah.tooltip=先进电路组件原料
 metaitem.wafer.neutronium.name=中子掺杂的硅晶圆
-metaitem.wafer.neutronium.tooltip=电路组件原料
+metaitem.wafer.neutronium.tooltip=终极电路组件原料
 
 # Blocks
 tile.wire_coil.trinium.name=三元金属线圈方块

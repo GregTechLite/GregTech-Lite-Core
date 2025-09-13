@@ -1315,8 +1315,8 @@ metaitem.wrap.component.supracausal_smd.inductor.name=封装超对称共形偏�
 metaitem.wrap.wafer.chip.central_processing_unit.name=封装中央处理器（CPU）晶片
 metaitem.wrap.wafer.chip.random_access_memory.name=封装随机存取存储器（RAM）晶片
 metaitem.wrap.wafer.chip.integrated_logic_circuit.name=封装集成逻辑电路（ILC）晶片
-metaitem.wrap.wafer.chip.nano_central_processing_unit.name=封装纳米中央处理器（Nano CPU）晶片
-metaitem.wrap.wafer.chip.qubit_central_processing_unit.name=封装量子位中央处理器（Qubit CPU）晶片
+metaitem.wrap.wafer.chip.nano_central_processing_unit.name=封装纳米中央处理器（NCPU）晶片
+metaitem.wrap.wafer.chip.qubit_central_processing_unit.name=封装量子位中央处理器（QCPU）晶片
 metaitem.wrap.wafer.chip.simple_system_on_chip.name=封装简易片上系统（SSoC）晶片
 metaitem.wrap.wafer.chip.system_on_chip.name=封装片上系统（SoC）晶片
 metaitem.wrap.wafer.chip.advanced_system_on_chip.name=封装高级片上系统（ASoC）晶片
@@ -2305,7 +2305,7 @@ gtlitecore.machine.bedrock_drilling_rig.tooltip.6=每提高1个§a活塞外壳�
 gtlitecore.machine.fusion_reactor.uhv.name=核聚变反应堆控制电脑 MK4
 gtlitecore.machine.fusion_reactor.uhv.tooltip=银河泻落九天
 
-gtlitecore.machine.fusion_reactor.uev.name=核聚变反应堆控制电脑 Mk5
+gtlitecore.machine.fusion_reactor.uev.name=核聚变反应堆控制电脑 MK5
 gtlitecore.machine.fusion_reactor.uev.tooltip=家用中子星
 
 gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
