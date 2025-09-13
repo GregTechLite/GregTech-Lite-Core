@@ -3,10 +3,6 @@ package gregtechlite.gtlitecore.common.entity
 import gregtech.client.renderer.handler.GTExplosiveRenderer
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.GTLiteAPI
-import gregtechlite.gtlitecore.common.entity.explosive.EntityLeptonicCharge
-import gregtechlite.gtlitecore.common.entity.explosive.EntityNaquadriaCharge
-import gregtechlite.gtlitecore.common.entity.explosive.EntityQuantumChromodynamicCharge
-import gregtechlite.gtlitecore.common.entity.explosive.EntityTaraniumCharge
 import net.minecraftforge.fml.client.registry.RenderingRegistry
 import net.minecraftforge.fml.common.registry.EntityRegistry
 import net.minecraftforge.fml.relauncher.Side

@@ -4,7 +4,8 @@ import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeBase
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
 import net.minecraft.block.BlockBush
 import net.minecraft.block.BlockSapling
 import net.minecraft.block.IGrowable
@@ -46,8 +47,10 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
         GTLiteBlocks.SAPLINGS.add(this)
     }
 
-    fun getTreeFromState(blockState: IBlockState): AbstractTree =
-        AbstractTree.trees[blockState.getValue(VARIANT) + (this.offset * 8)]!!
+    fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
+    {
+        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 8)]
+    }
 
     override fun createBlockState(): BlockStateContainer = BlockStateContainer(this, BlockSapling.STAGE, VARIANT)
 
@@ -71,7 +74,7 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
     {
         for (i in 0..7)
         {
-            if (AbstractTree.trees.size <= i + this.offset * 8)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 8)
                 break
             items.add(ItemStack(this, 1, i * 2))
         }
@@ -90,39 +93,23 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getBoundingBox(
-        blockState: IBlockState, blockSource: IBlockAccess,
-        blockPos: BlockPos
-    ): AxisAlignedBB = SAPLING_AABB
+    override fun getBoundingBox(blockState: IBlockState, blockSource: IBlockAccess, blockPos: BlockPos): AxisAlignedBB = SAPLING_AABB
 
-    override fun canGrow(
-        worldIn: World, blockPos: BlockPos, blockState: IBlockState,
-        isClient: Boolean
-    ): Boolean = true
+    override fun canGrow(worldIn: World, blockPos: BlockPos, blockState: IBlockState, isClient: Boolean): Boolean = true
 
-    override fun canUseBonemeal(
-        worldIn: World, random: Random, blockPos: BlockPos,
-        blockState: IBlockState
-    ): Boolean = true
+    override fun canUseBonemeal(worldIn: World, random: Random, blockPos: BlockPos, blockState: IBlockState): Boolean = true
 
-    override fun canBeReplacedByLeaves(
-        blockState: IBlockState, worldIn: IBlockAccess,
-        blockPos: BlockPos
-    ): Boolean = true
+    override fun canBeReplacedByLeaves(blockState: IBlockState, worldIn: IBlockAccess, blockPos: BlockPos): Boolean = true
 
-    override fun grow(
-        worldIn: World, random: Random, blockPos: BlockPos,
-        blockState: IBlockState
-    )
+    override fun grow(worldIn: World,
+                      random: Random,
+                      blockPos: BlockPos,
+                      blockState: IBlockState)
     {
-        getTreeFromState(blockState).treeGrowInstance
-            ?.generate(worldIn, random, blockPos)
+        getTreeFromState(blockState).outerGenerator?.generate(worldIn, random, blockPos)
     }
 
-    override fun getPlantType(
-        worldIn: IBlockAccess,
-        blockPos: BlockPos
-    ): EnumPlantType = EnumPlantType.Plains
+    override fun getPlantType(worldIn: IBlockAccess, blockPos: BlockPos): EnumPlantType = EnumPlantType.Plains
 
     override fun damageDropped(blockState: IBlockState): Int = blockState.getValue(VARIANT) shl 1
 

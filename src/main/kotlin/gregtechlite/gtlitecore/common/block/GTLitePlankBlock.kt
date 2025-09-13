@@ -3,7 +3,8 @@ package gregtechlite.gtlitecore.common.block
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeBase
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.block.properties.PropertyInteger
@@ -34,8 +35,10 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
         GTLiteBlocks.PLANKS.add(this)
     }
 
-    fun getTreeFromState(blockState: IBlockState): AbstractTree =
-        AbstractTree.trees[blockState.getValue(VARIANT) + (this.offset * 16)]!!
+    fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
+    {
+        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 16)]!!
+    }
 
     override fun getMetaFromState(blockState: IBlockState): Int = blockState.getValue(VARIANT)
 
@@ -49,7 +52,7 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
     {
         for (i in 0..15)
         {
-            if (AbstractTree.trees.size <= i + this.offset * 16)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 16)
                 break
             items.add(ItemStack(this, 1, i))
         }

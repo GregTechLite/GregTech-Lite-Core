@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block
 import gregtech.common.blocks.explosive.BlockGTExplosive
 import gregtech.common.entities.EntityGTExplosive
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.common.entity.explosive.EntityTaraniumCharge
+import gregtechlite.gtlitecore.common.entity.EntityTaraniumCharge
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.client.resources.I18n

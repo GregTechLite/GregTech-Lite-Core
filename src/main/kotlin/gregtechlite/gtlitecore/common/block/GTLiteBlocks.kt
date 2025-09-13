@@ -46,10 +46,10 @@ import gregtechlite.gtlitecore.common.block.variant.science.SpacetimeCompression
 import gregtechlite.gtlitecore.common.block.variant.science.StabilizationFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFieldGenerator
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.worldgen.crops.WorldGenBerries
-import gregtechlite.gtlitecore.common.worldgen.crops.WorldGenCrops
-import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
-import gregtechlite.gtlitecore.common.worldgen.trees.WorldGenTrees
+import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorBerryManager
+import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorCropManager
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeManager
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
 import gregtechlite.magicbook.client.Games
 import gregtechlite.magicbook.util.Checks
 import gregtechlite.magicbook.util.Unchecks
@@ -203,36 +203,36 @@ object GTLiteBlocks
             STONES[variant] = GTLiteStoneVariantBlock(variant)
 
         // Initialized trees world generator features.
-        WorldGenTrees.init()
+        WorldGeneratorTreeManager.init()
 
         // Initialized tree related blocks.
-        for (i in 0..(AbstractTree.trees.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
         {
             val leaves = GTLiteLeaveBlock(i)
             leaves.setRegistryName("leaves_$i")
         }
-        for (i in 0..(AbstractTree.trees.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
         {
             val log = GTLiteLogBlock(i)
             log.setRegistryName("log_$i")
         }
-        for (i in 0..(AbstractTree.trees.size - 1) / 8)
+        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 8)
         {
             val sapling = GTLiteSaplingBlock(i)
             sapling.setRegistryName("sapling_$i")
         }
-        for (i in 0..(AbstractTree.trees.size - 1) / 16)
+        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 16)
         {
             val planks = GTLitePlankBlock(i)
             planks.setRegistryName("planks_$i")
         }
 
         // Initialized crops and berries world generator features.
-        WorldGenCrops.init()
-        WorldGenBerries.init()
+        WorldGeneratorCropManager.init()
+        WorldGeneratorBerryManager.init()
 
         // Setup tree related blocks to its world generator features.
-        AbstractTree.trees.forEach { it?.setupBlocks() }
+        WorldGeneratorTreeRegistry.generators.forEach { it.setupBlocks() }
 
         // Initialized wooden slabs.
         WOOD_SLABS = GTLiteWoodSlabBlock.Half()

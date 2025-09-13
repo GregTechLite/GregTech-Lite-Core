@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block
 import gregtech.common.blocks.explosive.BlockGTExplosive
 import gregtech.common.entities.EntityGTExplosive
 import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.common.entity.explosive.EntityQuantumChromodynamicCharge
+import gregtechlite.gtlitecore.common.entity.EntityQuantumChromodynamicCharge
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
 import net.minecraft.client.resources.I18n

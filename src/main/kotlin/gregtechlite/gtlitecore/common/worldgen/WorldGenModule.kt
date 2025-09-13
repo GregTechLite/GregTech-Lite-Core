@@ -7,13 +7,12 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
-import gregtechlite.gtlitecore.common.worldgen.generator.GTLiteWorldGenerator
+import gregtechlite.gtlitecore.common.worldgen.generator.WorldGeneratorManager
 import gregtechlite.gtlitecore.core.module.BaseModule
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_WORLDGEN
 import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
 import org.apache.commons.io.IOUtils
 import org.apache.logging.log4j.Logger
 import java.io.File
@@ -62,7 +61,7 @@ class WorldGenModule : BaseModule()
 
     override fun init(event: FMLInitializationEvent)
     {
-        GameRegistry.registerWorldGenerator(GTLiteWorldGenerator(), 1)
+        WorldGeneratorManager.init()
     }
 
     override fun getTerrainGenBusSubscribers() = listOf(WorldGenModule::class.java)

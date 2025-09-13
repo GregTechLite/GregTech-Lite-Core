@@ -4,7 +4,8 @@ import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeBase
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
 import net.minecraft.block.BlockLog
 import net.minecraft.block.properties.PropertyInteger
 import net.minecraft.block.state.BlockStateContainer
@@ -34,8 +35,10 @@ class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
         GTLiteBlocks.LOGS.add(this)
     }
 
-    fun getTreeFromState(blockState: IBlockState): AbstractTree =
-        AbstractTree.trees[blockState.getValue(VARIANT) + (this.offset * 4)]!!
+    fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
+    {
+        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 4)]!!
+    }
 
     override fun getMetaFromState(blockState: IBlockState): Int
     {
@@ -60,7 +63,7 @@ class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
     {
         for (i in 0..3)
         {
-            if (AbstractTree.trees.size <= i + this.offset * 4)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 4)
                 break
             items.add(ItemStack(this, 1, i shl 2))
         }

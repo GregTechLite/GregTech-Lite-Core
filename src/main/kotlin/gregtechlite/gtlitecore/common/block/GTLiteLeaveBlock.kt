@@ -8,7 +8,8 @@ import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.worldgen.trees.AbstractTree
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeBase
+import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
 import net.minecraft.block.BlockLeaves
 import net.minecraft.block.BlockPlanks
 import net.minecraft.block.properties.PropertyInteger
@@ -52,8 +53,10 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
         GTLiteBlocks.LEAVES.add(this)
     }
 
-    fun getTreeFromState(blockState: IBlockState): AbstractTree =
-        AbstractTree.trees[blockState.getValue(VARIANT) + (this.offset * 4)]!!
+    fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
+    {
+        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 4)]
+    }
 
     @SideOnly(Side.CLIENT)
     fun registerColors()
@@ -90,7 +93,7 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     {
         for (i in 0..3)
         {
-            if (AbstractTree.trees.size <= i + this.offset * 4)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 4)
                 break
             items.add(ItemStack(this, 1, i shl 2))
         }
@@ -149,10 +152,14 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
         return true
     }
 
-    override fun dropApple(worldIn: World, blockPos: BlockPos, blockState: IBlockState, chance: Int) = spawnAsEntity(
-        worldIn, blockPos, (blockState.block as GTLiteLeaveBlock)
-            .getTreeFromState(blockState).getAppleDrop(chance)!!
-    )
+    override fun dropApple(worldIn: World,
+                           blockPos: BlockPos,
+                           blockState: IBlockState,
+                           chance: Int)
+    {
+        return spawnAsEntity(worldIn, blockPos, (blockState.block as GTLiteLeaveBlock)
+            .getTreeFromState(blockState).getFruitDrop(chance)!!)
+    }
 
     override fun damageDropped(blockState: IBlockState): Int =
         (blockState.getValue(VARIANT) shl 1) + ((this.offset % 2) * 8)
