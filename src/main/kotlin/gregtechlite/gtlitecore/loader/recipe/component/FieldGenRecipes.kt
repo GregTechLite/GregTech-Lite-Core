@@ -7,6 +7,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
@@ -36,6 +37,7 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.EMITTER_LuV
+import gregtech.common.items.MetaItems.EMITTER_OpV
 import gregtech.common.items.MetaItems.EMITTER_UEV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.EMITTER_UIV
@@ -44,6 +46,7 @@ import gregtech.common.items.MetaItems.EMITTER_UXV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_OpV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
@@ -59,13 +62,17 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumSuperconductor
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
@@ -73,6 +80,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ZENITH_STAR
 
 internal object FieldGenRecipes
@@ -278,7 +286,31 @@ internal object FieldGenRecipes
             }
             .buildAndRegister()
 
-        // TODO OpV
+        // OpV
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
+            .input(plateDouble, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+            .input(ZENITH_STAR, 2)
+            .input(EMITTER_OpV, 2)
+            .input(circuit, Tier.OpV, 2)
+            .input(wireFine, NeutroniumSuperconductor, 64)
+            .input(wireFine, NeutroniumSuperconductor, 64)
+            .input(wireFine, NeutroniumSuperconductor, 64)
+            .input(wireFine, NeutroniumSuperconductor, 64)
+            .input(wireFine, NeutroniumSuperconductor, 32)
+            .input(cableGtSingle, Periodicium, 4)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+            .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+            .fluidInputs(CosmicFabric.getFluid(L * 8))
+            .output(FIELD_GENERATOR_OpV)
+            .EUt(50_000_000) // UXV
+            .duration(1 * MINUTE)
+            .stationResearch { r ->
+                r.researchStack(FIELD_GENERATOR_UXV)
+                    .EUt(VA[UXV])
+                    .CWUt(128)
+            }
+            .buildAndRegister()
 
         // TODO MAX
     }

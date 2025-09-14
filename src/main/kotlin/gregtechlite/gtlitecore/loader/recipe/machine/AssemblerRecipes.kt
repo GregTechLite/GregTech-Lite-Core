@@ -37,7 +37,6 @@ import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
-import gregtech.api.unification.material.Materials.RedAlloy
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
@@ -439,7 +438,7 @@ internal object AssemblerRecipes
     private fun laserHatchesRecipes()
     {
         // Add recipes for original laser hatches in GTCEu.
-        for (tier in UHV..OpV) // TODO MAX recipes
+        for (tier in UHV..OpV)
         {
             val actualTier = tier // Because laser hatch start at IV stage.
             // 256A Laser Target Hatch
@@ -522,7 +521,7 @@ internal object AssemblerRecipes
         }
         // Advanced laser hatches consists of 16384A-1048576A, these recipes is added
         // for these parts.
-        for (tier in IV..OpV) // TODO MAX recipes
+        for (tier in IV..OpV)
         {
             val actualTier = tier - IV // Because laser hatch start at IV stage.
             // 16384A Laser Target Hatch

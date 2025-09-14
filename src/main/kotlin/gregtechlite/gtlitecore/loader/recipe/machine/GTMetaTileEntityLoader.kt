@@ -166,6 +166,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
@@ -180,10 +181,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_OpV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
@@ -938,7 +941,13 @@ internal object GTMetaTileEntityLoader
             'W', UnificationEntry(cableGtSingle, Periodicium),
             'U', UnificationEntry(cableGtSingle, SuperheavyAlloyB))
 
-        // TODO OpV Transformer
+        // OpV Transformer
+        ModHandler.addShapedRecipe(true, "transformer_opv", TRANSFORMER[OpV].stackForm,
+            "PUU", "WH ", "PUU",
+            'H', HULL[OpV].stackForm,
+            'P', ATTO_PIC_CHIP,
+            'W', UnificationEntry(cableGtSingle, RealizedQuantumFoamShard),
+            'U', UnificationEntry(cableGtSingle, Periodicium))
 
         // UHV Hi-Amp Transformer
         ModHandler.addShapedRecipe(true, "hi_amp_transformer_uhv", HI_AMP_TRANSFORMER[UHV].stackForm,
@@ -972,7 +981,13 @@ internal object GTMetaTileEntityLoader
             'W', UnificationEntry(cableGtQuadruple, Periodicium),
             'U', UnificationEntry(cableGtQuadruple, SuperheavyAlloyB))
 
-        // TODO OpV Hi-Amp Transformer
+        // OpV Hi-Amp Transformer
+        ModHandler.addShapedRecipe(true, "hi_amp_transformer_opv", HI_AMP_TRANSFORMER[OpV].stackForm,
+            "CUU", "WV ", "CUU",
+            'C', VOLTAGE_COIL_OpV,
+            'V', TRANSFORMER[OpV].stackForm,
+            'W', UnificationEntry(cableGtQuadruple, RealizedQuantumFoamShard),
+            'U', UnificationEntry(cableGtQuadruple, Periodicium))
 
         // UHV Adjustable Transformer
         ASSEMBLER_RECIPES.recipeBuilder()
@@ -1030,7 +1045,19 @@ internal object GTMetaTileEntityLoader
             .duration(10 * SECOND)
             .buildAndRegister()
 
-        // TODO OpV Adjustable Transformer
+        // OpV Adjustable Transformer
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(HI_AMP_TRANSFORMER[OpV])
+            .input(ELECTRIC_PUMP_ZPM)
+            .input(cableGtOctal, RealizedQuantumFoamShard)
+            .input(cableGtOctal, Periodicium, 2)
+            .input(springSmall, Periodicium)
+            .input(spring, RealizedQuantumFoamShard)
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            .output(POWER_TRANSFORMER[OpV])
+            .EUt(VA[OpV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
 
         // 4A UEV Energy Hatch
         ASSEMBLER_RECIPES.recipeBuilder()

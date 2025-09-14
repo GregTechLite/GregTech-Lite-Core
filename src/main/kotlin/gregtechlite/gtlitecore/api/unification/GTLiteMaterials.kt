@@ -384,6 +384,12 @@ object GTLiteMaterials
     lateinit var MOX: Material
     lateinit var BariumManganate: Material
     lateinit var BariumDichloride: Material
+    lateinit var ThalliumChloride: Material
+    lateinit var HassiumTetrachloride: Material
+    lateinit var RheniumPentachloride: Material
+    lateinit var HexafluorophosphoricAcid: Material
+    lateinit var SodiumThiocyanate: Material
+    lateinit var RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate: Material
 
     // endregion
 
@@ -458,6 +464,7 @@ object GTLiteMaterials
     lateinit var Periodicium: Material
     lateinit var Legendarium: Material
     lateinit var BoronFranciumCarbideSuperconductor: Material
+    lateinit var NeutroniumSuperconductor: Material
 
     // endregion
 
@@ -723,6 +730,10 @@ object GTLiteMaterials
     lateinit var Diketopyrrolopyrrole: Material
     lateinit var IsopropylSuccinate: Material
     lateinit var EosinY: Material
+    lateinit var PhenylenedioxydiaceticAcid: Material
+    lateinit var Ethylamine: Material
+    lateinit var Diethylthiourea: Material
+    lateinit var Isophthaloylbisdiethylthiourea: Material
 
     // endregion
 
@@ -863,6 +874,8 @@ object GTLiteMaterials
     lateinit var RawStarMatter: Material
     lateinit var MagnetohydrodynamicallyConstrainedStarMatter: Material
     lateinit var SelfInteractingDarkMatter: Material
+    lateinit var RealizedQuantumFoamShard: Material
+    lateinit var AxinoFusedRedMatter: Material
 
     lateinit var DimensionallyShiftedSuperfluid: Material
 

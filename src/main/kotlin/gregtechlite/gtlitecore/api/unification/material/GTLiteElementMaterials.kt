@@ -247,6 +247,7 @@ object GTLiteElementMaterials
                     .vacuumStats(VA[UHV], 8 * MINUTE)
             }
             .cableProperties(V[UEV], 36, 2)
+            .fluidPipeProperties(200_000, 24000, true, true, true, true)
             .build()
 
         // 9 Plutonium-244
@@ -360,6 +361,7 @@ object GTLiteElementMaterials
                     .vacuumStats(VA[UIV], 3 * MINUTE + 25 * SECOND)
             }
             .cableProperties(V[UXV], 96,16)
+            .fluidPipeProperties(1_200_000, 65000, true, true, true, true)
             .build()
 
         // 17 Creon
@@ -408,7 +410,7 @@ object GTLiteElementMaterials
             .iconSet(UNIVERSIUM)
             .element(Ux)
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                GENERATE_NANITE)
+                GENERATE_NANITE, GENERATE_FRAME)
             .cableProperties(V[OpV], 144, 8)
             .build()
 
@@ -430,7 +432,8 @@ object GTLiteElementMaterials
             .liquid()
             .iconSet(OMNIUM)
             .element(Om)
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME, GENERATE_ROTOR,
+                   GENERATE_ROUND, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR)
             .cableProperties(V[MAX] - 1, 360, 20)
             .build()
     }

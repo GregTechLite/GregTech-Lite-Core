@@ -1,0 +1,7 @@
+{
+  "parent": "gregtech:block/tinted_cube_column",
+  "textures": {
+    "end": "gregtech:blocks/material_sets/quantum/frame_gt",
+    "side": "gregtech:blocks/material_sets/quantum/sheeted_frame"
+  }
+}

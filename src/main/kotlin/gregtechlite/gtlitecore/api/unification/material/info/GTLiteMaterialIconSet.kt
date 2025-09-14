@@ -85,6 +85,12 @@ object GTLiteMaterialIconSet
     @JvmStatic
     val DARKMATTER = iconSet("darkmatter")
 
+    @JvmStatic
+    val REDMATTER = iconSet("redmatter")
+
+    @JvmStatic
+    val QUANTUM = iconSet("quantum")
+
     // endregion
 
     // region Renderer Suitable Texture IconSets

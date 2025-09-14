@@ -548,11 +548,17 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FranciumCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HassiumTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyConductiveMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexafluorophosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HolmiumIodide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumHexaboride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumDioxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumPentachloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumThiocyanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumChloride
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CHROMATIC
 
 object GTLiteFirstDegreeMaterials
@@ -3275,8 +3281,8 @@ object GTLiteFirstDegreeMaterials
             .ingot()
             .fluid()
             .iconSet(WHITE_DWARF)
-            .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
-                   GENERATE_FRAME, GENERATE_NANITE)
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
+                   GENERATE_FRAME, GENERATE_NANITE, GENERATE_ROTOR)
             .cableProperties(V[OpV], 108, 36)
             .build()
 
@@ -3524,6 +3530,49 @@ object GTLiteFirstDegreeMaterials
             .dust()
             .colorAverage().iconSet(DULL)
             .components(Barium, 1, Chlorine, 2)
+            .build()
+
+        // 2344 Thallium Chloride
+        ThalliumChloride = Material.Builder(2344, GTLiteMod.id("thallium_chloride"))
+            .dust()
+            .color(0xFF7409).iconSet(METALLIC)
+            .components(Thallium, 1, Chlorine, 1)
+            .build()
+
+        // 2345 Hassium Tetrachloride
+        HassiumTetrachloride = Material.Builder(2345, GTLiteMod.id("hassium_tetrachloride"))
+            .dust()
+            .color(0x032551).iconSet(SHINY)
+            .components(MetastableHassium, 1, Chlorine, 4)
+            .build()
+
+        // 2346 Rhenium Pentachloride
+        RheniumPentachloride = Material.Builder(2346, GTLiteMod.id("rhenium_pentachloride"))
+            .dust()
+            .color(0x5B1780).iconSet(SHINY)
+            .components(Rhenium, 1, Chlorine, 5)
+            .build()
+
+        // 2347 Hexafluorophosphoric Acid
+        HexafluorophosphoricAcid = Material.Builder(2347, GTLiteMod.id("hexafluorophosphoric_acid"))
+            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            .color(0xFCC782)
+            .components(Hydrogen, 1, Phosphorus, 1, Fluorine, 6)
+            .build()
+
+        // 2348 Sodium Thiocyanate
+        SodiumThiocyanate = Material.Builder(2348, GTLiteMod.id("sodium_thiocyanate"))
+            .dust()
+            .color(0x818052)
+            .components(Sodium, 1, Sulfur, 1, Carbon, 1, Nitrogen, 1)
+            .build()
+
+        // 2349 Rhenium Hassium Thallium Isophtaloylbisdiethylthiourea Hexafluorophosphate
+        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = Material.Builder(2349, GTLiteMod.id("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate"))
+            .dust()
+            .color(0x5F5F82).iconSet(BRIGHT)
+            .components(Carbon, 60, Hydrogen, 84, Oxygen, 12, Nitrogen, 12, Sulfur, 6, Fluorine, 6, Phosphorus, 1, Rhenium, 1, MetastableHassium, 1, Thallium, 1)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
 
     }

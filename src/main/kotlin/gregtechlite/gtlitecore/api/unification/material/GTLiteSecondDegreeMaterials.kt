@@ -68,6 +68,7 @@ import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
+import gregtech.api.unification.material.Materials.IndiumGalliumPhosphide
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iridium
@@ -181,7 +182,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
-import gregtech.api.unification.material.properties.BlastProperty
+import gregtech.api.unification.material.properties.BlastProperty.GasTier
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -277,7 +278,10 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaesiumCeriumCobaltIndium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyConductiveMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumDopedCarbonNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumPhosphide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate
 import net.minecraft.init.Enchantments
 
 object GTLiteSecondDegreeMaterials
@@ -305,7 +309,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
                 GENERATE_DOUBLE_PLATE)
             .blast { b ->
-                b.temp(2413, BlastProperty.GasTier.LOW) // Kanthal
+                b.temp(2413, GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 20 * SECOND)
                     .vacuumStats(VA[MV], 2 * SECOND + 2 * TICK)
             }
@@ -320,7 +324,7 @@ object GTLiteSecondDegreeMaterials
             .components(Nickel, 3, Chrome, 7, Molybdenum, 10, Invar, 10, Nichrome, 13)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
             .blast { b ->
-                b.temp(2425, BlastProperty.GasTier.LOW) // Kanthal
+                b.temp(2425, GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 25 * SECOND)
                     .vacuumStats(VA[MV], 4 * SECOND + 4 * TICK)
             }
@@ -337,7 +341,7 @@ object GTLiteSecondDegreeMaterials
                 GENERATE_DOUBLE_PLATE, GENERATE_DENSE
             )
             .blast { b ->
-                b.temp(3450, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3450, GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 37 * SECOND + 10 * TICK)
                     .vacuumStats(VA[MV], 21 * SECOND + 9 * TICK)
             }
@@ -352,7 +356,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
                 GENERATE_ROTOR, GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(3454, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3454, GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 28 * SECOND + 10 * TICK)
                     .vacuumStats(VA[MV], 3 * SECOND + 18 * TICK)
             }
@@ -366,7 +370,7 @@ object GTLiteSecondDegreeMaterials
             .components(Chrome, 13, Nickel, 3, Molybdenum, 2, Copper, 10, Tungsten, 2, Steel, 20)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
             .blast { b ->
-                b.temp(5400, BlastProperty.GasTier.HIGH) // HSS-G
+                b.temp(5400, GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 48 * SECOND)
                     .vacuumStats(VA[EV], 5 * SECOND + 8 * TICK)
             }
@@ -380,7 +384,7 @@ object GTLiteSecondDegreeMaterials
             .components(Iron, 7, Aluminium, 4, Nickel, 2, Chrome, 1, Sulfur, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(3850, BlastProperty.GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
+                b.temp(3850, GasTier.MID) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
                     .blastStats(VA[HV], 24 * SECOND)
                     .vacuumStats(VA[MV], 2 * SECOND)
             }
@@ -394,7 +398,7 @@ object GTLiteSecondDegreeMaterials
             .components(Cobalt, 9, Chrome, 9, Manganese, 5, Titanium, 2)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(3310, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3310, GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 30 * SECOND)
                     .vacuumStats(VA[MV], 6 * SECOND)
             }
@@ -409,7 +413,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
                 GENERATE_DENSE)
             .blast { b ->
-                b.temp(1200, BlastProperty.GasTier.LOW)
+                b.temp(1200, GasTier.LOW)
                     .blastStats(VA[MV], 24 * SECOND)
             }
             .build()
@@ -431,7 +435,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
                 GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
-                b.temp(1048, BlastProperty.GasTier.LOW) // Cupronickel
+                b.temp(1048, GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 1 * SECOND + 4 * TICK)
             }
             .build()
@@ -444,7 +448,7 @@ object GTLiteSecondDegreeMaterials
             .components(Titanium, 9, Carbon, 9, Potassium, 9, Lithium, 9, Sulfur, 9, Hydrogen, 5)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(3550, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3550, GasTier.MID) // Nichrome
                     .blastStats(VA[EV], 26 * SECOND)
                     .vacuumStats(VA[HV], 13 * SECOND)
             }
@@ -458,7 +462,7 @@ object GTLiteSecondDegreeMaterials
             .components(Tin, 5, Lead, 36, Antimony, 8, Arsenic, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(737, BlastProperty.GasTier.LOW) // Cupronickel
+                b.temp(737, GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 8 * SECOND)
             }
             .build()
@@ -472,7 +476,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_FOIL,
                 GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(3850, BlastProperty.GasTier.HIGH) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
+                b.temp(3850, GasTier.HIGH) // RTM Alloy (Nichrome via 2x EV Energy Hatch)
                     .blastStats(VA[IV], 7 * SECOND + 10 * TICK)
                     .vacuumStats(VA[EV], 3 * SECOND + 5 * TICK)
             }
@@ -486,7 +490,7 @@ object GTLiteSecondDegreeMaterials
             .components(Invar, 2, Vanadium, 1, Titanium, 1, Molybdenum, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_RING)
             .blast { b ->
-                b.temp(1711, BlastProperty.GasTier.LOW) // Kanthal
+                b.temp(1711, GasTier.LOW) // Kanthal
                     .blastStats(VA[HV], 25 * SECOND)
             }
             .build()
@@ -499,7 +503,7 @@ object GTLiteSecondDegreeMaterials
             .components(VanadiumSteel, 4, Niobium, 2, Chrome, 3, Nickel, 4)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
             .blast { b ->
-                b.temp(4800, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
+                b.temp(4800, GasTier.HIGH) // HSS-G (RTM Alloy via 2x HV Energy Hatch)
                     .blastStats(VA[IV], 34 * SECOND)
                     .vacuumStats(VA[EV], 17 * SECOND)
             }
@@ -513,7 +517,7 @@ object GTLiteSecondDegreeMaterials
             .components(Nickel, 23, Manganese, 2, Copper, 10, Aluminium, 4, Titanium, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(4500, BlastProperty.GasTier.MID) // RTM Alloy
+                b.temp(4500, GasTier.MID) // RTM Alloy
                     .blastStats(VA[IV], 27 * SECOND)
                     .vacuumStats(VA[HV], 20 * SECOND)
             }
@@ -527,7 +531,7 @@ object GTLiteSecondDegreeMaterials
             .components(Iron, 16, Aluminium, 3, Chrome, 5, Yttrium, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(5325, BlastProperty.GasTier.HIGH) // HSS-G
+                b.temp(5325, GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 40 * SECOND)
                     .vacuumStats(VA[HV], 25 * SECOND)
             }
@@ -541,7 +545,7 @@ object GTLiteSecondDegreeMaterials
             .components(Zirconium, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(3250, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3250, GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 48 * SECOND)
                     .vacuumStats(VA[LV], 24 * SECOND)
             }
@@ -555,7 +559,7 @@ object GTLiteSecondDegreeMaterials
             .components(Tantalum, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR)
             .blast { b ->
-                b.temp(4120, BlastProperty.GasTier.MID) // RTM Alloy
+                b.temp(4120, GasTier.MID) // RTM Alloy
                     .blastStats(VA[EV], 60 * SECOND)
                     .vacuumStats(VA[HV], 20 * SECOND)
             }
@@ -570,7 +574,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
                 GENERATE_SPRING, GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(2300, BlastProperty.GasTier.MID) // Kanthal
+                b.temp(2300, GasTier.MID) // Kanthal
                     .blastStats(VA[EV], 40 * SECOND)
                     .vacuumStats(12 * SECOND)
             }
@@ -584,7 +588,7 @@ object GTLiteSecondDegreeMaterials
             .components(Nickel, 12, Molybdenum, 8, Chrome, 7, Tungsten, 1, Cobalt, 1, Copper, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(4625, BlastProperty.GasTier.MID) // RTM Alloy
+                b.temp(4625, GasTier.MID) // RTM Alloy
                     .blastStats(VA[IV], 38 * SECOND)
                     .vacuumStats(VA[HV], 14 * SECOND)
             }
@@ -598,7 +602,7 @@ object GTLiteSecondDegreeMaterials
             .components(Nickel, 8, Iron, 3, Tungsten, 4, Molybdenum, 2, Chrome, 1, Niobium, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(4200, BlastProperty.GasTier.MID) // RTM Alloy
+                b.temp(4200, GasTier.MID) // RTM Alloy
                     .blastStats(VA[IV], 30 * SECOND)
                     .vacuumStats(VA[HV], 16 * SECOND)
             }
@@ -613,7 +617,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR,
                 GENERATE_SPRING_SMALL,  GENERATE_SMALL_GEAR)
             .blast { b ->
-                b.temp(4625, BlastProperty.GasTier.HIGH) // HSS-G
+                b.temp(4625, GasTier.HIGH) // HSS-G
                     .blastStats(VA[IV], 50 * SECOND)
                     .vacuumStats(VA[EV], 15 * SECOND)
             }
@@ -628,7 +632,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME,
                 GENERATE_DOUBLE_PLATE)
             .blast { b ->
-                b.temp(1073, BlastProperty.GasTier.LOW) // Cupronickel
+                b.temp(1073, GasTier.LOW) // Cupronickel
                     .blastStats(VA[MV], 16 * SECOND)
             }
             .build()
@@ -641,7 +645,7 @@ object GTLiteSecondDegreeMaterials
             .components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(6800, BlastProperty.GasTier.HIGH) // Naquadah
+                b.temp(6800, GasTier.HIGH) // Naquadah
                     .blastStats(VA[LuV], 30 * SECOND)
                     .vacuumStats(VA[EV], 25 * SECOND)
             }
@@ -655,7 +659,7 @@ object GTLiteSecondDegreeMaterials
             .components(Titanium, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             .blast { b ->
-                b.temp(3430, BlastProperty.GasTier.MID) // Nichrome
+                b.temp(3430, GasTier.MID) // Nichrome
                     .blastStats(VA[HV], 50 * SECOND)
                     .vacuumStats(VA[MV], 10 * SECOND)
             }
@@ -669,7 +673,7 @@ object GTLiteSecondDegreeMaterials
             .components(TungstenCarbide, 1, TitaniumCarbide, 2)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
             .blast { b ->
-                b.temp(3800, BlastProperty.GasTier.HIGH) // Nichrome
+                b.temp(3800, GasTier.HIGH) // Nichrome
                     .blastStats(VA[EV], 50 * SECOND)
                     .vacuumStats(VA[HV], 15 * SECOND)
             }
@@ -684,7 +688,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
                 GENERATE_SPRING_SMALL, GENERATE_BOLT_SCREW)
             .blast { b ->
-                b.temp(8747, BlastProperty.GasTier.HIGHER) // Trinium
+                b.temp(8747, GasTier.HIGHER) // Trinium
                     .blastStats(VA[ZPM], 1 * MINUTE)
                     .vacuumStats(VA[IV], 45 * SECOND)
             }
@@ -701,7 +705,7 @@ object GTLiteSecondDegreeMaterials
                 GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
                 GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_RING, GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(9001, BlastProperty.GasTier.HIGHER) // Trinium
+                b.temp(9001, GasTier.HIGHER) // Trinium
                     .blastStats(VA[ZPM], 1 * MINUTE + 40 * SECOND)
                     .vacuumStats(VA[LuV], 30 * SECOND)
             }
@@ -720,7 +724,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE,
                 GENERATE_FOIL)
             .blast { b ->
-                b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                b.temp(11400, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UHV], 58 * SECOND)
                     .vacuumStats(VA[UV], 29 * SECOND)
             }
@@ -737,7 +741,7 @@ object GTLiteSecondDegreeMaterials
                 GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_RING, GENERATE_SPRING,
                 GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(10900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
+                b.temp(10900, GasTier.HIGHEST) // Adamantium (Tritanium)
                     .blastStats(VA[UHV], 1 * MINUTE + 30 * SECOND)
                     .vacuumStats(VA[ZPM], 45 * SECOND)
             }
@@ -757,7 +761,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
                 GENERATE_GEAR, GENERATE_FRAME, GENERATE_RING, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(10600, BlastProperty.GasTier.HIGHEST) // Tritanium
+                b.temp(10600, GasTier.HIGHEST) // Tritanium
                     .blastStats(VA[UHV], 1 * MINUTE)
                     .vacuumStats(VA[UV], 28 * SECOND) }
             .toolStats(MaterialToolProperty.Builder.of(48.0F, 24.0F, 5120, 7)
@@ -774,7 +778,7 @@ object GTLiteSecondDegreeMaterials
             .color(0x003F5F).iconSet(METALLIC)
             .components(TungstenSteel, 8, Naquadria, 7, Bedrockium, 4, Carbon, 4, VanadiumSteel, 3, Francium, 1)
             .blast { b ->
-                b.temp(10400, BlastProperty.GasTier.HIGHEST) // Tritanium
+                b.temp(10400, GasTier.HIGHEST) // Tritanium
                     .blastStats(VA[UHV], 20 * SECOND)
                     .vacuumStats(VA[UV], 6 * SECOND + 10 * TICK) }
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE,
@@ -794,7 +798,7 @@ object GTLiteSecondDegreeMaterials
             .iconSet(HALKONITE)
             .components(CosmicNeutronium, 2, Tairitsium, 2, RedPhosphorus, 2, TitanSteel, 1, Infinity, 1)
             .blast { b -> b
-                .temp(13801, BlastProperty.GasTier.HIGHEST) // Infinity
+                .temp(13801, GasTier.HIGHEST) // Infinity
                 .blastStats(VA[UEV], 40 * SECOND)
                 .vacuumStats(VA[UHV], 20 * SECOND)
             }
@@ -815,7 +819,7 @@ object GTLiteSecondDegreeMaterials
                 GENERATE_RING, GENERATE_FOIL, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL,
                 GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(12300, BlastProperty.GasTier.HIGHEST) // Adamantium
+                b.temp(12300, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UHV], 44 * SECOND)
                     .vacuumStats(VA[UV], 22 * SECOND)
             }
@@ -835,7 +839,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_RING,
                 GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
             .blast { b ->
-                b.temp(14000, BlastProperty.GasTier.HIGHEST) // Infinity
+                b.temp(14000, GasTier.HIGHEST) // Infinity
                     .blastStats(VA[UEV], 1 * MINUTE + 25 * SECOND)
                     .vacuumStats(VA[UHV], 48 * SECOND)
             }
@@ -854,7 +858,7 @@ object GTLiteSecondDegreeMaterials
                 Antimony, 2, Platinum, 2, Ytterbium, 1)
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
-                b.temp(10400, BlastProperty.GasTier.HIGHER) // Tritanium
+                b.temp(10400, GasTier.HIGHER) // Tritanium
                     .blastStats(VA[UV], 30 * SECOND)
                     .vacuumStats(VA[LuV], 15 * SECOND)
             }
@@ -869,7 +873,7 @@ object GTLiteSecondDegreeMaterials
             .components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(13900, BlastProperty.GasTier.HIGHEST) // Infinity
+                b.temp(13900, GasTier.HIGHEST) // Infinity
                     .blastStats(VA[UEV], 1 * MINUTE + 15 * SECOND)
                     .vacuumStats(VA[UV], 48 * SECOND)
             }
@@ -884,7 +888,7 @@ object GTLiteSecondDegreeMaterials
             .components(Vibranium, 5, Tritanium, 5, ActiniumSuperhydride, 1, BETSPerrhenate, 1, Iron, 1)
             .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast {b ->
-                b.temp(14400, BlastProperty.GasTier.HIGHEST)
+                b.temp(14400, GasTier.HIGHEST)
                     .blastStats(VA[UEV], 30 * SECOND)
                     .vacuumStats(VA[UHV], 15 * SECOND) }
             .cableProperties(V[UEV], 32, 0, true)
@@ -898,7 +902,7 @@ object GTLiteSecondDegreeMaterials
             .components(Hafnium, 1, Carbon, 1)
             .flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_BOLT_SCREW)
             .blast { b ->
-                b.temp(4090, BlastProperty.GasTier.MID) // RTM Alloy
+                b.temp(4090, GasTier.MID) // RTM Alloy
                     .blastStats(VA[EV], 1 * MINUTE + 5 * SECOND)
                     .vacuumStats(VA[HV], 30 * SECOND)
             }
@@ -912,7 +916,7 @@ object GTLiteSecondDegreeMaterials
             .components(Seaborgium, 1, Carbon, 1)
             .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_DOUBLE_PLATE)
             .blast { b ->
-                b.temp(8500, BlastProperty.GasTier.HIGH) // Trinium
+                b.temp(8500, GasTier.HIGH) // Trinium
                     .blastStats(VA[ZPM], 45 * SECOND)
                     .vacuumStats(VA[IV], 22 * SECOND + 10 * TICK)
             }
@@ -928,7 +932,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
                 GENERATE_FRAME, GENERATE_SPRING, GENERATE_DOUBLE_PLATE)
             .blast { b ->
-                b.temp(12900, BlastProperty.GasTier.HIGHEST) // Infinity (Adamantium)
+                b.temp(12900, GasTier.HIGHEST) // Infinity (Adamantium)
                     .blastStats(VA[UHV], 36 * SECOND)
                     .vacuumStats(VA[UV], 18 * SECOND)
             }
@@ -945,7 +949,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING,
                 GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
-                b.temp(13800, BlastProperty.GasTier.HIGHEST) // Infinity
+                b.temp(13800, GasTier.HIGHEST) // Infinity
                     .blastStats(VA[UIV], 48 * SECOND)
                     .vacuumStats(VA[UHV], 24 * SECOND)
             }
@@ -962,7 +966,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING,
                 GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
-                b.temp(15400, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                b.temp(15400, GasTier.HIGHEST) // Halkonite Steel
                     .blastStats(VA[UXV], 1 * MINUTE + 36 * SECOND)
                     .vacuumStats(VA[UEV], 48 * SECOND)
             }
@@ -980,7 +984,7 @@ object GTLiteSecondDegreeMaterials
                 Osmium, 1, Iridium, 1, Platinum, 1, Gold, 1)
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
+                b.temp(9900, GasTier.HIGHER) // Tritanium
                     .blastStats(VA[UV], 1 * MINUTE)
                     .vacuumStats(VA[ZPM], 30 * SECOND)
             }
@@ -993,7 +997,7 @@ object GTLiteSecondDegreeMaterials
             .color(0xCCB0EC).iconSet(SHINY)
             .components(Nickel, 2, Titanium, 3)
             .blast { b ->
-                b.temp(1941, BlastProperty.GasTier.HIGH) // Kanthal
+                b.temp(1941, GasTier.HIGH) // Kanthal
                     .blastStats(VA[EV], 32 * SECOND + 10 * TICK)
                     .vacuumStats(VA[MV], 7 * SECOND + 4 * TICK) }
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME,
@@ -1013,7 +1017,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_FINE_WIRE,
                    GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             .blast { b ->
-                b.temp(12625, BlastProperty.GasTier.HIGHEST) // Adamantium
+                b.temp(12625, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UIV], 4 * MINUTE)
                     .vacuumStats(VA[UEV], 2 * MINUTE + 30 * SECOND)
             }
@@ -1030,7 +1034,7 @@ object GTLiteSecondDegreeMaterials
             .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
                 GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(15900, BlastProperty.GasTier.HIGHEST) // Halkonite Steel
+                b.temp(15900, GasTier.HIGHEST) // Halkonite Steel
                     .blastStats(VA[UIV], 3 * MINUTE + 25 * SECOND)
                     .vacuumStats(VA[UEV], 2 * MINUTE)
             }
@@ -1046,7 +1050,7 @@ object GTLiteSecondDegreeMaterials
                 Europium, 1, Gadolinium, 1)
             .flags(STD_METAL, GENERATE_FOIL)
             .blast { b -> b
-                .temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                .temp(11400, GasTier.HIGHEST) // Adamantium
                 .blastStats(VA[UHV], 45 * SECOND)
                 .vacuumStats(VA[ZPM], 35 * SECOND)
             }
@@ -1061,7 +1065,7 @@ object GTLiteSecondDegreeMaterials
                 Lutetium, 1, Scandium, 1)
             .flags(EXT2_METAL, GENERATE_FOIL)
             .blast { b -> b
-                .temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                .temp(11400, GasTier.HIGHEST) // Adamantium
                 .blastStats(VA[UHV], 45 * SECOND)
                 .vacuumStats(VA[ZPM], 35 * SECOND)
             }
@@ -1076,7 +1080,7 @@ object GTLiteSecondDegreeMaterials
                 Plutonium239, 1, Americium, 1, Curium, 1)
             .flags(STD_METAL, GENERATE_FOIL)
             .blast { b ->
-                b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                b.temp(11400, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UHV], 45 * SECOND)
                     .vacuumStats(VA[ZPM], 35 * SECOND)
             }
@@ -1092,7 +1096,7 @@ object GTLiteSecondDegreeMaterials
                 Nobelium, 1, Lawrencium, 1, Yttrium, 1)
             .flags(STD_METAL, GENERATE_FOIL)
             .blast { b ->
-                b.temp(11400, BlastProperty.GasTier.HIGHEST) // Adamantium
+                b.temp(11400, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UHV], 45 * SECOND)
                     .vacuumStats(VA[ZPM], 35 * SECOND)
             }
@@ -1108,7 +1112,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_RING,
                 GENERATE_SPRING_SMALL, GENERATE_DENSE)
             .blast { r ->
-                r.temp(11465, BlastProperty.GasTier.HIGHEST) // Adamantium
+                r.temp(11465, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 1 * MINUTE + 25 * SECOND)
                     .vacuumStats(VA[UHV], 55 * SECOND)
             }
@@ -1128,7 +1132,7 @@ object GTLiteSecondDegreeMaterials
                 Aluminium, 6, Nickel, 8, Carbon, 2)
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
             .blast { r ->
-                r.temp(12865, BlastProperty.GasTier.HIGHEST) // Adamantium
+                r.temp(12865, GasTier.HIGHEST) // Adamantium
                     .blastStats(VA[UEV], 45 * SECOND)
                     .vacuumStats(VA[UHV], 22 * SECOND + 10 * TICK)
             }
@@ -1142,7 +1146,7 @@ object GTLiteSecondDegreeMaterials
             .colorAverage().iconSet(SHINY)
             .components(Lithium, 1, Sodium, 1, Potassium, 1, Rubidium, 1, Caesium, 1, Francium, 1)
             .blast { b ->
-                b.temp(6600, BlastProperty.GasTier.HIGH) // Naquadah
+                b.temp(6600, GasTier.HIGH) // Naquadah
                     .blastStats(VA[IV], 20 * SECOND)
                     .vacuumStats(VA[HV], 10 * SECOND)
             }
@@ -1155,7 +1159,7 @@ object GTLiteSecondDegreeMaterials
             .colorAverage().iconSet(SHINY)
             .components(Beryllium, 1, Magnesium, 1, Calcium, 1, Strontium, 1, Barium, 1, Radium, 1)
             .blast { b ->
-                b.temp(7400, BlastProperty.GasTier.HIGH) // Trinium (Naquadah)
+                b.temp(7400, GasTier.HIGH) // Trinium (Naquadah)
                     .blastStats(VA[LuV], 25 * SECOND)
                     .vacuumStats(VA[EV], 15 * SECOND)
             }
@@ -1170,7 +1174,7 @@ object GTLiteSecondDegreeMaterials
                 Nickel, 1, Copper, 1)
             .flags(GENERATE_ROD, GENERATE_LONG_ROD)
             .blast { b ->
-                b.temp(8800, BlastProperty.GasTier.HIGH) // Trinium
+                b.temp(8800, GasTier.HIGH) // Trinium
                     .blastStats(VA[ZPM], 30 * SECOND)
                     .vacuumStats(VA[IV], 20 * SECOND)
             }
@@ -1184,7 +1188,7 @@ object GTLiteSecondDegreeMaterials
             .components(Aluminium, 1, Zinc, 1, Gallium, 1, Germanium, 1, Cadmium, 1, Indium, 1,
                 Tin, 1, Antimony, 1)
             .blast { b ->
-                b.temp(8800, BlastProperty.GasTier.HIGH) // Trinium
+                b.temp(8800, GasTier.HIGH) // Trinium
                     .blastStats(VA[ZPM], 30 * SECOND)
                     .vacuumStats(VA[IV], 20 * SECOND)
             }
@@ -1207,7 +1211,7 @@ object GTLiteSecondDegreeMaterials
             .components(Zirconium, 1, Niobium, 1, Molybdenum, 1, Technetium, 1, Hafnium, 1, Tantalum, 1,
                 Tungsten, 1, Rhenium, 1)
             .blast { b ->
-                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
+                b.temp(9900, GasTier.HIGHER) // Tritanium
                     .blastStats(VA[UV], 35 * SECOND)
                     .vacuumStats(VA[LuV], 25 * SECOND)
             }
@@ -1221,7 +1225,7 @@ object GTLiteSecondDegreeMaterials
             .components(Arsenic, 1, Tellurium, 1, Mercury, 1, Thallium, 1, Lead, 1, Bismuth, 1, Polonium, 1,
                 Astatine, 1)
             .blast { b ->
-                b.temp(10800, BlastProperty.GasTier.HIGHEST) // Tritanium
+                b.temp(10800, GasTier.HIGHEST) // Tritanium
                 .blastStats(VA[UHV], 40 * SECOND)
                 .vacuumStats(VA[ZPM], 30 * SECOND)
             }
@@ -1277,7 +1281,7 @@ object GTLiteSecondDegreeMaterials
                 GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
             .cableProperties(V[OpV], 118, 2)
             .blast { b ->
-                b.temp(18000, BlastProperty.GasTier.HIGHEST) // Space Time
+                b.temp(18000, GasTier.HIGHEST) // Space Time
                     .blastStats(VA[UXV], 10 * SECOND)
                     .vacuumStats(VA[UEV], 2 * SECOND + 10 * TICK)
             }
@@ -1297,7 +1301,7 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR,
                 GENERATE_SMALL_GEAR, GENERATE_RING, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL)
             .blast { b ->
-                b.temp(17800, BlastProperty.GasTier.HIGHEST) // Space Time
+                b.temp(17800, GasTier.HIGHEST) // Space Time
                     .blastStats(VA[UXV], 1 * MINUTE + 20 * SECOND)
                     .vacuumStats(VA[UEV], 40 * SECOND)
             }
@@ -1316,11 +1320,28 @@ object GTLiteSecondDegreeMaterials
                         MetastableHassium, 1, MetastableOganesson, 1)
             .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .blast { b ->
-                b.temp(17901, BlastProperty.GasTier.HIGHEST) // Space Time
+                b.temp(17901, GasTier.HIGHEST) // Space Time
                     .blastStats(VA[UXV], 4 * MINUTE + 25 * SECOND)
                     .vacuumStats(VA[UIV], 3 * MINUTE + 12 * SECOND)
             }
             .cableProperties(V[UXV], 128, 0, true)
+            .build()
+
+        // 4070 Neutronium Superconductor
+        NeutroniumSuperconductor = Material.Builder(4070, GTLiteMod.id("neutronium_superconductor"))
+            .ingot()
+            .fluid()
+            .color(0xF8BCD5).iconSet(BRIGHT)
+            .components(CosmicNeutronium, 4, Neutronium, 5, Legendarium, 5, Bohrium, 5, NeutroniumDopedCarbonNanotube, 4,
+                        TantalumHafniumSeaborgiumCarbide, 3, IndiumGalliumPhosphide, 3,
+                        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 12)
+            .blast { b ->
+                b.temp(18501, GasTier.HIGHEST) // Eternity
+                    .blastStats(VA[OpV], 6 * MINUTE + 15 * SECOND)
+                    .vacuumStats(VA[UIV], 4 * MINUTE)
+            }
+            .cableProperties(V[OpV], 256, 0, true)
+            .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .build()
 
     }

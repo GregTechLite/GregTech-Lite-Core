@@ -126,6 +126,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dicyclopentadiene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diiodobiphenyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diisopropylcarbodiimide
@@ -145,6 +146,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EDTA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Edot
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Erythrosine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneDibromide
@@ -188,6 +190,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isophthaloylbisdiethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylSuccinate
@@ -226,6 +229,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenothiazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenothiazinePropylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenylC61ButyricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenylC61ButyricStyrene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenylenedioxydiaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenylpentanoicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenylsodium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phosgene
@@ -2121,6 +2125,38 @@ object GTLiteOrganicChemistryMaterials
             .dust()
             .color(0xEAB4EB).iconSet(SHINY)
             .components(Carbon, 20, Hydrogen, 6, Bromine, 4, Sodium, 2, Oxygen, 5)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+
+        // 8229 Phenylenedioxydiacetic Acid
+        PhenylenedioxydiaceticAcid = Material.Builder(8229, GTLiteMod.id("phenylenedioxydiacetic_acid"))
+            .liquid()
+            .color(0xFFBBBA)
+            .components(Carbon, 10, Hydrogen, 10, Oxygen, 6)
+            .build()
+
+        // 8230 Ethylamine
+        Ethylamine = Material.Builder(8230, GTLiteMod.id("ethylamine"))
+            .liquid()
+            .color(0x9E9E9E)
+            .components(Carbon, 2, Hydrogen, 7, Nitrogen, 1)
+            .build()
+            .setFormula("C2H5NH2", true)
+
+        // 8231 Diethylthiourea
+        Diethylthiourea = Material.Builder(8231, GTLiteMod.id("diethylthiourea"))
+            .liquid()
+            .color(0x8D8EC2)
+            .components(Carbon, 5, Hydrogen, 12, Nitrogen, 2, Sulfur, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("(C2H5NH)2CS", true);
+
+        // 8232 Isophthaloylbisdiethylthiourea
+        Isophthaloylbisdiethylthiourea = Material.Builder(8232, GTLiteMod.id("isophthaloylbisdiethylthiourea"))
+            .liquid()
+            .color(0xA2D4E1)
+            .components(Carbon, 18, Hydrogen, 26, Nitrogen, 4, Oxygen, 2, Sulfur, 2)
             .flags(DISABLE_DECOMPOSITION)
             .build()
 

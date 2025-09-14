@@ -93,6 +93,7 @@ import gregtech.common.items.MetaItems.FLUID_REGULATOR_UV
 import gregtech.common.items.MetaItems.FLUID_REGULATOR_ZPM
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
@@ -115,9 +116,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SamariumCobalt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelfInteractingDarkMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
@@ -129,12 +133,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.glass
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 
-internal object CraftingComponents
+object CraftingComponents
 {
 
     // @formatter:off
 
     // FLUID_REGULATOR
+    @JvmStatic
     val FLUID_REGULATOR = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(pipeTinyFluid, Bronze),
         LV  to FLUID_REGULATOR_LV.stackForm,
@@ -157,7 +162,8 @@ internal object CraftingComponents
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
     //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
     //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-    //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+    //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
+    @JvmStatic
     val GEAR = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(gear, WroughtIron),
         LV  to UnificationEntry(gear, Steel),
@@ -173,14 +179,15 @@ internal object CraftingComponents
         UIV to UnificationEntry(gear, Shirabon),
         UXV to UnificationEntry(gear, Creon),
         OpV to UnificationEntry(gear, BlackDwarfMatter),
-        // MAX to UnificationEntry(gear, Tritanium)
+        MAX to UnificationEntry(gear, AxinoFusedRedMatter)
     ))
 
     // GEAR_SMALL
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
     //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
     //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon
-    //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+    //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
+    @JvmStatic
     val GEAR_SMALL = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(gearSmall, WroughtIron),
         LV  to UnificationEntry(gearSmall, Steel),
@@ -196,14 +203,15 @@ internal object CraftingComponents
         UIV to UnificationEntry(gearSmall, Shirabon),
         UXV to UnificationEntry(gearSmall, Creon),
         OpV to UnificationEntry(gearSmall, BlackDwarfMatter),
-        // MAX to UnificationEntry(gearSmall, Tritanium)
+        MAX to UnificationEntry(gearSmall, AxinoFusedRedMatter)
     ))
 
     // PLATE_DENSE
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
     //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
     //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-    //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+    //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
+    @JvmStatic
     val PLATE_DENSE = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(plateDense, WroughtIron),
         LV  to UnificationEntry(plateDense, Steel),
@@ -219,14 +227,15 @@ internal object CraftingComponents
         UIV to UnificationEntry(plateDense, Shirabon),
         UXV to UnificationEntry(plateDense, Creon),
         OpV to UnificationEntry(plateDense, BlackDwarfMatter),
-        // MAX to UnificationEntry(plateDense, Tritanium)
+        MAX to UnificationEntry(plateDense, AxinoFusedRedMatter)
     ))
 
     // STICK
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
     //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
     //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-    //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+    //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
+    @JvmStatic
     val STICK = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(stick, WroughtIron),
         LV  to UnificationEntry(stick, Steel),
@@ -242,14 +251,15 @@ internal object CraftingComponents
         UIV to UnificationEntry(stick, Shirabon),
         UXV to UnificationEntry(stick, Creon),
         OpV to UnificationEntry(stick, BlackDwarfMatter),
-        // MAX to UnificationEntry(stick, Tritanium)
+        MAX to UnificationEntry(stick, AxinoFusedRedMatter)
     ))
 
     // STICK_LONG
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
     //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
     //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-    //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+    //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
+    @JvmStatic
     val STICK_LONG = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(stickLong, WroughtIron),
         LV  to UnificationEntry(stickLong, Steel),
@@ -265,14 +275,14 @@ internal object CraftingComponents
         UIV to UnificationEntry(stickLong, Shirabon),
         UXV to UnificationEntry(stickLong, Creon),
         OpV to UnificationEntry(stickLong, BlackDwarfMatter),
-        // MAX to UnificationEntry(stickLong, Tritanium)
+        MAX to UnificationEntry(stickLong, AxinoFusedRedMatter)
     ))
 
     // SPRING_SMALL
     // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
     //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
     //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-    //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
+    //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
     val SPRING_SMALL = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(springSmall, Lead),
         LV  to UnificationEntry(springSmall, Tin),
@@ -288,14 +298,14 @@ internal object CraftingComponents
         UIV to UnificationEntry(springSmall, SuperheavyAlloyA),
         UXV to UnificationEntry(springSmall, SuperheavyAlloyB),
         OpV to UnificationEntry(springSmall, Periodicium),
-        // MAX to UnificationEntry(springSmall, Tritanium)
+        MAX to UnificationEntry(springSmall, RealizedQuantumFoamShard)
     ))
 
     // CABLE_COMPONENT
     // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
     //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
     //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyA, 12: SuperheavyAlloyB,
-    //      13: Periodicium, 14: TODO
+    //      13: Periodicium, 14: RealizedQuantumFoamShard
     val CABLE_COMPONENT = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(cableGtSingle, RedAlloy),
         LV  to UnificationEntry(cableGtSingle, Tin),
@@ -311,14 +321,14 @@ internal object CraftingComponents
         UIV to UnificationEntry(cableGtSingle, SuperheavyAlloyA),
         UXV to UnificationEntry(cableGtSingle, SuperheavyAlloyB),
         OpV to UnificationEntry(cableGtSingle, Periodicium),
-        // MAX to UnificationEntry(cableGtSingle, Tritanium)
+        MAX to UnificationEntry(cableGtSingle, RealizedQuantumFoamShard)
     ))
 
     // PLATE_COMPONENT
     // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium
     //      5: TungstenSteel, 6: HSSS, 7: Osmiridium, 8: Tritanium, 9: Adamantium,
     //      10: CosmicNeutronium, 11: HeavyQuarkDegenerateMatter, 12: TranscendentMetal,
-    //      13: MagnetohydrodynamicallyConstrainedStarMatter, 14: TODO
+    //      13: MagnetohydrodynamicallyConstrainedStarMatter, 14: Omnium
     val PLATE_COMPONENT = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(plate, WroughtIron),
         LV  to UnificationEntry(plate, Steel),
@@ -334,7 +344,7 @@ internal object CraftingComponents
         UIV to UnificationEntry(plate, HeavyQuarkDegenerateMatter),
         UXV to UnificationEntry(plate, TranscendentMetal),
         OpV to UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
-        // MAX to UnificationEntry(plate, Tritanium)
+        MAX to UnificationEntry(plate, Omnium)
     ))
 
     fun setCraftingComponents()
@@ -362,14 +372,14 @@ internal object CraftingComponents
         // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
         CraftingComponent.WIRE_QUAD.appendIngredients(mapOf(
             UHV to UnificationEntry(wireGtQuadruple, Europium),
             UEV to UnificationEntry(wireGtQuadruple, Seaborgium),
             UIV to UnificationEntry(wireGtQuadruple, SuperheavyAlloyA),
             UXV to UnificationEntry(wireGtQuadruple, SuperheavyAlloyB),
             OpV to UnificationEntry(wireGtQuadruple, Periodicium),
-            // MAX to UnificationEntry(wireGtQuadruple, Tritanium)
+            MAX to UnificationEntry(wireGtQuadruple, RealizedQuantumFoamShard)
         ))
 
         // WIRE_OCT
@@ -378,14 +388,14 @@ internal object CraftingComponents
         // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
         CraftingComponent.WIRE_OCT.appendIngredients(mapOf(
             UHV to UnificationEntry(wireGtOctal, Europium),
             UEV to UnificationEntry(wireGtOctal, Seaborgium),
             UIV to UnificationEntry(wireGtOctal, SuperheavyAlloyA),
             UXV to UnificationEntry(wireGtOctal, SuperheavyAlloyB),
             OpV to UnificationEntry(wireGtOctal, Periodicium),
-            // MAX to UnificationEntry(wireGtOctal, Tritanium)
+            MAX to UnificationEntry(wireGtOctal, RealizedQuantumFoamShard)
         ))
 
         // WIRE_HEX
@@ -394,14 +404,14 @@ internal object CraftingComponents
         // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
         CraftingComponent.WIRE_HEX.appendIngredients(mapOf(
             UHV to UnificationEntry(wireGtHex, Europium),
             UEV to UnificationEntry(wireGtHex, Seaborgium),
             UIV to UnificationEntry(wireGtHex, SuperheavyAlloyA),
             UXV to UnificationEntry(wireGtHex, SuperheavyAlloyB),
             OpV to UnificationEntry(wireGtHex, Periodicium),
-            // MAX to UnificationEntry(wireGtHex, Tritanium)
+            MAX to UnificationEntry(wireGtHex, RealizedQuantumFoamShard)
         ))
 
         // CABLE
@@ -411,14 +421,14 @@ internal object CraftingComponents
         // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
-        CraftingComponent.CABLE.appendIngredients(sequenceOf(
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
+        CraftingComponent.CABLE.appendIngredients(mapOf(
             UEV to UnificationEntry(cableGtSingle, Seaborgium),
             UIV to UnificationEntry(cableGtSingle, SuperheavyAlloyA),
             UXV to UnificationEntry(cableGtSingle, SuperheavyAlloyB),
             OpV to UnificationEntry(cableGtSingle, Periodicium),
-            // MAX to UnificationEntry(cableGtSingle, Tritanium)
-        ).toMap())
+            MAX to UnificationEntry(cableGtSingle, RealizedQuantumFoamShard)
+        ))
 
         // CABLE_QUAD
         // Old: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
@@ -427,14 +437,14 @@ internal object CraftingComponents
         // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
-        CraftingComponent.CABLE_QUAD.appendIngredients(sequenceOf(
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
+        CraftingComponent.CABLE_QUAD.appendIngredients(mapOf(
             UEV to UnificationEntry(cableGtQuadruple, Seaborgium),
             UIV to UnificationEntry(cableGtQuadruple, SuperheavyAlloyA),
             UXV to UnificationEntry(cableGtQuadruple, SuperheavyAlloyB),
             OpV to UnificationEntry(cableGtQuadruple, Periodicium),
-            // MAX to UnificationEntry(cableGtQuadruple, Tritanium)
-        ).toMap())
+            MAX to UnificationEntry(cableGtQuadruple, RealizedQuantumFoamShard)
+        ))
 
         // CABLE_OCT
         // Old: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
@@ -443,14 +453,14 @@ internal object CraftingComponents
         // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
-        CraftingComponent.CABLE_OCT.appendIngredients(sequenceOf(
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
+        CraftingComponent.CABLE_OCT.appendIngredients(mapOf(
             UEV to UnificationEntry(cableGtOctal, Seaborgium),
             UIV to UnificationEntry(cableGtOctal, SuperheavyAlloyA),
             UXV to UnificationEntry(cableGtOctal, SuperheavyAlloyB),
             OpV to UnificationEntry(cableGtOctal, Periodicium),
-            // MAX to UnificationEntry(cableGtOctal, Tritanium)
-        ).toMap())
+            MAX to UnificationEntry(cableGtOctal, RealizedQuantumFoamShard)
+        ))
 
         // CABLE_HEX
         // Old: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
@@ -459,14 +469,14 @@ internal object CraftingComponents
         // New: 0: RedAlloy, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Platinum,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
-        CraftingComponent.CABLE_HEX.appendIngredients(sequenceOf(
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
+        CraftingComponent.CABLE_HEX.appendIngredients(mapOf(
             UEV to UnificationEntry(cableGtHex, Seaborgium),
             UIV to UnificationEntry(cableGtHex, SuperheavyAlloyA),
             UXV to UnificationEntry(cableGtHex, SuperheavyAlloyB),
             OpV to UnificationEntry(cableGtHex, Periodicium),
-            // MAX to UnificationEntry(cableGtHex, Tritanium)
-        ).toMap())
+            MAX to UnificationEntry(cableGtHex, RealizedQuantumFoamShard)
+        ))
 
         // CABLE_TIER_UP
         // Old: 0: Tin, 1: Copper, 2: Gold, 3: Aluminium, 4: Platinum, 5: NiobiumTitanium,
@@ -474,15 +484,15 @@ internal object CraftingComponents
         // New: 0: Tin, 1: Copper, 2: Gold, 3: Aluminium, 4: Platinum, 5: NiobiumTitanium,
         //      6: VanadiumGallium, 7: YttriumBariumCuprate, 8: Europium, 9: Seaborgium,
         //      10: SuperheavyAlloyLight, 11: SuperheavyAlloyHeavy, 12: Periodicium,
-        //      13-14: TODO
-        CraftingComponent.CABLE_TIER_UP.appendIngredients(sequenceOf(
+        //      13: RealizedQuantumFoamShard
+        CraftingComponent.CABLE_TIER_UP.appendIngredients(mapOf(
             UHV to UnificationEntry(cableGtSingle, Seaborgium),
             UEV to UnificationEntry(cableGtSingle, SuperheavyAlloyA),
             UIV to UnificationEntry(cableGtSingle, SuperheavyAlloyB),
             UXV to UnificationEntry(cableGtSingle, Periodicium),
-            // OpV to UnificationEntry(cableGtSingle, Tritanium),
+            OpV to UnificationEntry(cableGtSingle, RealizedQuantumFoamShard),
             // MAX to UnificationEntry(cableGtSingle, Tritanium)
-        ).toMap())
+        ))
 
         // CABLE_QUAD_TIER_UP
         // Old: 0: Tin, 1: Copper, 2: Gold, 3: Aluminium, 4: Platinum, 5: NiobiumTitanium,
@@ -490,15 +500,15 @@ internal object CraftingComponents
         // New: 0: Tin, 1: Copper, 2: Gold, 3: Aluminium, 4: Platinum, 5: NiobiumTitanium,
         //      6: VanadiumGallium, 7: YttriumBariumCuprate, 8: Europium, 9: Seaborgium,
         //      10: SuperheavyAlloyLight, 11: SuperheavyAlloyHeavy, 12: Periodicium,
-        //      13-14: TODO
-        CraftingComponent.CABLE_QUAD_TIER_UP.appendIngredients(sequenceOf(
+        //      13: RealizedQuantumFoamShard, 14: TODO
+        CraftingComponent.CABLE_QUAD_TIER_UP.appendIngredients(mapOf(
             UHV to UnificationEntry(cableGtQuadruple, Seaborgium),
             UEV to UnificationEntry(cableGtQuadruple, SuperheavyAlloyA),
             UIV to UnificationEntry(cableGtQuadruple, SuperheavyAlloyB),
             UXV to UnificationEntry(cableGtQuadruple, Periodicium),
-            // OpV to UnificationEntry(cableGtQuadruple, Tritanium),
+            OpV to UnificationEntry(cableGtQuadruple, RealizedQuantumFoamShard),
             // MAX to UnificationEntry(cableGtQuadruple, Tritanium)
-        ).toMap())
+        ))
 
         // PIPE_NORMAL
         // Old: 0-1: Bronze, 2: Steel, 3: StainlessSteel, 4: Titanium, 5: TungstenSteel,
@@ -507,14 +517,14 @@ internal object CraftingComponents
         //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah, 9: Europium, 10: Duranium,
         //      11: Neutronium, 12: HeavyQuarkDegenerateMatter,
         //      13: QuantumchromodynamicallyConfinedMatter, 14: TranscendentMetal
-        CraftingComponent.PIPE_NORMAL.appendIngredients(sequenceOf(
+        CraftingComponent.PIPE_NORMAL.appendIngredients(mapOf(
             UHV to UnificationEntry(pipeNormalFluid, Europium),
             UEV to UnificationEntry(pipeNormalFluid, Duranium),
             UIV to UnificationEntry(pipeNormalFluid, Neutronium),
             UXV to UnificationEntry(pipeNormalFluid, HeavyQuarkDegenerateMatter),
             OpV to UnificationEntry(pipeNormalFluid, QuantumchromodynamicallyConfinedMatter),
             MAX to UnificationEntry(pipeNormalFluid, TranscendentMetal)
-        ).toMap())
+        ))
 
         // PIPE_LARGE
         // Old: 0-1: Bronze, 2: Steel, 3: StainlessSteel, 4: Titanium, 5: TungstenSteel,
@@ -523,14 +533,14 @@ internal object CraftingComponents
         //      6: NiobiumTitanium, 7: Iridium, 8: Naquadah, 9: Europium, 10: Duranium,
         //      11: Neutronium, 12: HeavyQuarkDegenerateMatter,
         //      13: QuantumchromodynamicallyConfinedMatter, 14: TranscendentMetal
-        CraftingComponent.PIPE_LARGE.appendIngredients(sequenceOf(
+        CraftingComponent.PIPE_LARGE.appendIngredients(mapOf(
             UHV to UnificationEntry(pipeLargeFluid, Europium),
             UEV to UnificationEntry(pipeLargeFluid, Duranium),
             UIV to UnificationEntry(pipeLargeFluid, Neutronium),
             UXV to UnificationEntry(pipeLargeFluid, HeavyQuarkDegenerateMatter),
             OpV to UnificationEntry(pipeLargeFluid, QuantumchromodynamicallyConfinedMatter),
             MAX to UnificationEntry(pipeLargeFluid, TranscendentMetal)
-        ).toMap())
+        ))
 
         // GLASS
         // Old: 0-2: Glass, 3-4: Tempered Glass, 5-6: Laminated Glass, 7-8: Fusion Glass
@@ -560,13 +570,13 @@ internal object CraftingComponents
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
         //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-        //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+        //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
         CraftingComponent.PLATE.appendIngredients(mapOf(
             UEV to UnificationEntry(plate, Vibranium),
             UIV to UnificationEntry(plate, Shirabon),
             UXV to UnificationEntry(plate, Creon),
             OpV to UnificationEntry(plate, BlackDwarfMatter),
-            // MAX to UnificationEntry(plate, Tritanium)
+            MAX to UnificationEntry(plate, AxinoFusedRedMatter)
         ))
 
         // DOUBLE_PLATE
@@ -576,13 +586,13 @@ internal object CraftingComponents
         // New: 0: WroughtIron, 1: Steel, 2: Aluminium, 3: StainlessSteel, 4: Titanium,
         //      5: TungstenSteel, 6: RhodiumPlatedPalladium, 7: NaquadahAlloy,
         //      8: Darmstadtium, 9: Neutronium, 10: Vibranium, 11: Shirabon,
-        //      12: Creon, 13: BlackDwarfMatter, 14: TODO
+        //      12: Creon, 13: BlackDwarfMatter, 14: AxinoFusedRedMatter
         CraftingComponent.DOUBLE_PLATE.appendIngredients(mapOf(
             UEV to UnificationEntry(plateDouble, Vibranium),
             UIV to UnificationEntry(plateDouble, Shirabon),
             UXV to UnificationEntry(plateDouble, Creon),
             OpV to UnificationEntry(plateDouble, BlackDwarfMatter),
-            // MAX to UnificationEntry(plateDouble, Tritanium)
+            MAX to UnificationEntry(plateDouble, AxinoFusedRedMatter)
         ))
 
         // HULL_PLATE
@@ -606,14 +616,14 @@ internal object CraftingComponents
         // New: 0-1: Tin, 2: Bronze, 3: Steel, 4: StainlessSteel, 5: TungstenSteel,
         //      6: RhodiumPlatedPalladium, 7: NaquadahAlloy, 8: Darmstadtium,
         //      9: Neutronium, 10: Vibranium, 11: Shirabon, 12: Creon, 13: BlackDwarfMatter,
-        //      14: TODO
+        //      14: AxinoFusedRedMatter
         CraftingComponent.ROTOR.appendIngredients(mapOf(
             UHV to UnificationEntry(rotor, Neutronium),
             UEV to UnificationEntry(rotor, Vibranium),
             UIV to UnificationEntry(rotor, Shirabon),
             UXV to UnificationEntry(rotor, Creon),
             OpV to UnificationEntry(rotor, BlackDwarfMatter),
-            // MAX to UnificationEntry(rotor, Tritanium)
+            MAX to UnificationEntry(rotor, AxinoFusedRedMatter)
         ))
 
         // GRINDER
@@ -640,14 +650,14 @@ internal object CraftingComponents
         // New: 0: Bronze, 1: CobaltBrass, 2: VanadiumSteel, 3: BlueSteel, 4: Ultimet,
         //      5: TungstenCarbide, 6: HSSE, 7: NaquadahAlloy, 8: Duranium,
         //      9: CubicBoronNitride, 10: HDCS, 11: HastelloyK243, 12: Legendarium,
-        //      13: Creon, 14: TODO
+        //      13: Creon, 14: AxinoFusedRedMatter
         CraftingComponent.SAWBLADE.appendIngredients(mapOf(
             UHV to UnificationEntry(toolHeadBuzzSaw, CubicBoronNitride),
             UEV to UnificationEntry(toolHeadBuzzSaw, HDCS),
             UIV to UnificationEntry(toolHeadBuzzSaw, HastelloyK243),
             UXV to UnificationEntry(toolHeadBuzzSaw, Legendarium),
             OpV to UnificationEntry(toolHeadBuzzSaw, Creon),
-            // MAX to UnificationEntry(toolHeadBuzzSaw, Tritanium)
+            MAX to UnificationEntry(toolHeadBuzzSaw, AxinoFusedRedMatter)
         ))
 
         // COIL_HEATING
@@ -686,14 +696,14 @@ internal object CraftingComponents
         // New: 0-1: Tin, 2: Copper, 3: Silver, 4: Steel, 5: Graphene,
         //      6: NiobiumNitride, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: ThalliumBariumCalciumCuprate, 10: CosmicNeutronium,
-        //      11: Hypogen, 12: MagMatter, 13: Universium, 14: TODO
+        //      11: Hypogen, 12: MagMatter, 13: Universium, 14: SelfInteractingDarkMatter
         CraftingComponent.COIL_ELECTRIC.appendIngredients(mapOf(
             UHV to UnificationEntry(wireGtOctal, ThalliumBariumCalciumCuprate),
             UEV to UnificationEntry(wireGtOctal, CosmicNeutronium),
             UIV to UnificationEntry(wireGtHex, Hypogen),
             UXV to UnificationEntry(wireGtHex, MagMatter),
             OpV to UnificationEntry(wireGtHex, Universium),
-            // MAX to UnificationEntry(wireGtHex, Tritanium)
+            MAX to UnificationEntry(wireGtHex, SelfInteractingDarkMatter)
         ))
 
         // STICK_MAGNETIC
@@ -818,13 +828,13 @@ internal object CraftingComponents
         // New: 0: Lead, 1: Tin, 2: Copper, 3: Gold, 4: Aluminium, 5: Tungsten,
         //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
         //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
-        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: TODO
+        //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
         CraftingComponent.SPRING.appendIngredients(mapOf(
             UEV to UnificationEntry(spring, Seaborgium),
             UIV to UnificationEntry(spring, SuperheavyAlloyA),
             UXV to UnificationEntry(spring, SuperheavyAlloyB),
             OpV to UnificationEntry(spring, Periodicium),
-            // MAX to UnificationEntry(spring, Tritanium)
+            MAX to UnificationEntry(spring, RealizedQuantumFoamShard)
         ))
 
         // region MAX-tier Components

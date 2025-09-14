@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.loader.recipe.component
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -29,7 +30,9 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
+import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.stickLong
@@ -47,13 +50,16 @@ import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
@@ -64,9 +70,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetohydrodynam
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelfInteractingDarkMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
@@ -74,6 +84,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
 
 internal object MotorRecipes
@@ -308,25 +319,37 @@ internal object MotorRecipes
             }
             .buildAndRegister()
 
-        // TODO MAX
-        // ASSEMBLY_LINE_RECIPES.recipeBuilder()
-        //     .input(ENERGISED_TESSERACT)
-        //     .input(frameGt, Magnetium, 64)
-        //     .input(frameGt, Eternity, 64)
-        //     .input(frameGt, BlackDwarfMatter, 64)
-        //     .input(frameGt, Omnium, 64)
-        //     .input(ring, Omnium, 32)
-        //     .input(round, Omnium, 48)
-        //     .input(wireFine, SpaceTime, 64)
-        //     .input(wireFine, SpaceTime, 64)
-        //     .input(wireFine, Universium, 64)
-        //     .input(wireFine, Universium, 64)
-        //     .input(wireFine, OpVSuperconductors, 64)
-        //     .input(wireFine, OpVSuperconductors, 64)
-        //     .input(wireFine, WhiteDwarfMatter, 64)
-        //     .input(wireFine, WhiteDwarfMatter, 64)
-        //     .input(cableGtHex, , 2)
-        //     .input(nanite, MagMatter, 4)
+        // MAX
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(ENERGISED_TESSERACT, 4)
+            .input(frameGt, Magnetium, 64)
+            .input(frameGt, Eternity, 64)
+            .input(frameGt, BlackDwarfMatter, 64)
+            .input(ring, Omnium, 32)
+            .input(round, Omnium, 48)
+            .input(wireFine, SpaceTime, 64)
+            .input(wireFine, SpaceTime, 64)
+            .input(wireFine, Universium, 64)
+            .input(wireFine, Universium, 64)
+            .input(wireFine, SelfInteractingDarkMatter, 64)
+            .input(wireFine, SelfInteractingDarkMatter, 64)
+            .input(wireFine, WhiteDwarfMatter, 64)
+            .input(wireFine, WhiteDwarfMatter, 64)
+            .input(cableGtHex, RealizedQuantumFoamShard, 2)
+            .input(nanite, MagMatter, 4)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
+            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 64))
+            .fluidInputs(CosmicFabric.getFluid(L * 16))
+            .output(ELECTRIC_MOTOR_MAX)
+            .EUt(300_000_000) // OpV
+            .duration(1 * MINUTE)
+            .stationResearch { r ->
+                r.researchStack(ELECTRIC_MOTOR_OpV)
+                    .EUt(VA[OpV])
+                    .CWUt(256)
+            }
+            .buildAndRegister()
     }
 
     // @formatter:on

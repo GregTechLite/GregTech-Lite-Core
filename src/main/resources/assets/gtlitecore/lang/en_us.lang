@@ -3401,6 +3401,12 @@ gtlitecore.material.plutonium_dioxide=Plutonium Dioxide
 gtlitecore.material.mox=Uranium Plutonium Oxides Mixture (MOX)
 gtlitecore.material.barium_manganate=Barium Manganate
 gtlitecore.material.barium_dichloride=Barium Dichloride
+gtlitecore.material.thallium_chloride=Thallium Chloride
+gtlitecore.material.hassium_tetrachloride=Hassium Tetrachloride
+gtlitecore.material.rhenium_pentachloride=Rhenium Pentachloride
+gtlitecore.material.hexafluorophosphoric_acid=Hexafluorophosphoric Acid
+gtlitecore.material.sodium_thiocyanate=Sodium Thiocyanate
+gtlitecore.material.rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate=Rhenium Hassium Thallium Isophtaloylbisdiethylthiourea Hexafluorophosphate (RHTIH)
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3471,6 +3477,7 @@ gtlitecore.material.noble_gas_mixture=Noble Gas Mixture
 gtlitecore.material.periodicium=Periodicium
 gtlitecore.material.legendarium=Legendarium
 gtlitecore.material.boron_francium_carbide_superconductor=Boron Francium Carbide Superconductor
+gtlitecore.material.neutronium_superconductor=Neutronium Complex Superconductor
 
 gtlitecore.material.limestone=Limestone
 gtlitecore.material.komatiite=Komatiite
@@ -3739,6 +3746,10 @@ gtlitecore.material.fulvic_acid=Fulvic Acid
 gtlitecore.material.mauveine=Mauveine
 gtlitecore.material.diketopyrrolopyrrole=Diketopyrrolopyrrole
 gtlitecore.material.eosin_y=Eosin Y
+gtlitecore.material.phenylenedioxydiacetic_acid=Phenylenedioxydiacetic Acid
+gtlitecore.material.ethylamine=Ethylamine
+gtlitecore.material.diethylthiourea=Diethylthiourea
+gtlitecore.material.isophthaloylbisdiethylthiourea=Isophthaloylbisdiethylthiourea
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3876,6 +3887,9 @@ gtlitecore.material.primordial_matter=Primordial Matter
 gtlitecore.material.condensed_raw_stellar_plasma_mixture=Condensed Raw Stellar Plasma Mixture
 gtlitecore.material.magnetohydrodynamically_constrained_star_matter=Magnetohydrodynamically Constrained Star Matter (MHDCSM)
 gtlitecore.material.self_interacting_dark_matter=Self-Interacting Dark Matter (SIDM)
+gtlitecore.material.realized_quantum_foam_shard=Realized Quantum Foam Shard (RQFS)
+gtlitecore.material.axino_fused_red_matter=Axino-Fused Red Matter (AFRM)
+gtlitecore.material.axino_fused_red_matter.formula=§7Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 
@@ -3980,5 +3994,6 @@ enchantment.level.20=XX
 enchantment.level.29=XXVIV
 enchantment.level.49=XLVIV
 enchantment.level.84=LXXXIV
+enchantment.level.127=CXXVII
 enchantment.level.128=CXXVIII
 enchantment.level.146=CXLVI

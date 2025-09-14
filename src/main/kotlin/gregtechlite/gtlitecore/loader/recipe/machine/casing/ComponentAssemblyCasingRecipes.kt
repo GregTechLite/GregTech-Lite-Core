@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
@@ -101,6 +102,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CinobiteA243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
@@ -110,11 +112,14 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyK243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX78
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lafium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ReneN5
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelfInteractingDarkMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stellite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
@@ -126,6 +131,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zeron100
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ROBOT_ARM_MAX
 
 internal object ComponentAssemblyCasingRecipes
 {
@@ -438,7 +446,32 @@ internal object ComponentAssemblyCasingRecipes
             }
             .buildAndRegister()
 
-        // TODO MAX CoAL Casing
+        // MAX CoAL Casing
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(frameGt, AxinoFusedRedMatter)
+            .input(plateDense, AxinoFusedRedMatter, 6)
+            .input(ROBOT_ARM_MAX, 8)
+            .input(ELECTRIC_PISTON_MAX, 10)
+            .input(ELECTRIC_MOTOR_MAX, 16)
+            .input(gear, AxinoFusedRedMatter, 4)
+            .input(gearSmall, AxinoFusedRedMatter, 16)
+            .input(cableGtQuadruple, RealizedQuantumFoamShard, 8)
+            .input(circuit, Tier.MAX, 8)
+            .input(circuit, Tier.OpV, 16)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 24))
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+            .fluidInputs(Legendarium.getFluid(L * 12))
+            .fluidInputs(SelfInteractingDarkMatter.getFluid(L * 8))
+            .outputs(ComponentAssemblyCasing.MAX.getStack(4))
+            .EUt(VA[MAX])
+            .duration(32 * SECOND)
+            .stationResearch { r ->
+                r.researchStack(ComponentAssemblyCasing.OpV.stack)
+                    .EUt(VA[OpV])
+                    .CWUt(128)
+            }
+            .buildAndRegister()
+
     }
 
     // @formatter:on

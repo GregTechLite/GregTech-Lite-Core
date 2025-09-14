@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.loader.recipe.component
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -26,8 +27,10 @@ import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.screw
@@ -48,29 +51,41 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_OpV
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CONVEYOR_MODULE_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PUMP_MAX
 
 internal object ConveyorRecipes
 {
@@ -290,7 +305,38 @@ internal object ConveyorRecipes
             }
             .buildAndRegister()
 
-        // TODO MAX
+        // MAX
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(ELECTRIC_MOTOR_MAX, 2)
+            .input(plateDouble, Omnium, 16)
+            .input(plateDouble, Eternity, 16)
+            .input(plateDouble, Universium, 16)
+            .input(plateDouble, SpaceTime, 16)
+            .input(ring, Omnium, 64)
+            .input(ring, WhiteDwarfMatter, 64)
+            .input(round, Omnium, 64)
+            .input(round, BlackDwarfMatter, 64)
+            .input(screw, Omnium, 32)
+            .input(cableGtHex, RealizedQuantumFoamShard, 2)
+            .input(nanite, MagMatter, 4)
+            .input("plateAnyAdvancedSyntheticRubber", 64)
+            .input("plateAnyAdvancedSyntheticRubber", 64)
+            .input("plateAnyAdvancedSyntheticRubber", 64)
+            .input("plateAnyAdvancedSyntheticRubber", 64)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
+            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 64))
+            .fluidInputs(CosmicFabric.getFluid(L * 16))
+            .output(CONVEYOR_MODULE_MAX)
+            .EUt(300_000_000) // OpV
+            .duration(1 * MINUTE)
+            .stationResearch { r ->
+                r.researchStack(CONVEYOR_MODULE_OpV)
+                    .EUt(VA[OpV])
+                    .CWUt(256)
+            }
+            .buildAndRegister()
+
     }
 
     // @formatter:on

@@ -63,6 +63,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetohydrodynam
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumDopedCarbonNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
@@ -418,7 +419,7 @@ internal object SupracausalCircuits
             .input(SUPRACAUSAL_SMD_INDUCTOR, 64)
             .input(foil, CosmicFabric, 64)
             .input(SPIN_FOAM_ANNIHILATED_RAM_CHIP, 64)
-            .input(wireGtDouble, Universium, 16) // TODO OpV Superconductor
+            .input(wireGtDouble, NeutroniumSuperconductor, 16)
             .input(plate, Mellion, 16)
             .fluidInputs(MutatedLivingSolder.getFluid(L * 160))
             .fluidInputs(CosmicFabric.getFluid(L * 64))

@@ -98,6 +98,7 @@ internal object ChemistryRecipeList
         PolymerInsulatorChain.init()
         KerogenChain.init()
         FissionFuelChain.init()
+        RHTIHChain.init()
     }
 
     // @formatter:on

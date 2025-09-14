@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -89,12 +90,14 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPotassiumEutatic
@@ -102,9 +105,11 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EMITTER_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_IV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_OpV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UHV
@@ -114,6 +119,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ROBOT_ARM_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SENSOR_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_OpV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
@@ -333,7 +341,29 @@ internal object AssemblyLineRecipes
             }
             .buildAndRegister()
 
-        // TODO MAX Mining Drones
+        // MAX Mining Drones
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(frameGt, AxinoFusedRedMatter)
+            .input(plateDouble, AxinoFusedRedMatter, 32)
+            .input(round, AxinoFusedRedMatter, 64)
+            .input(EMITTER_MAX, 2)
+            .input(SENSOR_MAX, 2)
+            .input(ROBOT_ARM_MAX, 2)
+            .input(rotor, AxinoFusedRedMatter, 8)
+            .input(toolHeadDrill, AxinoFusedRedMatter, 16)
+            .input(cableGtQuadruple, RealizedQuantumFoamShard, 2)
+            .input(circuit, Tier.MAX, 4)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 80))
+            .fluidInputs(DrillingFluid.getFluid(512000))
+            .output(MINING_DRONE_MAX)
+            .EUt(VA[MAX])
+            .duration(30 * SECOND)
+            .stationResearch { r ->
+                r.researchStack(MINING_DRONE_OpV)
+                    .EUt(VA[OpV])
+                    .CWUt(160)
+            }
+            .buildAndRegister()
     }
 
     private fun energyHatchesRecipes()
@@ -703,7 +733,7 @@ internal object AssemblyLineRecipes
             }
             .buildAndRegister()
 
-        // OpV Energy Hatch
+        // OpV Dynamo Hatch
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(HULL[OpV])
             .input(spring, Periodicium, 4)
@@ -722,12 +752,50 @@ internal object AssemblyLineRecipes
             }
             .buildAndRegister()
 
+        // MAX Energy Hatch
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(HULL[MAX])
+            .input(cableGtSingle, RealizedQuantumFoamShard, 4)
+            .input(FEMTO_PIC_CHIP, 4)
+            .input(circuit, Tier.MAX)
+            .input(VOLTAGE_COIL_MAX, 2)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 1280))
+            .fluidInputs(SodiumPotassiumEutatic.getFluid(160000))
+            .output(ENERGY_INPUT_HATCH[MAX])
+            .EUt(VA[OpV])
+            .duration(10 * SECOND)
+            .stationResearch { r -> r
+                .researchStack(ENERGY_INPUT_HATCH[OpV])
+                .EUt(VA[OpV])
+                .CWUt(128)
+            }
+            .buildAndRegister()
+
+        // MAX Dynamo Hatch
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(HULL[MAX])
+            .input(spring, RealizedQuantumFoamShard, 4)
+            .input(FEMTO_PIC_CHIP, 4)
+            .input(circuit, Tier.MAX)
+            .input(VOLTAGE_COIL_MAX, 2)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 1280))
+            .fluidInputs(SodiumPotassiumEutatic.getFluid(160000))
+            .output(ENERGY_OUTPUT_HATCH[MAX])
+            .EUt(VA[OpV])
+            .duration(10 * SECOND)
+            .stationResearch { r -> r
+                .researchStack(ENERGY_OUTPUT_HATCH[OpV])
+                .EUt(VA[OpV])
+                .CWUt(128)
+            }
+            .buildAndRegister()
+
     }
 
     private fun laserHatchesRecipes()
     {
         // Ultimate laser hatches consists 4194304A-16777216A.
-        for (tier in IV..OpV) // TODO MAX recipes
+        for (tier in IV..OpV)
         {
             val actualTier = tier - IV // Because laser hatch start at IV stage.
             // 4194304A Laser Target Hatch

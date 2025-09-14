@@ -27,10 +27,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BATTERY_HULL_LARGE_INFINITY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BATTERY_HULL_LARGE_NEUTRONIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BATTERY_HULL_MEDIUM_INFINITY
@@ -107,7 +107,7 @@ internal object BatteriesChain
 
         // Large Infinity Battery Hull (MAX)
         ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, Universium, 2) // TODO MAX cable.
+            .input(cableGtSingle, RealizedQuantumFoamShard, 2)
             .input(plate, Shirabon, 18)
             .input(NANOSILICON_CATHODE, 32)
             .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))

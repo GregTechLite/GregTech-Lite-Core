@@ -4,7 +4,9 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
@@ -29,11 +31,14 @@ import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
@@ -50,6 +55,7 @@ import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.common.blocks.BlockFusionCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
@@ -74,11 +80,15 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumTitanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaesiumCeriumCobaltIndium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyK243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
@@ -86,6 +96,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tairitsium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Talonite
@@ -95,6 +106,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
+import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCryostat
@@ -110,6 +123,43 @@ internal object FusionCasingRecipes
 
     fun init()
     {
+        // Advanced recipes of Superconductor Wire Coil
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(wireGtDouble, VibraniumTritaniumActiniumIronSuperhydride, 2)
+            .input(foil, NiobiumTitanium, 2)
+            .fluidInputs(Trinium.getFluid(L * 2))
+            .outputs(GTFusionCasing.FUSION_COIL.stack)
+            .EUt(VA[UHV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(wireGtDouble, FullereneSuperconductor)
+            .input(foil, NiobiumTitanium)
+            .fluidInputs(Trinium.getFluid(L))
+            .outputs(GTFusionCasing.FUSION_COIL.stack)
+            .EUt(VA[UEV])
+            .duration(2 * SECOND + 10 * TICK)
+            .buildAndRegister()
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(wireGtDouble, BoronFranciumCarbideSuperconductor)
+            .input(foil, NiobiumTitanium)
+            .fluidInputs(Trinium.getFluid(L / 2))
+            .outputs(GTFusionCasing.FUSION_COIL.getStack(2))
+            .EUt(VA[UIV])
+            .duration(1 * SECOND + 5 * TICK)
+            .buildAndRegister()
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .input(wireGtDouble, NeutroniumSuperconductor)
+            .input(foil, NiobiumTitanium)
+            .fluidInputs(Trinium.getFluid(L / 4))
+            .outputs(GTFusionCasing.FUSION_COIL.getStack(4))
+            .EUt(VA[UXV])
+            .duration(12 * TICK)
+            .buildAndRegister()
+
         // Advanced Fusion Coil
         ASSEMBLER_RECIPES.recipeBuilder()
             .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))

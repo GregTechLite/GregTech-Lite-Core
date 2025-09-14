@@ -30,9 +30,11 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
+import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.colorAverage
+import gregtechlite.gtlitecore.api.translation.CommonI18n
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -138,11 +140,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurpleDrink
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuasifissioningPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthHydroxidesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawStarMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedAlgae
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedWine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
@@ -167,7 +171,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vodka
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Yeast
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.DARKMATTER
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MHDCSM
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.QUANTUM
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.REDMATTER
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.WAX
+import net.minecraft.init.Enchantments
 
 object GTLiteUnknownCompositionMaterials
 {
@@ -1058,6 +1065,40 @@ object GTLiteUnknownCompositionMaterials
             .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_FOIL, GENERATE_FINE_WIRE)
             .cableProperties(V[MAX] - 1, 488, 1)
             .build()
+
+        // 13020 Realized Quantum Foam Shard (RQFS)
+        RealizedQuantumFoamShard = Material.Builder(13020, GTLiteMod.id("realized_quantum_foam_shard"))
+            .ingot()
+            .liquid()
+            .iconSet(QUANTUM) // lightness 80 on base; shadow
+            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME,
+                   GENERATE_SPRING, GENERATE_SPRING_SMALL)
+            .cableProperties(V[MAX] - 1, 365, 1)
+            .build()
+
+        // 13021 Axino-Fused Red Matter (AFRM)
+        AxinoFusedRedMatter = Material.Builder(13021, GTLiteMod.id("axino_fused_red_matter"))
+            .ingot()
+            .liquid()
+            .color(0x9A0707).iconSet(REDMATTER)
+            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR,
+                   GENERATE_ROUND, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL,
+                   GENERATE_FINE_WIRE)
+            .toolStats(MaterialToolProperty.Builder.of(640.0F, 640.0F, Int.MAX_VALUE - 1, 1_048_576)
+                           .attackSpeed(9.0F).enchantability(99)
+                           .enchantment(Enchantments.SHARPNESS, 128)
+                           .enchantment(Enchantments.SWEEPING, 128)
+                           .enchantment(Enchantments.LOOTING, 128)
+                           .enchantment(Enchantments.EFFICIENCY, 128)
+                           .enchantment(Enchantments.FORTUNE, 128)
+                           .enchantment(Enchantments.MENDING, 128)
+                           .enchantment(Enchantments.UNBREAKING, 128)
+                           .magnetic()
+                           .unbreakable()
+                           .build())
+            .rotorStats(8192.0F, 2048.0F, Int.MAX_VALUE - 1)
+            .build()
+            .setFormula(CommonI18n.format("gtlitecore.material.axino_fused_red_matter.formula", "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions"))
 
         // ...
 
