@@ -41,20 +41,12 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.QUANTUM_ALLOY.state
-        private val secondCasingState
-            get() = MultiblockCasing.GRAVITY_STABILIZATION_CASING.state
-        private val thirdCasingState
-            get() = MultiblockCasing.ADVANCED_FILTER_CASING.state
-
-        private val coilState
-            get() = MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.state
-        private val secondCoilState
-            get() = MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.state
-
-        private val glassState
-            get() = GlassCasing.ANTIMATTER_CONTAINMENT.state
+        private val casingState = MetalCasing.QUANTUM_ALLOY.state
+        private val secondCasingState = MultiblockCasing.GRAVITY_STABILIZATION_CASING.state
+        private val thirdCasingState = MultiblockCasing.ADVANCED_FILTER_CASING.state
+        private val coilState = MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.state
+        private val secondCoilState = MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.state
+        private val glassState = GlassCasing.ANTIMATTER_CONTAINMENT.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAntimatterGenerator(metaTileEntityId)
@@ -67,6 +59,8 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
         outputEnergy.addAll(getAbilities(OUTPUT_LASER))
         energyContainer = EnergyContainerList(outputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("                DDD                " ,"                DDD                " ,"                DDD                " ,"                DDD                " ,"                 D                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                DDD                " ,"                DDD                " ,"                DDD                " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                 F                 " ,"                                   " ,"                                   " ,"                                   " ,"                                   " ,"                                   " ,"                                   " ,"                                   " ,"                                   ")
@@ -123,6 +117,8 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
             = if (recipeMapWorkable.isActive) GTLiteTextures.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteTextures.ANTIMATTER_FORGE_TEXTURE
@@ -130,7 +126,7 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ANTIMATTER_FORGE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_generator.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_generator.tooltip.2"))
@@ -150,7 +146,7 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
 
     override fun hasMaintenanceMechanics() = false
 
-    private inner class AntimatterGeneratorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
+    private inner class AntimatterGeneratorWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockFuelRecipeLogic(mte)
     {
 
         override fun isAllowOverclocking() = true

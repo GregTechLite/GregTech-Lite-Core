@@ -1,10 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
-import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
-import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -31,14 +28,13 @@ class MultiblockAcidGenerator(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.COBALT_BRASS.state
-
-        private val glassState
-            get() = GTGlassCasing.CLEANROOM_GLASS.state
+        private val casingState = MetalCasing.COBALT_BRASS.state
+        private val glassState = GTGlassCasing.CLEANROOM_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAcidGenerator(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCCCC", "CCECC", "CCCCC")
@@ -57,10 +53,9 @@ class MultiblockAcidGenerator(id: ResourceLocation)
         .where(' ', any())
         .build()
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    // @formatter:on
+
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.tooltip.maximum_energy_output", V[IV]))

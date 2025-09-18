@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -17,12 +18,13 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -41,22 +43,15 @@ class MultiblockFoodProcessor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeFoodProcessorRecipeLogic(this)
+        recipeMapWorkable = LargeFoodProcessorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.BISMUTH_BRONZE.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val thirdCasingState
-            get() = GTCleanroomCasing.PLASCRETE.state
-
-        private val glassState
-            get() = GTGlassCasing.CLEANROOM_GLASS.state
+        private val casingState = MetalCasing.BISMUTH_BRONZE.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val thirdCasingState = GTCleanroomCasing.PLASCRETE.state
+        private val glassState = GTGlassCasing.CLEANROOM_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockFoodProcessor(metaTileEntityId)
@@ -64,16 +59,16 @@ class MultiblockFoodProcessor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.tier = minOf(robotArmCasingTier, pumpCasingTier)
+        robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        tier = minOf(robotArmCasingTier, pumpCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.robotArmCasingTier = 0
-        this.pumpCasingTier = 0
+        robotArmCasingTier = 0
+        pumpCasingTier = 0
     }
 
     // @formatter:off
@@ -106,13 +101,16 @@ class MultiblockFoodProcessor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.MULTICOOKER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_food_processor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_food_processor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_food_processor.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_food_processor.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LFP")
+            description(true)
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.PUMP_CASING, 80)
+            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

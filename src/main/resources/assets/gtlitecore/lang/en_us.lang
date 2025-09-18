@@ -2255,52 +2255,32 @@ gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
 gtlitecore.machine.cvd_unit.name=Chemical Vapor Deposition Unit
-gtlitecore.machine.cvd_unit.tooltip.1=薄膜蒸镀传输
-gtlitecore.machine.cvd_unit.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.cvd_unit.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.cvd_unit.tooltip.4=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.cvd_unit.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+gtlitecore.machine.cvd_unit.tooltip=薄膜蒸镀传输
 
 gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
-gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
-gtlitecore.machine.crystallization_crucible.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.crystallization_crucible.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.crystallization_crucible.tooltip.4=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.crystallization_crucible.tooltip.5=每提高1个§a线圈等级§7，每次运行可以多处理§l8§r§7个物品。
+gtlitecore.machine.crystallization_crucible.tooltip=人造宝石技术
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
-gtlitecore.machine.nanoscale_fabricator.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.nanoscale_fabricator.tooltip.2=配方温度受到结构中的所有坩埚的平均温度限制。
-gtlitecore.machine.nanoscale_fabricator.tooltip.3=平均温度必须在配方要求的±§c250K§7以内方可使配方成功运行。
-gtlitecore.machine.nanoscale_fabricator.tooltip.4=只能使用ULV输入总线在指定坩埚位置的下方输入物品。
-gtlitecore.machine.nanoscale_fabricator.tooltip.5=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.nanoscale_fabricator.tooltip.6=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l4§r§7个物品。
-gtlitecore.machine.nanoscale_fabricator.average_temperature=平均温度：%s
-gtlitecore.machine.nanoscale_fabricator.temperature_range=可运行温度范围：%s-%s
-gtlitecore.machine.nanoscale_fabricator.required_temperature=温度：%s
+gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
+gtlitecore.machine.nanoscale_fabricator.tooltip.2=平均温度必须在配方要求的±§c250K§7以内方可使配方成功运行。
+gtlitecore.machine.nanoscale_fabricator.tooltip.3=只能使用ULV输入总线在指定坩埚位置的下方输入物品。
+
+gtlitecore.machine.nanoscale_fabricator.average_temperature=Average Temperature: %s
+gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature Range: %s-%s
+gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 
 gtlitecore.machine.sonicator.name=Sonicator
-gtlitecore.machine.sonicator.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.sonicator.tooltip.2=当玻璃等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.sonicator.tooltip.3=每提高1个§e马达外壳等级§7与§e电动泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.sonicator.tooltip.4=每提高1个§a电压等级§7，每次运行可以多处理§l4§r§7个物品。
+gtlitecore.machine.sonicator.tooltip.1=每提高1个§e马达外壳等级§7与§e电动泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.6=每提高1个§e泵外壳等级§7，每次运行可以多处理§l8§r§7个物品。
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.7=支持的激光传输气体：§f氦、氖、氩、氪、氙§7
+gtlitecore.machine.laser_induced_cvd_unit.tooltip=以高能激光束促进气相沉积反应
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
 gtlitecore.machine.bedrock_drilling_rig.tooltip.1=深度钻取基岩以提取特殊的矿石资源，基岩需要位于§6钻头§7方块之下。
 gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底层的中心，钻机将会按照配方钻取基岩方块以运行。
 gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
-gtlitecore.machine.bedrock_drilling_rig.tooltip.4=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.bedrock_drilling_rig.tooltip.5=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.bedrock_drilling_rig.tooltip.6=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.fusion_reactor.uhv.name=Fusion Reactor Computer MK4
 gtlitecore.machine.fusion_reactor.uhv.tooltip=银河泻落九天
@@ -2335,27 +2315,22 @@ gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
-gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
-gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
-gtlitecore.machine.cosmic_ray_detector.tooltip.3=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.cosmic_ray_detector.tooltip.4=每提高1个§e传感器外壳§7与§e处理器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.cosmic_ray_detector.tooltip.5=每提高1个§e发射器外壳§7与§e力场发生器外壳§7等级，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.cosmic_ray_detector.tooltip=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
+gtlitecore.machine.cosmic_ray_detector.tooltip.2=每提高1个§e传感器外壳§7与§e处理器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.cosmic_ray_detector.tooltip.3=每提高1个§e发射器外壳§7与§e力场发生器外壳§7等级，每次运行可以多处理§l32§r§7个物品。
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
-gtlitecore.machine.stellar_forge.tooltip.1=驾驭恒星之力
-gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
-gtlitecore.machine.stellar_forge.tooltip.3=产物以极高温的等离子喷流或等离子聚合液体的形态产出。
-gtlitecore.machine.stellar_forge.tooltip.4=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.stellar_forge.tooltip.5=每提高1个§e发射器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.stellar_forge.tooltip.6=每提高1个§e力场发生器§7等级，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.stellar_forge.tooltip=驾驭恒星之力
+gtlitecore.machine.stellar_forge.tooltip.1=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
+gtlitecore.machine.stellar_forge.tooltip.2=产物以极高温的等离子喷流或等离子聚合液体的形态产出。
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.5=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.6=每提高1个§e泵外壳等级§7与§e力场外壳等级§7，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip=驱使等离子体增强沉积反应活性以加速之
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4=每提高1个§e泵外壳等级§7与§e力场外壳等级§7，每次运行可以多处理§l32§r§7个物品。
 
 gtlitecore.machine.pcb_factory.name=PCB Factory
 gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
@@ -2479,217 +2454,77 @@ gtlitecore.machine.energy_infuser.tooltip.2=可以使用§dUU物质§7来修复�
 gtlitecore.machine.energy_infuser.tooltip.3=§4嘿！如果你不想丢掉你的物品和装备的话，不要使用ME输入总线！§7
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
-gtlitecore.machine.large_forge_hammer.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_forge_hammer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_forge_hammer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_forge_hammer.tooltip.4=每提高1个§a外壳等级§7，每次运行可以多处理§l4§r§7个物品。
-
 gtlitecore.machine.large_bender.name=Large Bender
-gtlitecore.machine.large_bender.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_bender.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_bender.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_bender.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_cutter.name=Large Cutter
-gtlitecore.machine.large_cutter.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_cutter.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_cutter.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_cutter.tooltip.4=每提高1个§a传送带外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_extruder.name=Large Extruder
-gtlitecore.machine.large_extruder.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_extruder.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_extruder.tooltip.3=每提高1个§e外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_extruder.tooltip.4=每提高1个§a外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_wiremill.name=Large Wiremill
-gtlitecore.machine.large_wiremill.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_wiremill.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_wiremill.tooltip.3=每提高1个§e外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_wiremill.tooltip.4=每提高1个§a电压等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.large_mixer.name=Large Mixer
-gtlitecore.machine.large_mixer.tooltip.1=兼容所有§2搅拌机§7配方，且具有一部分独占配方
-gtlitecore.machine.large_mixer.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_mixer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_mixer.tooltip.4=每提高1个§a外壳等级§7，每次运行可以多处理§l8§r§7个物品。
+gtlitecore.machine.large_mixer.tooltip.1=Compatible with all common §2Mixer§7 recipes and has some specific recipes.
 
 gtlitecore.machine.large_extractor.name=Large Extractor
-gtlitecore.machine.large_extractor.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_extractor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_extractor.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_extractor.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_assembler.name=Large Assembler
-gtlitecore.machine.large_assembler.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_assembler.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_assembler.tooltip.3=每提高1个§e传送带外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_assembler.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_laser_engraver.name=Large Laser Engraver
-gtlitecore.machine.large_laser_engraver.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_laser_engraver.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_laser_engraver.tooltip.3=每提高1个§e传送带外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_laser_engraver.tooltip.4=每提高1个§a发射器外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_fluid_solidifier.name=Large Fluid Solidifier
-gtlitecore.machine.large_fluid_solidifier.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_fluid_solidifier.tooltip.2=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_fluid_solidifier.tooltip.3=每提高1个§a电压等级§7，每次运行可以多处理§l4§r§7个物品。
-
-gtlitecore.machine.large_brewery.name=Large brewery
-gtlitecore.machine.large_brewery.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_brewery.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_brewery.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_brewery.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
+gtlitecore.machine.large_brewery.name=Large Brewery
 gtlitecore.machine.large_autoclave.name=Large Autoclave
-gtlitecore.machine.large_autoclave.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_autoclave.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_autoclave.tooltip.3=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_autoclave.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_arc_furnace.name=Large Arc Furnace
-gtlitecore.machine.large_arc_furnace.tooltip.1=升级部件外壳，线圈等级或电压等级以提高机器性能
-gtlitecore.machine.large_arc_furnace.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_arc_furnace.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_arc_furnace.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l8§r§7个物品。
-
 gtlitecore.machine.large_macerator.name=Large Macerator
-gtlitecore.machine.large_macerator.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_macerator.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_macerator.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_macerator.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l8§r§7个物品。
-
 gtlitecore.machine.large_centrifuge.name=Large Centrifuge
-gtlitecore.machine.large_centrifuge.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_centrifuge.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_centrifuge.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_centrifuge.tooltip.4=每提高1个§a电压外壳等级§7，每次运行可以多处理§l8§r§7个物品。
-
 gtlitecore.machine.large_sifter.name=Large Sifter
-gtlitecore.machine.large_sifter.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_sifter.tooltip.2=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_sifter.tooltip.3=每提高1个§a传送带外壳等级§7，每次运行可以多处理§l8§r§7个物品。
-
 gtlitecore.machine.large_electrolyzer.name=Large Electrolyzer
-gtlitecore.machine.large_electrolyzer.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_electrolyzer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_electrolyzer.tooltip.3=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_electrolyzer.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_ore_washer.name=Large Ore Washer
-gtlitecore.machine.large_ore_washer.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_ore_washer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_ore_washer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_ore_washer.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_electromagnet.name=Large Electromagnet
-gtlitecore.machine.large_electromagnet.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_electromagnet.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_electromagnet.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_electromagnet.tooltip.4=每提高1个§a力场发生器外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.large_distillery.name=Large Distillery
-gtlitecore.machine.large_distillery.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_distillery.tooltip.2=运行§6蒸馏室§7模式时，
-gtlitecore.machine.large_distillery.tooltip.3=运行§6蒸馏塔§7模式时，若电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_distillery.tooltip.4=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_distillery.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.large_distillery.tooltip.1=When running §6Distillery§7 mode,
+gtlitecore.machine.large_distillery.tooltip.2=When running §6Distillation Tower§7 mode, when Voltage Tier >= §3UV§7, enabled
+gtlitecore.machine.large_distillery.tooltip.3=Perfect Overclocking
 
 gtlitecore.machine.large_bio_reactor.name=Large Bio Reactor
-gtlitecore.machine.large_bio_reactor.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_bio_reactor.tooltip.2=使用§c除菌过滤器外壳§7时，可以满足配方要求的§a无菌超净间§7环境需求。
-gtlitecore.machine.large_bio_reactor.tooltip.3=使用§c除菌过滤器外壳§7时，
-gtlitecore.machine.large_bio_reactor.tooltip.4=每提高1个§e传感器外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_bio_reactor.tooltip.5=每提高1个§a电压等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.large_bio_reactor.tooltip.1=When used §cSterile CleanFilter Casing§7, can run recipes which required §aSterile Cleanroom§7 Environment.
+gtlitecore.machine.large_bio_reactor.tooltip.2=When used §cSterile CleanFilter Casing§7,
 
 gtlitecore.machine.large_packer.name=Large Packer
-gtlitecore.machine.large_packer.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_packer.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_packer.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_packer.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.large_gas_collector.name=Large Gas Collector
-gtlitecore.machine.large_gas_collector.tooltip.1=相当于§2集气室§7但没有维度限制
-gtlitecore.machine.large_gas_collector.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_gas_collector.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_gas_collector.tooltip.4=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_gas_collector.tooltip.5=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.large_gas_collector.tooltip.1=Equivalence to common §2Gas Collector§7 but not required to put in correspondenced dimension
 
 gtlitecore.machine.large_rock_breaker.name=Large Rock Breaker
-gtlitecore.machine.large_rock_breaker.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_rock_breaker.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_rock_breaker.tooltip.3=每提高1个§e传送带外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_rock_breaker.tooltip.4=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_burner_reactor.name=Large Burner Reactor
-gtlitecore.machine.large_burner_reactor.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_burner_reactor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_burner_reactor.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_burner_reactor.tooltip.4=每提高1个§a马达外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-
 gtlitecore.machine.large_cryogenic_reactor.name=Large Cryogenic Reactor
-gtlitecore.machine.large_cryogenic_reactor.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_cryogenic_reactor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_cryogenic_reactor.tooltip.3=每提高1个§e电压等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_cryogenic_reactor.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.electric_implosion_compressor.name=Electric Implosion Compressor
-gtlitecore.machine.electric_implosion_compressor.tooltip.1=不需要使用炸药的高级§2聚爆压缩机§7，兼容其所有配方
-gtlitecore.machine.electric_implosion_compressor.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.electric_implosion_compressor.tooltip.3=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.electric_implosion_compressor.tooltip.4=每提高1个§e发射器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.electric_implosion_compressor.tooltip.5=每提高1个§a活塞外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.electric_implosion_compressor.tooltip.1=§2Implosion Compressor§7 without TNT request
 
 gtlitecore.machine.alloy_blast_smelter.name=Alloy Blast Smelter
-gtlitecore.machine.alloy_blast_smelter.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.alloy_blast_smelter.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.alloy_blast_smelter.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.alloy_blast_smelter.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
 
 gtlitecore.machine.volcanus.name=Volcanus
-gtlitecore.machine.volcanus.tooltip.1=需要提供§c烈焰之炽焱§7以工作
-gtlitecore.machine.volcanus.tooltip.2=未提供§c烈焰之炽焱§7时，炽焱高炉将会停机
-gtlitecore.machine.volcanus.tooltip.3=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.volcanus.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.volcanus.tooltip.5=每提高1个§e马达外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.volcanus.tooltip.6=每提高1个§a线圈等级§7，每次运行可以多处理§l16§r§7个物品。
-gtlitecore.machine.volcanus.pyrotheum_amount=炽焱储量：%s
-gtlitecore.machine.volcanus.pyrotheum_warning=烈焰之炽焱不足
+gtlitecore.machine.volcanus.tooltip.1=Required to provide §cBlazing Pyrotheum§7 for working
+gtlitecore.machine.volcanus.tooltip.2=If §cBlazing Pyrotheum§7 not be provided, then will paused
+
+gtlitecore.machine.volcanus.pyrotheum_amount=Pyrotheum Amount: %s
+gtlitecore.machine.volcanus.pyrotheum_warning=No Blazing Pyrotheum
 
 gtlitecore.machine.cryogenic_freezer.name=Cryogenic Freezer
-gtlitecore.machine.cryogenic_freezer.tooltip.1=需要提供§b极寒之凛冰§7以工作
-gtlitecore.machine.cryogenic_freezer.tooltip.2=未提供§b极寒之凛冰§7时，凛冰冷冻机将会停机
-gtlitecore.machine.cryogenic_freezer.tooltip.3=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.cryogenic_freezer.tooltip.4=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.cryogenic_freezer.tooltip.5=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.cryogenic_freezer.tooltip.6=每提高1个§a马达外壳等级§7，每次运行可以多处理§l16§r§7个物品。
-gtlitecore.machine.cryogenic_freezer.cryotheum_amount=凛冰储量：%s
-gtlitecore.machine.cryogenic_freezer.cryotheum_warning=极寒之凛冰不足
+gtlitecore.machine.cryogenic_freezer.tooltip.1=Required to provide §bGelid Cryotheum§7 for working
+gtlitecore.machine.cryogenic_freezer.tooltip.2=If §bGelid Cryotheum§7 not be provided, then will paused
+
+gtlitecore.machine.cryogenic_freezer.cryotheum_amount=Cryotheum Amount: %s
+gtlitecore.machine.cryogenic_freezer.cryotheum_warning=No Gelid Cryotheum
 
 gtlitecore.machine.chemical_plant.name=Chemical Plant
-gtlitecore.machine.chemical_plant.tooltip.1=兼容所有§2化学反应釜§7配方，且具有一部分独占配方
-gtlitecore.machine.chemical_plant.tooltip.2=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.chemical_plant.tooltip.3=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.chemical_plant.tooltip.4=每提高1个§a泵外壳等级§7，每次运行可以多处理§l16§r§7个物品。
+gtlitecore.machine.chemical_plant.tooltip.1=Compatible with all common §2Chemical Reactor§7 and Large Chemical Reactor recipes, and has some specific recipes.
 
 gtlitecore.machine.industrial_coke_oven.name=Industrial Coke Oven
-gtlitecore.machine.industrial_coke_oven.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.industrial_coke_oven.tooltip.2=每提高1个§e线圈等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.industrial_coke_oven.tooltip.3=每提高1个§a电压等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.large_mass_fabricator.name=Large Mass Fabricator
-gtlitecore.machine.large_mass_fabricator.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_mass_fabricator.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_mass_fabricator.tooltip.3=每提高1个§e力场外壳等级§7与§e处理器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_mass_fabricator.tooltip.4=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+gtlitecore.machine.large_mass_fabricator.tooltip.1=每提高1个§e力场外壳等级§7与§e处理器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_mass_fabricator.tooltip.2=每提高1个§a发射器外壳等级§7与§a传感器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
 
 gtlitecore.machine.large_replicator.name=Large Replicator
-gtlitecore.machine.large_replicator.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_replicator.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_replicator.tooltip.3=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_replicator.tooltip.4=每提高1个§e力场外壳等级§7与§e处理器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
+gtlitecore.machine.large_replicator.tooltip.1=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
+gtlitecore.machine.large_replicator.tooltip.2=每提高1个§a力场外壳等级§7与§a处理器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
 
 gtlitecore.machine.circuit_assembly_line.name=Circuit Assembly Line
 gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
@@ -2707,10 +2542,6 @@ gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即�
 gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
 
 gtlitecore.machine.large_food_processor.name=Large Food Processor
-gtlitecore.machine.large_food_processor.tooltip.1=升级部件外壳或电压等级以提高机器性能
-gtlitecore.machine.large_food_processor.tooltip.2=当电压等级大于等于§3UV§7时，获得§b无损超频§7。
-gtlitecore.machine.large_food_processor.tooltip.3=每提高1个§e泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
-gtlitecore.machine.large_food_processor.tooltip.4=每提高1个§a机械臂外壳等级§7，每次运行可以多处理§l8§r§7个物品。
 
 gtlitecore.machine.large_rocket_engine.name=Large Rocket Engine
 gtlitecore.machine.large_rocket_engine.tooltip=探索化学能燃料的极限
@@ -3959,6 +3790,36 @@ gtlitecore.jei.space_pump_module.name=Space Pump Module
 gtlitecore.jei.space_pump_module.planet_id=Planet ID: #%s
 gtlitecore.jei.space_pump_module.fluid_id=Fluid ID: #%s
 gtlitecore.jei.space_pump_module.fluid_amount=Extract Rate: %s/s
+
+gtlitecore.tooltip.machine.recipe_map_name=Machine Type: §e%s
+gtlitecore.tooltip.machine.recipe_map_short_name=Machine Type: §e%s§7, Short Name: §e%d
+gtlitecore.tooltip.machine.large_machine_efficiency=Upgrade Component Casing or Voltage Tier to improve Machine Performance
+gtlitecore.tooltip.machine.overclocking_tier.0=When the Voltage Tier >= %s§r§7, enabled
+gtlitecore.tooltip.machine.overclocking_tier.1=Perfect Overclocking
+
+gtlitecore.tooltip.machine.duration_reduction_voltage_tier=Each §eVoltage Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_wire_coil=Each §eWire Coil Block Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_motor_casing=Each §eMotor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_piston_casing=Each §ePiston Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_pump_casing=Each §ePump Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_conveyor_casing=Each §eConveyor Module Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_robot_arm_casing=Each §eRobot Arm Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_emitter_casing=Each §eEmitter Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_sensor_casing=Each §eSensor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_field_gen_casing=Each §eField Generator Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+gtlitecore.tooltip.machine.duration_reduction_processor_casing=Each §eProcessor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
+
+gtlitecore.tooltip.machine.parallel_increment_voltage_tier=Each §aVoltage Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_wire_coil=Each §aWire Coil Block Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_motor_casing=Each §aMotor Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_piston_casing=Each §aPiston Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_pump_casing=Each §aPump Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_conveyor_casing=Each §aConveyor Module Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_robot_arm_casing=Each §aRobot Arm Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_emitter_casing=Each §aEmitter Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_sensor_casing=Each §aSensor Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_field_gen_casing=Each §aField Generator Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.parallel_increment_processor_casing=Each §aProcessor Casing Tier§7 +1, progressing item number +§l%s§r§7.
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=Configuration Screen

@@ -41,17 +41,10 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.STEEL_SOLID.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val thirdCasingState
-            get() = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
-
-        private val glassState
-            get() = GTGlassCasing.LAMINATED_GLASS.state
+        private val casingState = GTMetalCasing.STEEL_SOLID.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val thirdCasingState = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
+        private val glassState = GTGlassCasing.LAMINATED_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCircuitAssemblyLine(metaTileEntityId)
@@ -99,7 +92,7 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
     }
 
     @SideOnly(Side.CLIENT)
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))

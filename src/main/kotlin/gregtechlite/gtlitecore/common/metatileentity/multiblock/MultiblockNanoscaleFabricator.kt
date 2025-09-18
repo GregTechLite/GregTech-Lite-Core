@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.GTValues.ULV
 import gregtech.api.block.VariantBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
@@ -13,7 +14,6 @@ import gregtech.api.util.BlockInfo
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
 import gregtech.core.sound.GTSoundEvents
@@ -26,6 +26,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getTierOrDefau
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
@@ -35,7 +37,6 @@ import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
@@ -58,22 +59,15 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = NanoscaleFabricatorRecipeLogic(this)
+        recipeMapWorkable = NanoscaleFabricatorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.TITANIUM_TUNGSTEN_CARBIDE.state
-
-        private val secondCasingState
-            get() = MetalCasing.HSLA_STEEL.state
-
-        private val thirdCasingState
-            get() = MultiblockCasing.SUBSTRATE_CASING.state
-
-        private val glassState
-            get() = GTGlassCasing.LAMINATED_GLASS.state
+        private val casingState = MetalCasing.TITANIUM_TUNGSTEN_CARBIDE.state
+        private val secondCasingState = MetalCasing.HSLA_STEEL.state
+        private val thirdCasingState = MultiblockCasing.SUBSTRATE_CASING.state
+        private val glassState = GTGlassCasing.LAMINATED_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNanoscaleFabricator(metaTileEntityId)
@@ -81,22 +75,23 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
+
         val pseudoCrucibleTier = context.getTierOrDefault(CRUCIBLE_STATS, 0)
-        this.tier = minOf(emitterCasingTier, robotArmCasingTier, pseudoCrucibleTier)
+        tier = minOf(emitterCasingTier, robotArmCasingTier, pseudoCrucibleTier)
 
         // Initialized crucible temperature and amount info.
         val crucibleAmount = context.getInt("CrucibleAmount")
-        this.temperature = if (crucibleAmount != 0) context.getInt("Temperature") / crucibleAmount else 0
+        temperature = if (crucibleAmount != 0) context.getInt("Temperature") / crucibleAmount else 0
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.robotArmCasingTier = 0
-        this.temperature = 0
+        emitterCasingTier = 0
+        robotArmCasingTier = 0
+        temperature = 0
     }
 
     // @formatter:off
@@ -163,14 +158,17 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.1"))
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.nanoscale_fabricator.tooltip.6"))
+        addTooltip(tooltip)
+        {
+            machineType("NFab")
+            description(true,
+                        "gtlitecore.machine.nanoscale_fabricator.tooltip.1",
+                        "gtlitecore.machine.nanoscale_fabricator.tooltip.2",
+                        "gtlitecore.machine.nanoscale_fabricator.tooltip.3")
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.EMITTER_CASING, 80)
+            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 4)
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)

@@ -21,9 +21,10 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -43,13 +44,12 @@ class MultiblockCutter(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeCutterRecipeLogic(this)
+        recipeMapWorkable = LargeCutterRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.MARAGING_STEEL_250.state
+        private val casingState = MetalCasing.MARAGING_STEEL_250.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCutter(metaTileEntityId)
@@ -57,16 +57,16 @@ class MultiblockCutter(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
-        this.tier = minOf(motorCasingTier, conveyorCasingTier)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
+        tier = minOf(motorCasingTier, conveyorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.motorCasingTier = 0
-        this.conveyorCasingTier = 0
+        motorCasingTier = 0
+        conveyorCasingTier = 0
     }
 
     // @formatter:off
@@ -93,13 +93,16 @@ class MultiblockCutter(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.CUTTER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_cutter.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cutter.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cutter.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cutter.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LC")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 80)
+            parallelInfo(UpgradeType.CONVEYOR_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

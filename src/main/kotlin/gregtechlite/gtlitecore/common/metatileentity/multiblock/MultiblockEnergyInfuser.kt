@@ -65,12 +65,9 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
 
     companion object
     {
-        private val casingState
-            get() = GTComputerCasing.HIGH_POWER_CASING.state
-        private val secondCasingState
-            get() = ScienceCasing.MOLECULAR_CASING.state
-        private val coilState
-            get() = ScienceCasing.MOLECULAR_COIL.state
+        private val casingState = GTComputerCasing.HIGH_POWER_CASING.state
+        private val secondCasingState = ScienceCasing.MOLECULAR_CASING.state
+        private val coilState = ScienceCasing.MOLECULAR_COIL.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockEnergyInfuser(metaTileEntityId)
@@ -83,14 +80,16 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     
     private fun initializeAbilities()
     {
-        this.inputInventory = ItemHandlerList(getAbilities(IMPORT_ITEMS))
-        this.outputInventory = ItemHandlerList(getAbilities(EXPORT_ITEMS))
-        this.inputFluidInventory = FluidTankList(true, getAbilities(IMPORT_FLUIDS))
+        inputInventory = ItemHandlerList(getAbilities(IMPORT_ITEMS))
+        outputInventory = ItemHandlerList(getAbilities(EXPORT_ITEMS))
+        inputFluidInventory = FluidTankList(true, getAbilities(IMPORT_FLUIDS))
         
         val inputEnergy = getAbilities(INPUT_ENERGY)
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
-    
+
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "MMM", "DDD", "MMM", "CCC")
         .aisle("CCC", "MDM", "DDD", "MDM", "CCC")
@@ -113,6 +112,8 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
         .where('D', states(secondCasingState))
         .where('M', states(coilState))
         .build()
+
+    // @formatter:on
     
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
@@ -132,6 +133,8 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
             getFrontFacing(), isActive(), isWorkingEnabled())
     }
 
+    // @formatter:off
+
     override fun getMatchingShapes(): List<MultiblockShapeInfo?>?
     {
         val shapeInfos = ArrayList<MultiblockShapeInfo>()
@@ -150,11 +153,10 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
         shapeInfos.add(builder)
         return shapeInfos
     }
+
+    // @formatter:on
     
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.energy_infuser.tooltip.1"))
@@ -269,7 +271,7 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     {
         this.isActive = active
         markDirty()
-        writeCustomData(WORKABLE_ACTIVE) { buf: PacketBuffer -> buf.writeBoolean(this.isActive) }
+        writeCustomData(WORKABLE_ACTIVE) { it.writeBoolean(this.isActive) }
     }
     
     override fun isWorkingEnabled() = this.isWorkingEnabled
@@ -278,7 +280,7 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     {
         this.isWorkingEnabled = workingEnabled
         markDirty()
-        writeCustomData(WORKING_ENABLED) { buf: PacketBuffer -> buf.writeBoolean(this.isWorkingEnabled) }
+        writeCustomData(WORKING_ENABLED) { it.writeBoolean(this.isWorkingEnabled) }
     }
     
     override fun hasMaintenanceMechanics() = false

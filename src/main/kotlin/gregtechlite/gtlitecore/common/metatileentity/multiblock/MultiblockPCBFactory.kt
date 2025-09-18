@@ -20,19 +20,18 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.recipes.Recipe
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.util.GTUtility.isBlockSnow
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.optionalStates
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
@@ -63,7 +62,8 @@ import kotlin.math.floor
  * TODO Redo structure pattern checking with Mui2 and patterning structures when GTCEu merged related
  *      pull (patterning MTEs and Mui2 rework).
  */
-class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMultiblockController(metaTileEntityId, PCB_FACTORY_RECIPES)
+class MultiblockPCBFactory(id: ResourceLocation?)
+    : RecipeMapMultiblockController(id, PCB_FACTORY_RECIPES)
 {
 
     /**
@@ -93,35 +93,23 @@ class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMulti
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.IRIDIUM.state
-        private val secondCasingState
-            get() = GTCleanroomCasing.PLASCRETE.state
+        private val casingState = MetalCasing.IRIDIUM.state
+        private val secondCasingState = GTCleanroomCasing.PLASCRETE.state
         private val thirdCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-        private val fourthCasingState
-            get() = MultiblockCasing.SUBSTRATE_CASING.state
-        private val fifthCasingState
-            get() = MetalCasing.OSMIRIDIUM.state
-        private val sixthCasingState
-            get() = MetalCasing.NAQUADAH_ALLOY.state
-        private val seventhCasingState
-            get() = MetalCasing.NEUTRONIUM.state
-        private val eighthCasingState
-            get() = MultiblockCasing.INFINITY_COOLING_CASING.state
-        private val ninthCasingState
-            get() = GTMetalCasing.STAINLESS_CLEAN.state
+        = GTMultiblockCasing.GRATE_CASING.state
+        private val fourthCasingState = MultiblockCasing.SUBSTRATE_CASING.state
+        private val fifthCasingState = MetalCasing.OSMIRIDIUM.state
+        private val sixthCasingState = MetalCasing.NAQUADAH_ALLOY.state
+        private val seventhCasingState = MetalCasing.NEUTRONIUM.state
+        private val eighthCasingState = MultiblockCasing.INFINITY_COOLING_CASING.state
+        private val ninthCasingState = GTMetalCasing.STAINLESS_CLEAN.state
 
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-        private val turbineCasingState
-            get() = GTMultiblockCasing.EXTREME_ENGINE_INTAKE_CASING.state
+        private val pipeCasingState= GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val turbineCasingState = GTMultiblockCasing.EXTREME_ENGINE_INTAKE_CASING.state
 
-        private val coilState
-            get() = GTFusionCasing.SUPERCONDUCTOR_COIL.state
+        private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
 
-        private val glassState
-            get() = GTGlassCasing.LAMINATED_GLASS.state
+        private val glassState= GTGlassCasing.LAMINATED_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockPCBFactory(metaTileEntityId)
@@ -167,6 +155,8 @@ class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMulti
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("              gHHHg  nTTTn       ", "              gPPPg  nQQQn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gJJJg  nRRRn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gIIIg  nTTTn       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
@@ -229,9 +219,11 @@ class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMulti
         .where('n', optionalStates("CoolingStructureUpgradeT2", MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel)))
         // Misc structure contents
         .where('#', air())
-        .where('*', air().or(TraceabilityPredicate { bws -> isBlockSnow(bws.blockState) }))
+        .where('*', air().or(SNOW_LAYER))
         .where(' ', any())
         .build()
+
+    // @formatter:on
 
     // TODO
     /*override fun getFlexButton(x: Int, y: Int, width: Int, height: Int): Widget
@@ -271,6 +263,8 @@ class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMulti
     }
 
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.IRIDIUM_CASING
+
+    // @formatter:off
 
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
@@ -346,7 +340,9 @@ class MultiblockPCBFactory(metaTileEntityId: ResourceLocation?) : RecipeMapMulti
         return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    // @formatter:on
+
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.1"))

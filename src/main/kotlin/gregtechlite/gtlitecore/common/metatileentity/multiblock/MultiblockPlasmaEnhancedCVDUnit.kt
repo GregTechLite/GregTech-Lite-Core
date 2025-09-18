@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -11,7 +12,6 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
@@ -25,12 +25,12 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIP
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -53,22 +53,15 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = PlasmaEnhancedCVDRecipeLogic(this)
+        recipeMapWorkable = PlasmaEnhancedCVDRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.TRINAQUADALLOY.state
-
-        private val secondCasingState
-            get() = MultiblockCasing.ADVANCED_SUBSTRATE_CASING.state
-
-        private val uniqueCasingState
-            get() = ActiveUniqueCasing.HEAT_VENT.state
-
-        private val glassState
-            get() = GlassCasing.PMMA.state
+        private val casingState = MetalCasing.TRINAQUADALLOY.state
+        private val secondCasingState = MultiblockCasing.ADVANCED_SUBSTRATE_CASING.state
+        private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
+        private val glassState = GlassCasing.PMMA.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockPlasmaEnhancedCVDUnit(metaTileEntityId)
@@ -76,20 +69,20 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
-        this.fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, sensorCasingTier, fieldGenCasingTier, pumpCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
+        fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, sensorCasingTier, fieldGenCasingTier, pumpCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.sensorCasingTier = 0
-        this.fieldGenCasingTier = 0
-        this.pumpCasingTier = 0
+        emitterCasingTier = 0
+        sensorCasingTier = 0
+        fieldGenCasingTier = 0
+        pumpCasingTier = 0
     }
 
     override fun initializeAbilities()
@@ -98,7 +91,7 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
 
     // @formatter:off
@@ -138,13 +131,17 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("PECVD")
+            description(true,
+                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1",
+                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2")
+            overclockInfo(FALLBACK)
+            description(false,
+                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3",
+                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4")
+        }
     }
 
     override fun canBeDistinct() = true

@@ -52,18 +52,15 @@ class MultiblockNuclearReactor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = NuclearReactorWorkableHandler(this)
-        this.recipeMapWorkable.maximumOverclockVoltage = V[MAX]
+        recipeMapWorkable = NuclearReactorWorkableHandler(this)
+        recipeMapWorkable.maximumOverclockVoltage = V[MAX]
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.INCONEL_718.state
-        private val secondCasingState
-            get() = ActiveUniqueCasing.TEMPERATURE_CONTROLLER.state
-        private val glassState
-            get() = GlassCasing.LEAD_SILICON.state
+        private val casingState = MetalCasing.INCONEL_718.state
+        private val secondCasingState = ActiveUniqueCasing.TEMPERATURE_CONTROLLER.state
+        private val glassState = GlassCasing.LEAD_SILICON.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNuclearReactor(metaTileEntityId)
@@ -71,13 +68,13 @@ class MultiblockNuclearReactor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.coreTier = context.getAttributeOrDefault(NUCLEAR_REACTOR_CORE_TIER, 0)
+        coreTier = context.getAttributeOrDefault(NUCLEAR_REACTOR_CORE_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.coreTier = 0
+        coreTier = 0
     }
 
     // @formatter:off
@@ -107,7 +104,7 @@ class MultiblockNuclearReactor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.NUCLEAR_REACTOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.nuclear_reactor.tooltip.1"))

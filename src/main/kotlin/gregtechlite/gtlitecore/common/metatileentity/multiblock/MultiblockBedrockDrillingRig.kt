@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -9,7 +10,6 @@ import gregtech.api.pattern.*
 import gregtech.api.recipes.Recipe
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.extension.toItem
@@ -17,13 +17,14 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
@@ -52,20 +53,11 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.TRINAQUADALLOY.state
-
-        private val secondCasingState
-            get() = GTMetalCasing.STEEL_SOLID.state
-
-        private val gearboxCasingState
-            get() = GTTurbineCasing.TUNGSTENSTEEL_GEARBOX.state
-
-        private val thirdCasingState
-            get() = MultiblockCasing.DRILL_HEAD.state
-
-        private val fourthCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
+        private val casingState = MetalCasing.TRINAQUADALLOY.state
+        private val secondCasingState = GTMetalCasing.STEEL_SOLID.state
+        private val gearboxCasingState = GTTurbineCasing.TUNGSTENSTEEL_GEARBOX.state
+        private val thirdCasingState = MultiblockCasing.DRILL_HEAD.state
+        private val fourthCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBedrockDrillingRig(metaTileEntityId)
@@ -73,9 +65,9 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pistonCasingTier, motorCasingTier)
+        pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pistonCasingTier, motorCasingTier)
 
         // Transformed targetBlock from blockPos in inputInventory.
         targetBlock?.let {
@@ -86,9 +78,9 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pistonCasingTier = 0
-        this.motorCasingTier = 0
-        this.targetBlock = null
+        pistonCasingTier = 0
+        motorCasingTier = 0
+        targetBlock = null
         // inputInventory.setStackInSlot(0, ItemStack.EMPTY)
     }
 
@@ -141,19 +133,19 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.bedrock_drilling_rig.tooltip.6"))
+        addTooltip(tooltip)
+        {
+            machineType("BDR")
+            description(true,
+                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.1",
+                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
+                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.MOTOR_CASING, 80)
+            parallelInfo(UpgradeType.PISTON_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = false

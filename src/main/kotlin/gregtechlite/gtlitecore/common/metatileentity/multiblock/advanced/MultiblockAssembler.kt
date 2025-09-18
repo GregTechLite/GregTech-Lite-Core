@@ -17,11 +17,12 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.ROBOT_ARM_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -40,19 +41,14 @@ class MultiblockAssembler(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeAssemblerRecipeLogic(this)
+        recipeMapWorkable = LargeAssemblerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.IRIDIUM.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-
-        private val glassCasingState
-            get() = GTGlassCasing.TEMPERED_GLASS.state
+        private val casingState = MetalCasing.IRIDIUM.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val glassCasingState = GTGlassCasing.TEMPERED_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAssembler(metaTileEntityId)
@@ -60,16 +56,16 @@ class MultiblockAssembler(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
-        this.conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
-        this.tier = minOf(robotArmCasingTier, conveyorCasingTier)
+        robotArmCasingTier = context.getAttributeOrDefault(ROBOT_ARM_CASING_TIER, 0)
+        conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
+        tier = minOf(robotArmCasingTier, conveyorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.robotArmCasingTier = 0
-        this.conveyorCasingTier = 0
+        robotArmCasingTier = 0
+        conveyorCasingTier = 0
     }
 
     // @formatter:off
@@ -98,13 +94,16 @@ class MultiblockAssembler(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_assembler.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_assembler.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_assembler.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_assembler.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LAss")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.CONVEYOR_CASING, 50)
+            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

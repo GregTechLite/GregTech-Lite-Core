@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -12,17 +13,17 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.client.utils.TooltipHelper
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -41,16 +42,13 @@ class MultiblockChemicalPlant(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.POLYBENZIMIDAZOLE.state
-
-        private val pipeCasingState
-            get() = BoilerCasing.POLYBENZIMIDAZOLE.state
+        private val casingState = MetalCasing.POLYBENZIMIDAZOLE.state
+        private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
     }
 
     init
     {
-        this.recipeMapWorkable = ChemicalPlantRecipeLogic(this)
+        recipeMapWorkable = ChemicalPlantRecipeLogic(this)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockChemicalPlant(metaTileEntityId)
@@ -58,26 +56,18 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
 
         val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            this.coilTier = coilType.tier
-        }
-        else
-        {
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-        }
-
-        this.tier = minOf(pumpCasingTier, coilTier)
+        coilTier = if (coilType is IHeatingCoilBlockStats) coilType.tier else BlockWireCoil.CoilType.CUPRONICKEL.tier
+        tier = minOf(pumpCasingTier, coilTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.coilTier = 0
+        pumpCasingTier = 0
+        coilTier = 0
     }
 
     // @formatter:off
@@ -106,14 +96,17 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.CHEMICAL_REACTOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.chemical_plant.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.chemical_plant.tooltip.2"))
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.chemical_plant.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.chemical_plant.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("CP")
+            description(true,
+                        "gtlitecore.machine.chemical_plant.tooltip.1")
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.WIRE_COIL, 50)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

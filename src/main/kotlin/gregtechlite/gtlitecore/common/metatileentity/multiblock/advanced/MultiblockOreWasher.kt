@@ -17,10 +17,11 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -38,16 +39,13 @@ class MultiblockOreWasher(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeOreWasherRecipeLogic(this)
+        recipeMapWorkable = LargeOreWasherRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.GRISIUM.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TITANIUM_PIPE.state
+        private val casingState = MetalCasing.GRISIUM.state
+        private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockOreWasher(metaTileEntityId)
@@ -55,13 +53,13 @@ class MultiblockOreWasher(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -91,13 +89,16 @@ class MultiblockOreWasher(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ORE_WASHER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_ore_washer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_ore_washer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_ore_washer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_ore_washer.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LOW")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

@@ -61,25 +61,16 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = EntrodynamicallyPhaseChangerRecipeLogic(this)
+        recipeMapWorkable = EntrodynamicallyPhaseChangerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState: IBlockState
-            get() = MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.state
-
-        private val secondCasingState: IBlockState
-            get() = MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.state
-
-        private val thirdCasingState: IBlockState
-            get() = MetalCasing.NEUTRONIUM.state
-
-        private val fourthCasingState: IBlockState
-            get() = ScienceCasing.DIMENSIONAL_BRIDGE_CASING.state
-
-        private val glassState: IBlockState
-            get() = GlassCasing.NANO_SHIELDING_FRAME.state
+        private val casingState = MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.state
+        private val secondCasingState = MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.state
+        private val thirdCasingState = MetalCasing.NEUTRONIUM.state
+        private val fourthCasingState = ScienceCasing.DIMENSIONAL_BRIDGE_CASING.state
+        private val glassState = GlassCasing.NANO_SHIELDING_FRAME.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockEntrodynamicallyPhaseChanger(metaTileEntityId)
@@ -91,24 +82,24 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         val coilType = context.get<Any>(HEATING_COIL_STATS)
         if (coilType is IHeatingCoilBlockStats)
         {
-            this.tier = coilType.tier
-            this.level = coilType.level
-            this.temperature = coilType.coilTemperature
+            tier = coilType.tier
+            level = coilType.level
+            temperature = coilType.coilTemperature
         }
         else
         {
-            this.tier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            this.level = BlockWireCoil.CoilType.CUPRONICKEL.level
-            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
+            tier = BlockWireCoil.CoilType.CUPRONICKEL.tier
+            level = BlockWireCoil.CoilType.CUPRONICKEL.level
+            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
         }
-        this.temperature += 1000 * max(0, getTierByVoltage(energyContainer.inputVoltage) - LV)
+        temperature += 1000 * max(0, getTierByVoltage(energyContainer.inputVoltage) - LV)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.tier = 0
-        this.level = 0
+        tier = 0
+        level = 0
     }
 
     override fun initializeAbilities()
@@ -117,8 +108,10 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("         AAAAA         ", "         AAAAA         ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "                       ", "         AAAAA         ", "         AAAAA         ")
@@ -160,11 +153,13 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.LATTICE_QCD_THERMAL_SHIELDING_CASING
 
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.1"))

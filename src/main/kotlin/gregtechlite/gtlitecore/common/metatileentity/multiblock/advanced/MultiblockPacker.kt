@@ -16,9 +16,10 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.ROBOT_ARM_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -35,13 +36,12 @@ class MultiblockPacker(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargePackerRecipeLogic(this)
+        recipeMapWorkable = LargePackerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HSLA_STEEL.state
+        private val casingState = MetalCasing.HSLA_STEEL.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockPacker(metaTileEntityId)
@@ -55,7 +55,7 @@ class MultiblockPacker(id: ResourceLocation)
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -79,13 +79,16 @@ class MultiblockPacker(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_packer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_packer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_packer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_packer.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LPac")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

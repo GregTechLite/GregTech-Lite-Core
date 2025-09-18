@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -9,7 +10,6 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
@@ -18,11 +18,12 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -44,17 +45,10 @@ class MultiblockStellarForge(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.QUANTUM_ALLOY.state
-
-        private val secondCasingState
-            get() = MultiblockCasing.STELLAR_CONTAINMENT_CASING.state
-
-        private val glassState
-            get() = MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)
-
-        private val coilState
-            get() = MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.state
+        private val casingState = MetalCasing.QUANTUM_ALLOY.state
+        private val secondCasingState = MultiblockCasing.STELLAR_CONTAINMENT_CASING.state
+        private val glassState = MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)
+        private val coilState = MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockStellarForge(metaTileEntityId)
@@ -62,16 +56,16 @@ class MultiblockStellarForge(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, fieldGenCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, fieldGenCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.fieldGenCasingTier = 0
+        emitterCasingTier = 0
+        fieldGenCasingTier = 0
     }
 
     // @formatter:off
@@ -124,14 +118,16 @@ class MultiblockStellarForge(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.stellar_forge.tooltip.6"))
+        addTooltip(tooltip)
+        {
+            machineType("SF")
+            description(true,
+                        "gtlitecore.machine.stellar_forge.tooltip.1",
+                        "gtlitecore.machine.stellar_forge.tooltip.2")
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.EMITTER_CASING, 50)
+            parallelInfo(UpgradeType.FIELD_GEN_CASING, 32)
+        }
     }
 
     override fun canBeDistinct() = true

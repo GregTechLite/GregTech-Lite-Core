@@ -18,11 +18,12 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -39,19 +40,14 @@ class MultiblockCentrifuge(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeCentrifugeRecipeLogic(this)
+        recipeMapWorkable = LargeCentrifugeRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.TUMBAGA.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = MetalCasing.TUMBAGA.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCentrifuge(metaTileEntityId)
@@ -59,13 +55,13 @@ class MultiblockCentrifuge(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -95,13 +91,16 @@ class MultiblockCentrifuge(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.THERMAL_CENTRIFUGE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_centrifuge.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_centrifuge.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_centrifuge.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_centrifuge.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LCen")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 50)
+            parallelInfo(UpgradeType.VOLTAGE_TIER, 8)
+        }
     }
 
     override fun canBeDistinct() = true

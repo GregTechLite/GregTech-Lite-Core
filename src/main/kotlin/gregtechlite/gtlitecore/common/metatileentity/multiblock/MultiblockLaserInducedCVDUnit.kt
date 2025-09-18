@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
@@ -22,6 +23,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIP
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -49,19 +52,14 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LaserInducedCVDRecipeLogic(this)
+        recipeMapWorkable = LaserInducedCVDRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HASTELLOY_X.state
-
-        private val secondCasingState
-            get() = MultiblockCasing.SUBSTRATE_CASING.state
-
-        private val glassState
-            get() = GlassCasing.ZBLAN.state
+        private val casingState = MetalCasing.HASTELLOY_X.state
+        private val secondCasingState = MultiblockCasing.SUBSTRATE_CASING.state
+        private val glassState = GlassCasing.ZBLAN.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockLaserInducedCVDUnit(metaTileEntityId)
@@ -69,18 +67,18 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, pumpCasingTier, sensorCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, pumpCasingTier, sensorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.pumpCasingTier = 0
-        this.sensorCasingTier = 0
+        emitterCasingTier = 0
+        pumpCasingTier = 0
+        sensorCasingTier = 0
     }
 
     // @formatter:off
@@ -113,19 +111,17 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.CVD_UNIT_OVERLAY
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.6"))
-        tooltip.add(I18n.format("gtlitecore.machine.laser_induced_cvd_unit.tooltip.7"))
+        addTooltip(tooltip)
+        {
+            machineType("LICVD")
+            description(true,
+                        "gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
+            overclockInfo(UV)
+            durationInfo(UpgradeType.EMITTER_CASING, 50)
+            parallelInfo(UpgradeType.PUMP_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

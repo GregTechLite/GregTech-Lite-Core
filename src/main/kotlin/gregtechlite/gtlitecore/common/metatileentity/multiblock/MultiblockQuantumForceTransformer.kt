@@ -47,17 +47,14 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = QuantumForceTransformerRecipeLogic(this)
+        recipeMapWorkable = QuantumForceTransformerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MultiblockCasing.PARTICLE_CONTAINMENT_CASING.state
-        private val coilState
-            get() = MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.state
-        private val glassState
-            get() = GlassCasing.FORCE_FIELD.state
+        private val casingState = MultiblockCasing.PARTICLE_CONTAINMENT_CASING.state
+        private val coilState = MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.state
+        private val glassState = GlassCasing.FORCE_FIELD.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockQuantumForceTransformer(metaTileEntityId)
@@ -65,16 +62,16 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.manipulatorTier = context.getAttributeOrDefault(MANIPULATOR_TIER, 0)
-        this.shieldingCoreTier = context.getAttributeOrDefault(SHIELDING_CORE_TIER, 0)
-        this.tier = minOf(manipulatorTier, shieldingCoreTier)
+        manipulatorTier = context.getAttributeOrDefault(MANIPULATOR_TIER, 0)
+        shieldingCoreTier = context.getAttributeOrDefault(SHIELDING_CORE_TIER, 0)
+        tier = minOf(manipulatorTier, shieldingCoreTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.manipulatorTier = 0
-        this.shieldingCoreTier = 0
+        manipulatorTier = 0
+        shieldingCoreTier = 0
     }
 
     override fun initializeAbilities()
@@ -83,7 +80,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
 
     // @formatter:off

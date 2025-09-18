@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -11,12 +12,12 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -33,13 +34,12 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = IndustrialCokeOvenRecipeLogic(this)
+        recipeMapWorkable = IndustrialCokeOvenRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.ALUMINIUM_BRONZE.state
+        private val casingState = MetalCasing.ALUMINIUM_BRONZE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockIndustrialCokeOven(metaTileEntityId)
@@ -47,22 +47,14 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-
         val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            this.coilTier = coilType.tier
-        }
-        else
-        {
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-        }
+        coilTier = if (coilType is IHeatingCoilBlockStats) coilType.tier else BlockWireCoil.CoilType.CUPRONICKEL.tier
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.coilTier = 0
+        coilTier = 0
     }
 
     // @formatter:off
@@ -87,13 +79,16 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.INDUSTRIAL_COKE_OVEN_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.industrial_coke_oven.tooltip.1"))
-        tooltip.add(I18n.format(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc")))
-        tooltip.add(I18n.format("gtlitecore.machine.industrial_coke_oven.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.industrial_coke_oven.tooltip.3"))
+        addTooltip(tooltip)
+        {
+            machineType("ICO")
+            description(true)
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.WIRE_COIL, 80)
+            parallelInfo(UpgradeType.VOLTAGE_TIER, 8)
+        }
     }
 
     override fun canBeDistinct() = true

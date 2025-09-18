@@ -52,8 +52,7 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
 
     companion object
     {
-        private val casingState: IBlockState
-            get() = GTMetalCasing.ALUMINIUM_FROSTPROOF.state
+        private val casingState = GTMetalCasing.ALUMINIUM_FROSTPROOF.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockTransformer(metaTileEntityId)
@@ -77,10 +76,12 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.inputEnergy = EnergyContainerList(arrayListOf())
-        this.outputEnergy = EnergyContainerList(arrayListOf())
+        inputEnergy = EnergyContainerList(arrayListOf())
+        outputEnergy = EnergyContainerList(arrayListOf())
         setActive(false)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CSC")
@@ -96,21 +97,23 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
                     .setPreviewCount(0)))
         .build()
 
+    // @formatter:on
+
     override fun updateFormedValid()
     {
         if (!world.isRemote)
         {
             if (offsetTimer % (1 * SECOND) == 0L)
             {
-                this.averageIOLastSec = netIOLastSec / SECOND
-                this.netIOLastSec = 0
+                averageIOLastSec = netIOLastSec / SECOND
+                netIOLastSec = 0
             }
             if (isWorkingEnabled())
             {
-                val drainableEnergy = this.inputEnergy.energyStored
-                val totalDrainedEnergy = this.outputEnergy.changeEnergy(drainableEnergy)
-                this.inputEnergy.removeEnergy(totalDrainedEnergy)
-                this.netIOLastSec += totalDrainedEnergy
+                val drainableEnergy = inputEnergy.energyStored
+                val totalDrainedEnergy = outputEnergy.changeEnergy(drainableEnergy)
+                inputEnergy.removeEnergy(totalDrainedEnergy)
+                netIOLastSec += totalDrainedEnergy
             }
         }
     }
@@ -118,11 +121,9 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.FROST_PROOF_CASING
 
-    override fun renderMetaTileEntity(
-        renderState: CCRenderState?,
-        translation: Matrix4?,
-        pipeline: Array<out IVertexOperation?>?,
-    )
+    override fun renderMetaTileEntity(renderState: CCRenderState?,
+                                      translation: Matrix4?,
+                                      pipeline: Array<out IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing, isActive, isWorkingEnabled)
@@ -235,10 +236,10 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
         return super.getCapability(capability, side)
     }
 
-    override fun addInformation(stack: ItemStack?,
+    override fun addInformation(stack: ItemStack,
                                 world: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean, )
+                                tooltip: MutableList<String>,
+                                advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.2"))

@@ -35,14 +35,16 @@ class SteamMultiblockCompressor(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = if (ConfigHolder.machines.steelSteamMultiblocks) GTMetalCasing.STEEL_SOLID.state else GTMetalCasing.BRONZE_BRICKS.state
+        private val casingState = if (ConfigHolder.machines.steelSteamMultiblocks)
+            GTMetalCasing.STEEL_SOLID.state else GTMetalCasing.BRONZE_BRICKS.state
 
-        private val pipeCasingState
-            get() = if (ConfigHolder.machines.steelSteamMultiblocks) GTBoilerCasing.STEEL_PIPE.state else GTBoilerCasing.BRONZE_PIPE.state
+        private val pipeCasingState = if (ConfigHolder.machines.steelSteamMultiblocks)
+            GTBoilerCasing.STEEL_PIPE.state else GTBoilerCasing.BRONZE_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = SteamMultiblockCompressor(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "CCC", "CCC")
@@ -56,6 +58,8 @@ class SteamMultiblockCompressor(id: ResourceLocation)
         .where('P', states(pipeCasingState))
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
@@ -66,10 +70,7 @@ class SteamMultiblockCompressor(id: ResourceLocation)
 
     override fun getItemOutputLimit() = 1
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.multiblock.steam_.duration_modifier"))

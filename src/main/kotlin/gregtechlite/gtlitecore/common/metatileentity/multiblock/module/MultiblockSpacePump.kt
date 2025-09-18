@@ -50,8 +50,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
 
     companion object
     {
-        private val casingState
-            get() = AerospaceCasing.ELEVATOR_BASE_CASING.state
+        private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
@@ -61,6 +60,8 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         outputFluidInventory = FluidTankList(true, getAbilities(EXPORT_FLUIDS))
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("C", "C", "C", "C", "C")
         .aisle("C", "C", "C", "S", "C")
@@ -69,6 +70,8 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
             .or(abilities(EXPORT_FLUIDS)
                 .setPreviewCount(0)))
         .build()
+
+    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_BASE_CASING
@@ -98,7 +101,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         }
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.1"))

@@ -20,11 +20,12 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -43,19 +44,14 @@ class MultiblockArcFurnace(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeArcFurnaceRecipeLogic(this)
+        recipeMapWorkable = LargeArcFurnaceRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.INVAR_HEATPROOF.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = GTMetalCasing.INVAR_HEATPROOF.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockArcFurnace(metaTileEntityId)
@@ -63,25 +59,19 @@ class MultiblockArcFurnace(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
 
         val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            this.coilTier = coilType.tier
-        }
-        else
-        {
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-        }
-        this.tier = minOf(pumpCasingTier, coilTier)
+        coilTier = if (coilType is IHeatingCoilBlockStats) coilType.tier else BlockWireCoil.CoilType.CUPRONICKEL.tier
+
+        tier = minOf(pumpCasingTier, coilTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.coilTier = 0
+        pumpCasingTier = 0
+        coilTier = 0
     }
 
     // @formatter:off
@@ -111,13 +101,16 @@ class MultiblockArcFurnace(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ARC_FURNACE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_arc_furnace.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_arc_furnace.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_arc_furnace.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_arc_furnace.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LAF")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.WIRE_COIL, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 8)
+        }
     }
 
     override fun canBeDistinct(): Boolean = true

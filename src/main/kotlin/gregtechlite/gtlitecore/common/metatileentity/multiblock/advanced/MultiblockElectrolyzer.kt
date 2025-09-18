@@ -16,10 +16,11 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -38,16 +39,13 @@ class MultiblockElectrolyzer(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeElectrolyzerRecipeLogic(this)
+        recipeMapWorkable = LargeElectrolyzerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.POTIN.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = MetalCasing.POTIN.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockElectrolyzer(metaTileEntityId)
@@ -55,16 +53,16 @@ class MultiblockElectrolyzer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pumpCasingTier, motorCasingTier)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pumpCasingTier, motorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.motorCasingTier = 0
+        pumpCasingTier = 0
+        motorCasingTier = 0
     }
 
     // @formatter:off
@@ -92,13 +90,16 @@ class MultiblockElectrolyzer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ELECTROLYZER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_electrolyzer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electrolyzer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electrolyzer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electrolyzer.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LElec")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

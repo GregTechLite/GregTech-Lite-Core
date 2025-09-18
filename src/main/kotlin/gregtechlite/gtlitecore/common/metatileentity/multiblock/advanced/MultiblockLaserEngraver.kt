@@ -17,10 +17,11 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -39,16 +40,13 @@ class MultiblockLaserEngraver(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeLaserEngraverRecipeLogic(this)
+        recipeMapWorkable = LargeLaserEngraverRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.ZERON_100.state
-
-        private val glassState
-            get() = GlassCasing.WOODS.state
+        private val casingState = MetalCasing.ZERON_100.state
+        private val glassState = GlassCasing.WOODS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockLaserEngraver(metaTileEntityId)
@@ -56,16 +54,16 @@ class MultiblockLaserEngraver(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, conveyorCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        conveyorCasingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, conveyorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.conveyorCasingTier = 0
+        emitterCasingTier = 0
+        conveyorCasingTier = 0
     }
 
     // @formatter:off
@@ -94,13 +92,16 @@ class MultiblockLaserEngraver(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.LASER_ENGRAVER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_laser_engraver.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_laser_engraver.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_laser_engraver.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_laser_engraver.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LLE")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.CONVEYOR_CASING, 50)
+            parallelInfo(UpgradeType.EMITTER_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

@@ -24,6 +24,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -47,19 +49,14 @@ class MultiblockBioReactor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeBioReactorRecipeLogic(this)
+        recipeMapWorkable = LargeBioReactorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.RED_STEEL.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val glassState
-            get() = GlassCasing.GREENHOUSE.state
+        private val casingState = MetalCasing.RED_STEEL.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val glassState = GlassCasing.GREENHOUSE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockBioReactor(metaTileEntityId)
@@ -67,16 +64,16 @@ class MultiblockBioReactor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
-        this.cleanroomCasingTier = context.getAttributeOrDefault(CLEANROOM_CASING_TIER, 0)
-        this.tier = minOf(sensorCasingTier, cleanroomCasingTier)
+        sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
+        cleanroomCasingTier = context.getAttributeOrDefault(CLEANROOM_CASING_TIER, 0)
+        tier = minOf(sensorCasingTier, cleanroomCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.sensorCasingTier = 0
-        this.cleanroomCasingTier = 0
+        sensorCasingTier = 0
+        cleanroomCasingTier = 0
     }
 
     // @formatter:off
@@ -107,14 +104,18 @@ class MultiblockBioReactor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.3") + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("LBR")
+            description(true,
+                        "gtlitecore.machine.large_bio_reactor.tooltip.1",
+                        I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.2")
+                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
+            durationInfo(UpgradeType.SENSOR_CASING, 80)
+            parallelInfo(UpgradeType.VOLTAGE_TIER, 16)
+        }
     }
 
     override fun canBeDistinct() = true

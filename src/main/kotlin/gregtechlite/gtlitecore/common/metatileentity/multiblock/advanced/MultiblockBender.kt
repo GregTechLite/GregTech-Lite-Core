@@ -19,9 +19,10 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -40,15 +41,13 @@ class MultiblockBender(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeBenderRecipeLogic(this)
+        recipeMapWorkable = LargeBenderRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.TITANIUM_STABLE.state
-        private val pipeCasingState
-            get() = GTBoilerCasing.TITANIUM_PIPE.state
+        private val casingState = GTMetalCasing.TITANIUM_STABLE.state
+        private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBender(metaTileEntityId)
@@ -56,16 +55,16 @@ class MultiblockBender(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pistonCasingTier, motorCasingTier)
+        pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pistonCasingTier, motorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pistonCasingTier = 0
-        this.motorCasingTier = 0
+        pistonCasingTier = 0
+        motorCasingTier = 0
     }
 
     // @formatter:off
@@ -92,13 +91,16 @@ class MultiblockBender(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.BENDER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_bender.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bender.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bender.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_bender.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LB")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 80)
+            parallelInfo(UpgradeType.PISTON_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

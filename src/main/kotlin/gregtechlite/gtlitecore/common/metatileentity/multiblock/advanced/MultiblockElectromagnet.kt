@@ -17,10 +17,11 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -37,16 +38,13 @@ class MultiblockElectromagnet(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeElectromagnetRecipeLogic(this)
+        recipeMapWorkable = LargeElectromagnetRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.BABBIT_ALLOY.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
+        private val casingState = MetalCasing.BABBIT_ALLOY.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockElectromagnet(metaTileEntityId)
@@ -54,13 +52,13 @@ class MultiblockElectromagnet(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -91,11 +89,14 @@ class MultiblockElectromagnet(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_electromagnet.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LEm")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.FIELD_GEN_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

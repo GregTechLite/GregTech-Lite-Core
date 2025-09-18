@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues
+import gregtech.api.GTValues.UV
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -18,10 +19,11 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -42,16 +44,13 @@ class MultiblockSonicator(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = SonicatorRecipeLogic(this)
+        recipeMapWorkable = SonicatorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.COBALT_BRASS.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TITANIUM_PIPE.state
+        private val casingState = MetalCasing.COBALT_BRASS.state
+        private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
     }
 
 
@@ -60,18 +59,18 @@ class MultiblockSonicator(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.glassTier = context.getAttributeOrDefault(BOROSILICATE_GLASS_TIER, 0)
-        this.tier = minOf(motorCasingTier, pumpCasingTier, glassTier)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        glassTier = context.getAttributeOrDefault(BOROSILICATE_GLASS_TIER, 0)
+        tier = minOf(motorCasingTier, pumpCasingTier, glassTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.motorCasingTier = 0
-        this.pumpCasingTier = 0
-        this.glassTier = 0
+        motorCasingTier = 0
+        pumpCasingTier = 0
+        glassTier = 0
     }
 
     // @formatter:off
@@ -104,16 +103,17 @@ class MultiblockSonicator(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer =  GTLiteTextures.SONICATOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.sonicator.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.sonicator.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.sonicator.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.sonicator.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("Son")
+            description(true)
+            overclockInfo(UV)
+            description(false,
+                        "gtlitecore.machine.sonicator.tooltip.1")
+            parallelInfo(UpgradeType.VOLTAGE_TIER, 4)
+        }
     }
 
     override fun canBeDistinct() = true
@@ -121,7 +121,7 @@ class MultiblockSonicator(id: ResourceLocation)
     private inner class SonicatorRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (glassTier >= GTValues.UV - 3) 0.25 else 0.5
+        override fun getOverclockingDurationFactor() = if (glassTier >= UV - 3) 0.25 else 0.5
 
         override fun setMaxProgress(maxProgress: Int)
         {

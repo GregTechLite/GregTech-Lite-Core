@@ -45,17 +45,10 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.IRIDIUM.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
-
-        private val thirdCasingState
-            get() = MultiblockCasing.ADVANCED_FILTER_CASING.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val casingState = MetalCasing.IRIDIUM.state
+        private val secondCasingState = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
+        private val thirdCasingState = MultiblockCasing.ADVANCED_FILTER_CASING.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockComponentAssemblyLine(metaTileEntityId)
@@ -63,13 +56,13 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(COMPONENT_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(COMPONENT_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     override fun initializeAbilities()
@@ -78,7 +71,7 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
 
     // @formatter:off
@@ -168,12 +161,10 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.IRIDIUM_CASING
 
-    override fun addInformation(stack: ItemStack,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
+
         tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.1"))
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
         tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.2"))

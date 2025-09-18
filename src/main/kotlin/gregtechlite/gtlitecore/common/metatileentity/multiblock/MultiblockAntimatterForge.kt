@@ -40,19 +40,13 @@ class MultiblockAntimatterForge(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.QUANTUM_ALLOY.state
-        private val secondCasingState
-            get() = MultiblockCasing.GRAVITY_STABILIZATION_CASING.state
-
-        private val coilState
-            get() = MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.state
-
-        private val glassState
-            get() = GlassCasing.ANTIMATTER_CONTAINMENT.state
+        private val casingState = MetalCasing.QUANTUM_ALLOY.state
+        private val secondCasingState = MultiblockCasing.GRAVITY_STABILIZATION_CASING.state
+        private val coilState = MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.state
+        private val glassState = GlassCasing.ANTIMATTER_CONTAINMENT.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockAntimatterForge(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAntimatterForge(metaTileEntityId)
 
     override fun initializeAbilities()
     {
@@ -62,6 +56,8 @@ class MultiblockAntimatterForge(id: ResourceLocation)
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                        DDDDD                        ", "                        D   D                        ", "                        D   D                        ", "                        D   D                        ", "                        DDDDD                        ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ", "                                                     ")
@@ -140,6 +136,8 @@ class MultiblockAntimatterForge(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
         = if (recipeMapWorkable.isActive) GTLiteTextures.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteTextures.ANTIMATTER_FORGE_TEXTURE
@@ -147,7 +145,7 @@ class MultiblockAntimatterForge(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ANTIMATTER_FORGE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.1"))

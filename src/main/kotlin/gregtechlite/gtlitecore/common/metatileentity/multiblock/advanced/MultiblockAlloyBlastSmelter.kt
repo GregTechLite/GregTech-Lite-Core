@@ -27,11 +27,12 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_S
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.ITextComponent
@@ -55,19 +56,14 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = AlloyBlastSmelterRecipeLogic(this)
+        recipeMapWorkable = AlloyBlastSmelterRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.ZIRCONIUM_CARBIDE.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-
-        private val uniqueCasingState
-            get() = ActiveUniqueCasing.HEAT_VENT.state
+        private val casingState = MetalCasing.ZIRCONIUM_CARBIDE.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAlloyBlastSmelter(metaTileEntityId)
@@ -75,29 +71,29 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
 
         val coilType = context.get<Any>(HEATING_COIL_STATS)
         if (coilType is IHeatingCoilBlockStats)
         {
-            this.coilTier = coilType.tier
-            this.temperature = coilType.coilTemperature
+            coilTier = coilType.tier
+            temperature = coilType.coilTemperature
         }
         else
         {
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
+            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
+            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
         }
 
-        this.tier = minOf(pumpCasingTier, coilTier)
-        this.temperature += 100 * max(0, getTierByVoltage(energyContainer.inputVoltage) - MV)
+        tier = minOf(pumpCasingTier, coilTier)
+        temperature += 100 * max(0, getTierByVoltage(energyContainer.inputVoltage) - MV)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.temperature = 0
+        pumpCasingTier = 0
+        temperature = 0
     }
 
     // @formatter:off
@@ -131,14 +127,18 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.alloy_blast_smelter.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.alloy_blast_smelter.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.alloy_blast_smelter.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.alloy_blast_smelter.tooltip.4"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"))
+        addTooltip(tooltip)
+        {
+            machineType("ABS")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.WIRE_COIL, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            description(true,
+                        "gregtech.machine.electric_blast_furnace.tooltip.1",
+                        "gregtech.machine.electric_blast_furnace.tooltip.2",
+                        "gregtech.machine.electric_blast_furnace.tooltip.3")
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)

@@ -63,14 +63,10 @@ class MultiblockNanoForge(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.NAQUADAH_ALLOY.state
-        private val secondCasingState
-            get() = MetalCasing.TRINAQUADALLOY.state
-        private val thirdCasingState
-            get() = MetalCasing.QUANTUM_ALLOY.state
-        private val fourthCasingState
-            get() = MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)
+        private val casingState = MetalCasing.NAQUADAH_ALLOY.state
+        private val secondCasingState = MetalCasing.TRINAQUADALLOY.state
+        private val thirdCasingState = MetalCasing.QUANTUM_ALLOY.state
+        private val fourthCasingState = MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNanoForge(metaTileEntityId)
@@ -99,6 +95,8 @@ class MultiblockNanoForge(id: ResourceLocation)
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "              D              ", "              D              ", "              D              ", "              D              ", "              D              ", "              D              ", "              D              ", "              D              ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ", "                             ")
@@ -143,8 +141,12 @@ class MultiblockNanoForge(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NAQUADAH_ALLOY_CASING
+
+    // @formatter:off
 
     @SideOnly(Side.CLIENT)
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
@@ -191,7 +193,9 @@ class MultiblockNanoForge(id: ResourceLocation)
         return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    // @formatter:on
+
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.1"))

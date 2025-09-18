@@ -20,13 +20,14 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -43,22 +44,15 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeCryogenicReactorRecipeLogic(this)
+        recipeMapWorkable = LargeCryogenicReactorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.MONEL_500.state
-
-        private val secondCasingState
-            get() = GTMetalCasing.STEEL_SOLID.state
-
-        private val thirdCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = MetalCasing.MONEL_500.state
+        private val secondCasingState = GTMetalCasing.STEEL_SOLID.state
+        private val thirdCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCryogenicReactor(metaTileEntityId)
@@ -66,13 +60,13 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -106,13 +100,16 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_CRYOGENIC_REACTOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_cryogenic_reactor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cryogenic_reactor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cryogenic_reactor.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_cryogenic_reactor.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LCryR")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

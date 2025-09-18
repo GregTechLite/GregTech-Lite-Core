@@ -3,16 +3,15 @@ package gregtechlite.gtlitecore.api.unification.ore
 import gregtech.api.GTValues.M
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.info.MaterialFlags
-import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.unification.ore.OrePrefix
-import gregtech.api.unification.ore.OrePrefix.Conditions
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.api.unification.material.builder.OrePrefixBuilder
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
+import gregtechlite.gtlitecore.api.unification.ore.OrePrefixDSL.Companion.of
+import gregtechlite.gtlitecore.api.unification.ore.OrePrefixDSL.Companion.ofOre
 
 object GTLiteOrePrefix
 {
@@ -22,174 +21,127 @@ object GTLiteOrePrefix
     // region Material Prefixes
 
     @JvmField
-    val gemSolitary: OrePrefix = OrePrefixBuilder.builder("gemSolitary")
-        .materialAmount(M * 8)
-        .iconType(GTLiteMaterialIconType.gemSolitary)
-        .enableUnification()
-        .condition(Conditions.hasGemProperty)
-        .build()
+    val gemSolitary = of("gemSolitary", true)
+    {
+        materialAmount = M * 8
+        iconType = GTLiteMaterialIconType.gemSolitary
+        condition = GTLiteConditions.hasGemProperty
+    }
 
     @JvmField
-    val oreLimestone= OrePrefixBuilder.builder("oreLimestone")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val oreLimestone = ofOre("oreLimestone")
+    @JvmField
+    val oreKomatiite = ofOre("oreKomatiite")
+    @JvmField
+    val oreGreenSchist = ofOre("oreGreenSchist")
+    @JvmField
+    val oreBlueSchist = ofOre("oreBlueSchist")
+    @JvmField
+    val oreKimberlite = ofOre("oreKimberlite")
+    @JvmField
+    val oreQuartzite = ofOre("oreQuartzite")
+    @JvmField
+    val oreSlate = ofOre("oreSlate")
+    @JvmField
+    val oreShale = ofOre("oreShale")
 
     @JvmField
-    val oreKomatiite: OrePrefix = OrePrefixBuilder.builder("oreKomatiite")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val sheetedFrame = of("sheetedFrame", true)
+    {
+        materialAmount = (M * 5) / 6
+        iconType = GTLiteMaterialIconType.sheetedFrame
+        condition = { it.hasFlag(MaterialFlags.GENERATE_FRAME) }
+    }
 
     @JvmField
-    val oreGreenSchist: OrePrefix = OrePrefixBuilder.builder("oreGreenSchist")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val wallGt = of("wallGt", true)
+    {
+        materialAmount = (M * 4 + (M / 9) * 4) / 3
+        iconType = GTLiteMaterialIconType.wallGt
+        condition = { it.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
+    }
 
     @JvmField
-    val oreBlueSchist: OrePrefix = OrePrefixBuilder.builder("oreBlueSchist")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val seedCrystal = of("seedCrystal", true)
+    {
+        materialAmount = M / 9
+        iconType = GTLiteMaterialIconType.seedCrystal
+        condition = GTLiteConditions.hasCrystalProperties
+    }
 
     @JvmField
-    val oreKimberlite: OrePrefix = OrePrefixBuilder.builder("oreKimberlite")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val boule = of("boule", true)
+    {
+        materialAmount = M * 4
+        iconType = GTLiteMaterialIconType.boule
+        condition = GTLiteConditions.hasCrystalProperties
+    }
 
     @JvmField
-    val oreQuartzite: OrePrefix = OrePrefixBuilder.builder("oreQuartzite")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val fuelRod = of("fuelRod", true)
+    {
+        materialAmount = M * 2
+        iconType = GTLiteMaterialIconType.fuelRod
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val oreSlate: OrePrefix = OrePrefixBuilder.builder("oreSlate")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val fuelRodEnriched = of("fuelRodEnriched", true)
+    {
+        materialAmount = M * 4
+        iconType = GTLiteMaterialIconType.fuelRodEnriched
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val oreShale: OrePrefix = OrePrefixBuilder.builder("oreShale")
-        .materialAmount(-1)
-        .iconType(MaterialIconType.ore)
-        .enableUnification()
-        .condition(Conditions.hasOreProperty)
-        .build()
+    val fuelRodHighDensity = of("fuelRodHighDensity", true)
+    {
+        materialAmount = M * 8
+        iconType = GTLiteMaterialIconType.fuelRodHighDensity
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val sheetedFrame: OrePrefix = OrePrefixBuilder.builder("sheetedFrame")
-        .materialAmount((M * 5) / 6)
-        .iconType(GTLiteMaterialIconType.sheetedFrame)
-        .enableUnification()
-        .condition { mat -> mat.hasFlags(MaterialFlags.GENERATE_FRAME) }
-        .build()
+    val fuelRodDepleted = of("fuelRodDepleted", true)
+    {
+        materialAmount = M * 2
+        iconType = GTLiteMaterialIconType.fuelRodDepleted
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val wallGt: OrePrefix = OrePrefixBuilder.builder("wallGt")
-        .materialAmount((M * 4 + (M / 9) * 4) / 3)
-        .iconType(GTLiteMaterialIconType.wallGt)
-        .enableUnification()
-        .condition { mat -> mat.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
-        .build()
+    val fuelRodEnrichedDepleted = of("fuelRodEnrichedDepleted", true)
+    {
+        materialAmount = M * 4
+        iconType = GTLiteMaterialIconType.fuelRodEnrichedDepleted
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val seedCrystal: OrePrefix = OrePrefixBuilder.builder("seedCrystal")
-        .materialAmount(M / 9)
-        .iconType(GTLiteMaterialIconType.seedCrystal)
-        .enableUnification()
-        .condition(GTLiteConditions.hasCrystalProperties)
-        .build()
+    val fuelRodHighDensityDepleted = of("fuelRodHighDensityDepleted", true)
+    {
+        materialAmount = M * 8
+        iconType = GTLiteMaterialIconType.fuelRodHighDensityDepleted
+        condition = GTLiteConditions.hasFuelRodProperties
+    }
 
     @JvmField
-    val boule: OrePrefix = OrePrefixBuilder.builder("boule")
-        .materialAmount(M * 4)
-        .iconType(GTLiteMaterialIconType.boule)
-        .enableUnification()
-        .condition(GTLiteConditions.hasCrystalProperties)
-        .build()
-
-    @JvmField
-    val fuelRod: OrePrefix = OrePrefixBuilder.builder("fuelRod")
-        .materialAmount(M * 2)
-        .iconType(GTLiteMaterialIconType.fuelRod)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val fuelRodEnriched: OrePrefix = OrePrefixBuilder.builder("fuelRodEnriched")
-        .materialAmount(M * 4)
-        .iconType(GTLiteMaterialIconType.fuelRodEnriched)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val fuelRodHighDensity: OrePrefix = OrePrefixBuilder.builder("fuelRodHighDensity")
-        .materialAmount(M * 8)
-        .iconType(GTLiteMaterialIconType.fuelRodHighDensity)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val fuelRodDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodDepleted")
-        .materialAmount(M * 2)
-        .iconType(GTLiteMaterialIconType.fuelRodDepleted)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val fuelRodEnrichedDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodEnrichedDepleted")
-        .materialAmount(M * 4)
-        .iconType(GTLiteMaterialIconType.fuelRodEnrichedDepleted)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val fuelRodHighDensityDepleted: OrePrefix = OrePrefixBuilder.builder("fuelRodHighDensityDepleted")
-        .materialAmount(M * 8)
-        .iconType(GTLiteMaterialIconType.fuelRodHighDensityDepleted)
-        .enableUnification()
-        .condition(GTLiteConditions.hasFuelRodProperties)
-        .build()
-
-    @JvmField
-    val nanite: OrePrefix = OrePrefixBuilder.builder("nanite")
-        .materialAmount(-1)
-        .iconType(GTLiteMaterialIconType.nanite)
-        .enableUnification()
-        .condition { mat -> mat.hasFlag(GTLiteMaterialFlags.GENERATE_NANITE) }
-        .build()
+    val nanite = of("nanite", true)
+    {
+        materialAmount = -1
+        iconType = GTLiteMaterialIconType.nanite
+        condition = { it.hasFlag(GTLiteMaterialFlags.GENERATE_NANITE) }
+    }
 
     // endregion
 
     // region Ore Dictionary Prefixes
 
     @JvmField
-    val glass: OrePrefix = OrePrefixBuilder.builder("glass")
-        .materialAmount(-1)
-        .enableUnification()
-        .build()
+    val glass = of("glass", true)
+    {
+        materialAmount = -1
+    }
 
     // endregion
 

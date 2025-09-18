@@ -20,10 +20,11 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextFormatting
@@ -43,13 +44,12 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = CryogenicFreezerRecipeLogic(this)
+        recipeMapWorkable = CryogenicFreezerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HASTELLOY_X.state
+        private val casingState = MetalCasing.HASTELLOY_X.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCryogenicFreezer(metaTileEntityId)
@@ -57,9 +57,9 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pumpCasingTier, motorCasingTier)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pumpCasingTier, motorCasingTier)
     }
 
     override fun invalidateStructure()
@@ -91,15 +91,17 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.VACUUM_FREEZER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.cryogenic_freezer.tooltip.6"))
+        addTooltip(tooltip)
+        {
+            machineType("LCryF")
+            description(true,
+                        "gtlitecore.machine.cryogenic_freezer.tooltip.1",
+                        "gtlitecore.machine.cryogenic_freezer.tooltip.2")
+            durationInfo(UpgradeType.PUMP_CASING, 50)
+            parallelInfo(UpgradeType.MOTOR_CASING, 16)
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)

@@ -63,14 +63,10 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.NAQUADAH_ALLOY.state
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-        private val uniqueCasingState
-            get() = ActiveUniqueCasing.HEAT_VENT.state
-        private val pipeCasingState
-            get() = BoilerCasing.POLYBENZIMIDAZOLE.state
+        private val casingState = MetalCasing.NAQUADAH_ALLOY.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
+        private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockNaquadahReactor(metaTileEntityId)
@@ -153,7 +149,7 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
         return energyContainer.energyCanBeInserted < recipeMapWorkable.recipeEUt
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.universal.tooltip.base_production_eut", V[UHV]))

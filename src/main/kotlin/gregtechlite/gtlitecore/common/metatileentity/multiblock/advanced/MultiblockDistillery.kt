@@ -32,10 +32,11 @@ import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -47,8 +48,9 @@ import java.util.function.Function
 import kotlin.math.floor
 import kotlin.math.pow
 
-// FIXME When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
-//       recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
+// TODO FIXME
+//  When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
+//  recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
 class MultiblockDistillery(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
 {
@@ -59,17 +61,14 @@ class MultiblockDistillery(id: ResourceLocation)
 
     companion object
     {
-        private val casingState: IBlockState?
-            get() = MetalCasing.SILICON_CARBIDE.state
-
-        private val pipeCasingState: IBlockState?
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val casingState = MetalCasing.SILICON_CARBIDE.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
     }
 
     init
     {
-        this.recipeMapWorkable = LargeDistilleryRecipeLogic(this)
-        this.workableHandler = DistillationTowerLogicHandler(this)
+        recipeMapWorkable = LargeDistilleryRecipeLogic(this)
+        workableHandler = DistillationTowerLogicHandler(this)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockDistillery(metaTileEntityId)
@@ -77,21 +76,21 @@ class MultiblockDistillery(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        if (this.structurePattern == null) return
-        if (this.usesAdvancedHatchLogic())
+        if (structurePattern == null) return
+        if (usesAdvancedHatchLogic())
         {
-            this.workableHandler?.determineLayerCount(this.structurePattern!!)
-            this.workableHandler?.determineOrderedFluidOutputs()
+            workableHandler?.determineLayerCount(structurePattern!!)
+            workableHandler?.determineOrderedFluidOutputs()
         }
-        this.casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        if (this.workableHandler != null)
-            this.workableHandler!!.invalidate()
-        this.casingTier = 0
+        if (workableHandler != null)
+            workableHandler!!.invalidate()
+        casingTier = 0
     }
 
     // @formatter:off
@@ -131,7 +130,7 @@ class MultiblockDistillery(id: ResourceLocation)
      *
      * @see DistillationTowerLogicHandler.determineOrderedFluidOutputs
      */
-    override fun multiblockPartSorter(): Function<BlockPos?, Int?>?
+    override fun multiblockPartSorter(): Function<BlockPos, Int>
     {
         return UP.getSorter(getFrontFacing(), getUpwardsFacing(), isFlipped())
     }
@@ -146,14 +145,12 @@ class MultiblockDistillery(id: ResourceLocation)
      */
     override fun allowsExtendedFacing() = false
 
-    override fun allowSameFluidFillForOutputs() = !this.usesAdvancedHatchLogic()
+    override fun allowSameFluidFillForOutputs() = !usesAdvancedHatchLogic()
 
     override fun getFluidOutputLimit(): Int
     {
-        return if (this.workableHandler != null && this.usesAdvancedHatchLogic())
-            this.workableHandler!!.layerCount
-        else
-            super.getFluidOutputLimit()
+        return if (workableHandler != null && usesAdvancedHatchLogic()) workableHandler!!.layerCount
+                else super.getFluidOutputLimit()
     }
 
     @SideOnly(Side.CLIENT)
@@ -168,19 +165,21 @@ class MultiblockDistillery(id: ResourceLocation)
      *
      * @see DistillationTowerLogicHandler
      */
-    private fun usesAdvancedHatchLogic() = this.currentRecipeMap === DISTILLATION_RECIPES
+    private fun usesAdvancedHatchLogic() = currentRecipeMap === DISTILLATION_RECIPES
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.2") + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_distillery.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("LDis")
+            description(true,
+                        I18n.format("gtlitecore.machine.large_distillery.tooltip.1")
+                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"),
+                        I18n.format("gtlitecore.machine.large_distillery.tooltip.2")
+                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gtlitecore.machine.large_distillery.tooltip.3"))
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct(): Boolean = false

@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -10,15 +11,15 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -35,16 +36,13 @@ class MultiblockMixer(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeMixerRecipeLogic(this)
+        recipeMapWorkable = LargeMixerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.STABALLOY.state
-
-        private val gearboxCasingState
-            get() = GTTurbineCasing.TITANIUM_GEARBOX.state
+        private val casingState = MetalCasing.STABALLOY.state
+        private val gearboxCasingState = GTTurbineCasing.TITANIUM_GEARBOX.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockMixer(metaTileEntityId)
@@ -52,13 +50,13 @@ class MultiblockMixer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -87,14 +85,17 @@ class MultiblockMixer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.2"))
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mixer.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LMix")
+            description(true,
+                        "gtlitecore.machine.large_mixer.tooltip.1")
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 80)
+            parallelInfo(UpgradeType.MOTOR_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

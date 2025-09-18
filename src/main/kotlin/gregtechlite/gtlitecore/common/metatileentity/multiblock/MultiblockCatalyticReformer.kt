@@ -21,14 +21,13 @@ class MultiblockCatalyticReformer(id: ResourceLocation) : RecipeMapMultiblockCon
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.STAINLESS_CLEAN.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = GTMetalCasing.STAINLESS_CLEAN.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockCatalyticReformer(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCatalyticReformer(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("F   F", "CCCPC", "CCCPC", "CCCPC")
@@ -44,6 +43,8 @@ class MultiblockCatalyticReformer(id: ResourceLocation) : RecipeMapMultiblockCon
         .where('#', air())
         .where(' ', any())
         .build()
+
+    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.CLEAN_STAINLESS_STEEL_CASING

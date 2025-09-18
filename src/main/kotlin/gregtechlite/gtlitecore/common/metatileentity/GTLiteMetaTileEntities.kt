@@ -28,6 +28,7 @@ import gregtechlite.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEnti
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockAntimatterForge
@@ -715,8 +716,8 @@ object GTLiteMetaTileEntities
 
         HOT_COOLANT_TURBINE = register(10009, MetaTileEntityLargeTurbine(GTLiteMod.id("large_turbine.hot_coolant"),
             GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS, EV,
-            MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_TURBINE_CASING),
-            MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.TITANIUM_GEARBOX),
+            GTTurbineCasing.TITANIUM_TURBINE_CASING.state,
+            GTTurbineCasing.TITANIUM_GEARBOX.state,
             Textures.STABLE_TITANIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
         SUPERCRITICAL_FLUID_TURBINE = register(10010, MetaTileEntityLargeTurbine(GTLiteMod.id("large_turbine.supercritical_fluid"),

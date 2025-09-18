@@ -16,9 +16,10 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -37,13 +38,12 @@ class MultiblockMacerator(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeMaceratorRecipeLogic(this)
+        recipeMapWorkable = LargeMaceratorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.STELLITE.state
+        private val casingState = MetalCasing.STELLITE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockMacerator(metaTileEntityId)
@@ -51,16 +51,16 @@ class MultiblockMacerator(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pistonCasingTier, motorCasingTier)
+        pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pistonCasingTier, motorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pistonCasingTier = 0
-        this.motorCasingTier = 0
+        pistonCasingTier = 0
+        motorCasingTier = 0
     }
 
     // @formatter:off
@@ -86,13 +86,16 @@ class MultiblockMacerator(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_MACERATOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_macerator.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_macerator.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_macerator.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_macerator.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LMa")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 50)
+            parallelInfo(UpgradeType.PISTON_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

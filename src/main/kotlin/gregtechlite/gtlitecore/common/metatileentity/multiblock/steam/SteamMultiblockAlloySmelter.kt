@@ -1,7 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.steam
 
-import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.SteamMultiWorkable
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -42,14 +40,16 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = if (ConfigHolder.machines.steelSteamMultiblocks) GTMetalCasing.STEEL_SOLID.state else GTMetalCasing.BRONZE_BRICKS.state
+        private val casingState = if (ConfigHolder.machines.steelSteamMultiblocks)
+            GTMetalCasing.STEEL_SOLID.state else GTMetalCasing.BRONZE_BRICKS.state
 
-        private val fireboxCasingState
-            get() = if (ConfigHolder.machines.steelSteamMultiblocks) GTFireboxCasing.STEEL_FIREBOX.state else GTFireboxCasing.BRONZE_FIREBOX.state
+        private val fireboxCasingState = if (ConfigHolder.machines.steelSteamMultiblocks)
+            GTFireboxCasing.STEEL_FIREBOX.state else GTFireboxCasing.BRONZE_FIREBOX.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = SteamMultiblockAlloySmelter(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "FFF", "FFF", "CCC")
@@ -63,6 +63,8 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
         .where('#', air())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
@@ -73,7 +75,7 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
 
     override fun getItemOutputLimit() = 1
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.multiblock.steam_.duration_modifier"))

@@ -49,14 +49,9 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.PRIMITIVE_BRICKS.state
-
-        private val fireboxCasingState
-            get() = GTFireboxCasing.STEEL_FIREBOX.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = GTMetalCasing.PRIMITIVE_BRICKS.state
+        private val fireboxCasingState = GTFireboxCasing.STEEL_FIREBOX.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAdvancedPrimitiveBlastFurnace(metaTileEntityId)
@@ -69,6 +64,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         if (context.get<String>("AuxiliaryFurnace2") != null)
             auxiliaryFurnaceNumber += 1
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("     DDD     ", "             ", "             ", "             ", "             ", "             ", "             ", "             ", "             ")
@@ -94,6 +91,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.PRIMITIVE_BRICKS
 
@@ -110,6 +109,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing,
             recipeMapWorkable.isActive, recipeMapWorkable.isWorkingEnabled)
     }
+
+    // @formatter:off
 
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
@@ -139,12 +140,11 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         return shapeInfo
     }
 
+    // @formatter:on
+
     override fun hasMaintenanceMechanics() = false
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1"))

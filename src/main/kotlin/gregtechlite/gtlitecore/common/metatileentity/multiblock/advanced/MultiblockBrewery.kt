@@ -18,11 +18,12 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -42,36 +43,31 @@ class MultiblockBrewery(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeBreweryRecipeLogic(this)
+        recipeMapWorkable = LargeBreweryRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.WATERTIGHT_STEEL.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.state
-
-        private val glassState
-            get() = GTGlassCasing.TEMPERED_GLASS.state
+        private val casingState = MetalCasing.WATERTIGHT_STEEL.state
+        private val pipeCasingState = GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.state
+        private val glassState = GTGlassCasing.TEMPERED_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockBrewery(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBrewery(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-        this.tier = minOf(pumpCasingTier, motorCasingTier)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        tier = minOf(pumpCasingTier, motorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.motorCasingTier = 0
+        pumpCasingTier = 0
+        motorCasingTier = 0
     }
 
     // @formatter:off
@@ -102,13 +98,16 @@ class MultiblockBrewery(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_BREWERY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_brewery.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_brewery.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_brewery.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_brewery.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LBr")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.MOTOR_CASING, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

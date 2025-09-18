@@ -18,11 +18,12 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -41,19 +42,14 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = ElectricImplosionCompressorRecipeLogic(this)
+        recipeMapWorkable = ElectricImplosionCompressorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.INCOLOY_MA956.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-
-        private val glassState
-            get() = GlassCasing.SILICON_CARBIDE.state
+        private val casingState = MetalCasing.INCOLOY_MA956.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val glassState = GlassCasing.SILICON_CARBIDE.state
     }
 
     override fun createMetaTileEntity(mte: IGregTechTileEntity) = MultiblockElectricImplosionCompressor(metaTileEntityId)
@@ -61,16 +57,16 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.tier = minOf(pistonCasingTier, emitterCasingTier)
+        pistonCasingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        tier = minOf(pistonCasingTier, emitterCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pistonCasingTier = 0
-        this.emitterCasingTier = 0
+        pistonCasingTier = 0
+        emitterCasingTier = 0
     }
 
     // @formatter:off
@@ -102,14 +98,17 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.IMPLOSION_COMPRESSOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.electric_implosion_compressor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.electric_implosion_compressor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.electric_implosion_compressor.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.electric_implosion_compressor.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.electric_implosion_compressor.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("EIC")
+            description(true,
+                        "gtlitecore.machine.electric_implosion_compressor.tooltip.1")
+            overclockInfo(UV)
+            durationInfo(UpgradeType.EMITTER_CASING, 50)
+            parallelInfo(UpgradeType.PISTON_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

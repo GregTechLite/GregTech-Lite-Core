@@ -54,7 +54,7 @@ internal object BenderRecipes
         BENDER_RECIPES.recipeBuilder()
             .circuitMeta(12)
             .input(plateDouble, Steel)
-            .output(FUEL_ROD_EMPTY, 2)
+            .output(FUEL_ROD_EMPTY)
             .EUt(VA[MV])
             .duration(5 * SECOND)
             .buildAndRegister()

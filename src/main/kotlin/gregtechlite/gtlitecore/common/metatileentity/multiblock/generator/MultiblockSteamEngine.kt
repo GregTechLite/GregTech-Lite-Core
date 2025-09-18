@@ -11,10 +11,9 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.RecipeMaps.STEAM_TURBINE_FUELS
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.common.blocks.BlockTurbineCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -29,14 +28,13 @@ class MultiblockSteamEngine(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.BRASS.state
-
-        private val gearboxCasingState
-            get() = MetaBlocks.TURBINE_CASING.getState(BlockTurbineCasing.TurbineCasingType.BRONZE_GEARBOX)
+        private val casingState = MetalCasing.BRASS.state
+        private val gearboxCasingState = GTTurbineCasing.BRONZE_GEARBOX.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSteamEngine(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle(" CC", "CEC", " CC")
@@ -53,10 +51,9 @@ class MultiblockSteamEngine(id: ResourceLocation)
         .where(' ', any())
         .build()
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    // @formatter:on
+
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.tooltip.maximum_energy_output", V[MV]))

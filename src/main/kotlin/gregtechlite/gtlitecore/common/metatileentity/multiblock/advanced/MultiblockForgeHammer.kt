@@ -17,8 +17,9 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -35,13 +36,12 @@ class MultiblockForgeHammer(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeForgeHammerRecipeLogic(this)
+        recipeMapWorkable = LargeForgeHammerRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = GTMetalCasing.STEEL_SOLID.state
+        private val casingState = GTMetalCasing.STEEL_SOLID.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockForgeHammer(metaTileEntityId)
@@ -49,13 +49,13 @@ class MultiblockForgeHammer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -80,11 +80,14 @@ class MultiblockForgeHammer(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_forge_hammer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_forge_hammer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_forge_hammer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_forge_hammer.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LFH")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 80)
+            parallelInfo(UpgradeType.PISTON_CASING, 4)
+        }
     }
 
     override fun canBeDistinct() = true

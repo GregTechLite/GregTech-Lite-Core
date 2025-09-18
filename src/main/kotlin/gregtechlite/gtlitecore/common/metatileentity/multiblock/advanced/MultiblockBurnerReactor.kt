@@ -19,12 +19,13 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFireboxCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -42,19 +43,14 @@ class MultiblockBurnerReactor(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeBurnerReactorRecipeLogic(this)
+        recipeMapWorkable = LargeBurnerReactorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.INCOLOY_MA813.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TITANIUM_PIPE.state
-
-        private val fireboxCasingState
-            get() = GTFireboxCasing.TITANIUM_FIREBOX.state
+        private val casingState = MetalCasing.INCOLOY_MA813.state
+        private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
+        private val fireboxCasingState = GTFireboxCasing.TITANIUM_FIREBOX.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockBurnerReactor(metaTileEntityId)
@@ -62,14 +58,23 @@ class MultiblockBurnerReactor(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
-        this.replaceFireboxAsActive(false)
+        casingTier = 0
+        disableFireboxAsActive()
+    }
+
+    override fun onRemoval()
+    {
+        super.onRemoval()
+        if (!world.isRemote && isStructureFormed)
+        {
+            disableFireboxAsActive()
+        }
     }
 
     // @formatter:off
@@ -99,17 +104,21 @@ class MultiblockBurnerReactor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_BURNER_REACTOR_OVERLAY
 
-    override fun onRemoval()
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.onRemoval()
-        if (!world.isRemote && isStructureFormed)
+        addTooltip(tooltip)
         {
-            // Replaced Firebox Casing textures as active textures.
-            this.replaceFireboxAsActive(false)
+            machineType("LBuR")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.MOTOR_CASING, 16)
         }
     }
 
-    fun replaceFireboxAsActive(isActive: Boolean)
+    override fun canBeDistinct() = true
+
+    private fun disableFireboxAsActive()
     {
         val centerPos = pos.offset(getFrontFacing().opposite).down()
         for (x in -1..1)
@@ -120,23 +129,12 @@ class MultiblockBurnerReactor(id: ResourceLocation)
                 var blockState = world.getBlockState(blockPos)
                 if (blockState.getBlock() is BlockFireboxCasing)
                 {
-                    blockState = (blockState as IExtendedBlockState).withProperty(BlockFireboxCasing.ACTIVE, isActive)
+                    blockState = (blockState as IExtendedBlockState).withProperty(BlockFireboxCasing.ACTIVE, false)
                     world.setBlockState(blockPos, blockState)
                 }
             }
         }
     }
-
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
-    {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_burner_reactor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_burner_reactor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_burner_reactor.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_burner_reactor.tooltip.4"))
-    }
-
-    override fun canBeDistinct() = true
 
     private inner class LargeBurnerReactorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {

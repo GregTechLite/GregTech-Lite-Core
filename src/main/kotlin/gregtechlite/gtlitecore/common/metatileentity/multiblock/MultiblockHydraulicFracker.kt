@@ -56,14 +56,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
         private const val FLUID_USE_AMOUNT = 1000
         private const val MAX_PROGRESS = 5 * SECOND
 
-        private val casingState: IBlockState
-            get() = MetalCasing.WATERTIGHT_STEEL.state
-
-        private val secondCasingState: IBlockState
-            get() = GTMetalCasing.STAINLESS_CLEAN.state
-
-        private val pipeCasingState: IBlockState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = MetalCasing.WATERTIGHT_STEEL.state
+        private val secondCasingState = GTMetalCasing.STAINLESS_CLEAN.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     private var inputFluidInventory: IMultipleTankHandler? = null

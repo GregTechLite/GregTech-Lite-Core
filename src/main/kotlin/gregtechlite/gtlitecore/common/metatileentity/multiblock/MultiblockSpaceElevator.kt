@@ -44,7 +44,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import org.jetbrains.annotations.ApiStatus
 import java.util.concurrent.ConcurrentHashMap
 
 class MultiblockSpaceElevator(id: ResourceLocation)
@@ -65,16 +64,10 @@ class MultiblockSpaceElevator(id: ResourceLocation)
 
     companion object
     {
-
-        private val casingState
-            get() = AerospaceCasing.ELEVATOR_BASE_CASING.state
-        private val secondCasingState
-            get() = AerospaceCasing.INTERNAL_STRUCTURE_CASING.state
-        private val thirdCasingState
-            get() = AerospaceCasing.SUPPORT_STRUCTURE_CASING.state
-        private val fourthCasingState
-            get() = AerospaceCasing.HIGH_STRENGTH_CONCRETE.state
-
+        private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
+        private val secondCasingState = AerospaceCasing.INTERNAL_STRUCTURE_CASING.state
+        private val thirdCasingState = AerospaceCasing.SUPPORT_STRUCTURE_CASING.state
+        private val fourthCasingState = AerospaceCasing.HIGH_STRENGTH_CONCRETE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSpaceElevator(metaTileEntityId)
@@ -83,7 +76,7 @@ class MultiblockSpaceElevator(id: ResourceLocation)
     {
         super.update()
         if (!isStructureFormed)
-            moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
+            moduleReceivers.forEach { it.sentWorkingDisabled() }
     }
     
     override fun updateFormedValid()
@@ -94,7 +87,7 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         }
         if (offsetTimer % SECOND == 0L)
         {
-            moduleReceivers.removeIf { moduleReceiver -> moduleReceiver.moduleProvider == null }
+            moduleReceivers.removeIf { it.moduleProvider == null }
         }
     }
     
@@ -110,8 +103,8 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         super.invalidateStructure()
         resetTileAbilities()
         this.casingTier = 0
-        moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
-        moduleReceivers.forEach { moduleReceiver -> moduleReceiver.moduleProvider = null }
+        moduleReceivers.forEach { it.sentWorkingDisabled() }
+        moduleReceivers.forEach { it.moduleProvider = null }
     }
     
     override fun checkStructurePattern()
@@ -142,6 +135,7 @@ class MultiblockSpaceElevator(id: ResourceLocation)
     }
 
     // @formatter:off
+
     override fun createStructurePattern(): BlockPattern
     {
         if (!isExtended)
@@ -287,9 +281,9 @@ class MultiblockSpaceElevator(id: ResourceLocation)
                 .build()
         }
     }
+
     // @formatter:on
 
-    @ApiStatus.Internal
     private fun modulePredicate(): TraceabilityPredicate = TraceabilityPredicate { blockWorldState ->
         val state = blockWorldState.blockState
         val block = state.block

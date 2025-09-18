@@ -16,6 +16,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -39,19 +41,14 @@ class MultiblockCVDUnit(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = CVDUnitRecipeLogic(this)
+        recipeMapWorkable = CVDUnitRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HSLA_STEEL.state
-
-        private val secondCasingState
-            get() = MultiblockCasing.SUBSTRATE_CASING.state
-
-        private val glassState
-            get() = GTGlassCasing.TEMPERED_GLASS.state
+        private val casingState = MetalCasing.HSLA_STEEL.state
+        private val secondCasingState = MultiblockCasing.SUBSTRATE_CASING.state
+        private val glassState = GTGlassCasing.TEMPERED_GLASS.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCVDUnit(metaTileEntityId)
@@ -59,16 +56,16 @@ class MultiblockCVDUnit(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, pumpCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, pumpCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.emitterCasingTier = 0
-        this.pumpCasingTier = 0
+        emitterCasingTier = 0
+        pumpCasingTier = 0
     }
 
     // @formatter:off
@@ -98,12 +95,14 @@ class MultiblockCVDUnit(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.cvd_unit.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("CVD")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.EMITTER_CASING, 80)
+            parallelInfo(UpgradeType.PUMP_CASING, 4)
+        }
     }
 
     override fun canBeDistinct() = true

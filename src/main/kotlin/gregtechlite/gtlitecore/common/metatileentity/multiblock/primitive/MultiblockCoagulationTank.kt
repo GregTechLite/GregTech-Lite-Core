@@ -66,8 +66,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.state
+        private val casingState = PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCoagulationTank(metaTileEntityId)
@@ -86,6 +85,8 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         return actualImportItems!!
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "CCC", "CCC")
         .aisle("CCC", "C*C", "C#C")
@@ -96,6 +97,8 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         .where('#', air())
         .where('*', air().or(SNOW_LAYER))
         .build()
+
+    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.REINFORCED_TREATED_WOOD_WALL
@@ -253,10 +256,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
             }
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.coagulation_tank.tooltip.1"))

@@ -15,10 +15,11 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -35,30 +36,27 @@ class MultiblockExtruder(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeExtruderRecipeLogic(this)
+        recipeMapWorkable = LargeExtruderRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.INCONEL_625.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val casingState = MetalCasing.INCONEL_625.state
+        private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockExtruder(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockExtruder(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(PISTON_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -85,13 +83,16 @@ class MultiblockExtruder(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_extruder.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_extruder.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_extruder.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_extruder.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LE")
+            description(true)
+            overclockInfo(UV)
+            durationInfo(UpgradeType.PISTON_CASING, 50)
+            parallelInfo(UpgradeType.PISTON_CASING, 16)
+        }
     }
 
     override fun canBeDistinct() = true

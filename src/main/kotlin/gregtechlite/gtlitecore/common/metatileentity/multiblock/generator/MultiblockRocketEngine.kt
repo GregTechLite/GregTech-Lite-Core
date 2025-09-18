@@ -59,8 +59,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.NITINOL_60.state
+        private val casingState = MetalCasing.NITINOL_60.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockRocketEngine(metaTileEntityId)
@@ -70,6 +69,8 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         super.formStructure(context)
         size = context.getOrDefault("length", 1)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCC", "CCC", "CCC")
@@ -88,6 +89,8 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         .where('O', abilities(MUFFLER_HATCH))
         .where('*', airCounter())
         .build()
+
+    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NITINOL_60_CASING
@@ -132,10 +135,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         return energyContainer.energyCanBeInserted < recipeMapWorkable.recipeEUt
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.universal.tooltip.base_production_eut", V[IV]))
@@ -303,9 +303,9 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         var isHydrogenBoosted = false
 
-        private val HYDROGEN_STACK: FluidStack = Hydrogen.getFluid(80)
-        private val LIQUID_AIR_STACK: FluidStack = LiquidAir.getFluid(8000)
-        private val CARBON_DIOXIDE_STACK: FluidStack = CarbonDioxide.getFluid(200)
+        private val hydrogenStack: FluidStack = Hydrogen.getFluid(80)
+        private val liquidAirStack: FluidStack = LiquidAir.getFluid(8000)
+        private val carbonDioxideStack: FluidStack = CarbonDioxide.getFluid(200)
 
         init
         {
@@ -328,22 +328,22 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun checkHydrogen()
         {
-            isHydrogenBoosted = HYDROGEN_STACK.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
-                .drain(HYDROGEN_STACK, false))
+            isHydrogenBoosted = hydrogenStack.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
+                .drain(hydrogenStack, false))
         }
 
         private fun drainHydrogen()
         {
             if (isHydrogenBoosted && totalContinuousRunningTime % SECOND == 0L)
             {
-                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(HYDROGEN_STACK, true)
+                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(hydrogenStack, true)
             }
         }
 
         private fun checkLiquidAir(): Boolean
         {
-            if (LIQUID_AIR_STACK.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
-                    .drain(LIQUID_AIR_STACK, false)))
+            if (liquidAirStack.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
+                    .drain(liquidAirStack, false)))
             {
                 return true
             }
@@ -357,13 +357,13 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         private fun drainLiquidAir()
         {
             if (totalContinuousRunningTime % SECOND == 0L)
-                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(LIQUID_AIR_STACK, true)
+                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(liquidAirStack, true)
         }
 
         private fun checkCarbonDioxide(): Boolean
         {
-            if (CARBON_DIOXIDE_STACK.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
-                    .drain(CARBON_DIOXIDE_STACK, false)))
+            if (carbonDioxideStack.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
+                    .drain(carbonDioxideStack, false)))
             {
                 return true
             }
@@ -377,7 +377,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         private fun drainCarbonDioxide()
         {
             if (totalContinuousRunningTime % SECOND == 0L)
-                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(CARBON_DIOXIDE_STACK, true)
+                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(carbonDioxideStack, true)
         }
 
         override fun shouldSearchForRecipes(): Boolean

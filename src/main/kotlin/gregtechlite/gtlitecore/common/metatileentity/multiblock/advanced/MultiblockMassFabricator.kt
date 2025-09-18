@@ -21,13 +21,13 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasing
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -49,46 +49,37 @@ class MultiblockMassFabricator(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeMassFabricatorRecipeLogic(this)
+        recipeMapWorkable = LargeMassFabricatorRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HASTELLOY_N.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
-
-        private val pipeCasingState
-            get() = BoilerCasing.POLYBENZIMIDAZOLE.state
-
-        private val secondPipeCasingState
-            get() = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-
-        private val coilState
-            get() = GTFusionCasing.SUPERCONDUCTOR_COIL.state
+        private val casingState = MetalCasing.HASTELLOY_N.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
+        private val secondPipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
+        private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockMassFabricator(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockMassFabricator(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
-        this.processorCasingTier = context.getAttributeOrDefault(PROCESSOR_CASING_TIER, 0)
-        this.tier = minOf(fieldGenCasingTier, emitterCasingTier, sensorCasingTier, processorCasingTier)
+        fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
+        processorCasingTier = context.getAttributeOrDefault(PROCESSOR_CASING_TIER, 0)
+        tier = minOf(fieldGenCasingTier, emitterCasingTier, sensorCasingTier, processorCasingTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.fieldGenCasingTier = 0
-        this.emitterCasingTier = 0
-        this.sensorCasingTier = 0
-        this.processorCasingTier = 0
+        fieldGenCasingTier = 0
+        emitterCasingTier = 0
+        sensorCasingTier = 0
+        processorCasingTier = 0
     }
 
     // @formatter:off
@@ -125,13 +116,17 @@ class MultiblockMassFabricator(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.MASS_FABRICATOR_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_mass_fabricator.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mass_fabricator.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mass_fabricator.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_mass_fabricator.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            machineType("LMasFab")
+            description(true)
+            overclockInfo(UV)
+            description(false,
+                        "gtlitecore.machine.large_mass_fabricator.tooltip.1",
+                        "gtlitecore.machine.large_mass_fabricator.tooltip.2")
+        }
     }
 
     override fun canBeDistinct() = false

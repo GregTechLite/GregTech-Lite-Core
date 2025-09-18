@@ -38,26 +38,17 @@ class MultiblockMiningDroneAirport(id: ResourceLocation)
 
     companion object
     {
-        private val casingState
-            get() = GTWarningSignBlock.YELLOW_STRIPES.state
-
-        private val anotherCasingState
-            get() = GTWarningSignBlock.SMALL_YELLOW_STRIPES.state
-
-        private val secondCasingState
-            get() = GTCleanroomCasing.PLASCRETE.state
-
-        private val thirdCasingState
-            get() = GTMetalCasing.STEEL_SOLID.state
-
-        private val gearboxCasingState
-            get() = GTTurbineCasing.STEEL_GEARBOX.state
-
-        private val pipeCasingState
-            get() = GTBoilerCasing.STEEL_PIPE.state
+        private val casingState = GTWarningSignBlock.YELLOW_STRIPES.state
+        private val anotherCasingState = GTWarningSignBlock.SMALL_YELLOW_STRIPES.state
+        private val secondCasingState = GTCleanroomCasing.PLASCRETE.state
+        private val thirdCasingState = GTMetalCasing.STEEL_SOLID.state
+        private val gearboxCasingState = GTTurbineCasing.STEEL_GEARBOX.state
+        private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockMiningDroneAirport(metaTileEntityId)
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("    F     F", "    F     F", "     FCCCF ", "     F   F ", "           ", "           ")
@@ -82,11 +73,15 @@ class MultiblockMiningDroneAirport(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.SOLID_STEEL_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.MINING_DRONE_AIRPORT_OVERLAY
+
+    // @formatter:off
 
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
@@ -117,7 +112,9 @@ class MultiblockMiningDroneAirport(id: ResourceLocation)
         return shapeInfo
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    // @formatter:on
+
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.mining_drone_airport.tooltip.1"))

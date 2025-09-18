@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -10,14 +11,14 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.CONVEYOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -34,16 +35,13 @@ class MultiblockSifter(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = LargeSifterRecipeLogic(this)
+        recipeMapWorkable = LargeSifterRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.EGLIN_STEEL.state
-
-        private val secondCasingState
-            get() = GTMultiblockCasing.GRATE_CASING.state
+        private val casingState = MetalCasing.EGLIN_STEEL.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSifter(metaTileEntityId)
@@ -51,13 +49,13 @@ class MultiblockSifter(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.casingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
+        casingTier = context.getAttributeOrDefault(CONVEYOR_CASING_TIER, 0)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.casingTier = 0
+        casingTier = 0
     }
 
     // @formatter:off
@@ -85,13 +83,16 @@ class MultiblockSifter(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_SIFTER_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.large_sifter.tooltip.1"))
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_sifter.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.large_sifter.tooltip.3"))
+        addTooltip(tooltip)
+        {
+            machineType("LS")
+            description(true)
+            overclockInfo(FALLBACK)
+            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
+            parallelInfo(UpgradeType.CONVEYOR_CASING, 8)
+        }
     }
 
     override fun canBeDistinct() = true

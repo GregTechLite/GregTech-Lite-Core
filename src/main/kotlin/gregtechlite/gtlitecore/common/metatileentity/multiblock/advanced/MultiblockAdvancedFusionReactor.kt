@@ -51,7 +51,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
 
     init
     {
-        this.recipeMapWorkable = AdvancedFusionRecipeLogic(this)
+        recipeMapWorkable = AdvancedFusionRecipeLogic(this)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAdvancedFusionReactor(metaTileEntityId)
@@ -59,22 +59,22 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.fusionCasingTier = context.getAttributeOrDefault(FUSION_CASING_TIER, 0)
-        this.fusionCoilTier = context.getAttributeOrDefault(FUSION_COIL_TIER, 0)
-        this.cryostatTier = context.getAttributeOrDefault(CRYOSTAT_TIER, 0)
-        this.divertorTier = context.getAttributeOrDefault(DIVERTOR_TIER, 0)
-        this.vacuumTier = context.getAttributeOrDefault(VACUUM_TIER, 0)
-        this.tier = minOf(fusionCasingTier, fusionCoilTier, cryostatTier, divertorTier, vacuumTier)
+        fusionCasingTier = context.getAttributeOrDefault(FUSION_CASING_TIER, 0)
+        fusionCoilTier = context.getAttributeOrDefault(FUSION_COIL_TIER, 0)
+        cryostatTier = context.getAttributeOrDefault(CRYOSTAT_TIER, 0)
+        divertorTier = context.getAttributeOrDefault(DIVERTOR_TIER, 0)
+        vacuumTier = context.getAttributeOrDefault(VACUUM_TIER, 0)
+        tier = minOf(fusionCasingTier, fusionCoilTier, cryostatTier, divertorTier, vacuumTier)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.fusionCasingTier = 0
-        this.fusionCoilTier = 0
-        this.cryostatTier = 0
-        this.divertorTier = 0
-        this.vacuumTier = 0
+        fusionCasingTier = 0
+        fusionCoilTier = 0
+        cryostatTier = 0
+        divertorTier = 0
+        vacuumTier = 0
     }
 
     override fun initializeAbilities()
@@ -82,7 +82,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
         super.initializeAbilities()
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
     }
 
     // @formatter:off
@@ -127,6 +127,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
         .where(' ', any())
 
         .build()
+
     // @formatter:on
 
     @SideOnly(Side.CLIENT)

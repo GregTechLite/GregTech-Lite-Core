@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.GTValues.FALLBACK
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -9,7 +10,6 @@ import gregtech.api.pattern.*
 import gregtech.api.recipes.Recipe
 import gregtech.api.util.BlockInfo
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PROCESSOR_CASING_TIER
@@ -21,13 +21,13 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasin
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.block.state.IBlockState
-import net.minecraft.client.resources.I18n
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -55,19 +55,14 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = CosmicRayDetectorWorkableHandler(this)
+        recipeMapWorkable = CosmicRayDetectorWorkableHandler(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.QUANTUM_ALLOY.state
-
-        private val secondCasingState
-            get() = MultiblockCasing.REFLECTIVE_SURFACE_CASING.state
-
-        private val coilState
-            get() = GTFusionCasing.SUPERCONDUCTOR_COIL.state
+        private val casingState = MetalCasing.QUANTUM_ALLOY.state
+        private val secondCasingState = MultiblockCasing.REFLECTIVE_SURFACE_CASING.state
+        private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCosmicRayDetector(metaTileEntityId)
@@ -75,11 +70,11 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
-        this.sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
-        this.fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
-        this.processorCasingTier = context.getAttributeOrDefault(PROCESSOR_CASING_TIER, 0)
-        this.tier = minOf(emitterCasingTier, sensorCasingTier, fieldGenCasingTier, processorCasingTier)
+        emitterCasingTier = context.getAttributeOrDefault(EMITTER_CASING_TIER, 0)
+        sensorCasingTier = context.getAttributeOrDefault(SENSOR_CASING_TIER, 0)
+        fieldGenCasingTier = context.getAttributeOrDefault(FIELD_GEN_CASING_TIER, 0)
+        processorCasingTier = context.getAttributeOrDefault(PROCESSOR_CASING_TIER, 0)
+        tier = minOf(emitterCasingTier, sensorCasingTier, fieldGenCasingTier, processorCasingTier)
     }
 
     override fun invalidateStructure()
@@ -145,13 +140,16 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.cosmic_ray_detector.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.cosmic_ray_detector.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.cosmic_ray_detector.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.cosmic_ray_detector.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.cosmic_ray_detector.tooltip.5"))
+        addTooltip(tooltip)
+        {
+            machineType("CRD")
+            description(true,
+                        "gtlitecore.machine.cosmic_ray_detector.tooltip.1")
+            overclockInfo(FALLBACK)
+            description(false,
+                        "gtlitecore.machine.cosmic_ray_detector.tooltip.2",
+                        "gtlitecore.machine.cosmic_ray_detector.tooltip.3")
+        }
     }
 
     override fun canBeDistinct() =  false

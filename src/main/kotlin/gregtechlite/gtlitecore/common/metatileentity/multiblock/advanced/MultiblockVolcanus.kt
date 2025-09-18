@@ -27,10 +27,11 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
@@ -54,13 +55,12 @@ class MultiblockVolcanus(id: ResourceLocation) :
 
     init
     {
-        this.recipeMapWorkable = VolcanusRecipeLogic(this)
+        recipeMapWorkable = VolcanusRecipeLogic(this)
     }
 
     companion object
     {
-        private val casingState
-            get() = MetalCasing.HASTELLOY_C276.state
+        private val casingState = MetalCasing.HASTELLOY_C276.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockVolcanus(metaTileEntityId)
@@ -68,30 +68,30 @@ class MultiblockVolcanus(id: ResourceLocation) :
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        this.motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
+        motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
 
         val coilType = context.get<Any>(HEATING_COIL_STATS)
         if (coilType is IHeatingCoilBlockStats)
         {
-            this.coilTier = coilType.tier
-            this.temperature = coilType.coilTemperature
+            coilTier = coilType.tier
+            temperature = coilType.coilTemperature
         }
         else
         {
-            this.coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            this.temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
+            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
+            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
         }
 
-        this.tier = minOf(motorCasingTier, coilTier)
-        this.temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
+        tier = minOf(motorCasingTier, coilTier)
+        temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
     }
 
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.motorCasingTier = 0
-        this.coilTier = 0
-        this.temperature = 0
+        motorCasingTier = 0
+        coilTier = 0
+        temperature = 0
     }
 
     // @formatter:off
@@ -119,16 +119,20 @@ class MultiblockVolcanus(id: ResourceLocation) :
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.volcanus.tooltip.6"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.1"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.2"))
-        tooltip.add(I18n.format("gregtech.machine.electric_blast_furnace.tooltip.3"))
+        addTooltip(tooltip)
+        {
+            machineType("Vol, AEBF")
+            description(true,
+                        "gtlitecore.machine.volcanus.tooltip.1",
+                        "gtlitecore.machine.volcanus.tooltip.2")
+            overclockInfo(UV)
+            durationInfo(UpgradeType.WIRE_COIL, 80)
+            parallelInfo(UpgradeType.MOTOR_CASING, 16)
+            description(false,
+                        "gregtech.machine.electric_blast_furnace.tooltip.1",
+                        "gregtech.machine.electric_blast_furnace.tooltip.2",
+                        "gregtech.machine.electric_blast_furnace.tooltip.3")
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)

@@ -41,8 +41,7 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
 
     companion object
     {
-        private val casingState
-            get() = AerospaceCasing.ELEVATOR_BASE_CASING.state
+        private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSpaceAssembler(metaTileEntityId, tier, moduleTier, minCasingTier)
@@ -55,6 +54,8 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
         outputInventory = ItemHandlerList(getAbilities(EXPORT_ITEMS))
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("C", "C", "C", "C", "C")
         .aisle("C", "C", "C", "S", "C")
@@ -63,6 +64,8 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
             .or(abilities(IMPORT_ITEMS, EXPORT_ITEMS, IMPORT_FLUIDS)
                 .setPreviewCount(0)))
         .build()
+
+    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_BASE_CASING
