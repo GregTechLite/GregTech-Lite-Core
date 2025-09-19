@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VOC
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
@@ -15,7 +14,6 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.KeyManager
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
-import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.metatileentity.multiblock.ui.UISyncer
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -30,7 +28,9 @@ import gregtech.api.util.KeyUtil
 import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -38,7 +38,6 @@ import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
-import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -79,19 +78,10 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
     {
         super.formStructure(context)
 
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            tier = coilType.tier
-            level = coilType.level
-            temperature = coilType.coilTemperature
-        }
-        else
-        {
-            tier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            level = BlockWireCoil.CoilType.CUPRONICKEL.level
-            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
-        }
+        tier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
+        level = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).level
+
+        temperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
         temperature += 1000 * max(0, getTierByVoltage(energyContainer.inputVoltage) - LV)
     }
 
@@ -149,7 +139,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         .where('E', states(thirdCasingState))
         .where('F', states(fourthCasingState))
         .where('D', states(glassState))
-        .where('G', heatingCoils())
+        .where('G', coils())
         .where(' ', any())
         .build()
 

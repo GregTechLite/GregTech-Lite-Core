@@ -12,8 +12,6 @@ import gregtech.api.unification.material.Materials.*
 import gregtech.api.util.GTUtility.*
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.common.blocks.BlockTurbineCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtech.common.metatileentities.multi.electric.generator.MetaTileEntityLargeTurbine
 import gregtech.common.metatileentities.storage.MetaTileEntityBuffer
@@ -116,6 +114,7 @@ import gregtechlite.gtlitecore.common.metatileentity.storage.MetaTileEntityExten
 import gregtechlite.gtlitecore.common.metatileentity.storage.MetaTileEntityPlasticCan
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler
 import net.minecraftforge.items.CapabilityItemHandler
+import java.util.function.Function
 
 object GTLiteMetaTileEntities
 {
@@ -123,7 +122,7 @@ object GTLiteMetaTileEntities
     // @formatter:off
 
     @JvmField
-    var collectorTankSizeFunction = java.util.function.Function<Int, Int> { tier ->
+    var collectorTankSizeFunction = Function<Int, Int> { tier ->
         when
         {
             tier <= LV -> 16000
@@ -136,31 +135,31 @@ object GTLiteMetaTileEntities
     /* -------------------------------------------------------------------------------------------------------------- */
 
     // Single Machines
-    lateinit var POLISHER: Array<SimpleMachineMetaTileEntity>
-    lateinit var SLICER: Array<SimpleMachineMetaTileEntity>
+    lateinit var POLISHER: Array<SimpleMachineMetaTileEntity?>
+    lateinit var SLICER: Array<SimpleMachineMetaTileEntity?>
     lateinit var TOOL_CASTER: Array<SimpleMachineMetaTileEntity>
-    lateinit var LOOM: Array<SimpleMachineMetaTileEntity>
-    lateinit var LAMINATOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var CHEMICAL_DEHYDRATOR: Array<SimpleMachineMetaTileEntity>
+    lateinit var LOOM: Array<SimpleMachineMetaTileEntity?>
+    lateinit var LAMINATOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var CHEMICAL_DEHYDRATOR: Array<SimpleMachineMetaTileEntity?>
     lateinit var STEAM_VULCANIZING_PRESS: Array<SimpleSteamMachineMetaTileEntity>
-    lateinit var VULCANIZING_PRESS: Array<SimpleMachineMetaTileEntity>
+    lateinit var VULCANIZING_PRESS: Array<SimpleMachineMetaTileEntity?>
     lateinit var STEAM_VACUUM_CHAMBER: Array<SimpleSteamMachineMetaTileEntity>
-    lateinit var VACUUM_CHAMBER: Array<SimpleMachineMetaTileEntity>
+    lateinit var VACUUM_CHAMBER: Array<SimpleMachineMetaTileEntity?>
     lateinit var STEAM_SAP_COLLECTOR: Array<PseudoMultiSteamMachineMetaTileEntity>
     lateinit var SAP_COLLECTOR: Array<PseudoMultiMachineMetaTileEntity>
-    lateinit var GREENHOUSE: Array<SimpleMachineMetaTileEntity>
-    lateinit var BIO_REACTOR: Array<SimpleMachineMetaTileEntity>
+    lateinit var GREENHOUSE: Array<SimpleMachineMetaTileEntity?>
+    lateinit var BIO_REACTOR: Array<SimpleMachineMetaTileEntity?>
     lateinit var STEAM_ROASTER: Array<SimpleSteamMachineMetaTileEntity>
-    lateinit var ROASTER: Array<SimpleMachineMetaTileEntity>
-    lateinit var BURNER_REACTOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var BATH_CONDENSER: Array<SimpleMachineMetaTileEntity>
-    lateinit var CRYOGENIC_REACTOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var MASS_FABRICATOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var REPLICATOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var FOOD_PROCESSOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var MULTICOOKER: Array<SimpleMachineMetaTileEntity>
+    lateinit var ROASTER: Array<SimpleMachineMetaTileEntity?>
+    lateinit var BURNER_REACTOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var BATH_CONDENSER: Array<SimpleMachineMetaTileEntity?>
+    lateinit var CRYOGENIC_REACTOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var MASS_FABRICATOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var REPLICATOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var FOOD_PROCESSOR: Array<SimpleMachineMetaTileEntity?>
+    lateinit var MULTICOOKER: Array<SimpleMachineMetaTileEntity?>
     lateinit var MOB_EXTRACTOR: Array<SimpleMachineMetaTileEntity>
-    lateinit var BIO_SIMULATOR: Array<SimpleMachineMetaTileEntity>
+    lateinit var BIO_SIMULATOR: Array<SimpleMachineMetaTileEntity?>
     lateinit var ROCKET_ENGINE: Array<SimpleGeneratorMetaTileEntity>
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
@@ -835,14 +834,13 @@ private fun register(startId: Int,
                      map: RecipeMap<*>,
                      texture: ICubeRenderer,
                      hasFrontFacing: Boolean,
-                     tankScalingFunction: java.util.function.Function<Int, Int>) : Array<SimpleMachineMetaTileEntity>
+                     tankScalingFunction: Function<Int, Int>) : Array<SimpleMachineMetaTileEntity?>
 {
     val machines = arrayOfNulls<SimpleMachineMetaTileEntity>(length)
     MetaTileEntities.registerSimpleMetaTileEntity(machines, startId, name, map, texture, hasFrontFacing,
         GTLiteMod::id, tankScalingFunction)
-    return machines.filterNotNull()
-        .onEach { it.addAdditionalCreativeTabs(GTLiteCreativeTabs.TAB_MACHINE) }
-        .toTypedArray()
+    machines.filterNotNull().forEach { it.addAdditionalCreativeTabs(GTLiteCreativeTabs.TAB_MACHINE) }
+    return machines
 }
 
 private fun register(startId: Int,

@@ -130,7 +130,6 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
@@ -138,7 +137,6 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
@@ -289,7 +287,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
@@ -303,7 +300,6 @@ import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
@@ -584,7 +580,7 @@ internal object MachineRecipeLoader
             'A', AUTOCLAVE[IV].stackForm,
             'G', UnificationEntry(gear, WatertightSteel),
             'P', ELECTRIC_PUMP_IV,
-            'V', VACUUM_CHAMBER[IV].stackForm,
+            'V', VACUUM_CHAMBER[IV]!!.stackForm,
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV))
 
@@ -672,7 +668,7 @@ internal object MachineRecipeLoader
         // Large Bio Reactor
         ModHandler.addShapedRecipe(true, "large_bio_reactor", LARGE_BIO_REACTOR.stackForm,
             "UGU", "XRX", "WPW",
-            'R', BIO_REACTOR[IV].stackForm,
+            'R', BIO_REACTOR[IV]!!.stackForm,
             'X', UnificationEntry(circuit, Tier.IV),
             'P', UnificationEntry(pipeLargeFluid, TungstenSteel),
             'W', UnificationEntry(cableGtSingle, Platinum),
@@ -710,8 +706,8 @@ internal object MachineRecipeLoader
         // Large Burner Reactor
         ModHandler.addShapedRecipe(true, "large_burner_reactor", LARGE_BURNER_REACTOR.stackForm,
             "PUP", "BXR", "WDW",
-            'B', BURNER_REACTOR[IV].stackForm,
-            'R', ROASTER[IV].stackForm,
+            'B', BURNER_REACTOR[IV]!!.stackForm,
+            'R', ROASTER[IV]!!.stackForm,
             'D', UnificationEntry(plateDense, EglinSteel),
             'P', ELECTRIC_PISTON_IV,
             'U', ELECTRIC_PUMP_IV,
@@ -721,8 +717,8 @@ internal object MachineRecipeLoader
         // Large Cryogenic Reactor
         ModHandler.addShapedRecipe(true, "large_cryogenic_reactor", LARGE_CRYOGENIC_REACTOR.stackForm,
             "UPU", "CXA", "WDW",
-            'C', CRYOGENIC_REACTOR[IV].stackForm,
-            'A', BATH_CONDENSER[IV].stackForm,
+            'C', CRYOGENIC_REACTOR[IV]!!.stackForm,
+            'A', BATH_CONDENSER[IV]!!.stackForm,
             'D', UnificationEntry(plateDense, StainlessSteel),
             'P', ELECTRIC_PISTON_IV,
             'U', ELECTRIC_PUMP_IV,
@@ -808,7 +804,7 @@ internal object MachineRecipeLoader
             .EUt(VA[ZPM])
             .duration(2 * MINUTE)
             .scannerResearch { r ->
-                r.researchStack(MASS_FABRICATOR[LuV].stackForm)
+                r.researchStack(MASS_FABRICATOR[LuV]!!.stackForm)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -835,7 +831,7 @@ internal object MachineRecipeLoader
             .EUt(VA[UV])
             .duration(2 * MINUTE)
             .stationResearch { r ->
-                r.researchStack(REPLICATOR[ZPM].stackForm)
+                r.researchStack(REPLICATOR[ZPM]!!.stackForm)
                     .EUt(VA[ZPM])
                     .CWUt(8)
             }
@@ -864,8 +860,8 @@ internal object MachineRecipeLoader
         ModHandler.addShapedRecipe(true, "large_food_processor", LARGE_FOOD_PROCESSOR.stackForm,
             "RPS", "AHB", "WXW",
             'H', HULL[MV].stackForm,
-            'A', FOOD_PROCESSOR[MV].stackForm,
-            'B', MULTICOOKER[MV].stackForm,
+            'A', FOOD_PROCESSOR[MV]!!.stackForm,
+            'B', MULTICOOKER[MV]!!.stackForm,
             'R', ROBOT_ARM_MV.stackForm,
             'S', SENSOR_MV.stackForm,
             'P', ELECTRIC_PUMP_MV.stackForm,
@@ -1533,7 +1529,7 @@ internal object MachineRecipeLoader
             'L', UnificationEntry(pipeLargeFluid, Titanium),
             'G', UnificationEntry(gear, TantalumCarbide),
             'H', HULL[EV].stackForm,
-            'P', ELECTRIC_PUMP_EV);
+            'P', ELECTRIC_PUMP_EV)
 
     }
 

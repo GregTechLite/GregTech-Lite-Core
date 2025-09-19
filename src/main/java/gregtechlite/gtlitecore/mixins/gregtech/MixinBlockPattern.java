@@ -8,6 +8,7 @@ import gregtech.api.util.BlockInfo;
 import gregtech.api.util.RelativeDirection;
 import gregtechlite.gtlitecore.api.pattern.BlockPatternExtension;
 import gregtechlite.gtlitecore.api.pattern.GTLitePredicate;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -26,6 +27,8 @@ import java.util.stream.Stream;
 @Mixin(value = BlockPattern.class, remap = false)
 public abstract class MixinBlockPattern implements BlockPatternExtension
 {
+    @Unique
+    private static final Object CENTER_INFO = new Object();
 
     @Shadow
     static EnumFacing[] FACINGS;
@@ -101,9 +104,9 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                     {
                         TraceabilityPredicate predicate = this.blockMatches[l][y][z];
                         boolean find = false;
-                        // patch
+                        // region patch
                         boolean previewCandidates = false;
-                        // patch end
+                        // endregion
                         BlockInfo[] infos = null;
                         for (TraceabilityPredicate.SimplePredicate limit : predicate.limited) // check layer and
                         {
@@ -148,9 +151,9 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                             }
                             infos = cacheInfos.get(limit);
                             find = true;
-                            // patch
+                            // region patch
                             previewCandidates = gtlitecore$shouldPreviewCandidates(limit);
-                            // patch end
+                            // endregion
                             break;
                         }
                         if (!find) // check global and previewCount
@@ -198,9 +201,9 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                                 }
                                 infos = cacheInfos.get(limit);
                                 find = true;
-                                // patch
+                                // region patch
                                 previewCandidates = gtlitecore$shouldPreviewCandidates(limit);
-                                // patch end
+                                // endregion
                                 break;
                             }
                         }
@@ -232,9 +235,9 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                                 }
                                 infos = cacheInfos.get(common);
                                 find = true;
-                                // patch
+                                // region patch
                                 previewCandidates = gtlitecore$shouldPreviewCandidates(common);
-                                // patch end
+                                // endregion
                                 break;
                             }
                         }
@@ -251,9 +254,9 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                                     }
                                     infos = cacheInfos.get(common);
                                     find = true;
-                                    // patch
+                                    // region patch
                                     previewCandidates = gtlitecore$shouldPreviewCandidates(common);
-                                    // patch end
+                                    // endregion
                                     break;
                                 }
                             }
@@ -301,16 +304,23 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                                     cacheInfos.put(limit, limit.candidates == null ? null : limit.candidates.get());
                                 }
                                 infos = cacheInfos.get(limit);
-                                // patch
+                                // region patch
                                 previewCandidates = gtlitecore$shouldPreviewCandidates(limit);
-                                // patch end
+                                // endregion
                                 break;
                             }
                         }
-                        // patch
-                        int index = previewCandidates ? Math.min(candidateIndex, infos.length - 1) : 0;
-                        BlockInfo info = infos == null || infos.length == 0 ? BlockInfo.EMPTY : infos[index];
-                        // patch end
+                        // region patch
+                        BlockInfo info = BlockInfo.EMPTY;
+                        if (infos != null && infos.length > 0)
+                        {
+                            int index = previewCandidates
+                                    ? Math.min(candidateIndex, infos.length - 1)
+                                    : 0;
+                            info = infos[index];
+                        }
+                        // endregion
+                        // CEu assumed that the controller is facing south
                         BlockPos pos = RelativeDirection.setActualRelativeOffset(z, y, x, EnumFacing.NORTH,
                                 EnumFacing.UP, false, structureDir);
                         // TODO
@@ -319,7 +329,17 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
                             MetaTileEntityHolder holder = new MetaTileEntityHolder();
                             holder.setMetaTileEntity(((MetaTileEntityHolder) info.getTileEntity()).getMetaTileEntity());
                             holder.getMetaTileEntity().onPlacement();
-                            info = new BlockInfo(holder.getMetaTileEntity().getBlock().getDefaultState(), holder);
+                            IBlockState state = holder.getMetaTileEntity().getBlock().getDefaultState();
+                            // region patch
+                            if (((AccessorTraceabilityPredicate) predicate).isCenter())
+                            {
+                                info = new BlockInfo(state, holder, CENTER_INFO);
+                            }
+                            else
+                            {
+                                info = new BlockInfo(state, holder);
+                            }
+                            // endregion
                         }
                         blocks.put(pos, info);
                         minX = Math.min(pos.getX(), minX);
@@ -342,31 +362,40 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
             if (info.getTileEntity() instanceof MetaTileEntityHolder)
             {
                 MetaTileEntity metaTileEntity = ((MetaTileEntityHolder) info.getTileEntity()).getMetaTileEntity();
-                boolean find = false;
-                for (EnumFacing enumFacing : FACINGS)
+                // region patch
+                if (!CENTER_INFO.equals(info.getInfo()))
                 {
-                    if (metaTileEntity.isValidFrontFacing(enumFacing))
-                    {
-                        if (!blocks.containsKey(pos.offset(enumFacing)))
-                        {
-                            metaTileEntity.setFrontFacing(enumFacing);
-                            find = true;
-                            break;
-                        }
-                    }
-                }
-                if (!find)
-                {
+                    boolean find = false;
                     for (EnumFacing enumFacing : FACINGS)
                     {
-                        BlockInfo blockInfo = blocks.get(pos.offset(enumFacing));
-                        if (blockInfo != null && blockInfo.getBlockState().getBlock() == Blocks.AIR &&
-                                metaTileEntity.isValidFrontFacing(enumFacing)) {
-                            metaTileEntity.setFrontFacing(enumFacing);
-                            break;
+                        if (metaTileEntity.isValidFrontFacing(enumFacing))
+                        {
+                            if (!blocks.containsKey(pos.offset(enumFacing)))
+                            {
+                                metaTileEntity.setFrontFacing(enumFacing);
+                                find = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!find)
+                    {
+                        for (EnumFacing enumFacing : FACINGS)
+                        {
+                            BlockInfo blockInfo = blocks.get(pos.offset(enumFacing));
+                            if (blockInfo != null && blockInfo.getBlockState().getBlock() == Blocks.AIR &&
+                                    metaTileEntity.isValidFrontFacing(enumFacing)) {
+                                metaTileEntity.setFrontFacing(enumFacing);
+                                break;
+                            }
                         }
                     }
                 }
+                else
+                {
+                    metaTileEntity.setFrontFacing(EnumFacing.SOUTH);
+                }
+                // endregion
             }
             result[pos.getX() - finalMinX][pos.getY() - finalMinY][pos.getZ() - finalMinZ] = info;
         });

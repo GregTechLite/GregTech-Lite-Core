@@ -3,7 +3,6 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -22,8 +21,9 @@ import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
@@ -72,20 +72,10 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
     {
         super.formStructure(context)
         pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            coilTier = coilType.tier
-            temperature = coilType.coilTemperature
-        }
-        else
-        {
-            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
-        }
-
+        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         tier = minOf(pumpCasingTier, coilTier)
+
+        temperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
         temperature += 100 * max(0, getTierByVoltage(energyContainer.inputVoltage) - MV)
     }
 
@@ -111,7 +101,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
         .where('Q', states(pipeCasingState))
         .where('U', states(uniqueCasingState))
         .where('O', abilities(MUFFLER_HATCH))
-        .where('H', heatingCoils())
+        .where('H', coils())
         .where('P', pumpCasings())
         .where('#', air())
         .where(' ', any())

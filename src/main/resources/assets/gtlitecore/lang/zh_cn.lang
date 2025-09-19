@@ -3730,6 +3730,8 @@ gtlitecore.material.axino_fused_red_matter.formula=§7暗物质与超对称轴�
 
 gtlitecore.material.dimensionally_shifted_superfluid=维度偏移超流体
 
+gtlitecore.material.eternity_plus_token=永恒+
+
 # Material Overriden
 item.gregtech.material.graphite.fuelRod=石墨慢化棒
 item.gregtech.material.graphite.fuelRodEnriched=浓缩石墨慢化棒

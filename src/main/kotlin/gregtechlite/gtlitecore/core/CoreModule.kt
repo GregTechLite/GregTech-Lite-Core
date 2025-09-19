@@ -134,6 +134,9 @@ internal class CoreModule : CustomModule
 
         logger.debug("Adding the mod contents to vanilla Grass Drops Table")
         VanillaDropsLoader.addSeedDrops()
+
+        logger.debug("Starting to load Post Load contents by Proxies")
+        proxy.onPostInit()
     }
     
     override fun loadComplete(event: FMLLoadCompleteEvent)

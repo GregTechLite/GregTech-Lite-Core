@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.GTValues.FALLBACK
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -13,7 +12,9 @@ import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -47,8 +48,7 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        coilTier = if (coilType is IHeatingCoilBlockStats) coilType.tier else BlockWireCoil.CoilType.CUPRONICKEL.tier
+        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
     }
 
     override fun invalidateStructure()
@@ -68,7 +68,7 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
         .where('C', states(casingState)
             .setMinGlobalLimited(12)
             .or(autoAbilities(true, true, true, true, true, true, true)))
-        .where('H', heatingCoils())
+        .where('H', coils())
         .build()
 
     // @formatter:on

@@ -24,12 +24,6 @@ object TraceabilityPredicates
     @JvmStatic
     val SNOW_LAYER = TraceabilityPredicate { bws -> GTUtility.isBlockSnow(bws.blockState) }
 
-    // region GTCEu Tiered Stats
-
-    const val HEATING_COIL_STATS: String = "CoilType"
-
-    // endregion
-
     // region Block Attribute Suitable Tiered Stats
 
     @JvmStatic
@@ -95,6 +89,9 @@ object TraceabilityPredicates
     @JvmStatic
     fun cleanroomCasings() = tierBlock(GTLiteAPI.CLEANROOM_CASING_TIER)
 
+    @JvmStatic
+    fun coils() = tierBlock(GTLiteAPI.COIL_TIER)
+
     // endregion
 
     // region Block Attribute Getter
@@ -144,6 +141,7 @@ object TraceabilityPredicates
     // endregion
 
     // region Specified Block Counter
+
     @JvmStatic
     fun airCounter() = counter("length", TraceabilityPredicate.AIR)
 
@@ -173,6 +171,7 @@ object TraceabilityPredicates
             .addTooltip("gregtech.multiblock.pattern.error.limited.0", GTValues.VN[voltageTier])
     }
 
+    @JvmStatic
     fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate { blockWorldState ->
         val state: IBlockState = blockWorldState.blockState
         if (state.block is VariantActiveBlock<*>)

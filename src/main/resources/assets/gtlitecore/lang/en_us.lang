@@ -3724,6 +3724,8 @@ gtlitecore.material.axino_fused_red_matter.formula=§7Hot Dark Matter formed by 
 
 gtlitecore.material.dimensionally_shifted_superfluid=Dimensionally Shifted Superfluid
 
+gtlitecore.material.eternity_plus_token=Eternity+
+
 # Material Overriden
 item.gregtech.material.graphite.fuelRod=Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodEnriched=Enriched Graphite Moderate Rod

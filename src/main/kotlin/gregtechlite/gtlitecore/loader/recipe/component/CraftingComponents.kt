@@ -283,6 +283,7 @@ object CraftingComponents
     //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
     //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyLight,
     //      12: SuperheavyAlloyHeavy, 13: Periodicium, 14: RealizedQuantumFoamShard
+    @JvmStatic
     val SPRING_SMALL = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(springSmall, Lead),
         LV  to UnificationEntry(springSmall, Tin),
@@ -306,6 +307,7 @@ object CraftingComponents
     //      6: NiobiumTitanium, 7: VanadiumGallium, 8: YttriumBariumCuprate,
     //      9: Europium, 10: Seaborgium, 11: SuperheavyAlloyA, 12: SuperheavyAlloyB,
     //      13: Periodicium, 14: RealizedQuantumFoamShard
+    @JvmStatic
     val CABLE_COMPONENT = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(cableGtSingle, RedAlloy),
         LV  to UnificationEntry(cableGtSingle, Tin),
@@ -329,6 +331,7 @@ object CraftingComponents
     //      5: TungstenSteel, 6: HSSS, 7: Osmiridium, 8: Tritanium, 9: Adamantium,
     //      10: CosmicNeutronium, 11: HeavyQuarkDegenerateMatter, 12: TranscendentMetal,
     //      13: MagnetohydrodynamicallyConstrainedStarMatter, 14: Omnium
+    @JvmStatic
     val PLATE_COMPONENT = CraftingComponent.Component(mapOf(
         ULV to UnificationEntry(plate, WroughtIron),
         LV  to UnificationEntry(plate, Steel),

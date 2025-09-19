@@ -1,10 +1,13 @@
 package gregtechlite.gtlitecore.api
 
 import gregtech.api.GregTechAPI
+import gregtech.api.block.IHeatingCoilBlockStats
 import gregtechlite.gtlitecore.api.advancement.AdvancementManager
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
-import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry.Companion.registerBlockVariants
+import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistryWrapper
+import gregtechlite.gtlitecore.api.block.attribute.DefaultBlockAttributeRegistry
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
+import gregtechlite.gtlitecore.api.block.attribute.registerBlockVariants
 import gregtechlite.gtlitecore.api.command.CommandManager
 import gregtechlite.gtlitecore.api.module.ModuleManager
 import gregtechlite.gtlitecore.api.network.NetworkHandler
@@ -128,7 +131,10 @@ object GTLiteAPI
     val CLEANROOM_CASING_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("cleanroom_casing_tier")
 
     @JvmField
-    val CRUCIBLE_STATS: BlockAttributeRegistry<Crucible> = BlockAttributeRegistry("crucible_stats", StateTier.COMPARATOR)
+    val CRUCIBLE_STATS: BlockAttributeRegistry<Crucible> = DefaultBlockAttributeRegistry("crucible_stats", StateTier.COMPARATOR)
+
+    @JvmField
+    val COIL_TIER: BlockAttributeRegistry<IHeatingCoilBlockStats> = BlockAttributeRegistryWrapper("CoilType", GregTechAPI.HEATING_COILS, Comparator.comparingInt { it.tier })
 
     // endregion
 
@@ -177,11 +183,7 @@ object GTLiteAPI
         CLEANROOM_CASING_TIER.registerAll(GTCleanroomCasing.FILTER_CASING.state to 1,
                                           GTCleanroomCasing.FILTER_CASING_STERILE.state to 2)
 
-        for (type in WireCoil.entries)
-        {
-            GregTechAPI.HEATING_COILS.put(type.state, type)
-        }
-
+        COIL_TIER.registerBlockVariants(WireCoil::class)
     }
 
     // @formatter:on

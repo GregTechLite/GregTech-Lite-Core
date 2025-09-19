@@ -22,8 +22,9 @@ import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockWireCoil
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
@@ -69,20 +70,10 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
     {
         super.formStructure(context)
         motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            coilTier = coilType.tier
-            temperature = coilType.coilTemperature
-        }
-        else
-        {
-            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
-        }
-
+        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         tier = minOf(motorCasingTier, coilTier)
+
+        temperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
         temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
     }
 
@@ -109,7 +100,7 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
         .where('O', abilities(MUFFLER_HATCH))
         .where('F', frames(Titanium))
         .where('M', motorCasings())
-        .where('H', heatingCoils())
+        .where('H', coils())
         .where(' ', any())
         .build()
 

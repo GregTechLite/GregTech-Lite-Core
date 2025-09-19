@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.GTValues.FALLBACK
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -14,8 +13,9 @@ import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockWireCoil
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
@@ -57,9 +57,7 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     {
         super.formStructure(context)
         pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        coilTier = if (coilType is IHeatingCoilBlockStats) coilType.tier else BlockWireCoil.CoilType.CUPRONICKEL.tier
+        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         tier = minOf(pumpCasingTier, coilTier)
     }
 
@@ -83,7 +81,7 @@ class MultiblockChemicalPlant(id: ResourceLocation)
             .setMinGlobalLimited(20)
             .or(autoAbilities(true, true, true, true, true, true, false)))
         .where('Q', states(pipeCasingState))
-        .where('H', heatingCoils())
+        .where('H', coils())
         .where('P', pumpCasings())
         .where(' ', any())
         .build()

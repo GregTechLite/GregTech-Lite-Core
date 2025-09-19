@@ -141,6 +141,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurpleDrink
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EternityPlusToken
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuasifissioningPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthChloridesSolution
@@ -1110,6 +1111,11 @@ object GTLiteUnknownCompositionMaterials
                 .customStill())
             .build()
 
+        // ...
+
+        // 14000 Eternity+ (Token)
+        EternityPlusToken = Material.Builder(14000, GTLiteMod.id("eternity_plus_token"))
+            .build()
     }
 
     // @formatter:on

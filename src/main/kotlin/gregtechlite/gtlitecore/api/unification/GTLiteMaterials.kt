@@ -879,6 +879,8 @@ object GTLiteMaterials
 
     lateinit var DimensionallyShiftedSuperfluid: Material
 
+    lateinit var EternityPlusToken: Material
+
     // endregion
 
     fun init()

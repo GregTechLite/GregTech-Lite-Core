@@ -37,6 +37,8 @@ import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 public class CommonProxy
 {
 
+    // region FML Lifecycle Registries
+
     public void onPreInit()
     {
         GTLiteRecipeMaps.preInit();
@@ -48,6 +50,13 @@ public class CommonProxy
     {
         GTLiteRecipeBackends.init();
     }
+
+    public void onPostInit()
+    {
+        GTLiteRecipeBackends.postInit();
+    }
+
+    // endregion
 
     @SubscribeEvent
     public static void syncConfigValues(ConfigChangedEvent.OnConfigChangedEvent event)

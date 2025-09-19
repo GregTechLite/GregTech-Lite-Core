@@ -23,8 +23,9 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockWireCoil
 import gregtech.core.sound.GTSoundEvents
+import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.HEATING_COIL_STATS
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
@@ -69,20 +70,10 @@ class MultiblockVolcanus(id: ResourceLocation) :
     {
         super.formStructure(context)
         motorCasingTier = context.getAttributeOrDefault(MOTOR_CASING_TIER, 0)
-
-        val coilType = context.get<Any>(HEATING_COIL_STATS)
-        if (coilType is IHeatingCoilBlockStats)
-        {
-            coilTier = coilType.tier
-            temperature = coilType.coilTemperature
-        }
-        else
-        {
-            coilTier = BlockWireCoil.CoilType.CUPRONICKEL.tier
-            temperature = BlockWireCoil.CoilType.CUPRONICKEL.coilTemperature
-        }
-
+        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         tier = minOf(motorCasingTier, coilTier)
+
+        temperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
         temperature += 100 * max(0, getTierByVoltage(getEnergyContainer().inputVoltage) - MV)
     }
 
@@ -106,7 +97,7 @@ class MultiblockVolcanus(id: ResourceLocation) :
             .or(autoAbilities(true, true, true, true, true, true, false)))
         .where('O', abilities(MUFFLER_HATCH))
         .where('M', motorCasings())
-        .where('C', heatingCoils())
+        .where('C', coils())
         .build()
 
     // @formatter:on

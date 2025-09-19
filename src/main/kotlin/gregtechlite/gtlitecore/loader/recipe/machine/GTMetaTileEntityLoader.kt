@@ -100,9 +100,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_EV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_HV
