@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.common.block
 
 import com.google.common.collect.Lists
 import gregtech.core.CoreModule
-import gregtechlite.magicbook.client.Games
-import gregtechlite.magicbook.util.LeafDecayUpdate
+import com.morphismmc.morphismlib.client.Games
+import com.morphismmc.morphismlib.util.LeafDecayUpdate
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock

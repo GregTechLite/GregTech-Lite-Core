@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.core
 
-import gregtechlite.magicbook.util.SidedLogger
+import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.MOD_NAME

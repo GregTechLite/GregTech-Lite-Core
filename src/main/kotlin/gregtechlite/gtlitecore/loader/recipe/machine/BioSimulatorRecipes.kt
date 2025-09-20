@@ -37,7 +37,7 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtechlite.magicbook.integration.Mods
+import com.morphismmc.morphismlib.integration.Mods
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND

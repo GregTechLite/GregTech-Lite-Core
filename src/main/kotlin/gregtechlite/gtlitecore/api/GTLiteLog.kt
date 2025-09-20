@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api
 
-import gregtechlite.magicbook.util.SidedLogger
+import com.morphismmc.morphismlib.util.SidedLogger
 import org.apache.logging.log4j.Logger
 
 object GTLiteLog

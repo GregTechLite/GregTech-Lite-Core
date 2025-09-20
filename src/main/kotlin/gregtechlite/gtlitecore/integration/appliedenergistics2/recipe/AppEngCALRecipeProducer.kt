@@ -17,7 +17,7 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import gregtechlite.magicbook.integration.Mods
+import com.morphismmc.morphismlib.integration.Mods
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt

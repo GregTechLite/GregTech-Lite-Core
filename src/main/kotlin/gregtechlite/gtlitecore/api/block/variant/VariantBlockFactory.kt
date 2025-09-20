@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.block.variant
 
+import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.block.VariantBlock
-import gregtechlite.magicbook.util.Unchecks
 import gregtechlite.gtlitecore.api.block.variant.types.makeCrucibleBlock
 import gregtechlite.gtlitecore.api.block.variant.types.makeMetalActiveBlock
 import gregtechlite.gtlitecore.api.block.variant.types.makeMetalBlock

@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.client.shader;
 
 import gregtechlite.gtlitecore.api.GTLiteLog;
-import gregtechlite.magicbook.client.Games;
+import com.morphismmc.morphismlib.client.Games;
 import net.minecraft.client.renderer.OpenGlHelper;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.ARBFragmentShader;

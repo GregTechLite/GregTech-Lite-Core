@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.common.creativetabs
 
-import gregtechlite.magicbook.creativetab.CustomCreativeTab
+import com.morphismmc.morphismlib.creativetab.CustomCreativeTab
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD

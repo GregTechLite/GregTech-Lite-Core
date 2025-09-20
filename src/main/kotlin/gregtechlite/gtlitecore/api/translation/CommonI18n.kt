@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api.translation
 
-import gregtechlite.magicbook.util.LogicalSides
+import com.morphismmc.morphismlib.util.LogicalSides
 import net.minecraft.client.resources.I18n
 
 object CommonI18n

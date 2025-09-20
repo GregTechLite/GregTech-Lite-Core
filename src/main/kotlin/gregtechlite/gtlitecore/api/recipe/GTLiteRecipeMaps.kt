@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.api.recipe
 
+import com.morphismmc.morphismlib.integration.Mods
 import crafttweaker.annotations.ZenRegister
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.widgets.ProgressWidget
@@ -12,7 +13,6 @@ import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
-import gregtechlite.magicbook.integration.Mods
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures

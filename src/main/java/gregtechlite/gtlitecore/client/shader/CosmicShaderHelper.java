@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.client.shader;
 
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
-import gregtechlite.magicbook.client.Games;
+import com.morphismmc.morphismlib.client.Games;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

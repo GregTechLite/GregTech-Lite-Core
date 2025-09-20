@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.worldgen
 
 import gregtech.api.GTValues
 import gregtech.api.util.FileUtility
-import gregtechlite.magicbook.util.SidedLogger
+import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID

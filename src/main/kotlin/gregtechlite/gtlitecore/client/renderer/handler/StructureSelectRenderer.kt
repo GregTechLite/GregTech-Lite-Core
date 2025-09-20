@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.client.renderer.handler
 
 import gregtech.client.utils.RenderBufferHelper
 import gregtechlite.gtlitecore.common.item.behavior.StructureWriterBehavior
-import gregtechlite.magicbook.client.Games
+import com.morphismmc.morphismlib.client.Games
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats

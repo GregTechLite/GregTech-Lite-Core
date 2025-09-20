@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.core.command;
 
-import gregtechlite.magicbook.collection.ListOps;
+import com.morphismmc.morphismlib.collection.ListOps;
 import lombok.NoArgsConstructor;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.command.CommandException;

@@ -41,6 +41,6 @@
     "client.MixinMetaPrefixItem",
     "client.MixinMetaTileEntityFusionReactor",
     "client.MixinMetaValueItem",
-    "MixinJustEnoughItemsModule"
+    "client.MixinJustEnoughItemsModule"
   ]
 }

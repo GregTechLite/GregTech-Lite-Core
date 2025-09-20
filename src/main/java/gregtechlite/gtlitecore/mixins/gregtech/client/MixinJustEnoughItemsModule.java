@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.mixins.gregtech;
+package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;

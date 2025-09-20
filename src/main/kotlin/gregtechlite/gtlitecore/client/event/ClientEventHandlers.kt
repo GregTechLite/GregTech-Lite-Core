@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.client.event
 
+import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.GTValues.VOCNF
 import gregtech.api.unification.OreDictUnifier
 import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
@@ -8,7 +9,6 @@ import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import gregtechlite.gtlitecore.common.block.BlockMetalWall
 import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
-import gregtechlite.magicbook.util.ItemUtil
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemBlock
@@ -23,6 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import org.lwjgl.BufferUtils
 import java.nio.FloatBuffer
 
+@Suppress("unused")
 @SideOnly(Side.CLIENT)
 object ClientEventHandlers
 {

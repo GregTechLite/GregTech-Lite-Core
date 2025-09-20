@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api.extension
 
-import gregtechlite.magicbook.util.Unchecks
+import com.morphismmc.morphismlib.util.Unchecks
 
 /**
  * Copies a existed array and add a given element at the end of this array.

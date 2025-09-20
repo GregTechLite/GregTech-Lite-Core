@@ -131,7 +131,7 @@ dependencies {
     }
     implementation(deobf(libs.modularui))
     api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
-    implementation(deobf(files("libs/magicbook-1.12.2-1.0.0.jar")))
+    implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2851.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)

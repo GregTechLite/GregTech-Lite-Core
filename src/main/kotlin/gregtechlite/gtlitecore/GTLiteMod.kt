@@ -31,7 +31,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
      acceptedMinecraftVersions = "[${ForgeVersion.mcVersion}]",
      dependencies = "required:forge@[14.23.5.2847,);" +
                     "required:forgelin_continuous@[2.1.0.0,);" +
-                    "required-after:magicbook@[1.0.0,);" +
+                    "required-after:morphismlib@[1.0.0,);" +
                     "required-after:modularui@[2.5.0-rc4,);" +
                     "required-after:gregtech@[2.8.7-beta,);",
      modLanguageAdapter = "io.github.chaosunity.forgelin.KotlinAdapter")

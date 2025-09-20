@@ -7,7 +7,7 @@ import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.magicbook.integration.Mods
+import com.morphismmc.morphismlib.integration.Mods
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.IBakedModel

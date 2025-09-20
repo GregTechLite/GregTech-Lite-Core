@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.core.module;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import gregtechlite.magicbook.util.SidedLogger;
-import gregtechlite.magicbook.util.Unchecks;
+import com.morphismmc.morphismlib.util.SidedLogger;
+import com.morphismmc.morphismlib.util.Unchecks;
 import lombok.Getter;
 import gregtechlite.gtlitecore.api.module.CustomModule;
 import gregtechlite.gtlitecore.api.module.CustomModuleContainer;

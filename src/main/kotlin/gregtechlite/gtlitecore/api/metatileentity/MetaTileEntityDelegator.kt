@@ -5,6 +5,7 @@ import codechicken.lib.render.pipeline.ColourMultiplier
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Cuboid6
 import codechicken.lib.vec.Matrix4
+import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.gui.ModularUI
@@ -15,7 +16,6 @@ import gregtech.client.renderer.texture.Textures
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import gregtechlite.gtlitecore.api.capability.Delegator
 import gregtechlite.gtlitecore.api.extension.add
-import gregtechlite.magicbook.util.Unchecks
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer

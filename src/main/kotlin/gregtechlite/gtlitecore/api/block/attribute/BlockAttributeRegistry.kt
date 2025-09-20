@@ -48,10 +48,8 @@ fun <T> BlockAttributeRegistry<Int>.registerBlockVariants(enum: KClass<T>) where
     registerBlockVariants(enum) { it.tier }
 }
 
-fun <V, T> BlockAttributeRegistry<in T>.registerBlockVariants(
-    enum: KClass<V>,
-    extractor: (V) -> T
-) where V : Enum<V>, V : BlockVariant
+fun <V, T> BlockAttributeRegistry<in T>.registerBlockVariants(enum: KClass<V>,
+                                                              extractor: (V) -> T) where V : Enum<V>, V : BlockVariant
 {
     for (variant in enum.java.enumConstants)
     {
