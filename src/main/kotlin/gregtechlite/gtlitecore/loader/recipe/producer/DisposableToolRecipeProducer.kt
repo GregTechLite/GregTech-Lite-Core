@@ -97,8 +97,11 @@ internal object DisposableToolRecipeProducer
         if (material.hasProperty(PropertyKey.TOOL) && material.hasProperty(PropertyKey.FLUID))
         {
             var count = GTLiteToolHelper.getMaxCraftingDurability(material) / cost
-            val outputStacks = mutableListOf<ItemStack>()
 
+            // Skip materials with excessively high or excessively low durability
+            if (count <= 0 || count > 9 * 64) return
+
+            val outputStacks = mutableListOf<ItemStack>()
             var i = count
             while (i > 64)
             {
@@ -108,16 +111,13 @@ internal object DisposableToolRecipeProducer
             }
             outputStacks.add(toolStack.getStackForm(count))
 
-            if (outputStacks.size < 9)
-            {
-                TOOL_CASTER_RECIPES.recipeBuilder()
-                    .notConsumable(getCastingMoldByToolStack(toolStack.stackForm))
-                    .fluidInputs(material.getFluid(L))
-                    .outputs(outputStacks)
-                    .EUt(VA[MV])
-                    .duration(10 * SECOND)
-                    .buildAndRegister()
-            }
+            TOOL_CASTER_RECIPES.recipeBuilder()
+                .notConsumable(getCastingMoldByToolStack(toolStack.stackForm))
+                .fluidInputs(material.getFluid(L))
+                .outputs(outputStacks)
+                .EUt(VA[MV])
+                .duration(10 * SECOND)
+                .buildAndRegister()
         }
     }
 
