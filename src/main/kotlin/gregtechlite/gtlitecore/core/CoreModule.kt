@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.core
 
+import com.morphismmc.morphismlib.util.LogicalSides
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
@@ -70,7 +71,11 @@ internal class CoreModule : CustomModule
     {
         logger.debug("Starting to construct EventHandlers of the mod")
         MinecraftForge.EVENT_BUS.register(EventHandlers)
-        MinecraftForge.EVENT_BUS.register(ClientEventHandlers)
+
+        if (LogicalSides.isClient())
+        {
+            MinecraftForge.EVENT_BUS.register(ClientEventHandlers)
+        }
 
         logger.debug("Modifying configurations of GregTech mod")
         GTLiteConfigModifier.init()
