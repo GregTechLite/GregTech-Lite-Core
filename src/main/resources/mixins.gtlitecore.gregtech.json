@@ -12,7 +12,6 @@
     "MixinDualHandler",
     "MixinFuelRecipeLogic",
     "MixinItemHandlerList",
-    "MixinJustEnoughItemsModule",
     "MixinMaterialProperties",
     "MixinMaterialRecipeHandler",
     "MixinMetaTileEntityCleaningMaintenanceHatch",
@@ -41,6 +40,7 @@
     "client.MixinMetaItem",
     "client.MixinMetaPrefixItem",
     "client.MixinMetaTileEntityFusionReactor",
-    "client.MixinMetaValueItem"
+    "client.MixinMetaValueItem",
+    "MixinJustEnoughItemsModule"
   ]
 }
