@@ -17,7 +17,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.ModuleMultiblockBase
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -74,10 +74,10 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_BASE_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_BASE_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
     // override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
 //
@@ -96,7 +96,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
                     getFrontFacing(), isActive(), true)
             } else
             {
-                GTLiteTextures.SPACE_PUMP_OVERLAY.renderSided(renderSide, renderState, translation, pipeline)
+                GTLiteOverlays.SPACE_PUMP_OVERLAY.renderSided(renderSide, renderState, translation, pipeline)
             }
         }
     }

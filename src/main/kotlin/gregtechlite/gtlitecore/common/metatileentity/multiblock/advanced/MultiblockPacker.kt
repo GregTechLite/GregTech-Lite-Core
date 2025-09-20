@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -74,7 +74,7 @@ class MultiblockPacker(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.HSLA_STEEL_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.HSLA_STEEL_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY

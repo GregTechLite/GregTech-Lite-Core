@@ -8,7 +8,7 @@ import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.collectorTankSizeFunction
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemStackHandler
 
-class MachineSapCollector(metaTileEntityId: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, GTLiteTextures.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
+class MachineSapCollector(metaTileEntityId: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
 {
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): PseudoMultiMachineMetaTileEntity = MachineSapCollector(metaTileEntityId, tier)
@@ -86,7 +86,7 @@ class MachineSapCollector(metaTileEntityId: ResourceLocation?, tier: Int) : Pseu
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
-        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
+        GTLiteOverlays.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
             getFrontFacing(), isActive(), true)
     }
 

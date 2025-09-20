@@ -22,7 +22,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
@@ -109,7 +109,7 @@ class MultiblockReplicator(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.RENE_N5_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.RENE_N5_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.REPLICATOR_OVERLAY

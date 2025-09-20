@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -81,10 +81,10 @@ class MultiblockMacerator(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.STELLITE_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.STELLITE_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_MACERATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_MACERATOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

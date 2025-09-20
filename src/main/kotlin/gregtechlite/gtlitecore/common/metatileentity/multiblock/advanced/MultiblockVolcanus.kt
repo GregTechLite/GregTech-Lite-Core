@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.GTValues.*
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -31,7 +30,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -103,7 +102,7 @@ class MultiblockVolcanus(id: ResourceLocation) :
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.HASTELLOY_C276_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.HASTELLOY_C276_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.BLAST_FURNACE_OVERLAY

@@ -31,7 +31,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.item.GTLiteToolHelper
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
@@ -118,7 +118,7 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
     {
-        return if (sourcePart == null) GTLiteTextures.MOLECULAR_CASING else Textures.HIGH_POWER_CASING
+        return if (sourcePart == null) GTLiteOverlays.MOLECULAR_CASING else Textures.HIGH_POWER_CASING
     }
 
     @SideOnly(Side.CLIENT)

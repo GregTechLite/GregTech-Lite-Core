@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues
 import gregtech.api.GTValues.UV
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -21,7 +20,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
@@ -98,10 +97,10 @@ class MultiblockSonicator(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.COBALT_BRASS_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.COBALT_BRASS_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer =  GTLiteTextures.SONICATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer =  GTLiteOverlays.SONICATOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

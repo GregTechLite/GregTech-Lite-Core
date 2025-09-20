@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -95,7 +95,7 @@ class MultiblockArcFurnace(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.HEAT_PROOF_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ARC_FURNACE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ARC_FURNACE_OVERLAY
 
     override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

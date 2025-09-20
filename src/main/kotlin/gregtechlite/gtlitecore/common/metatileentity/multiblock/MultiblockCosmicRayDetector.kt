@@ -23,7 +23,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
@@ -133,10 +133,10 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
         })
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.QUANTUM_ALLOY_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.QUANTUM_ALLOY_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.COSMIC_RAY_DETECTOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.COSMIC_RAY_DETECTOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

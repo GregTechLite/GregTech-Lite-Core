@@ -32,7 +32,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.airCounter
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -93,10 +93,10 @@ class MultiblockRocketEngine(id: ResourceLocation?)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NITINOL_60_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NITINOL_60_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_ROCKET_ENGINE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ROCKET_ENGINE_OVERLAY
 
     override fun hasMufflerMechanics() = true
 

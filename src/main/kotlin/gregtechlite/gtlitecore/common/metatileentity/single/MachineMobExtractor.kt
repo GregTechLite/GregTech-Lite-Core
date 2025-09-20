@@ -10,7 +10,7 @@ import gregtechlite.gtlitecore.api.capability.logic.MobExtractorRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.property.MobOnTopProperty
 import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityList
 import net.minecraft.entity.EntityLivingBase
@@ -34,7 +34,7 @@ class MachineMobExtractor(metaTileEntityId: ResourceLocation, recipeMap: RecipeM
             return world.getEntitiesWithinAABB(Entity::class.java, boundingBox!!)
         }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MachineMobExtractor(metaTileEntityId, MOB_EXTRACTOR_RECIPES, GTLiteTextures.MOB_EXTRACTOR_OVERLAY,
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MachineMobExtractor(metaTileEntityId, MOB_EXTRACTOR_RECIPES, GTLiteOverlays.MOB_EXTRACTOR_OVERLAY,
                                                                                              tier, hasFrontFacing(), tankScalingFunction)
 
     override fun createWorkable(recipeMap: RecipeMap<*>): AbstractRecipeLogic = MobExtractorRecipeLogic(this, recipeMap) { energyContainer }

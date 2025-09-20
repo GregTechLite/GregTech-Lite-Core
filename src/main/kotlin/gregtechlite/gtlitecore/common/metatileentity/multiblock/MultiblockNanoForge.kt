@@ -34,7 +34,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.optionalStates
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.client.resources.I18n
@@ -144,7 +144,7 @@ class MultiblockNanoForge(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NAQUADAH_ALLOY_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NAQUADAH_ALLOY_CASING
 
     // @formatter:off
 

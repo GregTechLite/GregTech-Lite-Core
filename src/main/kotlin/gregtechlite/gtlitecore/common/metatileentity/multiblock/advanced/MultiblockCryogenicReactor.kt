@@ -23,7 +23,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_REC
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -95,10 +95,10 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (sourcePart is IMufflerHatch)
         Textures.SOLID_STEEL_CASING // Muffler at Cooling Tower part (Steel Casing).
     else
-        GTLiteTextures.MONEL_500_CASING // Other part at Main part (Monel-500 Casing).
+        GTLiteOverlays.MONEL_500_CASING // Other part at Main part (Monel-500 Casing).
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_CRYOGENIC_REACTOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_CRYOGENIC_REACTOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

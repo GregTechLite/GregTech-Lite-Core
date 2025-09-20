@@ -42,7 +42,7 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMulti
 import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -342,7 +342,7 @@ class PartMachineDualHatch(id: ResourceLocation,
         val renderer = if (isExportHatch) Textures.PIPE_OUT_OVERLAY else Textures.PIPE_IN_OVERLAY
         renderer.renderSided(getFrontFacing(), renderState, translation, pipeline)
 
-        val overlay = if (isExportHatch) GTLiteTextures.DUAL_HATCH_OUTPUT_OVERLAY else GTLiteTextures.DUAL_HATCH_INPUT_OVERLAY
+        val overlay = if (isExportHatch) GTLiteOverlays.DUAL_HATCH_OUTPUT_OVERLAY else GTLiteOverlays.DUAL_HATCH_INPUT_OVERLAY
         overlay.renderSided(getFrontFacing(), renderState, translation, pipeline)
     }
     

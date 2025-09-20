@@ -9,7 +9,7 @@ import gregtech.api.cover.CoverDefinition
 import gregtech.api.cover.CoverableView
 import gregtech.api.unification.material.Materials
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.init.Blocks
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
@@ -36,7 +36,7 @@ class CoverDrain(definition: CoverDefinition,
                              plateBox: Cuboid6,
                              renderLayer: BlockRenderLayer)
     {
-        GTLiteTextures.COVER_DRAIN.renderSided(attachedSide, plateBox, renderState, pipeline, translation)
+        GTLiteOverlays.COVER_DRAIN.renderSided(attachedSide, plateBox, renderState, pipeline, translation)
     }
 
     override fun update()

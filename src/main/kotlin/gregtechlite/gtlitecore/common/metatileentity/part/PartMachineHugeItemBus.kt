@@ -1,8 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.part
 
-import codechicken.lib.render.CCRenderState
-import codechicken.lib.render.pipeline.IVertexOperation
-import codechicken.lib.vec.Matrix4
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
@@ -32,12 +29,10 @@ import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.util.GTHashMaps
-import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs

@@ -25,7 +25,7 @@ import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTil
 import gregtechlite.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -320,50 +320,50 @@ object GTLiteMetaTileEntities
         // 1-15: Polisher (LV-OpV)
         POLISHER = register(3, V.size - 1, "polisher",
                             GTLiteRecipeMaps.POLISHER_RECIPES,
-                            GTLiteTextures.POLISHER_OVERLAY, true,
+                            GTLiteOverlays.POLISHER_OVERLAY, true,
                             hvCappedTankSizeFunction)
 
         // 16-30: Slicer (LV-OpV)
         SLICER = register(18, V.size - 1, "slicer",
                           GTLiteRecipeMaps.SLICER_RECIPES,
-                          GTLiteTextures.SLICER_OVERLAY, true,
+                          GTLiteOverlays.SLICER_OVERLAY, true,
                           hvCappedTankSizeFunction)
 
         // 31-45: Tool Caster (LV-IV)
         TOOL_CASTER = register(33, 0..4) {
             SimpleMachineMetaTileEntity(GTLiteMod.id("tool_caster.${VN[it + 1].lowercase()}"),
                                         GTLiteRecipeMaps.TOOL_CASTER_RECIPES,
-                                        GTLiteTextures.TOOL_CASTER_OVERLAY, it + 1,
+                                        GTLiteOverlays.TOOL_CASTER_OVERLAY, it + 1,
                                         true, defaultTankSizeFunction)
         }
 
         // 46-60: Loom (LV-OpV)
         LOOM = register(48, V.size - 1, "loom",
                         GTLiteRecipeMaps.LOOM_RECIPES,
-                        GTLiteTextures.LOOM_OVERLAY, true,
+                        GTLiteOverlays.LOOM_OVERLAY, true,
                         genericGeneratorTankSizeFunction)
 
         // 61-75: Laminator (LV-OpV)
         LAMINATOR = register(63, V.size - 1, "laminator",
                              GTLiteRecipeMaps.LAMINATOR_RECIPES,
-                             GTLiteTextures.LAMINATOR_OVERLAY, true,
+                             GTLiteOverlays.LAMINATOR_OVERLAY, true,
                              largeTankSizeFunction)
 
         // 76-90: Chemical Dehydrator (LV-OpV)
         CHEMICAL_DEHYDRATOR = register(78, V.size - 1, "chemical_dehydrator",
                                        GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES,
-                                       GTLiteTextures.CHEMICAL_DEHYDRATOR_OVERLAY, true,
+                                       GTLiteOverlays.CHEMICAL_DEHYDRATOR_OVERLAY, true,
                                        defaultTankSizeFunction)
 
         // 91-105: Vulcanizing Press (ULV-OpV)
         STEAM_VULCANIZING_PRESS = register(91, "vulcanizing_press",
                                            GTLiteRecipeMaps.VULCANIZATION_RECIPES,
                                            SteamProgressBarIndicators.ARROW_MULTIPLE,
-                                           GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true)
+                                           GTLiteOverlays.VULCANIZING_PRESS_OVERLAY, true)
 
         VULCANIZING_PRESS = register(93, V.size - 1, "vulcanizing_press",
                                      GTLiteRecipeMaps.VULCANIZATION_RECIPES,
-                                     GTLiteTextures.VULCANIZING_PRESS_OVERLAY, true,
+                                     GTLiteOverlays.VULCANIZING_PRESS_OVERLAY, true,
                                      genericGeneratorTankSizeFunction)
 
         // 106-120: Vacuum Chamber (ULV-OpV)
@@ -396,36 +396,36 @@ object GTLiteMetaTileEntities
         // 151-165: Bio Reactor (LV-OpV)
         BIO_REACTOR = register(153, V.size - 1, "bio_reactor",
                                GTLiteRecipeMaps.BIO_REACTOR_RECIPES,
-                               GTLiteTextures.BIO_REACTOR_OVERLAY, true,
+                               GTLiteOverlays.BIO_REACTOR_OVERLAY, true,
                                steamGeneratorTankSizeFunction)
 
         // 166-180: Roaster (ULV-OpV)
         STEAM_ROASTER = register(166, "roaster",
                                  GTLiteRecipeMaps.ROASTER_RECIPES,
                                  SteamProgressBarIndicators.ARROW,
-                                 GTLiteTextures.ROASTER_OVERLAY, true)
+                                 GTLiteOverlays.ROASTER_OVERLAY, true)
 
         ROASTER = register(168, V.size - 1, "roaster",
                            GTLiteRecipeMaps.ROASTER_RECIPES,
-                           GTLiteTextures.ROASTER_OVERLAY, true,
+                           GTLiteOverlays.ROASTER_OVERLAY, true,
                            defaultTankSizeFunction)
 
         // 181-195: Burner Reactor (LV-OpV)
         BURNER_REACTOR = register(183, V.size - 1, "burner_reactor",
                                   GTLiteRecipeMaps.BURNER_REACTOR_RECIPES,
-                                  GTLiteTextures.BURNER_REACTOR_OVERLAY, true,
+                                  GTLiteOverlays.BURNER_REACTOR_OVERLAY, true,
                                   defaultTankSizeFunction)
 
         // 196-210: Bath Condenser (LV-OpV)
         BATH_CONDENSER = register(198, V.size - 1, "bath_condenser",
                                   GTLiteRecipeMaps.BATH_CONDENSER_RECIPES,
-                                  GTLiteTextures.BATH_CONDENSER_OVERLAY, true,
+                                  GTLiteOverlays.BATH_CONDENSER_OVERLAY, true,
                                   defaultTankSizeFunction)
 
         // 211-225: Cryogenic Reactor (LV-OpV)
         CRYOGENIC_REACTOR = register(213, V.size - 1, "cryogenic_reactor",
                                      GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES,
-                                     GTLiteTextures.CRYOGENIC_REACTOR_OVERLAY, true,
+                                     GTLiteOverlays.CRYOGENIC_REACTOR_OVERLAY, true,
                                      defaultTankSizeFunction)
 
         // 226-240: Mass Fabricator (LV-OpV)
@@ -443,34 +443,34 @@ object GTLiteMetaTileEntities
         // 256-270: Food Processor (LV-OpV)
         FOOD_PROCESSOR = register(258, V.size - 1, "food_processor",
                                   GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES,
-                                  GTLiteTextures.FOOD_PROCESSOR_OVERLAY, true,
+                                  GTLiteOverlays.FOOD_PROCESSOR_OVERLAY, true,
                                   genericGeneratorTankSizeFunction)
 
         // 271-285: Multicooker (LV-OpV)
         MULTICOOKER = register(273, V.size - 1, "multicooker",
                                GTLiteRecipeMaps.MULTICOOKER_RECIPES,
-                               GTLiteTextures.MULTICOOKER_OVERLAY, true,
+                               GTLiteOverlays.MULTICOOKER_OVERLAY, true,
                                genericGeneratorTankSizeFunction)
 
         // 286-300: Mob Extractor (LV-OpV)
         MOB_EXTRACTOR = register(288, 0..12) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteTextures.MOB_EXTRACTOR_OVERLAY, it + 1, false,
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false,
                                 largeTankSizeFunction)
         }
 
         // 301-315: Bio Simulator (LV-IV)
         BIO_SIMULATOR = register(303, 6, "bio_simulator",
                                  GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES,
-                                 GTLiteTextures.BIO_SIMULATOR_OVERLAY, true,
+                                 GTLiteOverlays.BIO_SIMULATOR_OVERLAY, true,
                                  largeTankSizeFunction)
 
         // 316-330: Rocket Engine (HV-EV)
         ROCKET_ENGINE = register(320, 0..2) {
             SimpleGeneratorMetaTileEntity(GTLiteMod.id("rocket_engine.${VN[it + HV].lowercase()}"),
                                           GTLiteRecipeMaps.ROCKET_ENGINE_FUELS,
-                                          GTLiteTextures.ROCKET_ENGINE_OVERLAY, it + HV,
+                                          GTLiteOverlays.ROCKET_ENGINE_OVERLAY, it + HV,
                                           genericGeneratorTankSizeFunction)
         }
 
@@ -478,7 +478,7 @@ object GTLiteMetaTileEntities
         NAQUADAH_REACTOR = register(337, 0..3) {
             SimpleGeneratorMetaTileEntity(GTLiteMod.id("naquadah_reactor.${VN[it + IV].lowercase()}"),
                                           GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS,
-                                          GTLiteTextures.NAQUADAH_REACTOR_OVERLAY, it + IV,
+                                          GTLiteOverlays.NAQUADAH_REACTOR_OVERLAY, it + IV,
                                           genericGeneratorTankSizeFunction)
         }
 
@@ -486,7 +486,7 @@ object GTLiteMetaTileEntities
         ACID_GENERATOR = register(349, 0..2) {
             SimpleGeneratorMetaTileEntity(GTLiteMod.id("acid_generator.${VN[it + MV].lowercase()}"),
                                           GTLiteRecipeMaps.ACID_GENERATOR_FUELS,
-                                          GTLiteTextures.ACID_GENERATOR_OVERLAY, it + MV,
+                                          GTLiteOverlays.ACID_GENERATOR_OVERLAY, it + MV,
                                           genericGeneratorTankSizeFunction)
         }
 
@@ -550,35 +550,35 @@ object GTLiteMetaTileEntities
         // 2051-2060: Import/Export Proxies
         INVENTORY_BRIDGE = register(2051, MetaTileEntityBridge(GTLiteMod.id("bridge.inventory"),
             { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
-            GTLiteTextures.INVENTORY_BRIDGE, Steel))
+            GTLiteOverlays.INVENTORY_BRIDGE, Steel))
 
         TANK_BRIDGE = register(2052, MetaTileEntityBridge(GTLiteMod.id("bridge.tank"),
             { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-            GTLiteTextures.TANK_BRIDGE, Steel))
+            GTLiteOverlays.TANK_BRIDGE, Steel))
 
         INVENTORY_TANK_BRIDGE = register(2053, MetaTileEntityBridge(GTLiteMod.id("bridge.inventory_tank"),
             { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-            GTLiteTextures.INVENTORY_TANK_BRIDGE, Steel))
+            GTLiteOverlays.INVENTORY_TANK_BRIDGE, Steel))
 
         UNIVERSAL_BRIDGE = register(2054, MetaTileEntityBridge(GTLiteMod.id("bridge.universal"),
             { true },
-            GTLiteTextures.UNIVERSAL_BRIDGE, Aluminium))
+            GTLiteOverlays.UNIVERSAL_BRIDGE, Aluminium))
 
         INVENTORY_EXTENDER = register(2055, MetaTileEntityExtender(GTLiteMod.id("extender.inventory"),
             { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY },
-            GTLiteTextures.INVENTORY_EXTENDER, Steel))
+            GTLiteOverlays.INVENTORY_EXTENDER, Steel))
 
         TANK_EXTENDER = register(2056, MetaTileEntityExtender(GTLiteMod.id("extender.tank"),
             { c -> c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-            GTLiteTextures.TANK_EXTENDER, Steel))
+            GTLiteOverlays.TANK_EXTENDER, Steel))
 
         INVENTORY_TANK_EXTENDER = register(2057, MetaTileEntityExtender(GTLiteMod.id("extender.inventory_tank"),
             { c -> c == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || c == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY },
-            GTLiteTextures.INVENTORY_TANK_EXTENDER, Steel))
+            GTLiteOverlays.INVENTORY_TANK_EXTENDER, Steel))
 
         UNIVERSAL_EXTENDER = register(2058, MetaTileEntityExtender(GTLiteMod.id("extender.universal"),
             { true },
-            GTLiteTextures.UNIVERSAL_EXTENDER, Aluminium))
+            GTLiteOverlays.UNIVERSAL_EXTENDER, Aluminium))
 
         // 2061-2065: Advanced Buffers (EV-IV)
         BUFFER = register(2061, 0..1) {
@@ -723,7 +723,7 @@ object GTLiteMetaTileEntities
             GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS, LuV,
             TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.state,
             TurbineCasing.RHODIUM_PLATED_PALLADIUM_GEARBOX.state,
-            GTLiteTextures.RHODIUM_PLATED_PALLADIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
+            GTLiteOverlays.RHODIUM_PLATED_PALLADIUM_CASING, true, Textures.LARGE_GAS_TURBINE_OVERLAY))
 
         CATALYTIC_REFORMER = register(10011, MultiblockCatalyticReformer(GTLiteMod.id("catalytic_reformer")))
         CVD_UNIT = register(10012, MultiblockCVDUnit(GTLiteMod.id("cvd_unit")))

@@ -97,27 +97,27 @@ object GTLiteMaterialIconSet
 
     @JvmField
     val COSMIC = MaterialIconSetWithRenderer("cosmic", null, true,
-        HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE },true))
+        HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }},true))
 
     @JvmField
     val INFINITY = MaterialIconSetWithRenderer("infinity", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
     val HALKONITE = MaterialIconSetWithRenderer("halkonite", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
     val MAGMATTER = MaterialIconSetWithRenderer("magmatter", null, true,
-        HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
+        HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
 
     @JvmField
     val GLITCH = MaterialIconSetWithRenderer("glitch", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
     val ETERNITY = MaterialIconSetWithRenderer("eternity", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {GTLiteTextures.HALO}, true))
+        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     // endregion
 

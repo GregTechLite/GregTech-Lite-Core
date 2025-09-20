@@ -29,7 +29,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart
 import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketBuffer
@@ -210,7 +210,7 @@ class PartMachineAirIntakeHatch(id: ResourceLocation,
                                       pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
-        GTLiteTextures.AIR_INTAKE_HATCH_OVERLAY.renderSided(frontFacing, renderState, translation, pipeline)
+        GTLiteOverlays.AIR_INTAKE_HATCH_OVERLAY.renderSided(frontFacing, renderState, translation, pipeline)
     }
 
     override fun <T : Any?> getCapability(capability: Capability<T>, side: EnumFacing?): T?

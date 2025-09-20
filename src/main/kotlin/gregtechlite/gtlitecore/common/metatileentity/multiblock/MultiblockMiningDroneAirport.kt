@@ -17,7 +17,7 @@ import gregtech.common.ConfigHolder
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -79,7 +79,7 @@ class MultiblockMiningDroneAirport(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.SOLID_STEEL_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.MINING_DRONE_AIRPORT_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.MINING_DRONE_AIRPORT_OVERLAY
 
     // @formatter:off
 

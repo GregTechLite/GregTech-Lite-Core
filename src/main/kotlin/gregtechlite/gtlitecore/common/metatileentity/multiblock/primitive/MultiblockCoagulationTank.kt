@@ -33,7 +33,7 @@ import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -101,10 +101,10 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.REINFORCED_TREATED_WOOD_WALL
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.REINFORCED_TREATED_WOOD_WALL
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.COAGULATION_TANK_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.COAGULATION_TANK_OVERLAY
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,

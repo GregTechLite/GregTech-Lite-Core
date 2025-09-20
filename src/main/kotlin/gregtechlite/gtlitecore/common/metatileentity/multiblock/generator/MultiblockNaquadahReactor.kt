@@ -34,7 +34,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
@@ -105,7 +105,7 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
         .build()
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.NAQUADAH_ALLOY_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NAQUADAH_ALLOY_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.POWER_SUBSTATION_OVERLAY

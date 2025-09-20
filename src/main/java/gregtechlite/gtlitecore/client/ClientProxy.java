@@ -1,5 +1,7 @@
 package gregtechlite.gtlitecore.client;
 
+import gregtechlite.gtlitecore.api.GTLiteLog;
+import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips;
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper;
@@ -26,8 +28,17 @@ public class ClientProxy extends CommonProxy
         GTLiteTextures.preInit();
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper.class);
         MinecraftForge.EVENT_BUS.register(GTLiteTooltips.class);
+        MinecraftForge.EVENT_BUS.register(ClientEventHandlers.INSTANCE);
         CosmicShaderProgram.initShaders();
         GTLiteMetaEntities.initRenderers();
+    }
+
+    @Override
+    public void onInit()
+    {
+        super.onInit();
+        GTLiteLog.logger.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks");
+        GTLiteBlocks.registerColors();
     }
 
     @SubscribeEvent

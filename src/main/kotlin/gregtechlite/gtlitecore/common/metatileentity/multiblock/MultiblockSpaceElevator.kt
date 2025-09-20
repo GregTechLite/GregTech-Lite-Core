@@ -34,7 +34,7 @@ import gregtechlite.gtlitecore.api.capability.ModuleProvider
 import gregtechlite.gtlitecore.api.capability.ModuleReceiver
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.accelerationTracks
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -319,10 +319,10 @@ class MultiblockSpaceElevator(id: ResourceLocation)
     }
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_BASE_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_BASE_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,

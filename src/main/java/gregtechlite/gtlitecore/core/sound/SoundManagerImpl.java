@@ -58,6 +58,7 @@ public class SoundManagerImpl implements SoundManager
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public ISound startTileSound(ResourceLocation soundName, float volume, BlockPos pos)
     {
         ISound sound = sounds.get(pos);

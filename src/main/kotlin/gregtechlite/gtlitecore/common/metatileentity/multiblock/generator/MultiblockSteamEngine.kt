@@ -12,7 +12,7 @@ import gregtech.api.recipes.RecipeMaps.STEAM_TURBINE_FUELS
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.client.resources.I18n
@@ -60,7 +60,7 @@ class MultiblockSteamEngine(id: ResourceLocation)
     }
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.BRASS_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.BRASS_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.LARGE_STEAM_TURBINE_OVERLAY

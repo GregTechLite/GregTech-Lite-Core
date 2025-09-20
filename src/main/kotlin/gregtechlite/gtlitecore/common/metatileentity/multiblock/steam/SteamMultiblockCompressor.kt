@@ -12,7 +12,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.client.resources.I18n
@@ -64,7 +64,7 @@ class SteamMultiblockCompressor(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.LARGE_STEAM_COMPRESSOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_STEAM_COMPRESSOR_OVERLAY
 
     override fun hasMaintenanceMechanics() = false
 

@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.*
-import gregtech.api.block.IHeatingCoilBlockStats
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -30,7 +29,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import net.minecraft.item.ItemStack
@@ -110,7 +109,7 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.STABLE_TITANIUM_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.CRYSTALLIZATION_CRUCIBLE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.CRYSTALLIZATION_CRUCIBLE_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

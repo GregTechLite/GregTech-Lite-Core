@@ -28,7 +28,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.Crucible
@@ -149,12 +149,12 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
     {
         if (sourcePart is MetaTileEntityItemBus && sourcePart.exportItems.getSlots() == 0)
-            return GTLiteTextures.HSLA_STEEL_CASING
-        return GTLiteTextures.TITANIUM_TUNGSTEN_CARBIDE_CASING
+            return GTLiteOverlays.HSLA_STEEL_CASING
+        return GTLiteOverlays.TITANIUM_TUNGSTEN_CARBIDE_CASING
     }
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.NANOSCALE_FABRICATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANOSCALE_FABRICATOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

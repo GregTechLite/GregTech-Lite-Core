@@ -18,7 +18,7 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_GENERATOR_FUELS
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
@@ -121,10 +121,10 @@ class MultiblockAntimatterGenerator(id: ResourceLocation)
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
-            = if (recipeMapWorkable.isActive) GTLiteTextures.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteTextures.ANTIMATTER_FORGE_TEXTURE
+            = if (recipeMapWorkable.isActive) GTLiteOverlays.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteOverlays.ANTIMATTER_FORGE_TEXTURE
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ANTIMATTER_FORGE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ANTIMATTER_FORGE_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

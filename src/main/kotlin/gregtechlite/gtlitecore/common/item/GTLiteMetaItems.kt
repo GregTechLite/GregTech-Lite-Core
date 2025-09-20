@@ -653,10 +653,10 @@ object GTLiteMetaItems
         CREDIT_VIBRANIUM = item(87, "credit.vibranium")
             .setRarity(EnumRarity.EPIC)
         CREDIT_COSMIC_NEUTRONIUM = item(88, "credit.cosmic_neutronium")
-            .addComponents(HaloRenderItemBehavior(10, 0x33FFFFFF, { GTLiteTextures.HALO_NOISE }, true))
+            .addComponents(HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
             .setRarity(EnumRarity.EPIC)
         CREDIT_INFINITY = item(89, "credit.infinity")
-            .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+            .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setRarity(EnumRarity.EPIC)
 
         // 101-106: Voltage Coils.
@@ -1345,7 +1345,7 @@ object GTLiteMetaItems
         HIGHLY_DENSE_POLYMER_PLATE = item(5019, "material.plate.highly_dense_polymer_plate")
             .addOreDict("plateHighlyDensePolymer")
         GRAVITON_SHARD = item(5020, "material.gem.graviton_shard")
-            .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), { GTLiteTextures.HALO }, true))
+            .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
             .addOreDict("gemGravitonShard")
         NEUTRONIUM_SPHERE = item(5021, "material.gem.neutronium")
             .addOreDict("sphereNeutronium")
@@ -1790,7 +1790,7 @@ object GTLiteMetaItems
                     RandomPotionEffect(MobEffects.HASTE, 15 * MINUTE, 127, 100 - 100),
                     RandomPotionEffect(MobEffects.SATURATION, 8 * MINUTE, 127, 100 - 100),
                     RandomPotionEffect(MobEffects.LUCK, 10 * MINUTE, 127, 100 - 100)))
-            .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), { GTLiteTextures.HALO }, true))
+            .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         HARD_APPLE_CANDY = item(9603, "food.hard_apple_candy")

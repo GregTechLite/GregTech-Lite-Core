@@ -22,7 +22,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.manipulators
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.shieldingCores
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.client.resources.I18n
@@ -128,10 +128,10 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.PARTICLE_CONTAINMENT_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.PARTICLE_CONTAINMENT_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.QUANTUM_FORCE_TRANSFORMER_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.QUANTUM_FORCE_TRANSFORMER_OVERLAY
 
     override fun addInformation(stack: ItemStack,
                                 world: World?,

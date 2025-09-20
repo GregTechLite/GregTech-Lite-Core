@@ -17,7 +17,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.RecipeMapModuleMultiblockController
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -68,10 +68,10 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_BASE_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_BASE_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.SPACE_ELEVATOR_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
     {
@@ -85,7 +85,7 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
             }
             else
             {
-                GTLiteTextures.SPACE_ASSEMBLER_OVERLAY.renderSided(renderSide, renderState, translation, pipeline)
+                GTLiteOverlays.SPACE_ASSEMBLER_OVERLAY.renderSided(renderSide, renderState, translation, pipeline)
             }
         }
     }

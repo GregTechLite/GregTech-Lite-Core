@@ -19,7 +19,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.add
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
@@ -237,7 +237,7 @@ class MetaTileEntityPlasticCan : MetaTileEntity
         val color = GTUtility.convertOpaqueRGBA_CLtoRGB(
             ColourRGBA.multiply(GTUtility.convertRGBtoOpaqueRGBA_CL(color),
                                 GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        return Pair.of(GTLiteTextures.PLASTIC_CAN.particleTexture, color)
+        return Pair.of(GTLiteOverlays.PLASTIC_CAN.particleTexture, color)
     }
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
@@ -247,8 +247,8 @@ class MetaTileEntityPlasticCan : MetaTileEntity
         val multiplier = ColourMultiplier(
             ColourRGBA.multiply(GTUtility.convertRGBtoOpaqueRGBA_CL(color),
                                 GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        GTLiteTextures.PLASTIC_CAN.render(renderState, translation, pipeline?.add(multiplier), frontFacing)
-        GTLiteTextures.PLASTIC_CAN_OVERLAY.render(renderState, translation, pipeline)
+        GTLiteOverlays.PLASTIC_CAN.render(renderState, translation, pipeline?.add(multiplier), frontFacing)
+        GTLiteOverlays.PLASTIC_CAN_OVERLAY.render(renderState, translation, pipeline)
         if (this.isAutoOutput)
             Textures.STEAM_VENT_OVERLAY.renderSided(EnumFacing.DOWN, renderState, translation, pipeline)
     }

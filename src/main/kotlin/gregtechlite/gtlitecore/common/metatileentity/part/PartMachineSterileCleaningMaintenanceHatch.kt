@@ -15,7 +15,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityAutoMaintenanceHatch
 import gregtechlite.gtlitecore.api.extension.add
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -76,7 +76,7 @@ class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTil
         baseTexture?.render(renderState, translation, pipeline?.add(ColourMultiplier(
             GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering))))
         if (shouldRenderOverlay())
-            GTLiteTextures.STERILE_CLEANING_MAINTENANCE_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline)
+            GTLiteOverlays.STERILE_CLEANING_MAINTENANCE_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline)
     }
 
     override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)

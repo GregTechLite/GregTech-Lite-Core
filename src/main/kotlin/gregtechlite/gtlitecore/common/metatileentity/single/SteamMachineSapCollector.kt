@@ -10,7 +10,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators
 import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -25,7 +25,7 @@ import net.minecraftforge.items.IItemHandlerModifiable
 
 class SteamMachineSapCollector(metaTileEntityId: ResourceLocation,
                                isHighPressure: Boolean)
-    : PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteTextures.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
+    : PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
 {
     private val sapCollectionAmount: Long = if (isHighPressure) 6L else 3L
 
@@ -47,7 +47,7 @@ class SteamMachineSapCollector(metaTileEntityId: ResourceLocation,
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
-        GTLiteTextures.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
+        GTLiteOverlays.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
             getFrontFacing(), isActive(), true)
     }
 

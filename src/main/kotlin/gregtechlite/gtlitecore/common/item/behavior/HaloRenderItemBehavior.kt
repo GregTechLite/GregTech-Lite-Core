@@ -12,14 +12,14 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class HaloRenderItemBehavior(private val haloSize: Int,
                              private val haloColor: Int,
-                             private val supplier: () -> TextureAtlasSprite,
+                             private val supplier: () -> () -> TextureAtlasSprite,
                              private val drawPulse: Boolean) : HaloRenderBehavior
 {
 
     override fun shouldDrawHalo(): Boolean = true
 
     @SideOnly(Side.CLIENT)
-    override fun getHaloTexture(): TextureAtlasSprite? = this.supplier.invoke()
+    override fun getHaloTexture(): TextureAtlasSprite? = this.supplier.invoke().invoke()
 
     override fun getHaloColor(): Int = this.haloColor
 

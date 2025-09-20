@@ -33,7 +33,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
@@ -145,9 +145,9 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
 
     // @formatter:on
 
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteTextures.LATTICE_QCD_THERMAL_SHIELDING_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.LATTICE_QCD_THERMAL_SHIELDING_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {

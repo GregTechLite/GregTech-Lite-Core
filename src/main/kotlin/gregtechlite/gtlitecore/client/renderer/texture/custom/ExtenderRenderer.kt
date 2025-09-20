@@ -19,7 +19,7 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
 {
 
     @SideOnly(Side.CLIENT)
-    private var textures = arrayOfNulls<TextureAtlasSprite>(3)
+    private lateinit var textures: Array<TextureAtlasSprite>
 
     init
     {
@@ -30,9 +30,11 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
     override fun registerIcons(textureMap: TextureMap)
     {
         val formattedBase = "${MOD_ID}:blocks/$basePath"
-        this.textures[0] = textureMap.registerSprite(ResourceLocation("$formattedBase/in"))
-        this.textures[1] = textureMap.registerSprite(ResourceLocation("$formattedBase/side"))
-        this.textures[2] = textureMap.registerSprite(ResourceLocation("$formattedBase/out"))
+        this.textures = arrayOf(
+            textureMap.registerSprite(ResourceLocation("$formattedBase/in")),
+            textureMap.registerSprite(ResourceLocation("$formattedBase/side")),
+            textureMap.registerSprite(ResourceLocation("$formattedBase/out"))
+        )
     }
 
     @SideOnly(Side.CLIENT)

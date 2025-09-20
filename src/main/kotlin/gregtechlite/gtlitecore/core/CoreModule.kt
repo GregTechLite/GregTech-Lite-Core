@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.core
 
-import com.morphismmc.morphismlib.util.LogicalSides
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
@@ -8,7 +7,6 @@ import gregtechlite.gtlitecore.api.MOD_NAME
 import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
-import gregtechlite.gtlitecore.client.event.ClientEventHandlers
 import gregtechlite.gtlitecore.common.CommonProxy
 import gregtechlite.gtlitecore.common.EventHandlers
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -72,11 +70,6 @@ internal class CoreModule : CustomModule
         logger.debug("Starting to construct EventHandlers of the mod")
         MinecraftForge.EVENT_BUS.register(EventHandlers)
 
-        if (LogicalSides.isClient())
-        {
-            MinecraftForge.EVENT_BUS.register(ClientEventHandlers)
-        }
-
         logger.debug("Modifying configurations of GregTech mod")
         GTLiteConfigModifier.init()
 
@@ -119,9 +112,6 @@ internal class CoreModule : CustomModule
     
     override fun init(event: FMLInitializationEvent)
     {
-        logger.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks")
-        GTLiteBlocks.registerColors()
-
         logger.debug("Adding the mod contents to vanilla Dungeon Looting Table")
         DungeonLootLoader.init()
 

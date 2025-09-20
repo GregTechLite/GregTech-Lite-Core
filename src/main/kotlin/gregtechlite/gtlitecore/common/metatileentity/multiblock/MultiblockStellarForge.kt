@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.item.ItemStack
@@ -112,9 +112,9 @@ class MultiblockStellarForge(id: ResourceLocation)
 
     // @formatter:on
 
-    override fun getBaseTexture(texture: IMultiblockPart?): ICubeRenderer = GTLiteTextures.QUANTUM_ALLOY_CASING
+    override fun getBaseTexture(texture: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.QUANTUM_ALLOY_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteTextures.STELLAR_FORGE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.STELLAR_FORGE_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
