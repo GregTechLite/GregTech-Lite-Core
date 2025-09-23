@@ -105,7 +105,7 @@ object GTLiteElementMaterials
     fun init()
     {
         // 1 Adamantium
-        Adamantium = matCreator(1, "adamantium")
+        Adamantium = addMaterial(1, "adamantium")
         {
             ingot()
             liquid().plasma()
@@ -128,7 +128,7 @@ object GTLiteElementMaterials
         }
 
         // 2 Vibranium
-        Vibranium = matCreator(2, "vibranium")
+        Vibranium = addMaterial(2, "vibranium")
         {
             ingot()
             liquid().plasma()
@@ -151,7 +151,7 @@ object GTLiteElementMaterials
         }
 
         // 3 Taranium
-        Taranium = matCreator(3, "taranium")
+        Taranium = addMaterial(3, "taranium")
         {
             ingot()
             liquid()
@@ -165,7 +165,7 @@ object GTLiteElementMaterials
         }
 
         // 4 Metastable Flerovium
-        MetastableFlerovium = matCreator(4, "metastable_flerovium")
+        MetastableFlerovium = addMaterial(4, "metastable_flerovium")
         {
             ingot()
             liquid().plasma()
@@ -179,7 +179,7 @@ object GTLiteElementMaterials
         }
 
         // 5 Metastable Oganesson
-        MetastableOganesson = matCreator(5, "metastable_oganesson")
+        MetastableOganesson = addMaterial(5, "metastable_oganesson")
         {
             ingot()
             liquid().plasma()
@@ -201,7 +201,7 @@ object GTLiteElementMaterials
         }
 
         // 6 Metastable Hassium
-        MetastableHassium = matCreator(6, "metastable_hassium")
+        MetastableHassium = addMaterial(6, "metastable_hassium")
         {
             ingot()
             liquid().plasma()
@@ -217,7 +217,7 @@ object GTLiteElementMaterials
 
 
         // 7 Cosmic Neutronium
-        CosmicNeutronium = matCreator(7, "cosmic_neutronium")
+        CosmicNeutronium = addMaterial(7, "cosmic_neutronium")
         {
             ingot()
             liquid()
@@ -232,7 +232,7 @@ object GTLiteElementMaterials
         }
 
         // 8 Infinity
-        Infinity = matCreator(8, "infinity")
+        Infinity = addMaterial(8, "infinity")
         {
             ingot()
             liquid()
@@ -248,7 +248,7 @@ object GTLiteElementMaterials
         }
 
         // 9 Plutonium-244
-        Plutonium244 = matCreator(9, "plutonium_244")
+        Plutonium244 = addMaterial(9, "plutonium_244")
         {
             ingot()
             liquid(FluidBuilder().temperature(913))
@@ -258,7 +258,7 @@ object GTLiteElementMaterials
         }
 
         // 10 Degenerate Rhenium
-        DegenerateRhenium = matCreator(10, "degenerate_rhenium")
+        DegenerateRhenium = addMaterial(10, "degenerate_rhenium")
         {
             dust()
             plasma(FluidBuilder().temperature(1_000_000))
@@ -266,11 +266,10 @@ object GTLiteElementMaterials
             element(Rh)
             flags(STD_METAL, NO_UNIFICATION)
         }
-        .setFormula("§cR§de", true)
 
         // TODO: Maybe we needs a renderer which allowed to set foreground and background colors?
         // 11 Magnetium
-        Magnetium = matCreator(11, "magnetium")
+        Magnetium = addMaterial(11, "magnetium")
         {
             ingot()
             liquid(FluidBuilder().temperature(2_560_000))
@@ -285,7 +284,7 @@ object GTLiteElementMaterials
         }
 
         // 12 Rhugnor
-        Rhugnor = matCreator(12, "rhugnor")
+        Rhugnor = addMaterial(12, "rhugnor")
         {
             ingot()
             liquid(FluidBuilder().temperature(9025))
@@ -306,7 +305,7 @@ object GTLiteElementMaterials
         }
 
         // 13 Hypogen
-        Hypogen = matCreator(13, "hypogen")
+        Hypogen = addMaterial(13, "hypogen")
         {
             ingot()
             liquid(FluidBuilder().temperature(11530))
@@ -318,7 +317,7 @@ object GTLiteElementMaterials
         }
 
         // 14 Shirabon
-        Shirabon = matCreator(14, "shirabon")
+        Shirabon = addMaterial(14, "shirabon")
         {
             ingot()
             liquid()
@@ -331,7 +330,7 @@ object GTLiteElementMaterials
 
         // TODO: New renderer with rotate animation.
         // 15 Transcendent Metal
-        TranscendentMetal = matCreator(15, "transcendent_metal")
+        TranscendentMetal = addMaterial(15, "transcendent_metal")
         {
             ingot()
             liquid()
@@ -347,7 +346,7 @@ object GTLiteElementMaterials
         }
 
         // 16 Space Time
-        SpaceTime = matCreator(16, "space_time")
+        SpaceTime = addMaterial(16, "space_time")
         {
             ingot()
             liquid()
@@ -363,7 +362,7 @@ object GTLiteElementMaterials
         }
 
         // 17 Creon
-        Creon = matCreator(17, "creon")
+        Creon = addMaterial(17, "creon")
         {
             ingot()
             liquid().plasma()
@@ -390,7 +389,7 @@ object GTLiteElementMaterials
         }
 
         // 18 Mag Matter
-        MagMatter = matCreator(18, "mag_matter")
+        MagMatter = addMaterial(18, "mag_matter")
         {
             ingot()
             liquid()
@@ -404,7 +403,7 @@ object GTLiteElementMaterials
 
         // TODO: Finished renderer for universium and supported block format iconSet textures.
         // 19 Universium
-        Universium = matCreator(19, "universium")
+        Universium = addMaterial(19, "universium")
         {
             ingot()
             liquid()
@@ -416,7 +415,7 @@ object GTLiteElementMaterials
         }
 
         // 20 Eternity
-        Eternity = matCreator(20, "eternity")
+        Eternity = addMaterial(20, "eternity")
         {
             ingot()
             liquid()
@@ -429,7 +428,7 @@ object GTLiteElementMaterials
         }
 
         // 21 Omnium
-        Omnium = matCreator(21, "omnium")
+        Omnium = addMaterial(21, "omnium")
         {
             ingot()
             liquid()

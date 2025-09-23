@@ -66,6 +66,12 @@ fun Material.Builder.colorAverage(vararg inputs: Material): Material.Builder
 
 // region DSL Contexts
 
+fun Material.Builder.toolProp(harvestSpeed: Float, attackDamage: Float, durability: Int, harvestLevel: Int): Material.Builder
+{
+    toolStats(MaterialToolProperty.Builder.of(harvestSpeed, attackDamage, durability, harvestLevel).build())
+    return this
+}
+
 fun Material.Builder.toolProp(harvestSpeed: Float, attackDamage: Float, durability: Int, harvestLevel: Int,
                               builder: MaterialToolProperty.Builder.() -> Unit): Material.Builder
 {
@@ -76,6 +82,14 @@ fun Material.Builder.toolProp(harvestSpeed: Float, attackDamage: Float, durabili
 // endregion
 
 // region Simplifactions
+
+fun Material.Builder.blastProp(temperature: Int, gasTier: BlastProperty.GasTier): Material.Builder
+{
+    blast { b ->
+        b.temp(temperature, gasTier)
+    }
+    return this
+}
 
 fun Material.Builder.blastProp(temperature: Int, gasTier: BlastProperty.GasTier,
                                blastEUtOverride: Int, blastDurationOverride: Int,

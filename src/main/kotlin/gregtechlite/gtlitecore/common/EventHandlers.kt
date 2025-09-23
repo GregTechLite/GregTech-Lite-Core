@@ -40,7 +40,7 @@ object EventHandlers
         GTLiteOrePrefix.addToMetaItem()
         GTLiteMaterials.init()
         GTLiteOrePrefix.setOrePrefixInfos()
-        GTLiteMaterialProperties.setMaterialProperties()
+        GTLiteMaterialProperties.init()
         GTLiteToolPropertyAdder.initSoftToolProperties()
         GTLiteMaterialFlags.setMaterialFlags()
         GTLiteMaterialIconSet.setMaterialIconSets()
