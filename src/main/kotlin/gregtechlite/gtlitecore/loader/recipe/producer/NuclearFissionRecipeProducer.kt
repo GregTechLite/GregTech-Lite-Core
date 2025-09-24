@@ -184,6 +184,7 @@ internal object NuclearFissionRecipeProducer
      * @param coolantAmount   The base coolant amount of all fissioning (for common fuel rod).
      * @param isHeavyElement  If the [fissionElement] is heavy element, then the hot coolant will be supercritical liquid.
      */
+    @Suppress("LocalVariableName")
     private fun createFission(fissionElement: Material, baseVoltageTier: Int, baseDuration: Int, coolantAmount: Int, isHeavyElement: Boolean = false)
     {
 
@@ -208,7 +209,7 @@ internal object NuclearFissionRecipeProducer
                                 ::SodiumPotassiumEutatic -> :: SupercriticalSodiumPotassiumEutatic
                                 ::LeadBismuthEutatic -> ::SupercriticalLeadBismuthEutatic
                                 ::LithiumBerylliumFluorides -> ::SupercriticalLithiumBerylliumFluorides
-                                else -> ::SupercriticalLithiumBerylliumFluorides // TODO bounded result?
+                                else -> ::SupercriticalLithiumSodiumPotassiumFluorides
                             }
                         }
                         else
@@ -218,7 +219,7 @@ internal object NuclearFissionRecipeProducer
                                 ::SodiumPotassiumEutatic -> ::SuperheatedSodiumPotassiumEutatic
                                 ::LeadBismuthEutatic -> ::SuperheatedLeadBismuthEutatic
                                 ::LithiumBerylliumFluorides -> ::SuperheatedLithiumBerylliumFluorides
-                                else -> ::SuperheatedLithiumSodiumPotassiumFluorides // TODO bounded result?
+                                else -> ::SuperheatedLithiumSodiumPotassiumFluorides
                             }
                         }
 
