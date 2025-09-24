@@ -2,8 +2,6 @@ package gregtechlite.gtlitecore.api.unification.material
 
 import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.V
-import gregtech.api.fluids.FluidBuilder
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.EXT2_METAL
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Ruby
@@ -30,11 +28,14 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
-import gregtech.api.unification.material.properties.MaterialToolProperty
-import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.colorAverage
-import gregtechlite.gtlitecore.api.translation.CommonI18n
+import gregtechlite.gtlitecore.api.extension.gas
+import gregtechlite.gtlitecore.api.extension.liquid
+import gregtechlite.gtlitecore.api.extension.plasma
+import gregtechlite.gtlitecore.api.extension.rotorProp
+import gregtechlite.gtlitecore.api.extension.toolProp
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -185,730 +186,893 @@ object GTLiteUnknownCompositionMaterials
     fun init()
     {
         // 12001 Latex
-        Latex = Material.Builder(12001, GTLiteMod.id("latex"))
-            .dust()
-            .liquid()
-            .color(0xFFFADA)
-            .build()
+        Latex = addMaterial(12001, "latex")
+        {
+            dust()
+            liquid()
+            color(0xFFFADA)
+        }
 
         // 12002 Resin
-        Resin = Material.Builder(12002, GTLiteMod.id("resin"))
-            .dust()
-            .liquid()
-            .color(0xB5803A)
-            .flags(FLAMMABLE)
-            .build()
+        Resin = addMaterial(12002, "resin")
+        {
+            dust()
+            liquid()
+            color(0xB5803A)
+            flags(FLAMMABLE)
+        }
 
         // 12003 Rainbow Sap
-        RainbowSap = Material.Builder(12003, GTLiteMod.id("rainbow_sap"))
-            .liquid(FluidBuilder().customStill())
-            .build()
+        RainbowSap = addMaterial(12003, "rainbow_sap")
+        {
+            liquid()
+            {
+                customStill()
+            }
+        }
 
         // 12004-12020 for other sap liquids.
         // ...
 
         // 12021 Blood
-        Blood = Material.Builder(12021, GTLiteMod.id("blood"))
-            .liquid()
-            .color(0x5C0606)
-            .build()
+        Blood = addMaterial(12021, "blood")
+        {
+            liquid()
+            color(0x5C0606)
+        }
 
         // 12022 Blood Cells
-        BloodCells = Material.Builder(12022, GTLiteMod.id("blood_cells"))
-            .liquid()
-            .color(0xAD2424).iconSet(DULL)
-            .build()
+        BloodCells = addMaterial(12022, "blood_cells")
+        {
+            liquid()
+            color(0xAD2424).iconSet(DULL)
+        }
 
         // 12023 Blood Plasma
-        BloodPlasma = Material.Builder(12023, GTLiteMod.id("blood_plasma"))
-            .liquid()
-            .color(0xE37171).iconSet(DULL)
-            .build()
+        BloodPlasma = addMaterial(12023, "blood_plasma")
+        {
+            liquid()
+            color(0xE37171).iconSet(DULL)
+        }
 
         // 12024 bFGF
-        BFGF = Material.Builder(12024, GTLiteMod.id("bfgf"))
-            .liquid()
-            .color(0xB365E0)
-            .build()
-            .setFormula("bFGF", false)
+        BFGF = addMaterial(12024, "bfgf")
+        {
+            liquid()
+            color(0xB365E0)
+        }
 
         // 12025 EGF
-        EGF = Material.Builder(12025, GTLiteMod.id("egf"))
-            .liquid()
-            .color(0x815799)
-            .build()
-            .setFormula("EGF", false) // C257H381N73O83S7 in reality world ^^.
+        // Chemical formula is C257H381N73O83S7 in reality world ^^.
+        EGF = addMaterial(12025, "egf")
+        {
+            liquid()
+            color(0x815799)
+        }
 
         // 12026 CAT
-        CAT = Material.Builder(12026, GTLiteMod.id("cat"))
-            .liquid()
-            .color(0xDB6596)
-            .build()
-            .setFormula("CAT", false)
+        CAT = addMaterial(12026, "cat")
+        {
+            liquid()
+            color(0xDB6596)
+        }
 
         // 12027 Kerogen
-        Kerogen = Material.Builder(12027, GTLiteMod.id("kerogen"))
-            .liquid(FluidBuilder().temperature(302))
-            .color(0xA7A7A7).iconSet(DULL)
-            .build()
+        Kerogen = addMaterial(12027, "kerogen")
+        {
+            liquid()
+            {
+                temperature(302)
+            }
+            color(0xA7A7A7).iconSet(DULL)
+        }
 
         // 12028 Paraffin
-        Paraffin = Material.Builder(12028, GTLiteMod.id("paraffin"))
-            .dust(0, 40 * SECOND)
-            .color(0xD2D2FA).iconSet(WAX)
-            .flags(FLAMMABLE)
-            .build()
+        Paraffin = addMaterial(12028, "paraffin")
+        {
+            dust(0, 40 * SECOND)
+            color(0xD2D2FA).iconSet(WAX)
+            flags(FLAMMABLE)
+        }
 
         // 12029 Bitumen
-        Bitumen = Material.Builder(12029, GTLiteMod.id("bitumen"))
-            .dust()
-            .color(0x2D2D05).iconSet(WAX)
-            .build()
+        Bitumen = addMaterial(12029, "bitumen")
+        {
+            dust()
+            color(0x2D2D05).iconSet(WAX)
+        }
 
         // 12030 for other misc biological materials
         // ...
 
         // 12031 Green Sapphire Juice
-        GreenSapphireJuice = Material.Builder(12031, GTLiteMod.id("green_sapphire_juice"))
-            .liquid()
-            .color(GreenSapphire.materialRGB)
-            .components(GreenSapphire.materialComponents)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        GreenSapphireJuice = addMaterial(12031, "green_sapphire_juice")
+        {
+            liquid()
+            color(GreenSapphire.materialRGB)
+            components(GreenSapphire.materialComponents)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 12032 Sapphire Juice
-        SapphireJuice = Material.Builder(12032, GTLiteMod.id("sapphire_juice"))
-            .liquid()
-            .color(Sapphire.materialRGB)
-            .components(Sapphire.materialComponents)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SapphireJuice = addMaterial(12032, "sapphire_juice")
+        {
+            liquid()
+            color(Sapphire.materialRGB)
+            components(Sapphire.materialComponents)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 12033 Ruby Juice
-        RubyJuice = Material.Builder(12033, GTLiteMod.id("ruby_juice"))
-            .liquid()
-            .color(Ruby.materialRGB)
-            .components(Ruby.materialComponents)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RubyJuice = addMaterial(12033, "ruby_juice")
+        {
+            liquid()
+            color(Ruby.materialRGB)
+            components(Ruby.materialComponents)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 12034-12039 for other gem slurries and juices.
         // ...
 
         // 12040 Greenhouse Gas
-        GreenhouseGas = Material.Builder(12040, GTLiteMod.id("greenhouse_gas"))
-            .gas(FluidBuilder().temperature(313))
-            .build()
-            .setFormula("N78O21Ar9?", true)
+        GreenhouseGas = addMaterial(12040, "greenhouse_gas")
+        {
+            gas()
+            {
+                temperature(313)
+            }
+        }
 
         // 12041 Grape Juice
-        GrapeJuice = Material.Builder(12041, GTLiteMod.id("grape_juice"))
-            .liquid()
-            .color(0x50C039)
-            .build()
+        GrapeJuice = addMaterial(12041, "grape_juice")
+        {
+            liquid()
+            color(0x50C039)
+        }
 
         // 12042 Red Wine
-        RedWine = Material.Builder(12042, GTLiteMod.id("red_wine"))
-            .liquid()
-            .color(0x7D0B07)
-            .build()
+        RedWine = addMaterial(12042, "red_wine")
+        {
+            liquid()
+            color(0x7D0B07)
+        }
 
         // 12043 Vinegar
-        Vinegar = Material.Builder(12043, GTLiteMod.id("vinegar"))
-            .liquid()
-            .color(0x5E0805)
-            .build()
+        Vinegar = addMaterial(12043, "vinegar")
+        {
+            liquid()
+            color(0x5E0805)
+        }
 
         // 12044 Potato Juice
-        PotatoJuice = Material.Builder(12044, GTLiteMod.id("potato_juice"))
-            .liquid()
-            .color(0xC3A92C)
-            .build()
+        PotatoJuice = addMaterial(12044, "potato_juice")
+        {
+            liquid()
+            color(0xC3A92C)
+        }
 
         // 12045 Vodka
-        Vodka = Material.Builder(12045, GTLiteMod.id("vodka"))
-            .liquid()
-            .colorAverage(PotatoJuice, Water)
-            .build()
+        Vodka = addMaterial(12045, "vodka")
+        {
+            liquid()
+            colorAverage(PotatoJuice, Water)
+        }
 
         // 12046 Polenta
-        Polenta = Material.Builder(12046, GTLiteMod.id("polenta"))
-            .liquid()
-            .color(0xBBA844)
-            .build()
+        Polenta = addMaterial(12046, "polenta")
+        {
+            liquid()
+            color(0xBBA844)
+        }
 
         // 12047 Coffee
-        Coffee = Material.Builder(12047, GTLiteMod.id("coffee"))
-            .liquid()
-            .color(0x36312E)
-            .build()
+        Coffee = addMaterial(12047, "coffee")
+        {
+            liquid()
+            color(0x36312E)
+        }
 
         // 12048 Butter
-        Butter = Material.Builder(12048, GTLiteMod.id("butter"))
-            .liquid()
-            .color(0xFFEF82)
-            .build()
+        Butter = addMaterial(12048, "butter")
+        {
+            liquid()
+            color(0xFFEF82)
+        }
 
         // 12049 Purple Drink
-        PurpleDrink = Material.Builder(12049, GTLiteMod.id("purple_drink"))
-            .liquid()
-            .color(0xB405FF)
-            .build()
+        PurpleDrink = addMaterial(12049, "purple_drink")
+        {
+            liquid()
+            color(0xB405FF)
+        }
 
         // 12050 Carbon 5 Fraction
-        Carbon5Fraction = Material.Builder(12050, GTLiteMod.id("carbon_5_fraction"))
-            .liquid()
-            .color(0x9C8638)
-            .flags(FLAMMABLE)
-            .build()
+        Carbon5Fraction = addMaterial(12050, "carbon_5_fraction")
+        {
+            liquid()
+            color(0x9C8638)
+            flags(FLAMMABLE)
+        }
 
         // 12051 Dimerized Carbon 5 Fraction
-        DimerizedCarbon5Fraction = Material.Builder(12051, GTLiteMod.id("dimerized_carbon_5_fraction"))
-            .liquid()
-            .color(0x9C9538)
-            .flags(FLAMMABLE)
-            .build()
+        DimerizedCarbon5Fraction = addMaterial(12051, "dimerized_carbon_5_fraction")
+        {
+            liquid()
+            color(0x9C9538)
+            flags(FLAMMABLE)
+        }
 
         // 12052 Olive Oil
-        OliveOil = Material.Builder(12052, GTLiteMod.id("olive_oil"))
-            .liquid()
-            .color(0x969D56)
-            .build()
+        OliveOil = addMaterial(12052, "olive_oil")
+        {
+            liquid()
+            color(0x969D56)
+        }
 
         // 12053 Fat
-        Fat = Material.Builder(12053, GTLiteMod.id("fat"))
-            .liquid()
-            .color(0xFFF200)
-            .build()
-            .setFormula("C57H110O6", true)
+        Fat = addMaterial(12053, "fat")
+        {
+            liquid()
+            color(0xFFF200)
+        }
 
         // 12054 Mud
-        Mud = Material.Builder(12054, GTLiteMod.id("mud"))
-            .liquid()
-            .color(0x2C2B01)
-            .build()
+        Mud = addMaterial(12054, "mud")
+        {
+            liquid()
+            color(0x2C2B01)
+        }
 
         // 12055 Lemon Extract
-        LemonExtract = Material.Builder(12055, GTLiteMod.id("lemon_extract"))
-            .liquid()
-            .color(0xFCE80A)
-            .build()
+        LemonExtract = addMaterial(12055, "lemon_extract")
+        {
+            liquid()
+            color(0xFCE80A)
+        }
 
         // 12056 Lime Extract
-        LimeExtract = Material.Builder(12056, GTLiteMod.id("lime_extract"))
-            .liquid()
-            .color(0x85F218)
-            .build()
+        LimeExtract = addMaterial(12056, "lime_extract")
+        {
+            liquid()
+            color(0x85F218)
+        }
 
         // 12057 Orange Extract
-        OrangeExtract = Material.Builder(12057, GTLiteMod.id("orange_extract"))
-            .liquid()
-            .color(0xFF6100)
-            .build()
+        OrangeExtract = addMaterial(12057, "orange_extract")
+        {
+            liquid()
+            color(0xFF6100)
+        }
 
         // 12058 Lemon-Lime Mixture
-        LemonLimeMixture = Material.Builder(12058, GTLiteMod.id("lemon_lime_mixture"))
-            .liquid()
-            .color(0xBDDB5A)
-            .build()
+        LemonLimeMixture = addMaterial(12058, "lemon_lime_mixture")
+        {
+            liquid()
+            color(0xBDDB5A)
+        }
 
         // 12059 Lemon-Lime Soda Syrup
-        LemonLimeSodaSyrup = Material.Builder(12059, GTLiteMod.id("lemon_lime_soda_syrup"))
-            .liquid()
-            .color(0x76FF0D)
-            .build()
+        LemonLimeSodaSyrup = addMaterial(12059, "lemon_lime_soda_syrup")
+        {
+            liquid()
+            color(0x76FF0D)
+        }
 
         // 12060 Etirps™ (Sprite)
-        Etirps = Material.Builder(12060, GTLiteMod.id("etirps"))
-            .liquid()
-            .color(0xB0FF73)
-            .build()
+        Etirps = addMaterial(12060, "etirps")
+        {
+            liquid()
+            color(0xB0FF73)
+        }
 
         // 12061 Cranberry Extract
-        CranberryExtract = Material.Builder(12061, GTLiteMod.id("cranberry_extract"))
-            .liquid()
-            .color(0x8C0D22)
-            .build()
+        CranberryExtract = addMaterial(12061, "cranberry_extract")
+        {
+            liquid()
+            color(0x8C0D22)
+        }
 
         // 12062 Cranberry Soda Syrup
-        CranberrySodaSyrup = Material.Builder(12062, GTLiteMod.id("cranberry_soda_syrup"))
-            .liquid()
-            .color(0x8C0D22)
-            .build()
+        CranberrySodaSyrup = addMaterial(12062, "cranberry_soda_syrup")
+        {
+            liquid()
+            color(0x8C0D22)
+        }
 
         // 12063 Cranberry Etirps™ (Sprite)
-        CranberryEtirps = Material.Builder(12063, GTLiteMod.id("cranberry_etirps"))
-            .liquid()
-            .colorAverage(CranberryExtract.materialRGB, 0xBBDDBB)
-            .build()
+        CranberryEtirps = addMaterial(12063, "cranberry_etirps")
+        {
+            liquid()
+            colorAverage(CranberryExtract.materialRGB, 0xBBDDBB)
+        }
 
         // 12064 Cough Syrup
-        CoughSyrup = Material.Builder(12064, GTLiteMod.id("cough_syrup"))
-            .liquid()
-            .color(0x5C1B5E)
-            .build()
+        CoughSyrup = addMaterial(12064, "cough_syrup")
+        {
+            liquid()
+            color(0x5C1B5E)
+        }
 
         // 12065 Apple Syrup
-        AppleSyrup = Material.Builder(12065, GTLiteMod.id("apple_syrup"))
-            .liquid()
-            .color(0xF2E1AC)
-            .build()
+        AppleSyrup = addMaterial(12065, "apple_syrup")
+        {
+            liquid()
+            color(0xF2E1AC)
+        }
 
         // 12065 Cane Syrup
-        CaneSyrup = Material.Builder(12066, GTLiteMod.id("cane_syrup"))
-            .liquid()
-            .color(0xF2F1DC)
-            .build()
+        CaneSyrup = addMaterial(12066, "cane_syrup")
+        {
+            liquid()
+            color(0xF2F1DC)
+        }
 
         // 12066 Apple-Cane Syrup
-        AppleCaneSyrup = Material.Builder(12067, GTLiteMod.id("apple_cane_syrup"))
-            .liquid()
-            .color(0xE7F5AE)
-            .build()
+        AppleCaneSyrup = addMaterial(12067, "apple_cane_syrup")
+        {
+            liquid()
+            color(0xE7F5AE)
+        }
 
         // 12067 Hard Apple Candy Syrup
-        HardAppleCandySyrup = Material.Builder(12068, GTLiteMod.id("hard_apple_candy_syrup"))
-            .liquid()
-            .color(0x78E32B)
-            .build()
+        HardAppleCandySyrup = addMaterial(12068, "hard_apple_candy_syrup")
+        {
+            liquid()
+            color(0x78E32B)
+        }
 
         // 12068 Fracturing Fluid
-        FracturingFluid = Material.Builder(12069, GTLiteMod.id("fracturing_fluid"))
-            .liquid()
-            .color(0x96D6D5)
-            .build()
+        FracturingFluid = addMaterial(12069, "fracturing_fluid")
+        {
+            liquid()
+            color(0x96D6D5)
+        }
 
         // 12069-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas
-        FreeElectronGas = Material.Builder(12101, GTLiteMod.id("free_electron_gas"))
-            .gas(FluidBuilder()
-                .temperature(50)
-                .translation("gregtech.fluid.generic"))
+        FreeElectronGas = addMaterial(12101, "free_electron_gas")
+        {
+            gas()
+            {
+                temperature(50)
+                translation("gregtech.fluid.generic")
+            }
             .color(0x507BB3)
-            .build()
+        }
 
         // 12102 Fermionic UU Matter
-        FermionicUUMatter = Material.Builder(12102, GTLiteMod.id("fermionic_uu_matter"))
-            .liquid(FluidBuilder().temperature(125))
-            .color(UUMatter.materialRGB / 3)
-            .build()
+        FermionicUUMatter = addMaterial(12102, "fermionic_uu_matter")
+        {
+            liquid()
+            {
+                temperature(125)
+            }
+            color(UUMatter.materialRGB / 3)
+        }
 
         // 12103 Bosonic UU Matter
-        BosonicUUMatter = Material.Builder(12103, GTLiteMod.id("bosonic_uu_matter"))
-            .liquid(FluidBuilder().temperature(125))
-            .color(UUMatter.materialRGB - FermionicUUMatter.materialRGB)
-            .build()
+        BosonicUUMatter = addMaterial(12103, "bosonic_uu_matter")
+        {
+            liquid()
+            {
+                temperature(125)
+            }
+            color(UUMatter.materialRGB - FermionicUUMatter.materialRGB)
+        }
 
         // 12104 Rich Nitrogen Mixture
-        RichNitrogenMixture = Material.Builder(12104, GTLiteMod.id("rich_nitrogen_mixture"))
-            .gas(FluidBuilder().temperature(400))
-            .color(0x6891D8)
-            .build()
+        RichNitrogenMixture = addMaterial(12104, "rich_nitrogen_mixture")
+        {
+            gas()
+            {
+                temperature(400)
+            }
+            color(0x6891D8)
+        }
 
         // 12105 Rich Ammonia Mixture
-        RichAmmoniaMixture = Material.Builder(12105, GTLiteMod.id("rich_ammonia_mixture"))
-            .gas(FluidBuilder().temperature(400))
-            .color(0x708ACD)
-            .build()
+        RichAmmoniaMixture = addMaterial(12105, "rich_ammonia_mixture")
+        {
+            gas()
+            {
+                temperature(400)
+            }
+            color(0x708ACD)
+        }
 
         // 12106 Sea Water
-        SeaWater = Material.Builder(12106, GTLiteMod.id("sea_water"))
-            .liquid()
-            .color(0x0000FF)
-            .build()
-            .setFormula("H2O?", true)
+        SeaWater = addMaterial(12106, "sea_water")
+        {
+            liquid()
+            color(0x0000FF)
+        }
 
         // 12107 Acidic Salt Water
-        AcidicSaltWater = Material.Builder(12107, GTLiteMod.id("acidic_salt_water"))
-            .liquid()
-            .colorAverage(SaltWater, SulfuricAcid)
-            .build()
-            .setFormula("(H2O)(H2SO4)?", true)
+        AcidicSaltWater = addMaterial(12107, "acidic_salt_water")
+        {
+            liquid()
+            colorAverage(SaltWater, SulfuricAcid)
+        }
 
         // 12108 Chalcogen Anode Mud
-        ChalcogenAnodeMud = Material.Builder(12108, GTLiteMod.id("chalcogen_anode_mud"))
-            .dust()
-            .color(0x8A3324)
-            .iconSet(FINE)
-            .build()
+        ChalcogenAnodeMud = addMaterial(12108, "chalcogen_anode_mud")
+        {
+            dust()
+            color(0x8A3324).iconSet(FINE)
+        }
 
         // 12109 Rare Earth Hydroxides Solution
-        RareEarthHydroxidesSolution = Material.Builder(12109, GTLiteMod.id("rare_earth_hydroxides_solution"))
-            .liquid()
-            .color(0x434327)
-            .build()
+        RareEarthHydroxidesSolution = addMaterial(12109, "rare_earth_hydroxides_solution")
+        {
+            liquid()
+            color(0x434327)
+        }
 
         // 12110 Rare Earth Chlorides Solution
-        RareEarthChloridesSolution = Material.Builder(12110, GTLiteMod.id("rare_earth_chlorides_solution"))
-            .liquid()
-            .color(0x838367)
-            .build()
+        RareEarthChloridesSolution = addMaterial(12110, "rare_earth_chlorides_solution")
+        {
+            liquid()
+            color(0x838367)
+        }
 
         // 12111 Brevibacterium Flavum
-        BrevibacteriumFlavum = Material.Builder(12111, GTLiteMod.id("brevibacterium_flavum"))
-            .dust()
-            .color(0x766718).iconSet(ROUGH)
-            .build()
+        BrevibacteriumFlavum = addMaterial(12111, "brevibacterium_flavum")
+        {
+            dust()
+            color(0x766718).iconSet(ROUGH)
+        }
 
         // 12112 Yeast
-        Yeast = Material.Builder(12112, GTLiteMod.id("yeast"))
-            .dust()
-            .color(0xF0E660).iconSet(ROUGH)
-            .build()
+        Yeast = addMaterial(12112, "yeast")
+        {
+            dust()
+            color(0xF0E660).iconSet(ROUGH)
+        }
 
         // 12113 Cupriavidus Necator
-        CupriavidusNecator = Material.Builder(12113, GTLiteMod.id("cupriavidus_necator"))
-            .dust()
-            .color(0x2C4D24).iconSet(ROUGH)
-            .build()
+        CupriavidusNecator = addMaterial(12113, "cupriavidus_necator")
+        {
+            dust()
+            color(0x2C4D24).iconSet(ROUGH)
+        }
 
         // 12114 Streptococcus Pyogenes
-        StreptococcusPyogenes = Material.Builder(12114, GTLiteMod.id("streptococcus_pyogenes"))
-            .dust()
-            .color(0x999933).iconSet(ROUGH)
-            .build()
+        StreptococcusPyogenes = addMaterial(12114, "streptococcus_pyogenes")
+        {
+            dust()
+            color(0x999933).iconSet(ROUGH)
+        }
 
         // 12115 Escherichia Coli
-        EscherichiaColi = Material.Builder(12115, GTLiteMod.id("escherichia_coli"))
-            .dust()
-            .color(0x398C47).iconSet(DULL)
-            .build()
+        EscherichiaColi = addMaterial(12115, "escherichia_coli")
+        {
+            dust()
+            color(0x398C47).iconSet(DULL)
+        }
 
         // 12116 Green Algae
-        GreenAlgae = Material.Builder(12116, GTLiteMod.id("green_algae"))
-            .dust()
-            .color(0x228B22).iconSet(METALLIC)
-            .build()
+        GreenAlgae = addMaterial(12116, "green_algae")
+        {
+            dust()
+            color(0x228B22).iconSet(METALLIC)
+        }
 
         // 12117 Brown Algae
-        BrownAlgae = Material.Builder(12117, GTLiteMod.id("brown_algae"))
-            .dust()
-            .color(0xA52A2A).iconSet(METALLIC)
-            .build()
+        BrownAlgae = addMaterial(12117, "brown_algae")
+        {
+            dust()
+            color(0xA52A2A).iconSet(METALLIC)
+        }
 
         // 12118 Red Algae
-        RedAlgae = Material.Builder(12118, GTLiteMod.id("red_algae"))
-            .dust()
-            .color(0xF08080).iconSet(METALLIC)
-            .build()
+        RedAlgae = addMaterial(12118, "red_algae")
+        {
+            dust()
+            color(0xF08080).iconSet(METALLIC)
+        }
 
         // 12119 Algae Mixture
-        AlgaeMixture = Material.Builder(12119, GTLiteMod.id("algae_mixture"))
-            .liquid()
-            .colorAverage(GreenAlgae, BrownAlgae, RedAlgae).iconSet(DULL)
-            .build()
+        AlgaeMixture = addMaterial(12119, "algae_mixture")
+        {
+            liquid()
+            colorAverage(GreenAlgae, BrownAlgae, RedAlgae).iconSet(DULL)
+        }
 
         // 12115-12130 for other biological components.
         // ...
 
         // 12131 MethylamineMixture
-        MethylamineMixture = Material.Builder(12131, GTLiteMod.id("methylamine_mixture"))
-            .liquid()
-            .color(0xAA4400)
-            .build()
+        MethylamineMixture = addMaterial(12131, "methylamine_mixture")
+        {
+            liquid()
+            color(0xAA4400)
+        }
 
         // 12132 B-Z Medium
-        BZMedium = Material.Builder(12132, GTLiteMod.id("bz_medium"))
-            .liquid()
-            .color(0xA2FD35)
-            .build()
+        BZMedium = addMaterial(12132, "bz_medium")
+        {
+            liquid()
+            color(0xA2FD35)
+        }
 
         // 12133 Low Purity Enriched Naquadah Emulsion
-        LowPurityEnrichedNaquadahEmulsion = Material.Builder(12133, GTLiteMod.id("low_purity_enriched_naquadah_emulsion"))
-            .liquid()
-            .color(0x4C4C4C).iconSet(DULL)
-            .build()
+        LowPurityEnrichedNaquadahEmulsion = addMaterial(12133, "low_purity_enriched_naquadah_emulsion")
+        {
+            liquid()
+            color(0x4C4C4C).iconSet(DULL)
+        }
 
         // 12134 Low Purity Naquadria Emulsion
-        LowPurityNaquadriaEmulsion = Material.Builder(12134, GTLiteMod.id("low_purity_naquadria_emulsion"))
-            .liquid()
-            .color(0x393939)
-            .iconSet(DULL)
-            .build()
+        LowPurityNaquadriaEmulsion = addMaterial(12134, "low_purity_naquadria_emulsion")
+        {
+            liquid()
+            color(0x393939).iconSet(DULL)
+        }
 
         // 12135 Bedrock Smoke
-        BedrockSmoke = Material.Builder(12135, GTLiteMod.id("bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x525252)
-            .build()
+        BedrockSmoke = addMaterial(12135, "bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x525252)
+        }
 
         // 12136 Bedrock Soot Solution
-        BedrockSootSolution = Material.Builder(12136, GTLiteMod.id("bedrock_soot_solution"))
-            .liquid()
-            .color(0x1E2430)
-            .build()
+        BedrockSootSolution = addMaterial(12136, "bedrock_soot_solution")
+        {
+            liquid()
+            color(0x1E2430)
+        }
 
         // 12137 Clean Bedrock Soot Solution
-        CleanBedrockSootSolution = Material.Builder(12137, GTLiteMod.id("clean_bedrock_soot_solution"))
-            .liquid()
-            .color(0xA89F9E)
-            .build()
+        CleanBedrockSootSolution = addMaterial(12137, "clean_bedrock_soot_solution")
+        {
+            liquid()
+            color(0xA89F9E)
+        }
 
         // 12138 Heavy Bedrock Smoke
-        HeavyBedrockSmoke = Material.Builder(12138, GTLiteMod.id("heavy_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x242222)
-            .build()
+        HeavyBedrockSmoke = addMaterial(12138, "heavy_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x242222)
+        }
 
         // 12139 Medium Bedrock Smoke
-        MediumBedrockSmoke = Material.Builder(12139, GTLiteMod.id("medium_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x2E2C2C)
-            .build()
+        MediumBedrockSmoke = addMaterial(12139, "medium_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x2E2C2C)
+        }
 
         // 12140 Light Bedrock Smoke
-        LightBedrockSmoke = Material.Builder(12140, GTLiteMod.id("light_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x363333)
-            .build()
+        LightBedrockSmoke = addMaterial(12140, "light_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x363333)
+        }
 
         // 12141 Ultralight Bedrock Smoke
-        UltralightBedrockSmoke = Material.Builder(12141, GTLiteMod.id("ultralight_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x403D3D)
-            .build()
+        UltralightBedrockSmoke = addMaterial(12141, "ultralight_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x403D3D)
+        }
 
         // 12142 Heavy Taranium Gas
-        HeavyTaraniumGas = Material.Builder(12142, GTLiteMod.id("heavy_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x262626)
-            .build()
+        HeavyTaraniumGas = addMaterial(12142, "heavy_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x262626)
+        }
 
         // 12143 Medium Taranium Gas
-        MediumTaraniumGas = Material.Builder(12143, GTLiteMod.id("medium_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x313131)
-            .build()
+        MediumTaraniumGas = addMaterial(12143, "medium_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x313131)
+        }
 
         // 12144 Light Taranium Gas
-        LightTaraniumGas = Material.Builder(12144, GTLiteMod.id("light_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x404040)
-            .build()
+        LightTaraniumGas = addMaterial(12144, "light_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x404040)
+        }
 
         // 12145 Bedrock Gas
-        BedrockGas = Material.Builder(12145, GTLiteMod.id("bedrock_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x575757)
-            .build()
+        BedrockGas = addMaterial(12145, "bedrock_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x575757)
+        }
 
         // 12146 Crude Naquadah Fuel
-        CrudeNaquadahFuel = Material.Builder(12146, GTLiteMod.id("crude_naquadah_fuel"))
-            .liquid()
-            .color(0x077F4E)
-            .build()
+        CrudeNaquadahFuel = addMaterial(12146, "crude_naquadah_fuel")
+        {
+            liquid()
+            color(0x077F4E)
+        }
 
         // 12147 Heavy Naquadah Fuel
-        HeavyNaquadahFuel = Material.Builder(12147, GTLiteMod.id("heavy_naquadah_fuel"))
-            .liquid()
-            .color(0x088C56)
-            .build()
+        HeavyNaquadahFuel = addMaterial(12147, "heavy_naquadah_fuel")
+        {
+            liquid()
+            color(0x088C56)
+        }
 
         // 12148 Medium Naquadah Fuel
-        MediumNaquadahFuel = Material.Builder(12148, GTLiteMod.id("medium_naquadah_fuel"))
-            .liquid()
-            .color(0x09A566)
-            .build()
+        MediumNaquadahFuel = addMaterial(12148, "medium_naquadah_fuel")
+        {
+            liquid()
+            color(0x09A566)
+        }
 
         // 12149 Light Naquadah Fuel
-        LightNaquadahFuel = Material.Builder(12149, GTLiteMod.id("light_naquadah_fuel"))
-            .liquid()
-            .color(0x0BBF75)
-            .build()
+        LightNaquadahFuel = addMaterial(12149, "light_naquadah_fuel")
+        {
+            liquid()
+            color(0x0BBF75)
+        }
 
         // 12150 Naquadah Gas
-        NaquadahGas = Material.Builder(12150, GTLiteMod.id("naquadah_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x0CD985)
-            .build()
+        NaquadahGas = addMaterial(12150, "naquadah_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x0CD985)
+        }
 
         // 12151 Cracked Heavy Taranium Gas
-        CrackedHeavyTaraniumGas = Material.Builder(12151, GTLiteMod.id("cracked_heavy_taranium_gas"))
-            .liquid()
-            .color(0x1F2B2E)
-            .build()
+        CrackedHeavyTaraniumGas = addMaterial(12151, "cracked_heavy_taranium_gas")
+        {
+            liquid()
+            color(0x1F2B2E)
+        }
 
         // 12152 Cracked Medium Taranium Gas
-        CrackedMediumTaraniumGas = Material.Builder(12152, GTLiteMod.id("cracked_medium_taranium_gas"))
-            .liquid()
-            .color(0x29393D)
-            .build()
+        CrackedMediumTaraniumGas = addMaterial(12152, "cracked_medium_taranium_gas")
+        {
+            liquid()
+            color(0x29393D)
+        }
 
         // 12153 Cracked Light Taranium Gas
-        CrackedLightTaraniumGas = Material.Builder(12153, GTLiteMod.id("cracked_light_taranium_gas"))
-            .liquid()
-            .color(0x374C52)
-            .build()
+        CrackedLightTaraniumGas = addMaterial(12153, "cracked_light_taranium_gas")
+        {
+            liquid()
+            color(0x374C52)
+        }
 
         // 12154 Heavy Taranium Fuel
-        HeavyTaraniumFuel = Material.Builder(12154, GTLiteMod.id("heavy_taranium_fuel"))
-            .liquid()
-            .color(0x141414)
-            .build()
+        HeavyTaraniumFuel = addMaterial(12154, "heavy_taranium_fuel")
+        {
+            liquid()
+            color(0x141414)
+        }
 
         // 12155 Medium Taranium Fuel
-        MediumTaraniumFuel = Material.Builder(12155, GTLiteMod.id("medium_taranium_fuel"))
-            .liquid()
-            .color(0x181818)
-            .build()
+        MediumTaraniumFuel = addMaterial(12155, "medium_taranium_fuel")
+        {
+            liquid()
+            color(0x181818)
+        }
 
         // 12156 Light Taranium Fuel
-        LightTaraniumFuel = Material.Builder(12156, GTLiteMod.id("light_taranium_fuel"))
-            .liquid()
-            .color(0x1C1C1C)
-            .build()
+        LightTaraniumFuel = addMaterial(12156, "light_taranium_fuel")
+        {
+            liquid()
+            color(0x1C1C1C)
+        }
 
         // 12157 Enriched Bedrock Soot Solution
-        EnrichedBedrockSootSolution = Material.Builder(12157, GTLiteMod.id("enriched_bedrock_soot_solution"))
-            .liquid()
-            .color(0x280C26)
-            .build()
+        EnrichedBedrockSootSolution = addMaterial(12157, "enriched_bedrock_soot_solution")
+        {
+            liquid()
+            color(0x280C26)
+        }
 
         // 12158 Clean Enriched Bedrock Soot Solution
-        CleanEnrichedBedrockSootSolution = Material.Builder(12158, GTLiteMod.id("clean_enriched_bedrock_soot_solution"))
-            .liquid()
-            .color(0x828C8C)
-            .build()
+        CleanEnrichedBedrockSootSolution = addMaterial(12158, "clean_enriched_bedrock_soot_solution")
+        {
+            liquid()
+            color(0x828C8C)
+        }
 
         // 12159 Heavy Enriched Bedrock Smoke
-        HeavyEnrichedBedrockSmoke = Material.Builder(12159, GTLiteMod.id("heavy_enriched_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x1A2222)
-            .build()
+        HeavyEnrichedBedrockSmoke = addMaterial(12159, "heavy_enriched_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x1A2222)
+        }
 
         // 12160 Medium Enriched Bedrock Smoke
-        MediumEnrichedBedrockSmoke = Material.Builder(12160, GTLiteMod.id("medium_enriched_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x1E2C2C)
-            .build()
+        MediumEnrichedBedrockSmoke = addMaterial(12160, "medium_enriched_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x1E2C2C)
+        }
 
         // 12161 Light Enriched Bedrock Smoke
-        LightEnrichedBedrockSmoke = Material.Builder(12161, GTLiteMod.id("light_enriched_bedrock_smoke"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x163333)
-            .build()
+        LightEnrichedBedrockSmoke = addMaterial(12161, "light_enriched_bedrock_smoke")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x163333)
+        }
 
         // 12162 Heavy Enriched Taranium Gas
-        HeavyEnrichedTaraniumGas = Material.Builder(12162, GTLiteMod.id("heavy_enriched_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x1F2626)
-            .build()
+        HeavyEnrichedTaraniumGas = addMaterial(12162, "heavy_enriched_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x1F2626)
+        }
 
         // 12163 Medium Enriched Taranium Gas
-        MediumEnrichedTaraniumGas = Material.Builder(12163, GTLiteMod.id("medium_enriched_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x1F3131)
-            .build()
+        MediumEnrichedTaraniumGas = addMaterial(12163, "medium_enriched_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x1F3131)
+        }
 
         // 12164 Light Enriched Taranium Gas
-        LightEnrichedTaraniumGas = Material.Builder(12164, GTLiteMod.id("light_enriched_taranium_gas"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x1F4040)
-            .build()
+        LightEnrichedTaraniumGas = addMaterial(12164, "light_enriched_taranium_gas")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x1F4040)
+        }
 
         // 12165 Cracked Heavy Enriched Taranium Gas
-        CrackedHeavyEnrichedTaraniumGas = Material.Builder(12165, GTLiteMod.id("cracked_heavy_enriched_taranium_gas"))
-            .liquid()
-            .color(0x2E1F2E)
-            .build()
+        CrackedHeavyEnrichedTaraniumGas = addMaterial(12165, "cracked_heavy_enriched_taranium_gas")
+        {
+            liquid()
+            color(0x2E1F2E)
+        }
 
         // 12166 Cracked Medium Enriched Taranium Gas
-        CrackedMediumEnrichedTaraniumGas = Material.Builder(12166, GTLiteMod.id("cracked_medium_enriched_taranium_gas"))
-            .liquid()
-            .color(0x29393D)
-            .build()
+        CrackedMediumEnrichedTaraniumGas = addMaterial(12166, "cracked_medium_enriched_taranium_gas")
+        {
+            liquid()
+            color(0x29393D)
+        }
 
         // 12167 Cracked Light Enriched Taranium Gas
-        CrackedLightEnrichedTaraniumGas = Material.Builder(12167, GTLiteMod.id("cracked_light_enriched_taranium_gas"))
-            .liquid()
-            .color(0x374C52)
-            .build()
+        CrackedLightEnrichedTaraniumGas = addMaterial(12167, "cracked_light_enriched_taranium_gas")
+        {
+            liquid()
+            color(0x374C52)
+        }
 
         // 12168 Heavy Enriched Taranium Fuel
-        HeavyEnrichedTaraniumFuel = Material.Builder(12168, GTLiteMod.id("heavy_enriched_taranium_fuel"))
-            .liquid()
-            .color(0x0F1414)
-            .build()
+        HeavyEnrichedTaraniumFuel = addMaterial(12168, "heavy_enriched_taranium_fuel")
+        {
+            liquid()
+            color(0x0F1414)
+        }
 
         // 12169 Medium Enriched Taranium Fuel
-        MediumEnrichedTaraniumFuel = Material.Builder(12169, GTLiteMod.id("medium_enriched_taranium_fuel"))
-            .liquid()
-            .color(0x0F1818)
-            .build()
+        MediumEnrichedTaraniumFuel = addMaterial(12169, "medium_enriched_taranium_fuel")
+        {
+            liquid()
+            color(0x0F1818)
+        }
 
         // 12170 Light Enriched Taranium Fuel
-        LightEnrichedTaraniumFuel = Material.Builder(12170, GTLiteMod.id("light_enriched_taranium_fuel"))
-            .liquid()
-            .color(0x0F1C1C)
-            .build()
+        LightEnrichedTaraniumFuel = addMaterial(12170, "light_enriched_taranium_fuel")
+        {
+            liquid()
+            color(0x0F1C1C)
+        }
 
         // 12171 Energetic Naquadria
-        NaquadriaEnergetic = Material.Builder(12171, GTLiteMod.id("energetic_naquadria"))
-            .liquid()
-            .color(0x202020)
-            .build()
+        NaquadriaEnergetic = addMaterial(12171, "energetic_naquadria")
+        {
+            liquid()
+            color(0x202020)
+        }
 
         // 12172 Quasi-fissioning plasma
-        QuasifissioningPlasma = Material.Builder(12172, GTLiteMod.id("quasi_fissioning_plasma"))
-            .plasma()
-            .color(0xB0A2C3).iconSet(DULL)
-            .build()
+        QuasifissioningPlasma = addMaterial(12172, "quasi_fissioning_plasma")
+        {
+            plasma()
+            color(0xB0A2C3).iconSet(DULL)
+        }
 
         // 12173 Oganesson Breeding Base
-        OganessonBreedingBase = Material.Builder(12173, GTLiteMod.id("oganesson_breeding_base"))
-            .liquid()
-            .color(0xA65A7F).iconSet(DULL)
-            .build()
+        OganessonBreedingBase = addMaterial(12173, "oganesson_breeding_base")
+        {
+            liquid()
+            color(0xA65A7F).iconSet(DULL)
+        }
 
         // 12174 Unprocessed Nd:YAG Solution
-        UnprocessedNdYAGSolution = Material.Builder(12174, GTLiteMod.id("unprocessed_nd_yag_solution"))
-            .liquid()
-            .color(0x6F20AF).iconSet(DULL)
-            .build()
-            .setFormula("Nd:YAG?", false)
+        UnprocessedNdYAGSolution = addMaterial(12174, "unprocessed_nd_yag_solution")
+        {
+            liquid()
+            color(0x6F20AF).iconSet(DULL)
+        }
 
         // 12175 Mutated Living Solder
-        MutatedLivingSolder = Material.Builder(12175, GTLiteMod.id("mutated_living_solder"))
-            .liquid(FluidBuilder()
-                .temperature(10525))
-            .color(0x936D9B).iconSet(DULL)
-            .build()
+        MutatedLivingSolder = addMaterial(12175, "mutated_living_solder")
+        {
+            liquid()
+            {
+                temperature(10525)
+            }
+            color(0x936D9B).iconSet(DULL)
+        }
 
         // 12176 Sodio-Indene
-        SodioIndene = Material.Builder(12176, GTLiteMod.id("sodio_indene"))
-            .liquid()
-            .color(0x1D1C24)
-            .build()
+        SodioIndene = addMaterial(12176, "sodio_indene")
+        {
+            liquid()
+            color(0x1D1C24)
+        }
 
         // 12177 Steam-cracked Sodio-Indene
-        SteamCrackedSodioIndene = Material.Builder(12177, GTLiteMod.id("steam_cracked_sodio_indene"))
-            .liquid(FluidBuilder().temperature(1105))
-            .color(0x1C1A29)
-            .build()
+        SteamCrackedSodioIndene = addMaterial(12177, "steam_cracked_sodio_indene")
+        {
+            liquid()
+            {
+                temperature(1105)
+            }
+            color(0x1C1A29)
+        }
 
         // 12178 Phosphorene Solution
-        PhosphoreneSolution = Material.Builder(12178, GTLiteMod.id("phosphorene_solution"))
-            .liquid()
-            .color(0x465966)
-            .build()
+        PhosphoreneSolution = addMaterial(12178, "phosphorene_solution")
+        {
+            liquid()
+            color(0x465966)
+        }
 
         // 12179-12999 for misc materials.
         // ...
@@ -918,204 +1082,263 @@ object GTLiteUnknownCompositionMaterials
         // https://link.springer.com/chapter/10.1007/978-3-642-02286-9_1
 
         // 13001 Neutron-Proton Fermi Superfluid
-        NeutronProtonFermiSuperfluid = Material.Builder(13001, GTLiteMod.id("neutron_proton_fermi_superfluid"))
-            .plasma(FluidBuilder()
-                .temperature(100_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        NeutronProtonFermiSuperfluid = addMaterial(13001, "neutron_proton_fermi_superfluid")
+        {
+            plasma()
+            {
+                temperature(100_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13002 Heavy Lepton Mixture
-        HeavyLeptonMixture = Material.Builder(13002, GTLiteMod.id("heavy_lepton_mixture"))
-            .liquid(FluidBuilder()
-                .temperature(48_000_000)
-                .customStill())
-            .build()
+        HeavyLeptonMixture = addMaterial(13002, "heavy_lepton_mixture")
+        {
+            liquid()
+            {
+                temperature(48_000_000)
+                customStill()
+            }
+        }
 
         // 13003 Quark-Gluon Plasma
-        QuarkGluonPlasma = Material.Builder(13003, GTLiteMod.id("quark_gluon_plasma"))
-            .plasma(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(1_500_000_000) // In reality world, Q-G plasma has 15000000000~20000000000 MeV by theory, so we transform it as K.
-                .customStill())
-            .build()
+        // In reality world, Q-G plasma has 15,000,000,000~20,000,000,000 MeV by theory, so we transform it as K.
+        QuarkGluonPlasma = addMaterial(13003, "quark_gluon_plasma")
+        {
+            plasma()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(1_500_000_000)
+                customStill()
+            }
+        }
 
         // 13004 Heavy Quarks
-        HeavyQuarks = Material.Builder(13004, GTLiteMod.id("heavy_quarks"))
-            .liquid(FluidBuilder()
-                .temperature(1_800_000_000)
-                .customStill())
-            .build()
+        HeavyQuarks = addMaterial(13004, "heavy_quarks")
+        {
+            liquid()
+            {
+                temperature(1_800_000_000)
+                customStill()
+            }
+        }
 
         // 13005 Light Quarks
-        LightQuarks = Material.Builder(13005, GTLiteMod.id("light_quarks"))
-            .liquid(FluidBuilder()
-                .temperature(900_000_000)
-                .customStill())
-            .build()
+        LightQuarks = addMaterial(13005, "light_quarks")
+        {
+            liquid()
+            {
+                temperature(900_000_000)
+                customStill()
+            }
+        }
 
         // 13006 Gluons
-        Gluons = Material.Builder(13006, GTLiteMod.id("gluons"))
-            .gas(FluidBuilder()
-                .temperature(2_000_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        Gluons = addMaterial(13006, "gluons")
+        {
+            gas()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13007 Hadronic Resonant Gas
-        HadronicResonantGas = Material.Builder(13007, GTLiteMod.id("hadronic_resonant_gas"))
-            .gas(FluidBuilder()
-                .temperature(1_500_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        HadronicResonantGas = addMaterial(13007, "hadronic_resonant_gas")
+        {
+            gas()
+            {
+                temperature(1_500_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13008 Stable Baryonic Matter
-        StableBaryonicMatter = Material.Builder(13008, GTLiteMod.id("stable_baryonic_matter"))
-            .plasma(FluidBuilder()
-                .temperature(1_200_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        StableBaryonicMatter = addMaterial(13008, "stable_baryonic_matter")
+        {
+            plasma()
+            {
+                temperature(1_200_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13009 High Energy Quark-Gluon Plasma
-        HighEnergyQuarkGluonPlasma = Material.Builder(13009, GTLiteMod.id("high_energy_quark_gluon_plasma"))
-            .plasma(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(2_000_000_000) // In reality world, Q-G plasma has 15000000000~20000000000 MeV by theory, so we transform it as K.
-                .customStill())
-            .build()
+        HighEnergyQuarkGluonPlasma = addMaterial(13009, "high_energy_quark_gluon_plasma")
+        {
+            plasma()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(2_000_000_000)
+                customStill()
+            }
+        }
 
         // 13010 Resonant Strange Meson
-        ResonantStrangeMeson = Material.Builder(13010, GTLiteMod.id("resonant_strange_meson"))
-            .plasma(FluidBuilder()
-                .temperature(1_600_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        ResonantStrangeMeson = addMaterial(13010, "resonant_strange_meson")
+        {
+            plasma()
+            {
+                temperature(1_600_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13011 Protomatter
-        Protomatter = Material.Builder(13011, GTLiteMod.id("protomatter"))
-            .plasma(FluidBuilder()
-                .temperature(1_000_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        Protomatter = addMaterial(13011, "protomatter")
+        {
+            plasma()
+            {
+                temperature(1_000_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13012 Semistable Antimatter
-        SemistableAntimatter = Material.Builder(13012, GTLiteMod.id("semistable_antimatter"))
-            .plasma(FluidBuilder()
-                .temperature(1_500_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        SemistableAntimatter = addMaterial(13012, "semistable_antimatter")
+        {
+            plasma()
+            {
+                temperature(1_500_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13013 Antimatter
-        Antimatter = Material.Builder(13013, GTLiteMod.id("antimatter"))
-            .plasma(FluidBuilder()
-                .temperature(2_000_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        Antimatter = addMaterial(13013, "antimatter")
+        {
+            plasma()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13014 Spatially Enlarged Fluid
-        SpatiallyEnlargedFluid = Material.Builder(13014, GTLiteMod.id("spatially_enlarged_fluid"))
-            .liquid(FluidBuilder()
-                .temperature(1)
-                .customStill())
-            .build()
+        SpatiallyEnlargedFluid = addMaterial(13014, "spatially_enlarged_fluid")
+        {
+            liquid()
+            {
+                temperature(1)
+                customStill()
+            }
+        }
 
         // 13015 Tachyon Rich Temporal Fluid
-        TachyonRichTemporalFluid = Material.Builder(13015, GTLiteMod.id("tachyon_rich_temporal_fluid"))
-            .liquid(FluidBuilder()
-                .temperature(1)
-                .customStill())
-            .build()
+        TachyonRichTemporalFluid = addMaterial(13015, "tachyon_rich_temporal_fluid")
+        {
+            liquid()
+            {
+                temperature(1)
+                customStill()
+            }
+        }
 
         // 13016 Primordial Matter
-        PrimordialMatter = Material.Builder(13016, GTLiteMod.id("primordial_matter"))
-            .liquid(FluidBuilder()
-                .temperature(2_000_000_000)
-                .customStill())
-            .build()
+        PrimordialMatter = addMaterial(13016, "primordial_matter")
+        {
+            liquid()
+            {
+                temperature(2_000_000_000)
+                customStill()
+            }
+        }
 
         // 13017 Condensed Raw Stellar Plasma Mixture
-        RawStarMatter = Material.Builder(13017, GTLiteMod.id("condensed_raw_stellar_plasma_mixture"))
-            .plasma(FluidBuilder()
-                .temperature(2_000_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        RawStarMatter = addMaterial(13017, "condensed_raw_stellar_plasma_mixture")
+        {
+            plasma()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 13018 Magnetohydrodynamically Constrained Star Matter (MHDCSM)
-        MagnetohydrodynamicallyConstrainedStarMatter = Material.Builder(13018, GTLiteMod.id("magnetohydrodynamically_constrained_star_matter"))
-            .ingot()
-            .plasma(FluidBuilder()
-                .temperature(2_000_000_000))
-            .iconSet(MHDCSM)
-            .flags(EXT2_METAL, NO_UNIFICATION, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL,
-                GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
-                GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
-            .build()
+        MagnetohydrodynamicallyConstrainedStarMatter = addMaterial(13018, "magnetohydrodynamically_constrained_star_matter")
+        {
+            ingot()
+            plasma()
+            {
+                temperature(2_000_000_000)
+            }
+            iconSet(MHDCSM)
+            flags(EXT2_METAL, NO_UNIFICATION, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_ROTOR,
+                  GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL,
+                  GENERATE_FINE_WIRE)
+        }
 
         // 13019 Self-Interacting Dark Matter (SIDM)
-        SelfInteractingDarkMatter = Material.Builder(13019, GTLiteMod.id("self_interacting_dark_matter"))
-            .ingot()
-            .liquid()
-            .iconSet(DARKMATTER)
-            .flags(EXT2_METAL, GENERATE_FRAME, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .cableProperties(V[MAX] - 1, 488, 1)
-            .build()
+        SelfInteractingDarkMatter = addMaterial(13019, "self_interacting_dark_matter")
+        {
+            ingot()
+            liquid()
+            iconSet(DARKMATTER)
+            flags(EXT2_METAL, GENERATE_FRAME, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            cableProp(V[MAX] - 1, 488, 1)
+        }
 
         // 13020 Realized Quantum Foam Shard (RQFS)
-        RealizedQuantumFoamShard = Material.Builder(13020, GTLiteMod.id("realized_quantum_foam_shard"))
-            .ingot()
-            .liquid()
-            .iconSet(QUANTUM) // lightness 80 on base; shadow
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME,
-                   GENERATE_SPRING, GENERATE_SPRING_SMALL)
-            .cableProperties(V[MAX] - 1, 365, 1)
-            .build()
+        RealizedQuantumFoamShard = addMaterial(13020, "realized_quantum_foam_shard")
+        {
+            ingot()
+            liquid()
+            iconSet(QUANTUM) // lightness 80 on base; shadow
+            flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL)
+            cableProp(V[MAX] - 1, 365, 1)
+        }
 
         // 13021 Axino-Fused Red Matter (AFRM)
-        AxinoFusedRedMatter = Material.Builder(13021, GTLiteMod.id("axino_fused_red_matter"))
-            .ingot()
-            .liquid()
-            .color(0x9A0707).iconSet(REDMATTER)
-            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR,
-                   GENERATE_ROUND, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL,
-                   GENERATE_FINE_WIRE)
-            .toolStats(MaterialToolProperty.Builder.of(640.0F, 640.0F, Int.MAX_VALUE - 1, 1_048_576)
-                           .attackSpeed(9.0F).enchantability(99)
-                           .enchantment(Enchantments.SHARPNESS, 128)
-                           .enchantment(Enchantments.SWEEPING, 128)
-                           .enchantment(Enchantments.LOOTING, 128)
-                           .enchantment(Enchantments.EFFICIENCY, 128)
-                           .enchantment(Enchantments.FORTUNE, 128)
-                           .enchantment(Enchantments.MENDING, 128)
-                           .enchantment(Enchantments.UNBREAKING, 128)
-                           .magnetic()
-                           .unbreakable()
-                           .build())
-            .rotorStats(8192.0F, 2048.0F, Int.MAX_VALUE - 1)
-            .build()
-            .setFormula(CommonI18n.format("gtlitecore.material.axino_fused_red_matter.formula", "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions"))
+        AxinoFusedRedMatter = addMaterial(13021, "axino_fused_red_matter")
+        {
+            ingot()
+            liquid()
+            color(0x9A0707).iconSet(REDMATTER)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                  GENERATE_ROTOR, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            toolProp(640.0F, 640.0F, Int.MAX_VALUE - 1, 1_048_576)
+            {
+                attackSpeed(9.0F)
+                enchantability(99)
+                enchantment(Enchantments.SHARPNESS, 128)
+                enchantment(Enchantments.SWEEPING, 128)
+                enchantment(Enchantments.LOOTING, 128)
+                enchantment(Enchantments.EFFICIENCY, 128)
+                enchantment(Enchantments.FORTUNE, 128)
+                enchantment(Enchantments.MENDING, 128)
+                enchantment(Enchantments.UNBREAKING, 128)
+                magnetic()
+                unbreakable()
+            }
+            rotorProp(8192.0F, 2048.0F, Int.MAX_VALUE - 1)
+        }
 
         // ...
 
         // 13050 Dimensionally Shifted Superfluid
-        DimensionallyShiftedSuperfluid = Material.Builder(13050, GTLiteMod.id("dimensionally_shifted_superfluid"))
-            .plasma(FluidBuilder()
-                .temperature(2_000_000_000)
-                .translation("gregtech.fluid.generic")
-                .customStill())
-            .build()
+        DimensionallyShiftedSuperfluid = addMaterial(13050, "dimensionally_shifted_superfluid")
+        {
+            plasma()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // ...
 
         // 14000 Eternity+ (Token)
-        EternityPlusToken = Material.Builder(14000, GTLiteMod.id("eternity_plus_token"))
-            .build()
+        EternityPlusToken = addMaterial(14000, "eternity_plus_token") {}
     }
 
     // @formatter:on

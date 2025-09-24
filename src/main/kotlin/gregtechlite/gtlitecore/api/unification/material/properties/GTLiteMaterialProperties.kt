@@ -172,32 +172,239 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Wollastonite
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.addDust
+import gregtechlite.gtlitecore.api.extension.addIngot
+import gregtechlite.gtlitecore.api.extension.addLiquid
+import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
+import gregtechlite.gtlitecore.api.extension.addPlasma
+import gregtechlite.gtlitecore.api.translation.CommonI18n
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetonitrile
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumUnstable
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminaSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumAcetate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumBifluoride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumCyanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloropalladate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloroplatinate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPersulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumSulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthStrontiumCalciumCuprate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bistrichloromethylbenzene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CAT
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChlorinatedSolvents
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Clinochlore
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperArsenite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicBoronNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicHeterodiamond
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicSiliconNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyanIndigo
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diaminotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylaminopyridine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EGF
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FormicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexamethylenetetramine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroquinone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineAluminium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kimberlite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Komatiite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumEmbeddedFullerene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmDopedYttriumVanadateDeposition
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYChloridesSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYVO
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NHydroxysuccinimide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Naphthylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NdYAG
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitroaniline
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oxydianiline
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumFullereneMatrix
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaPhenylenediamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenothiazine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenylsodium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhotopolymerSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupConcentrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupResidue
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumDioxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumPhosphide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumTrihydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PoloniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolystyreneSulfonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polytetrahydrofuran
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumFerrocyanideTrihydrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYLF
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYNitratesSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumDopedZBLANGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurifiedPlatinumGroupConcentrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PyromelliticDianhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolytetramethyleneGlycolRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPolonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthalicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthaloylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoindigo
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetraethylammoniumBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumThuliumDopedCaesiumIodide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneTetramethylDiisocyanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TransitionAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tributylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrichlorocyclopentadienylTitanium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylaluminium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylgallium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrimethyltinChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Triphenylphosphine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trisaminoethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzSlag
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZSM5
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZincRichSphalerite
 
 /**
  * Consists of all material properties settings.
  *
  * Materials can modify its main properties by the mixins feature, please see these change below.
  *
- * @see magicbook.gtlitecore.mixins.gregtech.MixinMaterialProperties
+ * @see gregtechlite.gtlitecore.mixins.gregtech.MixinMaterialProperties
  */
 object GTLiteMaterialProperties
 {
 
+    fun init()
+    {
+        setMaterialProperties()
+        setOreProperties()
+        setMaterialColors()
+        setChemicalFormula()
+    }
+
     fun setMaterialProperties()
     {
+        // region State Properties
 
-        // Ingot Properties
         arrayOf(Strontium, Rhenium, Uranium, Uranium235, Uranium238, Selenium, Tellurium, Lanthanum, Cerium,
                 Praseodymium, Promethium, Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
                 Scandium, Germanium, Technetium, Cadmium, Dubnium, Rutherfordium, Curium, Seaborgium, Bohrium,
                 Neptunium, Fermium, Rubidium, Calcium, Magnesium, Francium, Thallium, Barium, Lutetium, Californium,
                 Radium, Polonium, Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium,
                 Lawrencium, Roentgenium, Moscovium, Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine, Sulfur)
-            .forEach { addIngot(it) }
+            .forEach { it.addIngot() }
 
         // Dust Properties
-        arrayOf(Iodine).forEach { addDust(it) }
+        arrayOf(Iodine).forEach { it.addDust() }
 
         // Liquid Properties
         arrayOf(Bromine, Uranium238, Zircaloy4, Inconel718, SodiumBisulfate, Germanium, Rutherfordium, Dubnium, Curium,
@@ -205,32 +412,122 @@ object GTLiteMaterialProperties
                 Actinium, Protactinium, Berkelium, Einsteinium, Mendelevium, Astatine, Nobelium, Lawrencium, Ytterbium,
                 Rhenium, Roentgenium, Moscovium, Meitnerium, Copernicium, Nihonium, Livermorium, Tennessine, Thulium,
                 Promethium, Barium, Tellurium, Holmium, Erbium, Gadolinium, EnderPearl)
-            .forEach { addLiquid(it) }
+            .forEach { it.addLiquid() }
 
         // Plasma Properties
         arrayOf(Niobium, Zinc, Krypton, Xenon, Radon, Neon, Bismuth, Thorium, Silver, Titanium, Lead)
-            .forEach { addPlasma(it) }
+            .forEach { it.addPlasma() }
 
         // Liquid and Plasma Properties
         arrayOf(Neptunium, Fermium, Boron, Rubidium, Technetium, Calcium, Sulfur)
-            .forEach { addLiquidAndPlasma(it) }
+            .forEach { it.addLiquidAndPlasma() }
 
-        // Ore Properties
+        // endregion
 
-        // World Gen Ores
+        // region Magnetic Properties
+        ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT)
+            .magneticMaterial = ChromiumGermaniumTellurideMagnetic
+
+        Europium.getProperty(PropertyKey.INGOT)
+            .magneticMaterial = Magnetium
+
+        // endregion
+
+        // region Blast Properties
+
+        Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
+        Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
+
+        Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
+        Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
+        Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+
+        Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
+
+        Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
+        Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
+        Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
+        Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[LuV])
+        Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND
+
+        Seaborgium.setProperty(PropertyKey.BLAST, BlastProperty(8300))
+        Seaborgium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
+        Seaborgium.getProperty(PropertyKey.BLAST).durationOverride = 16 * SECOND
+        Seaborgium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+        Seaborgium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 22 * SECOND
+
+        Bohrium.setProperty(PropertyKey.BLAST, BlastProperty(8500))
+        Bohrium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
+        Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18 * SECOND
+        Bohrium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+        Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14 * SECOND
+
+        RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
+        RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
+
+        Fermium.setProperty(PropertyKey.BLAST, BlastProperty(9500))
+        Fermium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
+        Fermium.getProperty(PropertyKey.BLAST).durationOverride = 22 * SECOND
+        Fermium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
+        Fermium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 12 * SECOND
+
+        Neptunium.setProperty(PropertyKey.BLAST, BlastProperty(3440))
+        Neptunium.getProperty(PropertyKey.BLAST).setEutOverride(VA[EV])
+        Neptunium.getProperty(PropertyKey.BLAST).durationOverride = 14 * SECOND
+        Neptunium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[MV])
+        Neptunium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 6 * SECOND + 5 * TICK
+
+        Technetium.setProperty(PropertyKey.BLAST, BlastProperty(2800))
+        Technetium.getProperty(PropertyKey.BLAST).setEutOverride(VA[IV])
+        Technetium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+        Technetium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[HV])
+        Technetium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 4 * SECOND + 10 * TICK
+
+        // endregion
+
+        // region Fluid Pipe Properties
+        Inconel718.setProperty(PropertyKey.FLUID_PIPE,
+                               FluidPipeProperties(2010, 175,
+                                                   true, true, true, false))
+
+        RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
+                                           FluidPipeProperties(6120, 225,
+                                                               true, true, true, false))
+
+        // endregion
+
+        // region Wire Properties
+
+        Rutherfordium.setProperty(PropertyKey.WIRE, WireProperties(V[ZPM].toInt(), 8, 2))
+        Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16))
+
+        // endregion
+
+        // region Tool Properties
+
+        Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
+        Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
+
+        // endregion
+
+    }
+
+    fun setOreProperties()
+    {
+        // Ores which generated in world.
         Andradite.setProperty(PropertyKey.ORE, OreProperty())
         Biotite.setProperty(PropertyKey.ORE, OreProperty())
         Uvarovite.setProperty(PropertyKey.ORE, OreProperty())
         Plutonium239.setProperty(PropertyKey.ORE, OreProperty())
 
-        // Virtual Ores for Mining Drones
+        // Virtual Ores for Mining Drone Airport or higher ore producing machines.
         Uranium.setProperty(PropertyKey.ORE, OreProperty())
         Plutonium241.setProperty(PropertyKey.ORE, OreProperty())
         Chrome.setProperty(PropertyKey.ORE, OreProperty())
         Cadmium.setProperty(PropertyKey.ORE, OreProperty())
 
-        // Ore Byproducts
-        var oreProp: OreProperty = Andradite.getProperty(PropertyKey.ORE)
+        // Set Ore Byproducts.
+        var oreProp = Andradite.getProperty(PropertyKey.ORE)
         oreProp.setOreByProducts(Andradite, Andradite, Calcium)
 
         oreProp = Dolomite.getProperty(PropertyKey.ORE)
@@ -341,91 +638,10 @@ object GTLiteMaterialProperties
 
         oreProp = Molybdenite.getProperty(PropertyKey.ORE)
         oreProp.directSmeltResult = null
+    }
 
-        // Magnetic Materials
-        ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT)
-            .magneticMaterial = ChromiumGermaniumTellurideMagnetic
-
-        Europium.getProperty(PropertyKey.INGOT)
-            .magneticMaterial = Magnetium
-
-        // Blast Properties
-        Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
-        Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
-
-        Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
-        Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
-        Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
-
-        Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
-
-        Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
-        Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
-        Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[LuV])
-        Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND
-
-        Seaborgium.setProperty(PropertyKey.BLAST, BlastProperty(8300))
-        Seaborgium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Seaborgium.getProperty(PropertyKey.BLAST).durationOverride = 16 * SECOND
-        Seaborgium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Seaborgium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 22 * SECOND
-
-        Bohrium.setProperty(PropertyKey.BLAST, BlastProperty(8500))
-        Bohrium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18 * SECOND
-        Bohrium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14 * SECOND
-
-        RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
-        RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
-
-        Fermium.setProperty(PropertyKey.BLAST, BlastProperty(9500))
-        Fermium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
-        Fermium.getProperty(PropertyKey.BLAST).durationOverride = 22 * SECOND
-        Fermium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Fermium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 12 * SECOND
-
-        Neptunium.setProperty(PropertyKey.BLAST, BlastProperty(3440))
-        Neptunium.getProperty(PropertyKey.BLAST).setEutOverride(VA[EV])
-        Neptunium.getProperty(PropertyKey.BLAST).durationOverride = 14 * SECOND
-        Neptunium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[MV])
-        Neptunium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 6 * SECOND + 5 * TICK
-
-        Technetium.setProperty(PropertyKey.BLAST, BlastProperty(2800))
-        Technetium.getProperty(PropertyKey.BLAST).setEutOverride(VA[IV])
-        Technetium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
-        Technetium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[HV])
-        Technetium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 4 * SECOND + 10 * TICK
-
-        // Fluid Pipe Properties
-        Inconel718.setProperty(PropertyKey.FLUID_PIPE,
-                               FluidPipeProperties(2010, 175,
-                                                   true, true, true, false))
-
-        RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
-                                           FluidPipeProperties(6120, 225,
-                                                               true, true, true, false))
-
-        // Wire Properties
-        Rutherfordium.setProperty(PropertyKey.WIRE, WireProperties(V[ZPM].toInt(), 8, 2))
-
-        Seaborgium.setProperty(PropertyKey.WIRE, WireProperties(V[UEV].toInt(), 4, 16))
-
-        // Tool Properties
-        Naquadah.setProperty(PropertyKey.TOOL, MaterialToolProperty(20.0F, 8.0F, 2048, 4))
-        Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
-
-        // Material Formulas
-        Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
-        Mica.setFormula("KAl2(AlSi3O10)F2", true)
-        Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
-        Graphene.setFormula("C8", true)
-        PalladiumRaw.setFormula("PdCl2", true)
-        RarestMetalMixture.setFormula("IrOs?", true)
-        IridiumMetalResidue.setFormula("Ir2O3", true)
-
-        // Material RGBs
+    fun setMaterialColors()
+    {
         Promethium.materialRGB = 0x24B535
         Dysprosium.materialRGB = 0xDD79DD
         Erbium.materialRGB = 0xCC6633
@@ -439,22 +655,243 @@ object GTLiteMaterialProperties
         Meitnerium.materialRGB = 0x9C1E55
     }
 
-    // region Short-circuit Material Properties Adders
-
-    private fun addIngot(material: Material) = material.setProperty(PropertyKey.INGOT, IngotProperty())
-
-    private fun addDust(material: Material) = material.setProperty(PropertyKey.DUST, DustProperty())
-
-    private fun addLiquid(material: Material) = material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
-
-    private fun addPlasma(material: Material) = material.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA, FluidBuilder())
-
-    private fun addLiquidAndPlasma(material: Material)
+    fun setChemicalFormula()
     {
-        material.setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.LIQUID, FluidBuilder()))
-        material.getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA, FluidBuilder())
-    }
+        // region GTCEu Materials
+        Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
+        Mica.setFormula("KAl2(AlSi3O10)F2", true)
+        Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
+        Graphene.setFormula("C8", true)
+        PalladiumRaw.setFormula("PdCl2", true)
+        RarestMetalMixture.setFormula("IrOs?", true)
+        IridiumMetalResidue.setFormula("Ir2O3", true)
+        // endregion
 
-    // endregion
+        // region Element Materials
+        DegenerateRhenium.setFormula("§cR§de", true)
+        // endregion
+
+        // region First Degree Materials
+        Dolomite.setFormula("CaMg(CO3)2", true)
+        Azurite.setFormula("Cu3(CO3)2(OH)2", true)
+        Forsterite.setFormula("Mg2(SiO4)", true)
+        Augite.setFormula("(Ca2MgFe)(MgFe)2(Si2O6)4", true)
+        Lizardite.setFormula("Mg3Si2O5(OH)4", true)
+        Muscovite.setFormula("KAl2(AlSi3O10)(OH)2", true)
+        Clinochlore.setFormula("Mg5Al2Si3O10(OH)8", true)
+        Fluorapatite.setFormula("Ca5(PO4)3F", true)
+        Lignite.setFormula("C3(H2O)", true)
+        Firestone.setFormula("(SiO2)3(FeS2)?", true)
+        Iron3Sulfate.setFormula("Fe2(SO4)3", true)
+        Phlogopite.setFormula("KMg3(AlSi3O10)F2", true)
+        Nephelite.setFormula("KNa3(AlSiO4)4", true)
+        HeavyAlkaliChloridesSolution.setFormula("(RbCl)(CsCl)2Cl3(H2O)2", true)
+        AluminiumHydroxide.setFormula("Al(OH)3", true)
+        AluminiumSulfate.setFormula("Al2(SO4)3", true)
+        ZSM5.setFormula("Na(Al2(SO4)3)(SiO2)2(H2O)2", true)
+        Jasper.setFormula("CaMg5(OH)2(Si4O11)2", true)
+        LeadNitrate.setFormula("Pb(NO3)2", true)
+        TitaniumNitrate.setFormula("Ti(NO3)4", true)
+        PalladiumNitrate.setFormula("Pd(NO3)2", true)
+        PalladiumAcetate.setFormula("Pd(CH3COOH)2", true)
+        Dimethylcadmium.setFormula("(CH3)2Cd", true)
+        ZBLANGlass.setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2", true)
+        ErbiumDopedZBLANGlass.setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true)
+        PraseodymiumDopedZBLANGlass.setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true)
+        CubicZirconia.setFormula("c-ZrO2", true)
+        MagnetoResonatic.setFormula("(Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe", true)
+        PlatinumGroupResidue.setFormula("RuRhIr2Os(HNO3)3", true)
+        PlatinumGroupConcentrate.setFormula("AuPtPd(HCl)6", true)
+        PurifiedPlatinumGroupConcentrate.setFormula("H2PtPdCl6", true)
+        AmmoniumHexachloroplatinate.setFormula("(NH4)2PtCl6", true)
+        AmmoniumHexachloropalladate.setFormula("(NH4)2PdCl6", true)
+        YttriumNitrate.setFormula("Y(NO3)3", true)
+        BariumNitrate.setFormula("Ba(NO3)2", true)
+        CopperNitrate.setFormula("Cu(NO3)2", true)
+        RoastedSphalerite.setFormula("(GeO2)?", true)
+        ZincRichSphalerite.setFormula("Zn2(GaGeO2)?", true)
+        WaelzOxide.setFormula("(GeO2)Zn", true)
+        WaelzSlag.setFormula("(ZnSO4)Ga", true)
+        HydroxyquinolineAluminium.setFormula("(C9H7NO)Al", true)
+        BariumHydroxide.setFormula("Ba(OH)2", true)
+        AmmoniumNitrate.setFormula("NH4NO3", true)
+        BismuthStrontiumCalciumCuprate.setFormula("Bi2Sr2CaCu2O8", true)
+        AdamantiumUnstable.setFormula("Ad*", true)
+        VibraniumUnstable.setFormula("Vb*", true)
+        LithiumSodiumPotassiumFluorides.setFormula("F3LiNaK", true)
+        LithiumBerylliumFluorides.setFormula("F3LiBe", true)
+        FleroviumYtterbiumPlasma.setFormula("FlY?", true)
+        SodiumAcetate.setFormula("C2H3NaO2", true)
+        HexagonalBoronNitride.setFormula("h-BN", true)
+        CubicBoronNitride.setFormula("c-BN", true)
+        AmorphousBoronNitride.setFormula("a-BN", true)
+        CubicHeterodiamond.setFormula("c-BC2N", true)
+        CalciumHydroxide.setFormula("Ca(OH)2", true)
+        AluminiumNitrate.setFormula("Al(NO3)3", true)
+        ChlorinatedSolvents.setFormula("(CH4)2Cl5", true)
+        AluminaSolution.setFormula("(Al2O3)(CH2Cl2)(C12H27N)2", true)
+        NdYAG.setFormula("Nd:YAG", true)
+        PoloniumNitrate.setFormula("Po(NO3)4", true)
+        SodiumPolonate.setFormula("Na2PoO4", true)
+        UranylNitrateSolution.setFormula("(UO2)(NO3)2(H2O)?", true)
+        ThoriumNitrate.setFormula("Th(NO3)4", true)
+        UranylNitrate.setFormula("UO2(NO3)2", true)
+        ActiniumOxalate.setFormula("Ac(CO2)4", true)
+        SodiumFormate.setFormula("HCOONa", false)
+        BETSPerrhenate.setFormula("(C10H8S4Se4)ReO4", true)
+        SilicaGelBase.setFormula("(SiNa(OH)O2)(HCl)(H2O)", true)
+        AmmoniumSulfate.setFormula("(NH4)2SO4", true)
+        AmmoniumCarbonate.setFormula("(NH4)2CO3", true)
+        AmmoniumAcetate.setFormula("NH4CH3CO2", true)
+        AmmoniumPersulfate.setFormula("(NH4)2S2O8", true)
+        PalladiumFullereneMatrix.setFormula("(C73H15NFe)Pd", true)
+        LuTmYChloridesSolution.setFormula("(LuCl3)2(TmCl3)2(YCl3)6(H2O)15", true)
+        LuTmDopedYttriumVanadateDeposition.setFormula("Lu/Tm:YVO?", false)
+        LuTmYVO.setFormula("Lu/Tm:YVO", false)
+        HexagonalSiliconNitride.setFormula("h-Si3N4", true)
+        CubicSiliconNitride.setFormula("c-Si3N4", true)
+        CeriumCarbonate.setFormula("Ce2(CO3)3", true)
+        PlutoniumTrihydride.setFormula("PuH3", true)
+        PlutoniumPhosphide.setFormula("PuP", true)
+        LanthanumFullereneMixture.setFormula("(C60H30)2La2", true)
+        LanthanumEmbeddedFullerene.setFormula("(C60)2La2", true)
+        LanthanumFullereneNanotube.setFormula("C48C60La", true)
+        PrHoYNitratesSolution.setFormula("(Pr(NO3)3)2(Ho(NO3)3)2(Y(NO3)3)6(H2O)15", true)
+        PrHoYLF.setFormula("Pr/Ho:YLF", true)
+        TrichlorocyclopentadienylTitanium.setFormula("(C5H5)2Cl3Ti", true)
+        PhotopolymerSolution.setFormula("C149H97N10O2(TiBF20)", true)
+        PotassiumFerrocyanideTrihydrate.setFormula("K4Fe(CN)6(H2O)3", true)
+        PrussianBlue.setFormula("Fe4[Fe(CN)6]3", true)
+        CopperArsenite.setFormula("Cu3(AsO4)2", true)
+        ThalliumThuliumDopedCaesiumIodide.setFormula("Tl/Tm:CsI", false)
+        SodiumAlginate.setFormula("C5H7O4COONa", true)
+        CalciumAlginate.setFormula("(C5H7O4COO)2Ca", true)
+        ChromaticGlass.setFormula("(SiO2)64", true)
+        PlutoniumDioxide.setFormula("PuO2", true)
+        MOX.setFormula("(PuO2)(UO2)2", true)
+        // endregion
+
+        // region Second Degree Materials
+        Kovar.setFormula("Fe10Ni5Co3", true)
+        HalkoniteSteel.setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true)
+        TantalumHafniumSeaborgiumCarbide.setFormula("Ta12Hf3SgC16", true)
+        ActiniumGroupAlloyA.setFormula("AcThPaUNpPuAmCm", true)
+        TransitionAlloy.setFormula("TiVCrMnFeCoNiCuAlZnGaGeCdInSnSb", true)
+        RareEarthAlloy.setFormula("LaCePrNdPmSmEuGdTbDyHoErTmYbLuScYAcThPaUNpPuAmCmBkCfEsFmMdNoLr", true)
+        Periodicium.setFormula("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGe"
+                               + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
+                               + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
+                               + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
+        // endregion
+
+        // region Third Degree Materials
+        Limestone.setFormula("(CaCO3)4(CaMg(CO3)2)?", true)
+        Komatiite.setFormula("(Mg2Fe(SiO2)2)2(MgCO3)(SiO2)?", true)
+        GreenSchist.setFormula("(Ca2Al3Si3HO13)2(SiO2)2(Mg3Si4H2O12)?", true)
+        BlueSchist.setFormula("(Cu3(CO3)2(OH)2)3(Al3Si3Na4Cl)2?", true)
+        Kimberlite.setFormula("(Mg2(SiO4))3((Ca2MgFe)(MgFe)2(Si2O6)4)3(Ca3Fe2Si3O12)2?", true)
+        Slate.setFormula("(SiO2)5(KAl2(AlSi3O10)(OH)2)2(Mg5Al2Si3O10(OH)8)2?", true)
+        Shale.setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
+        GelidCryotheum.setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+        // endregion
+
+        // region Organic Chemistry Materials
+        ParaXylene.setFormula("C6H4(CH3)2", true)
+        Nitrotoluene.setFormula("C6H4CH3NO2", true)
+        Butanediol.setFormula("C4H8(OH)2", true)
+        Tetrahydrofuran.setFormula("(CH2)4O", true)
+        DiethylhexylPhosphoricAcid.setFormula("(C8H7O)2PO2H", true)
+        FormicAcid.setFormula("HCOOH", true)
+        MethylFormate.setFormula("HCO2CH3", true)
+        PhthalicAnhydride.setFormula("C6H4(CO)2O", true)
+        Ethylanthraquinone.setFormula("C6H4(CO)2C6H3Et", true)
+        Ethylanthrahydroquinone.setFormula("C6H4(CH2OH)2C6H3Et", true)
+        Durene.setFormula("C6H2(CH3)4", true)
+        PyromelliticDianhydride.setFormula("C6H2(C2O3)2", true)
+        Aniline.setFormula("C6H5NH2", true)
+        Oxydianiline.setFormula("O(C6H4NH2)2", true)
+        KaptonK.setFormula("(C7H2N2O4)(O(C6H4)2)", true)
+        BiphenylTetracarboxylicAcidDianhydride.setFormula("(C8H3O3)2", true)
+        Nitroaniline.setFormula("H2NC6H4NO2", true)
+        ParaPhenylenediamine.setFormula("H2NC6H4NH2", true)
+        KaptonE.setFormula("O(C6H4NH2)2", true)
+        EthyleneGlycol.setFormula("C2H4(OH)2", true)
+        PolystyreneSulfonate.setFormula("C8H7SO3H", true)
+        Methylamine.setFormula("CH3NH2", true)
+        Trimethylamine.setFormula("(CH3)3N", true)
+        TetramethylammoniumChloride.setFormula("N(CH3)4Cl", true)
+        TetramethylammoniumHydroxide.setFormula("N(CH3)4OH", true)
+        Ethylenediamine.setFormula("C2H4(NH2)2", true)
+        RawPolyphosphonitrileFluoroRubber.setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+        PolyphosphonitrileFluoroRubber.setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+        Polytetrahydrofuran.setFormula("(C4H8O)OH2", true)
+        Diaminotoluene.setFormula("C6H3(NH2)2CH3", true)
+        TolueneDiisocyanate.setFormula("CH3C6H3(NCO)2", true)
+        TolueneTetramethylDiisocyanate.setFormula("(CONH)2(C6H4)2CH2(C4O)", true)
+        RawPolytetramethyleneGlycolRubber.setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+        PolytetramethyleneGlycolRubber.setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+        Difluorobenzophenone.setFormula("(FC6H4)2CO", true)
+        Hydroquinone.setFormula("C6H4(OH)2", true)
+        Isochloropropane.setFormula("CH3CHClCH3", true)
+        Dinitrodipropanyloxybenzene.setFormula("C12H16O2(NO2)2", true)
+        TerephthalicAcid.setFormula("C6H4(CO2H)2", true)
+        Bistrichloromethylbenzene.setFormula("C6H4(CCl3)2", true)
+        TerephthaloylChloride.setFormula("C6H4(COCl)2", true)
+        Kevlar.setFormula("(C6H4)2(CO)2(NH)2", true)
+        Trimethylaluminium.setFormula("Al2(CH3)6", true)
+        Trimethylgallium.setFormula("Ga(CH3)3", true)
+        AmmoniumCyanate.setFormula("NH4CNO", true)
+        Butanol.setFormula("C4H9OH", true)
+        Tributylamine.setFormula("(C4H9)3N", true)
+        DiethylEther.setFormula("(C2H5)2O", true)
+        BenzylBromide.setFormula("C6H5CH2Br", true)
+        BenzyltrimethylammoniumBromide.setFormula("C6H5CH2N(CH3)3Br", true)
+        Indene.setFormula("C6H4C3H4", true)
+        Indanone.setFormula("C6H4C3H4O", true)
+        Bromobutane.setFormula("C4H9Br", true)
+        Butyllithium.setFormula("C4H9Li", true)
+        AcetylChloride.setFormula("CH3COCl", true)
+        Dimethylacetamide.setFormula("(CH3)2NC(O)CH3", true)
+        SuccinicAnhydride.setFormula("(CH2CO)2O", true)
+        NHydroxysuccinimide.setFormula("(CH2CO)2NOH", true)
+        DimethylamineHydrochloride.setFormula("C2H8NCl", true)
+        Dimethylformamide.setFormula("(CH3)2NC(O)H", true)
+        Acetonitrile.setFormula("CH3CN", true)
+        Acetamide.setFormula("CH3CONH2", true)
+        Hexamethylenetetramine.setFormula("(CH2)6N4", true)
+        TrimethyltinChloride.setFormula("(CH3)3SnCl", true)
+        Dimethylaminopyridine.setFormula("(CH3)2NC5H4N", true)
+        Triphenylphosphine.setFormula("(C6H5)3P", true)
+        DimethylSulfide.setFormula("(CH3)2S", true)
+        FullerenePolymerMatrix.setFormula("(C153H36NO2)PdFe", true)
+        Methyltrichlorosilane.setFormula("Si(CH3)Cl3", true)
+        DiethylSulfide.setFormula("(C2H5)2S", true)
+        Phenothiazine.setFormula("C12H9NS", true)
+        IsopropylChloride.setFormula("(CH3)2CHCl", true)
+        AmmoniumBifluoride.setFormula("NH4HF2", true)
+        TetraethylammoniumBromide.setFormula("N(CH2CH3)4Br", true)
+        Phenylsodium.setFormula("C6H5Na", true)
+        Tetrabromoindigo.setFormula("C16H6Br4N2O2", true)
+        CyanIndigo.setFormula("(C16H10N2O2)2Br4", true)
+        Naphthylamine.setFormula("C10H8NH", true)
+        Trisaminoethylamine.setFormula("(NH2CH2CH2)3N", true)
+        Ethylamine.setFormula("C2H5NH2", true)
+        Diethylthiourea.setFormula("(C2H5NH)2CS", true)
+        // endregion
+
+        // region Unknown Composition Materials
+        BFGF.setFormula("bFGF", false)
+        EGF.setFormula("EGF", false)
+        CAT.setFormula("CAT", false)
+        GreenhouseGas.setFormula("N78O21Ar9?", true)
+        Fat.setFormula("C57H110O6", true)
+        SeaWater.setFormula("H2O?", true)
+        AcidicSaltWater.setFormula("(H2O)(H2SO4)?", true)
+        UnprocessedNdYAGSolution.setFormula("Nd:YAG?", false)
+        AxinoFusedRedMatter.setFormula(CommonI18n.format("gtlitecore.material.axino_fused_red_matter.formula",
+            "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions"))
+        // endregion
+
+    }
 
 }

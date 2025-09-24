@@ -13,9 +13,7 @@ import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
@@ -187,9 +185,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.RUBY
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
-import gregtech.api.unification.material.properties.BlastProperty
-import gregtech.api.unification.material.properties.MaterialToolProperty
-import gregtechlite.gtlitecore.GTLiteMod
+import gregtech.api.unification.material.properties.BlastProperty.GasTier
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumTrihydride
@@ -541,7 +537,13 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconS
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.blastProp
+import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.colorAverage
+import gregtechlite.gtlitecore.api.extension.fluidPipeProp
+import gregtechlite.gtlitecore.api.extension.itemPipeProp
+import gregtechlite.gtlitecore.api.extension.rotorProp
+import gregtechlite.gtlitecore.api.extension.toolProp
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AstatineAzide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
@@ -560,6 +562,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumPentachlor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumThiocyanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumChloride
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CHROMATIC
+import gregtechlite.gtlitecore.api.extension.liquid
+import gregtechlite.gtlitecore.api.extension.gas
+import gregtechlite.gtlitecore.api.extension.plasma
 
 object GTLiteFirstDegreeMaterials
 {
@@ -569,3011 +574,3255 @@ object GTLiteFirstDegreeMaterials
     fun init()
     {
         // 2001 Dolomite
-        Dolomite = Material.Builder(2001, GTLiteMod.id("dolomite"))
-            .dust()
-            .ore()
-            .color(0xBBB8B2).iconSet(DULL)
-            .components(Calcium, 1, Magnesium, 1, Carbon, 2, Oxygen, 6)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("CaMg(CO3)2", true)
+        Dolomite = addMaterial(2001, "dolomite")
+        {
+            dust()
+            ore()
+            color(0xBBB8B2).iconSet(DULL)
+            components(Calcium, 1, Magnesium, 1, Carbon, 2, Oxygen, 6)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2002 Tanzanite
-        Tanzanite = Material.Builder(2002, GTLiteMod.id("tanzanite"))
-            .gem(2)
-            .ore()
-            .color(0x4000C8).iconSet(GEM_VERTICAL)
-            .components(Calcium, 2, Aluminium, 3, Silicon, 3, Hydrogen, 1, Oxygen, 13)
-            .flags(NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_LENS)
-            .build()
+        Tanzanite = addMaterial(2002, "tanzanite")
+        {
+            gem(2)
+            ore()
+            color(0x4000C8).iconSet(GEM_VERTICAL)
+            components(Calcium, 2, Aluminium, 3, Silicon, 3, Hydrogen, 1, Oxygen, 13)
+            flags(NO_SMASHING, NO_SMELTING, HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_LENS)
+        }
 
         // 2003 Azurite
-        Azurite = Material.Builder(2003, GTLiteMod.id("azurite"))
-            .dust()
-            .ore()
-            .color(0x2E6DCE).iconSet(DULL)
-            .components(Copper, 3, Carbon, 2, Oxygen, 8, Hydrogen, 2)
-            .build()
-            .setFormula("Cu3(CO3)2(OH)2", true)
+        Azurite = addMaterial(2003, "azurite")
+        {
+            dust()
+            ore()
+            color(0x2E6DCE).iconSet(DULL)
+            components(Copper, 3, Carbon, 2, Oxygen, 8, Hydrogen, 2)
+        }
 
         // 2004 Forsterite
-        Forsterite = Material.Builder(2004, GTLiteMod.id("forsterite"))
-            .gem()
-            .ore()
-            .color(0x1D640F).iconSet(LAPIS)
-            .components(Magnesium, 2, Silicon, 1, Oxygen, 4)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
-            .build()
-            .setFormula("Mg2(SiO4)", true)
+        Forsterite = addMaterial(2004, "forsterite")
+        {
+            gem()
+            ore()
+            color(0x1D640F).iconSet(LAPIS)
+            components(Magnesium, 2, Silicon, 1, Oxygen, 4)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2005 Augite
-        Augite = Material.Builder(2005, GTLiteMod.id("augite"))
-            .dust()
-            .ore()
-            .color(0x1B1717).iconSet(ROUGH)
-            .components(Calcium, 2, Magnesium, 3, Iron, 3, Silicon, 8, Oxygen, 24)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("(Ca2MgFe)(MgFe)2(Si2O6)4", true)
+        Augite = addMaterial(2005, "augite")
+        {
+            dust()
+            ore()
+            color(0x1B1717).iconSet(ROUGH)
+            components(Calcium, 2, Magnesium, 3, Iron, 3, Silicon, 8, Oxygen, 24)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2006 Lizardite
-        Lizardite = Material.Builder(2006, GTLiteMod.id("lizardite"))
-            .dust()
-            .ore()
-            .color(0xA79E42).iconSet(DULL)
-            .components(Magnesium, 3, Silicon, 2, Oxygen, 9, Hydrogen, 4)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("Mg3Si2O5(OH)4", true)
+        Lizardite = addMaterial(2006, "lizardite")
+        {
+            dust()
+            ore()
+            color(0xA79E42).iconSet(DULL)
+            components(Magnesium, 3, Silicon, 2, Oxygen, 9, Hydrogen, 4)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2007 Muscovite
-        Muscovite = Material.Builder(2007, GTLiteMod.id("muscovite"))
-            .dust()
-            .ore()
-            .color(0x8B876A)
-            .components(Potassium, 1, Aluminium, 3, Silicon, 3, Hydrogen, 10, Oxygen, 12)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("KAl2(AlSi3O10)(OH)2", true)
+        Muscovite = addMaterial(2007, "muscovite")
+        {
+            dust()
+            ore()
+            color(0x8B876A)
+            components(Potassium, 1, Aluminium, 3, Silicon, 3, Hydrogen, 10, Oxygen, 12)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2008 Clinochlore
-        Clinochlore = Material.Builder(2008, GTLiteMod.id("clinochlore"))
-            .gem()
-            .ore()
-            .color(0x303E38).iconSet(EMERALD)
-            .components(Magnesium, 5, Aluminium, 2, Silicon, 3, Hydrogen, 8, Oxygen, 18)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
-            .setFormula("Mg5Al2Si3O10(OH)8", true)
+        Clinochlore = addMaterial(2008, "clinochlore")
+        {
+            gem()
+            ore()
+            color(0x303E38).iconSet(EMERALD)
+            components(Magnesium, 5, Aluminium, 2, Silicon, 3, Hydrogen, 8, Oxygen, 18)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2009 Albite
-        Albite = Material.Builder(2009, GTLiteMod.id("albite"))
-            .gem()
-            .ore()
-            .color(0xC4A997).iconSet(CERTUS)
-            .components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Albite = addMaterial(2009, "albite")
+        {
+            gem()
+            ore()
+            color(0xC4A997).iconSet(CERTUS)
+            components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2010 Fluorite
-        Fluorite = Material.Builder(2010, GTLiteMod.id("fluorite"))
-            .gem()
-            .ore()
-            .color(0x276A4C).iconSet(GEM_HORIZONTAL)
-            .components(Calcium, 1, Fluorine, 2)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
-            .build()
+        Fluorite = addMaterial(2010, "fluorite")
+        {
+            gem()
+            ore()
+            color(0x276A4C).iconSet(GEM_HORIZONTAL)
+            components(Calcium, 1, Fluorine, 2)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2011 Anorthite
-        Anorthite = Material.Builder(2011, GTLiteMod.id("anorthite"))
-            .gem()
-            .ore()
-            .color(0x595853).iconSet(CERTUS)
-            .components(Calcium, 1, Aluminium, 2, Silicon, 2, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Anorthite = addMaterial(2011, "anorthite")
+        {
+            gem()
+            ore()
+            color(0x595853).iconSet(CERTUS)
+            components(Calcium, 1, Aluminium, 2, Silicon, 2, Oxygen, 8)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2012 Oligoclase
-        Oligoclase = Material.Builder(2012, GTLiteMod.id("oligoclase"))
-            .gem()
-            .ore()
-            .color(0xC4A997).iconSet(CERTUS)
-            .components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Oligoclase = addMaterial(2012, "oligoclase")
+        {
+            gem()
+            ore()
+            color(0xC4A997).iconSet(CERTUS)
+            components(Sodium, 1, Aluminium, 1, Silicon, 3, Oxygen, 8)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2013 Labradorite
-        Labradorite = Material.Builder(2013, GTLiteMod.id("labradorite"))
-            .gem()
-            .ore()
-            .color(0x5C7181).iconSet(RUBY)
-            .components(Albite, 2, Anorthite, 3)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Labradorite = addMaterial(2013, "labradorite")
+        {
+            gem()
+            ore()
+            color(0x5C7181).iconSet(RUBY)
+            components(Albite, 2, Anorthite, 3)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2014 Bytownite
-        Bytownite = Material.Builder(2014, GTLiteMod.id("bytownite"))
-            .gem()
-            .ore()
-            .color(0xC99C67).iconSet(LAPIS)
-            .components(Albite, 1, Anorthite, 4)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Bytownite = addMaterial(2014, "bytownite")
+        {
+            gem()
+            ore()
+            color(0xC99C67).iconSet(LAPIS)
+            components(Albite, 1, Anorthite, 4)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2015 Tenorite
-        Tenorite = Material.Builder(2015, GTLiteMod.id("tenorite"))
-            .dust()
-            .ore()
-            .color(0x443744).iconSet(DULL)
-            .components(Copper, 1, Oxygen, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
+        Tenorite = addMaterial(2015, "tenorite")
+        {
+            dust()
+            ore()
+            color(0x443744).iconSet(DULL)
+            components(Copper, 1, Oxygen, 1)
+            flags(DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2016 Cuprite
-        Cuprite = Material.Builder(2016, GTLiteMod.id("cuprite"))
-            .dust()
-            .ore()
-            .color(0x99292E).iconSet(DULL)
-            .components(Copper, 2, Oxygen, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
+        Cuprite = addMaterial(2016, "cuprite")
+        {
+            dust()
+            ore()
+            color(0x99292E).iconSet(DULL)
+            components(Copper, 2, Oxygen, 1)
+            flags(DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2017 Wollastonite
-        Wollastonite = Material.Builder(2017, GTLiteMod.id("wollastonite"))
-            .dust()
-            .ore()
-            .color(0xDFDFDF).iconSet(ROUGH)
-            .components(Calcium, 1, Silicon, 1, Oxygen, 3)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
+        Wollastonite = addMaterial(2017, "wollastonite")
+        {
+            dust()
+            ore()
+            color(0xDFDFDF).iconSet(ROUGH)
+            components(Calcium, 1, Silicon, 1, Oxygen, 3)
+            flags(DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2018 Fluorapatite
-        Fluorapatite = Material.Builder(2018, GTLiteMod.id("fluorapatite"))
-            .gem()
-            .ore()
-            .color(0x4FB3D8).iconSet(QUARTZ)
-            .components(Calcium, 5, Phosphorus, 3, Oxygen, 12, Fluorine, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING, HIGH_SIFTER_OUTPUT, GENERATE_LENS, GENERATE_BOULE)
-            .build()
-            .setFormula("Ca5(PO4)3F", true)
+        Fluorapatite = addMaterial(2018, "fluorapatite")
+        {
+            gem()
+            ore()
+            color(0x4FB3D8).iconSet(QUARTZ)
+            components(Calcium, 5, Phosphorus, 3, Oxygen, 12, Fluorine, 1)
+            flags(DECOMPOSITION_BY_ELECTROLYZING, HIGH_SIFTER_OUTPUT, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2019 Kaolinite
-        Kaolinite = Material.Builder(2019, GTLiteMod.id("kaolinite"))
-            .dust()
-            .ore()
-            .color(0xDBCAC6).iconSet(DULL)
-            .components(Aluminium, 2, Silicon, 2, Hydrogen, 4, Oxygen, 9)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
+        Kaolinite = addMaterial(2019, "kaolinite")
+        {
+            dust()
+            ore()
+            color(0xDBCAC6).iconSet(DULL)
+            components(Aluminium, 2, Silicon, 2, Hydrogen, 4, Oxygen, 9)
+            flags(DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2020 Lignite
-        Lignite = Material.Builder(2020, GTLiteMod.id("lignite"))
-            .gem(0, 80 * SECOND)
-            .ore()
-            .color(6571590)
-            .iconSet(LIGNITE)
-            .flags(FLAMMABLE, DISABLE_DECOMPOSITION, NO_SMELTING, NO_SMASHING, MORTAR_GRINDABLE)
-            .components(Carbon, 3, Water, 1)
-            .build()
-            .setFormula("C3(H2O)", true)
+        Lignite = addMaterial(2020, "lignite")
+        {
+            gem(0, 80 * SECOND)
+            ore()
+            color(6571590).iconSet(LIGNITE)
+            components(Carbon, 3, Water, 1)
+            flags(FLAMMABLE, DISABLE_DECOMPOSITION, NO_SMELTING, NO_SMASHING, MORTAR_GRINDABLE)
+        }
 
         // 2021 Firestone
-        Firestone = Material.Builder(2021, GTLiteMod.id("firestone"))
-            .gem(1, 3200)
-            .ore()
-            .color(0xC81400)
-            .iconSet(QUARTZ)
-            .flags(NO_SMASHING, NO_SMELTING)
-            .components(SiliconDioxide, 2, Flint, 1, Pyrite, 1)
-            .build()
-            .setFormula("(SiO2)3(FeS2)?", true)
+        Firestone = addMaterial(2021, "firestone")
+        {
+            gem(1, 160 * SECOND)
+            ore()
+            color(0xC81400).iconSet(QUARTZ)
+            flags(NO_SMASHING, NO_SMELTING)
+            components(SiliconDioxide, 2, Flint, 1, Pyrite, 1)
+        }
 
         // 2022 Iron (III) Sulfate
-        Iron3Sulfate = Material.Builder(2022, GTLiteMod.id("iron_sulfate"))
-            .dust()
-            .color(0xB09D99)
-            .components(Iron, 2, Sulfur, 3, Oxygen, 12)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Fe2(SO4)3", true)
+        Iron3Sulfate = addMaterial(2022, "iron_sulfate")
+        {
+            dust()
+            color(0xB09D99)
+            components(Iron, 2, Sulfur, 3, Oxygen, 12)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2023 Celestine
-        Celestine = Material.Builder(2023, GTLiteMod.id("celestine"))
-            .gem(2)
-            .ore()
-            .color(0x4AE3E6).iconSet(OPAL)
-            .components(Strontium, 1, Sulfur, 1, Oxygen, 4)
-            .flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
-            .build()
+        Celestine = addMaterial(2023, "celestine")
+        {
+            gem(2)
+            ore()
+            color(0x4AE3E6).iconSet(OPAL)
+            components(Strontium, 1, Sulfur, 1, Oxygen, 4)
+            flags(CRYSTALLIZABLE, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2024 Strontianite
-        Strontianite = Material.Builder(2024, GTLiteMod.id("strontianite"))
-            .dust()
-            .ore()
-            .color(0x1DAFD3).iconSet(SAND)
-            .components(Strontium, 1, Carbon, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        Strontianite = addMaterial(2024, "strontianite")
+        {
+            dust()
+            ore()
+            color(0x1DAFD3).iconSet(SAND)
+            components(Strontium, 1, Carbon, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2025 Strontium Oxide
-        StrontiumOxide = Material.Builder(2025, GTLiteMod.id("strontium_oxide"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Strontium, 1, Oxygen, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        StrontiumOxide = addMaterial(2025, "strontium_oxide")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Strontium, 1, Oxygen, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2026 Strontium Sulfide
-        StrontiumSulfide = Material.Builder(2026, GTLiteMod.id("strontium_sulfide"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Strontium, 1, Sulfur, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        StrontiumSulfide = addMaterial(2026, "strontium_sulfide")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Strontium, 1, Sulfur, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2027 Alumina
-        Alumina = Material.Builder(2027, GTLiteMod.id("alumina"))
-            .dust()
-            .color(0x78C3EB).iconSet(METALLIC)
-            .components(Aluminium, 2, Oxygen, 3)
-            .build()
+        Alumina = addMaterial(2027, "alumina")
+        {
+            dust()
+            color(0x78C3EB).iconSet(METALLIC)
+            components(Aluminium, 2, Oxygen, 3)
+        }
 
         // 2028 Phlogopite
-        Phlogopite = Material.Builder(2028, GTLiteMod.id("phlogopite"))
-            .dust()
-            .ore()
-            .color(0xDCDD0D)
-            .components(Potassium, 1, Magnesium, 3, Aluminium, 1, Silicon, 3, Oxygen, 10, Fluorine, 2)
-            .flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("KMg3(AlSi3O10)F2", true)
+        Phlogopite = addMaterial(2028, "phlogopite")
+        {
+            dust()
+            ore()
+            color(0xDCDD0D)
+            components(Potassium, 1, Magnesium, 3, Aluminium, 1, Silicon, 3, Oxygen, 10, Fluorine, 2)
+            flags(NO_SMASHING, DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 2029 Baddeleyite
-        Baddeleyite = Material.Builder(2029, GTLiteMod.id("baddeleyite"))
-            .gem()
-            .ore()
-            .color(0x689F9F).iconSet(GEM_HORIZONTAL)
-            .components(Zirconium, 1, Oxygen, 2)
-            .flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
-            .build()
+        Baddeleyite = addMaterial(2029, "baddeleyite")
+        {
+            gem()
+            ore()
+            color(0x689F9F).iconSet(GEM_HORIZONTAL)
+            components(Zirconium, 1, Oxygen, 2)
+            flags(HIGH_SIFTER_OUTPUT, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2030 Nephelite
-        Nephelite = Material.Builder(2030, GTLiteMod.id("nephelite"))
-            .gem()
-            .ore()
-            .color(0xE56842).iconSet(CERTUS)
-            .components(Potassium, 1, Sodium, 3, Aluminium, 4, Silicon, 4, Oxygen, 16)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
-            .setFormula("KNa3(AlSiO4)4", true)
+        Nephelite = addMaterial(2030, "nephelite")
+        {
+            gem()
+            ore()
+            color(0xE56842).iconSet(CERTUS)
+            components(Potassium, 1, Sodium, 3, Aluminium, 4, Silicon, 4, Oxygen, 16)
+            flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2031 Aegirine
-        Aegirine = Material.Builder(2031, GTLiteMod.id("aegirine"))
-            .gem()
-            .ore()
-            .color(0x4ACA3B).iconSet(EMERALD)
-            .components(Sodium, 1, Iron, 1, Silicon, 2, Oxygen, 6)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Aegirine = addMaterial(2031, "aegirine")
+        {
+            gem()
+            ore()
+            color(0x4ACA3B).iconSet(EMERALD)
+            components(Sodium, 1, Iron, 1, Silicon, 2, Oxygen, 6)
+            flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2032 Niobium Pentoxide
-        NiobiumPentoxide = Material.Builder(2032, GTLiteMod.id("niobium_pentoxide"))
-            .dust()
-            .color(0xBAB0C3).iconSet(ROUGH)
-            .components(Niobium, 2, Oxygen, 5)
-            .build()
+        NiobiumPentoxide = addMaterial(2032, "niobium_pentoxide")
+        {
+            dust()
+            color(0xBAB0C3).iconSet(ROUGH)
+            components(Niobium, 2, Oxygen, 5)
+        }
 
         // 2033 Tantalum Pentoxide
-        TantalumPentoxide = Material.Builder(2033, GTLiteMod.id("tantalum_pentoxide"))
-            .dust()
-            .color(0x72728A).iconSet(ROUGH)
-            .components(Tantalum, 2, Oxygen, 5)
-            .build()
+        TantalumPentoxide = addMaterial(2033, "tantalum_pentoxide")
+        {
+            dust()
+            color(0x72728A).iconSet(ROUGH)
+            components(Tantalum, 2, Oxygen, 5)
+        }
 
         // 2034 Calcium Difluoride
-        CalciumDifluoride = Material.Builder(2034, GTLiteMod.id("calcium_difluoride"))
-            .dust()
-            .color(0xFFFC9E).iconSet(ROUGH)
-            .components(Calcium, 1, Fluorine, 2)
-            .build()
+        CalciumDifluoride = addMaterial(2034, "calcium_difluoride")
+        {
+            dust()
+            color(0xFFFC9E).iconSet(ROUGH)
+            components(Calcium, 1, Fluorine, 2)
+        }
 
         // 2035 Manganese Difluoride
-        ManganeseDifluoride = Material.Builder(2035, GTLiteMod.id("manganese_difluoride"))
-            .dust()
-            .color(0xEF4B3D).iconSet(ROUGH)
-            .components(Manganese, 1, Fluorine, 2)
-            .build()
+        ManganeseDifluoride = addMaterial(2035, "manganese_difluoride")
+        {
+            dust()
+            color(0xEF4B3D).iconSet(ROUGH)
+            components(Manganese, 1, Fluorine, 2)
+        }
 
         // 2036 Heavy Alkali Chlorides Solution
-        HeavyAlkaliChloridesSolution = Material.Builder(2036, GTLiteMod.id("heavy_alkali_chlorides_solution"))
-            .liquid()
-            .color(0x8F5353)
-            .components(Rubidium, 1, Caesium, 2, Chlorine, 6, Water, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(RbCl)(CsCl)2Cl3(H2O)2", true)
+        HeavyAlkaliChloridesSolution = addMaterial(2036, "heavy_alkali_chlorides_solution")
+        {
+            liquid()
+            color(0x8F5353)
+            components(Rubidium, 1, Caesium, 2, Chlorine, 6, Water, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2037 Tin Dichloride
-        TinDichloride = Material.Builder(2037, GTLiteMod.id("tin_dichloride"))
-            .dust()
-            .color(0xDBDBDB).iconSet(METALLIC)
-            .components(Tin, 1, Chlorine, 2)
-            .build()
+        TinDichloride = addMaterial(2037, "tin_dichloride")
+        {
+            dust()
+            color(0xDBDBDB).iconSet(METALLIC)
+            components(Tin, 1, Chlorine, 2)
+        }
 
         // 2038 Tin Tetrachloride
-        TinTetrachloride = Material.Builder(2038, GTLiteMod.id("tin_tetrachloride"))
-            .dust()
-            .color(0x33BBF5).iconSet(METALLIC)
-            .components(Tin, 1, Chlorine, 4)
-            .build()
+        TinTetrachloride = addMaterial(2038, "tin_tetrachloride")
+        {
+            dust()
+            color(0x33BBF5).iconSet(METALLIC)
+            components(Tin, 1, Chlorine, 4)
+        }
 
         // 2039 Caesium Hexachlorotinate
-        CaesiumHexachlorotinate = Material.Builder(2039, GTLiteMod.id("caesium_hexachlorotinate"))
-            .dust()
-            .color(0xBDAD88).iconSet(SHINY)
-            .components(Caesium, 2, Tin, 1, Chlorine, 6)
-            .build()
+        CaesiumHexachlorotinate = addMaterial(2039, "caesium_hexachlorotinate")
+        {
+            dust()
+            color(0xBDAD88).iconSet(SHINY)
+            components(Caesium, 2, Tin, 1, Chlorine, 6)
+        }
 
         // 2040 Rubidium Hexachlorotinate
-        RubidiumHexachlorotinate = Material.Builder(2040, GTLiteMod.id("rubidium_hexachlorotinate"))
-            .dust()
-            .color(0xBD888A).iconSet(METALLIC)
-            .components(Rubidium, 2, Tin, 1, Chlorine, 6)
-            .build()
+        RubidiumHexachlorotinate = addMaterial(2040, "rubidium_hexachlorotinate")
+        {
+            dust()
+            color(0xBD888A).iconSet(METALLIC)
+            components(Rubidium, 2, Tin, 1, Chlorine, 6)
+        }
 
         // 2041 Cryolite
-        Cryolite = Material.Builder(2041, GTLiteMod.id("cryolite"))
-            .gem()
-            .ore()
-            .color(0xBFEFFF).iconSet(QUARTZ)
-            .components(Sodium, 3, Aluminium, 1, Fluorine, 6)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Cryolite = addMaterial(2041, "cryolite")
+        {
+            gem()
+            ore()
+            color(0xBFEFFF).iconSet(QUARTZ)
+            components(Sodium, 3, Aluminium, 1, Fluorine, 6)
+            flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2042 Aluminium Hydroxide
-        AluminiumHydroxide = Material.Builder(2042, GTLiteMod.id("aluminium_hydroxide"))
-            .dust()
-            .color(0xBEBEC8)
-            .components(Aluminium, 1, Oxygen, 3, Hydrogen, 3)
-            .build()
-            .setFormula("Al(OH)3", true)
+        AluminiumHydroxide = addMaterial(2042, "aluminium_hydroxide")
+        {
+            dust()
+            color(0xBEBEC8)
+            components(Aluminium, 1, Oxygen, 3, Hydrogen, 3)
+        }
 
         // 2043 Sodium Aluminate
-        SodiumAluminate = Material.Builder(2043, GTLiteMod.id("sodium_aluminate"))
-            .dust()
-            .colorAverage()
-            .components(Sodium, 1, Aluminium, 1, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumAluminate = addMaterial(2043, "sodium_aluminate")
+        {
+            dust()
+            colorAverage()
+            components(Sodium, 1, Aluminium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
-        // 2044 Sodium Carbonate
-        SodiumCarbonate = Material.Builder(2044, GTLiteMod.id("sodium_carbonate"))
-            .liquid()
-            .colorAverage()
-            .components(SodaAsh, 1, Water, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        // 2044 Sodium Carbonate (Solution)
+        SodiumCarbonate = addMaterial(2044, "sodium_carbonate")
+        {
+            liquid()
+            colorAverage()
+            components(SodaAsh, 1, Water, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2045 Aluminium Sulfate
-        AluminiumSulfate = Material.Builder(2045, GTLiteMod.id("aluminium_sulfate"))
-            .dust()
-            .colorAverage()
-            .components(Aluminium, 2, Sulfur, 3, Oxygen, 12)
-            .build()
-            .setFormula("Al2(SO4)3", true)
+        AluminiumSulfate = addMaterial(2045, "aluminium_sulfate")
+        {
+            dust()
+            colorAverage()
+            components(Aluminium, 2, Sulfur, 3, Oxygen, 12)
+        }
 
         // 2046 ZSM-5
-        ZSM5 = Material.Builder(2046, GTLiteMod.id("zsm_5"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
-            .components(Sodium, 1, Aluminium, 2, Sulfur, 3, Silicon, 2, Oxygen, 18, Hydrogen, 4)
-            .build()
-            .setFormula("Na(Al2(SO4)3)(SiO2)2(H2O)2", true)
+        ZSM5 = addMaterial(2046, "zsm_5")
+        {
+            dust() // Na(Al2(SO4)3)(SiO2)2(H2O)2
+            colorAverage().iconSet(SHINY)
+            components(Sodium, 1, AluminiumSulfate, 1, SiliconDioxide, 2, Water, 2)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE)
+        }
 
         // 2047 Molybdenum Trioxide
-        MolybdenumTrioxide = Material.Builder(2047, GTLiteMod.id("molybdenum_trioxide"))
-            .dust()
-            .color(0xCBCFDA)
-            .iconSet(ROUGH)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Molybdenum, 1, Oxygen, 3)
-            .build()
+        MolybdenumTrioxide = addMaterial(2047, "molybdenum_trioxide")
+        {
+            dust()
+            color(0xCBCFDA).iconSet(ROUGH)
+            components(Molybdenum, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2048 Molybdenum Flue
-        MolybdenumFlue = Material.Builder(2048, GTLiteMod.id("molybdenum_flue"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x39194A)
-            .components(Rhenium, 1, Oxygen, 2, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        MolybdenumFlue = addMaterial(2048, "molybdenum_flue")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x39194A)
+            components(Rhenium, 1, Oxygen, 2, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2049 Lead Dichloride
-        LeadDichloride = Material.Builder(2049, GTLiteMod.id("lead_dichloride"))
-            .dust()
-            .color(0xF3F3F3).iconSet(ROUGH)
-            .components(Lead, 1, Chlorine, 2)
-            .build()
+        LeadDichloride = addMaterial(2049, "lead_dichloride")
+        {
+            dust()
+            color(0xF3F3F3).iconSet(ROUGH)
+            components(Lead, 1, Chlorine, 2)
+        }
 
         // 2050 Trace Rhenium Flue
-        TraceRheniumFlue = Material.Builder(2050, GTLiteMod.id("trace_rhenium_flue"))
-            .gas(FluidBuilder()
-                .translation("gregtech.fluid.generic"))
-            .color(0x96D6D5)
-            .components(Rhenium, 1, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        TraceRheniumFlue = addMaterial(2050, "trace_rhenium_flue")
+        {
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
+            color(0x96D6D5)
+            components(Rhenium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2051 Perrhenic Acid
-        PerrhenicAcid = Material.Builder(2051, GTLiteMod.id("perrhenic_acid"))
-            .dust()
-            .color(0xE6DC70).iconSet(SHINY)
-            .components(Hydrogen, 1, Rhenium, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PerrhenicAcid = addMaterial(2051, "perrhenic_acid")
+        {
+            dust()
+            color(0xE6DC70).iconSet(SHINY)
+            components(Hydrogen, 1, Rhenium, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2052 Ammonium Perrhenate
-        AmmoniumPerrhenate = Material.Builder(2052, GTLiteMod.id("ammonium_perrhenate"))
-            .dust()
-            .color(0xA69970).iconSet(METALLIC)
-            .components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        AmmoniumPerrhenate = addMaterial(2052, "ammonium_perrhenate")
+        {
+            dust()
+            color(0xA69970).iconSet(METALLIC)
+            components(Nitrogen, 1, Hydrogen, 4, Rhenium, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2053 Jade
-        Jade = Material.Builder(2053, GTLiteMod.id("jade"))
-            .gem(2)
-            .ore()
-            .color(0x006400).iconSet(RUBY)
-            .components(Sodium, 1, Aluminium, 1, Silicon, 2, Oxygen, 6)
-            .flags(CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Jade = addMaterial(2053, "jade")
+        {
+            gem(2)
+            ore()
+            color(0x006400).iconSet(RUBY)
+            components(Sodium, 1, Aluminium, 1, Silicon, 2, Oxygen, 6)
+            flags(CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2054 Jasper
-        Jasper = Material.Builder(2054, GTLiteMod.id("jasper"))
-            .gem(2)
-            .ore()
-            .color(0xC85050).iconSet(EMERALD)
-            .components(Calcium, 1, Magnesium, 5, Oxygen, 24, Hydrogen, 2, Silicon, 8)
-            .flags(HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
-            .setFormula("CaMg5(OH)2(Si4O11)2", true)
+        Jasper = addMaterial(2054, "jasper")
+        {
+            gem(2)
+            ore()
+            color(0xC85050).iconSet(EMERALD)
+            components(Calcium, 1, Magnesium, 5, Oxygen, 24, Hydrogen, 2, Silicon, 8)
+            flags(HIGH_SIFTER_OUTPUT, CRYSTALLIZABLE, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2055 Picotite
-        Picotite = Material.Builder(2055, GTLiteMod.id("picotite"))
-            .gem(3)
-            .ore(2, 3)
-            .color(0x931C24).iconSet(DIAMOND)
-            .components(Iron, 1, Chrome, 2, Oxygen, 4)
-            .flags(GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
-            .build()
+        Picotite = addMaterial(2055, "picotite")
+        {
+            gem(3)
+            ore(2, 3)
+            color(0x931C24).iconSet(DIAMOND)
+            components(Iron, 1, Chrome, 2, Oxygen, 4)
+            flags(GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2056 Manganese Monoxide
-        ManganeseMonoxide = Material.Builder(2056, GTLiteMod.id("manganese_monoxide"))
-            .dust()
-            .color(0x472400)
-            .components(Manganese, 1, Oxygen, 1)
-            .build()
+        ManganeseMonoxide = addMaterial(2056, "manganese_monoxide")
+        {
+            dust()
+            color(0x472400)
+            components(Manganese, 1, Oxygen, 1)
+        }
 
         // 2057 Lead Chromate
-        LeadChromate = Material.Builder(2057, GTLiteMod.id("lead_chromate"))
-            .dust()
-            .color(0xFFFB00).iconSet(SHINY)
-            .components(Lead, 1, Chrome, 1, Oxygen, 4)
-            .build()
+        LeadChromate = addMaterial(2057, "lead_chromate")
+        {
+            dust()
+            color(0xFFFB00).iconSet(SHINY)
+            components(Lead, 1, Chrome, 1, Oxygen, 4)
+        }
 
         // 2058 Lead Nitrate
-        LeadNitrate = Material.Builder(2058, GTLiteMod.id("lead_nitrate"))
-            .dust()
-            .color(0xFFFFFF).iconSet(SHINY)
-            .components(Lead, 1, Nitrogen, 2, Oxygen, 6)
-            .build()
-            .setFormula("Pb(NO3)2", true)
+        LeadNitrate = addMaterial(2058, "lead_nitrate")
+        {
+            dust()
+            color(0xFFFFFF).iconSet(SHINY)
+            components(Lead, 1, Nitrogen, 2, Oxygen, 6)
+        }
 
         // 2059 Cobalt Aluminate
-        CobaltAluminate = Material.Builder(2059,  GTLiteMod.id("cobalt_aluminate"))
-            .dust()
-            .color(0x1605FF).iconSet(SHINY)
-            .components(Cobalt, 1, Aluminium, 2, Oxygen, 4)
-            .build()
+        CobaltAluminate = addMaterial(2059, "cobalt_aluminate")
+        {
+            dust()
+            color(0x1605FF).iconSet(SHINY)
+            components(Cobalt, 1, Aluminium, 2, Oxygen, 4)
+        }
 
         // 2060 Orpiment
-        Orpiment = Material.Builder(2060, GTLiteMod.id("orpiment"))
-            .gem()
-            .ore()
-            .color(0xEBD352).iconSet(EMERALD)
-            .components(Arsenic, 2, Sulfur, 3)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Orpiment = addMaterial(2060, "orpiment")
+        {
+            gem()
+            ore()
+            color(0xEBD352).iconSet(EMERALD)
+            components(Arsenic, 2, Sulfur, 3)
+            flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2061 Sodium Chlorate
-        SodiumChlorate = Material.Builder(2061, GTLiteMod.id("sodium_chlorate"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Sodium, 1,  Chlorine, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumChlorate = addMaterial(2061, "sodium_chlorate")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Sodium, 1,  Chlorine, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2062 Sodium Perchlorate
-        SodiumPerchlorate = Material.Builder(2062, GTLiteMod.id("sodium_perchlorate"))
-            .dust()
-            .color(Salt.materialRGB).iconSet(ROUGH)
-            .components(Sodium, 1, Chlorine, 1, Oxygen, 4)
-            .build()
+        SodiumPerchlorate = addMaterial(2062, "sodium_perchlorate")
+        {
+            dust()
+            color(Salt.materialRGB).iconSet(ROUGH)
+            components(Sodium, 1, Chlorine, 1, Oxygen, 4)
+        }
 
         // 2063 Sodium Hypochlorite
-        SodiumHypochlorite = Material.Builder(2063, GTLiteMod.id("sodium_hypochlorite"))
-            .dust()
-            .color(0x778D56).iconSet(SHINY)
-            .components(Sodium, 1, Chlorine, 1, Oxygen, 1)
-            .build()
+        SodiumHypochlorite = addMaterial(2063, "sodium_hypochlorite")
+        {
+            dust()
+            color(0x778D56).iconSet(SHINY)
+            components(Sodium, 1, Chlorine, 1, Oxygen, 1)
+        }
 
         // 2064 Tungsten Trioxide
-        TungstenTrioxide = Material.Builder(2064, GTLiteMod.id("tungsten_trioxide"))
-            .dust()
-            .color(0xC7D300).iconSet(DULL)
-            .components(Tungsten, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        TungstenTrioxide = addMaterial(2064, "tungsten_trioxide")
+        {
+            dust()
+            color(0xC7D300).iconSet(DULL)
+            components(Tungsten, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2065 Strontium Ferrite
-        StrontiumFerrite = Material.Builder(2065, GTLiteMod.id("strontium_ferrite"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(MAGNETIC)
-            .components(Strontium, 1, Iron, 12, Oxygen, 19)
-            .flags(GENERATE_ROD, GENERATE_RING)
-            .blast { b ->
-                b.temp(3000, BlastProperty.GasTier.MID)
-                    .blastStats(VA[EV], 40 * SECOND)
-                    .vacuumStats(VA[MV], 10 * SECOND)
-            }
-            .build()
+        StrontiumFerrite = addMaterial(2065, "strontium_ferrite")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(MAGNETIC)
+            components(Strontium, 1, Iron, 12, Oxygen, 19)
+            flags(GENERATE_ROD, GENERATE_RING)
+            blastProp(3000, GasTier.MID, // Nichrome
+                      VA[EV], 40 * SECOND,
+                      VA[MV], 10 * SECOND)
+        }
 
         // 2066 Titanium Nitrate
-        TitaniumNitrate = Material.Builder(2066, GTLiteMod.id("titanium_nitrate"))
-            .dust()
-            .colorAverage()
-            .components(Titanium, 1, Nitrogen, 4, Oxygen, 12)
-            .build()
-            .setFormula("Ti(NO3)4", true)
+        TitaniumNitrate = addMaterial(2066, "titanium_nitrate")
+        {
+            dust()
+            colorAverage()
+            components(Titanium, 1, Nitrogen, 4, Oxygen, 12)
+        }
 
         // 2067 Lithium Titanate
-        LithiumTitanate = Material.Builder(2067, GTLiteMod.id("lithium_titanate"))
-            .ingot()
-            .fluid()
-            .color(0xFE71A9).iconSet(SHINY)
-            .components(Lithium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT2_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_FOIL,
-                GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING, GENERATE_SMALL_GEAR,
-                GENERATE_SPRING_SMALL)
-            .blast { b ->
-                b.temp(3100, BlastProperty.GasTier.MID) // Nichrome
-                    .blastStats(VA[EV], 16 * SECOND)
-                    .vacuumStats(VA[MV], 8 * SECOND)
+        LithiumTitanate = addMaterial(2067, "lithium_titanate")
+        {
+            ingot()
+            fluid()
+            color(0xFE71A9).iconSet(SHINY)
+            components(Lithium, 2, Titanium, 1, Oxygen, 3)
+            flags(EXT2_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_GEAR, GENERATE_RING, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
+            blastProp(3100, GasTier.MID, // Nichrome
+                      VA[EV], 16 * SECOND,
+                      VA[MV], 8 * SECOND)
+            toolProp(8.5F, 7.0F, 2304, 4)
+            {
+                magnetic()
             }
-            .toolStats(MaterialToolProperty(8.5F, 7.0F, 2304, 4))
-            .rotorStats(8.5f, 4.0f, 3200)
-            .fluidPipeProperties(2830, 200, true, true, false, false)
-            .build()
+            rotorProp(8.5f, 4.0f, 3200)
+            fluidPipeProp(2830, 200, gasProof = true, acidProof = true)
+        }
 
         // 2068 Palladium Nitrate
-        PalladiumNitrate = Material.Builder(2068, GTLiteMod.id("palladium_nitrate"))
-            .dust()
-            .color(0x82312A).iconSet(METALLIC)
-            .components(Palladium, 1, Nitrogen, 2, Oxygen, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Pd(NO3)2", true)
+        PalladiumNitrate = addMaterial(2068, "palladium_nitrate")
+        {
+            dust()
+            color(0x82312A).iconSet(METALLIC)
+            components(Palladium, 1, Nitrogen, 2, Oxygen, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2069 Palladium Acetate
-        PalladiumAcetate = Material.Builder(2069, GTLiteMod.id("palladium_acetate"))
-            .dust()
-            .color(0x693C2D).iconSet(SHINY)
-            .components(Palladium, 1, AceticAcid, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Pd(CH3COOH)2", true)
+        PalladiumAcetate = addMaterial(2069, "palladium_acetate")
+        {
+            dust()
+            color(0x693C2D).iconSet(SHINY)
+            components(Palladium, 1, AceticAcid, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2070 Palladium Loaded Rutile Nanoparticles
-        PalladiumLoadedRutileNanoparticles = Material.Builder(2070, GTLiteMod.id("palladium_loaded_rutile_nanoparticles"))
-            .dust()
-            .colorAverage().iconSet(NANOPARTICLES)
-            .components(Palladium, 1, Rutile, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PalladiumLoadedRutileNanoparticles = addMaterial(2070, "palladium_loaded_rutile_nanoparticles")
+        {
+            dust()
+            colorAverage().iconSet(NANOPARTICLES)
+            components(Palladium, 1, Rutile, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2071 Lithium Oxide
-        LithiumOxide = Material.Builder(2071, GTLiteMod.id("lithium_oxide"))
-            .dust()
-            .color(0x9DB6B9).iconSet(DULL)
-            .components(Lithium, 2, Oxygen, 1)
-            .build()
+        LithiumOxide = addMaterial(2071, "lithium_oxide")
+        {
+            dust()
+            color(0x9DB6B9).iconSet(DULL)
+            components(Lithium, 2, Oxygen, 1)
+        }
 
         // 2072 Lithium Carbonate
-        LithiumCarbonate = Material.Builder(2072, GTLiteMod.id("lithium_carbonate"))
-            .dust()
-            .color(0xD1F3F6).iconSet(ROUGH)
-            .components(Lithium, 2, Carbon, 1, Oxygen, 3)
-            .build()
+        LithiumCarbonate = addMaterial(2072, "lithium_carbonate")
+        {
+            dust()
+            color(0xD1F3F6).iconSet(ROUGH)
+            components(Lithium, 2, Carbon, 1, Oxygen, 3)
+        }
 
         // 2073 Blue Vitriol
-        BlueVitriol = Material.Builder(2073, GTLiteMod.id("blue_vitriol"))
-            .liquid()
-            .color(0x4242DE)
-            .components(Copper, 1, Sulfur, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        BlueVitriol = addMaterial(2073, "blue_vitriol")
+        {
+            liquid()
+            color(0x4242DE)
+            components(Copper, 1, Sulfur, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2074 Sodium Tellurite
-        SodiumTellurite = Material.Builder(2074, GTLiteMod.id("sodium_tellurite"))
-            .dust()
-            .color(0xC6C9BE).iconSet(ROUGH)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Sodium, 2, Tellurium, 1, Oxygen, 3)
-            .build()
+        SodiumTellurite = addMaterial(2074, "sodium_tellurite")
+        {
+            dust()
+            color(0xC6C9BE).iconSet(ROUGH)
+            components(Sodium, 2, Tellurium, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2075 Selenium Dioxide
-        SeleniumDioxide = Material.Builder(2075, GTLiteMod.id("selenium_dioxide"))
-            .dust()
-            .color(0xE0DDD8).iconSet(METALLIC)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Selenium, 1, Oxygen, 2)
-            .build()
+        SeleniumDioxide = addMaterial(2075, "selenium_dioxide")
+        {
+            dust()
+            color(0xE0DDD8).iconSet(METALLIC)
+            components(Selenium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2076 Tellurium Dioxide
-        TelluriumDioxide = Material.Builder(2076, GTLiteMod.id("tellurium_dioxide"))
-            .dust()
-            .color(0xE3DDB8).iconSet(METALLIC)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Tellurium, 1, Oxygen, 2)
-            .build()
+        TelluriumDioxide = addMaterial(2076, "tellurium_dioxide")
+        {
+            dust()
+            color(0xE3DDB8).iconSet(METALLIC)
+            components(Tellurium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2077 Selenous Acid
-        SelenousAcid = Material.Builder(2077, GTLiteMod.id("selenous_acid"))
-            .dust()
-            .color(0xE0E083).iconSet(SHINY)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Hydrogen, 2, Selenium, 1, Oxygen, 3)
-            .build()
+        SelenousAcid = addMaterial(2077, "selenous_acid")
+        {
+            dust()
+            color(0xE0E083).iconSet(SHINY)
+            components(Hydrogen, 2, Selenium, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2078 Aluminium Selenide
-        AluminiumSelenide = Material.Builder(2078, GTLiteMod.id("aluminium_selenide"))
-            .dust()
-            .color(0x969651)
-            .components(Aluminium, 2, Selenium, 3)
-            .build()
+        AluminiumSelenide = addMaterial(2078, "aluminium_selenide")
+        {
+            dust()
+            color(0x969651)
+            components(Aluminium, 2, Selenium, 3)
+        }
 
         // 2079 Hydrogen Selenide
-        HydrogenSelenide = Material.Builder(2079, GTLiteMod.id("hydrogen_selenide"))
-            .gas()
-            .color(0x42f554)
-            .components(Hydrogen, 2, Selenium, 1)
-            .build()
+        HydrogenSelenide = addMaterial(2079, "hydrogen_selenide")
+        {
+            gas()
+            color(0x42f554)
+            components(Hydrogen, 2, Selenium, 1)
+        }
 
         // 2080 Cadmium Bromide
-        CadmiumBromide = Material.Builder(2080, GTLiteMod.id("cadmium_bromide"))
-            .dust()
-            .color(0xFF1774).iconSet(SHINY)
-            .components(Cadmium, 1, Bromine, 2)
-            .build()
+        CadmiumBromide = addMaterial(2080, "cadmium_bromide")
+        {
+            dust()
+            color(0xFF1774).iconSet(SHINY)
+            components(Cadmium, 1, Bromine, 2)
+        }
 
         // 2081 Magnesium Bromide
-        MagnesiumBromide = Material.Builder(2081, GTLiteMod.id("magnesium_bromide"))
-            .dust()
-            .color(0x5F4C32).iconSet(METALLIC)
-            .components(Magnesium, 1, Bromine, 2)
-            .build()
+        MagnesiumBromide = addMaterial(2081, "magnesium_bromide")
+        {
+            dust()
+            color(0x5F4C32).iconSet(METALLIC)
+            components(Magnesium, 1, Bromine, 2)
+        }
 
         // 2082 HRA Magnesium
-        HRAMagnesium = Material.Builder(2082, GTLiteMod.id("hra_magnesium"))
-            .dust()
-            .color(Magnesium.materialRGB).iconSet(SHINY)
-            .components(Magnesium, 1)
-            .build()
+        HRAMagnesium = addMaterial(2082, "hra_magnesium")
+        {
+            dust()
+            color(Magnesium.materialRGB).iconSet(SHINY)
+            components(Magnesium, 1)
+        }
 
         // 2083 Hydrobromic Acid
-        HydrobromicAcid = Material.Builder(2083, GTLiteMod.id("hydrobromic_acid"))
-            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
-            .color(0x8D1212)
-            .components(Hydrogen, 1, Bromine, 1)
-            .build()
+        HydrobromicAcid = addMaterial(2083, "hydrobromic_acid")
+        {
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
+            color(0x8D1212)
+            components(Hydrogen, 1, Bromine, 1)
+        }
 
         // 2084 Dimethylcadmium
-        Dimethylcadmium = Material.Builder(2084, GTLiteMod.id("dimethylcadmium"))
-            .liquid()
-            .color(0x5C037F)
-            .components(Carbon, 2, Hydrogen, 6, Cadmium, 1)
-            .build()
-            .setFormula("(CH3)2Cd", true)
+        Dimethylcadmium = addMaterial(2084, "dimethylcadmium")
+        {
+            liquid()
+            color(0x5C037F)
+            components(Carbon, 2, Hydrogen, 6, Cadmium, 1)
+        }
 
         // 2085 Cadmium Selenide
-        CadmiumSelenide = Material.Builder(2085, GTLiteMod.id("cadmium_selenide"))
-            .dust()
-            .liquid()
-            .color(0x983034).iconSet(METALLIC)
-            .components(Cadmium, 1, Selenium, 1)
-            .build()
+        CadmiumSelenide = addMaterial(2085, "cadmium_selenide")
+        {
+            dust()
+            liquid()
+            color(0x983034).iconSet(METALLIC)
+            components(Cadmium, 1, Selenium, 1)
+        }
 
         // 2086 Prasiolite
-        Prasiolite = Material.Builder(2086, GTLiteMod.id("prasiolite"))
-            .gem()
-            .ore()
-            .color(0x9EB749).iconSet(QUARTZ)
-            .components(SiliconDioxide, 5, Iron, 1)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        Prasiolite = addMaterial(2086, "prasiolite")
+        {
+            gem()
+            ore()
+            color(0x9EB749).iconSet(QUARTZ)
+            components(SiliconDioxide, 5, Iron, 1)
+            flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2087 ZBLAN Glass
-        ZBLANGlass = Material.Builder(2087, GTLiteMod.id("zblan_glass"))
-            .ingot()
-            .fluid()
-            .color(0xACB4BC).iconSet(SHINY)
-            .components(Zirconium, 5, Barium, 2, Lanthanum, 1, Aluminium, 1, Sodium, 2, Fluorine, 6)
-            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2", true)
+        ZBLANGlass = addMaterial(2087, "zblan_glass")
+        {
+            ingot()
+            fluid()
+            color(0xACB4BC).iconSet(SHINY)
+            components(Zirconium, 5, Barium, 2, Lanthanum, 1, Aluminium, 1, Sodium, 2, Fluorine, 6)
+            flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2088 Er-doped ZBLAN Glass
-        ErbiumDopedZBLANGlass = Material.Builder(2088, GTLiteMod.id("erbium_doped_zblan_glass"))
-            .ingot()
-            .color(0x505444).iconSet(BRIGHT)
-            .components(ZBLANGlass, 1, Erbium, 1)
-            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
-            .build()
-            .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Er", true)
+        ErbiumDopedZBLANGlass = addMaterial(2088, "erbium_doped_zblan_glass")
+        {
+            ingot()
+            color(0x505444).iconSet(BRIGHT)
+            components(ZBLANGlass, 1, Erbium, 1)
+            flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
+        }
 
         // 2089 Pr-doped ZBLAN Glass
-        PraseodymiumDopedZBLANGlass = Material.Builder(2089, GTLiteMod.id("praseodymium_doped_zblan_glass"))
-            .ingot()
-            .color(0xC5C88D).iconSet(BRIGHT)
-            .flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
-            .components(ZBLANGlass, 1, Praseodymium, 1)
-            .build()
-            .setFormula("(ZrF4)5(BaF2)2(LaF3)(AlF3)(NaF)2Pr", true)
+        PraseodymiumDopedZBLANGlass = addMaterial(2089, "praseodymium_doped_zblan_glass")
+        {
+            ingot()
+            color(0xC5C88D).iconSet(BRIGHT)
+            flags(NO_SMASHING, NO_WORKING, DISABLE_DECOMPOSITION, GENERATE_PLATE)
+            components(ZBLANGlass, 1, Praseodymium, 1)
+        }
 
         // 2090 Ozone
-        Ozone = Material.Builder(2090, GTLiteMod.id("ozone"))
-            .gas()
-            .color(0xBEF4FA)
-            .components(Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        Ozone = addMaterial(2090, "ozone")
+        {
+            gas()
+            color(0xBEF4FA)
+            components(Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2091 Cubic Zirconia
-        CubicZirconia = Material.Builder(2091, GTLiteMod.id("cubic_zirconia"))
-            .gem()
-            .color(0xFFDFE2).iconSet(DIAMOND)
-            .components(Zirconium, 1, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
-            .build()
-            .setFormula("c-ZrO2", true)
+        CubicZirconia = addMaterial(2091, "cubic_zirconia")
+        {
+            gem()
+            color(0xFFDFE2).iconSet(DIAMOND)
+            components(Zirconium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2092 Bismuth Telluride
-        BismuthTelluride = Material.Builder(2092, GTLiteMod.id("bismuth_telluride"))
-            .dust()
-            .color(0x0E8933).iconSet(DULL)
-            .components(Bismuth, 2, Tellurium, 3)
-            .build()
+        BismuthTelluride = addMaterial(2092, "bismuth_telluride")
+        {
+            dust()
+            color(0x0E8933).iconSet(DULL)
+            components(Bismuth, 2, Tellurium, 3)
+        }
 
         // 2093 Magneto Resonatic
-        MagnetoResonatic = Material.Builder(2093, GTLiteMod.id("magneto_resonatic"))
-            .gem()
-            .color(0xFF97FF).iconSet(MAGNETO)
-            .components(BismuthTelluride, 4, Prasiolite, 3, CubicZirconia, 1, SteelMagnetic, 1)
-            .flags(NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
-            .build()
-            .setFormula("(Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe", true)
+        MagnetoResonatic = addMaterial(2093, "magneto_resonatic")
+        {
+            gem()
+            color(0xFF97FF).iconSet(MAGNETO)
+            components(BismuthTelluride, 4, Prasiolite, 3, CubicZirconia, 1, SteelMagnetic, 1)
+            flags(NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, GENERATE_BOULE)
+        }
 
         // 2094 Lanthanum Oxide
-        LanthanumOxide = Material.Builder(2094, GTLiteMod.id("lanthanum_oxide"))
-            .dust()
-            .color(0x5F7777).iconSet(SHINY)
-            .components(Lanthanum, 2, Oxygen, 3)
-            .build()
+        LanthanumOxide = addMaterial(2094, "lanthanum_oxide")
+        {
+            dust()
+            color(0x5F7777).iconSet(SHINY)
+            components(Lanthanum, 2, Oxygen, 3)
+        }
 
         // 2095 Cerium Oxide
-        CeriumOxide = Material.Builder(2095, GTLiteMod.id("cerium_oxide"))
-            .dust()
-            .color(0x10937F).iconSet(METALLIC)
-            .components(Cerium, 1, Oxygen, 2)
-            .build()
+        CeriumOxide = addMaterial(2095, "cerium_oxide")
+        {
+            dust()
+            color(0x10937F).iconSet(METALLIC)
+            components(Cerium, 1, Oxygen, 2)
+        }
 
         // 2096 Praseodymium Oxide
-        PraseodymiumOxide = Material.Builder(2096, GTLiteMod.id("praseodymium_oxide"))
-            .dust()
-            .color(0xD0D0D0).iconSet(METALLIC)
-            .components(Praseodymium, 2, Oxygen, 3)
-            .build()
+        PraseodymiumOxide = addMaterial(2096, "praseodymium_oxide")
+        {
+            dust()
+            color(0xD0D0D0).iconSet(METALLIC)
+            components(Praseodymium, 2, Oxygen, 3)
+        }
 
         // 2097 Neodymium Oxide
-        NeodymiumOxide = Material.Builder(2097, GTLiteMod.id("neodymium_oxide"))
-            .dust()
-            .color(0x868686)
-            .components(Neodymium, 2, Oxygen, 3)
-            .build()
+        NeodymiumOxide = addMaterial(2097, "neodymium_oxide")
+        {
+            dust()
+            color(0x868686)
+            components(Neodymium, 2, Oxygen, 3)
+        }
 
         // 2098 Samarium Oxide
-        SamariumOxide = Material.Builder(2098, GTLiteMod.id("samarium_oxide"))
-            .dust()
-            .color(0xFFFFDD)
-            .components(Samarium, 2, Oxygen, 3)
-            .build()
+        SamariumOxide = addMaterial(2098, "samarium_oxide")
+        {
+            dust()
+            color(0xFFFFDD)
+            components(Samarium, 2, Oxygen, 3)
+        }
 
         // 2099 Europium Oxide
-        EuropiumOxide = Material.Builder(2099, GTLiteMod.id("europium_oxide"))
-            .dust()
-            .color(0x20AAAA).iconSet(SHINY)
-            .components(Europium, 2, Oxygen, 3)
-            .build()
+        EuropiumOxide = addMaterial(2099, "europium_oxide")
+        {
+            dust()
+            color(0x20AAAA).iconSet(SHINY)
+            components(Europium, 2, Oxygen, 3)
+        }
 
         // 2100 Gadolinium Oxide
-        GadoliniumOxide = Material.Builder(2100, GTLiteMod.id("gadolinium_oxide"))
-            .dust()
-            .color(0xEEEEFF).iconSet(METALLIC)
-            .components(Gadolinium, 2, Oxygen, 3)
-            .build()
+        GadoliniumOxide = addMaterial(2100, "gadolinium_oxide")
+        {
+            dust()
+            color(0xEEEEFF).iconSet(METALLIC)
+            components(Gadolinium, 2, Oxygen, 3)
+        }
 
         // 2101 Terbium Oxide
-        TerbiumOxide = Material.Builder(2101, GTLiteMod.id("terbium_oxide"))
-            .dust()
-            .color(0xA264A2).iconSet(METALLIC)
-            .components(Terbium, 2, Oxygen, 3)
-            .build()
+        TerbiumOxide = addMaterial(2101, "terbium_oxide")
+        {
+            dust()
+            color(0xA264A2).iconSet(METALLIC)
+            components(Terbium, 2, Oxygen, 3)
+        }
 
         // 2102 Dysprosium Oxide
-        DysprosiumOxide = Material.Builder(2102, GTLiteMod.id("dysprosium_oxide"))
-            .dust()
-            .color(0xD273D2).iconSet(METALLIC)
-            .components(Dysprosium, 2, Oxygen, 3)
-            .build()
+        DysprosiumOxide = addMaterial(2102, "dysprosium_oxide")
+        {
+            dust()
+            color(0xD273D2).iconSet(METALLIC)
+            components(Dysprosium, 2, Oxygen, 3)
+        }
 
         // 2103 Holmium Oxide
-        HolmiumOxide = Material.Builder(2103, GTLiteMod.id("holmium_oxide"))
-            .dust()
-            .color(0xAF7F2A).iconSet(SHINY)
-            .components(Holmium, 2, Oxygen, 3)
-            .build()
+        HolmiumOxide = addMaterial(2103, "holmium_oxide")
+        {
+            dust()
+            color(0xAF7F2A).iconSet(SHINY)
+            components(Holmium, 2, Oxygen, 3)
+        }
 
         // 2104 Erbium Oxide
-        ErbiumOxide = Material.Builder(2104, GTLiteMod.id("erbium_oxide"))
-            .dust()
-            .color(0xE07A32).iconSet(METALLIC)
-            .components(Erbium, 2, Oxygen, 3)
-            .build()
+        ErbiumOxide = addMaterial(2104, "erbium_oxide")
+        {
+            dust()
+            color(0xE07A32).iconSet(METALLIC)
+            components(Erbium, 2, Oxygen, 3)
+        }
 
         // 2105 Thulium Oxide
-        ThuliumOxide = Material.Builder(2105, GTLiteMod.id("thulium_oxide"))
-            .dust()
-            .color(0x3B9E8B)
-            .components(Thulium, 2, Oxygen, 3)
-            .build()
+        ThuliumOxide = addMaterial(2105, "thulium_oxide")
+        {
+            dust()
+            color(0x3B9E8B)
+            components(Thulium, 2, Oxygen, 3)
+        }
 
         // 2106 Ytterbium Oxide
-        YtterbiumOxide = Material.Builder(2106, GTLiteMod.id("ytterbium_oxide"))
-            .dust()
-            .color(0xA9A9A9)
-            .components(Ytterbium, 2, Oxygen, 3)
-            .build()
+        YtterbiumOxide = addMaterial(2106, "ytterbium_oxide")
+        {
+            dust()
+            color(0xA9A9A9)
+            components(Ytterbium, 2, Oxygen, 3)
+        }
 
         // 2107 Lutetium Oxide
-        LutetiumOxide = Material.Builder(2107, GTLiteMod.id("lutetium_oxide"))
-            .dust()
-            .color(0x11BBFF).iconSet(METALLIC)
-            .components(Lutetium, 2, Oxygen, 3)
-            .build()
+        LutetiumOxide = addMaterial(2107, "lutetium_oxide")
+        {
+            dust()
+            color(0x11BBFF).iconSet(METALLIC)
+            components(Lutetium, 2, Oxygen, 3)
+        }
 
         // 2108 Scandium Oxide
-        ScandiumOxide = Material.Builder(2108, GTLiteMod.id("scandium_oxide"))
-            .dust()
-            .color(0x43964F).iconSet(METALLIC)
-            .components(Scandium, 2, Oxygen, 3)
-            .build()
+        ScandiumOxide = addMaterial(2108, "scandium_oxide")
+        {
+            dust()
+            color(0x43964F).iconSet(METALLIC)
+            components(Scandium, 2, Oxygen, 3)
+        }
 
         // 2109 Yttrium Oxide
-        YttriumOxide = Material.Builder(2109, GTLiteMod.id("yttrium_oxide"))
-            .dust()
-            .color(0x78544E).iconSet(SHINY)
-            .components(Yttrium, 2, Oxygen, 3)
-            .build()
+        YttriumOxide = addMaterial(2109, "yttrium_oxide")
+        {
+            dust()
+            color(0x78544E).iconSet(SHINY)
+            components(Yttrium, 2, Oxygen, 3)
+        }
 
         // 2110 Promethium Oxide
-        PromethiumOxide = Material.Builder(2110, GTLiteMod.id("promethium_oxide"))
-            .dust()
-            .color(0x1B8828).iconSet(METALLIC)
-            .components(Promethium, 2, Oxygen, 3)
-            .build()
+        PromethiumOxide = addMaterial(2110, "promethium_oxide")
+        {
+            dust()
+            color(0x1B8828).iconSet(METALLIC)
+            components(Promethium, 2, Oxygen, 3)
+        }
 
         // 2111 La-Pr-Nd-Ce Oxides Solution
-        LaPrNdCeOxidesSolution = Material.Builder(2111, GTLiteMod.id("la_pr_nd_ce_oxides_solution"))
-            .liquid()
-            .color(0x9CE3DB)
-            .components(LanthanumOxide, 1, PraseodymiumOxide, 1, NeodymiumOxide, 1, CeriumOxide, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        LaPrNdCeOxidesSolution = addMaterial(2111, "la_pr_nd_ce_oxides_solution")
+        {
+            liquid()
+            color(0x9CE3DB)
+            components(LanthanumOxide, 1, PraseodymiumOxide, 1, NeodymiumOxide, 1, CeriumOxide, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2112 Sc-Eu-Gd-Sm Oxides Solution
-        ScEuGdSmOxidesSolution = Material.Builder(2112, GTLiteMod.id("sc_eu_gd_sm_oxides_solution"))
-            .liquid()
-            .color(0xFFFF99)
-            .components(ScandiumOxide, 1, EuropiumOxide, 1, GadoliniumOxide, 1, SamariumOxide, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        ScEuGdSmOxidesSolution = addMaterial(2112, "sc_eu_gd_sm_oxides_solution")
+        {
+            liquid()
+            color(0xFFFF99)
+            components(ScandiumOxide, 1, EuropiumOxide, 1, GadoliniumOxide, 1, SamariumOxide, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2113 Y-Tb-Dy-Ho Oxides Solution
-        YTbDyHoOxidesSolution = Material.Builder(2113, GTLiteMod.id("y_tb_dy_ho_oxides_solution"))
-            .liquid()
-            .color(0x99FF99)
-            .components(YttriumOxide, 1, TerbiumOxide, 1, DysprosiumOxide, 1, HolmiumOxide, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        YTbDyHoOxidesSolution = addMaterial(2113, "y_tb_dy_ho_oxides_solution")
+        {
+            liquid()
+            color(0x99FF99)
+            components(YttriumOxide, 1, TerbiumOxide, 1, DysprosiumOxide, 1, HolmiumOxide, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2114 Er-Tm-Yb-Lu Oxides Solution
-        ErTmYbLuOxidesSolution = Material.Builder(2114, GTLiteMod.id("er_tm_yb_lu_oxides_solution"))
-            .liquid()
-            .color(0xFFB3FF)
-            .components(ErbiumOxide, 1, ThuliumOxide, 1, YtterbiumOxide, 1, LutetiumOxide, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        ErTmYbLuOxidesSolution = addMaterial(2114, "er_tm_yb_lu_oxides_solution")
+        {
+            liquid()
+            color(0xFFB3FF)
+            components(ErbiumOxide, 1, ThuliumOxide, 1, YtterbiumOxide, 1, LutetiumOxide, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2115 Platinum Group Residue
-        PlatinumGroupResidue = Material.Builder(2115, GTLiteMod.id("platinum_group_residue"))
-            .dust()
-            .color(0x64632E).iconSet(ROUGH)
-            .components(Iridium, 1, Osmium, 1, Rhodium, 1, Ruthenium, 1, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("RuRhIr2Os(HNO3)3", true)
+        PlatinumGroupResidue = addMaterial(2115, "platinum_group_residue")
+        {
+            dust()
+            color(0x64632E).iconSet(ROUGH)
+            components(Iridium, 1, Osmium, 1, Rhodium, 1, Ruthenium, 1, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2116 Platinum Group Concentrate
-        PlatinumGroupConcentrate = Material.Builder(2116, GTLiteMod.id("platinum_group_concentrate"))
-            .liquid()
-            .color(0xFFFFA6)
-            .components(Gold, 1, Platinum, 1, Palladium, 1, HydrochloricAcid, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("AuPtPd(HCl)6", true)
+        PlatinumGroupConcentrate = addMaterial(2116, "platinum_group_concentrate")
+        {
+            liquid()
+            color(0xFFFFA6)
+            components(Gold, 1, Platinum, 1, Palladium, 1, HydrochloricAcid, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2117 Purified Platinum Group Concentrate
-        PurifiedPlatinumGroupConcentrate = Material.Builder(2117, GTLiteMod.id("purified_platinum_group_concentrate"))
-            .liquid()
-            .color(0xFFFFC8)
-            .components(Hydrogen, 2, Platinum, 1, Palladium, 1, Chlorine, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("H2PtPdCl6", true)
+        PurifiedPlatinumGroupConcentrate = addMaterial(2117, "purified_platinum_group_concentrate")
+        {
+            liquid()
+            color(0xFFFFC8)
+            components(Hydrogen, 2, Platinum, 1, Palladium, 1, Chlorine, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2118 Ammonium Hexachloroplatinate
-        AmmoniumHexachloroplatinate = Material.Builder(2118, GTLiteMod.id("ammonium_hexachloroplatinate"))
-            .liquid()
-            .color(0xFEF0C2)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Nitrogen, 2, Hydrogen, 8, Platinum, 1, Chlorine, 6)
-            .build()
-            .setFormula("(NH4)2PtCl6", true)
+        AmmoniumHexachloroplatinate = addMaterial(2118, "ammonium_hexachloroplatinate")
+        {
+            liquid()
+            color(0xFEF0C2)
+            flags(DISABLE_DECOMPOSITION)
+            components(Nitrogen, 2, Hydrogen, 8, Platinum, 1, Chlorine, 6)
+        }
 
         // 2119 Ammonium Hexachloropalladate
-        AmmoniumHexachloropalladate = Material.Builder(2119, GTLiteMod.id("ammonium_hexachloropalladate"))
-            .liquid()
-            .color(0x808080)
-            .components(Nitrogen, 2, Hydrogen, 8, Palladium, 1, Chlorine, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(NH4)2PdCl6", true)
+        AmmoniumHexachloropalladate = addMaterial(2119, "ammonium_hexachloropalladate")
+        {
+            liquid()
+            color(0x808080)
+            components(Nitrogen, 2, Hydrogen, 8, Palladium, 1, Chlorine, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2120 Sodium Nitrate
-        SodiumNitrate = Material.Builder(2120, GTLiteMod.id("sodium_nitrate"))
-            .dust()
-            .color(0x846684).iconSet(ROUGH)
-            .components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
-            .build()
+        SodiumNitrate = addMaterial(2120, "sodium_nitrate")
+        {
+            dust()
+            color(0x846684).iconSet(ROUGH)
+            components(Sodium, 1, Nitrogen, 1, Oxygen, 3)
+        }
 
         // 2121 Hexachloroplatinic Acid
-        HexachloroplatinicAcid = Material.Builder(2121, GTLiteMod.id("hexachloroplatinic_acid"))
-            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
-            .color(0xFEF4D1)
-            .components(Hydrogen, 2, Platinum, 1, Chlorine, 6)
-            .build()
+        HexachloroplatinicAcid = addMaterial(2121, "hexachloroplatinic_acid")
+        {
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
+            color(0xFEF4D1)
+            components(Hydrogen, 2, Platinum, 1, Chlorine, 6)
+        }
 
         // 2122 Carbon Tetrachloride
-        CarbonTetrachloride = Material.Builder(2122, GTLiteMod.id("carbon_tetrachloride"))
-            .liquid()
-            .color(0x75201A)
-            .components(Carbon, 1, Chlorine, 4)
-            .build()
+        CarbonTetrachloride = addMaterial(2122, "carbon_tetrachloride")
+        {
+            liquid()
+            color(0x75201A)
+            components(Carbon, 1, Chlorine, 4)
+        }
 
         // 2123 Sodium Peroxide
-        SodiumPeroxide = Material.Builder(2123, GTLiteMod.id("sodium_peroxide"))
-            .dust()
-            .color(0xECFF80).iconSet(ROUGH)
-            .components(Sodium, 2, Oxygen, 2)
-            .build()
+        SodiumPeroxide = addMaterial(2123, "sodium_peroxide")
+        {
+            dust()
+            color(0xECFF80).iconSet(ROUGH)
+            components(Sodium, 2, Oxygen, 2)
+        }
 
         // 2124 Ruthenium Trichloride
-        RutheniumTrichloride = Material.Builder(2124, GTLiteMod.id("ruthenium_trichloride"))
-            .dust()
-            .color(0x605C6C).iconSet(METALLIC)
-            .components(Ruthenium, 1, Chlorine, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RutheniumTrichloride = addMaterial(2124, "ruthenium_trichloride")
+        {
+            dust()
+            color(0x605C6C).iconSet(METALLIC)
+            components(Ruthenium, 1, Chlorine, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2125 Rhodium Trioxide
-        RhodiumTrioxide = Material.Builder(2125, GTLiteMod.id("rhodium_trioxide"))
-            .dust()
-            .color(0xD93D16).iconSet(METALLIC)
-            .components(Rhodium, 2, Oxygen, 3)
-            .build()
+        RhodiumTrioxide = addMaterial(2125, "rhodium_trioxide")
+        {
+            dust()
+            color(0xD93D16).iconSet(METALLIC)
+            components(Rhodium, 2, Oxygen, 3)
+        }
 
         // 2126 Sulfur Dichloride
-        SulfurDichloride = Material.Builder(2126, GTLiteMod.id("sulfur_dichloride"))
-            .liquid()
-            .color(0x761410)
-            .components(Sulfur, 1, Chlorine, 2)
-            .build()
+        SulfurDichloride = addMaterial(2126, "sulfur_dichloride")
+        {
+            liquid()
+            color(0x761410)
+            components(Sulfur, 1, Chlorine, 2)
+        }
 
         // 2127 Osmium Tetrachloride
-        OsmiumTetrachloride = Material.Builder(2127, GTLiteMod.id("osmium_tetrachloride"))
-            .dust()
-            .color(0x29080A).iconSet(METALLIC)
-            .components(Osmium, 1, Chlorine, 4)
-            .build()
+        OsmiumTetrachloride = addMaterial(2127, "osmium_tetrachloride")
+        {
+            dust()
+            color(0x29080A).iconSet(METALLIC)
+            components(Osmium, 1, Chlorine, 4)
+        }
 
         // 2128 Beryllium Oxide
-        BerylliumOxide = Material.Builder(2128, GTLiteMod.id("beryllium_oxide"))
-            .ingot()
-            .color(0x54C757)
-            .components(Beryllium, 1, Oxygen, 1)
-            .flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_RING)
-            .build()
+        BerylliumOxide = addMaterial(2128, "beryllium_oxide")
+        {
+            ingot()
+            color(0x54C757)
+            components(Beryllium, 1, Oxygen, 1)
+            flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_RING)
+        }
 
         // 2129 Hydrogen Peroxide
-        HydrogenPeroxide = Material.Builder(2129, GTLiteMod.id("hydrogen_peroxide"))
-            .liquid()
-            .color(0xD2FFFF)
-            .components(Hydrogen, 2, Oxygen, 2)
-            .build()
+        HydrogenPeroxide = addMaterial(2129, "hydrogen_peroxide")
+        {
+            liquid()
+            color(0xD2FFFF)
+            components(Hydrogen, 2, Oxygen, 2)
+        }
 
         // 2130 Graphene Oxide
-        GrapheneOxide = Material.Builder(2130, GTLiteMod.id("graphene_oxide"))
-            .dust()
-            .color(0x777777).iconSet(ROUGH)
-            .components(Graphene, 1, Oxygen, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        GrapheneOxide = addMaterial(2130, "graphene_oxide")
+        {
+            dust()
+            color(0x777777).iconSet(ROUGH)
+            components(Graphene, 1, Oxygen, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2131 Yttrium Nitrate
-        YttriumNitrate = Material.Builder(2131, GTLiteMod.id("yttrium_nitrate"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Yttrium, 1, Nitrogen, 3, Oxygen, 9)
-            .build()
-            .setFormula("Y(NO3)3", true)
+        YttriumNitrate = addMaterial(2131, "yttrium_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Yttrium, 1, Nitrogen, 3, Oxygen, 9)
+        }
 
         // 2132 Barium Nitrate
-        BariumNitrate = Material.Builder(2132, GTLiteMod.id("barium_nitrate"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Barium, 1, Nitrogen, 2, Oxygen, 6)
-            .build()
-            .setFormula("Ba(NO3)2", true)
+        BariumNitrate = addMaterial(2132, "barium_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Barium, 1, Nitrogen, 2, Oxygen, 6)
+        }
 
         // 2133 Copper Nitrate
-        CopperNitrate = Material.Builder(2133, GTLiteMod.id("copper_nitrate"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Copper, 1, Nitrogen, 2, Oxygen, 6)
-            .build()
-            .setFormula("Cu(NO3)2", true)
+        CopperNitrate = addMaterial(2133, "copper_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Copper, 1, Nitrogen, 2, Oxygen, 6)
+        }
 
         // 2134 Yttrium Barium Copper Oxides Mixture
-        YttriumBariumCopperOxidesMixture = Material.Builder(2134, GTLiteMod.id("yttrium_barium_copper_oxides_mixture"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Yttrium, 1, Barium, 2, Copper, 3, Oxygen, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        YttriumBariumCopperOxidesMixture = addMaterial(2134, "yttrium_barium_copper_oxides_mixture")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Yttrium, 1, Barium, 2, Copper, 3, Oxygen, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2135 GST Glass
-        GSTGlass = Material.Builder(2135, GTLiteMod.id("gst_glass"))
-            .ingot()
-            .fluid()
-            .color(0xCFFFFF).iconSet(SHINY)
-            .components(Germanium, 2, Antimony, 2, Tellurium, 5)
-            .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE,
-                   GENERATE_LENS)
-            .blast { b ->
-                b.temp(873, BlastProperty.GasTier.MID)
-            }
-            .build()
+        GSTGlass = addMaterial(2135, "gst_glass")
+        {
+            ingot()
+            fluid()
+            color(0xCFFFFF).iconSet(SHINY)
+            components(Germanium, 2, Antimony, 2, Tellurium, 5)
+            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
+            blastProp(873, GasTier.MID)
+        }
 
         // 2136 Germanium Dioxide
-        GermaniumDioxide = Material.Builder(2136, GTLiteMod.id("germanium_dioxide"))
-            .dust()
-            .color(0x666666)
-            .components(Germanium, 1, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        GermaniumDioxide = addMaterial(2136, "germanium_dioxide")
+        {
+            dust()
+            color(0x666666)
+            components(Germanium, 1, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2137 Roasted Sphalerite
-        RoastedSphalerite = Material.Builder(2137, GTLiteMod.id("roasted_sphalerite"))
-            .dust()
-            .color(0xAC8B5C).iconSet(ROASTED)
-            .components(GermaniumDioxide, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(GeO2)?", true)
+        RoastedSphalerite = addMaterial(2137, "roasted_sphalerite")
+        {
+            dust()
+            color(0xAC8B5C).iconSet(ROASTED)
+            components(GermaniumDioxide, 1, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
-        // 2138 Zn-rich Sphalerite
-        ZincRichSphalerite = Material.Builder(2138, GTLiteMod.id("zinc_rich_sphalerite"))
-            .dust()
-            .color(0xC3AC8F).iconSet(METALLIC)
-            .components(Zinc, 2, RoastedSphalerite, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Zn2(GaGeO2)?", true)
+        // 2138 Zinc-rich Sphalerite
+        ZincRichSphalerite = addMaterial(2138, "zinc_rich_sphalerite")
+        {
+            dust()
+            color(0xC3AC8F).iconSet(METALLIC)
+            components(Zinc, 2, RoastedSphalerite, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2139 Waelz Oxide
-        WaelzOxide = Material.Builder(2139, GTLiteMod.id("waelz_oxide"))
-            .dust()
-            .color(0xB8B8B8).iconSet(FINE)
-            .components(Zinc, 1, GermaniumDioxide, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(GeO2)Zn", true)
+        WaelzOxide = addMaterial(2139, "waelz_oxide")
+        {
+            dust()
+            color(0xB8B8B8).iconSet(FINE)
+            components(Zinc, 1, GermaniumDioxide, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2140 Waelz Slag
-        WaelzSlag = Material.Builder(2140, GTLiteMod.id("waelz_slag"))
-            .dust()
-            .color(0xAC8B5C).iconSet(ROUGH)
-            .components(Gallium, 1, Zinc, 1, Sulfur, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(ZnSO4)Ga", true)
+        WaelzSlag = addMaterial(2140, "waelz_slag")
+        {
+            dust()
+            color(0xAC8B5C).iconSet(ROUGH)
+            components(Gallium, 1, Zinc, 1, Sulfur, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2141 Piranha Solution
-        PiranhaSolution = Material.Builder(2141, GTLiteMod.id("piranha_solution"))
-            .liquid()
-            .color(0x4820AB)
-            .components(SulfuricAcid, 1, HydrogenPeroxide, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        PiranhaSolution = addMaterial(2141, "piranha_solution")
+        {
+            liquid()
+            color(0x4820AB)
+            components(SulfuricAcid, 1, HydrogenPeroxide, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2142 Hydroxyquinoline Aluminium
-        HydroxyquinolineAluminium = Material.Builder(2142, GTLiteMod.id("hydroxyquinoline_aluminium"))
-            .ingot()
-            .color(0x3F5A9F).iconSet(SHINY)
-            .components(Aluminium, 1, Carbon, 9, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL)
-            .build()
-            .setFormula("(C9H7NO)Al", true)
+        HydroxyquinolineAluminium = addMaterial(2142, "hydroxyquinoline_aluminium")
+        {
+            ingot()
+            color(0x3F5A9F).iconSet(SHINY)
+            components(Aluminium, 1, Carbon, 9, Hydrogen, 7, Nitrogen, 1, Oxygen, 1)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL)
+        }
 
         // 2143 Hydroselenic Acid
-        HydroselenicAcid = Material.Builder(2143, GTLiteMod.id("hydroselenic_acid"))
-            .liquid(FluidBuilder().attribute(FluidAttributes.ACID))
-            .color(0xDBC3B5)
-            .components(Hydrogen, 2, Selenium, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        HydroselenicAcid = addMaterial(2143, "hydroselenic_acid")
+        {
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
+            color(0xDBC3B5)
+            components(Hydrogen, 2, Selenium, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2144 Copper Gallium Indium Selenide
-        CopperGalliumIndiumSelenide = Material.Builder(2144, GTLiteMod.id("copper_gallium_indium_selenide"))
-            .ingot()
-            .colorAverage().iconSet(SHINY)
-            .components(Copper, 1, Gallium, 1, Indium, 1, Selenium, 2)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(6000, BlastProperty.GasTier.MID) // Naquadah (HSS-G)
-                    .blastStats(VA[EV], 30 * SECOND)
-                    .vacuumStats(VA[MV], 10 * SECOND)
-            }
-            .build()
+        CopperGalliumIndiumSelenide = addMaterial(2144, "copper_gallium_indium_selenide")
+        {
+            ingot()
+            colorAverage().iconSet(SHINY)
+            components(Copper, 1, Gallium, 1, Indium, 1, Selenium, 2)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(6000, GasTier.MID, // Naquadah
+                      VA[EV], 30 * SECOND,
+                      VA[MV], 10 * SECOND)
+        }
 
         // 2145 Barium Hydroxide
-        BariumHydroxide = Material.Builder(2145, GTLiteMod.id("barium_hydroxide"))
-            .dust()
-            .color(0xFFFFED).iconSet(DULL)
-            .components(Barium, 1, Oxygen, 2, Hydrogen, 2)
-            .build()
-            .setFormula("Ba(OH)2", true)
+        BariumHydroxide = addMaterial(2145, "barium_hydroxide")
+        {
+            dust()
+            color(0xFFFFED).iconSet(DULL)
+            components(Barium, 1, Oxygen, 2, Hydrogen, 2)
+        }
+
 
         // 2146 Barium Titanate
-        BariumTitanate = Material.Builder(2146, GTLiteMod.id("barium_titanate"))
-            .ingot()
-            .fluid()
-            .color(0x99FF99).iconSet(SHINY)
-            .components(Barium, 1, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_BOLT_SCREW)
-            .blast { b ->
-                b.temp(3600, BlastProperty.GasTier.LOW) // Nichrome
-                    .blastStats(VA[IV], 18 * SECOND)
-                    .vacuumStats(VA[HV], 8 * SECOND)
-            }
-            .build()
+        BariumTitanate = addMaterial(2146, "barium_titanate")
+        {
+            ingot()
+            fluid()
+            color(0x99FF99).iconSet(SHINY)
+            components(Barium, 1, Titanium, 1, Oxygen, 3)
+            flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_BOLT_SCREW)
+            blastProp(3600, GasTier.LOW, // Nichrome
+                      VA[IV], 18 * SECOND,
+                      VA[HV], 8 * SECOND)
+        }
 
         // 2147 Samarium Cobalt
-        SamariumCobalt = Material.Builder(2147, GTLiteMod.id("samarium_cobalt"))
-            .ingot()
-            .fluid()
-            .color(0xB3D683).iconSet(MAGNETIC)
-            .components(Samarium, 1,  Cobalt, 5)
-            .flags(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING)
-            .blast { b ->
-                b.temp(5000, BlastProperty.GasTier.HIGH) // HSS-G (RTM Alloy)
-                    .blastStats(VA[IV], 45 * SECOND)
-                    .vacuumStats(VA[HV], 20 * SECOND)
-            }
-            .build()
+        SamariumCobalt = addMaterial(2147, "samarium_cobalt")
+        {
+            ingot()
+            fluid()
+            color(0xB3D683).iconSet(MAGNETIC)
+            components(Samarium, 1,  Cobalt, 5)
+            flags(GENERATE_ROD, GENERATE_LONG_ROD, GENERATE_RING)
+            blastProp(5000, GasTier.HIGH, // HSS-G
+                      VA[IV], 45 * SECOND,
+                      VA[HV], 20 * SECOND)
+        }
 
         // 2148 Potassium Hydroxide
-        PotassiumHydroxide = Material.Builder(2148, GTLiteMod.id("potassium_hydroxide"))
-            .dust()
-            .liquid(FluidBuilder().temperature(633))
-            .color(0xFA9849)
-            .components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
-            .build()
+        PotassiumHydroxide = addMaterial(2148, "potassium_hydroxide")
+        {
+            dust()
+            liquid()
+            {
+                temperature(633)
+            }
+            color(0xFA9849)
+            components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
+        }
 
         // 2149 Copper Dichloride
-        CopperDichloride = Material.Builder(2149, GTLiteMod.id("copper_dichloride"))
-            .dust()
-            .color(0x3FB3B8).iconSet(ROUGH)
-            .components(Copper, 1, Chlorine, 2)
-            .build()
+        CopperDichloride = addMaterial(2149, "copper_dichloride")
+        {
+            dust()
+            color(0x3FB3B8).iconSet(ROUGH)
+            components(Copper, 1, Chlorine, 2)
+        }
 
         // 2150 Sodium Cyanide
-        SodiumCyanide = Material.Builder(2150, GTLiteMod.id("sodium_cyanide"))
-            .dust()
-            .color(0x1B3818).iconSet(DULL)
-            .components(Sodium, 1, Carbon, 1, Nitrogen, 1)
-            .build()
+        SodiumCyanide = addMaterial(2150, "sodium_cyanide")
+        {
+            dust()
+            color(0x1B3818).iconSet(DULL)
+            components(Sodium, 1, Carbon, 1, Nitrogen, 1)
+        }
 
         // 2151 Potassium Bromate
-        PotassiumBromate = Material.Builder(2151, GTLiteMod.id("potassium_bromate"))
-            .dust()
-            .color(0x782828).iconSet(ROUGH)
-            .components(Potassium, 1, Bromine, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PotassiumBromate = addMaterial(2151, "potassium_bromate")
+        {
+            dust()
+            color(0x782828).iconSet(ROUGH)
+            components(Potassium, 1, Bromine, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2152 White Phosphorus
-        WhitePhosphorus = Material.Builder(2152, GTLiteMod.id("white_phosphorus"))
-            .gem()
-            .color(0xECEADD).iconSet(FLINT)
-            .components(Phosphorus, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        WhitePhosphorus = addMaterial(2152, "white_phosphorus")
+        {
+            gem()
+            color(0xECEADD).iconSet(FLINT)
+            components(Phosphorus, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2153 Red Phosphorus
-        RedPhosphorus = Material.Builder(2153, GTLiteMod.id("red_phosphorus"))
-            .gem()
-            .color(0x77040E).iconSet(FLINT)
-            .components(Phosphorus, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RedPhosphorus = addMaterial(2153, "red_phosphorus")
+        {
+            gem()
+            color(0x77040E).iconSet(FLINT)
+            components(Phosphorus, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2154 Violet Phosphorus
-        VioletPhosphorus = Material.Builder(2154, GTLiteMod.id("violet_phosphorus"))
-            .gem()
-            .color(0x8000FF).iconSet(FLINT)
-            .components(Phosphorus, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        VioletPhosphorus = addMaterial(2154, "violet_phosphorus")
+        {
+            gem()
+            color(0x8000FF).iconSet(FLINT)
+            components(Phosphorus, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2155 Black Phosphorus
-        BlackPhosphorus = Material.Builder(2155, GTLiteMod.id("black_phosphorus"))
-            .gem()
-            .color(0x36454F).iconSet(FLINT)
-            .components(Phosphorus, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        BlackPhosphorus = addMaterial(2155, "black_phosphorus")
+        {
+            gem()
+            color(0x36454F).iconSet(FLINT)
+            components(Phosphorus, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2156 Blue Phosphorus
-        BluePhosphorus = Material.Builder(2156, GTLiteMod.id("blue_phosphorus"))
-            .gem()
-            .color(0x9BE3E4).iconSet(FLINT)
-            .components(Phosphorus, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        BluePhosphorus = addMaterial(2156, "blue_phosphorus")
+        {
+            gem()
+            color(0x9BE3E4).iconSet(FLINT)
+            components(Phosphorus, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2157 Phosphorus Trichloride
-        PhosphorusTrichloride = Material.Builder(2157, GTLiteMod.id("phosphorus_trichloride"))
-            .liquid()
-            .color(0xD8D85B)
-            .components(Phosphorus, 1, Chlorine, 3)
-            .build()
+        PhosphorusTrichloride = addMaterial(2157, "phosphorus_trichloride")
+        {
+            liquid()
+            color(0xD8D85B)
+            components(Phosphorus, 1, Chlorine, 3)
+        }
 
         // 2158 Sodium Fluoride
-        SodiumFluoride = Material.Builder(2158, GTLiteMod.id("sodium_fluoride"))
-            .dust()
-            .color(0x460012).iconSet(DULL)
-            .components(Sodium, 1, Fluorine, 1)
-            .build()
+        SodiumFluoride = addMaterial(2158, "sodium_fluoride")
+        {
+            dust()
+            color(0x460012).iconSet(DULL)
+            components(Sodium, 1, Fluorine, 1)
+        }
 
         // 2159 Sodium Trifluoroethanolate
-        SodiumTrifluoroethanolate = Material.Builder(2159, GTLiteMod.id("sodium_trifluoroethanolate"))
-            .dust()
-            .color(0x50083E).iconSet(ROUGH)
-            .components(Sodium, 1, Carbon, 2, Hydrogen, 4, Oxygen, 1, Fluorine, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumTrifluoroethanolate = addMaterial(2159, "sodium_trifluoroethanolate")
+        {
+            dust()
+            color(0x50083E).iconSet(ROUGH)
+            components(Sodium, 1, Carbon, 2, Hydrogen, 4, Oxygen, 1, Fluorine, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2160 Technetium Heptaoxide
-        TechnetiumHeptaoxide = Material.Builder(2160, GTLiteMod.id("technetium_heptaoxide"))
-            .dust()
-            .color(0xFCE9A4).iconSet(SHINY)
-            .components(Technetium, 2, Oxygen, 7)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        TechnetiumHeptaoxide = addMaterial(2160, "technetium_heptaoxide")
+        {
+            dust()
+            color(0xFCE9A4).iconSet(SHINY)
+            components(Technetium, 2, Oxygen, 7)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2161 Trinium Trioxide
-        TriniumTrioxide = Material.Builder(2161, GTLiteMod.id("trinium_trioxide"))
-            .dust()
-            .color(0xC037C5).iconSet(METALLIC)
-            .components(Trinium, 2, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        TriniumTrioxide = addMaterial(2161, "trinium_trioxide")
+        {
+            dust()
+            color(0xC037C5).iconSet(METALLIC)
+            components(Trinium, 2, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2162 Pertechnetate
-        Pertechnetate = Material.Builder(2162, GTLiteMod.id("pertechnetate"))
-            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
-            .color(0xCC3300)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        Pertechnetate = addMaterial(2162, "pertechnetate")
+        {
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
+            color(0xCC3300)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2163 Ammonium Nitrate
-        AmmoniumNitrate = Material.Builder(2163, GTLiteMod.id("ammonium_nitrate"))
-            .dust()
-            .color(0xA59ED7).iconSet(METALLIC)
-            .components(Ammonia, 1, NitricAcid, 1)
-            .build()
-            .setFormula("NH4NO3", true)
+        AmmoniumNitrate = addMaterial(2163, "ammonium_nitrate")
+        {
+            dust()
+            color(0xA59ED7).iconSet(METALLIC)
+            components(Ammonia, 1, NitricAcid, 1)
+        }
 
         // 2164 Ammonium Pertechnetate
-        AmmoniumPertechnetate = Material.Builder(2164, GTLiteMod.id("ammonium_pertechnetate"))
-            .dust()
-            .color(0x996666).iconSet(ROUGH)
-            .components(Nitrogen, 1, Hydrogen, 4, Technetium, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        AmmoniumPertechnetate = addMaterial(2164, "ammonium_pertechnetate")
+        {
+            dust()
+            color(0x996666).iconSet(ROUGH)
+            components(Nitrogen, 1, Hydrogen, 4, Technetium, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2165 Technetium Dioxide
-        TechnetiumDioxide = Material.Builder(2165, GTLiteMod.id("technetium_dioxide"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Technetium, 1, Oxygen, 2)
-            .build()
+        TechnetiumDioxide = addMaterial(2165, "technetium_dioxide")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Technetium, 1, Oxygen, 2)
+        }
 
         // 2166 Indium Phosphate
-        IndiumPhosphate = Material.Builder(2166, GTLiteMod.id("indium_phosphate"))
-            .dust()
-            .color(0x2B2E70).iconSet(SHINY)
-            .components(Indium, 1, Phosphorus, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        IndiumPhosphate = addMaterial(2166, "indium_phosphate")
+        {
+            dust()
+            color(0x2B2E70).iconSet(SHINY)
+            components(Indium, 1, Phosphorus, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2167 Gallium Dioxide
-        GalliumDioxide = Material.Builder(2167, GTLiteMod.id("gallium_dioxide"))
-            .dust()
-            .color(0xAB9ABF).iconSet(DULL)
-            .components(Gallium, 1, Oxygen, 2)
-            .build()
+        GalliumDioxide = addMaterial(2167, "gallium_dioxide")
+        {
+            dust()
+            color(0xAB9ABF).iconSet(DULL)
+            components(Gallium, 1, Oxygen, 2)
+        }
 
         // 2168 Calcium Sulfide
-        CalciumSulfide = Material.Builder(2168, GTLiteMod.id("calcium_sulfide"))
-            .dust()
-            .color(0xF9F9F9).iconSet(METALLIC)
-            .components(Calcium, 1, Sulfur, 1)
-            .build()
+        CalciumSulfide = addMaterial(2168, "calcium_sulfide")
+        {
+            dust()
+            color(0xF9F9F9).iconSet(METALLIC)
+            components(Calcium, 1, Sulfur, 1)
+        }
 
         // 2169 RP-1 Rocket Fuel
-        RP1RocketFuel = Material.Builder(2169, GTLiteMod.id("rp_1_rocket_fuel"))
-            .liquid()
-            .color(0xFB2A08)
-            .components(CoalTar, 1, Oxygen, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RP1RocketFuel = addMaterial(2169, "rp_1_rocket_fuel")
+        {
+            liquid()
+            color(0xFB2A08)
+            components(CoalTar, 1, Oxygen, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2170 Bismuth Trioxide
-        BismuthTrioxide = Material.Builder(2170, GTLiteMod.id("bismuth_trioxide"))
-            .dust()
-            .color(0xF5EF42).iconSet(FINE)
-            .components(Bismuth, 2, Oxygen, 3)
-            .build()
+        BismuthTrioxide = addMaterial(2170, "bismuth_trioxide")
+        {
+            dust()
+            color(0xF5EF42).iconSet(FINE)
+            components(Bismuth, 2, Oxygen, 3)
+        }
 
         // 2171 Bismuth Strontium Calcium Cuprate (BSCCO)
-        BismuthStrontiumCalciumCuprate = Material.Builder(2171, GTLiteMod.id("bismuth_strontium_calcium_cuprate"))
-            .ingot()
-            .fluid()
-            .color(0xD880D8)
-            .components(BismuthTrioxide, 1, Strontianite, 2, Calcite, 1, Tenorite, 2)
-            .blast { b ->
-                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
-                    .blastStats(VA[UV], 43 * SECOND)
-                    .vacuumStats(VA[IV], 21 * SECOND) }
-            .flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .cableProperties(V[UV], 4, 3)
-            .build()
-            .setFormula("Bi2Sr2CaCu2O8", true)
+        BismuthStrontiumCalciumCuprate = addMaterial(2171, "bismuth_strontium_calcium_cuprate")
+        {
+            ingot()
+            fluid()
+            color(0xD880D8)
+            components(BismuthTrioxide, 1, Strontianite, 2, Calcite, 1, Tenorite, 2)
+            flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(7000, GasTier.HIGHER, // Naquadah
+                      VA[UV], 43 * SECOND,
+                      VA[IV], 21 * SECOND)
+            cableProp(V[UV], 4, 3)
+        }
 
         // 2172 Bedrockium
-        Bedrockium = Material.Builder(2172, GTLiteMod.id("bedrockium"))
-            .ingot()
-            .fluid()
-            .iconSet(BEDROCKIUM)
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME,
-                GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
-            .blast { b ->
-                b.temp(9900, BlastProperty.GasTier.HIGHER) // Tritanium
-                    .blastStats(VA[ZPM], 50 * SECOND)
-                    .vacuumStats(VA[LuV], 25 * SECOND)
-            }
-            .cableProperties(V[UHV], 2, 16)
-            .build()
+        Bedrockium = addMaterial(2172, "bedrockium")
+        {
+            ingot()
+            fluid()
+            iconSet(BEDROCKIUM)
+            flags(EXT2_METAL, GENERATE_FOIL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME, GENERATE_GEAR,
+                  GENERATE_SMALL_GEAR, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
+            blastProp(9900, GasTier.HIGHER, // Tritanium
+                      VA[ZPM], 50 * SECOND,
+                      VA[LuV], 25 * SECOND)
+            cableProp(V[UHV], 2, 16)
+        }
 
         // 2173 Adamantite
-        Adamantite = Material.Builder(2173, GTLiteMod.id("adamantite"))
-            .dust()
-            .color(0xC83C3C).iconSet(ROUGH)
-            .components(Adamantium, 3, Oxygen, 4)
-            .build()
+        Adamantite = addMaterial(2173, "adamantite")
+        {
+            dust()
+            color(0xC83C3C).iconSet(ROUGH)
+            components(Adamantium, 3, Oxygen, 4)
+        }
 
         // 2174 Unstable Adamantium
-        AdamantiumUnstable = Material.Builder(2174, GTLiteMod.id("adamantium_unstable"))
-            .liquid()
-            .color(0xFF763C)
-            .components(Adamantium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Ad*", true)
+        AdamantiumUnstable = addMaterial(2174, "adamantium_unstable")
+        {
+            liquid()
+            color(0xFF763C)
+            components(Adamantium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2175 Enriched Adamantium
-        AdamantiumEnriched = Material.Builder(2175, GTLiteMod.id("adamantium_enriched"))
-            .dust()
-            .color(0x64B4FF).iconSet(ROUGH)
-            .components(Vibranium, 1, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        AdamantiumEnriched = addMaterial(2175, "adamantium_enriched")
+        {
+            dust()
+            color(0x64B4FF).iconSet(ROUGH)
+            components(Vibranium, 1, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2176 Unstable Vibranium
-        VibraniumUnstable = Material.Builder(2176, GTLiteMod.id("vibranium_unstable"))
-            .liquid()
-            .color(0xFF7832)
-            .components(Vibranium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        VibraniumUnstable = addMaterial(2176, "vibranium_unstable")
+        {
+            liquid()
+            color(0xFF7832)
+            components(Vibranium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2177 Deep Iron
-        DeepIron = Material.Builder(2177, GTLiteMod.id("deep_iron"))
-            .dust()
-            .color(0x968C8C).iconSet(METALLIC)
-            .components(Iron, 2, Trinium, 1, Indium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        DeepIron = addMaterial(2177, "deep_iron")
+        {
+            dust()
+            color(0x968C8C).iconSet(METALLIC)
+            components(Iron, 2, Trinium, 1, Indium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2178 Eutatic Sodium Potassium
-        SodiumPotassiumEutatic = Material.Builder(2178, GTLiteMod.id("sodium_potassium_eutatic"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(DULL)
-            .components(Sodium, 7, Potassium, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumPotassiumEutatic = addMaterial(2178, "sodium_potassium_eutatic")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(DULL)
+            components(Sodium, 7, Potassium, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2179 Eutatic Lead Bismuth
-        LeadBismuthEutatic = Material.Builder(2179, GTLiteMod.id("lead_bismuth_eutatic"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(SHINY)
-            .components(Lead, 3, Bismuth, 7)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        LeadBismuthEutatic = addMaterial(2179, "lead_bismuth_eutatic")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(SHINY)
+            components(Lead, 3, Bismuth, 7)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2180 Lithium Fluoride
-        LithiumFluoride = Material.Builder(2180, GTLiteMod.id("lithium_fluoride"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Lithium, 1, Fluorine, 1)
-            .build()
+        LithiumFluoride = addMaterial(2180, "lithium_fluoride")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Lithium, 1, Fluorine, 1)
+        }
 
         // 2181 Potassium Fluoride
-        PotassiumFluoride = Material.Builder(2181, GTLiteMod.id("potassium_fluoride"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Potassium, 1, Fluorine, 1)
-            .build()
+        PotassiumFluoride = addMaterial(2181, "potassium_fluoride")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Potassium, 1, Fluorine, 1)
+        }
 
         // 2182 Lithium Sodium Potassium Fluorides
-        LithiumSodiumPotassiumFluorides = Material.Builder(2182, GTLiteMod.id("lithium_sodium_potassium_fluorides"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(METALLIC)
-            .components(LithiumFluoride, 1, SodiumFluoride, 1, PotassiumFluoride, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("F3LiNaK", true)
+        LithiumSodiumPotassiumFluorides = addMaterial(2182, "lithium_sodium_potassium_fluorides")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(METALLIC)
+            components(LithiumFluoride, 1, SodiumFluoride, 1, PotassiumFluoride, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2183 Beryllium Difluoride
-        BerylliumDifluoride = Material.Builder(2183, GTLiteMod.id("beryllium_difluoride"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Beryllium, 1, Fluorine, 2)
-            .build()
+        BerylliumDifluoride = addMaterial(2183, "beryllium_difluoride")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Beryllium, 1, Fluorine, 2)
+        }
 
         // 2184 Lithium Beryllium Fluorides
-        LithiumBerylliumFluorides = Material.Builder(2184, GTLiteMod.id("lithium_beryllium_fluorides"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(ROUGH)
-            .components(LithiumFluoride, 1, BerylliumDifluoride, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("F3LiBe", true)
+        LithiumBerylliumFluorides = addMaterial(2184, "lithium_beryllium_fluorides")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(ROUGH)
+            components(LithiumFluoride, 1, BerylliumDifluoride, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2185 Flerovium-Ytterbium Plasma
-        FleroviumYtterbiumPlasma = Material.Builder(2185, GTLiteMod.id("flerovium_ytterbium_plasma"))
-            .plasma(FluidBuilder()
-                .temperature(10550)
-                .translation("gregtech.fluid.generic"))
-            .colorAverage()
-            .components(MetastableFlerovium, 1, Ytterbium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("FlY?", true)
+        FleroviumYtterbiumPlasma = addMaterial(2185, "flerovium_ytterbium_plasma")
+        {
+            plasma()
+            {
+                temperature(10550)
+                translation("gregtech.fluid.generic")
+            }
+            colorAverage()
+            components(MetastableFlerovium, 1, Ytterbium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2186 Rubidium Titanate
-        RubidiumTitanate = Material.Builder(2186, GTLiteMod.id("rubidium_titanate"))
-            .ingot()
-            .fluid()
-            .color(0xB52E15).iconSet(SHINY)
-            .components(Rubidium, 2, Titanium, 1, Oxygen, 3)
-            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_BOLT_SCREW,
-                GENERATE_FOIL)
-            .blast { b ->
-                b.temp(4100, BlastProperty.GasTier.LOW) // RTM Alloy
-                    .blastStats(VA[LuV], 20 * SECOND)
-                    .vacuumStats(VA[EV], 16 * SECOND)
-            }
-            .build()
+        RubidiumTitanate = addMaterial(2186, "rubidium_titanate")
+        {
+            ingot()
+            fluid()
+            color(0xB52E15).iconSet(SHINY)
+            components(Rubidium, 2, Titanium, 1, Oxygen, 3)
+            flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_BOLT_SCREW, GENERATE_FOIL)
+            blastProp(4100, GasTier.LOW, // RTM Alloy
+                      VA[LuV], 20 * SECOND,
+                      VA[EV], 16 * SECOND)
+        }
 
         // 2187 Sodium Titanate
-        SodiumTitanate = Material.Builder(2187, GTLiteMod.id("sodium_titanate"))
-            .dust()
-            .color(0x2274BA).iconSet(SHINY)
-            .components(Sodium, 2, Titanium, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumTitanate = addMaterial(2187, "sodium_titanate")
+        {
+            dust()
+            color(0x2274BA).iconSet(SHINY)
+            components(Sodium, 2, Titanium, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2188 Rubidium Chloride
-        RubidiumChloride = Material.Builder(2188, GTLiteMod.id("rubidium_chloride"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Rubidium, 1, Chlorine, 1)
-            .build()
+        RubidiumChloride = addMaterial(2188, "rubidium_chloride")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Rubidium, 1, Chlorine, 1)
+        }
 
         // 2189 Sodium Oxide
-        SodiumOxide = Material.Builder(2189, GTLiteMod.id("sodium_oxide"))
-            .dust()
-            .color(0x2C96FC).iconSet(BRIGHT)
-            .components(Sodium, 2, Oxygen, 1)
-            .build()
+        SodiumOxide = addMaterial(2189, "sodium_oxide")
+        {
+            dust()
+            color(0x2C96FC).iconSet(BRIGHT)
+            components(Sodium, 2, Oxygen, 1)
+        }
 
         // 2190 Sodium Acetate
-        SodiumAcetate = Material.Builder(2190, GTLiteMod.id("sodium_acetate"))
-            .liquid()
-            .color(0xC5D624)
-            .components(SodiumHydroxide, 1, Ethenone, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C2H3NaO2", true)
+        SodiumAcetate = addMaterial(2190, "sodium_acetate")
+        {
+            liquid()
+            color(0xC5D624)
+            components(SodiumHydroxide, 1, Ethenone, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2191 Caesium Bromide
-        CaesiumBromide = Material.Builder(2191, GTLiteMod.id("caesium_bromide"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Caesium, 1, Bromine, 1)
-            .build()
+        CaesiumBromide = addMaterial(2191, "caesium_bromide")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Caesium, 1, Bromine, 1)
+        }
+
 
         // 2192 Francium Bromide
-        FranciumBromide = Material.Builder(2192, GTLiteMod.id("francium_bromide"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Francium, 1, Bromine, 1)
-            .build()
+        FranciumBromide = addMaterial(2192, "francium_bromide")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Francium, 1, Bromine, 1)
+        }
 
         // 2193 Francium Caesium Cadmium Bromide
-        FranciumCaesiumCadmiumBromide = Material.Builder(2193, GTLiteMod.id("francium_caesium_cadmium_bromide"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(SHINY)
-            .components(Francium, 1, Caesium, 1, Cadmium, 2, Bromine, 6)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
-            .blast { b ->
-                b.temp(7100, BlastProperty.GasTier.HIGHER)
-                    .blastStats(VA[UHV], 20 * SECOND)
-                    .vacuumStats(VA[ZPM], 15 * SECOND)
-            }
-            .build()
+        FranciumCaesiumCadmiumBromide = addMaterial(2193, "francium_caesium_cadmium_bromide")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(SHINY)
+            components(Francium, 1, Caesium, 1, Cadmium, 2, Bromine, 6)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+            blastProp(7100, GasTier.HIGHER, // Naquadah
+                      VA[UHV], 20 * SECOND,
+                      VA[ZPM], 15 * SECOND)
+        }
 
         // 2194 Sodium Seaborgate
-        SodiumSeaborgate = Material.Builder(2194, GTLiteMod.id("sodium_seaborgate"))
-            .ingot()
-            .fluid()
-            .color(0x55bbd4).iconSet(BRIGHT)
-            .components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(9800, BlastProperty.GasTier.HIGHER) // Tritanium
-                    .blastStats(VA[UV], 24 * SECOND)
-                    .vacuumStats(VA[ZPM], 12 * SECOND)
-            }
-            .build()
+        SodiumSeaborgate = addMaterial(2194, "sodium_seaborgate")
+        {
+            ingot()
+            fluid()
+            color(0x55bbd4).iconSet(BRIGHT)
+            components(Sodium, 2, Seaborgium, 1, Oxygen, 4)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(9800, GasTier.HIGHER, // Tritanium
+                      VA[UV], 24 * SECOND,
+                      VA[ZPM], 12 * SECOND)
+        }
 
         // 2195 Lead Scandium Tantalate
-        LeadScandiumTantalate = Material.Builder(2195, GTLiteMod.id("lead_scandium_tantalate"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Lead, 1, Scandium, 1, Tantalum, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        LeadScandiumTantalate = addMaterial(2195, "lead_scandium_tantalate")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Lead, 1, Scandium, 1, Tantalum, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2196 Thallium Sulfate
-        ThalliumSulfate = Material.Builder(2196, GTLiteMod.id("thallium_sulfate"))
-            .dust()
-            .color(0x9C222C).iconSet(METALLIC)
-            .components(Thallium, 2, Sulfur, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        ThalliumSulfate = addMaterial(2196, "thallium_sulfate")
+        {
+            dust()
+            color(0x9C222C).iconSet(METALLIC)
+            components(Thallium, 2, Sulfur, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2197 Thallium Barium Calcium Cuprate (TBCCO)
-        ThalliumBariumCalciumCuprate = Material.Builder(2197, GTLiteMod.id("thallium_barium_calcium_cuprate"))
-            .ingot()
-            .fluid()
-            .color(0x669900).iconSet(SHINY)
-            .components(Thallium, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 10)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
-                    .blastStats(VA[UV], 43 * SECOND)
-                    .vacuumStats(VA[IV], 21 * SECOND)
-            }
-            .cableProperties(V[UHV], 2, 1)
-            .build()
+        ThalliumBariumCalciumCuprate = addMaterial(2197, "thallium_barium_calcium_cuprate")
+        {
+            ingot()
+            fluid()
+            color(0x669900).iconSet(SHINY)
+            components(Thallium, 1, Barium, 2, Calcium, 2, Copper, 3, Oxygen, 10)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(7000, GasTier.HIGHER, // Naquadah
+                      VA[UV], 43 * SECOND,
+                      VA[IV], 21 * SECOND)
+            cableProp(V[UHV], 2, 1)
+        }
 
         // 2198 Potassium Manganate
-        PotassiumManganate = Material.Builder(2198, GTLiteMod.id("potassium_manganate"))
-            .dust()
-            .color(0x873883).iconSet(METALLIC)
-            .components(Potassium, 2, Manganese, 1, Oxygen, 4)
-            .build()
+        PotassiumManganate = addMaterial(2198, "potassium_manganate")
+        {
+            dust()
+            color(0x873883).iconSet(METALLIC)
+            components(Potassium, 2, Manganese, 1, Oxygen, 4)
+        }
 
         // 2199 Potassium Permanganate
-        PotassiumPermanganate = Material.Builder(2199, GTLiteMod.id("potassium_permanganate"))
-            .dust()
-            .color(0x871D82).iconSet(DULL)
-            .components(Potassium, 1, Manganese, 1, Oxygen, 4)
-            .build()
+        PotassiumPermanganate = addMaterial(2199, "potassium_permanganate")
+        {
+            dust()
+            color(0x871D82).iconSet(DULL)
+            components(Potassium, 1, Manganese, 1, Oxygen, 4)
+        }
 
         // 2200 Lanthanum Gallium Manganate
-        LanthanumGalliumManganate = Material.Builder(2200, GTLiteMod.id("lanthanum_gallium_manganate"))
-            .ingot()
-            .fluid()
-            .color(0x8AA07B).iconSet(METALLIC)
-            .components(Lanthanum, 1, Gallium, 1, Manganese, 1, Oxygen, 4)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
-            .blast { b ->
-                b.temp(8000, BlastProperty.GasTier.HIGH) // Trinium
-                    .blastStats(VA[UV], 45 * SECOND)
-                    .vacuumStats(VA[IV], 22 * SECOND + 10 * TICK)
-            }
-            .build()
+        LanthanumGalliumManganate = addMaterial(2200, "lanthanum_gallium_manganate")
+        {
+            ingot()
+            fluid()
+            color(0x8AA07B).iconSet(METALLIC)
+            components(Lanthanum, 1, Gallium, 1, Manganese, 1, Oxygen, 4)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL)
+            blastProp(8000, GasTier.HIGH, // Trinium
+                      VA[UV], 45 * SECOND,
+                      VA[IV], 22 * SECOND + 10 * TICK)
+        }
 
         // 2201 Barium Strontium Titanate
-        BariumStrontiumTitanate = Material.Builder(2201, GTLiteMod.id("barium_strontium_titanate"))
-            .ingot()
-            .fluid()
-            .color(0xFF0066).iconSet(SHINY)
-            .components(Barium, 1, Strontium, 1, Titanium, 1, Oxygen, 4)
-            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
-            .blast { b ->
-                b.temp(7200, BlastProperty.GasTier.HIGH) // Naquadah
-                    .blastStats(VA[ZPM], 36 * SECOND)
-                    .vacuumStats(VA[IV], 18 * SECOND)
-            }
-            .build()
+        BariumStrontiumTitanate = addMaterial(2201, "barium_strontium_titanate")
+        {
+            ingot()
+            fluid()
+            color(0xFF0066).iconSet(SHINY)
+            components(Barium, 1, Strontium, 1, Titanium, 1, Oxygen, 4)
+            flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_BOLT_SCREW)
+            blastProp(7200, GasTier.HIGH, // Naquadah
+                      VA[ZPM], 36 * SECOND,
+                      VA[IV], 18 * SECOND)
+        }
 
         // 2202 Lutetium Manganese Germanium
-        LutetiumManganeseGermanium = Material.Builder(2202, GTLiteMod.id("lutetium_manganese_germanium"))
-            .ingot()
-            .fluid()
-            .colorAverage().iconSet(MAGNETIC)
-            .components(Lutetium, 1, Manganese, 3, Germanium, 6)
-            .flags(EXT_METAL, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_SPRING_SMALL)
-            .blast { b ->
-                b.temp(7000, BlastProperty.GasTier.HIGHER) // Naquadah
-                    .blastStats(VA[LuV], 1 * MINUTE)
-                    .vacuumStats(VA[EV], 30 * SECOND)
-            }
-            .build() // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ i think it is well in Gregtech.
+        // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ I think it is well in Gregtech.
+        LutetiumManganeseGermanium = addMaterial(2202, "lutetium_manganese_germanium")
+        {
+            ingot()
+            fluid()
+            colorAverage().iconSet(MAGNETIC)
+            components(Lutetium, 1, Manganese, 3, Germanium, 6)
+            flags(EXT_METAL, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_SPRING_SMALL)
+            blastProp(7000, GasTier.HIGHER, // Naquadah
+                      VA[LuV], 1 * MINUTE,
+                      VA[EV], 30 * SECOND)
+        }
 
         // 2203 Boric Acid
-        BoricAcid = Material.Builder(2203, GTLiteMod.id("boric_acid"))
-            .dust()
-            .color(0xFAFAFA).iconSet(SHINY)
-            .components(Hydrogen, 3, Boron, 1, Oxygen, 3)
-            .build()
+        BoricAcid = addMaterial(2203, "boric_acid")
+        {
+            dust()
+            color(0xFAFAFA).iconSet(SHINY)
+            components(Hydrogen, 3, Boron, 1, Oxygen, 3)
+        }
 
         // 2204 Boron Trioxide
-        BoronTrioxide = Material.Builder(2204, GTLiteMod.id("boron_trioxide"))
-            .dust()
-            .color(0xE9FAC0).iconSet(METALLIC)
-            .components(Boron, 2, Oxygen, 3)
-            .build()
+        BoronTrioxide = addMaterial(2204, "boron_trioxide")
+        {
+            dust()
+            color(0xE9FAC0).iconSet(METALLIC)
+            components(Boron, 2, Oxygen, 3)
+        }
 
         // 2205 Boron Trifluoride
-        BoronTrifluoride = Material.Builder(2205, GTLiteMod.id("boron_trifluoride"))
-            .gas()
-            .color(0xFAF191)
-            .components(Boron, 1, Fluorine, 3)
-            .build()
+        BoronTrifluoride = addMaterial(2205, "boron_trifluoride")
+        {
+            gas()
+            color(0xFAF191)
+            components(Boron, 1, Fluorine, 3)
+        }
 
         // 2206 Lithium Hydride
-        LithiumHydride = Material.Builder(2206, GTLiteMod.id("lithium_hydride"))
-            .ingot()
-            .color(0x9BAFDB).iconSet(METALLIC)
-            .components(Lithium, 1, Hydrogen, 1)
-            .build()
+        LithiumHydride = addMaterial(2206, "lithium_hydride")
+        {
+            ingot()
+            color(0x9BAFDB).iconSet(METALLIC)
+            components(Lithium, 1, Hydrogen, 1)
+        }
 
         // 2207 Lithium Tetrafluoroborate
-        LithiumTetrafluoroborate = Material.Builder(2207, GTLiteMod.id("lithium_tetrafluoroborate"))
-            .dust()
-            .color(0x90FAF6).iconSet(SHINY)
-            .components(Lithium, 1, Boron, 1, Fluorine, 4)
-            .build()
+        LithiumTetrafluoroborate = addMaterial(2207, "lithium_tetrafluoroborate")
+        {
+            dust()
+            color(0x90FAF6).iconSet(SHINY)
+            components(Lithium, 1, Boron, 1, Fluorine, 4)
+        }
 
         // 2208 Boron Trichloride
-        BoronTrichloride = Material.Builder(2208, GTLiteMod.id("boron_trichloride"))
-            .gas()
-            .color(0x033F1B)
-            .components(Boron, 1, Chlorine, 3)
-            .build()
+        BoronTrichloride = addMaterial(2208, "boron_trichloride")
+        {
+            gas()
+            color(0x033F1B)
+            components(Boron, 1, Chlorine, 3)
+        }
+
 
         // 2209 Hexagonal Boron Nitride
-        HexagonalBoronNitride = Material.Builder(2209, GTLiteMod.id("hexagonal_boron_nitride"))
-            .gem()
-            .color(0x6A6A72).iconSet(GEM_VERTICAL)
-            .components(Boron, 1, Nitrogen, 1)
-            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("h-BN", true)
+        HexagonalBoronNitride = addMaterial(2209, "hexagonal_boron_nitride")
+        {
+            gem()
+            color(0x6A6A72).iconSet(GEM_VERTICAL)
+            components(Boron, 1, Nitrogen, 1)
+            flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2210 Cubic Boron Nitride
-        CubicBoronNitride = Material.Builder(2210, GTLiteMod.id("cubic_boron_nitride"))
-            .gem()
-            .color(0x545572).iconSet(DIAMOND)
-            .components(Boron, 1, Nitrogen, 1)
-            .flags(EXT_METAL, DISABLE_CRYSTALLIZATION, DISABLE_DECOMPOSITION, FLAMMABLE,
-                EXPLOSIVE, GENERATE_GEAR, GENERATE_LONG_ROD, GENERATE_LENS)
-            .toolStats(MaterialToolProperty(14.0F, 9.0F, 12400, 15))
-            .build()
-            .setFormula("c-BN", true)
+        CubicBoronNitride = addMaterial(2210, "cubic_boron_nitride")
+        {
+            gem()
+            color(0x545572).iconSet(DIAMOND)
+            components(Boron, 1, Nitrogen, 1)
+            flags(EXT_METAL, DISABLE_CRYSTALLIZATION, DISABLE_DECOMPOSITION, FLAMMABLE, EXPLOSIVE, GENERATE_GEAR,
+                  GENERATE_LONG_ROD, GENERATE_LENS)
+            toolProp(14.0F, 9.0F, 12400, 15)
+        }
 
         // 2211 Amorphous Boron Nitride
-        AmorphousBoronNitride = Material.Builder(2211, GTLiteMod.id("amorphous_boron_nitride"))
-            .ingot()
-            .color(0x9193C5).iconSet(SHINY)
-            .components(Boron, 1, Nitrogen, 1)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
-            .build()
-            .setFormula("a-BN", true)
+        AmorphousBoronNitride = addMaterial(2211, "amorphous_boron_nitride")
+        {
+            ingot()
+            color(0x9193C5).iconSet(SHINY)
+            components(Boron, 1, Nitrogen, 1)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
+        }
 
         // 2212 Heterodiamond
-        Heterodiamond = Material.Builder(2212, GTLiteMod.id("heterodiamond"))
-            .gem()
-            .color(0x512A72).iconSet(GEM_HORIZONTAL)
-            .components(Boron, 1, Carbon, 1, Nitrogen, 1)
-            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
+        Heterodiamond = addMaterial(2212, "heterodiamond")
+        {
+            gem()
+            color(0x512A72).iconSet(GEM_HORIZONTAL)
+            components(Boron, 1, Carbon, 1, Nitrogen, 1)
+            flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2213 Cubic Heterodiamond
-        CubicHeterodiamond = Material.Builder(2213, GTLiteMod.id("cubic_heterodiamond"))
-            .gem()
-            .color(0x753DA6).iconSet(DIAMOND)
-            .components(Boron, 1, Carbon, 2, Nitrogen, 1)
-            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("c-BC2N", true)
+        CubicHeterodiamond = addMaterial(2213, "cubic_heterodiamond")
+        {
+            gem()
+            color(0x753DA6).iconSet(DIAMOND)
+            components(Boron, 1, Carbon, 2, Nitrogen, 1)
+            flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2214 Calcium Carbide
-        CalciumCarbide = Material.Builder(2214, GTLiteMod.id("calcium_carbide"))
-            .dust()
-            .color(0x807B70).iconSet(DULL)
-            .components(Calcium, 1, Carbon, 2)
-            .build()
+        CalciumCarbide = addMaterial(2214, "calcium_carbide")
+        {
+            dust()
+            color(0x807B70).iconSet(DULL)
+            components(Calcium, 1, Carbon, 2)
+        }
 
         // 2215 Calcium Hydroxide
-        CalciumHydroxide = Material.Builder(2215, GTLiteMod.id("calcium_hydroxide"))
-            .dust()
-            .color(0x5F8764).iconSet(ROUGH)
-            .components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Ca(OH)2", true)
+        CalciumHydroxide = addMaterial(2215, "calcium_hydroxide")
+        {
+            dust()
+            color(0x5F8764).iconSet(ROUGH)
+            components(Calcium, 1, Hydrogen, 2, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2216 Chromium Germanium Telluride
-        ChromiumGermaniumTelluride = Material.Builder(2216, GTLiteMod.id("chromium_germanium_telluride"))
-            .ingot()
-            .fluid()
-            .color(0x8F103E).iconSet(METALLIC)
-            .components(Chrome, 1, Germanium, 1, Tellurium, 3)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROD, GENERATE_LONG_ROD)
-            .blast { b ->
-                b.temp(8900, BlastProperty.GasTier.HIGHER) // Trinium
-                    .blastStats(VA[LuV], 1 * MINUTE + 30 * SECOND)
-                    .vacuumStats(VA[IV], 20 * SECOND)
-            }
-            .build()
+        ChromiumGermaniumTelluride = addMaterial(2216, "chromium_germanium_telluride")
+        {
+            ingot()
+            fluid()
+            color(0x8F103E).iconSet(METALLIC)
+            components(Chrome, 1, Germanium, 1, Tellurium, 3)
+            flags(DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROD, GENERATE_LONG_ROD)
+            blastProp(8900, GasTier.HIGHER, // Trinium
+                      VA[LuV], 1 * MINUTE + 30 * SECOND,
+                      VA[IV], 20 * SECOND)
+        }
 
         // 2217 Magnetic Chromium Germanium Telluride
-        ChromiumGermaniumTellurideMagnetic = Material.Builder(2217, GTLiteMod.id("chromium_germanium_telluride_magnetic"))
-            .ingot()
-            .color(0x8F103E).iconSet(MAGNETIC)
-            .components(ChromiumGermaniumTelluride, 1)
-            .flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC, GENERATE_SPRING_SMALL)
-            .ingotSmeltInto(ChromiumGermaniumTelluride)
-            .arcSmeltInto(ChromiumGermaniumTelluride)
-            .macerateInto(ChromiumGermaniumTelluride)
-            .build()
+        ChromiumGermaniumTellurideMagnetic = addMaterial(2217, "chromium_germanium_telluride_magnetic")
+        {
+            ingot()
+            color(0x8F103E).iconSet(MAGNETIC)
+            components(ChromiumGermaniumTelluride, 1)
+            flags(GENERATE_ROD, GENERATE_LONG_ROD, IS_MAGNETIC, GENERATE_SPRING_SMALL)
+            ingotSmeltInto(ChromiumGermaniumTelluride)
+            arcSmeltInto(ChromiumGermaniumTelluride)
+            macerateInto(ChromiumGermaniumTelluride)
+        }
 
         // 2218 Gallium Trichloride
-        GalliumTrichloride = Material.Builder(2218, GTLiteMod.id("gallium_trichloride"))
-            .dust()
-            .color(0x6EB4FF).iconSet(ROUGH)
-            .components(Gallium, 1, Chlorine, 3)
-            .build()
+        GalliumTrichloride = addMaterial(2218, "gallium_trichloride")
+        {
+            dust()
+            color(0x6EB4FF).iconSet(ROUGH)
+            components(Gallium, 1, Chlorine, 3)
+        }
 
         // 2219 Gallium Trioxide
-        GalliumTrioxide = Material.Builder(2219, GTLiteMod.id("gallium_trioxide"))
-            .dust()
-            .color(0xE4CDFF).iconSet(METALLIC)
-            .components(Gallium, 2, Oxygen, 3)
-            .build()
+        GalliumTrioxide = addMaterial(2219, "gallium_trioxide")
+        {
+            dust()
+            color(0xE4CDFF).iconSet(METALLIC)
+            components(Gallium, 2, Oxygen, 3)
+        }
 
         // 2220 Gallium Nitride
-        GalliumNitride = Material.Builder(2220, GTLiteMod.id("gallium_nitride"))
-            .ingot()
-            .color(0xFFF458).iconSet(SHINY)
-            .flags(STD_METAL)
-            .components(Gallium, 1, Nitrogen, 1)
-            .build()
+        GalliumNitride = addMaterial(2220, "gallium_nitride")
+        {
+            ingot()
+            color(0xFFF458).iconSet(SHINY)
+            flags(STD_METAL)
+            components(Gallium, 1, Nitrogen, 1)
+        }
 
         // 2221 Aluminium Trichloride
-        AluminiumTrichloride = Material.Builder(2221, GTLiteMod.id("aluminium_trichloride"))
-            .dust()
-            .color(0x78C3EB).iconSet(SHINY)
-            .components(Aluminium, 1, Chlorine, 3)
-            .build()
+        AluminiumTrichloride = addMaterial(2221, "aluminium_trichloride")
+        {
+            dust()
+            color(0x78C3EB).iconSet(SHINY)
+            components(Aluminium, 1, Chlorine, 3)
+        }
 
         // 2222 Niobium Pentachloride
-        NiobiumPentachloride = Material.Builder(2222, GTLiteMod.id("niobium_pentachloride"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Niobium, 1, Chlorine, 5)
-            .build()
+        NiobiumPentachloride = addMaterial(2222, "niobium_pentachloride")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Niobium, 1, Chlorine, 5)
+        }
 
         // 2223 Lithium Niobate
-        LithiumNiobate = Material.Builder(2223, GTLiteMod.id("lithium_niobate"))
-            .ingot()
-            .fluid()
-            .color(0xD27700).iconSet(SHINY)
-            .components(Lithium, 1, Niobium, 1, Oxygen, 4)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_LENS, GENERATE_FOIL)
-            .blast { b ->
-                b.temp(3226, BlastProperty.GasTier.HIGH) // Nichrome
-                    .blastStats(VA[ZPM], 40 * SECOND)
-                    .vacuumStats(VA[IV], 10 * SECOND)
-            }
-            .build()
+        LithiumNiobate = addMaterial(2223, "lithium_niobate")
+        {
+            ingot()
+            fluid()
+            color(0xD27700).iconSet(SHINY)
+            components(Lithium, 1, Niobium, 1, Oxygen, 4)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_LENS, GENERATE_FOIL)
+            blastProp(3226, GasTier.HIGH, // Nichrome
+                      VA[ZPM], 40 * SECOND,
+                      VA[IV], 10 * SECOND)
+        }
 
         // 2224 Manganese Sulfate
-        ManganeseSulfate = Material.Builder(2224, GTLiteMod.id("manganese_sulfate"))
-            .dust()
-            .color(0xF0F895).iconSet(ROUGH)
-            .components(Manganese, 1, Sulfur, 1, Oxygen, 4)
-            .build()
+        ManganeseSulfate = addMaterial(2224, "manganese_sulfate")
+        {
+            dust()
+            color(0xF0F895).iconSet(ROUGH)
+            components(Manganese, 1, Sulfur, 1, Oxygen, 4)
+        }
 
         // 2225 Potassium Sulfate
-        PotassiumSulfate = Material.Builder(2225, GTLiteMod.id("potassium_sulfate"))
-            .dust()
-            .color(0xF4FBB0).iconSet(DULL)
-            .components(Potassium, 2, Sulfur, 1, Oxygen, 4)
-            .build()
+        PotassiumSulfate = addMaterial(2225, "potassium_sulfate")
+        {
+            dust()
+            color(0xF4FBB0).iconSet(DULL)
+            components(Potassium, 2, Sulfur, 1, Oxygen, 4)
+        }
 
         // 2226 Neodymium-doped Yttrium Oxide
-        NeodymiumDopedYttriumOxide = Material.Builder(2226, GTLiteMod.id("neodymium_doped_yttrium_oxide"))
-            .dust()
-            .color(0x5AD55F).iconSet(DULL)
-            .components(YttriumOxide, 1, NeodymiumOxide, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        NeodymiumDopedYttriumOxide = addMaterial(2226, "neodymium_doped_yttrium_oxide")
+        {
+            dust()
+            color(0x5AD55F).iconSet(DULL)
+            components(YttriumOxide, 1, NeodymiumOxide, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2227 Aluminium Nitrate
-        AluminiumNitrate = Material.Builder(2227, GTLiteMod.id("aluminium_nitrate"))
-            .dust()
-            .color(0x3AB3AA).iconSet(SHINY)
-            .components(Aluminium, 1, Nitrogen, 3, Oxygen, 9)
-            .build()
-            .setFormula("Al(NO3)3", true)
+        AluminiumNitrate = addMaterial(2227, "aluminium_nitrate")
+        {
+            dust()
+            color(0x3AB3AA).iconSet(SHINY)
+            components(Aluminium, 1, Nitrogen, 3, Oxygen, 9)
+        }
 
         // 2228 Chlorinated Solvents
-        ChlorinatedSolvents = Material.Builder(2228, GTLiteMod.id("chlorinated_solvents"))
-            .liquid()
-            .color(0x40804c)
-            .components(Carbon, 2, Hydrogen, 8, Chlorine, 5)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(CH4)2Cl5", true)
+        ChlorinatedSolvents = addMaterial(2228, "chlorinated_solvents")
+        {
+            liquid()
+            color(0x40804c)
+            components(Carbon, 2, Hydrogen, 8, Chlorine, 5)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2229 Alumina Solution
-        AluminaSolution = Material.Builder(2229, GTLiteMod.id("alumina_solution"))
-            .liquid()
-            .color(0x6C4DC1)
-            .components(Alumina, 1, Carbon, 25, Hydrogen, 56, Chlorine, 2, Nitrogen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(Al2O3)(CH2Cl2)(C12H27N)2", true)
+        AluminaSolution = addMaterial(2229, "alumina_solution")
+        {
+            liquid()
+            color(0x6C4DC1)
+            components(Alumina, 1, Carbon, 25, Hydrogen, 56, Chlorine, 2, Nitrogen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2230 Nd:YAG
-        NdYAG = Material.Builder(2230, GTLiteMod.id("nd_yag"))
-            .gem()
-            .color(0xD99DE4).iconSet(GEM_VERTICAL)
-            .components(YttriumOxide, 2, NeodymiumOxide, 1, Alumina, 5)
-            .flags(CRYSTALLIZABLE, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("Nd:YAG", true)
+        NdYAG = addMaterial(2230, "nd_yag")
+        {
+            gem()
+            color(0xD99DE4).iconSet(GEM_VERTICAL)
+            components(YttriumOxide, 2, NeodymiumOxide, 1, Alumina, 5)
+            flags(STD_METAL, CRYSTALLIZABLE, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_LENS)
+        }
 
         // 2231 Scandium-Titanium Mixture
-        ScandiumTitaniumMixture = Material.Builder(2231, GTLiteMod.id("scandium_titanium_mixture"))
-            .liquid()
-            .colorAverage()
-            .components(Scandium, 1, Titanium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        ScandiumTitaniumMixture = addMaterial(2231, "scandium_titanium_mixture")
+        {
+            liquid()
+            colorAverage()
+            components(Scandium, 1, Titanium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2232 Radium-Radon Mixture
-        RadiumRadonMixture = Material.Builder(2232, GTLiteMod.id("radium_radon_mixture"))
-            .liquid()
-            .colorAverage()
-            .components(Radium, 1, Radon, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RadiumRadonMixture = addMaterial(2232, "radium_radon_mixture")
+        {
+            liquid()
+            colorAverage()
+            components(Radium, 1, Radon, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2233 Polonium Nitrate
-        PoloniumNitrate = Material.Builder(2233, GTLiteMod.id("polonium_nitrate"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Polonium, 1, Nitrogen, 4, Oxygen, 12)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Po(NO3)4", true)
+        PoloniumNitrate = addMaterial(2233, "polonium_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Polonium, 1, Nitrogen, 4, Oxygen, 12)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2234 Sodium Polonate
-        SodiumPolonate = Material.Builder(2234, GTLiteMod.id("sodium_polonate"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Sodium, 2, Polonium, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Na2PoO4", true)
+        SodiumPolonate = addMaterial(2234, "sodium_polonate")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Sodium, 2, Polonium, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2235 Polonium Dioxide
-        PoloniumDioxide = Material.Builder(2235, GTLiteMod.id("polonium_dioxide"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Polonium, 1, Oxygen, 2)
-            .build()
+        PoloniumDioxide = addMaterial(2235, "polonium_dioxide")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Polonium, 1, Oxygen, 2)
+        }
 
         // 2236 Uranyl Chloride Solution
-        UranylChlorideSolution = Material.Builder(2236, GTLiteMod.id("uranyl_chloride_solution"))
-            .liquid()
-            .color(0xDFE018)
-            .components(Uraninite, 1, Chlorine, 2, Water, 1, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        UranylChlorideSolution = addMaterial(2236, "uranyl_chloride_solution")
+        {
+            liquid()
+            color(0xDFE018)
+            components(Uraninite, 1, Chlorine, 2, Water, 1, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2237 Uranyl Nitrate Solution
-        UranylNitrateSolution = Material.Builder(2237, GTLiteMod.id("uranyl_nitrate_solution"))
-            .liquid()
-            .colorAverage()
-            .components(Uraninite, 1, Nitrogen, 2, Oxygen, 7, Hydrogen, 2, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(UO2)(NO3)2(H2O)?", true)
+        UranylNitrateSolution = addMaterial(2237, "uranyl_nitrate_solution")
+        {
+            liquid()
+            colorAverage()
+            components(Uraninite, 1, Nitrogen, 2, Oxygen, 7, Hydrogen, 2, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2238 Radium Sulfate
-        RadiumSulfate = Material.Builder(2238, GTLiteMod.id("radium_sulfate"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Radium, 1, Sulfur, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RadiumSulfate = addMaterial(2238, "radium_sulfate")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Radium, 1, Sulfur, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2239 Lead Sulfate
-        LeadSulfate = Material.Builder(2239, GTLiteMod.id("lead_sulfate"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Lead, 1, Sulfur, 1, Oxygen, 4)
-            .build()
+        LeadSulfate = addMaterial(2239, "lead_sulfate")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Lead, 1, Sulfur, 1, Oxygen, 4)
+        }
 
         // 2240 Thorium Nitrate
-        ThoriumNitrate = Material.Builder(2240, GTLiteMod.id("thorium_nitrate"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Thorium, 1, Nitrogen, 4, Oxygen, 12)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Th(NO3)4", true)
+        ThoriumNitrate = addMaterial(2240, "thorium_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Thorium, 1, Nitrogen, 4, Oxygen, 12)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2241 Radium Dichloride
-        RadiumDichloride = Material.Builder(2241, GTLiteMod.id("radium_dichloride"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Radium, 1, Chlorine, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        RadiumDichloride = addMaterial(2241, "radium_dichloride")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Radium, 1, Chlorine, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2242 Thorium Dioxide
-        ThoriumDioxide = Material.Builder(2242, GTLiteMod.id("thorium_dioxide"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Thorium, 1, Oxygen, 2)
-            .build()
+        ThoriumDioxide = addMaterial(2242, "thorium_dioxide")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Thorium, 1, Oxygen, 2)
+        }
 
         // 2243 Uranyl Nitrate
-        UranylNitrate = Material.Builder(2243, GTLiteMod.id("uranyl_nitrate"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Uraninite, 1, Nitrogen, 2, Oxygen, 6)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("UO2(NO3)2", true)
+        UranylNitrate = addMaterial(2243, "uranyl_nitrate")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Uraninite, 1, Nitrogen, 2, Oxygen, 6)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2244 Barium Oxide
-        BariumOxide = Material.Builder(2244, GTLiteMod.id("barium_oxide"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Barium, 1, Oxygen, 1)
-            .build()
+        BariumOxide = addMaterial(2244, "barium_oxide")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Barium, 1, Oxygen, 1)
+        }
 
         // 2245 Woods Glass
-        WoodsGlass = Material.Builder(2245, GTLiteMod.id("woods_glass"))
-            .ingot()
-            .fluid()
-            .color(0x730099).iconSet(SHINY)
-            .components(SodaAsh, 6, SiliconDioxide, 3, BariumOxide, 2, Garnierite, 2)
-            .flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                   GENERATE_LENS)
-            .blast { b ->
-                b.temp(1163, BlastProperty.GasTier.MID)
-                    .blastStats(VA[IV])
-            }
-            .build()
+        WoodsGlass = addMaterial(2245, "woods_glass")
+        {
+            ingot()
+            fluid()
+            color(0x730099).iconSet(SHINY)
+            components(SodaAsh, 6, SiliconDioxide, 3, BariumOxide, 2, Garnierite, 2)
+            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_LENS)
+            blastProp(1163, GasTier.MID, // Cupronickel
+                      VA[IV], 7 * SECOND + 4 * TICK)
+        }
 
         // 2246 Potassium Tertbutoxide
-        PotassiumTertbutoxide = Material.Builder(2246, GTLiteMod.id("potassium_tertbutoxide"))
-            .dust()
-            .color(0xFB7366).iconSet(DULL)
-            .components(Carbon, 4, Hydrogen, 9, Oxygen, 1, Potassium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PotassiumTertbutoxide = addMaterial(2246, "potassium_tertbutoxide")
+        {
+            dust()
+            color(0xFB7366).iconSet(DULL)
+            components(Carbon, 4, Hydrogen, 9, Oxygen, 1, Potassium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2247 Caesium Hydroxide
-        CaesiumHydroxide = Material.Builder(2247, GTLiteMod.id("caesium_hydroxide"))
-            .dust()
-            .color(0xAF6341).iconSet(METALLIC)
-            .components(Caesium, 1, Oxygen, 1, Hydrogen, 1)
-            .build()
+        CaesiumHydroxide = addMaterial(2247, "caesium_hydroxide")
+        {
+            dust()
+            color(0xAF6341).iconSet(METALLIC)
+            components(Caesium, 1, Oxygen, 1, Hydrogen, 1)
+        }
 
         // 2248 Caesium Carbonate
-        CaesiumCarbonate = Material.Builder(2248, GTLiteMod.id("caesium_carbonate"))
-            .dust()
-            .color(0x62D4F3).iconSet(SHINY)
-            .components(Caesium, 2, Carbon, 1, Oxygen, 3)
-            .build()
+        CaesiumCarbonate = addMaterial(2248, "caesium_carbonate")
+        {
+            dust()
+            color(0x62D4F3).iconSet(SHINY)
+            components(Caesium, 2, Carbon, 1, Oxygen, 3)
+        }
 
         // 2249 Sodium Hydride
-        SodiumHydride = Material.Builder(2249, GTLiteMod.id("sodium_hydride"))
-            .ingot()
-            .color(0xCACAC8).iconSet(METALLIC)
-            .components(Sodium, 1, Hydrogen, 1)
-            .build()
+        SodiumHydride = addMaterial(2249, "sodium_hydride")
+        {
+            ingot()
+            color(0xCACAC8).iconSet(METALLIC)
+            components(Sodium, 1, Hydrogen, 1)
+        }
 
         // 2250 Vanadium Pentoxide
-        VanadiumPentoxide = Material.Builder(2250, GTLiteMod.id("vanadium_pentoxide"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Vanadium, 2, Oxygen, 5)
-            .build()
+        VanadiumPentoxide = addMaterial(2250, "vanadium_pentoxide")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Vanadium, 2, Oxygen, 5)
+        }
 
         // 2251 Actinium Oxalate
-        ActiniumOxalate = Material.Builder(2251, GTLiteMod.id("actinium_oxalate"))
-            .dust()
-            .color(0x92ACFF).iconSet(SHINY)
-            .components(Actinium, 1, Carbon, 4, Oxygen, 8)
-            .build()
-            .setFormula("Ac(CO2)4", true)
+        ActiniumOxalate = addMaterial(2251, "actinium_oxalate")
+        {
+            dust()
+            color(0x92ACFF).iconSet(SHINY)
+            components(Actinium, 1, Carbon, 4, Oxygen, 8)
+        }
 
         // 2252 Actinium Trihydride
-        ActiniumTrihydride = Material.Builder(2252, GTLiteMod.id("actinium_trihydride"))
-            .dust()
-            .color(0xD5DFFF).iconSet(SHINY)
-            .components(Actinium, 1, Hydrogen, 3)
-            .flags(DISABLE_DECOMPOSITION, FORCE_GENERATE_BLOCK)
-            .build()
+        ActiniumTrihydride = addMaterial(2252, "actinium_trihydride")
+        {
+            dust()
+            color(0xD5DFFF).iconSet(SHINY)
+            components(Actinium, 1, Hydrogen, 3)
+            flags(DISABLE_DECOMPOSITION, FORCE_GENERATE_BLOCK)
+        }
 
         // 2253 Actinium Superhydride
-        ActiniumSuperhydride = Material.Builder(2253, GTLiteMod.id("actinium_superhydride"))
-            .dust()
-            .plasma(FluidBuilder()
-                .temperature(500_000))
-            .color(Actinium.materialRGB * 9 / 8).iconSet(SHINY)
-            .components(Actinium, 1, Hydrogen, 12)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        ActiniumSuperhydride = addMaterial(2253, "actinium_superhydride")
+        {
+            dust()
+            plasma()
+            {
+                temperature(500_000)
+            }
+            color(Actinium.materialRGB * 9 / 8).iconSet(SHINY)
+            components(Actinium, 1, Hydrogen, 12)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2254 Sodium Formate
-        SodiumFormate = Material.Builder(2254, GTLiteMod.id("sodium_formate"))
-            .dust()
-            .color(0x416CC0).iconSet(ROUGH)
-            .components(Carbon, 1, Hydrogen, 1, Oxygen, 2, Sodium, 1)
-            .build()
-            .setFormula("HCOONa", false)
+        SodiumFormate = addMaterial(2254, "sodium_formate")
+        {
+            dust()
+            color(0x416CC0).iconSet(ROUGH)
+            components(Carbon, 1, Hydrogen, 1, Oxygen, 2, Sodium, 1)
+        }
 
         // 2255 Sodium Thiosulfate
-        SodiumThiosulfate = Material.Builder(2255, GTLiteMod.id("sodium_thiosulfate"))
-            .dust()
-            .color(0x1436A7).iconSet(METALLIC)
-            .components(Sodium, 2, Sulfur, 2, Oxygen, 3)
-            .build()
+        SodiumThiosulfate = addMaterial(2255, "sodium_thiosulfate")
+        {
+            dust()
+            color(0x1436A7).iconSet(METALLIC)
+            components(Sodium, 2, Sulfur, 2, Oxygen, 3)
+        }
 
         // 2256 Lithium Thiinediselenide
-        LithiumThiinediselenide = Material.Builder(2256, GTLiteMod.id("lithium_thiinediselenide"))
-            .dust()
-            .color(0x689E64).iconSet(DULL)
-            .components(Carbon, 4, Hydrogen, 4, Sulfur, 2, Lithium, 2, Selenium, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        LithiumThiinediselenide = addMaterial(2256, "lithium_thiinediselenide")
+        {
+            dust()
+            color(0x689E64).iconSet(DULL)
+            components(Carbon, 4, Hydrogen, 4, Sulfur, 2, Lithium, 2, Selenium, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2257 BETS Perrhenate (BETSP)
-        BETSPerrhenate = Material.Builder(2257, GTLiteMod.id("bets_perrhenate"))
-            .dust()
-            .color(0x98E993).iconSet(SHINY)
-            .flags(DISABLE_DECOMPOSITION)
-            .components(Rhenium, 1, Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4, Oxygen, 4)
-            .build()
-            .setFormula("(C10H8S4Se4)ReO4", true)
+        BETSPerrhenate = addMaterial(2257, "bets_perrhenate")
+        {
+            dust()
+            color(0x98E993).iconSet(SHINY)
+            flags(DISABLE_DECOMPOSITION)
+            components(Rhenium, 1, Carbon, 10, Hydrogen, 8, Sulfur, 4, Selenium, 4, Oxygen, 4)
+        }
 
         // 2258 Helium-Neon
-        HeliumNeon = Material.Builder(2258, GTLiteMod.id("helium_neon"))
-            .gas()
-            .color(0xFF0080)
-            .components(Helium, 1, Neon, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        HeliumNeon = addMaterial(2258, "helium_neon")
+        {
+            gas()
+            color(0xFF0080)
+            components(Helium, 1, Neon, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 2259 Germanium Tetrachloride
-        GermaniumTetrachloride = Material.Builder(2259, GTLiteMod.id("germanium_tetrachloride"))
-            .liquid()
-            .color(0x787878)
-            .components(Germanium, 1, Chlorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        GermaniumTetrachloride = addMaterial(2259, "germanium_tetrachloride")
+        {
+            liquid()
+            color(0x787878)
+            components(Germanium, 1, Chlorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2260 Silicon Tetrachloride
-        SiliconTetrachloride = Material.Builder(2260, GTLiteMod.id("silicon_tetrachloride"))
-            .liquid()
-            .color(0x5B5B7A)
-            .components(Silicon, 1, Chlorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SiliconTetrachloride = addMaterial(2260, "silicon_tetrachloride")
+        {
+            liquid()
+            color(0x5B5B7A)
+            components(Silicon, 1, Chlorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2261 Caesium Cerium Cobalt Indium
-        CaesiumCeriumCobaltIndium = Material.Builder(2261, GTLiteMod.id("caesium_cerium_cobalt_indium"))
-            .ingot()
-            .fluid()
-            .color(0x01E068).iconSet(MAGNETIC)
-            .components(Caesium, 1, Cerium, 1, Cobalt, 2, Indium, 10)
-            .flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                GENERATE_FINE_WIRE, GENERATE_BOLT_SCREW)
-            .blast { b ->
-                b.temp(8900, BlastProperty.GasTier.HIGH) // Trinium
-                    .blastStats(VA[UV], 34 * SECOND)
-                    .vacuumStats(VA[ZPM], 17 * SECOND)
-            }
-            .build()
+        CaesiumCeriumCobaltIndium = addMaterial(2261, "caesium_cerium_cobalt_indium")
+        {
+            ingot()
+            fluid()
+            color(0x01E068).iconSet(MAGNETIC)
+            components(Caesium, 1, Cerium, 1, Cobalt, 2, Indium, 10)
+            flags(EXT_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_BOLT_SCREW)
+            blastProp(8900, GasTier.HIGH, // Trinium
+                      VA[UV], 34 * SECOND,
+                      VA[ZPM], 17 * SECOND)
+        }
 
         // 2262 Mercury Cadmium Telluride
-        MercuryCadmiumTelluride = Material.Builder(2262, GTLiteMod.id("mercury_cadmium_telluride"))
-            .ingot()
-            .fluid()
-            .color(0x823C80).iconSet(BRIGHT)
-            .flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .components(Mercury, 2, Cadmium, 1, Tellurium, 2)
-            .blast { b ->
-                b.temp(12170, BlastProperty.GasTier.HIGHER) // Adamantium
-                    .blastStats(VA[UHV], 12 * SECOND)
-                    .vacuumStats(VA[UV], 6 * SECOND)
-            }
-            .build()
+        MercuryCadmiumTelluride = addMaterial(2262, "mercury_cadmium_telluride")
+        {
+            ingot()
+            fluid()
+            color(0x823C80).iconSet(BRIGHT)
+            flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            components(Mercury, 2, Cadmium, 1, Tellurium, 2)
+            blastProp(12170, GasTier.HIGHER, // Adamantium
+                      VA[UHV], 12 * SECOND,
+                      VA[UV], 6 * SECOND)
+        }
 
         // 2263 Thallium Roentgenium Chloride
-        ThalliumRoentgeniumChloride = Material.Builder(2263, GTLiteMod.id("thallium_roentgenium_chloride"))
-            .ingot()
-            .fluid()
-            .color(0x3C5CB5).iconSet(MAGNETIC)
-            .components(Thallium, 1, Roentgenium, 1, Chlorine, 3)
-            .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_RING)
-            .blast { b ->
-                b.temp(12500, BlastProperty.GasTier.HIGHEST) // Adamantium
-                    .blastStats(VA[UV], 48 * SECOND)
-                    .vacuumStats(VA[ZPM], 24 * SECOND)
-            }
-            .build()
+        ThalliumRoentgeniumChloride = addMaterial(2263, "thallium_roentgenium_chloride")
+        {
+            ingot()
+            fluid()
+            color(0x3C5CB5).iconSet(MAGNETIC)
+            components(Thallium, 1, Roentgenium, 1, Chlorine, 3)
+            flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_RING)
+            blastProp(12500, GasTier.HIGHEST, // Adamantium
+                      VA[UV], 48 * SECOND,
+                      VA[ZPM], 24 * SECOND)
+        }
 
         // 2264 Silica Gel Base
-        SilicaGelBase = Material.Builder(2264, GTLiteMod.id("silica_gel_base"))
-            .liquid()
-            .color(0x7170BE).iconSet(DULL)
-            .components(SiliconDioxide, 1, SodiumHydroxide, 1, HydrochloricAcid, 1, Water, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(SiNa(OH)O2)(HCl)(H2O)", true)
+        SilicaGelBase = addMaterial(2264, "silica_gel_base")
+        {
+            liquid()
+            color(0x7170BE).iconSet(DULL)
+            components(SiliconDioxide, 1, SodiumHydroxide, 1, HydrochloricAcid, 1, Water, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2265 Silica Gel
-        SilicaGel = Material.Builder(2265, GTLiteMod.id("silica_gel"))
-            .dust()
-            .color(0x9695FD).iconSet(NANOPARTICLES)
-            .components(SiliconDioxide, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SilicaGel = addMaterial(2265, "silica_gel")
+        {
+            dust()
+            color(0x9695FD).iconSet(NANOPARTICLES)
+            components(SiliconDioxide, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2266 Nitronium Tetrafluoroborate
-        NitroniumTetrafluoroborate = Material.Builder(2266, GTLiteMod.id("nitronium_tetrafluoroborate"))
-            .dust()
-            .color(0x787449).iconSet(DULL)
-            .components(Nitrogen, 1, Oxygen, 2, Boron, 1, Fluorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        NitroniumTetrafluoroborate = addMaterial(2266, "nitronium_tetrafluoroborate")
+        {
+            dust()
+            color(0x787449).iconSet(DULL)
+            components(Nitrogen, 1, Oxygen, 2, Boron, 1, Fluorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2267 Nitrosonium Tetrafluoroborate
-        NitrosoniumTetrafluoroborate = Material.Builder(2267, GTLiteMod.id("nitrosonium_tetrafluoroborate"))
-            .dust()
-            .color(0xA32A8C).iconSet(ROUGH)
-            .components(Nitrogen, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        NitrosoniumTetrafluoroborate = addMaterial(2267, "nitrosonium_tetrafluoroborate")
+        {
+            dust()
+            color(0xA32A8C).iconSet(ROUGH)
+            components(Nitrogen, 1, Oxygen, 1, Boron, 1, Fluorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2268 Tetrafluoroboric Acid
-        TetrafluoroboricAcid = Material.Builder(2268, GTLiteMod.id("tetrafluoroboric_acid"))
-            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
-            .color(0x83A731)
-            .components(Hydrogen, 1, Boron, 1, Fluorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        TetrafluoroboricAcid = addMaterial(2268, "tetrafluoroboric_acid")
+        {
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
+            color(0x83A731)
+            components(Hydrogen, 1, Boron, 1, Fluorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2269 Potassium Formate
-        PotassiumFormate = Material.Builder(2269, GTLiteMod.id("potassium_formate"))
-            .dust()
-            .color(0x74B5A9).iconSet(METALLIC)
-            .components(Carbon, 1, Hydrogen, 3, Oxygen, 1, Potassium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PotassiumFormate = addMaterial(2269, "potassium_formate")
+        {
+            dust()
+            color(0x74B5A9).iconSet(METALLIC)
+            components(Carbon, 1, Hydrogen, 3, Oxygen, 1, Potassium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2270 Ammonium Sulfate
-        AmmoniumSulfate = Material.Builder(2270, GTLiteMod.id("ammonium_sulfate"))
-            .dust()
-            .color(0x5858F4).iconSet(METALLIC)
-            .components(Nitrogen, 4, Hydrogen, 8, Sulfur, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(NH4)2SO4", true)
+        AmmoniumSulfate = addMaterial(2270, "ammonium_sulfate")
+        {
+            dust()
+            color(0x5858F4).iconSet(METALLIC)
+            components(Nitrogen, 4, Hydrogen, 8, Sulfur, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2271 Ammonium Carbonate
-        AmmoniumCarbonate = Material.Builder(2271, GTLiteMod.id("ammonium_carbonate"))
-            .dust()
-            .color(0x7C89D9).iconSet(SHINY)
-            .components(Carbon, 1, Hydrogen, 8, Oxygen, 3, Nitrogen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(NH4)2CO3", true)
+        AmmoniumCarbonate = addMaterial(2271, "ammonium_carbonate")
+        {
+            dust()
+            color(0x7C89D9).iconSet(SHINY)
+            components(Carbon, 1, Hydrogen, 8, Oxygen, 3, Nitrogen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2272 Ammonium Acetate
-        AmmoniumAcetate = Material.Builder(2272, GTLiteMod.id("ammonium_acetate"))
-            .dust()
-            .color(0x646882).iconSet(METALLIC)
-            .components(Carbon, 2, Hydrogen, 7, Oxygen, 2, Nitrogen, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("NH4CH3CO2", true)
+        AmmoniumAcetate = addMaterial(2272, "ammonium_acetate")
+        {
+            dust()
+            color(0x646882).iconSet(METALLIC)
+            components(Carbon, 2, Hydrogen, 7, Oxygen, 2, Nitrogen, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2273 Sodium Azanide
-        SodiumAzanide = Material.Builder(2273, GTLiteMod.id("sodium_azanide"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Sodium, 1, Nitrogen, 1, Hydrogen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumAzanide = addMaterial(2273, "sodium_azanide")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Sodium, 1, Nitrogen, 1, Hydrogen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2274 Sodium Azide
-        SodiumAzide = Material.Builder(2274, GTLiteMod.id("sodium_azide"))
-            .dust()
-            .colorAverage()
-            .components(Sodium, 1, Nitrogen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumAzide = addMaterial(2274, "sodium_azide")
+        {
+            dust()
+            colorAverage()
+            components(Sodium, 1, Nitrogen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2275 Palladium Bisdibenzylidieneacetone
-        PalladiumBisdibenzylidieneacetone = Material.Builder(2275, GTLiteMod.id("palladium_bisdibenzylidieneacetone"))
-            .dust()
-            .color(0xBE81A0).iconSet(ROUGH)
-            .components(Carbon, 51, Hydrogen, 42, Oxygen, 3, Palladium, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PalladiumBisdibenzylidieneacetone = addMaterial(2275, "palladium_bisdibenzylidieneacetone")
+        {
+            dust()
+            color(0xBE81A0).iconSet(ROUGH)
+            components(Carbon, 51, Hydrogen, 42, Oxygen, 3, Palladium, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2276 Potassium Tetrachloroplatinate
-        PotassiumTetrachloroplatinate = Material.Builder(2276, GTLiteMod.id("potassium_tetrachloroplatinate"))
-            .dust()
-            .color(0xF1B04F).iconSet(SHINY)
-            .components(Potassium, 2, Platinum, 1, Chlorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        PotassiumTetrachloroplatinate = addMaterial(2276, "potassium_tetrachloroplatinate")
+        {
+            dust()
+            color(0xF1B04F).iconSet(SHINY)
+            components(Potassium, 2, Platinum, 1, Chlorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2277 Ammonium Persulfate
-        AmmoniumPersulfate = Material.Builder(2277, GTLiteMod.id("ammonium_persulfate"))
-            .dust()
-            .color(0x4242B7)
-            .components(Nitrogen, 2, Hydrogen, 8, Sulfur, 2, Oxygen, 8)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(NH4)2S2O8", true)
+        AmmoniumPersulfate = addMaterial(2277, "ammonium_persulfate")
+        {
+            dust()
+            color(0x4242B7)
+            components(Nitrogen, 2, Hydrogen, 8, Sulfur, 2, Oxygen, 8)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2278 SilverTetrafluoroborate
-        SilverTetrafluoroborate = Material.Builder(2278, GTLiteMod.id("silver_tetrafluoroborate"))
-            .dust()
-            .color(0x818024)
-            .components(Silver, 1, Boron, 1, Fluorine, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SilverTetrafluoroborate = addMaterial(2278, "silver_tetrafluoroborate")
+        {
+            dust()
+            color(0x818024)
+            components(Silver, 1, Boron, 1, Fluorine, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2279 Silver Chloride
-        SilverChloride = Material.Builder(2279, GTLiteMod.id("silver_chloride"))
-            .dust()
-            .color(0x8D8D8D).iconSet(METALLIC)
-            .components(Silver, 1, Chlorine, 1)
-            .build()
+        SilverChloride = addMaterial(2279, "silver_chloride")
+        {
+            dust()
+            color(0x8D8D8D).iconSet(METALLIC)
+            components(Silver, 1, Chlorine, 1)
+        }
 
         // 2280 Silver Oxide
-        SilverOxide = Material.Builder(2280, GTLiteMod.id("silver_oxide"))
-            .dust()
-            .color(0xA4A4A4)
-            .components(Silver, 2, Oxygen, 1)
-            .build()
+        SilverOxide = addMaterial(2280, "silver_oxide")
+        {
+            dust()
+            color(0xA4A4A4)
+            components(Silver, 2, Oxygen, 1)
+        }
 
         // 2281 Heavy Quark Enriched Mixture
-        HeavyQuarkEnrichedMixture = Material.Builder(2281, GTLiteMod.id("heavy_quark_enriched_mixture"))
-            .plasma(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(400_000_000)
-                .customStill())
-            .build()
+        HeavyQuarkEnrichedMixture = addMaterial(2281, "heavy_quark_enriched_mixture")
+        {
+            plasma()
+            {
+                temperature(400_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
+        }
 
         // 2282 Deuterium-Superheavy Mixture
-        DeuteriumSuperheavyMixture = Material.Builder(2282, GTLiteMod.id("deuterium_superheavy_mixture"))
-            .liquid(FluidBuilder()
-                .temperature(18240))
-            .color(0x7B9EF8)
-            .components(Deuterium, 2, MetastableHassium, 1, MetastableFlerovium, 1, MetastableOganesson, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        DeuteriumSuperheavyMixture = addMaterial(2282, "deuterium_superheavy_mixture")
+        {
+            liquid()
+            {
+                temperature(18240)
+            }
+            color(0x7B9EF8)
+            components(Deuterium, 2, MetastableHassium, 1, MetastableFlerovium, 1, MetastableOganesson, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2283 Heavy Quark Degenerate Matter (HQDM)
-        HeavyQuarkDegenerateMatter = Material.Builder(2283, GTLiteMod.id("heavy_quark_degenerate_matter"))
-            .ingot()
-            .liquid()
-            .plasma(FluidBuilder()
-                .temperature(1_600_000_000)
-                .customStill())
-            .color(0x5DBD3A).iconSet(BRIGHT)
-            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR,
-                GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .rotorStats(48.0f, 16.0f, 983040)
-            .fluidPipeProperties(200_000, 10000, true, true, true, true)
-            .build()
+        HeavyQuarkDegenerateMatter = addMaterial(2283, "heavy_quark_degenerate_matter")
+        {
+            ingot()
+            liquid()
+            plasma()
+            {
+                temperature(1_600_000_000)
+                customStill()
+            }
+            color(0x5DBD3A).iconSet(BRIGHT)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_GEAR,
+                  GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL,
+                  GENERATE_FOIL, GENERATE_FINE_WIRE)
+            rotorProp(48.0f, 16.0f, 983040)
+            fluidPipeProp(200_000, 10000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
+        }
 
         // 2284 Quantumchromodynamically ConfinedMatter (QCM)
-        QuantumchromodynamicallyConfinedMatter = Material.Builder(2284, GTLiteMod.id("quantumchromodynamically_confined_matter"))
-            .ingot()
-            .liquid()
-            .color(0xF0A745).iconSet(BRIGHT)
-            .flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
-            .cableProperties(V[UIV], 24, 12)
-            .fluidPipeProperties(400_000, 20000, true, true, true, true)
-            .build()
+        QuantumchromodynamicallyConfinedMatter = addMaterial(2284, "quantumchromodynamically_confined_matter")
+        {
+            ingot()
+            liquid()
+            color(0xF0A745).iconSet(BRIGHT)
+            flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
+            cableProp(V[UIV], 24, 12)
+            fluidPipeProp(400_000, 20000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
+        }
 
         // 2285 Sodium Ethoxide
-        SodiumEthoxide = Material.Builder(2285, GTLiteMod.id("sodium_ethoxide"))
-            .dust()
-            .color(Sodium.materialRGB + Ethanol.materialRGB)
-            .components(Carbon, 2, Hydrogen, 5, Oxygen, 1, Sodium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SodiumEthoxide = addMaterial(2285, "sodium_ethoxide")
+        {
+            dust()
+            color(Sodium.materialRGB + Ethanol.materialRGB)
+            components(Carbon, 2, Hydrogen, 5, Oxygen, 1, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2286 Iron (II) Chloride
-        Iron2Chloride = Material.Builder(2286, GTLiteMod.id("iron_2_chloride"))
-            .liquid()
-            .color(Iron3Chloride.materialRGB - 10)
-            .components(Iron, 1, Chlorine, 2)
-            .build()
+        Iron2Chloride = addMaterial(2286, "iron_2_chloride")
+        {
+            liquid()
+            color(Iron3Chloride.materialRGB - 10)
+            components(Iron, 1, Chlorine, 2)
+        }
 
         // 2287 Palladium Fullerene Matrix
-        PalladiumFullereneMatrix = Material.Builder(2287, GTLiteMod.id("palladium_fullerene_matrix"))
-            .dust()
-            .color(0x40AEE0).iconSet(SHINY)
-            .components(Carbon, 73, Hydrogen, 15, Nitrogen, 1, Iron, 1, Palladium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(C73H15NFe)Pd", true)
+        PalladiumFullereneMatrix = addMaterial(2287, "palladium_fullerene_matrix")
+        {
+            dust()
+            color(0x40AEE0).iconSet(SHINY)
+            components(Carbon, 73, Hydrogen, 15, Nitrogen, 1, Iron, 1, Palladium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2288 Lutetium-Thulium-Yttrium Chlorides Solution
-        LuTmYChloridesSolution = Material.Builder(2288, GTLiteMod.id("lu_tm_y_chlorides_solution"))
-            .liquid()
-            .colorAverage()
-            .components(Lutetium, 2, Thulium, 2, Yttrium, 6, Chlorine, 30, Water, 15)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(LuCl3)2(TmCl3)2(YCl3)6(H2O)15", true)
+        LuTmYChloridesSolution = addMaterial(2288, "lu_tm_y_chlorides_solution")
+        {
+            liquid()
+            colorAverage()
+            components(Lutetium, 2, Thulium, 2, Yttrium, 6, Chlorine, 30, Water, 15)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2289 Sodium Vanadate
-        SodiumVanadate = Material.Builder(2289, GTLiteMod.id("sodium_vanadate"))
-            .dust()
-            .color(0xCC9933).iconSet(SHINY)
-            .components(Sodium, 3, Vanadium, 1, Oxygen, 4)
-            .build()
+        SodiumVanadate = addMaterial(2289, "sodium_vanadate")
+        {
+            dust()
+            color(0xCC9933).iconSet(SHINY)
+            components(Sodium, 3, Vanadium, 1, Oxygen, 4)
+        }
 
         // 2290 Lu/Tm-doped Yttrium Vanadate Deposition
-        LuTmDopedYttriumVanadateDeposition = Material.Builder(2290, GTLiteMod.id("lu_tm_doped_yttrium_vanadate_deposition"))
-            .dust()
-            .colorAverage().iconSet(FINE)
-            .components(Lutetium, 1, Thulium, 1, SodiumVanadate, 1, RareEarth, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Lu/Tm:YVO?", false)
+        LuTmDopedYttriumVanadateDeposition = addMaterial(2290, "lu_tm_doped_yttrium_vanadate_deposition")
+        {
+            dust()
+            colorAverage().iconSet(FINE)
+            components(Lutetium, 1, Thulium, 1, SodiumVanadate, 1, RareEarth, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2291 Lu/Tm:YVO
-        LuTmYVO = Material.Builder(2291, GTLiteMod.id("lu_tm_yvo"))
-            .gem()
-            .color(0x8C1B23).iconSet(GEM_HORIZONTAL)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .components(Yttrium, 1, Vanadium, 1, Oxygen, 1, Lutetium, 1, Thulium, 1)
-            .build()
-            .setFormula("Lu/Tm:YVO", false)
+        LuTmYVO = addMaterial(2291, "lu_tm_yvo")
+        {
+            gem()
+            color(0x8C1B23).iconSet(GEM_HORIZONTAL)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+            components(Yttrium, 1, Vanadium, 1, Oxygen, 1, Lutetium, 1, Thulium, 1)
+        }
 
         // 2292 Hexagonal Silicon Nitride
-        HexagonalSiliconNitride = Material.Builder(2292, GTLiteMod.id("hexagonal_silicon_nitride"))
-            .gem()
-            .color(0x8C7BB6).iconSet(GEM_HORIZONTAL)
-            .components(Silicon, 3, Nitrogen, 4)
-            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("h-Si3N4", true)
+        HexagonalSiliconNitride = addMaterial(2292, "hexagonal_silicon_nitride")
+        {
+            gem()
+            color(0x8C7BB6).iconSet(GEM_HORIZONTAL)
+            components(Silicon, 3, Nitrogen, 4)
+            flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2293 Cubic Silicon Nitride
-        CubicSiliconNitride = Material.Builder(2293, GTLiteMod.id("cubic_silicon_nitride"))
-            .gem()
-            .color(0x415B70).iconSet(RUBY)
-            .components(Silicon, 3, Nitrogen, 4)
-            .flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
-            .build()
-            .setFormula("c-Si3N4", true)
+        CubicSiliconNitride = addMaterial(2293, "cubic_silicon_nitride")
+        {
+            gem()
+            color(0x415B70).iconSet(RUBY)
+            components(Silicon, 3, Nitrogen, 4)
+            flags(DISABLE_DECOMPOSITION, DISABLE_CRYSTALLIZATION, GENERATE_PLATE, GENERATE_LENS)
+        }
 
         // 2294 Cerium Carbonate
-        CeriumCarbonate = Material.Builder(2294, GTLiteMod.id("cerium_carbonate"))
-            .dust()
-            .color(0x57855C).iconSet(SHINY)
-            .components(Cerium, 2, Carbon, 3, Oxygen, 9)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Ce2(CO3)3", true)
+        CeriumCarbonate = addMaterial(2294, "cerium_carbonate")
+        {
+            dust()
+            color(0x57855C).iconSet(SHINY)
+            components(Cerium, 2, Carbon, 3, Oxygen, 9)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2295 Dielectric Formation Mixture
-        DielectricFormationMixture = Material.Builder(2295, GTLiteMod.id("dielectric_formation_mixture"))
-            .liquid(FluidBuilder().temperature(209))
-            .color(0xE62A35)
-            .components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
-            .flags(DISABLE_DECOMPOSITION) // Add centrifuging decomposition by OpticalCircuits.
-            .build()
+        // Add centrifuging decomposition by OpticalCircuits.
+        DielectricFormationMixture = addMaterial(2295, "dielectric_formation_mixture")
+        {
+            liquid()
+            {
+                temperature(209)
+            }
+            color(0xE62A35)
+            components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2296 Chloroauric Acid
-        ChloroauricAcid = Material.Builder(2296, GTLiteMod.id("chloroauric_acid"))
-            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
-            .color(0xD1B62C)
-            .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
-            .build()
+        ChloroauricAcid = addMaterial(2296, "chloroauric_acid")
+        {
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
+            color(0xD1B62C)
+            components(Hydrogen, 1, Gold, 1, Chlorine, 4)
+        }
 
         // 2297 Cadmium Sulfide
-        CadmiumSulfide = Material.Builder(2297, GTLiteMod.id("cadmium_sulfide"))
-            .dust()
-            .color(0xC8C43C).iconSet(METALLIC)
-            .components(Cadmium, 1, Sulfur, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING, GENERATE_PLATE)
-            .build()
+        CadmiumSulfide = addMaterial(2297, "cadmium_sulfide")
+        {
+            dust()
+            color(0xC8C43C).iconSet(METALLIC)
+            components(Cadmium, 1, Sulfur, 1)
+            flags(DECOMPOSITION_BY_ELECTROLYZING, GENERATE_PLATE)
+        }
 
         // 2298 Bismuth Chalcogenide
-        BismuthChalcogenide = Material.Builder(2298, GTLiteMod.id("bismuth_chalcogenide"))
-            .ingot()
-            .color(0x91994D).iconSet(SHINY)
-            .components(Bismuth, 1, Antimony, 1, Tellurium, 2, Sulfur, 1)
-            .flags(STD_METAL, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_FOIL)
-            .build()
+        BismuthChalcogenide = addMaterial(2298, "bismuth_chalcogenide")
+        {
+            ingot()
+            color(0x91994D).iconSet(SHINY)
+            components(Bismuth, 1, Antimony, 1, Tellurium, 2, Sulfur, 1)
+            flags(STD_METAL, DECOMPOSITION_BY_ELECTROLYZING, GENERATE_FOIL)
+        }
 
         // 2299 Plutonium Trihydride
-        PlutoniumTrihydride = Material.Builder(2299, GTLiteMod.id("plutonium_trihydride"))
-            .dust()
-            .color(0x140002).iconSet(SHINY)
-            .components(Plutonium244, 1, Hydrogen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("PuH3", true)
+        PlutoniumTrihydride = addMaterial(2299, "plutonium_trihydride")
+        {
+            dust()
+            color(0x140002).iconSet(SHINY)
+            components(Plutonium244, 1, Hydrogen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2300 Plutonium Phosphide
-        PlutoniumPhosphide = Material.Builder(2300, GTLiteMod.id("plutonium_phosphide"))
-            .ingot()
-            .color(0x1F0104).iconSet(MAGNETIC)
-            .components(Plutonium244, 1, Phosphorus, 1)
-            .flags(STD_METAL)
-            .build()
-            .setFormula("PuP", true)
+        PlutoniumPhosphide = addMaterial(2300, "plutonium_phosphide")
+        {
+            ingot()
+            color(0x1F0104).iconSet(MAGNETIC)
+            components(Plutonium244, 1, Phosphorus, 1)
+            flags(STD_METAL)
+        }
 
         // 2301 Phosphine
-        Phosphine = Material.Builder(2301, GTLiteMod.id("phosphine"))
-            .gas()
-            .color(0xACB330)
-            .components(Phosphorus, 1, Hydrogen, 3)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING, FLAMMABLE)
-            .build()
+        Phosphine = addMaterial(2301, "phosphine")
+        {
+            gas()
+            color(0xACB330)
+            components(Phosphorus, 1, Hydrogen, 3)
+            flags(DECOMPOSITION_BY_ELECTROLYZING, FLAMMABLE)
+        }
 
         // 2302 Mellion
-        Mellion = Material.Builder(2302, GTLiteMod.id("mellion"))
-            .ingot()
-            .liquid()
-            .color(0x3C0505).iconSet(SHINY)
-            .components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13, ActiniumSuperhydride, 8)
-            .flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL,
-                GENERATE_FINE_WIRE, GENERATE_NANITE)
-            .blast { b ->
-                b.temp(22000, BlastProperty.GasTier.HIGHEST) // Error
-                    .blastStats(VA[UXV], 20 * SECOND)
-                    .vacuumStats(VA[UIV], 10 * SECOND)
-            }
-            .cableProperties(V[UXV], 48, 12)
-            .itemPipeProperties(16, 2048F)
-            .build()
+        Mellion = addMaterial(2302, "mellion")
+        {
+            ingot()
+            liquid()
+            color(0x3C0505).iconSet(SHINY)
+            components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13,
+                       ActiniumSuperhydride, 8)
+            flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_NANITE)
+            blastProp(22000, GasTier.HIGHEST, // Eternity Plus
+                      VA[UXV], 20 * SECOND,
+                      VA[UIV], 10 * SECOND)
+            cableProp(V[UXV], 48, 12)
+            itemPipeProp(16, 2048F)
+        }
 
         // 2303 Lanthanum Fullerene Mixture
-        LanthanumFullereneMixture = Material.Builder(2303, GTLiteMod.id("lanthanum_fullerene_mixture"))
-            .dust()
-            .color(0xD26D8E).iconSet(BRIGHT)
-            .components(Carbon, 120, Hydrogen, 60, Lanthanum, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(C60H30)2La2", true)
+        LanthanumFullereneMixture = addMaterial(2303, "lanthanum_fullerene_mixture")
+        {
+            dust()
+            color(0xD26D8E).iconSet(BRIGHT)
+            components(Carbon, 120, Hydrogen, 60, Lanthanum, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2304 Lanthanum Embedded Fullerene
-        LanthanumEmbeddedFullerene = Material.Builder(2304, GTLiteMod.id("lanthanum_embedded_fullerene"))
-            .dust()
-            .color(0x84FFAC).iconSet(BRIGHT)
-            .components(Carbon, 120, Lanthanum, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(C60)2La2", true)
+        LanthanumEmbeddedFullerene = addMaterial(2304, "lanthanum_embedded_fullerene")
+        {
+            dust()
+            color(0x84FFAC).iconSet(BRIGHT)
+            components(Carbon, 120, Lanthanum, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2305 Lanthanum Fullerene Nanotube
-        LanthanumFullereneNanotube = Material.Builder(2305, GTLiteMod.id("lanthanum_fullerene_nanotube"))
-            .polymer()
-            .color(0xD24473).iconSet(BRIGHT)
-            .components(Carbon, 108, Lanthanum, 1)
-            .flags(EXT2_METAL, DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C48C60La", true)
+        LanthanumFullereneNanotube = addMaterial(2305, "lanthanum_fullerene_nanotube")
+        {
+            polymer()
+            color(0xD24473).iconSet(BRIGHT)
+            components(Carbon, 108, Lanthanum, 1)
+            flags(EXT2_METAL, DISABLE_DECOMPOSITION)
+        }
 
         // 2306 Seaborgium-doped Carbon Nanotube
-        SeaborgiumDopedCarbonNanotube = Material.Builder(2306, GTLiteMod.id("seaborgium_doped_carbon_nanotube"))
-            .polymer()
-            .color(0x2C2C8C).iconSet(SHINY)
-            .components(Carbon, 48, Seaborgium, 1)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
-            .build()
+        SeaborgiumDopedCarbonNanotube = addMaterial(2306, "seaborgium_doped_carbon_nanotube")
+        {
+            polymer()
+            color(0x2C2C8C).iconSet(SHINY)
+            components(Carbon, 48, Seaborgium, 1)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+        }
 
         // 2307 Praseodymium-Holmium-Yttrium Nitrates Solution
-        PrHoYNitratesSolution = Material.Builder(2307, GTLiteMod.id("pr_ho_y_nitrates_solution"))
-            .liquid()
-            .colorAverage()
-            .components(Praseodymium, 2, Nitrogen, 30, Oxygen, 105, Holmium, 2, Yttrium, 6, Hydrogen, 30)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(Pr(NO3)3)2(Ho(NO3)3)2(Y(NO3)3)6(H2O)15", true)
+        PrHoYNitratesSolution = addMaterial(2307, "pr_ho_y_nitrates_solution")
+        {
+            liquid()
+            colorAverage()
+            components(Praseodymium, 2, Nitrogen, 30, Oxygen, 105, Holmium, 2, Yttrium, 6, Hydrogen, 30)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2308 Pr/Ho:YLF
-        PrHoYLF = Material.Builder(2308, GTLiteMod.id("pr_ho_ylf"))
-            .gem()
-            .color(Praseodymium.materialRGB + Holmium.materialRGB + Yttrium.materialRGB
-                    + Lithium.materialRGB).iconSet(RUBY)
-            .components(Praseodymium, 1, Holmium, 1, Lithium, 1, Yttrium, 1, Fluorine, 4)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
-            .setFormula("Pr/Ho:YLF", true)
+        PrHoYLF = addMaterial(2308, "pr_ho_ylf")
+        {
+            gem()
+            color(Praseodymium.materialRGB + Holmium.materialRGB + Yttrium.materialRGB + Lithium.materialRGB).iconSet(RUBY)
+            components(Praseodymium, 1, Holmium, 1, Lithium, 1, Yttrium, 1, Fluorine, 4)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2309 Harmonic Phonon Matter
-        HarmonicPhononMatter = Material.Builder(2309, GTLiteMod.id("harmonic_phonon_matter"))
-            .ingot()
-            .liquid(FluidBuilder()
-                .temperature(2_000_000_000)
-                .translation("gregtech.fluid.generic"))
-            .iconSet(GLITCH)
-            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                GENERATE_FRAME)
-            .cableProperties(V[UXV], 72, 18)
-            .blast { b ->
-                b.temp(26000, BlastProperty.GasTier.HIGHEST) // Error
-                    .blastStats(VA[UXV], 2 * MINUTE)
-                    .vacuumStats(VA[UXV], 30 * SECOND)
+        HarmonicPhononMatter = addMaterial(2309, "harmonic_phonon_matter")
+        {
+            ingot()
+            liquid()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
             }
-            .fluidPipeProperties(1_600_000, 80000, true, true, true, true)
-            .build()
+            iconSet(GLITCH)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
+            blastProp(26000, GasTier.HIGHEST, // Eternity Plus
+                      VA[UXV], 2 * MINUTE,
+                      VA[UXV], 30 * SECOND)
+            cableProp(V[UXV], 72, 18)
+            fluidPipeProp(1_600_000, 80000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
+        }
 
         // 2310 Trichlorocyclopentadienyl Titanium
-        TrichlorocyclopentadienylTitanium = Material.Builder(2310, GTLiteMod.id("trichlorocyclopentadienyl_titanium"))
-            .dust()
-            .color(0xE600F2).iconSet(SHINY)
-            .components(Carbon, 10, Hydrogen, 10, Chlorine, 3, Titanium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(C5H5)2Cl3Ti", true)
+        TrichlorocyclopentadienylTitanium = addMaterial(2310, "trichlorocyclopentadienyl_titanium")
+        {
+            dust()
+            color(0xE600F2).iconSet(SHINY)
+            components(Carbon, 10, Hydrogen, 10, Chlorine, 3, Titanium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2311 Silver Perchlorate
-        SilverPerchlorate = Material.Builder(2311, GTLiteMod.id("silver_perchlorate"))
-            .dust()
-            .color(0xFFFFFF).iconSet(SHINY)
-            .components(Silver, 1, Chlorine, 1, Oxygen, 4)
-            .build()
+        SilverPerchlorate = addMaterial(2311, "silver_perchlorate")
+        {
+            dust()
+            color(0xFFFFFF).iconSet(SHINY)
+            components(Silver, 1, Chlorine, 1, Oxygen, 4)
+        }
 
         // 2312 Photopolymer Solution
-        PhotopolymerSolution = Material.Builder(2312, GTLiteMod.id("photopolymer_solution"))
-            .liquid()
-            .color(0x5E1D29)
-            .components(Carbon, 149, Hydrogen, 97, Nitrogen, 10, Oxygen, 2, Titanium, 1, Boron, 1, Fluorine, 20)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C149H97N10O2(TiBF20)", true)
+        PhotopolymerSolution = addMaterial(2312, "photopolymer_solution")
+        {
+            liquid()
+            color(0x5E1D29)
+            components(Carbon, 149, Hydrogen, 97, Nitrogen, 10, Oxygen, 2, Titanium, 1, Boron, 1, Fluorine, 20)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2313 Sodium Bromide
-        SodiumBromide = Material.Builder(2313, GTLiteMod.id("sodium_bromide"))
-            .dust()
-            .color(0xE3B9F7).iconSet(ROUGH)
-            .components(Sodium, 1, Bromine, 1)
-            .build()
+        SodiumBromide = addMaterial(2313, "sodium_bromide")
+        {
+            dust()
+            color(0xE3B9F7).iconSet(ROUGH)
+            components(Sodium, 1, Bromine, 1)
+        }
 
         // 2314 Black Dwarf Matter
-        BlackDwarfMatter = Material.Builder(2314, GTLiteMod.id("black_dwarf_matter"))
-            .ingot()
-            .fluid()
-            .color(0x000000).iconSet(METALLIC)
-            .flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
-                GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND,
-                GENERATE_NANITE)
-            .build()
+        BlackDwarfMatter = addMaterial(2314, "black_dwarf_matter")
+        {
+            ingot()
+            fluid()
+            color(0x000000).iconSet(METALLIC)
+            flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING, GENERATE_SPRING_SMALL,
+                  GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND,
+                  GENERATE_NANITE)
+        }
 
         // 2315 White Dwarf Matter
-        WhiteDwarfMatter = Material.Builder(2315, GTLiteMod.id("white_dwarf_matter"))
-            .ingot()
-            .fluid()
-            .iconSet(WHITE_DWARF)
-            .flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR,
-                   GENERATE_FRAME, GENERATE_NANITE, GENERATE_ROTOR)
-            .cableProperties(V[OpV], 108, 36)
-            .build()
+        WhiteDwarfMatter = addMaterial(2315, "white_dwarf_matter")
+        {
+            ingot()
+            fluid()
+            iconSet(WHITE_DWARF)
+            flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_FRAME, GENERATE_NANITE,
+                  GENERATE_ROTOR)
+            cableProp(V[OpV], 108, 36)
+        }
 
         // 2316 Potassium Ferrocyanide Trihydrate
-        PotassiumFerrocyanideTrihydrate = Material.Builder(2316, GTLiteMod.id("potassium_ferrocyanide_trihydrate"))
-            .dust()
-            .color(0x0069B2).iconSet(ROUGH)
-            .components(Potassium, 4, Iron, 1, Carbon, 6, Nitrogen, 6, Water, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("K4Fe(CN)6(H2O)3", true)
+        PotassiumFerrocyanideTrihydrate = addMaterial(2316, "potassium_ferrocyanide_trihydrate")
+        {
+            dust()
+            color(0x0069B2).iconSet(ROUGH)
+            components(Potassium, 4, Iron, 1, Carbon, 6, Nitrogen, 6, Water, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2317 Prussian Blue
-        PrussianBlue = Material.Builder(2317, GTLiteMod.id("prussian_blue"))
-            .dust()
-            .color(0x003153).iconSet(SHINY)
-            .components(Iron, 7, Carbon, 18, Nitrogen, 18)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Fe4[Fe(CN)6]3", true)
+        PrussianBlue = addMaterial(2317, "prussian_blue")
+        {
+            dust()
+            color(0x003153).iconSet(SHINY)
+            components(Iron, 7, Carbon, 18, Nitrogen, 18)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2318 Copper Arsenite
-        CopperArsenite = Material.Builder(2318, GTLiteMod.id("copper_arsenite"))
-            .dust()
-            .color(0x66FF66).iconSet(ROUGH)
-            .components(Copper, 3, Arsenic, 2, Oxygen, 8)
-            .build()
-            .setFormula("Cu3(AsO4)2", true)
+        CopperArsenite = addMaterial(2318, "copper_arsenite")
+        {
+            dust()
+            color(0x66FF66).iconSet(ROUGH)
+            components(Copper, 3, Arsenic, 2, Oxygen, 8)
+        }
 
         // 2319 Scheeles' Green
-        ScheelesGreen = Material.Builder(2319, GTLiteMod.id("scheeles_green"))
-            .dust()
-            .liquid()
-            .color(0x00FF00).iconSet(DULL)
-            .components(Arsenic, 1, Copper, 1, Hydrogen, 1, Oxygen, 3)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        ScheelesGreen = addMaterial(2319, "scheeles_green")
+        {
+            dust()
+            liquid()
+            color(0x00FF00).iconSet(DULL)
+            components(Arsenic, 1, Copper, 1, Hydrogen, 1, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2320 Caesium Iodide
-        CaesiumIodide = Material.Builder(2320, GTLiteMod.id("caesium_iodide"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Caesium, 1, Iodine, 1)
-            .build()
+        CaesiumIodide = addMaterial(2320, "caesium_iodide")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Caesium, 1, Iodine, 1)
+        }
 
         // 2321 Thallium/Thulium-doped Caesium Iodide
-        ThalliumThuliumDopedCaesiumIodide = Material.Builder(2321, GTLiteMod.id("thallium_thulium_doped_caesium_iodide"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(CaesiumIodide, 1, Thallium, 1, Thulium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("Tl/Tm:CsI", false)
+        ThalliumThuliumDopedCaesiumIodide = addMaterial(2321, "thallium_thulium_doped_caesium_iodide")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(CaesiumIodide, 1, Thallium, 1, Thulium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2322 Cadmium Tungstate
-        CadmiumTungstate = Material.Builder(2322, GTLiteMod.id("cadmium_tungstate"))
-            .dust()
-            .colorAverage(Cadmium.materialRGB, Tungsten.materialRGB).iconSet(SHINY)
-            .components(Cadmium, 1, Tungsten, 1, Oxygen, 4)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        CadmiumTungstate = addMaterial(2322, "cadmium_tungstate")
+        {
+            dust()
+            colorAverage(Cadmium.materialRGB, Tungsten.materialRGB).iconSet(SHINY)
+            components(Cadmium, 1, Tungsten, 1, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2323 Bismuth Germanate
-        BismuthGermanate = Material.Builder(2323, GTLiteMod.id("bismuth_germanate"))
-            .dust()
-            .colorAverage(Bismuth, Germanium).iconSet(ROUGH)
-            .components(Bismuth, 4, Germanium, 3, Oxygen, 12)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        BismuthGermanate = addMaterial(2323, "bismuth_germanate")
+        {
+            dust()
+            colorAverage(Bismuth, Germanium).iconSet(ROUGH)
+            components(Bismuth, 4, Germanium, 3, Oxygen, 12)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2324 Lanthanum Zirconate
-        LanthanumZirconate = Material.Builder(2324, GTLiteMod.id("lanthanum_zirconate"))
-            .ingot()
-            .fluid()
-            .color(0xEA9A05).iconSet(METALLIC)
-            .components(Lanthanum, 2, Zirconium, 2, Oxygen, 7)
-            .flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(11900, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
-                    .blastStats(VA[UHV], 35 * SECOND)
-                    .vacuumStats(VA[UV], 17 * SECOND + 10 * TICK)
-            }
-            .build()
+        LanthanumZirconate = addMaterial(2324, "lanthanum_zirconate")
+        {
+            ingot()
+            fluid()
+            color(0xEA9A05).iconSet(METALLIC)
+            components(Lanthanum, 2, Zirconium, 2, Oxygen, 7)
+            flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(11900, GasTier.HIGHEST, // Adamantium
+                      VA[UHV], 35 * SECOND,
+                      VA[UV], 17 * SECOND + 10 * TICK)
+        }
 
         // 2325 Moscovium Iridiate
-        MoscoviumIridiate = Material.Builder(2325, GTLiteMod.id("moscovium_iridiate"))
-            .ingot()
-            .fluid()
-            .color(0x478A6B).iconSet(SHINY)
-            .components(Moscovium, 2, Iridium, 2, Oxygen, 7)
-            .flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(12200, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
-                    .blastStats(VA[UHV], 28 * SECOND)
-                    .vacuumStats(VA[UV], 14 * SECOND)
-            }
-            .build()
+        MoscoviumIridiate = addMaterial(2325, "moscovium_iridiate")
+        {
+            ingot()
+            fluid()
+            color(0x478A6B).iconSet(SHINY)
+            components(Moscovium, 2, Iridium, 2, Oxygen, 7)
+            flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(12200, GasTier.HIGHEST, // Adamantium
+                      VA[UHV], 28 * SECOND,
+                      VA[UV], 14 * SECOND)
+        }
 
         // 2326 Hydromoscovic Acid
-        HydromoscovicAcid = Material.Builder(2326,  GTLiteMod.id("hydromoscovic_acid"))
-            .liquid(FluidBuilder()
-                .attribute(FluidAttributes.ACID))
-            .components(Hydrogen, 1, Moscovium, 1, Oxygen, 4)
-            .build()
+        HydromoscovicAcid = addMaterial(2326, "hydromoscovic_acid")
+        {
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
+            components(Hydrogen, 1, Moscovium, 1, Oxygen, 4)
+        }
 
         // 2327 Strontium Europium Nihonate
-        StrontiumEuropiumNihonate = Material.Builder(2327, GTLiteMod.id("strontium_europium_nihonate"))
-            .ingot()
-            .fluid()
-            .color(0xBE2B49).iconSet(METALLIC)
-            .components(Strontium, 1, Europium, 1, Nihonium, 2, Oxygen, 4)
-            .flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
-            .blast { b ->
-                b.temp(12400, BlastProperty.GasTier.HIGHEST) // Adamantium (Tritanium)
-                    .blastStats(VA[UHV], 33 * SECOND)
-                    .vacuumStats(VA[UV], 12 * SECOND + 15 * TICK)
-            }
-            .build()
+        StrontiumEuropiumNihonate = addMaterial(2327, "strontium_europium_nihonate")
+        {
+            ingot()
+            fluid()
+            color(0xBE2B49).iconSet(METALLIC)
+            components(Strontium, 1, Europium, 1, Nihonium, 2, Oxygen, 4)
+            flags(STD_METAL, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            blastProp(12400, GasTier.HIGHEST, // Adamantium
+                      VA[UHV], 33 * SECOND,
+                      VA[UV], 12 * SECOND + 15 * TICK)
+        }
 
         // 2328 Neutronium-doped Carbon Nanotube
-        NeutroniumDopedCarbonNanotube = Material.Builder(2328, GTLiteMod.id("neutronium_doped_carbon_nanotube"))
-            .polymer()
-            .liquid()
-            .color(0xDFDFDF).iconSet(SHINY)
-            .components(Carbon, 48, Neutronium, 1)
-            .flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
-            .build()
+        NeutroniumDopedCarbonNanotube = addMaterial(2328, "neutronium_doped_carbon_nanotube")
+        {
+            polymer()
+            liquid()
+            color(0xDFDFDF).iconSet(SHINY)
+            components(Carbon, 48, Neutronium, 1)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+        }
 
         // 2329 Cosmic Fabric
-        CosmicFabric = Material.Builder(2329, GTLiteMod.id("cosmic_fabric"))
-            .polymer()
-            .liquid()
-            .plasma()
-            .color(0x9E19CF)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL,
-                GENERATE_FINE_WIRE)
-            .build()
+        CosmicFabric = addMaterial(2329, "cosmic_fabric")
+        {
+            polymer()
+            liquid()
+            plasma()
+            color(0x9E19CF)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_FOIL, GENERATE_FINE_WIRE)
+        }
 
         // 2330 Silicon Nanoparticles
-        SiliconNanoparticles = Material.Builder(2330, GTLiteMod.id("silicon_nanoparticles"))
-            .dust()
-            .color(Silicon.materialRGB).iconSet(NANOPARTICLES)
-            .components(Silicon, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SiliconNanoparticles = addMaterial(2330, "silicon_nanoparticles")
+        {
+            dust()
+            color(Silicon.materialRGB).iconSet(NANOPARTICLES)
+            components(Silicon, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2331 Sodium Alginate
-        SodiumAlginate = Material.Builder(2331, GTLiteMod.id("sodium_alginate"))
-            .dust()
-            .color(0x663333).iconSet(ROUGH)
-            .components(Carbon, 6, Hydrogen, 7, Oxygen, 6, Sodium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C5H7O4COONa", true)
+        SodiumAlginate = addMaterial(2331, "sodium_alginate")
+        {
+            dust()
+            color(0x663333).iconSet(ROUGH)
+            components(Carbon, 6, Hydrogen, 7, Oxygen, 6, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2332 Calcium Alginate
-        CalciumAlginate = Material.Builder(2332, GTLiteMod.id("calcium_alginate"))
-            .dust()
-            .color(0x654321).iconSet(ROUGH)
-            .components(Carbon, 12, Hydrogen, 14, Oxygen, 12, Calcium, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("(C5H7O4COO)2Ca", true)
+        CalciumAlginate = addMaterial(2332, "calcium_alginate")
+        {
+            dust()
+            color(0x654321).iconSet(ROUGH)
+            components(Carbon, 12, Hydrogen, 14, Oxygen, 12, Calcium, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 2333 Chromatic Glass
-        ChromaticGlass = Material.Builder(2333, GTLiteMod.id("chromatic_glass"))
-            .ingot()
-            .iconSet(CHROMATIC)
-            .components(Glass, 64)
-            .flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_LENS,
-                   GENERATE_FRAME)
-            .build()
-            .setFormula("(SiO2)64", true)
+        ChromaticGlass = addMaterial(2333, "chromatic_glass")
+        {
+            ingot()
+            iconSet(CHROMATIC)
+            components(Glass, 64)
+            flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_LENS, GENERATE_FRAME)
+        }
 
         // 2334 Lanthanum Hexaboride
-        LanthanumHexaboride = Material.Builder(2334, GTLiteMod.id("lanthanum_hexaboride"))
-            .gem()
-            .color(0x8C6E78).iconSet(GEM_HORIZONTAL)
-            .components(Lanthanum, 1, Boron, 6)
-            .flags(GENERATE_PLATE, GENERATE_LENS, CRYSTALLIZABLE)
-            .build()
+        LanthanumHexaboride = addMaterial(2334, "lanthanum_hexaboride")
+        {
+            gem()
+            color(0x8C6E78).iconSet(GEM_HORIZONTAL)
+            components(Lanthanum, 1, Boron, 6)
+            flags(STD_METAL, GENERATE_LENS, CRYSTALLIZABLE)
+        }
 
         // 2335 Francium Carbide
-        FranciumCarbide = Material.Builder(2335, GTLiteMod.id("francium_carbide"))
-            .dust()
-            .colorAverage().iconSet(METALLIC)
-            .components(Francium, 2, Carbon, 2)
-            .build()
+        FranciumCarbide = addMaterial(2335, "francium_carbide")
+        {
+            dust()
+            colorAverage().iconSet(METALLIC)
+            components(Francium, 2, Carbon, 2)
+        }
 
         // 2336 Boron Carbide
-        BoronCarbide = Material.Builder(2336, GTLiteMod.id("boron_carbide"))
-            .gem()
-            .colorAverage().iconSet(GEM_HORIZONTAL)
-            .components(Boron, 4, Carbon, 1)
-            .flags(GENERATE_PLATE, GENERATE_LENS)
-            .build()
+        BoronCarbide = addMaterial(2336, "boron_carbide")
+        {
+            gem()
+            colorAverage().iconSet(GEM_HORIZONTAL)
+            components(Boron, 4, Carbon, 1)
+            flags(STD_METAL, GENERATE_LENS)
+        }
 
         // 2337 Astatine Azide
-        AstatineAzide = Material.Builder(2337, GTLiteMod.id("astatine_azide"))
-            .dust()
-            .colorAverage().iconSet(SHINY)
-            .components(Astatine, 1, Nitrogen, 3)
-            .build()
+        AstatineAzide = addMaterial(2337, "astatine_azide")
+        {
+            dust()
+            colorAverage().iconSet(SHINY)
+            components(Astatine, 1, Nitrogen, 3)
+        }
 
         // 2338 Holmium Iodide
-        HolmiumIodide = Material.Builder(2338, GTLiteMod.id("holmium_iodide"))
-            .dust()
-            .color(0xEDAE17).iconSet(METALLIC)
-            .components(Holmium, 1, Iodine, 3)
-            .build()
+        HolmiumIodide = addMaterial(2338, "holmium_iodide")
+        {
+            dust()
+            color(0xEDAE17).iconSet(METALLIC)
+            components(Holmium, 1, Iodine, 3)
+        }
 
         // 2339 Heavy Conductive Mixture
-        HeavyConductiveMixture = Material.Builder(2339, GTLiteMod.id("heavy_conductive_mixture"))
-            .dust()
-            .color(0x1264FF).iconSet(MAGNETIC)
-            .components(FranciumCarbide, 1, BoronCarbide, 1, AstatineAzide, 1,
-                        HolmiumIodide, 1)
-            .build()
+        HeavyConductiveMixture = addMaterial(2339, "heavy_conductive_mixture")
+        {
+            dust()
+            color(0x1264FF).iconSet(MAGNETIC)
+            components(FranciumCarbide, 1, BoronCarbide, 1, AstatineAzide, 1, HolmiumIodide, 1)
+        }
 
         // 2340 Plutonium Dioxide
-        PlutoniumDioxide = Material.Builder(2340, GTLiteMod.id("plutonium_dioxide"))
-            .dust()
-            .color(0xB02E41).iconSet(SHINY)
-            .components(Plutonium241, 1, Oxygen, 2)
-            .build()
-            .setFormula("PuO2", true)
+        PlutoniumDioxide = addMaterial(2340, "plutonium_dioxide")
+        {
+            dust()
+            color(0xB02E41).iconSet(SHINY)
+            components(Plutonium241, 1, Oxygen, 2)
+        }
 
         // 2341 MOX
-        MOX = Material.Builder(2341, GTLiteMod.id("mox"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(PlutoniumDioxide, 1, Uraninite, 2)
-            .build()
-            .setFormula("(PuO2)(UO2)2", true)
+        MOX = addMaterial(2341, "mox")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(PlutoniumDioxide, 1, Uraninite, 2)
+        }
 
         // 2342 Barium Manganate
-        BariumManganate = Material.Builder(2342, GTLiteMod.id("barium_manganate"))
-            .dust()
-            .colorAverage().iconSet(ROUGH)
-            .components(Barium, 1, Manganese, 1, Oxygen, 4)
-            .build()
+        BariumManganate = addMaterial(2342, "barium_manganate")
+        {
+            dust()
+            colorAverage().iconSet(ROUGH)
+            components(Barium, 1, Manganese, 1, Oxygen, 4)
+        }
 
         // 2343 Barium Dichloride
-        BariumDichloride = Material.Builder(2343, GTLiteMod.id("barium_dichloride"))
-            .dust()
-            .colorAverage().iconSet(DULL)
-            .components(Barium, 1, Chlorine, 2)
-            .build()
+        BariumDichloride = addMaterial(2343, "barium_dichloride")
+        {
+            dust()
+            colorAverage().iconSet(DULL)
+            components(Barium, 1, Chlorine, 2)
+        }
 
         // 2344 Thallium Chloride
-        ThalliumChloride = Material.Builder(2344, GTLiteMod.id("thallium_chloride"))
-            .dust()
-            .color(0xFF7409).iconSet(METALLIC)
-            .components(Thallium, 1, Chlorine, 1)
-            .build()
+        ThalliumChloride = addMaterial(2344, "thallium_chloride")
+        {
+            dust()
+            color(0xFF7409).iconSet(METALLIC)
+            components(Thallium, 1, Chlorine, 1)
+        }
 
         // 2345 Hassium Tetrachloride
-        HassiumTetrachloride = Material.Builder(2345, GTLiteMod.id("hassium_tetrachloride"))
-            .dust()
-            .color(0x032551).iconSet(SHINY)
-            .components(MetastableHassium, 1, Chlorine, 4)
-            .build()
+        HassiumTetrachloride = addMaterial(2345, "hassium_tetrachloride")
+        {
+            dust()
+            color(0x032551).iconSet(SHINY)
+            components(MetastableHassium, 1, Chlorine, 4)
+        }
 
         // 2346 Rhenium Pentachloride
-        RheniumPentachloride = Material.Builder(2346, GTLiteMod.id("rhenium_pentachloride"))
-            .dust()
-            .color(0x5B1780).iconSet(SHINY)
-            .components(Rhenium, 1, Chlorine, 5)
-            .build()
+        RheniumPentachloride = addMaterial(2346, "rhenium_pentachloride")
+        {
+            dust()
+            color(0x5B1780).iconSet(SHINY)
+            components(Rhenium, 1, Chlorine, 5)
+        }
 
         // 2347 Hexafluorophosphoric Acid
-        HexafluorophosphoricAcid = Material.Builder(2347, GTLiteMod.id("hexafluorophosphoric_acid"))
-            .liquid(FluidBuilder().attributes(FluidAttributes.ACID))
-            .color(0xFCC782)
-            .components(Hydrogen, 1, Phosphorus, 1, Fluorine, 6)
-            .build()
+        HexafluorophosphoricAcid = addMaterial(2347, "hexafluorophosphoric_acid")
+        {
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
+            color(0xFCC782)
+            components(Hydrogen, 1, Phosphorus, 1, Fluorine, 6)
+        }
 
         // 2348 Sodium Thiocyanate
-        SodiumThiocyanate = Material.Builder(2348, GTLiteMod.id("sodium_thiocyanate"))
-            .dust()
-            .color(0x818052)
-            .components(Sodium, 1, Sulfur, 1, Carbon, 1, Nitrogen, 1)
-            .build()
+        SodiumThiocyanate = addMaterial(2348, "sodium_thiocyanate")
+        {
+            dust()
+            color(0x818052)
+            components(Sodium, 1, Sulfur, 1, Carbon, 1, Nitrogen, 1)
+        }
 
-        // 2349 Rhenium Hassium Thallium Isophtaloylbisdiethylthiourea Hexafluorophosphate
-        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = Material.Builder(2349, GTLiteMod.id("rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate"))
-            .dust()
-            .color(0x5F5F82).iconSet(BRIGHT)
-            .components(Carbon, 60, Hydrogen, 84, Oxygen, 12, Nitrogen, 12, Sulfur, 6, Fluorine, 6, Phosphorus, 1, Rhenium, 1, MetastableHassium, 1, Thallium, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        // 2349 Rhenium Hassium Thallium Isophtaloylbisdiethylthiourea Hexafluorophosphate (RHTIH)
+        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate = addMaterial(2349, "rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate")
+        {
+            dust()
+            color(0x5F5F82).iconSet(BRIGHT)
+            components(Carbon, 60, Hydrogen, 84, Oxygen, 12, Nitrogen, 12, Sulfur, 6, Fluorine, 6, Phosphorus, 1,
+                       Rhenium, 1, MetastableHassium, 1, Thallium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
     }
 
