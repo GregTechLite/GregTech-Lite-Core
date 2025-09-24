@@ -177,6 +177,9 @@ import gregtechlite.gtlitecore.api.extension.addIngot
 import gregtechlite.gtlitecore.api.extension.addLiquid
 import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
 import gregtechlite.gtlitecore.api.extension.addPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetonitrile
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumUnstable
@@ -185,18 +188,29 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumAcetate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumBifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumCyanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloropalladate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloroplatinate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPersulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthStrontiumCalciumCuprate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bistrichloromethylbenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumCarbonate
@@ -209,19 +223,49 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicHeterodiamond
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicSiliconNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyanIndigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diaminotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylaminopyridine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FormicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexamethylenetetramine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineAluminium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kimberlite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Komatiite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
@@ -239,25 +283,45 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYVO
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NHydroxysuccinimide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Naphthylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NdYAG
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitroaniline
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oxydianiline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumFullereneMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaPhenylenediamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenothiazine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenylsodium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhotopolymerSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupConcentrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupResidue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumPhosphide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumTrihydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PoloniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolystyreneSulfonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polytetrahydrofuran
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumFerrocyanideTrihydrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYLF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYNitratesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurifiedPlatinumGroupConcentrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PyromelliticDianhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
@@ -266,12 +330,29 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPolonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthalicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthaloylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoindigo
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetraethylammoniumBromide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumThuliumDopedCaesiumIodide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneTetramethylDiisocyanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TransitionAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tributylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrichlorocyclopentadienylTitanium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylaluminium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylgallium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrimethyltinChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Triphenylphosphine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trisaminoethylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
@@ -567,7 +648,6 @@ object GTLiteMaterialProperties
     fun setChemicalFormula()
     {
         // region GTCEu Materials
-
         Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
         Mica.setFormula("KAl2(AlSi3O10)F2", true)
         Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
@@ -575,17 +655,13 @@ object GTLiteMaterialProperties
         PalladiumRaw.setFormula("PdCl2", true)
         RarestMetalMixture.setFormula("IrOs?", true)
         IridiumMetalResidue.setFormula("Ir2O3", true)
-
         // endregion
 
         // region Element Materials
-
         DegenerateRhenium.setFormula("§cR§de", true)
-
         // endregion
 
         // region First Degree Materials
-
         Dolomite.setFormula("CaMg(CO3)2", true)
         Azurite.setFormula("Cu3(CO3)2(OH)2", true)
         Forsterite.setFormula("Mg2(SiO4)", true)
@@ -683,11 +759,9 @@ object GTLiteMaterialProperties
         ChromaticGlass.setFormula("(SiO2)64", true)
         PlutoniumDioxide.setFormula("PuO2", true)
         MOX.setFormula("(PuO2)(UO2)2", true)
-
         // endregion
 
         // region Second Degree Materials
-
         Kovar.setFormula("Fe10Ni5Co3", true)
         HalkoniteSteel.setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true)
         TantalumHafniumSeaborgiumCarbide.setFormula("Ta12Hf3SgC16", true)
@@ -698,11 +772,9 @@ object GTLiteMaterialProperties
                                + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
                                + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
                                + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
-
         // endregion
 
         // region Third Degree Materials
-
         Limestone.setFormula("(CaCO3)4(CaMg(CO3)2)?", true)
         Komatiite.setFormula("(Mg2Fe(SiO2)2)2(MgCO3)(SiO2)?", true)
         GreenSchist.setFormula("(Ca2Al3Si3HO13)2(SiO2)2(Mg3Si4H2O12)?", true)
@@ -710,8 +782,94 @@ object GTLiteMaterialProperties
         Kimberlite.setFormula("(Mg2(SiO4))3((Ca2MgFe)(MgFe)2(Si2O6)4)3(Ca3Fe2Si3O12)2?", true)
         Slate.setFormula("(SiO2)5(KAl2(AlSi3O10)(OH)2)2(Mg5Al2Si3O10(OH)8)2?", true)
         Shale.setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
-
         GelidCryotheum.setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+        // endregion
+
+        // region Organic Chemistry Materials
+        ParaXylene.setFormula("C6H4(CH3)2", true)
+        Nitrotoluene.setFormula("C6H4CH3NO2", true)
+        Butanediol.setFormula("C4H8(OH)2", true)
+        Tetrahydrofuran.setFormula("(CH2)4O", true)
+        DiethylhexylPhosphoricAcid.setFormula("(C8H7O)2PO2H", true)
+        FormicAcid.setFormula("HCOOH", true)
+        MethylFormate.setFormula("HCO2CH3", true)
+        PhthalicAnhydride.setFormula("C6H4(CO)2O", true)
+        Ethylanthraquinone.setFormula("C6H4(CO)2C6H3Et", true)
+        Ethylanthrahydroquinone.setFormula("C6H4(CH2OH)2C6H3Et", true)
+        Durene.setFormula("C6H2(CH3)4", true)
+        PyromelliticDianhydride.setFormula("C6H2(C2O3)2", true)
+        Aniline.setFormula("C6H5NH2", true)
+        Oxydianiline.setFormula("O(C6H4NH2)2", true)
+        KaptonK.setFormula("(C7H2N2O4)(O(C6H4)2)", true)
+        BiphenylTetracarboxylicAcidDianhydride.setFormula("(C8H3O3)2", true)
+        Nitroaniline.setFormula("H2NC6H4NO2", true)
+        ParaPhenylenediamine.setFormula("H2NC6H4NH2", true)
+        KaptonE.setFormula("O(C6H4NH2)2", true)
+        EthyleneGlycol.setFormula("C2H4(OH)2", true)
+        PolystyreneSulfonate.setFormula("C8H7SO3H", true)
+        Methylamine.setFormula("CH3NH2", true)
+        Trimethylamine.setFormula("(CH3)3N", true)
+        TetramethylammoniumChloride.setFormula("N(CH3)4Cl", true)
+        TetramethylammoniumHydroxide.setFormula("N(CH3)4OH", true)
+        Ethylenediamine.setFormula("C2H4(NH2)2", true)
+        RawPolyphosphonitrileFluoroRubber.setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+        PolyphosphonitrileFluoroRubber.setFormula("(CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4", true)
+        Polytetrahydrofuran.setFormula("(C4H8O)OH2", true)
+        Diaminotoluene.setFormula("C6H3(NH2)2CH3", true)
+        TolueneDiisocyanate.setFormula("CH3C6H3(NCO)2", true)
+        TolueneTetramethylDiisocyanate.setFormula("(CONH)2(C6H4)2CH2(C4O)", true)
+        RawPolytetramethyleneGlycolRubber.setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+        PolytetramethyleneGlycolRubber.setFormula("(CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH", true)
+        Difluorobenzophenone.setFormula("(FC6H4)2CO", true)
+        Hydroquinone.setFormula("C6H4(OH)2", true)
+        Isochloropropane.setFormula("CH3CHClCH3", true)
+        Dinitrodipropanyloxybenzene.setFormula("C12H16O2(NO2)2", true)
+        TerephthalicAcid.setFormula("C6H4(CO2H)2", true)
+        Bistrichloromethylbenzene.setFormula("C6H4(CCl3)2", true)
+        TerephthaloylChloride.setFormula("C6H4(COCl)2", true)
+        Kevlar.setFormula("(C6H4)2(CO)2(NH)2", true)
+        Trimethylaluminium.setFormula("Al2(CH3)6", true)
+        Trimethylgallium.setFormula("Ga(CH3)3", true)
+        AmmoniumCyanate.setFormula("NH4CNO", true)
+        Butanol.setFormula("C4H9OH", true)
+        Tributylamine.setFormula("(C4H9)3N", true)
+        DiethylEther.setFormula("(C2H5)2O", true)
+        BenzylBromide.setFormula("C6H5CH2Br", true)
+        BenzyltrimethylammoniumBromide.setFormula("C6H5CH2N(CH3)3Br", true)
+        Indene.setFormula("C6H4C3H4", true)
+        Indanone.setFormula("C6H4C3H4O", true)
+        Bromobutane.setFormula("C4H9Br", true)
+        Butyllithium.setFormula("C4H9Li", true)
+        AcetylChloride.setFormula("CH3COCl", true)
+        Dimethylacetamide.setFormula("(CH3)2NC(O)CH3", true)
+        SuccinicAnhydride.setFormula("(CH2CO)2O", true)
+        NHydroxysuccinimide.setFormula("(CH2CO)2NOH", true)
+        DimethylamineHydrochloride.setFormula("C2H8NCl", true)
+        Dimethylformamide.setFormula("(CH3)2NC(O)H", true)
+        Acetonitrile.setFormula("CH3CN", true)
+        Acetamide.setFormula("CH3CONH2", true)
+        Hexamethylenetetramine.setFormula("(CH2)6N4", true)
+        TrimethyltinChloride.setFormula("(CH3)3SnCl", true)
+        Dimethylaminopyridine.setFormula("(CH3)2NC5H4N", true)
+        Triphenylphosphine.setFormula("(C6H5)3P", true)
+        DimethylSulfide.setFormula("(CH3)2S", true)
+        FullerenePolymerMatrix.setFormula("(C153H36NO2)PdFe", true)
+        Methyltrichlorosilane.setFormula("Si(CH3)Cl3", true)
+        DiethylSulfide.setFormula("(C2H5)2S", true)
+        Phenothiazine.setFormula("C12H9NS", true)
+        IsopropylChloride.setFormula("(CH3)2CHCl", true)
+        AmmoniumBifluoride.setFormula("NH4HF2", true)
+        TetraethylammoniumBromide.setFormula("N(CH2CH3)4Br", true)
+        Phenylsodium.setFormula("C6H5Na", true)
+        Tetrabromoindigo.setFormula("C16H6Br4N2O2", true)
+        CyanIndigo.setFormula("(C16H10N2O2)2Br4", true)
+        Naphthylamine.setFormula("C10H8NH", true)
+        Trisaminoethylamine.setFormula("(NH2CH2CH2)3N", true)
+        Ethylamine.setFormula("C2H5NH2", true)
+        Diethylthiourea.setFormula("(C2H5NH)2CS", true)
+        // endregion
+
+        // region Unknown Composition Materials
 
         // endregion
 
