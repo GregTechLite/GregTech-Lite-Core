@@ -92,6 +92,16 @@ fun Material.Builder.blastProp(temperature: Int, gasTier: BlastProperty.GasTier)
 }
 
 fun Material.Builder.blastProp(temperature: Int, gasTier: BlastProperty.GasTier,
+                               blastEUtOverride: Int, blastDurationOverride: Int): Material.Builder
+{
+    blast { b ->
+        b.temp(temperature, gasTier)
+            .blastStats(blastEUtOverride, blastDurationOverride)
+    }
+    return this
+}
+
+fun Material.Builder.blastProp(temperature: Int, gasTier: BlastProperty.GasTier,
                                blastEUtOverride: Int, blastDurationOverride: Int,
                                freezeEUtOverride: Int, freezeDurationOverride: Int): Material.Builder
 {

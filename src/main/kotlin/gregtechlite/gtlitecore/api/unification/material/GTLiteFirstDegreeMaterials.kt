@@ -2803,8 +2803,7 @@ object GTLiteFirstDegreeMaterials
             flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
                   GENERATE_LENS)
             blastProp(1163, GasTier.MID, // Cupronickel
-                      VA[IV], 7 * SECOND + 4 * TICK,
-                      VA[HV], 2 * SECOND + 16 * TICK)
+                      VA[IV], 7 * SECOND + 4 * TICK)
         }
 
         // 2246 Potassium Tertbutoxide

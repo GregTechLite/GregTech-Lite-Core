@@ -177,6 +177,7 @@ import gregtechlite.gtlitecore.api.extension.addIngot
 import gregtechlite.gtlitecore.api.extension.addLiquid
 import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
 import gregtechlite.gtlitecore.api.extension.addPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumUnstable
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminaSolution
@@ -212,11 +213,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineAluminium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumEmbeddedFullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneNanotube
@@ -234,6 +237,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NdYAG
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumFullereneMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhotopolymerSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupConcentrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlatinumGroupResidue
@@ -247,15 +251,18 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYNitratesSolu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurifiedPlatinumGroupConcentrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPolonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumThuliumDopedCaesiumIodide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TransitionAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrichlorocyclopentadienylTitanium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
@@ -661,6 +668,20 @@ object GTLiteMaterialProperties
         ChromaticGlass.setFormula("(SiO2)64", true)
         PlutoniumDioxide.setFormula("PuO2", true)
         MOX.setFormula("(PuO2)(UO2)2", true)
+
+        // Second Degree Materials
+        Kovar.setFormula("Fe10Ni5Co3", true)
+        HalkoniteSteel.setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true)
+        TantalumHafniumSeaborgiumCarbide.setFormula("Ta12Hf3SgC16", true)
+        ActiniumGroupAlloyA.setFormula("AcThPaUNpPuAmCm", true)
+        TransitionAlloy.setFormula("TiVCrMnFeCoNiCuAlZnGaGeCdInSnSb", true)
+        RareEarthAlloy.setFormula("LaCePrNdPmSmEuGdTbDyHoErTmYbLuScYAcThPaUNpPuAmCmBkCfEsFmMdNoLr", true)
+        Periodicium.setFormula("HHeLiBeBCNOFNeNaMgAlSiPSClArKCaScTiVCrMnFeCoNiCuZnGaGe"
+                               + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
+                               + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
+                               + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
+
+
     }
 
 }
