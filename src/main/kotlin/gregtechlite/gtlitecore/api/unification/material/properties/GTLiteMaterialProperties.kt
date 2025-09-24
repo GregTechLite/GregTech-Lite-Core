@@ -177,9 +177,11 @@ import gregtechlite.gtlitecore.api.extension.addIngot
 import gregtechlite.gtlitecore.api.extension.addLiquid
 import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
 import gregtechlite.gtlitecore.api.extension.addPlasma
+import gregtechlite.gtlitecore.api.translation.CommonI18n
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetonitrile
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumUnstable
@@ -198,7 +200,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPersulfat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
@@ -211,6 +215,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CAT
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumCarbonate
@@ -239,18 +244,21 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FormicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNitride
@@ -323,6 +331,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolyphosphonitrileFluoroRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
@@ -353,6 +362,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylgallium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrimethyltinChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Triphenylphosphine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trisaminoethylamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
@@ -870,7 +880,16 @@ object GTLiteMaterialProperties
         // endregion
 
         // region Unknown Composition Materials
-
+        BFGF.setFormula("bFGF", false)
+        EGF.setFormula("EGF", false)
+        CAT.setFormula("CAT", false)
+        GreenhouseGas.setFormula("N78O21Ar9?", true)
+        Fat.setFormula("C57H110O6", true)
+        SeaWater.setFormula("H2O?", true)
+        AcidicSaltWater.setFormula("(H2O)(H2SO4)?", true)
+        UnprocessedNdYAGSolution.setFormula("Nd:YAG?", false)
+        AxinoFusedRedMatter.setFormula(CommonI18n.format("gtlitecore.material.axino_fused_red_matter.formula",
+            "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions"))
         // endregion
 
     }
