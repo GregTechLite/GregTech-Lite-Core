@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.api.extension
 
+import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.properties.BlastProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
@@ -65,6 +66,24 @@ fun Material.Builder.colorAverage(vararg inputs: Material): Material.Builder
 // endregion
 
 // region DSL Contexts
+
+fun Material.Builder.liquid(builder: FluidBuilder.() -> Unit): Material.Builder
+{
+    liquid(FluidBuilder().apply(builder))
+    return this
+}
+
+fun Material.Builder.gas(builder: FluidBuilder.() -> Unit): Material.Builder
+{
+    gas(FluidBuilder().apply(builder))
+    return this
+}
+
+fun Material.Builder.plasma(builder: FluidBuilder.() -> Unit): Material.Builder
+{
+    plasma(FluidBuilder().apply(builder))
+    return this
+}
 
 fun Material.Builder.toolProp(harvestSpeed: Float, attackDamage: Float, durability: Int, harvestLevel: Int): Material.Builder
 {

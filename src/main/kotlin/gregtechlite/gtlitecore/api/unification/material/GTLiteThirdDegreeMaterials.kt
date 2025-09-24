@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.api.unification.material
 
 import gregtech.api.fluids.FluidBuilder
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.BandedIron
@@ -35,7 +34,8 @@ import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITIO
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
-import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.gas
+import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Augite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
@@ -92,236 +92,300 @@ object GTLiteThirdDegreeMaterials
     {
 
         // 6001 Limestone
-        Limestone = Material.Builder(6001, GTLiteMod.id("limestone"))
-            .dust()
-            .color(0xA9A9A9).iconSet(ROUGH)
-            .components(Calcite, 4, Dolomite, 1, Quicklime, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(CaCO3)4(CaMg(CO3)2)?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        Limestone = addMaterial(6001, "limestone")
+        {
+            dust()
+            color(0xA9A9A9).iconSet(ROUGH)
+            components(Calcite, 4, Dolomite, 1, Quicklime, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6002 Komatiite
-        Komatiite = Material.Builder(6002, GTLiteMod.id("komatiite"))
-            .dust()
-            .color(0xBCB073).iconSet(ROUGH)
-            .components(Olivine, 2, Magnesite, 1, Flint, 1, DarkAsh, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(Mg2Fe(SiO2)2)2(MgCO3)(SiO2)?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        Komatiite = addMaterial(6002, "komatiite")
+        {
+            dust()
+            color(0xBCB073).iconSet(ROUGH)
+            components(Olivine, 2, Magnesite, 1, Flint, 1, DarkAsh, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6003 Green Schist
-        GreenSchist = Material.Builder(6003, GTLiteMod.id("green_schist"))
-            .dust()
-            .color(0x56AE65).iconSet(ROUGH)
-            .components(Tanzanite, 2, Quartzite, 2, Talc, 1, Calcite, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(Ca2Al3Si3HO13)2(SiO2)2(Mg3Si4H2O12)?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        GreenSchist = addMaterial(6003, "green_schist")
+        {
+            dust()
+            color(0x56AE65).iconSet(ROUGH)
+            components(Tanzanite, 2, Quartzite, 2, Talc, 1, Calcite, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6004 Blue Schist
-        BlueSchist = Material.Builder(6004, GTLiteMod.id("blue_schist"))
-            .dust()
-            .color(0x537FAC).iconSet(ROUGH)
-            .components(Azurite, 3, Sodalite, 2, Iron, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(Cu3(CO3)2(OH)2)3(Al3Si3Na4Cl)2?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        BlueSchist = addMaterial(6004, "blue_schist")
+        {
+            dust()
+            color(0x537FAC).iconSet(ROUGH)
+            components(Azurite, 3, Sodalite, 2, Iron, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6005 Kimberlite
-        Kimberlite = Material.Builder(6005, GTLiteMod.id("kimberlite"))
-            .dust()
-            .color(0x201313).iconSet(ROUGH)
-            .components(Forsterite, 3, Augite, 3, Andradite, 2, Lizardite, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(Mg2(SiO4))3((Ca2MgFe)(MgFe)2(Si2O6)4)3(Ca3Fe2Si3O12)2?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        Kimberlite = addMaterial(6005, "kimberlite")
+        {
+            dust()
+            color(0x201313).iconSet(ROUGH)
+            components(Forsterite, 3, Augite, 3, Andradite, 2, Lizardite, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6006 Slate
-        Slate = Material.Builder(6006, GTLiteMod.id("slate"))
-            .dust()
-            .color(0x756869).iconSet(ROUGH)
-            .components(SiliconDioxide, 5, Muscovite, 2, Clinochlore, 2, Albite, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(SiO2)5(KAl2(AlSi3O10)(OH)2)2(Mg5Al2Si3O10(OH)8)2?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        Slate = addMaterial(6006, "slate")
+        {
+            dust()
+            color(0x756869).iconSet(ROUGH)
+            components(SiliconDioxide, 5, Muscovite, 2, Clinochlore, 2, Albite, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6007 Shale
-        Shale = Material.Builder(6007, GTLiteMod.id("shale"))
-            .dust()
-            .color(0x3F2E2F).iconSet(ROUGH)
-            .components(Calcite, 6, Clay, 2, SiliconDioxide, 1, Fluorite, 1)
-            .flags(NO_SMASHING, DISABLE_DECOMPOSITION) // Add Centrifuging recipe at CentrifugeRecipes#init().
-            .build()
-            .setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
+        // Add Centrifuging recipe at CentrifugeRecipes.
+        Shale = addMaterial(6007, "shale")
+        {
+            dust()
+            color(0x3F2E2F).iconSet(ROUGH)
+            components(Calcite, 6, Clay, 2, SiliconDioxide, 1, Fluorite, 1)
+            flags(NO_SMASHING, DISABLE_DECOMPOSITION)
+        }
 
         // 6008-6010 is for stone types addition in the future.
         // ...
 
         // 6011 Blazing Pyrotheum
-        BlazingPyrotheum = Material.Builder(6011, GTLiteMod.id("blazing_pyrotheum"))
-            .dust()
-            .liquid(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(4000)
-                .customFlow().customStill())
-            .iconSet(PYROTHEUM)
-            .components(Blaze, 2, Redstone, 1, Sulfur, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        BlazingPyrotheum = addMaterial(6011, "blazing_pyrotheum")
+        {
+            dust()
+            liquid()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(4000)
+                customFlow()
+                customStill()
+            }
+            iconSet(PYROTHEUM)
+            components(Blaze, 2, Redstone, 1, Sulfur, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 6012 Gelid Cryotheum
-        GelidCryotheum = Material.Builder(6012, GTLiteMod.id("gelid_cryotheum"))
-            .dust()
-            .liquid(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(2)
-                .customFlow().customStill())
-            .iconSet(CRYOTHEUM)
-            .components(Ice, 2, Electrotine, 1, Water, 1)
-            .flags(DECOMPOSITION_BY_ELECTROLYZING)
-            .build()
-            .setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+        GelidCryotheum = addMaterial(6012, "gelid_cryotheum")
+        {
+            dust()
+            liquid()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(2)
+                customFlow()
+                customStill()
+            }
+            iconSet(CRYOTHEUM)
+            components(Ice, 2, Electrotine, 1, Water, 1)
+            flags(DECOMPOSITION_BY_ELECTROLYZING)
+        }
 
         // 6013 Tectonic Petrotheum
-        TectonicPetrotheum = Material.Builder(6013, GTLiteMod.id("tectonic_petrotheum"))
-            .dust()
-            .liquid(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(350)
-                .customFlow().customFlow())
-            .iconSet(PETROTHEUM)
-            .components(Clay, 2, Obsidian, 1, Stone, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        TectonicPetrotheum = addMaterial(6013, "tectonic_petrotheum")
+        {
+            dust()
+            liquid()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(350)
+                customFlow()
+                customFlow()
+            }
+            iconSet(PETROTHEUM)
+            components(Clay, 2, Obsidian, 1, Stone, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 6014 Zephyrean Aerotheum
-        ZephyreanAerotheum = Material.Builder(6014, GTLiteMod.id("zephyrean_aerotheum"))
-            .dust()
-            .liquid(FluidBuilder()
-                .translation("gregtech.fluid.generic")
-                .temperature(600)
-                .customFlow().customStill())
-            .iconSet(AEROTHEUM)
-            .components(SiliconDioxide, 2, Saltpeter, 1, Air, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        ZephyreanAerotheum = addMaterial(6014, "zephyrean_aerotheum")
+        {
+            dust()
+            liquid()
+            {
+                translation("gregtech.fluid.generic")
+                temperature(600)
+                customFlow()
+                customStill()
+            }
+            iconSet(AEROTHEUM)
+            components(SiliconDioxide, 2, Saltpeter, 1, Air, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6015 Sienna
-        Sienna = Material.Builder(6015, GTLiteMod.id("sienna"))
-            .dust()
-            .color(0x4A3724)
-            .components(ManganeseMonoxide, 1, BandedIron, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        Sienna = addMaterial(6015, "sienna")
+        {
+            dust()
+            color(0x4A3724)
+            components(ManganeseMonoxide, 1, BandedIron, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 6016 Burnt Sienna
-        BurntSienna = Material.Builder(6016, GTLiteMod.id("burnt_sienna"))
-            .dust()
-            .color(0x662E2E)
-            .components(ManganeseMonoxide, 1, BandedIron, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        BurntSienna = addMaterial(6016, "burnt_sienna")
+        {
+            dust()
+            color(0x662E2E)
+            components(ManganeseMonoxide, 1, BandedIron, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 6017 Manganese Blue
-        ManganeseBlue = Material.Builder(6017, GTLiteMod.id("manganese_blue"))
-            .dust()
-            .color(0x80ABC5).iconSet(ROUGH)
-            .components(Barite, 1, BariumManganate, 1)
-            .flags(DECOMPOSITION_BY_CENTRIFUGING)
-            .build()
+        ManganeseBlue = addMaterial(6017, "manganese_blue")
+        {
+            dust()
+            color(0x80ABC5).iconSet(ROUGH)
+            components(Barite, 1, BariumManganate, 1)
+            flags(DECOMPOSITION_BY_CENTRIFUGING)
+        }
 
         // 6018-6025 for some misc materials in the future.
         // ...
 
         // 6026 Superheated Steam
-        SuperheatedSteam = Material.Builder(6026, GTLiteMod.id("superheated_steam"))
-            .gas(FluidBuilder().temperature(573))
-            .color(0xC4C4C4).iconSet(DULL)
-            .components(Water, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SuperheatedSteam = addMaterial(6026, "superheated_steam")
+        {
+            gas()
+            {
+                temperature(573)
+            }
+            color(0xC4C4C4).iconSet(DULL)
+            components(Water, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6027 Superheated Eutatic Sodium Potassium
-        SuperheatedSodiumPotassiumEutatic = Material.Builder(6027, GTLiteMod.id("superheated_sodium_potassium_eutatic"))
-            .liquid(FluidBuilder().temperature(758))
-            .color(SodiumPotassiumEutatic.materialRGB).iconSet(DULL)
-            .components(SodiumPotassiumEutatic, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SuperheatedSodiumPotassiumEutatic = addMaterial(6027, "superheated_sodium_potassium_eutatic")
+        {
+            liquid()
+            {
+                temperature(758)
+            }
+            color(SodiumPotassiumEutatic.materialRGB).iconSet(DULL)
+            components(SodiumPotassiumEutatic, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6028 Superheated Eutatic Lead Bismuth
-        SuperheatedLeadBismuthEutatic = Material.Builder(6028, GTLiteMod.id("superheated_lead_bismuth_eutatic"))
-            .liquid(FluidBuilder().temperature(1643))
-            .color(LeadBismuthEutatic.materialRGB).iconSet(DULL)
-            .components(LeadBismuthEutatic, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SuperheatedLeadBismuthEutatic = addMaterial(6028, "superheated_lead_bismuth_eutatic")
+        {
+            liquid(FluidBuilder().temperature(1643))
+            color(LeadBismuthEutatic.materialRGB).iconSet(DULL)
+            components(LeadBismuthEutatic, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6029 Superheated Lithium Sodium Potassium Fluorides
-        SuperheatedLithiumSodiumPotassiumFluorides = Material.Builder(6029, GTLiteMod.id("superheated_lithium_sodium_potassium_fluorides"))
-            .liquid(FluidBuilder().temperature(1543))
-            .color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(DULL)
-            .components(LithiumSodiumPotassiumFluorides, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SuperheatedLithiumSodiumPotassiumFluorides = addMaterial(6029, "superheated_lithium_sodium_potassium_fluorides")
+        {
+            liquid()
+            {
+                temperature(1543)
+            }
+            color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(DULL)
+            components(LithiumSodiumPotassiumFluorides, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6030 Superheated Lithium Beryllium Fluorides
-        SuperheatedLithiumBerylliumFluorides = Material.Builder(6030, GTLiteMod.id("superheated_lithium_beryllium_fluorides"))
-            .liquid(FluidBuilder().temperature(1403))
-            .color(LithiumBerylliumFluorides.materialRGB).iconSet(DULL)
-            .components(LithiumBerylliumFluorides, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SuperheatedLithiumBerylliumFluorides = addMaterial(6030, "superheated_lithium_beryllium_fluorides")
+        {
+            liquid()
+            {
+                temperature(1403)
+            }
+            color(LithiumBerylliumFluorides.materialRGB).iconSet(DULL)
+            components(LithiumBerylliumFluorides, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6031 Supercritical Steam
-        SupercriticalSteam = Material.Builder(6031, GTLiteMod.id("supercritical_steam"))
-            .gas(FluidBuilder().temperature(873))
-            .color(0xC4C4C4).iconSet(SUPERCRITICAL)
-            .components(Water, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SupercriticalSteam = addMaterial(6031, "supercritical_steam")
+        {
+            gas()
+            {
+                temperature(873)
+            }
+            color(0xC4C4C4).iconSet(SUPERCRITICAL)
+            components(Water, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6032 Supercritical Eutatic Sodium Potassium
-        SupercriticalSodiumPotassiumEutatic = Material.Builder(6032, GTLiteMod.id("supercritical_sodium_potassium_eutatic"))
-            .liquid(FluidBuilder().temperature(1058))
-            .color(SodiumPotassiumEutatic.materialRGB).iconSet(SUPERCRITICAL)
-            .components(SodiumPotassiumEutatic, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SupercriticalSodiumPotassiumEutatic = addMaterial(6032, "supercritical_sodium_potassium_eutatic")
+        {
+            liquid()
+            {
+                temperature(1058)
+            }
+            color(SodiumPotassiumEutatic.materialRGB).iconSet(SUPERCRITICAL)
+            components(SodiumPotassiumEutatic, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6033 Supercritical Eutatic Lead Bismuth
-        SupercriticalLeadBismuthEutatic = Material.Builder(6033, GTLiteMod.id("supercritical_lead_bismuth_eutatic"))
-            .liquid(FluidBuilder().temperature(1943))
-            .color(LeadBismuthEutatic.materialRGB).iconSet(SUPERCRITICAL)
-            .components(LeadBismuthEutatic, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SupercriticalLeadBismuthEutatic = addMaterial(6033, "supercritical_lead_bismuth_eutatic")
+        {
+            liquid()
+            {
+                temperature(1943)
+            }
+            color(LeadBismuthEutatic.materialRGB).iconSet(SUPERCRITICAL)
+            components(LeadBismuthEutatic, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6034 Supercritical Lithium Sodium Potassium Fluorides
-        SupercriticalLithiumSodiumPotassiumFluorides = Material.Builder(6034, GTLiteMod.id("supercritical_lithium_sodium_potassium_fluorides"))
-            .liquid(FluidBuilder().temperature(1843))
-            .color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(SUPERCRITICAL)
-            .components(LithiumSodiumPotassiumFluorides, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SupercriticalLithiumSodiumPotassiumFluorides = addMaterial(6034, "supercritical_lithium_sodium_potassium_fluorides")
+        {
+            liquid()
+            {
+                temperature(1843)
+            }
+            color(LithiumSodiumPotassiumFluorides.materialRGB).iconSet(SUPERCRITICAL)
+            components(LithiumSodiumPotassiumFluorides, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // 6035 Supercritical Lithium Beryllium Fluorides
-        SupercriticalLithiumBerylliumFluorides = Material.Builder(6035, GTLiteMod.id("supercritical_lithium_beryllium_fluorides"))
-            .liquid(FluidBuilder().temperature(1703))
-            .color(LithiumBerylliumFluorides.materialRGB).iconSet(SUPERCRITICAL)
-            .components(LithiumBerylliumFluorides, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
+        SupercriticalLithiumBerylliumFluorides = addMaterial(6035, "supercritical_lithium_beryllium_fluorides")
+        {
+            liquid()
+            {
+                temperature(1703)
+            }
+            color(LithiumBerylliumFluorides.materialRGB).iconSet(SUPERCRITICAL)
+            components(LithiumBerylliumFluorides, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
 
         // ...
 
         // 6051 Ferrosilite
-        Ferrosilite = Material.Builder(6051, GTLiteMod.id("ferrosilite"))
-            .dust(1)
-            .ore()
-            .color(0x97632A)
-            .components(Iron, 1, Silicon, 1, Oxygen, 3)
-            .build()
+        // Because GTCEu remove this material in 2.9.x version, nop...
+        Ferrosilite = addMaterial(6051, "ferrosilite")
+        {
+            dust(1)
+            ore()
+            color(0x97632A)
+            components(Iron, 1, Silicon, 1, Oxygen, 3)
+        }
 
     }
 

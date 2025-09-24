@@ -196,6 +196,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthStrontiumCalciumCuprate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumCarbonate
@@ -213,18 +214,23 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineAluminium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kimberlite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Komatiite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumEmbeddedFullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmDopedYttriumVanadateDeposition
@@ -253,7 +259,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurifiedPlatinumGroupConcentrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
@@ -558,7 +566,8 @@ object GTLiteMaterialProperties
 
     fun setChemicalFormula()
     {
-        // GTCEu Materials
+        // region GTCEu Materials
+
         Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
         Mica.setFormula("KAl2(AlSi3O10)F2", true)
         Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
@@ -567,10 +576,16 @@ object GTLiteMaterialProperties
         RarestMetalMixture.setFormula("IrOs?", true)
         IridiumMetalResidue.setFormula("Ir2O3", true)
 
-        // Element Materials
+        // endregion
+
+        // region Element Materials
+
         DegenerateRhenium.setFormula("§cR§de", true)
 
-        // First Degree Materials
+        // endregion
+
+        // region First Degree Materials
+
         Dolomite.setFormula("CaMg(CO3)2", true)
         Azurite.setFormula("Cu3(CO3)2(OH)2", true)
         Forsterite.setFormula("Mg2(SiO4)", true)
@@ -669,7 +684,10 @@ object GTLiteMaterialProperties
         PlutoniumDioxide.setFormula("PuO2", true)
         MOX.setFormula("(PuO2)(UO2)2", true)
 
-        // Second Degree Materials
+        // endregion
+
+        // region Second Degree Materials
+
         Kovar.setFormula("Fe10Ni5Co3", true)
         HalkoniteSteel.setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true)
         TantalumHafniumSeaborgiumCarbide.setFormula("Ta12Hf3SgC16", true)
@@ -681,6 +699,21 @@ object GTLiteMaterialProperties
                                + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
                                + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
 
+        // endregion
+
+        // region Third Degree Materials
+
+        Limestone.setFormula("(CaCO3)4(CaMg(CO3)2)?", true)
+        Komatiite.setFormula("(Mg2Fe(SiO2)2)2(MgCO3)(SiO2)?", true)
+        GreenSchist.setFormula("(Ca2Al3Si3HO13)2(SiO2)2(Mg3Si4H2O12)?", true)
+        BlueSchist.setFormula("(Cu3(CO3)2(OH)2)3(Al3Si3Na4Cl)2?", true)
+        Kimberlite.setFormula("(Mg2(SiO4))3((Ca2MgFe)(MgFe)2(Si2O6)4)3(Ca3Fe2Si3O12)2?", true)
+        Slate.setFormula("(SiO2)5(KAl2(AlSi3O10)(OH)2)2(Mg5Al2Si3O10(OH)8)2?", true)
+        Shale.setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
+
+        GelidCryotheum.setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+
+        // endregion
 
     }
 

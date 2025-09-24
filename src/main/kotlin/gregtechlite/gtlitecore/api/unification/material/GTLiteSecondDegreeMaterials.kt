@@ -15,7 +15,6 @@ import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -275,7 +274,9 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.blastProp
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.fluidPipeProp
+import gregtechlite.gtlitecore.api.extension.gas
 import gregtechlite.gtlitecore.api.extension.itemPipeProp
+import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.extension.rotorProp
 import gregtechlite.gtlitecore.api.extension.toolProp
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
@@ -771,7 +772,11 @@ object GTLiteSecondDegreeMaterials
         HalkoniteSteel = addMaterial(4035, "halkonite_steel")
         {
             ingot()
-            liquid(FluidBuilder().customStill().translation("gtlitecore.fluid.molten"))
+            liquid()
+            {
+                translation("gtlitecore.fluid.molten")
+                customStill()
+            }
             iconSet(HALKONITE)
             components(CosmicNeutronium, 2, Tairitsium, 2, RedPhosphorus, 2, TitanSteel, 1, Infinity, 1)
             flags(EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL,
@@ -1189,7 +1194,10 @@ object GTLiteSecondDegreeMaterials
         // 4064 Light Non-Metallic Mixture
         NonMetallicMixtureA = addMaterial(4064, "light_non_metallic_mixture")
         {
-            gas(FluidBuilder().name("gregtech.fluid.generic"))
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
             colorAverage()
             components(Hydrogen, 1, Nitrogen, 1, Oxygen, 1, Fluorine, 1, Chlorine, 1, Bromine, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -1207,7 +1215,10 @@ object GTLiteSecondDegreeMaterials
         // 4066 Noble Gas Mixture
         NobleGasMixture = addMaterial(4066, "noble_gas_mixture")
         {
-            gas(FluidBuilder().translation("gregtech.fluid.generic"))
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
             colorAverage()
             components(Helium, 1, Neon, 1, Argon, 1, Krypton, 1, Xenon, 1, Radon, 1)
             flags(DISABLE_DECOMPOSITION)

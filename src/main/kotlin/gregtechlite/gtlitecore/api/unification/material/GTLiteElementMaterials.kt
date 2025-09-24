@@ -11,7 +11,6 @@ import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
 import gregtech.api.unification.Elements.Fl
 import gregtech.api.unification.Elements.Hs
 import gregtech.api.unification.Elements.Og
@@ -44,6 +43,8 @@ import gregtechlite.gtlitecore.api.extension.blastProp
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.fluidPipeProp
 import gregtechlite.gtlitecore.api.extension.itemPipeProp
+import gregtechlite.gtlitecore.api.extension.liquid
+import gregtechlite.gtlitecore.api.extension.plasma
 import gregtechlite.gtlitecore.api.extension.rotorProp
 import gregtechlite.gtlitecore.api.extension.toolProp
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
@@ -251,7 +252,10 @@ object GTLiteElementMaterials
         Plutonium244 = addMaterial(9, "plutonium_244")
         {
             ingot()
-            liquid(FluidBuilder().temperature(913))
+            liquid()
+            {
+                temperature(913)
+            }
             color(0xD82D2D).iconSet(METALLIC)
             element(Pu244)
             flags(STD_METAL, GENERATE_FOIL)
@@ -261,7 +265,10 @@ object GTLiteElementMaterials
         DegenerateRhenium = addMaterial(10, "degenerate_rhenium")
         {
             dust()
-            plasma(FluidBuilder().temperature(1_000_000))
+            plasma()
+            {
+                temperature(1_000_000)
+            }
             iconSet(DEGENERATE)
             element(Rh)
             flags(STD_METAL, NO_UNIFICATION)
@@ -272,7 +279,10 @@ object GTLiteElementMaterials
         Magnetium = addMaterial(11, "magnetium")
         {
             ingot()
-            liquid(FluidBuilder().temperature(2_560_000))
+            liquid()
+            {
+                temperature(2_560_000)
+            }
             iconSet(MAGNETIUM) // Foreground Color: 0xF2F226, Background Color: 0x21A7A7
             element(M)
             flags(EXT2_METAL, NO_UNIFICATION, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
@@ -287,7 +297,10 @@ object GTLiteElementMaterials
         Rhugnor = addMaterial(12, "rhugnor")
         {
             ingot()
-            liquid(FluidBuilder().temperature(9025))
+            liquid()
+            {
+                temperature(9025)
+            }
             color(0xBE00FF).iconSet(METALLIC)
             flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
                   GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR)
@@ -308,7 +321,10 @@ object GTLiteElementMaterials
         Hypogen = addMaterial(13, "hypogen")
         {
             ingot()
-            liquid(FluidBuilder().temperature(11530))
+            liquid()
+            {
+                temperature(11530)
+            }
             color(0xDC784B).iconSet(ENRICHED) // Opacity Changing: 5-35 (per 5)
             element(Hy)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR,

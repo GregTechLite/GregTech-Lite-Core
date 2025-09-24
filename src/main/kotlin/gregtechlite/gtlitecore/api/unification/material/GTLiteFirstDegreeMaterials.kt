@@ -13,7 +13,6 @@ import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Actinium
@@ -563,6 +562,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumPentachlor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumThiocyanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumChloride
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CHROMATIC
+import gregtechlite.gtlitecore.api.extension.liquid
+import gregtechlite.gtlitecore.api.extension.gas
+import gregtechlite.gtlitecore.api.extension.plasma
 
 object GTLiteFirstDegreeMaterials
 {
@@ -1013,7 +1015,10 @@ object GTLiteFirstDegreeMaterials
         // 2048 Molybdenum Flue
         MolybdenumFlue = addMaterial(2048, "molybdenum_flue")
         {
-            gas(FluidBuilder().translation("gregtech.fluid.generic"))
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
             color(0x39194A)
             components(Rhenium, 1, Oxygen, 2, RareEarth, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -1030,7 +1035,10 @@ object GTLiteFirstDegreeMaterials
         // 2050 Trace Rhenium Flue
         TraceRheniumFlue = addMaterial(2050, "trace_rhenium_flue")
         {
-            gas(FluidBuilder().translation("gregtech.fluid.generic"))
+            gas()
+            {
+                translation("gregtech.fluid.generic")
+            }
             color(0x96D6D5)
             components(Rhenium, 1, Oxygen, 2)
             flags(DISABLE_DECOMPOSITION)
@@ -1332,7 +1340,10 @@ object GTLiteFirstDegreeMaterials
         // 2083 Hydrobromic Acid
         HydrobromicAcid = addMaterial(2083, "hydrobromic_acid")
         {
-            liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
             color(0x8D1212)
             components(Hydrogen, 1, Bromine, 1)
         }
@@ -1655,7 +1666,10 @@ object GTLiteFirstDegreeMaterials
         // 2121 Hexachloroplatinic Acid
         HexachloroplatinicAcid = addMaterial(2121, "hexachloroplatinic_acid")
         {
-            liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
             color(0xFEF4D1)
             components(Hydrogen, 2, Platinum, 1, Chlorine, 6)
         }
@@ -1845,7 +1859,10 @@ object GTLiteFirstDegreeMaterials
         // 2143 Hydroselenic Acid
         HydroselenicAcid = addMaterial(2143, "hydroselenic_acid")
         {
-            liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
             color(0xDBC3B5)
             components(Hydrogen, 2, Selenium, 1, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION)
@@ -1902,7 +1919,10 @@ object GTLiteFirstDegreeMaterials
         PotassiumHydroxide = addMaterial(2148, "potassium_hydroxide")
         {
             dust()
-            liquid(FluidBuilder().temperature(633))
+            liquid()
+            {
+                temperature(633)
+            }
             color(0xFA9849)
             components(Potassium, 1, Oxygen, 1, Hydrogen, 1)
         }
@@ -2023,7 +2043,10 @@ object GTLiteFirstDegreeMaterials
         // 2162 Pertechnetate
         Pertechnetate = addMaterial(2162, "pertechnetate")
         {
-            liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
             color(0xCC3300)
             flags(DISABLE_DECOMPOSITION)
         }
@@ -2234,7 +2257,11 @@ object GTLiteFirstDegreeMaterials
         // 2185 Flerovium-Ytterbium Plasma
         FleroviumYtterbiumPlasma = addMaterial(2185, "flerovium_ytterbium_plasma")
         {
-            plasma(FluidBuilder().temperature(10550).translation("gregtech.fluid.generic"))
+            plasma()
+            {
+                temperature(10550)
+                translation("gregtech.fluid.generic")
+            }
             colorAverage()
             components(MetastableFlerovium, 1, Ytterbium, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -2406,7 +2433,7 @@ object GTLiteFirstDegreeMaterials
         }
 
         // 2202 Lutetium Manganese Germanium
-        // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ i think it is well in Gregtech.
+        // This is not a reality magnetic material... it is a fantastic permanent magnet? ^^ I think it is well in Gregtech.
         LutetiumManganeseGermanium = addMaterial(2202, "lutetium_manganese_germanium")
         {
             ingot()
@@ -2868,7 +2895,10 @@ object GTLiteFirstDegreeMaterials
         ActiniumSuperhydride = addMaterial(2253, "actinium_superhydride")
         {
             dust()
-            plasma(FluidBuilder().temperature(500_000))
+            plasma()
+            {
+                temperature(500_000)
+            }
             color(Actinium.materialRGB * 9 / 8).iconSet(SHINY)
             components(Actinium, 1, Hydrogen, 12)
             flags(DISABLE_DECOMPOSITION)
@@ -3014,7 +3044,10 @@ object GTLiteFirstDegreeMaterials
         // 2268 Tetrafluoroboric Acid
         TetrafluoroboricAcid = addMaterial(2268, "tetrafluoroboric_acid")
         {
-            liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
             color(0x83A731)
             components(Hydrogen, 1, Boron, 1, Fluorine, 4)
             flags(DISABLE_DECOMPOSITION)
@@ -3129,13 +3162,21 @@ object GTLiteFirstDegreeMaterials
         // 2281 Heavy Quark Enriched Mixture
         HeavyQuarkEnrichedMixture = addMaterial(2281, "heavy_quark_enriched_mixture")
         {
-            plasma(FluidBuilder().translation("gregtech.fluid.generic").temperature(400_000_000).customStill())
+            plasma()
+            {
+                temperature(400_000_000)
+                translation("gregtech.fluid.generic")
+                customStill()
+            }
         }
 
         // 2282 Deuterium-Superheavy Mixture
         DeuteriumSuperheavyMixture = addMaterial(2282, "deuterium_superheavy_mixture")
         {
-            liquid(FluidBuilder().temperature(18240))
+            liquid()
+            {
+                temperature(18240)
+            }
             color(0x7B9EF8)
             components(Deuterium, 2, MetastableHassium, 1, MetastableFlerovium, 1, MetastableOganesson, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -3146,11 +3187,15 @@ object GTLiteFirstDegreeMaterials
         {
             ingot()
             liquid()
-            plasma(FluidBuilder().temperature(1_600_000_000).customStill())
-            .color(0x5DBD3A).iconSet(BRIGHT)
-            .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_GEAR,
-                   GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL,
-                   GENERATE_FOIL, GENERATE_FINE_WIRE)
+            plasma()
+            {
+                temperature(1_600_000_000)
+                customStill()
+            }
+            color(0x5DBD3A).iconSet(BRIGHT)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_GEAR,
+                  GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL,
+                  GENERATE_FOIL, GENERATE_FINE_WIRE)
             rotorProp(48.0f, 16.0f, 983040)
             fluidPipeProp(200_000, 10000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
@@ -3258,7 +3303,10 @@ object GTLiteFirstDegreeMaterials
         // Add centrifuging decomposition by OpticalCircuits.
         DielectricFormationMixture = addMaterial(2295, "dielectric_formation_mixture")
         {
-            liquid(FluidBuilder().temperature(209))
+            liquid()
+            {
+                temperature(209)
+            }
             color(0xE62A35)
             components(ManganeseDifluoride, 1, ZincSulfide, 1, TantalumPentoxide, 1, Rutile, 1, Ethanol, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -3267,7 +3315,10 @@ object GTLiteFirstDegreeMaterials
         // 2296 Chloroauric Acid
         ChloroauricAcid = addMaterial(2296, "chloroauric_acid")
         {
-            liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
             color(0xD1B62C)
             components(Hydrogen, 1, Gold, 1, Chlorine, 4)
         }
@@ -3392,7 +3443,11 @@ object GTLiteFirstDegreeMaterials
         HarmonicPhononMatter = addMaterial(2309, "harmonic_phonon_matter")
         {
             ingot()
-            liquid(FluidBuilder().temperature(2_000_000_000).translation("gregtech.fluid.generic"))
+            liquid()
+            {
+                temperature(2_000_000_000)
+                translation("gregtech.fluid.generic")
+            }
             iconSet(GLITCH)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(26000, GasTier.HIGHEST, // Eternity Plus
@@ -3558,7 +3613,10 @@ object GTLiteFirstDegreeMaterials
         // 2326 Hydromoscovic Acid
         HydromoscovicAcid = addMaterial(2326, "hydromoscovic_acid")
         {
-            liquid(FluidBuilder().attribute(FluidAttributes.ACID))
+            liquid()
+            {
+                attribute(FluidAttributes.ACID)
+            }
             components(Hydrogen, 1, Moscovium, 1, Oxygen, 4)
         }
 
@@ -3740,7 +3798,10 @@ object GTLiteFirstDegreeMaterials
         // 2347 Hexafluorophosphoric Acid
         HexafluorophosphoricAcid = addMaterial(2347, "hexafluorophosphoric_acid")
         {
-            liquid(FluidBuilder().attributes(FluidAttributes.ACID))
+            liquid()
+            {
+                attributes(FluidAttributes.ACID)
+            }
             color(0xFCC782)
             components(Hydrogen, 1, Phosphorus, 1, Fluorine, 6)
         }
