@@ -4,9 +4,10 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.worldgen.config.OreConfigUtils;
-import one.util.streamex.StreamEx;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+
+import java.util.stream.Collectors;
 
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 
@@ -28,9 +29,9 @@ public abstract class MixinOreConfigUtils
         }
         else if (material == null)
         {
-            return StreamEx.of(GregTechAPI.materialManager.getRegistry(MOD_ID).getAllMaterials())
+            return GregTechAPI.materialManager.getRegistry(MOD_ID).getAllMaterials().stream()
                     .filter(mat -> mat.getName().equals(name))
-                    .toList().get(0);
+                    .collect(Collectors.toList()).get(0);
         }
         else
         {
