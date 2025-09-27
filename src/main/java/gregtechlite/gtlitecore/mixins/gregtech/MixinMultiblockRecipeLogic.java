@@ -9,16 +9,18 @@ import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.recipes.RecipeMap;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MultiblockRecipeLogic.class, remap = false)
 public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic
 {
@@ -31,6 +33,11 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic
         super(tileEntity, recipeMap);
     }
 
+    /**
+     * @reason Allowed to check notified inputs list when check working for inputs in recipe logic.
+     * @author Magic_Sweepy
+     */
+    @Overwrite
     @Override
     protected boolean canWorkWithInputs()
     {
@@ -39,8 +46,7 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic
         {
             RecipeMapMultiblockController distinctController = (RecipeMapMultiblockController) controller;
 
-            if (distinctController.canBeDistinct()
-                    && distinctController.isDistinct()
+            if (distinctController.canBeDistinct() && distinctController.isDistinct()
                     && getInputInventory().getSlots() > 0)
             {
                 boolean canWork = false;
@@ -94,10 +100,12 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic
                     flattenedHandlers.add(itemHandler);
                 }
 
+                // noinspection SlowListContainsAll, SuspiciousMethodCalls
                 if (!invalidatedInputList.containsAll(flattenedHandlers))
                 {
                     canWork = true;
                 }
+
                 return canWork;
             }
         }
