@@ -3,14 +3,15 @@ package gregtechlite.gtlitecore.core.module;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.morphismmc.morphismlib.util.SidedLogger;
-import com.morphismmc.morphismlib.util.Unchecks;
-import lombok.Getter;
 import gregtechlite.gtlitecore.api.module.CustomModule;
 import gregtechlite.gtlitecore.api.module.CustomModuleContainer;
 import gregtechlite.gtlitecore.api.module.ModuleManager;
 import gregtechlite.gtlitecore.api.module.Module;
 import gregtechlite.gtlitecore.api.module.ModuleContainer;
 import gregtechlite.gtlitecore.api.module.ModuleStage;
+import it.unimi.dsi.fastutil.objects.Object2ReferenceLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet;
+import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -28,13 +29,17 @@ import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-import one.util.streamex.MoreCollectors;
-import one.util.streamex.StreamEx;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.ApiStatus.Internal;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.io.File;
-import java.util.AbstractMap;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -50,7 +55,6 @@ import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 public final class ModuleManagerImpl implements ModuleManager
 {
 
-    @Getter
     public static final ModuleManagerImpl instance = new ModuleManagerImpl();
 
     private final Logger logger = new SidedLogger(MOD_ID + "-module-loader");
@@ -71,22 +75,26 @@ public final class ModuleManagerImpl implements ModuleManager
 
     private Configuration config;
 
+    public ModuleManagerImpl getInstance()
+    {
+        return instance;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isModuleEnabled(ResourceLocation namespace)
+    public boolean isModuleEnabled(@NotNull ResourceLocation namespace)
     {
-        return this.sortedModules.containsKey(namespace);
+        return sortedModules.containsKey(namespace);
     }
 
-    public boolean isModuleEnabled(CustomModule module)
+    public boolean isModuleEnabled(@NotNull CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
-        String comment = this.getComment(module);
+        String comment = getComment(module);
         String propertyKey = annotation.containerId() + ":" + annotation.moduleId();
-        Property property = this.getConfiguration().get(MODULE_CFG_CATEGORY_NAME,
-                propertyKey, true, comment);
+        Property property = getConfiguration().get(MODULE_CFG_CATEGORY_NAME, propertyKey, true, comment);
         return property.getBoolean();
     }
 
@@ -96,7 +104,7 @@ public final class ModuleManagerImpl implements ModuleManager
     @Override
     public CustomModuleContainer getLoadedContainer()
     {
-        return this.currentContainer;
+        return currentContainer;
     }
 
     /**
@@ -105,74 +113,78 @@ public final class ModuleManagerImpl implements ModuleManager
     @Override
     public ModuleStage getStage()
     {
-        return this.currentStage;
+        return currentStage;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean hasPassedStage(ModuleStage stage)
+    public boolean hasPassedStage(@NotNull ModuleStage stage)
     {
-        return this.currentStage.ordinal() > stage.ordinal();
+        return currentStage.ordinal() > stage.ordinal();
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void registerContainer(CustomModuleContainer container)
+    public void registerContainer(@NotNull CustomModuleContainer container)
     {
-        if (this.currentStage != ModuleStage.C_SETUP)
+        if (currentStage != ModuleStage.C_SETUP)
         {
-            this.logger.error("Failed to register ModuleContainer {},"
-                    + " as Module loading has already begun", container);
+            logger.error("Failed to register ModuleContainer '{}', as Module loading has already begun", container);
             return;
         }
         Preconditions.checkNotNull(container);
-        this.containers.put(container.getId(), container);
+        containers.put(container.getId(), container);
     }
 
-    public void setup(ASMDataTable dataTable, File configDir)
+    /**
+     * Set up the {@code ModuleManager} class.
+     *
+     * @param dataTable The data table containing all of the {@code ModuleContainer} and {@code Module} classes.
+     * @param configDir The directory containing the configuration directory.
+     */
+    public void setup(@NotNull ASMDataTable dataTable, @NotNull File configDir)
     {
-        // Find and register all containers registered with annotation and then sorted
-        // them by container names.
-        this.discoverContainers(dataTable);
-        this.containers = StreamEx.of(this.containers.entrySet())
+        // Find and register all containers registered with annotation and then sorted them by container names.
+        discoverContainers(dataTable);
+        containers = containers.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
-                .groupingBy(Map.Entry::getKey, LinkedHashMap::new,
-                        MoreCollectors.mapping(Map.Entry::getValue, Collectors.toList()))
-                .entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey,
-                        entry -> entry.getValue().get(0),
-                        (k, v) -> k, LinkedHashMap::new));
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (a, b) -> a,
+                        Object2ReferenceLinkedOpenHashMap::new));
 
-        this.currentStage = ModuleStage.M_SETUP;
+        currentStage = ModuleStage.M_SETUP;
         configFolder = new File(configDir, MOD_ID);
 
-        Map<String, List<CustomModule>> modules = this.getModules(dataTable);
-        this.configureModules(modules);
-        StreamEx.of(this.loadedModules)
-                .peek(module -> this.currentContainer = this.containers.get(getContainerId(module)))
-                .peek(module -> module.getLogger().debug("Registering Event Handlers"))
-                .forEach(module -> {
-                    StreamEx.of(module.getEventBusSubscribers())
-                            .forEach(MinecraftForge.EVENT_BUS::register);
-                    StreamEx.of(module.getTerrainGenBusSubscribers())
-                            .forEach(MinecraftForge.TERRAIN_GEN_BUS::register);
-                    StreamEx.of(module.getOreGenBusSubscribers())
-                            .forEach(MinecraftForge.ORE_GEN_BUS::register);
-                });
+        Map<String, List<CustomModule>> modules = getModules(dataTable);
+        configureModules(modules);
+
+        for (CustomModule module : loadedModules)
+        {
+            currentContainer = containers.get(getContainerId(module));
+            module.getLogger().debug("Registering Event Handlers");
+            for (Class<?> eventClass : module.getEventBusSubscribers())
+                MinecraftForge.EVENT_BUS.register(eventClass);
+            for (Class<?> terrainGenClass : module.getTerrainGenBusSubscribers())
+                MinecraftForge.TERRAIN_GEN_BUS.register(terrainGenClass);
+            for (Class<?> oreGenClass : module.getOreGenBusSubscribers())
+                MinecraftForge.ORE_GEN_BUS.register(oreGenClass);
+        }
+        currentContainer = null;
     }
 
-    /* -------------------------------- FML Life cycle Events -------------------------------- */
+    // region FML Lifecycle Events
+
     // Construction Event means events will be loaded when Mod is starting to loaded.
-    public void onConstruction(FMLConstructionEvent event)
+    public void onConstruction(@NotNull FMLConstructionEvent event)
     {
-        this.currentStage = ModuleStage.CONSTRUCTION;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.CONSTRUCTION;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Construction start");
             module.construction(event);
             module.getLogger().debug("Construction complete");
@@ -180,46 +192,45 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Pre-Initialization Event means it will "Run before anything else".
-    public void onPreInit(FMLPreInitializationEvent event)
+    public void onPreInit(@NotNull FMLPreInitializationEvent event)
     {
-        this.currentStage = ModuleStage.PRE_INIT;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.PRE_INIT;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Registering packets");
             module.registerPackets();
         }
-        for (CustomModule module : this.loadedModules)
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Pre-Init start");
             module.preInit(event);
             module.getLogger().debug("Pre-Init complete");
         }
     }
 
-    // Initialization Event means it will "Do your mod setup",
-    // you should build whatever data structures you care about.
-    public void onInit(FMLInitializationEvent event)
+    // Initialization Event means it will "Do your mod setup", you should build whatever data structures you care about.
+    public void onInit(@NotNull FMLInitializationEvent event)
     {
-        this.currentStage = ModuleStage.INIT;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.INIT;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Init start");
             module.init(event);
             module.getLogger().debug("Init complete");
         }
     }
 
-    // Post-Initialization event means it will "Handle interaction with other mods",
-    // you can complete your setup based on this.
-    public void onPostInit(FMLPostInitializationEvent event)
+    // Post-Initialization event means it will "Handle interaction with other mods", you can complete your setup based
+    // on this.
+    public void onPostInit(@NotNull FMLPostInitializationEvent event)
     {
-        this.currentStage = ModuleStage.POST_INIT;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.POST_INIT;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Post-Init start");
             module.postInit(event);
             module.getLogger().debug("Post-Init complete");
@@ -227,12 +238,12 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Load Complete Event means events will be loaded when Mod is finish loaded.
-    public void onLoadComplete(FMLLoadCompleteEvent event)
+    public void onLoadComplete(@NotNull FMLLoadCompleteEvent event)
     {
         currentStage = ModuleStage.LOAD_COMPLETE;
-        for (CustomModule module : this.loadedModules)
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Load Complete start");
             module.loadComplete(event);
             module.getLogger().debug("Load Complete complete");
@@ -240,12 +251,12 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Server About To Start Event means events will be loaded before Server started.
-    public void onServerAboutToStart(FMLServerAboutToStartEvent event)
+    public void onServerAboutToStart(@NotNull FMLServerAboutToStartEvent event)
     {
-        this.currentStage = ModuleStage.SERVER_ABOUT_TO_START;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.SERVER_ABOUT_TO_START;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Server About To Start start");
             module.serverAboutToStart(event);
             module.getLogger().debug("Server About To Start complete");
@@ -253,12 +264,12 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Server Starting Event means events will be loaded when Server is starting.
-    public void onServerStarting(FMLServerStartingEvent event)
+    public void onServerStarting(@NotNull FMLServerStartingEvent event)
     {
-        this.currentStage = ModuleStage.SERVER_STARTING;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.SERVER_STARTING;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Server Starting start");
             module.serverStarting(event);
             module.getLogger().debug("Server Starting complete");
@@ -266,12 +277,12 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Server Started Event means events will be loaded when Server is started.
-    public void onServerStarted(FMLServerStartedEvent event)
+    public void onServerStarted(@NotNull FMLServerStartedEvent event)
     {
-        this.currentStage = ModuleStage.SERVER_STARTED;
-        for (CustomModule module : this.loadedModules)
+        currentStage = ModuleStage.SERVER_STARTED;
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.getLogger().debug("Server Started start");
             module.serverStarted(event);
             module.getLogger().debug("Server Started complete");
@@ -279,26 +290,33 @@ public final class ModuleManagerImpl implements ModuleManager
     }
 
     // Server Stopping Event means events will be loaded when Server is stopping.
-    public void onServerStopping(FMLServerStoppingEvent event)
+    public void onServerStopping(@NotNull FMLServerStoppingEvent event)
     {
-        for (CustomModule module : this.loadedModules)
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            currentContainer = containers.get(getContainerId(module));
             module.serverStopping(event);
         }
     }
 
     // Server Stopped Event means events will be loaded when Server is stopped.
-    public void onServerStopped(FMLServerStoppedEvent event)
+    public void onServerStopped(@NotNull FMLServerStoppedEvent event)
     {
-        for (CustomModule module : this.loadedModules)
+        for (CustomModule module : loadedModules)
         {
-            this.currentContainer = this.containers.get(getContainerId(module));
+            this.currentContainer = containers.get(getContainerId(module));
             module.serverStopped(event);
         }
     }
-    /* --------------------------------------------------------------------------------------- */
-    public void processIMC(ImmutableList<FMLInterModComms.IMCMessage> messages)
+
+    // endregion
+
+    /**
+     * Forward incoming IMC messages to each loaded module.
+     *
+     * @param messages The messages to forwad.
+     */
+    public void processIMC(@Unmodifiable @NotNull ImmutableList<FMLInterModComms.IMCMessage> messages)
     {
         for (FMLInterModComms.IMCMessage message : messages)
         {
@@ -310,9 +328,14 @@ public final class ModuleManagerImpl implements ModuleManager
         }
     }
 
-    private String getComment(CustomModule module)
+    /**
+     * @param module The module to get the comment for.
+     * @return       The comment for the module correspondenced configuration.
+     */
+    private String getComment(@NotNull CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
+
         String comment = annotation.descriptions();
         Set<ResourceLocation> dependencies = module.getDependencyUids();
         if (!dependencies.isEmpty())
@@ -332,7 +355,7 @@ public final class ModuleManagerImpl implements ModuleManager
         String[] modDependencies = annotation.modDependencies();
         if (modDependencies != null && modDependencies.length > 0)
         {
-            Iterator<String> iterator = StreamEx.of(modDependencies).iterator();
+            Iterator<String> iterator = Arrays.stream(modDependencies).iterator();
             StringBuilder stringBuilder = new StringBuilder(comment);
             stringBuilder.append("\n");
             stringBuilder.append("Mod Dependencies: [ ");
@@ -347,53 +370,76 @@ public final class ModuleManagerImpl implements ModuleManager
         return comment;
     }
 
+    /**
+     * @return The configuration instance for module configuration.
+     */
+    @NotNull
     private Configuration getConfiguration()
     {
-        if (this.config == null)
+        if (config == null)
         {
-            this.config = new Configuration(new File(configFolder, MODULE_CFG_FILE_NAME));
+            config = new Configuration(new File(configFolder, MODULE_CFG_FILE_NAME));
         }
-        return this.config;
+        return config;
     }
 
-    private void discoverContainers(ASMDataTable dataTable)
+    /**
+     * Discover and register all {@code ModuleContainer}s.
+     *
+     * @param dataTable The table containing the {@code ModuleContainer} data.
+     */
+    private void discoverContainers(@NotNull ASMDataTable dataTable)
     {
-        String containerName = ModuleContainer.class.getCanonicalName();
-        Set<ASMDataTable.ASMData> dataSet = dataTable.getAll(containerName);
+        Set<ASMDataTable.ASMData> dataSet = dataTable.getAll(ModuleContainer.class.getCanonicalName());
         for (ASMDataTable.ASMData data : dataSet)
         {
             try
             {
                 Class<?> clazz = Class.forName(data.getClassName());
-                this.registerContainer((CustomModuleContainer) clazz.newInstance());
+                if (CustomModuleContainer.class.isAssignableFrom(clazz))
+                {
+                    registerContainer((CustomModuleContainer) clazz.newInstance());
+                }
+                else
+                {
+                    logger.error("Module Container class '{}' is not an instanceof correspondenced interface", clazz.getName());
+                }
             }
-            catch (ClassNotFoundException
-                   | IllegalAccessException
-                   | InstantiationException exception)
+            catch (ClassNotFoundException | IllegalAccessException | InstantiationException exception)
             {
-                this.logger.error("Could not initialize ModuleContainer {}", data.getClassName(), exception);
+                logger.error("Could not initialize Module Container '{}'", data.getClassName(), exception);
             }
         }
     }
 
-    private static String getContainerId(CustomModule module)
+    /**
+     * @param module The module to get the {@code containerId} for.
+     * @return       The container id of the module.
+     */
+    @NotNull
+    private static String getContainerId(@NotNull CustomModule module)
     {
         Module annotation = module.getClass().getAnnotation(Module.class);
         return annotation.containerId();
     }
 
+    /**
+     * Configure the modules according to the module correspondenced {@link Configuration}.
+     *
+     * @param modules The modules to configure.
+     */
     private void configureModules(Map<String, List<CustomModule>> modules)
     {
         Locale locale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
 
-        Set<ResourceLocation> toLoad = new LinkedHashSet<>();
-        Set<CustomModule> modulesToLoad = new LinkedHashSet<>();
+        Set<ResourceLocation> toLoad = new ObjectLinkedOpenHashSet<>();
+        Set<CustomModule> modulesToLoad = new ReferenceLinkedOpenHashSet<>();
 
         Configuration config = getConfiguration();
         config.load();
         config.addCustomCategoryComment(MODULE_CFG_CATEGORY_NAME, "Module configuration file. "
-                + "Can individually enable/disable modules from GregTech Lite Core.");
+                + "Can individually enable/disable modules from the mod and its addons");
 
         for (CustomModuleContainer container : containers.values())
         {
@@ -402,30 +448,33 @@ public final class ModuleManagerImpl implements ModuleManager
             CustomModule coreModule = getCoreModule(containerModules);
             if (coreModule == null)
             {
-                throw new IllegalStateException("Could not find CoreModule for ModuleContainer " + containerId);
+                throw new IllegalStateException("Could not find Core Module for Module Container " + containerId);
             }
             else
             {
                 containerModules.remove(coreModule);
                 containerModules.add(0, coreModule);
             }
+
             // Remove disabled modules and gather potential modules to load.
             Iterator<CustomModule> iterator = containerModules.iterator();
             while (iterator.hasNext())
             {
                 CustomModule module = iterator.next();
-                if (!this.isModuleEnabled(module))
+                if (!isModuleEnabled(module))
                 {
                     iterator.remove();
                     logger.debug("Module disabled: {}", module);
                     continue;
                 }
+
                 Module annotation = module.getClass().getAnnotation(Module.class);
                 toLoad.add(new ResourceLocation(containerId, annotation.moduleId()));
                 modulesToLoad.add(module);
             }
         }
 
+        // Check any module dependencies.
         Iterator<CustomModule> iterator;
         boolean changed;
         do
@@ -435,19 +484,23 @@ public final class ModuleManagerImpl implements ModuleManager
             while (iterator.hasNext())
             {
                 CustomModule module = iterator.next();
+
+                // Check module dependencies.
                 Set<ResourceLocation> dependencies = module.getDependencyUids();
                 if (!toLoad.containsAll(dependencies))
                 {
                     iterator.remove();
                     changed = true;
+
                     Module annotation = module.getClass().getAnnotation(Module.class);
                     String moduleId = annotation.moduleId();
                     toLoad.remove(new ResourceLocation(moduleId));
-                    logger.info("Module {} is missing at least one of Module dependencies: {}, skipping loading...", moduleId, dependencies);
+                    logger.info("Module '{}' is missing at least one of Module dependencies: '{}', skipping loading...", moduleId, dependencies);
                 }
             }
         } while (changed);
 
+        // Sort modules by their module dependencies.
         do
         {
             changed = false;
@@ -458,6 +511,7 @@ public final class ModuleManagerImpl implements ModuleManager
                 if (sortedModules.keySet().containsAll(module.getDependencyUids()))
                 {
                     iterator.remove();
+
                     Module annotation = module.getClass().getAnnotation(Module.class);
                     sortedModules.put(new ResourceLocation(annotation.containerId(), annotation.moduleId()), module);
                     changed = true;
@@ -466,7 +520,7 @@ public final class ModuleManagerImpl implements ModuleManager
             }
         } while (changed);
 
-        this.loadedModules.addAll(this.sortedModules.values());
+        loadedModules.addAll(sortedModules.values());
 
         if (config.hasChanged())
         {
@@ -476,7 +530,12 @@ public final class ModuleManagerImpl implements ModuleManager
         Locale.setDefault(locale);
     }
 
-    private static CustomModule getCoreModule(List<CustomModule> modules)
+    /**
+     * @param modules The list of modules possibly containing a Core Module.
+     * @return        The first found Core Module.
+     */
+    @Nullable
+    private static CustomModule getCoreModule(@NotNull List<CustomModule> modules)
     {
         for (CustomModule module : modules)
         {
@@ -489,53 +548,66 @@ public final class ModuleManagerImpl implements ModuleManager
         return null;
     }
 
-
-    private List<CustomModule> getInstances(ASMDataTable dataTable)
+    /**
+     * @param dataTable The data table containing the module data.
+     * @return          All {@link CustomModule} instances in sorted order by {@code containerId} and {@code moduleId}.
+     */
+    @SuppressWarnings("unchecked")
+    @NotNull
+    private List<CustomModule> getInstances(@NotNull ASMDataTable dataTable)
     {
-        return StreamEx.of(dataTable.getAll(Module.class.getCanonicalName()))
-                .map(data -> {
-                    String moduleId = (String) data.getAnnotationInfo().get("moduleId");
-                    List<String> modDependencies = Unchecks.cast(data.getAnnotationInfo().get("modDependencies"));
-                    return new AbstractMap.SimpleEntry<>(data, new AbstractMap.SimpleEntry<>(moduleId, modDependencies));
-                })
-                .filter(entry -> {
-                    List<String> modDependencies = entry.getValue().getValue();
-                    return modDependencies == null || modDependencies.stream()
-                            .allMatch(Loader::isModLoaded);
-                })
-                .map(entry -> {
-                    ASMDataTable.ASMData data = entry.getKey();
-                    String moduleId = entry.getValue().getKey();
-                    try
+        Set<ASMDataTable.ASMData> dataSet = dataTable.getAll(Module.class.getCanonicalName());
+        List<CustomModule> instances = new ArrayList<>();
+        for (ASMDataTable.ASMData data : dataSet)
+        {
+            String moduleId = (String) data.getAnnotationInfo().get("moduleId");
+            List<String> modDependencies = (List<String>) data.getAnnotationInfo().get("modDependencies");
+            if (modDependencies == null || modDependencies.stream().allMatch(Loader::isModLoaded))
+            {
+                try
+                {
+                    Class<?> clazz = Class.forName(data.getClassName());
+                    if (CustomModule.class.isAssignableFrom(clazz))
                     {
-                        Class<?> clazz = Class.forName(data.getClassName());
-                        return (CustomModule) clazz.newInstance();
+                        instances.add((CustomModule) clazz.getConstructor().newInstance());
                     }
-                    catch (ClassNotFoundException
-                           | IllegalAccessException
-                           | InstantiationException exception)
+                    else
                     {
-                        this.logger.error("Could not initialize Module {}", moduleId, exception);
-                        return null;
+                        logger.error("Module of class '{}' with id '{}' is not an instanceof Custom Module", clazz.getName(), moduleId);
                     }
-                })
-                .nonNull()
-                .sorted((a, b) -> {
-                    Module x = a.getClass().getAnnotation(Module.class);
-                    Module y = b.getClass().getAnnotation(Module.class);
-                    return (x.containerId() + ":" + x.moduleId())
-                            .compareTo(y.containerId() + ":" + y.moduleId());
-                })
-                .toList();
+                }
+                catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException
+                       | InvocationTargetException exception)
+                {
+                    logger.error("Could not initialize Module '{}'", moduleId, exception);
+                }
+            }
+            else
+            {
+                logger.info("Module '{}' is missing at least one of mod dependencies: '{}', skipping loading...", moduleId, modDependencies);
+            }
+        }
+        return instances.stream()
+                .sorted(Comparator.comparing((module) -> module.getClass().getAnnotation(Module.class),
+                        Comparator.comparing(Module::containerId).thenComparing(Module::moduleId)))
+                .collect(Collectors.toList());
     }
 
-    private Map<String, List<CustomModule>> getModules(ASMDataTable dataTable)
+    /**
+     * @param dataTable The data table containing the module data.
+     * @return          The map of {@code containerId} to list of associated modules sorted by {@code moduleId}.
+     */
+    @NotNull
+    private Map<String, List<CustomModule>> getModules(@NotNull ASMDataTable dataTable)
     {
-        return StreamEx.of(this.getInstances(dataTable))
-                .groupingBy(module -> {
-                    Module annotation = module.getClass().getAnnotation(Module.class);
-                    return annotation.containerId();
-                }, LinkedHashMap::new, Collectors.toList());
+        List<CustomModule> instances = getInstances(dataTable);
+        Map<String, List<CustomModule>> modules = new Object2ReferenceLinkedOpenHashMap<>();
+        for (CustomModule module : instances)
+        {
+            Module annotation = module.getClass().getAnnotation(Module.class);
+            modules.computeIfAbsent(annotation.containerId(), k -> new ArrayList<>()).add(module);
+        }
+        return modules;
     }
 
 }

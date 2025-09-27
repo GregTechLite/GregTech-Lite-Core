@@ -149,13 +149,6 @@ dependencies {
 
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
-
-    compileOnlyApi(libs.lombok)
-    annotationProcessor(libs.lombok)
-
-    embed(libs.streamex)
-    embed(libs.jheaps)
-    embed(libs.joml)
 }
 
 fun DependencyHandler.deobf(dependencyNotation: Any): Any {
