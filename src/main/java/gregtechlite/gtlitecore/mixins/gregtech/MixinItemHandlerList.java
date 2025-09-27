@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import gregtech.api.capability.INotifiableHandler;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -11,7 +12,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Collection;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = ItemHandlerList.class, remap = false)
 public abstract class MixinItemHandlerList implements MultipleNotifiableHandler
 {
