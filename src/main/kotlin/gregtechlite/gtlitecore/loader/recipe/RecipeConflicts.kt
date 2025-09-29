@@ -80,7 +80,7 @@ internal object RecipeConflicts
                 CarbonMonoxide.getFluid(1000)))
 
         CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
+            .circuitMeta(2)
             .fluidInputs(Propene.getFluid(1000))
             .fluidInputs(Hydrogen.getFluid(2000))
             .fluidInputs(CarbonMonoxide.getFluid(1000))
