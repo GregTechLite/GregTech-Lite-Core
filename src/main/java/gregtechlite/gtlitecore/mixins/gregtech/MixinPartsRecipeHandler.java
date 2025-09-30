@@ -12,12 +12,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinPartsRecipeHandler
 {
 
+    /**
+     * Disabled stick and lens recipes initialization.
+     *
+     * @see gregtechlite.gtlitecore.loader.recipe.handler.PartsRecipeHandler
+     */
     @Inject(method = "register",
             at = @At("HEAD"),
             cancellable = true)
-    private static void callbackRegistrate(CallbackInfo ci)
+    private static void stopInit(CallbackInfo ci)
     {
-        // OrePrefix.stick.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processStick);
         OrePrefix.stickLong.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processLongStick);
         OrePrefix.plate.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processPlate);
         OrePrefix.plateDouble.addProcessingHandler(PropertyKey.INGOT, PartsRecipeHandler::processPlateDouble);
@@ -29,7 +33,6 @@ public abstract class MixinPartsRecipeHandler
         OrePrefix.screw.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processScrew);
         OrePrefix.wireFine.addProcessingHandler(PropertyKey.INGOT, PartsRecipeHandler::processFineWire);
         OrePrefix.foil.addProcessingHandler(PropertyKey.INGOT, PartsRecipeHandler::processFoil);
-        // OrePrefix.lens.addProcessingHandler(PropertyKey.GEM, PartsRecipeHandler::processLens);
 
         OrePrefix.gear.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processGear);
         OrePrefix.gearSmall.addProcessingHandler(PropertyKey.DUST, PartsRecipeHandler::processGear);
@@ -40,6 +43,5 @@ public abstract class MixinPartsRecipeHandler
 
         ci.cancel();
     }
-
 
 }
