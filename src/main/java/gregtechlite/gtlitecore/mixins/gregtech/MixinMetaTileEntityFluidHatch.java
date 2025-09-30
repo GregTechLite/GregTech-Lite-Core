@@ -3,10 +3,11 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityFluidHatch;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityFluidHatch.class, remap = false)
 public abstract class MixinMetaTileEntityFluidHatch extends MetaTileEntityMultiblockNotifiablePart
 {

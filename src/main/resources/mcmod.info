@@ -5,7 +5,7 @@
     "description": "Core Mod for the Modpack GregTech Lite.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://gitlab.com/gregtech-lite/gregtech-lite-core",
+    "url": "https://github.com/GregTechLite/GregTech-Lite-Core",
     "updateUrl": "",
     "authorList": [
       "Magic_Sweepy",
@@ -16,7 +16,7 @@
     "logoFile": "assets/gtlitecore/textures/icons/logo_long.png",
     "screenshots": [],
     "dependencies": [
-      "magicbook",
+      "morphismlib",
       "modularui",
       "gregtech"
     ]

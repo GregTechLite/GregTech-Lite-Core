@@ -10,6 +10,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 import org.spongepowered.asm.mixin.Final;
@@ -21,7 +22,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityMultiblockNotifiablePart.class, remap = false)
 public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTileEntityMultiblockPart
 {

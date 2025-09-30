@@ -5,10 +5,6 @@ asm = "5.2"
 guava = "24.1.1-jre"
 gson = "2.8.6"
 jetbrainsAnnotations = "24.1.0"
-lombok = "1.18.24"
-streamex = "0.8.3"
-jheaps = "0.14"
-joml = "1.10.4"
 
 # Mods
 forgelin = "2.1.0.0"
@@ -32,31 +28,29 @@ dokka = "1.9.10"
 shadow = "7.1.2"
 
 [libraries]
-asm = { group = "org.ow2.asm", name = "asm-debug-all", version.ref = "asm" }
-guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-jetbrainsAnnotations = { group = "org.jetbrains", name = "annotations", version.ref = "jetbrainsAnnotations" }
-lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
-streamex = { group = "one.util", name = "streamex", version.ref = "streamex" }
-jheaps = { group = "org.jheaps", name = "jheaps", version.ref = "jheaps" }
-joml = { group = "org.joml", name = "joml", version.ref = "joml" }
+# Libraries
+asm                      = { group = "org.ow2.asm",                   name = "asm-debug-all",                     version.ref = "asm"                      }
+guava                    = { group = "com.google.guava",              name = "guava",                             version.ref = "guava"                    }
+gson                     = { group = "com.google.code.gson",          name = "gson",                              version.ref = "gson"                     }
+jetbrainsAnnotations     = { group = "org.jetbrains",                 name = "annotations",                       version.ref = "jetbrainsAnnotations"     }
 
-forgelin = { group = "io.github.chaosunity.forgelin", name = "Forgelin-Continuous", version.ref = "forgelin" }
-mixinBooter = { group = "zone.rong", name = "mixinbooter", version.ref = "mixinBooter" }
-modularui = { group = "com.cleanroommc", name = "modularui", version.ref = "modularui" }
-codeChickenLib = { group = "codechicken", name = "codechickenlib", version.ref = "codeChickenLib" }
-groovyScript = { group = "com.cleanroommc", name = "groovyscript", version.ref = "groovyScript" }
-craftTweaker2 = { group = "CraftTweaker2", name = "CraftTweaker2-MC1120-Main", version.ref = "craftTweaker2" }
-ctm = { group = "curse.maven", name = "ctm-267602", version.ref = "ctm" }
-ae2ExtendedLife = { group = "curse.maven", name = "ae2-extended-life-570458", version.ref = "ae2ExtendedLife" }
-jei = { group = "mezz.jei", name = "jei_1.12.2", version.ref = "jei" }
-theOneProbe = { group = "curse.maven", name = "top-245211", version.ref = "theOneProbe" }
-smoothFonts = { group = "curse.maven", name = "smooth-font-285742", version.ref = "smoothFonts" }
-betterQuestingUnofficial = { group = "curse.maven", name = "better-questing-unofficial-629629", version.ref = "betterQuestingUnofficial" }
+# Mods
+forgelin                 = { group = "io.github.chaosunity.forgelin", name = "Forgelin-Continuous",               version.ref = "forgelin"                 }
+mixinBooter              = { group = "zone.rong",                     name = "mixinbooter",                       version.ref = "mixinBooter"              }
+modularui                = { group = "com.cleanroommc",               name = "modularui",                         version.ref = "modularui"                }
+codeChickenLib           = { group = "codechicken",                   name = "codechickenlib",                    version.ref = "codeChickenLib"           }
+groovyScript             = { group = "com.cleanroommc",               name = "groovyscript",                      version.ref = "groovyScript"             }
+craftTweaker2            = { group = "CraftTweaker2",                 name = "CraftTweaker2-MC1120-Main",         version.ref = "craftTweaker2"            }
+ctm                      = { group = "curse.maven",                   name = "ctm-267602",                        version.ref = "ctm"                      }
+ae2ExtendedLife          = { group = "curse.maven",                   name = "ae2-extended-life-570458",          version.ref = "ae2ExtendedLife"          }
+jei                      = { group = "mezz.jei",                      name = "jei_1.12.2",                        version.ref = "jei"                      }
+theOneProbe              = { group = "curse.maven",                   name = "top-245211",                        version.ref = "theOneProbe"              }
+smoothFonts              = { group = "curse.maven",                   name = "smooth-font-285742",                version.ref = "smoothFonts"              }
+betterQuestingUnofficial = { group = "curse.maven",                   name = "better-questing-unofficial-629629", version.ref = "betterQuestingUnofficial" }
 
 [plugins]
-ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt" }
-retrofuturaGradle = { id = "com.gtnewhorizons.retrofuturagradle", version.ref = "retrofuturaGradle" }
-curseGradle = { id = "com.matthewprenger.cursegradle", version.ref = "curseGradle" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+ideaExt           = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt"           }
+retrofuturaGradle = { id = "com.gtnewhorizons.retrofuturagradle",  version.ref = "retrofuturaGradle" }
+curseGradle       = { id = "com.matthewprenger.cursegradle",       version.ref = "curseGradle"       }
+dokka             = { id = "org.jetbrains.dokka",                  version.ref = "dokka"             }
+shadow            = { id = "com.github.johnrengelman.shadow",      version.ref = "shadow"            }

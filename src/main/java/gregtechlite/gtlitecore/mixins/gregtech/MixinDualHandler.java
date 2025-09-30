@@ -7,16 +7,19 @@ import gregtech.api.capability.INotifiableHandler;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
+
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Collection;
 import java.util.List;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = DualHandler.class, remap = false)
 public abstract class MixinDualHandler implements INotifiableHandler, MultipleNotifiableHandler
 {
@@ -32,6 +35,11 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     @Shadow
     List<MetaTileEntity> notifiableEntities;
 
+    /**
+     * @reason Rewrite the notifiable {@code metaTileEntity} logic with {@code MultipleNotifiableHandler}.
+     * @author Magic_Sweepy
+     */
+    @Overwrite
     @Override
     public void addNotifiableMetaTileEntity(MetaTileEntity metaTileEntity)
     {
@@ -66,6 +74,11 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
         }
     }
 
+    /**
+     * @reason Rewrite the notifiable {@code metaTileEntity} logic with {@code MultipleNotifiableHandler}.
+     * @author Magic_Sweepy
+     */
+    @Overwrite
     @Override
     public void removeNotifiableMetaTileEntity(MetaTileEntity metaTileEntity)
     {

@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.core.command;
 
 import com.morphismmc.morphismlib.collection.ListOps;
-import lombok.NoArgsConstructor;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -15,7 +14,6 @@ import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-@NoArgsConstructor
 public class Commands extends CommandTreeBase
 {
 

@@ -26,7 +26,6 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import one.util.streamex.StreamEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
@@ -134,12 +133,12 @@ public class CommonProxy
         // TODO Crops?...
 
         // Sheeted frames.
-        StreamEx.of(GTLiteBlocks.SHEETED_FRAMES.values())
+        GTLiteBlocks.SHEETED_FRAMES.values().stream()
                 .distinct()
                 .forEach(registry::register);
 
         // Gregtech Walls
-        StreamEx.of(GTLiteBlocks.METAL_WALLS.values())
+        GTLiteBlocks.METAL_WALLS.values().stream()
                 .distinct()
                 .forEach(registry::register);
 
@@ -255,14 +254,14 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
 
-        StreamEx.of(GTLiteBlocks.SHEETED_FRAMES.values())
+        GTLiteBlocks.SHEETED_FRAMES.values().stream()
                 .distinct()
-                .map(b -> createItemBlock(b, SheetedFrameItemBlock::new))
+                .map(block -> createItemBlock(block, SheetedFrameItemBlock::new))
                 .forEach(registry::register);
 
-        StreamEx.of(GTLiteBlocks.METAL_WALLS.values())
+        GTLiteBlocks.METAL_WALLS.values().stream()
                 .distinct()
-                .map(b -> createItemBlock(b, d -> new MaterialItemBlock(d, GTLiteOrePrefix.wallGt)))
+                .map(block -> createItemBlock(block, blockWall -> new MaterialItemBlock(blockWall, GTLiteOrePrefix.wallGt)))
                 .forEach(registry::register);
 
         registry.register(createItemBlock(GTLiteBlocks.MOTOR_CASING, VariantItemBlock::new));

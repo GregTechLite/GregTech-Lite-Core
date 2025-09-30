@@ -4,22 +4,29 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
-import gregtech.api.unification.material.info.MaterialFlags
+import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.info.MaterialFlags.CRYSTALLIZABLE
 import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.duration
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.GENERATE_BOULE
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.boule
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.seedCrystal
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
 
+@Suppress("unused")
 object BouleRecipeHandler
 {
 
@@ -27,44 +34,50 @@ object BouleRecipeHandler
 
     fun init()
     {
-        OrePrefix.gem.addProcessingHandler(PropertyKey.GEM, BouleRecipeHandler::processCrystallizer)
+        gem.addProcessingHandler(PropertyKey.GEM, ::processCrystallizer)
     }
 
     private fun processCrystallizer(gemPrefix: OrePrefix, material: Material, property: GemProperty)
     {
 
         // If material has correspondenced disable flag, then do not generate crystallization.
-        if (material.hasFlags(GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION)) return
-        if (!material.hasFlags(MaterialFlags.CRYSTALLIZABLE) && !material.hasFlags(GTLiteMaterialFlags.GENERATE_BOULE)) return
+        if (material.hasFlag(DISABLE_CRYSTALLIZATION)) return
+        if (!material.hasFlag(CRYSTALLIZABLE) && !material.hasFlag(GENERATE_BOULE)) return
 
         // If material has too many components, then do not generate crystallization.
-        if (material.materialComponents.size > GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES.maxInputs - 1
-            + GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES.maxFluidInputs) return
+        if (material.materialComponents.size > CRYSTALLIZATION_RECIPES.maxInputs - 1
+            + CRYSTALLIZATION_RECIPES.maxFluidInputs) return
 
         var componentAmount = 0
         var temperature = 0
         val inputs = arrayListOf<ItemStack>()
         val fluidInputs = arrayListOf<FluidStack>()
 
-        for (ms in material.materialComponents)
+        for (materialStack in material.materialComponents)
         {
-            val component= ms.material
-            val amount = ms.amount.toInt()
+            val component= materialStack.material
+            val amount = materialStack.amount.toInt()
+
             if (component.isSolid || component.hasProperty(PropertyKey.DUST))
             {
                 componentAmount += amount
                 temperature += component.blastTemperature * amount
-                if (inputs.size > GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES.maxInputs - 1)
+
+                if (inputs.size > CRYSTALLIZATION_RECIPES.maxInputs - 1)
                     return
-                inputs.add(OreDictUnifier.get(OrePrefix.dust, component, amount))
+
+                inputs.add(OreDictUnifier.get(dust, component, amount))
             }
             else if (component.hasProperty(PropertyKey.FLUID))
             {
                 componentAmount += amount
-                if (fluidInputs.size > GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES.maxFluidInputs)
+
+                if (fluidInputs.size > CRYSTALLIZATION_RECIPES.maxFluidInputs)
                     return
+
                 fluidInputs.add(component.getFluid(amount * 1000))
             }
+
             // If materials with not BlastProperty, then set it blastTemperature to 1200K.
             if (!component.hasProperty(PropertyKey.BLAST))
                 temperature += 1200 * amount
@@ -74,7 +87,7 @@ object BouleRecipeHandler
 
         temperature /= componentAmount
 
-        val builder = GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES.recipeBuilder()
+        val builder = CRYSTALLIZATION_RECIPES.recipeBuilder()
             .blastFurnaceTemp(temperature)
             .EUt(VA[if (temperature <= 2800) HV else EV])
 
@@ -97,30 +110,29 @@ object BouleRecipeHandler
             builder.duration(material.mass * 4)
         }
 
-        builder.input(GTLiteOrePrefix.seedCrystal, material, componentAmount)
-            .output(GTLiteOrePrefix.boule, material, componentAmount);
+        builder.input(seedCrystal, material, componentAmount)
+            .output(boule, material, componentAmount);
 
         if (inputs.isNotEmpty()) builder.inputStacks(inputs)
         if (fluidInputs.isNotEmpty()) builder.fluidInputs(*fluidInputs.toTypedArray())
 
         builder.buildAndRegister()
 
-        RecipeMaps.CUTTER_RECIPES.recipeBuilder()
-            .input(GTLiteOrePrefix.boule, material)
-            .output(OrePrefix.gemExquisite, material)
-            .output(GTLiteOrePrefix.seedCrystal, material)
+        CUTTER_RECIPES.recipeBuilder()
+            .input(boule, material)
+            .output(gemExquisite, material)
+            .output(seedCrystal, material)
             .EUt(VA[LV])
             .duration(material.mass * 4)
             .buildAndRegister()
 
-        RecipeMaps.AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(OrePrefix.gemExquisite, material)
-            .fluidInputs(Materials.DistilledWater.getFluid(8000))
-            .output(GTLiteOrePrefix.seedCrystal, material)
+        AUTOCLAVE_RECIPES.recipeBuilder()
+            .input(gemExquisite, material)
+            .fluidInputs(DistilledWater.getFluid(8000))
+            .output(seedCrystal, material)
             .EUt(VA[HV])
             .duration(material.mass * 9)
             .buildAndRegister()
-
     }
 
     // @formatter:on

@@ -1,62 +1,84 @@
 package gregtechlite.gtlitecore.loader.recipe.handler
 
-import com.google.common.collect.ImmutableMap
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.M
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.PolyphenyleneSulfide
+import gregtech.api.unification.material.Materials.PolyvinylChloride
+import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.SiliconeRubber
+import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.material.properties.WireProperties
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.cableGtDouble
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
+import gregtech.api.unification.ore.OrePrefix.cableGtOctal
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.cableGtSingle
+import gregtech.api.unification.ore.OrePrefix.foil
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.util.GTUtility
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POLYMER_INSULATOR_FOIL
 import kotlin.reflect.full.declaredFunctions
 import kotlin.reflect.jvm.isAccessible
+import gregtech.loaders.recipe.handlers.WireRecipeHandler as GTWireRecipeHandler
 
-// Callback original registrate of wire processing handler and post new
-// processing handler from this recipe handler container.
 object WireRecipeHandler
 {
 
     // @formatter:off
-    private val INSULATION_AMOUNT = ImmutableMap.of(OrePrefix.cableGtSingle, 1,
-                                                    OrePrefix.cableGtDouble, 1,
-                                                    OrePrefix.cableGtQuadruple, 2,
-                                                    OrePrefix.cableGtOctal, 3,
-                                                    OrePrefix.cableGtHex, 5)
+
+    private val INSULATION_AMOUNT = mapOf(cableGtSingle to 1,
+                                          cableGtDouble to 1,
+                                          cableGtQuadruple to 2,
+                                          cableGtOctal to 3,
+                                          cableGtHex to 5)
 
     fun init()
     {
-        OrePrefix.wireGtSingle.addProcessingHandler(PropertyKey.WIRE, this::generateCableCovering)
-        OrePrefix.wireGtDouble.addProcessingHandler(PropertyKey.WIRE, this::generateCableCovering)
-        OrePrefix.wireGtQuadruple.addProcessingHandler(PropertyKey.WIRE, this::generateCableCovering)
-        OrePrefix.wireGtOctal.addProcessingHandler(PropertyKey.WIRE, this::generateCableCovering)
-        OrePrefix.wireGtHex.addProcessingHandler(PropertyKey.WIRE, this::generateCableCovering)
+        wireGtSingle.addProcessingHandler(PropertyKey.WIRE, ::generateCableCovering)
+        wireGtDouble.addProcessingHandler(PropertyKey.WIRE, ::generateCableCovering)
+        wireGtQuadruple.addProcessingHandler(PropertyKey.WIRE, ::generateCableCovering)
+        wireGtOctal.addProcessingHandler(PropertyKey.WIRE, ::generateCableCovering)
+        wireGtHex.addProcessingHandler(PropertyKey.WIRE, ::generateCableCovering)
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.WireRecipeHandler.generateCableCovering].
+     * @see gregtech.loaders.recipe.handlers.WireRecipeHandler.generateCableCovering
      */
     private fun generateCableCovering(wirePrefix: OrePrefix, material: Material, properties: WireProperties)
     {
-        // Do Kt Reflect to make original class's generateManualRecipe() function public.
-        val targetMethod = gregtech.loaders.recipe.handlers.WireRecipeHandler::class
-                .declaredFunctions.find { it.name == "generateManualRecipe" }
-                    ?: throw IllegalArgumentException("Method 'generateManualRecipe()' is not found in target class [gregtech.loaders.recipe.handlers.WireRecipeHandler]")
-        targetMethod.isAccessible = true
+        // Let common generation method be accessible and prepare to call for below recipe generations.
+        val generateManualRecipe = GTWireRecipeHandler::class
+            .declaredFunctions.find { it.name == "generateManualRecipe" }
+            ?: throw IllegalArgumentException("Method 'generateManualRecipe' is not found in target class")
 
-        // Superconductors have no cables, so exit early lazy.
+        generateManualRecipe.isAccessible = true
+
+        // All superconductors does not have cable forms, so skip them.
         if (properties.isSuperconductor)
             return
 
@@ -67,99 +89,139 @@ object WireRecipeHandler
 
         // Generate hand-crafting recipes for ULV and LV cables.
         if (voltageTier <= LV)
-            targetMethod.call(wirePrefix, material, cablePrefix, cableAmount)
+            generateManualRecipe.call(wirePrefix, material, cablePrefix, cableAmount)
+
         // Rubber recipe (for ULV-EV cables)
         if (voltageTier <= EV)
         {
-            val builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+            val builder = LAMINATOR_RECIPES.recipeBuilder()
                 .input(wirePrefix, material)
-                .fluidInputs(Materials.Rubber.getFluid(L * insulationAmount))
+                .fluidInputs(Rubber.getFluid(L * insulationAmount))
                 .output(cablePrefix, material)
-                .EUt(VA[ULV].toLong())
+                .EUt(VA[ULV])
                 .duration(5 * SECOND)
+
             // Apply PVC foil for EV cables.
             if (voltageTier == EV)
-                builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                builder.input(foil, PolyvinylChloride, insulationAmount)
+
             builder.buildAndRegister()
         }
+
         // Synthetic Rubber recipe (for EV-UV cables).
         if (voltageTier <= UV)
         {
             // Silicone Rubber recipes.
-            var builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+            var builder = LAMINATOR_RECIPES.recipeBuilder()
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
-                .EUt(VA[ULV].toLong())
+                .EUt(VA[ULV])
                 .duration(5 * SECOND)
+
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
-                builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                builder.input(foil, PolyvinylChloride, insulationAmount)
+
             // Apply PPS foil for LuV or above cables.
             if (voltageTier >= LuV)
-                builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
+                builder.input(foil, PolyphenyleneSulfide, insulationAmount)
+
             builder.fluidInputs(SiliconeRubber.getFluid(L * insulationAmount / 2))
                 .buildAndRegister()
 
             // Styrene Butadiene Rubber recipes.
-            builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+            builder = LAMINATOR_RECIPES.recipeBuilder()
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
-                .EUt(VA[ULV].toLong())
+                .EUt(VA[ULV])
                 .duration(5 * SECOND)
+
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
-                builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                builder.input(foil, PolyvinylChloride, insulationAmount)
+
             // Apply PPS foil for LuV or above cables.
             if (voltageTier >= LuV)
-                builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
-            builder.fluidInputs(Materials.StyreneButadieneRubber.getFluid(L * insulationAmount / 4))
+                builder.input(foil, PolyphenyleneSulfide, insulationAmount)
+
+            builder.fluidInputs(StyreneButadieneRubber.getFluid(L * insulationAmount / 4))
                 .buildAndRegister()
         }
+
         // Advanced Synthetic Rubber recipe (for UHV-OpV cables)
         if (voltageTier <= OpV)
         {
             // PTMEG Rubber recipes.
-            var builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+            var builder = LAMINATOR_RECIPES.recipeBuilder()
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
-                .EUt(VA[ULV].toLong())
+                .EUt(VA[ULV])
                 .duration(5 * SECOND)
+
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
-                builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                builder.input(foil, PolyvinylChloride, insulationAmount)
+
             // Apply PPS foil for LuV or above cables.
             if (voltageTier >= LuV)
-                builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
+                builder.input(foil, PolyphenyleneSulfide, insulationAmount)
+
             // Apply PEEK foil for UV or above cables.
             if (voltageTier >= UV)
-                builder.input(OrePrefix.foil, GTLiteMaterials.Polyetheretherketone, insulationAmount)
+                builder.input(foil, Polyetheretherketone, insulationAmount)
+
             // Apply Zylon foil for UEV or above cables.
             if (voltageTier >= UEV)
-                builder.input(OrePrefix.foil, GTLiteMaterials.Zylon, insulationAmount)
-            builder.fluidInputs(GTLiteMaterials.PolytetramethyleneGlycolRubber.getFluid(L * insulationAmount / 2))
+                builder.input(foil, Zylon, insulationAmount)
+
+            builder.fluidInputs(PolytetramethyleneGlycolRubber.getFluid(L * insulationAmount / 2))
                 .buildAndRegister()
 
             // PPF Rubber recipes.
-            builder = GTLiteRecipeMaps.LAMINATOR_RECIPES.recipeBuilder()
+            builder = LAMINATOR_RECIPES.recipeBuilder()
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
-                .EUt(VA[ULV].toLong())
+                .EUt(VA[ULV])
                 .duration(5 * SECOND)
+
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
-                builder.input(OrePrefix.foil, Materials.PolyvinylChloride, insulationAmount)
+                builder.input(foil, PolyvinylChloride, insulationAmount)
+
             // Apply PPS foil for LuV or above cables.
             if (voltageTier >= LuV)
-                builder.input(OrePrefix.foil, Materials.PolyphenyleneSulfide, insulationAmount)
+                builder.input(foil, PolyphenyleneSulfide, insulationAmount)
+
             // Apply PEEK foil for UV or above cables.
             if (voltageTier >= UV)
-                builder.input(OrePrefix.foil, GTLiteMaterials.Polyetheretherketone, insulationAmount)
+                builder.input(foil, Polyetheretherketone, insulationAmount)
+
             // Apply Zylon foil for UEV or above cables.
             if (voltageTier >= UEV)
-                builder.input(OrePrefix.foil, GTLiteMaterials.Zylon, insulationAmount)
-            builder.fluidInputs(GTLiteMaterials.PolyphosphonitrileFluoroRubber.getFluid(L * insulationAmount / 4))
+                builder.input(foil, Zylon, insulationAmount)
+
+            builder.fluidInputs(PolyphosphonitrileFluoroRubber.getFluid(L * insulationAmount / 4))
                 .buildAndRegister()
         }
+
+        // Final recipes for the endgame (for MAX cables).
+        if (voltageTier == MAX)
+        {
+            LAMINATOR_RECIPES.recipeBuilder()
+                .input(wirePrefix, material)
+                .input(foil, PolyvinylChloride, insulationAmount)
+                .input(foil, PolyphenyleneSulfide, insulationAmount)
+                .input(foil, Polyetheretherketone, insulationAmount)
+                .input(foil, Zylon, insulationAmount)
+                .input(POLYMER_INSULATOR_FOIL, insulationAmount)
+                .fluidInputs(CosmicFabric.getFluid(L * insulationAmount / 2))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(1000 * insulationAmount / 2))
+                .output(cablePrefix, material)
+                .EUt(VA[ULV])
+                .duration(5 * SECOND)
+                .buildAndRegister()
+        }
+
     }
 
     // @formatter:on

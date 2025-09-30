@@ -5,10 +5,11 @@ import appeng.api.storage.data.IAEItemStack;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityAEHostablePart;
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityMEInputBus;
+import gregtechlite.gtlitecore.api.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityMEInputBus.class, remap = false)
 public abstract class MixinMetaTileEntityMEInputBus extends MetaTileEntityAEHostablePart<IAEItemStack>
 {
