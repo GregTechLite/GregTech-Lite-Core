@@ -21,7 +21,7 @@ public abstract class MixinOreRecipeHandler
     @Inject(method = "register",
             at = @At("HEAD"),
             cancellable = true)
-    private static void callbackRegistrate(CallbackInfo ci)
+    private static void stopInit(CallbackInfo ci)
     {
         OrePrefix.ore.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
         OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
