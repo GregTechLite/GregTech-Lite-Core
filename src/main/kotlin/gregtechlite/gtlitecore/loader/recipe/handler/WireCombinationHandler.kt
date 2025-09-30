@@ -1,54 +1,65 @@
 package gregtechlite.gtlitecore.loader.recipe.handler
 
-import com.google.common.collect.ImmutableMap
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.material.properties.WireProperties
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.cableGtDouble
+import gregtech.api.unification.ore.OrePrefix.cableGtHex
+import gregtech.api.unification.ore.OrePrefix.cableGtOctal
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.cableGtSingle
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
-import org.apache.commons.lang3.ArrayUtils
+import gregtechlite.gtlitecore.api.extension.EUt
 import kotlin.math.pow
 
-// Callback original registrate of wire combination processing handler and post new
-// processing handler from this recipe handler container.
+@Suppress("unused")
 object WireCombinationHandler
 {
 
     // @formatter:off
 
-    private val WIRE_DOUBLING_ORDER = arrayOf(OrePrefix.wireGtSingle,
-                                              OrePrefix.wireGtDouble,
-                                              OrePrefix.wireGtQuadruple,
-                                              OrePrefix.wireGtOctal,
-                                              OrePrefix.wireGtHex)
+    private val WIRE_DOUBLING_ORDER = arrayOf(wireGtSingle,
+                                              wireGtDouble,
+                                              wireGtQuadruple,
+                                              wireGtOctal,
+                                              wireGtHex)
 
-    private val cableToWireMap = ImmutableMap.of(OrePrefix.cableGtSingle, OrePrefix.wireGtSingle,
-                                                 OrePrefix.cableGtDouble, OrePrefix.wireGtDouble,
-                                                 OrePrefix.cableGtQuadruple, OrePrefix.wireGtQuadruple,
-                                                 OrePrefix.cableGtOctal, OrePrefix.wireGtOctal,
-                                                 OrePrefix.cableGtHex, OrePrefix.wireGtHex)
+    private val cableToWireMap = mapOf(cableGtSingle to wireGtSingle,
+                                       cableGtDouble to wireGtDouble,
+                                       cableGtQuadruple to wireGtQuadruple,
+                                       cableGtOctal to wireGtOctal,
+                                       cableGtHex to wireGtHex)
 
     fun init()
     {
-        OrePrefix.wireGtSingle.addProcessingHandler(PropertyKey.WIRE, this::processWireCompression)
+        wireGtSingle.addProcessingHandler(PropertyKey.WIRE, ::processWireCompression)
+
         for (wirePrefix in WIRE_DOUBLING_ORDER)
-            wirePrefix.addProcessingHandler(PropertyKey.WIRE, this::generateWireCombiningRecipe)
+            wirePrefix.addProcessingHandler(PropertyKey.WIRE, ::generateWireCombiningRecipe)
+
         for (cablePrefix in cableToWireMap.keys)
-            cablePrefix.addProcessingHandler(PropertyKey.WIRE, this::processCableStripping)
+            cablePrefix.addProcessingHandler(PropertyKey.WIRE, ::processCableStripping)
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.WireCombiningHandler.processWireCompression].
+     * @see gregtech.loaders.recipe.handlers.WireCombiningHandler.processWireCompression
      */
     private fun processWireCompression(wirePrefix: OrePrefix, material: Material, properties: WireProperties)
     {
@@ -65,6 +76,7 @@ object WireCombinationHandler
                     .buildAndRegister()
             }
         }
+
         for (i in 1 until 5)
         {
             LOOM_RECIPES.recipeBuilder()
@@ -79,11 +91,11 @@ object WireCombinationHandler
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.WireCombiningHandler.generateWireCombiningRecipe].
+     * @see gregtech.loaders.recipe.handlers.WireCombiningHandler.generateWireCombiningRecipe
      */
     private fun generateWireCombiningRecipe(wirePrefix: OrePrefix, material: Material, property: WireProperties)
     {
-        val wireIndex = ArrayUtils.indexOf(WIRE_DOUBLING_ORDER, wirePrefix)
+        val wireIndex = WIRE_DOUBLING_ORDER.indexOf(wirePrefix)
         if (wireIndex < WIRE_DOUBLING_ORDER.size - 1)
         {
             ModHandler.addShapelessRecipe(String.format("%s_wire_%s_doubling", material, wirePrefix),
@@ -91,12 +103,14 @@ object WireCombinationHandler
                 UnificationEntry(wirePrefix, material),
                 UnificationEntry(wirePrefix, material))
         }
+
         if (wireIndex > 0)
         {
             ModHandler.addShapelessRecipe(String.format("%s_wire_%s_splitting", material, wirePrefix),
                 OreDictUnifier.get(WIRE_DOUBLING_ORDER[wireIndex - 1], material, 2),
                 UnificationEntry(wirePrefix, material))
         }
+
         if (wireIndex < 3)
         {
             ModHandler.addShapelessRecipe(String.format("%s_wire_%s_quadrupling", material, wirePrefix),
@@ -109,15 +123,15 @@ object WireCombinationHandler
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.WireCombiningHandler.processCableStripping].
+     * @see gregtech.loaders.recipe.handlers.WireCombiningHandler.processCableStripping
      */
     private fun processCableStripping(prefix: OrePrefix, material: Material, property: WireProperties)
     {
-        RecipeMaps.PACKER_RECIPES.recipeBuilder()
+        PACKER_RECIPES.recipeBuilder()
             .input(prefix, material)
             .output(cableToWireMap[prefix], material)
-            .output(OrePrefix.plate, Materials.Rubber, (prefix.secondaryMaterials[0].amount / M).toInt())
-            .EUt(VA[ULV].toLong())
+            .output(plate, Rubber, (prefix.secondaryMaterials[0].amount / M).toInt())
+            .EUt(VA[ULV])
             .duration(5 * SECOND)
             .buildAndRegister()
     }

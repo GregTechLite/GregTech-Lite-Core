@@ -2,20 +2,36 @@ package gregtechlite.gtlitecore.loader.recipe.handler
 
 import gregtech.api.items.toolitem.IGTTool
 import gregtech.api.recipes.ModHandler
-import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.MarkerMaterials.Color
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
-import gregtech.api.unification.material.info.MaterialFlags
+import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Wood
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.material.properties.ToolProperty
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.dye
+import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.springSmall
+import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
-import gregtech.common.items.ToolItems
+import gregtech.common.items.ToolItems.PLUNGER
+import gregtech.common.items.ToolItems.SOFT_MALLET
 import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteToolPropertyAdder
-import gregtechlite.gtlitecore.common.item.GTLiteToolItems
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.CLUB
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.COMBINATION_WRENCH
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.FLINT_AND_STEEL
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.ROLLING_PIN
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.UNIVERSAL_SPADE
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
+@Suppress("unused")
 object ToolRecipeHandler
 {
 
@@ -23,7 +39,7 @@ object ToolRecipeHandler
 
     fun init()
     {
-        OrePrefix.ingot.addProcessingHandler(PropertyKey.TOOL, this::processTool)
+        ingot.addProcessingHandler(PropertyKey.TOOL, ::processTool)
     }
 
     fun registerCustomToolRecipes()
@@ -36,48 +52,48 @@ object ToolRecipeHandler
         if (material.hasProperty(PropertyKey.INGOT))
         {
 
-            if (material.hasFlags(MaterialFlags.GENERATE_PLATE))
+            if (material.hasFlag(GENERATE_PLATE))
             {
                 // Combination Wrench
-                addToolRecipe(material, GTLiteToolItems.COMBINATION_WRENCH, true,
+                addToolRecipe(material, COMBINATION_WRENCH, true,
                     "PhP", "IPI", "fP ",
-                    'I', UnificationEntry(OrePrefix.ingot, material),
-                    'P', UnificationEntry(OrePrefix.plate, material))
+                    'I', UnificationEntry(ingot, material),
+                    'P', UnificationEntry(plate, material))
             }
 
-            if (material.hasFlag(MaterialFlags.GENERATE_ROD))
+            if (material.hasFlag(GENERATE_ROD))
             {
                 // Rolling Pin
-                addToolRecipe(material, GTLiteToolItems.ROLLING_PIN, true,
+                addToolRecipe(material, ROLLING_PIN, true,
                     "  R", " I ", "R f",
-                    'R', UnificationEntry(OrePrefix.stick, material),
-                    'I', UnificationEntry(OrePrefix.ingot, material))
+                    'R', UnificationEntry(stick, material),
+                    'I', UnificationEntry(ingot, material))
 
                 // Club
-                addToolRecipe(material, GTLiteToolItems.CLUB, true,
+                addToolRecipe(material, CLUB, true,
                     "hII", "III", "RIf",
-                    'I', UnificationEntry(OrePrefix.ingot, material),
-                    'R', UnificationEntry(OrePrefix.stick, material))
+                    'I', UnificationEntry(ingot, material),
+                    'R', UnificationEntry(stick, material))
             }
 
-            if (material.hasFlags(MaterialFlags.GENERATE_PLATE) && material.hasFlags(MaterialFlags.GENERATE_ROD))
+            if (material.hasFlags(GENERATE_PLATE, GENERATE_ROD))
             {
                 // Universal Spade
-                addToolRecipe(material, GTLiteToolItems.UNIVERSAL_SPADE, true,
+                addToolRecipe(material, UNIVERSAL_SPADE, true,
                     "hPP", "DRP", "RDf",
-                    'P', UnificationEntry(OrePrefix.plate, material),
-                    'R', UnificationEntry(OrePrefix.stick, material),
-                    'D', UnificationEntry(OrePrefix.dye, MarkerMaterials.Color.Blue))
+                    'P', UnificationEntry(plate, material),
+                    'R', UnificationEntry(stick, material),
+                    'D', UnificationEntry(dye, Color.Blue))
             }
 
-            if (material.hasFlags(MaterialFlags.GENERATE_SPRING_SMALL) && material.hasFlags(MaterialFlags.GENERATE_SMALL_GEAR)
-                && material != Materials.Steel) // Do not generate Steel Flint And Steel because the vanilla Flint And Steel is Steel yet.
+            // Do not generate Steel Flint And Steel because the vanilla Flint And Steel is Steel yet.
+            if (material.hasFlags(GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR) && material != Steel)
             {
                 // Flint And Steel
-                addToolRecipe(material, GTLiteToolItems.FLINT_AND_STEEL, false,
+                addToolRecipe(material, FLINT_AND_STEEL, false,
                     " G ", " F ", " S ",
-                    'G', UnificationEntry(OrePrefix.gearSmall, material),
-                    'S', UnificationEntry(OrePrefix.springSmall, material),
+                    'G', UnificationEntry(gearSmall, material),
+                    'S', UnificationEntry(springSmall, material),
                     'F', ItemStack(Items.FLINT))
             }
 
@@ -87,18 +103,18 @@ object ToolRecipeHandler
     private fun registerSoftToolRecipes()
     {
         val softMaterials = GTLiteToolPropertyAdder.softMaterials
-        val stick = UnificationEntry(OrePrefix.stick, Materials.Wood)
+        val stick = UnificationEntry(stick, Wood)
 
         for (mat in softMaterials)
         {
             val material = mat.first
-            addToolRecipe(material, ToolItems.SOFT_MALLET, true,
+            addToolRecipe(material, SOFT_MALLET, true,
                 "II ", "IIS", "II ",
-                'I', UnificationEntry(OrePrefix.ingot, material),
+                'I', UnificationEntry(ingot, material),
                 'S', stick)
-            addToolRecipe(material, ToolItems.PLUNGER, true,
+            addToolRecipe(material, PLUNGER, true,
                 "xPP", " SP", "S f",
-                'P', UnificationEntry(OrePrefix.plate, material),
+                'P', UnificationEntry(plate, material),
                 'S', stick)
         }
     }

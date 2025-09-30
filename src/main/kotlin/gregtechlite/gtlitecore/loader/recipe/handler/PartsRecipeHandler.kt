@@ -8,32 +8,75 @@ import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
-import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
+import gregtech.api.recipes.RecipeMaps.LATHE_RECIPES
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.MarkerMaterials.Color
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.Amethyst
+import gregtech.api.unification.material.Materials.Andradite
+import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.Glass
+import gregtech.api.unification.material.Materials.GreenSapphire
+import gregtech.api.unification.material.Materials.Malachite
+import gregtech.api.unification.material.Materials.Olivine
+import gregtech.api.unification.material.Materials.Pyrope
+import gregtech.api.unification.material.Materials.Ruby
+import gregtech.api.unification.material.Materials.Rutile
+import gregtech.api.unification.material.Materials.Spessartine
+import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.info.MaterialFlags
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.GemProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.craftingLens
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gemExquisite
+import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtech.api.unification.ore.OrePrefix.lens
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.round
+import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.turbineBlade
 import gregtech.api.unification.stack.UnificationEntry
-import gregtech.api.util.DyeUtil
-import gregtech.api.util.GTUtility
+import gregtech.api.util.DyeUtil.determineDyeColor
+import gregtech.api.util.GTUtility.scaleVoltage
 import gregtech.common.ConfigHolder
-import gregtech.common.items.MetaItems.SHAPE_MOLD_BOLT
-import gregtech.common.items.MetaItems.SHAPE_MOLD_RING
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
-import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD_LONG
-import gregtech.common.items.MetaItems.SHAPE_MOLD_ROUND
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.duration
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cryolite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Heterodiamond
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconNitride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nephelite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.sheetedFrame
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.wallGt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_TURBINE_BLADE
@@ -42,9 +85,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_OCTAGONAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_STRIPES
-import net.minecraft.item.ItemStack
 import kotlin.math.max
 
+@Suppress("unused")
 object PartsRecipeHandler
 {
 
@@ -52,172 +95,175 @@ object PartsRecipeHandler
 
     fun init()
     {
-        // Callback original registrate of material processing handler and post new processing handler
-        // from new recipe handler container.
-        OrePrefix.stick.addProcessingHandler(PropertyKey.DUST, this::processStick)
-        OrePrefix.lens.addProcessingHandler(PropertyKey.GEM, this::processLens)
-        // ===========================================================================================
-        OrePrefix.stickLong.addProcessingHandler(PropertyKey.DUST, this::processStickLong)
-        OrePrefix.bolt.addProcessingHandler(PropertyKey.DUST, this::processBolt)
-        OrePrefix.screw.addProcessingHandler(PropertyKey.DUST, this::processScrew)
-        OrePrefix.ring.addProcessingHandler(PropertyKey.DUST, this::processRing)
-        OrePrefix.round.addProcessingHandler(PropertyKey.INGOT, this::processRound)
-        OrePrefix.toolHeadDrill.addProcessingHandler(PropertyKey.INGOT, this::processDrillHead)
-        OrePrefix.turbineBlade.addProcessingHandler(PropertyKey.INGOT, this::processTurbineBlade)
-        GTLiteOrePrefix.sheetedFrame.addProcessingHandler(PropertyKey.DUST, this::processSheetedFrame)
-        GTLiteOrePrefix.wallGt.addProcessingHandler(PropertyKey.DUST, this::processWall)
+        stick.addProcessingHandler(PropertyKey.DUST, ::processStick)
+        lens.addProcessingHandler(PropertyKey.GEM, ::processLens)
+
+        screw.addProcessingHandler(PropertyKey.DUST, ::processScrew)
+        round.addProcessingHandler(PropertyKey.INGOT, ::processRound)
+        toolHeadDrill.addProcessingHandler(PropertyKey.INGOT, ::processDrillHead)
+        turbineBlade.addProcessingHandler(PropertyKey.INGOT, ::processTurbineBlade)
+        sheetedFrame.addProcessingHandler(PropertyKey.DUST, ::processSheetedFrame)
+        wallGt.addProcessingHandler(PropertyKey.DUST, ::processWall)
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.PartsRecipeHandler.processStick],
-     * required [magicbook.gtlitecore.mixins.gregtech.MixinPartsRecipeHandler.callbackRegistrate].
+     * @see gregtech.loaders.recipe.handlers.PartsRecipeHandler.processStick
      */
     private fun processStick(stickPrefix: OrePrefix, material: Material, property: DustProperty)
     {
         val workingTier = material.workingTier
-        // Split original predicate (ingot, gem), because we want to add special processing of plastic
-        // stick (this processing required to check [MaterialFlags.NO_SMASHING] tag of material).
+
+        // Split original predicate (ingot, gem), because we want to add special processing of plastic stick (this
+        // processing required to check NO_SMASHING tag of material).
         if (material.hasProperty(PropertyKey.GEM))
         {
-            val builder = RecipeMaps.LATHE_RECIPES.recipeBuilder()
-                .input(OrePrefix.ingot, material) // Delete safety checking of original processing, because this is unused at this time.
-                .EUt(GTUtility.scaleVoltage(VH[LV].toLong(), workingTier))
-                .duration(max(material.mass * 2, 1).toInt())
+            // Delete safety checking of original processing, because this is unused at this time.
+            val builder = LATHE_RECIPES.recipeBuilder()
+                .input(ingot, material)
+                .EUt(scaleVoltage(VH[LV], workingTier))
+                .duration(max(material.mass * 2, 1))
+
             if (ConfigHolder.recipes.harderRods)
             {
                 builder.output(stickPrefix, material)
-                    .output(OrePrefix.dustSmall, material, 2)
+                    .output(dustSmall, material, 2)
             }
             else
             {
-                builder.output(OrePrefix.stick, material, 2)
+                builder.output(stick, material, 2)
             }
+
             builder.buildAndRegister()
         }
 
         if (material.hasProperty(PropertyKey.INGOT))
         {
             // For common hard materials, the processing is same as gem.
-            if (!material.hasFlag(MaterialFlags.NO_SMASHING))
+            if (!material.hasFlag(NO_SMASHING))
             {
-                val builder = RecipeMaps.LATHE_RECIPES.recipeBuilder()
-                    .input(OrePrefix.ingot, material)
-                    .duration(max(material.mass * 2, 1).toInt())
-                    .EUt(GTUtility.scaleVoltage(VH[LV].toLong(), workingTier))
+                val builder = LATHE_RECIPES.recipeBuilder()
+                    .input(ingot, material)
+                    .duration(max(material.mass * 2, 1))
+                    .EUt(scaleVoltage(VH[LV], workingTier))
+
                 if (ConfigHolder.recipes.harderRods)
                 {
                     builder.output(stickPrefix, material)
-                        .output(OrePrefix.dustSmall, material, 2)
+                        .output(dustSmall, material, 2)
                 }
                 else
                 {
                     builder.output(stickPrefix, material, 2)
                 }
+
                 builder.buildAndRegister()
             }
             else // Used slicer to cut soft material with stripes blade.
             {
-                val builder = GTLiteRecipeMaps.SLICER_RECIPES.recipeBuilder()
+                val builder = SLICER_RECIPES.recipeBuilder()
                     .notConsumable(SLICER_BLADE_STRIPES)
-                    .input(OrePrefix.ingot, material)
-                    .duration(max(material.mass * 2, 1).toInt())
-                    .EUt(VH[LV].toLong())
+                    .input(ingot, material)
+                    .duration(max(material.mass * 2, 1))
+                    .EUt(VH[LV])
+
                 if (ConfigHolder.recipes.harderRods)
                 {
-                    builder.output(OrePrefix.stick, material)
-                    builder.output(OrePrefix.dustSmall, material, 2)
+                    builder.output(stick, material)
+                        .output(dustSmall, material, 2)
                 }
                 else
                 {
-                    builder.output(OrePrefix.stick, material, 2)
+                    builder.output(stick, material, 2)
                 }
+
                 builder.buildAndRegister()
             }
         }
-        // Bolt processing is same as ingot predicate, declare it has hard and soft two properties,
-        // hard part used cutting machine, and soft part used slicer with octagonal blade.
-        if (material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW))
+        // Bolt processing is same as ingot predicate, declare it has hard and soft two properties, hard part used
+        // cutting machine, and soft part used slicer with octagonal blade.
+        if (material.hasFlag(GENERATE_BOLT_SCREW))
         {
-            val boltStack = OreDictUnifier.get(OrePrefix.bolt, material)
-            if (!material.hasFlag(MaterialFlags.NO_SMASHING))
+            val boltStack = OreDictUnifier.get(bolt, material)
+            if (!material.hasFlag(NO_SMASHING))
             {
-                RecipeMaps.CUTTER_RECIPES.recipeBuilder()
+                CUTTER_RECIPES.recipeBuilder()
                     .input(stickPrefix, material)
-                    .outputs(GTUtility.copy(4, boltStack))
-                    .duration(max(material.mass * 2, 1).toInt())
-                .EUt(GTUtility.scaleVoltage(4, workingTier))
-                .buildAndRegister()
+                    .outputs(boltStack.copy(4))
+                    .duration(max(material.mass * 2, 1))
+                    .EUt(scaleVoltage(4, workingTier))
+                    .buildAndRegister()
             }
             else if (!material.hasProperty(PropertyKey.GEM))
             {
-                GTLiteRecipeMaps.SLICER_RECIPES.recipeBuilder()
+                SLICER_RECIPES.recipeBuilder()
                     .notConsumable(SLICER_BLADE_OCTAGONAL)
                     .input(stickPrefix, material)
-                    .outputs(GTUtility.copy(4, boltStack))
-                    .duration(max(material.mass * 2, 1).toInt())
-                    .EUt(GTUtility.scaleVoltage(4, workingTier))
+                    .outputs(boltStack.copy(4))
+                    .duration(max(material.mass * 2, 1))
+                    .EUt(scaleVoltage(4, workingTier))
                     .buildAndRegister()
             }
 
             if (workingTier <= HV)
             {
-                ModHandler.addShapedRecipe(String.format("bolt_saw_%s", material),
-                    GTUtility.copy(2, boltStack),
+                ModHandler.addShapedRecipe(String.format("bolt_saw_%s", material), boltStack.copy(2),
                     "s ", " X",
-                    'X', UnificationEntry(OrePrefix.stick, material))
+                    'X', UnificationEntry(stick, material))
             }
         }
 
         // Add fluid solidification recipes to rod via GTLiteMetaItems#SHAPE_MOLD_ROD.
         if (material.hasFluid())
         {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_MOLD_ROD)
                 .fluidInputs(material.getFluid(L / 2))
                 .output(stickPrefix, material)
-                .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                .EUt(scaleVoltage(VA[LV], workingTier))
                 .duration(7 * SECOND + 5 * TICK)
                 .buildAndRegister()
         }
     }
 
     /**
-     * Transformed from [gregtech.loaders.recipe.handlers.PartsRecipeHandler.processLens],
-     * required [magicbook.gtlitecore.mixins.gregtech.MixinPartsRecipeHandler.callbackRegistrate].
+     * @see gregtech.loaders.recipe.handlers.PartsRecipeHandler.processLens
      */
     private fun processLens(lensPrefix: OrePrefix, material: Material, property: GemProperty)
     {
         val workingTier = material.workingTier
+
         // plateX -> craftingLensX
-        if (!(OreDictUnifier.get(OrePrefix.plate, material))!!.isEmpty)
+        if (!(OreDictUnifier.get(plate, material))!!.isEmpty)
         {
-            GTLiteRecipeMaps.POLISHER_RECIPES.recipeBuilder()
-                .input(OrePrefix.plate, material)
+            POLISHER_RECIPES.recipeBuilder()
+                .input(plate, material)
                 .output(lensPrefix, material)
-                .output(OrePrefix.dustSmall, material)
-                .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                .output(dustSmall, material)
+                .EUt(scaleVoltage(VA[MV], workingTier))
                 .duration(1 * MINUTE)
                 .buildAndRegister()
         }
+
         // gemExquisiteX -> craftingLensX.
-        if (!(OreDictUnifier.get(OrePrefix.gemExquisite, material))!!.isEmpty)
+        if (!(OreDictUnifier.get(gemExquisite, material))!!.isEmpty)
         {
-            GTLiteRecipeMaps.POLISHER_RECIPES.recipeBuilder()
-                .input(OrePrefix.gemExquisite, material)
+            POLISHER_RECIPES.recipeBuilder()
+                .input(gemExquisite, material)
                 .output(lensPrefix, material)
-                .output(OrePrefix.dust, material, 2)
-                .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
+                .output(dust, material, 2)
+                .EUt(scaleVoltage(VA[LV], workingTier))
                 .duration(2 * MINUTE)
                 .buildAndRegister()
         }
+
         // gemSolitaryX -> craftingLensX.
-        if (!(OreDictUnifier.get(GTLiteOrePrefix.gemSolitary, material))!!.isEmpty)
+        if (!(OreDictUnifier.get(gemSolitary, material))!!.isEmpty)
         {
-            GTLiteRecipeMaps.POLISHER_RECIPES.recipeBuilder()
-                .input(GTLiteOrePrefix.gemSolitary, material)
+            POLISHER_RECIPES.recipeBuilder()
+                .input(gemSolitary, material)
                 .output(lensPrefix, material, 2)
-                .output(OrePrefix.dust, material, 4)
-                .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                .output(dust, material, 4)
+                .EUt(scaleVoltage(VA[MV], workingTier))
                 .duration(1 * MINUTE)
                 .buildAndRegister()
         }
@@ -226,267 +272,126 @@ object PartsRecipeHandler
         val lensStack = OreDictUnifier.get(lensPrefix, material)
         when (material)
         {
-            // Original gem colored lens modifications.
-            Materials.Diamond -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.LightBlue)
-            }
-            Materials.Ruby -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Red)
-            }
-            Materials.Emerald -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Green)
-            }
-            Materials.Glass -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens.name() + material.toCamelCaseString())
-            }
-            Materials.Uvarovite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Lime)
-            }
-            Materials.Malachite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Green)
-            }
-            Materials.Andradite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Brown)
-            }
-            Materials.GreenSapphire -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Lime)
-            }
-            Materials.Pyrope -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Purple)
-            }
-            Materials.Rutile -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Pink)
-            }
-            Materials.Spessartine -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Red)
-            }
-            Materials.Olivine -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Lime)
-            }
-            Materials.Amethyst -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Purple)
-            }
-            // Addition gem colored lens in gtlitecore.
-            GTLiteMaterials.Tanzanite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Purple)
-            }
-            GTLiteMaterials.Albite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Pink)
-            }
-            GTLiteMaterials.Fluorite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Green)
-            }
-            GTLiteMaterials.Celestine -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Cyan)
-            }
-            GTLiteMaterials.Baddeleyite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Cyan)
-            }
-            GTLiteMaterials.Nephelite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Red)
-            }
-            GTLiteMaterials.Cryolite -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.LightBlue)
-            }
-            GTLiteMaterials.Jade -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Green)
-            }
-            GTLiteMaterials.Heterodiamond -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Purple)
-            }
-            GTLiteMaterials.HexagonalSiliconNitride -> {
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens,
-                    MarkerMaterials.Color.Purple)
-            }
+            // GTCEu colored lens modifications.
+            Diamond -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.LightBlue)
+            Ruby -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Red)
+            Emerald -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Green)
+            Glass -> OreDictUnifier.registerOre(lensStack, craftingLens.name() + material.toCamelCaseString())
+            Uvarovite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Lime)
+            Malachite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Green)
+            Andradite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Brown)
+            GreenSapphire -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Lime)
+            Pyrope -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Purple)
+            Rutile -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Pink)
+            Spessartine -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Red)
+            Olivine -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Lime)
+            Amethyst -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Purple)
+
+            // Mod colored lens modifications.
+            Tanzanite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Purple)
+            Albite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Pink)
+            Fluorite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Green)
+            Celestine -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Cyan)
+            Baddeleyite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Cyan)
+            Nephelite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Red)
+            Cryolite -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.LightBlue)
+            Jade -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Green)
+            Heterodiamond -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Purple)
+            HexagonalSiliconNitride -> OreDictUnifier.registerOre(lensStack, craftingLens, Color.Purple)
+
+            // Default behaviour for determining lens color, left for CrT.
             else -> {
-                // Default behaviour for determining lens color, left for addons and CraftTweaker.
-                val dyeColor = DyeUtil.determineDyeColor(material.materialRGB)
-                val colorMaterial = MarkerMaterials.Color.COLORS[dyeColor]
-                OreDictUnifier.registerOre(lensStack, OrePrefix.craftingLens, colorMaterial)
+
+                val dyeColor = determineDyeColor(material.materialRGB)
+                val colorMaterial = Color.COLORS[dyeColor]
+                OreDictUnifier.registerOre(lensStack, craftingLens, colorMaterial)
             }
         }
     }
 
-    /**
-     * Add fluid solidification processing via [SHAPE_MOLD_ROD_LONG].
-     */
-    private fun processStickLong(stickLongPrefix: OrePrefix, material: Material, property: DustProperty)
-    {
-        val workingTier = material.workingTier
-        if (material.hasFluid())
-        {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_ROD_LONG)
-                .fluidInputs(material.getFluid(L))
-                .output(stickLongPrefix, material)
-                .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 16 * getVoltageMultiplier(material)), workingTier))
-                .duration(15 * SECOND)
-                .buildAndRegister()
-        }
-    }
-
-    /**
-     * Add fluid solidification processing via [SHAPE_MOLD_BOLT].
-     */
-    private fun processBolt(boltPrefix: OrePrefix, material: Material, property: DustProperty)
-    {
-        val workingTier = material.workingTier
-        if (material.hasFluid())
-        {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_BOLT)
-                .fluidInputs(material.getFluid(L / 8))
-                .output(boltPrefix, material)
-                .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
-                .duration(2 * SECOND + 5 * TICK)
-                .buildAndRegister()
-        }
-    }
-
-    /**
-     * Add fluid solidification processing via [SHAPE_MOLD_SCREW].
-     */
     private fun processScrew(screwPrefix: OrePrefix, material: Material, property: DustProperty)
     {
         val workingTier = material.workingTier
         if (material.hasFluid())
         {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_MOLD_SCREW)
                 .fluidInputs(material.getFluid(L / 8))
                 .output(screwPrefix, material)
-                .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
                 .duration(2 * SECOND + 5 * TICK)
                 .buildAndRegister()
         }
     }
 
-    /**
-     * Add fluid solidification processing via [SHAPE_MOLD_RING].
-     */
-    private fun processRing(ringPrefix: OrePrefix, material: Material, property: DustProperty)
-    {
-        val workingTier = material.workingTier
-        if (material.hasFluid())
-        {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_RING)
-                .fluidInputs(material.getFluid(L / 4))
-                .output(ringPrefix, material)
-                .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
-                .duration(5 * SECOND)
-                .buildAndRegister()
-        }
-    }
-
-    /**
-     * Add fluid solidification and extruding processing via [SHAPE_MOLD_ROUND]
-     * and [SHAPE_EXTRUDER_ROUND].
-     */
     private fun processRound(roundPrefix: OrePrefix, material: Material, property: IngotProperty)
     {
         val workingTier = material.workingTier
-        if (material.hasFluid())
+
+        if (!(OreDictUnifier.get(ingot, material).isEmpty))
         {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_ROUND)
-                .fluidInputs(material.getFluid(L / 8))
-                .output(roundPrefix, material)
-                .EUt(GTUtility.scaleVoltage(VA[LV].toLong(), workingTier))
-                .duration(2 * SECOND + 5 * TICK)
-                .buildAndRegister()
-        }
-        if (!(OreDictUnifier.get(OrePrefix.ingot, material) as? ItemStack)!!.isEmpty)
-        {
-            RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+            EXTRUDER_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_EXTRUDER_ROUND)
-                .input(OrePrefix.ingot, material)
+                .input(ingot, material)
                 .output(roundPrefix, material, 4)
-                .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
                 .duration(2 * SECOND)
                 .buildAndRegister()
         }
-        else // TODO Should there needs a extra checking of dustStack not null?
+        else
         {
-            RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+            EXTRUDER_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_EXTRUDER_ROUND)
-                .input(OrePrefix.dust, material)
+                .input(dust, material)
                 .output(roundPrefix, material, 4)
-                .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
+                .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
                 .duration(2 * SECOND)
                 .buildAndRegister()
         }
     }
 
-    /**
-     * Add fluid solidification and extruding processing via [SHAPE_MOLD_DRILL_HEAD]
-     * and [SHAPE_EXTRUDER_DRILL_HEAD].
-     */
     private fun processDrillHead(drillHeadPrefix: OrePrefix, material: Material, property: IngotProperty)
     {
         val workingTier = material.workingTier
         if (material.hasFluid())
         {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_MOLD_DRILL_HEAD)
                 .fluidInputs(material.getFluid(L * 4)) // Cost less material than hand-crafting recipes.
                 .output(drillHeadPrefix, material)
-                .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+                .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
                 .duration(5 * SECOND)
                 .buildAndRegister()
         }
-        RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+
+        EXTRUDER_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_EXTRUDER_DRILL_HEAD)
-            .input(OrePrefix.ingot, material, 4) // Cost less material than hand-crafting recipes.
+            .input(ingot, material, 4) // Cost less material than hand-crafting recipes.
             .output(drillHeadPrefix, material, 1)
-            .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+            .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
             .duration(5 * SECOND)
             .buildAndRegister()
     }
 
-    /**
-     * Add fluid solidification and extruding processing via [SHAPE_MOLD_TURBINE_BLADE]
-     * and [SHAPE_EXTRUDER_TURBINE_BLADE].
-     */
     private fun processTurbineBlade(turbineBladePrefix: OrePrefix, material: Material, property: IngotProperty)
     {
         val workingTier = material.workingTier
         if (material.hasFluid())
         {
-            RecipeMaps.FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
+            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
                 .notConsumable(SHAPE_MOLD_TURBINE_BLADE)
                 .fluidInputs(material.getFluid(L * 6))
                 .output(turbineBladePrefix, material)
-                .EUt(GTUtility.scaleVoltage(max(VA[MV].toLong(), 6 * getVoltageMultiplier(material)), workingTier))
+                .EUt(scaleVoltage(max(VA[MV].toLong(), 6 * getVoltageMultiplier(material)), workingTier))
                 .duration(20 * SECOND)
                 .buildAndRegister()
         }
-        RecipeMaps.EXTRUDER_RECIPES.recipeBuilder()
+
+        EXTRUDER_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_EXTRUDER_TURBINE_BLADE)
-            .input(OrePrefix.ingot, material, 6)
+            .input(ingot, material, 6)
             .output(turbineBladePrefix, material)
-            .EUt(GTUtility.scaleVoltage(VA[MV].toLong(), workingTier))
+            .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
             .duration(20 * SECOND)
             .buildAndRegister()
     }
@@ -496,17 +401,18 @@ object PartsRecipeHandler
 
         if (!material.hasFlag(MaterialFlags.GENERATE_FRAME))
             return
+
         ModHandler.addShapedRecipe(String.format("%s_sheeted_frame", material), OreDictUnifier.get(sheetedFramePrefix, material, 12),
             "PFP", "PhP", "PFP",
-            'P', UnificationEntry(OrePrefix.plate, material),
-            'F', UnificationEntry(OrePrefix.frameGt, material))
+            'P', UnificationEntry(plate, material),
+            'F', UnificationEntry(frameGt, material))
 
-        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+        ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(10)
-            .input(OrePrefix.plate, material, 3)
-            .input(OrePrefix.frameGt, material, 1)
+            .input(plate, material, 3)
+            .input(frameGt, material, 1)
             .output(sheetedFramePrefix, material, 6)
-            .EUt(VA[ULV].toLong())
+            .EUt(VA[ULV])
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
 
@@ -516,22 +422,25 @@ object PartsRecipeHandler
     {
         if (!material.hasFlag(MaterialFlags.GENERATE_PLATE) || !material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW))
             return
+
         ModHandler.addShapedRecipe(String.format("%s_wall_gt", material), OreDictUnifier.get(wallGtPrefix, material, 6),
             "hPS", "P P", "SPd",
-            'P', UnificationEntry(OrePrefix.plate, material),
-            'S', UnificationEntry(OrePrefix.screw, material))
+            'P', UnificationEntry(plate, material),
+            'S', UnificationEntry(screw, material))
 
-        RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder()
+        ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(11)
-            .input(OrePrefix.plate, material, 2)
-            .input(OrePrefix.screw, material, 1)
+            .input(plate, material, 2)
+            .input(screw, material, 1)
             .output(wallGtPrefix, material, 3)
-            .EUt(VA[ULV].toLong())
+            .EUt(VA[ULV])
             .duration(2 * SECOND + 5 * TICK)
             .buildAndRegister()
     }
 
     private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()
+
+    private fun scaleVoltage(voltage: Int, workingTier: Int) = scaleVoltage(voltage.toLong(), workingTier)
 
     // @formatter:on
 

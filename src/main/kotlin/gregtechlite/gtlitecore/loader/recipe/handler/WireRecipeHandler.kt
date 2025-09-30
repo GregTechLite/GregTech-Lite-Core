@@ -36,7 +36,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
@@ -215,7 +215,7 @@ object WireRecipeHandler
                 .input(foil, Zylon, insulationAmount)
                 .input(POLYMER_INSULATOR_FOIL, insulationAmount)
                 .fluidInputs(CosmicFabric.getFluid(L * insulationAmount / 2))
-                .fluidInputs(Omnium.getFluid(L * insulationAmount / 2))
+                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(1000 * insulationAmount / 2))
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
                 .duration(5 * SECOND)
