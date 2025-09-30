@@ -8,4 +8,4 @@ package gregtechlite.gtlitecore.api.mixins
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class MixinExtension()
+annotation class MixinExtension

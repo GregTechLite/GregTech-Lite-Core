@@ -45,6 +45,11 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_GEAR_SMALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NAME
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PIPE_HUGE
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PIPE_LARGE
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PIPE_NORMAL
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PIPE_SMALL
+import gregtech.common.items.MetaItems.SHAPE_MOLD_PIPE_TINY
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_RING
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
@@ -115,8 +120,7 @@ internal object CraftingRecipeLoader
     {
         ToolRecipeHandler.registerCustomToolRecipes()
 
-        // Modified all recipes of original shape molds because we need to add
-        // more shape molds (even more and more in future).
+        // Modified all recipes of original shape molds because we need to add more shape molds.
 
         // Shape Mold (Plate)
         ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_plate")
@@ -196,9 +200,6 @@ internal object CraftingRecipeLoader
             "   ", " M ", "f h",
             'M', SHAPE_EMPTY)
 
-        // Add recipes to additional shape molds, should ensure there are not
-        // any conflicts with original extruders.
-
         // Shape Mold (Rod)
         ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_rod")
         ModHandler.addShapedRecipe(true, "shape_mold.rod", SHAPE_MOLD_ROD.stackForm,
@@ -217,11 +218,6 @@ internal object CraftingRecipeLoader
             "f  ", " Mh", "   ",
             'M', SHAPE_EMPTY)
 
-        // Shape Mold (Screw)
-        ModHandler.addShapedRecipe(true, "shape_mold.screw", SHAPE_MOLD_SCREW.stackForm,
-            " f ", " Mh", "   ",
-            'M', SHAPE_EMPTY)
-
         // Shape Mold (Ring)
         ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_ring")
         ModHandler.addShapedRecipe(true, "shape_mold.ring", SHAPE_MOLD_RING.stackForm,
@@ -234,6 +230,43 @@ internal object CraftingRecipeLoader
             "   ", " M ", " fh",
             'M', SHAPE_EMPTY)
 
+        // Shape Mold (Pipe Tiny)
+        ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_pipe_tiny")
+        ModHandler.addShapedRecipe(true, "shape_mold.pipe_tiny", SHAPE_MOLD_PIPE_TINY.stackForm,
+            "h  ", " M ", "  f",
+            'M', SHAPE_EMPTY)
+
+        // Shape Mold (Pipe Small)
+        ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_pipe_small")
+        ModHandler.addShapedRecipe(true, "shape_mold.pipe_small", SHAPE_MOLD_PIPE_SMALL.stackForm,
+            "  h", " M ", "f  ",
+            'M', SHAPE_EMPTY)
+
+        // Shape Mold (Pipe Normal)
+        ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_pipe_normal")
+        ModHandler.addShapedRecipe(true, "shape_mold.pipe_normal", SHAPE_MOLD_PIPE_NORMAL.stackForm,
+            "h f", " M ", "   ",
+            'M', SHAPE_EMPTY)
+
+        // Shape Mold (Pipe Large)
+        ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_pipe_large")
+        ModHandler.addShapedRecipe(true, "shape_mold.pipe_large", SHAPE_MOLD_PIPE_LARGE.stackForm,
+            "   ", " M ", "h f",
+            'M', SHAPE_EMPTY)
+
+        // Shape Mold (Pipe Huge)
+        ModHandler.removeRecipeByName("${GTValues.MODID}:shape_mold_pipe_huge")
+        ModHandler.addShapedRecipe(true, "shape_mold.pipe_huge", SHAPE_MOLD_PIPE_HUGE.stackForm,
+            "   ", " M ", "fh ",
+            'M', SHAPE_EMPTY)
+
+        // Add recipes to additional shape molds, should ensure there are not any conflicts with original extruders.
+
+        // Shape Mold (Screw)
+        ModHandler.addShapedRecipe(true, "shape_mold.screw", SHAPE_MOLD_SCREW.stackForm,
+            " f ", " Mh", "   ",
+            'M', SHAPE_EMPTY)
+
         // Shape Mold (Turbine Blade)
         ModHandler.addShapedRecipe(true, "shape_mold.turbine_blade", SHAPE_MOLD_TURBINE_BLADE.stackForm,
             "   ", "fM ", "  h",
@@ -244,8 +277,7 @@ internal object CraftingRecipeLoader
             "   ", " M ", " hf",
             'M', SHAPE_EMPTY)
 
-        // Add recipes to additional shape extruders, should ensure there are not
-        // any conflicts with original extruders.
+        // Add recipes to additional shape extruders, should ensure there are not any conflicts with original extruders.
 
         // Shape Extruder (Round)
         ModHandler.addShapedRecipe(true, "shape_extruder.round", SHAPE_EXTRUDER_ROUND.stackForm,
