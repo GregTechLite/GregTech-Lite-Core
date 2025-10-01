@@ -7,6 +7,8 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.V
+import gregtech.api.GTValues.VNF
 import gregtech.api.items.metaitem.ElectricStats
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.StandardMetaItem
@@ -97,6 +99,12 @@ object GTLiteMetaItems
     lateinit var SENSOR_MAX: MetaItem<*>.MetaValueItem
     lateinit var AIR_VENT: MetaItem<*>.MetaValueItem
     lateinit var DRAIN: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_UHV: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_UEV: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_UIV: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_UXV: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_OpV: MetaItem<*>.MetaValueItem
+    lateinit var SOLAR_PANEL_MAX: MetaItem<*>.MetaValueItem
 
     lateinit var GOOWARE_BOARD: MetaItem<*>.MetaValueItem
     lateinit var OPTICAL_BOARD: MetaItem<*>.MetaValueItem
@@ -672,22 +680,22 @@ object GTLiteMetaItems
 
         ELECTRIC_PUMP_MAX = item(108, "electric.pump.max")
             .addComponents(TooltipBehavior { lines ->
-                lines.add(I18n.format("metaitem.electric.pump.tooltip"));
+                lines.add(I18n.format("metaitem.electric.pump.tooltip"))
                 lines.add(I18n.format("gregtech.universal.tooltip.fluid_transfer_rate", 1280 * 64 * 64 * 4 / 20))
             })
 
         CONVEYOR_MODULE_MAX = item(109, "conveyor.module.max")
             .addComponents(TooltipBehavior { lines ->
-                lines.add(I18n.format("metaitem.conveyor.module.tooltip"));
-                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16));
+                lines.add(I18n.format("metaitem.conveyor.module.tooltip"))
+                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16))
             })
 
         ELECTRIC_PISTON_MAX = item(110, "electric.piston.max")
 
         ROBOT_ARM_MAX = item(111, "robot.arm.max")
             .addComponents(TooltipBehavior { lines ->
-                lines.add(I18n.format("metaitem.robot.arm.tooltip"));
-                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16));
+                lines.add(I18n.format("metaitem.robot.arm.tooltip"))
+                lines.add(I18n.format("gregtech.universal.tooltip.item_transfer_rate_stacks", 16))
             })
 
         FIELD_GENERATOR_MAX = item(112, "field.generator.max")
@@ -697,13 +705,55 @@ object GTLiteMetaItems
         AIR_VENT = item(115, "cover.air_vent")
             .addComponents(TooltipBehavior { lines ->
                 lines.add(I18n.format("metaitem.cover.air_vent.tooltip.1"))
-                lines.add(I18n.format("metaitem.cover.air_vent.tooltip.2", 100));
+                lines.add(I18n.format("metaitem.cover.air_vent.tooltip.2", 100))
             })
 
         DRAIN = item(116, "cover.drain")
             .addComponents(TooltipBehavior { lines ->
                 lines.add(I18n.format("metaitem.cover.drain.tooltip.1"))
                 lines.add(I18n.format("metaitem.cover.drain.tooltip.2", 500))
+            })
+
+        SOLAR_PANEL_UHV = item(117, "cover.solar_panel.uhv")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[UHV], VNF[UHV]))
+            })
+
+        SOLAR_PANEL_UEV = item(118, "cover.solar_panel.uev")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[UEV], VNF[UEV]))
+            })
+
+        SOLAR_PANEL_UIV = item(119, "cover.solar_panel.uiv")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[UIV], VNF[UIV]))
+            })
+
+        SOLAR_PANEL_UXV = item(120, "cover.solar_panel.uxv")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[UXV], VNF[UXV]))
+            })
+
+        SOLAR_PANEL_OpV = item(121, "cover.solar_panel.opv")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[OpV], VNF[OpV]))
+            })
+
+        SOLAR_PANEL_MAX = item(122, "cover.solar_panel.max")
+            .addComponents(TooltipBehavior { lines ->
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.1"))
+                lines.add(I18n.format("metaitem.cover.solar.panel.tooltip.2"))
+                lines.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[MAX], VNF[MAX]))
             })
 
         // 201-210: Boards and Circuit Boards.
@@ -1075,26 +1125,26 @@ object GTLiteMetaItems
         STRUCTURE_WRITER = item(1001, "debug.structure_writer")
             .addComponents(StructureWriterBehavior)
             .addComponents(TooltipBehavior { lines ->
-                lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.1"));
-                lines.add(TooltipHelper.BLINKING_CYAN.toString() + I18n.format("metaitem.debug.structure_writer.tooltip.2"));
+                lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.1"))
+                lines.add(TooltipHelper.BLINKING_CYAN.toString() + I18n.format("metaitem.debug.structure_writer.tooltip.2"))
 
                 if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
                 {
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.3"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.4"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.5"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.6"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.7"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.8"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.9"));
-                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.10"));
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.3"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.4"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.5"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.6"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.7"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.8"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.9"))
+                    lines.add(I18n.format("metaitem.debug.structure_writer.tooltip.10"))
                 }
                 else
                 {
-                    lines.add(I18n.format("gregtech.tooltip.hold_shift"));
+                    lines.add(I18n.format("gregtech.tooltip.hold_shift"))
                 }
             })
-        .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS);
+        .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
         // 1101-2000: Circuit Components.
         VACUUM_TUBE_COMPONENT = item(1101, "circuit.component.vacuum_tube_component")

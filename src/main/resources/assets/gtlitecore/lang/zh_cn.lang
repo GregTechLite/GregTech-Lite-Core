@@ -766,6 +766,12 @@ metaitem.cover.air_vent.tooltip.2=§b传输速率：§f%,d L/s
 metaitem.cover.drain.name=排水口
 metaitem.cover.drain.tooltip.1=作§f覆盖板§7时向管道或机器内§f抽入水§7，需要朝向面有§f水方块存在§7。
 metaitem.cover.drain.tooltip.2=§b抽取速率：§f%,d L/s
+metaitem.cover.solar_panel.uhv.name=§4UHV§f 太阳能板
+metaitem.cover.solar_panel.uev.name=§aUEV§f 太阳能板
+metaitem.cover.solar_panel.uiv.name=§2UIV§f 太阳能板
+metaitem.cover.solar_panel.uxv.name=§eUXV§f 太阳能板
+metaitem.cover.solar_panel.opv.name=§9OpV§f 太阳能板
+metaitem.cover.solar_panel.max.name=§c§lMAX§r§f 太阳能板
 
 metaitem.tool.circuit_pattern.name=电路模板
 metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据

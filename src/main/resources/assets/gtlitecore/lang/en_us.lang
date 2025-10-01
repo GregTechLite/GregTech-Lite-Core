@@ -766,6 +766,12 @@ metaitem.cover.air_vent.tooltip.2=§bTransfer Rate: §f%,d L/s
 metaitem.cover.drain.name=Drain
 metaitem.cover.drain.tooltip.1=§fExtracted Water§7 into Machines or Pipes as §fCover§7, required §fExisted Water§7 at orientated facing.
 metaitem.cover.drain.tooltip.2=§bExtract Rate: §f%,d L/s
+metaitem.cover.solar_panel.uhv.name=§4UHV§f Solar Panel
+metaitem.cover.solar_panel.uev.name=§aUEV§f Solar Panel
+metaitem.cover.solar_panel.uiv.name=§2UIV§f Solar Panel
+metaitem.cover.solar_panel.uxv.name=§eUXV§f Solar Panel
+metaitem.cover.solar_panel.opv.name=§9OpV§f Solar Panel
+metaitem.cover.solar_panel.max.name=§c§lMAX§r§f Solar Panel
 
 metaitem.tool.circuit_pattern.name=Circuit Pattern
 metaitem.tool.circuit_pattern.tooltip=Provided Circuit Etching Data for §6Circuit Assembly Line§7.
