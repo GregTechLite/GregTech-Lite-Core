@@ -2599,7 +2599,6 @@ object GTLiteFirstDegreeMaterials
             dust()
             color(0xE4CDFF).iconSet(METALLIC)
             components(Gallium, 2, Oxygen, 3)
-            flags(STD_METAL)
         }
 
         // 2220 Gallium Nitride
