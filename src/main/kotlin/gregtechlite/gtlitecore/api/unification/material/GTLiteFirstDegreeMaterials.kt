@@ -3832,7 +3832,7 @@ object GTLiteFirstDegreeMaterials
             color(0x505064).iconSet(SHINY)
             components(Silicon, 1)
             flags(STD_METAL)
-            blastProp(3325, GasTier.LOW,
+            blastProp(3325, GasTier.LOW, // Nichrome
                       VA[HV], 45 * SECOND,
                       VA[MV], 22 * SECOND + 10 * TICK)
             ingotSmeltInto(Silicon)
