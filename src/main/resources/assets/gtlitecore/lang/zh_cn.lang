@@ -766,6 +766,12 @@ metaitem.cover.air_vent.tooltip.2=§b传输速率：§f%,d L/s
 metaitem.cover.drain.name=排水口
 metaitem.cover.drain.tooltip.1=作§f覆盖板§7时向管道或机器内§f抽入水§7，需要朝向面有§f水方块存在§7。
 metaitem.cover.drain.tooltip.2=§b抽取速率：§f%,d L/s
+metaitem.cover.solar_panel.uhv.name=§4UHV§f 太阳能板
+metaitem.cover.solar_panel.uev.name=§aUEV§f 太阳能板
+metaitem.cover.solar_panel.uiv.name=§2UIV§f 太阳能板
+metaitem.cover.solar_panel.uxv.name=§eUXV§f 太阳能板
+metaitem.cover.solar_panel.opv.name=§9OpV§f 太阳能板
+metaitem.cover.solar_panel.max.name=§c§lMAX§r§f 太阳能板
 
 metaitem.tool.circuit_pattern.name=电路模板
 metaitem.tool.circuit_pattern.tooltip=用于为§6电路装配线§7提供电路板的蚀刻数据
@@ -3244,6 +3250,7 @@ gtlitecore.material.rhenium_pentachloride=五氯化铼
 gtlitecore.material.hexafluorophosphoric_acid=六氟磷酸
 gtlitecore.material.sodium_thiocyanate=硫氰酸钠
 gtlitecore.material.rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate=间苯二甲酰双(二乙硫脲)六氟磷酸铼钅黑铊（RHTIH）
+gtlitecore.material.solar_grade_silicon=太阳能级多晶硅
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250
@@ -3587,6 +3594,8 @@ gtlitecore.material.phenylenedioxydiacetic_acid=亚苯二氧二乙酸
 gtlitecore.material.ethylamine=乙胺
 gtlitecore.material.diethylthiourea=二乙硫脲
 gtlitecore.material.isophthaloylbisdiethylthiourea=间苯二甲酰二乙硫脲
+gtlitecore.material.silane=硅烷
+gtlitecore.material.ethylene_vinyl_acetate_polymer=乙烯-乙酸乙烯酯共聚物（EVA）
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

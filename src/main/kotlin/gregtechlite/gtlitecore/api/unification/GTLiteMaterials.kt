@@ -390,6 +390,7 @@ object GTLiteMaterials
     lateinit var HexafluorophosphoricAcid: Material
     lateinit var SodiumThiocyanate: Material
     lateinit var RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate: Material
+    lateinit var SolarGradeSilicon: Material
 
     // endregion
 
@@ -734,6 +735,8 @@ object GTLiteMaterials
     lateinit var Ethylamine: Material
     lateinit var Diethylthiourea: Material
     lateinit var Isophthaloylbisdiethylthiourea: Material
+    lateinit var Silane: Material
+    lateinit var EthyleneVinylAcetatePolymer: Material
 
     // endregion
 

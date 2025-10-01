@@ -99,6 +99,7 @@ internal object ChemistryRecipeList
         KerogenChain.init()
         FissionFuelChain.init()
         RHTIHChain.init()
+        SolarPanelChain.init()
     }
 
     // @formatter:on

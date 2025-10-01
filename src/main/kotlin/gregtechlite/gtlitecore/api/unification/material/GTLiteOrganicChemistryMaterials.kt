@@ -40,6 +40,8 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
+import gregtech.api.unification.material.Materials.VinylAcetate
+import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -155,6 +157,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneDibromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneVinylAcetatePolymer
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylhexanol
@@ -260,6 +263,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodamineB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
@@ -2330,6 +2334,23 @@ object GTLiteOrganicChemistryMaterials
             liquid()
             color(0xA2D4E1)
             components(Carbon, 18, Hydrogen, 26, Nitrogen, 4, Oxygen, 2, Sulfur, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8233 Silane
+        Silane = addMaterial(8233, "silane")
+        {
+            gas()
+            color(0x6F6F8B)
+            components(Silicon, 1, Hydrogen, 4)
+        }
+
+        // 8234 Ethylene-Vinyl Acetate Polymer
+        EthyleneVinylAcetatePolymer = addMaterial(8234, "ethylene_vinyl_acetate_polymer")
+        {
+            liquid()
+            colorAverage(Ethylene, VinylAcetate)
+            components(Ethylene, 3, VinylAcetate, 2)
             flags(DISABLE_DECOMPOSITION)
         }
 

@@ -95,6 +95,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Potin
@@ -535,6 +536,7 @@ object GTLiteMaterialFlags
         NaquadahAlloy.addFlags(GENERATE_ROUND)
         Darmstadtium.addFlags(GENERATE_ROUND)
         Neutronium.addFlags(GENERATE_ROUND)
+        Polyethylene.addFlags(GENERATE_ROUND)
 
         // stick
         Polybenzimidazole.addFlags(GENERATE_ROD)
