@@ -565,6 +565,7 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconS
 import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.extension.gas
 import gregtechlite.gtlitecore.api.extension.plasma
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 
 object GTLiteFirstDegreeMaterials
 {
@@ -2598,6 +2599,7 @@ object GTLiteFirstDegreeMaterials
             dust()
             color(0xE4CDFF).iconSet(METALLIC)
             components(Gallium, 2, Oxygen, 3)
+            flags(STD_METAL)
         }
 
         // 2220 Gallium Nitride
@@ -3822,6 +3824,20 @@ object GTLiteFirstDegreeMaterials
             components(Carbon, 60, Hydrogen, 84, Oxygen, 12, Nitrogen, 12, Sulfur, 6, Fluorine, 6, Phosphorus, 1,
                        Rhenium, 1, MetastableHassium, 1, Thallium, 1)
             flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 2350 Solar-Grade Silicon
+        SolarGradeSilicon = addMaterial(2350, "solar_grade_silicon")
+        {
+            ingot()
+            color(0x505064).iconSet(SHINY)
+            components(Silicon, 1)
+            flags(STD_METAL)
+            blastProp(3325, GasTier.LOW,
+                      VA[HV], 45 * SECOND,
+                      VA[MV], 22 * SECOND + 10 * TICK)
+            ingotSmeltInto(Silicon)
+            arcSmeltInto(Silicon)
         }
 
     }

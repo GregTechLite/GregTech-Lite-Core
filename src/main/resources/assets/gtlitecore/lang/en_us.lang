@@ -3244,6 +3244,7 @@ gtlitecore.material.rhenium_pentachloride=Rhenium Pentachloride
 gtlitecore.material.hexafluorophosphoric_acid=Hexafluorophosphoric Acid
 gtlitecore.material.sodium_thiocyanate=Sodium Thiocyanate
 gtlitecore.material.rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate=Rhenium Hassium Thallium Isophtaloylbisdiethylthiourea Hexafluorophosphate (RHTIH)
+gtlitecore.material.solar_grade_silicon=Solar-Grade Polycrystalline Silicon
 
 gtlitecore.material.kovar=Kovar
 gtlitecore.material.maraging_steel_250=Maraging Steel 250
@@ -3587,6 +3588,8 @@ gtlitecore.material.phenylenedioxydiacetic_acid=Phenylenedioxydiacetic Acid
 gtlitecore.material.ethylamine=Ethylamine
 gtlitecore.material.diethylthiourea=Diethylthiourea
 gtlitecore.material.isophthaloylbisdiethylthiourea=Isophthaloylbisdiethylthiourea
+gtlitecore.material.silane=Silane
+gtlitecore.material.ethylene_vinyl_acetate_polymer=Ethylene-Vinyl Acetate Polymer (EVA)
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

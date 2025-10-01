@@ -490,7 +490,7 @@ internal object OpticalCircuits
         MIXER_RECIPES.recipeBuilder()
             .fluidInputs(Helium.getFluid(1000))
             .fluidInputs(Neon.getFluid(1000))
-            .fluidOutputs(HeliumNeon.getFluid(2000))
+            .fluidOutputs(HeliumNeon.getFluid(1000))
             .EUt(VA[MV])
             .duration(6 * SECOND)
             .buildAndRegister()

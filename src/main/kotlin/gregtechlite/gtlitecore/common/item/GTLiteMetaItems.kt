@@ -1240,6 +1240,8 @@ object GTLiteMetaItems
         SPIN_FOAM_ANNIHILATED_RAM_CHIP = item(2417, "wafer.chip.spin_foam_annihilated_ram")
         TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP = item(2418, "wafer.chip.temporal_scale_worldsheet_logical_gate")
 
+        // 2500-3000: ...
+
         // 3001-5000: Wrap Components
         WRAP_COATED_BOARD = item(3001, "wrap.board.coated")
         WRAP_PHENOLIC_BOARD = item(3002, "wrap.board.phenolic")
