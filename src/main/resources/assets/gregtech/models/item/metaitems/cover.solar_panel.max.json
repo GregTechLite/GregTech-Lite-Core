@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures" : {
-    "layer0": "gtlitecore:items/metaitems/cover.solar_panel.uev"
+    "layer0": "gtlitecore:items/metaitems/cover.solar_panel.max"
   }
 }
