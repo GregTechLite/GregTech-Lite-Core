@@ -15,7 +15,6 @@ import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Ethylene
-import gregtech.api.unification.material.Materials.Hassium
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.Oxygen
@@ -39,6 +38,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HassiumTetrachlor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexafluorophosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isophthaloylbisdiethylthiourea
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenylenedioxydiaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumPentachloride
@@ -67,7 +67,7 @@ object RHTIHChain
         // Hs + 4Cl -> HsCl4
         CHEMICAL_RECIPES.recipeBuilder()
             .circuitMeta(4)
-            .input(dust, Hassium)
+            .input(dust, MetastableHassium)
             .fluidInputs(Chlorine.getFluid(4000))
             .output(dust, HassiumTetrachloride, 5)
             .EUt(VA[MV])
