@@ -5,15 +5,6 @@ import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
 
-/*
- * This gradle settings is based on TemplateEnvDevKt, modified it to provide some features, such
- * as language mixed programming support (Java and Kotlin), some annotation processors and packages,
- * like JetBrains Annotation and Lombok.
- *
- * The author of this TemplateEnvDevKt port version is Magic_Sweepy and Gate Guardian, and this gradle
- * template is only used for this project, thanks for Kyle Lin make the original gradle template.
- */
-
 plugins {
     id("java")
     id("java-library")
@@ -29,7 +20,7 @@ plugins {
 
 val embed = "embed"
 
-group = "magicbook"
+group = modGroup
 version = modVersion
 
 // Mixed programming environment not supported Jabel or other same functional dependencies, we used Java 8
@@ -130,22 +121,20 @@ dependencies {
         exclude("net.minecraftforge")
     }
     implementation(deobf(libs.modularui))
-    api(libs.codeChickenLib) // Schedule removal this dependencies when GTCEu update next version.
+    api(libs.codeChickenLib)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2851.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
 
-    runtimeOnly(deobf(libs.ctm))
-    runtimeOnly(deobf(libs.smoothFonts))
-    runtimeOnly(deobf(libs.betterQuestingUnofficial))
-
     compileOnly(libs.groovyScript) {
         isTransitive = false
     }
 
     compileOnly(libs.craftTweaker2)
+
+    runtimeOnly(deobf(libs.ctm))
 
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
@@ -195,7 +184,7 @@ tasks.withType<ProcessResources> {
     inputs.property("mcversion", minecraft.mcVersion)
 
     // Replace various properties in mcmod.info and pack.mcmeta if applicable.
-    filesMatching(arrayListOf("mcmod.info", "pack.mcmeta", "mixins.${modId}.early.json", "mixins.${modId}.late.json")) {
+    filesMatching(arrayListOf("mcmod.info", "pack.mcmeta")) {
         expand(
             "version" to modVersion,
             "mcversion" to minecraft.mcVersion,
