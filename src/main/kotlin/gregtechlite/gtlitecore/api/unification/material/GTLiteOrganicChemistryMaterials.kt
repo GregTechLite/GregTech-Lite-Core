@@ -4,9 +4,7 @@ import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.attribute.FluidAttributes
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Benzene
@@ -41,7 +39,6 @@ import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.VinylAcetate
-import gregtech.api.unification.material.info.MaterialFlags.DECOMPOSITION_BY_CENTRIFUGING
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
@@ -60,7 +57,6 @@ import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
-import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.colorAverage
 import gregtechlite.gtlitecore.api.extension.fluidPipeProp
@@ -301,6 +297,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Truxene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylenol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterial
 
 object GTLiteOrganicChemistryMaterials
 {

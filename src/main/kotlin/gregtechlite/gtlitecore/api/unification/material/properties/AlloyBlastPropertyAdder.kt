@@ -15,8 +15,8 @@ object AlloyBlastPropertyAdder
     fun preInitABSProperties()
     {
         GregTechAPI.materialManager.registeredMaterials
-            .filter { mat -> !mat.hasFlag(GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY) }
-            .forEach(this::addAlloyBlastProperty)
+            .filter { !it.hasFlag(GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY) }
+            .forEach(::addAlloyBlastProperty)
     }
 
     // Used to process special recipes to resolve conflicts of ABS recipes.

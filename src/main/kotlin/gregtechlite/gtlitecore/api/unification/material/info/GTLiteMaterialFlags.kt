@@ -182,6 +182,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterialFlag
 
 object GTLiteMaterialFlags
 {
@@ -189,40 +190,52 @@ object GTLiteMaterialFlags
     // @formatter:off
 
     // Used to disabled ABS recipes for automatically generate handler.
-    val NO_ALLOY_BLAST_RECIPES: MaterialFlag = MaterialFlag.Builder("no_alloy_blast_recipes")
-        .requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
-        .build()
+    @JvmStatic
+    val NO_ALLOY_BLAST_RECIPES = addMaterialFlag("no_alloy_blast_recipes")
+    {
+        requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
+    }
 
     // Used to disable everything related to ABS.
-    val DISABLE_ALLOY_PROPERTY: MaterialFlag = MaterialFlag.Builder("disable_alloy_property")
-        .requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
-        .requireFlags(NO_ALLOY_BLAST_RECIPES)
-        .build()
+    @JvmStatic
+    val DISABLE_ALLOY_PROPERTY = addMaterialFlag("disable_alloy_property")
+    {
+        requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
+        requireFlags(NO_ALLOY_BLAST_RECIPES)
+    }
 
-    // Used to disable crystallization crucible recipes of a crystallizable gem,
-    // means it only has autoclave crystallization recipes.
-    val DISABLE_CRYSTALLIZATION: MaterialFlag = MaterialFlag.Builder("disable_crystallization")
-        .requireProps(PropertyKey.GEM)
-        .requireFlags(MaterialFlags.CRYSTALLIZABLE)
-        .build()
+    // Used to disable crystallization crucible recipes of a crystallizable gem, means it only has autoclave
+    // crystallization recipes.
+    @JvmStatic
+    val DISABLE_CRYSTALLIZATION = addMaterialFlag("disable_crystallization")
+    {
+        requireProps(PropertyKey.GEM)
+        requireFlags(MaterialFlags.CRYSTALLIZABLE)
+    }
 
-    // Used to generate boule without crystal seed, or want to generate crystallization
-    // crucible recipes only without autoclave recipes.
-    val GENERATE_BOULE: MaterialFlag = MaterialFlag.Builder("generate_boule")
-        .requireProps(PropertyKey.GEM)
-        .build()
+    // Used to generate boule without crystal seed, or want to generate crystallization crucible recipes only without
+    // autoclave recipes.
+    @JvmStatic
+    val GENERATE_BOULE = addMaterialFlag("generate_boule")
+    {
+        requireProps(PropertyKey.GEM)
+    }
 
     // Used to generate fuel rods, this flag is the dependency of multi fuel rods' flags.
-    val GENERATE_FUEL_ROD: MaterialFlag = MaterialFlag.Builder("generate_fuel_rod")
-        .requireProps(PropertyKey.DUST)
-        .build()
+    @JvmStatic
+    val GENERATE_FUEL_ROD = addMaterialFlag("generate_fuel_rod")
+    {
+        requireProps(PropertyKey.DUST) // We required some special "fuel rod" like graphite, it will be moderator rod.
+    }
 
-    // Used to generate nanites.
-    val GENERATE_NANITE: MaterialFlag = MaterialFlag.Builder("generate_nanite")
-        .requireProps(PropertyKey.INGOT)
-        .build()
+    // Used to generate nanites for Nano Forge multiblock.
+    @JvmStatic
+    val GENERATE_NANITE = addMaterialFlag("generate_nanite")
+    {
+        requireProps(PropertyKey.INGOT)
+    }
 
-    fun setMaterialFlags()
+    internal fun setMaterialFlags()
     {
         // block
         Carbon.addFlags(FORCE_GENERATE_BLOCK)

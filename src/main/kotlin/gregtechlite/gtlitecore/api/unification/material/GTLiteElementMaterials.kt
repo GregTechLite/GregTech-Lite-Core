@@ -68,6 +68,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterial
 import gregtechlite.gtlitecore.api.unification.material.element.GTLiteElements.Ad
 import gregtechlite.gtlitecore.api.unification.material.element.GTLiteElements.Crx
 import gregtechlite.gtlitecore.api.unification.material.element.GTLiteElements.En
