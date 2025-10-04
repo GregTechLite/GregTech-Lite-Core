@@ -190,14 +190,14 @@ object GTLiteMaterialFlags
     // @formatter:off
 
     // Used to disabled ABS recipes for automatically generate handler.
-    @JvmStatic
+    @JvmField
     val NO_ALLOY_BLAST_RECIPES = addMaterialFlag("no_alloy_blast_recipes")
     {
         requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
     }
 
     // Used to disable everything related to ABS.
-    @JvmStatic
+    @JvmField
     val DISABLE_ALLOY_PROPERTY = addMaterialFlag("disable_alloy_property")
     {
         requireProps(PropertyKey.BLAST, PropertyKey.FLUID)
@@ -206,7 +206,7 @@ object GTLiteMaterialFlags
 
     // Used to disable crystallization crucible recipes of a crystallizable gem, means it only has autoclave
     // crystallization recipes.
-    @JvmStatic
+    @JvmField
     val DISABLE_CRYSTALLIZATION = addMaterialFlag("disable_crystallization")
     {
         requireProps(PropertyKey.GEM)
@@ -215,21 +215,21 @@ object GTLiteMaterialFlags
 
     // Used to generate boule without crystal seed, or want to generate crystallization crucible recipes only without
     // autoclave recipes.
-    @JvmStatic
+    @JvmField
     val GENERATE_BOULE = addMaterialFlag("generate_boule")
     {
         requireProps(PropertyKey.GEM)
     }
 
     // Used to generate fuel rods, this flag is the dependency of multi fuel rods' flags.
-    @JvmStatic
+    @JvmField
     val GENERATE_FUEL_ROD = addMaterialFlag("generate_fuel_rod")
     {
         requireProps(PropertyKey.DUST) // We required some special "fuel rod" like graphite, it will be moderator rod.
     }
 
     // Used to generate nanites for Nano Forge multiblock.
-    @JvmStatic
+    @JvmField
     val GENERATE_NANITE = addMaterialFlag("generate_nanite")
     {
         requireProps(PropertyKey.INGOT)

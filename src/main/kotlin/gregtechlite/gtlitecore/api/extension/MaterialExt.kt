@@ -7,6 +7,7 @@ import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
+import gregtechlite.gtlitecore.api.translation.CommonI18n
 import net.minecraftforge.fluids.FluidStack
 
 // region Regular Convert Methods
@@ -52,6 +53,12 @@ fun Material.addGasAndPlasma()
 {
     setProperty(PropertyKey.FLUID, FluidProperty(FluidStorageKeys.GAS, FluidBuilder()))
     getProperty(PropertyKey.FLUID).enqueueRegistration(FluidStorageKeys.PLASMA, FluidBuilder())
+}
+
+fun Material.setFormula(formulaKey: String, defaultKey: String = formulaKey): Material
+{
+    setFormula(CommonI18n.format(formulaKey, defaultKey))
+    return this
 }
 
 // endregion

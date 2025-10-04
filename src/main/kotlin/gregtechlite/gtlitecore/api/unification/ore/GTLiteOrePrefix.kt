@@ -1,16 +1,58 @@
 package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
-import gregtech.api.unification.material.Materials
-import gregtech.api.unification.material.info.MaterialFlags
-import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialIconType.ore as oreIcon
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtech.api.unification.ore.OrePrefix.ingotHot
+import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
-import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addPrefix
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kimberlite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Komatiite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZSM5
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.GENERATE_NANITE
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasCrystalProperties
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasFuelRodProperties
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasGemProperty
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasOreProperty
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.gemSolitary as gemSolitaryIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.sheetedFrame as sheetedFrameIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.wallGt as wallGtIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.seedCrystal as seedCrystalIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.boule as bouleIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRod as fuelRodIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodEnriched as fuelRodEnrichedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodHighDensity as fuelRodHighDensityIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodDepleted as fuelRodDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodEnrichedDepleted as fuelRodEnrichedDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodHighDensityDepleted as fuelRodHighDensityDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.nanite as naniteIcon
 import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addOrePrefix
 
 object GTLiteOrePrefix
@@ -21,116 +63,162 @@ object GTLiteOrePrefix
     // region Material Prefixes
 
     @JvmField
-    val gemSolitary = addPrefix("gemSolitary", true)
+    val gemSolitary = addOrePrefix("gemSolitary", true)
     {
         materialAmount = M * 8
-        iconType = GTLiteMaterialIconType.gemSolitary
-        condition = GTLiteConditions.hasGemProperty
+        iconType = gemSolitaryIcon
+        condition = hasGemProperty
     }
 
     @JvmField
-    val oreLimestone = addOrePrefix("oreLimestone")
-    @JvmField
-    val oreKomatiite = addOrePrefix("oreKomatiite")
-    @JvmField
-    val oreGreenSchist = addOrePrefix("oreGreenSchist")
-    @JvmField
-    val oreBlueSchist = addOrePrefix("oreBlueSchist")
-    @JvmField
-    val oreKimberlite = addOrePrefix("oreKimberlite")
-    @JvmField
-    val oreQuartzite = addOrePrefix("oreQuartzite")
-    @JvmField
-    val oreSlate = addOrePrefix("oreSlate")
-    @JvmField
-    val oreShale = addOrePrefix("oreShale")
-
-    @JvmField
-    val sheetedFrame = addPrefix("sheetedFrame", true)
-    {
-        materialAmount = (M * 5) / 6
-        iconType = GTLiteMaterialIconType.sheetedFrame
-        condition = { it.hasFlag(MaterialFlags.GENERATE_FRAME) }
-    }
-
-    @JvmField
-    val wallGt = addPrefix("wallGt", true)
-    {
-        materialAmount = (M * 4 + (M / 9) * 4) / 3
-        iconType = GTLiteMaterialIconType.wallGt
-        condition = { it.hasFlags(MaterialFlags.GENERATE_PLATE, MaterialFlags.GENERATE_BOLT_SCREW) }
-    }
-
-    @JvmField
-    val seedCrystal = addPrefix("seedCrystal", true)
-    {
-        materialAmount = M / 9
-        iconType = GTLiteMaterialIconType.seedCrystal
-        condition = GTLiteConditions.hasCrystalProperties
-    }
-
-    @JvmField
-    val boule = addPrefix("boule", true)
-    {
-        materialAmount = M * 4
-        iconType = GTLiteMaterialIconType.boule
-        condition = GTLiteConditions.hasCrystalProperties
-    }
-
-    @JvmField
-    val fuelRod = addPrefix("fuelRod", true)
-    {
-        materialAmount = M * 2
-        iconType = GTLiteMaterialIconType.fuelRod
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val fuelRodEnriched = addPrefix("fuelRodEnriched", true)
-    {
-        materialAmount = M * 4
-        iconType = GTLiteMaterialIconType.fuelRodEnriched
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val fuelRodHighDensity = addPrefix("fuelRodHighDensity", true)
-    {
-        materialAmount = M * 8
-        iconType = GTLiteMaterialIconType.fuelRodHighDensity
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val fuelRodDepleted = addPrefix("fuelRodDepleted", true)
-    {
-        materialAmount = M * 2
-        iconType = GTLiteMaterialIconType.fuelRodDepleted
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val fuelRodEnrichedDepleted = addPrefix("fuelRodEnrichedDepleted", true)
-    {
-        materialAmount = M * 4
-        iconType = GTLiteMaterialIconType.fuelRodEnrichedDepleted
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val fuelRodHighDensityDepleted = addPrefix("fuelRodHighDensityDepleted", true)
-    {
-        materialAmount = M * 8
-        iconType = GTLiteMaterialIconType.fuelRodHighDensityDepleted
-        condition = GTLiteConditions.hasFuelRodProperties
-    }
-
-    @JvmField
-    val nanite = addPrefix("nanite", true)
+    val oreLimestone = addOrePrefix("oreLimestone", true)
     {
         materialAmount = -1
-        iconType = GTLiteMaterialIconType.nanite
-        condition = { it.hasFlag(GTLiteMaterialFlags.GENERATE_NANITE) }
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+    @JvmField
+    val oreKomatiite = addOrePrefix("oreKomatiite", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreGreenSchist = addOrePrefix("oreGreenSchist", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreBlueSchist = addOrePrefix("oreBlueSchist", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreKimberlite = addOrePrefix("oreKimberlite", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreQuartzite = addOrePrefix("oreQuartzite", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreSlate = addOrePrefix("oreSlate", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val oreShale = addOrePrefix("oreShale", true)
+    {
+        materialAmount = -1
+        iconType = oreIcon
+        condition = hasOreProperty
+    }
+
+    @JvmField
+    val sheetedFrame = addOrePrefix("sheetedFrame", true)
+    {
+        materialAmount = (M * 5) / 6
+        iconType = sheetedFrameIcon
+        condition = { it.hasFlag(GENERATE_FRAME) }
+    }
+
+    @JvmField
+    val wallGt = addOrePrefix("wallGt", true)
+    {
+        materialAmount = (M * 4 + (M / 9) * 4) / 3
+        iconType = wallGtIcon
+        condition = { it.hasFlags(GENERATE_PLATE, GENERATE_BOLT_SCREW) }
+    }
+
+    @JvmField
+    val seedCrystal = addOrePrefix("seedCrystal", true)
+    {
+        materialAmount = M / 9
+        iconType = seedCrystalIcon
+        condition = hasCrystalProperties
+    }
+
+    @JvmField
+    val boule = addOrePrefix("boule", true)
+    {
+        materialAmount = M * 4
+        iconType = bouleIcon
+        condition = hasCrystalProperties
+    }
+
+    @JvmField
+    val fuelRod = addOrePrefix("fuelRod", true)
+    {
+        materialAmount = M * 2
+        iconType = fuelRodIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val fuelRodEnriched = addOrePrefix("fuelRodEnriched", true)
+    {
+        materialAmount = M * 4
+        iconType = fuelRodEnrichedIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val fuelRodHighDensity = addOrePrefix("fuelRodHighDensity", true)
+    {
+        materialAmount = M * 8
+        iconType = fuelRodHighDensityIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val fuelRodDepleted = addOrePrefix("fuelRodDepleted", true)
+    {
+        materialAmount = M * 2
+        iconType = fuelRodDepletedIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val fuelRodEnrichedDepleted = addOrePrefix("fuelRodEnrichedDepleted", true)
+    {
+        materialAmount = M * 4
+        iconType = fuelRodEnrichedDepletedIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val fuelRodHighDensityDepleted = addOrePrefix("fuelRodHighDensityDepleted", true)
+    {
+        materialAmount = M * 8
+        iconType = fuelRodHighDensityDepletedIcon
+        condition = hasFuelRodProperties
+    }
+
+    @JvmField
+    val nanite = addOrePrefix("nanite", true)
+    {
+        materialAmount = -1
+        iconType = naniteIcon
+        condition = { it.hasFlag(GENERATE_NANITE) }
     }
 
     // endregion
@@ -138,7 +226,7 @@ object GTLiteOrePrefix
     // region Ore Dictionary Prefixes
 
     @JvmField
-    val glass = addPrefix("glass", true)
+    val glass = addOrePrefix("glass", true)
     {
         materialAmount = -1
     }
@@ -147,73 +235,80 @@ object GTLiteOrePrefix
 
     fun setOrePrefixInfos()
     {
+        // region Stack Size
+
         gemSolitary.maxStackSize = 8
         fuelRodEnriched.maxStackSize = 32
         fuelRodHighDensity.maxStackSize = 16
         fuelRodEnrichedDepleted.maxStackSize = 32
         fuelRodHighDensityDepleted.maxStackSize = 16
 
-        /* ---------------------------------------------------------------------------------------------------------- */
+        // endregion
+
+        // region Secondary Materials
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
-            oreLimestone.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Limestone, M))
-            oreKomatiite.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Komatiite, M))
-            oreGreenSchist.addSecondaryMaterial(MaterialStack(GTLiteMaterials.GreenSchist, M))
-            oreBlueSchist.addSecondaryMaterial(MaterialStack(GTLiteMaterials.BlueSchist, M))
-            oreKimberlite.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Kimberlite, M))
-            oreQuartzite.addSecondaryMaterial(MaterialStack(Materials.Quartzite, M))
-            oreSlate.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Slate, M))
-            oreShale.addSecondaryMaterial(MaterialStack(GTLiteMaterials.Shale, M))
+            oreLimestone.addSecondaryMaterial(MaterialStack(Limestone, M))
+            oreKomatiite.addSecondaryMaterial(MaterialStack(Komatiite, M))
+            oreGreenSchist.addSecondaryMaterial(MaterialStack(GreenSchist, M))
+            oreBlueSchist.addSecondaryMaterial(MaterialStack(BlueSchist, M))
+            oreKimberlite.addSecondaryMaterial(MaterialStack(Kimberlite, M))
+            oreQuartzite.addSecondaryMaterial(MaterialStack(Quartzite, M))
+            oreSlate.addSecondaryMaterial(MaterialStack(Slate, M))
+            oreShale.addSecondaryMaterial(MaterialStack(Shale, M))
         }
 
-        /* ---------------------------------------------------------------------------------------------------------- */
+        // endregion
 
-        OrePrefix.dust.setIgnored(GTLiteMaterials.ZSM5)
-        OrePrefix.dust.setIgnored(GTLiteMaterials.HalkoniteSteel)
-        OrePrefix.dust.setIgnored(GTLiteMaterials.Magnetium)
-        OrePrefix.dust.setIgnored(GTLiteMaterials.MagMatter)
-        OrePrefix.dust.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+        // region Ignored Prefix
+        dust.setIgnored(ZSM5)
+        dust.setIgnored(HalkoniteSteel)
+        dust.setIgnored(Magnetium)
+        dust.setIgnored(MagMatter)
+        dust.setIgnored(MagnetohydrodynamicallyConstrainedStarMatter)
 
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.ZSM5)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.BlazingPyrotheum)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.GelidCryotheum)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.TectonicPetrotheum)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.RoastedSphalerite)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.HalkoniteSteel)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.Magnetium)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.MagMatter)
-        OrePrefix.dustSmall.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+        dustSmall.setIgnored(ZSM5)
+        dustSmall.setIgnored(BlazingPyrotheum)
+        dustSmall.setIgnored(GelidCryotheum)
+        dustSmall.setIgnored(TectonicPetrotheum)
+        dustSmall.setIgnored(ZephyreanAerotheum)
+        dustSmall.setIgnored(RoastedSphalerite)
+        dustSmall.setIgnored(HalkoniteSteel)
+        dustSmall.setIgnored(Magnetium)
+        dustSmall.setIgnored(MagMatter)
+        dustSmall.setIgnored(MagnetohydrodynamicallyConstrainedStarMatter)
 
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.ZSM5)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.BlazingPyrotheum)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.GelidCryotheum)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.TectonicPetrotheum)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.ZephyreanAerotheum)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.RoastedSphalerite)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.HalkoniteSteel)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.Magnetium)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.MagMatter)
-        OrePrefix.dustTiny.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+        dustTiny.setIgnored(ZSM5)
+        dustTiny.setIgnored(BlazingPyrotheum)
+        dustTiny.setIgnored(GelidCryotheum)
+        dustTiny.setIgnored(TectonicPetrotheum)
+        dustTiny.setIgnored(ZephyreanAerotheum)
+        dustTiny.setIgnored(RoastedSphalerite)
+        dustTiny.setIgnored(HalkoniteSteel)
+        dustTiny.setIgnored(Magnetium)
+        dustTiny.setIgnored(MagMatter)
+        dustTiny.setIgnored(MagnetohydrodynamicallyConstrainedStarMatter)
 
-        OrePrefix.nugget.setIgnored(GTLiteMaterials.HalkoniteSteel)
-        OrePrefix.nugget.setIgnored(GTLiteMaterials.Magnetium)
-        OrePrefix.nugget.setIgnored(GTLiteMaterials.MagMatter)
-        OrePrefix.nugget.setIgnored(GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter)
+        nugget.setIgnored(HalkoniteSteel)
+        nugget.setIgnored(Magnetium)
+        nugget.setIgnored(MagMatter)
+        nugget.setIgnored(MagnetohydrodynamicallyConstrainedStarMatter)
 
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.TranscendentMetal)
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HalkoniteSteel)
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Magnetium)
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Mellion)
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.Creon)
-        OrePrefix.ingotHot.setIgnored(GTLiteMaterials.HarmonicPhononMatter)
+        ingotHot.setIgnored(TranscendentMetal)
+        ingotHot.setIgnored(HalkoniteSteel)
+        ingotHot.setIgnored(Magnetium)
+        ingotHot.setIgnored(Mellion)
+        ingotHot.setIgnored(Creon)
+        ingotHot.setIgnored(HarmonicPhononMatter)
 
-        fuelRodDepleted.setIgnored(Materials.Graphite)
+        fuelRodDepleted.setIgnored(Graphite)
 
-        fuelRodEnrichedDepleted.setIgnored(Materials.Graphite)
+        fuelRodEnrichedDepleted.setIgnored(Graphite)
 
-        fuelRodHighDensityDepleted.setIgnored(Materials.Graphite)
+        fuelRodHighDensityDepleted.setIgnored(Graphite)
+
+        // endregion
     }
 
     fun addToMetaItem()

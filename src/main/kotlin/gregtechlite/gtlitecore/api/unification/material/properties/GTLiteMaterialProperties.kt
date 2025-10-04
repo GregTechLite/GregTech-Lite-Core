@@ -11,9 +11,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.fluids.FluidBuilder
-import gregtech.api.fluids.store.FluidStorageKeys
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -128,10 +125,7 @@ import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.properties.BlastProperty
-import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidPipeProperties
-import gregtech.api.unification.material.properties.FluidProperty
-import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
@@ -177,7 +171,7 @@ import gregtechlite.gtlitecore.api.extension.addIngot
 import gregtechlite.gtlitecore.api.extension.addLiquid
 import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
 import gregtechlite.gtlitecore.api.extension.addPlasma
-import gregtechlite.gtlitecore.api.translation.CommonI18n
+import gregtechlite.gtlitecore.api.extension.setFormula
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetonitrile
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
@@ -888,8 +882,8 @@ object GTLiteMaterialProperties
         SeaWater.setFormula("H2O?", true)
         AcidicSaltWater.setFormula("(H2O)(H2SO4)?", true)
         UnprocessedNdYAGSolution.setFormula("Nd:YAG?", false)
-        AxinoFusedRedMatter.setFormula(CommonI18n.format("gtlitecore.material.axino_fused_red_matter.formula",
-            "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions"))
+        AxinoFusedRedMatter.setFormula("gtlitecore.material.axino_fused_red_matter.formula",
+            "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions")
         // endregion
 
     }

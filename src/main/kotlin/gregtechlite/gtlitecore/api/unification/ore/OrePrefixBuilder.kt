@@ -11,31 +11,19 @@ class OrePrefixBuilder(private val name: String)
     {
 
         @JvmStatic
-        fun addPrefix(name: String, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
+        fun addOrePrefix(name: String, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
         {
             return OrePrefixBuilder(name).apply(dsl).build()
         }
 
         @JvmStatic
-        fun addPrefix(name: String, canUnified: Boolean, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
+        fun addOrePrefix(name: String, canUnified: Boolean, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
         {
             return OrePrefixBuilder(name).apply{ if (canUnified) enableUnification() }.apply(dsl).build()
         }
 
-        @JvmStatic
-        fun addOrePrefix(name: String): OrePrefix
-        {
-            return OrePrefixBuilder(name).apply {
-                enableUnification()
-                materialAmount = -1
-                iconType = MaterialIconType.ore
-                condition = GTLiteConditions.hasOreProperty
-            }.build()
-        }
-
     }
 
-    // Used Java functional interface to contain backwards compatibility with GTCEu.
     var materialAmount: Long = -1
     var material: Material? = null
     var iconType: MaterialIconType? = null
