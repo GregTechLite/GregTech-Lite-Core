@@ -1,8 +1,6 @@
 package gregtechlite.gtlitecore.api.unification.material.element
 
-import gregtech.api.unification.Element
-import gregtech.api.unification.Elements.add
-import gregtechlite.gtlitecore.api.translation.CommonI18n
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addElement
 
 object GTLiteElements
 {
@@ -12,61 +10,114 @@ object GTLiteElements
     // region Isotope Elements
 
     @JvmField
-    val Pu244: Element = add(94, 150, 2.52288e+15, null, "Plutonium-244", "Pu-244", true)
+    val Pu244 = addElement("Plutonium-244", "Pu-244")
+    {
+        isotope()
+        atomicProp(94, 150)
+        decayable("Rn", 2.52288e+15)
+    }
 
     // endregion
 
     // region Fantastic Elements
 
     @JvmField
-    val Vb: Element  = add(152, 226, "Vibranium", "Vb")
+    val Vb = addElement("Vibranium", "Vb")
+    {
+        atomicProp(152, 226)
+    }
 
     @JvmField
-    val M: Element   = add(166, 345, "Magnetium", "M")
+    val M = addElement("Magnetium", "M")
+    {
+        atomicProp(166, 345)
+    }
 
     @JvmField
-    val Mx: Element  = add(166, 690, "MagMatter", "M⎋")
+    val Mx = addElement("MagMatter", "M⎋")
+    {
+        atomicProp(166, 690)
+    }
 
     @JvmField
-    val Fs: Element  = add(184, 142, "Rhugnor", "Fs⚶")
+    val Fs = addElement("Rhugnor", "Fs⚶")
+    {
+        atomicProp(184, 142)
+    }
 
     @JvmField
-    val Ad: Element  = add(222, 580, "Adamantium", "Ad")
+    val Ad = addElement("Adamantium", "Ad")
+    {
+        atomicProp(222, 580)
+    }
 
     @JvmField
-    val Sh: Element  = add(230, 306, "Shirabon", "Sh⏧")
+    val Sh = addElement("Shirabon", "Sh⏧")
+    {
+        atomicProp(230, 306)
+    }
 
     @JvmField
-    val Hy: Element  = add(240, 251, "Hypogen", "Hy⚶")
+    val Hy = addElement("Hypogen", "Hy⚶")
+    {
+        atomicProp(240, 251)
+    }
 
     @JvmField
-    val Tn: Element  = add(321, 478, "Taranium", "Tn")
+    val Tn = addElement("Taranium", "Tn")
+    {
+        atomicProp(321, 478)
+    }
 
     @JvmField
-    val Tsx: Element = add(360, 360, "TranscendentMetal", "TsЖ")
+    val Tsx = addElement("TranscendentMetal", "TsЖ")
+    {
+        atomicProp(360, 360)
+    }
 
     @JvmField
-    val SpNt: Element = add(1_000,   1_000,   "CosmicNeutronium", "SpNt")
+    val SpNt = addElement("CosmicNeutronium", "SpNt")
+    {
+        atomicProp(1_000, 1_000)
+    }
 
     @JvmField
-    val If: Element   = add(1_001,   1_001,   "Infinity", "If")
+    val If = addElement("Infinity", "If")
+    {
+        atomicProp(1_001, 1_001)
+    }
 
     @JvmField
-    val Crx: Element  = add(3_650,   3_650,   "Creon", "⸎")
+    val Crx = addElement("Creon", "⸎")
+    {
+        atomicProp(3_650, 3_650)
+    }
 
     @JvmField
-    val Spx: Element  = add(9_999,   9_999,   "SpaceTime",
-        CommonI18n.format("gtlitecore.material.space_time.formula", "Reality is falling apart"))
+    val Spx = addElement("SpaceTime")
+    {
+        atomicProp(9_999, 9_999)
+        description("gtlitecore.material.space_time.formula", "Reality is falling apart")
+    }
 
     @JvmField
-    val Ux: Element   = add(36_524,  36_524,  "Universium",
-        CommonI18n.format("gtlitecore.material.universium.formula", "Hold the Universe in the Palm of your Hand"))
+    val Ux = addElement("Universium")
+    {
+        atomicProp(36_524, 36_524)
+        description("gtlitecore.material.universium.formula", "Hold the Universe in the Palm of your Hand")
+    }
 
     @JvmField
-    val En: Element   = add(100_000, 100_000, "Eternity", "En⦼")
+    val En = addElement("Eternity", "En⦼")
+    {
+        atomicProp(100_000, 100_000)
+    }
 
     @JvmField
-    val Om: Element   = add(2_097_152, 2_097_152, "Omnium", "Om⦼")
+    val Om = addElement("Omnium", "Om⦼")
+    {
+        atomicProp(2_097_152, 2_097_152)
+    }
 
     // endregion
 

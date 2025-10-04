@@ -4,7 +4,7 @@ import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.StoneType
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
-import gregtechlite.gtlitecore.api.unification.ore.StoneTypeDSL.Companion.of
+import gregtechlite.gtlitecore.api.unification.ore.StoneTypeBuilder.Companion.addStoneType
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 import net.minecraft.block.SoundType
@@ -25,7 +25,7 @@ object GTLiteStoneTypes
     fun init()
     {
 
-        LIMESTONE = of(12, "limestone")
+        LIMESTONE = addStoneType(12, "limestone")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreLimestone
@@ -34,7 +34,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.LIMESTONE) }
         }
 
-        KOMATIITE = of(13, "komatiite")
+        KOMATIITE = addStoneType(13, "komatiite")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreKomatiite
@@ -43,7 +43,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.KOMATIITE) }
         }
 
-        GREEN_SCHIST = of(14, "green_schist")
+        GREEN_SCHIST = addStoneType(14, "green_schist")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreGreenSchist
@@ -52,7 +52,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.GREEN_SCHIST) }
         }
 
-        BLUE_SCHIST = of(15, "blue_schist")
+        BLUE_SCHIST = addStoneType(15, "blue_schist")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreBlueSchist
@@ -61,7 +61,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.BLUE_SCHIST) }
         }
 
-        KIMBERLITE = of(16, "kimberlite")
+        KIMBERLITE = addStoneType(16, "kimberlite")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreKimberlite
@@ -70,7 +70,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.KIMBERLITE) }
         }
 
-        QUARTZITE = of(17, "quartzite")
+        QUARTZITE = addStoneType(17, "quartzite")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreQuartzite
@@ -79,7 +79,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.QUARTZITE) }
         }
 
-        SLATE = of(18, "slate")
+        SLATE = addStoneType(18, "slate")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreSlate
@@ -88,7 +88,7 @@ object GTLiteStoneTypes
             predicate = { stonePredicate(it, GTLiteStoneVariantBlock.StoneType.SLATE) }
         }
 
-        SHALE = of(19, "shale")
+        SHALE = addStoneType(19, "shale")
         {
             sound = SoundType.STONE
             prefix = GTLiteOrePrefix.oreShale

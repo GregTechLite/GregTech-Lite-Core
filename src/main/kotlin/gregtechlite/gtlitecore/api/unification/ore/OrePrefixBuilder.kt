@@ -4,35 +4,26 @@ import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.unification.ore.OrePrefix
 
-class OrePrefixDSL(private val name: String)
+class OrePrefixBuilder(private val name: String)
 {
 
     companion object
     {
 
-        fun of(name: String, dsl: OrePrefixDSL.() -> Unit): OrePrefix
+        @JvmStatic
+        fun addOrePrefix(name: String, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
         {
-            return OrePrefixDSL(name).apply(dsl).build()
+            return OrePrefixBuilder(name).apply(dsl).build()
         }
 
-        fun of(name: String, canUnified: Boolean, dsl: OrePrefixDSL.() -> Unit): OrePrefix
+        @JvmStatic
+        fun addOrePrefix(name: String, canUnified: Boolean, dsl: OrePrefixBuilder.() -> Unit): OrePrefix
         {
-            return OrePrefixDSL(name).apply{ if (canUnified) enableUnification() }.apply(dsl).build()
-        }
-
-        fun ofOre(name: String): OrePrefix
-        {
-            return OrePrefixDSL(name).apply {
-                enableUnification()
-                materialAmount = -1
-                iconType = MaterialIconType.ore
-                condition = GTLiteConditions.hasOreProperty
-            }.build()
+            return OrePrefixBuilder(name).apply{ if (canUnified) enableUnification() }.apply(dsl).build()
         }
 
     }
 
-    // Used Java functional interface to contain backwards compatibility with GTCEu.
     var materialAmount: Long = -1
     var material: Material? = null
     var iconType: MaterialIconType? = null

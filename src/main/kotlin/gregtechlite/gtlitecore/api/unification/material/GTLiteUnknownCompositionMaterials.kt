@@ -41,6 +41,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleSyrup
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
@@ -78,6 +79,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5F
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedBedrockSootSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EternityPlusToken
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
@@ -141,8 +143,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrimordialMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurpleDrink
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EternityPlusToken
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuasifissioningPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthChloridesSolution
@@ -171,6 +171,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vodka
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Yeast
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterial
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.DARKMATTER
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MHDCSM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.QUANTUM

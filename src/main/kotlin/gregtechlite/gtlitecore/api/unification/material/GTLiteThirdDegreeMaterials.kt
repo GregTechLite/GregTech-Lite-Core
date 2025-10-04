@@ -77,6 +77,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSteam
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
+import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterial
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.AEROTHEUM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CRYOTHEUM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.PETROTHEUM

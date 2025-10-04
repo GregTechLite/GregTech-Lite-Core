@@ -6,15 +6,16 @@ import gregtech.api.unification.ore.StoneType
 import net.minecraft.block.SoundType
 import net.minecraft.block.state.IBlockState
 
-class StoneTypeDSL(private val id: Int, private val name: String)
+class StoneTypeBuilder(private val id: Int, private val name: String)
 {
 
     companion object
     {
 
-        fun of(id: Int, name: String, dsl: StoneTypeDSL.() -> Unit): StoneType
+        @JvmStatic
+        fun addStoneType(id: Int, name: String, dsl: StoneTypeBuilder.() -> Unit): StoneType
         {
-            return StoneTypeDSL(id, name).apply(dsl).build()
+            return StoneTypeBuilder(id, name).apply(dsl).build()
         }
 
     }
