@@ -10,8 +10,8 @@ import gregtech.common.items.MetaItems
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
-import gregtechlite.gtlitecore.api.unification.ore.OrePrefixDSL.Companion.of
-import gregtechlite.gtlitecore.api.unification.ore.OrePrefixDSL.Companion.ofOre
+import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addPrefix
+import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addOrePrefix
 
 object GTLiteOrePrefix
 {
@@ -21,7 +21,7 @@ object GTLiteOrePrefix
     // region Material Prefixes
 
     @JvmField
-    val gemSolitary = of("gemSolitary", true)
+    val gemSolitary = addPrefix("gemSolitary", true)
     {
         materialAmount = M * 8
         iconType = GTLiteMaterialIconType.gemSolitary
@@ -29,24 +29,24 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val oreLimestone = ofOre("oreLimestone")
+    val oreLimestone = addOrePrefix("oreLimestone")
     @JvmField
-    val oreKomatiite = ofOre("oreKomatiite")
+    val oreKomatiite = addOrePrefix("oreKomatiite")
     @JvmField
-    val oreGreenSchist = ofOre("oreGreenSchist")
+    val oreGreenSchist = addOrePrefix("oreGreenSchist")
     @JvmField
-    val oreBlueSchist = ofOre("oreBlueSchist")
+    val oreBlueSchist = addOrePrefix("oreBlueSchist")
     @JvmField
-    val oreKimberlite = ofOre("oreKimberlite")
+    val oreKimberlite = addOrePrefix("oreKimberlite")
     @JvmField
-    val oreQuartzite = ofOre("oreQuartzite")
+    val oreQuartzite = addOrePrefix("oreQuartzite")
     @JvmField
-    val oreSlate = ofOre("oreSlate")
+    val oreSlate = addOrePrefix("oreSlate")
     @JvmField
-    val oreShale = ofOre("oreShale")
+    val oreShale = addOrePrefix("oreShale")
 
     @JvmField
-    val sheetedFrame = of("sheetedFrame", true)
+    val sheetedFrame = addPrefix("sheetedFrame", true)
     {
         materialAmount = (M * 5) / 6
         iconType = GTLiteMaterialIconType.sheetedFrame
@@ -54,7 +54,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val wallGt = of("wallGt", true)
+    val wallGt = addPrefix("wallGt", true)
     {
         materialAmount = (M * 4 + (M / 9) * 4) / 3
         iconType = GTLiteMaterialIconType.wallGt
@@ -62,7 +62,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val seedCrystal = of("seedCrystal", true)
+    val seedCrystal = addPrefix("seedCrystal", true)
     {
         materialAmount = M / 9
         iconType = GTLiteMaterialIconType.seedCrystal
@@ -70,7 +70,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val boule = of("boule", true)
+    val boule = addPrefix("boule", true)
     {
         materialAmount = M * 4
         iconType = GTLiteMaterialIconType.boule
@@ -78,7 +78,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRod = of("fuelRod", true)
+    val fuelRod = addPrefix("fuelRod", true)
     {
         materialAmount = M * 2
         iconType = GTLiteMaterialIconType.fuelRod
@@ -86,7 +86,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRodEnriched = of("fuelRodEnriched", true)
+    val fuelRodEnriched = addPrefix("fuelRodEnriched", true)
     {
         materialAmount = M * 4
         iconType = GTLiteMaterialIconType.fuelRodEnriched
@@ -94,7 +94,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRodHighDensity = of("fuelRodHighDensity", true)
+    val fuelRodHighDensity = addPrefix("fuelRodHighDensity", true)
     {
         materialAmount = M * 8
         iconType = GTLiteMaterialIconType.fuelRodHighDensity
@@ -102,7 +102,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRodDepleted = of("fuelRodDepleted", true)
+    val fuelRodDepleted = addPrefix("fuelRodDepleted", true)
     {
         materialAmount = M * 2
         iconType = GTLiteMaterialIconType.fuelRodDepleted
@@ -110,7 +110,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRodEnrichedDepleted = of("fuelRodEnrichedDepleted", true)
+    val fuelRodEnrichedDepleted = addPrefix("fuelRodEnrichedDepleted", true)
     {
         materialAmount = M * 4
         iconType = GTLiteMaterialIconType.fuelRodEnrichedDepleted
@@ -118,7 +118,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val fuelRodHighDensityDepleted = of("fuelRodHighDensityDepleted", true)
+    val fuelRodHighDensityDepleted = addPrefix("fuelRodHighDensityDepleted", true)
     {
         materialAmount = M * 8
         iconType = GTLiteMaterialIconType.fuelRodHighDensityDepleted
@@ -126,7 +126,7 @@ object GTLiteOrePrefix
     }
 
     @JvmField
-    val nanite = of("nanite", true)
+    val nanite = addPrefix("nanite", true)
     {
         materialAmount = -1
         iconType = GTLiteMaterialIconType.nanite
@@ -138,7 +138,7 @@ object GTLiteOrePrefix
     // region Ore Dictionary Prefixes
 
     @JvmField
-    val glass = of("glass", true)
+    val glass = addPrefix("glass", true)
     {
         materialAmount = -1
     }
