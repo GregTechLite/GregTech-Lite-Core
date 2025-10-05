@@ -34,7 +34,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumLoadedRutileNanoparticles
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconNanoparticles
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetraethylammoniumBromide
@@ -113,7 +113,7 @@ internal object NanoparticlesChain
             .input(dust, GrapheneOxide)
             .input(dust, CalciumAlginate)
             .input(dust, CarbonNanotube)
-            .fluidInputs(SodiumCarbonate.getFluid(1000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             .fluidInputs(AscorbicAcid.getFluid(1000))
             .output(NANOSILICON_CATHODE)
             .fluidOutputs(DehydroascorbicAcid.getFluid(1000))

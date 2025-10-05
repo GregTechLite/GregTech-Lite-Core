@@ -15,7 +15,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberrySodaSyru
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeSodaSyrup
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -35,7 +35,7 @@ internal object EtirpsProcessing
         // Sparkling Water
         CANNER_RECIPES.recipeBuilder()
             .input(PLASTIC_BOTTLE)
-            .fluidInputs(SodiumCarbonate.getFluid(250))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(250))
             .output(SPARKLING_WATER)
             .EUt(4) // ULV
             .duration(10 * TICK)
@@ -45,7 +45,7 @@ internal object EtirpsProcessing
         MIXER_RECIPES.recipeBuilder()
             .input(dust, Sugar, 9)
             .fluidInputs(LemonLimeMixture.getFluid(500))
-            .fluidInputs(SodiumCarbonate.getFluid(1000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             .fluidOutputs(LemonLimeSodaSyrup.getFluid(2000))
             .EUt(VA[MV])
             .duration(10 * SECOND)
@@ -80,7 +80,7 @@ internal object EtirpsProcessing
         MIXER_RECIPES.recipeBuilder()
             .input(dust, Sugar, 9)
             .fluidInputs(CranberryExtract.getFluid(500))
-            .fluidInputs(SodiumCarbonate.getFluid(1000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             .fluidOutputs(CranberrySodaSyrup.getFluid(2000))
             .EUt(VA[MV])
             .duration(10 * SECOND)

@@ -32,7 +32,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenAlgae
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedAlgae
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylose
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
@@ -69,7 +69,7 @@ internal object AlgaeChain
         BURNER_REACTOR_RECIPES.recipeBuilder()
             .notConsumable(dust, Diatomite)
             .input(dust, BrownAlgae, 10)
-            .fluidInputs(SodiumCarbonate.getFluid(6000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(6000))
             .output(dust, SodiumAlginate, 40)
             .output(dust, Xylose, 20)
             .output(dust, Cellulose, 42)
