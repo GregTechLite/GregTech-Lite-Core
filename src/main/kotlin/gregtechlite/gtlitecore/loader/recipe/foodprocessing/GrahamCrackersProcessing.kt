@@ -55,12 +55,7 @@ internal object GrahamCrackersProcessing
             .buildAndRegister()
 
         // Graham Cracker Slice -> Graham Cracker
-        ROASTER_RECIPES.recipeBuilder()
-            .inputs(GRAHAM_CRACKER_SLICE.itemStack)
-            .output(GRAHAM_CRACKER)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ModHandler.addSmeltingRecipe(GRAHAM_CRACKER_SLICE.itemStack, GRAHAM_CRACKER.stackForm)
 
     }
 
