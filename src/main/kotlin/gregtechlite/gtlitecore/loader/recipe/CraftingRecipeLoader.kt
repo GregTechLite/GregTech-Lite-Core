@@ -3,17 +3,22 @@ package gregtechlite.gtlitecore.loader.recipe
 import gregtech.api.GTValues
 import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Zinc
+import gregtech.api.unification.material.Materials.Zircaloy4
+import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.gearSmall
@@ -24,6 +29,7 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.ITEM_FILTER
@@ -68,7 +74,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Forsterite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
@@ -83,6 +91,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_SCREWDRI
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_SOFT_MALLET
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_WIRE_CUTTER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_WRENCH
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COMPONENT_GRINDER_BORON_NITRIDE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COMPONENT_GRINDER_HALKONITE_STEEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_ADAMANTIUM
@@ -536,6 +545,16 @@ internal object CraftingRecipeLoader
             'B', ItemStack(Blocks.IRON_BARS),
             'P', UnificationEntry(pipeSmallFluid, Bronze),
             'S', UnificationEntry(stick, Iron))
+
+        // Circuit Pattern
+        ModHandler.addShapedRecipe(true, "circuit_pattern", CIRCUIT_PATTERN.stackForm,
+            "FPF", "WQX", "SPS",
+            'P', UnificationEntry(plate, VanadiumGallium),
+            'Q', UnificationEntry(plate, MagnetoResonatic),
+            'F', UnificationEntry(foil, Indium),
+            'W', UnificationEntry(wireFine, SiliconCarbide),
+            'S', UnificationEntry(screw, Zircaloy4),
+            'X', UnificationEntry(circuit, Tier.IV))
 
     }
 

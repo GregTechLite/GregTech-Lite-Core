@@ -27,12 +27,9 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.Indium
-import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
-import gregtech.api.unification.material.Materials.PCBCoolant
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polyethylene
@@ -46,14 +43,12 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
-import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
@@ -62,7 +57,6 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
-import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
@@ -78,7 +72,6 @@ import gregtech.common.items.MetaItems.SENSOR_HV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LV
 import gregtech.common.items.MetaItems.SENSOR_MV
-import gregtech.common.items.MetaItems.TOOL_DATA_STICK
 import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
@@ -111,7 +104,6 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
@@ -122,14 +114,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_HV
@@ -774,19 +764,6 @@ internal object AssemblerRecipes
 
     private fun miscItemsRecipes()
     {
-        // Circuit Pattern
-        VACUUM_CHAMBER_RECIPES.recipeBuilder()
-            .input(TOOL_DATA_STICK)
-            .input(foil, Indium, 2)
-            .input(wireFine, SiliconCarbide, 8)
-            .input(screw, Zircaloy4, 6)
-            .fluidInputs(Iridium.getFluid(L * 8))
-            .fluidInputs(PCBCoolant.getFluid(500))
-            .output(CIRCUIT_PATTERN)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
         // Magnetron
         ASSEMBLER_RECIPES.recipeBuilder()
             .input(ring, BerylliumOxide, 64)

@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -122,9 +123,9 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
             val itemInputs = ItemHandlerList(getAbilities(IMPORT_ITEMS))
             val targetStack = recipe.getProperty(CircuitPatternProperty, null)
             val hasTargetCircuitPattern = targetStack?.let { stack ->
-                (0 until itemInputs.slots).any { i ->
-                    val currentStack: ItemStack = itemInputs.getStackInSlot(i)
-                    return@any currentStack.isItemEqual(stack)
+                (0 until itemInputs.slots).any {
+                    val currentStack = itemInputs.getStackInSlot(it)
+                    return@any ItemUtil.areItemTagsEqual(stack, currentStack, false)
                 }
             } ?: false
 
