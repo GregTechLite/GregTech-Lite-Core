@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmDopedYttriumV
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYChloridesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmYVO
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LutetiumOxide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumVanadate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThuliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VanadiumPentoxide
@@ -52,7 +52,7 @@ internal object LuTmYVOChain
         BURNER_REACTOR_RECIPES.recipeBuilder()
             .input(dust, VanadiumPentoxide, 7)
             .notConsumable(DissolvedCalciumAcetate.getFluid(1))
-            .fluidInputs(SodiumCarbonate.getFluid(3000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(3000))
             .output(dust, SodiumVanadate, 16)
             .fluidOutputs(MethylAcetate.getFluid(1000))
             .fluidOutputs(Oxygen.getFluid(7000))

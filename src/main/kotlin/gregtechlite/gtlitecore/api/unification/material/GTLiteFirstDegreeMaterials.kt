@@ -483,7 +483,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAluminate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAzanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAzide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumBromide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumChlorate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCyanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumEthoxide
@@ -979,8 +979,8 @@ object GTLiteFirstDegreeMaterials
             flags(DISABLE_DECOMPOSITION)
         }
 
-        // 2044 Sodium Carbonate (Solution)
-        SodiumCarbonate = addMaterial(2044, "sodium_carbonate")
+        // 2044 Sodium Carbonate Solution
+        SodiumCarbonateSolution = addMaterial(2044, "sodium_carbonate_solution")
         {
             liquid()
             colorAverage()

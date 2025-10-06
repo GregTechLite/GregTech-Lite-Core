@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.util.GTUtility;
 import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -11,12 +10,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = MetaItem.class, remap = false)
-public abstract class MixinMetaItem extends Item
+public abstract class MixinMetaItem<T extends MetaItem<?>.MetaValueItem> extends Item
 {
 
     @Shadow
-    protected abstract String formatModelPath(MetaItem<?>.MetaValueItem metaValueItem);
+    public abstract ResourceLocation createItemModelPath(T metaValueItem, String postfix);
 
+    @SuppressWarnings("unchecked")
     @Redirect(
             method = "registerModels()V",
             at = @At(value = "INVOKE",
@@ -25,13 +25,13 @@ public abstract class MixinMetaItem extends Item
                                             MetaItem<?>.MetaValueItem metaValueItem,
                                             String postfix)
     {
-        ResourceLocation resourceLocation = GTUtility.gregtechId(this.formatModelPath(metaValueItem) + postfix);
+        ResourceLocation location = createItemModelPath((T) metaValueItem, postfix);
         CustomItemRenderer itemRenderer = (CustomItemRenderer) metaValueItem;
         if (itemRenderer.getRendererManager() != null)
         {
-            itemRenderer.getRendererManager().onRendererRegistry(resourceLocation);
+            itemRenderer.getRendererManager().onRendererRegistry(location);
         }
-        return resourceLocation;
+        return location;
     }
 
 }

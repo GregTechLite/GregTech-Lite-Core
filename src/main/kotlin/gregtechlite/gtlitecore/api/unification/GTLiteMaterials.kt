@@ -84,7 +84,7 @@ object GTLiteMaterials
     lateinit var Cryolite: Material
     lateinit var AluminiumHydroxide: Material
     lateinit var SodiumAluminate: Material
-    lateinit var SodiumCarbonate: Material
+    lateinit var SodiumCarbonateSolution: Material
     lateinit var AluminiumSulfate: Material
     lateinit var ZSM5: Material
     lateinit var MolybdenumTrioxide: Material

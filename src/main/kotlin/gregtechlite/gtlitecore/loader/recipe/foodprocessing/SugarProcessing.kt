@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
@@ -168,6 +169,7 @@ internal object SugarProcessing
 
         // Hard Apple Candy Plate -> Hard Apple Candy
         ROASTER_RECIPES.recipeBuilder()
+            .notConsumable(SHAPE_MOLD_BALL)
             .inputs(HARD_APPLE_CANDY_PLATE.itemStack)
             .output(HARD_APPLE_CANDY)
             .EUt(VA[MV])

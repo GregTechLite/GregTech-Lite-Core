@@ -54,7 +54,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSapphireJuic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubyJuice
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SapphireJuice
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAluminate
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumChlorate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHypochlorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPerchlorate
@@ -199,7 +199,7 @@ internal object AluminiumSodiumProcessing
 
         // Common Na2CO3 decomposition.
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .fluidInputs(SodiumCarbonate.getFluid(1000))
+            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             .output(dust, SodaAsh, 6)
             .fluidOutputs(Water.getFluid(1000))
             .EUt(VA[LV])
@@ -211,7 +211,7 @@ internal object AluminiumSodiumProcessing
             .circuitMeta(2)
             .input(dust, SodaAsh, 6)
             .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(SodiumCarbonate.getFluid(1000))
+            .fluidOutputs(SodiumCarbonateSolution.getFluid(1000))
             .EUt(VA[LV])
             .duration(2 * SECOND)
             .buildAndRegister()
