@@ -22,6 +22,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetoneCyanohydri
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 
@@ -51,7 +52,7 @@ internal object PMMAChain
             .fluidInputs(Ammonia.getFluid(3000))
             .fluidInputs(Oxygen.getFluid(1000))
             .fluidOutputs(HydrogenCyanide.getFluid(3000))
-            .fluidOutputs(Steam.getFluid(8000))
+            .fluidOutputs(Steam.getFluid(8 * SU))
             .EUt(VA[HV])
             .duration(3 * SECOND)
             .buildAndRegister()

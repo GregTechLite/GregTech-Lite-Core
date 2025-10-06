@@ -67,6 +67,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pentane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZSM5
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
@@ -456,7 +457,7 @@ internal object OilsChain
             .input(dust, Aluminium, 2)
             .fluidInputs(SulfuricAcid.getFluid(3000))
             .output(dust, AluminiumSulfite, 14)
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[MV])
             .duration(5 * SECOND)
             .buildAndRegister()

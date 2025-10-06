@@ -95,6 +95,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TechnetiumHeptaox
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TriniumTrioxide
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
@@ -235,7 +236,7 @@ internal object NaquadahProcessing
             .input(dust, TriniumTrioxide, 5)
             .fluidInputs(HydrogenSulfide.getFluid(2000))
             .output(dust, TriniumSulfide, 2)
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[HV])
             .duration(2 * SECOND + 15 * TICK)
             .buildAndRegister()

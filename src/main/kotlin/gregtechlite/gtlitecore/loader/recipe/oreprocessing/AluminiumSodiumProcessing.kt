@@ -60,6 +60,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHypochlorit
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPerchlorate
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 
@@ -251,7 +252,7 @@ internal object AluminiumSodiumProcessing
             .input(dust, Alumina, 5)
             .fluidInputs(Hydrogen.getFluid(3000))
             .output(ingot, Aluminium)
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[MV])
             .duration(1 * MINUTE + 20 * SECOND)
             .blastFurnaceTemp(963) // Cupronickel

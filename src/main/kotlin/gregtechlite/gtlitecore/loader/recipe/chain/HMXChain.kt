@@ -14,6 +14,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cyclotetramethyle
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexamethylenetetramine
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object HMXChain
@@ -28,7 +29,7 @@ internal object HMXChain
             .fluidInputs(Formaldehyde.getFluid(6000))
             .fluidInputs(Ammonia.getFluid(4000))
             .output(dust, Hexamethylenetetramine, 22)
-            .fluidOutputs(Steam.getFluid(6000))
+            .fluidOutputs(Steam.getFluid(6 * SU))
             .EUt(VA[HV])
             .duration(5 * SECOND)
             .buildAndRegister()
