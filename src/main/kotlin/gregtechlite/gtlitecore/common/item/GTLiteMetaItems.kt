@@ -22,6 +22,7 @@ import gregtech.api.util.SmallDigits
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
+import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
@@ -38,6 +39,7 @@ import net.minecraft.init.Items
 import net.minecraft.init.MobEffects
 import net.minecraft.item.EnumRarity
 import net.minecraft.item.ItemStack
+import net.minecraft.util.ResourceLocation
 import org.lwjgl.input.Keyboard
 
 object GTLiteMetaItems
@@ -570,7 +572,12 @@ object GTLiteMetaItems
 
     fun init()
     { 
-        META_ITEMS = StandardMetaItem()
+        META_ITEMS = object : StandardMetaItem()
+        {
+            override fun createItemModelPath(metaValueItem: MetaItem<*>.MetaValueItem, postfix: String): ResourceLocation
+                = GTLiteMod.id(formatModelPath(metaValueItem) + postfix)
+        }
+
         META_ITEMS.setRegistryName("gtlite_meta_item")
         META_ITEMS.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
     }
