@@ -140,6 +140,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TungstenTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
@@ -238,7 +239,7 @@ internal object CosmicCircuits
             .fluidInputs(Hydrogen.getFluid(20000))
             .output(dust, Tetracene, 30)
             .fluidOutputs(Acetylene.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(10000))
+            .fluidOutputs(Steam.getFluid(10 * SU))
             .EUt(VA[UV])
             .duration(10 * SECOND)
             .cleanroom(CleanroomType.CLEANROOM)

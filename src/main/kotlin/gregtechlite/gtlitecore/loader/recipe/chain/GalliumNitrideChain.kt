@@ -35,6 +35,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GalliumTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylaluminium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylgallium
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 
@@ -123,7 +124,7 @@ internal object GalliumNitrideChain
             .input(dust, GalliumTrioxide, 5)
             .fluidInputs(Ammonia.getFluid(2000))
             .output(dust, GalliumNitride, 4)
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[LuV])
             .duration(12 * SECOND + 10 * TICK)
             .temperature(1023)

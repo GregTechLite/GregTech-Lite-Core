@@ -22,6 +22,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentachlor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object LithiumNiobateChain
@@ -37,7 +38,7 @@ internal object LithiumNiobateChain
             .fluidInputs(HydrochloricAcid.getFluid(10000))
             .output(dust, NiobiumPentachloride, 12)
             .fluidOutputs(Hydrogen.getFluid(4000))
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[EV])
             .duration(20 * SECOND)
             .buildAndRegister()

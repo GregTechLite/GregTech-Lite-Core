@@ -94,6 +94,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyana
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneTetramethylDiisocyanate
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
@@ -477,7 +478,7 @@ internal object RubbersChain
             .fluidInputs(PhosphorylChloride.getFluid(3000))
             .fluidOutputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
             .fluidOutputs(HydrochloricAcid.getFluid(6000))
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[EV])
             .duration(4 * SECOND)
             .buildAndRegister()

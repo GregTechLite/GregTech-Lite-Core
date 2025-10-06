@@ -78,6 +78,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetrafluoroboricA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 
@@ -153,7 +154,7 @@ internal object HNIWChain
             .fluidInputs(NitricAcid.getFluid(2000))
             .fluidOutputs(Glyoxal.getFluid(2000))
             .fluidOutputs(NitricOxide.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(3000))
+            .fluidOutputs(Steam.getFluid(3 * SU))
             .EUt(VA[HV])
             .duration(2 * SECOND)
             .buildAndRegister()

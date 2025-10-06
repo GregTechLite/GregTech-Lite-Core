@@ -83,6 +83,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetramethylammoni
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
@@ -215,7 +216,7 @@ internal object GoowareCircuits
             .fluidInputs(HydroselenicAcid.getFluid(2000))
             .output(dust, CopperGalliumIndiumSelenide, 5)
             .fluidOutputs(Oxygen.getFluid(6000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[LuV])
             .duration(5 * SECOND)
             .buildAndRegister()

@@ -24,6 +24,7 @@ import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroauricAcid
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
@@ -48,7 +49,7 @@ internal object GoldenFruitsProcessing
             .fluidInputs(HydrochloricAcid.getFluid(2000))
             .fluidOutputs(ChloroauricAcid.getFluid(1000))
             .fluidOutputs(NitricOxide.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[LV])
             .duration(10 * SECOND)
             .buildAndRegister()

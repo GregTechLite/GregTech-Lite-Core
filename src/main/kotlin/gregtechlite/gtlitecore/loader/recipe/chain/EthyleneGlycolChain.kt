@@ -21,6 +21,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneOxide
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 
@@ -39,7 +40,7 @@ internal object EthyleneGlycolChain
             .fluidInputs(Oxygen.getFluid(12000))
             .fluidOutputs(EthyleneOxide.getFluid(6000))
             .fluidOutputs(CarbonDioxide.getFluid(2000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[HV])
             .duration(7 * SECOND + 10 * TICK)
             .buildAndRegister()
@@ -52,7 +53,7 @@ internal object EthyleneGlycolChain
             .fluidInputs(Oxygen.getFluid(12000))
             .fluidOutputs(Acetaldehyde.getFluid(6000))
             .fluidOutputs(CarbonDioxide.getFluid(2000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[EV])
             .duration(15 * SECOND)
             .buildAndRegister()

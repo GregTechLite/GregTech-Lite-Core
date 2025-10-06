@@ -87,6 +87,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoindigo
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.getFluid
@@ -187,7 +188,7 @@ internal object DyesChain
             .input(dust, Massicot, 2)
             .fluidInputs(NitricAcid.getFluid(2000))
             .output(dust, LeadNitrate, 9)
-            .fluidOutputs(Steam.getFluid(1000))
+            .fluidOutputs(Steam.getFluid(1 * SU))
             .EUt(VA[MV])
             .duration(4 * SECOND)
             .buildAndRegister()
@@ -251,7 +252,7 @@ internal object DyesChain
             .input(dust, Iodine, 4)
             .output(dust, Erythrosine, 37)
             .fluidOutputs(Hydrogen.getFluid(4000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VHA[HV])
             .duration(7 * SECOND + 10 * TICK)
             .buildAndRegister()
@@ -462,7 +463,7 @@ internal object DyesChain
             .fluidInputs(Oxygen.getFluid(2000))
             .output(dust, EosinY, 37)
             .fluidOutputs(Butanol.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(2000))
+            .fluidOutputs(Steam.getFluid(2 * SU))
             .EUt(VA[IV])
             .duration(10 * SECOND)
             .buildAndRegister()

@@ -41,6 +41,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 
@@ -105,7 +106,7 @@ internal object YBCOChain
             .input(dust, Tenorite, 2)
             .fluidInputs(NitricAcid.getFluid(2000))
             .output(dust, CopperNitrate, 9)
-            .fluidOutputs(Steam.getFluid(1000))
+            .fluidOutputs(Steam.getFluid(1 * SU))
             .EUt(VA[MV])
             .duration(8 * SECOND)
             .buildAndRegister()
