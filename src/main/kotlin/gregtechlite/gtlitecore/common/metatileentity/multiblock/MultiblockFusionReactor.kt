@@ -1,6 +1,10 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import com.cleanroommc.modularui.value.sync.DoubleSyncValue
+import com.cleanroommc.modularui.value.sync.LongSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
+import com.cleanroommc.modularui.widgets.ProgressWidget
+import com.cleanroommc.modularui.widgets.layout.Column
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -25,6 +29,7 @@ import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.MultiblockShapeInfo
@@ -34,6 +39,7 @@ import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.logic.OCParams
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.FusionEUToStartProperty
+import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
@@ -53,7 +59,6 @@ import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.gui.template.FusionReactorUITemplate
 import gregtechlite.gtlitecore.client.renderer.handler.FusionBloomSetup
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
@@ -69,6 +74,7 @@ import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.AxisAlignedBB
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -313,21 +319,97 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
         tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
     }
 
-    override fun createUIFactory(): MultiblockUIFactory?
+    @Suppress("UnstableApiUsage")
+    override fun createUIFactory(): MultiblockUIFactory
     {
         val titleTexture = when (tier)
         {
             UHV -> GTLiteMuiTextures.FUSION_REACTOR_MK4_TITLE
-            else -> GTLiteMuiTextures.FUSION_REACTOR_MK5_TITLE
+            UEV -> GTLiteMuiTextures.FUSION_REACTOR_MK5_TITLE
+            else -> GTGuiTextures.FUSION_REACTOR_MK1_TITLE
         }
-        return FusionReactorUITemplate.crateTemplateUI(titleTexture, this, recipeMapWorkable)
+
+        val progress = DoubleSyncValue(recipeMapWorkable::getProgressPercent)
+
+        return MultiblockUIFactory(this)
+            .setScreenHeight(138)
+            .disableDisplayText()
+            .addScreenChildren { parent, syncManager ->
+                val status = MultiblockUIFactory.builder("status", syncManager)
+                status.setAction { it.structureFormed(true)
+                    .setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+                    .addWorkingStatusLine()
+                }
+
+                parent.child(
+                    Column()
+                        .padding(4)
+                        .expanded()
+                        .child(titleTexture.asWidget()
+                                   .marginBottom(8)
+                                   .size(69, 12))
+                        .child(ProgressWidget()
+                                   .size(77, 77)
+                                   .tooltipAutoUpdate(true)
+                                   .tooltipBuilder(status::build)
+                                   .background(GTGuiTextures.FUSION_DIAGRAM.asIcon()
+                                                   .size(89, 101)
+                                                   .marginTop(11))
+                                   .direction(ProgressWidget.Direction.CIRCULAR_CW)
+                                   .value(progress)
+                                   .texture(null, GTGuiTextures.FUSION_PROGRESS, 77))
+                        .child(GTGuiTextures.FUSION_LEGEND.asWidget()
+                                   .left(4)
+                                   .bottom(4)
+                                   .size(108, 41)))
+            }
     }
 
     override fun getProgressBarCount(): Int = 2
 
-    override fun registerBars(templateBars: MutableList<UnaryOperator<TemplateBarBuilder>>, guiSyncManager: PanelSyncManager)
+    @Suppress("UnstableApiUsage")
+    override fun registerBars(templateBars: MutableList<UnaryOperator<TemplateBarBuilder>>, syncManager: PanelSyncManager)
     {
-        FusionReactorUITemplate.createTemplateBars(templateBars, guiSyncManager, energyContainer, this::heat)
+        val capacity = LongSyncValue(energyContainer::getEnergyCapacity)
+        syncManager.syncValue("capacity", capacity)
+
+        val stored = LongSyncValue(energyContainer::getEnergyStored)
+        syncManager.syncValue("stored", stored)
+
+        val heat = LongSyncValue(::heat)
+        syncManager.syncValue("heat", heat)
+
+        // Energy Stored / Energy Capacity
+        templateBars.add {
+            it.progress {
+                if (capacity.longValue > 0)
+                    return@progress 1.0 * stored.longValue / capacity.longValue
+                else
+                    return@progress 0.0
+            }
+                .texture(GTGuiTextures.PROGRESS_BAR_FUSION_ENERGY)
+                .tooltipBuilder { tooltip ->
+                    tooltip.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.energy_stored",
+                        stored.longValue, capacity.longValue))
+                }
+        }
+
+        // Heat
+        templateBars.add {
+            it.progress {
+                if (capacity.longValue > 0)
+                    return@progress 1.0 * heat.longValue / capacity.longValue
+                else
+                    return@progress 0.0
+            }
+                .texture(GTGuiTextures.PROGRESS_BAR_FUSION_HEAT)
+                .tooltipBuilder { tooltip ->
+                    val heatInfo = KeyUtil.string(TextFormatting.AQUA, "%,d / %,d EU",
+                                                  heat.longValue, capacity.longValue)
+                    tooltip.add(KeyUtil.lang(TextFormatting.GRAY, "gregtech.multiblock.fusion_reactor.heat",
+                                             heatInfo))
+                }
+        }
     }
 
     @SideOnly(Side.CLIENT)
