@@ -2586,6 +2586,7 @@ gtlitecore.machine.entrodynamically_phase_changer.tooltip.6=输入电压超过§
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.7=根据结构中的§6线圈方块§7的等级决定最大并行数，每提高1级则增加§e(256 * 当前温度)§7次并行。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.8=单次工作的并行数不会超过§f2,147,483,647§7次。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.9=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
+gtlitecore.machine.entrodynamically_phase_changer.tooltip.10=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

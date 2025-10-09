@@ -149,7 +149,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
 
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
 
-    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.1"))
@@ -161,6 +161,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.7"))
         tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.8"))
         tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.9"))
+        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.10"))
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
