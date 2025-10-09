@@ -678,7 +678,6 @@ object GTLiteRecipeMaps
         .progressBar(GuiTextures.PROGRESS_BAR_FUSION)
         .sound(GTSoundEvents.ARC)
         .build()
-        .setSmallRecipeMap(RecipeMaps.FUSION_RECIPES)
 
     /**
      * @zenProp component_assembly_line

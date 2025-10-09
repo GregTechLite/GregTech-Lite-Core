@@ -17,7 +17,7 @@ internal object RecipeProducerList
 
         CircuitAssemblyLineRecipeProducer.produce()
 
-        if (Mods.AppliedEnergistics2.isActive&& GTLiteConfigHolder.compat.ae2Compat.addProcessorCALRecipes)
+        if (Mods.AppliedEnergistics2.isActive && GTLiteConfigHolder.compat.ae2Compat.addProcessorCALRecipes)
             AppEngCALRecipeProducer.produce()
 
         WrapItemRecipeProducer.produce()
@@ -26,6 +26,7 @@ internal object RecipeProducerList
         ComponentAssemblyLineRecipeProducer.produce()
         NuclearFissionRecipeProducer.produce()
         PCBFactoryRecipeProducer.produce()
+        AdvancedFusionRecipeProducer.produce()
     }
 
     // @formatter:on
