@@ -618,7 +618,7 @@ object GTLiteSecondDegreeMaterials
         {
             ingot()
             fluid()
-            color(0xD599BD).iconSet(SHINY)
+            color(0xE564E4).iconSet(SHINY)
             components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             blastProp(6800, GasTier.HIGH, // Naquadah
