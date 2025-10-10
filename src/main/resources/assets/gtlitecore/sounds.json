@@ -1,0 +1,12 @@
+{
+  "tick.stellar_forge": {
+    "subtitle": "gtlitecore.subtitle.tick.stellar_forge",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "gtlitecore:stellar_forge",
+        "stream": false
+      }
+    ]
+  }
+}
