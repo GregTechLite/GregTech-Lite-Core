@@ -472,7 +472,13 @@ tile.gtlitecore.science_casing_01.reinforced_spatial_structure_casing.tooltip=�
 tile.gtlitecore.science_casing_01.infinite_spacetime_energy_boundary_casing.name=无尽时空能量边界机械方块
 tile.gtlitecore.science_casing_01.infinite_spacetime_energy_boundary_casing.tooltip=在时空区域之间提供稳定的桥梁/n§9§l同时存在于多个维度中
 tile.gtlitecore.science_casing_01.dimensional_bridge_casing.name=维度联络机械方块
-tile.gtlitecore.science_casing_01.dimensional_bridge_casing.tooltip=量子空间桥
+tile.gtlitecore.science_casing_01.dimensional_bridge_casing.tooltip=量子空间桥/n§9§l远程传输工具
+tile.gtlitecore.science_casing_01.containment_field_generator.name=遏制场发生器
+tile.gtlitecore.science_casing_01.containment_field_generator.tooltip=极致的吸力与斥力/n§9§l别太靠近它！
+tile.gtlitecore.science_casing_01.spacetime_altering_casing.name=时空扭曲机械方块
+tile.gtlitecore.science_casing_01.spacetime_altering_casing.tooltip=光速不再是限制/n§9§l时空飘忽不定
+tile.gtlitecore.science_casing_01.ultimate_molecular_casing.name=究极分子机器外壳
+tile.gtlitecore.science_casing_01.ultimate_molecular_casing.tooltip=果壳中的粒子宇宙/n§b§l高维度防护
 
 tile.gtlitecore.spacetime_compression_field_generator.crude.name=§7粗制§f压缩时空场发生器
 tile.gtlitecore.spacetime_compression_field_generator.crude.tooltip=内部时空最大体积：100,000km³/n§9§l抑制时空场膨胀

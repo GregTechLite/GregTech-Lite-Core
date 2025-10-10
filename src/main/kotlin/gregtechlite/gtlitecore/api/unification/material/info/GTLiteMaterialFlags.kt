@@ -312,6 +312,7 @@ object GTLiteMaterialFlags
         Lutetium.addFlags(GENERATE_FOIL)
         Cadmium.addFlags(GENERATE_FOIL)
         Rhenium.addFlags(GENERATE_FOIL)
+        Californium.addFlags(GENERATE_FOIL)
 
         // frameGt
         Potin.addFlags(GENERATE_FRAME)
@@ -329,6 +330,9 @@ object GTLiteMaterialFlags
         Duranium.addFlags(GENERATE_FRAME)
         Inconel718.addFlags(GENERATE_FRAME)
         Naquadria.addFlags(GENERATE_FRAME)
+        Rutherfordium.addFlags(GENERATE_FRAME)
+        Dubnium.addFlags(GENERATE_FRAME)
+        Curium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -357,6 +361,7 @@ object GTLiteMaterialFlags
         Darmstadtium.addFlags(GENERATE_GEAR)
         Brass.addFlags(GENERATE_GEAR)
         Berkelium.addFlags(GENERATE_GEAR)
+        Roentgenium.addFlags(GENERATE_GEAR)
 
         // gearSmall
         Neutronium.addFlags(GENERATE_SMALL_GEAR)
@@ -375,6 +380,7 @@ object GTLiteMaterialFlags
         CobaltBrass.addFlags(GENERATE_SMALL_GEAR)
         VanadiumSteel.addFlags(GENERATE_SMALL_GEAR)
         Zinc.addFlags(GENERATE_SMALL_GEAR)
+        Roentgenium.addFlags(GENERATE_SMALL_GEAR)
 
         // lens/craftingLens
         CertusQuartz.addFlags(GENERATE_LENS)
@@ -462,6 +468,7 @@ object GTLiteMaterialFlags
         Cadmium.addFlags(GENERATE_PLATE)
         Copernicium.addFlags(GENERATE_PLATE)
         Sulfur.addFlags(GENERATE_PLATE)
+        Roentgenium.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -499,6 +506,7 @@ object GTLiteMaterialFlags
         Seaborgium.addFlags(GENERATE_DOUBLE_PLATE)
         Livermorium.addFlags(GENERATE_DOUBLE_PLATE)
         Moscovium.addFlags(GENERATE_DOUBLE_PLATE)
+        Copernicium.addFlags(GENERATE_DOUBLE_PLATE)
 
         // plateDense
         WroughtIron.addFlags(GENERATE_DENSE)
@@ -529,6 +537,9 @@ object GTLiteMaterialFlags
         Osmiridium.addFlags(GENERATE_DENSE)
         Livermorium.addFlags(GENERATE_DENSE)
         CobaltBrass.addFlags(GENERATE_DENSE)
+        Seaborgium.addFlags(GENERATE_DENSE)
+        Meitnerium.addFlags(GENERATE_DENSE)
+        Copernicium.addFlags(GENERATE_DENSE)
 
         // ring
         Duranium.addFlags(GENERATE_RING)

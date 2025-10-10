@@ -17,7 +17,10 @@ enum class ScienceCasing(private val serializedName: String,
     REINFORCED_TEMPORAL_STRUCTURE_CASING("reinforced_temporal_structure_casing"),
     REINFORCED_SPATIAL_STRUCTURE_CASING("reinforced_spatial_structure_casing"),
     INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING("infinite_spacetime_energy_boundary_casing"),
-    DIMENSIONAL_BRIDGE_CASING("dimensional_bridge_casing");
+    DIMENSIONAL_BRIDGE_CASING("dimensional_bridge_casing"),
+    CONTAINMENT_FIELD_GENERATOR("containment_field_generator"),
+    SPACETIME_ALTERING_CASING("spacetime_altering_casing"),
+    ULTIMATE_MOLECULAR_CASING("ultimate_molecular_casing");
 
     override val state: IBlockState
         get() = GTLiteBlocks.SCIENCE_CASING_01.getState(this)
