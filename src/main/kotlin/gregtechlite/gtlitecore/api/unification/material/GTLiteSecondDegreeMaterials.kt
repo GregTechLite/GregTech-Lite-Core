@@ -620,7 +620,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0xE564E4).iconSet(SHINY)
             components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             blastProp(6800, GasTier.HIGH, // Naquadah
                       VA[LuV], 30 * SECOND,
                       VA[EV], 25 * SECOND)
@@ -939,7 +939,7 @@ object GTLiteSecondDegreeMaterials
             components(Copernicium, 1, Nihonium, 1, MetastableFlerovium, 1, Moscovium, 1, Livermorium, 1, Tennessine, 1,
                        MetastableOganesson, 1)
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL,
-                  GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
+                  GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME)
             blastProp(15400, GasTier.HIGHEST, // Halkonite Steel
                       VA[UXV], 1 * MINUTE + 36 * SECOND,
                       VA[UEV], 48 * SECOND)
@@ -954,7 +954,7 @@ object GTLiteSecondDegreeMaterials
             color(Gold.materialRGB + Silver.materialRGB + Platinum.materialRGB + Palladium.materialRGB + Ruthenium.materialRGB
                   + Rhodium.materialRGB + Iridium.materialRGB + Osmium.materialRGB).iconSet(BRIGHT)
             components(Ruthenium, 1, Rhodium, 1, Palladium, 1, Silver, 1, Osmium, 1, Iridium, 1, Platinum, 1, Gold, 1)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(9900, GasTier.HIGHER, // Tritanium
                       VA[UV], 1 * MINUTE,
                       VA[ZPM], 30 * SECOND)

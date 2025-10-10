@@ -472,7 +472,13 @@ tile.gtlitecore.science_casing_01.reinforced_spatial_structure_casing.tooltip=Th
 tile.gtlitecore.science_casing_01.infinite_spacetime_energy_boundary_casing.name=Infinite Spacetime Energy Boundary Casing
 tile.gtlitecore.science_casing_01.infinite_spacetime_energy_boundary_casing.tooltip=Provides a stable bridge between spacetime regions/n§9§lSimultaneously existing in Multiple Dimensions
 tile.gtlitecore.science_casing_01.dimensional_bridge_casing.name=Dimensional Bridge Casing
-tile.gtlitecore.science_casing_01.dimensional_bridge_casing.tooltip=Quantum Spatial Bridge
+tile.gtlitecore.science_casing_01.dimensional_bridge_casing.tooltip=Quantum Spatial Bridge/n§9§lRemote Connection Tool
+tile.gtlitecore.science_casing_01.containment_field_generator.name=Containment Field Generator
+tile.gtlitecore.science_casing_01.containment_field_generator.tooltip=Ultimate Suction and Repulsion/n§9§lDo not too close to it!
+tile.gtlitecore.science_casing_01.spacetime_altering_casing.name=Spacetime Altering Casing
+tile.gtlitecore.science_casing_01.spacetime_altering_casing.tooltip=Light Speed is no longer the limit/n§9§lWibbly wobbly timey wimey stuff
+tile.gtlitecore.science_casing_01.ultimate_molecular_casing.name=Ultimate Molecular Casing
+tile.gtlitecore.science_casing_01.ultimate_molecular_casing.tooltip=The Particle Universe in a Nutshell/n§b§lHigh Dimensional Protection
 
 tile.gtlitecore.spacetime_compression_field_generator.crude.name=§7Crude§f Spacetime Compression Field Generator
 tile.gtlitecore.spacetime_compression_field_generator.crude.tooltip=Internal Spacetime Maximum Volume: 100,000km³/n§9§lSuppressing Spatiotemporal Fields Expansion
