@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -9,6 +8,9 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockGlassCasing
 import gregtech.common.blocks.MetaBlocks
@@ -19,7 +21,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasing
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -27,11 +30,9 @@ import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockStellarForge(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, STELLAR_FORGE_RECIPES)
+class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockController(id, STELLAR_FORGE_RECIPES)
 {
 
     private var emitterCasingTier = 0
@@ -120,13 +121,13 @@ class MultiblockStellarForge(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("SF")
-            addDescriptionLine(true,
-                               "gtlitecore.machine.stellar_forge.tooltip.1",
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.stellar_forge.tooltip.1",
                                "gtlitecore.machine.stellar_forge.tooltip.2")
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.EMITTER_CASING, 50)
-            parallelInfo(UpgradeType.FIELD_GEN_CASING, 32)
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.FIELD_GEN_CASING, 32)
+            addDurationInfo(UpgradeMode.EMITTER_CASING, 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
@@ -134,15 +135,22 @@ class MultiblockStellarForge(id: ResourceLocation)
 
     override fun hasMaintenanceMechanics() = false
 
-    private inner class StellarForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class StellarForgeRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.5.pow(emitterCasingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +400% / emitter casing tier | t = d / (1 + 4.0 * (c - 1)) = d / (4.0 * c - 3.0), where b = 4.0
+            if (emitterCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * emitterCasingTier - 3.0)).toInt()))
         }
 
-        override fun getParallelLimit() =  32 * fieldGenCasingTier
+        override fun getParallelLimit(): Int = 32 * fieldGenCasingTier
 
     }
 

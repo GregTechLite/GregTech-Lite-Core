@@ -133,7 +133,7 @@ class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.75 * coilTier - 0.75)).toInt()))
         }
 
-        override fun getParallelLimit() = 8 * pumpCasingTier
+        override fun getParallelLimit(): Int = 8 * pumpCasingTier
 
     }
 
