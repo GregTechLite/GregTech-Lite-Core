@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.GTValues.ULV
 import gregtech.api.block.VariantBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
@@ -10,6 +9,8 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.*
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.BlockInfo
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
@@ -27,7 +28,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasing
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
@@ -45,11 +47,9 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.Predicate
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockNanoscaleFabricator(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, MOLECULAR_BEAM_RECIPES)
+class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockController(id, MOLECULAR_BEAM_RECIPES)
 {
 
     private var emitterCasingTier = 0
@@ -160,14 +160,14 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("NFab")
-            addDescriptionLine(true,
-                               "gtlitecore.machine.nanoscale_fabricator.tooltip.1",
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.nanoscale_fabricator.tooltip.1",
                                "gtlitecore.machine.nanoscale_fabricator.tooltip.2",
                                "gtlitecore.machine.nanoscale_fabricator.tooltip.3")
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.EMITTER_CASING, 80)
-            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 4)
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 4)
+            addDurationInfo(UpgradeMode.EMITTER_CASING, 325)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
         }
     }
 
@@ -214,9 +214,16 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
             return (delta in 1..249)
         }
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(emitterCasingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -20% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+
+            // +325% / emitter casing tier | t = d / (1 + 3.25 * (c - 1)) = d / (3.25 * c - 2.25), where b = 3.25
+            if (emitterCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.25 * emitterCasingTier - 2.25)).toInt()))
         }
 
         override fun getParallelLimit() = 4 * robotArmCasingTier
