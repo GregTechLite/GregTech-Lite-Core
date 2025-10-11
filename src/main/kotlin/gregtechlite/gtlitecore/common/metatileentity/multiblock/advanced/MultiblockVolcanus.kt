@@ -13,6 +13,10 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
@@ -28,7 +32,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -40,9 +45,7 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
 class MultiblockVolcanus(id: ResourceLocation) :
     RecipeMapMultiblockController(id, BLAST_RECIPES), IHeatingCoil
@@ -111,17 +114,16 @@ class MultiblockVolcanus(id: ResourceLocation) :
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("Vol, AEBF")
-            addDescriptionLine(true,
-                               "gtlitecore.machine.volcanus.tooltip.1",
-                               "gtlitecore.machine.volcanus.tooltip.2")
-            overclockInfo(UV)
-            durationInfo(UpgradeType.WIRE_COIL, 80)
-            parallelInfo(UpgradeType.MOTOR_CASING, 16)
-            addDescriptionLine(false,
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.volcanus.tooltip.1",
+                               "gtlitecore.machine.volcanus.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.1",
                                "gregtech.machine.electric_blast_furnace.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.3")
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
+            addDurationInfo(UpgradeMode.WIRE_COIL, 250)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
@@ -199,17 +201,14 @@ class MultiblockVolcanus(id: ResourceLocation) :
     override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean =
         temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0)!!
 
-    private inner class VolcanusRecipeLogic(metaTileEntity: RecipeMapMultiblockController) :
-        HeatingCoilRecipeLogic(metaTileEntity)
+    private inner class VolcanusRecipeLogic(private val mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
     {
-
-        private val mte = metaTileEntity as MultiblockVolcanus
 
         override fun updateRecipeProgress()
         {
             if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                val inputTank = mte.getInputFluidInventory()
+                val inputTank = (mte as MultiblockVolcanus).getInputFluidInventory()
                 val pyrotheumStack = BlazingPyrotheum.getFluid(2)
                 if (pyrotheumStack.isFluidStackIdentical(inputTank.drain(pyrotheumStack, false)))
                 {
@@ -224,11 +223,19 @@ class MultiblockVolcanus(id: ResourceLocation) :
             }
         }
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor()
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(motorCasingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +250% / motor casing tier | t = d / (1 + 2.5 * (c - 1)) = d / (2.5 * c - 1.5), where b = 2.5
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * motorCasingTier - 1.5)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * coilTier

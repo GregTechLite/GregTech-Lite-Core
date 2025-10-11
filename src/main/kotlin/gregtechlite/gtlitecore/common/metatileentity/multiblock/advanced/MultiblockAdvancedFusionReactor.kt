@@ -10,6 +10,10 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.core.sound.GTSoundEvents
@@ -26,20 +30,20 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fusionVacuums
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ADVANCED_FUSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
-class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
-    RecipeMapMultiblockController(id, ADVANCED_FUSION_RECIPES)
+class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultiblockController(id, ADVANCED_FUSION_RECIPES)
 {
 
     private var fusionCasingTier = 0
@@ -140,20 +144,19 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.6"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.7"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.8"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.9"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.10"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.11"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.12"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.13"))
-        tooltip.add(I18n.format("gtlitecore.machine.advanced_fusion_reactor.tooltip.14"))
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.advanced_fusion_reactor.tooltip.1",
+                               "gtlitecore.machine.advanced_fusion_reactor.tooltip.2",
+                               "gtlitecore.machine.advanced_fusion_reactor.tooltip.3",
+                               "gtlitecore.machine.advanced_fusion_reactor.tooltip.4")
+            addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
+            addMultiParallelInfo(UpgradeMode.FUSION_COIL, UpgradeMode.FUSION_DIVERTOR, 64)
+            addMultiDurationInfo(UpgradeMode.FUSION_CASING, UpgradeMode.FUSION_VACUUM, UpgradeMode.FUSION_CRYOSTAT, 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
+            addLaserHatch()
+        }
     }
 
     override fun canBeDistinct() = false
@@ -176,12 +179,18 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) :
     private inner class AdvancedFusionRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = 0.125
+        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.5.pow(min(fusionCasingTier,
-                min(vacuumTier, cryostatTier)))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -50% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+
+            // +400% / fusion casing, vacuum and cryostat tier | t = d / (1 + 4.0 * (c - 1)) = d / (4.0 * c - 3.0), where b = 4.0
+            if (fusionCasingTier <= 0 || vacuumTier <= 0 || cryostatTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(min(fusionCasingTier, vacuumTier), cryostatTier) - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 64 * min(fusionCoilTier, divertorTier)

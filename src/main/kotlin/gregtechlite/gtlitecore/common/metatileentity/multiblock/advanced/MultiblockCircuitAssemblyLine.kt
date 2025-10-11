@@ -143,6 +143,8 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
             maxProgressTime = if (recipeMap == CIRCUIT_ASSEMBLER_RECIPES) maxProgress / 2 else maxProgress
         }
 
+
+
         override fun getParallelLimit() = (getInputInventorySize() - 4) * 4
 
     }

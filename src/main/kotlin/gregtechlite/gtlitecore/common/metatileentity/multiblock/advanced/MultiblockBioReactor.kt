@@ -12,11 +12,14 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.CleanroomProperty
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.CLEANROOM_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.SENSOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.cleanroomCasings
@@ -25,22 +28,19 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockBioReactor(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(BIO_REACTOR_RECIPES, GREENHOUSE_RECIPES))
+class MultiblockBioReactor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(BIO_REACTOR_RECIPES, GREENHOUSE_RECIPES))
 {
 
     private var sensorCasingTier = 0
@@ -59,7 +59,7 @@ class MultiblockBioReactor(id: ResourceLocation)
         private val glassState = GlassCasing.GREENHOUSE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockBioReactor(metaTileEntityId)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBioReactor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -104,17 +104,16 @@ class MultiblockBioReactor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("LBR")
-            addDescriptionLine(true,
-                               "gtlitecore.machine.large_bio_reactor.tooltip.1",
-                               I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.2")
-                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
-            durationInfo(UpgradeType.SENSOR_CASING, 80)
-            parallelInfo(UpgradeType.VOLTAGE_TIER, 16)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.large_bio_reactor.tooltip.1")
+            addOverclockInfo("gtlitecore.machine.large_bio_reactor.tooltip.2")
+            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
+            addDurationInfo(UpgradeMode.SENSOR_CASING, 375)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 35)
         }
     }
 
@@ -144,11 +143,19 @@ class MultiblockBioReactor(id: ResourceLocation)
     private inner class LargeBioReactorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(sensorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -35% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
+
+            // +375% / sensor casing tier | t = d / (1 + 3.75 * (c - 1)) = d / (3.75 * c - 2.75), where b = 3.75
+            if (sensorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.75 * sensorCasingTier - 2.75)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * getTierByVoltage(maxVoltage)

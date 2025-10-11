@@ -12,13 +12,18 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -27,8 +32,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockElectromagnet(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
@@ -91,24 +95,31 @@ class MultiblockElectromagnet(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("LEm")
-            addDescriptionLine(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
-            parallelInfo(UpgradeType.FIELD_GEN_CASING, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.FIELD_GEN_CASING, 8)
+            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 125)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 15)
         }
     }
 
     override fun canBeDistinct() = true
 
-    private inner class LargeElectromagnetRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeElectromagnetRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.5.pow(getTierByVoltage(maxVoltage).toDouble())).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -15% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
+
+            // +125% / voltage tier | t = d / (1 + 1.25 * (c - 1)) = d / (1.25 * c - 0.25), where b = 1.25
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.25 * getTierByVoltage(maxVoltage) - 0.25)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * casingTier
