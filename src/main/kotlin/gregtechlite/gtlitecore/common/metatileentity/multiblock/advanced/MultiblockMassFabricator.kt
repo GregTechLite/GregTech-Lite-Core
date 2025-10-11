@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasing
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
@@ -120,12 +120,12 @@ class MultiblockMassFabricator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LMasFab")
-            description(true)
+            addMachineTypeLine("LMasFab")
+            addDescriptionLine(true)
             overclockInfo(UV)
-            description(false,
-                        "gtlitecore.machine.large_mass_fabricator.tooltip.1",
-                        "gtlitecore.machine.large_mass_fabricator.tooltip.2")
+            addDescriptionLine(false,
+                               "gtlitecore.machine.large_mass_fabricator.tooltip.1",
+                               "gtlitecore.machine.large_mass_fabricator.tooltip.2")
         }
     }
 

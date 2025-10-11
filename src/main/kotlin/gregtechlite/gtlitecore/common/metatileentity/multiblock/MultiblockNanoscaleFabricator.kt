@@ -26,7 +26,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getTierOrDefau
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -160,11 +160,11 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("NFab")
-            description(true,
-                        "gtlitecore.machine.nanoscale_fabricator.tooltip.1",
-                        "gtlitecore.machine.nanoscale_fabricator.tooltip.2",
-                        "gtlitecore.machine.nanoscale_fabricator.tooltip.3")
+            addMachineTypeLine("NFab")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.nanoscale_fabricator.tooltip.1",
+                               "gtlitecore.machine.nanoscale_fabricator.tooltip.2",
+                               "gtlitecore.machine.nanoscale_fabricator.tooltip.3")
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.EMITTER_CASING, 80)
             parallelInfo(UpgradeType.ROBOT_ARM_CASING, 4)

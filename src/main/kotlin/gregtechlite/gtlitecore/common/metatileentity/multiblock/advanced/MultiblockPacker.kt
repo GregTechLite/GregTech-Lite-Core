@@ -16,7 +16,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.ROBOT_ARM_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -83,8 +83,8 @@ class MultiblockPacker(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LPac")
-            description(true)
+            addMachineTypeLine("LPac")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.VOLTAGE_TIER, 50)
             parallelInfo(UpgradeType.ROBOT_ARM_CASING, 8)

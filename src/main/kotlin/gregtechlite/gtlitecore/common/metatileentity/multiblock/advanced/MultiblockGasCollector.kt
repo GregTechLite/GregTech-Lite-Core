@@ -16,7 +16,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_GAS_COLLECTOR_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -95,9 +95,9 @@ class MultiblockGasCollector(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LGC")
-            description(true,
-                        "gtlitecore.machine.large_gas_collector.tooltip.1")
+            addMachineTypeLine("LGC")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.large_gas_collector.tooltip.1")
             overclockInfo(UV)
             durationInfo(UpgradeType.VOLTAGE_TIER, 50)
             parallelInfo(UpgradeType.PUMP_CASING, 16)

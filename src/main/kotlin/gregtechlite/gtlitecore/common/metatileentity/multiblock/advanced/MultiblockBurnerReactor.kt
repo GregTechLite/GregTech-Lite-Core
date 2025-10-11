@@ -19,7 +19,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -108,8 +108,8 @@ class MultiblockBurnerReactor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LBuR")
-            description(true)
+            addMachineTypeLine("LBuR")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.VOLTAGE_TIER, 50)
             parallelInfo(UpgradeType.MOTOR_CASING, 16)

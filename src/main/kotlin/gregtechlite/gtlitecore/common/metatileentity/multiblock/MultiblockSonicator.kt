@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -106,11 +106,11 @@ class MultiblockSonicator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("Son")
-            description(true)
+            addMachineTypeLine("Son")
+            addDescriptionLine(true)
             overclockInfo(UV)
-            description(false,
-                        "gtlitecore.machine.sonicator.tooltip.1")
+            addDescriptionLine(false,
+                               "gtlitecore.machine.sonicator.tooltip.1")
             parallelInfo(UpgradeType.VOLTAGE_TIER, 4)
         }
     }

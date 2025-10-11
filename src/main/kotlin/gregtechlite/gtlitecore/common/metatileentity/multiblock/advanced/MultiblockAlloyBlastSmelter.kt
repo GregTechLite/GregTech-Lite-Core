@@ -27,7 +27,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -119,15 +119,15 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("ABS")
-            description(true)
+            addMachineTypeLine("ABS")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.WIRE_COIL, 80)
             parallelInfo(UpgradeType.PUMP_CASING, 16)
-            description(true,
-                        "gregtech.machine.electric_blast_furnace.tooltip.1",
-                        "gregtech.machine.electric_blast_furnace.tooltip.2",
-                        "gregtech.machine.electric_blast_furnace.tooltip.3")
+            addDescriptionLine(true,
+                               "gregtech.machine.electric_blast_furnace.tooltip.1",
+                               "gregtech.machine.electric_blast_furnace.tooltip.2",
+                               "gregtech.machine.electric_blast_furnace.tooltip.3")
         }
     }
 

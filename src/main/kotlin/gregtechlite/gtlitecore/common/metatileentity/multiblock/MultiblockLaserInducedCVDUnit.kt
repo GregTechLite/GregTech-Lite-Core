@@ -22,7 +22,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIP
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -113,9 +113,9 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LICVD")
-            description(true,
-                        "gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
+            addMachineTypeLine("LICVD")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
             overclockInfo(UV)
             durationInfo(UpgradeType.EMITTER_CASING, 50)
             parallelInfo(UpgradeType.PUMP_CASING, 8)

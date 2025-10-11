@@ -12,21 +12,26 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.COMPRESSOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockForgeHammer(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
@@ -82,28 +87,35 @@ class MultiblockForgeHammer(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LFH")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.VOLTAGE_TIER, 80)
-            parallelInfo(UpgradeType.PISTON_CASING, 4)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PISTON_CASING, 4)
+            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 100)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
         }
     }
 
     override fun canBeDistinct() = true
 
-    private inner class LargeForgeHammerRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeForgeHammerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(casingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+            if (casingTier <= 0) return
+
+            // -20% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+
+            // +100% / casing tier | t = d / (1 + 1.0 * (c - 1)) = d / c, where b = 1.0
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / casingTier).toInt()))
         }
 
-        override fun getParallelLimit() = 4 * casingTier
-
+        override fun getParallelLimit(): Int = 4 * casingTier
     }
 
 }

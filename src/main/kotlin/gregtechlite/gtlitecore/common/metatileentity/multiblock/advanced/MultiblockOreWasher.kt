@@ -17,7 +17,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -93,8 +93,8 @@ class MultiblockOreWasher(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LOW")
-            description(true)
+            addMachineTypeLine("LOW")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.VOLTAGE_TIER, 80)
             parallelInfo(UpgradeType.PUMP_CASING, 16)

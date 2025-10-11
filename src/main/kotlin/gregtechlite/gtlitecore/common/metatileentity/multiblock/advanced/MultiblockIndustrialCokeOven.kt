@@ -15,7 +15,7 @@ import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -83,8 +83,8 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("ICO")
-            description(true)
+            addMachineTypeLine("ICO")
+            addDescriptionLine(true)
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.WIRE_COIL, 80)
             parallelInfo(UpgradeType.VOLTAGE_TIER, 8)

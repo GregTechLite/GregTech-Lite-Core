@@ -27,7 +27,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -111,17 +111,17 @@ class MultiblockVolcanus(id: ResourceLocation) :
     {
         addTooltip(tooltip)
         {
-            machineType("Vol, AEBF")
-            description(true,
-                        "gtlitecore.machine.volcanus.tooltip.1",
-                        "gtlitecore.machine.volcanus.tooltip.2")
+            addMachineTypeLine("Vol, AEBF")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.volcanus.tooltip.1",
+                               "gtlitecore.machine.volcanus.tooltip.2")
             overclockInfo(UV)
             durationInfo(UpgradeType.WIRE_COIL, 80)
             parallelInfo(UpgradeType.MOTOR_CASING, 16)
-            description(false,
-                        "gregtech.machine.electric_blast_furnace.tooltip.1",
-                        "gregtech.machine.electric_blast_furnace.tooltip.2",
-                        "gregtech.machine.electric_blast_furnace.tooltip.3")
+            addDescriptionLine(false,
+                               "gregtech.machine.electric_blast_furnace.tooltip.1",
+                               "gregtech.machine.electric_blast_furnace.tooltip.2",
+                               "gregtech.machine.electric_blast_furnace.tooltip.3")
         }
     }
 

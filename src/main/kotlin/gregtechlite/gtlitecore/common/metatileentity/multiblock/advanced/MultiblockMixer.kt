@@ -15,7 +15,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
@@ -89,9 +89,9 @@ class MultiblockMixer(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LMix")
-            description(true,
-                        "gtlitecore.machine.large_mixer.tooltip.1")
+            addMachineTypeLine("LMix")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.large_mixer.tooltip.1")
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.VOLTAGE_TIER, 80)
             parallelInfo(UpgradeType.MOTOR_CASING, 8)

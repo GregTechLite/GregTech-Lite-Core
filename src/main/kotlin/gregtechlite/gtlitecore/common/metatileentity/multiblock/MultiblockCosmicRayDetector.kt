@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasin
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
@@ -142,13 +142,13 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CRD")
-            description(true,
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.1")
+            addMachineTypeLine("CRD")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.cosmic_ray_detector.tooltip.1")
             overclockInfo(FALLBACK)
-            description(false,
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.2",
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.3")
+            addDescriptionLine(false,
+                               "gtlitecore.machine.cosmic_ray_detector.tooltip.2",
+                               "gtlitecore.machine.cosmic_ray_detector.tooltip.3")
         }
     }
 

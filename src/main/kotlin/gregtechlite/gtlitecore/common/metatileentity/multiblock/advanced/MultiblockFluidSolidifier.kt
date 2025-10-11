@@ -19,7 +19,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VULCANIZATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -90,8 +90,8 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LFS")
-            description(true)
+            addMachineTypeLine("LFS")
+            addDescriptionLine(true)
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.PUMP_CASING, 80)
             parallelInfo(UpgradeType.VOLTAGE_TIER, 4)

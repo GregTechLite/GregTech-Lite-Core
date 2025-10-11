@@ -24,7 +24,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -108,10 +108,10 @@ class MultiblockBioReactor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LBR")
-            description(true,
-                        "gtlitecore.machine.large_bio_reactor.tooltip.1",
-                        I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.2")
+            addMachineTypeLine("LBR")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.large_bio_reactor.tooltip.1",
+                               I18n.format("gtlitecore.machine.large_bio_reactor.tooltip.2")
                                 + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"))
             durationInfo(UpgradeType.SENSOR_CASING, 80)
             parallelInfo(UpgradeType.VOLTAGE_TIER, 16)

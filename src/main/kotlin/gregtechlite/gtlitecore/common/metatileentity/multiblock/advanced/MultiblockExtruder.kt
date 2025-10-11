@@ -15,7 +15,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -87,8 +87,8 @@ class MultiblockExtruder(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LE")
-            description(true)
+            addMachineTypeLine("LE")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.PISTON_CASING, 50)
             parallelInfo(UpgradeType.PISTON_CASING, 16)

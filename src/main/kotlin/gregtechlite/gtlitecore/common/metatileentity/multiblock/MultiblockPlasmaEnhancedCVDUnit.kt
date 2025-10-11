@@ -25,7 +25,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIP
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -133,14 +133,14 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("PECVD")
-            description(true,
-                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1",
-                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2")
+            addMachineTypeLine("PECVD")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1",
+                               "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2")
             overclockInfo(FALLBACK)
-            description(false,
-                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3",
-                        "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4")
+            addDescriptionLine(false,
+                               "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3",
+                               "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4")
         }
     }
 

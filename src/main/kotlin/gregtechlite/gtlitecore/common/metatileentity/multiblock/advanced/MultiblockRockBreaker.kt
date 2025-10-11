@@ -17,7 +17,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -90,8 +90,8 @@ class MultiblockRockBreaker(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LRB")
-            description(true)
+            addMachineTypeLine("LRB")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.CONVEYOR_CASING, 50)
             parallelInfo(UpgradeType.PISTON_CASING, 16)
