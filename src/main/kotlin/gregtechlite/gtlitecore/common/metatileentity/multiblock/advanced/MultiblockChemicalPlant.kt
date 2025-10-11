@@ -19,7 +19,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
@@ -98,9 +98,9 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CP")
-            description(true,
-                        "gtlitecore.machine.chemical_plant.tooltip.1")
+            addMachineTypeLine("CP")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.chemical_plant.tooltip.1")
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.WIRE_COIL, 50)
             parallelInfo(UpgradeType.PUMP_CASING, 16)

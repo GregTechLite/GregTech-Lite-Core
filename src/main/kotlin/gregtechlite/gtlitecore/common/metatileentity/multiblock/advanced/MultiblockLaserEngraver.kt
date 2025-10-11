@@ -17,7 +17,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -96,8 +96,8 @@ class MultiblockLaserEngraver(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LLE")
-            description(true)
+            addMachineTypeLine("LLE")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.CONVEYOR_CASING, 50)
             parallelInfo(UpgradeType.EMITTER_CASING, 16)

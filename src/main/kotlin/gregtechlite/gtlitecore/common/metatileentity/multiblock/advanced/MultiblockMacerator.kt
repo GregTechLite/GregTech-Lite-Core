@@ -16,7 +16,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -90,8 +90,8 @@ class MultiblockMacerator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LMa")
-            description(true)
+            addMachineTypeLine("LMa")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.MOTOR_CASING, 50)
             parallelInfo(UpgradeType.PISTON_CASING, 8)

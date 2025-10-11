@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -120,10 +120,10 @@ class MultiblockStellarForge(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("SF")
-            description(true,
-                        "gtlitecore.machine.stellar_forge.tooltip.1",
-                        "gtlitecore.machine.stellar_forge.tooltip.2")
+            addMachineTypeLine("SF")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.stellar_forge.tooltip.1",
+                               "gtlitecore.machine.stellar_forge.tooltip.2")
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.EMITTER_CASING, 50)
             parallelInfo(UpgradeType.FIELD_GEN_CASING, 32)

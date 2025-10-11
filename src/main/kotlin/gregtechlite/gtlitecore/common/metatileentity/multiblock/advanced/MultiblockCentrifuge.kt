@@ -18,7 +18,7 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -95,8 +95,8 @@ class MultiblockCentrifuge(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LCen")
-            description(true)
+            addMachineTypeLine("LCen")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.MOTOR_CASING, 50)
             parallelInfo(UpgradeType.VOLTAGE_TIER, 8)

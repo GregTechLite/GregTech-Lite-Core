@@ -19,7 +19,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -102,8 +102,8 @@ class MultiblockAutoclave(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LAc")
-            description(true)
+            addMachineTypeLine("LAc")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.PUMP_CASING, 50)
             parallelInfo(UpgradeType.PISTON_CASING, 16)

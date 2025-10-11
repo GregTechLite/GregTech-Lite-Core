@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
@@ -105,8 +105,8 @@ class MultiblockFoodProcessor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LFP")
-            description(true)
+            addMachineTypeLine("LFP")
+            addDescriptionLine(true)
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.PUMP_CASING, 80)
             parallelInfo(UpgradeType.ROBOT_ARM_CASING, 8)

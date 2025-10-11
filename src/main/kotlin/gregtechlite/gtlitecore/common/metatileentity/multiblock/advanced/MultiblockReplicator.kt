@@ -21,7 +21,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasing
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -118,12 +118,12 @@ class MultiblockReplicator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LRep")
-            description(true)
+            addMachineTypeLine("LRep")
+            addDescriptionLine(true)
             overclockInfo(UV)
-            description(false,
-                        "gtlitecore.machine.large_replicator.tooltip.1",
-                        "gtlitecore.machine.large_replicator.tooltip.2")
+            addDescriptionLine(false,
+                               "gtlitecore.machine.large_replicator.tooltip.1",
+                               "gtlitecore.machine.large_replicator.tooltip.2")
         }
     }
 

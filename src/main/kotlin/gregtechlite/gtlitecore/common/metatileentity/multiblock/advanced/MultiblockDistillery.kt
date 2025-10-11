@@ -32,7 +32,7 @@ import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -171,11 +171,11 @@ class MultiblockDistillery(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LDis")
-            description(true,
-                        I18n.format("gtlitecore.machine.large_distillery.tooltip.1")
+            addMachineTypeLine("LDis")
+            addDescriptionLine(true,
+                               I18n.format("gtlitecore.machine.large_distillery.tooltip.1")
                                 + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"),
-                        I18n.format("gtlitecore.machine.large_distillery.tooltip.2")
+                               I18n.format("gtlitecore.machine.large_distillery.tooltip.2")
                                 + TooltipHelper.RAINBOW_SLOW + I18n.format("gtlitecore.machine.large_distillery.tooltip.3"))
             durationInfo(UpgradeType.VOLTAGE_TIER, 50)
             parallelInfo(UpgradeType.PUMP_CASING, 16)

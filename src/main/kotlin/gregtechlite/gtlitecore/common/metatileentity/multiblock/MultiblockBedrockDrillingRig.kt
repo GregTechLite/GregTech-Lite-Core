@@ -17,7 +17,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -137,11 +137,11 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("BDR")
-            description(true,
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.1",
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
+            addMachineTypeLine("BDR")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.bedrock_drilling_rig.tooltip.1",
+                               "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
+                               "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.MOTOR_CASING, 80)
             parallelInfo(UpgradeType.PISTON_CASING, 16)

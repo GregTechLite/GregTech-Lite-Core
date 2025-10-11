@@ -14,7 +14,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.CONVEYOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -87,8 +87,8 @@ class MultiblockSifter(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LS")
-            description(true)
+            addMachineTypeLine("LS")
+            addDescriptionLine(true)
             overclockInfo(FALLBACK)
             durationInfo(UpgradeType.VOLTAGE_TIER, 50)
             parallelInfo(UpgradeType.CONVEYOR_CASING, 8)

@@ -27,7 +27,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -115,8 +115,8 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CryC")
-            description(true)
+            addMachineTypeLine("CryC")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.MOTOR_CASING, 80)
             parallelInfo(UpgradeType.WIRE_COIL, 8)

@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
@@ -91,8 +91,8 @@ class MultiblockWiremill(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LW")
-            description(true)
+            addMachineTypeLine("LW")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.MOTOR_CASING, 80)
             parallelInfo(UpgradeType.VOLTAGE_TIER, 16)

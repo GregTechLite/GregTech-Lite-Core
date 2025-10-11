@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -102,9 +102,9 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("EIC")
-            description(true,
-                        "gtlitecore.machine.electric_implosion_compressor.tooltip.1")
+            addMachineTypeLine("EIC")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.electric_implosion_compressor.tooltip.1")
             overclockInfo(UV)
             durationInfo(UpgradeType.EMITTER_CASING, 50)
             parallelInfo(UpgradeType.PISTON_CASING, 16)

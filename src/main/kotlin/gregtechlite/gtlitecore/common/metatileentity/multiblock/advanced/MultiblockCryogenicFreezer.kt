@@ -20,7 +20,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -95,10 +95,10 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LCryF")
-            description(true,
-                        "gtlitecore.machine.cryogenic_freezer.tooltip.1",
-                        "gtlitecore.machine.cryogenic_freezer.tooltip.2")
+            addMachineTypeLine("LCryF")
+            addDescriptionLine(true,
+                               "gtlitecore.machine.cryogenic_freezer.tooltip.1",
+                               "gtlitecore.machine.cryogenic_freezer.tooltip.2")
             durationInfo(UpgradeType.PUMP_CASING, 50)
             parallelInfo(UpgradeType.MOTOR_CASING, 16)
         }

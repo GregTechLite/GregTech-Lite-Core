@@ -18,7 +18,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.UpgradeType
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -102,8 +102,8 @@ class MultiblockBrewery(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LBr")
-            description(true)
+            addMachineTypeLine("LBr")
+            addDescriptionLine(true)
             overclockInfo(UV)
             durationInfo(UpgradeType.MOTOR_CASING, 80)
             parallelInfo(UpgradeType.PUMP_CASING, 16)
