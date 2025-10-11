@@ -12,6 +12,11 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
@@ -20,7 +25,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -30,10 +36,10 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.pow
 
-class MultiblockExtractor(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(EXTRACTOR_RECIPES, CANNER_RECIPES))
+class MultiblockExtractor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(EXTRACTOR_RECIPES, CANNER_RECIPES))
 {
 
     private var pumpCasingTier = 0
@@ -99,24 +105,32 @@ class MultiblockExtractor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("LEa")
-            addDescriptionLine(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 50)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 300)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
         }
     }
 
     override fun canBeDistinct(): Boolean = true
 
-    private inner class LargeExtractorRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeExtractorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(motorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -25% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+
+            // +300% / motor casing tier | t = d / (1 + 3.0 * (c - 1)) = d / (3 * c - 2), where b = 3.0
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * motorCasingTier - 2.0)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * pumpCasingTier

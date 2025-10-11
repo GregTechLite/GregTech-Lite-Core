@@ -106,12 +106,12 @@ class MultiblockForgeHammer(id: ResourceLocation)
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
             super.modifyOverclockPost(ocResult, storage)
-            if (casingTier <= 0) return
 
             // -20% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
 
             // +100% / casing tier | t = d / (1 + 1.0 * (c - 1)) = d / c, where b = 1.0
+            if (casingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / casingTier).toInt()))
         }
 

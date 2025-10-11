@@ -5,6 +5,7 @@ enum class OverclockMode
 
     STANDARD,
     PERFECT,
-    PERFECT_AFTER
+    PERFECT_AFTER,
+    PERFECT_DOUBLE
 
 }

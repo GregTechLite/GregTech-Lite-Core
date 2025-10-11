@@ -12,6 +12,10 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -19,7 +23,8 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -29,11 +34,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockCentrifuge(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(CENTRIFUGE_RECIPES, THERMAL_CENTRIFUGE_RECIPES))
+class MultiblockCentrifuge(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(CENTRIFUGE_RECIPES, THERMAL_CENTRIFUGE_RECIPES))
 {
 
     private var casingTier = 0
@@ -95,11 +98,11 @@ class MultiblockCentrifuge(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("LCen")
-            addDescriptionLine(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 50)
-            parallelInfo(UpgradeType.VOLTAGE_TIER, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 8)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 325)
+            addEnergyInfo(UpgradeMode.MOTOR_CASING, 25)
         }
     }
 
@@ -108,11 +111,19 @@ class MultiblockCentrifuge(id: ResourceLocation)
     private inner class LargeCentrifugeRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(casingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+            if (casingTier <= 0) return
+
+            // -25% / motor casing tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - casingTier * 0.25)).toLong()))
+
+            // +325% / motor casing tier | t = d / (1 + 3.25 * (c - 1)) = d / (3.25 * c - 2.25), where b = 3.25
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.25 * casingTier - 2.25)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * getTierByVoltage(maxVoltage)

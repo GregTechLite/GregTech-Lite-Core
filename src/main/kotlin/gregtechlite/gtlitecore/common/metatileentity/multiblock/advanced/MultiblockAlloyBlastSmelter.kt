@@ -14,6 +14,10 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
@@ -28,7 +32,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -40,12 +45,9 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
-class MultiblockAlloyBlastSmelter(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, ALLOY_BLAST_RECIPES), IHeatingCoil
+class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockController(id, ALLOY_BLAST_RECIPES), IHeatingCoil
 {
 
     private var pumpCasingTier = 0
@@ -119,15 +121,14 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("ABS")
-            addDescriptionLine(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.WIRE_COIL, 80)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
-            addDescriptionLine(true,
-                               "gregtech.machine.electric_blast_furnace.tooltip.1",
+            addMachineTypeLine()
+            addDescriptionLine("gregtech.machine.electric_blast_furnace.tooltip.1",
                                "gregtech.machine.electric_blast_furnace.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.3")
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.WIRE_COIL, 350)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
@@ -172,14 +173,22 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
 
     override fun getCurrentTemperature() = this.temperature
 
-    private inner class AlloyBlastSmelterRecipeLogic(mte: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(mte)
+    private inner class AlloyBlastSmelterRecipeLogic(mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(coilTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +350% / wire coil tier | t = d / (1 + 3.5 * (c - 1)) = d / (3.5 * c - 2.5), where b = 3.5
+            if (coilTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * coilTier - 2.5)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * pumpCasingTier

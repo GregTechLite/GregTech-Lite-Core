@@ -126,6 +126,7 @@ class MultiblockCutter(id: ResourceLocation)
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
 
             // +350% / motor casing tier | t = d / (1 + 3.5 * (c - 1)) = d / (3.5 * c - 2.5), where b = 3.5
+            if (motorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * motorCasingTier - 2.5)).toInt()))
         }
 

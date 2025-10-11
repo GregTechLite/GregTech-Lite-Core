@@ -10,6 +10,11 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.REPLICATOR_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
@@ -22,6 +27,8 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -30,12 +37,10 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
-class MultiblockReplicator(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, REPLICATOR_RECIPES)
+class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController(id, REPLICATOR_RECIPES)
 {
 
     private var fieldGenCasingTier = 0
@@ -118,12 +123,11 @@ class MultiblockReplicator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            addMachineTypeLine("LRep")
-            addDescriptionLine(true)
-            overclockInfo(UV)
-            addDescriptionLine(false,
-                               "gtlitecore.machine.large_replicator.tooltip.1",
-                               "gtlitecore.machine.large_replicator.tooltip.2")
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, 16)
+            addMultiDurationInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, 200)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
         }
     }
 
@@ -132,14 +136,22 @@ class MultiblockReplicator(id: ResourceLocation)
     private inner class LargeReplicatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(min(emitterCasingTier, sensorCasingTier).toDouble()))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -25% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+
+            // +200% / field gen and processor casing tier | t = d / (1 + 2.0 * (c - 1)) = d / (2.0 * c - 1.0), where b = 2.0
+            if (fieldGenCasingTier <= 0 || processorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * min(fieldGenCasingTier, processorCasingTier) - 1.0)).toInt()))
         }
 
-        override fun getParallelLimit() = 4 * min(fieldGenCasingTier, processorCasingTier)
+        override fun getParallelLimit() = 16 * min(fieldGenCasingTier, processorCasingTier)
 
     }
 
