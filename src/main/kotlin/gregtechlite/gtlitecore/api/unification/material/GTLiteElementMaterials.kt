@@ -188,7 +188,7 @@ object GTLiteElementMaterials
             color(0xE61C24).iconSet(SHINY)
             element(Og)
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING, GENERATE_DOUBLE_PLATE,
-                  GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
+                  GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL, GENERATE_DENSE)
             blastProp(12380, GasTier.HIGHEST, // Adamantium
                       VA[UEV], 2 * MINUTE,
                       VA[UV], 40 * SECOND)
@@ -209,7 +209,7 @@ object GTLiteElementMaterials
             liquid().plasma()
             color(0x2D3A9D).iconSet(BRIGHT)
             element(Hs)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(12000, GasTier.HIGHEST, // Adamantium
                       VA[UEV], 4 * MINUTE + 30 * SECOND,
                       VA[UV], 1 * MINUTE)
@@ -304,7 +304,7 @@ object GTLiteElementMaterials
             }
             color(0xBE00FF).iconSet(METALLIC)
             flags(EXT2_METAL, GENERATE_RING, GENERATE_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                  GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR)
+                  GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR, GENERATE_FRAME)
             element(Fs)
             toolProp(76.0F, 110.0F, 165888, 9)
             {

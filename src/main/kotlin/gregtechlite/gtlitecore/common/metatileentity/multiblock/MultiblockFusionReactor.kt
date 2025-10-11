@@ -251,7 +251,7 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    private fun calculateEnergyStorageFactor(energyInputAmount: Int) = energyInputAmount * 2.0.pow((tier - 6).toDouble()) * 10_000_000L;
+    private fun calculateEnergyStorageFactor(energyInputAmount: Int) = energyInputAmount * 2.0.pow((tier - 6).toDouble()) * 10_000_000L
 
     override fun updateFormedValid()
     {
