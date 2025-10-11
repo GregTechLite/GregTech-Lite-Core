@@ -2472,7 +2472,7 @@ gtlitecore.machine.large_ore_washer.name=大型洗矿厂
 gtlitecore.machine.large_electromagnet.name=大型电磁铁
 
 gtlitecore.machine.large_distillery.name=大型蒸馏厂
-gtlitecore.machine.large_distillery.tooltip.1=§b使用蒸馏室模式时 / 蒸馏塔模式§3UV§f解锁
+gtlitecore.machine.large_distillery.tooltip.1=§b使用蒸馏室模式时 / 蒸馏塔模式§3UV§b解锁
 
 gtlitecore.machine.large_bio_reactor.name=大型生物反应室
 gtlitecore.machine.large_bio_reactor.tooltip.1=使用§c除菌过滤器外壳§7时，可以满足配方要求的§a无菌超净间§7环境需求。
@@ -3792,12 +3792,12 @@ gtlitecore.jei.space_pump_module.fluid_id=流体参数：#%s
 gtlitecore.jei.space_pump_module.fluid_amount=抽取速率：%s/秒
 
 gtlitecore.tooltip.machine.machine_type=机器类型：§e%s
-gtlitecore.tooltip.machine.overclock_mode=§f超频模式：§7
+gtlitecore.tooltip.machine.overclock_mode=超频模式：
 gtlitecore.tooltip.machine.overclock_mode.standard=§b常规超频
 gtlitecore.tooltip.machine.overclock_mode.perfect=§b无损超频
-gtlitecore.tooltip.machine.overclock_mode.perfect_after=§b无损超频§f（§3UV§f解锁）
+gtlitecore.tooltip.machine.overclock_mode.perfect_after=§b无损超频§7（§3UV§7解锁）
 gtlitecore.tooltip.machine.overclock_mode.perfect_double=§b双倍无损超频
-gtlitecore.tooltip.machine.parallel_mode=§f并行数：§7
+gtlitecore.tooltip.machine.parallel_mode=并行数：
 gtlitecore.tooltip.machine.parallel_mode.voltage_tier=§a%s×电压等级
 gtlitecore.tooltip.machine.parallel_mode.wire_coil=§a%s×线圈等级
 gtlitecore.tooltip.machine.parallel_mode.motor_casing=§a%s×马达外壳等级
@@ -3815,7 +3815,7 @@ gtlitecore.tooltip.machine.parallel_mode.emitter_casing_sensor_casing=§a%s×发
 gtlitecore.tooltip.machine.parallel_mode.emitter_casing_field_gen_casing=§a%s×发射器与力场外壳等级
 gtlitecore.tooltip.machine.parallel_mode.field_gen_casing_processor_casing=§a%s×力场与处理器外壳等级
 gtlitecore.tooltip.machine.parallel_mode.fusion_coil_fusion_divertor=§a%s×聚变线圈与偏滤器等级
-gtlitecore.tooltip.machine.duration_mode=§f速度加成：§7
+gtlitecore.tooltip.machine.duration_mode=速度加成：
 gtlitecore.tooltip.machine.duration_mode.voltage_tier=§d+%s%%/电压等级
 gtlitecore.tooltip.machine.duration_mode.wire_coil=§d+%s%%/线圈等级
 gtlitecore.tooltip.machine.duration_mode.motor_casing=§d+%s%%/马达外壳等级
@@ -3833,7 +3833,7 @@ gtlitecore.tooltip.machine.duration_mode.emitter_casing_sensor_casing=§d+%s%%�
 gtlitecore.tooltip.machine.duration_mode.sensor_casing_processor_casing=§d+%s%%传感器与处理器外壳等级
 gtlitecore.tooltip.machine.duration_mode.field_gen_casing_processor_casing=§d+%s%%力场与处理器外壳等级
 gtlitecore.tooltip.machine.duration_mode.fusion_casing_fusion_vacuum_fusion_cryostat=§d+%s%%聚变外壳，真空室与恒温仓等级
-gtlitecore.tooltip.machine.energy_mode=§f耗能减免：§7
+gtlitecore.tooltip.machine.energy_mode=耗能减免：
 gtlitecore.tooltip.machine.energy_mode.voltage_tier=§6-%s%%/电压等级
 gtlitecore.tooltip.machine.energy_mode.wire_coil=§6-%s%%/线圈等级
 gtlitecore.tooltip.machine.energy_mode.motor_casing=§6-%s%%/马达外壳等级
@@ -3846,7 +3846,7 @@ gtlitecore.tooltip.machine.energy_mode.sensor_casing=§6-%s%%/传感器外壳等
 gtlitecore.tooltip.machine.energy_mode.field_gen_casing=§6-%s%%/力场外壳等级
 gtlitecore.tooltip.machine.energy_mode.processor_casing=§6-%s%%/处理器外壳等级
 gtlitecore.tooltip.machine.energy_mode.borosilicate_glass§6-%s%%/硼硅玻璃等级
-gtlitecore.tooltip.machine.laser_hatch=§f激光仓：§9允许
+gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=配置界面
