@@ -1,12 +1,6 @@
-package gregtechlite.gtlitecore.api.translation
+package gregtechlite.gtlitecore.api.translation.mode
 
-/**
- * Used for mark block attributes which be upgradeable.
- *
- * @see MultiblockTooltipDSL.durationInfo
- * @see MultiblockTooltipDSL.parallelInfo
- */
-enum class UpgradeType
+enum class UpgradeMode
 {
 
     VOLTAGE_TIER,
