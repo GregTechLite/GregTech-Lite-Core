@@ -127,8 +127,8 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addMultiParallelInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, 16)
-            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, 200)
+            addMultiParallelInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, number = 16)
+            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 200)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
         }
     }

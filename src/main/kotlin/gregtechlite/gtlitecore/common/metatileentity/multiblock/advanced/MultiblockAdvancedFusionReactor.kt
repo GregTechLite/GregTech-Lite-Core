@@ -152,8 +152,8 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
                                "gtlitecore.machine.advanced_fusion_reactor.tooltip.3",
                                "gtlitecore.machine.advanced_fusion_reactor.tooltip.4")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
-            addMultiParallelInfo(UpgradeMode.FUSION_COIL, UpgradeMode.FUSION_DIVERTOR, 64)
-            addMultiDurationInfo(UpgradeMode.FUSION_CASING, UpgradeMode.FUSION_VACUUM, UpgradeMode.FUSION_CRYOSTAT, 400)
+            addMultiParallelInfo(UpgradeMode.FUSION_COIL, UpgradeMode.FUSION_DIVERTOR, number = 64)
+            addMultiDurationInfo(UpgradeMode.FUSION_CASING, UpgradeMode.FUSION_VACUUM, UpgradeMode.FUSION_CRYOSTAT, percent = 400)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
             addLaserHatch()
         }

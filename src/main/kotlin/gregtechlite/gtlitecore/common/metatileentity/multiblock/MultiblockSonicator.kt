@@ -116,7 +116,7 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
             addDescriptionLine("gtlitecore.machine.sonicator.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 4)
-            addMultiDurationInfo(UpgradeMode.MOTOR_CASING, UpgradeMode.PUMP_CASING, 250)
+            addMultiDurationInfo(UpgradeMode.MOTOR_CASING, UpgradeMode.PUMP_CASING, percent = 250)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
         }
     }

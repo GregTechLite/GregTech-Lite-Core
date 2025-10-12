@@ -17,7 +17,7 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
 
         fun MultiblockWithDisplayBase.addTooltip(tooltip: MutableList<String>, builder: MultiblockTooltipBuilder.() -> Unit)
         {
-            tooltip.addAll(MultiblockTooltipBuilder(this).apply(builder).tooltips)
+            tooltip += MultiblockTooltipBuilder(this).apply(builder).tooltips
         }
 
     }
@@ -32,89 +32,57 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     /**
      * Add machine type for the multiblock, just like multi-map multiblock recipe map line.
      */
-    fun addMachineTypeLine(): MultiblockTooltipBuilder
-    {
+    fun addMachineTypeLine(): MultiblockTooltipBuilder = apply {
         getRecipeMapName().takeIf { it.isNotEmpty() }?.let {
             _tooltips.add(I18n.format("gtlitecore.tooltip.machine.machine_type", it))
         }
-        return this
     }
 
     /**
      * Add additional descriptions for the multiblock, such as cleanroom environment predicate of Large Bio Reactor.
      */
-    fun addDescriptionLine(vararg descriptions: String): MultiblockTooltipBuilder
-    {
+    fun addDescriptionLine(vararg descriptions: String): MultiblockTooltipBuilder = apply {
         descriptions.forEach { _tooltips.add(I18n.format(it)) }
-        return this
     }
 
-    fun addOverclockInfo(mode: OverclockMode): MultiblockTooltipBuilder
-    {
+    fun addOverclockInfo(mode: OverclockMode): MultiblockTooltipBuilder = apply {
         val overclockMode = "gtlitecore.tooltip.machine.overclock_mode"
         _tooltips.add(I18n.format(overclockMode) + I18n.format("$overclockMode.${mode.name.lowercase()}"))
-        return this
     }
 
-    fun addOverclockInfo(conditionInfo: String): MultiblockTooltipBuilder
-    {
+    fun addOverclockInfo(conditionInfo: String): MultiblockTooltipBuilder = apply {
         _tooltips.add(I18n.format("gtlitecore.tooltip.machine.overclock_mode") + I18n.format(conditionInfo))
-        return this
     }
 
-    fun addParallelInfo(mode: UpgradeMode, number: Int): MultiblockTooltipBuilder
-    {
+    fun addParallelInfo(mode: UpgradeMode, number: Int): MultiblockTooltipBuilder = apply {
         val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
         _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.${mode.name.lowercase()}", number))
-        return this
     }
 
-    fun addMultiParallelInfo(mode1: UpgradeMode, mode2: UpgradeMode, number: Int): MultiblockTooltipBuilder
-    {
+    fun addMultiParallelInfo(vararg modes: UpgradeMode, number: Int): MultiblockTooltipBuilder = apply {
         val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
-        _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.${mode1.name.lowercase()}_${mode2.name.lowercase()}", number))
-        return this
+        val modeKey = modes.joinToString("_") { it.name.lowercase() }
+        _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.$modeKey", number))
     }
 
-    fun addMultiParallelInfo(mode1: UpgradeMode, mode2: UpgradeMode, mode3: UpgradeMode, number: Int): MultiblockTooltipBuilder
-    {
-        val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
-        _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.${mode1.name.lowercase()}_${mode2.name.lowercase()}_${mode3.name.lowercase()}", number))
-        return this
-    }
-
-    fun addDurationInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder
-    {
+    fun addDurationInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
         val durationMode = "gtlitecore.tooltip.machine.duration_mode"
         _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.${mode.name.lowercase()}", percent))
-        return this
     }
 
-    fun addMultiDurationInfo(mode1: UpgradeMode, mode2: UpgradeMode, percent: Int): MultiblockTooltipBuilder
-    {
+    fun addMultiDurationInfo(vararg modes: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
         val durationMode = "gtlitecore.tooltip.machine.duration_mode"
-        _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.${mode1.name.lowercase()}_${mode2.name.lowercase()}", percent))
-        return this
+        val modeKey = modes.joinToString("_") { it.name.lowercase() }
+        _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.$modeKey", percent))
     }
 
-    fun addMultiDurationInfo(mode1: UpgradeMode, mode2: UpgradeMode, mode3: UpgradeMode, percent: Int): MultiblockTooltipBuilder
-    {
-        val durationMode = "gtlitecore.tooltip.machine.duration_mode"
-        _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.${mode1.name.lowercase()}_${mode2.name.lowercase()}_${mode3.name.lowercase()}", percent))
-        return this
-    }
-
-    fun addEnergyInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder
-    {
+    fun addEnergyInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
         val energyMode = "gtlitecore.tooltip.machine.energy_mode"
         _tooltips.add(I18n.format(energyMode) + I18n.format("$energyMode.${mode.name.lowercase()}", percent))
-        return this
     }
 
-    fun addLaserHatch(): MultiblockTooltipBuilder
-    {
+    fun addLaserHatch(): MultiblockTooltipBuilder = apply {
         _tooltips.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
-        return this
     }
 
     // endregion
