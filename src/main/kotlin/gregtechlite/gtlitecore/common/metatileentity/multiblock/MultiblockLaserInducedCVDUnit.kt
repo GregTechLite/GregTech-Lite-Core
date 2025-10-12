@@ -121,7 +121,7 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
             addDescriptionLine("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 8)
-            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, 400)
+            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 400)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 35)
         }
     }

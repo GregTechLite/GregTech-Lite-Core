@@ -148,8 +148,8 @@ class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockCon
             addDescriptionLine("gtlitecore.machine.cosmic_ray_detector.tooltip.1",
                                "gtlitecore.machine.cosmic_ray_detector.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT)
-            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.FIELD_GEN_CASING, 32)
-            addMultiDurationInfo(UpgradeMode.SENSOR_CASING, UpgradeMode.PROCESSOR_CASING, 400)
+            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.FIELD_GEN_CASING, number = 32)
+            addMultiDurationInfo(UpgradeMode.SENSOR_CASING, UpgradeMode.PROCESSOR_CASING, percent = 400)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
