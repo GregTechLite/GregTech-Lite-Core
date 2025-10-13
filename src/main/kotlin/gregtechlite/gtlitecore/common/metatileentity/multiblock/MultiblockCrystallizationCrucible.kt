@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -44,9 +46,7 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
 class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
 {

@@ -27,11 +27,11 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.LiquidAir
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.airCounter
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.client.resources.I18n

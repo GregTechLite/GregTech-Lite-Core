@@ -29,10 +29,10 @@ import gregtech.api.util.GTTransferUtils.addFluidsToFluidHandler
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.mui.widget.GTFluidSlot
-import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 import net.minecraft.client.resources.I18n

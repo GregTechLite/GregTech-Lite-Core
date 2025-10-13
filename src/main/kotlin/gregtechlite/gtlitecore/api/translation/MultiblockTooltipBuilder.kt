@@ -32,7 +32,7 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     /**
      * Add machine type for the multiblock, just like multi-map multiblock recipe map line.
      */
-    fun addMachineTypeLine(): MultiblockTooltipBuilder = apply {
+    fun addMachineTypeLine() = apply {
         getRecipeMapName().takeIf { it.isNotEmpty() }?.let {
             _tooltips.add(I18n.format("gtlitecore.tooltip.machine.machine_type", it))
         }
@@ -41,42 +41,42 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     /**
      * Add additional descriptions for the multiblock, such as cleanroom environment predicate of Large Bio Reactor.
      */
-    fun addDescriptionLine(vararg descriptions: String): MultiblockTooltipBuilder = apply {
+    fun addDescriptionLine(vararg descriptions: String) = apply {
         descriptions.forEach { _tooltips.add(I18n.format(it)) }
     }
 
-    fun addOverclockInfo(mode: OverclockMode): MultiblockTooltipBuilder = apply {
+    fun addOverclockInfo(mode: OverclockMode) = apply {
         val overclockMode = "gtlitecore.tooltip.machine.overclock_mode"
         _tooltips.add(I18n.format(overclockMode) + I18n.format("$overclockMode.${mode.name.lowercase()}"))
     }
 
-    fun addOverclockInfo(conditionInfo: String): MultiblockTooltipBuilder = apply {
+    fun addOverclockInfo(conditionInfo: String) = apply {
         _tooltips.add(I18n.format("gtlitecore.tooltip.machine.overclock_mode") + I18n.format(conditionInfo))
     }
 
-    fun addParallelInfo(mode: UpgradeMode, number: Int): MultiblockTooltipBuilder = apply {
+    fun addParallelInfo(mode: UpgradeMode, number: Int) = apply {
         val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
         _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.${mode.name.lowercase()}", number))
     }
 
-    fun addMultiParallelInfo(vararg modes: UpgradeMode, number: Int): MultiblockTooltipBuilder = apply {
+    fun addMultiParallelInfo(vararg modes: UpgradeMode, number: Int) = apply {
         val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
         val modeKey = modes.joinToString("_") { it.name.lowercase() }
         _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.$modeKey", number))
     }
 
-    fun addDurationInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
+    fun addDurationInfo(mode: UpgradeMode, percent: Int) = apply {
         val durationMode = "gtlitecore.tooltip.machine.duration_mode"
         _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.${mode.name.lowercase()}", percent))
     }
 
-    fun addMultiDurationInfo(vararg modes: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
+    fun addMultiDurationInfo(vararg modes: UpgradeMode, percent: Int) = apply {
         val durationMode = "gtlitecore.tooltip.machine.duration_mode"
         val modeKey = modes.joinToString("_") { it.name.lowercase() }
         _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.$modeKey", percent))
     }
 
-    fun addEnergyInfo(mode: UpgradeMode, percent: Int): MultiblockTooltipBuilder = apply {
+    fun addEnergyInfo(mode: UpgradeMode, percent: Int) = apply {
         val energyMode = "gtlitecore.tooltip.machine.energy_mode"
         _tooltips.add(I18n.format(energyMode) + I18n.format("$energyMode.${mode.name.lowercase()}", percent))
     }
@@ -88,7 +88,7 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     // endregion
 
     @SideOnly(Side.CLIENT)
-    private fun getRecipeMapName(): String = when (metaTileEntity)
+    private fun getRecipeMapName() = when (metaTileEntity)
     {
         is IMultipleRecipeMaps -> metaTileEntity.availableRecipeMaps
             .mapNotNull { it.localizedName.takeIf { name -> name.isNotEmpty() } }

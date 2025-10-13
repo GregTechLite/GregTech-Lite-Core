@@ -5,7 +5,11 @@ import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
-import gregtech.api.pattern.*
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.BlockWorldState
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
