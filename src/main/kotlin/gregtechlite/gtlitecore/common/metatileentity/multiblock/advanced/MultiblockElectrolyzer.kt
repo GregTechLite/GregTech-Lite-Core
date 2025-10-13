@@ -32,9 +32,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
 class MultiblockElectrolyzer(id: ResourceLocation) : RecipeMapMultiblockController(id, ELECTROLYZER_RECIPES)
 {

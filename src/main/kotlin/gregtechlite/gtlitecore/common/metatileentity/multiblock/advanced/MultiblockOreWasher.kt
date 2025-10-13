@@ -10,7 +10,9 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.recipes.RecipeMaps.*
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
+import gregtech.api.recipes.RecipeMaps.CRACKING_RECIPES
+import gregtech.api.recipes.RecipeMaps.ORE_WASHER_RECIPES
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR

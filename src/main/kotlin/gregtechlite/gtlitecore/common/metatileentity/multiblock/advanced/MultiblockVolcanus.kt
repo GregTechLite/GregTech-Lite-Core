@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity

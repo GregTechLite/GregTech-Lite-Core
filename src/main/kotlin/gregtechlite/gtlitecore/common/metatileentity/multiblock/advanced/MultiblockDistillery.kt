@@ -27,8 +27,8 @@ import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTTransferUtils.addItemsToItemHandler
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.RIGHT
 import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.RIGHT
 import gregtech.api.util.RelativeDirection.UP
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures

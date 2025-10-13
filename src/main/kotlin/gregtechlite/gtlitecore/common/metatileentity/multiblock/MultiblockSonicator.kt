@@ -34,10 +34,8 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
 class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(id, SONICATION_RECIPES)
 {

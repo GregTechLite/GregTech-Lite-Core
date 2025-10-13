@@ -30,9 +30,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
 class MultiblockPacker(id: ResourceLocation) : RecipeMapMultiblockController(id, PACKER_RECIPES)
 {
