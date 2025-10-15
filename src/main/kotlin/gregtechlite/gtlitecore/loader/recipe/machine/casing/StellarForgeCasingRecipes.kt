@@ -65,8 +65,8 @@ internal object StellarForgeCasingRecipes
             .outputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
             .EUt(VA[UHV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetalCasing.QUANTUM_ALLOY.stack)
+            .stationResearch {
+                it.researchStack(MetalCasing.QUANTUM_ALLOY.stack)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -90,8 +90,8 @@ internal object StellarForgeCasingRecipes
             .outputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(32))
             .EUt(VA[UHV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE))
+            .stationResearch {
+                it.researchStack(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE))
                     .EUt(VA[UHV])
                     .CWUt(32)
             }

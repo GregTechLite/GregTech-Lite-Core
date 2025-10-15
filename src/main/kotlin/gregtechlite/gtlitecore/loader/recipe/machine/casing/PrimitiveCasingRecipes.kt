@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Steel
@@ -34,7 +34,7 @@ internal object PrimitiveCasingRecipes
             .input(plate, Steel, 2)
             .input(frameGt, TreatedWood)
             .outputs(PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.getStack(2))
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
     }

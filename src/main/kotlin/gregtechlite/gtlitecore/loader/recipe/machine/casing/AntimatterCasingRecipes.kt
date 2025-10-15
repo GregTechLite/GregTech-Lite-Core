@@ -64,8 +64,8 @@ internal object AntimatterCasingRecipes
             .outputs(GlassCasing.ANTIMATTER_CONTAINMENT.getStack(64))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GlassCasing.PMMA.stack)
+            .stationResearch {
+                it.researchStack(GlassCasing.PMMA.stack)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -88,8 +88,8 @@ internal object AntimatterCasingRecipes
             .outputs(MultiblockCasing.GRAVITY_STABILIZATION_CASING.getStack(64))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetalCasing.NEUTRONIUM.stack)
+            .stationResearch {
+                it.researchStack(MetalCasing.NEUTRONIUM.stack)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -111,8 +111,8 @@ internal object AntimatterCasingRecipes
             .outputs(MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.getStack(32))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FusionCoil.ULTIMATE.stack)
+            .stationResearch {
+                it.researchStack(FusionCoil.ULTIMATE.stack)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -135,8 +135,8 @@ internal object AntimatterCasingRecipes
             .outputs(MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.getStack(64))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ScienceCasing.MOLECULAR_COIL.stack)
+            .stationResearch {
+                it.researchStack(ScienceCasing.MOLECULAR_COIL.stack)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }

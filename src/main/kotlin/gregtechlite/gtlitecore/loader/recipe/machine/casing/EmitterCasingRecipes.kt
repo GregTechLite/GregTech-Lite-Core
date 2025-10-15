@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -35,7 +35,7 @@ internal object EmitterCasingRecipes
                 .input(foil, Steel, 2)
                 .inputs(CraftingComponent.EMITTER.getIngredient(voltage + 1) as ItemStack)
                 .outputs(emitterCasings[voltage])
-                .EUt(VA[LV])
+                .EUt(VH[LV])
                 .duration(2 * SECOND + 10 * TICK)
                 .buildAndRegister()
         }

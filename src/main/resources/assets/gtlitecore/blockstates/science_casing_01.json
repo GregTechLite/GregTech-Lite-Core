@@ -45,6 +45,24 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/science/dimensional_bridge_casing"
         }
+      },
+      "containment_field_generator": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/containment_field_generator"
+        }
+      },
+      "spacetime_altering_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/spacetime_altering_casing"
+        }
+      },
+      "ultimate_molecular_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/science/ultimate_molecular_casing"
+        }
       }
     }
   }

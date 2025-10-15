@@ -54,8 +54,6 @@ import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtech.common.blocks.BlockCleanroomCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
@@ -129,6 +127,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zeron100
+import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
@@ -145,7 +144,7 @@ internal object ComponentAssemblyCasingRecipes
         // Advanced Filter Casing
         ModHandler.addShapedRecipe(true, "advanced_filter_casing", MultiblockCasing.ADVANCED_FILTER_CASING.getStack(ConfigHolder.recipes.casingsPerCraft),
             "PDP", "SCG", "MFR",
-            'C', MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING),
+            'C', GTCleanroomCasing.FILTER_CASING.stack,
             'S', SMART_FILTER,
             'M', ELECTRIC_MOTOR_UV,
             'D', CONVEYOR_MODULE_UV,
@@ -257,8 +256,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.LuV.getStack(4))
             .EUt(VA[LuV])
             .duration(32 * SECOND)
-            .scannerResearch { b ->
-                b.researchStack(ComponentAssemblyCasing.IV.stack)
+            .scannerResearch {
+                it.researchStack(ComponentAssemblyCasing.IV.stack)
                     .EUt(VA[HV])
                     .duration(1 * MINUTE)
             }
@@ -283,8 +282,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.ZPM.getStack(4))
             .EUt(VA[ZPM])
             .duration(32 * SECOND)
-            .scannerResearch { b ->
-                b.researchStack(ComponentAssemblyCasing.LuV.stack)
+            .scannerResearch {
+                it.researchStack(ComponentAssemblyCasing.LuV.stack)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -309,8 +308,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.UV.getStack(4))
             .EUt(VA[UV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.ZPM.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.ZPM.stack)
                     .EUt(VA[ZPM])
                     .CWUt(6)
             }
@@ -335,8 +334,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.UHV.getStack(4))
             .EUt(VA[UHV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.UV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.UV.stack)
                     .EUt(VA[UV])
                     .CWUt(12)
             }
@@ -361,8 +360,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.UEV.getStack(4))
             .EUt(VA[UEV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.UHV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.UHV.stack)
                     .EUt(VA[UHV])
                     .CWUt(24)
             }
@@ -387,8 +386,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.UIV.getStack(4))
             .EUt(VA[UIV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.UEV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.UEV.stack)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -413,8 +412,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.UXV.getStack(4))
             .EUt(VA[UXV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.UIV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.UIV.stack)
                     .EUt(VA[UIV])
                     .CWUt(48)
             }
@@ -439,8 +438,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.OpV.getStack(4))
             .EUt(VA[OpV])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.UXV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.UXV.stack)
                     .EUt(VA[UXV])
                     .CWUt(96)
             }
@@ -465,8 +464,8 @@ internal object ComponentAssemblyCasingRecipes
             .outputs(ComponentAssemblyCasing.MAX.getStack(4))
             .EUt(VA[MAX])
             .duration(32 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ComponentAssemblyCasing.OpV.stack)
+            .stationResearch {
+                it.researchStack(ComponentAssemblyCasing.OpV.stack)
                     .EUt(VA[OpV])
                     .CWUt(128)
             }

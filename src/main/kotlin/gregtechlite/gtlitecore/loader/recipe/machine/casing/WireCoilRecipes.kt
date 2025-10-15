@@ -308,8 +308,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.INFINITY.stack)
             .EUt(VA[UEV])
             .duration(55 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.ADAMANTIUM.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.ADAMANTIUM.stack)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -324,8 +324,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.INFINITY.stack)
             .EUt(VA[UEV])
             .duration(13 * SECOND + 15 * TICK)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.ADAMANTIUM.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.ADAMANTIUM.stack)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -342,8 +342,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.HALKONITE_STEEL.stack)
             .EUt(VA[UIV])
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.INFINITY.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.INFINITY.stack)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -358,8 +358,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.HALKONITE_STEEL.stack)
             .EUt(VA[UIV])
             .duration(15 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.INFINITY.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.INFINITY.stack)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -378,8 +378,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.SPACE_TIME.stack)
             .EUt(VA[UXV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.HALKONITE_STEEL.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.HALKONITE_STEEL.stack)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -394,8 +394,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.SPACE_TIME.stack)
             .EUt(VA[UXV])
             .duration(22 * SECOND + 10 * TICK)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.HALKONITE_STEEL.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.HALKONITE_STEEL.stack)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -418,8 +418,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.ETERNITY.stack)
             .EUt(VA[OpV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.SPACE_TIME.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.SPACE_TIME.stack)
                     .EUt(VA[UXV])
                     .CWUt(96)
             }
@@ -435,8 +435,8 @@ internal object WireCoilRecipes
             .outputs(WireCoil.ETERNITY.stack)
             .EUt(VA[OpV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WireCoil.SPACE_TIME.stack)
+            .stationResearch {
+                it.researchStack(WireCoil.SPACE_TIME.stack)
                     .EUt(VA[UXV])
                     .CWUt(96)
             }

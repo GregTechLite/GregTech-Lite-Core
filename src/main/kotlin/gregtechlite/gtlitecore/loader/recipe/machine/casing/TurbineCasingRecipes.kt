@@ -10,11 +10,10 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtech.common.blocks.BlockTurbineCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 
 internal object TurbineCasingRecipes
@@ -27,12 +26,12 @@ internal object TurbineCasingRecipes
         // Rhodium Plated Palladium Turbine Casing
         ModHandler.addShapedRecipe(true, "rhodium_plated_palladium_turbine_casing", TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.getStack(ConfigHolder.recipes.casingsPerCraft),
             "PhP", "PCP", "PwP",
-            'C', MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING),
+            'C', GTTurbineCasing.STEEL_TURBINE_CASING.stack,
             'P', UnificationEntry(plate, RhodiumPlatedPalladium))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(6)
-            .inputs(MetaBlocks.TURBINE_CASING.getItemVariant(BlockTurbineCasing.TurbineCasingType.STEEL_TURBINE_CASING))
+            .inputs(GTTurbineCasing.STEEL_TURBINE_CASING.stack)
             .input(plate, RhodiumPlatedPalladium, 6)
             .outputs(TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.getStack(ConfigHolder.recipes.casingsPerCraft))
             .EUt(VH[LV])

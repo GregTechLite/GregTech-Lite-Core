@@ -98,8 +98,8 @@ internal object GTMachineCasingRecipes
 
         // MAX Machine Casing
         ModHandler.addShapedRecipe(true, "casing_max", GTMachineCasing.MAX.stack,
-                                   "PPP", "PwP", "PPP",
-                                   'P', UnificationEntry(plate, AxinoFusedRedMatter))
+            "PPP", "PwP", "PPP",
+            'P', UnificationEntry(plate, AxinoFusedRedMatter))
 
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(8)

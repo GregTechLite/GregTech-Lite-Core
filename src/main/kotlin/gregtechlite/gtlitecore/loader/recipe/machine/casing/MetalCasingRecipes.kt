@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Material
@@ -120,7 +120,7 @@ internal object MetalCasingRecipes
             .input(plate, material, 6)
             .input(frameGt, material)
             .outputs(outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
     }

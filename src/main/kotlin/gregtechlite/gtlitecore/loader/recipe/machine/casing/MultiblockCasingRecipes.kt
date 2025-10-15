@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.BlueSteel
@@ -56,7 +56,7 @@ internal object MultiblockCasingRecipes
             .input(rotor, Titanium, 2)
             .input(stickLong, MolybdenumDisilicide, 1)
             .outputs(ActiveUniqueCasing.HEAT_VENT.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -73,7 +73,7 @@ internal object MultiblockCasingRecipes
             .input(plate, Palladium, 3)
             .input(stick, RedSteel, 4)
             .outputs(MultiblockCasing.SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -90,7 +90,7 @@ internal object MultiblockCasingRecipes
             .input(plate, Ruridit, 3)
             .input(stick, Duranium, 4)
             .outputs(MultiblockCasing.ADVANCED_SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -102,6 +102,19 @@ internal object MultiblockCasingRecipes
             'M', ELECTRIC_MOTOR_UV.stackForm,
             'H', HULL[UV].stackForm,
             'S', COMPONENT_GRINDER_TUNGSTEN.stackForm)
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(8)
+            .input(HULL[UV])
+            .input(gear, Tritanium)
+            .input(ELECTRIC_MOTOR_UV, 2)
+            .input(ELECTRIC_PISTON_UV, 2)
+            .input(COMPONENT_GRINDER_TUNGSTEN, 3)
+            .outputs(MultiblockCasing.DRILL_HEAD.stack)
+            .EUt(VH[LV])
+            .duration(2 * SECOND + 10 * TICK)
+            .buildAndRegister()
+
     }
 
     // @formatter:on
