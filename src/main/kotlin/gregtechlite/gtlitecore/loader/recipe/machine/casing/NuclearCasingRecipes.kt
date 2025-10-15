@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Americium
@@ -27,13 +28,12 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
-import gregtech.common.blocks.BlockBoilerCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZirconiumCarbide
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
+import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
@@ -49,7 +49,7 @@ internal object NuclearCasingRecipes
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(4)
             .inputs(MetalCasing.INCONEL_718.stack)
-            .inputs(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.POLYTETRAFLUOROETHYLENE_PIPE))
+            .inputs(GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.stack)
             .input(wireFine, Nichrome, 4)
             .input(screw, Inconel718, 2)
             .fluidInputs(ZirconiumCarbide.getFluid(L * 4))
@@ -73,7 +73,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Thorium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.THORIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -92,7 +92,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Protactinium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.PROTACTINIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -111,7 +111,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Uranium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.URANIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -130,7 +130,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Neptunium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.NEPTUNIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -149,7 +149,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Plutonium239)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.PLUTONIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -168,7 +168,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Americium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.AMERICIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -187,7 +187,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Curium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.CURIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -206,7 +206,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Berkelium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.BERKELIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -225,7 +225,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Californium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.CALIFORNIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -244,7 +244,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Einsteinium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.EINSTEINIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -263,7 +263,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Fermium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.FERMIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -282,7 +282,7 @@ internal object NuclearCasingRecipes
             .input(plateDense, Mendelevium)
             .input(stickLong, StainlessSteel, 2)
             .outputs(NuclearReactorCore.MENDELEVIUM.stack)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
     }

@@ -56,8 +56,6 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
-import gregtech.common.blocks.BlockFusionCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
@@ -82,7 +80,6 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumTitanate
@@ -162,7 +159,7 @@ internal object FusionCasingRecipes
 
         // Advanced Fusion Coil
         ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.FUSION_COIL))
+            .inputs(GTFusionCasing.FUSION_COIL.stack)
             .input(FIELD_GENERATOR_LuV, 2)
             .input(ELECTRIC_PUMP_LuV)
             .input(NEUTRON_REFLECTOR, 4)

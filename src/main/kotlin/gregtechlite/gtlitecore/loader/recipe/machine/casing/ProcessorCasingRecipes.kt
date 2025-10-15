@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Steel
@@ -38,7 +38,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.LV)
             .outputs(processorCasings[0])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -50,7 +50,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.MV)
             .outputs(processorCasings[1])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -62,7 +62,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.HV)
             .outputs(processorCasings[2])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -74,7 +74,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.EV)
             .outputs(processorCasings[3])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -86,7 +86,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.IV)
             .outputs(processorCasings[4])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -98,7 +98,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.LuV)
             .outputs(processorCasings[5])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -110,7 +110,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.ZPM)
             .outputs(processorCasings[6])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -122,7 +122,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.UV)
             .outputs(processorCasings[7])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -134,7 +134,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.UHV)
             .outputs(processorCasings[8])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -146,7 +146,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.UEV)
             .outputs(processorCasings[9])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -158,7 +158,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.UIV)
             .outputs(processorCasings[10])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -170,7 +170,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.UXV)
             .outputs(processorCasings[11])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -182,7 +182,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.OpV)
             .outputs(processorCasings[12])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
 
@@ -194,7 +194,7 @@ internal object ProcessorCasingRecipes
             .input(spring, Steel, 2)
             .input(circuit, Tier.MAX)
             .outputs(processorCasings[13])
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()
     }

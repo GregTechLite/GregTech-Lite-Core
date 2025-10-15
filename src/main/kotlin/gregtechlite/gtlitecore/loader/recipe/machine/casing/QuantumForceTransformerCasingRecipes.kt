@@ -140,8 +140,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(Manipulator.NEUTRON_PULSE.getStack(16))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GlassCasing.FORCE_FIELD.stack)
+            .stationResearch {
+                it.researchStack(GlassCasing.FORCE_FIELD.stack)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -163,8 +163,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(Manipulator.COSMIC_FABRIC.getStack(16))
             .EUt(VA[UIV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(Manipulator.NEUTRON_PULSE.stack)
+            .stationResearch {
+                it.researchStack(Manipulator.NEUTRON_PULSE.stack)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -186,8 +186,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(Manipulator.INFINITY_INFUSED.getStack(16))
             .EUt(VA[UXV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(Manipulator.COSMIC_FABRIC.stack)
+            .stationResearch {
+                it.researchStack(Manipulator.COSMIC_FABRIC.stack)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -209,8 +209,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(16))
             .EUt(VA[OpV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(Manipulator.INFINITY_INFUSED.stack)
+            .stationResearch {
+                it.researchStack(Manipulator.INFINITY_INFUSED.stack)
                     .EUt(VA[OpV])
                     .CWUt(160)
             }
@@ -227,8 +227,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(ShieldingCore.NEUTRON.getStack(16))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.stack)
+            .stationResearch {
+                it.researchStack(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.stack)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -246,8 +246,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(ShieldingCore.COSMIC_FABRIC.getStack(16))
             .EUt(VA[UIV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ShieldingCore.NEUTRON.stack)
+            .stationResearch {
+                it.researchStack(ShieldingCore.NEUTRON.stack)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -265,8 +265,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(ShieldingCore.INFINITY_INFUSED.getStack(16))
             .EUt(VA[UXV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ShieldingCore.COSMIC_FABRIC.stack)
+            .stationResearch {
+                it.researchStack(ShieldingCore.COSMIC_FABRIC.stack)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -284,8 +284,8 @@ internal object QuantumForceTransformerCasingRecipes
             .outputs(ShieldingCore.SPACETIME_BENDING_CORE.getStack(16))
             .EUt(VA[OpV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ShieldingCore.INFINITY_INFUSED.stack)
+            .stationResearch {
+                it.researchStack(ShieldingCore.INFINITY_INFUSED.stack)
                     .EUt(VA[OpV])
                     .CWUt(160)
             }

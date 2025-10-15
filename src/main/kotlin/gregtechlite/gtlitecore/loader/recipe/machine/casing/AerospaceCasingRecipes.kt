@@ -46,10 +46,6 @@ import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import gregtech.common.blocks.BlockCleanroomCasing
-import gregtech.common.blocks.BlockComputerCasing
-import gregtech.common.blocks.BlockFusionCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UEV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UHV
@@ -101,6 +97,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
+import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
@@ -119,7 +118,7 @@ internal object AerospaceCasingRecipes
     {
         // High Strength Concrete
         ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.PLASCRETE, 4))
+            .inputs(GTCleanroomCasing.PLASCRETE.getStack(4))
             .input(plate, HDCS, 8)
             .fluidInputs(Adamantium.getFluid(L))
             .outputs(AerospaceCasing.HIGH_STRENGTH_CONCRETE.getStack(4))
@@ -141,8 +140,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.ELEVATOR_BASE_CASING.getStack(16))
             .EUt(VA[UV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetalCasing.OSMIRIDIUM.stack)
+            .stationResearch {
+                it.researchStack(MetalCasing.OSMIRIDIUM.stack)
                     .EUt(VA[UV])
                     .CWUt(16)
             }
@@ -160,8 +159,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.SUPPORT_STRUCTURE_CASING.getStack(16))
             .EUt(VA[UV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OreDictUnifier.get(frameGt, Neutronium))
+            .stationResearch {
+                it.researchStack(OreDictUnifier.get(frameGt, Neutronium))
                     .EUt(VA[UV])
                     .CWUt(8)
             }
@@ -169,7 +168,7 @@ internal object AerospaceCasingRecipes
 
         // Internal Support Structure Casing
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING, 8))
+            .inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(8))
             .input(bolt, Palladium, 16)
             .input(plateDouble, Neutronium, 8)
             .input(ring, HSLASteel, 4)
@@ -179,8 +178,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.INTERNAL_STRUCTURE_CASING.getStack(16))
             .EUt(VA[UV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING))
+            .stationResearch {
+                it.researchStack(GTComputerCasing.HIGH_POWER_CASING.stack)
                     .EUt(VA[UV])
                     .CWUt(12)
             }
@@ -202,8 +201,8 @@ internal object AerospaceCasingRecipes
             .outputs(AccelerationTrack.MK1.getStack(8))
             .EUt(VA[UV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
+            .stationResearch {
+                it.researchStack(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
                     .EUt(VA[UV])
                     .CWUt(16)
             }
@@ -225,8 +224,8 @@ internal object AerospaceCasingRecipes
             .outputs(AccelerationTrack.MK2.getStack(8))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(AccelerationTrack.MK1.stack)
+            .stationResearch {
+                it.researchStack(AccelerationTrack.MK1.stack)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -248,8 +247,8 @@ internal object AerospaceCasingRecipes
             .outputs(AccelerationTrack.MK3.getStack(8))
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(AccelerationTrack.MK2.stack)
+            .stationResearch {
+                it.researchStack(AccelerationTrack.MK2.stack)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -271,8 +270,8 @@ internal object AerospaceCasingRecipes
             .outputs(AccelerationTrack.MK4.getStack(8))
             .EUt(VA[UIV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(AccelerationTrack.MK3.stack)
+            .stationResearch {
+                it.researchStack(AccelerationTrack.MK3.stack)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -294,8 +293,8 @@ internal object AerospaceCasingRecipes
             .outputs(AccelerationTrack.MK5.getStack(8))
             .EUt(VA[UXV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(AccelerationTrack.MK4.stack)
+            .stationResearch {
+                it.researchStack(AccelerationTrack.MK4.stack)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -315,8 +314,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING.getStack(16))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(POWER_TRANSFORMER[UHV].stackForm)
+            .stationResearch {
+                it.researchStack(POWER_TRANSFORMER[UHV].stackForm)
                     .EUt(VA[UHV])
                     .CWUt(24)
             }
@@ -337,8 +336,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(16))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(QUANTUM_CHEST[UHV].stackForm)
+            .stationResearch {
+                it.researchStack(QUANTUM_CHEST[UHV].stackForm)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -363,8 +362,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_CORE.stack)
             .EUt(VA[UHV])
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(QUANTUM_STORAGE_CONTROLLER.stackForm)
+            .stationResearch {
+                it.researchStack(QUANTUM_STORAGE_CONTROLLER.stackForm)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -383,8 +382,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_SUPERCONDUCTING_MAGNET.getStack(16))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(POLARIZER[UHV].stackForm)
+            .stationResearch {
+                it.researchStack(POLARIZER[UHV].stackForm)
                     .EUt(VA[UHV])
                     .CWUt(16)
             }
@@ -402,8 +401,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_BASE_CASING.getStack(16))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stackForm)
+            .stationResearch {
+                it.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stackForm)
                     .EUt(VA[UHV])
                     .CWUt(64)
             }
@@ -424,8 +423,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_PRIMARY_WINDINGS.getStack(4))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(VOLTAGE_COIL_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(VOLTAGE_COIL_UHV.stackForm)
                     .EUt(VA[UHV])
                     .CWUt(8)
             }
@@ -442,8 +441,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_PRIMARY_WINDINGS.getStack(4))
             .EUt(VA[UHV])
             .duration(7 * SECOND + 10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(VOLTAGE_COIL_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(VOLTAGE_COIL_UHV.stackForm)
                     .EUt(VA[UHV])
                     .CWUt(8)
             }
@@ -451,7 +450,7 @@ internal object AerospaceCasingRecipes
 
         // Dyson Swarm Control Center Secondary Windings
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL, 4))
+            .inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(4))
             .input(spring, TantalumHafniumSeaborgiumCarbide, 8)
             .input(foil, Erbium, 64)
             .input(foil, HastelloyX78, 64)
@@ -463,8 +462,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_SECONDARY_WINDINGS.getStack(4))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MetaBlocks.FUSION_CASING.getItemVariant(BlockFusionCasing.CasingType.SUPERCONDUCTOR_COIL))
+            .stationResearch {
+                it.researchStack(GTFusionCasing.SUPERCONDUCTOR_COIL.stack)
                     .EUt(VA[UHV])
                     .CWUt(12)
             }
@@ -483,8 +482,8 @@ internal object AerospaceCasingRecipes
             .outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_TOROID_CASING.getStack(64))
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OreDictUnifier.get(frameGt, MetastableOganesson))
+            .stationResearch {
+                it.researchStack(OreDictUnifier.get(frameGt, MetastableOganesson))
                     .EUt(VA[UHV])
                     .CWUt(16)
             }

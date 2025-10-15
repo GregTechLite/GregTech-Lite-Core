@@ -113,12 +113,6 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtech.common.blocks.BlockComputerCasing
-import gregtech.common.blocks.BlockFireboxCasing
-import gregtech.common.blocks.BlockGlassCasing
-import gregtech.common.blocks.BlockMetalCasing
-import gregtech.common.blocks.BlockMultiblockCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
@@ -293,6 +287,11 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WatertightSteel
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
+import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTFireboxCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
@@ -419,7 +418,7 @@ internal object MachineRecipeLoader
         // Large Steam Compressor
         ModHandler.addShapedRecipe(true, "large_steam_compressor", LARGE_STEAM_COMPRESSOR.stackForm,
             "CPC", "GFG", "CPC",
-            'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS),
+            'C', GTMetalCasing.BRONZE_BRICKS.stack,
             'P', OreDictNames.craftingPiston,
             'F', STEAM_COMPRESSOR_BRONZE.stackForm,
             'G', UnificationEntry(gear, Potin))
@@ -430,7 +429,7 @@ internal object MachineRecipeLoader
             'F', STEAM_ALLOY_SMELTER_BRONZE.stackForm,
             'G', UnificationEntry(gear, Brass),
             'P', UnificationEntry(pipeNormalFluid, Bronze),
-            'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
+            'C', GTMetalCasing.BRONZE_BRICKS.stack)
 
         // Steam Engine
         ModHandler.addShapedRecipe(true, "steam_engine", STEAM_ENGINE.stackForm,
@@ -445,7 +444,7 @@ internal object MachineRecipeLoader
         ModHandler.addShapedRecipe(true, "industrial_primitive_blast_furnace", INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.stackForm,
             "FBF", "BAB", "FBF",
             'F', PRIMITIVE_BLAST_FURNACE.stackForm,
-            'B', MetaBlocks.BOILER_FIREBOX_CASING.getItemVariant(BlockFireboxCasing.FireboxCasingType.STEEL_FIREBOX),
+            'B', GTFireboxCasing.STEEL_FIREBOX.stack,
             'A', OreDictUnifier.get(frameGt, Steel))
 
         // Mining Drone Airport
@@ -643,7 +642,7 @@ internal object MachineRecipeLoader
             'R', UnificationEntry(rotor, Talonite),
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.EV),
-            'G', MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+            'G', GTGlassCasing.TEMPERED_GLASS.stack)
 
         // Large Electromagnet
         ModHandler.addShapedRecipe(true, "large_electromagnet", LARGE_ELECTROMAGNET.stackForm,
@@ -803,8 +802,8 @@ internal object MachineRecipeLoader
             .output(LARGE_MASS_FABRICATOR)
             .EUt(VA[ZPM])
             .duration(2 * MINUTE)
-            .scannerResearch { r ->
-                r.researchStack(MASS_FABRICATOR[LuV]!!.stackForm)
+            .scannerResearch {
+                it.researchStack(MASS_FABRICATOR[LuV]!!.stackForm)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -830,8 +829,8 @@ internal object MachineRecipeLoader
             .output(LARGE_REPLICATOR)
             .EUt(VA[UV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(REPLICATOR[ZPM]!!.stackForm)
+            .stationResearch {
+                it.researchStack(REPLICATOR[ZPM]!!.stackForm)
                     .EUt(VA[ZPM])
                     .CWUt(8)
             }
@@ -850,10 +849,11 @@ internal object MachineRecipeLoader
             .output(CIRCUIT_ASSEMBLY_LINE)
             .EUt(VA[LuV])
             .duration(MINUTE)
-            .scannerResearch { r ->
-                r.researchStack(CIRCUIT_ASSEMBLER[LuV].stackForm)
+            .scannerResearch {
+                it.researchStack(CIRCUIT_ASSEMBLER[LuV].stackForm)
                     .EUt(VA[IV])
-                    .duration(30 * SECOND) }
+                    .duration(30 * SECOND)
+            }
             .buildAndRegister()
 
         // Large Food Processor
@@ -934,7 +934,6 @@ internal object MachineRecipeLoader
             'H', HULL[UV].stackForm,
             'M', ELECTRIC_MOTOR_UV.stackForm)
 
-
         // Fusion Reactor Computer MK4
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .inputs(FusionCoil.ADVANCED.stack)
@@ -949,8 +948,8 @@ internal object MachineRecipeLoader
             .output(FUSION_REACTOR_MK4)
             .EUt(VA[UV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(FUSION_REACTOR[2].stackForm)
+            .stationResearch {
+                it.researchStack(FUSION_REACTOR[2].stackForm)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -970,8 +969,8 @@ internal object MachineRecipeLoader
             .output(FUSION_REACTOR_MK5)
             .EUt(VA[UHV])
             .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FUSION_REACTOR_MK4.stackForm)
+            .stationResearch {
+                it.researchStack(FUSION_REACTOR_MK4.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -995,8 +994,8 @@ internal object MachineRecipeLoader
             .output(ADVANCED_FUSION_REACTOR)
             .EUt(VA[LuV])
             .duration(2 * MINUTE)
-            .scannerResearch { r ->
-                r.researchStack(OreDictUnifier.get(block, Duranium))
+            .scannerResearch {
+                it.researchStack(OreDictUnifier.get(block, Duranium))
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -1005,8 +1004,8 @@ internal object MachineRecipeLoader
         // Component Assembly Line (CoAL)
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(ASSEMBLY_LINE, 4)
-            .inputs(MetaBlocks.MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING, 8))
-            .inputs(MetaBlocks.MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_CONTROL, 16))
+            .inputs(GTMultiblockCasing.ASSEMBLY_LINE_CASING.getStack(8))
+            .inputs(GTMultiblockCasing.ASSEMBLY_CONTROL.getStack(16))
             .input(ROBOT_ARM_UV, 8)
             .input(CONVEYOR_MODULE_UV, 8)
             .input(plateDouble, EnrichedNaquadahAlloy, 6)
@@ -1025,8 +1024,8 @@ internal object MachineRecipeLoader
             .output(COMPONENT_ASSEMBLY_LINE)
             .EUt(VA[UV])
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(MetaBlocks.MULTIBLOCK_CASING.getItemVariant(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING))
+            .stationResearch {
+                it.researchStack(GTMultiblockCasing.ASSEMBLY_LINE_CASING.stack)
                     .EUt(VA[ZPM])
                     .CWUt(32)
             }
@@ -1048,8 +1047,8 @@ internal object MachineRecipeLoader
             .output(COSMIC_RAY_DETECTOR)
             .EUt(VA[UHV])
             .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SCANNER[UHV].stackForm)
+            .stationResearch {
+                it.researchStack(SCANNER[UHV].stackForm)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -1074,8 +1073,8 @@ internal object MachineRecipeLoader
             .output(STELLAR_FORGE)
             .EUt(VA[UHV])
             .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(VOLCANUS.stackForm)
+            .stationResearch {
+                it.researchStack(VOLCANUS.stackForm)
                     .EUt(VA[UV])
                     .CWUt(36)
             }
@@ -1135,8 +1134,8 @@ internal object MachineRecipeLoader
             .output(LARGE_NAQUADAH_REACTOR)
             .EUt(VA[UHV])
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(NAQUADAH_REACTOR[3].stackForm)
+            .stationResearch {
+                it.researchStack(NAQUADAH_REACTOR[3].stackForm)
                     .EUt(VA[UV])
                     .CWUt(16)
             }
@@ -1160,8 +1159,8 @@ internal object MachineRecipeLoader
             .output(NANO_FORGE)
             .EUt(VA[ZPM])
             .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OreDictUnifier.get(nanite, Carbon))
+            .stationResearch {
+                it.researchStack(OreDictUnifier.get(nanite, Carbon))
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -1180,8 +1179,8 @@ internal object MachineRecipeLoader
             .output(PCB_FACTORY)
             .EUt(VA[LuV])
             .duration(1 * MINUTE)
-            .scannerResearch { r ->
-                r.researchStack(WETWARE_CIRCUIT_BOARD.stackForm)
+            .scannerResearch {
+                it.researchStack(WETWARE_CIRCUIT_BOARD.stackForm)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -1200,8 +1199,8 @@ internal object MachineRecipeLoader
             .output(QUANTUM_FORCE_TRANSFORMER)
             .EUt(VA[UEV])
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
+            .stationResearch {
+                it.researchStack(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -1226,8 +1225,8 @@ internal object MachineRecipeLoader
             .output(ANTIMATTER_FORGE)
             .EUt(VA[UEV])
             .duration(10 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ADVANCED_FUSION_REACTOR.stackForm)
+            .stationResearch {
+                it.researchStack(ADVANCED_FUSION_REACTOR.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -1253,8 +1252,8 @@ internal object MachineRecipeLoader
             .output(ANTIMATTER_GENERATOR)
             .EUt(VA[UEV])
             .duration(10 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(LARGE_NAQUADAH_REACTOR.stackForm)
+            .stationResearch {
+                it.researchStack(LARGE_NAQUADAH_REACTOR.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(128)
             }
@@ -1279,8 +1278,8 @@ internal object MachineRecipeLoader
             .output(SPACE_ELEVATOR)
             .EUt(VA[UHV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_AIRPORT.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_AIRPORT.stackForm)
                     .EUt(VA[UV])
                     .CWUt(32)
             }
@@ -1305,8 +1304,8 @@ internal object MachineRecipeLoader
             .output(SPACE_ASSEMBLER_MK1)
             .EUt(VA[UHV])
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ASSEMBLER[UHV].stackForm)
+            .stationResearch {
+                it.researchStack(ASSEMBLER[UHV].stackForm)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -1331,8 +1330,8 @@ internal object MachineRecipeLoader
             .output(SPACE_ASSEMBLER_MK2)
             .EUt(VA[UEV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SPACE_ASSEMBLER_MK1.stackForm)
+            .stationResearch {
+                it.researchStack(SPACE_ASSEMBLER_MK1.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -1357,8 +1356,8 @@ internal object MachineRecipeLoader
             .output(SPACE_ASSEMBLER_MK3)
             .EUt(VA[UIV])
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
+            .stationResearch {
+                it.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -1378,8 +1377,8 @@ internal object MachineRecipeLoader
             .output(SPACE_PUMP_MK1)
             .EUt(VA[UV])
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ADVANCED_FLUID_DRILLING_RIG.stackForm)
+            .stationResearch {
+                it.researchStack(ADVANCED_FLUID_DRILLING_RIG.stackForm)
                     .EUt(VA[UV])
                     .CWUt(16)
             }
@@ -1413,8 +1412,8 @@ internal object MachineRecipeLoader
             .output(SPACE_PUMP_MK2)
             .EUt(VA[UHV])
             .duration(2 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SPACE_PUMP_MK1.stackForm)
+            .stationResearch {
+                it.researchStack(SPACE_PUMP_MK1.stackForm)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -1448,8 +1447,8 @@ internal object MachineRecipeLoader
             .output(SPACE_PUMP_MK3)
             .EUt(VA[UEV])
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SPACE_PUMP_MK2.stackForm)
+            .stationResearch {
+                it.researchStack(SPACE_PUMP_MK2.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -1459,7 +1458,7 @@ internal object MachineRecipeLoader
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(ACTIVE_TRANSFORMER)
             .inputs(ScienceCasing.MOLECULAR_COIL.getStack(8))
-            .inputs(MetaBlocks.COMPUTER_CASING.getItemVariant(BlockComputerCasing.CasingType.HIGH_POWER_CASING, 8))
+            .inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(8))
             .input(screw, NeodymiumMagnetic, 16)
             .fluidInputs(Electrum.getFluid(L * 18))
             .fluidInputs(Europium.getFluid(L * 13))
@@ -1467,8 +1466,8 @@ internal object MachineRecipeLoader
             .output(ENERGY_INFUSER)
             .EUt(100_000) // ZPM
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(CHARGER[ZPM].stackForm)
+            .stationResearch {
+                it.researchStack(CHARGER[ZPM].stackForm)
                     .EUt(VA[ZPM])
                     .CWUt(12)
             }
@@ -1498,8 +1497,8 @@ internal object MachineRecipeLoader
             .output(ENTRODYNAMICALLY_PHASE_CHANGER)
             .EUt(VA[UIV])
             .duration(5 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ANTIMATTER_GENERATOR.stackForm)
+            .stationResearch {
+                it.researchStack(ANTIMATTER_GENERATOR.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }

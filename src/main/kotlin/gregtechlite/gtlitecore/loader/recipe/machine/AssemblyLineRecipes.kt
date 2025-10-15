@@ -166,8 +166,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_LuV)
             .EUt(VA[LuV])
             .duration(30 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(MINING_DRONE_IV.stackForm)
+            .scannerResearch {
+                it.researchStack(MINING_DRONE_IV.stackForm)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -190,8 +190,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_ZPM)
             .EUt(VA[ZPM])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_LuV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_LuV.stackForm)
                     .EUt(VA[LuV])
                     .CWUt(4)
             }
@@ -214,8 +214,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_UV)
             .EUt(VA[UV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_ZPM.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_ZPM.stackForm)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -238,8 +238,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_UHV)
             .EUt(VA[UHV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_UV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_UV.stackForm)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -262,8 +262,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_UEV)
             .EUt(VA[UEV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_UHV.stackForm)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -286,8 +286,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_UIV)
             .EUt(VA[UIV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_UEV.stackForm)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -310,8 +310,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_UXV)
             .EUt(VA[UXV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_UIV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_UIV.stackForm)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -334,8 +334,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_OpV)
             .EUt(VA[OpV])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_UXV.stackForm)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_UXV.stackForm)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -358,8 +358,8 @@ internal object AssemblyLineRecipes
             .output(MINING_DRONE_MAX)
             .EUt(VA[MAX])
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(MINING_DRONE_OpV)
+            .stationResearch {
+                it.researchStack(MINING_DRONE_OpV)
                     .EUt(VA[OpV])
                     .CWUt(160)
             }
@@ -390,10 +390,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[LuV])
             .EUt(VA[LuV])
             .duration(10 * SECOND)
-            .scannerResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[IV])
-                .EUt(VA[HV])
-                .duration(1 * MINUTE)
+            .scannerResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[IV])
+                    .EUt(VA[HV])
+                    .duration(1 * MINUTE)
             }
             .buildAndRegister()
 
@@ -419,10 +419,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[LuV])
             .EUt(VA[LuV])
             .duration(10 * SECOND)
-            .scannerResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[IV])
-                .EUt(VA[HV])
-                .duration(1 * MINUTE)
+            .scannerResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[IV])
+                    .EUt(VA[HV])
+                    .duration(1 * MINUTE)
             }
             .buildAndRegister()
 
@@ -448,10 +448,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[ZPM])
             .EUt(VA[ZPM])
             .duration(10 * SECOND)
-            .scannerResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[LuV])
-                .EUt(VA[IV])
-                .duration(1 * MINUTE)
+            .scannerResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[LuV])
+                    .EUt(VA[IV])
+                    .duration(1 * MINUTE)
             }
             .buildAndRegister()
 
@@ -477,10 +477,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[ZPM])
             .EUt(VA[ZPM])
             .duration(10 * SECOND)
-            .scannerResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[LuV])
-                .EUt(VA[IV])
-                .duration(1 * MINUTE)
+            .scannerResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[LuV])
+                    .EUt(VA[IV])
+                    .duration(1 * MINUTE)
             }
             .buildAndRegister()
 
@@ -506,10 +506,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[UV])
             .EUt(VA[UV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[ZPM])
-                .EUt(VA[ZPM])
-                .CWUt(16)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[ZPM])
+                    .EUt(VA[ZPM])
+                    .CWUt(16)
             }
             .buildAndRegister()
 
@@ -535,10 +535,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[UV])
             .EUt(VA[UV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[ZPM])
-                .EUt(VA[ZPM])
-                .CWUt(16)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[ZPM])
+                    .EUt(VA[ZPM])
+                    .CWUt(16)
             }
             .buildAndRegister()
 
@@ -564,10 +564,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[UHV])
             .EUt(VA[UV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[UV])
-                .EUt(VA[UV])
-                .CWUt(24)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[UV])
+                    .EUt(VA[UV])
+                    .CWUt(24)
             }
             .buildAndRegister()
 
@@ -593,10 +593,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[UHV])
             .EUt(VA[UV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[UV])
-                .EUt(VA[UV])
-                .CWUt(24)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[UV])
+                    .EUt(VA[UV])
+                    .CWUt(24)
             }
             .buildAndRegister()
 
@@ -612,10 +612,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[UEV])
             .EUt(VA[UHV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[UHV])
-                .EUt(VA[UHV])
-                .CWUt(32)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[UHV])
+                    .EUt(VA[UHV])
+                    .CWUt(32)
             }
             .buildAndRegister()
 
@@ -631,10 +631,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[UEV])
             .EUt(VA[UHV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[UHV])
-                .EUt(VA[UHV])
-                .CWUt(32)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[UHV])
+                    .EUt(VA[UHV])
+                    .CWUt(32)
             }
             .buildAndRegister()
 
@@ -650,10 +650,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[UIV])
             .EUt(VA[UEV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[UEV])
-                .EUt(VA[UEV])
-                .CWUt(48)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[UEV])
+                    .EUt(VA[UEV])
+                    .CWUt(48)
             }
             .buildAndRegister()
 
@@ -669,10 +669,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[UIV])
             .EUt(VA[UEV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[UEV])
-                .EUt(VA[UEV])
-                .CWUt(48)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[UEV])
+                    .EUt(VA[UEV])
+                    .CWUt(48)
             }
             .buildAndRegister()
 
@@ -688,10 +688,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[UXV])
             .EUt(VA[UIV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[UIV])
-                .EUt(VA[UIV])
-                .CWUt(64)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[UIV])
+                    .EUt(VA[UIV])
+                    .CWUt(64)
             }
             .buildAndRegister()
 
@@ -707,10 +707,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[UXV])
             .EUt(VA[UIV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[UIV])
-                .EUt(VA[UIV])
-                .CWUt(64)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[UIV])
+                    .EUt(VA[UIV])
+                    .CWUt(64)
             }
             .buildAndRegister()
 
@@ -726,10 +726,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[OpV])
             .EUt(VA[UXV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[UXV])
-                .EUt(VA[UXV])
-                .CWUt(96)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[UXV])
+                    .EUt(VA[UXV])
+                    .CWUt(96)
             }
             .buildAndRegister()
 
@@ -745,10 +745,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[OpV])
             .EUt(VA[UXV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[UXV])
-                .EUt(VA[UXV])
-                .CWUt(96)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[UXV])
+                    .EUt(VA[UXV])
+                    .CWUt(96)
             }
             .buildAndRegister()
 
@@ -764,10 +764,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_INPUT_HATCH[MAX])
             .EUt(VA[OpV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_INPUT_HATCH[OpV])
-                .EUt(VA[OpV])
-                .CWUt(128)
+            .stationResearch {
+                it.researchStack(ENERGY_INPUT_HATCH[OpV])
+                    .EUt(VA[OpV])
+                    .CWUt(128)
             }
             .buildAndRegister()
 
@@ -783,10 +783,10 @@ internal object AssemblyLineRecipes
             .output(ENERGY_OUTPUT_HATCH[MAX])
             .EUt(VA[OpV])
             .duration(10 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(ENERGY_OUTPUT_HATCH[OpV])
-                .EUt(VA[OpV])
-                .CWUt(128)
+            .stationResearch {
+                it.researchStack(ENERGY_OUTPUT_HATCH[OpV])
+                    .EUt(VA[OpV])
+                    .CWUt(128)
             }
             .buildAndRegister()
 
@@ -812,8 +812,8 @@ internal object AssemblyLineRecipes
                 .output(LASER_INPUT_HATCH_4194304[actualTier])
                 .EUt(VA[tier])
                 .duration(32 * MINUTE)
-                .scannerResearch { r ->
-                    r.researchStack(LASER_INPUT_HATCH_1048576[actualTier].stackForm)
+                .scannerResearch {
+                    it.researchStack(LASER_INPUT_HATCH_1048576[actualTier].stackForm)
                         .EUt(VA[IV])
                         .duration(1 * MINUTE)
                 }
@@ -833,8 +833,8 @@ internal object AssemblyLineRecipes
                 .output(LASER_OUTPUT_HATCH_4194304[actualTier])
                 .EUt(VA[tier])
                 .duration(32 * MINUTE)
-                .scannerResearch { r ->
-                    r.researchStack(LASER_OUTPUT_HATCH_1048576[actualTier].stackForm)
+                .scannerResearch {
+                    it.researchStack(LASER_OUTPUT_HATCH_1048576[actualTier].stackForm)
                         .EUt(VA[IV])
                         .duration(1 * MINUTE)
                 }
@@ -860,8 +860,8 @@ internal object AssemblyLineRecipes
                 .output(LASER_INPUT_HATCH_16777216[actualTier])
                 .EUt(VA[tier])
                 .duration(1 * HOUR + 4 * MINUTE)
-                .stationResearch { r ->
-                    r.researchStack(LASER_INPUT_HATCH_4194304[actualTier].stackForm)
+                .stationResearch {
+                    it.researchStack(LASER_INPUT_HATCH_4194304[actualTier].stackForm)
                         .EUt(VA[UV])
                         .CWUt(32)
                 }
@@ -887,8 +887,8 @@ internal object AssemblyLineRecipes
                 .output(LASER_OUTPUT_HATCH_16777216[actualTier])
                 .EUt(VA[tier])
                 .duration(1 * HOUR + 4 * MINUTE)
-                .stationResearch { r ->
-                    r.researchStack(LASER_OUTPUT_HATCH_4194304[actualTier].stackForm)
+                .stationResearch {
+                    it.researchStack(LASER_OUTPUT_HATCH_4194304[actualTier].stackForm)
                         .EUt(VA[UV])
                         .CWUt(32)
                 }

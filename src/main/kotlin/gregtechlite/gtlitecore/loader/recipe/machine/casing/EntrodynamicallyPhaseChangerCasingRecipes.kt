@@ -89,8 +89,8 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             .outputs(MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.getStack(64))
             .EUt(VA[UIV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.stack)
+            .stationResearch {
+                it.researchStack(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.stack)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -114,8 +114,8 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             .outputs(GlassCasing.NANO_SHIELDING_FRAME.getStack(64))
             .EUt(VA[UIV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GlassCasing.QUANTUM.stack)
+            .stationResearch {
+                it.researchStack(GlassCasing.QUANTUM.stack)
                     .EUt(VA[UIV])
                     .CWUt(32)
             }
