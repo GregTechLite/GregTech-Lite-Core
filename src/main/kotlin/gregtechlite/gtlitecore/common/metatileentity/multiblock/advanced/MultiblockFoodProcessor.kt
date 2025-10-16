@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -10,6 +9,9 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.ROBOT_ARM_CASING_TIER
@@ -18,8 +20,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.FOOD_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
@@ -30,8 +33,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockFoodProcessor(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(FOOD_PROCESSOR_RECIPES, MULTICOOKER_RECIPES))
@@ -105,11 +107,11 @@ class MultiblockFoodProcessor(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LFP")
-            description(true)
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.PUMP_CASING, 80)
-            parallelInfo(UpgradeType.ROBOT_ARM_CASING, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 8)
+            addDurationInfo(UpgradeMode.PUMP_CASING, 250)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
@@ -117,12 +119,19 @@ class MultiblockFoodProcessor(id: ResourceLocation)
 
     override fun hasMufflerMechanics() = true
 
-    private inner class LargeFoodProcessorRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte, true)
+    private inner class LargeFoodProcessorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(pumpCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +250% / pump casing tier | D' = D / (1 + 2.5 * (T - 1)) = D / (2.5 * T - 1.5), where k = 2.5
+            if (pumpCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * pumpCasingTier - 1.5)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * robotArmCasingTier

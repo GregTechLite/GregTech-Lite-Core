@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -10,6 +9,9 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockWireCoil
@@ -19,8 +21,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -29,11 +32,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockChemicalPlant(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(LARGE_CHEMICAL_RECIPES, CHEMICAL_PLANT_RECIPES))
+class MultiblockChemicalPlant(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(LARGE_CHEMICAL_RECIPES, CHEMICAL_PLANT_RECIPES))
 {
 
     private var pumpCasingTier = 0
@@ -98,12 +99,12 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CP")
-            description(true,
-                        "gtlitecore.machine.chemical_plant.tooltip.1")
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.WIRE_COIL, 50)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.chemical_plant.tooltip.1")
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.WIRE_COIL, 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
         }
     }
 
@@ -112,9 +113,16 @@ class MultiblockChemicalPlant(id: ResourceLocation)
     private inner class ChemicalPlantRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(coilTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -50% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+
+            // +400% / wire coil tier | D' = D / (1 + 4.0 * (T - 1)) = D / (4.0 * T - 3.0), where k = 4.0
+            if (coilTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * coilTier - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * pumpCasingTier

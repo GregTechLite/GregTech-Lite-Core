@@ -10,14 +10,20 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
@@ -25,8 +31,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockMacerator(id: ResourceLocation)
     : RecipeMapMultiblockController(id, MACERATOR_RECIPES)
@@ -90,11 +95,11 @@ class MultiblockMacerator(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LMa")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 50)
-            parallelInfo(UpgradeType.PISTON_CASING, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PISTON_CASING, 8)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 375)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
@@ -103,11 +108,19 @@ class MultiblockMacerator(id: ResourceLocation)
     private inner class LargeMaceratorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(motorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +375% / motor casing tier | D' = D / (1 + 3.75 * (T - 1)) = D / (3.75 * T - 2.75), where k = 3.75
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.75 * motorCasingTier - 2.75)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * pistonCasingTier

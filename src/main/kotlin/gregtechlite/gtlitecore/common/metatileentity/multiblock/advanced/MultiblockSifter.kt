@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -9,13 +8,16 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.CONVEYOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -24,11 +26,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockSifter(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, SIFTER_RECIPES)
+class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id, SIFTER_RECIPES)
 {
 
     private var casingTier = 0
@@ -87,11 +87,11 @@ class MultiblockSifter(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LS")
-            description(true)
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
-            parallelInfo(UpgradeType.CONVEYOR_CASING, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.CONVEYOR_CASING, 8)
+            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 10)
         }
     }
 
@@ -100,9 +100,15 @@ class MultiblockSifter(id: ResourceLocation)
     private inner class LargeSifterRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(getTierByVoltage(maxVoltage).toDouble()))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -10% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
+
+            // +400% / voltage tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * getTierByVoltage(maxVoltage) - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * casingTier

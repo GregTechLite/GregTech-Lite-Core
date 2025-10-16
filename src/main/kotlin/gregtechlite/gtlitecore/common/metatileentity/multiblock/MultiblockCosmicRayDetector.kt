@@ -1,14 +1,20 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
-import gregtech.api.pattern.*
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.BlockWorldState
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.BlockInfo
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
@@ -21,7 +27,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasin
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
@@ -36,12 +44,10 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.*
-import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
-class MultiblockCosmicRayDetector(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, COSMIC_RAY_DETECTING_RECIPES)
+class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockController(id, COSMIC_RAY_DETECTING_RECIPES)
 {
 
     private var emitterCasingTier = 0
@@ -142,27 +148,34 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CRD")
-            description(true,
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.1")
-            overclockInfo(FALLBACK)
-            description(false,
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.2",
-                        "gtlitecore.machine.cosmic_ray_detector.tooltip.3")
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.cosmic_ray_detector.tooltip.1",
+                               "gtlitecore.machine.cosmic_ray_detector.tooltip.2")
+            addOverclockInfo(OverclockMode.PERFECT)
+            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.FIELD_GEN_CASING, number = 32)
+            addMultiDurationInfo(UpgradeMode.SENSOR_CASING, UpgradeMode.PROCESSOR_CASING, percent = 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
         }
     }
 
-    override fun canBeDistinct() =  false
+    override fun canBeDistinct() = false
 
-    private inner class CosmicRayDetectorWorkableHandler(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte, true)
+    private inner class CosmicRayDetectorWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
         override fun checkRecipe(recipe: Recipe): Boolean
             = super.checkRecipe(recipe) && recipe.getProperty(GTLiteRecipeProperties.MINIMUM_HEIGHT, -64)!! <= topBlockPos.y
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.5.pow(min(sensorCasingTier, processorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -30% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+
+            // +400% / sensor and processor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
+            if (sensorCasingTier <= 0 || processorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(sensorCasingTier, processorCasingTier) - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 32 * min(emitterCasingTier, fieldGenCasingTier)

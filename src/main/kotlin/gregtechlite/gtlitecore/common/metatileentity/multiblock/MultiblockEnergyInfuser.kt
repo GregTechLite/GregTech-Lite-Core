@@ -17,7 +17,11 @@ import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.*
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -26,7 +30,9 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.util.GTTransferUtils.insertItem
 import gregtech.api.util.GTUtility.getFloorTierByVoltage
-import gregtech.api.util.RelativeDirection.*
+import gregtech.api.util.RelativeDirection.DOWN
+import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.MetaTileEntities

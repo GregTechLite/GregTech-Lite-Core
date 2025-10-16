@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -10,6 +9,8 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -19,8 +20,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VULCANIZATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.item.ItemStack
@@ -28,8 +30,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockFluidSolidifier(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(FLUID_SOLIDFICATION_RECIPES, TOOL_CASTER_RECIPES,
@@ -90,11 +91,11 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LFS")
-            description(true)
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.PUMP_CASING, 80)
-            parallelInfo(UpgradeType.VOLTAGE_TIER, 4)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 4)
+            addDurationInfo(UpgradeMode.PUMP_CASING, 150)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 10)
         }
     }
 
@@ -103,9 +104,16 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
     private inner class LargeFluidSolidifierRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(casingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -10% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
+
+            // +150% / pump casing tier | D' = D / (1 + 1.5 * (T - 1)) = D / (1.5 * T - 0.5), where k = 1.5
+            if (casingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.5 * casingTier - 0.5)).toInt()))
         }
 
         override fun getParallelLimit() = 4 * getTierByVoltage(maxVoltage)

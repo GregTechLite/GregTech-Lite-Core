@@ -11,6 +11,10 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
@@ -20,8 +24,9 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -31,11 +36,9 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockCryogenicFreezer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, VACUUM_RECIPES)
+class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockController(id, VACUUM_RECIPES)
 {
 
     private var pumpCasingTier = 0
@@ -95,12 +98,13 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LCryF")
-            description(true,
-                        "gtlitecore.machine.cryogenic_freezer.tooltip.1",
-                        "gtlitecore.machine.cryogenic_freezer.tooltip.2")
-            durationInfo(UpgradeType.PUMP_CASING, 50)
-            parallelInfo(UpgradeType.MOTOR_CASING, 16)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.cryogenic_freezer.tooltip.1",
+                               "gtlitecore.machine.cryogenic_freezer.tooltip.2")
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
+            addDurationInfo(UpgradeMode.PUMP_CASING, 300)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
         }
     }
 
@@ -150,16 +154,14 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
 
     override fun canBeDistinct() = true
 
-    private inner class CryogenicFreezerRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class CryogenicFreezerRecipeLogic(private val mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-
-        private val mte = mte as MultiblockCryogenicFreezer
 
         override fun updateRecipeProgress()
         {
             if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                val inputTank = this@CryogenicFreezerRecipeLogic.mte.getInputFluidInventory()
+                val inputTank = (mte as MultiblockCryogenicFreezer).getInputFluidInventory()
                 val cryotheumStack = GelidCryotheum.getFluid(2)
                 if (cryotheumStack.isFluidStackIdentical(inputTank.drain(cryotheumStack, false)))
                 {
@@ -175,11 +177,19 @@ class MultiblockCryogenicFreezer(id: ResourceLocation)
             }
         }
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor()
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(pumpCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -20% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+
+            // +300% / pump casing tier | D' = D / (1 + 3.0 * (T - 1)) = D / (3.0 * T - 2.0), where k = 3.0
+            if (pumpCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * pumpCasingTier - 2.0)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * motorCasingTier

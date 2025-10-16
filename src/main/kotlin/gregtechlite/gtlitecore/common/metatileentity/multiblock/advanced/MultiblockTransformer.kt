@@ -25,7 +25,6 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
-import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound

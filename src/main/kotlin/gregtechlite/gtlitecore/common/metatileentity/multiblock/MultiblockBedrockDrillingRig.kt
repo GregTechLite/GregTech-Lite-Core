@@ -1,13 +1,19 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
-import gregtech.api.pattern.*
+import gregtech.api.pattern.BlockPattern
+import gregtech.api.pattern.BlockWorldState
+import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
@@ -17,8 +23,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
@@ -32,11 +39,9 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockBedrockDrillingRig(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, DRILLING_RECIPES)
+class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockController(id, DRILLING_RECIPES)
 {
 
     private var pistonCasingTier = 0
@@ -137,14 +142,14 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("BDR")
-            description(true,
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.1",
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
-                        "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.MOTOR_CASING, 80)
-            parallelInfo(UpgradeType.PISTON_CASING, 16)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.bedrock_drilling_rig.tooltip.1",
+                               "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
+                               "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
         }
     }
 
@@ -152,7 +157,7 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
 
     override fun hasMufflerMechanics() = true
 
-    private inner class BedrockDrillingRigWorkableHandler(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte, true)
+    private inner class BedrockDrillingRigWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
         override fun getMetaTileEntity() = super.getMetaTileEntity() as MultiblockBedrockDrillingRig
@@ -168,9 +173,16 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation)
             return super.setupAndConsumeRecipeInputs(recipe, importInventory)
         }
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(motorCasingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -40% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+
+            // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * motorCasingTier - 1.5)).toInt()))
         }
 
         override fun getParallelLimit(): Int = 16 * pistonCasingTier

@@ -10,7 +10,14 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.recipes.RecipeMaps.*
+import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
+import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
+import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
@@ -18,8 +25,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
@@ -29,12 +37,10 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockBrewery(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(BREWING_RECIPES, FERMENTING_RECIPES,
-                                               FLUID_HEATER_RECIPES, CHEMICAL_DEHYDRATOR_RECIPES))
+class MultiblockBrewery(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(BREWING_RECIPES, FERMENTING_RECIPES,
+                                                                                         FLUID_HEATER_RECIPES, CHEMICAL_DEHYDRATOR_RECIPES))
 {
 
     private var pumpCasingTier = 0
@@ -102,23 +108,31 @@ class MultiblockBrewery(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LBr")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 80)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
         }
     }
 
     override fun canBeDistinct() = true
 
-    private inner class LargeBreweryRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeBreweryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(motorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -40% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+
+            // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1)) = D / (2.5 * T - 1.5), where k = 2.5
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * motorCasingTier - 1.5)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * pumpCasingTier

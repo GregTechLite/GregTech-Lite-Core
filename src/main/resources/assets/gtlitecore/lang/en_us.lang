@@ -2267,10 +2267,10 @@ gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
 gtlitecore.machine.cvd_unit.name=Chemical Vapor Deposition Unit
-gtlitecore.machine.cvd_unit.tooltip=薄膜蒸镀传输
+gtlitecore.machine.cvd_unit.tooltip.1=薄膜蒸镀传输
 
 gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
-gtlitecore.machine.crystallization_crucible.tooltip=人造宝石技术
+gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
 gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
@@ -2282,12 +2282,11 @@ gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature R
 gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 
 gtlitecore.machine.sonicator.name=Sonicator
-gtlitecore.machine.sonicator.tooltip.1=每提高1个§e马达外壳等级§7与§e电动泵外壳等级§7，配方所需时间就变为原本的§l80%%§r§7。
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
-gtlitecore.machine.laser_induced_cvd_unit.tooltip=以高能激光束促进气相沉积反应
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
 gtlitecore.machine.bedrock_drilling_rig.tooltip.1=深度钻取基岩以提取特殊的矿石资源，基岩需要位于§6钻头§7方块之下。
@@ -2307,18 +2306,8 @@ gtlitecore.machine.fusion_reactor.tier=可以运行%s§7电压等级及以下的
 gtlitecore.machine.advanced_fusion_reactor.name=Advanced Fusion Reactor Computer
 gtlitecore.machine.advanced_fusion_reactor.tooltip.1=异于托卡马克构型的仿星器聚变反应堆
 gtlitecore.machine.advanced_fusion_reactor.tooltip.2=由于仿星器直接通过外部线圈产生环形磁笼，所以不需要提供§a合成启动能量§7
-gtlitecore.machine.advanced_fusion_reactor.tooltip.3=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量，巨量的能量将加速聚变反应
-gtlitecore.machine.advanced_fusion_reactor.tooltip.4=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的超临界流体。
-gtlitecore.machine.advanced_fusion_reactor.tooltip.5=更换更高级的外壳以解锁更高级的聚变反应：
-gtlitecore.machine.advanced_fusion_reactor.tooltip.6=使用更好的§f聚变机器外壳§7以提供更安全的结构保护与中子屏蔽；
-gtlitecore.machine.advanced_fusion_reactor.tooltip.7=使用更好的§f聚变线圈方块§7以提供更稳定的超导环向磁场与极向场；
-gtlitecore.machine.advanced_fusion_reactor.tooltip.8=使用更好的§f恒温仓§7以提供更稳定的超真空与超低温内部环境；
-gtlitecore.machine.advanced_fusion_reactor.tooltip.9=使用更好的§f偏滤器§7以提供更有效的过渡区域热负荷转移与物理清洁；
-gtlitecore.machine.advanced_fusion_reactor.tooltip.10=使用更好的§f真空室§7以提供更安全的内部结构保护与恒温真空保险层；
-gtlitecore.machine.advanced_fusion_reactor.tooltip.11=所有部件均限制配方能够运行的最大聚变等级，且所有部件必须保持同一等级。
-gtlitecore.machine.advanced_fusion_reactor.tooltip.12=仿星器将在聚变反应时进行相当于两次一般§b无损超频§7的特殊超频。
-gtlitecore.machine.advanced_fusion_reactor.tooltip.13=每提高1个§e机器外壳§7，§e真空室§7与§e恒温仓§7等级，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.advanced_fusion_reactor.tooltip.14=每提高1个§e线圈方块§7与§e偏滤器§7等级，每次运行可以多处理§l64§r§7个物品。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.3=更换更高级的外壳以解锁更高级的聚变反应。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.4=所有部件均限制配方能够运行的最大聚变等级，且所有部件必须保持同一等级。
 
 gtlitecore.machine.component_assembly_line.name=Component Assembly Line
 gtlitecore.machine.component_assembly_line.tooltip.1=批量装配各式各样的零部件，效率碾压同等级组装机/装配线！
@@ -2327,22 +2316,16 @@ gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
-gtlitecore.machine.cosmic_ray_detector.tooltip=射电辐射反射式探测望远镜
-gtlitecore.machine.cosmic_ray_detector.tooltip.1=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
-gtlitecore.machine.cosmic_ray_detector.tooltip.2=每提高1个§e传感器外壳§7与§e处理器外壳§7等级，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.cosmic_ray_detector.tooltip.3=每提高1个§e发射器外壳§7与§e力场发生器外壳§7等级，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
-gtlitecore.machine.stellar_forge.tooltip=驾驭恒星之力
-gtlitecore.machine.stellar_forge.tooltip.1=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
-gtlitecore.machine.stellar_forge.tooltip.2=产物以极高温的等离子喷流或等离子聚合液体的形态产出。
+gtlitecore.machine.stellar_forge.tooltip.1=驾驭恒星之力
+gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip=驱使等离子体增强沉积反应活性以加速之
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.3=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.4=每提高1个§e泵外壳等级§7与§e力场外壳等级§7，每次运行可以多处理§l32§r§7个物品。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
 
 gtlitecore.machine.pcb_factory.name=PCB Factory
 gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
@@ -2489,13 +2472,11 @@ gtlitecore.machine.large_ore_washer.name=Large Ore Washer
 gtlitecore.machine.large_electromagnet.name=Large Electromagnet
 
 gtlitecore.machine.large_distillery.name=Large Distillery
-gtlitecore.machine.large_distillery.tooltip.1=When running §6Distillery§7 mode,
-gtlitecore.machine.large_distillery.tooltip.2=When running §6Distillation Tower§7 mode, when Voltage Tier >= §3UV§7, enabled
-gtlitecore.machine.large_distillery.tooltip.3=Perfect Overclocking
+gtlitecore.machine.large_distillery.tooltip.1=§bUsed Distillery Mode / Distillation Tower unlocked at §3UV§b
 
 gtlitecore.machine.large_bio_reactor.name=Large Bio Reactor
 gtlitecore.machine.large_bio_reactor.tooltip.1=When used §cSterile CleanFilter Casing§7, can run recipes which required §aSterile Cleanroom§7 Environment.
-gtlitecore.machine.large_bio_reactor.tooltip.2=When used §cSterile CleanFilter Casing§7,
+gtlitecore.machine.large_bio_reactor.tooltip.2=§bWhen used §cSterile CleanFilter Casing§7
 
 gtlitecore.machine.large_packer.name=Large Packer
 
@@ -2531,12 +2512,7 @@ gtlitecore.machine.chemical_plant.tooltip.1=Compatible with all common §2Chemic
 gtlitecore.machine.industrial_coke_oven.name=Industrial Coke Oven
 
 gtlitecore.machine.large_mass_fabricator.name=Large Mass Fabricator
-gtlitecore.machine.large_mass_fabricator.tooltip.1=每提高1个§e力场外壳等级§7与§e处理器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_mass_fabricator.tooltip.2=每提高1个§a发射器外壳等级§7与§a传感器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
-
 gtlitecore.machine.large_replicator.name=Large Replicator
-gtlitecore.machine.large_replicator.tooltip.1=每提高1个§e发射器外壳等级§7与§e传感器外壳等级§7，配方所需时间就变为原本的§l50%%§r§7。
-gtlitecore.machine.large_replicator.tooltip.2=每提高1个§a力场外壳等级§7与§a处理器外壳等级§7，每次运行可以多处理§l4§r§7个物品。
 
 gtlitecore.machine.circuit_assembly_line.name=Circuit Assembly Line
 gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
@@ -3809,35 +3785,62 @@ gtlitecore.jei.space_pump_module.planet_id=Planet ID: #%s
 gtlitecore.jei.space_pump_module.fluid_id=Fluid ID: #%s
 gtlitecore.jei.space_pump_module.fluid_amount=Extract Rate: %s/s
 
-gtlitecore.tooltip.machine.recipe_map_name=Machine Type: §e%s
-gtlitecore.tooltip.machine.recipe_map_short_name=Machine Type: §e%s§7, Short Name: §e%d
-gtlitecore.tooltip.machine.large_machine_efficiency=Upgrade Component Casing or Voltage Tier to improve Machine Performance
-gtlitecore.tooltip.machine.overclocking_tier.0=When the Voltage Tier >= %s§r§7, enabled
-gtlitecore.tooltip.machine.overclocking_tier.1=Perfect Overclocking
-
-gtlitecore.tooltip.machine.duration_reduction_voltage_tier=Each §eVoltage Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_wire_coil=Each §eWire Coil Block Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_motor_casing=Each §eMotor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_piston_casing=Each §ePiston Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_pump_casing=Each §ePump Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_conveyor_casing=Each §eConveyor Module Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_robot_arm_casing=Each §eRobot Arm Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_emitter_casing=Each §eEmitter Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_sensor_casing=Each §eSensor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_field_gen_casing=Each §eField Generator Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-gtlitecore.tooltip.machine.duration_reduction_processor_casing=Each §eProcessor Casing Tier§7 +1, recipe required duration be §l%s%%§r§7 of original duration.
-
-gtlitecore.tooltip.machine.parallel_increment_voltage_tier=Each §aVoltage Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_wire_coil=Each §aWire Coil Block Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_motor_casing=Each §aMotor Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_piston_casing=Each §aPiston Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_pump_casing=Each §aPump Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_conveyor_casing=Each §aConveyor Module Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_robot_arm_casing=Each §aRobot Arm Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_emitter_casing=Each §aEmitter Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_sensor_casing=Each §aSensor Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_field_gen_casing=Each §aField Generator Casing Tier§7 +1, progressing item number +§l%s§r§7.
-gtlitecore.tooltip.machine.parallel_increment_processor_casing=Each §aProcessor Casing Tier§7 +1, progressing item number +§l%s§r§7.
+gtlitecore.tooltip.machine.machine_type=机器类型：§e%s
+gtlitecore.tooltip.machine.overclock_mode=超频模式：
+gtlitecore.tooltip.machine.overclock_mode.standard=§b常规超频
+gtlitecore.tooltip.machine.overclock_mode.perfect=§b无损超频
+gtlitecore.tooltip.machine.overclock_mode.perfect_after=§b无损超频§7（§3UV§7解锁）
+gtlitecore.tooltip.machine.overclock_mode.perfect_double=§b双倍无损超频
+gtlitecore.tooltip.machine.parallel_mode=并行数：
+gtlitecore.tooltip.machine.parallel_mode.voltage_tier=§a%s×电压等级
+gtlitecore.tooltip.machine.parallel_mode.wire_coil=§a%s×线圈等级
+gtlitecore.tooltip.machine.parallel_mode.motor_casing=§a%s×马达外壳等级
+gtlitecore.tooltip.machine.parallel_mode.piston_casing=§a%s×活塞外壳等级
+gtlitecore.tooltip.machine.parallel_mode.pump_casing=§a%s×泵外壳等级
+gtlitecore.tooltip.machine.parallel_mode.conveyor_casing=§a%s×传送带外壳等级
+gtlitecore.tooltip.machine.parallel_mode.robot_arm_casing=§a%s×机械臂外壳等级
+gtlitecore.tooltip.machine.parallel_mode.emitter_casing=§a%s×发射器外壳等级
+gtlitecore.tooltip.machine.parallel_mode.sensor_casing=§a%s×传感器外壳等级
+gtlitecore.tooltip.machine.parallel_mode.field_gen_casing=§a%s×力场外壳等级
+gtlitecore.tooltip.machine.parallel_mode.processor_casing=§a%s×处理器外壳等级
+gtlitecore.tooltip.machine.parallel_mode.borosilicate_glass=§a%s×硼硅玻璃等级
+gtlitecore.tooltip.machine.parallel_mode.pump_casing_field_gen_casing=§a%s×泵与力场外壳等级
+gtlitecore.tooltip.machine.parallel_mode.emitter_casing_sensor_casing=§a%s×发射器与传感器外壳等级
+gtlitecore.tooltip.machine.parallel_mode.emitter_casing_field_gen_casing=§a%s×发射器与力场外壳等级
+gtlitecore.tooltip.machine.parallel_mode.field_gen_casing_processor_casing=§a%s×力场与处理器外壳等级
+gtlitecore.tooltip.machine.parallel_mode.fusion_coil_fusion_divertor=§a%s×聚变线圈与偏滤器等级
+gtlitecore.tooltip.machine.duration_mode=速度加成：
+gtlitecore.tooltip.machine.duration_mode.voltage_tier=§d+%s%%/电压等级
+gtlitecore.tooltip.machine.duration_mode.wire_coil=§d+%s%%/线圈等级
+gtlitecore.tooltip.machine.duration_mode.motor_casing=§d+%s%%/马达外壳等级
+gtlitecore.tooltip.machine.duration_mode.piston_casing=§d+%s%%/活塞外壳等级
+gtlitecore.tooltip.machine.duration_mode.pump_casing=§d+%s%%/泵外壳等级
+gtlitecore.tooltip.machine.duration_mode.conveyor_casing=§d+%s%%/传送带外壳等级
+gtlitecore.tooltip.machine.duration_mode.robot_arm_casing=§d+%s%%/机械臂外壳等级
+gtlitecore.tooltip.machine.duration_mode.emitter_casing=§d+%s%%/发射器外壳等级
+gtlitecore.tooltip.machine.duration_mode.sensor_casing=§d+%s%%/传感器外壳等级
+gtlitecore.tooltip.machine.duration_mode.field_gen_casing=§d+%s%%/力场外壳等级
+gtlitecore.tooltip.machine.duration_mode.processor_casing=§d+%s%%/处理器外壳等级
+gtlitecore.tooltip.machine.duration_mode.borosilicate_glass=§d+%s%%/硼硅玻璃等级
+gtlitecore.tooltip.machine.duration_mode.motor_casing_pump_casing=§d+%s%%/马达与泵外壳等级
+gtlitecore.tooltip.machine.duration_mode.emitter_casing_sensor_casing=§d+%s%%发射器与传感器外壳等级
+gtlitecore.tooltip.machine.duration_mode.sensor_casing_processor_casing=§d+%s%%传感器与处理器外壳等级
+gtlitecore.tooltip.machine.duration_mode.field_gen_casing_processor_casing=§d+%s%%力场与处理器外壳等级
+gtlitecore.tooltip.machine.duration_mode.fusion_casing_fusion_vacuum_fusion_cryostat=§d+%s%%聚变外壳，真空室与恒温仓等级
+gtlitecore.tooltip.machine.energy_mode=耗能减免：
+gtlitecore.tooltip.machine.energy_mode.voltage_tier=§6-%s%%/电压等级
+gtlitecore.tooltip.machine.energy_mode.wire_coil=§6-%s%%/线圈等级
+gtlitecore.tooltip.machine.energy_mode.motor_casing=§6-%s%%/马达外壳等级
+gtlitecore.tooltip.machine.energy_mode.piston_casing=§6-%s%%/活塞外壳等级
+gtlitecore.tooltip.machine.energy_mode.pump_casing=§6-%s%%/泵外壳等级
+gtlitecore.tooltip.machine.energy_mode.conveyor_casing=§6-%s%%/传送带外壳等级
+gtlitecore.tooltip.machine.energy_mode.robot_arm_casing=§6-%s%%/机械臂外壳等级
+gtlitecore.tooltip.machine.energy_mode.emitter_casing=§6-%s%%/发射器外壳等级
+gtlitecore.tooltip.machine.energy_mode.sensor_casing=§6-%s%%/传感器外壳等级
+gtlitecore.tooltip.machine.energy_mode.field_gen_casing=§6-%s%%/力场外壳等级
+gtlitecore.tooltip.machine.energy_mode.processor_casing=§6-%s%%/处理器外壳等级
+gtlitecore.tooltip.machine.energy_mode.borosilicate_glass§6-%s%%/硼硅玻璃等级
+gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=Configuration Screen

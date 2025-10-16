@@ -11,6 +11,10 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.WIREMILL_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
@@ -18,8 +22,9 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -28,11 +33,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockWiremill(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(WIREMILL_RECIPES, LOOM_RECIPES))
+class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(WIREMILL_RECIPES, LOOM_RECIPES))
 {
 
     private var casingTier = 0
@@ -45,7 +48,6 @@ class MultiblockWiremill(id: ResourceLocation)
     companion object
     {
         private val casingState = MetalCasing.BLUE_STEEL.state
-
         private val gearboxCasingState = GTTurbineCasing.TITANIUM_GEARBOX.state
     }
 
@@ -91,24 +93,32 @@ class MultiblockWiremill(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LW")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 80)
-            parallelInfo(UpgradeType.VOLTAGE_TIER, 16)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 325)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 15)
         }
     }
 
     override fun canBeDistinct() = true
 
-    private inner class LargeWiremillRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeWiremillRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor()
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(casingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -15% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
+
+            // +325% / motor casing tier | D' = D / (1 + 3.25 * (T - 1.0)) = D / (3.25 * T - 2.25), where k = 3.25
+            if (casingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.25 * casingTier - 2.25)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * getTierByVoltage(maxVoltage)

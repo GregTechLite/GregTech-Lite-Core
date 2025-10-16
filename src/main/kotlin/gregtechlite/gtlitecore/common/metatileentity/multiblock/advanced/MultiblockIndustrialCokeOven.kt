@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
-import gregtech.api.GTValues.FALLBACK
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -9,14 +8,17 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
@@ -24,8 +26,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 class MultiblockIndustrialCokeOven(id: ResourceLocation)
     : RecipeMapMultiblockController(id, PYROLYSE_RECIPES)
@@ -83,11 +84,11 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("ICO")
-            description(true)
-            overclockInfo(FALLBACK)
-            durationInfo(UpgradeType.WIRE_COIL, 80)
-            parallelInfo(UpgradeType.VOLTAGE_TIER, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT)
+            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 8)
+            addDurationInfo(UpgradeMode.WIRE_COIL, 200)
+            addEnergyInfo(UpgradeMode.WIRE_COIL, 20)
         }
     }
 
@@ -95,12 +96,19 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
 
     override fun hasMufflerMechanics() = true
 
-    private inner class IndustrialCokeOvenRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte, true)
+    private inner class IndustrialCokeOvenRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(coilTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+            if (coilTier <= 0) return
+
+            // -20% / wire coil tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - coilTier * 0.2)).toLong()))
+
+            // +200% / wire coil tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * coilTier - 1.0)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * getTierByVoltage(maxVoltage)

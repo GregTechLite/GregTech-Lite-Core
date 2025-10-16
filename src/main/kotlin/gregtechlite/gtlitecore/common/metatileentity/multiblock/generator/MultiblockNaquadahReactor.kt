@@ -31,9 +31,9 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing

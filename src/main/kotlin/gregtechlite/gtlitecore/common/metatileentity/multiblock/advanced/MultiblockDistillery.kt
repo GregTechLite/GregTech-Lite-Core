@@ -21,23 +21,25 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTTransferUtils.addItemsToItemHandler
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtech.api.util.RelativeDirection.RIGHT
 import gregtech.api.util.RelativeDirection.FRONT
+import gregtech.api.util.RelativeDirection.RIGHT
 import gregtech.api.util.RelativeDirection.UP
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
@@ -45,14 +47,13 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.Function
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
 // TODO FIXME
-//  When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
+//  (1) When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
 //  recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
-class MultiblockDistillery(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
+//  (2) Seems will crash when switch mode of the machine.
+class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
 {
 
     private var workableHandler: DistillationTowerLogicHandler?
@@ -171,14 +172,11 @@ class MultiblockDistillery(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LDis")
-            description(true,
-                        I18n.format("gtlitecore.machine.large_distillery.tooltip.1")
-                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gregtech.machine.perfect_oc"),
-                        I18n.format("gtlitecore.machine.large_distillery.tooltip.2")
-                                + TooltipHelper.RAINBOW_SLOW + I18n.format("gtlitecore.machine.large_distillery.tooltip.3"))
-            durationInfo(UpgradeType.VOLTAGE_TIER, 50)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            addMachineTypeLine()
+            addOverclockInfo("gtlitecore.machine.large_distillery.tooltip.1")
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
         }
     }
 
@@ -224,11 +222,18 @@ class MultiblockDistillery(id: ResourceLocation)
             return super.getOutputTank()
         }
 
-        override fun getOverclockingDurationFactor() = if ((maxVoltage >= V[UV] && usesAdvancedHatchLogic()) || !usesAdvancedHatchLogic()) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if ((maxVoltage >= V[UV] && usesAdvancedHatchLogic()) || !usesAdvancedHatchLogic()) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.5.pow(getTierByVoltage(maxVoltage).toDouble()))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -40% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+
+            // +350% / voltage tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * getTierByVoltage(maxVoltage) - 2.5)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * casingTier

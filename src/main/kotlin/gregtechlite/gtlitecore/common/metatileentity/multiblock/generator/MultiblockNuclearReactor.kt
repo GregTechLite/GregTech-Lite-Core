@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController

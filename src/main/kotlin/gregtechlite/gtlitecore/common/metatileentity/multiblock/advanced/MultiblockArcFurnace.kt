@@ -12,15 +12,21 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.ALLOY_SMELTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.common.blocks.*
+import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -30,11 +36,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockArcFurnace(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(ARC_FURNACE_RECIPES, ALLOY_SMELTER_RECIPES))
+class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ARC_FURNACE_RECIPES, ALLOY_SMELTER_RECIPES))
 {
 
     private var pumpCasingTier = 0
@@ -97,31 +101,39 @@ class MultiblockArcFurnace(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ARC_FURNACE_OVERLAY
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
         {
-            machineType("LAF")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.WIRE_COIL, 80)
-            parallelInfo(UpgradeType.PUMP_CASING, 8)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 8)
+            addDurationInfo(UpgradeMode.WIRE_COIL, 175)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
         }
     }
 
     override fun canBeDistinct(): Boolean = true
 
-    private inner class LargeArcFurnaceRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeArcFurnaceRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(coilTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -25% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+
+            // +175% / wire coil tier | D' = D / (1 + 1.75 * (T - 1)) = D / (1.75 * T - 0.75), where k = 1.75
+            if (coilTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.75 * coilTier - 0.75)).toInt()))
         }
 
-        override fun getParallelLimit() = 8 * pumpCasingTier
+        override fun getParallelLimit(): Int = 8 * pumpCasingTier
 
     }
 

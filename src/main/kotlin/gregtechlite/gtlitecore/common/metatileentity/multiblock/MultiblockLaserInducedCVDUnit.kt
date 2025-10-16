@@ -10,6 +10,11 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
@@ -22,8 +27,9 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIP
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -34,13 +40,11 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
-class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(LASER_CVD_RECIPES, CRYSTALLIZATION_RECIPES,
-                                               MOLECULAR_BEAM_RECIPES, SONICATION_RECIPES))
+class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(LASER_CVD_RECIPES, CRYSTALLIZATION_RECIPES,
+                                                                                                     MOLECULAR_BEAM_RECIPES, SONICATION_RECIPES))
 {
 
     private var emitterCasingTier = 0
@@ -113,12 +117,12 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LICVD")
-            description(true,
-                        "gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
-            overclockInfo(UV)
-            durationInfo(UpgradeType.EMITTER_CASING, 50)
-            parallelInfo(UpgradeType.PUMP_CASING, 8)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 8)
+            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 400)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 35)
         }
     }
 
@@ -127,11 +131,19 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
     private inner class LaserInducedCVDRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.5.pow(min(emitterCasingTier, sensorCasingTier))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -35% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
+
+            // +400% / emitter and sensor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
+            if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(emitterCasingTier, sensorCasingTier) - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * pumpCasingTier

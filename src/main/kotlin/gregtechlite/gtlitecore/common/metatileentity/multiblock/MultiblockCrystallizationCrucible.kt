@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -12,6 +14,10 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.util.GTUtility.getTierByVoltage
@@ -27,8 +33,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -39,12 +46,9 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
 import kotlin.math.max
-import kotlin.math.pow
 
-class MultiblockCrystallizationCrucible(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
+class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
 {
 
     private var motorCasingTier = 0
@@ -115,11 +119,15 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("CryC")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.MOTOR_CASING, 80)
-            parallelInfo(UpgradeType.WIRE_COIL, 8)
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.crystallization_crucible.tooltip.1",
+                               "gregtech.machine.electric_blast_furnace.tooltip.1",
+                               "gregtech.machine.electric_blast_furnace.tooltip.2",
+                               "gregtech.machine.electric_blast_furnace.tooltip.3")
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.WIRE_COIL, 8)
+            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
         }
     }
 
@@ -165,11 +173,19 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
     private inner class CrystallizationCrucibleRecipeLogic(mte: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.8.pow(motorCasingTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -40% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+
+            // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
+            if (motorCasingTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * motorCasingTier - 1.5)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * coilTier

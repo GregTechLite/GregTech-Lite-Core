@@ -10,15 +10,22 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.recipes.RecipeMaps.*
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
+import gregtech.api.recipes.RecipeMaps.CRACKING_RECIPES
+import gregtech.api.recipes.RecipeMaps.ORE_WASHER_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipDSL.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.UpgradeType
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -27,12 +34,10 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
-import kotlin.math.pow
+import kotlin.math.max
 
-class MultiblockOreWasher(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(ORE_WASHER_RECIPES, CHEMICAL_BATH_RECIPES,
-                                               CRACKING_RECIPES, CATALYTIC_REFORMER_RECIPES))
+class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ORE_WASHER_RECIPES, CHEMICAL_BATH_RECIPES,
+                                                                                           CRACKING_RECIPES, CATALYTIC_REFORMER_RECIPES))
 {
 
     private var casingTier = 0
@@ -93,11 +98,11 @@ class MultiblockOreWasher(id: ResourceLocation)
     {
         addTooltip(tooltip)
         {
-            machineType("LOW")
-            description(true)
-            overclockInfo(UV)
-            durationInfo(UpgradeType.VOLTAGE_TIER, 80)
-            parallelInfo(UpgradeType.PUMP_CASING, 16)
+            addMachineTypeLine()
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
+            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
+            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
+            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
         }
     }
 
@@ -106,11 +111,18 @@ class MultiblockOreWasher(id: ResourceLocation)
     private inner class LargeOreWasherRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = if (maxVoltage >= V[UV]) 0.25 else 0.5
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress((floor(maxProgress * 0.8.pow(getTierByVoltage(maxVoltage).toDouble()))).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+
+            // -20% / voltage tier
+            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+
+            // +300% / voltage tier | D' = D / (1 + 3.0 * (T - 1.0)) = D / (3.0 * T - 2.0), where k = 3.0
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * getTierByVoltage(maxVoltage) - 2.0)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * casingTier
