@@ -118,7 +118,7 @@ class MultiblockElectromagnet(id: ResourceLocation)
             // -15% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
 
-            // +125% / voltage tier | t = d / (1 + 1.25 * (c - 1)) = d / (1.25 * c - 0.25), where b = 1.25
+            // +125% / voltage tier | D' = D / (1 + 1.25 * (T - 1)) = D / (1.25 * T - 0.25), where k = 1.25
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.25 * getTierByVoltage(maxVoltage) - 0.25)).toInt()))
         }
 

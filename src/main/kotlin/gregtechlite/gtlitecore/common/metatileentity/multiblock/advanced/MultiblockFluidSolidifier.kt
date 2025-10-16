@@ -111,7 +111,7 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
             // -10% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
 
-            // +150% / pump casing tier | t = d / (1 + 1.5 * (c - 1)) = d / (1.5 * c - 0.5), where b = 1.5
+            // +150% / pump casing tier | D' = D / (1 + 1.5 * (T - 1)) = D / (1.5 * T - 0.5), where k = 1.5
             if (casingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.5 * casingTier - 0.5)).toInt()))
         }

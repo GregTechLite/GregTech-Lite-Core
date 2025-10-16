@@ -116,7 +116,7 @@ class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id
             // -15% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
 
-            // +325% / motor casing tier | t = d / (1 + 3.25 * (c - 1)) = d / (3.25 * c - 2.25), where b = 3.25
+            // +325% / motor casing tier | D' = D / (1 + 3.25 * (T - 1.0)) = D / (3.25 * T - 2.25), where k = 3.25
             if (casingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.25 * casingTier - 2.25)).toInt()))
         }

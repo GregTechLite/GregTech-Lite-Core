@@ -134,7 +134,7 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
             // -20% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
 
-            // +250% / motor and pump casing tier | t = d / (1 + 2.5 * (c - 1)) = d / (2.5 * c - 1.5), where b = 2.5
+            // +250% / motor and pump casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
             if (motorCasingTier <= 0 || pumpCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * min(motorCasingTier, pumpCasingTier) - 1.5)).toInt()))
         }

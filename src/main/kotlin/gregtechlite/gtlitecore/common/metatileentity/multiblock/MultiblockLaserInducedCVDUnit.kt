@@ -141,7 +141,7 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
             // -35% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
 
-            // +400% / emitter and sensor casing tier | t = d / (1 + 4.0 * (c - 1)) = d / (4.0 * c - 3.0), where b = 4.0
+            // +400% / emitter and sensor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(emitterCasingTier, sensorCasingTier) - 3.0)).toInt()))
         }

@@ -124,7 +124,7 @@ class MultiblockCVDUnit(id: ResourceLocation) : RecipeMapMultiblockController(id
             // -25% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
 
-            // +275% / emitter casing tier | t = d / (1 + 2.75 * (c - 1)) = d / (2.75 * c - 1.75), where b = 2.75
+            // +275% / emitter casing tier | D' = D / (1 + 2.75 * (T - 1.0)) = D / (2.75 * T - 1.75), where k = 2.75
             if (emitterCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.75 * emitterCasingTier - 1.75)).toInt()))
         }

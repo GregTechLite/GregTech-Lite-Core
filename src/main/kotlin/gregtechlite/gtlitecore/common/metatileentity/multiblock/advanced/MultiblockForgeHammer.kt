@@ -110,7 +110,7 @@ class MultiblockForgeHammer(id: ResourceLocation)
             // -20% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
 
-            // +100% / casing tier | t = d / (1 + 1.0 * (c - 1)) = d / c, where b = 1.0
+            // +100% / casing tier | D' = D / (1 + 1.0 * (T - 1.0)) = D / T, where k = 1.0
             if (casingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / casingTier).toInt()))
         }

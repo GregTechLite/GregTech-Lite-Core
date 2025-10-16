@@ -173,7 +173,7 @@ class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockCon
             // -30% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
 
-            // +400% / sensor and processor casing tier | t = d / (1 + 4.0 * (c - 1)) = d / (4.0 * c - 3.0), where b = 4.0
+            // +400% / sensor and processor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (sensorCasingTier <= 0 || processorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(sensorCasingTier, processorCasingTier) - 3.0)).toInt()))
         }

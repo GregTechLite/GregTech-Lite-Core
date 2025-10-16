@@ -125,7 +125,7 @@ class MultiblockAssembler(id: ResourceLocation) : RecipeMapMultiblockController(
             // -25% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
 
-            // +450% / conveyor casing tier | t = d / (1 + 4.5 * (c - 1)) = d / (4.5 * c - 3.5), where b = 4.5
+            // +450% / conveyor casing tier | D' = D / (1 + 4.5 * (T - 1)) = D / (4.5 * T - 3.5), where k = 4.5
             if (conveyorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.5 * conveyorCasingTier - 3.5)).toInt()))
         }

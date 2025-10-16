@@ -123,7 +123,7 @@ class MultiblockBender(id: ResourceLocation)
             // -40% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
 
-            // +300% / motor casing tier | t = d / (1 + 3.0 * (c - 1)) = d / (3 * c - 2), where b = 3.0
+            // +300% / motor casing tier | D' = D / (1 + 3.0 * (T - 1)) = D / (3.0 * T - 2.0), where k = 3.0
             if (motorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * motorCasingTier - 2.0)).toInt()))
         }

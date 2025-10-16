@@ -159,7 +159,7 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation) : MultiMapMultiblock
             // -50% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
 
-            // +600% / emitter and sensor casing tier | t = d / (1 + 6.0 * (c - 1)) = d / (6.0 * c - 5.0), where b = 6.0
+            // +600% / emitter and sensor casing tier | D' = D / (1 + 6.0 * (T - 1.0)) = D / (6.0 * T - 5.0), where k = 6.0
             if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (6.0 * min(emitterCasingTier, sensorCasingTier) - 5.0)).toInt()))
         }

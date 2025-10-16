@@ -146,7 +146,7 @@ class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController
             // -25% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
 
-            // +200% / field gen and processor casing tier | t = d / (1 + 2.0 * (c - 1)) = d / (2.0 * c - 1.0), where b = 2.0
+            // +200% / field gen and processor casing tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
             if (fieldGenCasingTier <= 0 || processorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * min(fieldGenCasingTier, processorCasingTier) - 1.0)).toInt()))
         }

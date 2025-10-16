@@ -107,7 +107,7 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
             // -20% / wire coil tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - coilTier * 0.2)).toLong()))
 
-            // +200% / wire coil tier | t = d / (1 + 2.0 * (c - 1)) = d / (2.0 * c - 1.0), where b = 2.0
+            // +200% / wire coil tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * coilTier - 1.0)).toInt()))
         }
 

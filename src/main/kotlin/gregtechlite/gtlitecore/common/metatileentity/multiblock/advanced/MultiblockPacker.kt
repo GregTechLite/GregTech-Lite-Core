@@ -109,7 +109,7 @@ class MultiblockPacker(id: ResourceLocation) : RecipeMapMultiblockController(id,
             // -20% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
 
-            // +350% / voltage tier | t = d / (1 + 3.5 * (c - 1)) = d / (3.5 * c - 2.5), where b = 3.5
+            // +350% / voltage tier | D' = D / (1 + 3.5 * (T - 1.0)) = D / (3.5 * T - 2.5), where k = 3.5
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * getTierByVoltage(maxVoltage) - 2.5)).toInt()))
         }
 

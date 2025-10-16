@@ -186,7 +186,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
             // -30% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
 
-            // +350% / wire coil tier | t = d / (1 + 3.5 * (c - 1)) = d / (3.5 * c - 2.5), where b = 3.5
+            // +350% / wire coil tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
             if (coilTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * coilTier - 2.5)).toInt()))
         }

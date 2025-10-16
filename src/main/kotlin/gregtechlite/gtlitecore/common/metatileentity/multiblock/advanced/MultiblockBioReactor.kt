@@ -153,7 +153,7 @@ class MultiblockBioReactor(id: ResourceLocation) : MultiMapMultiblockController(
             // -35% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
 
-            // +375% / sensor casing tier | t = d / (1 + 3.75 * (c - 1)) = d / (3.75 * c - 2.75), where b = 3.75
+            // +375% / sensor casing tier | D' = D / (1 + 3.75 * (T - 1)) = D / (3.75 * T - 2.75), where k = 3.75
             if (sensorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.75 * sensorCasingTier - 2.75)).toInt()))
         }

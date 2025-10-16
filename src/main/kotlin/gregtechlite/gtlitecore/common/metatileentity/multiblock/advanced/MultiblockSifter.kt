@@ -107,7 +107,7 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
             // -10% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
 
-            // +400% / voltage tier | t = d / (1 + 4.0 * (c - 1)) = d / (4.0 * c - 3.0), where b = 4.0
+            // +400% / voltage tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * getTierByVoltage(maxVoltage) - 3.0)).toInt()))
         }
 

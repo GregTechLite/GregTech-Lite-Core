@@ -235,7 +235,7 @@ class MultiblockVolcanus(id: ResourceLocation) :
             // -30% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
 
-            // +250% / motor casing tier | t = d / (1 + 2.5 * (c - 1)) = d / (2.5 * c - 1.5), where b = 2.5
+            // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
             if (motorCasingTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.5 * motorCasingTier - 1.5)).toInt()))
         }

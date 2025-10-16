@@ -121,7 +121,7 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
             // -20% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
 
-            // +300% / voltage tier | t = d / (1 + 3.0 * (c - 1)) = d / (3.0 * c - 2.0), where b = 3.0
+            // +300% / voltage tier | D' = D / (1 + 3.0 * (T - 1.0)) = D / (3.0 * T - 2.0), where k = 3.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * getTierByVoltage(maxVoltage) - 2.0)).toInt()))
         }
 
