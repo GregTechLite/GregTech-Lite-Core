@@ -91,7 +91,7 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     }
 
     fun addEnergyInfo(percent: Int) = apply {
-        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.energy_mode") + TextFormatting.GOLD + "-$percent%%")
+        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.energy_mode") + TextFormatting.GOLD + "-$percent%")
     }
 
     fun addLaserHatchInfo() = apply {
