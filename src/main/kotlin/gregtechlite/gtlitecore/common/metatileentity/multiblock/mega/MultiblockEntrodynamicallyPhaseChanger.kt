@@ -20,6 +20,7 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCParams
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.util.GTUtility.getFloorTierByVoltage
@@ -33,6 +34,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
+import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -46,6 +50,8 @@ import net.minecraft.util.text.Style
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -145,23 +151,27 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.LATTICE_QCD_THERMAL_SHIELDING_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.6"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.7"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.8"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.9"))
-        tooltip.add(I18n.format("gtlitecore.machine.entrodynamically_phase_changer.tooltip.10"))
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.entrodynamically_phase_changer.tooltip.1",
+                               "gtlitecore.machine.entrodynamically_phase_changer.tooltip.2",
+                               "gtlitecore.machine.entrodynamically_phase_changer.tooltip.3",
+                               "gtlitecore.machine.entrodynamically_phase_changer.tooltip.4",
+                               "gtlitecore.machine.entrodynamically_phase_changer.tooltip.5")
+            addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
+            addParallelInfo(UpgradeMode.WIRE_COIL_TEMPERATURE, 256)
+            addMaxVoltageInfo()
+            addLaserHatchInfo()
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
@@ -207,7 +217,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
     private inner class EntrodynamicallyPhaseChangerRecipeLogic(mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = 0.125
+        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
 
         /**
          * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage

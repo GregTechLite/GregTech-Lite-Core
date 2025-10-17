@@ -94,6 +94,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.Multib
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNuclearReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockSteamEngine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEntrodynamicallyPhaseChanger
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpacePump
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockCoagulationTank
@@ -306,6 +307,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
+    lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
 
     fun preInit()
     {
@@ -807,6 +809,7 @@ object GTLiteMetaTileEntities
         // ...
 
         ENTRODYNAMICALLY_PHASE_CHANGER = register(10201, MultiblockEntrodynamicallyPhaseChanger(GTLiteMod.id("entrodynamically_phase_changer")))
+        PLASMA_ARC_TRANSMITTER = register(10202, MultiblockPlasmaArcTransmitter(GTLiteMod.id("plasma_arc_transmitter")))
     }
 
     // @formatter:on

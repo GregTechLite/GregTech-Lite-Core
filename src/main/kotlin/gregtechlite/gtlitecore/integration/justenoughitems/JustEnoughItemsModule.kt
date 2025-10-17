@@ -4,15 +4,9 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
 import com.morphismmc.morphismlib.util.SidedLogger
-import gregtech.api.GTValues
-import gregtech.api.GregTechAPI
-import gregtech.api.recipes.RecipeMap
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
-import gregtechlite.gtlitecore.api.recipe.map.PseudoPairRecipeMap
-import gregtechlite.gtlitecore.api.recipe.map.PseudoQuadrupleRecipeMap
-import gregtechlite.gtlitecore.api.recipe.map.PseudoTripleRecipeMap
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
@@ -95,46 +89,6 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK1.stackForm, spacePumpId)
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK2.stackForm, spacePumpId)
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK3.stackForm, spacePumpId)
-
-        // Add pseudo group mte to its contained recipe map catalyst list.
-        for (recipeMap in RecipeMap.getRecipeMaps())
-        {
-            for (mteRegistry in GregTechAPI.mteManager.registries)
-            {
-                for (metaTileEntityId in mteRegistry.keys)
-                {
-                    val metaTileEntity = requireNotNull(mteRegistry.getObject(metaTileEntityId))
-                    when (recipeMap)
-                    {
-                        is PseudoPairRecipeMap -> {
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.leftRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.rightRecipeMap.unlocalizedName}")
-                        }
-                        is PseudoTripleRecipeMap -> {
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.leftRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.middleRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.rightRecipeMap.unlocalizedName}")
-                        }
-                        is PseudoQuadrupleRecipeMap -> {
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.firstRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.secondRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.thirdRecipeMap.unlocalizedName}")
-                            registry.addRecipeCatalyst(metaTileEntity.stackForm,
-                                                       "${GTValues.MODID}.${recipeMap.fourthRecipeMap.unlocalizedName}")
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     override fun getLogger(): Logger = Companion.logger
