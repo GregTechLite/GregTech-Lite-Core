@@ -87,6 +87,24 @@ object TraceabilityPredicates
     fun accelerationTracks() = tierBlock(GTLiteAPI.ACCELERATION_TRACK_TIER)
 
     @JvmStatic
+    fun eohSpacetimeFieldGens() = tierBlock(GTLiteAPI.EOH_SPACETIME_FIELD_GEN_TIER)
+
+    @JvmStatic
+    fun standardSpacetimeFieldGens() = tierBlock(GTLiteAPI.STANDARD_SPACETIME_FIELD_GEN_TIER)
+
+    @JvmStatic
+    fun eohTimeAccelerationFieldGens() = tierBlock(GTLiteAPI.EOH_TIME_ACCELERATION_FIELD_GEN_TIER)
+
+    @JvmStatic
+    fun standardTimeAccelerationFieldGens() = tierBlock(GTLiteAPI.STANDARD_TIME_ACCELERATION_FIELD_GEN_TIER)
+
+    @JvmStatic
+    fun eohStabilizationFieldGens() = tierBlock(GTLiteAPI.EOH_STABILIZATION_FIELD_GEN_TIER)
+
+    @JvmStatic
+    fun standardStabilizationFieldGens() = tierBlock(GTLiteAPI.STANDARD_STABILIZATION_FIELD_GEN_TIER)
+
+    @JvmStatic
     fun cleanroomCasings() = tierBlock(GTLiteAPI.CLEANROOM_CASING_TIER)
 
     @JvmStatic

@@ -37,6 +37,10 @@ import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCryostat
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionDivertor
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionVacuum
+import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
+import gregtechlite.gtlitecore.common.block.variant.science.SpacetimeCompressionFieldGenerator
+import gregtechlite.gtlitecore.common.block.variant.science.StabilizationFieldGenerator
+import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFieldGenerator
 
 object GTLiteAPI
 {
@@ -128,6 +132,24 @@ object GTLiteAPI
     val ACCELERATION_TRACK_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("acceleration_track_tier")
 
     @JvmField
+    val EOH_SPACETIME_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("eoh_spacetime_field_gen_tier")
+
+    @JvmField
+    val STANDARD_SPACETIME_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("standard_spacetime_field_gen_tier")
+
+    @JvmField
+    val EOH_TIME_ACCELERATION_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("eoh_time_acceleration_field_gen_tier")
+
+    @JvmField
+    val STANDARD_TIME_ACCELERATION_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("standard_time_acceleration_field_gen_tier")
+
+    @JvmField
+    val EOH_STABILIZATION_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("eoh_stabilization_field_gen_tier")
+
+    @JvmField
+    val STANDARD_STABILIZATION_FIELD_GEN_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("standard_stabilization_field_gen_tier")
+
+    @JvmField
     val CLEANROOM_CASING_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("cleanroom_casing_tier")
 
     @JvmField
@@ -177,6 +199,18 @@ object GTLiteAPI
         SHIELDING_CORE_TIER.registerBlockVariants(ShieldingCore::class)
 
         ACCELERATION_TRACK_TIER.registerBlockVariants(AccelerationTrack::class)
+
+        EOH_SPACETIME_FIELD_GEN_TIER.registerBlockVariants(SpacetimeCompressionFieldGenerator::class)
+        STANDARD_SPACETIME_FIELD_GEN_TIER.register(ScienceCasing.DIMENSIONAL_BRIDGE_CASING.state, 0)
+        STANDARD_SPACETIME_FIELD_GEN_TIER.registerBlockVariants(SpacetimeCompressionFieldGenerator::class)
+
+        EOH_TIME_ACCELERATION_FIELD_GEN_TIER.registerBlockVariants(TimeAccelerationFieldGenerator::class)
+        STANDARD_TIME_ACCELERATION_FIELD_GEN_TIER.register(ScienceCasing.CONTAINMENT_FIELD_GENERATOR.state, 0)
+        STANDARD_TIME_ACCELERATION_FIELD_GEN_TIER.registerBlockVariants(TimeAccelerationFieldGenerator::class)
+
+        EOH_STABILIZATION_FIELD_GEN_TIER.registerBlockVariants(StabilizationFieldGenerator::class)
+        STANDARD_STABILIZATION_FIELD_GEN_TIER.register(ScienceCasing.SPACETIME_ALTERING_CASING.state, 0)
+        STANDARD_STABILIZATION_FIELD_GEN_TIER.registerBlockVariants(StabilizationFieldGenerator::class)
 
         CRUCIBLE_STATS.registerBlockVariants(Crucible::class)
 
