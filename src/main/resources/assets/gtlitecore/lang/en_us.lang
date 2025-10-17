@@ -2567,8 +2567,11 @@ gtlitecore.machine.entrodynamically_phase_changer.tooltip.4=每超过配方要�
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.5=输入电压超过§fLV§7级后，每级电压都会使§f基础温度§7提高§f1000K§7。
 
 gtlitecore.machine.plasma_arc_transmitter.name=Plasma Arc Transmitter
-gtlitecore.machine.plasma_arc_transmitter.1=以超高能电弧熔炼金属
-gtlitecore.machine.plasma_arc_transmitter.2=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
+gtlitecore.machine.plasma_arc_transmitter.tooltip.1=以超高能电弧熔炼金属
+gtlitecore.machine.plasma_arc_transmitter.tooltip.2=在§f输入总线§7内指定不同的§f编程电路§7以运行不同机器配方
+gtlitecore.machine.plasma_arc_transmitter.tooltip.3=- §f20号§7 -> §e电弧炉§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.4=- §f21号§7 -> §e合金炉§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

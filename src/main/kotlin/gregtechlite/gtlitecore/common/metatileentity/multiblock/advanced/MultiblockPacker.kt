@@ -90,7 +90,7 @@ class MultiblockPacker(id: ResourceLocation) : RecipeMapMultiblockController(id,
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 8)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -106,8 +106,8 @@ class MultiblockPacker(id: ResourceLocation) : RecipeMapMultiblockController(id,
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +350% / voltage tier | D' = D / (1 + 3.5 * (T - 1.0)) = D / (3.5 * T - 2.5), where k = 3.5
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * getTierByVoltage(maxVoltage) - 2.5)).toInt()))

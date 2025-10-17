@@ -28,8 +28,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockIndustrialCokeOven(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, PYROLYSE_RECIPES)
+class MultiblockIndustrialCokeOven(id: ResourceLocation) : RecipeMapMultiblockController(id, PYROLYSE_RECIPES)
 {
 
     private var coilTier = 0
@@ -88,7 +87,7 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 8)
             addDurationInfo(UpgradeMode.WIRE_COIL, 200)
-            addEnergyInfo(UpgradeMode.WIRE_COIL, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -104,8 +103,8 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation)
             super.modifyOverclockPost(ocResult, storage)
             if (coilTier <= 0) return
 
-            // -20% / wire coil tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - coilTier * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +200% / wire coil tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * coilTier - 1.0)).toInt()))

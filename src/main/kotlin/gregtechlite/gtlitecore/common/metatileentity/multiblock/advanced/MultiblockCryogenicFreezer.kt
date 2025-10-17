@@ -104,7 +104,7 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
             addDurationInfo(UpgradeMode.PUMP_CASING, 300)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -184,8 +184,8 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +300% / pump casing tier | D' = D / (1 + 3.0 * (T - 1)) = D / (3.0 * T - 2.0), where k = 3.0
             if (pumpCasingTier <= 0) return

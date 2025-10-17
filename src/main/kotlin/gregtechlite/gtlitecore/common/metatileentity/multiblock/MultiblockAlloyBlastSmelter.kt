@@ -1,13 +1,11 @@
-package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
+package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.V
+import gregtech.api.GTValues
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
@@ -15,22 +13,19 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCResult
-import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
-import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
-import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.GTUtility
 import gregtech.api.util.KeyUtil
-import gregtech.api.util.TextComponentUtil.translationWithColor
-import gregtech.api.util.TextFormattingUtil.formatNumbers
+import gregtech.api.util.TextComponentUtil
+import gregtech.api.util.TextFormattingUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
-import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
-import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
+import gregtechlite.gtlitecore.api.GTLiteAPI
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
 import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
@@ -47,7 +42,9 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockController(id, ALLOY_BLAST_RECIPES), IHeatingCoil
+class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockController(id,
+                                                                                        GTLiteRecipeMaps.ALLOY_BLAST_RECIPES),
+    IHeatingCoil
 {
 
     private var pumpCasingTier = 0
@@ -73,12 +70,12 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        pumpCasingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
-        coilTier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
+        pumpCasingTier = context.getAttributeOrDefault(GTLiteAPI.PUMP_CASING_TIER, 0)
+        coilTier = context.getAttributeOrDefault(GTLiteAPI.COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         tier = minOf(pumpCasingTier, coilTier)
 
-        temperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
-        temperature += 100 * max(0, getTierByVoltage(energyContainer.inputVoltage) - MV)
+        temperature = context.getAttributeOrDefault(GTLiteAPI.COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature
+        temperature += 100 * max(0, GTUtility.getTierByVoltage(energyContainer.inputVoltage) - GTValues.MV)
     }
 
     override fun invalidateStructure()
@@ -102,9 +99,9 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
             .or(autoAbilities(true, true, true, false, true, true, false)))
         .where('Q', states(pipeCasingState))
         .where('U', states(uniqueCasingState))
-        .where('O', abilities(MUFFLER_HATCH))
-        .where('H', coils())
-        .where('P', pumpCasings())
+        .where('O', abilities(MultiblockAbility.MUFFLER_HATCH))
+        .where('H', TraceabilityPredicates.coils())
+        .where('P', TraceabilityPredicates.pumpCasings())
         .where('#', air())
         .where(' ', any())
         .build()
@@ -128,7 +125,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.WIRE_COIL, 350)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
+            addEnergyInfo(30)
         }
     }
 
@@ -136,7 +133,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     {
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
-            .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+            .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { keyManager, syncer ->
                 if (isStructureFormed)
                 {
@@ -155,10 +152,11 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     override fun getDataInfo(): List<ITextComponent>
     {
         val textList = super.getDataInfo()
-        val temperatureInfo = translationWithColor(TextFormatting.RED,
-            formatNumbers(temperature.toLong()) + " K")
-        textList.add(translationWithColor(TextFormatting.GRAY,
-            "gregtech.multiblock.blast_furnace.max_temperature", temperatureInfo))
+        val temperatureInfo = TextComponentUtil.translationWithColor(TextFormatting.RED,
+                                                                     TextFormattingUtil.formatNumbers(temperature.toLong()) + " K")
+        textList.add(TextComponentUtil.translationWithColor(TextFormatting.GRAY,
+                                                            "gregtech.multiblock.blast_furnace.max_temperature",
+                                                            temperatureInfo))
         return textList
     }
 
@@ -177,14 +175,14 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     {
 
         override fun getOverclockingDurationFactor(): Double
-            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
+            = if (maxVoltage >= GTValues.V[GTValues.UV]) OverclockingLogic.PERFECT_DURATION_FACTOR else OverclockingLogic.STD_DURATION_FACTOR
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -30% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+            // -30%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.7).toLong()))
 
             // +350% / wire coil tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
             if (coilTier <= 0) return

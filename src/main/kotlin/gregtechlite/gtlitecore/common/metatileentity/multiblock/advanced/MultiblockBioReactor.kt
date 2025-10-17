@@ -113,7 +113,7 @@ class MultiblockBioReactor(id: ResourceLocation) : MultiMapMultiblockController(
             addOverclockInfo("gtlitecore.machine.large_bio_reactor.tooltip.2")
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
             addDurationInfo(UpgradeMode.SENSOR_CASING, 375)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 35)
+            addEnergyInfo(35)
         }
     }
 
@@ -150,8 +150,8 @@ class MultiblockBioReactor(id: ResourceLocation) : MultiMapMultiblockController(
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -35% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
+            // -35%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.65).toLong()))
 
             // +375% / sensor casing tier | D' = D / (1 + 3.75 * (T - 1)) = D / (3.75 * T - 2.75), where k = 3.75
             if (sensorCasingTier <= 0) return

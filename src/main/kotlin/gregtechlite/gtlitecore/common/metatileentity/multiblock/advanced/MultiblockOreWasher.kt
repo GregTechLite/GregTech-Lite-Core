@@ -102,7 +102,7 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -118,8 +118,8 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +300% / voltage tier | D' = D / (1 + 3.0 * (T - 1.0)) = D / (3.0 * T - 2.0), where k = 3.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * getTierByVoltage(maxVoltage) - 2.0)).toInt()))

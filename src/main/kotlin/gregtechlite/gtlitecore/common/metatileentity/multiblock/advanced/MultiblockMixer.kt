@@ -95,7 +95,7 @@ class MultiblockMixer(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.MOTOR_CASING, 8)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -108,8 +108,8 @@ class MultiblockMixer(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +400% / casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (casingTier <= 0) return

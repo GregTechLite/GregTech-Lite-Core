@@ -98,7 +98,7 @@ class MultiblockRockBreaker(id: ResourceLocation) : RecipeMapMultiblockControlle
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PISTON_CASING, 16)
             addDurationInfo(UpgradeMode.CONVEYOR_CASING, 250)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -114,8 +114,8 @@ class MultiblockRockBreaker(id: ResourceLocation) : RecipeMapMultiblockControlle
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +250% / conveyor casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
             if (conveyorCasingTier <= 0) return

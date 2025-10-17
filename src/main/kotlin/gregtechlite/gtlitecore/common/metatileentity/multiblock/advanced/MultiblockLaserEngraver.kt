@@ -104,7 +104,7 @@ class MultiblockLaserEngraver(id: ResourceLocation) : RecipeMapMultiblockControl
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.EMITTER_CASING, 16)
             addDurationInfo(UpgradeMode.CONVEYOR_CASING, 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
+            addEnergyInfo(30)
         }
     }
 
@@ -120,8 +120,8 @@ class MultiblockLaserEngraver(id: ResourceLocation) : RecipeMapMultiblockControl
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -50% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+            // -30%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.7).toLong()))
 
             // +400% / conveyor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (conveyorCasingTier <= 0) return

@@ -38,9 +38,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockCutter(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(CUTTER_RECIPES, LATHE_RECIPES,
-                                               POLISHER_RECIPES, SLICER_RECIPES))
+class MultiblockCutter(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(CUTTER_RECIPES, LATHE_RECIPES,
+                                                                                        POLISHER_RECIPES, SLICER_RECIPES))
 {
 
     private var motorCasingTier = 0
@@ -106,7 +105,7 @@ class MultiblockCutter(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.CONVEYOR_CASING, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 350)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
+            addEnergyInfo(30)
         }
     }
 
@@ -122,8 +121,8 @@ class MultiblockCutter(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -30% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+            // -30%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.7).toLong()))
 
             // +350% / motor casing tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
             if (motorCasingTier <= 0) return

@@ -33,8 +33,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockForgeHammer(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
+class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
 {
 
     private var casingTier = 0
@@ -91,7 +90,7 @@ class MultiblockForgeHammer(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PISTON_CASING, 4)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 100)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -107,8 +106,8 @@ class MultiblockForgeHammer(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +100% / casing tier | D' = D / (1 + 1.0 * (T - 1.0)) = D / T, where k = 1.0
             if (casingTier <= 0) return

@@ -171,7 +171,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 4)
             addDurationInfo(UpgradeMode.EMITTER_CASING, 325)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -222,8 +222,8 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +325% / emitter casing tier | D' = D / (1 + 3.25 * (T - 1.0)) = D / (3.25 * T - 2.25), where k = 3.25
             if (emitterCasingTier <= 0) return

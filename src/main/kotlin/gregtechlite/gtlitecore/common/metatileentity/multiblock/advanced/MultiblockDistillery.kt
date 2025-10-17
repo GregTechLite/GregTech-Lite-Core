@@ -176,7 +176,7 @@ class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(
             addOverclockInfo("gtlitecore.machine.large_distillery.tooltip.1")
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
+            addEnergyInfo(40)
         }
     }
 
@@ -229,8 +229,8 @@ class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -40% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+            // -40%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.6).toLong()))
 
             // +350% / voltage tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * getTierByVoltage(maxVoltage) - 2.5)).toInt()))

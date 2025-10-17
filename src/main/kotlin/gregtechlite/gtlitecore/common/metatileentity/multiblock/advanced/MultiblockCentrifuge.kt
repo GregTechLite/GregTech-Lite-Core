@@ -102,7 +102,7 @@ class MultiblockCentrifuge(id: ResourceLocation) : MultiMapMultiblockController(
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 8)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 325)
-            addEnergyInfo(UpgradeMode.MOTOR_CASING, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -119,8 +119,8 @@ class MultiblockCentrifuge(id: ResourceLocation) : MultiMapMultiblockController(
             super.modifyOverclockPost(ocResult, storage)
             if (casingTier <= 0) return
 
-            // -25% / motor casing tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - casingTier * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +325% / motor casing tier | D' = D / (1 + 3.25 * (T - 1)) = D / (3.25 * T - 2.25), where k = 3.25
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.25 * casingTier - 2.25)).toInt()))

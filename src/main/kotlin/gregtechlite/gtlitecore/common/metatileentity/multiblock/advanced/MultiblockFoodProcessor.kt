@@ -35,8 +35,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockFoodProcessor(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(FOOD_PROCESSOR_RECIPES, MULTICOOKER_RECIPES))
+class MultiblockFoodProcessor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FOOD_PROCESSOR_RECIPES, MULTICOOKER_RECIPES))
 {
 
     private var robotArmCasingTier = 0
@@ -111,7 +110,7 @@ class MultiblockFoodProcessor(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 8)
             addDurationInfo(UpgradeMode.PUMP_CASING, 250)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
+            addEnergyInfo(30)
         }
     }
 
@@ -126,8 +125,8 @@ class MultiblockFoodProcessor(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -30% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+            // -30%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.7).toLong()))
 
             // +250% / pump casing tier | D' = D / (1 + 2.5 * (T - 1)) = D / (2.5 * T - 1.5), where k = 2.5
             if (pumpCasingTier <= 0) return

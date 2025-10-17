@@ -33,8 +33,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockMacerator(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, MACERATOR_RECIPES)
+class MultiblockMacerator(id: ResourceLocation) : RecipeMapMultiblockController(id, MACERATOR_RECIPES)
 {
 
     private var pistonCasingTier = 0
@@ -99,7 +98,7 @@ class MultiblockMacerator(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PISTON_CASING, 8)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 375)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 30)
+            addEnergyInfo(30)
         }
     }
 
@@ -115,8 +114,8 @@ class MultiblockMacerator(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -30% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.3)).toLong()))
+            // -30%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.7).toLong()))
 
             // +375% / motor casing tier | D' = D / (1 + 3.75 * (T - 1)) = D / (3.75 * T - 2.75), where k = 3.75
             if (motorCasingTier <= 0) return

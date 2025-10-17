@@ -33,8 +33,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockExtruder(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, EXTRUDER_RECIPES)
+class MultiblockExtruder(id: ResourceLocation) : RecipeMapMultiblockController(id, EXTRUDER_RECIPES)
 {
 
     private var casingTier = 0
@@ -96,7 +95,7 @@ class MultiblockExtruder(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PISTON_CASING, 16)
             addDurationInfo(UpgradeMode.PISTON_CASING, 375)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -112,8 +111,8 @@ class MultiblockExtruder(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +375% / piston casing tier | D' = D / (1 + 3.75 * (T - 1)) = D / (3.75 * T - 2.75), where k = 3.75
             if (casingTier <= 0) return

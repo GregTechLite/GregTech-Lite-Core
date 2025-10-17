@@ -35,8 +35,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockGasCollector(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, LARGE_GAS_COLLECTOR_RECIPES)
+class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockController(id, LARGE_GAS_COLLECTOR_RECIPES)
 {
 
     private var casingTier = 0
@@ -104,7 +103,7 @@ class MultiblockGasCollector(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 10)
+            addEnergyInfo(10)
         }
     }
 
@@ -120,8 +119,8 @@ class MultiblockGasCollector(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -10% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
+            // -10%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.9).toLong()))
 
             // +300% / voltage tier | D' = D / (1 + 3.0 * (T - 1.0)) = D / (3.0 * T - 2.0), where k = 3.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / 3.0 * getTierByVoltage(maxVoltage) - 2.0).toInt()))

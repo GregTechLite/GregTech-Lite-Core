@@ -128,10 +128,13 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
         addTooltip(tooltip)
         {
             addMachineTypeLine("${RecipeMaps.ARC_FURNACE_RECIPES.localizedName}, ${RecipeMaps.ALLOY_SMELTER_RECIPES.localizedName}")
-            addDescriptionLine("gtlitecore.machine.plasma_arc_transmitter.1")
+            addDescriptionLine("gtlitecore.machine.plasma_arc_transmitter.tooltip.1",
+                               "gtlitecore.machine.plasma_arc_transmitter.tooltip.2",
+                               "gtlitecore.machine.plasma_arc_transmitter.tooltip.3",
+                               "gtlitecore.machine.plasma_arc_transmitter.tooltip.4")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
             addDescriptionLine(I18n.format("gtlitecore.tooltip.machine.parallel_mode")
-                                       + I18n.format("gtlitecore.machine.plasma_arc_transmitter.2"))
+                                       + I18n.format("gtlitecore.machine.plasma_arc_transmitter.tooltip.5"))
             addDurationInfo(UpgradeMode.TIME_ACCELERATION_FIELD_GEN, 3600)
             addEnergyInfo(UpgradeMode.STABILIZATION_FIELD_GEN, 10)
             addMaxVoltageInfo()

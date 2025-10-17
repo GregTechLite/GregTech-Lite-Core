@@ -6,6 +6,7 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
 import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import net.minecraft.client.resources.I18n
+import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
@@ -87,6 +88,10 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     fun addEnergyInfo(mode: UpgradeMode, percent: Int) = apply {
         val energyMode = "gtlitecore.tooltip.machine.energy_mode"
         _tooltips.add(I18n.format(energyMode) + I18n.format("$energyMode.${mode.name.lowercase()}", percent))
+    }
+
+    fun addEnergyInfo(percent: Int) = apply {
+        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.energy_mode") + TextFormatting.GOLD + "-$percent%")
     }
 
     fun addLaserHatchInfo() = apply {

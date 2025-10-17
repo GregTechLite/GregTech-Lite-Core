@@ -11,7 +11,6 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.blocks.BlockWireCoil
@@ -104,7 +103,7 @@ class MultiblockChemicalPlant(id: ResourceLocation) : MultiMapMultiblockControll
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.WIRE_COIL, 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
+            addEnergyInfo(50)
         }
     }
 
@@ -117,8 +116,8 @@ class MultiblockChemicalPlant(id: ResourceLocation) : MultiMapMultiblockControll
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -50% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+            // -50%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.5).toLong()))
 
             // +400% / wire coil tier | D' = D / (1 + 4.0 * (T - 1)) = D / (4.0 * T - 3.0), where k = 4.0
             if (coilTier <= 0) return

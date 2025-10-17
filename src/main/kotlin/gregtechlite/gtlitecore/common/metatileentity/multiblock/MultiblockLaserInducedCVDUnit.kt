@@ -122,7 +122,7 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 8)
             addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 35)
+            addEnergyInfo(35)
         }
     }
 
@@ -138,8 +138,8 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -35% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.35)).toLong()))
+            // -35%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.65).toLong()))
 
             // +400% / emitter and sensor casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return

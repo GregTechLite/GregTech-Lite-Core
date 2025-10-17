@@ -2568,7 +2568,10 @@ gtlitecore.machine.entrodynamically_phase_changer.tooltip.5=输入电压超过§
 
 gtlitecore.machine.plasma_arc_transmitter.name=等离子电弧发射器
 gtlitecore.machine.plasma_arc_transmitter.tooltip.1=以超高能电弧熔炼金属
-gtlitecore.machine.plasma_arc_transmitter.tooltip.2=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
+gtlitecore.machine.plasma_arc_transmitter.tooltip.2=在§f输入总线§7内指定不同的§f编程电路§7以运行不同机器配方
+gtlitecore.machine.plasma_arc_transmitter.tooltip.3=- §f20号§7 -> §e电弧炉§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.4=- §f21号§7 -> §e合金炉§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

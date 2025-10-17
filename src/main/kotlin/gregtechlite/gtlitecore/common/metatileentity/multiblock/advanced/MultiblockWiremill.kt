@@ -97,7 +97,7 @@ class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 325)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 15)
+            addEnergyInfo(15)
         }
     }
 
@@ -113,8 +113,8 @@ class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -15% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
+            // -15%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.85).toLong()))
 
             // +325% / motor casing tier | D' = D / (1 + 3.25 * (T - 1.0)) = D / (3.25 * T - 2.25), where k = 3.25
             if (casingTier <= 0) return

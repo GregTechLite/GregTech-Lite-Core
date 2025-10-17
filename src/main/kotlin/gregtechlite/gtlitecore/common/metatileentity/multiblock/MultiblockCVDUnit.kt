@@ -105,7 +105,7 @@ class MultiblockCVDUnit(id: ResourceLocation) : RecipeMapMultiblockController(id
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 4)
             addDurationInfo(UpgradeMode.EMITTER_CASING, 275)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -121,8 +121,8 @@ class MultiblockCVDUnit(id: ResourceLocation) : RecipeMapMultiblockController(id
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +275% / emitter casing tier | D' = D / (1 + 2.75 * (T - 1.0)) = D / (2.75 * T - 1.75), where k = 2.75
             if (emitterCasingTier <= 0) return
