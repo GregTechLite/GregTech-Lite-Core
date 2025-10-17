@@ -149,7 +149,7 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.PISTON_CASING, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
+            addEnergyInfo(20)
         }
     }
 
@@ -177,8 +177,8 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -40% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
             if (motorCasingTier <= 0) return

@@ -32,8 +32,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockMiningDroneAirport(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, MINING_DRONE_RECIPES)
+class MultiblockMiningDroneAirport(id: ResourceLocation) : RecipeMapMultiblockController(id, MINING_DRONE_RECIPES)
 {
 
     companion object

@@ -143,7 +143,7 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation) : MultiMapMultiblock
             addOverclockInfo(OverclockMode.PERFECT)
             addMultiParallelInfo(UpgradeMode.PUMP_CASING, UpgradeMode.FIELD_GEN_CASING, number = 32)
             addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 600)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
+            addEnergyInfo(50)
         }
     }
 
@@ -156,8 +156,8 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation) : MultiMapMultiblock
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -50% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+            // -50%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.5).toLong()))
 
             // +600% / emitter and sensor casing tier | D' = D / (1 + 6.0 * (T - 1.0)) = D / (6.0 * T - 5.0), where k = 6.0
             if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return

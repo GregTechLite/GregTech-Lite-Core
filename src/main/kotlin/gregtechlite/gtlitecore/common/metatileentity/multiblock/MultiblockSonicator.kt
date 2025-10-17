@@ -115,7 +115,7 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 4)
             addMultiDurationInfo(UpgradeMode.MOTOR_CASING, UpgradeMode.PUMP_CASING, percent = 250)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 20)
+            addEnergyInfo(20)
         }
     }
 
@@ -131,8 +131,8 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -20% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.2)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +250% / motor and pump casing tier | D' = D / (1 + 2.5 * (T - 1.0)) = D / (2.5 * T - 1.5), where k = 2.5
             if (motorCasingTier <= 0 || pumpCasingTier <= 0) return
