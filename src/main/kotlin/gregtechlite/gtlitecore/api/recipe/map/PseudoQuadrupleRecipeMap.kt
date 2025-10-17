@@ -15,10 +15,10 @@ class PseudoQuadrupleRecipeMap<R : RecipeBuilder<R>>(
     maxOutputs: Int,
     maxFluidInputs: Int,
     maxFluidOutputs: Int,
-    private val firstRecipe: RecipeMap<R>,
-    private val secondRecipeMap: RecipeMap<R>,
-    private val thirdRecipeMap: RecipeMap<R>,
-    private val fourthRecipeMap: RecipeMap<R>
+    internal val firstRecipeMap: RecipeMap<R>,
+    internal val secondRecipeMap: RecipeMap<R>,
+    internal val thirdRecipeMap: RecipeMap<R>,
+    internal val fourthRecipeMap: RecipeMap<R>
 ) : PseudoGroupRecipeMapBase<R>(unlocalizedName, defaultRecipeBuilder, recipeMapUI, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs)
 {
 
@@ -31,7 +31,7 @@ class PseudoQuadrupleRecipeMap<R : RecipeBuilder<R>>(
         val inputFluids = fluidInputs.filterNotNull().filter { it.amount != 0 }.toList()
         return when (getCircuitValue(inputs, 3))
         {
-            MIN_CIRCUIT_VALUE -> getRecipe(voltage, exactVoltage, inputs, fluidInputs, inputItems, inputFluids, firstRecipe)
+            MIN_CIRCUIT_VALUE -> getRecipe(voltage, exactVoltage, inputs, fluidInputs, inputItems, inputFluids, firstRecipeMap)
             MIN_CIRCUIT_VALUE + 1 -> getRecipe(voltage, exactVoltage, inputs, fluidInputs, inputItems, inputFluids, secondRecipeMap)
             MIN_CIRCUIT_VALUE + 2 -> getRecipe(voltage, exactVoltage, inputs, fluidInputs, inputItems, inputFluids, thirdRecipeMap)
             MIN_CIRCUIT_VALUE + 3 -> getRecipe(voltage, exactVoltage, inputs, fluidInputs, inputItems, inputFluids, fourthRecipeMap)

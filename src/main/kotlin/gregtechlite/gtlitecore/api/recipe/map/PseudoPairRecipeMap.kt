@@ -15,8 +15,8 @@ class PseudoPairRecipeMap<R : RecipeBuilder<R>>(
     maxOutputs: Int,
     maxFluidInputs: Int,
     maxFluidOutputs: Int,
-    private val leftRecipeMap: RecipeMap<R>,
-    private val rightRecipeMap: RecipeMap<R>
+    internal val leftRecipeMap: RecipeMap<R>,
+    internal val rightRecipeMap: RecipeMap<R>
 ) : PseudoGroupRecipeMapBase<R>(unlocalizedName, defaultRecipeBuilder, recipeMapUI, maxInputs, maxOutputs, maxFluidInputs, maxFluidOutputs)
 {
 
