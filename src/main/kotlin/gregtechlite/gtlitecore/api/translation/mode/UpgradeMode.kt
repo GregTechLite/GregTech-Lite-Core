@@ -6,6 +6,7 @@ enum class UpgradeMode
     VOLTAGE_TIER,
 
     WIRE_COIL,
+    WIRE_COIL_TEMPERATURE,
 
     MOTOR_CASING,
     PISTON_CASING,
@@ -24,5 +25,8 @@ enum class UpgradeMode
     FUSION_CRYOSTAT,
     FUSION_DIVERTOR,
     FUSION_VACUUM,
+
+    TIME_ACCELERATION_FIELD_GEN,
+    STABILIZATION_FIELD_GEN
 
 }

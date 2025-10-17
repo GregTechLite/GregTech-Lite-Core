@@ -54,9 +54,11 @@ import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Neptunium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
+import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Nobelium
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
@@ -259,6 +261,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitinol60
@@ -279,6 +282,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tairitsium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Talonite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumBariumCalciumCuprate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
@@ -295,6 +299,7 @@ import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.common.block.variant.WireCoil
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
@@ -304,6 +309,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ACID_GENERATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ADVANCED_FUSION_REACTOR
@@ -379,6 +385,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANO
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NUCLEAR_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PCB_FACTORY
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PLASMA_ENHANCED_CVD_UNIT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.REPLICATOR
@@ -1529,6 +1536,36 @@ internal object MachineRecipeLoader
             'G', UnificationEntry(gear, TantalumCarbide),
             'H', HULL[EV].stackForm,
             'P', ELECTRIC_PUMP_EV)
+
+        // Plasma Arc Transmitter
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(ARC_FURNACE[UHV], 16)
+            .input(ALLOY_SMELTER[UHV], 16)
+            .inputs(WireCoil.ADAMANTIUM.getStack(32))
+            .input(LARGE_ARC_FURNACE, 64)
+            .input(plateDense, MetastableOganesson, 4)
+            .input(plateDense, MetastableFlerovium, 4)
+            .input(plateDense, Taranium, 4)
+            .input(ELECTRIC_PUMP_UHV, 8)
+            .input(CONVEYOR_MODULE_UHV, 8)
+            .input(EMITTER_UHV, 8)
+            .input(VOLTAGE_COIL_UHV, 32)
+            .input(circuit, Tier.UEV, 16)
+            .input(foil, ThalliumBariumCalciumCuprate, 48)
+            .input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 16)
+            .fluidInputs(SolderingAlloy.getFluid(L * 40))
+            .fluidInputs(Bedrockium.getFluid(L * 16))
+            .fluidInputs(Oxygen.getPlasma(64000))
+            .fluidInputs(Nitrogen.getPlasma(64000))
+            .output(PLASMA_ARC_TRANSMITTER)
+            .EUt(VA[UHV])
+            .duration(5 * MINUTE)
+            .stationResearch {
+                it.researchStack(ARC_FURNACE[UHV])
+                    .EUt(VA[UHV])
+                    .CWUt(32)
+            }
+            .buildAndRegister()
 
     }
 

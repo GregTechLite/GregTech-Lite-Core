@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.registry.MTERegistry;
 import gregtech.api.mui.GregTechGuiTransferHandler;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.category.GTRecipeCategory;
 import gregtech.api.recipes.category.ICategoryOverride;
 import gregtech.api.recipes.ingredients.GTRecipeOreInput;
@@ -40,7 +41,9 @@ import gregtech.integration.jei.recipe.GTRecipeWrapper;
 import gregtech.integration.jei.recipe.IntCircuitCategory;
 import gregtech.integration.jei.recipe.IntCircuitRecipeWrapper;
 import gregtech.integration.jei.utils.ModularUIGuiHandler;
-import mezz.jei.api.IGuiHelper;
+import gregtechlite.gtlitecore.api.GTLiteValues;
+import gregtechlite.gtlitecore.api.integration.InjectableModRegistry;
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ingredients.IIngredientRegistry;
@@ -50,6 +53,7 @@ import mezz.jei.config.Constants;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -79,15 +83,11 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
  */
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = JustEnoughItemsModule.class, remap = false)
-public abstract class MixinJustEnoughItemsModule
+public abstract class MixinJustEnoughItemsModule implements InjectableModRegistry
 {
 
     @Shadow
     public static IIngredientRegistry ingredientRegistry;
-
-    @Shadow public static IGuiHelper guiHelper;
-
-    @Shadow protected abstract void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity);
 
     /**
      * @author Magic_Sweepy
@@ -297,6 +297,25 @@ public abstract class MixinJustEnoughItemsModule
         // Refresh Ore Ingredients Cache
         GTRecipeOreInput.refreshStackCache();
 
+        // Post recipe catalyst to GTCEu vanilla bus to contained sort.
+        registerPostContext(registry);
+    }
+
+    /**
+     * If we add recipe map catalyst at the owner mod jei registry bus, then the sort will be confused yet, so we
+     * register it at there to contained sort.
+     */
+    @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Override
+    public void registerPostContext(@NotNull IModRegistry registry)
+    {
+        if (Loader.isModLoaded(GTLiteValues.MOD_ID))
+        {
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER.getStackForm(),
+                    GTValues.MODID + "." + RecipeMaps.ARC_FURNACE_RECIPES.unlocalizedName);
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER.getStackForm(),
+                    GTValues.MODID + "." + RecipeMaps.ALLOY_SMELTER_RECIPES.unlocalizedName);
+        }
     }
 
     /**
@@ -330,5 +349,8 @@ public abstract class MixinJustEnoughItemsModule
         });
         return sortedMTEs;
     }
+
+    @Shadow
+    protected abstract void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity);
 
 }

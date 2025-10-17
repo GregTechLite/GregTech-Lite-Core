@@ -27,6 +27,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.NoCoilTemperatureRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
+import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -788,7 +789,7 @@ object GTLiteRecipeMaps
         .build()
 
     /**
-     * @zenProperty entrodynamically_phase_changer
+     * @zenProp entrodynamically_phase_changer
      */
     @ZenProperty
     @JvmField
@@ -801,6 +802,19 @@ object GTLiteRecipeMaps
         .sound(GTSoundEvents.FURNACE)
         .build()
         .setSmallRecipeMap(RecipeMaps.BLAST_RECIPES)
+
+    /**
+     * @zenProp plasma_arc_transmitter
+     */
+    @ZenProperty
+    @JvmField
+    val PLASMA_ARC_TRANSMITTER_RECIPES = PseudoGroupRecipeMapBuilder("plasma_arc_transmitter", SimpleRecipeBuilder())
+        .group(RecipeMaps.ARC_FURNACE_RECIPES, RecipeMaps.ALLOY_SMELTER_RECIPES)
+        .itemInputs(4)
+        .itemOutputs(9)
+        .fluidInputs(2)
+        .fluidOutputs(1)
+        .build()
 
     // endregion
 

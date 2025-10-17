@@ -39,6 +39,14 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     }
 
     /**
+     * Add machine type for the multiblock with custom machine type string.
+     */
+    fun addMachineTypeLine(machineType: String) = apply {
+        if (machineType.isNotEmpty())
+            _tooltips.add(I18n.format("gtlitecore.tooltip.machine.machine_type", machineType))
+    }
+
+    /**
      * Add additional descriptions for the multiblock, such as cleanroom environment predicate of Large Bio Reactor.
      */
     fun addDescriptionLine(vararg descriptions: String) = apply {
@@ -81,8 +89,12 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
         _tooltips.add(I18n.format(energyMode) + I18n.format("$energyMode.${mode.name.lowercase()}", percent))
     }
 
-    fun addLaserHatch(): MultiblockTooltipBuilder = apply {
+    fun addLaserHatchInfo() = apply {
         _tooltips.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
+    }
+
+    fun addMaxVoltageInfo() = apply {
+        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.special_max_voltage"))
     }
 
     // endregion

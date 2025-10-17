@@ -23,6 +23,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration
 import net.minecraftforge.fluids.FluidStack
 import org.apache.logging.log4j.Logger
 
+@Suppress("unused")
 @JEIPlugin
 @Module(moduleId = MODULE_JEI,
         containerId = MOD_ID,
@@ -80,11 +81,7 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         val spacePumpId = SpacePumpRecipeCategory.UID
         val spacePumpInfo = SpacePumpRecipeFrontend.RECIPES.entries
             .sortedWith(compareBy<Map.Entry<Pair<Int, Int>, FluidStack>> { it.key.first }.thenBy { it.key.second })
-            .map { info ->
-                val infoKey = info.key
-                val infoValue = info.value
-                SpacePumpRecipeWrapper(infoKey.first, infoKey.second, infoValue)
-            }
+            .map { SpacePumpRecipeWrapper(it.key.first, it.key.second, it.value) }
             .distinct()
             .toList()
 

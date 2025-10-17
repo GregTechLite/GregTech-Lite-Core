@@ -158,7 +158,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
             addMultiParallelInfo(UpgradeMode.FUSION_COIL, UpgradeMode.FUSION_DIVERTOR, number = 64)
             addMultiDurationInfo(UpgradeMode.FUSION_CASING, UpgradeMode.FUSION_VACUUM, UpgradeMode.FUSION_CRYOSTAT, percent = 400)
             addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
-            addLaserHatch()
+            addLaserHatchInfo()
         }
     }
 
@@ -191,7 +191,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
             // -50% / voltage tier
             ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
 
-            // +400% / fusion casing, vacuum and cryostat tier | D' = D / (1 + 4.0 * (T - 1)) = D / (4.0 * T - 3.0), where k = 4.0
+            // +400% / fusion casing, vacuum and cryostat tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (fusionCasingTier <= 0 || vacuumTier <= 0 || cryostatTier <= 0) return
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * min(min(fusionCasingTier, vacuumTier), cryostatTier) - 3.0)).toInt()))
         }

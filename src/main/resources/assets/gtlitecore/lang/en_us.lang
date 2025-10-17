@@ -1601,6 +1601,7 @@ recipemap.quantum_force_transformer.name=Quantum Force Transformer
 recipemap.antimatter_forge.name=Antimatter Stabilization Sequencer
 recipemap.space_assembler.name=Space Assembler Module
 recipemap.entrodynamically_phase_changer.name=Topological Order Phase Change
+recipemap.plasma_arc_transmitter.name=Plasma Arc Transmitter
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2560,15 +2561,14 @@ gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§a最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
+gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.3=每工作/完成配方1次，温度都会（在线圈方块温度的基础上）升高§f100K§7。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.4=当配方进行超频时，超频的效果按照双倍§b无损超频§7计算。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.5=每超过配方要求温度§f450K§7，耗能均将乘以§f50%%§7（不计超频）。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.6=输入电压超过§fLV§7级后，每级电压都会使§a基础温度§7提高§f1000K§7。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.7=根据结构中的§6线圈方块§7的等级决定最大并行数，每提高1级则增加§e(256 * 当前温度)§7次并行。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.8=单次工作的并行数不会超过§f2,147,483,647§7次。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.9=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.10=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
+gtlitecore.machine.entrodynamically_phase_changer.tooltip.4=每超过配方要求温度§f450K§7，耗能均将乘以§f50%%§7（不计超频）。
+gtlitecore.machine.entrodynamically_phase_changer.tooltip.5=输入电压超过§fLV§7级后，每级电压都会使§f基础温度§7提高§f1000K§7。
+
+gtlitecore.machine.plasma_arc_transmitter.name=Plasma Arc Transmitter
+gtlitecore.machine.plasma_arc_transmitter.1=以超高能电弧熔炼金属
+gtlitecore.machine.plasma_arc_transmitter.2=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
@@ -3794,6 +3794,7 @@ gtlitecore.tooltip.machine.overclock_mode.perfect_double=§b双倍无损超频
 gtlitecore.tooltip.machine.parallel_mode=并行数：
 gtlitecore.tooltip.machine.parallel_mode.voltage_tier=§a%s×电压等级
 gtlitecore.tooltip.machine.parallel_mode.wire_coil=§a%s×线圈等级
+gtlitecore.tooltip.machine.parallel_mode.wire_coil_temperature=§a%s×线圈等级×当前温度
 gtlitecore.tooltip.machine.parallel_mode.motor_casing=§a%s×马达外壳等级
 gtlitecore.tooltip.machine.parallel_mode.piston_casing=§a%s×活塞外壳等级
 gtlitecore.tooltip.machine.parallel_mode.pump_casing=§a%s×泵外壳等级
@@ -3827,6 +3828,7 @@ gtlitecore.tooltip.machine.duration_mode.emitter_casing_sensor_casing=§d+%s%%�
 gtlitecore.tooltip.machine.duration_mode.sensor_casing_processor_casing=§d+%s%%传感器与处理器外壳等级
 gtlitecore.tooltip.machine.duration_mode.field_gen_casing_processor_casing=§d+%s%%力场与处理器外壳等级
 gtlitecore.tooltip.machine.duration_mode.fusion_casing_fusion_vacuum_fusion_cryostat=§d+%s%%聚变外壳，真空室与恒温仓等级
+gtlitecore.tooltip.machine.duration_mode.time_acceleration_field_gen=§d+%s%%时间膨胀场等级
 gtlitecore.tooltip.machine.energy_mode=耗能减免：
 gtlitecore.tooltip.machine.energy_mode.voltage_tier=§6-%s%%/电压等级
 gtlitecore.tooltip.machine.energy_mode.wire_coil=§6-%s%%/线圈等级
@@ -3840,7 +3842,9 @@ gtlitecore.tooltip.machine.energy_mode.sensor_casing=§6-%s%%/传感器外壳等
 gtlitecore.tooltip.machine.energy_mode.field_gen_casing=§6-%s%%/力场外壳等级
 gtlitecore.tooltip.machine.energy_mode.processor_casing=§6-%s%%/处理器外壳等级
 gtlitecore.tooltip.machine.energy_mode.borosilicate_glass§6-%s%%/硼硅玻璃等级
+gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/稳定力场等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
+gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=Configuration Screen
