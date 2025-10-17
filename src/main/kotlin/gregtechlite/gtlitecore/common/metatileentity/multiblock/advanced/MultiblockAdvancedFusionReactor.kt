@@ -16,7 +16,6 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtech.core.sound.GTSoundEvents
@@ -157,7 +156,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
             addMultiParallelInfo(UpgradeMode.FUSION_COIL, UpgradeMode.FUSION_DIVERTOR, number = 64)
             addMultiDurationInfo(UpgradeMode.FUSION_CASING, UpgradeMode.FUSION_VACUUM, UpgradeMode.FUSION_CRYOSTAT, percent = 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 50)
+            addEnergyInfo(50)
             addLaserHatchInfo()
         }
     }
@@ -188,8 +187,8 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -50% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.5)).toLong()))
+            // -50%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.5).toLong()))
 
             // +400% / fusion casing, vacuum and cryostat tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             if (fusionCasingTier <= 0 || vacuumTier <= 0 || cryostatTier <= 0) return

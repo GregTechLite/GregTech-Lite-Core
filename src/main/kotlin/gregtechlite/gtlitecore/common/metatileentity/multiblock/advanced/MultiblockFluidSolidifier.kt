@@ -32,9 +32,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockFluidSolidifier(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(FLUID_SOLIDFICATION_RECIPES, TOOL_CASTER_RECIPES,
-                                               LAMINATOR_RECIPES, VULCANIZATION_RECIPES))
+class MultiblockFluidSolidifier(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FLUID_SOLIDFICATION_RECIPES, TOOL_CASTER_RECIPES,
+                                                                                                 LAMINATOR_RECIPES, VULCANIZATION_RECIPES))
 {
 
     private var casingTier = 0
@@ -95,7 +94,7 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.VOLTAGE_TIER, 4)
             addDurationInfo(UpgradeMode.PUMP_CASING, 150)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 10)
+            addEnergyInfo(10)
         }
     }
 
@@ -109,7 +108,7 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
             super.modifyOverclockPost(ocResult, storage)
 
             // -10% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
+            ocResult.setEut(max(1, (ocResult.eut() * 0.9).toLong()))
 
             // +150% / pump casing tier | D' = D / (1 + 1.5 * (T - 1)) = D / (1.5 * T - 0.5), where k = 1.5
             if (casingTier <= 0) return

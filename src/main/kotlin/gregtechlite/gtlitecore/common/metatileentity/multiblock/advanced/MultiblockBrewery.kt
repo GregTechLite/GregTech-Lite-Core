@@ -17,7 +17,6 @@ import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
@@ -112,7 +111,7 @@ class MultiblockBrewery(id: ResourceLocation) : MultiMapMultiblockController(id,
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
+            addEnergyInfo(40)
         }
     }
 
@@ -127,8 +126,8 @@ class MultiblockBrewery(id: ResourceLocation) : MultiMapMultiblockController(id,
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -40% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+            // -40%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.6).toLong()))
 
             // +250% / motor casing tier | D' = D / (1 + 2.5 * (T - 1)) = D / (2.5 * T - 1.5), where k = 2.5
             if (motorCasingTier <= 0) return

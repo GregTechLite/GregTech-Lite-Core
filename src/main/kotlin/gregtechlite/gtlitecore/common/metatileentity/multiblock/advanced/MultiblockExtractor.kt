@@ -107,7 +107,7 @@ class MultiblockExtractor(id: ResourceLocation) : MultiMapMultiblockController(i
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 300)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -123,8 +123,8 @@ class MultiblockExtractor(id: ResourceLocation) : MultiMapMultiblockController(i
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +300% / motor casing tier | D' = D / (1 + 3.0 * (T - 1)) = D / (3 * T - 2), where k = 3.0
             if (motorCasingTier <= 0) return

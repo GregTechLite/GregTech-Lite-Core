@@ -91,7 +91,7 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
             addOverclockInfo(OverclockMode.PERFECT)
             addParallelInfo(UpgradeMode.CONVEYOR_CASING, 8)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 10)
+            addEnergyInfo(10)
         }
     }
 
@@ -104,8 +104,8 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -10% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.1)).toLong()))
+            // -10%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.9).toLong()))
 
             // +400% / voltage tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * getTierByVoltage(maxVoltage) - 3.0)).toInt()))

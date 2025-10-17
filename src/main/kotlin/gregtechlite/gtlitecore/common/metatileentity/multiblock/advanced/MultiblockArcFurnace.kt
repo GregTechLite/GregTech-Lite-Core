@@ -109,7 +109,7 @@ class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 8)
             addDurationInfo(UpgradeMode.WIRE_COIL, 175)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -125,8 +125,8 @@ class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +175% / wire coil tier | D' = D / (1 + 1.75 * (T - 1)) = D / (1.75 * T - 0.75), where k = 1.75
             if (coilTier <= 0) return

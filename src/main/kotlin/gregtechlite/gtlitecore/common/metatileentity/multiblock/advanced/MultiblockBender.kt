@@ -16,7 +16,6 @@ import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
@@ -36,8 +35,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockBender(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(BENDER_RECIPES, FORMING_PRESS_RECIPES))
+class MultiblockBender(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(BENDER_RECIPES, FORMING_PRESS_RECIPES))
 {
 
     private var pistonCasingTier = 0
@@ -104,7 +102,7 @@ class MultiblockBender(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PISTON_CASING, 16)
             addDurationInfo(UpgradeMode.MOTOR_CASING, 300)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 40)
+            addEnergyInfo(20)
         }
     }
 
@@ -120,8 +118,8 @@ class MultiblockBender(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -40% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.4)).toLong()))
+            // -20%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.8).toLong()))
 
             // +300% / motor casing tier | D' = D / (1 + 3.0 * (T - 1)) = D / (3.0 * T - 2.0), where k = 3.0
             if (motorCasingTier <= 0) return

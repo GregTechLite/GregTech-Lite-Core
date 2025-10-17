@@ -34,8 +34,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockElectromagnet(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
+class MultiblockElectromagnet(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
 {
 
     private var casingTier = 0
@@ -99,7 +98,7 @@ class MultiblockElectromagnet(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.FIELD_GEN_CASING, 8)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 125)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 15)
+            addEnergyInfo(15)
         }
     }
 
@@ -115,8 +114,8 @@ class MultiblockElectromagnet(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -15% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.15)).toLong()))
+            // -15%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.85).toLong()))
 
             // +125% / voltage tier | D' = D / (1 + 1.25 * (T - 1)) = D / (1.25 * T - 0.25), where k = 1.25
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (1.25 * getTierByVoltage(maxVoltage) - 0.25)).toInt()))

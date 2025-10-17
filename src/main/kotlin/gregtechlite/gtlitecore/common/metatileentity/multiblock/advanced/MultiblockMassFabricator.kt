@@ -129,7 +129,7 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addMultiParallelInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, number = 16)
             addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 200)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -145,8 +145,8 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +200% / emitter and sensor casing tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
             if (emitterCasingTier <= 0 || sensorCasingTier <= 0) return

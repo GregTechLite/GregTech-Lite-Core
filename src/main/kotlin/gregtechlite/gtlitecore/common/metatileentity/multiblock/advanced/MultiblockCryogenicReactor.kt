@@ -40,8 +40,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockCryogenicReactor(id: ResourceLocation)
-    : MultiMapMultiblockController(id, arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES))
+class MultiblockCryogenicReactor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES))
 {
 
     private var casingTier = 0
@@ -112,7 +111,7 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.PUMP_CASING, 16)
             addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -128,8 +127,8 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +350% / voltage tier | D' = D / (1 + 3.5 * (T - 1)) = D / (3.5 * T - 2.5), where k = 3.5
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.5 * getTierByVoltage(maxVoltage) - 2.5)).toInt()))

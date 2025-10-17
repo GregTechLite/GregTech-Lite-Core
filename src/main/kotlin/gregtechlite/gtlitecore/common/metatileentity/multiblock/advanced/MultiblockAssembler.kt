@@ -106,7 +106,7 @@ class MultiblockAssembler(id: ResourceLocation) : RecipeMapMultiblockController(
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 16)
             addDurationInfo(UpgradeMode.CONVEYOR_CASING, 450)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -122,8 +122,8 @@ class MultiblockAssembler(id: ResourceLocation) : RecipeMapMultiblockController(
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +450% / conveyor casing tier | D' = D / (1 + 4.5 * (T - 1)) = D / (4.5 * T - 3.5), where k = 4.5
             if (conveyorCasingTier <= 0) return

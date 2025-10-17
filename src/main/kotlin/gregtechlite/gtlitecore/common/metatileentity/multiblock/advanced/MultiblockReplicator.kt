@@ -127,7 +127,7 @@ class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, number = 16)
             addMultiDurationInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, percent = 200)
-            addEnergyInfo(UpgradeMode.VOLTAGE_TIER, 25)
+            addEnergyInfo(25)
         }
     }
 
@@ -143,8 +143,8 @@ class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController
         {
             super.modifyOverclockPost(ocResult, storage)
 
-            // -25% / voltage tier
-            ocResult.setEut(max(1, (ocResult.eut() * (1.0 - getTierByVoltage(maxVoltage) * 0.25)).toLong()))
+            // -25%
+            ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
             // +200% / field gen and processor casing tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
             if (fieldGenCasingTier <= 0 || processorCasingTier <= 0) return
