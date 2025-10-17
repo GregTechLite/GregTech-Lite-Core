@@ -173,7 +173,7 @@ object GTLiteElementMaterials
             liquid().plasma()
             color(0x521973).iconSet(SHINY)
             element(Fl)
-            flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL)
+            flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_DENSE)
             blastProp(9900, GasTier.HIGHEST, // Tritanium
                       VA[UHV], 2 * MINUTE + 35 * SECOND,
                       VA[UV], 40 * SECOND)
