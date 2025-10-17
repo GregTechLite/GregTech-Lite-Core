@@ -356,11 +356,12 @@ internal object OpticalCircuits
         GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES,
             OreDictUnifier.get(foil, Copper))
 
+        // Tl + 2Ba + 2Ca + 3Cu + 10O -> TlBa2Ca2Cu3O10
         ARC_FURNACE_RECIPES.recipeBuilder()
-            .input(foil, Thallium, 2)
-            .input(foil, Barium, 2)
-            .input(foil, Calcium, 2)
-            .input(foil, Copper, 3)
+            .input(dust, Thallium)
+            .input(dust, Barium, 2)
+            .input(dust, Calcium, 2)
+            .input(dust, Copper, 3)
             .fluidInputs(Oxygen.getFluid(5000))
             .output(ingotHot, ThalliumBariumCalciumCuprate, 9)
             .EUt(VA[ZPM])

@@ -6,7 +6,6 @@ import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Amethyst
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Apatite
-import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Berkelium
 import gregtech.api.unification.material.Materials.BismuthBronze
 import gregtech.api.unification.material.Materials.BlackBronze
@@ -16,7 +15,6 @@ import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Cadmium
-import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Californium
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CertusQuartz
@@ -291,9 +289,6 @@ object GTLiteMaterialFlags
         PolyvinylButyral.addFlags(GENERATE_FOIL)
         Germanium.addFlags(GENERATE_FOIL)
         NaquadahEnriched.addFlags(GENERATE_FOIL)
-        Thallium.addFlags(GENERATE_FOIL)
-        Barium.addFlags(GENERATE_FOIL)
-        Calcium.addFlags(GENERATE_FOIL)
         Rutherfordium.addFlags(GENERATE_FOIL)
         Neutronium.addFlags(GENERATE_FOIL)
         RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_FOIL)
@@ -436,8 +431,6 @@ object GTLiteMaterialFlags
         Rutherfordium.addFlags(GENERATE_PLATE)
         Bohrium.addFlags(GENERATE_PLATE)
         Thallium.addFlags(GENERATE_PLATE)
-        Barium.addFlags(GENERATE_PLATE)
-        Calcium.addFlags(GENERATE_PLATE)
         Curium.addFlags(GENERATE_PLATE)
         RutheniumTriniumAmericiumNeutronate.addFlags(GENERATE_PLATE)
         Zircaloy4.addFlags(GENERATE_PLATE)
