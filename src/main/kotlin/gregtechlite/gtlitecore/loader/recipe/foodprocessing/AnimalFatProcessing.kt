@@ -26,12 +26,12 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OLIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT

@@ -67,6 +67,12 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_PLATE
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_RING
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -92,12 +98,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumTrifluoroet
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneTetramethylDiisocyanate
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import net.minecraft.block.BlockLog
 
 internal object RubbersChain

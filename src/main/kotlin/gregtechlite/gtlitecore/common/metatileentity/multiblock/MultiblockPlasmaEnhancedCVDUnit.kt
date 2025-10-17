@@ -14,7 +14,6 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER

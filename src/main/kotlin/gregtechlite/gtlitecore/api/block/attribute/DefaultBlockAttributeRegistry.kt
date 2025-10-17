@@ -2,8 +2,7 @@ package gregtechlite.gtlitecore.api.block.attribute
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.block.state.IBlockState
-import java.util.NavigableMap
-import java.util.TreeMap
+import java.util.*
 
 class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Comparator<in T>) : BlockAttributeRegistry<T>
 {

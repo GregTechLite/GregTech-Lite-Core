@@ -13,6 +13,9 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -20,9 +23,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumSulfide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object StrontiumProcessing
 {

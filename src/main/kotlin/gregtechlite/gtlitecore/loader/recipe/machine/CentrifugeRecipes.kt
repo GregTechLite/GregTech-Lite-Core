@@ -21,6 +21,9 @@ import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Augite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
@@ -39,9 +42,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
 
 internal object CentrifugeRecipes

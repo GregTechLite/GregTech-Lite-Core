@@ -8,7 +8,7 @@ import net.minecraft.world.World
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent
 import net.minecraftforge.fml.common.eventhandler.Event
-import java.util.Random
+import java.util.*
 
 class CustomWorldGeneratorTree(isNotified: Boolean, generator: WorldGeneratorTreeBase) : CustomWorldGeneratorImpl(isNotified, generator)
 {

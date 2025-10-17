@@ -6,9 +6,9 @@ import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.ore.OrePrefix.craftingLens
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ozone
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ozone
 
 internal object OzoneChain
 {

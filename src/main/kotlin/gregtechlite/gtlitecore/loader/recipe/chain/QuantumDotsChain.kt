@@ -37,6 +37,9 @@ import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
@@ -54,9 +57,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrobromicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenSelenide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnesiumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object QuantumDotsChain
 {

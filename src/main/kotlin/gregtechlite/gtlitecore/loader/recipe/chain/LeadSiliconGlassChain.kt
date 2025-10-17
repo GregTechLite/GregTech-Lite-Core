@@ -8,9 +8,9 @@ import gregtech.api.unification.material.Materials.Massicot
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 
 internal object LeadSiliconGlassChain

@@ -50,7 +50,6 @@ import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_OpV
 import gregtech.common.items.MetaItems.ROBOT_ARM_IV
 import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
 import gregtech.common.items.MetaItems.ROBOT_ARM_OpV
@@ -92,7 +91,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PUMP_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ROBOT_ARM_MAX
 
 internal object RobotArmRecipes

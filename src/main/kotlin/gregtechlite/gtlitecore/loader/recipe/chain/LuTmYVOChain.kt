@@ -12,6 +12,8 @@ import gregtech.api.unification.material.Materials.MethylAcetate
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
@@ -26,8 +28,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumVanadate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThuliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VanadiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object LuTmYVOChain
 {

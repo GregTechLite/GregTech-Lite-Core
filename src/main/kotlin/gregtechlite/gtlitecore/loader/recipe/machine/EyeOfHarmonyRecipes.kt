@@ -7,9 +7,9 @@ import gregtech.api.unification.material.Materials.EnderPearl
 import gregtech.api.unification.material.Materials.Lava
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_END
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_NETHER
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD

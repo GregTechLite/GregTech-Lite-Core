@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe
 
-import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.loader.recipe.chain.ChemistryRecipeList
 import gregtechlite.gtlitecore.loader.recipe.circuit.CircuitRecipeList
 import gregtechlite.gtlitecore.loader.recipe.component.ComponentRecipeList

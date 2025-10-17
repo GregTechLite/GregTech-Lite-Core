@@ -6,10 +6,10 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMap
 import gregtech.client.renderer.ICubeRenderer
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.logic.MobExtractorRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.property.MobOnTopProperty
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityList

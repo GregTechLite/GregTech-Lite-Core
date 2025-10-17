@@ -6,7 +6,7 @@ import net.minecraft.block.state.IBlockState
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraft.world.gen.feature.WorldGenerator
-import java.util.Random
+import java.util.*
 import kotlin.math.ceil
 
 abstract class CustomWorldGeneratorImpl(isNotified: Boolean,

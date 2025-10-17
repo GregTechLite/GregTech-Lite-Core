@@ -9,10 +9,10 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 
 internal object PotassiumProcessing
 {

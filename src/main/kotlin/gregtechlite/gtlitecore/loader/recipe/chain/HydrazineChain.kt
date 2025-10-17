@@ -5,13 +5,13 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Water
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object HydrazineChain
 {

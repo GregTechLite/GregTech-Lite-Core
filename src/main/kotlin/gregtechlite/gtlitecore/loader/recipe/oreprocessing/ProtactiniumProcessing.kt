@@ -7,12 +7,12 @@ import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Protactinium and Thorium by UO2(NO3)2.

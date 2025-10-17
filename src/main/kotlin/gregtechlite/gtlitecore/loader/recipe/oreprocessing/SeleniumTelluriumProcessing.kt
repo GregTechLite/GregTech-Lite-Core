@@ -27,6 +27,9 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueVitriol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChalcogenAnodeMud
@@ -36,9 +39,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelenousAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumTellurite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TelluriumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object SeleniumTelluriumProcessing
 {

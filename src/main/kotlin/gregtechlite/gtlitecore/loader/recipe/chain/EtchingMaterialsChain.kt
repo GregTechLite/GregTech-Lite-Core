@@ -12,6 +12,8 @@ import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
@@ -21,8 +23,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object EtchingMaterialsChain
 {

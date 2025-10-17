@@ -14,7 +14,6 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.BlockInfo
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER

@@ -6,11 +6,11 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 
 internal object ThoriumYttriumGlassChain

@@ -13,6 +13,10 @@ import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
@@ -20,10 +24,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumNiobate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object LithiumNiobateChain
 {

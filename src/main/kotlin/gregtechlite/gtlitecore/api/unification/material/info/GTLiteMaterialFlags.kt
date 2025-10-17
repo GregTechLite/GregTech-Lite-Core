@@ -159,7 +159,6 @@ import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
-import gregtech.api.unification.material.info.MaterialFlag
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK

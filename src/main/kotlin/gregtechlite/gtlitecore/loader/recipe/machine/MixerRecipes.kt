@@ -172,6 +172,10 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
@@ -180,6 +184,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydr
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlkaliEarthGroupAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlkaliGroupAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
@@ -195,6 +200,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteelBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FracturingFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
@@ -269,12 +275,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zeron100
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZirconiumCarbide
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FracturingFluid
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
 
 internal object MixerRecipes

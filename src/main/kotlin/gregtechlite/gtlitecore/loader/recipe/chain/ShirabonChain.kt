@@ -8,6 +8,9 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.ore.OrePrefix.block
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
@@ -15,9 +18,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganess
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PreciousMetalAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import net.minecraft.item.ItemStack

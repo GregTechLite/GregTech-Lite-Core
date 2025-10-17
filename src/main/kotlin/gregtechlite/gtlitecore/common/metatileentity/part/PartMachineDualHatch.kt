@@ -55,7 +55,6 @@ import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 import net.minecraftforge.fluids.IFluidTank
 import net.minecraftforge.items.IItemHandlerModifiable
-import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt

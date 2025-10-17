@@ -29,7 +29,6 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility.copyFirst
 import gregtech.common.ConfigHolder
-import gregtech.loaders.recipe.handlers.OreRecipeHandler as GTOreRecipeHandler
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -44,6 +43,7 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreLimestone
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreQuartzite
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreShale
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreSlate
+import gregtech.loaders.recipe.handlers.OreRecipeHandler as GTOreRecipeHandler
 
 object OreRecipeHandler
 {

@@ -22,6 +22,9 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.CARBON_MESH
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
@@ -34,9 +37,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedAlgae
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylose
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object AlgaeChain
 {

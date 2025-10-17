@@ -23,6 +23,10 @@ import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -34,10 +38,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GalliumTrichlorid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GalliumTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylaluminium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylgallium
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object GalliumNitrideChain
 {

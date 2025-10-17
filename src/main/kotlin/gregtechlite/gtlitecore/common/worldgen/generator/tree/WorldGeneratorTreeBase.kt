@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
 import net.minecraftforge.common.IPlantable
-import java.util.Random
+import java.util.*
 import kotlin.math.abs
 
 abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) : AbstractWorldGenerator(seed)

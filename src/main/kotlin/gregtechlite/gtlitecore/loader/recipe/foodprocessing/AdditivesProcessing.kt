@@ -6,9 +6,9 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 
 internal object AdditivesProcessing
 {

@@ -65,11 +65,11 @@ import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.WORKSTATION_EV
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 
 internal object ProcessorCircuits
 {

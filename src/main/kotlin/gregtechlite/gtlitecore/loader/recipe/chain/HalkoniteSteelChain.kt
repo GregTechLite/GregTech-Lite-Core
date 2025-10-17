@@ -30,15 +30,15 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 
 internal object HalkoniteSteelChain

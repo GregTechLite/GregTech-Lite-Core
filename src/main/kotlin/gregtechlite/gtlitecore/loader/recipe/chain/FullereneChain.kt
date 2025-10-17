@@ -44,6 +44,9 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
@@ -74,9 +77,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThionylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Triphenylphosphine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Truxene
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object FullereneChain
 {

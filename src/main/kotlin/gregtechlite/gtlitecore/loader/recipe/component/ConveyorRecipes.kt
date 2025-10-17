@@ -51,7 +51,6 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_OpV
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
@@ -85,7 +84,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CONVEYOR_MODULE_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PUMP_MAX
 
 internal object ConveyorRecipes
 {

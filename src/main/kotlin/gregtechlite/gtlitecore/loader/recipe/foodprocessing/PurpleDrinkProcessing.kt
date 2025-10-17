@@ -22,6 +22,9 @@ import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
@@ -33,9 +36,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phenothiazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhenothiazinePropylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Promethazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurpleDrink
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.HARD_APPLE_CANDY_DUST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.POPPY_DUST
 import net.minecraft.init.Blocks

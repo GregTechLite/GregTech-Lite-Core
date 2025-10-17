@@ -5,12 +5,12 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthStrontiumCalciumCuprate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object BSCCOChain
 {

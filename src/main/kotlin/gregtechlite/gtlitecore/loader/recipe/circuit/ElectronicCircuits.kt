@@ -56,15 +56,15 @@ import gregtech.common.items.MetaItems.GOOD_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.PHENOLIC_BOARD
 import gregtech.common.items.MetaItems.RESISTOR
 import gregtech.common.items.MetaItems.VACUUM_TUBE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VACUUM_TUBE_COMPONENT
 
 internal object ElectronicCircuits

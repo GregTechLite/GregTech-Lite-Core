@@ -14,6 +14,9 @@ import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumBifluoride
@@ -27,9 +30,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYLF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYNitratesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object PrHoYLFChain
 {

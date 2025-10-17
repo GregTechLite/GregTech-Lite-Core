@@ -6,10 +6,10 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Milk
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
 import net.minecraft.entity.passive.EntityChicken
 import net.minecraft.entity.passive.EntityCow
 import net.minecraft.entity.passive.EntityHorse

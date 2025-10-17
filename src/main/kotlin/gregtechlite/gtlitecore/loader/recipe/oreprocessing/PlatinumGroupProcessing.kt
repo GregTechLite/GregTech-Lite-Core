@@ -57,6 +57,10 @@ import gregtech.api.unification.material.Materials.SulfuricCopperSolution
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.crushedPurified
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -81,10 +85,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SulfurDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThionylChloride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 
 internal object PlatinumGroupProcessing
 {

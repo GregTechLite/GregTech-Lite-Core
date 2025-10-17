@@ -19,9 +19,15 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.springSmall
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicHeterodiamond
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
@@ -30,6 +36,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyLeptonMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarks
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Heterodiamond
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LightQuarks
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
@@ -42,13 +49,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StableBaryonicMat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumFerrite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Heterodiamond
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE

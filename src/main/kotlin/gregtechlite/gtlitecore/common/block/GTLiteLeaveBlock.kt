@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.common.block
 
 import com.google.common.collect.Lists
-import gregtech.core.CoreModule
 import com.morphismmc.morphismlib.client.Games
 import com.morphismmc.morphismlib.util.LeafDecayUpdate
+import gregtech.core.CoreModule
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock

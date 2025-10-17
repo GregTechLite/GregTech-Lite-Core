@@ -76,6 +76,10 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
@@ -105,10 +109,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThuliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VanadiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 

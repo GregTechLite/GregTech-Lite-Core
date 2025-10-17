@@ -33,6 +33,8 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
@@ -47,8 +49,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthalicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TerephthaloylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoethane
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object KevlarChain
 {

@@ -46,6 +46,11 @@ import gregtech.api.unification.ore.OrePrefix.dustImpure
 import gregtech.api.unification.ore.OrePrefix.dustPure
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
@@ -58,11 +63,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCarbonateSo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumChlorate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHypochlorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPerchlorate
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object AluminiumSodiumProcessing
 {

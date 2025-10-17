@@ -21,13 +21,12 @@ import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.nugget
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroauricAcid
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroauricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOLDEN_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MOON_BERRY

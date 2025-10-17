@@ -50,7 +50,6 @@ import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter

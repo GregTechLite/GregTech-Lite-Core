@@ -1,13 +1,12 @@
 package gregtechlite.gtlitecore.client.renderer.handler
 
+import com.morphismmc.morphismlib.client.Games
 import gregtech.client.utils.RenderBufferHelper
 import gregtechlite.gtlitecore.common.item.behavior.StructureWriterBehavior
-import com.morphismmc.morphismlib.client.Games
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraftforge.client.event.RenderWorldLastEvent
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import org.lwjgl.opengl.GL11

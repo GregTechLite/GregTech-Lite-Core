@@ -42,6 +42,9 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
 import gregtech.common.items.MetaItems
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
@@ -61,9 +64,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalBoronNit
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTetrafluoroborate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trichloroborazine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object BoronNitrideChain
 {

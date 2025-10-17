@@ -18,6 +18,9 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
@@ -26,11 +29,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaneSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fructose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glucose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HardAppleCandySyrup
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OxalicAcid
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexanediol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OxalicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HARD_APPLE_CANDY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT

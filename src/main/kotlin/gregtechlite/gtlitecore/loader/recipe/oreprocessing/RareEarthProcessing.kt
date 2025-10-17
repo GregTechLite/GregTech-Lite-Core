@@ -25,6 +25,8 @@ import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErTmYbLuOxidesSolution
@@ -39,8 +41,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SamariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScEuGdSmOxidesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YTbDyHoOxidesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Rare Earth Elements from Rare Earth dust.

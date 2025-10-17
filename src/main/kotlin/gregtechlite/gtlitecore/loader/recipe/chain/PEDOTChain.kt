@@ -22,6 +22,9 @@ import gregtech.api.unification.material.Materials.Styrene
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diacetyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Edot
@@ -32,9 +35,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacr
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polystyrene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolystyreneSulfonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SulfurDichloride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object PEDOTChain
 {

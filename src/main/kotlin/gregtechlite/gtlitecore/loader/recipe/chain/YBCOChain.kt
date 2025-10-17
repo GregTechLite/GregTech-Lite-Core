@@ -29,6 +29,11 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
@@ -39,11 +44,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumBariumCopperOxidesMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 
 internal object YBCOChain
 {

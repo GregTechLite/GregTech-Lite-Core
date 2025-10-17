@@ -1,8 +1,8 @@
 package gregtechlite.gtlitecore.common.worldgen
 
+import com.morphismmc.morphismlib.util.SidedLogger
 import gregtech.api.GTValues
 import gregtech.api.util.FileUtility
-import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID

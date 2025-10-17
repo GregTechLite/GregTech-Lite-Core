@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.loader.ore
 
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Color
-import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barite
 import gregtech.api.unification.material.Materials.BrownLimonite

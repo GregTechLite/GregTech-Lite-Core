@@ -21,6 +21,9 @@ import gregtech.api.unification.material.Materials.Tetrafluoroethylene
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
@@ -35,9 +38,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumFluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumThiinediselenide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumThiosulfate
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object BETSPerrhenateChain
 {

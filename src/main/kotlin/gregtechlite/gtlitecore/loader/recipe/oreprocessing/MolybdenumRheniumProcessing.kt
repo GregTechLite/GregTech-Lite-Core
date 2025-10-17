@@ -33,6 +33,8 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadDichloride
@@ -40,8 +42,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumFlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PerrhenicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TraceRheniumFlue
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Molybdenum and Rhenium from Molybdenite/Powellite/Wulfenite.

@@ -10,15 +10,15 @@ import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumFluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumFluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFluoride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object ReactorModeratorChain
 {

@@ -23,13 +23,13 @@ import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PreciousMetalAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PERFECT_CIRCUIT_BOARD

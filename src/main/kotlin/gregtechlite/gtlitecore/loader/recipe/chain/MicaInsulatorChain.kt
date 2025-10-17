@@ -21,13 +21,13 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.STICKY_RESIN
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Latex
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phlogopite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_FOIL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_PLATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_PLATE

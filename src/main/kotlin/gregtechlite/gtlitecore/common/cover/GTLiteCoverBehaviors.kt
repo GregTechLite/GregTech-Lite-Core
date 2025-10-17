@@ -7,7 +7,6 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
-import gregtech.api.cover.CoverBase
 import gregtech.api.cover.CoverDefinition
 import gregtech.api.items.behavior.CoverItemBehavior
 import gregtech.api.items.metaitem.MetaItem

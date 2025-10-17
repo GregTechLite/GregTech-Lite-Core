@@ -4,9 +4,9 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.unification.material.Materials.Milk
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
 
 internal object MilkProcessing
 {

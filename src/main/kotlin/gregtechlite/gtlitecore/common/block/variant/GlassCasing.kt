@@ -1,6 +1,15 @@
 package gregtechlite.gtlitecore.common.block.variant
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.ZPM
 import gregtech.api.block.IStateHarvestLevel
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant

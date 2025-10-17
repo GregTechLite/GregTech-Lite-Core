@@ -18,6 +18,9 @@ import gregtech.api.unification.material.Materials.Octane
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
@@ -39,9 +42,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetraethylammoniumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANOSILICON_CATHODE
 
 internal object NanoparticlesChain

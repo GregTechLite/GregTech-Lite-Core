@@ -11,6 +11,9 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Water
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
@@ -18,9 +21,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaToluicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyethyleneTerephthalate
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object PETChain
 {

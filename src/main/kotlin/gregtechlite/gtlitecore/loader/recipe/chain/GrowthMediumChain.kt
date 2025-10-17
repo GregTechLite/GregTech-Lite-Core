@@ -50,6 +50,11 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.PETRI_DISH
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
@@ -74,11 +79,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Yeast
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BREVIBACTERIUM_FLAVUM_PETRI_DISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CUPRIAVIDUS_NECATOR_PETRI_DISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DIRTY_PETRI_DISH

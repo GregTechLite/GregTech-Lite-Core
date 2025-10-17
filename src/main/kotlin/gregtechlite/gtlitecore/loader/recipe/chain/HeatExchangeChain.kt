@@ -8,6 +8,8 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
@@ -24,8 +26,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSodiumPotassiumEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSteam
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 
 internal object HeatExchangeChain
 {

@@ -73,6 +73,10 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_FOIL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
@@ -113,10 +117,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverTetrafluoroborate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TinDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrimethyltinChloride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CARBON_ALLOTROPE_MIXTURE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAPHENE_ALIGNED_CNT
 

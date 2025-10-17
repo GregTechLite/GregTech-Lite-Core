@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
@@ -37,12 +38,11 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility.getTierByVoltage
-import com.morphismmc.morphismlib.integration.Mods
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BLAZE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CREEPER

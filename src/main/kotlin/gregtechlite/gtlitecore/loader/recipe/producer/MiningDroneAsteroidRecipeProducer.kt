@@ -157,6 +157,8 @@ import gregtech.api.unification.ore.OrePrefix.oreEndstone
 import gregtech.api.unification.ore.OrePrefix.oreNetherrack
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
@@ -189,8 +191,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RP1RocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Wollastonite
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_HV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_IV

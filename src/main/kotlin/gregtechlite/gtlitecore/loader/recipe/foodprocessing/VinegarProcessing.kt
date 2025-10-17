@@ -14,12 +14,12 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VINEGAR
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack

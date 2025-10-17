@@ -21,6 +21,8 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GermaniumDioxide
@@ -28,8 +30,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzSlag
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZincRichSphalerite
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Germanium from Sphalerite.

@@ -1,15 +1,14 @@
 package gregtechlite.gtlitecore.common.block
 
 import gregtech.api.recipes.ModHandler
-import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.api.unification.material.Materials
 import gregtech.common.blocks.properties.PropertyMaterial
 import gregtech.common.creativetab.GTCreativeTabs
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import gregtechlite.gtlitecore.api.extension.toItem
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
 import gregtechlite.gtlitecore.client.model.MaterialBlockStateLoader
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.EnumPushReaction
@@ -39,6 +38,7 @@ import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import gregtech.api.unification.material.Material as GTMaterial
 
 @Suppress("Deprecation", "PropertyName")
 class BlockSheetedFrame(materials: Array<GTMaterial>) : Block(Material.IRON)

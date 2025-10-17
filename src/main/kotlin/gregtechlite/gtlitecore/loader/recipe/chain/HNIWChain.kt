@@ -38,6 +38,10 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
@@ -77,10 +81,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetraacetyldinitr
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetrafluoroboricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trimethylamine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object HNIWChain
 {

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.api.pattern
 
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.MultiblockShapeInfo
-import java.util.Stack
+import java.util.*
 
 object BlockPatterns
 {

@@ -21,6 +21,9 @@ import gregtech.api.unification.material.Materials.VinylChloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloroethane
@@ -30,9 +33,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumCyanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetrasodiumEDTA
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object EDTAChain
 {

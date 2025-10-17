@@ -15,6 +15,9 @@ import gregtech.api.unification.material.Materials.Pollucite
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -23,9 +26,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChlori
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumHexachlorotinate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TinDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TinTetrachloride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Caesium and Rubidium from Pollucite.

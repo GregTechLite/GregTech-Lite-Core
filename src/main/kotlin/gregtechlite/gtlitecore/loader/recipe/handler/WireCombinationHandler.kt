@@ -23,10 +23,10 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
 import kotlin.math.pow
 
 @Suppress("unused")

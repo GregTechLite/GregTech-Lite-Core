@@ -39,6 +39,10 @@ import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY_WAFER
 import gregtech.common.items.MetaItems.SIMPLE_SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicSiliconNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
@@ -49,10 +53,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganess
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NdYAG
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrHoYLF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP

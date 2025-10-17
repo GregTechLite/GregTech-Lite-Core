@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.integration.appliedenergistics2.recipe
 
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -17,10 +18,9 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import com.morphismmc.morphismlib.integration.Mods
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_BASIC_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COATED_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_DIAMOND_CHIP

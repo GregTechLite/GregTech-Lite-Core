@@ -15,15 +15,15 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.spring
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneOxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object EthyleneGlycolChain
 {

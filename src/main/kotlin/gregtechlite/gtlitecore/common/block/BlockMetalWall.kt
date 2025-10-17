@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.common.block
 
 import gregtech.api.items.toolitem.ToolClasses
 import gregtech.api.recipes.ModHandler
-import gregtech.api.unification.material.Material as GTMaterial
 import gregtech.client.model.MaterialStateMapper
 import gregtech.client.model.modelfactories.MaterialBlockModelLoader
 import gregtech.common.ConfigHolder
@@ -25,6 +24,7 @@ import net.minecraft.world.World
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import gregtech.api.unification.material.Material as GTMaterial
 
 @Suppress("unused")
 abstract class BlockMetalWall private constructor() : BlockMaterialBase(Material.IRON)

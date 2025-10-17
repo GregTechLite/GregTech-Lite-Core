@@ -87,6 +87,10 @@ import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -141,10 +145,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumBariumCal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WoodsGlass
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ALL_OPTICAL_CASCADE_NOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE

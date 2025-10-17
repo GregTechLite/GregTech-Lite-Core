@@ -18,10 +18,10 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.common.items.MetaItems.NEUTRONIUM_BOULE
 import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_WAFER
 

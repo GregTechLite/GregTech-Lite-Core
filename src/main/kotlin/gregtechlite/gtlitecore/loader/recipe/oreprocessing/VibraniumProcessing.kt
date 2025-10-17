@@ -27,6 +27,10 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumEnriched
@@ -34,10 +38,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DeepIron
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object VibraniumProcessing
 {

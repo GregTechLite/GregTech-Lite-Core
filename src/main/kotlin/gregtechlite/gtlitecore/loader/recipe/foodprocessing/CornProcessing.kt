@@ -11,11 +11,11 @@ import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.SeedOil
 import gregtech.common.items.MetaItems.PLANT_BALL
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POLENTA

@@ -66,8 +66,6 @@ import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Xenon
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSmoke
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronTrifluoride
@@ -81,6 +79,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylamineMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraftforge.fluids.FluidStack
 
 object SpacePumpRecipeFrontend

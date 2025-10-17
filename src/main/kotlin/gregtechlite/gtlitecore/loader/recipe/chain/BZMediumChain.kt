@@ -22,6 +22,8 @@ import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
@@ -32,8 +34,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumBromate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trichloroethylene
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object BZMediumChain
 {

@@ -2,12 +2,12 @@
 package gregtechlite.gtlitecore.client.model
 
 import com.google.common.collect.HashBasedTable
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import com.morphismmc.morphismlib.integration.Mods
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.IBakedModel

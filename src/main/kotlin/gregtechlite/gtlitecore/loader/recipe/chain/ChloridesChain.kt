@@ -9,11 +9,11 @@ import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chloroform
 import gregtech.api.unification.material.Materials.Chloromethane
 import gregtech.api.unification.material.Materials.Methane
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChlorinatedSolvents
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloromethane
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object ChloridesChain
 {

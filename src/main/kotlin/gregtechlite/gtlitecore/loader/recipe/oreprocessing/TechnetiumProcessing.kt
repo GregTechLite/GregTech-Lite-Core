@@ -12,14 +12,14 @@ import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPertechnetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pertechnetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TechnetiumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TechnetiumHeptaoxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object TechnetiumProcessing
 {

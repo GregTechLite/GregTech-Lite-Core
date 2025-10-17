@@ -29,6 +29,9 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -46,9 +49,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Terephthalaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object ZylonChain
 {

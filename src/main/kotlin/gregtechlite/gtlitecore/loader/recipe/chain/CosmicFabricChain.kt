@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UXV
-import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.VA
 import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
@@ -16,6 +16,9 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -24,9 +27,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFulleren
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumDopedCarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumDopedCarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HIGHLY_DENSE_POLYMER_PLATE
 import net.minecraft.item.ItemStack

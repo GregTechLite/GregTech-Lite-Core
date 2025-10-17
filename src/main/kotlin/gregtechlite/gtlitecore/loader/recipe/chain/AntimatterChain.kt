@@ -27,6 +27,8 @@ import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Zinc
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_GENERATOR_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -37,8 +39,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SemistableAntimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
 
 internal object AntimatterChain

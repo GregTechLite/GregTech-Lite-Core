@@ -15,11 +15,11 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapheneOxide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydrazine
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapheneOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydrazine
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 
 internal object GrapheneChain

@@ -4,10 +4,10 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.Ethylene
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 
 internal object DiethylEtherChain
 {

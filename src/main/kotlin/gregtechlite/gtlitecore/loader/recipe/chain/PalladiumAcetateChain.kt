@@ -12,11 +12,11 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
 
 internal object PalladiumAcetateChain
 {

@@ -6,7 +6,6 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
@@ -44,10 +43,16 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.duration
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NUCLEAR_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPotassiumEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SupercriticalLeadBismuthEutatic
@@ -60,18 +65,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedLithiumSodiumPotassiumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSodiumPotassiumEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheatedSteam
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnrichedDepleted
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensityDepleted
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRod
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodDepleted
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnriched
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnrichedDepleted
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
-import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRod
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.duration
-import gregtechlite.gtlitecore.api.extension.getFluid
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensityDepleted
 import net.minecraftforge.fluids.FluidStack
 
 internal object NuclearFissionRecipeProducer

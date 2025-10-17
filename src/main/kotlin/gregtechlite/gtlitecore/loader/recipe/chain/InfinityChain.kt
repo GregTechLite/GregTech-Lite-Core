@@ -8,12 +8,12 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.ore.OrePrefix.block
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE

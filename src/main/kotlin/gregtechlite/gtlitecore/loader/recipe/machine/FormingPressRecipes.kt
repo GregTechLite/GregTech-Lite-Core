@@ -22,12 +22,12 @@ import gregtech.common.items.MetaItems.CREDIT_SILVER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_MOLD_CREDIT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cellulose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY

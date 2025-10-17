@@ -6,7 +6,6 @@ import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
-import gregtech.api.unification.material.info.MaterialIconType.ore as oreIcon
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
@@ -41,19 +40,20 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasCrystalPr
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasFuelRodProperties
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasGemProperty
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteConditions.hasOreProperty
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.gemSolitary as gemSolitaryIcon
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.sheetedFrame as sheetedFrameIcon
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.wallGt as wallGtIcon
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.seedCrystal as seedCrystalIcon
+import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addOrePrefix
+import gregtech.api.unification.material.info.MaterialIconType.ore as oreIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.boule as bouleIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRod as fuelRodIcon
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodEnriched as fuelRodEnrichedIcon
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodHighDensity as fuelRodHighDensityIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodDepleted as fuelRodDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodEnriched as fuelRodEnrichedIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodEnrichedDepleted as fuelRodEnrichedDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodHighDensity as fuelRodHighDensityIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.fuelRodHighDensityDepleted as fuelRodHighDensityDepletedIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.gemSolitary as gemSolitaryIcon
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.nanite as naniteIcon
-import gregtechlite.gtlitecore.api.unification.ore.OrePrefixBuilder.Companion.addOrePrefix
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.seedCrystal as seedCrystalIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.sheetedFrame as sheetedFrameIcon
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType.wallGt as wallGtIcon
 
 object GTLiteOrePrefix
 {

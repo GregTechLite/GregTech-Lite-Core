@@ -15,13 +15,13 @@ import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.RocketFuel
 import gregtech.api.unification.material.Materials.Tetranitromethane
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DenseHydrazineRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RP1RocketFuel
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object RocketFuelsChain
 {

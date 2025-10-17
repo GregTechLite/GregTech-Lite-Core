@@ -56,6 +56,11 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
@@ -66,11 +71,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5F
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pentane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZSM5
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 
 internal object OilsChain
 {

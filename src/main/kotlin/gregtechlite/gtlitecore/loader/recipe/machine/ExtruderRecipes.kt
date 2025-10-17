@@ -15,10 +15,10 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_CELL
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.KEVLAR_CAN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PBI_CAN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PE_CAN

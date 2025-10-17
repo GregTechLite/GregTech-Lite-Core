@@ -25,6 +25,9 @@ import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadSulfate
@@ -39,9 +42,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylChlorideSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Polonium and Radium from Pitchblende and Uraninite.

@@ -14,10 +14,10 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichAmmoniaMixture
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNitrogenMixture
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichAmmoniaMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNitrogenMixture
 
 internal object AmmoniaChain
 {

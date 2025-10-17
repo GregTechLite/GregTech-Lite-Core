@@ -17,14 +17,14 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetoneCyanohydrin
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetoneCyanohydrin
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
 
 internal object PMMAChain
 {

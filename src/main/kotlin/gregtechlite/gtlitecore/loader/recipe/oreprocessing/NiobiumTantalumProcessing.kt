@@ -8,12 +8,12 @@ import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumPentoxide
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 /**
  * Produces Niobium and Tantalum from Tantalite and Pyrochlore.

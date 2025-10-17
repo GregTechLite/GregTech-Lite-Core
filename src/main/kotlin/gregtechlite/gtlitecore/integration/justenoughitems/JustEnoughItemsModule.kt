@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.integration.justenoughitems
 
+import com.morphismmc.morphismlib.util.SidedLogger
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
-import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend

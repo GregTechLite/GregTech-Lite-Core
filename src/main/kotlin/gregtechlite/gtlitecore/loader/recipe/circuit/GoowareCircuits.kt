@@ -58,6 +58,11 @@ import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.FLUID_CELL_LARGE_STAINLESS_STEEL
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
@@ -81,11 +86,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SamariumCobalt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelenousAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BZ_REACTION_CHAMBER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_CAPACITOR

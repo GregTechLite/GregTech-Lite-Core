@@ -44,15 +44,15 @@ import gregtech.common.items.MetaItems.SMD_CAPACITOR
 import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CadmiumSelenide
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CadmiumSelenide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 
 internal object QuantumCircuits
 {

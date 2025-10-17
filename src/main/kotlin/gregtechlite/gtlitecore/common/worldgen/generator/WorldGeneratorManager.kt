@@ -7,7 +7,7 @@ import net.minecraft.world.gen.ChunkGeneratorFlat
 import net.minecraft.world.gen.IChunkGenerator
 import net.minecraftforge.fml.common.IWorldGenerator
 import net.minecraftforge.fml.common.registry.GameRegistry
-import java.util.Random
+import java.util.*
 
 class WorldGeneratorManager : IWorldGenerator
 {

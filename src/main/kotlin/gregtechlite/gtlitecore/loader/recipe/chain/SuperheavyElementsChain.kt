@@ -25,6 +25,9 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
@@ -34,9 +37,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreeding
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuasifissioningPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RadiumRadonMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScandiumTitaniumMixture
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object SuperheavyElementsChain
 {

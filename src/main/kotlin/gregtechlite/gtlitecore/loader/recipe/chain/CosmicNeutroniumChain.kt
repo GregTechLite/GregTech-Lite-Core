@@ -4,11 +4,11 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutronProtonFermiSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object CosmicNeutroniumChain
 {

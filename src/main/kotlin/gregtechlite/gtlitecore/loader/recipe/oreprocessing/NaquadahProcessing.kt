@@ -71,6 +71,12 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
@@ -93,12 +99,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadahGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadriaEnergetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TechnetiumHeptaoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TriniumTrioxide
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 
 /**
  * Produces Enriched Naquadah and Naquadria from Naquadah.

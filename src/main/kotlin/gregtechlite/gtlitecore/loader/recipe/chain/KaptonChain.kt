@@ -23,6 +23,9 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aminophenol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
@@ -35,9 +38,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaPhenylenediam
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PyromelliticDianhydride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object KaptonChain
 {

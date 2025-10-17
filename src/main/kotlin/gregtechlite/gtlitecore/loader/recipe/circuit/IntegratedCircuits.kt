@@ -57,9 +57,9 @@ import gregtech.common.items.MetaItems.RESISTOR
 import gregtech.common.items.MetaItems.SILICON_WAFER
 import gregtech.common.items.MetaItems.STICKY_RESIN
 import gregtech.common.items.MetaItems.TRANSISTOR
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 

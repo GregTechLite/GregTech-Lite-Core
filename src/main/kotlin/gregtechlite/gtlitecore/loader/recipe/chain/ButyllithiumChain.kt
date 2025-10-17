@@ -7,12 +7,12 @@ import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrobromicAcid
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object ButyllithiumChain
 {

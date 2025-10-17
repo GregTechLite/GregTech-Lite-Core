@@ -10,10 +10,10 @@ import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.properties.PropertyKey
-import gregtechlite.gtlitecore.api.item.GTLiteToolHelper
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.item.GTLiteToolHelper
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_FILE

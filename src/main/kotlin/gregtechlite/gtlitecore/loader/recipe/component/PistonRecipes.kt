@@ -82,7 +82,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX

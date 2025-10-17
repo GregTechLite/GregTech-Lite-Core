@@ -7,14 +7,14 @@ import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.ore.OrePrefix.block
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAVITON_SHARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
 

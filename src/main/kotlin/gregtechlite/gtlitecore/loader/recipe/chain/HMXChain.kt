@@ -9,13 +9,13 @@ import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyclotetramethyleneTetranitroamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexamethylenetetramine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object HMXChain
 {

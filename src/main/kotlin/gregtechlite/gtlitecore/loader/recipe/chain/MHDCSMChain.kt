@@ -27,6 +27,10 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
@@ -35,10 +39,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 
 internal object MHDCSMChain

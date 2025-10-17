@@ -10,12 +10,12 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.GRAVI_STAR
 import gregtech.common.items.MetaItems.STEM_CELLS
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 
 internal object MutatedLivingSolderChain
 {

@@ -21,6 +21,10 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
@@ -29,10 +33,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumTrihydrid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OxalicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumHydride
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE

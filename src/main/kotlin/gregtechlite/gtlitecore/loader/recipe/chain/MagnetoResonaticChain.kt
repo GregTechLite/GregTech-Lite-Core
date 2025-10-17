@@ -13,13 +13,13 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTelluride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object MagnetoResonaticChain
 {

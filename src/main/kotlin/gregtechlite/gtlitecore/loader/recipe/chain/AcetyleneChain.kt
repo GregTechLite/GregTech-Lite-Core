@@ -15,13 +15,13 @@ import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 

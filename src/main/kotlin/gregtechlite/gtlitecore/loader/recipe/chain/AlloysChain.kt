@@ -24,10 +24,10 @@ import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 
 internal object AlloysChain
 {

@@ -5,7 +5,7 @@ import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorBer
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import java.util.Random
+import java.util.*
 
 class CustomWorldGeneratorBerry(berry: WorldGeneratorBerryBase) : CustomWorldGeneratorImpl(true, berry)
 {

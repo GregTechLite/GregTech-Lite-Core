@@ -8,10 +8,10 @@ import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tetrafluoroethylene
 import gregtech.api.unification.ore.OrePrefix.stick
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FluorinatedEthylenePropylene
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexafluoropropylene
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FluorinatedEthylenePropylene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexafluoropropylene
 
 internal object FEPChain
 {

@@ -22,6 +22,8 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorobenzene
@@ -30,8 +32,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFluoride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object PEEKChain
 {

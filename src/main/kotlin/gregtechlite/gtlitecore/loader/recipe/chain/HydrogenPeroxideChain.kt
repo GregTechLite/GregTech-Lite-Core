@@ -19,15 +19,15 @@ import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.BLACKLIGHT
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ozone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object HydrogenPeroxideChain
 {

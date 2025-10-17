@@ -84,14 +84,14 @@ import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreedingBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RadiumRadonMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScandiumTitaniumMixture
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 
 internal object FusionReactorRecipes
 {

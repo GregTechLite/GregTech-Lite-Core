@@ -41,6 +41,10 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtechlite.gtlitecore.api.MINUTE
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
@@ -83,10 +87,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MediumTaraniumGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadriaEnergetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UltralightBedrockSmoke
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 

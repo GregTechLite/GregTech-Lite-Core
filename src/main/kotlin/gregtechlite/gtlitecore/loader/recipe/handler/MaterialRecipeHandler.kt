@@ -60,8 +60,6 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
-import gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastProperty
-import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -70,6 +68,8 @@ import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastProperty
+import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_OCTAGONAL

@@ -18,18 +18,17 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.Water
-import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylenol
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 
 internal object CreosoteProcessing
 {

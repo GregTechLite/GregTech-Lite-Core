@@ -8,14 +8,14 @@ import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LimeExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OrangeExtract
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LEMON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LIME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ORANGE

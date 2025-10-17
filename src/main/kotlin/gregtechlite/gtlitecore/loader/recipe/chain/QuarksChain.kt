@@ -39,6 +39,9 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_RING
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD_LONG
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
@@ -54,9 +57,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuarkGluonPlasma
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.TARANIUM_CHARGE

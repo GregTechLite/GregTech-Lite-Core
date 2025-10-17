@@ -25,6 +25,9 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
@@ -40,9 +43,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WoodsGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.adapter.GTPolishedStoneBlock
 import gregtechlite.gtlitecore.common.block.adapter.GTSmoothStoneBlock
 import gregtechlite.gtlitecore.common.block.adapter.PolishedStoneBlock

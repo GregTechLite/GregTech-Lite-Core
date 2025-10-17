@@ -17,8 +17,8 @@ import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteMateria
 import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteToolPropertyAdder
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems
-import gregtechlite.gtlitecore.loader.WoodTypeEntryLoader
 import gregtechlite.gtlitecore.loader.RecyclingDataLoader
+import gregtechlite.gtlitecore.loader.WoodTypeEntryLoader
 import gregtechlite.gtlitecore.loader.ore.OreDictionaryLoader
 import gregtechlite.gtlitecore.loader.recipe.RecipeManager
 import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents

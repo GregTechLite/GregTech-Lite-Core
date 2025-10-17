@@ -1,7 +1,5 @@
 package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
-import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeBase
-
 object WorldGeneratorTreeManager
 {
 
