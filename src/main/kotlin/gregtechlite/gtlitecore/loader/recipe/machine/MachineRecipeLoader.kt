@@ -236,6 +236,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -1482,10 +1483,10 @@ internal object MachineRecipeLoader
 
         // Entrodynamically Phase Changer
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ANTIMATTER_FORGE, 4)
-            .input(STELLAR_FORGE, 16)
             .input(VOLCANUS, 64)
-            .input(ULTIMATE_BATTERY, 2)
+            .input(VOLCANUS, 64)
+            .input(ALLOY_BLAST_SMELTER, 64)
+            .input(ALLOY_BLAST_SMELTER, 64)
             .input(plateDense, SuperheavyAlloyA, 4)
             .input(plateDense, SuperheavyAlloyB, 4)
             .input(plateDense, Abyssalloy, 4)
@@ -1494,9 +1495,10 @@ internal object MachineRecipeLoader
             .input(ELECTRIC_PISTON_UIV, 16)
             .input(SUBSTATION_ENERGY_INPUT_HATCH[UIV], 8)
             .input(POWER_TRANSFORMER[UIV], 8)
-            .input(wireGtHex, FullereneSuperconductor, 16)
-            .input(VOLTAGE_COIL_UIV, 32)
             .input(circuit, Tier.UIV, 16)
+            .input(block, ArceusAlloy2B, 64)
+            .input(wireGtHex, QuantumchromodynamicallyConfinedMatter, 16)
+            .input(wireGtHex, FullereneSuperconductor, 16)
             .fluidInputs(MutatedLivingSolder.getFluid(L * 100))
             .fluidInputs(CosmicNeutronium.getFluid(L * 400))
             .fluidInputs(HalkoniteSteel.getFluid(L * 80))
@@ -1538,33 +1540,19 @@ internal object MachineRecipeLoader
             'P', ELECTRIC_PUMP_EV)
 
         // Plasma Arc Transmitter
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(24)
             .input(ARC_FURNACE[UHV], 16)
             .input(ALLOY_SMELTER[UHV], 16)
-            .inputs(WireCoil.ADAMANTIUM.getStack(32))
             .input(LARGE_ARC_FURNACE, 64)
-            .input(plateDense, MetastableOganesson, 4)
             .input(plateDense, MetastableFlerovium, 4)
-            .input(plateDense, Taranium, 4)
-            .input(ELECTRIC_PUMP_UHV, 8)
-            .input(CONVEYOR_MODULE_UHV, 8)
-            .input(EMITTER_UHV, 8)
-            .input(VOLTAGE_COIL_UHV, 32)
+            .input(ELECTRIC_PUMP_UHV, 16)
             .input(circuit, Tier.UEV, 16)
-            .input(foil, ThalliumBariumCalciumCuprate, 48)
-            .input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(Bedrockium.getFluid(L * 16))
-            .fluidInputs(Oxygen.getPlasma(64000))
-            .fluidInputs(Nitrogen.getPlasma(64000))
+            .input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
+            .fluidInputs(Oxygen.getPlasma(256_000))
             .output(PLASMA_ARC_TRANSMITTER)
             .EUt(VA[UHV])
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(ARC_FURNACE[UHV])
-                    .EUt(VA[UHV])
-                    .CWUt(32)
-            }
+            .duration(2 * MINUTE + 30 * SECOND)
             .buildAndRegister()
 
     }
