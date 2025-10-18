@@ -542,7 +542,8 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0x56566A).iconSet(METALLIC)
             components(Tantalum, 1, Carbon, 1)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR)
+            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR,
+                  GENERATE_DOUBLE_PLATE)
             blastProp(4120, GasTier.MID, // RTM Alloy
                       VA[EV], 1 * MINUTE,
                       VA[HV], 20 * SECOND)
