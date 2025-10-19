@@ -1,4 +1,4 @@
-@file:JvmName("GuavaMaps")
+@file:JvmName("GuavaMapsKt")
 
 package gregtechlite.gtlitecore.api.collection
 
