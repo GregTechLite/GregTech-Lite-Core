@@ -2,10 +2,10 @@
 
 package gregtechlite.gtlitecore.api.collection
 
+import com.google.common.collect.HashBasedTable
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
-import org.spongepowered.include.com.google.common.collect.ImmutableCollection
 
 // region Immutable Map
 
@@ -52,5 +52,12 @@ fun <E> Collection<E>.toImmutableSet(): ImmutableSet<E>
 
 fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E>
     = ImmutableSet.copyOf(this)
+
+// endregion
+
+// region Hash Based Table
+
+fun <R, C, V> hashTableOf(): HashBasedTable<R, C, V>
+    = HashBasedTable.create()
 
 // endregion

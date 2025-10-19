@@ -4,11 +4,11 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.material.Materials
 import gregtech.common.blocks.properties.PropertyMaterial
 import gregtech.common.creativetab.GTCreativeTabs
+import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
 import gregtechlite.gtlitecore.api.extension.toItem
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
 import gregtechlite.gtlitecore.client.model.MaterialBlockStateLoader
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.block.Block
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.EnumPushReaction
@@ -217,7 +217,7 @@ class BlockSheetedFrame(materials: Array<GTMaterial>) : Block(Material.IRON)
     @SideOnly(Side.CLIENT)
     fun onModelRegister()
     {
-        val models = Object2ObjectOpenHashMap<IBlockState?, ModelResourceLocation?>()
+        val models: MutableMap<IBlockState?, ModelResourceLocation?> = fastObjectHashMapOf()
         for (state in getBlockState().validStates)
         {
             val material = getGTMaterial(state)

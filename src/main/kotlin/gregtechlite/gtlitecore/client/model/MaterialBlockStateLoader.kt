@@ -1,14 +1,15 @@
 @file:Suppress("Deprecation")
 package gregtechlite.gtlitecore.client.model
 
-import com.google.common.collect.HashBasedTable
+import com.google.common.collect.Table
 import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.hashTableOf
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
@@ -39,8 +40,8 @@ import net.minecraftforge.fml.relauncher.Side
 object MaterialBlockStateLoader
 {
 
-    private val BLOCKSTATES_CACHE = HashBasedTable.create<MaterialIconType?, MaterialIconSet?, ResourceLocation?>()
-    private val ENTRIES = Object2ObjectOpenHashMap<ModelEntry, ModelResourceLocation>()
+    private val BLOCKSTATES_CACHE: Table<MaterialIconType, MaterialIconSet, ResourceLocation> = hashTableOf()
+    private val ENTRIES: MutableMap<ModelEntry, ModelResourceLocation> = fastObjectHashMapOf()
 
     @JvmOverloads
     fun loadBlockModel(iconType: MaterialIconType,
@@ -85,11 +86,11 @@ object MaterialBlockStateLoader
             {
                 val stateModels = ReflectionHelper.getPrivateValue<MutableMap<ModelResourceLocation, IModel>, ModelLoader>(
                     ModelLoader::class.java, event.modelLoader, "stateModels", null)
-                bakeAndRegister(event.modelRegistry, modelEntry.key?.modelCache, modelEntry.value, stateModels)
+                bakeAndRegister(event.modelRegistry, modelEntry.key.modelCache, modelEntry.value, stateModels)
             }
             else
             {
-                bakeAndRegister(event.modelRegistry, modelEntry.key?.modelCache, modelEntry.value, null)
+                bakeAndRegister(event.modelRegistry, modelEntry.key.modelCache, modelEntry.value, null)
             }
         }
     }
