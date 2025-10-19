@@ -5,7 +5,7 @@ import codechicken.lib.model.bakedmodels.ModelProperties;
 import codechicken.lib.model.bakedmodels.PerspectiveAwareBakedModel;
 import codechicken.lib.util.ResourceUtils;
 import codechicken.lib.util.TransformUtils;
-import com.google.common.collect.ImmutableList;
+import com.morphismmc.morphismlib.collection.ListOps;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtechlite.gtlitecore.client.model.WrappedModelGetter;
 import gregtechlite.gtlitecore.client.renderer.CosmicRenderBehavior;
@@ -159,7 +159,7 @@ public class CosmicItemRenderer extends WrappedItemRenderer
 
     private static IBakedModel computeModel(TextureAtlasSprite sprite)
     {
-        List<BakedQuad> quads = ItemQuadBakery.bakeItem(ImmutableList.of(sprite));
+        List<BakedQuad> quads = ItemQuadBakery.bakeItem(ListOps.of(sprite));
         return new PerspectiveAwareBakedModel(quads, TransformUtils.DEFAULT_ITEM, new ModelProperties(true, false));
     }
 

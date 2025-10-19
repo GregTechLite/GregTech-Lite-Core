@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.client.renderer.handler;
 
 import codechicken.lib.render.item.IItemRenderer;
-import com.google.common.collect.ImmutableList;
+import com.morphismmc.morphismlib.collection.ListOps;
 import gregtechlite.gtlitecore.client.renderer.EntityCallback;
 import gregtechlite.gtlitecore.client.renderer.EntityItemTickCallback;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -71,7 +71,7 @@ public abstract class PerspectiveAwareItemRenderer implements IItemRenderer, Ent
         private final EntityCallback callback;
 
         public EntityCachingOverrideList(EntityCallback callback) {
-            super(ImmutableList.of());
+            super(ListOps.of());
             this.callback = callback;
         }
 
