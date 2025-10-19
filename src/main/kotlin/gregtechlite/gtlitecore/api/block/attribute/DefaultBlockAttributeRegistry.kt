@@ -1,14 +1,15 @@
 package gregtechlite.gtlitecore.api.block.attribute
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.treeMapOf
 import net.minecraft.block.state.IBlockState
 import java.util.*
 
 class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Comparator<in T>) : BlockAttributeRegistry<T>
 {
 
-    private val attributeLookup: MutableMap<IBlockState, T> = Object2ObjectOpenHashMap()
-    private val blockLookup: NavigableMap<T, MutableList<IBlockState>> = TreeMap(comparator)
+    private val attributeLookup: MutableMap<IBlockState, T> = fastObjectHashMapOf()
+    private val blockLookup: NavigableMap<T, MutableList<IBlockState>> = treeMapOf(comparator)
 
     private var _ascendingBlocks: LazyValue<List<IBlockState>> = LazyValue { blockLookup.values.flatten() }
     private var _descendingBlocks: LazyValue<List<IBlockState>> = LazyValue { blockLookup.values.reversed().flatten() }

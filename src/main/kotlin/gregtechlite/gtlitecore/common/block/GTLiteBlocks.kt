@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
 import com.morphismmc.morphismlib.client.Games
-import com.morphismmc.morphismlib.util.Checks
 import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.GregTechAPI
 import gregtech.api.block.VariantActiveBlock
@@ -14,7 +13,9 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
+import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
 import gregtechlite.gtlitecore.api.collection.immutableMapOf
+import gregtechlite.gtlitecore.api.collection.treeMapOf
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
@@ -53,7 +54,6 @@ import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorBer
 import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorCropManager
 import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeManager
 import gregtechlite.gtlitecore.common.worldgen.generator.tree.WorldGeneratorTreeRegistry
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import net.minecraft.block.Block
 import net.minecraft.block.BlockFalling
 import net.minecraft.block.BlockLog
@@ -670,7 +670,7 @@ object GTLiteBlocks
     private fun <T : Block> setModelLocation(block: T)
     {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
-            ModelResourceLocation(Checks.notnullM(block.registryName), "inventory"))
+            ModelResourceLocation(checkNotNull(block.registryName), "inventory"))
     }
 
     /**
@@ -715,18 +715,18 @@ object GTLiteBlocks
     private fun createGeneratedBlock(materialPredicate: (GTMaterial) -> Boolean,
                                      blockGenerator: (Array<GTMaterial>, Int) -> Unit)
     {
-        val blocksToGenerate = TreeMap<Int, Array<GTMaterial>>()
-        GregTechAPI.materialManager.registeredMaterials.forEach { mat ->
-            if (materialPredicate(mat))
+        val blocksToGenerate: NavigableMap<Int, Array<GTMaterial>> = treeMapOf()
+        GregTechAPI.materialManager.registeredMaterials.forEach { material ->
+            if (materialPredicate(material))
             {
-                val id = mat.id
-                val metaBlockId = id / 4
-                val subBlockId = id % 4
+                val materialId = material.id
+                val metaBlockId = materialId / 4
+                val subBlockId = materialId % 4
 
                 val materials = blocksToGenerate.getOrPut(metaBlockId) {
                     Array(4) { Materials.NULL }
                 }
-                materials[subBlockId] = mat
+                materials[subBlockId] = material
             }
         }
         blocksToGenerate.forEach { k, v -> blockGenerator(v, k) }
@@ -760,8 +760,8 @@ object GTLiteBlocks
         {
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
                 block.getMetaFromState(state),
-                ModelResourceLocation(Checks.notnullM(block.getRegistryName()),
-                    MetaBlocks.statePropertiesToString(state.getProperties())))
+                ModelResourceLocation(checkNotNull(block.registryName),
+                    MetaBlocks.statePropertiesToString(state.properties)))
         }
     }
 
@@ -771,11 +771,11 @@ object GTLiteBlocks
     {
         for (state in block.blockState.validStates)
         {
-            val stringProperties = Object2ObjectOpenHashMap(state.getProperties())
+            val stringProperties = fastObjectHashMapOf(state.properties)
             stringProperties.putAll(stateOverrides)
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
                 block.getMetaFromState(state),
-                ModelResourceLocation(Checks.notnullM(block.getRegistryName()),
+                ModelResourceLocation(checkNotNull(block.registryName),
                     MetaBlocks.statePropertiesToString(stringProperties)))
         }
     }
