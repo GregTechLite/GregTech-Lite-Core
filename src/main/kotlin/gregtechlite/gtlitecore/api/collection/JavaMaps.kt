@@ -2,7 +2,7 @@
 
 package gregtechlite.gtlitecore.api.collection
 
-import com.google.gson.internal.LinkedTreeMap
+import com.google.gson.internal.LinkedTreeMap as MutableTreeMap
 import java.util.TreeMap
 
 // region Tree Map
@@ -16,11 +16,11 @@ fun <K, V> treeMapOf(comparator: Comparator<in K>): TreeMap<K, V>
 fun <K, V> treeMapOf(map: Map<K, V>): TreeMap<K, V>
     = TreeMap(map)
 
-fun <K, V> mutableTreeMapOf(): LinkedTreeMap<K, V>
-    = LinkedTreeMap()
+fun <K, V> mutableTreeMapOf(): MutableTreeMap<K, V>
+    = MutableTreeMap()
 
-fun <K, V> mutableTreeMapOf(comparator: Comparator<in K>): LinkedTreeMap<K, V>
-    = LinkedTreeMap(comparator)
+fun <K, V> mutableTreeMapOf(comparator: Comparator<in K>): MutableTreeMap<K, V>
+    = MutableTreeMap(comparator)
 
 fun <K, V> Map<K, V>.toTreeMap(): TreeMap<K, V>
     = treeMapOf(this)
