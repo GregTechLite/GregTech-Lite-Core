@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.block
 
-import com.google.common.collect.ImmutableMap
 import com.morphismmc.morphismlib.client.Games
 import com.morphismmc.morphismlib.util.Checks
 import com.morphismmc.morphismlib.util.Unchecks
@@ -15,6 +14,7 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
+import gregtechlite.gtlitecore.api.collection.immutableMapOf
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
@@ -492,8 +492,8 @@ object GTLiteBlocks
         PLANKS.forEach(::registerItemModel)
 
         // Initialized wooden slabs.
-        registerItemModelWithOverride(WOOD_SLABS, ImmutableMap.of(
-            BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM))
+        registerItemModelWithOverride(WOOD_SLABS,
+            immutableMapOf(BlockSlab.HALF to BlockSlab.EnumBlockHalf.BOTTOM))
 
         // Initialized wooden stairs.
         setModelLocation(BANANA_WOOD_STAIR)
