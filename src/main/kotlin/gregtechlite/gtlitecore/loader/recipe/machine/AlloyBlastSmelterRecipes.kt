@@ -118,45 +118,46 @@ internal object AlloyBlastSmelterRecipes
     private fun formulaicRecipes()
     {
         registerBinaryAlloy(Copper, 3, Tin, 1,
-            Bronze, 4, 20 * SECOND)
+                            Bronze, 4, 20 * SECOND)
         registerBinaryAlloy(Copper, 3, Zinc, 1,
-            Brass, 4, 20 * SECOND)
+                            Brass, 4, 20 * SECOND)
         registerBinaryAlloy(Copper, 1, Nickel, 1,
-            Cupronickel, 2, 10 * SECOND)
+                            Cupronickel, 2, 10 * SECOND)
         registerBinaryAlloy(Copper, 1, Redstone, 4,
-            RedAlloy, 1, 5 * SECOND)
+                            RedAlloy, 1, 5 * SECOND)
         registerBinaryAlloy(Sodium, 7, Potassium, 3,
-            SodiumPotassiumEutatic, 10, 5 * SECOND)
+                            SodiumPotassiumEutatic, 10, 5 * SECOND)
         registerBinaryAlloy(Lead, 3, Bismuth, 7,
-            LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
+                            LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
         registerBinaryAlloy(BariumTitanate, 5, StrontiumOxide, 2,
-            BariumStrontiumTitanate, 7, 28 * SECOND)
-
+                            BariumStrontiumTitanate, 7, 28 * SECOND)
         registerBinaryAlloy(Iron, 1, Tin, 1,
-            TinAlloy, 2, 5 * SECOND)
+                            TinAlloy, 2, 5 * SECOND)
         registerBinaryAlloy(Iron, 2, Nickel, 1,
-            Invar, 3, 15 * SECOND)
+                            Invar, 3, 15 * SECOND)
         registerBinaryAlloy(Lead, 4, Antimony, 1,
-            BatteryAlloy, 5, 12 * SECOND + 10 * TICK)
+                            BatteryAlloy, 5, 12 * SECOND + 10 * TICK)
         registerBinaryAlloy(Gold, 1, Silver, 1,
-            Electrum, 2, 10 * SECOND)
+                            Electrum, 2, 10 * SECOND)
         registerBinaryAlloy(Magnesium, 1, Aluminium, 2,
-            Magnalium, 3, 7 * SECOND + 10 * TICK)
+                            Magnalium, 3, 7 * SECOND + 10 * TICK)
         registerBinaryAlloy(Silver, 1, Electrotine, 4,
-            BlueAlloy, 1, 5 * SECOND)
+                            BlueAlloy, 1, 5 * SECOND)
         registerBinaryAlloy(Glass, 7, Boron, 1,
-            BorosilicateGlass, 8, 10 * SECOND)
+                            BorosilicateGlass, 8, 10 * SECOND)
         registerBinaryAlloy(LithiumFluoride, 2, BerylliumDifluoride, 3,
-            LithiumBerylliumFluorides, 5, 5 * SECOND)
+                            LithiumBerylliumFluorides, 5, 5 * SECOND)
+        registerBinaryAlloy(Bronze, 8, Lead, 1,
+                            Potin, 9, 20 * SECOND)
 
         registerTrinaryAlloy(Brass, 7, Aluminium, 1,
-            Cobalt, 1, CobaltBrass, 9, 45 * SECOND)
+                             Cobalt, 1, CobaltBrass, 9, 45 * SECOND)
         registerTrinaryAlloy(Tin, 6, Lead, 3,
-            Antimony, 1, SolderingAlloy, 10, 10 * SECOND)
+                             Antimony, 1, SolderingAlloy, 10, 10 * SECOND)
         registerTrinaryAlloy(Copper, 6, Tin, 2,
-            Lead, 1, Potin, 9, 20 * SECOND)
+                             Lead, 1, Potin, 9, 20 * SECOND)
         registerTrinaryAlloy(LithiumFluoride, 2, SodiumFluoride, 2,
-            PotassiumFluoride, 2, LithiumSodiumPotassiumFluorides, 6, 5 * SECOND)
+                             PotassiumFluoride, 2, LithiumSodiumPotassiumFluorides, 6, 5 * SECOND)
     }
 
     private fun manualRecipes()
