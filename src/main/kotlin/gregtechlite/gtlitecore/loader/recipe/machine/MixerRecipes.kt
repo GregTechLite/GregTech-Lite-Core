@@ -118,6 +118,7 @@ import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Potassium
+import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Protactinium
@@ -1341,6 +1342,15 @@ internal object MixerRecipes
             .duration(5 * SECOND)
             .buildAndRegister()
 
+        // Potin
+        MIXER_RECIPES.recipeBuilder()
+            .circuitMeta(5)
+            .input(dust, Bronze, 8)
+            .input(dust, Lead)
+            .output(dust, Potin, 9)
+            .EUt(VH[LV])
+            .duration(20 * SECOND)
+            .buildAndRegister()
     }
 
     // @formatter:on
