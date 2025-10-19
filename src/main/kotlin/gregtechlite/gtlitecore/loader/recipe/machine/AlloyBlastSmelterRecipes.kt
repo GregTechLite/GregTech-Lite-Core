@@ -125,12 +125,14 @@ internal object AlloyBlastSmelterRecipes
                             Cupronickel, 2, 10 * SECOND)
         registerBinaryAlloy(Copper, 1, Redstone, 4,
                             RedAlloy, 1, 5 * SECOND)
+
         registerBinaryAlloy(Sodium, 7, Potassium, 3,
                             SodiumPotassiumEutatic, 10, 5 * SECOND)
         registerBinaryAlloy(Lead, 3, Bismuth, 7,
                             LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
         registerBinaryAlloy(BariumTitanate, 5, StrontiumOxide, 2,
                             BariumStrontiumTitanate, 7, 28 * SECOND)
+
         registerBinaryAlloy(Iron, 1, Tin, 1,
                             TinAlloy, 2, 5 * SECOND)
         registerBinaryAlloy(Iron, 2, Nickel, 1,
@@ -147,15 +149,18 @@ internal object AlloyBlastSmelterRecipes
                             BorosilicateGlass, 8, 10 * SECOND)
         registerBinaryAlloy(LithiumFluoride, 2, BerylliumDifluoride, 3,
                             LithiumBerylliumFluorides, 5, 5 * SECOND)
-        registerBinaryAlloy(Bronze, 8, Lead, 1,
-                            Potin, 9, 20 * SECOND)
+
 
         registerTrinaryAlloy(Brass, 7, Aluminium, 1,
                              Cobalt, 1, CobaltBrass, 9, 45 * SECOND)
         registerTrinaryAlloy(Tin, 6, Lead, 3,
                              Antimony, 1, SolderingAlloy, 10, 10 * SECOND)
+
         registerTrinaryAlloy(Copper, 6, Tin, 2,
                              Lead, 1, Potin, 9, 20 * SECOND)
+        registerBinaryAlloy(Bronze, 8, Lead, 1,
+                            Potin, 9, 20 * SECOND)
+
         registerTrinaryAlloy(LithiumFluoride, 2, SodiumFluoride, 2,
                              PotassiumFluoride, 2, LithiumSodiumPotassiumFluorides, 6, 5 * SECOND)
     }

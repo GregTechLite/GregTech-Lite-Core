@@ -1348,7 +1348,7 @@ internal object MixerRecipes
             .input(dust, Bronze, 8)
             .input(dust, Lead)
             .output(dust, Potin, 9)
-            .EUt(VA[LV])
+            .EUt(VH[LV])
             .duration(20 * SECOND)
             .buildAndRegister()
     }
