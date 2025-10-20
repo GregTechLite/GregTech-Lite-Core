@@ -122,6 +122,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.Multib
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNuclearReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockRocketEngine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockSteamEngine
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEPCouplingAccelerator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEntrodynamicallyPhaseChanger
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
@@ -337,6 +338,7 @@ object GTLiteMetaTileEntities
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
+    lateinit var EP_COUPLING_ACCELERATOR: MultiblockEPCouplingAccelerator
 
     fun preInit()
     {
@@ -839,6 +841,7 @@ object GTLiteMetaTileEntities
 
         ENTRODYNAMICALLY_PHASE_CHANGER = register(10201, MultiblockEntrodynamicallyPhaseChanger(GTLiteMod.id("entrodynamically_phase_changer")))
         PLASMA_ARC_TRANSMITTER = register(10202, MultiblockPlasmaArcTransmitter(GTLiteMod.id("plasma_arc_transmitter")))
+        EP_COUPLING_ACCELERATOR = register(10203, MultiblockEPCouplingAccelerator(GTLiteMod.id("ep_coupling_accelerator")))
     }
 
     // @formatter:on

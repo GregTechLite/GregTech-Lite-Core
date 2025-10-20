@@ -115,6 +115,8 @@ object GTLiteOverlays
     val STELLAR_FORGE_OVERLAY = multiId("stellar_forge")
     @JvmField
     val PLASMA_ARC_TRANSMITTER_OVERLAY = multiId("plasma_arc_transmitter")
+    @JvmField
+    val EP_COUPLING_ACCELERATOR_OVERLAY = multiId("ep_coupling_accelerator")
 
     // endregion
 

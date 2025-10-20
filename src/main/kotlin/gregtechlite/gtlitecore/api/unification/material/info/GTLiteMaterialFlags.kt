@@ -499,6 +499,7 @@ object GTLiteMaterialFlags
         Livermorium.addFlags(GENERATE_DOUBLE_PLATE)
         Moscovium.addFlags(GENERATE_DOUBLE_PLATE)
         Copernicium.addFlags(GENERATE_DOUBLE_PLATE)
+        NaquadahEnriched.addFlags(GENERATE_DOUBLE_PLATE)
 
         // plateDense
         WroughtIron.addFlags(GENERATE_DENSE)
@@ -532,6 +533,7 @@ object GTLiteMaterialFlags
         Seaborgium.addFlags(GENERATE_DENSE)
         Meitnerium.addFlags(GENERATE_DENSE)
         Copernicium.addFlags(GENERATE_DENSE)
+        NaquadahEnriched.addFlags(GENERATE_DENSE)
 
         // ring
         Duranium.addFlags(GENERATE_RING)

@@ -2573,6 +2573,10 @@ gtlitecore.machine.plasma_arc_transmitter.tooltip.3=- §f20号§7 -> §e电弧�
 gtlitecore.machine.plasma_arc_transmitter.tooltip.4=- §f21号§7 -> §e合金炉§7
 gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
 
+gtlitecore.machine.ep_coupling_accelerator.name=电子-声子耦合加速室
+gtlitecore.machine.ep_coupling_accelerator.tooltip.1=量子晶格振动
+gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固定为§f64§7且为独立计算乘区
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -3852,6 +3856,7 @@ gtlitecore.tooltip.machine.energy_mode.field_gen_casing=§6-%s%%/力场外壳等
 gtlitecore.tooltip.machine.energy_mode.processor_casing=§6-%s%%/处理器外壳等级
 gtlitecore.tooltip.machine.energy_mode.borosilicate_glass=§6-%s%%/硼硅玻璃等级
 gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/稳定力场等级
+gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/聚变线圈等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
 
