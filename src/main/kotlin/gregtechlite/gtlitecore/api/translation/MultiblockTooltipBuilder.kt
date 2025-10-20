@@ -68,6 +68,10 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
         _tooltips.add(I18n.format(parallelMode) + I18n.format("$parallelMode.${mode.name.lowercase()}", number))
     }
 
+    fun addParallelInfo(number: Int) = apply {
+        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.parallel_mode") + TextFormatting.YELLOW + number)
+    }
+
     fun addMultiParallelInfo(vararg modes: UpgradeMode, number: Int) = apply {
         val parallelMode = "gtlitecore.tooltip.machine.parallel_mode"
         val modeKey = modes.joinToString("_") { it.name.lowercase() }
