@@ -780,7 +780,7 @@ object GTLiteFirstDegreeMaterials
             gem(1, 160 * SECOND)
             ore()
             color(0xC81400).iconSet(QUARTZ)
-            flags(NO_SMASHING, NO_SMELTING)
+            flags(NO_SMASHING, NO_SMELTING, CRYSTALLIZABLE)
             components(SiliconDioxide, 2, Flint, 1, Pyrite, 1)
         }
 
