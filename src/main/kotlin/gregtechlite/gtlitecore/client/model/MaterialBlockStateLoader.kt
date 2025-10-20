@@ -8,7 +8,7 @@ import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.hashTableOf
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.IBakedModel
@@ -41,7 +41,7 @@ object MaterialBlockStateLoader
 {
 
     private val BLOCKSTATES_CACHE: Table<MaterialIconType, MaterialIconSet, ResourceLocation> = hashTableOf()
-    private val ENTRIES: MutableMap<ModelEntry, ModelResourceLocation> = fastObjectHashMapOf()
+    private val ENTRIES: MutableMap<ModelEntry, ModelResourceLocation> = openHashMapOf()
 
     @JvmOverloads
     fun loadBlockModel(iconType: MaterialIconType,

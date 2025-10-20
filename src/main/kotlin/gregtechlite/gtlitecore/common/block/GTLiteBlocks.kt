@@ -13,7 +13,7 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
-import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.immutableMapOf
 import gregtechlite.gtlitecore.api.collection.treeMapOf
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -771,7 +771,7 @@ object GTLiteBlocks
     {
         for (state in block.blockState.validStates)
         {
-            val stringProperties = fastObjectHashMapOf(state.properties)
+            val stringProperties = openHashMapOf(state.properties)
             stringProperties.putAll(stateOverrides)
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
                 block.getMetaFromState(state),

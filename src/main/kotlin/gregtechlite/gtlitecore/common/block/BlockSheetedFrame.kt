@@ -4,7 +4,7 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.unification.material.Materials
 import gregtech.common.blocks.properties.PropertyMaterial
 import gregtech.common.creativetab.GTCreativeTabs
-import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.extension.toItem
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconType
 import gregtechlite.gtlitecore.client.model.MaterialBlockStateLoader
@@ -217,7 +217,7 @@ class BlockSheetedFrame(materials: Array<GTMaterial>) : Block(Material.IRON)
     @SideOnly(Side.CLIENT)
     fun onModelRegister()
     {
-        val models: MutableMap<IBlockState?, ModelResourceLocation?> = fastObjectHashMapOf()
+        val models: MutableMap<IBlockState?, ModelResourceLocation?> = openHashMapOf()
         for (state in getBlockState().validStates)
         {
             val material = getGTMaterial(state)

@@ -66,7 +66,7 @@ import gregtech.api.unification.material.Materials.Tritium
 import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Xenon
-import gregtechlite.gtlitecore.api.collection.fastObjectHashMapOf
+import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSmoke
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronTrifluoride
@@ -93,7 +93,7 @@ object SpacePumpRecipeFrontend
      * We used inner [Pair] but not Kotlin [Pair] to resolve some possible conflicts in mixed
      * programming environment.
      */
-    val RECIPES: MutableMap<Pair<Int, Int>, FluidStack> = fastObjectHashMapOf()
+    val RECIPES: MutableMap<Pair<Int, Int>, FluidStack> = openHashMapOf()
 
     fun init()
     {
