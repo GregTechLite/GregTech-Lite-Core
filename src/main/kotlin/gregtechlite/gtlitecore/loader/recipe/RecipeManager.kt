@@ -4,7 +4,14 @@ import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.loader.recipe.chain.ChemistryRecipeList
 import gregtechlite.gtlitecore.loader.recipe.circuit.CircuitRecipeList
-import gregtechlite.gtlitecore.loader.recipe.component.ComponentRecipeList
+import gregtechlite.gtlitecore.loader.recipe.component.ConveyorRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.EmitterRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.FieldGenRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.MotorRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.PistonRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.PumpRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.RobotArmRecipes
+import gregtechlite.gtlitecore.loader.recipe.component.SensorRecipes
 import gregtechlite.gtlitecore.loader.recipe.foodprocessing.FoodProcessingList
 import gregtechlite.gtlitecore.loader.recipe.machine.GTMetaTileEntityLoader
 import gregtechlite.gtlitecore.loader.recipe.machine.MachineRecipeList
@@ -37,8 +44,8 @@ internal object RecipeManager
         OreProcessingList.init()
         FoodProcessingList.init()
 
-        GTLiteLog.logger.debug("Starting to load all Machine and its CraftingComponent recipes...")
-        ComponentRecipeList.init()
+        // Components, Crafting Components and Machine Recipes.
+        componentRecipes()
         MachineRecipeList.init()
 
         GTLiteLog.logger.debug("Starting to load all Circuit recipes...")
@@ -50,6 +57,18 @@ internal object RecipeManager
 
         GTLiteLog.logger.debug("Starting to load all Pseudo Recipes...")
         SpacePumpRecipeFrontend.init()
+    }
+
+    private fun componentRecipes()
+    {
+        MotorRecipes.init()
+        PistonRecipes.init()
+        PumpRecipes.init()
+        ConveyorRecipes.init()
+        RobotArmRecipes.init()
+        EmitterRecipes.init()
+        SensorRecipes.init()
+        FieldGenRecipes.init()
     }
 
     // @formatter:on

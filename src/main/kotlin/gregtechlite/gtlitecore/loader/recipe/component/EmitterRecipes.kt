@@ -120,8 +120,8 @@ internal object EmitterRecipes
             .output(EMITTER_LuV)
             .EUt(6000) // IV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(EMITTER_IV)
+            .scannerResearch {
+                it.researchStack(EMITTER_IV)
                     .EUt(VA[HV])
                     .duration(1 * MINUTE)
             }
@@ -155,8 +155,8 @@ internal object EmitterRecipes
             .output(EMITTER_ZPM)
             .EUt(24000) // LuV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_LuV)
+            .stationResearch {
+                it.researchStack(EMITTER_LuV)
                     .EUt(VA[LuV])
                     .CWUt(4)
             }
@@ -191,8 +191,8 @@ internal object EmitterRecipes
             .output(EMITTER_UV)
             .EUt(100_000) // ZPM
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_ZPM)
+            .stationResearch {
+                it.researchStack(EMITTER_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -214,8 +214,8 @@ internal object EmitterRecipes
             .output(EMITTER_UHV)
             .EUt(400_000) // UV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_UV)
+            .stationResearch {
+                it.researchStack(EMITTER_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -238,8 +238,8 @@ internal object EmitterRecipes
             .output(EMITTER_UEV)
             .EUt(1_800_000) // UHV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_UHV)
+            .stationResearch {
+                it.researchStack(EMITTER_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -263,8 +263,8 @@ internal object EmitterRecipes
             .output(EMITTER_UIV)
             .EUt(6_000_000) // UEV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_UEV)
+            .stationResearch {
+                it.researchStack(EMITTER_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -288,8 +288,8 @@ internal object EmitterRecipes
             .output(EMITTER_UXV)
             .EUt(20_000_000) // UIV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_UIV)
+            .stationResearch {
+                it.researchStack(EMITTER_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -314,8 +314,8 @@ internal object EmitterRecipes
             .output(EMITTER_OpV)
             .EUt(50_000_000) // UXV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(EMITTER_UXV)
+            .stationResearch {
+                it.researchStack(EMITTER_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }

@@ -117,8 +117,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_LuV)
             .EUt(6000) // IV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_IV)
+            .scannerResearch {
+                it.researchStack(ELECTRIC_MOTOR_IV)
                     .EUt(VA[HV])
                     .duration(30 * SECOND)
             }
@@ -148,8 +148,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_ZPM)
             .EUt(24000) // LuV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_LuV)
+            .scannerResearch {
+                it.researchStack(ELECTRIC_MOTOR_LuV)
                     .EUt(VA[IV])
                     .duration(MINUTE)
             }
@@ -184,8 +184,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_UV)
             .EUt(100_000) // ZPM
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_ZPM)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -207,8 +207,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_UHV)
             .EUt(400_000) // UV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_UV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -231,8 +231,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_UEV)
             .EUt(1_800_000) // UHV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_UHV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -256,8 +256,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_UIV)
             .EUt(6_000_000) // UEV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_UEV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -282,8 +282,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_UXV)
             .EUt(20_000_000) // UIV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_UIV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -311,8 +311,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_OpV)
             .EUt(50_000_000) // UXV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_UXV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -343,8 +343,8 @@ internal object MotorRecipes
             .output(ELECTRIC_MOTOR_MAX)
             .EUt(300_000_000) // OpV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_MOTOR_OpV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_MOTOR_OpV)
                     .EUt(VA[OpV])
                     .CWUt(256)
             }
