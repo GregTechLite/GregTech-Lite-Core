@@ -22,8 +22,7 @@ class CoverDrain(definition: CoverDefinition,
                  attachedSide: EnumFacing,
                  private var transferRate: Int) : CoverBase(definition, coverableView, attachedSide), ITickable
 {
-
-    private var waterStack: FluidStack? = null
+    private var waterStack = FluidStack(Materials.Water.fluid, this.transferRate)
 
     override fun canAttach(coverableView: CoverableView, attachedSide: EnumFacing): Boolean
     {
@@ -43,25 +42,16 @@ class CoverDrain(definition: CoverDefinition,
     {
         if (world.isRemote || offsetTimer % SECOND != 0L) return
 
-        val neighborBlock = world.getBlockState(pos.offset(attachedSide.opposite))
+        val neighborBlock = world.getBlockState(pos.offset(attachedSide))
 
         if (tileEntityHere == null) return
 
-        val fluidHandler = tileEntityHere?.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide)
-        if (fluidHandler == null)
-            return
+        val fluidHandler =
+            tileEntityHere?.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide) ?: return
 
-        if (waterStack == null)
+        if (neighborBlock.block == Blocks.WATER || neighborBlock.block == Blocks.FLOWING_WATER)
         {
-            if (neighborBlock == Blocks.WATER.defaultState || neighborBlock == Blocks.FLOWING_WATER.defaultState)
-            {
-                this.waterStack = FluidStack(Materials.Water.fluid, this.transferRate)
-            }
-        }
-
-        if (waterStack != null)
-        {
-            fluidHandler.fill(this.waterStack!!.copy(), true)
+            fluidHandler.fill(this.waterStack.copy(), true)
         }
     }
 
