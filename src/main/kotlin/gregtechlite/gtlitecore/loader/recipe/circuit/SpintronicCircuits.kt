@@ -728,8 +728,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_ASSEMBLY_UEV, 3)
             .EUt(VA[UEV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_PROCESSOR_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -747,8 +747,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_ASSEMBLY_UEV, 3)
             .EUt(VA[UEV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_PROCESSOR_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -766,8 +766,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_ASSEMBLY_UEV, 3)
             .EUt(VA[UEV])
             .duration(5 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_PROCESSOR_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -789,8 +789,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_COMPUTER_UIV, 2)
             .EUt(VA[UEV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -811,8 +811,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_COMPUTER_UIV, 2)
             .EUt(VA[UEV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -833,8 +833,8 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_COMPUTER_UIV, 2)
             .EUt(VA[UEV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SPINTRONIC_ASSEMBLY_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
@@ -860,10 +860,10 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_MAINFRAME_UXV)
             .EUt(VA[UIV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
-                .EUt(VA[UIV])
-                .CWUt(96)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_COMPUTER_UIV)
+                    .EUt(VA[UIV])
+                    .CWUt(96)
             }
             .buildAndRegister()
 
@@ -886,10 +886,10 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_MAINFRAME_UXV)
             .EUt(VA[UIV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
-                .EUt(VA[UIV])
-                .CWUt(96)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_COMPUTER_UIV)
+                    .EUt(VA[UIV])
+                    .CWUt(96)
             }
             .buildAndRegister()
 
@@ -912,10 +912,10 @@ internal object SpintronicCircuits
             .output(SPINTRONIC_MAINFRAME_UXV)
             .EUt(VA[UIV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(SPINTRONIC_COMPUTER_UIV.stackForm)
-                .EUt(VA[UIV])
-                .CWUt(96)
+            .stationResearch {
+                it.researchStack(SPINTRONIC_COMPUTER_UIV)
+                    .EUt(VA[UIV])
+                    .CWUt(96)
             }
             .buildAndRegister()
 

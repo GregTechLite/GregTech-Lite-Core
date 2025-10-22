@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.loader.recipe
 
-import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.loader.recipe.chain.ChemistryRecipeList
 import gregtechlite.gtlitecore.loader.recipe.circuit.CircuitRecipeList
@@ -20,19 +19,19 @@ internal object RecipeManager
 
     fun init()
     {
-        GTLiteLog.logger.debug("Starting to load all Crafting recipes...")
+        // Hand-Crafting Recipes and GTCEu Wood Recipes.
         CraftingRecipeLoader.init()
         GTWoodRecipeLoader.init()
 
-        GTLiteLog.logger.debug("Starting to load all RecipeProducers...")
+        // Recipe Producers.
         RecipeProducerList.init()
 
-        GTLiteLog.logger.debug("Starting to load all MetaTileEntity recipes...")
+        // Single and Multiblock Machines and Machine Casings Recipes.
         GTMetaTileEntityLoader.init()
         MachineRecipeLoader.init()
         MachineCasingRecipeList.init()
 
-        GTLiteLog.logger.debug("Starting to load all Chemistry, Ore and Food Processings...")
+        // Chemistry, Ore and Food Processings Recipes.
         ChemistryRecipeList.init()
         OreProcessingList.init()
         FoodProcessingList.init()
@@ -41,14 +40,14 @@ internal object RecipeManager
         ComponentRecipeList.init()
         MachineRecipeList.init()
 
-        GTLiteLog.logger.debug("Starting to load all Circuit recipes...")
+        // Circuit Recipes.
         CircuitRecipeList.init()
 
-        GTLiteLog.logger.debug("Starting to load all Override recipes and resolve all Recipe Conflicts...")
+        // Override Recipes and Recipe Conflicts Resolver.
         OverrideRecipeLoader.init()
         RecipeConflicts.init()
 
-        GTLiteLog.logger.debug("Starting to load all Pseudo Recipes...")
+        // Pseudo Recipes (Recipe Frontends).
         SpacePumpRecipeFrontend.init()
     }
 

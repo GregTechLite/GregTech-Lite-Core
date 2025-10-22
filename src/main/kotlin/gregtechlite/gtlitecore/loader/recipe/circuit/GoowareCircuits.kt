@@ -445,8 +445,8 @@ internal object GoowareCircuits
             .output(GOOWARE_COMPUTER_UHV, 2)
             .EUt(VA[UV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_ASSEMBLY_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -465,8 +465,8 @@ internal object GoowareCircuits
             .output(GOOWARE_COMPUTER_UHV, 2)
             .EUt(VA[UV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_ASSEMBLY_UV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_ASSEMBLY_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -490,8 +490,8 @@ internal object GoowareCircuits
             .output(GOOWARE_MAINFRAME_UEV)
             .EUt(VA[UHV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -514,8 +514,8 @@ internal object GoowareCircuits
             .output(GOOWARE_MAINFRAME_UEV)
             .EUt(VA[UHV])
             .duration(45 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -538,8 +538,8 @@ internal object GoowareCircuits
             .output(GOOWARE_MAINFRAME_UEV)
             .EUt(VA[UHV])
             .duration(25 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -562,8 +562,8 @@ internal object GoowareCircuits
             .output(GOOWARE_MAINFRAME_UEV)
             .EUt(VA[UHV])
             .duration(15 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(GOOWARE_COMPUTER_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }

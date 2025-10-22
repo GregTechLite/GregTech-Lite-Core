@@ -318,10 +318,10 @@ internal object CosmicCircuits
             .fluidInputs(Fullerene.getFluid(L * 4))
             .fluidInputs(Thorium.getPlasma(L))
             .output(NUCLEAR_CLOCK)
-            .EUt(VA[UEV].toLong())
+            .EUt(VA[UEV])
             .duration(2 * SECOND + 10 * TICK)
-            .stationResearch { r ->
-                r.researchStack(ND_YAG_LASER.stackForm)
+            .stationResearch {
+                it.researchStack(ND_YAG_LASER)
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
@@ -618,8 +618,8 @@ internal object CosmicCircuits
             .output(COSMIC_ASSEMBLY_UIV, 3)
             .EUt(VA[UIV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_PROCESSOR_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_PROCESSOR_UEV)
                     .EUt(VA[UIV])
                     .CWUt(48)
             }
@@ -637,8 +637,8 @@ internal object CosmicCircuits
             .output(COSMIC_ASSEMBLY_UIV, 3)
             .EUt(VA[UIV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_PROCESSOR_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_PROCESSOR_UEV)
                     .EUt(VA[UIV])
                     .CWUt(48)
             }
@@ -660,8 +660,8 @@ internal object CosmicCircuits
             .output(COSMIC_COMPUTER_UXV, 2)
             .EUt(VA[UIV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_ASSEMBLY_UIV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_ASSEMBLY_UIV)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -682,8 +682,8 @@ internal object CosmicCircuits
             .output(COSMIC_COMPUTER_UXV, 2)
             .EUt(VA[UIV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_ASSEMBLY_UIV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_ASSEMBLY_UIV)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
@@ -709,8 +709,8 @@ internal object CosmicCircuits
             .output(COSMIC_MAINFRAME_OpV)
             .EUt(VA[UXV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_COMPUTER_UXV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_COMPUTER_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -735,8 +735,8 @@ internal object CosmicCircuits
             .output(COSMIC_MAINFRAME_OpV)
             .EUt(VA[UXV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(COSMIC_COMPUTER_UXV.stackForm)
+            .stationResearch {
+                it.researchStack(COSMIC_COMPUTER_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }

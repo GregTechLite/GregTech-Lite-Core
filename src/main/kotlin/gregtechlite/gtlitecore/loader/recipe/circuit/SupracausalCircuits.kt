@@ -167,8 +167,8 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_SPACETIME_CONDENSER)
             .EUt(VA[UEV])
             .duration(2 * SECOND + 10 * TICK)
-            .stationResearch { r ->
-                r.researchStack(STABILIZED_WORMHOLE_GENERATOR.stackForm)
+            .stationResearch {
+                it.researchStack(STABILIZED_WORMHOLE_GENERATOR)
                     .EUt(VA[UHV])
                     .CWUt(96)
             }
@@ -376,8 +376,8 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_ASSEMBLY_UXV, 3)
             .EUt(VA[UXV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SUPRACAUSAL_PROCESSOR_UIV)
+            .stationResearch {
+                it.researchStack(SUPRACAUSAL_PROCESSOR_UIV)
                     .EUt(VA[UXV])
                     .CWUt(64)
             }
@@ -401,8 +401,8 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_COMPUTER_OpV, 2)
             .EUt(VA[UXV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SUPRACAUSAL_ASSEMBLY_UXV)
+            .stationResearch {
+                it.researchStack(SUPRACAUSAL_ASSEMBLY_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -428,8 +428,8 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_MAINFRAME_MAX)
             .EUt(VA[OpV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SUPRACAUSAL_COMPUTER_OpV)
+            .stationResearch {
+                it.researchStack(SUPRACAUSAL_COMPUTER_OpV)
                     .EUt(VA[OpV])
                     .CWUt(160)
             }
