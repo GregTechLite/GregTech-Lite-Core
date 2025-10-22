@@ -43,7 +43,7 @@ class CoverDrain(definition: CoverDefinition,
     {
         if (world.isRemote || offsetTimer % SECOND != 0L) return
 
-        val neighborBlock = world.getBlockState(pos.offset(attachedSide.opposite))
+        val neighborBlock = world.getBlockState(pos.offset(attachedSide))
 
         if (tileEntityHere == null) return
 
