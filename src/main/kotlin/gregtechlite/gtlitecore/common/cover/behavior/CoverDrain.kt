@@ -22,8 +22,7 @@ class CoverDrain(definition: CoverDefinition,
                  attachedSide: EnumFacing,
                  private var transferRate: Int) : CoverBase(definition, coverableView, attachedSide), ITickable
 {
-
-    private var waterStack: FluidStack? = null
+    private var waterStack = FluidStack(Materials.Water.fluid, this.transferRate)
 
     override fun canAttach(coverableView: CoverableView, attachedSide: EnumFacing): Boolean
     {
@@ -51,17 +50,9 @@ class CoverDrain(definition: CoverDefinition,
         if (fluidHandler == null)
             return
 
-        if (waterStack == null)
+        if (neighborBlock == Blocks.WATER.defaultState || neighborBlock == Blocks.FLOWING_WATER.defaultState)
         {
-            if (neighborBlock == Blocks.WATER.defaultState || neighborBlock == Blocks.FLOWING_WATER.defaultState)
-            {
-                this.waterStack = FluidStack(Materials.Water.fluid, this.transferRate)
-            }
-        }
-
-        if (waterStack != null)
-        {
-            fluidHandler.fill(this.waterStack!!.copy(), true)
+            fluidHandler.fill(this.waterStack.copy(), true)
         }
     }
 
