@@ -49,7 +49,7 @@ class CoverDrain(definition: CoverDefinition,
         val fluidHandler =
             tileEntityHere?.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide) ?: return
 
-        if (neighborBlock == Blocks.WATER.defaultState || neighborBlock == Blocks.FLOWING_WATER.defaultState)
+        if (neighborBlock.block == Blocks.WATER || neighborBlock.block == Blocks.FLOWING_WATER)
         {
             fluidHandler.fill(this.waterStack.copy(), true)
         }
