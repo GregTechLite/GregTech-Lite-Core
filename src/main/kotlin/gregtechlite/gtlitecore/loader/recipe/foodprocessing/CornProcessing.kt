@@ -14,6 +14,8 @@ import gregtech.common.items.MetaItems.PLANT_BALL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
@@ -31,38 +33,38 @@ internal object CornProcessing
     fun init()
     {
         // Corn -> Corn Cob
-        ModHandler.addShapedRecipe(false, "corn_cob", CORN_COB.itemStack,
+        ModHandler.addShapedRecipe(false, "corn_cob", CORN_COB.stack(),
             "A  ",
             'A', CORN)
 
         // Corn -> Corn Kernel
-        ModHandler.addShapedRecipe(false, "corn_kernel", CORN_KERNEL.getItemStack(8),
+        ModHandler.addShapedRecipe(false, "corn_kernel", CORN_KERNEL.getStack(8),
             " A ",
             'A', CORN)
 
         // Corn -> Corn Cob + Corn Kernel
         CENTRIFUGE_RECIPES.recipeBuilder()
             .input(CORN)
-            .outputs(CORN_KERNEL.getItemStack(16))
-            .outputs(CORN_COB.itemStack)
+            .outputs(CORN_KERNEL.getStack(16))
+            .outputs(CORN_COB.stack())
             .EUt(VA[LV])
             .duration(2 * SECOND)
             .buildAndRegister()
 
         // Corn Kernel -> Bare Corn Kernel
-        ModHandler.addShapelessRecipe("bare_corn_kernel", BARE_CORN_KERNEL.itemStack,
-            CORN_KERNEL.itemStack)
+        ModHandler.addShapelessRecipe("bare_corn_kernel", BARE_CORN_KERNEL.stack(),
+            CORN_KERNEL.stack())
 
         EXTRACTOR_RECIPES.recipeBuilder()
-            .inputs(CORN_KERNEL.itemStack)
-            .outputs(BARE_CORN_KERNEL.itemStack)
+            .inputs(CORN_KERNEL.stack())
+            .outputs(BARE_CORN_KERNEL.stack())
             .EUt(7) // ULV
             .duration(3 * SECOND)
             .buildAndRegister()
 
         // Bare Corn Kernel decomposition.
         EXTRACTOR_RECIPES.recipeBuilder()
-            .inputs(BARE_CORN_KERNEL.itemStack)
+            .inputs(BARE_CORN_KERNEL.stack())
             .fluidOutputs(SeedOil.getFluid(8))
             .EUt(2) // ULV
             .duration(1 * SECOND + 12 * TICK)
@@ -70,7 +72,7 @@ internal object CornProcessing
 
         // Corn cob decomposition.
         COMPRESSOR_RECIPES.recipeBuilder()
-            .inputs(CORN_COB.getItemStack(8))
+            .inputs(CORN_COB.getStack(8))
             .output(PLANT_BALL)
             .EUt(2) // ULV
             .duration(15 * SECOND)
@@ -78,7 +80,7 @@ internal object CornProcessing
 
         // Bare Corn Kernel + H2O -> Polenta
         MULTICOOKER_RECIPES.recipeBuilder()
-            .inputs(BARE_CORN_KERNEL.getItemStack(8))
+            .inputs(BARE_CORN_KERNEL.getStack(8))
             .fluidInputs(DistilledWater.getFluid(1000))
             .fluidOutputs(Polenta.getFluid(250))
             .EUt(VA[LV])

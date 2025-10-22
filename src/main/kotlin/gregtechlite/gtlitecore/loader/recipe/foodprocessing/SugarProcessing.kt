@@ -21,6 +21,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
@@ -95,16 +97,16 @@ internal object SugarProcessing
         // Apple -> Apple Pulp
         MACERATOR_RECIPES.recipeBuilder()
             .inputs(ItemStack(Items.APPLE))
-            .outputs(APPLE_PULP.getItemStack(2))
-            .chancedOutput(APPLE_PULP.itemStack, 3000, 0)
-            .chancedOutput(APPLE_PULP.itemStack, 1500, 0)
+            .outputs(APPLE_PULP.getStack(2))
+            .chancedOutput(APPLE_PULP.stack(), 3000, 0)
+            .chancedOutput(APPLE_PULP.stack(), 1500, 0)
             .EUt(4) // ULV
             .duration(4 * SECOND)
             .buildAndRegister()
 
         // Apple Pulp -> Apple Syrup
         MIXER_RECIPES.recipeBuilder()
-            .inputs(APPLE_PULP.getItemStack(4))
+            .inputs(APPLE_PULP.getStack(4))
             .input(dust, Sugar, 9)
             .fluidInputs(Water.getFluid(1000))
             .fluidOutputs(AppleSyrup.getFluid(2000))
@@ -113,7 +115,7 @@ internal object SugarProcessing
             .buildAndRegister()
 
         MIXER_RECIPES.recipeBuilder()
-            .inputs(APPLE_PULP.getItemStack(4))
+            .inputs(APPLE_PULP.getStack(4))
             .input(dust, Sugar, 9)
             .fluidInputs(DistilledWater.getFluid(1000))
             .fluidOutputs(AppleSyrup.getFluid(2000))
@@ -153,7 +155,7 @@ internal object SugarProcessing
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_MOLD_PLATE)
             .fluidInputs(HardAppleCandySyrup.getFluid(1000))
-            .outputs(HARD_APPLE_CANDY_CHUNK.itemStack)
+            .outputs(HARD_APPLE_CANDY_CHUNK.stack())
             .EUt(VA[MV])
             .duration(10 * SECOND)
             .buildAndRegister()
@@ -161,8 +163,8 @@ internal object SugarProcessing
         // Hard Apple Candy Chunk -> Hard Apple Candy Plate
         SLICER_RECIPES.recipeBuilder()
             .notConsumable(SLICER_BLADE_FLAT)
-            .inputs(HARD_APPLE_CANDY_CHUNK.itemStack)
-            .outputs(HARD_APPLE_CANDY_PLATE.getItemStack(9))
+            .inputs(HARD_APPLE_CANDY_CHUNK.stack())
+            .outputs(HARD_APPLE_CANDY_PLATE.getStack(9))
             .EUt(VA[LV])
             .duration(10 * SECOND)
             .buildAndRegister()
@@ -170,7 +172,7 @@ internal object SugarProcessing
         // Hard Apple Candy Plate -> Hard Apple Candy
         ROASTER_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_MOLD_BALL)
-            .inputs(HARD_APPLE_CANDY_PLATE.itemStack)
+            .inputs(HARD_APPLE_CANDY_PLATE.stack())
             .output(HARD_APPLE_CANDY)
             .EUt(VA[MV])
             .duration(10 * SECOND)
@@ -179,7 +181,7 @@ internal object SugarProcessing
         // Hard Apple Candy -> Hard Apple Candy Dust
         MACERATOR_RECIPES.recipeBuilder()
             .input(HARD_APPLE_CANDY)
-            .outputs(HARD_APPLE_CANDY_DUST.getItemStack(2))
+            .outputs(HARD_APPLE_CANDY_DUST.getStack(2))
             .EUt(4) // ULV
             .duration(12 * TICK)
             .buildAndRegister()

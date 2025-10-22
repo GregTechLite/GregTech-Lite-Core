@@ -25,6 +25,8 @@ import gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
@@ -94,14 +96,14 @@ internal object PurpleDrinkProcessing
         // Poppy dust.
         MACERATOR_RECIPES.recipeBuilder()
             .inputs(ItemStack(Blocks.RED_FLOWER))
-            .outputs(POPPY_DUST.itemStack)
+            .outputs(POPPY_DUST.stack())
             .EUt(4) // ULV
             .duration(1 * SECOND)
             .buildAndRegister()
 
         // Poppy dust -> C18H21NO3
         EXTRACTOR_RECIPES.recipeBuilder()
-            .inputs(POPPY_DUST.getItemStack(64))
+            .inputs(POPPY_DUST.getStack(64))
             .output(dust, Codeine, 43)
             .EUt(VA[HV])
             .duration(10 * SECOND)
@@ -130,7 +132,7 @@ internal object PurpleDrinkProcessing
 
         // Purple Drink
         MIXER_RECIPES.recipeBuilder()
-            .inputs(HARD_APPLE_CANDY_DUST.itemStack)
+            .inputs(HARD_APPLE_CANDY_DUST.stack())
             .fluidInputs(CoughSyrup.getFluid(500))
             .fluidInputs(Etirps.getFluid(1000))
             .fluidOutputs(PurpleDrink.getFluid(1000))

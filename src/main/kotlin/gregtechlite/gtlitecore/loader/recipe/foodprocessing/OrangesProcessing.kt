@@ -11,6 +11,7 @@ import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
@@ -32,37 +33,37 @@ internal object OrangesProcessing
     fun init()
     {
 
-        ModHandler.addShapedRecipe(false, "zest_dust_lemon", ZEST_DUST.itemStack,
+        ModHandler.addShapedRecipe(false, "zest_dust_lemon", ZEST_DUST.stack(),
             "mA ",
             'A', LEMON)
 
         EXTRACTOR_RECIPES.recipeBuilder()
             .input(LEMON)
-            .outputs(ZEST_DUST.itemStack)
+            .outputs(ZEST_DUST.stack())
             .fluidOutputs(LemonExtract.getFluid(100))
             .EUt(5) // ULV
             .duration(5 * SECOND)
             .buildAndRegister()
 
-        ModHandler.addShapedRecipe(false, "zest_dust_lime", ZEST_DUST.itemStack,
+        ModHandler.addShapedRecipe(false, "zest_dust_lime", ZEST_DUST.stack(),
             "mA ",
             'A', LIME)
 
         EXTRACTOR_RECIPES.recipeBuilder()
             .input(LIME)
-            .outputs(ZEST_DUST.itemStack)
+            .outputs(ZEST_DUST.stack())
             .fluidOutputs(LimeExtract.getFluid(100))
             .EUt(5) // ULV
             .duration(5 * SECOND)
             .buildAndRegister()
 
-        ModHandler.addShapedRecipe(false, "zest_dust_orange", ZEST_DUST.itemStack,
+        ModHandler.addShapedRecipe(false, "zest_dust_orange", ZEST_DUST.stack(),
             "mA ",
             'A', ORANGE)
 
         EXTRACTOR_RECIPES.recipeBuilder()
             .input(ORANGE)
-            .outputs(ZEST_DUST.itemStack)
+            .outputs(ZEST_DUST.stack())
             .fluidOutputs(OrangeExtract.getFluid(100))
             .EUt(5) // ULV
             .duration(5 * SECOND)
