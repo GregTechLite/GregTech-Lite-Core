@@ -405,8 +405,8 @@ internal object WetwareCircuits
             .output(WETWARE_MAINFRAME_UHV)
             .EUt(300_000) // UV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(WETWARE_SUPER_COMPUTER_UV.stackForm)
+            .stationResearch {
+                it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])
                     .CWUt(32)
             }
@@ -429,8 +429,8 @@ internal object WetwareCircuits
             .output(WETWARE_MAINFRAME_UHV)
             .EUt(300_000) // UV
             .duration(30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WETWARE_SUPER_COMPUTER_UV.stackForm)
+            .stationResearch {
+                it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])
                     .CWUt(32)
             }
@@ -453,8 +453,8 @@ internal object WetwareCircuits
             .output(WETWARE_MAINFRAME_UHV)
             .EUt(300_000) // UV
             .duration(15 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(WETWARE_SUPER_COMPUTER_UV.stackForm)
+            .stationResearch {
+                it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])
                     .CWUt(32)
             }

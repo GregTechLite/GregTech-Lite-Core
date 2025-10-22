@@ -12,6 +12,8 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
@@ -35,26 +37,26 @@ internal object GrahamCrackersProcessing
             .input(dustSmall, SodiumBicarbonate)
             .fluidInputs(Butter.getFluid(2000))
             .fluidInputs(Milk.getFluid(500))
-            .outputs(GRAHAM_CRACKER_DOUGH.getItemStack(6))
+            .outputs(GRAHAM_CRACKER_DOUGH.getStack(6))
             .EUt(VA[MV])
             .duration(10 * SECOND)
             .buildAndRegister()
 
         // Graham Cracker Dough -> Graham Cracker Chunk
-        ModHandler.addSmeltingRecipe(GRAHAM_CRACKER_DOUGH.itemStack,
-            GRAHAM_CRACKER_CHUNK.itemStack)
+        ModHandler.addSmeltingRecipe(GRAHAM_CRACKER_DOUGH.stack(),
+            GRAHAM_CRACKER_CHUNK.stack())
 
         // Graham Cracker Chunk -> Graham Cracker Slice
         SLICER_RECIPES.recipeBuilder()
             .notConsumable(SLICER_BLADE_FLAT)
-            .inputs(GRAHAM_CRACKER_CHUNK.itemStack)
-            .outputs(GRAHAM_CRACKER_SLICE.getItemStack(9))
+            .inputs(GRAHAM_CRACKER_CHUNK.stack())
+            .outputs(GRAHAM_CRACKER_SLICE.getStack(9))
             .EUt(VA[LV])
             .duration(5 * SECOND)
             .buildAndRegister()
 
         // Graham Cracker Slice -> Graham Cracker
-        ModHandler.addSmeltingRecipe(GRAHAM_CRACKER_SLICE.itemStack, GRAHAM_CRACKER.stackForm)
+        ModHandler.addSmeltingRecipe(GRAHAM_CRACKER_SLICE.stack(), GRAHAM_CRACKER.stackForm)
 
     }
 

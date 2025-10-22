@@ -29,6 +29,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
@@ -73,13 +75,13 @@ internal object AnimalFatProcessing
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
             .notConsumable(SHAPE_MOLD_INGOT)
             .fluidInputs(Fat.getFluid(100))
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .EUt(VH[LV])
             .duration(4 * SECOND)
             .buildAndRegister()
 
         EXTRACTOR_RECIPES.recipeBuilder()
-            .inputs(ANIMAL_FAT.itemStack)
+            .inputs(ANIMAL_FAT.stack())
             .fluidOutputs(Fat.getFluid(100))
             .EUt(VA[LV])
             .duration(8 * SECOND)
@@ -92,7 +94,7 @@ internal object AnimalFatProcessing
         MACERATOR_RECIPES.recipeBuilder()
             .inputs(ItemStack(Items.PORKCHOP))
             .output(dust, Meat, 2)
-            .outputs(ANIMAL_FAT.getItemStack(2))
+            .outputs(ANIMAL_FAT.getStack(2))
             .output(dustTiny, Bone)
             .EUt(2) // ULV
             .duration(5 * SECOND + 2 * TICK)
@@ -104,7 +106,7 @@ internal object AnimalFatProcessing
         MACERATOR_RECIPES.recipeBuilder()
             .inputs(ItemStack(Items.BEEF))
             .output(dust, Meat, 2)
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .output(dustTiny, Bone)
             .chancedOutput(dust, Meat, 5000, 0)
             .EUt(2) // ULV
@@ -118,7 +120,7 @@ internal object AnimalFatProcessing
             .inputs(ItemStack(Items.CHICKEN))
             .output(dust, Meat)
             .output(dustTiny, Bone)
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .EUt(2) // ULV
             .duration(5 * SECOND + 2 * TICK)
             .buildAndRegister()
@@ -130,7 +132,7 @@ internal object AnimalFatProcessing
             .inputs(ItemStack(Items.RABBIT))
             .output(dust, Meat)
             .output(dustTiny, Bone)
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .chancedOutput(dust, Meat, 5000, 0)
             .EUt(2) // ULV
             .duration(5 * SECOND + 2 * TICK)
@@ -143,7 +145,7 @@ internal object AnimalFatProcessing
             .inputs(ItemStack(Items.MUTTON))
             .output(dust, Meat, 2)
             .output(dustTiny, Bone)
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .EUt(2) // ULV
             .duration(5 * SECOND + 2 * TICK)
             .buildAndRegister()
@@ -218,7 +220,7 @@ internal object AnimalFatProcessing
         AUTOCLAVE_RECIPES.recipeBuilder()
             .inputs(ItemStack(Items.DYE, 1, 15))
             .fluidInputs(Water.getFluid(250))
-            .outputs(ANIMAL_FAT.itemStack)
+            .outputs(ANIMAL_FAT.stack())
             .output(dust, TricalciumPhosphate, 13)
             .EUt(VA[LV])
             .duration(6 * SECOND)

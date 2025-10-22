@@ -503,11 +503,11 @@ internal object CrystalCircuits
             .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
             .fluidInputs(SolderingAlloy.getFluid(L * 10))
             .output(CRYSTAL_MAINFRAME_UV)
-            .EUt(VA[LuV].toLong())
+            .EUt(VA[LuV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(CRYSTAL_COMPUTER_ZPM.stackForm)
-                    .EUt(VA[LuV].toLong())
+            .stationResearch {
+                it.researchStack(CRYSTAL_COMPUTER_ZPM)
+                    .EUt(VA[LuV])
                     .CWUt(16)
             }
             .buildAndRegister()
@@ -525,8 +525,8 @@ internal object CrystalCircuits
             .output(CRYSTAL_MAINFRAME_UV)
             .EUt(VA[LuV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(CRYSTAL_COMPUTER_ZPM.stackForm)
+            .stationResearch {
+                it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
                     .CWUt(16)
             }

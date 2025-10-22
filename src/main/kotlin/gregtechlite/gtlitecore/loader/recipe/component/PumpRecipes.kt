@@ -127,8 +127,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_LuV)
             .EUt(6000) // IV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_IV)
+            .scannerResearch {
+                it.researchStack(ELECTRIC_PUMP_IV)
                     .EUt(VA[HV])
                     .duration(1 * MINUTE)
             }
@@ -158,8 +158,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_ZPM)
             .EUt(24000) // LuV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_LuV)
+            .scannerResearch {
+                it.researchStack(ELECTRIC_PUMP_LuV)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
@@ -193,8 +193,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_UV)
             .EUt(100_000) // ZPM
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_ZPM)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -215,8 +215,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_UHV)
             .EUt(400_000) // UV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_UV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -238,8 +238,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_UEV)
             .EUt(1_800_000) // UHV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_UHV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -261,8 +261,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_UIV)
             .EUt(6_000_000) // UEV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_UEV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -284,8 +284,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_UXV)
             .EUt(20_000_000) // UIV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_UIV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -308,8 +308,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_OpV)
             .EUt(50_000_000) // UXV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_UXV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
@@ -340,8 +340,8 @@ internal object PumpRecipes
             .output(ELECTRIC_PUMP_MAX)
             .EUt(300_000_000) // OpV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(ELECTRIC_PUMP_OpV)
+            .stationResearch {
+                it.researchStack(ELECTRIC_PUMP_OpV)
                     .EUt(VA[OpV])
                     .CWUt(256)
             }

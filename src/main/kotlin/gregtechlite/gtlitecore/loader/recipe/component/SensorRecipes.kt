@@ -121,8 +121,8 @@ internal object SensorRecipes
             .output(SENSOR_LuV)
             .EUt(6000) // IV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(SENSOR_IV)
+            .scannerResearch {
+                it.researchStack(SENSOR_IV)
                     .EUt(VA[HV])
                     .duration(1 * MINUTE)
             }
@@ -153,10 +153,10 @@ internal object SensorRecipes
             .output(SENSOR_ZPM)
             .EUt(24000) // LuV
             .duration(20 * SECOND)
-            .stationResearch { r -> r
-                .researchStack(SENSOR_LuV)
-                .EUt(VA[LuV])
-                .CWUt(4)
+            .stationResearch {
+                it.researchStack(SENSOR_LuV)
+                    .EUt(VA[LuV])
+                    .CWUt(4)
             }
             .buildAndRegister()
 
@@ -189,8 +189,8 @@ internal object SensorRecipes
             .output(SENSOR_UV)
             .EUt(100_000) // ZPM
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_ZPM)
+            .stationResearch {
+                it.researchStack(SENSOR_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
@@ -212,8 +212,8 @@ internal object SensorRecipes
             .output(SENSOR_UHV)
             .EUt(400_000) // UV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_UV)
+            .stationResearch {
+                it.researchStack(SENSOR_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -236,8 +236,8 @@ internal object SensorRecipes
             .output(SENSOR_UEV)
             .EUt(1_800_000) // UHV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_UHV)
+            .stationResearch {
+                it.researchStack(SENSOR_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -261,8 +261,8 @@ internal object SensorRecipes
             .output(SENSOR_UIV)
             .EUt(6_000_000) // UEV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_UEV)
+            .stationResearch {
+                it.researchStack(SENSOR_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -286,8 +286,8 @@ internal object SensorRecipes
             .output(SENSOR_UXV)
             .EUt(20_000_000) // UIV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_UIV)
+            .stationResearch {
+                it.researchStack(SENSOR_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -312,8 +312,8 @@ internal object SensorRecipes
             .output(SENSOR_OpV)
             .EUt(50_000_000) // UXV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(SENSOR_UXV)
+            .stationResearch {
+                it.researchStack(SENSOR_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }

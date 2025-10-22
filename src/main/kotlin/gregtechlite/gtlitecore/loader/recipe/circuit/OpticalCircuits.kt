@@ -780,8 +780,8 @@ internal object OpticalCircuits
             .output(OPTICAL_COMPUTER_UEV, 2)
             .EUt(VA[UHV])
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_ASSEMBLY_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_ASSEMBLY_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -801,8 +801,8 @@ internal object OpticalCircuits
             .output(OPTICAL_COMPUTER_UEV, 2)
             .EUt(VA[UHV])
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_ASSEMBLY_UHV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_ASSEMBLY_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -827,8 +827,8 @@ internal object OpticalCircuits
             .output(OPTICAL_MAINFRAME_UIV)
             .EUt(VA[UEV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -852,8 +852,8 @@ internal object OpticalCircuits
             .output(OPTICAL_MAINFRAME_UIV)
             .EUt(VA[UEV])
             .duration(45 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -877,8 +877,8 @@ internal object OpticalCircuits
             .output(OPTICAL_MAINFRAME_UIV)
             .EUt(VA[UEV])
             .duration(25 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -902,8 +902,8 @@ internal object OpticalCircuits
             .output(OPTICAL_MAINFRAME_UIV)
             .EUt(VA[UEV])
             .duration(15 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OPTICAL_COMPUTER_UEV.stackForm)
+            .stationResearch {
+                it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
