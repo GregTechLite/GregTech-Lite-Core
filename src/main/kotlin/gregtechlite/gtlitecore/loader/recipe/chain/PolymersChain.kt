@@ -54,6 +54,7 @@ internal object PolymersChain
     {
 
         CHEMICAL_RECIPES.recipeBuilder()
+            .circuitMeta(2)
             .fluidInputs(Air.getFluid(1000))
             .fluidInputs(Isoprene.getFluid(L))
             .fluidOutputs(Polyisoprene.getFluid(L))
@@ -62,6 +63,7 @@ internal object PolymersChain
             .buildAndRegister()
 
         CHEMICAL_RECIPES.recipeBuilder()
+            .circuitMeta(2)
             .fluidInputs(Oxygen.getFluid(1000))
             .fluidInputs(Isoprene.getFluid(L))
             .fluidOutputs(Polyisoprene.getFluid(L + L / 2))
