@@ -114,8 +114,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_LuV)
             .EUt(6000) // IV
             .duration(20 * SECOND)
-            .scannerResearch { r ->
-                r.researchStack(FIELD_GENERATOR_IV)
+            .scannerResearch {
+                it.researchStack(FIELD_GENERATOR_IV)
                     .EUt(VA[HV])
                     .duration(1 * MINUTE)
             }
@@ -146,8 +146,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_ZPM)
             .EUt(24000) // LuV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_LuV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_LuV)
                     .EUt(VA[LuV])
                     .CWUt(8)
             }
@@ -182,8 +182,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_UV)
             .EUt(100_000) // ZPM
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_ZPM)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(48)
             }
@@ -205,8 +205,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_UHV)
             .EUt(400_000) // UV
             .duration(20 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_UV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
@@ -229,8 +229,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_UEV)
             .EUt(1_800_000) // UHV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_UHV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -254,8 +254,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_UIV)
             .EUt(6_000_000) // UEV
             .duration(40 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_UEV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
@@ -279,8 +279,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_UXV)
             .EUt(20_000_000) // UIV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_UIV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
@@ -305,8 +305,8 @@ internal object FieldGenRecipes
             .output(FIELD_GENERATOR_OpV)
             .EUt(50_000_000) // UXV
             .duration(1 * MINUTE)
-            .stationResearch { r ->
-                r.researchStack(FIELD_GENERATOR_UXV)
+            .stationResearch {
+                it.researchStack(FIELD_GENERATOR_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }

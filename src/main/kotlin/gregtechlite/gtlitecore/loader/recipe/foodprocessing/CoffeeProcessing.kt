@@ -18,6 +18,8 @@ import gregtech.common.items.MetaItems.PLANT_BALL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -71,43 +73,43 @@ internal object CoffeeProcessing
         // Coffee seed -> Large Green Coffee, Small Green Coffee
         SIFTER_RECIPES.recipeBuilder()
             .input(COFFEE_SEED, 32)
-            .outputs(LARGE_GREEN_COFFEE.getItemStack(8))
-            .outputs(SMALL_GREEN_COFFEE.getItemStack(16))
-            .chancedOutput(LARGE_GREEN_COFFEE.getItemStack(2), 4500, 1250)
-            .chancedOutput(SMALL_GREEN_COFFEE.getItemStack(6), 6500, 2500)
+            .outputs(LARGE_GREEN_COFFEE.getStack(8))
+            .outputs(SMALL_GREEN_COFFEE.getStack(16))
+            .chancedOutput(LARGE_GREEN_COFFEE.getStack(2), 4500, 1250)
+            .chancedOutput(SMALL_GREEN_COFFEE.getStack(6), 6500, 2500)
             .EUt(VA[LV])
             .duration(25 * SECOND)
             .buildAndRegister()
 
         // Large/Small Green Coffee -> Fermented Large/Small Coffee
         FERMENTING_RECIPES.recipeBuilder()
-            .inputs(LARGE_GREEN_COFFEE.itemStack)
+            .inputs(LARGE_GREEN_COFFEE.stack())
             .fluidInputs(Water.getFluid(500))
-            .outputs(FERMENTED_LARGE_COFFEE.itemStack)
+            .outputs(FERMENTED_LARGE_COFFEE.stack())
             .EUt(VA[LV])
             .duration(5 * SECOND)
             .buildAndRegister()
 
         FERMENTING_RECIPES.recipeBuilder()
-            .inputs(SMALL_GREEN_COFFEE.itemStack)
+            .inputs(SMALL_GREEN_COFFEE.stack())
             .fluidInputs(Water.getFluid(250))
-            .outputs(FERMENTED_SMALL_COFFEE.itemStack)
+            .outputs(FERMENTED_SMALL_COFFEE.stack())
             .EUt(VA[LV])
             .duration(5 * SECOND)
             .buildAndRegister()
 
         // Fermented Large/Small Coffee -> Dried Large/Small Coffee
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .inputs(FERMENTED_LARGE_COFFEE.getItemStack(8))
-            .outputs(DRIED_LARGE_COFFEE.getItemStack(8))
+            .inputs(FERMENTED_LARGE_COFFEE.getStack(8))
+            .outputs(DRIED_LARGE_COFFEE.getStack(8))
             .fluidOutputs(Water.getFluid(4000))
             .EUt(VA[LV])
             .duration(15 * SECOND)
             .buildAndRegister()
 
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .inputs(FERMENTED_SMALL_COFFEE.getItemStack(16))
-            .outputs(DRIED_SMALL_COFFEE.getItemStack(16))
+            .inputs(FERMENTED_SMALL_COFFEE.getStack(16))
+            .outputs(DRIED_SMALL_COFFEE.getStack(16))
             .fluidOutputs(Water.getFluid(4000))
             .EUt(VA[LV])
             .duration(15 * SECOND)
@@ -115,30 +117,30 @@ internal object CoffeeProcessing
 
         // Dried Large/Small Coffee -> Roasted Large/Small Coffee
         ROASTER_RECIPES.recipeBuilder()
-            .inputs(DRIED_LARGE_COFFEE.getItemStack(8))
-            .outputs(ROASTED_LARGE_COFFEE.getItemStack(8))
+            .inputs(DRIED_LARGE_COFFEE.getStack(8))
+            .outputs(ROASTED_LARGE_COFFEE.getStack(8))
             .EUt(VA[LV])
             .duration(12 * SECOND + 10 * TICK)
             .buildAndRegister()
 
         ROASTER_RECIPES.recipeBuilder()
-            .inputs(DRIED_SMALL_COFFEE.getItemStack(16))
-            .outputs(ROASTED_SMALL_COFFEE.getItemStack(16))
+            .inputs(DRIED_SMALL_COFFEE.getStack(16))
+            .outputs(ROASTED_SMALL_COFFEE.getStack(16))
             .EUt(VA[LV])
             .duration(12 * SECOND + 10 * TICK)
             .buildAndRegister()
 
         // Roasted Large/Small Coffee -> Ground Coffee
         MACERATOR_RECIPES.recipeBuilder()
-            .inputs(ROASTED_LARGE_COFFEE.itemStack)
-            .outputs(GROUND_COFFEE.getItemStack(2))
+            .inputs(ROASTED_LARGE_COFFEE.stack())
+            .outputs(GROUND_COFFEE.getStack(2))
             .EUt(7) // ULV
             .duration(10 * TICK)
             .buildAndRegister()
 
         MACERATOR_RECIPES.recipeBuilder()
-            .inputs(ROASTED_SMALL_COFFEE.itemStack)
-            .outputs(GROUND_COFFEE.itemStack)
+            .inputs(ROASTED_SMALL_COFFEE.stack())
+            .outputs(GROUND_COFFEE.stack())
             .EUt(7) // ULV
             .duration(10 * TICK)
             .buildAndRegister()
@@ -157,7 +159,7 @@ internal object CoffeeProcessing
             .buildAndRegister()
 
         BURNER_REACTOR_RECIPES.recipeBuilder()
-            .inputs(GROUND_COFFEE.itemStack)
+            .inputs(GROUND_COFFEE.stack())
             .input(PAPER_CONE)
             .fluidInputs(DistilledWater.getFluid(1000))
             .output(dust, Paper)

@@ -28,7 +28,6 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.api.unification.stack.RecyclingData
-import gregtech.common.blocks.BlockWireCoil
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
@@ -46,6 +45,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
+import gregtechlite.gtlitecore.common.block.adapter.GTWireCoil
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
 import net.minecraft.item.ItemStack
 
@@ -58,35 +58,35 @@ internal object RecyclingDataLoader
     {
 
         // Wire Coils recycling datas.
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.CUPRONICKEL),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.CUPRONICKEL.stack,
             RecyclingData(MaterialStack(Cupronickel, M * 8),
                                   MaterialStack(TinAlloy, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.KANTHAL),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.KANTHAL.stack,
             RecyclingData(MaterialStack(Kanthal, M * 8),
                                   MaterialStack(Copper, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.NICHROME),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.NICHROME.stack,
             RecyclingData(MaterialStack(Nichrome, M * 8),
                                   MaterialStack(Aluminium, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.RTM_ALLOY),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.RTM_ALLOY.stack,
             RecyclingData(MaterialStack(RTMAlloy, M * 8),
                                   MaterialStack(Titanium, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.HSS_G),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.HSS_G.stack,
             RecyclingData(MaterialStack(HSSG, M * 8),
                                   MaterialStack(Tungsten, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.NAQUADAH),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.NAQUADAH.stack,
             RecyclingData(MaterialStack(Naquadah, M * 8),
                                   MaterialStack(TungstenSteel, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.TRINIUM),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.TRINIUM.stack,
             RecyclingData(MaterialStack(Trinium, M * 8),
                                   MaterialStack(Naquadah, M)))
 
-        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaBlocks.WIRE_COIL.getItemVariant(BlockWireCoil.CoilType.TRITANIUM),
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GTWireCoil.TRITANIUM.stack,
             RecyclingData(MaterialStack(Tritanium, M * 8),
                                   MaterialStack(NaquadahEnriched, M)))
 

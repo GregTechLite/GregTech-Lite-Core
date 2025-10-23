@@ -15,8 +15,6 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.common.blocks.BlockGlassCasing
-import gregtech.common.blocks.MetaBlocks
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FIELD_GEN_CASING_TIER
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.emitterCasings
@@ -28,6 +26,7 @@ import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
 import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.item.ItemStack
@@ -51,7 +50,7 @@ class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockControll
     {
         private val casingState = MetalCasing.QUANTUM_ALLOY.state
         private val secondCasingState = MultiblockCasing.STELLAR_CONTAINMENT_CASING.state
-        private val glassState = MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.FUSION_GLASS)
+        private val glassState = GTGlassCasing.FUSION_GLASS.state
         private val coilState = MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.state
     }
 

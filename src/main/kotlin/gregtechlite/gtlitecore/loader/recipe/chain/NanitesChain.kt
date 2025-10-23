@@ -5,7 +5,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
-import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chrome
@@ -116,8 +115,8 @@ internal object NanitesChain
             .output(nanite, Carbon, 2)
             .EUt(VA[UV])
             .duration(10 * SECOND)
-            .stationResearch { r ->
-                r.researchStack(OreDictUnifier.get(block, Carbon))
+            .stationResearch {
+                it.researchStack(block, Carbon)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
