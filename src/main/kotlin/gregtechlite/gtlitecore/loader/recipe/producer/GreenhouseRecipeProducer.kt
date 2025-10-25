@@ -402,6 +402,8 @@ internal object GreenhouseRecipeProducer
 
                 if (frontend.fertilizer > 0)
                     builder.input(FERTILIZER, frontend.fertilizer)
+                else
+                    builder.circuitMeta(1)
 
                 builder.outputs(logStack.copy(frontend.log),
                                 leavesStack.copy(frontend.leaves),
