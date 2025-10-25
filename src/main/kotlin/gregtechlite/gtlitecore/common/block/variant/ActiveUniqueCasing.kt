@@ -12,7 +12,9 @@ enum class ActiveUniqueCasing(private val serializedName: String,
 {
 
     HEAT_VENT("heat_vent"),
-    TEMPERATURE_CONTROLLER("temperature_controller");
+    TEMPERATURE_CONTROLLER("temperature_controller"),
+    NANO_PRECISE_ASSEMBLY_UNIT("nano_precise_assembly_unit"),
+    NANITE_CONTROL_CASING("nanite_control_casing");
 
     override val state: IBlockState
         get() = GTLiteBlocks.ACTIVE_UNIQUE_CASING_01.getState(this)

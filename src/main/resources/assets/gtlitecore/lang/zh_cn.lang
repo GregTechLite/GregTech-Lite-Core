@@ -397,6 +397,7 @@ tile.gtlitecore.metal_casing_03.naquadah_alloy.name=放射硅岩合金机器外�
 tile.gtlitecore.metal_casing_03.quantum_alloy.name=超重量子合金机器外壳
 tile.gtlitecore.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机器外壳
 tile.gtlitecore.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
+tile.gtlitecore.metal_casing_03.lafium.name=高能防护路菲恩合金机器外壳
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -427,9 +428,13 @@ tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.name=�
 tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.tooltip=非微扰量子热能势阻隔
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.name=哈密顿-基林流控制机械方块
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.tooltip=控制平滑的可微布朗轨迹
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.name=纳米蜂群传输机械方块
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.tooltip=纳米高速公路
 
 tile.gtlitecore.active_unique_casing_01.heat_vent.name=散热片
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
+tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=纳米精密装配单元
+tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=纳米蜂群控制机械方块
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=镀铑钯涡轮机器外壳
 

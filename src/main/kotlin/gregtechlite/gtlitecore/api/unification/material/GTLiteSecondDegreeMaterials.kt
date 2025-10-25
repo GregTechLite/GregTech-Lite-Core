@@ -1094,7 +1094,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0x0D0D60).iconSet(SHINY)
             components(HastelloyN, 8, NaquadahAlloy, 4, Samarium, 2, Tungsten, 4, Argon, 2, Aluminium, 6, Nickel, 8, Carbon, 2)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FRAME)
             blastProp(12865, GasTier.HIGHEST, // Adamantium
                       VA[UEV], 45 * SECOND,
                       VA[UHV], 22 * SECOND + 10 * TICK)

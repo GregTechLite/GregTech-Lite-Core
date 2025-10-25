@@ -38,6 +38,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA956
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Inconel625
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lafium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monel500
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitinol60
@@ -104,6 +105,7 @@ internal object MetalCasingRecipes
         create(MetalCasing.QUANTUM_ALLOY, QuantumAlloy)
         create(MetalCasing.INCONEL_718, Inconel718)
         create(MetalCasing.NITINOL_60, Nitinol60)
+        create(MetalCasing.LAFIUM, Lafium)
 
     }
 
