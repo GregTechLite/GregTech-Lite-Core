@@ -1607,6 +1607,7 @@ recipemap.antimatter_forge.name=Antimatter Stabilization Sequencer
 recipemap.space_assembler.name=Space Assembler Module
 recipemap.entrodynamically_phase_changer.name=Topological Order Phase Change
 recipemap.plasma_arc_transmitter.name=Plasma Arc Transmitter
+recipemap.nano_assembly_matrix.name=Nano Assembly Matrix
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine

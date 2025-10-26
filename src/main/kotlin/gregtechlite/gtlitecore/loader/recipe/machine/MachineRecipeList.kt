@@ -39,6 +39,7 @@ internal object MachineRecipeList
         EyeOfHarmonyRecipes.init()
         LoomRecipes.init()
         MobExtractorRecipes.init()
+        NanoAssemblyMatrixRecipes.init()
         PolisherRecipes.init()
         QuantumForceTransformerRecipes.init()
         SapCollectorRecipes.init()

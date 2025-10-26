@@ -4,14 +4,14 @@ import gregtech.api.recipes.RecipeMaps
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 
-object LargeMixerRecipeBackend
+object NanoAssemblyMatrixRecipeBackend
 {
 
     fun init()
     {
-
-        RecipeMaps.MIXER_RECIPES.onRecipeBuild(GTLiteMod.id("mixer_copy")) { builder ->
-            GTLiteRecipeMaps.LARGE_MIXER_RECIPES.recipeBuilder()
+        // Ass Line
+        RecipeMaps.ASSEMBLY_LINE_RECIPES.onRecipeBuild(GTLiteMod.id("ass_line_copy")) { builder ->
+            GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
                 .inputs(*builder.inputs.toTypedArray())
                 .fluidInputs(builder.fluidInputs)
                 .outputs(builder.outputs)
@@ -23,6 +23,8 @@ object LargeMixerRecipeBackend
                 .EUt(builder.eUt)
                 .buildAndRegister()
         }
+
+        // Space Ass
 
     }
 

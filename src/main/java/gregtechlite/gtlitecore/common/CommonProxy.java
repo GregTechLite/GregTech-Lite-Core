@@ -41,13 +41,12 @@ public class CommonProxy
     public void onPreInit()
     {
         GTLiteRecipeMaps.preInit();
-        GTLiteRecipeBackends.preInit();
         GTLiteMetaOreDictItems.register();
+        GTLiteRecipeBackends.init();
     }
 
     public void onInit()
     {
-        GTLiteRecipeBackends.init();
     }
 
     public void onPostInit()

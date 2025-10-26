@@ -9,6 +9,7 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.client.renderer.ICubeRenderer
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -29,7 +30,7 @@ import net.minecraft.util.ResourceLocation
  * uxv stage, another prepare works for supracausal circuit
  * another choice: ignored space ass mk3, put it to uhv or uev? (strange...
  */
-class MultiblockNanoAssemblyComplex(id: ResourceLocation) : RecipeMapMultiblockController(id, ASSEMBLY_LINE_RECIPES)
+class MultiblockNanoAssemblyComplex(id: ResourceLocation) : RecipeMapMultiblockController(id, NANO_ASSEMBLY_MATRIX_RECIPES)
 {
 
     companion object
