@@ -1,5 +1,6 @@
 {
   "animation": {
+    "interpolate": true,
     "frametime": 6
   },
   "ctm": {
@@ -8,7 +9,7 @@
     "gregtech": true,
     "extra": {
       "connect_inside": true,
-      "light": 4
+      "light": 2
     }
   }
 }
