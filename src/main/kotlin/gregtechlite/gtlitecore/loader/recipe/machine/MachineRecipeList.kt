@@ -32,6 +32,7 @@ internal object MachineRecipeList
 
         AcidGeneratorRecipes.init()
         AlloyBlastSmelterRecipes.init()
+        AntiGravityAssemblyChamberRecipes.init()
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
         CrystallizationCrucibleRecipes.init()

@@ -14,6 +14,7 @@ import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 import gregtechlite.gtlitecore.api.recipe.builder.AccelerationTrackRecipeBuilder
@@ -28,6 +29,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
+import gregtechlite.gtlitecore.api.recipe.ui.AntiGravityAssemblyChamberUI
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -545,6 +547,30 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
+        .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
+            // Has 256x base buff with original CAL recipes (the original buff is 16, so it is actual 4096x buff).
+            val inputs = builder.inputs
+                .filterNotNull()
+                .map { it.copyWithAmount(it.amount * 256) }
+                .toTypedArray()
+
+            val outputs = builder.outputs
+                .filterNotNull()
+                .map { it.copy(it.count * 256) }
+                .toTypedArray()
+
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .inputs(*inputs)
+                .fluidInputs(builder.fluidInputs)
+                .outputs(*outputs)
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+        }
         .build()
 
     /**
@@ -837,9 +863,9 @@ object GTLiteRecipeMaps
     @ZenProperty
     @JvmField
     val ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("anti_gravity_assembly_chamber", SimpleRecipeBuilder())
-        .ui { NanoAssemblyMatrixUI(it) }
+        .ui { AntiGravityAssemblyChamberUI(it) }
         .itemInputs(16)
-        .itemOutputs(1)
+        .itemOutputs(4)
         .fluidInputs(4)
         .sound(GTSoundEvents.ASSEMBLER)
         .build()

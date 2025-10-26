@@ -1608,6 +1608,7 @@ recipemap.space_assembler.name=太空组装模块
 recipemap.entrodynamically_phase_changer.name=拓扑序热破缺相变
 recipemap.plasma_arc_transmitter.name=等离子电弧发射器
 recipemap.nano_assembly_matrix.name=纳米装配矩阵
+recipemap.anti_gravity_assembly_chamber.name=反重力装配室
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
