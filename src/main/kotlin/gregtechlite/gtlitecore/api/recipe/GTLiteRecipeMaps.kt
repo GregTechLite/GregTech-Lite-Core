@@ -832,27 +832,18 @@ object GTLiteRecipeMaps
         .setSmallRecipeMap(RecipeMaps.ASSEMBLY_LINE_RECIPES)
 
     /**
-     * @zenProp planet_around_assembly_array
-     */
-    // @ZenProperty
-    // @JvmField
-    // val PLANET_AROUND_ASSEMBLY_ARRAY_RECIPES = RecipeMapBuilder("planet_around_assembly_array", SimpleRecipeBuilder())
-    //     .itemInputs(6) // todo 16
-    //     .itemOutputs(1)
-    //     .fluidInputs(1)
-    //     .sound(GTSoundEvents.ASSEMBLER)
-    //     .build()
-    //     //.setSmallRecipeMap(CIRCUIT_ASSEMBLY_LINE_RECIPES) // circ ass line, circ ass todo used jei mixins
-
-    /**
      * @zenProp anti_gravity_assembly_chamber
      */
-    // @ZenProperty
-    // @JvmField
-    // val ANTI_GRAVITY_ASSEMBLY_CHAMBER = RecipeMapBuilder("anti_gravity_assembly_chamber", SimpleRecipeBuilder())
-    //     .ui { SpaceAssemblerUI(it) }
-    //     .itemInputs(16)
-    //     .build() // space ass, ass todo used jei mixins
+    @ZenProperty
+    @JvmField
+    val ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("anti_gravity_assembly_chamber", SimpleRecipeBuilder())
+        .ui { NanoAssemblyMatrixUI(it) }
+        .itemInputs(16)
+        .itemOutputs(1)
+        .fluidInputs(4)
+        .sound(GTSoundEvents.ASSEMBLER)
+        .build()
+        .setSmallRecipeMap(CIRCUIT_ASSEMBLY_LINE_RECIPES)
 
     // endregion
 

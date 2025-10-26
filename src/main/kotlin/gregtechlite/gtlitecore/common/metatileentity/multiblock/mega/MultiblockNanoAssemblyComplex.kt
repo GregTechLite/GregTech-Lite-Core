@@ -2,35 +2,37 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.client.renderer.ICubeRenderer
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
+import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 /**
  * allowed laser, ignore max recipe tier, ignore ordered inputs.
  *
- * large ass     iv
- * ass line      luv
- * circ ass line luv
- * coal          uv
- * space ass MK3 uiv
- *
  * uxv stage, another prepare works for supracausal circuit
- * another choice: ignored space ass mk3, put it to uhv or uev? (strange...
  */
-class MultiblockNanoAssemblyComplex(id: ResourceLocation) : RecipeMapMultiblockController(id, NANO_ASSEMBLY_MATRIX_RECIPES)
+class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockController(id,
+                                                                                         arrayOf(NANO_ASSEMBLY_MATRIX_RECIPES, ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES,
+                                                                                                 COMPONENT_ASSEMBLY_LINE_RECIPES, ASSEMBLER_RECIPES))
 {
 
     companion object
@@ -128,9 +130,22 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : RecipeMapMultiblockC
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.LAFIUM_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANO_ASSEMBLY_COMPLEX_OVERLAY
+
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
+    {
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+        }
+    }
+
+    override fun canBeDistinct(): Boolean = true
 
     override fun hasMaintenanceMechanics(): Boolean = false
 
