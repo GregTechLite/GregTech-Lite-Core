@@ -548,15 +548,15 @@ object GTLiteRecipeMaps
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
         .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
-            // Has 256x base buff with original CAL recipes (the original buff is 16, so it is actual 4096x buff).
+            // Has 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
             val inputs = builder.inputs
                 .filterNotNull()
-                .map { it.copyWithAmount(it.amount * 256) }
+                .map { it.copyWithAmount(it.amount * 64) }
                 .toTypedArray()
 
             val outputs = builder.outputs
                 .filterNotNull()
-                .map { it.copy(it.count * 256) }
+                .map { it.copy(it.count * 64) }
                 .toTypedArray()
 
             ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
