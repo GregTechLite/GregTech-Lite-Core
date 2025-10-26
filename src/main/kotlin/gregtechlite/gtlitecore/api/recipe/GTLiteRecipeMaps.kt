@@ -548,7 +548,23 @@ object GTLiteRecipeMaps
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
         .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
-            // Has 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
+
+            // Mode 1: Original CAL recipes.
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .inputs(*builder.inputs.toTypedArray())
+                .fluidInputs(builder.fluidInputs)
+                .outputs(*builder.outputs.toTypedArray())
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+
+
+            // Mode 2: 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
             val inputs = builder.inputs
                 .filterNotNull()
                 .map { it.copyWithAmount(it.amount * 64) }
@@ -559,9 +575,15 @@ object GTLiteRecipeMaps
                 .map { it.copy(it.count * 64) }
                 .toTypedArray()
 
+            val fluidInputs = builder.fluidInputs
+                .filterNotNull()
+                .map { it.copyWithAmount(it.amount * 64) }
+                .toList()
+
             ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
                 .inputs(*inputs)
-                .fluidInputs(builder.fluidInputs)
+                .fluidInputs(fluidInputs)
                 .outputs(*outputs)
                 .chancedOutputs(builder.chancedOutputs)
                 .fluidOutputs(builder.fluidOutputs)
