@@ -25,6 +25,19 @@ object NanoAssemblyMatrixRecipeBackend
         }
 
         // Space Ass
+        GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES.onRecipeBuild(GTLiteMod.id("space_ass_copy")) { builder ->
+            GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
+                .inputs(*builder.inputs.toTypedArray())
+                .fluidInputs(builder.fluidInputs)
+                .outputs(builder.outputs)
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+        }
 
     }
 

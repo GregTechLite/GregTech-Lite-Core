@@ -11,7 +11,6 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.recipes.builders.FuelRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
-import gregtech.api.recipes.ui.impl.AssemblyLineUI
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
@@ -33,6 +32,7 @@ import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
+import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
@@ -823,7 +823,7 @@ object GTLiteRecipeMaps
     @ZenProperty
     @JvmField
     val NANO_ASSEMBLY_MATRIX_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("nano_assembly_matrix", SimpleRecipeBuilder())
-        .ui { SpaceAssemblerUI(it) }
+        .ui { NanoAssemblyMatrixUI(it) }
         .itemInputs(16)
         .itemOutputs(1)
         .fluidInputs(4)
