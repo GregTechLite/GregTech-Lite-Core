@@ -93,6 +93,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RUBY_MODULATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAPPHIRE_MODULATOR
 
@@ -515,9 +518,9 @@ internal object CrystalCircuits
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(frameGt, HSSE)
             .input(CRYSTAL_COMPUTER_ZPM, 2)
-            .input(GOOWARE_SMD_INDUCTOR, 2)
+            .input(GOOWARE_SMD_INDUCTOR, 4)
             .input(GOOWARE_SMD_CAPACITOR, 4)
-            .input(GOOWARE_SMD_DIODE, 2)
+            .input(GOOWARE_SMD_DIODE, 4)
             .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
             .input(RANDOM_ACCESS_MEMORY, 32)
             .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
@@ -525,6 +528,26 @@ internal object CrystalCircuits
             .output(CRYSTAL_MAINFRAME_UV)
             .EUt(VA[LuV])
             .duration(20 * SECOND)
+            .stationResearch {
+                it.researchStack(CRYSTAL_COMPUTER_ZPM)
+                    .EUt(VA[LuV])
+                    .CWUt(16)
+            }
+            .buildAndRegister()
+
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(frameGt, HSSE)
+            .input(CRYSTAL_COMPUTER_ZPM, 2)
+            .input(OPTICAL_SMD_INDUCTOR)
+            .input(OPTICAL_SMD_CAPACITOR)
+            .input(OPTICAL_SMD_DIODE)
+            .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+            .input(RANDOM_ACCESS_MEMORY, 32)
+            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+            .fluidInputs(SolderingAlloy.getFluid(L * 10))
+            .output(CRYSTAL_MAINFRAME_UV)
+            .EUt(VA[LuV])
+            .duration(10 * SECOND)
             .stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
