@@ -2584,6 +2584,12 @@ gtlitecore.machine.ep_coupling_accelerator.name=Electron-Phonon Coupling Acceler
 gtlitecore.machine.ep_coupling_accelerator.tooltip.1=Quantum Lattice Vibration
 gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固定为§f64§7且为独立计算乘区
 
+gtlitecore.machine.nano_assembly_complex.name=Nano Assembly Complex
+gtlitecore.machine.nano_assembly_complex.tooltip.1=The Ultimate Solution of Circuit Assembly
+gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
+gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum

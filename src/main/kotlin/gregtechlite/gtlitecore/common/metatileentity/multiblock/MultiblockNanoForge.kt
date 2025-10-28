@@ -1,9 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.ULV
-import gregtech.api.GTValues.VOC
 import gregtech.api.capability.impl.EnergyContainerList
-import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -21,7 +19,6 @@ import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.util.GTUtility.getFloorTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
@@ -30,6 +27,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockMultiblockCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.optionalStates
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
@@ -46,10 +44,8 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.max
 
-class MultiblockNanoForge(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, NANO_FORGE_RECIPES)
+class MultiblockNanoForge(id: ResourceLocation) : RecipeMapMultiblockController(id, NANO_FORGE_RECIPES)
 {
 
     private var mainUpgradeNumber = 0
@@ -238,58 +234,10 @@ class MultiblockNanoForge(id: ResourceLocation)
                 && recipe.getProperty(GTLiteRecipeProperties.NANO_FORGE_TIER, 0)!! <= mainUpgradeNumber
     }
 
-    private inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(metaTileEntity)
     {
 
         override fun getOverclockingDurationFactor() = if (forcePerfectOC) 0.25 else 0.5
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaximumOverclockVoltage() = maxVoltage
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaxVoltage(): Long
-        {
-            val energyContainer = energyContainer
-            if (energyContainer is EnergyContainerList)
-            {
-                val voltage: Long
-                val amperage: Long
-                if (energyContainer.inputVoltage > energyContainer.outputVoltage)
-                {
-                    voltage = energyContainer.inputVoltage
-                    amperage = energyContainer.inputAmperage
-                }
-                else
-                {
-                    voltage = energyContainer.outputVoltage
-                    amperage = energyContainer.outputAmperage
-                }
-
-                return if (amperage == 1L)
-                {
-                    // amperage is 1 when the energy is not exactly on a tier
-                    // the voltage for recipe search is always on tier, so take the closest lower tier
-                    VOC[getFloorTierByVoltage(voltage).toInt()]
-                }
-                else
-                {
-                    // amperage != 1 means the voltage is exactly on a tier
-                    // ignore amperage, since only the voltage is relevant for recipe search
-                    // amps are never > 3 in an EnergyContainerList
-                    voltage
-                }
-            }
-            return max(energyContainer.inputVoltage.toDouble(),
-                energyContainer.outputVoltage.toDouble()).toLong()
-        }
 
         override fun getParallelLimit() = if (mainUpgradeNumber == 1) 64 else 256
 

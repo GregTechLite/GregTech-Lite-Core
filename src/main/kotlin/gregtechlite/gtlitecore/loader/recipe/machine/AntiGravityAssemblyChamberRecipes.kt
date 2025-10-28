@@ -260,6 +260,10 @@ object AntiGravityAssemblyChamberRecipes
             .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
             .buildAndRegister()
 
+        // UHV Gooware Computer
+
+        // UEV Gooware Mainframe
+
     }
 
     // @formatter:on

@@ -30,6 +30,7 @@ import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
+import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerHeatingCoilRecipeLogic
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
@@ -213,58 +214,10 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         return components
     }
 
-    private inner class EntrodynamicallyPhaseChangerRecipeLogic(mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
+    private inner class EntrodynamicallyPhaseChangerRecipeLogic(mte: RecipeMapMultiblockController) : ExtendedPowerHeatingCoilRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaximumOverclockVoltage() = maxVoltage
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaxVoltage(): Long
-        {
-            val energyContainer = energyContainer
-            if (energyContainer is EnergyContainerList)
-            {
-                val voltage: Long
-                val amperage: Long
-                if (energyContainer.inputVoltage > energyContainer.outputVoltage)
-                {
-                    voltage = energyContainer.inputVoltage
-                    amperage = energyContainer.inputAmperage
-                }
-                else
-                {
-                    voltage = energyContainer.outputVoltage
-                    amperage = energyContainer.outputAmperage
-                }
-
-                return if (amperage == 1L)
-                {
-                    // amperage is 1 when the energy is not exactly on a tier
-                    // the voltage for recipe search is always on tier, so take the closest lower tier
-                    VOC[getFloorTierByVoltage(voltage).toInt()]
-                }
-                else
-                {
-                    // amperage != 1 means the voltage is exactly on a tier
-                    // ignore amperage, since only the voltage is relevant for recipe search
-                    // amps are never > 3 in an EnergyContainerList
-                    voltage
-                }
-            }
-            return max(energyContainer.inputVoltage.toDouble(),
-                energyContainer.outputVoltage.toDouble()).toLong()
-        }
 
         override fun modifyOverclockPre(ocParams: OCParams, storage: RecipePropertyStorage)
         {

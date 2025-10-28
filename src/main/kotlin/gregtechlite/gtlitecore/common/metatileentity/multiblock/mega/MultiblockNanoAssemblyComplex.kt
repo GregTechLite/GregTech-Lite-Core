@@ -1,18 +1,24 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
+import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.client.renderer.ICubeRenderer
+import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -35,6 +41,11 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
                                                                                                  COMPONENT_ASSEMBLY_LINE_RECIPES, ASSEMBLER_RECIPES))
 {
 
+    init
+    {
+        recipeMapWorkable = NanoAssemblyComplexRecipeLogic(this)
+    }
+
     companion object
     {
         private val casingState = MetalCasing.LAFIUM.state
@@ -47,6 +58,15 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNanoAssemblyComplex(metaTileEntityId)
+
+    override fun initializeAbilities()
+    {
+        super.initializeAbilities()
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(INPUT_LASER))
+        energyContainer = EnergyContainerList(inputEnergy)
+    }
 
     // @formatter:off
 
@@ -117,8 +137,10 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
             .setMinGlobalLimited(600)
             .or(autoAbilities(false, false, true, true, true, false, false)))
         .where('E', states(casingState)
-            .or(abilities(INPUT_ENERGY))
-            .or(abilities(INPUT_LASER)))
+            .or(abilities(INPUT_ENERGY)
+                    .setPreviewCount(32))
+            .or(abilities(INPUT_LASER)
+                    .setPreviewCount(0)))
         .where('G', states(secondCasingState))
         .where('C', states(thirdCasingState))
         .where('F', states(glassState))
@@ -142,11 +164,26 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
         addTooltip(tooltip)
         {
             addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.nano_assembly_complex.tooltip.1",
+                               "gtlitecore.machine.nano_assembly_complex.tooltip.2",
+                               "gtlitecore.machine.nano_assembly_complex.tooltip.3",
+                               "gtlitecore.machine.nano_assembly_complex.tooltip.4")
+            addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
+            // todo other efficiency?
+            addMaxVoltageInfo()
+            addLaserHatchInfo()
         }
     }
 
     override fun canBeDistinct(): Boolean = true
 
     override fun hasMaintenanceMechanics(): Boolean = false
+
+    private inner class NanoAssemblyComplexRecipeLogic(mte: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(mte)
+    {
+
+        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+
+    }
 
 }
