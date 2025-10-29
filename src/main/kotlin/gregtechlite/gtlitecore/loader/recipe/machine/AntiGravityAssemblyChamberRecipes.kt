@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
@@ -12,13 +13,17 @@ import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
 import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_INDUCTOR
@@ -31,12 +36,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDU
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_RAM_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 
 object AntiGravityAssemblyChamberRecipes
 {
@@ -77,7 +84,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             .output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             .EUt(VA[LuV])
-            .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -109,7 +116,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             .output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             .EUt(VA[LuV])
-            .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -141,7 +148,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             .output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             .EUt(VA[LuV])
-            .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            .duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
             .buildAndRegister()
 
         // UHV Wetware Mainframe
@@ -180,7 +187,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             .output(WETWARE_MAINFRAME_UHV, 16 * 64)
             .EUt(300_000) // UV
-            .duration(12 * MINUTE) // Original: 60s, Wrapped: 60s * 16 = 960s
+            .duration(12 * MINUTE * 64) // Original: 60s, Wrapped: 60s * 16 = 960s
             .buildAndRegister()
 
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -218,7 +225,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             .output(WETWARE_MAINFRAME_UHV, 16 * 64)
             .EUt(300_000) // UV
-            .duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
+            .duration(6 * MINUTE * 64) // Original: 30s, Wrapped: 30s * 16 = 480s
             .buildAndRegister()
 
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -256,10 +263,65 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             .output(WETWARE_MAINFRAME_UHV, 16 * 64)
             .EUt(300_000) // UV
-            .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            .duration(3 * MINUTE * 64) // Original: 15s, Wrapped: 15s * 16 = 240s
             .buildAndRegister()
 
         // UHV Gooware Computer
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+            .input(GOOWARE_ASSEMBLY_UV, 48)
+            .input(WRAP_GOOWARE_SMD_DIODE, 8)
+            .input(WRAP_NOR_CHIP, 16)
+            .input(WRAP_ARAM_CHIP, 32)
+            .input(wireGtQuadruple, Europium, 16)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16))
+            .output(GOOWARE_COMPUTER_UHV, 32)
+            .EUt(VA[UHV])
+            .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(WRAP_ULTIMATE_CIRCUIT_BOARD, 64)
+            .input(GOOWARE_ASSEMBLY_UV, 48 * 64)
+            .input(WRAP_GOOWARE_SMD_DIODE, 8 * 64)
+            .input(WRAP_NOR_CHIP, 16 * 64)
+            .input(WRAP_ARAM_CHIP, 32 * 64)
+            .input(wireGtQuadruple, Europium, 16 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
+            .output(GOOWARE_COMPUTER_UHV, 32 * 64)
+            .EUt(VA[UHV])
+            .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
+            .input(GOOWARE_ASSEMBLY_UV, 48)
+            .input(WRAP_OPTICAL_SMD_DIODE, 2)
+            .input(WRAP_NOR_CHIP, 16)
+            .input(WRAP_ARAM_CHIP, 32)
+            .input(wireGtQuadruple, Europium, 16)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16))
+            .output(GOOWARE_COMPUTER_UHV, 32)
+            .EUt(VA[UHV])
+            .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(WRAP_ULTIMATE_CIRCUIT_BOARD, 64)
+            .input(GOOWARE_ASSEMBLY_UV, 48 * 64)
+            .input(WRAP_OPTICAL_SMD_DIODE, 2 * 64)
+            .input(WRAP_NOR_CHIP, 16 * 64)
+            .input(WRAP_ARAM_CHIP, 32 * 64)
+            .input(wireGtQuadruple, Europium, 16 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
+            .output(GOOWARE_COMPUTER_UHV, 32 * 64)
+            .EUt(VA[UHV])
+            .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
 
         // UEV Gooware Mainframe
 

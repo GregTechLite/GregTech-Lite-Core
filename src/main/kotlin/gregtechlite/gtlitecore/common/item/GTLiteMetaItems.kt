@@ -427,6 +427,9 @@ object GTLiteMetaItems
     lateinit var WRAP_ARAM_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_PRAM_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_ACNOR_CHIP: MetaItem<*>.MetaValueItem
+
     lateinit var WRAP_NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
     lateinit var WRAP_OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
     lateinit var WRAP_ESR_COMPUTATION_UNIT: MetaItem<*>.MetaValueItem
@@ -1328,6 +1331,8 @@ object GTLiteMetaItems
         WRAP_ARAM_CHIP = item(3076, "wrap.wafer.chip.advanced_random_access_memory")
         WRAP_UHASOC_CHIP = item(3077, "wrap.wafer.chip.ultra_highly_advanced_system_on_chip")
         WRAP_CRYSTAL_INTERFACE_CHIP = item(3078, "wrap.wafer.chip.crystal_interface")
+        WRAP_PRAM_CHIP = item(3079, "wrap.wafer.chip.phase_change_ram")
+        WRAP_ACNOR_CHIP = item(3080, "wrap.wafer.chip.all_optical_cascade_nor")
 
         WRAP_ENGRAVED_LAPOTRON_CHIP = item(3091, "wrap.circuit.component.engraved_lapotron_chip")
         WRAP_ENGRAVED_DIAMOND_CHIP = item(3092, "wrap.circuit.component.engraved_diamond_chip")

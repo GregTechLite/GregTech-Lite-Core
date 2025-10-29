@@ -1352,6 +1352,8 @@ metaitem.wrap.wafer.chip.atto_power_integrated_circuit.name=Wrap Atto Power Inte
 metaitem.wrap.wafer.chip.advanced_random_access_memory.name=Wrap Advanced Random Access Memory (ARAM) Chip
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=Wrap Ultra Highly Advanced System on Chip (UHASoC) Chip
 metaitem.wrap.wafer.chip.crystal_interface.name=Wrap Crystal Interface Chip
+metaitem.wrap.wafer.chip.phase_change_ram.name=Wrap Phase Change Random Access Memory (PRAM) Chip
+metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=Wrap All-Optical Cascade NOR Gate (ACNOR) Chip
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=Wrap Engraved Lapotron Chip
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip

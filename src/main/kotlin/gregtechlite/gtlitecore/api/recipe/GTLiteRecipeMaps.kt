@@ -589,7 +589,7 @@ object GTLiteRecipeMaps
                 .fluidOutputs(builder.fluidOutputs)
                 .chancedFluidOutputs(builder.chancedFluidOutputs)
                 .cleanroom(builder.cleanroom)
-                .duration(builder.duration)
+                .duration(builder.duration * 64)
                 .EUt(builder.eUt)
                 .buildAndRegister()
         }
@@ -876,8 +876,7 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(4)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build()
-        .setSmallRecipeMap(RecipeMaps.ASSEMBLY_LINE_RECIPES)
+        .build() // AssLine smallRecipeMap actual
 
     /**
      * @zenProp anti_gravity_assembly_chamber
@@ -890,8 +889,7 @@ object GTLiteRecipeMaps
         .itemOutputs(4)
         .fluidInputs(4)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build()
-        .setSmallRecipeMap(CIRCUIT_ASSEMBLY_LINE_RECIPES)
+        .build() // CircAssLine smallRecipeMap actual
 
     // endregion
 

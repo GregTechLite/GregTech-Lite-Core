@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
-import com.google.common.collect.HashBiMap
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
@@ -54,8 +53,10 @@ import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.WETWARE_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.collection.hashBiMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ALL_OPTICAL_CASCADE_NOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_DIODE
@@ -87,6 +88,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTOELECTRONIC_SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PERFECT_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PHASE_CHANGE_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_CAPACITOR
@@ -101,6 +103,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_RESIS
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTIMATE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
@@ -180,6 +183,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PLASTIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PLASTIC_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_QUBIT_CPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SIMPLE_SOC_CHIP
@@ -212,7 +216,7 @@ internal object WrapItemRecipeProducer
 
     // @formatter:off
 
-    private val wrapItems: HashBiMap<MetaItem<*>.MetaValueItem, MetaItem<*>.MetaValueItem> = HashBiMap.create()
+    private val wrapItems: MutableMap<MetaItem<*>.MetaValueItem, MetaItem<*>.MetaValueItem> = hashBiMapOf()
 
     fun produce()
     {
@@ -302,6 +306,8 @@ internal object WrapItemRecipeProducer
         wrapItems[ADVANCED_RAM_CHIP] = WRAP_ARAM_CHIP
         wrapItems[ULTRA_HIGHLY_ADVANCED_SOC_CHIP] = WRAP_UHASOC_CHIP
         wrapItems[CRYSTAL_INTERFACE_CHIP] = WRAP_CRYSTAL_INTERFACE_CHIP
+        wrapItems[PHASE_CHANGE_RAM_CHIP] = WRAP_PRAM_CHIP
+        wrapItems[ALL_OPTICAL_CASCADE_NOR_CHIP] = WRAP_ACNOR_CHIP
 
         // Engraved Chips
         wrapItems[ENGRAVED_LAPOTRON_CHIP] = WRAP_ENGRAVED_LAPOTRON_CHIP
