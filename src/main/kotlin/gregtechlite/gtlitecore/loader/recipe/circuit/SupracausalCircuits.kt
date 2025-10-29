@@ -11,7 +11,6 @@ import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
-import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.NitrousOxide
@@ -39,6 +38,7 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -75,6 +75,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TachyonRichTempor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
@@ -348,22 +349,22 @@ internal object SupracausalCircuits
     private fun circuitRecipes()
     {
         // Supracausal Processor
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
+        NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
             .input(SPACETIME_LIGHT_CONE_STABILIZATION_MODULE)
             .input(OPTOELECTRONIC_SYSTEM_ON_CHIP)
             .input(SUPRACAUSAL_SMD_RESISTOR, 32)
             .input(SUPRACAUSAL_SMD_CAPACITOR, 32)
             .input(SUPRACAUSAL_SMD_TRANSISTOR, 32)
             .input(wireFine, Creon, 8)
+            .input(foil, Zylon, 64)
             .fluidInputs(MutatedLivingSolder.getFluid(L))
             .output(SUPRACAUSAL_PROCESSOR_UIV, 4)
             .EUt(VA[UXV])
             .duration(10 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
             .buildAndRegister()
 
         // Supracausal Assembly
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+        NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
             .input(SUPRACAUSAL_SPACETIME_CONDENSER)
             .input(SUPRACAUSAL_PROCESSOR_UIV, 4)
             .input(SUPRACAUSAL_SMD_CAPACITOR, 64)
@@ -376,15 +377,10 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_ASSEMBLY_UXV, 3)
             .EUt(VA[UXV])
             .duration(20 * SECOND)
-            .stationResearch {
-                it.researchStack(SUPRACAUSAL_PROCESSOR_UIV)
-                    .EUt(VA[UXV])
-                    .CWUt(64)
-            }
             .buildAndRegister()
 
         // Supracausal Computer
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+        NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
             .input(SUPRACAUSAL_SPACETIME_CONDENSER)
             .input(SUPRACAUSAL_ASSEMBLY_UXV, 3)
             .input(SUPRACAUSAL_SMD_DIODE, 32)
@@ -401,15 +397,10 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_COMPUTER_OpV, 2)
             .EUt(VA[UXV])
             .duration(40 * SECOND)
-            .stationResearch {
-                it.researchStack(SUPRACAUSAL_ASSEMBLY_UXV)
-                    .EUt(VA[UXV])
-                    .CWUt(128)
-            }
             .buildAndRegister()
 
         // Supracausal Mainframe
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+        NANO_ASSEMBLY_MATRIX_RECIPES.recipeBuilder()
             .input(frameGt, WhiteDwarfMatter)
             .input(SUPRACAUSAL_COMPUTER_OpV, 2)
             .input(SUPRACAUSAL_SMD_DIODE, 64)
@@ -428,11 +419,6 @@ internal object SupracausalCircuits
             .output(SUPRACAUSAL_MAINFRAME_MAX)
             .EUt(VA[OpV])
             .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch {
-                it.researchStack(SUPRACAUSAL_COMPUTER_OpV)
-                    .EUt(VA[OpV])
-                    .CWUt(160)
-            }
             .buildAndRegister()
     }
 
