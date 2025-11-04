@@ -76,6 +76,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HOLOGRAPHIC_INFORMATION_IMC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.INFINITE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NONLINEAR_CHEMICAL_OSCILLATOR
@@ -158,6 +159,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDU
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HIGHLY_ADVANCED_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HOLOGRAPHIC_INFORMATION_IMC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ILC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_INFINITE_CIRCUIT_BOARD
@@ -324,6 +326,7 @@ internal object WrapItemRecipeProducer
         wrapItems[OPTOELECTRONIC_SYSTEM_ON_CHIP] = WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
         wrapItems[ESR_COMPUTATION_UNIT] = WRAP_ESR_COMPUTATION_UNIT
         wrapItems[EXOTIC_SYSTEM_ON_CHIP] = WRAP_EXOTIC_SYSTEM_ON_CHIP
+        wrapItems[HOLOGRAPHIC_INFORMATION_IMC] = WRAP_HOLOGRAPHIC_INFORMATION_IMC
 
         // Add all Wrap Items.
         wrapItems.forEach { (originalItem, wrapItem) -> addRecipe(originalItem, wrapItem) }

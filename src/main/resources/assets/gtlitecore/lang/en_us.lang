@@ -1368,6 +1368,7 @@ metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Las
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=Wrap Optoelectronic SoC
 metaitem.wrap.circuit.component.esr_computation_unit.name=Wrap ESR Computation Unit
 metaitem.wrap.circuit.component.exotic_system_on_chip.name=Wrap Exotic SoC
+metaitem.wrap.circuit.component.holographic_information_imc.name=Wrap Holographic Information IMC
 
 metaitem.wrap.circuit.generic.ulv.name=§8ULV§f Wrap Circuit
 metaitem.wrap.circuit.generic.lv.name=§7LV§f Wrap Circuit

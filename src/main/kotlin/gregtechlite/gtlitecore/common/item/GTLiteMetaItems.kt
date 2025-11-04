@@ -444,6 +444,7 @@ object GTLiteMetaItems
     lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
     lateinit var WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_EXOTIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_HOLOGRAPHIC_INFORMATION_IMC: MetaItem<*>.MetaValueItem
 
     lateinit var WRAP_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
     lateinit var WRAP_CIRCUIT_LV: MetaItem<*>.MetaValueItem
@@ -1347,6 +1348,7 @@ object GTLiteMetaItems
         WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP = item(3106, "wrap.circuit.component.optoelectronic_system_on_chip")
         WRAP_ESR_COMPUTATION_UNIT = item(3107, "wrap.circuit.component.esr_computation_unit")
         WRAP_EXOTIC_SYSTEM_ON_CHIP = item(3108, "wrap.circuit.component.exotic_system_on_chip")
+        WRAP_HOLOGRAPHIC_INFORMATION_IMC = item(3109, "wrap.circuit.component.holographic_information_imc")
 
         WRAP_CIRCUIT_ULV = item(3201, "wrap.circuit.generic.ulv")
         WRAP_CIRCUIT_LV = item(3202, "wrap.circuit.generic.lv")

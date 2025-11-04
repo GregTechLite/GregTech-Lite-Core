@@ -4,6 +4,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
+import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
@@ -68,7 +69,8 @@ object AntiGravityAssemblyChamberRecipes
 
     fun init()
     {
-        // CAL existed recipes added by backends, this class contained all circuit recipes which used Ass Line.
+
+        // region T6: Crystal
 
         // UV Crystal Mainframe
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -166,6 +168,10 @@ object AntiGravityAssemblyChamberRecipes
             .EUt(VA[LuV])
             .duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
             .buildAndRegister()
+
+        // endregion
+
+        // region T7: Wetware
 
         // UHV Wetware Mainframe
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -281,6 +287,10 @@ object AntiGravityAssemblyChamberRecipes
             .EUt(300_000) // UV
             .duration(3 * MINUTE * 64) // Original: 15s, Wrapped: 15s * 16 = 240s
             .buildAndRegister()
+
+        // endregion
+
+        // region T8: Gooware
 
         // UHV Gooware Computer
         ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
@@ -499,6 +509,12 @@ object AntiGravityAssemblyChamberRecipes
             .EUt(VA[UHV])
             .duration((2 * MINUTE + 30 * SECOND) * 64) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
             .buildAndRegister()
+
+        // endregion
+
+        // region T9: Optical
+
+        // endregion
 
     }
 

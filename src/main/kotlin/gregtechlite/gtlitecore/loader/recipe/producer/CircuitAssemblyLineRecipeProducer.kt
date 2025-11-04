@@ -90,6 +90,7 @@ import gregtechlite.gtlitecore.api.recipe.hook.circuitInfo
 import gregtechlite.gtlitecore.api.recipe.hook.createCircuitPatternRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_ASSEMBLY_UIV
@@ -147,6 +148,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_CAPA
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HIGHLY_ADVANCED_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HOLOGRAPHIC_INFORMATION_IMC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ILC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NANO_CPU_CHIP
@@ -1204,7 +1206,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .input(WRAP_SPINTRONIC_SMD_RESISTOR, 16)
             .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16)
             .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 16)
-            .input(wireFine, CarbonNanotube, 64)
+            .input(wireGtQuadruple, CarbonNanotube, 8)
             .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
@@ -1218,7 +1220,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .input(WRAP_COSMIC_SMD_RESISTOR, 4)
             .input(WRAP_COSMIC_SMD_CAPACITOR, 4)
             .input(WRAP_COSMIC_SMD_TRANSISTOR, 4)
-            .input(wireFine, CarbonNanotube, 64)
+            .input(wireGtQuadruple, CarbonNanotube, 8)
             .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
@@ -1232,7 +1234,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .input(WRAP_SUPRACAUSAL_SMD_RESISTOR)
             .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR)
             .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
-            .input(wireFine, CarbonNanotube, 64)
+            .input(wireGtQuadruple, CarbonNanotube, 8)
             .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
@@ -1243,7 +1245,7 @@ internal object CircuitAssemblyLineRecipeProducer
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ESR_COMPUTATION_UNIT)
             .input(WRAP_EXOTIC_SYSTEM_ON_CHIP)
-            .input(wireFine, CarbonNanotube, 64)
+            .input(wireGtQuadruple, CarbonNanotube, 8)
             .input(bolt, Vibranium, 64)
             .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
@@ -1263,7 +1265,34 @@ internal object CircuitAssemblyLineRecipeProducer
 
         // region T11: Cosmic
 
-        // TODO: UEV Cosmic Processor
+        // UEV Cosmic Processor
+        CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(WRAP_HOLOGRAPHIC_INFORMATION_IMC)
+            .input(WRAP_CRYSTAL_SOC)
+            .input(WRAP_COSMIC_SMD_RESISTOR, 32)
+            .input(WRAP_COSMIC_SMD_CAPACITOR, 32)
+            .input(WRAP_COSMIC_SMD_TRANSISTOR, 32)
+            .input(wireGtQuadruple, Infinity, 8)
+            .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+            .output(COSMIC_PROCESSOR_UEV, 64)
+            .EUt(VA[UIV])
+            .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            .circuitInfo(COSMIC_PROCESSOR_UEV)
+            .buildAndRegister()
+
+        CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(WRAP_HOLOGRAPHIC_INFORMATION_IMC)
+            .input(WRAP_CRYSTAL_SOC)
+            .input(WRAP_SUPRACAUSAL_SMD_RESISTOR, 8)
+            .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 8)
+            .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR, 8)
+            .input(wireGtQuadruple, Infinity, 8)
+            .fluidInputs(MutatedLivingSolder.getFluid(L / 2))
+            .output(COSMIC_PROCESSOR_UEV, 64)
+            .EUt(VA[UIV])
+            .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            .circuitInfo(COSMIC_PROCESSOR_UEV)
+            .buildAndRegister()
 
         // UIV Cosmic Processor Assembly (AssLine)
 
