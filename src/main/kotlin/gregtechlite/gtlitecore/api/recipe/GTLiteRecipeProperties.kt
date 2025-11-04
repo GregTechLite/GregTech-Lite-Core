@@ -5,10 +5,10 @@ import gregtech.api.recipes.properties.RecipeProperty
 import gregtech.api.recipes.properties.impl.FusionEUToStartProperty
 import gregtech.common.items.MetaItems
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.recipe.hook.createDataItemWithTag
 import gregtechlite.gtlitecore.api.recipe.property.CircuitPatternProperty
 import gregtechlite.gtlitecore.api.recipe.property.RecipePropertyBuilder
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
-import gregtechlite.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer
 import net.minecraft.client.resources.I18n
 
 object GTLiteRecipeProperties
@@ -58,83 +58,83 @@ object GTLiteRecipeProperties
 
         register(CircuitPatternProperty) {
             // T1: Electronic
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.ELECTRONIC_CIRCUIT_LV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.ELECTRONIC_CIRCUIT_MV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.ELECTRONIC_CIRCUIT_LV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.ELECTRONIC_CIRCUIT_MV))
 
             // T2: Integrated
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.INTEGRATED_CIRCUIT_LV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.INTEGRATED_CIRCUIT_MV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.INTEGRATED_CIRCUIT_HV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.INTEGRATED_CIRCUIT_LV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.INTEGRATED_CIRCUIT_MV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.INTEGRATED_CIRCUIT_HV))
 
             // T3: Processor
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NAND_CHIP_ULV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.MICROPROCESSOR_LV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.PROCESSOR_MV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.PROCESSOR_ASSEMBLY_HV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.WORKSTATION_EV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.MAINFRAME_IV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NAND_CHIP_ULV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.MICROPROCESSOR_LV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.PROCESSOR_MV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.PROCESSOR_ASSEMBLY_HV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.WORKSTATION_EV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.MAINFRAME_IV))
 
             // T4: Nano
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NANO_PROCESSOR_HV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NANO_PROCESSOR_ASSEMBLY_EV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NANO_COMPUTER_IV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NANO_MAINFRAME_LUV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NANO_PROCESSOR_HV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NANO_PROCESSOR_ASSEMBLY_EV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NANO_COMPUTER_IV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NANO_MAINFRAME_LUV))
 
             // T5: Quantum
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.QUANTUM_PROCESSOR_EV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.QUANTUM_ASSEMBLY_IV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.QUANTUM_COMPUTER_LUV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.QUANTUM_MAINFRAME_ZPM))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.QUANTUM_PROCESSOR_EV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.QUANTUM_ASSEMBLY_IV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.QUANTUM_COMPUTER_LUV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.QUANTUM_MAINFRAME_ZPM))
 
             // T6: Crystal
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.CRYSTAL_PROCESSOR_IV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.CRYSTAL_ASSEMBLY_LUV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.CRYSTAL_COMPUTER_ZPM))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.CRYSTAL_MAINFRAME_UV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.CRYSTAL_PROCESSOR_IV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.CRYSTAL_ASSEMBLY_LUV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.CRYSTAL_COMPUTER_ZPM))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.CRYSTAL_MAINFRAME_UV))
 
             // T7: Wetware
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.WETWARE_PROCESSOR_LUV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.WETWARE_SUPER_COMPUTER_UV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.WETWARE_MAINFRAME_UHV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.WETWARE_PROCESSOR_LUV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.WETWARE_SUPER_COMPUTER_UV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.WETWARE_MAINFRAME_UHV))
 
             // T8: Gooware
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.GOOWARE_PROCESSOR_ZPM))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.GOOWARE_ASSEMBLY_UV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.GOOWARE_COMPUTER_UHV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.GOOWARE_MAINFRAME_UEV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.GOOWARE_PROCESSOR_ZPM))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.GOOWARE_ASSEMBLY_UV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.GOOWARE_COMPUTER_UHV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.GOOWARE_MAINFRAME_UEV))
 
             // T9: Optical
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.OPTICAL_PROCESSOR_UV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.OPTICAL_COMPUTER_UEV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.OPTICAL_MAINFRAME_UIV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.OPTICAL_PROCESSOR_UV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.OPTICAL_COMPUTER_UEV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.OPTICAL_MAINFRAME_UIV))
 
             // T10: Spintronic
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SPINTRONIC_PROCESSOR_UHV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SPINTRONIC_ASSEMBLY_UEV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SPINTRONIC_COMPUTER_UIV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SPINTRONIC_MAINFRAME_UXV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SPINTRONIC_PROCESSOR_UHV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SPINTRONIC_ASSEMBLY_UEV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SPINTRONIC_COMPUTER_UIV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SPINTRONIC_MAINFRAME_UXV))
 
             // T11: Cosmic
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.COSMIC_PROCESSOR_UEV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.COSMIC_ASSEMBLY_UIV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.COSMIC_COMPUTER_UXV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.COSMIC_MAINFRAME_OpV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.COSMIC_PROCESSOR_UEV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.COSMIC_ASSEMBLY_UIV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.COSMIC_COMPUTER_UXV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.COSMIC_MAINFRAME_OpV))
 
             // T12: Supracausal
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SUPRACAUSAL_PROCESSOR_UIV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SUPRACAUSAL_ASSEMBLY_UXV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SUPRACAUSAL_COMPUTER_OpV))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SUPRACAUSAL_MAINFRAME_MAX))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SUPRACAUSAL_PROCESSOR_UIV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SUPRACAUSAL_ASSEMBLY_UXV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SUPRACAUSAL_COMPUTER_OpV))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SUPRACAUSAL_MAINFRAME_MAX))
 
             // Other Component Circuits
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.ENERGY_LAPOTRONIC_ORB))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.DIAMOND_MODULATOR))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.RUBY_MODULATOR))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.SAPPHIRE_MODULATOR))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(GTLiteMetaItems.CRYSTAL_SOC_SOCKET))
-            CircuitPatternProperty.registerCircuit(CircuitAssemblyLineRecipeProducer.getCircuit(MetaItems.NEURO_PROCESSOR))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.ENERGY_LAPOTRONIC_ORB))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.DIAMOND_MODULATOR))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.RUBY_MODULATOR))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SAPPHIRE_MODULATOR))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.CRYSTAL_SOC_SOCKET))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NEURO_PROCESSOR))
         }
 
     }

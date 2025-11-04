@@ -14,8 +14,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
-import gregtech.api.items.metaitem.MetaItem
-import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
@@ -86,14 +84,14 @@ import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
+import gregtechlite.gtlitecore.api.recipe.hook.circuitInfo
+import gregtechlite.gtlitecore.api.recipe.hook.createCircuitPatternRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_ASSEMBLY_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_COMPUTER_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_MAINFRAME_OpV
@@ -183,8 +181,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHASOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_WETWARE_CIRCUIT_BOARD
-import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagString
 
 /**
  * CAL recipe producer and its utility methods.
@@ -216,84 +212,100 @@ internal object CircuitAssemblyLineRecipeProducer
 
     // @formatter:off
 
-    const val INFO_NBT_NAME = "CircuitInfo"
-
     fun produce()
     {
-        addCircuit(VACUUM_TUBE)
-        addCircuit(NAND_CHIP_ULV)
+        // region Circuit Infos
 
-        addCircuit(ELECTRONIC_CIRCUIT_LV)
-        addCircuit(INTEGRATED_CIRCUIT_LV)
-        addCircuit(MICROPROCESSOR_LV)
+        // ULV Tier
+        createCircuitPatternRecipe(VACUUM_TUBE)
+        createCircuitPatternRecipe(NAND_CHIP_ULV)
 
-        addCircuit(ELECTRONIC_CIRCUIT_MV)
-        addCircuit(INTEGRATED_CIRCUIT_MV)
-        addCircuit(PROCESSOR_MV)
+        // LV Tier
+        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_LV)
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_LV)
+        createCircuitPatternRecipe(MICROPROCESSOR_LV)
 
-        addCircuit(INTEGRATED_CIRCUIT_HV)
-        addCircuit(PROCESSOR_ASSEMBLY_HV)
-        addCircuit(NANO_PROCESSOR_HV)
+        // MV Tier
+        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_MV)
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_MV)
+        createCircuitPatternRecipe(PROCESSOR_MV)
 
-        addCircuit(WORKSTATION_EV)
-        addCircuit(NANO_PROCESSOR_ASSEMBLY_EV)
-        addCircuit(QUANTUM_PROCESSOR_EV)
+        // HV Tier
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_HV)
+        createCircuitPatternRecipe(PROCESSOR_ASSEMBLY_HV)
+        createCircuitPatternRecipe(NANO_PROCESSOR_HV)
 
-        addCircuit(MAINFRAME_IV)
-        addCircuit(NANO_COMPUTER_IV)
-        addCircuit(QUANTUM_ASSEMBLY_IV)
-        addCircuit(CRYSTAL_PROCESSOR_IV)
+        // EV Tier
+        createCircuitPatternRecipe(WORKSTATION_EV)
+        createCircuitPatternRecipe(NANO_PROCESSOR_ASSEMBLY_EV)
+        createCircuitPatternRecipe(QUANTUM_PROCESSOR_EV)
 
-        addCircuit(NANO_MAINFRAME_LUV)
-        addCircuit(QUANTUM_COMPUTER_LUV)
-        addCircuit(CRYSTAL_ASSEMBLY_LUV)
-        addCircuit(WETWARE_PROCESSOR_LUV)
+        // IV Tier
+        createCircuitPatternRecipe(MAINFRAME_IV)
+        createCircuitPatternRecipe(NANO_COMPUTER_IV)
+        createCircuitPatternRecipe(QUANTUM_ASSEMBLY_IV)
+        createCircuitPatternRecipe(CRYSTAL_PROCESSOR_IV)
 
-        addCircuit(QUANTUM_MAINFRAME_ZPM)
-        addCircuit(CRYSTAL_COMPUTER_ZPM)
-        addCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
-        addCircuit(GOOWARE_PROCESSOR_ZPM)
+        // LuV Tier
+        createCircuitPatternRecipe(NANO_MAINFRAME_LUV)
+        createCircuitPatternRecipe(QUANTUM_COMPUTER_LUV)
+        createCircuitPatternRecipe(CRYSTAL_ASSEMBLY_LUV)
+        createCircuitPatternRecipe(WETWARE_PROCESSOR_LUV)
 
-        addCircuit(CRYSTAL_MAINFRAME_UV)
-        addCircuit(WETWARE_SUPER_COMPUTER_UV)
-        addCircuit(GOOWARE_ASSEMBLY_UV)
-        addCircuit(OPTICAL_PROCESSOR_UV)
+        // ZPM Tier
+        createCircuitPatternRecipe(QUANTUM_MAINFRAME_ZPM)
+        createCircuitPatternRecipe(CRYSTAL_COMPUTER_ZPM)
+        createCircuitPatternRecipe(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
+        createCircuitPatternRecipe(GOOWARE_PROCESSOR_ZPM)
 
-        addCircuit(WETWARE_MAINFRAME_UHV)
-        addCircuit(GOOWARE_COMPUTER_UHV)
-        addCircuit(OPTICAL_ASSEMBLY_UHV)
-        addCircuit(SPINTRONIC_PROCESSOR_UHV)
+        // UV Tier
+        createCircuitPatternRecipe(CRYSTAL_MAINFRAME_UV)
+        createCircuitPatternRecipe(WETWARE_SUPER_COMPUTER_UV)
+        createCircuitPatternRecipe(GOOWARE_ASSEMBLY_UV)
+        createCircuitPatternRecipe(OPTICAL_PROCESSOR_UV)
 
-        addCircuit(GOOWARE_MAINFRAME_UEV)
-        addCircuit(OPTICAL_COMPUTER_UEV)
-        addCircuit(SPINTRONIC_ASSEMBLY_UEV)
-        addCircuit(COSMIC_PROCESSOR_UEV)
+        // UHV Tier
+        createCircuitPatternRecipe(WETWARE_MAINFRAME_UHV)
+        createCircuitPatternRecipe(GOOWARE_COMPUTER_UHV)
+        createCircuitPatternRecipe(OPTICAL_ASSEMBLY_UHV)
+        createCircuitPatternRecipe(SPINTRONIC_PROCESSOR_UHV)
 
-        addCircuit(OPTICAL_MAINFRAME_UIV)
-        addCircuit(SPINTRONIC_COMPUTER_UIV)
-        addCircuit(COSMIC_ASSEMBLY_UIV)
-        addCircuit(SUPRACAUSAL_PROCESSOR_UIV)
+        // UEV Tier
+        createCircuitPatternRecipe(GOOWARE_MAINFRAME_UEV)
+        createCircuitPatternRecipe(OPTICAL_COMPUTER_UEV)
+        createCircuitPatternRecipe(SPINTRONIC_ASSEMBLY_UEV)
+        createCircuitPatternRecipe(COSMIC_PROCESSOR_UEV)
 
-        addCircuit(SPINTRONIC_MAINFRAME_UXV)
-        addCircuit(COSMIC_COMPUTER_UXV)
-        addCircuit(SUPRACAUSAL_ASSEMBLY_UXV)
+        // UIV Tier
+        createCircuitPatternRecipe(OPTICAL_MAINFRAME_UIV)
+        createCircuitPatternRecipe(SPINTRONIC_COMPUTER_UIV)
+        createCircuitPatternRecipe(COSMIC_ASSEMBLY_UIV)
+        createCircuitPatternRecipe(SUPRACAUSAL_PROCESSOR_UIV)
 
-        addCircuit(COSMIC_MAINFRAME_OpV)
-        addCircuit(SUPRACAUSAL_COMPUTER_OpV)
+        // UXV Tier
+        createCircuitPatternRecipe(SPINTRONIC_MAINFRAME_UXV)
+        createCircuitPatternRecipe(COSMIC_COMPUTER_UXV)
+        createCircuitPatternRecipe(SUPRACAUSAL_ASSEMBLY_UXV)
 
-        addCircuit(SUPRACAUSAL_MAINFRAME_MAX)
+        // OpV Tier
+        createCircuitPatternRecipe(COSMIC_MAINFRAME_OpV)
+        createCircuitPatternRecipe(SUPRACAUSAL_COMPUTER_OpV)
 
-        addCircuit(ENERGY_LAPOTRONIC_ORB)
-        addCircuit(DIAMOND_MODULATOR)
-        addCircuit(RUBY_MODULATOR)
-        addCircuit(SAPPHIRE_MODULATOR)
-        addCircuit(CRYSTAL_SOC_SOCKET)
+        // MAX Tier
+        createCircuitPatternRecipe(SUPRACAUSAL_MAINFRAME_MAX)
 
-        /* ---------------------------------------------------------------------------------------------------------- */
+        // Misc
+        createCircuitPatternRecipe(ENERGY_LAPOTRONIC_ORB)
+        createCircuitPatternRecipe(DIAMOND_MODULATOR)
+        createCircuitPatternRecipe(RUBY_MODULATOR)
+        createCircuitPatternRecipe(SAPPHIRE_MODULATOR)
+        createCircuitPatternRecipe(CRYSTAL_SOC_SOCKET)
 
-        // T1: Electronic
+        // endregion
 
-        // Electronic Circuit
+        // region T1: Electronic
+
+        // LV Electronic Circuit
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_BASIC_CIRCUIT_BOARD)
             .input(WRAP_SMD_RESISTOR, 2)
@@ -303,10 +315,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(ELECTRONIC_CIRCUIT_LV, 64)
             .EUt(VH[LV])
             .duration(1 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(ELECTRONIC_CIRCUIT_LV))
+            .circuitInfo(ELECTRONIC_CIRCUIT_LV)
             .buildAndRegister()
 
-        // Good Electronic Circuit
+        // MV Good Electronic Circuit
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_GOOD_CIRCUIT_BOARD)
             .input(ELECTRONIC_CIRCUIT_LV, 32)
@@ -316,12 +328,14 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(ELECTRONIC_CIRCUIT_MV, 32)
             .EUt(VH[LV])
             .duration(1 * MINUTE + 20 * SECOND) // Original: 15s, Wrapped: 15s * 16 = 240s
-            .circuit(getCircuit(ELECTRONIC_CIRCUIT_MV))
+            .circuitInfo(ELECTRONIC_CIRCUIT_MV)
             .buildAndRegister()
 
-        // T2: Integrated
+        // endregion
 
-        // Integrated Circuit
+        // region T2: Integrated
+
+        // LV Integrated Circuit
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_BASIC_CIRCUIT_BOARD)
             .input(WRAP_ILC_CHIP)
@@ -333,10 +347,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(INTEGRATED_CIRCUIT_LV, 64)
             .EUt(VH[LV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(INTEGRATED_CIRCUIT_LV))
+            .circuitInfo(INTEGRATED_CIRCUIT_LV)
             .buildAndRegister()
 
-        // Good Integrated Circuit
+        // MV Good Integrated Circuit
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_GOOD_CIRCUIT_BOARD)
             .input(INTEGRATED_CIRCUIT_LV, 64)
@@ -348,10 +362,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(INTEGRATED_CIRCUIT_MV, 48)
             .EUt(24) // LV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(INTEGRATED_CIRCUIT_MV))
+            .circuitInfo(INTEGRATED_CIRCUIT_MV)
             .buildAndRegister()
 
-        // Advanced Integrated Circuit
+        // HV Advanced Integrated Circuit
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(INTEGRATED_CIRCUIT_MV, 48)
             .input(WRAP_ILC_CHIP, 2)
@@ -363,12 +377,14 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(INTEGRATED_CIRCUIT_HV, 32)
             .EUt(VA[LV])
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
-            .circuit(getCircuit(INTEGRATED_CIRCUIT_HV))
+            .circuitInfo(INTEGRATED_CIRCUIT_HV)
             .buildAndRegister()
 
-        // T3: Processor
+        // endregion
 
-        // NAND Chip
+        // region T3: Processor
+
+        // ULV NAND Chip
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_GOOD_CIRCUIT_BOARD)
             .input(WRAP_SIMPLE_SOC_CHIP)
@@ -379,7 +395,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NAND_CHIP_ULV, 64)
             .EUt(VA[MV])
             .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
-            .circuit(getCircuit(NAND_CHIP_ULV))
+            .circuitInfo(NAND_CHIP_ULV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -394,10 +410,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NAND_CHIP_ULV, 64)
             .EUt(VA[MV])
             .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
-            .circuit(getCircuit(NAND_CHIP_ULV))
+            .circuitInfo(NAND_CHIP_ULV)
             .buildAndRegister()
 
-        // Microprocessor
+        // LV Microprocessor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_PLASTIC_CIRCUIT_BOARD)
             .input(WRAP_CPU_CHIP)
@@ -409,7 +425,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(MICROPROCESSOR_LV, 64)
             .EUt(VHA[MV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(MICROPROCESSOR_LV))
+            .circuitInfo(MICROPROCESSOR_LV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -422,10 +438,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(MICROPROCESSOR_LV, 64)
             .EUt(600) // EV
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(MICROPROCESSOR_LV))
+            .circuitInfo(MICROPROCESSOR_LV)
             .buildAndRegister()
 
-        // Processor
+        // MV Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_PLASTIC_CIRCUIT_BOARD)
             .input(WRAP_CPU_CHIP)
@@ -437,7 +453,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(PROCESSOR_MV, 64)
             .EUt(VHA[MV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(PROCESSOR_MV))
+            .circuitInfo(PROCESSOR_MV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -450,10 +466,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(PROCESSOR_MV, 64)
             .EUt(2400) // IV
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(PROCESSOR_MV))
+            .circuitInfo(PROCESSOR_MV)
             .buildAndRegister()
 
-        // Processor Assembly
+        // HV Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_PLASTIC_CIRCUIT_BOARD)
             .input(PROCESSOR_MV, 64)
@@ -465,10 +481,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(PROCESSOR_ASSEMBLY_HV, 48)
             .EUt(90) // MV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(PROCESSOR_ASSEMBLY_HV))
+            .circuitInfo(PROCESSOR_ASSEMBLY_HV)
             .buildAndRegister()
 
-        // Workstation
+        // EV Workstation
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_PLASTIC_CIRCUIT_BOARD)
             .input(PROCESSOR_ASSEMBLY_HV, 48)
@@ -480,10 +496,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WORKSTATION_EV, 32)
             .EUt(VA[MV])
             .duration(5 * MINUTE) // Original: 20s, Wrapped: 20ss * 16 = 320s
-            .circuit(getCircuit(WORKSTATION_EV))
+            .circuitInfo(WORKSTATION_EV)
             .buildAndRegister()
 
-        // Mainframe
+        // IV Mainframe
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(frameGt, Aluminium, 32)
             .input(WORKSTATION_EV, 32)
@@ -495,12 +511,14 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(MAINFRAME_IV, 16)
             .EUt(VA[HV])
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
-            .circuit(getCircuit(MAINFRAME_IV))
+            .circuitInfo(MAINFRAME_IV)
             .buildAndRegister()
 
-        // T4: Nano
+        // endregion
 
-        // Nano Processor
+        // region T4: Nano
+
+        // HV Nano Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ADVANCED_CIRCUIT_BOARD)
             .input(WRAP_NANO_CPU_CHIP)
@@ -512,7 +530,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_PROCESSOR_HV, 64)
             .EUt(600) // EV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(NANO_PROCESSOR_HV))
+            .circuitInfo(NANO_PROCESSOR_HV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -526,7 +544,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_PROCESSOR_HV, 64)
             .EUt(600) // EV
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(NANO_PROCESSOR_HV))
+            .circuitInfo(NANO_PROCESSOR_HV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -539,10 +557,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_PROCESSOR_HV, 64)
             .EUt(9600) // LuV
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(NANO_PROCESSOR_HV))
+            .circuitInfo(NANO_PROCESSOR_HV)
             .buildAndRegister()
 
-        // Nano Processor Assembly
+        // EV Nano Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ADVANCED_CIRCUIT_BOARD)
             .input(NANO_PROCESSOR_HV, 64)
@@ -554,7 +572,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
             .EUt(600) // EV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(NANO_PROCESSOR_ASSEMBLY_EV))
+            .circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -568,10 +586,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
             .EUt(600) // EV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(NANO_PROCESSOR_ASSEMBLY_EV))
+            .circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
             .buildAndRegister()
 
-        // Nano Computer
+        // IV Nano Computer
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ADVANCED_CIRCUIT_BOARD)
             .input(NANO_PROCESSOR_ASSEMBLY_EV, 48)
@@ -583,7 +601,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_COMPUTER_IV, 32)
             .EUt(600) // EV
             .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(NANO_COMPUTER_IV))
+            .circuitInfo(NANO_COMPUTER_IV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -597,10 +615,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_COMPUTER_IV, 32)
             .EUt(600) // EV
             .duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(NANO_COMPUTER_IV))
+            .circuitInfo(NANO_COMPUTER_IV)
             .buildAndRegister()
 
-        // Nano Mainframe
+        // LuV Nano Mainframe
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(frameGt, VanadiumSteel, 32)
             .input(NANO_COMPUTER_IV, 32)
@@ -612,7 +630,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_MAINFRAME_LUV, 16)
             .EUt(VA[EV])
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
-            .circuit(getCircuit(NANO_MAINFRAME_LUV))
+            .circuitInfo(NANO_MAINFRAME_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -626,7 +644,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_MAINFRAME_LUV, 16)
             .EUt(VA[EV])
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(NANO_MAINFRAME_LUV))
+            .circuitInfo(NANO_MAINFRAME_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -640,12 +658,14 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NANO_MAINFRAME_LUV, 16)
             .EUt(VA[EV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(NANO_MAINFRAME_LUV))
+            .circuitInfo(NANO_MAINFRAME_LUV)
             .buildAndRegister()
 
-        // T5: Quantum
+        // endregion
 
-        // Quantum Processor
+        // region T5: Quantum
+
+        // EV Quantum Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_EXTREME_CIRCUIT_BOARD)
             .input(WRAP_QUBIT_CPU_CHIP)
@@ -657,7 +677,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_PROCESSOR_EV, 64)
             .EUt(2400) // IV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+            .circuitInfo(QUANTUM_PROCESSOR_EV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -671,7 +691,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_PROCESSOR_EV, 64)
             .EUt(2400) // IV
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+            .circuitInfo(QUANTUM_PROCESSOR_EV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -684,10 +704,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_PROCESSOR_EV, 64)
             .EUt(38400) // ZPM
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(QUANTUM_PROCESSOR_EV))
+            .circuitInfo(QUANTUM_PROCESSOR_EV)
             .buildAndRegister()
 
-        // Quantum Processor Assembly
+        // IV Quantum Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_EXTREME_CIRCUIT_BOARD)
             .input(QUANTUM_PROCESSOR_EV, 64)
@@ -699,7 +719,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_ASSEMBLY_IV, 48)
             .EUt(2400) // IV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(QUANTUM_ASSEMBLY_IV))
+            .circuitInfo(QUANTUM_ASSEMBLY_IV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -713,10 +733,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_ASSEMBLY_IV, 48)
             .EUt(2400) // IV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(QUANTUM_ASSEMBLY_IV))
+            .circuitInfo(QUANTUM_ASSEMBLY_IV)
             .buildAndRegister()
 
-        // Quantum Supercomputer
+        // LuV Quantum Supercomputer
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_EXTREME_CIRCUIT_BOARD)
             .input(QUANTUM_ASSEMBLY_IV, 48)
@@ -728,7 +748,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_COMPUTER_LUV, 32)
             .EUt(2400) // IV
             .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
+            .circuitInfo(QUANTUM_COMPUTER_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -742,10 +762,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_COMPUTER_LUV, 32)
             .EUt(2400) // IV
             .duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(QUANTUM_COMPUTER_LUV))
+            .circuitInfo(QUANTUM_COMPUTER_LUV)
             .buildAndRegister()
 
-        // Quantum Mainframe
+        // ZPM Quantum Mainframe
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(frameGt, HSSG, 32)
             .input(QUANTUM_COMPUTER_LUV, 32)
@@ -757,7 +777,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_MAINFRAME_ZPM, 16)
             .EUt(VA[IV])
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
-            .circuit(getCircuit(QUANTUM_MAINFRAME_ZPM))
+            .circuitInfo(QUANTUM_MAINFRAME_ZPM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -771,12 +791,14 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(QUANTUM_MAINFRAME_ZPM, 16)
             .EUt(VA[IV])
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(QUANTUM_MAINFRAME_ZPM))
+            .circuitInfo(QUANTUM_MAINFRAME_ZPM)
             .buildAndRegister()
 
-        // T6: Crystal
+        // endregion
 
-        // Crystal Processor
+        // region T6: Crystal
+
+        // IV Crystal Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ELITE_CIRCUIT_BOARD)
             .input(WRAP_CRYSTAL_CPU)
@@ -788,7 +810,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_PROCESSOR_IV, 64)
             .EUt(9600) // LuV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+            .circuitInfo(CRYSTAL_PROCESSOR_IV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -802,7 +824,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_PROCESSOR_IV, 64)
             .EUt(9600) // LuV
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+            .circuitInfo(CRYSTAL_PROCESSOR_IV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -815,10 +837,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_PROCESSOR_IV, 64)
             .EUt(86000) // ZPM
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(CRYSTAL_PROCESSOR_IV))
+            .circuitInfo(CRYSTAL_PROCESSOR_IV)
             .buildAndRegister()
 
-        // Crystal Processor Assembly
+        // LuV Crystal Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ELITE_CIRCUIT_BOARD)
             .input(CRYSTAL_PROCESSOR_IV, 64)
@@ -830,7 +852,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_ASSEMBLY_LUV, 48)
             .EUt(9600) // LuV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(CRYSTAL_ASSEMBLY_LUV))
+            .circuitInfo(CRYSTAL_ASSEMBLY_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -844,10 +866,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_ASSEMBLY_LUV, 48)
             .EUt(9600) // LuV
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(CRYSTAL_ASSEMBLY_LUV))
+            .circuitInfo(CRYSTAL_ASSEMBLY_LUV)
             .buildAndRegister()
 
-        // Crystal Supercomputer
+        // ZPM Crystal Supercomputer
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ELITE_CIRCUIT_BOARD)
             .input(CRYSTAL_ASSEMBLY_LUV, 48)
@@ -859,12 +881,16 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_COMPUTER_ZPM, 32)
             .EUt(9600) // LuV
             .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(CRYSTAL_COMPUTER_ZPM))
+            .circuitInfo(CRYSTAL_COMPUTER_ZPM)
             .buildAndRegister()
 
-        // T7: Wetware
+        // UV Crystal Mainframe (AssLine)
 
-        // Wetware Processor
+        // endregion
+
+        // region T7: Wetware
+
+        // LuV Wetware Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_NEURO_PROCESSOR)
             .input(WRAP_CRYSTAL_CPU)
@@ -876,7 +902,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_PROCESSOR_LUV, 64)
             .EUt(38400) // ZPM
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+            .circuitInfo(WETWARE_PROCESSOR_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -890,7 +916,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_PROCESSOR_LUV, 64)
             .EUt(38400) // ZPM
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+            .circuitInfo(WETWARE_PROCESSOR_LUV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -903,10 +929,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_PROCESSOR_LUV, 64)
             .EUt(150_000) // UV
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(WETWARE_PROCESSOR_LUV))
+            .circuitInfo(WETWARE_PROCESSOR_LUV)
             .buildAndRegister()
 
-        // Wetware Processor Assembly
+        // ZPM Wetware Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_WETWARE_CIRCUIT_BOARD)
             .input(WETWARE_PROCESSOR_LUV, 64)
@@ -918,7 +944,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
             .EUt(38400) // ZPM
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+            .circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -932,10 +958,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
             .EUt(38400) // ZPM
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(WETWARE_PROCESSOR_ASSEMBLY_ZPM))
+            .circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
             .buildAndRegister()
 
-        // Wetware Supercomputer
+        // UV Wetware Supercomputer
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_WETWARE_CIRCUIT_BOARD)
             .input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
@@ -947,14 +973,16 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(WETWARE_SUPER_COMPUTER_UV, 32)
             .EUt(38400) // ZPM
             .duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(WETWARE_SUPER_COMPUTER_UV))
+            .circuitInfo(WETWARE_SUPER_COMPUTER_UV)
             .buildAndRegister()
 
-        // Wetware Mainframe
+        // UHV Wetware Mainframe (AssLine)
 
-        // T8: Gooware
+        // endregion
 
-        // Gooware Processor
+        // region T8: Gooware
+
+        // ZPM Gooware Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
             .input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
@@ -966,7 +994,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_PROCESSOR_ZPM, 64)
             .EUt(VHA[UV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+            .circuitInfo(GOOWARE_PROCESSOR_ZPM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -980,7 +1008,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_PROCESSOR_ZPM, 64)
             .EUt(VHA[UV])
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+            .circuitInfo(GOOWARE_PROCESSOR_ZPM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -994,7 +1022,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_PROCESSOR_ZPM, 64)
             .EUt(VHA[UV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+            .circuitInfo(GOOWARE_PROCESSOR_ZPM)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1008,10 +1036,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_PROCESSOR_ZPM, 64)
             .EUt(VHA[UHV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(GOOWARE_PROCESSOR_ZPM))
+            .circuitInfo(GOOWARE_PROCESSOR_ZPM)
             .buildAndRegister()
 
-        // Gooware Processor Assembly
+        // UV Gooware Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
             .input(GOOWARE_PROCESSOR_ZPM, 64)
@@ -1023,7 +1051,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_ASSEMBLY_UV, 48)
             .EUt(VHA[UV])
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+            .circuitInfo(GOOWARE_ASSEMBLY_UV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1037,7 +1065,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_ASSEMBLY_UV, 48)
             .EUt(VHA[UV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+            .circuitInfo(GOOWARE_ASSEMBLY_UV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1051,16 +1079,18 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(GOOWARE_ASSEMBLY_UV, 48)
             .EUt(VHA[UV])
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(GOOWARE_ASSEMBLY_UV))
+            .circuitInfo(GOOWARE_ASSEMBLY_UV)
             .buildAndRegister()
 
-        // Gooware Supercomputer
+        // UHV Gooware Supercomputer (AssLine)
 
-        // Gooware Mainframe
+        // UEV Gooware Mainframe (AssLine)
 
-        // T9: Optical
+        // endregion
 
-        // Optical Processor
+        // region T9: Optical
+
+        // UV Optical Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
             .input(WRAP_CRYSTAL_CPU)
@@ -1072,7 +1102,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_PROCESSOR_UV, 64)
             .EUt(VA[UHV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+            .circuitInfo(OPTICAL_PROCESSOR_UV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1086,7 +1116,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_PROCESSOR_UV, 64)
             .EUt(VA[UHV])
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+            .circuitInfo(OPTICAL_PROCESSOR_UV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1100,7 +1130,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_PROCESSOR_UV, 64)
             .EUt(VA[UHV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+            .circuitInfo(OPTICAL_PROCESSOR_UV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1113,10 +1143,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_PROCESSOR_UV, 64)
             .EUt(VA[UEV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(OPTICAL_PROCESSOR_UV))
+            .circuitInfo(OPTICAL_PROCESSOR_UV)
             .buildAndRegister()
 
-        // Optical Processor Assembly
+        // UHV Optical Processor Assembly
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_PERFECT_CIRCUIT_BOARD)
             .input(OPTICAL_PROCESSOR_UV, 64)
@@ -1128,7 +1158,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_ASSEMBLY_UHV, 48)
             .EUt(VA[UHV])
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
-            .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
+            .circuitInfo(OPTICAL_ASSEMBLY_UHV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1142,7 +1172,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_ASSEMBLY_UHV, 48)
             .EUt(VA[UHV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
+            .circuitInfo(OPTICAL_ASSEMBLY_UHV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1156,16 +1186,18 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(OPTICAL_ASSEMBLY_UHV, 48)
             .EUt(VA[UHV])
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(OPTICAL_ASSEMBLY_UHV))
+            .circuitInfo(OPTICAL_ASSEMBLY_UHV)
             .buildAndRegister()
 
-        // Optical Computer
+        // UEV Optical Computer (AssLine)
 
-        // Optical Mainframe
+        // UIV Optical Mainframe (AssLine)
 
-        // T10: Spintronic
+        // endregion
 
-        // Spintronic Processor
+        // region T10: Spintronic
+
+        // UHV Spintronic Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(WRAP_ESR_COMPUTATION_UNIT)
             .input(WRAP_CRYSTAL_SOC)
@@ -1177,7 +1209,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+            .circuitInfo(SPINTRONIC_PROCESSOR_UHV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1191,7 +1223,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
             .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
-            .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+            .circuitInfo(SPINTRONIC_PROCESSOR_UHV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1205,7 +1237,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UEV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+            .circuitInfo(SPINTRONIC_PROCESSOR_UHV)
             .buildAndRegister()
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1218,16 +1250,42 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(SPINTRONIC_PROCESSOR_UHV, 64)
             .EUt(VA[UIV])
             .duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            .circuit(getCircuit(SPINTRONIC_PROCESSOR_UHV))
+            .circuitInfo(SPINTRONIC_PROCESSOR_UHV)
             .buildAndRegister()
 
-        // Spintronic Processor Assembly
+        // UEV Spintronic Processor Assembly (AssLine)
 
-        // Spintronic Computer
+        // UIV Spintronic Computer (AssLine)
 
-        // Spintronic Mainframe
+        // UXV Spintronic Mainframe (AssLine)
 
-        // ---------------------------------------------------------------------------------------------------------
+        // endregion
+
+        // region T11: Cosmic
+
+        // TODO: UEV Cosmic Processor
+
+        // UIV Cosmic Processor Assembly (AssLine)
+
+        // UXV Cosmic Supercomputer (AssLine)
+
+        // OpV Cosmic Mainframe (AssLine)
+
+        // endregion
+
+        // region T12: Supracausal
+
+        // UIV Supercausal Processor (NAC)
+
+        // UXV Supracausal Processor Assembly (NAC)
+
+        // OpV Supracausal Supercomputer (NAC)
+
+        // MAX Supracausal Mainframe (NAC)
+
+        // endregion
+
+        // region Misc
 
         // Lapotronic Orb
         CIRCUIT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
@@ -1241,7 +1299,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(ENERGY_LAPOTRONIC_ORB, 16)
             .EUt(VH[EV])
             .duration(6 * MINUTE) // Original: 25.6s, Wrapped: 25.6s * 16 = 409.6s
-            .circuit(getCircuit(ENERGY_LAPOTRONIC_ORB))
+            .circuitInfo(ENERGY_LAPOTRONIC_ORB)
             .buildAndRegister()
 
         // Data Stick
@@ -1297,7 +1355,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(DIAMOND_MODULATOR, 64)
             .EUt(VA[IV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(DIAMOND_MODULATOR))
+            .circuitInfo(DIAMOND_MODULATOR)
             .buildAndRegister()
 
         // Ruby Modulator
@@ -1311,7 +1369,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(RUBY_MODULATOR, 64)
             .EUt(VA[IV])
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-            .circuit(getCircuit(RUBY_MODULATOR))
+            .circuitInfo(RUBY_MODULATOR)
             .buildAndRegister()
 
         // Sapphire Modulator
@@ -1325,7 +1383,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(SAPPHIRE_MODULATOR, 64)
                 .EUt(VA[IV])
                 .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
-                .circuit(getCircuit(SAPPHIRE_MODULATOR))
+                .circuitInfo(SAPPHIRE_MODULATOR)
                 .buildAndRegister()
 
         // Crystal SoC Socket
@@ -1339,7 +1397,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(CRYSTAL_SOC_SOCKET, 16)
             .EUt(VA[LuV])
             .duration(20 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
-            .circuit(getCircuit(CRYSTAL_SOC_SOCKET))
+            .circuitInfo(CRYSTAL_SOC_SOCKET)
             .buildAndRegister()
 
         // Neuro Processor
@@ -1354,31 +1412,10 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(NEURO_PROCESSOR, 32)
             .EUt(80000) // ZPM
             .duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
-            .circuit(getCircuit(NEURO_PROCESSOR))
+            .circuitInfo(NEURO_PROCESSOR)
             .buildAndRegister()
 
-    }
-
-    private fun addCircuit(circuit: MetaItem<*>.MetaValueItem)
-    {
-        // Circuit Pattern with NBT {"CircuitInfo": "${circuit.unlocalizedName}"}.
-        val circuitPattern = CIRCUIT_PATTERN.stackForm
-        circuitPattern.setTagInfo(INFO_NBT_NAME, NBTTagString(circuit.unlocalizedName))
-        // Add Scanning recipes of Circuit Pattern.
-        SCANNER_RECIPES.recipeBuilder()
-            .input(CIRCUIT_PATTERN)
-            .input(circuit)
-            .outputs(circuitPattern)
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
-    }
-
-    fun getCircuit(circuit: MetaItem<*>.MetaValueItem): ItemStack
-    {
-        val circuitPattern = CIRCUIT_PATTERN.stackForm
-        circuitPattern.setTagInfo(INFO_NBT_NAME, NBTTagString(circuit.unlocalizedName))
-        return circuitPattern
+        // endregion
     }
 
     // @formatter:on
