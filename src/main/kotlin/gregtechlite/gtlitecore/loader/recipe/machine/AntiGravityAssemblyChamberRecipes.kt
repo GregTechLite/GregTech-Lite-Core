@@ -2,15 +2,17 @@ package gregtechlite.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
+import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.SolderingAlloy
@@ -28,9 +30,16 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_MAINFRAME_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_COMPUTER_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_FIBER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_MAINFRAME_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_INDUCTOR
@@ -54,12 +63,18 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_DIOD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PERFECT_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 
 object AntiGravityAssemblyChamberRecipes
@@ -364,7 +379,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40))
             .fluidInputs(KaptonE.getFluid(L * 16))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16)
             .EUt(VA[UHV])
             .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
@@ -384,7 +399,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40 * 64))
             .fluidInputs(KaptonE.getFluid(L * 16 * 64))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             .EUt(VA[UHV])
             .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
@@ -404,7 +419,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40))
             .fluidInputs(KaptonE.getFluid(L * 16))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16)
             .EUt(VA[UHV])
             .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
@@ -424,7 +439,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40 * 64))
             .fluidInputs(KaptonE.getFluid(L * 16 * 64))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             .EUt(VA[UHV])
             .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
@@ -444,7 +459,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40))
             .fluidInputs(KaptonE.getFluid(L * 16))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16)
             .EUt(VA[UHV])
             .duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
@@ -464,7 +479,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40 * 64))
             .fluidInputs(KaptonE.getFluid(L * 16 * 64))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             .EUt(VA[UHV])
             .duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
@@ -484,7 +499,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40))
             .fluidInputs(KaptonE.getFluid(L * 16))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16)
             .EUt(VA[UHV])
             .duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
@@ -504,7 +519,7 @@ object AntiGravityAssemblyChamberRecipes
             .fluidInputs(SolderingAlloy.getFluid(L * 40 * 64))
             .fluidInputs(KaptonE.getFluid(L * 16 * 64))
             .fluidInputs(KaptonK.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
-            .fluidInputs(Americium.getFluid(L * 8 * 64 * 64)) // plate (144) * 8 * 64
+            .fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             .output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             .EUt(VA[UHV])
             .duration((2 * MINUTE + 30 * SECOND) * 64) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
@@ -513,6 +528,248 @@ object AntiGravityAssemblyChamberRecipes
         // endregion
 
         // region T9: Optical
+
+        // UEV Optical Supercomputer
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_PERFECT_CIRCUIT_BOARD)
+            .input(OPTICAL_ASSEMBLY_UHV, 48)
+            .input(WRAP_OPTICAL_SMD_DIODE, 8)
+            .input(WRAP_ACNOR_CHIP, 16)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(OPTICAL_FIBER, 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16))
+            .fluidInputs(Polyetheretherketone.getFluid(L * 4))
+            .fluidInputs(KaptonE.getFluid(36 * 32 * 16)) // foil (36) * 32 * 16
+            .fluidInputs(Dubnium.getFluid(L * 4 * 16)) // plate (144) * 4 * 16
+            .output(OPTICAL_COMPUTER_UEV, 32)
+            .EUt(VA[UHV])
+            .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(WRAP_PERFECT_CIRCUIT_BOARD, 64)
+            .input(OPTICAL_ASSEMBLY_UHV, 48 * 64)
+            .input(WRAP_OPTICAL_SMD_DIODE, 8 * 64)
+            .input(WRAP_ACNOR_CHIP, 16 * 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(OPTICAL_FIBER, 64 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
+            .fluidInputs(Polyetheretherketone.getFluid(L * 4 * 64))
+            .fluidInputs(KaptonE.getFluid(36 * 32 * 16 * 64)) // foil (36) * 32 * 16
+            .fluidInputs(Dubnium.getFluid(L * 4 * 16 * 64)) // plate (144) * 4 * 16
+            .output(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .EUt(VA[UHV])
+            .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_PERFECT_CIRCUIT_BOARD)
+            .input(OPTICAL_ASSEMBLY_UHV, 48)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 2)
+            .input(WRAP_ACNOR_CHIP, 16)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(OPTICAL_FIBER, 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16))
+            .fluidInputs(Polyetheretherketone.getFluid(L * 4))
+            .fluidInputs(KaptonE.getFluid(36 * 32 * 16)) // foil (36) * 32 * 16
+            .fluidInputs(Dubnium.getFluid(L * 4 * 16)) // plate (144) * 4 * 16
+            .output(OPTICAL_COMPUTER_UEV, 32)
+            .EUt(VA[UHV])
+            .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_PERFECT_CIRCUIT_BOARD, 64)
+            .input(OPTICAL_ASSEMBLY_UHV, 48 * 64)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 2 * 64)
+            .input(WRAP_ACNOR_CHIP, 16 * 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(OPTICAL_FIBER, 64 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
+            .fluidInputs(Polyetheretherketone.getFluid(L * 4 * 64))
+            .fluidInputs(KaptonE.getFluid(36 * 32 * 16 * 64)) // foil (36) * 32 * 16
+            .fluidInputs(Dubnium.getFluid(L * 4 * 16 * 64)) // plate (144) * 4 * 16
+            .output(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .EUt(VA[UHV])
+            .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
+
+        // UIV Optical Mainframe
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Neutronium, 16)
+            .input(OPTICAL_COMPUTER_UEV, 32)
+            .input(WRAP_OPTICAL_SMD_DIODE, 64)
+            .input(WRAP_OPTICAL_SMD_CAPACITOR, 64)
+            .input(WRAP_OPTICAL_SMD_TRANSISTOR, 64)
+            .input(WRAP_OPTICAL_SMD_DIODE, 64)
+            .input(WRAP_OPTICAL_SMD_INDUCTOR, 64)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16))
+            .fluidInputs(KaptonE.getFluid(L * 32 * 16 + 32 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16)
+            .EUt(VA[UEV])
+            .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Neutronium, 16 * 64)
+            .input(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .input(WRAP_OPTICAL_SMD_DIODE, 64 * 64)
+            .input(WRAP_OPTICAL_SMD_CAPACITOR, 64 * 64)
+            .input(WRAP_OPTICAL_SMD_TRANSISTOR, 64 * 64)
+            .input(WRAP_OPTICAL_SMD_DIODE, 64 * 64)
+            .input(WRAP_OPTICAL_SMD_INDUCTOR, 64 * 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(KaptonE.getFluid((L * 32 * 16 + 32 * 64 * 16) * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16 * 64)
+            .EUt(VA[UEV])
+            .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Neutronium, 16)
+            .input(OPTICAL_COMPUTER_UEV, 32)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 16)
+            .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16)
+            .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 16)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 16)
+            .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 16)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16))
+            .fluidInputs(KaptonE.getFluid(L * 32 * 16 + 32 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16)
+            .EUt(VA[UEV])
+            .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Neutronium, 16 * 64)
+            .input(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 16 * 64)
+            .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16 * 64)
+            .input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 16 * 64)
+            .input(WRAP_SPINTRONIC_SMD_DIODE, 16 * 64)
+            .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 16 * 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(KaptonE.getFluid((L * 32 * 16 + 32 * 64 * 16) * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16 * 64)
+            .EUt(VA[UEV])
+            .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Neutronium, 16)
+            .input(OPTICAL_COMPUTER_UEV, 32)
+            .input(WRAP_COSMIC_SMD_DIODE, 4)
+            .input(WRAP_COSMIC_SMD_CAPACITOR, 4)
+            .input(WRAP_COSMIC_SMD_TRANSISTOR, 4)
+            .input(WRAP_COSMIC_SMD_DIODE, 4)
+            .input(WRAP_COSMIC_SMD_INDUCTOR, 4)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16))
+            .fluidInputs(KaptonE.getFluid(L * 32 * 16 + 32 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16)
+            .EUt(VA[UEV])
+            .duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Neutronium, 16 * 64)
+            .input(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .input(WRAP_COSMIC_SMD_DIODE, 4 * 64)
+            .input(WRAP_COSMIC_SMD_CAPACITOR, 4 * 64)
+            .input(WRAP_COSMIC_SMD_TRANSISTOR, 4 * 64)
+            .input(WRAP_COSMIC_SMD_DIODE, 4 * 64)
+            .input(WRAP_COSMIC_SMD_INDUCTOR, 4 * 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(KaptonE.getFluid((L * 32 * 16 + 32 * 64 * 16) * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16 * 64)
+            .EUt(VA[UEV])
+            .duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Neutronium, 16)
+            .input(OPTICAL_COMPUTER_UEV, 32)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE)
+            .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR)
+            .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE)
+            .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR)
+            .input(WRAP_PRAM_CHIP, 32)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16))
+            .fluidInputs(KaptonE.getFluid(L * 32 * 16 + 32 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16)
+            .EUt(VA[UEV])
+            .duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Neutronium, 16 * 64)
+            .input(OPTICAL_COMPUTER_UEV, 32 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 64)
+            .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 64)
+            .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR, 64)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 64)
+            .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR, 64)
+            .input(WRAP_PRAM_CHIP, 32 * 64)
+            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 128 * 64)
+            .fluidInputs(SolderingAlloy.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(KaptonE.getFluid((L * 32 * 16 + 32 * 64 * 16) * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Polyetheretherketone.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
+            .output(OPTICAL_MAINFRAME_UIV, 16 * 64)
+            .EUt(VA[UEV])
+            .duration((2 * MINUTE + 30 * SECOND) * 64) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
+            .buildAndRegister()
+
+        // endregion
+
+        // region T10: Spintronic
+
+        // endregion
+
+        // region T11: Cosmic
+
+        // endregion
+
+        // region T12: Supracausal
 
         // endregion
 
