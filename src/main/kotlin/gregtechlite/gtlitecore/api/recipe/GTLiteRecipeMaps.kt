@@ -887,7 +887,7 @@ object GTLiteRecipeMaps
         .ui { AntiGravityAssemblyChamberUI(it) }
         .itemInputs(16)
         .itemOutputs(4)
-        .fluidInputs(4)
+        .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
         .build() // CircAssLine smallRecipeMap actual
 

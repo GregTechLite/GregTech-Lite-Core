@@ -303,6 +303,14 @@ object GTLiteGuiTextures
     val PROGRESS_BAR_PHASE_CHANGE: TextureArea = TextureArea.fullImage(
         "textures/gui/progress_bar/progress_bar_phase_change.png")
 
+    @JvmField
+    val PROGRESS_BAR_ANTI_GRAVITY_ASSEMBLING_1: TextureArea = TextureArea.fullImage(
+        "textures/gui/progress_bar/progress_bar_anti_gravity_assembling_1.png")
+
+    @JvmField
+    val PROGRESS_BAR_ANTI_GRAVITY_ASSEMBLING_2: TextureArea = TextureArea.fullImage(
+        "textures/gui/progress_bar/progress_bar_anti_gravity_assembling_2.png")
+
     // endregion
 
     // region Widget Textures

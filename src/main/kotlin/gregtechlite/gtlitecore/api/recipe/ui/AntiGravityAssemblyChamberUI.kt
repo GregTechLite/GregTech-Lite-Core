@@ -6,6 +6,7 @@ import gregtech.api.gui.ModularUI
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.ui.RecipeMapUI
+import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 import net.minecraftforge.items.IItemHandlerModifiable
 
 @Suppress("UnstableApiUsage")
@@ -16,7 +17,8 @@ internal class AntiGravityAssemblyChamberUI<R : RecipeMap<*>>(recipeMap: R) : Re
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
         val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 176)
-            .widget(ProgressWidget(200, 80, 1, 54, 72, GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE, ProgressWidget.MoveType.HORIZONTAL))
+            .widget(ProgressWidget(200, 70 + 18 - 9, 12, 72, 40, GTLiteGuiTextures.PROGRESS_BAR_ANTI_GRAVITY_ASSEMBLING_1, ProgressWidget.MoveType.HORIZONTAL))
+            .widget(ProgressWidget(200, 131 + 18 - 9, 15, 3, 12, GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_2, ProgressWidget.MoveType.VERTICAL))
         addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
@@ -26,52 +28,40 @@ internal class AntiGravityAssemblyChamberUI<R : RecipeMap<*>>(recipeMap: R) : Re
                                        itemHandler: IItemHandlerModifiable, fluidHandler: FluidTankList,
                                        isOutputs: Boolean, yOffset: Int)
     {
-        var itemInputsCount = itemHandler.slots
-        var fluidInputsCount = fluidHandler.tanks
-        var invertFluids = false
-        if (itemInputsCount == 0)
-        {
-            val tmp = itemInputsCount
-            itemInputsCount = fluidInputsCount
-            fluidInputsCount = tmp
-            invertFluids = true
-        }
-        val inputSlotGrid = determineSlotsGrid(itemInputsCount)
-        val itemSlotsToLeft = inputSlotGrid[0]
-        val itemSlotsToDown = inputSlotGrid[1]
-        val startInputsX = 80 - itemSlotsToLeft * 18
-        val startInputsY = 37 - (itemSlotsToDown / 2.0 * 18).toInt()
 
+        val startInputsX1 = 70 - 3 * 18 - 9
+        val startInputsY = 45 - 2 * 18
         if (!isOutputs)
         {
-            for (i in 0 until itemSlotsToDown)
+            // Item input slots
+            for (i in 0..3)
             {
-                for (j in 0 until itemSlotsToLeft)
+                for (j in 0..3)
                 {
-                    val slotIndex = i * itemSlotsToLeft + j /* + 1*/ // needed for data slot
-                    addSlot(builder, startInputsX + 18 * j, startInputsY + 18 * i,
-                            slotIndex, itemHandler, fluidHandler, invertFluids, false)
+                    val slotIndex = i * 4 + j
+                    addSlot(builder, startInputsX1 + 18 * j, startInputsY + 18 * i, slotIndex, itemHandler, fluidHandler, false, false)
                 }
             }
-            if (fluidInputsCount > 0 || invertFluids)
+            // fluid input slots
+            val startInputsX2 = startInputsX1 + 18 * 4
+            for (i in 0..2)
             {
-                if (itemSlotsToDown >= fluidInputsCount)
+                for (j in 0..3)
                 {
-                    val startSpecX = startInputsX + 18 * 5
-                    for (i in 0 until fluidInputsCount)
-                    {
-                        addSlot(builder, startSpecX, startInputsY + 18 * i, i, itemHandler, fluidHandler, true, false)
-                    }
+                    val slotIndex = i * 4 + j
+                    addSlot(builder, startInputsX2 + 18 * j, startInputsY + 18 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
                 }
             }
         }
         else
         {
-            for (i in 0 until 4)
+            // Output slots
+            for (i in 0..3)
             {
-                addSlot(builder, startInputsX + 18 * 4, 1 + 18 * i, i, itemHandler, fluidHandler, invertFluids, true)
+                addSlot(builder, startInputsX1 + 18 * 8, 9 + 18 * i, 0 + i, itemHandler, fluidHandler, false, true)
             }
         }
+
     }
 
 }

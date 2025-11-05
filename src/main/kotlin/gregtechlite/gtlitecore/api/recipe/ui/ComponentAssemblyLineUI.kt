@@ -19,8 +19,8 @@ internal class ComponentAssemblyLineUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMa
         val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 176)
             .widget(ProgressWidget(200, 70, 12, 72, 40, GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_1, ProgressWidget.MoveType.HORIZONTAL))
             .widget(ProgressWidget(200, 131, 15, 3, 12, GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_2, ProgressWidget.MoveType.VERTICAL))
-        this.addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
-        this.addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
+        addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
+        addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
     }
 
