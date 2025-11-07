@@ -28,9 +28,13 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
@@ -39,6 +43,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_COMPUTER_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_FIBER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_MAINFRAME_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_ASSEMBLY_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_PROCESSOR_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
@@ -57,6 +63,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDU
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_INFINITE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_DIODE
@@ -75,7 +82,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHASOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
+import net.minecraft.item.ItemStack
 
 object AntiGravityAssemblyChamberRecipes
 {
@@ -762,6 +771,131 @@ object AntiGravityAssemblyChamberRecipes
         // endregion
 
         // region T10: Spintronic
+
+        // UEV Spintronic Processor Assembly
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 16)
+                .input(WRAP_UHASOC_CHIP, 32)
+                .input(wireGtQuadruple, CarbonNanotube, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48)
+                .EUt(VA[UEV])
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16 * 64)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 16 * 64)
+                .input(WRAP_UHASOC_CHIP, 32 * 64)
+                .input(wireGtQuadruple, CarbonNanotube, 16 * 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16 * 64))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
+                .EUt(VA[UEV])
+                .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 4)
+                .input(WRAP_COSMIC_SMD_INDUCTOR, 4)
+                .input(WRAP_UHASOC_CHIP, 32)
+                .input(wireGtQuadruple, CarbonNanotube, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48)
+                .EUt(VA[UEV])
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 4 * 64)
+                .input(WRAP_COSMIC_SMD_INDUCTOR, 4 * 64)
+                .input(WRAP_UHASOC_CHIP, 32 * 64)
+                .input(wireGtQuadruple, CarbonNanotube, 16 * 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16 * 64))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
+                .EUt(VA[UEV])
+                .duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64)
+                .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR)
+                .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR)
+                .input(WRAP_UHASOC_CHIP, 32)
+                .input(wireGtQuadruple, CarbonNanotube, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48)
+                .EUt(VA[UEV])
+                .duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
+                .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
+                .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 64)
+                .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR, 64)
+                .input(WRAP_UHASOC_CHIP, 32 * 64)
+                .input(wireGtQuadruple, CarbonNanotube, 16 * 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16 * 64))
+                .fluidInputs(rubber)
+                .output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
+                .EUt(VA[UEV])
+                .duration(1 * MINUTE * 64) // Original: 5s, Wrapped: 5s * 16 = 80s
+                .buildAndRegister()
+        }
+
+        // UIV Spintronic Computer
+
+        // UXV Spintronic Mainframe
 
         // endregion
 
