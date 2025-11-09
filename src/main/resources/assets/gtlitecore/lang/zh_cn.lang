@@ -1353,7 +1353,9 @@ metaitem.wrap.wafer.chip.advanced_random_access_memory.name=封装高级随机�
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=封装极高进阶片上系统（UHASoC）晶片
 metaitem.wrap.wafer.chip.crystal_interface.name=封装晶体接口晶片
 metaitem.wrap.wafer.chip.phase_change_ram.name=封装相变随机存取存储器（PRAM）晶片
-metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=全光级联逻辑或非门（ACNOR）晶片
+metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=封装全光级联逻辑或非门（ACNOR）晶片
+metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=封装自旋转移力矩存储器（STTRAM）晶片
+metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=封装磁畴壁反相逻辑与非门（MINAND）晶片
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=封装刻蚀兰波顿晶片
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=封装刻蚀钻石晶片

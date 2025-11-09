@@ -1354,6 +1354,8 @@ metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=Wrap Ultra Hi
 metaitem.wrap.wafer.chip.crystal_interface.name=Wrap Crystal Interface Chip
 metaitem.wrap.wafer.chip.phase_change_ram.name=Wrap Phase Change Random Access Memory (PRAM) Chip
 metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=Wrap All-Optical Cascade NOR Gate (ACNOR) Chip
+metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=Wrap Spin Transfer Torque RAM (STTRAM) Chip
+metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=Wrap Magnetic-Domain Wall Inversion NAND Gate (MINAND) Chip
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=Wrap Engraved Lapotron Chip
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip

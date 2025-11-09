@@ -31,11 +31,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-/**
- * allowed laser, ignore max recipe tier, ignore ordered inputs.
- *
- * uxv stage, another prepare works for supracausal circuit
- */
 class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockController(id,
                                                                                          arrayOf(NANO_ASSEMBLY_MATRIX_RECIPES, ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES,
                                                                                                  COMPONENT_ASSEMBLY_LINE_RECIPES, ASSEMBLER_RECIPES))
@@ -169,7 +164,7 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
                                "gtlitecore.machine.nano_assembly_complex.tooltip.3",
                                "gtlitecore.machine.nano_assembly_complex.tooltip.4")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
-            // todo other efficiency?
+            addParallelInfo(Int.MAX_VALUE)
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }
@@ -183,6 +178,8 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
     {
 
         override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+
+        override fun getParallelLimit(): Int = Int.MAX_VALUE
 
     }
 

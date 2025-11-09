@@ -78,6 +78,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HOLOGRAPHIC_INFORMATION_IMC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.INFINITE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NONLINEAR_CHEMICAL_OSCILLATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_BOARD
@@ -97,6 +98,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPIN_TRANSFER_TORQUE_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_INDUCTOR
@@ -164,6 +166,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ILC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_INFINITE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_LPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_MINAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_MULTILAYER_FIBER_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NANO_CPU_CHIP
@@ -201,6 +204,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_D
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_STTRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_INDUCTOR
@@ -310,6 +314,8 @@ internal object WrapItemRecipeProducer
         wrapItems[CRYSTAL_INTERFACE_CHIP] = WRAP_CRYSTAL_INTERFACE_CHIP
         wrapItems[PHASE_CHANGE_RAM_CHIP] = WRAP_PRAM_CHIP
         wrapItems[ALL_OPTICAL_CASCADE_NOR_CHIP] = WRAP_ACNOR_CHIP
+        wrapItems[SPIN_TRANSFER_TORQUE_RAM_CHIP] = WRAP_STTRAM_CHIP
+        wrapItems[MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP] = WRAP_MINAND_CHIP
 
         // Engraved Chips
         wrapItems[ENGRAVED_LAPOTRON_CHIP] = WRAP_ENGRAVED_LAPOTRON_CHIP
