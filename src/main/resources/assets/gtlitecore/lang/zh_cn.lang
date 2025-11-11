@@ -1356,6 +1356,9 @@ metaitem.wrap.wafer.chip.phase_change_ram.name=封装相变随机存取存储器
 metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=封装全光级联逻辑或非门（ACNOR）晶片
 metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=封装自旋转移力矩存储器（STTRAM）晶片
 metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=封装磁畴壁反相逻辑与非门（MINAND）晶片
+metaitem.wrap.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.name=封装激发态奇异原子约束中央处理器（EARCPU）晶片
+metaitem.wrap.wafer.chip.amplitude_duality_disturbance_ram.name=封装振幅对偶扰动随机存取存储器（ADDRAM）晶片
+metaitem.wrap.wafer.chip.excitation_spectrum_composite_logical_gate.name=封装激发谱豁免复合逻辑门（ESCLG）晶片
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=封装刻蚀兰波顿晶片
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=封装刻蚀钻石晶片
@@ -2595,6 +2598,7 @@ gtlitecore.machine.nano_assembly_complex.tooltip.1=电路问题的最终解法
 gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
 gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
 gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
+gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

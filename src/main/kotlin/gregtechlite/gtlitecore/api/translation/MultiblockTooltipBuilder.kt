@@ -83,6 +83,10 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
         _tooltips.add(I18n.format(durationMode) + I18n.format("$durationMode.${mode.name.lowercase()}", percent))
     }
 
+    fun addDurationInfo(number: Int) = apply {
+        _tooltips.add(I18n.format("gtlitecore.tooltip.machine.duration_mode") + TextFormatting.LIGHT_PURPLE + number)
+    }
+
     fun addMultiDurationInfo(vararg modes: UpgradeMode, percent: Int) = apply {
         val durationMode = "gtlitecore.tooltip.machine.duration_mode"
         val modeKey = modes.joinToString("_") { it.name.lowercase() }

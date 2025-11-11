@@ -165,6 +165,7 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
                                "gtlitecore.machine.nano_assembly_complex.tooltip.4")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
             addParallelInfo(Int.MAX_VALUE)
+            addDescriptionLine("gtlitecore.machine.nano_assembly_complex.tooltip.5")
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }
@@ -178,6 +179,11 @@ class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockCo
     {
 
         override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+
+        override fun setMaxProgress(maxProgress: Int)
+        {
+            maxProgressTime = maxProgress / 4
+        }
 
         override fun getParallelLimit(): Int = Int.MAX_VALUE
 

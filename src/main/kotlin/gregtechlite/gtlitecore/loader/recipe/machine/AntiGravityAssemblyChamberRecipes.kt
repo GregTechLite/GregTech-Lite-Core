@@ -5,6 +5,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bohrium
@@ -14,6 +15,8 @@ import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropi
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
+import gregtech.api.unification.material.Materials.Livermorium
+import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
@@ -31,18 +34,29 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonE
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolytetramethyleneGlycolRubber
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_ASSEMBLY_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_COMPUTER_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_MAINFRAME_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_PROCESSOR_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_MAINFRAME_UEV
@@ -55,17 +69,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_COMPUTER_U
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_MAINFRAME_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_PROCESSOR_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADDRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ARAM_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_INFORMATION_MODULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EARCPU_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ESCLG_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDUCTOR
@@ -97,6 +115,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHASOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 
+// TODO: producer or recipe action.
 object AntiGravityAssemblyChamberRecipes
 {
 
@@ -1145,10 +1164,247 @@ object AntiGravityAssemblyChamberRecipes
         // region T11: Cosmic
 
         // UIV Cosmic Processor Assembly
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16), // foil (36) * 64 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(WRAP_COSMIC_INFORMATION_MODULE)
+                .input(COSMIC_PROCESSOR_UEV, 64)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 32)
+                .input(WRAP_COSMIC_SMD_INDUCTOR, 32)
+                .input(WRAP_EARCPU_CHIP, 16)
+                .input(wireGtQuadruple, Infinity, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16))
+                .fluidInputs(rubber)
+                .output(COSMIC_ASSEMBLY_UIV, 48)
+                .EUt(VA[UIV])
+                .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16 * 64), // foil (36) * 64 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16 * 64)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
+                .input(COSMIC_PROCESSOR_UEV, 64 * 64)
+                .input(WRAP_COSMIC_SMD_CAPACITOR, 32 * 64)
+                .input(WRAP_COSMIC_SMD_INDUCTOR, 32 * 64)
+                .input(WRAP_EARCPU_CHIP, 16 * 64)
+                .input(wireGtQuadruple, Infinity, 16 * 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16 * 64))
+                .fluidInputs(rubber)
+                .output(COSMIC_ASSEMBLY_UIV, 48 * 64)
+                .EUt(VA[UIV])
+                .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16), // foil (36) * 64 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .input(WRAP_COSMIC_INFORMATION_MODULE)
+                .input(COSMIC_PROCESSOR_UEV, 64)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 8)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 8)
+                .input(WRAP_EARCPU_CHIP, 16)
+                .input(wireGtQuadruple, Infinity, 16)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16))
+                .fluidInputs(rubber)
+                .output(COSMIC_ASSEMBLY_UIV, 48)
+                .EUt(VA[UIV])
+                .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .buildAndRegister()
+        }
+
+        for (rubber in arrayOf(
+            PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16 * 64), // foil (36) * 64 * 16
+            PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16 * 64)))
+        {
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
+                .input(COSMIC_PROCESSOR_UEV, 64 * 64)
+                .input(WRAP_SPINTRONIC_SMD_CAPACITOR, 8 * 64)
+                .input(WRAP_SPINTRONIC_SMD_INDUCTOR, 8 * 64)
+                .input(WRAP_EARCPU_CHIP, 16 * 64)
+                .input(wireGtQuadruple, Infinity, 16 * 64)
+                .fluidInputs(MutatedLivingSolder.getFluid(L * 4 * 16 * 64))
+                .fluidInputs(rubber)
+                .output(COSMIC_ASSEMBLY_UIV, 48 * 64)
+                .EUt(VA[UIV])
+                .duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+                .buildAndRegister()
+        }
 
         // UXV Cosmic Computer
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_COSMIC_INFORMATION_MODULE)
+            .input(COSMIC_ASSEMBLY_UIV, 48)
+            .input(WRAP_COSMIC_SMD_DIODE, 16)
+            .input(WRAP_ESCLG_CHIP, 32)
+            .input(WRAP_ADDRAM_CHIP, 64)
+            .input(wireGtQuadruple, Infinity, 32)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 16))
+            .fluidInputs(Fullerene.getFluid(L * 12 * 16))
+            .fluidInputs(CosmicNeutronium.getFluid(L * 8))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Livermorium.getFluid(L * 8 * 16))
+            .output(COSMIC_COMPUTER_UXV, 32)
+            .EUt(VA[UIV])
+            .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
+            .input(COSMIC_ASSEMBLY_UIV, 48 * 64)
+            .input(WRAP_COSMIC_SMD_DIODE, 16 * 64)
+            .input(WRAP_ESCLG_CHIP, 32 * 64)
+            .input(WRAP_ADDRAM_CHIP, 64 * 64)
+            .input(wireGtQuadruple, Infinity, 32 * 64)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 16 * 64))
+            .fluidInputs(Fullerene.getFluid(L * 12 * 16 * 64))
+            .fluidInputs(CosmicNeutronium.getFluid(L * 8 * 64))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Livermorium.getFluid(L * 8 * 16 * 64))
+            .output(COSMIC_COMPUTER_UXV, 32 * 64)
+            .EUt(VA[UIV])
+            .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(WRAP_COSMIC_INFORMATION_MODULE)
+            .input(COSMIC_ASSEMBLY_UIV, 48)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 4)
+            .input(WRAP_ESCLG_CHIP, 32)
+            .input(WRAP_ADDRAM_CHIP, 64)
+            .input(wireGtQuadruple, Infinity, 32)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 16))
+            .fluidInputs(Fullerene.getFluid(L * 12 * 16))
+            .fluidInputs(CosmicNeutronium.getFluid(L * 8))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Livermorium.getFluid(L * 8 * 16))
+            .output(COSMIC_COMPUTER_UXV, 32)
+            .EUt(VA[UIV])
+            .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
+            .input(COSMIC_ASSEMBLY_UIV, 48 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 4 * 64)
+            .input(WRAP_ESCLG_CHIP, 32 * 64)
+            .input(WRAP_ADDRAM_CHIP, 64 * 64)
+            .input(wireGtQuadruple, Infinity, 32 * 64)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 16 * 64))
+            .fluidInputs(Fullerene.getFluid(L * 12 * 16 * 64))
+            .fluidInputs(CosmicNeutronium.getFluid(L * 8 * 64))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Livermorium.getFluid(L * 8 * 16 * 64))
+            .output(COSMIC_COMPUTER_UXV, 32 * 64)
+            .EUt(VA[UIV])
+            .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .buildAndRegister()
 
         // OpV Cosmic Mainframe
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Shirabon, 16)
+            .input(COSMIC_COMPUTER_UXV, 32)
+            .input(WRAP_COSMIC_SMD_DIODE, 64)
+            .input(WRAP_COSMIC_SMD_CAPACITOR, 64)
+            .input(WRAP_COSMIC_SMD_TRANSISTOR, 64)
+            .input(WRAP_COSMIC_SMD_RESISTOR, 64)
+            .input(WRAP_COSMIC_SMD_INDUCTOR, 64)
+            .input(WRAP_ADDRAM_CHIP, 64)
+            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 128)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 80 * 16))
+            .fluidInputs(CosmicFabric.getFluid(L * 32 * 16))
+            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 16 * 16))
+            .fluidInputs(Vibranium.getFluid(L * 8 * 16))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Meitnerium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
+            .output(COSMIC_MAINFRAME_OpV, 16)
+            .EUt(VA[UXV])
+            .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Shirabon, 16 * 64)
+            .input(COSMIC_COMPUTER_UXV, 32 * 64)
+            .input(WRAP_COSMIC_SMD_DIODE, 64 * 64)
+            .input(WRAP_COSMIC_SMD_CAPACITOR, 64 * 64)
+            .input(WRAP_COSMIC_SMD_TRANSISTOR, 64 * 64)
+            .input(WRAP_COSMIC_SMD_RESISTOR, 64 * 64)
+            .input(WRAP_COSMIC_SMD_INDUCTOR, 64 * 64)
+            .input(WRAP_ADDRAM_CHIP, 64 * 64)
+            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 128 * 64)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(CosmicFabric.getFluid(L * 32 * 16 * 64))
+            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 16 * 16 * 64))
+            .fluidInputs(Vibranium.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Meitnerium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
+            .output(COSMIC_MAINFRAME_OpV, 16 * 64)
+            .EUt(VA[UXV])
+            .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(frameGt, Shirabon, 16)
+            .input(COSMIC_COMPUTER_UXV, 32)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 16)
+            .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 16)
+            .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR, 16)
+            .input(WRAP_SUPRACAUSAL_SMD_RESISTOR, 16)
+            .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR, 16)
+            .input(WRAP_ADDRAM_CHIP, 64)
+            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 128)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 80 * 16))
+            .fluidInputs(CosmicFabric.getFluid(L * 32 * 16))
+            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 16 * 16))
+            .fluidInputs(Vibranium.getFluid(L * 8 * 16))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16)) // foil (36) * 64 * 16
+            .fluidInputs(Meitnerium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
+            .output(COSMIC_MAINFRAME_OpV, 16)
+            .EUt(VA[UXV])
+            .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            .buildAndRegister()
+
+        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(frameGt, Shirabon, 16 * 64)
+            .input(COSMIC_COMPUTER_UXV, 32 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_DIODE, 16 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 16 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR, 16 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_RESISTOR, 16 * 64)
+            .input(WRAP_SUPRACAUSAL_SMD_INDUCTOR, 16 * 64)
+            .input(WRAP_ADDRAM_CHIP, 64 * 64)
+            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 128 * 64)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 80 * 16 * 64))
+            .fluidInputs(CosmicFabric.getFluid(L * 32 * 16 * 64))
+            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 16 * 16 * 64))
+            .fluidInputs(Vibranium.getFluid(L * 8 * 16 * 64))
+            .fluidInputs(FullerenePolymerMatrix.getFluid(36 * 64 * 16 * 64)) // foil (36) * 64 * 16
+            .fluidInputs(Meitnerium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
+            .output(COSMIC_MAINFRAME_OpV, 16 * 64)
+            .EUt(VA[UXV])
+            .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            .buildAndRegister()
 
         // endregion
 

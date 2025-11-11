@@ -1356,6 +1356,9 @@ metaitem.wrap.wafer.chip.phase_change_ram.name=Wrap Phase Change Random Access M
 metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=Wrap All-Optical Cascade NOR Gate (ACNOR) Chip
 metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=Wrap Spin Transfer Torque RAM (STTRAM) Chip
 metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=Wrap Magnetic-Domain Wall Inversion NAND Gate (MINAND) Chip
+metaitem.wrap.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.name=Wrap Excited Exotic Atom Restrict CPU (EARCPU) Chip
+metaitem.wrap.wafer.chip.amplitude_duality_disturbance_ram.name=Wrap Amplitude Duality Disturbance RAM (ADDRAM) Chip
+metaitem.wrap.wafer.chip.excitation_spectrum_composite_logical_gate.name=Wrap Excitation Spectrum Composite Logical Gate (ESCLG) Chip
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=Wrap Engraved Lapotron Chip
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip
@@ -2595,6 +2598,7 @@ gtlitecore.machine.nano_assembly_complex.tooltip.1=The Ultimate Solution of Circ
 gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
 gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
 gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
+gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

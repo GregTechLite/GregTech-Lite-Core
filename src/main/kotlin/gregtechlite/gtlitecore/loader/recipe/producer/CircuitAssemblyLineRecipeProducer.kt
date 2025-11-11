@@ -138,6 +138,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSold
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ALL_OPTICAL_CASCADE_NOR_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_ASSEMBLY_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_COMPUTER_UXV
@@ -156,6 +157,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_DIAMOND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_RUBY_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_SAPPHIRE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ESR_COMPUTATION_UNIT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EXOTIC_SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
@@ -214,6 +217,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_TRANS
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTIMATE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADDRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
@@ -235,12 +239,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CRYSTAL_CPU
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CRYSTAL_INTERFACE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CRYSTAL_SOC
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EARCPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ELITE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_DIAMOND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_LAPOTRON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_RUBY_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_SAPPHIRE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EPOXY_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ESCLG_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ESR_COMPUTATION_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EXOTIC_SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EXTREME_CIRCUIT_BOARD
@@ -1641,6 +1647,9 @@ internal object CircuitAssemblyLineRecipeProducer
         createWrapItemMap(ALL_OPTICAL_CASCADE_NOR_CHIP, WRAP_ACNOR_CHIP)
         createWrapItemMap(SPIN_TRANSFER_TORQUE_RAM_CHIP, WRAP_STTRAM_CHIP)
         createWrapItemMap(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, WRAP_MINAND_CHIP)
+        createWrapItemMap(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP, WRAP_EARCPU_CHIP)
+        createWrapItemMap(AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP, WRAP_ADDRAM_CHIP)
+        createWrapItemMap(EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP, WRAP_ESCLG_CHIP)
 
         // Engraved Chips
         createWrapItemMap(ENGRAVED_LAPOTRON_CHIP, WRAP_ENGRAVED_LAPOTRON_CHIP)
