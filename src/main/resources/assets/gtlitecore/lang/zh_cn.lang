@@ -1370,6 +1370,7 @@ metaitem.wrap.circuit.component.optical_laser_control_unit.name=封装光学激�
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=封装光电子SoC
 metaitem.wrap.circuit.component.esr_computation_unit.name=封装电子自旋共振计算单元
 metaitem.wrap.circuit.component.exotic_system_on_chip.name=封装奇异SoC
+metaitem.wrap.circuit.component.cosmic_information_module.name=封装宇宙信息承载模块
 metaitem.wrap.circuit.component.holographic_information_imc.name=封装存算一体全息存储器
 
 metaitem.wrap.circuit.generic.ulv.name=§8ULV§f 封装电路板

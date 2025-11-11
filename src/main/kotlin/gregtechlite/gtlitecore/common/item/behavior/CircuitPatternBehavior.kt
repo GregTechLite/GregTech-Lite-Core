@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.items.metaitem.stats.IItemBehaviour
-import gregtechlite.gtlitecore.api.recipe.hook.CIRCUIT_INFO_NBT
+import gregtechlite.gtlitecore.api.recipe.util.CIRCUIT_INFO_NBT
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 

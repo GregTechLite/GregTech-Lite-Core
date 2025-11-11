@@ -47,36 +47,78 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
-import gregtech.api.unification.ore.OrePrefix.wireGtSingle
+import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
+import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
+import gregtech.common.items.MetaItems.ADVANCED_SMD_INDUCTOR
+import gregtech.common.items.MetaItems.ADVANCED_SMD_RESISTOR
+import gregtech.common.items.MetaItems.ADVANCED_SMD_TRANSISTOR
+import gregtech.common.items.MetaItems.ADVANCED_SYSTEM_ON_CHIP
+import gregtech.common.items.MetaItems.BASIC_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.COATED_BOARD
 import gregtech.common.items.MetaItems.CRYSTAL_ASSEMBLY_LUV
+import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
 import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.CRYSTAL_PROCESSOR_IV
+import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_LV
 import gregtech.common.items.MetaItems.ELECTRONIC_CIRCUIT_MV
+import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
+import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
+import gregtech.common.items.MetaItems.EPOXY_BOARD
+import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.FIBER_BOARD
+import gregtech.common.items.MetaItems.GOOD_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
+import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_HV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_LV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_MV
+import gregtech.common.items.MetaItems.INTEGRATED_LOGIC_CIRCUIT
+import gregtech.common.items.MetaItems.LOW_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.MAINFRAME_IV
 import gregtech.common.items.MetaItems.MICROPROCESSOR_LV
+import gregtech.common.items.MetaItems.MULTILAYER_FIBER_BOARD
 import gregtech.common.items.MetaItems.NAND_CHIP_ULV
+import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
+import gregtech.common.items.MetaItems.NANO_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.NANO_COMPUTER_IV
 import gregtech.common.items.MetaItems.NANO_MAINFRAME_LUV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_ASSEMBLY_EV
 import gregtech.common.items.MetaItems.NANO_PROCESSOR_HV
 import gregtech.common.items.MetaItems.NEURO_PROCESSOR
+import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
+import gregtech.common.items.MetaItems.PHENOLIC_BOARD
+import gregtech.common.items.MetaItems.PLASTIC_BOARD
+import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
+import gregtech.common.items.MetaItems.POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.PROCESSOR_ASSEMBLY_HV
 import gregtech.common.items.MetaItems.PROCESSOR_MV
 import gregtech.common.items.MetaItems.QUANTUM_ASSEMBLY_IV
 import gregtech.common.items.MetaItems.QUANTUM_COMPUTER_LUV
 import gregtech.common.items.MetaItems.QUANTUM_MAINFRAME_ZPM
 import gregtech.common.items.MetaItems.QUANTUM_PROCESSOR_EV
+import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT
+import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
+import gregtech.common.items.MetaItems.SIMPLE_SYSTEM_ON_CHIP
+import gregtech.common.items.MetaItems.SMD_CAPACITOR
+import gregtech.common.items.MetaItems.SMD_DIODE
+import gregtech.common.items.MetaItems.SMD_INDUCTOR
+import gregtech.common.items.MetaItems.SMD_RESISTOR
+import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.STEM_CELLS
+import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtech.common.items.MetaItems.TOOL_DATA_STICK
+import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
+import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.VACUUM_TUBE
+import gregtech.common.items.MetaItems.WETWARE_BOARD
+import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
@@ -86,38 +128,92 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
-import gregtechlite.gtlitecore.api.recipe.hook.circuitInfo
-import gregtechlite.gtlitecore.api.recipe.hook.createCircuitPatternRecipe
+import gregtechlite.gtlitecore.api.recipe.util.circuitInfo
+import gregtechlite.gtlitecore.api.recipe.util.createCircuitPatternRecipe
+import gregtechlite.gtlitecore.api.recipe.util.wrapItems
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ALL_OPTICAL_CASCADE_NOR_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_ASSEMBLY_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_COMPUTER_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_INFORMATION_MODULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_MAINFRAME_OpV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_PROCESSOR_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_RESISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CRYSTAL_INTERFACE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CRYSTAL_SOC_SOCKET
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DIAMOND_MODULATOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_DIAMOND_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_RUBY_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENGRAVED_SAPPHIRE_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ESR_COMPUTATION_UNIT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EXOTIC_SYSTEM_ON_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_MAINFRAME_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_PROCESSOR_ZPM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_RESISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HOLOGRAPHIC_INFORMATION_IMC
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.INFINITE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NONLINEAR_CHEMICAL_OSCILLATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_COMPUTER_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_FIBER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_LASER_CONTROL_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_MAINFRAME_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_PROCESSOR_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_RESISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTOELECTRONIC_SYSTEM_ON_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PERFECT_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PHASE_CHANGE_RAM_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RUBY_MODULATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAPPHIRE_MODULATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_ASSEMBLY_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_COMPUTER_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_MAINFRAME_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_PROCESSOR_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_RESISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPINTRONIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPIN_TRANSFER_TORQUE_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_ASSEMBLY_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_COMPUTER_OpV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_MAINFRAME_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_PROCESSOR_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_RESISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTIMATE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTRA_HIGHLY_ADVANCED_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ACNOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_CAPACITOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_DIODE
@@ -125,9 +221,13 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_IND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ADVANCED_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_APIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ARAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_BASIC_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COATED_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_INFORMATION_MODULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_COSMIC_SMD_TRANSISTOR
@@ -140,30 +240,48 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_DIAMOND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_LAPOTRON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_RUBY_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_SAPPHIRE_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EPOXY_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ESR_COMPUTATION_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EXOTIC_SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_EXTREME_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_FIBER_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_FPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOD_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_INDUCTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOWARE_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HIGHLY_ADVANCED_SOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HOLOGRAPHIC_INFORMATION_IMC
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_HPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ILC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_INFINITE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_LPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_MINAND_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_MULTILAYER_FIBER_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NANO_CPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NEURO_PROCESSOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NOR_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_NPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_LASER_CONTROL_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTICAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PERFECT_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PHENOLIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PLASTIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PLASTIC_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_QUBIT_CPU_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SIMPLE_SOC_CHIP
@@ -173,42 +291,26 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SPINTRONIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_STTRAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_CAPACITOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_DIODE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_SUPRACAUSAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHASOC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHPIC_CHIP
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_WETWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_WETWARE_CIRCUIT_BOARD
+import kotlin.collections.set
 
-/**
- * CAL recipe producer and its utility methods.
- *
- * This producer add all circuit recipes and its scanning recipes for CAL, the raw materials
- * processing please see [WrapItemRecipeProducer].
- *
- * Here's the rule of CAL recipes:
- * - **Bolt Reduction**: If CAL recipe needs >64x bolt, then regularized it to 64x.
- * - **Same Soldering**: CAL used same amount soldering of Circuit Assembler recipes.
- * - **Advanced Recipes**: In CAL recipe, can use higher SMD to change lower SMD:
- *    - SMD -> Advanced SMD: Amount 4:1, Duration / 4;
- *    - Advanced SMD -> Gooware SMD: Amount 4:1, Duration / 4;
- *    - Gooware SMD -> Optical SMD: Amount 4:1 (16:1), Duration / 4 (/16);
- *    - Optical SMD -> Spintronic SMD: Amount 4:1 (64:1), Duration / 4 (/64);
- *    - Spintronic SMD -> Cosmic SMD: Amount 4:1 (256:1), Duration / 4 (/256);
- *    - Cosmic SMD -> Supracausal SMD: Amount 4:1 (512:1), Duration / 4 (/512);
- * - **Duration Buffing**: For example, if a circuit in Circuit Assembler needs 10s,
- *   we see that 10s * 16 = 160s, but the actual wrapped recipe in CAL needs 120s,
- *   even 60s (lower than original duration); another situation is one and another
- *   circuit has same duration but the first one has lower tier than the second one,
- *   in that time should balance the duration (the lower one should have lower duration
- *   consumed, and the higher one should have higher duration consumed).
- * - **Wire Conversion**: Used [wireGtHex] when used [wireGtSingle] in Circuit Assembly
- *   recipe, used [wireGtQuadruple] when used [wireFine] in Circuit Assembly recipe.
- */
 internal object CircuitAssemblyLineRecipeProducer
 {
 
@@ -216,94 +318,8 @@ internal object CircuitAssemblyLineRecipeProducer
 
     fun produce()
     {
-        // region Circuit Infos
-
-        // ULV Tier
-        createCircuitPatternRecipe(VACUUM_TUBE)
-        createCircuitPatternRecipe(NAND_CHIP_ULV)
-
-        // LV Tier
-        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_LV)
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_LV)
-        createCircuitPatternRecipe(MICROPROCESSOR_LV)
-
-        // MV Tier
-        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_MV)
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_MV)
-        createCircuitPatternRecipe(PROCESSOR_MV)
-
-        // HV Tier
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_HV)
-        createCircuitPatternRecipe(PROCESSOR_ASSEMBLY_HV)
-        createCircuitPatternRecipe(NANO_PROCESSOR_HV)
-
-        // EV Tier
-        createCircuitPatternRecipe(WORKSTATION_EV)
-        createCircuitPatternRecipe(NANO_PROCESSOR_ASSEMBLY_EV)
-        createCircuitPatternRecipe(QUANTUM_PROCESSOR_EV)
-
-        // IV Tier
-        createCircuitPatternRecipe(MAINFRAME_IV)
-        createCircuitPatternRecipe(NANO_COMPUTER_IV)
-        createCircuitPatternRecipe(QUANTUM_ASSEMBLY_IV)
-        createCircuitPatternRecipe(CRYSTAL_PROCESSOR_IV)
-
-        // LuV Tier
-        createCircuitPatternRecipe(NANO_MAINFRAME_LUV)
-        createCircuitPatternRecipe(QUANTUM_COMPUTER_LUV)
-        createCircuitPatternRecipe(CRYSTAL_ASSEMBLY_LUV)
-        createCircuitPatternRecipe(WETWARE_PROCESSOR_LUV)
-
-        // ZPM Tier
-        createCircuitPatternRecipe(QUANTUM_MAINFRAME_ZPM)
-        createCircuitPatternRecipe(CRYSTAL_COMPUTER_ZPM)
-        createCircuitPatternRecipe(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
-        createCircuitPatternRecipe(GOOWARE_PROCESSOR_ZPM)
-
-        // UV Tier
-        createCircuitPatternRecipe(CRYSTAL_MAINFRAME_UV)
-        createCircuitPatternRecipe(WETWARE_SUPER_COMPUTER_UV)
-        createCircuitPatternRecipe(GOOWARE_ASSEMBLY_UV)
-        createCircuitPatternRecipe(OPTICAL_PROCESSOR_UV)
-
-        // UHV Tier
-        createCircuitPatternRecipe(WETWARE_MAINFRAME_UHV)
-        createCircuitPatternRecipe(GOOWARE_COMPUTER_UHV)
-        createCircuitPatternRecipe(OPTICAL_ASSEMBLY_UHV)
-        createCircuitPatternRecipe(SPINTRONIC_PROCESSOR_UHV)
-
-        // UEV Tier
-        createCircuitPatternRecipe(GOOWARE_MAINFRAME_UEV)
-        createCircuitPatternRecipe(OPTICAL_COMPUTER_UEV)
-        createCircuitPatternRecipe(SPINTRONIC_ASSEMBLY_UEV)
-        createCircuitPatternRecipe(COSMIC_PROCESSOR_UEV)
-
-        // UIV Tier
-        createCircuitPatternRecipe(OPTICAL_MAINFRAME_UIV)
-        createCircuitPatternRecipe(SPINTRONIC_COMPUTER_UIV)
-        createCircuitPatternRecipe(COSMIC_ASSEMBLY_UIV)
-        createCircuitPatternRecipe(SUPRACAUSAL_PROCESSOR_UIV)
-
-        // UXV Tier
-        createCircuitPatternRecipe(SPINTRONIC_MAINFRAME_UXV)
-        createCircuitPatternRecipe(COSMIC_COMPUTER_UXV)
-        createCircuitPatternRecipe(SUPRACAUSAL_ASSEMBLY_UXV)
-
-        // OpV Tier
-        createCircuitPatternRecipe(COSMIC_MAINFRAME_OpV)
-        createCircuitPatternRecipe(SUPRACAUSAL_COMPUTER_OpV)
-
-        // MAX Tier
-        createCircuitPatternRecipe(SUPRACAUSAL_MAINFRAME_MAX)
-
-        // Misc
-        createCircuitPatternRecipe(ENERGY_LAPOTRONIC_ORB)
-        createCircuitPatternRecipe(DIAMOND_MODULATOR)
-        createCircuitPatternRecipe(RUBY_MODULATOR)
-        createCircuitPatternRecipe(SAPPHIRE_MODULATOR)
-        createCircuitPatternRecipe(CRYSTAL_SOC_SOCKET)
-
-        // endregion
+        createWrapItemMaps()
+        createCircuitPatternRecipes()
 
         // region T1: Electronic
 
@@ -1445,6 +1461,205 @@ internal object CircuitAssemblyLineRecipeProducer
             .buildAndRegister()
 
         // endregion
+    }
+
+    private fun createCircuitPatternRecipes()
+    {
+        // ULV Tier
+        createCircuitPatternRecipe(VACUUM_TUBE)
+        createCircuitPatternRecipe(NAND_CHIP_ULV)
+
+        // LV Tier
+        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_LV)
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_LV)
+        createCircuitPatternRecipe(MICROPROCESSOR_LV)
+
+        // MV Tier
+        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_MV)
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_MV)
+        createCircuitPatternRecipe(PROCESSOR_MV)
+
+        // HV Tier
+        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_HV)
+        createCircuitPatternRecipe(PROCESSOR_ASSEMBLY_HV)
+        createCircuitPatternRecipe(NANO_PROCESSOR_HV)
+
+        // EV Tier
+        createCircuitPatternRecipe(WORKSTATION_EV)
+        createCircuitPatternRecipe(NANO_PROCESSOR_ASSEMBLY_EV)
+        createCircuitPatternRecipe(QUANTUM_PROCESSOR_EV)
+
+        // IV Tier
+        createCircuitPatternRecipe(MAINFRAME_IV)
+        createCircuitPatternRecipe(NANO_COMPUTER_IV)
+        createCircuitPatternRecipe(QUANTUM_ASSEMBLY_IV)
+        createCircuitPatternRecipe(CRYSTAL_PROCESSOR_IV)
+
+        // LuV Tier
+        createCircuitPatternRecipe(NANO_MAINFRAME_LUV)
+        createCircuitPatternRecipe(QUANTUM_COMPUTER_LUV)
+        createCircuitPatternRecipe(CRYSTAL_ASSEMBLY_LUV)
+        createCircuitPatternRecipe(WETWARE_PROCESSOR_LUV)
+
+        // ZPM Tier
+        createCircuitPatternRecipe(QUANTUM_MAINFRAME_ZPM)
+        createCircuitPatternRecipe(CRYSTAL_COMPUTER_ZPM)
+        createCircuitPatternRecipe(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
+        createCircuitPatternRecipe(GOOWARE_PROCESSOR_ZPM)
+
+        // UV Tier
+        createCircuitPatternRecipe(CRYSTAL_MAINFRAME_UV)
+        createCircuitPatternRecipe(WETWARE_SUPER_COMPUTER_UV)
+        createCircuitPatternRecipe(GOOWARE_ASSEMBLY_UV)
+        createCircuitPatternRecipe(OPTICAL_PROCESSOR_UV)
+
+        // UHV Tier
+        createCircuitPatternRecipe(WETWARE_MAINFRAME_UHV)
+        createCircuitPatternRecipe(GOOWARE_COMPUTER_UHV)
+        createCircuitPatternRecipe(OPTICAL_ASSEMBLY_UHV)
+        createCircuitPatternRecipe(SPINTRONIC_PROCESSOR_UHV)
+
+        // UEV Tier
+        createCircuitPatternRecipe(GOOWARE_MAINFRAME_UEV)
+        createCircuitPatternRecipe(OPTICAL_COMPUTER_UEV)
+        createCircuitPatternRecipe(SPINTRONIC_ASSEMBLY_UEV)
+        createCircuitPatternRecipe(COSMIC_PROCESSOR_UEV)
+
+        // UIV Tier
+        createCircuitPatternRecipe(OPTICAL_MAINFRAME_UIV)
+        createCircuitPatternRecipe(SPINTRONIC_COMPUTER_UIV)
+        createCircuitPatternRecipe(COSMIC_ASSEMBLY_UIV)
+        createCircuitPatternRecipe(SUPRACAUSAL_PROCESSOR_UIV)
+
+        // UXV Tier
+        createCircuitPatternRecipe(SPINTRONIC_MAINFRAME_UXV)
+        createCircuitPatternRecipe(COSMIC_COMPUTER_UXV)
+        createCircuitPatternRecipe(SUPRACAUSAL_ASSEMBLY_UXV)
+
+        // OpV Tier
+        createCircuitPatternRecipe(COSMIC_MAINFRAME_OpV)
+        createCircuitPatternRecipe(SUPRACAUSAL_COMPUTER_OpV)
+
+        // MAX Tier
+        createCircuitPatternRecipe(SUPRACAUSAL_MAINFRAME_MAX)
+
+        // Misc
+        createCircuitPatternRecipe(ENERGY_LAPOTRONIC_ORB)
+        createCircuitPatternRecipe(DIAMOND_MODULATOR)
+        createCircuitPatternRecipe(RUBY_MODULATOR)
+        createCircuitPatternRecipe(SAPPHIRE_MODULATOR)
+        createCircuitPatternRecipe(CRYSTAL_SOC_SOCKET)
+    }
+
+    private fun createWrapItemMaps()
+    {
+        // Boards
+        wrapItems[COATED_BOARD] = WRAP_COATED_BOARD
+        wrapItems[PHENOLIC_BOARD] = WRAP_PHENOLIC_BOARD
+        wrapItems[PLASTIC_BOARD] = WRAP_PLASTIC_BOARD
+        wrapItems[EPOXY_BOARD] = WRAP_EPOXY_BOARD
+        wrapItems[FIBER_BOARD] = WRAP_FIBER_BOARD
+        wrapItems[MULTILAYER_FIBER_BOARD] = WRAP_MULTILAYER_FIBER_BOARD
+        wrapItems[WETWARE_BOARD] = WRAP_WETWARE_BOARD
+        wrapItems[GOOWARE_BOARD] = WRAP_GOOWARE_BOARD
+        wrapItems[OPTICAL_BOARD] = WRAP_OPTICAL_BOARD
+        wrapItems[SPINTRONIC_BOARD] = WRAP_SPINTRONIC_BOARD
+
+        // Circuit Boards
+        wrapItems[BASIC_CIRCUIT_BOARD] = WRAP_BASIC_CIRCUIT_BOARD
+        wrapItems[GOOD_CIRCUIT_BOARD] = WRAP_GOOD_CIRCUIT_BOARD
+        wrapItems[PLASTIC_CIRCUIT_BOARD] = WRAP_PLASTIC_CIRCUIT_BOARD
+        wrapItems[ADVANCED_CIRCUIT_BOARD] = WRAP_ADVANCED_CIRCUIT_BOARD
+        wrapItems[EXTREME_CIRCUIT_BOARD] = WRAP_EXTREME_CIRCUIT_BOARD
+        wrapItems[ELITE_CIRCUIT_BOARD] = WRAP_ELITE_CIRCUIT_BOARD
+        wrapItems[WETWARE_CIRCUIT_BOARD] = WRAP_WETWARE_CIRCUIT_BOARD
+        wrapItems[ULTIMATE_CIRCUIT_BOARD] = WRAP_ULTIMATE_CIRCUIT_BOARD
+        wrapItems[PERFECT_CIRCUIT_BOARD] = WRAP_PERFECT_CIRCUIT_BOARD
+        wrapItems[INFINITE_CIRCUIT_BOARD] = WRAP_INFINITE_CIRCUIT_BOARD
+
+        // SMDs
+        wrapItems[SMD_TRANSISTOR] = WRAP_SMD_TRANSISTOR
+        wrapItems[SMD_RESISTOR] = WRAP_SMD_RESISTOR
+        wrapItems[SMD_CAPACITOR] = WRAP_SMD_CAPACITOR
+        wrapItems[SMD_DIODE] = WRAP_SMD_DIODE
+        wrapItems[SMD_INDUCTOR] = WRAP_SMD_INDUCTOR
+        wrapItems[ADVANCED_SMD_TRANSISTOR] = WRAP_ADVANCED_SMD_TRANSISTOR
+        wrapItems[ADVANCED_SMD_RESISTOR] = WRAP_ADVANCED_SMD_RESISTOR
+        wrapItems[ADVANCED_SMD_CAPACITOR] = WRAP_ADVANCED_SMD_CAPACITOR
+        wrapItems[ADVANCED_SMD_DIODE] = WRAP_ADVANCED_SMD_DIODE
+        wrapItems[ADVANCED_SMD_INDUCTOR] = WRAP_ADVANCED_SMD_INDUCTOR
+        wrapItems[GOOWARE_SMD_TRANSISTOR] = WRAP_GOOWARE_SMD_TRANSISTOR
+        wrapItems[GOOWARE_SMD_RESISTOR] = WRAP_GOOWARE_SMD_RESISTOR
+        wrapItems[GOOWARE_SMD_CAPACITOR] = WRAP_GOOWARE_SMD_CAPACITOR
+        wrapItems[GOOWARE_SMD_DIODE] = WRAP_GOOWARE_SMD_DIODE
+        wrapItems[GOOWARE_SMD_INDUCTOR] = WRAP_GOOWARE_SMD_INDUCTOR
+        wrapItems[OPTICAL_SMD_TRANSISTOR] = WRAP_OPTICAL_SMD_TRANSISTOR
+        wrapItems[OPTICAL_SMD_RESISTOR] = WRAP_OPTICAL_SMD_RESISTOR
+        wrapItems[OPTICAL_SMD_CAPACITOR] = WRAP_OPTICAL_SMD_CAPACITOR
+        wrapItems[OPTICAL_SMD_DIODE] = WRAP_OPTICAL_SMD_DIODE
+        wrapItems[OPTICAL_SMD_INDUCTOR] = WRAP_OPTICAL_SMD_INDUCTOR
+        wrapItems[SPINTRONIC_SMD_TRANSISTOR] = WRAP_SPINTRONIC_SMD_TRANSISTOR
+        wrapItems[SPINTRONIC_SMD_RESISTOR] = WRAP_SPINTRONIC_SMD_RESISTOR
+        wrapItems[SPINTRONIC_SMD_CAPACITOR] = WRAP_SPINTRONIC_SMD_CAPACITOR
+        wrapItems[SPINTRONIC_SMD_DIODE] = WRAP_SPINTRONIC_SMD_DIODE
+        wrapItems[SPINTRONIC_SMD_INDUCTOR] = WRAP_SPINTRONIC_SMD_INDUCTOR
+        wrapItems[COSMIC_SMD_TRANSISTOR] = WRAP_COSMIC_SMD_TRANSISTOR
+        wrapItems[COSMIC_SMD_RESISTOR] = WRAP_COSMIC_SMD_RESISTOR
+        wrapItems[COSMIC_SMD_CAPACITOR] = WRAP_COSMIC_SMD_CAPACITOR
+        wrapItems[COSMIC_SMD_DIODE] = WRAP_COSMIC_SMD_DIODE
+        wrapItems[COSMIC_SMD_INDUCTOR] = WRAP_COSMIC_SMD_INDUCTOR
+        wrapItems[SUPRACAUSAL_SMD_TRANSISTOR] = WRAP_SUPRACAUSAL_SMD_TRANSISTOR
+        wrapItems[SUPRACAUSAL_SMD_RESISTOR] = WRAP_SUPRACAUSAL_SMD_RESISTOR
+        wrapItems[SUPRACAUSAL_SMD_CAPACITOR] = WRAP_SUPRACAUSAL_SMD_CAPACITOR
+        wrapItems[SUPRACAUSAL_SMD_DIODE] = WRAP_SUPRACAUSAL_SMD_DIODE
+        wrapItems[SUPRACAUSAL_SMD_INDUCTOR] = WRAP_SUPRACAUSAL_SMD_INDUCTOR
+
+        // Chips
+        wrapItems[CENTRAL_PROCESSING_UNIT] = WRAP_CPU_CHIP
+        wrapItems[RANDOM_ACCESS_MEMORY] = WRAP_RAM_CHIP
+        wrapItems[INTEGRATED_LOGIC_CIRCUIT] = WRAP_ILC_CHIP
+        wrapItems[NANO_CENTRAL_PROCESSING_UNIT] = WRAP_NANO_CPU_CHIP
+        wrapItems[QUBIT_CENTRAL_PROCESSING_UNIT] = WRAP_QUBIT_CPU_CHIP
+        wrapItems[SIMPLE_SYSTEM_ON_CHIP] = WRAP_SIMPLE_SOC_CHIP
+        wrapItems[SYSTEM_ON_CHIP] = WRAP_SOC_CHIP
+        wrapItems[ADVANCED_SYSTEM_ON_CHIP] = WRAP_ADVANCED_SOC_CHIP
+        wrapItems[HIGHLY_ADVANCED_SOC] = WRAP_HIGHLY_ADVANCED_SOC_CHIP
+        wrapItems[NAND_MEMORY_CHIP] = WRAP_NAND_CHIP
+        wrapItems[NOR_MEMORY_CHIP] = WRAP_NOR_CHIP
+        wrapItems[ULTRA_LOW_POWER_INTEGRATED_CIRCUIT] = WRAP_ULPIC_CHIP
+        wrapItems[LOW_POWER_INTEGRATED_CIRCUIT] = WRAP_LPIC_CHIP
+        wrapItems[POWER_INTEGRATED_CIRCUIT] = WRAP_PIC_CHIP
+        wrapItems[HIGH_POWER_INTEGRATED_CIRCUIT] = WRAP_HPIC_CHIP
+        wrapItems[ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT] = WRAP_UHPIC_CHIP
+        wrapItems[NANO_PIC_CHIP] = WRAP_NPIC_CHIP
+        wrapItems[PICO_PIC_CHIP] = WRAP_PPIC_CHIP
+        wrapItems[FEMTO_PIC_CHIP] = WRAP_FPIC_CHIP
+        wrapItems[ATTO_PIC_CHIP] = WRAP_APIC_CHIP
+        wrapItems[ADVANCED_RAM_CHIP] = WRAP_ARAM_CHIP
+        wrapItems[ULTRA_HIGHLY_ADVANCED_SOC_CHIP] = WRAP_UHASOC_CHIP
+        wrapItems[CRYSTAL_INTERFACE_CHIP] = WRAP_CRYSTAL_INTERFACE_CHIP
+        wrapItems[PHASE_CHANGE_RAM_CHIP] = WRAP_PRAM_CHIP
+        wrapItems[ALL_OPTICAL_CASCADE_NOR_CHIP] = WRAP_ACNOR_CHIP
+        wrapItems[SPIN_TRANSFER_TORQUE_RAM_CHIP] = WRAP_STTRAM_CHIP
+        wrapItems[MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP] = WRAP_MINAND_CHIP
+
+        // Engraved Chips
+        wrapItems[ENGRAVED_LAPOTRON_CHIP] = WRAP_ENGRAVED_LAPOTRON_CHIP
+        wrapItems[ENGRAVED_DIAMOND_CHIP] = WRAP_ENGRAVED_DIAMOND_CHIP
+        wrapItems[ENGRAVED_RUBY_CHIP] = WRAP_ENGRAVED_RUBY_CHIP
+        wrapItems[ENGRAVED_SAPPHIRE_CHIP] = WRAP_ENGRAVED_SAPPHIRE_CHIP
+
+        // Circuit Components
+        wrapItems[CRYSTAL_CENTRAL_PROCESSING_UNIT] = WRAP_CRYSTAL_CPU
+        wrapItems[CRYSTAL_SYSTEM_ON_CHIP] = WRAP_CRYSTAL_SOC
+        wrapItems[NEURO_PROCESSOR] = WRAP_NEURO_PROCESSOR
+        wrapItems[NONLINEAR_CHEMICAL_OSCILLATOR] = WRAP_NONLINEAR_CHEMICAL_OSCILLATOR
+        wrapItems[OPTICAL_LASER_CONTROL_UNIT] = WRAP_OPTICAL_LASER_CONTROL_UNIT
+        wrapItems[OPTOELECTRONIC_SYSTEM_ON_CHIP] = WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP
+        wrapItems[ESR_COMPUTATION_UNIT] = WRAP_ESR_COMPUTATION_UNIT
+        wrapItems[EXOTIC_SYSTEM_ON_CHIP] = WRAP_EXOTIC_SYSTEM_ON_CHIP
+        wrapItems[COSMIC_INFORMATION_MODULE] = WRAP_COSMIC_INFORMATION_MODULE
+        wrapItems[HOLOGRAPHIC_INFORMATION_IMC] = WRAP_HOLOGRAPHIC_INFORMATION_IMC
     }
 
     // @formatter:on

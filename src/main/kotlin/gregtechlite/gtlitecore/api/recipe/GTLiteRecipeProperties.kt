@@ -5,7 +5,7 @@ import gregtech.api.recipes.properties.RecipeProperty
 import gregtech.api.recipes.properties.impl.FusionEUToStartProperty
 import gregtech.common.items.MetaItems
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.recipe.hook.createDataItemWithTag
+import gregtechlite.gtlitecore.api.recipe.util.createDataItemWithTag
 import gregtechlite.gtlitecore.api.recipe.property.CircuitPatternProperty
 import gregtechlite.gtlitecore.api.recipe.property.RecipePropertyBuilder
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems

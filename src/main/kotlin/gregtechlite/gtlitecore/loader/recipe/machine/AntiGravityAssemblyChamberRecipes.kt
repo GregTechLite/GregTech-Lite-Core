@@ -1144,6 +1144,12 @@ object AntiGravityAssemblyChamberRecipes
 
         // region T11: Cosmic
 
+        // UIV Cosmic Processor Assembly
+
+        // UXV Cosmic Computer
+
+        // OpV Cosmic Mainframe
+
         // endregion
 
         // region T12: Supracausal

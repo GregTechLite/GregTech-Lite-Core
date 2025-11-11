@@ -1,5 +1,5 @@
 @file:JvmName("CircuitInfoManager")
-package gregtechlite.gtlitecore.api.recipe.hook
+package gregtechlite.gtlitecore.api.recipe.util
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
@@ -7,6 +7,7 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.collection.hashBiMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
@@ -15,6 +16,12 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
 
 const val CIRCUIT_INFO_NBT = "circuitInfo"
+
+/**
+ * The map with all item and its wrapped format.
+ * Will be initialized when preloading Circuit Assembly Line recipes.
+ */
+val wrapItems: MutableMap<MetaItem<*>.MetaValueItem, MetaItem<*>.MetaValueItem> = hashBiMapOf()
 
 /**
  * Create a scanning recipe for circuit info.

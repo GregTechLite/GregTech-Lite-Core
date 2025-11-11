@@ -1164,7 +1164,7 @@ metaitem.circuit.component.manifold_oscillatory_power_cell.name=Manifold Oscilla
 metaitem.circuit.component.manifold_oscillatory_power_cell.tooltip=Explosion will cause Spatiotemporal Disasters
 metaitem.circuit.component.closed_timelike_curve_computational_unit.name=Closed Time-like Curve Computation Unit
 metaitem.circuit.component.closed_timelike_curve_computational_unit.tooltip=Universal Calculator
-metaitem.circuit.component.cosmic_information_module.name=Cosmic Information Module
+metaitem.circuit.component.cosmic_information_module.name=Cosmic Information Contained Module
 metaitem.circuit.component.cosmic_information_module.tooltip=Stored Galactic Information
 metaitem.circuit.component.holographic_information_imc.name=Holographic Information IMC
 metaitem.circuit.component.holographic_information_imc.tooltip=Celestial Duality Gravitational Scatter!
@@ -1370,6 +1370,7 @@ metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Las
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=Wrap Optoelectronic SoC
 metaitem.wrap.circuit.component.esr_computation_unit.name=Wrap ESR Computation Unit
 metaitem.wrap.circuit.component.exotic_system_on_chip.name=Wrap Exotic SoC
+metaitem.wrap.circuit.component.cosmic_information_module.name=Wrap Cosmic Information Contained Module
 metaitem.wrap.circuit.component.holographic_information_imc.name=Wrap Holographic Information IMC
 
 metaitem.wrap.circuit.generic.ulv.name=§8ULV§f Wrap Circuit
