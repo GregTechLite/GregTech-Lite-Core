@@ -397,6 +397,7 @@ tile.gtlitecore.metal_casing_03.naquadah_alloy.name=放射硅岩合金机器外�
 tile.gtlitecore.metal_casing_03.quantum_alloy.name=超重量子合金机器外壳
 tile.gtlitecore.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机器外壳
 tile.gtlitecore.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
+tile.gtlitecore.metal_casing_03.lafium.name=高能防护路菲恩合金机器外壳
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -427,9 +428,13 @@ tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.name=�
 tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.tooltip=非微扰量子热能势阻隔
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.name=哈密顿-基林流控制机械方块
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.tooltip=控制平滑的可微布朗轨迹
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.name=纳米蜂群传输机械方块
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.tooltip=纳米高速公路
 
 tile.gtlitecore.active_unique_casing_01.heat_vent.name=散热片
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
+tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=纳米精密装配单元
+tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=纳米蜂群控制机械方块
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=镀铑钯涡轮机器外壳
 
@@ -1347,6 +1352,13 @@ metaitem.wrap.wafer.chip.atto_power_integrated_circuit.name=封装阿米功率�
 metaitem.wrap.wafer.chip.advanced_random_access_memory.name=封装高级随机存取存储器（ARAM）晶片
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=封装极高进阶片上系统（UHASoC）晶片
 metaitem.wrap.wafer.chip.crystal_interface.name=封装晶体接口晶片
+metaitem.wrap.wafer.chip.phase_change_ram.name=封装相变随机存取存储器（PRAM）晶片
+metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=封装全光级联逻辑或非门（ACNOR）晶片
+metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=封装自旋转移力矩存储器（STTRAM）晶片
+metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=封装磁畴壁反相逻辑与非门（MINAND）晶片
+metaitem.wrap.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.name=封装激发态奇异原子约束中央处理器（EARCPU）晶片
+metaitem.wrap.wafer.chip.amplitude_duality_disturbance_ram.name=封装振幅对偶扰动随机存取存储器（ADDRAM）晶片
+metaitem.wrap.wafer.chip.excitation_spectrum_composite_logical_gate.name=封装激发谱豁免复合逻辑门（ESCLG）晶片
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=封装刻蚀兰波顿晶片
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=封装刻蚀钻石晶片
@@ -1361,6 +1373,8 @@ metaitem.wrap.circuit.component.optical_laser_control_unit.name=封装光学激�
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=封装光电子SoC
 metaitem.wrap.circuit.component.esr_computation_unit.name=封装电子自旋共振计算单元
 metaitem.wrap.circuit.component.exotic_system_on_chip.name=封装奇异SoC
+metaitem.wrap.circuit.component.cosmic_information_module.name=封装宇宙信息承载模块
+metaitem.wrap.circuit.component.holographic_information_imc.name=封装存算一体全息存储器
 
 metaitem.wrap.circuit.generic.ulv.name=§8ULV§f 封装电路板
 metaitem.wrap.circuit.generic.lv.name=§7LV§f 封装电路板
@@ -1602,6 +1616,8 @@ recipemap.antimatter_forge.name=反物质稳定化编序器
 recipemap.space_assembler.name=太空组装模块
 recipemap.entrodynamically_phase_changer.name=拓扑序热破缺相变
 recipemap.plasma_arc_transmitter.name=等离子电弧发射器
+recipemap.nano_assembly_matrix.name=纳米装配矩阵
+recipemap.anti_gravity_assembly_chamber.name=反重力装配室
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2576,6 +2592,13 @@ gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场�
 gtlitecore.machine.ep_coupling_accelerator.name=电子-声子耦合加速室
 gtlitecore.machine.ep_coupling_accelerator.tooltip.1=量子晶格振动
 gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固定为§f64§7且为独立计算乘区
+
+gtlitecore.machine.nano_assembly_complex.name=纳米装配复合体
+gtlitecore.machine.nano_assembly_complex.tooltip.1=电路问题的最终解法
+gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
+gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
+gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

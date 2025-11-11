@@ -49,6 +49,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/nitinol_60"
         }
+      },
+      "lafium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/lafium"
+        }
       }
     }
   }

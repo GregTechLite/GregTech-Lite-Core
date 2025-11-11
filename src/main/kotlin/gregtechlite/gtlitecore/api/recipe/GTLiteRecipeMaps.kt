@@ -14,6 +14,7 @@ import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 import gregtechlite.gtlitecore.api.recipe.builder.AccelerationTrackRecipeBuilder
@@ -28,10 +29,12 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
+import gregtechlite.gtlitecore.api.recipe.ui.AntiGravityAssemblyChamberUI
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
+import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
@@ -544,6 +547,52 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
+        .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
+
+            // Mode 1: Original CAL recipes.
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(1)
+                .inputs(*builder.inputs.toTypedArray())
+                .fluidInputs(builder.fluidInputs)
+                .outputs(*builder.outputs.toTypedArray())
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+
+
+            // Mode 2: 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
+            val inputs = builder.inputs
+                .filterNotNull()
+                .map { it.copyWithAmount(it.amount * 64) }
+                .toTypedArray()
+
+            val outputs = builder.outputs
+                .filterNotNull()
+                .map { it.copy(it.count * 64) }
+                .toTypedArray()
+
+            val fluidInputs = builder.fluidInputs
+                .filterNotNull()
+                .map { it.copyWithAmount(it.amount * 64) }
+                .toList()
+
+            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+                .circuitMeta(2)
+                .inputs(*inputs)
+                .fluidInputs(fluidInputs)
+                .outputs(*outputs)
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration * 64)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+        }
         .build()
 
     /**
@@ -815,6 +864,32 @@ object GTLiteRecipeMaps
         .fluidInputs(2)
         .fluidOutputs(1)
         .build()
+
+    /**
+     * @zenProp nano_assembly_matrix
+     */
+    @ZenProperty
+    @JvmField
+    val NANO_ASSEMBLY_MATRIX_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("nano_assembly_matrix", SimpleRecipeBuilder())
+        .ui { NanoAssemblyMatrixUI(it) }
+        .itemInputs(16)
+        .itemOutputs(1)
+        .fluidInputs(4)
+        .sound(GTSoundEvents.ASSEMBLER)
+        .build() // AssLine smallRecipeMap actual
+
+    /**
+     * @zenProp anti_gravity_assembly_chamber
+     */
+    @ZenProperty
+    @JvmField
+    val ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("anti_gravity_assembly_chamber", SimpleRecipeBuilder())
+        .ui { AntiGravityAssemblyChamberUI(it) }
+        .itemInputs(16)
+        .itemOutputs(4)
+        .fluidInputs(12)
+        .sound(GTSoundEvents.ASSEMBLER)
+        .build() // CircAssLine smallRecipeMap actual
 
     // endregion
 

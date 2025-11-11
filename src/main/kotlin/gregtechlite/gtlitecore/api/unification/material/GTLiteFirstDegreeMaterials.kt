@@ -3208,7 +3208,7 @@ object GTLiteFirstDegreeMaterials
             ingot()
             liquid()
             color(0xF0A745).iconSet(BRIGHT)
-            flags(EXT_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
+            flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
             cableProp(V[UIV], 24, 12)
             fluidPipeProp(400_000, 20000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
@@ -3379,7 +3379,7 @@ object GTLiteFirstDegreeMaterials
             components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13,
                        ActiniumSuperhydride, 8)
             flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                  GENERATE_NANITE, GENERATE_FRAME)
+                  GENERATE_NANITE, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME)
             blastProp(22000, GasTier.HIGHEST, // Eternity Plus
                       VA[UXV], 20 * SECOND,
                       VA[UIV], 10 * SECOND)
@@ -3451,7 +3451,8 @@ object GTLiteFirstDegreeMaterials
                 translation("gregtech.fluid.generic")
             }
             iconSet(GLITCH)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
+                  GENERATE_FRAME, GENERATE_GEAR)
             blastProp(26000, GasTier.HIGHEST, // Eternity Plus
                       VA[UXV], 2 * MINUTE,
                       VA[UXV], 30 * SECOND)

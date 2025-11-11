@@ -31,6 +31,32 @@
         "top_top" : "gtlitecore:blocks/casings/special/temperature_controller_top_bloom",
         "top_bottom" : "#top_top"
       }
+    },
+    "active=false,variant=nano_precise_assembly_unit": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/special/nano_precise_assembly_unit"
+      }
+    },
+    "active=true,variant=nano_precise_assembly_unit": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/special/nano_precise_assembly_unit",
+        "top_all": "gtlitecore:blocks/casings/special/nano_precise_assembly_unit_bloom"
+      }
+    },
+    "active=false,variant=nanite_control_casing": {
+      "model": "minecraft:cube_all",
+      "textures": {
+        "all": "gtlitecore:blocks/casings/special/nanite_control_casing"
+      }
+    },
+    "active=true,variant=nanite_control_casing": {
+      "model": "gregtech:cube_2_layer_all",
+      "textures": {
+        "bot_all": "gtlitecore:blocks/casings/special/nanite_control_casing",
+        "top_all": "gtlitecore:blocks/casings/special/nanite_control_casing_bloom"
+      }
     }
   }
 }

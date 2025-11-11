@@ -117,6 +117,8 @@ object GTLiteOverlays
     val PLASMA_ARC_TRANSMITTER_OVERLAY = multiId("plasma_arc_transmitter")
     @JvmField
     val EP_COUPLING_ACCELERATOR_OVERLAY = multiId("ep_coupling_accelerator")
+    @JvmField
+    val NANO_ASSEMBLY_COMPLEX_OVERLAY = multiId("nano_assembly_complex")
 
     // endregion
 
@@ -233,6 +235,8 @@ object GTLiteOverlays
     val LATTICE_QCD_THERMAL_SHIELDING_CASING = casingId("entropy/lattice_qcd_thermal_shielding_casing")
     @JvmField
     val ULTIMATE_MOLECULAR_CASING = casingId("science/ultimate_molecular_casing")
+    @JvmField
+    val LAFIUM_CASING = casingId("metal/lafium")
 
     // endregion
 

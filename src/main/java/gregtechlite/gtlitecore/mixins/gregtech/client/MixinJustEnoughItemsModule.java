@@ -43,6 +43,7 @@ import gregtech.integration.jei.recipe.IntCircuitRecipeWrapper;
 import gregtech.integration.jei.utils.ModularUIGuiHandler;
 import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.api.integration.InjectableModRegistry;
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
@@ -315,6 +316,9 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
                     GTValues.MODID + "." + RecipeMaps.ARC_FURNACE_RECIPES.unlocalizedName);
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER.getStackForm(),
                     GTValues.MODID + "." + RecipeMaps.ALLOY_SMELTER_RECIPES.unlocalizedName);
+
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANO_ASSEMBLY_COMPLEX.getStackForm(),
+                    GTValues.MODID + "." + GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES.unlocalizedName);
         }
     }
 

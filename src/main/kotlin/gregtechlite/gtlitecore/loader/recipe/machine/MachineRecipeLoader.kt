@@ -11,6 +11,7 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.store.FluidStorageKeys
@@ -124,6 +125,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UXV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
@@ -151,6 +153,7 @@ import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_UEV
 import gregtech.common.items.MetaItems.EMITTER_UHV
+import gregtech.common.items.MetaItems.EMITTER_UXV
 import gregtech.common.items.MetaItems.EMITTER_ZPM
 import gregtech.common.items.MetaItems.ENERGY_LAPOTRONIC_ORB
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
@@ -168,6 +171,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UIV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
 import gregtech.common.items.MetaItems.SENSOR_IV
@@ -242,6 +246,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CinobiteA243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
@@ -255,14 +260,19 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Grisium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA956
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Inconel625
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
@@ -287,6 +297,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
@@ -381,6 +392,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MINING_DRONE_AIRPORT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANOSCALE_FABRICATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANO_ASSEMBLY_COMPLEX
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANO_FORGE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NUCLEAR_REACTOR
@@ -1568,6 +1580,38 @@ internal object MachineRecipeLoader
             .output(EP_COUPLING_ACCELERATOR)
             .EUt(VA[ZPM])
             .duration(2 * MINUTE + 30 * SECOND)
+            .buildAndRegister()
+
+        // Nano Assembly Complex
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(SPACE_ASSEMBLER_MK3, 16)
+            .input(COMPONENT_ASSEMBLY_LINE, 64)
+            .input(ASSEMBLY_LINE, 64)
+            .input(CIRCUIT_ASSEMBLY_LINE, 64)
+            .input(ROBOT_ARM_UXV, 32)
+            .input(CONVEYOR_MODULE_UXV, 32)
+            .input(EMITTER_UXV, 32)
+            .input(circuit, Tier.OpV, 64)
+            .input(plateDense, MagMatter, 6)
+            .input(plateDense, Mellion, 6)
+            .input(gear, HarmonicPhononMatter, 16)
+            .input(gear, Legendarium, 16)
+            .input(gearSmall, SuperheavyAlloyA, 48)
+            .input(gearSmall, SuperheavyAlloyB, 48)
+            .input(nanite, TranscendentMetal, 64)
+            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 16)
+            .fluidInputs(MutatedLivingSolder.getFluid(L * 400))
+            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(512000))
+            .fluidInputs(Shirabon.getFluid(L * 200))
+            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 200))
+            .output(NANO_ASSEMBLY_COMPLEX)
+            .EUt(VA[UXV])
+            .duration(10 * MINUTE)
+            .stationResearch {
+                it.researchStack(COMPONENT_ASSEMBLY_LINE)
+                    .EUt(VA[UXV])
+                    .CWUt(128)
+            }
             .buildAndRegister()
 
     }

@@ -1,8 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
-import gregtech.api.GTValues.VOC
 import gregtech.api.capability.impl.EnergyContainerList
-import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
@@ -16,11 +14,11 @@ import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
-import gregtech.api.util.GTUtility.getFloorTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.STANDARD_SPACETIME_FIELD_GEN_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.STANDARD_STABILIZATION_FIELD_GEN_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.STANDARD_TIME_ACCELERATION_FIELD_GEN_TIER
+import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardSpacetimeFieldGens
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardStabilizationFieldGens
@@ -146,58 +144,10 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
 
     override fun hasMaintenanceMechanics(): Boolean = false
 
-    private inner class PlasmaArcTransmitterRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
+    private inner class PlasmaArcTransmitterRecipeLogic(mte: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaximumOverclockVoltage() = maxVoltage
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaxVoltage(): Long
-        {
-            val energyContainer = energyContainer
-            if (energyContainer is EnergyContainerList)
-            {
-                val voltage: Long
-                val amperage: Long
-                if (energyContainer.inputVoltage > energyContainer.outputVoltage)
-                {
-                    voltage = energyContainer.inputVoltage
-                    amperage = energyContainer.inputAmperage
-                }
-                else
-                {
-                    voltage = energyContainer.outputVoltage
-                    amperage = energyContainer.outputAmperage
-                }
-
-                return if (amperage == 1L)
-                {
-                    // amperage is 1 when the energy is not exactly on a tier
-                    // the voltage for recipe search is always on tier, so take the closest lower tier
-                    VOC[getFloorTierByVoltage(voltage).toInt()]
-                }
-                else
-                {
-                    // amperage != 1 means the voltage is exactly on a tier
-                    // ignore amperage, since only the voltage is relevant for recipe search
-                    // amps are never > 3 in an EnergyContainerList
-                    voltage
-                }
-            }
-            return max(energyContainer.inputVoltage.toDouble(),
-                energyContainer.outputVoltage.toDouble()).toLong()
-        }
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {

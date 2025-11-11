@@ -427,6 +427,14 @@ object GTLiteMetaItems
     lateinit var WRAP_ARAM_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_UHASOC_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_CRYSTAL_INTERFACE_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_PRAM_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_ACNOR_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_STTRAM_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_MINAND_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_EARCPU_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_ADDRAM_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_ESCLG_CHIP: MetaItem<*>.MetaValueItem
+
     lateinit var WRAP_NONLINEAR_CHEMICAL_OSCILLATOR: MetaItem<*>.MetaValueItem
     lateinit var WRAP_OPTICAL_LASER_CONTROL_UNIT: MetaItem<*>.MetaValueItem
     lateinit var WRAP_ESR_COMPUTATION_UNIT: MetaItem<*>.MetaValueItem
@@ -441,6 +449,8 @@ object GTLiteMetaItems
     lateinit var WRAP_NEURO_PROCESSOR: MetaItem<*>.MetaValueItem
     lateinit var WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
     lateinit var WRAP_EXOTIC_SYSTEM_ON_CHIP: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_COSMIC_INFORMATION_MODULE: MetaItem<*>.MetaValueItem
+    lateinit var WRAP_HOLOGRAPHIC_INFORMATION_IMC: MetaItem<*>.MetaValueItem
 
     lateinit var WRAP_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
     lateinit var WRAP_CIRCUIT_LV: MetaItem<*>.MetaValueItem
@@ -1328,6 +1338,13 @@ object GTLiteMetaItems
         WRAP_ARAM_CHIP = item(3076, "wrap.wafer.chip.advanced_random_access_memory")
         WRAP_UHASOC_CHIP = item(3077, "wrap.wafer.chip.ultra_highly_advanced_system_on_chip")
         WRAP_CRYSTAL_INTERFACE_CHIP = item(3078, "wrap.wafer.chip.crystal_interface")
+        WRAP_PRAM_CHIP = item(3079, "wrap.wafer.chip.phase_change_ram")
+        WRAP_ACNOR_CHIP = item(3080, "wrap.wafer.chip.all_optical_cascade_nor")
+        WRAP_STTRAM_CHIP = item(3081, "wrap.wafer.chip.spin_transfer_torque_ram")
+        WRAP_MINAND_CHIP = item(3082, "wrap.wafer.chip.magnetic_domain_wall_inversion_nand")
+        WRAP_EARCPU_CHIP = item(3083, "wrap.wafer.chip.excited_exotic_atom_restrict_central_processing_unit")
+        WRAP_ADDRAM_CHIP = item(3084, "wrap.wafer.chip.amplitude_duality_disturbance_ram")
+        WRAP_ESCLG_CHIP = item(3085, "wrap.wafer.chip.excitation_spectrum_composite_logical_gate")
 
         WRAP_ENGRAVED_LAPOTRON_CHIP = item(3091, "wrap.circuit.component.engraved_lapotron_chip")
         WRAP_ENGRAVED_DIAMOND_CHIP = item(3092, "wrap.circuit.component.engraved_diamond_chip")
@@ -1342,6 +1359,8 @@ object GTLiteMetaItems
         WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP = item(3106, "wrap.circuit.component.optoelectronic_system_on_chip")
         WRAP_ESR_COMPUTATION_UNIT = item(3107, "wrap.circuit.component.esr_computation_unit")
         WRAP_EXOTIC_SYSTEM_ON_CHIP = item(3108, "wrap.circuit.component.exotic_system_on_chip")
+        WRAP_COSMIC_INFORMATION_MODULE = item(3109, "wrap.circuit.component.cosmic_information_module")
+        WRAP_HOLOGRAPHIC_INFORMATION_IMC = item(3110, "wrap.circuit.component.holographic_information_imc")
 
         WRAP_CIRCUIT_ULV = item(3201, "wrap.circuit.generic.ulv")
         WRAP_CIRCUIT_LV = item(3202, "wrap.circuit.generic.lv")

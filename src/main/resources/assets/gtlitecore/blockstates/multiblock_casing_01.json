@@ -97,6 +97,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/entropy/hamilton_killing_flow_control_casing"
         }
+      },
+      "nanite_transmission_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/nanite_transmission_casing"
+        }
       }
     }
   }

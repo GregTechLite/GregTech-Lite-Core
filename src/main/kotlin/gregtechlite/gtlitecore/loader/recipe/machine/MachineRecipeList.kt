@@ -32,6 +32,7 @@ internal object MachineRecipeList
 
         AcidGeneratorRecipes.init()
         AlloyBlastSmelterRecipes.init()
+        AntiGravityAssemblyChamberRecipes.init()
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
         CrystallizationCrucibleRecipes.init()
@@ -39,6 +40,7 @@ internal object MachineRecipeList
         EyeOfHarmonyRecipes.init()
         LoomRecipes.init()
         MobExtractorRecipes.init()
+        NanoAssemblyMatrixRecipes.init()
         PolisherRecipes.init()
         QuantumForceTransformerRecipes.init()
         SapCollectorRecipes.init()

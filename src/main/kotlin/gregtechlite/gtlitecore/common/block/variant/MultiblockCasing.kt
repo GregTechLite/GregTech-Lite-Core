@@ -25,7 +25,8 @@ enum class MultiblockCasing(private val serializedName: String,
     PROTOMATTER_ACTIVATION_COIL("protomatter_activation_coil"),
     ANTIMATTER_ANNIHILATION_MATRIX("antimatter_annihilation_matrix"),
     LATTICE_QCD_THERMAL_SHIELDING_CASING("lattice_qcd_thermal_shielding_casing"),
-    HAMILTON_KILLING_FLOW_CONTROL_CASING("hamilton_killing_flow_control_casing");
+    HAMILTON_KILLING_FLOW_CONTROL_CASING("hamilton_killing_flow_control_casing"),
+    NANITE_TRANSMISSION_CASING("nanite_transmission_casing");
 
     override val state: IBlockState
         get() = GTLiteBlocks.MULTIBLOCK_CASING_01.getState(this)

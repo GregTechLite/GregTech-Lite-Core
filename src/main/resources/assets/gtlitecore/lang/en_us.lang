@@ -397,6 +397,7 @@ tile.gtlitecore.metal_casing_03.naquadah_alloy.name=Radioactive Naquadah Alloy M
 tile.gtlitecore.metal_casing_03.quantum_alloy.name=Superheavy Quantum Alloy Machine Casing
 tile.gtlitecore.metal_casing_03.inconel_718.name=Radiation Protective Inconel-718 Machine Casing
 tile.gtlitecore.metal_casing_03.nitinol_60.name=Superelastic Nitinol 60 Machine Casing
+tile.gtlitecore.metal_casing_03.lafium.name=High Energy Protective Lafium Machine Casing
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -427,9 +428,13 @@ tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.name=L
 tile.gtlitecore.multiblock_casing_01.lattice_qcd_thermal_shielding_casing.tooltip=Non-Perturbative Quantum Thermal Energy Potential barrier
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.name=Hamilton-Killing Flow Control Casing
 tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.tooltip=Control Smooth Differentiable Brownian Trajectories
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.name=Nanite Transmission Casing
+tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.tooltip=Nano Superhighway
 
 tile.gtlitecore.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=Fission Reactor Temperature Controller
+tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=Nano Precise Assembly Unit
+tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=Nanite Control Machine Casing
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=Rhodium Plated Palladium Turbine Casing
 
@@ -1159,7 +1164,7 @@ metaitem.circuit.component.manifold_oscillatory_power_cell.name=Manifold Oscilla
 metaitem.circuit.component.manifold_oscillatory_power_cell.tooltip=Explosion will cause Spatiotemporal Disasters
 metaitem.circuit.component.closed_timelike_curve_computational_unit.name=Closed Time-like Curve Computation Unit
 metaitem.circuit.component.closed_timelike_curve_computational_unit.tooltip=Universal Calculator
-metaitem.circuit.component.cosmic_information_module.name=Cosmic Information Module
+metaitem.circuit.component.cosmic_information_module.name=Cosmic Information Contained Module
 metaitem.circuit.component.cosmic_information_module.tooltip=Stored Galactic Information
 metaitem.circuit.component.holographic_information_imc.name=Holographic Information IMC
 metaitem.circuit.component.holographic_information_imc.tooltip=Celestial Duality Gravitational Scatter!
@@ -1347,6 +1352,13 @@ metaitem.wrap.wafer.chip.atto_power_integrated_circuit.name=Wrap Atto Power Inte
 metaitem.wrap.wafer.chip.advanced_random_access_memory.name=Wrap Advanced Random Access Memory (ARAM) Chip
 metaitem.wrap.wafer.chip.ultra_highly_advanced_system_on_chip.name=Wrap Ultra Highly Advanced System on Chip (UHASoC) Chip
 metaitem.wrap.wafer.chip.crystal_interface.name=Wrap Crystal Interface Chip
+metaitem.wrap.wafer.chip.phase_change_ram.name=Wrap Phase Change Random Access Memory (PRAM) Chip
+metaitem.wrap.wafer.chip.all_optical_cascade_nor.name=Wrap All-Optical Cascade NOR Gate (ACNOR) Chip
+metaitem.wrap.wafer.chip.spin_transfer_torque_ram.name=Wrap Spin Transfer Torque RAM (STTRAM) Chip
+metaitem.wrap.wafer.chip.magnetic_domain_wall_inversion_nand.name=Wrap Magnetic-Domain Wall Inversion NAND Gate (MINAND) Chip
+metaitem.wrap.wafer.chip.excited_exotic_atom_restrict_central_processing_unit.name=Wrap Excited Exotic Atom Restrict CPU (EARCPU) Chip
+metaitem.wrap.wafer.chip.amplitude_duality_disturbance_ram.name=Wrap Amplitude Duality Disturbance RAM (ADDRAM) Chip
+metaitem.wrap.wafer.chip.excitation_spectrum_composite_logical_gate.name=Wrap Excitation Spectrum Composite Logical Gate (ESCLG) Chip
 
 metaitem.wrap.circuit.component.engraved_lapotron_chip.name=Wrap Engraved Lapotron Chip
 metaitem.wrap.circuit.component.engraved_diamond_chip.name=Wrap Engraved Diamond Chip
@@ -1361,6 +1373,8 @@ metaitem.wrap.circuit.component.optical_laser_control_unit.name=Wrap Optical Las
 metaitem.wrap.circuit.component.optoelectronic_system_on_chip.name=Wrap Optoelectronic SoC
 metaitem.wrap.circuit.component.esr_computation_unit.name=Wrap ESR Computation Unit
 metaitem.wrap.circuit.component.exotic_system_on_chip.name=Wrap Exotic SoC
+metaitem.wrap.circuit.component.cosmic_information_module.name=Wrap Cosmic Information Contained Module
+metaitem.wrap.circuit.component.holographic_information_imc.name=Wrap Holographic Information IMC
 
 metaitem.wrap.circuit.generic.ulv.name=§8ULV§f Wrap Circuit
 metaitem.wrap.circuit.generic.lv.name=§7LV§f Wrap Circuit
@@ -1602,6 +1616,8 @@ recipemap.antimatter_forge.name=Antimatter Stabilization Sequencer
 recipemap.space_assembler.name=Space Assembler Module
 recipemap.entrodynamically_phase_changer.name=Topological Order Phase Change
 recipemap.plasma_arc_transmitter.name=Plasma Arc Transmitter
+recipemap.nano_assembly_matrix.name=Nano Assembly Matrix
+recipemap.anti_gravity_assembly_chamber.name=Anti-Gravity Assembly Chamber
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2576,6 +2592,13 @@ gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场�
 gtlitecore.machine.ep_coupling_accelerator.name=Electron-Phonon Coupling Accelerator
 gtlitecore.machine.ep_coupling_accelerator.tooltip.1=Quantum Lattice Vibration
 gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固定为§f64§7且为独立计算乘区
+
+gtlitecore.machine.nano_assembly_complex.name=Nano Assembly Complex
+gtlitecore.machine.nano_assembly_complex.tooltip.1=The Ultimate Solution of Circuit Assembly
+gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
+gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
+gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

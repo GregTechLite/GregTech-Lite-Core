@@ -3,6 +3,7 @@
 package gregtechlite.gtlitecore.api.collection
 
 import com.google.common.collect.HashBasedTable
+import com.google.common.collect.HashBiMap
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
@@ -52,6 +53,13 @@ fun <E> Collection<E>.toImmutableSet(): ImmutableSet<E>
 
 fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E>
     = ImmutableSet.copyOf(this)
+
+// endregion
+
+// region Hash Bi Map
+
+fun <K, V> hashBiMapOf(): HashBiMap<K, V>
+    = HashBiMap.create()
 
 // endregion
 
