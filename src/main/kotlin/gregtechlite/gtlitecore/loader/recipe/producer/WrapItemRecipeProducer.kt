@@ -3,13 +3,13 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
-import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.util.wrapItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_HV
@@ -26,6 +26,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ULV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ZPM
+import net.minecraft.item.ItemStack
 
 internal object WrapItemRecipeProducer
 {
@@ -175,13 +176,13 @@ internal object WrapItemRecipeProducer
             .buildAndRegister()
     }
 
-    private fun addRecipe(item: MetaItem<*>.MetaValueItem, wrapItem: MetaItem<*>.MetaValueItem)
+    private fun addRecipe(item: ItemStack, wrapItem: ItemStack)
     {
         ASSEMBLER_RECIPES.recipeBuilder()
             .circuitMeta(16)
-            .input(item, 16)
+            .inputs(item.copy(16))
             .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(wrapItem)
+            .outputs(wrapItem)
             .EUt(VA[LV])
             .duration(5 * SECOND)
             .buildAndRegister()

@@ -21,7 +21,7 @@ const val CIRCUIT_INFO_NBT = "circuitInfo"
  * The map with all item and its wrapped format.
  * Will be initialized when preloading Circuit Assembly Line recipes.
  */
-val wrapItems: MutableMap<MetaItem<*>.MetaValueItem, MetaItem<*>.MetaValueItem> = hashBiMapOf()
+val wrapItems: MutableMap<ItemStack, ItemStack> = hashBiMapOf()
 
 /**
  * Create a scanning recipe for circuit info.
@@ -70,4 +70,15 @@ fun createDataItemWithTag(circuitItem: MetaItem<*>.MetaValueItem,
     dataStack.setTagInfo(CIRCUIT_INFO_NBT, NBTTagString(nbtName))
 
     return dataStack
+}
+
+/**
+ * Create original item => wrapped item map for [wrapItems].
+ *
+ * @param item     The original item.
+ * @param wrapItem The correspondenced item with wrapped format.
+ */
+fun createWrapItemMap(item: MetaItem<*>.MetaValueItem, wrapItem: MetaItem<*>.MetaValueItem)
+{
+    wrapItems[item.stack()] = wrapItem.stack()
 }
