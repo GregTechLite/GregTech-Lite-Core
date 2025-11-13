@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.stats.IItemBehaviour
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.item.DescriptiveStats
 import gregtechlite.gtlitecore.common.block.GTLiteCropBlock
 import gregtechlite.gtlitecore.common.block.GTLiteRootCropBlock
@@ -15,13 +16,6 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-/**
- * @property cropBlock
- * @property seed
- * @property crop
- *
- * @constructor
- */
 open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock,
                             seed: ItemStack,
                             crop: ItemStack) : IItemBehaviour, DescriptiveStats
@@ -33,18 +27,16 @@ open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock,
         cropBlock.cropStack = crop
     }
 
-    constructor(cropBlock: GTLiteCropBlock,
-                seed: MetaItem<*>.MetaValueItem,
-                crop: MetaItem<*>.MetaValueItem) : this(cropBlock, seed.stackForm, crop.stackForm)
+    constructor(cropBlock: GTLiteCropBlock, seed: MetaItem<*>.MetaValueItem, crop: MetaItem<*>.MetaValueItem)
+            : this(cropBlock, seed.stack(), crop.stack())
 
-    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos,
-                           hand: EnumHand, facing: EnumFacing?,
+    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos, hand: EnumHand, facing: EnumFacing?,
                            hitX: Float, hitY: Float, hitZ: Float): ActionResult<ItemStack?>?
     {
-        if (worldIn.isAirBlock(pos.up())
-            && this.cropBlock.defaultState.getBlock().canPlaceBlockAt(worldIn, pos.up()))
+        if (worldIn.isAirBlock(pos.up()) && cropBlock.defaultState.getBlock().canPlaceBlockAt(worldIn, pos.up()))
         {
-            worldIn.setBlockState(pos.up(), this.cropBlock.defaultState)
+            worldIn.setBlockState(pos.up(), cropBlock.defaultState)
+
             val heldItem = player.getHeldItem(hand)
             heldItem.shrink(1)
             return ActionResult(EnumActionResult.SUCCESS, heldItem)
