@@ -3804,14 +3804,17 @@ gtlitecore.tooltip.potion.each=   §a%4$s%%§r 概率获得 §c%3$s§r 刻的§e
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
 
-gtlitecore.tooltip.crop.placeable_seed=§a这是一种作物的种子，种植它并等待成熟可收获其果实。
-gtlitecore.tooltip.crop.root_placeable_seed.1=这种作物是块根类作物，种植后需要更多的时间生长。
-gtlitecore.tooltip.crop.root_placeable_seed.2=§e仅可在成熟前一阶段收获。
+gtlitecore.tooltip.crop.type=作物类型：
+gtlitecore.tooltip.crop.type.standard=§a常规
+gtlitecore.tooltip.crop.type.root=§a根茎
+gtlitecore.tooltip.crop.type.berry=§a浆果
 
-gtlitecore.tooltip.crop.berry_bush.1=§a这是一种浆果类作物的种子，它会以浆果丛的形式生长。
-gtlitecore.tooltip.crop.berry_bush.2=当附近只有一个浆果丛时，生长速度极其缓慢。
-gtlitecore.tooltip.crop.berry_bush.3=当附近8格内存在至少两丛与自身生长阶段相同的浆果丛时，生长速度会加速。
-gtlitecore.tooltip.crop.berry_bush.4=附近8格内至少需要一格空气，它也需要呼吸！
+gtlitecore.jei.standard_crop_info=这是一种作物的种子，种植它并等待成熟可收获其果实。
+gtlitecore.jei.root_crop_info=这种作物是块根类作物，种植后需要更多的时间生长，且仅可在成熟前一阶段收获。
+gtlitecore.jei.berry_crop_info.1=这是一种浆果类作物的种子，它会以浆果丛的形式生长。
+gtlitecore.jei.berry_crop_info.2=当附近只有一个浆果丛时，生长速度极其缓慢。
+gtlitecore.jei.berry_crop_info.3=当附近8格内存在至少两丛与自身生长阶段相同的浆果丛时，生长速度会加速。
+gtlitecore.jei.berry_crop_info.4=附近8格内至少需要一格空气，它也需要呼吸！
 
 gtlitecore.tooltip.quit_message=你确定要退出游戏吗？
 gtlitecore.tooltip.modpack_name=格雷科技精简版

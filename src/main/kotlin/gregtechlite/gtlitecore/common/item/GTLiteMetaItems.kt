@@ -1886,7 +1886,13 @@ object GTLiteMetaItems
      * @param unlocalizedName The unlocalized name of the meta item.
      */
     private fun item(id: Int, unlocalizedName: String) = META_ITEMS.addItem(id, unlocalizedName)
-    
+
+    /**
+     * Get the meta item entry of the mod, it is unmodifiable as default when it be initialized.
+     * Should use its value to get all item entries of the meta item.
+     */
+    internal fun metaItems() = META_ITEMS
+
     // endregion
         
     // @formatter:on

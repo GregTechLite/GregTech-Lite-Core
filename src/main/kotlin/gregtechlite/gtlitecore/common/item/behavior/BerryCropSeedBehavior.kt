@@ -16,6 +16,14 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
+/**
+ *
+ * @property berryBush
+ * @property seed
+ * @property crop
+ *
+ * @constructor
+ */
 class BerryCropSeedBehavior(berryBush: GTLiteBerryBushBlock, seed: ItemStack, crop: ItemStack) : CropSeedBehavior(berryBush, seed, crop)
 {
 
@@ -23,27 +31,19 @@ class BerryCropSeedBehavior(berryBush: GTLiteBerryBushBlock, seed: ItemStack, cr
                 seed: MetaItem<*>.MetaValueItem,
                 crop: MetaItem<*>.MetaValueItem) : this(berryBush, seed.stackForm, crop.stackForm)
 
-    override fun onItemUse(player: EntityPlayer,
-                           worldIn: World,
-                           pos: BlockPos,
-                           hand: EnumHand,
-                           facing: EnumFacing?,
-                           hitX: Float,
-                           hitY: Float,
-                           hitZ: Float): ActionResult<ItemStack?>?
+    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos, hand: EnumHand, facing: EnumFacing?,
+                           hitX: Float, hitY: Float, hitZ: Float): ActionResult<ItemStack?>?
     {
         if (!isBlocked(worldIn, pos, player))
             return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ)
         return ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand))
     }
 
-    override fun addInformation(stack: ItemStack?, lines: MutableList<String?>)
+    override fun addInformation(stack: ItemStack, lines: MutableList<String>)
     {
-        super.addInformation(stack, lines)
-        lines.add(I18n.format("gtlitecore.tooltip.crop.berry_bush.1"))
-        lines.add(I18n.format("gtlitecore.tooltip.crop.berry_bush.2"))
-        lines.add(I18n.format("gtlitecore.tooltip.crop.berry_bush.3"))
-        lines.add(I18n.format("gtlitecore.tooltip.crop.berry_bush.4"))
+        val cropType = "gtlitecore.tooltip.crop.type"
+        val cropPrefix = "${cropType}.berry"
+        lines.add(I18n.format(cropType) + I18n.format(cropPrefix))
     }
 
     private fun isBlocked(world: World, pos: BlockPos, player: EntityPlayer): Boolean
@@ -83,6 +83,12 @@ class BerryCropSeedBehavior(berryBush: GTLiteBerryBushBlock, seed: ItemStack, cr
             )
         }
         return areAnyBlocked.get() > 0
+    }
+
+    override fun getDescription(): Array<String>
+    {
+        return arrayOf("gtlitecore.jei.berry_crop_info.1", "gtlitecore.jei.berry_crop_info.2",
+                       "gtlitecore.jei.berry_crop_info.3", "gtlitecore.jei.berry_crop_info.4")
     }
 
 }
