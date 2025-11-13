@@ -5,8 +5,11 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
+import gregtechlite.gtlitecore.common.item.behavior.CropSeedBehavior
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
@@ -19,6 +22,7 @@ import mezz.jei.api.IModRegistry
 import mezz.jei.api.JEIPlugin
 import mezz.jei.api.ingredients.IIngredientBlacklist
 import mezz.jei.api.ingredients.IIngredientRegistry
+import mezz.jei.api.ingredients.VanillaTypes
 import mezz.jei.api.recipe.IRecipeCategoryRegistration
 import net.minecraftforge.fluids.FluidStack
 import org.apache.logging.log4j.Logger
@@ -75,9 +79,9 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
     {
         this.blacklist = registry.jeiHelpers.ingredientBlacklist
         this.ingredientRegistry = registry.ingredientRegistry
+
         logger.info("Registering JEI Recipe Wrappers and Catalysts...")
 
-        // SpacePumpRecipeCategory / SpacePumpRecipeWrapper
         val spacePumpId = SpacePumpRecipeCategory.UID
         val spacePumpInfo = SpacePumpRecipeFrontend.RECIPES.entries
             .sortedWith(compareBy<Map.Entry<Pair<Int, Int>, FluidStack>> { it.key.first }.thenBy { it.key.second })
@@ -89,6 +93,16 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK1.stackForm, spacePumpId)
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK2.stackForm, spacePumpId)
         registry.addRecipeCatalyst(GTLiteMetaTileEntities.SPACE_PUMP_MK3.stackForm, spacePumpId)
+
+        logger.info("Registering JEI Info Ingredients...")
+
+        GTLiteMetaItems.metaItems().allItems.forEach { metaItem ->
+            (metaItem.behaviours.find { it is CropSeedBehavior } as? CropSeedBehavior)?.let {
+                registry.addIngredientInfo(metaItem.stack(), VanillaTypes.ITEM,
+                    *it.getDescription())
+            }
+        }
+
     }
 
     override fun getLogger(): Logger = Companion.logger

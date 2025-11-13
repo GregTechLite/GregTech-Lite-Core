@@ -2,6 +2,8 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.stats.IItemBehaviour
+import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.item.DescriptiveStats
 import gregtechlite.gtlitecore.common.block.GTLiteCropBlock
 import gregtechlite.gtlitecore.common.block.GTLiteRootCropBlock
 import net.minecraft.client.resources.I18n
@@ -14,7 +16,9 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock, seed: ItemStack, crop: ItemStack) : IItemBehaviour
+open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock,
+                            seed: ItemStack,
+                            crop: ItemStack) : IItemBehaviour, DescriptiveStats
 {
 
     init
@@ -23,34 +27,39 @@ open class CropSeedBehavior(protected val cropBlock: GTLiteCropBlock, seed: Item
         cropBlock.cropStack = crop
     }
 
-    constructor(cropBlock: GTLiteCropBlock,
-                seed: MetaItem<*>.MetaValueItem,
-                crop: MetaItem<*>.MetaValueItem) : this(cropBlock, seed.stackForm, crop.stackForm)
+    constructor(cropBlock: GTLiteCropBlock, seed: MetaItem<*>.MetaValueItem, crop: MetaItem<*>.MetaValueItem)
+            : this(cropBlock, seed.stack(), crop.stack())
 
-    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos,
-                           hand: EnumHand, facing: EnumFacing?,
+    override fun onItemUse(player: EntityPlayer, worldIn: World, pos: BlockPos, hand: EnumHand, facing: EnumFacing?,
                            hitX: Float, hitY: Float, hitZ: Float): ActionResult<ItemStack?>?
     {
-        if (worldIn.isAirBlock(pos.up())
-            && this.cropBlock.defaultState.getBlock().canPlaceBlockAt(worldIn, pos.up()))
+        if (worldIn.isAirBlock(pos.up()) && cropBlock.defaultState.getBlock().canPlaceBlockAt(worldIn, pos.up()))
         {
-            worldIn.setBlockState(pos.up(), this.cropBlock.defaultState)
+            worldIn.setBlockState(pos.up(), cropBlock.defaultState)
+
             val heldItem = player.getHeldItem(hand)
             heldItem.shrink(1)
-            return ActionResult<ItemStack?>(EnumActionResult.SUCCESS, heldItem)
+            return ActionResult(EnumActionResult.SUCCESS, heldItem)
         }
 
-        return ActionResult<ItemStack?>(EnumActionResult.FAIL, player.getHeldItem(hand))
+        return ActionResult(EnumActionResult.FAIL, player.getHeldItem(hand))
     }
 
-    override fun addInformation(stack: ItemStack?, lines: MutableList<String?>)
+    override fun addInformation(stack: ItemStack, lines: MutableList<String>)
     {
-        lines.add(I18n.format("gtlitecore.tooltip.crop.placeable_seed"))
-        if (this.cropBlock is GTLiteRootCropBlock)
+        val cropType = "gtlitecore.tooltip.crop.type"
+        val cropPrefix = "$cropType." + when (cropBlock)
         {
-            lines.add(I18n.format("gtlitecore.tooltip.crop.root_placeable_seed.1"))
-            lines.add(I18n.format("gtlitecore.tooltip.crop.root_placeable_seed.2"))
+            is GTLiteRootCropBlock -> "root"
+            else -> "standard"
         }
+        lines.add(I18n.format(cropType) + I18n.format(cropPrefix))
+    }
+
+    override fun getDescription(): Array<String> = when (cropBlock)
+    {
+        is GTLiteRootCropBlock -> arrayOf("gtlitecore.jei.root_crop_info")
+        else -> arrayOf("gtlitecore.jei.standard_crop_info")
     }
 
 }
