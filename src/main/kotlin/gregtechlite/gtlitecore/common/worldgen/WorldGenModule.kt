@@ -112,21 +112,20 @@ class WorldGenModule : BaseModule()
                 }
             }
 
-            val jarFiles: MutableList<Path>?
-            Files.walk(resourcePath).use {
-                jarFiles = it.asSequence().filter { path -> Files.isRegularFile(path) }.toMutableList()
-            }
-
-            for (jarFile in jarFiles!!)
-            {
-                val genPath = targetPath.toPath().resolve(resourcePath.relativize(jarFile).toString())
-                Files.createDirectories(genPath.parent)
-                if (replace || !genPath.toFile().isFile())
-                {
-                    Files.copy(jarFile, genPath, StandardCopyOption.REPLACE_EXISTING)
+            Files.walk(resourcePath)
+                .use {
+                    it.asSequence()
+                        .filter { path -> Files.isRegularFile(path) }
+                        .toMutableList()
                 }
-            }
-
+                .forEach {
+                    val generatePath = targetPath.toPath().resolve(resourcePath.relativize(it).toString())
+                    Files.createDirectories(generatePath.parent)
+                    if (replace || !generatePath.toFile().isFile)
+                    {
+                        Files.copy(it, generatePath, StandardCopyOption.REPLACE_EXISTING)
+                    }
+                }
         }
         catch (impossible: URISyntaxException)
         {
