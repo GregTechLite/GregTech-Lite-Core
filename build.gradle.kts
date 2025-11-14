@@ -120,7 +120,11 @@ dependencies {
     implementation(libs.forgelin) {
         exclude("net.minecraftforge")
     }
-    implementation(deobf(libs.modularui))
+
+    implementation(libs.modularui) {
+        isTransitive = false
+    }
+
     api(libs.codeChickenLib)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2874.jar")))
