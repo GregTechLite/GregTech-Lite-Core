@@ -9,7 +9,7 @@ jetbrainsAnnotations = "24.1.0"
 # Mods
 forgelin = "2.1.0.0"
 mixinBooter = "9.1"
-modularui = "2.5.0-rc4"
+modularui = "3.0.4"
 codeChickenLib = "3.2.3.358"
 groovyScript = "1.2.0-hotfix1"
 craftTweaker2 = "1.12-4.1.20.700"
