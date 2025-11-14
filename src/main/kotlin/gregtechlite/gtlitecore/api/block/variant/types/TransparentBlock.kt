@@ -26,6 +26,8 @@ inline fun <reified T> VariantBlockFactory.makeTransparentBlock() : VariantBlock
             this.useNeighborBrightness = true
         }
 
+        override fun computeVariants(): Collection<T> = enumValues<T>().toList()
+
         override fun canCreatureSpawn(state: IBlockState,
                                       world: IBlockAccess,
                                       pos: BlockPos,
