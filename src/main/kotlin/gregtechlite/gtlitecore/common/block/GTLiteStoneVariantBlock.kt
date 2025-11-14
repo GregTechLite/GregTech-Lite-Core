@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
+import gregtech.api.block.IStateSpawnControl
 import gregtech.api.block.VariantBlock
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
@@ -23,14 +24,9 @@ import net.minecraft.world.World
 import java.util.*
 import gregtech.api.unification.material.Material as GTMaterial
 
-@Suppress("unused")
-class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) :
-    VariantBlock<GTLiteStoneVariantBlock.StoneType>(Material.ROCK)
+// todo oreDic generation?
+class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) : VariantBlock<GTLiteStoneVariantBlock.StoneType>(Material.ROCK)
 {
-    companion object
-    {
-        private val PROPERTY: PropertyEnum<StoneType> = PropertyEnum.create("variant", StoneType::class.java)
-    }
 
     init
     {
@@ -44,45 +40,26 @@ class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) :
         setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
     }
 
-    override fun createBlockState(): BlockStateContainer
-    {
-        VARIANT = PROPERTY
-        VALUES = StoneType.entries.toTypedArray()
-        return BlockStateContainer(this, VARIANT)
-    }
-
-    override fun canCreatureSpawn(
-        state: IBlockState,
-        world: IBlockAccess,
-        pos: BlockPos,
-        type: EntityLiving.SpawnPlacementType
-    ): Boolean
-    {
-        return false
-    }
-
-    override fun canSilkHarvest(
-        world: World,
-        pos: BlockPos,
-        state: IBlockState,
-        player: EntityPlayer
-    ): Boolean
-    {
-        return stoneVariant == StoneVariant.SMOOTH
-    }
+    @Deprecated("Deprecated in Java")
+    override fun canSilkHarvest(): Boolean
+        = this.stoneVariant == StoneVariant.SMOOTH
 
     override fun getItemDropped(state: IBlockState, rand: Random, fortune: Int): Item
     {
-        return Item.getItemFromBlock(
-            if (stoneVariant == StoneVariant.SMOOTH)
-                GTLiteBlocks.STONES.get(StoneVariant.COBBLE) as Block else this)
+        return if (this.stoneVariant == StoneVariant.SMOOTH)
+            Item.getItemFromBlock(GTLiteBlocks.STONES[StoneVariant.COBBLE]!!)
+        else
+            Item.getItemFromBlock(this)
     }
 
-    enum class StoneType(private val serialName: String, val mapColor: MapColor) : IStringSerializable
+    /**
+     * These rock types referenced to GT6, thanks gregorius create these stones. We modified the components with reality
+     * world correspondenced rock components, and modified textures with GTCEu style.
+     */
+    enum class StoneType(private val serialName: String,
+                         mapColor: MapColor,
+                         val allowSpawn: Boolean = true) : IStringSerializable, IStateSpawnControl
     {
-        // Rock type referenced to GregTech6, thanks gregorius create these stones,
-        // we modified the components with reality world correspondenced rock components,
-        // and modified textures with GregTechCEu style.
         LIMESTONE("limestone", MapColor.GRAY_STAINED_HARDENED_CLAY),
         KOMATIITE("komatiite", MapColor.YELLOW_STAINED_HARDENED_CLAY),
         GREEN_SCHIST("green_schist", MapColor.GREEN_STAINED_HARDENED_CLAY),
@@ -109,6 +86,10 @@ class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) :
             }
 
         override fun getName(): String = serialName
+
+        override fun canCreatureSpawn(state: IBlockState, world: IBlockAccess, pos: BlockPos,
+                                      type: EntityLiving.SpawnPlacementType): Boolean = allowSpawn
+
     }
 
     enum class StoneVariant(
