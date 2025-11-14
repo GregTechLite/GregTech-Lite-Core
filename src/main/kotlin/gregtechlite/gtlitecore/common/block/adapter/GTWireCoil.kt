@@ -25,9 +25,18 @@ enum class GTWireCoil : BlockVariant
         get() = MetaBlocks.WIRE_COIL.getStateFromMeta(this.ordinal)
 
     override fun getStack(count: Int): ItemStack
+        = MetaBlocks.WIRE_COIL.getItemVariant(getCoilTypeByName(), count)
+
+    private fun getCoilTypeByName() = when (this)
     {
-        return MetaBlocks.WIRE_COIL.getItemVariant(
-            BlockWireCoil.CoilType.valueOf(this.name), count)
+        CUPRONICKEL -> BlockWireCoil.CoilType.CUPRONICKEL
+        KANTHAL -> BlockWireCoil.CoilType.KANTHAL
+        NICHROME -> BlockWireCoil.CoilType.NICHROME
+        RTM_ALLOY -> BlockWireCoil.CoilType.RTM_ALLOY
+        HSS_G -> BlockWireCoil.CoilType.HSS_G
+        NAQUADAH -> BlockWireCoil.CoilType.NAQUADAH
+        TRINIUM -> BlockWireCoil.CoilType.TRINIUM
+        TRITANIUM -> BlockWireCoil.CoilType.TRITANIUM
     }
 
 }
