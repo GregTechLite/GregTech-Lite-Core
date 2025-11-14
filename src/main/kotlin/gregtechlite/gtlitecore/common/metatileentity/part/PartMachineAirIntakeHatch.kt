@@ -6,13 +6,14 @@ import codechicken.lib.vec.Matrix4
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.screen.UISettings
 import com.cleanroommc.modularui.utils.Alignment
 import com.cleanroommc.modularui.utils.Color
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
-import com.cleanroommc.modularui.widgets.ItemSlot
 import com.cleanroommc.modularui.widgets.RichTextWidget
 import com.cleanroommc.modularui.widgets.SlotGroupWidget
+import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.capability.impl.FilteredItemHandler
 import gregtech.api.capability.impl.FluidTankList
@@ -236,7 +237,7 @@ class PartMachineAirIntakeHatch(id: ResourceLocation,
     override fun createExportItemHandler(): IItemHandlerModifiable = ItemStackHandler(1)
 
     @Suppress("UnstableApiUsage")
-    override fun buildUI(guiData: PosGuiData, syncManager: PanelSyncManager): ModularPanel
+    override fun buildUI(guiData: PosGuiData, syncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
         syncManager.registerSlotGroup("item_inv", 2)
 
@@ -247,8 +248,9 @@ class PartMachineAirIntakeHatch(id: ResourceLocation,
         return GTGuis.createPanel(this, 176, 166)
             .child(IKey.lang(metaFullName).asWidget()
                        .pos(5, 5))
-            .child(SlotGroupWidget.playerInventory()
-                       .left(7).bottom(7))
+            .child(SlotGroupWidget.playerInventory(false)
+                       .left(7)
+                       .bottom(7))
             .child(GTGuiTextures.DISPLAY.asWidget()
                        .left(7).top(16)
                        .size(81, 55))

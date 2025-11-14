@@ -8,16 +8,17 @@ import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.api.widget.IWidget
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.screen.UISettings
 import com.cleanroommc.modularui.value.BoolValue
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
 import com.cleanroommc.modularui.widget.Widget
-import com.cleanroommc.modularui.widgets.ItemSlot
 import com.cleanroommc.modularui.widgets.SlotGroupWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
 import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.layout.Grid
+import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import gregtech.api.GTValues
 import gregtech.api.capability.DualHandler
 import gregtech.api.capability.GregtechDataCodes
@@ -215,7 +216,7 @@ class PartMachineDualHatch(id: ResourceLocation,
     override fun usesMui2(): Boolean = true
 
     @Suppress("UnstableApiUsage")
-    override fun buildUI(guiData: PosGuiData, syncManager: PanelSyncManager): ModularPanel
+    override fun buildUI(guiData: PosGuiData, syncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
         val rowSize = sqrt(getItemSize().toDouble()).toInt()
         syncManager.registerSlotGroup("item_inv", rowSize)
@@ -224,10 +225,10 @@ class PartMachineDualHatch(id: ResourceLocation,
                                          rowSize * 18 + 14 + 18) // Bus Inv width
         val backgroundHeight = 18 + 18 * rowSize + 94
         
-        val widgets: MutableList<MutableList<IWidget>> = ArrayList<MutableList<IWidget>>()
+        val widgets: MutableList<MutableList<IWidget>> = ArrayList()
         for (i in 0 ..< rowSize)
         {
-            widgets.add(ArrayList<IWidget>())
+            widgets.add(ArrayList())
             for (j in 0 ..< rowSize)
             {
                 val index = i * rowSize + j
@@ -235,11 +236,9 @@ class PartMachineDualHatch(id: ResourceLocation,
                 widgets[i].add(ItemSlot()
                         .slot(SyncHandlers.itemSlot(handler, index)
                                   .slotGroup("item_inv")
-                                  .changeListener { newItem: ItemStack?, onlyAmountChanged: Boolean, client: Boolean, init: Boolean ->
+                                  .changeListener { newItem, onlyAmountChanged, client, init ->
                                       if (onlyAmountChanged && handler is GTItemStackHandler)
-                                      {
                                           handler.onContentsChanged(index)
-                                      }
                                   }
                                   .accessibility(!isExportHatch, true)))
             }
@@ -264,8 +263,9 @@ class PartMachineDualHatch(id: ResourceLocation,
         return GTGuis.createPanel(this, backgroundWidth, backgroundHeight)
             .child(IKey.lang(metaFullName).asWidget()
                        .pos(5, 5))
-            .child(SlotGroupWidget.playerInventory()
-                       .left(7).bottom(7))
+            .child(SlotGroupWidget.playerInventory(false)
+                       .left(7)
+                       .bottom(7))
             .child(Grid()
                        .top(18)
                        .height(rowSize * 18)
@@ -321,16 +321,15 @@ class PartMachineDualHatch(id: ResourceLocation,
                            it.addLine(IKey.lang("gregtech.gui.item_auto_collapse.tooltip.disabled"))
                        }
                    })
+
         .childIf(hasGhostCircuit, GhostCircuitSlotWidget()
-            .slot(SyncHandlers.itemSlot(circuitInventory, 0)
-                      .changeListener { newItem: ItemStack?, onlyAmountChanged: Boolean, client: Boolean, init: Boolean ->
-                          // Add the dual handler to the notified list.
-                          dualHandler!!.onContentsChanged()
-                      })
-        .background(GTGuiTextures.SLOT, GTGuiTextures.INT_CIRCUIT_OVERLAY))
+            .slot(circuitInventory, 0)
+            .background(GTGuiTextures.SLOT, GTGuiTextures.INT_CIRCUIT_OVERLAY))
         .childIf(!hasGhostCircuit, Widget()
             .background(GTGuiTextures.SLOT, GTGuiTextures.BUTTON_X)
-            .tooltip { it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip")) }))
+            .tooltip {
+                it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
+            }))
     }
     
     override fun renderMetaTileEntity(renderState: CCRenderState?,
@@ -488,7 +487,7 @@ class PartMachineDualHatch(id: ResourceLocation,
         // Gather a snapshot of the provided inventory
         val inventoryContents = GTHashMaps.fromItemHandler(inventory, true)
             
-        val inventoryItemContents: MutableList<ItemStack> = ArrayList<ItemStack>()
+        val inventoryItemContents: MutableList<ItemStack> = ArrayList()
             
         // Populate the list of item stacks in the inventory with apportioned item stacks, for easy replacement
         for (e in inventoryContents.object2IntEntrySet())

@@ -1,8 +1,10 @@
+@file:Suppress("Deprecation")
 package gregtechlite.gtlitecore.common.item.behavior
 
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.HandGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.screen.UISettings
 import com.cleanroommc.modularui.utils.Alignment
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widget.ParentWidget
@@ -46,7 +48,7 @@ object StructureWriterBehavior : IItemBehaviour, ItemUIFactory
     }
 
     @Suppress("UnstableApiUsage")
-    override fun buildUI(guiData: HandGuiData, guiSyncManager: PanelSyncManager): ModularPanel
+    override fun buildUI(guiData: HandGuiData, guiSyncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
         return GTGuis.createPanel(guiData.mainHandItem, 176, 120)
             .background(GTGuiTextures.BACKGROUND)
