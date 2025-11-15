@@ -126,6 +126,7 @@ dependencies {
     }
 
     api(libs.codeChickenLib)
+    api(libs.ctm)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2874.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
@@ -137,8 +138,6 @@ dependencies {
     }
 
     compileOnly(libs.craftTweaker2)
-
-    runtimeOnly(deobf(libs.ctm))
 
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
