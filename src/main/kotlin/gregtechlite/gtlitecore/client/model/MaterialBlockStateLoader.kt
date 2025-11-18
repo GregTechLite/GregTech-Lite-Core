@@ -1,4 +1,3 @@
-@file:Suppress("Deprecation")
 package gregtechlite.gtlitecore.client.model
 
 import com.google.common.collect.Table
@@ -22,8 +21,8 @@ import net.minecraftforge.client.model.IModel
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.client.model.ModelLoaderRegistry
 import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import net.minecraftforge.fml.relauncher.ReflectionHelper
 import net.minecraftforge.fml.relauncher.Side
 
 /**
@@ -98,8 +97,8 @@ object MaterialBlockStateLoader {
         ENTRIES.entries.forEach { (modelEntry, modelResourceLocation) ->
             if (Mods.CTM.isActive)
             {
-                val stateModels = ReflectionHelper.getPrivateValue<MutableMap<ModelResourceLocation, IModel>, ModelLoader>(
-                    ModelLoader::class.java, event.modelLoader, "stateModels", null)
+                val stateModels = ObfuscationReflectionHelper.getPrivateValue<MutableMap<ModelResourceLocation, IModel>, ModelLoader>(
+                    ModelLoader::class.java, event.modelLoader, "stateModels")
                 bakeAndRegister(event.modelRegistry, modelEntry.modelCache, modelResourceLocation, stateModels)
             }
             else
