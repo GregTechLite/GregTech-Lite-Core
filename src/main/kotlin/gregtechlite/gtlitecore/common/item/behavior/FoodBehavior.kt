@@ -4,6 +4,7 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.stats.IFoodBehavior
 import gregtech.api.items.metaitem.stats.IItemBehaviour
 import gregtech.api.util.RandomPotionEffect
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
@@ -108,7 +109,19 @@ class FoodBehavior(var foodLevel: Int,
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, lines: MutableList<String>)
     {
-        lines.add(I18n.format("gtlitecore.tooltip.food.eating_duration", eatingDuration))
+        val template = "gtlitecore.tooltip.food.eating_duration"
+        when (eatingDuration)
+        {
+            in 1 * TICK..19 * TICK -> {
+                lines.add(I18n.format(template, eatingDuration) + I18n.format("$template.tick"))
+            }
+            in 1 * SECOND.. 59 * SECOND -> { // 1 sec = 20 tick
+                lines.add(I18n.format(template, eatingDuration / 20) + I18n.format("$template.second"))
+            }
+            else -> { // 1 min = 60 sec = 1200 tick
+                lines.add(I18n.format(template, eatingDuration / 1200) + I18n.format("$template.minute"))
+            }
+        }
 
         if (effects.isNotEmpty())
         {
@@ -120,8 +133,19 @@ class FoodBehavior(var foodLevel: Int,
                 val effectLevel = TextFormatting.LIGHT_PURPLE.toString() +
                         I18n.format("enchantment.level.${effect.amplifier + 1}") + TextFormatting.WHITE.toString()
 
-                lines.add(I18n.format("gtlitecore.tooltip.food.potion_effect.type",
-                                                   effectName, effectLevel, effect.duration, 100 - it.chance))
+                val effectType = "gtlitecore.tooltip.food.potion_effect.type"
+                when (effect.duration)
+                {
+                    in 1 * TICK..19 * TICK -> {
+                        lines.add(I18n.format("$effectType.tick", effectName, effectLevel, effect.duration, 100 - it.chance))
+                    }
+                    in 1 * SECOND.. 59 * SECOND -> { // 1 sec = 20 tick
+                        lines.add(I18n.format("$effectType.second", effectName, effectLevel, effect.duration / 20, 100 - it.chance))
+                    }
+                    else -> { // 1 min = 60 sec = 1200 tick
+                        lines.add(I18n.format("$effectType.minute", effectName, effectLevel, effect.duration / 1200, 100 - it.chance))
+                    }
+                }
             }
         }
     }

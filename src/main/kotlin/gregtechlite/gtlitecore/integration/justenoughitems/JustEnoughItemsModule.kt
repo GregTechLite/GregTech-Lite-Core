@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.integration.justenoughitems
 
 import com.morphismmc.morphismlib.util.SidedLogger
+import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
@@ -8,6 +9,8 @@ import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItem2
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.behavior.CropSeedBehavior
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
@@ -96,13 +99,18 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
 
         logger.info("Registering JEI Info Ingredients...")
 
-        GTLiteMetaItems.metaItems().allItems.forEach { metaItem ->
+        addCropInfoPage(GTLiteMetaItem1.META_ITEMS_1, registry)
+        addCropInfoPage(GTLiteMetaItem2.META_ITEMS_2, registry)
+    }
+
+    private fun addCropInfoPage(metaItem: MetaItem<*>, modRegistry: IModRegistry)
+    {
+        metaItem.allItems.forEach { metaItem ->
             (metaItem.behaviours.find { it is CropSeedBehavior } as? CropSeedBehavior)?.let {
-                registry.addIngredientInfo(metaItem.stack(), VanillaTypes.ITEM,
-                    *it.getDescription())
+                modRegistry.addIngredientInfo(metaItem.stack(), VanillaTypes.ITEM,
+                                           *it.getDescription())
             }
         }
-
     }
 
     override fun getLogger(): Logger = Companion.logger
