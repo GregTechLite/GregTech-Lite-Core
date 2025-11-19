@@ -10,6 +10,13 @@ fun MetaItem<*>.MetaValueItem.stack(): ItemStack
 fun MetaItem<*>.MetaValueItem.getStack(count: Int): ItemStack
     = getStackForm(count)
 
+fun MetaItem<*>.MetaValueItem.addOreDicts(vararg oreDictNames: String): MetaItem<*>.MetaValueItem
+{
+    for (oreDictName in oreDictNames)
+        addOreDict(oreDictName)
+    return this
+}
+
 fun MetaOreDictItem.OreDictValueItem.stack(): ItemStack
     = getStack(1)
 
