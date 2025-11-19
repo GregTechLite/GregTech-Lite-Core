@@ -1527,12 +1527,20 @@ metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
-metaitem.food.golden_strawberry.name=Golden Strawberry
-metaitem.food.golden_strawberry.tooltip=Better than Golden Apple
-metaitem.food.moon_berry.name=Moon Berry
-metaitem.food.moon_berry.tooltip=Wow!
-metaitem.food.hard_apple_candy.name=hard Apple Candy
+metaitem.food.hard_apple_candy.name=Hard Apple Candy
 metaitem.food.hard_apple_candy.tooltip=Maybe it hurts a bit
+
+metaitem.fruit.product.silver_apple.name=Silver Apple
+metaitem.fruit.product.silver_apple.tooltip=Cheaper One...
+metaitem.fruit.product.silver_strawberry.name=Silver Strawberry
+metaitem.fruit.product.silver_strawberry.tooltip=Better than Silver Apple
+metaitem.fruit.product.golden_strawberry.name=Golden Strawberry
+metaitem.fruit.product.golden_strawberry.tooltip=Better than Golden Apple
+metaitem.fruit.product.rainbow_berry.name=Rainbow Berry
+metaitem.fruit.product.rainbow_berry.tooltip=Chromatic
+metaitem.fruit.product.moon_berry.name=Moon Berry
+metaitem.fruit.product.moon_berry.tooltip=Wow!
+
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal

@@ -73,11 +73,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PEA_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PLASTIC_BOTTLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POLENTA
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POTATO_JUICE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RAINBOW_BERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RASPBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RED_CURRANT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RED_WINE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICE_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_APPLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SOYBEAN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SOY_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SPARKLING_WATER
@@ -483,7 +486,20 @@ object GTLiteMetaItem2
         // endregion
 
         // region 1901-2100: Fruit Products
-        GOLDEN_STRAWBERRY = item(1901, "food.golden_strawberry")
+        SILVER_APPLE = item(1901, "fruit.product.silver_apple")
+            .addComponents(FoodBehavior(4, 3.5F)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 25 * SECOND, 2, 100 - 100)))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        SILVER_STRAWBERRY = item(1902, "fruit.product.silver_strawberry")
+            .addComponents(FoodBehavior(5, 7.5F)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 3, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 30 * SECOND, 3, 100 - 75)))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        GOLDEN_STRAWBERRY = item(1903, "fruit.product.golden_strawberry")
             .addComponents(FoodBehavior(8, 9.6F)
                                .setEatingDuration(5 * SECOND)
                                .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 3, 100 - 100),
@@ -492,14 +508,18 @@ object GTLiteMetaItem2
                                                  RandomPotionEffect(MobEffects.ABSORPTION, 1 * MINUTE, 6, 100 - 100)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
-        // endregion
+        RAINBOW_BERRY = item(1904, "fruit.product.rainbow_berry")
+            .addComponents(FoodBehavior(12, 12.8F)
+                               .setEatingDuration(5 * SECOND)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.REGENERATION, 1 * MINUTE, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 2 * MINUTE, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 2 * MINUTE, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.STRENGTH, 2 * MINUTE, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 5 * MINUTE, 10, 100 - 100)))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
-        // region 2101-2300: Miscellaneous Foods
-
-        // endregion
-
-        // region 2301-2500: Legendary Foods
-        MOON_BERRY = item(2301, "food.moon_berry")
+        MOON_BERRY = item(1905, "fruit.product.moon_berry")
             .addComponents(FoodBehavior(16, 19.2F)
                                .setEatingDuration(5 * SECOND)
                                .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 127, 100 - 100),
@@ -514,6 +534,14 @@ object GTLiteMetaItem2
                                                  RandomPotionEffect(MobEffects.LUCK, 10 * MINUTE, 127, 100 - 100)))
             .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        // endregion
+
+        // region 2101-2300: Snacks
+
+        // endregion
+
+        // region 2301-2500: Miscellaneous Foods
 
         // endregion
 

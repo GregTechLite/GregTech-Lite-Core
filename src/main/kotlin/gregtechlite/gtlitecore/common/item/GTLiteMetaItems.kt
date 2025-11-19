@@ -470,6 +470,16 @@ object GTLiteMetaItems
     lateinit var OLIVE: MetaItem<*>.MetaValueItem
     lateinit var NUTMEG: MetaItem<*>.MetaValueItem
     lateinit var COCONUT: MetaItem<*>.MetaValueItem
+    lateinit var BLUEBERRY: MetaItem<*>.MetaValueItem
+    lateinit var BLACKBERRY: MetaItem<*>.MetaValueItem
+    lateinit var RASPBERRY: MetaItem<*>.MetaValueItem
+    lateinit var STRAWBERRY: MetaItem<*>.MetaValueItem
+    lateinit var RED_CURRANT: MetaItem<*>.MetaValueItem
+    lateinit var BLACK_CURRANT: MetaItem<*>.MetaValueItem
+    lateinit var WHITE_CURRANT: MetaItem<*>.MetaValueItem
+    lateinit var LINGONBERRY: MetaItem<*>.MetaValueItem
+    lateinit var ELDERBERRY: MetaItem<*>.MetaValueItem
+    lateinit var CRANBERRY: MetaItem<*>.MetaValueItem
 
     lateinit var COFFEE_SEED: MetaItem<*>.MetaValueItem
     lateinit var TOMATO_SEED: MetaItem<*>.MetaValueItem
@@ -510,16 +520,6 @@ object GTLiteMetaItems
     lateinit var RICE: MetaItem<*>.MetaValueItem
     lateinit var WHITE_GRAPE: MetaItem<*>.MetaValueItem
     lateinit var COTTON: MetaItem<*>.MetaValueItem
-    lateinit var BLUEBERRY: MetaItem<*>.MetaValueItem
-    lateinit var BLACKBERRY: MetaItem<*>.MetaValueItem
-    lateinit var RASPBERRY: MetaItem<*>.MetaValueItem
-    lateinit var STRAWBERRY: MetaItem<*>.MetaValueItem
-    lateinit var RED_CURRANT: MetaItem<*>.MetaValueItem
-    lateinit var BLACK_CURRANT: MetaItem<*>.MetaValueItem
-    lateinit var WHITE_CURRANT: MetaItem<*>.MetaValueItem
-    lateinit var LINGONBERRY: MetaItem<*>.MetaValueItem
-    lateinit var ELDERBERRY: MetaItem<*>.MetaValueItem
-    lateinit var CRANBERRY: MetaItem<*>.MetaValueItem
 
     lateinit var CLAY_BOWL: MetaItem<*>.MetaValueItem
     lateinit var CERAMIC_BOWL: MetaItem<*>.MetaValueItem
@@ -544,8 +544,12 @@ object GTLiteMetaItems
 
     lateinit var GRAHAM_CRACKER: MetaItem<*>.MetaValueItem
 
-    lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
-    lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
     lateinit var HARD_APPLE_CANDY: MetaItem<*>.MetaValueItem
+
+    lateinit var SILVER_APPLE: MetaItem<*>.MetaValueItem
+    lateinit var SILVER_STRAWBERRY: MetaItem<*>.MetaValueItem
+    lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
+    lateinit var RAINBOW_BERRY: MetaItem<*>.MetaValueItem
+    lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
 
 }

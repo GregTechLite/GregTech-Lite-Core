@@ -1527,12 +1527,19 @@ metaitem.food.polenta.tooltip.2=在非洲东部也有更浓稠的玉米糊恩希
 metaitem.food.graham_cracker.name=全麦饼干
 metaitem.food.graham_cracker.tooltip=富含饱腹感
 
-metaitem.food.golden_strawberry.name=金草莓
-metaitem.food.golden_strawberry.tooltip=比金苹果更好
-metaitem.food.moon_berry.name=月莓
-metaitem.food.moon_berry.tooltip=哇哦！
 metaitem.food.hard_apple_candy.name=苹果硬糖
 metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
+
+metaitem.fruit.product.silver_apple.name=银苹果
+metaitem.fruit.product.silver_apple.tooltip=更廉价...
+metaitem.fruit.product.silver_strawberry.name=银草莓
+metaitem.fruit.product.silver_strawberry.tooltip=比银苹果更好
+metaitem.fruit.product.golden_strawberry.name=金草莓
+metaitem.fruit.product.golden_strawberry.tooltip=比金苹果更好
+metaitem.fruit.product.rainbow_berry.name=彩虹草莓
+metaitem.fruit.product.rainbow_berry.tooltip=多彩
+metaitem.fruit.product.moon_berry.name=月莓
+metaitem.fruit.product.moon_berry.tooltip=哇哦！
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=玉米粒
