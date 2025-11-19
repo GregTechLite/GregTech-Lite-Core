@@ -13,8 +13,6 @@ import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.command.CommandMaterialComponent
 import gregtechlite.gtlitecore.common.cover.GTLiteCoverBehaviors
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItem2
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems
 import gregtechlite.gtlitecore.common.item.behavior.GTLiteBehaviors
@@ -91,8 +89,7 @@ internal class CoreModule : CustomModule
         GTLiteSoundEvents.register()
 
         logger.debug("Loading all MetaItems and MetaOreDictItems")
-        GTLiteMetaItem1.init()
-        GTLiteMetaItem2.init()
+        GTLiteMetaItems.init()
         GTLiteMetaOreDictItems.init()
 
         logger.debug("Loading all MetaBlocks and MetaBlock Adapters")

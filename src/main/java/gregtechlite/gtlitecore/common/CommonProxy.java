@@ -11,8 +11,6 @@ import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
 import gregtechlite.gtlitecore.common.block.GTLiteCropBlock;
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock;
 import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock;
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1;
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItem2;
 import gregtechlite.gtlitecore.common.item.SheetedFrameItemBlock;
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems;
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems;
@@ -197,8 +195,7 @@ public class CommonProxy
         IForgeRegistry<Item> registry = event.getRegistry();
         GTLiteLog.logger.info("Registering Items...");
         // Register all items.
-        GTLiteMetaItem1.register();
-        GTLiteMetaItem2.register();
+        GTLiteMetaItems.register();
         // Register all item blocks.
         for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
             registry.register(createItemBlock(stone, VariantItemBlock::new));

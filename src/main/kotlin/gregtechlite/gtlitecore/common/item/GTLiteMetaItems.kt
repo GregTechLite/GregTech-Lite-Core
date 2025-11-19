@@ -552,4 +552,17 @@ object GTLiteMetaItems
     lateinit var RAINBOW_BERRY: MetaItem<*>.MetaValueItem
     lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
 
+    fun init()
+    {
+        GTLiteMetaItem1.init()
+        GTLiteMetaItem2.init()
+    }
+
+    @JvmStatic
+    fun register()
+    {
+        GTLiteMetaItem1.register()
+        GTLiteMetaItem2.register()
+    }
+
 }

@@ -448,15 +448,14 @@ object GTLiteMetaItem1
         
     internal lateinit var META_ITEMS_1: MetaItem<*>
 
-    fun init()
+    internal fun init()
     { 
         META_ITEMS_1 = GTLiteMetaItem()
         META_ITEMS_1.setRegistryName("gtlite_meta_item_1")
         META_ITEMS_1.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
     }
-        
-    @JvmStatic
-    fun register()
+
+    internal fun register()
     {
         // region 0-10: Mod Logos
         LOGO_CORE = item(1, "gtlite_logo.core")

@@ -104,15 +104,14 @@ object GTLiteMetaItem2
 
     internal lateinit var META_ITEMS_2: MetaItem<*>
 
-    fun init()
+    internal fun init()
     {
         META_ITEMS_2 = GTLiteMetaItem()
         META_ITEMS_2.setRegistryName("gtlite_meta_item_2")
         META_ITEMS_2.setCreativeTab(GTLiteCreativeTabs.TAB_MAIN)
     }
 
-    @JvmStatic
-    fun register()
+    internal fun register()
     {
         // region 1-300: Crops & Fruits
         BANANA = item(1, "crop.fruit.banana")
