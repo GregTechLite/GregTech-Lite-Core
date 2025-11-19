@@ -3797,9 +3797,14 @@ gtlitecore.veins.fluid.sea_water=Overworld Sea Water Fluid Vein
 gtlitecore.veins.fluid.blaze=Nether Blaze Fluid Vein
 
 # Tooltips
-gtlitecore.tooltip.food.eating_duration=Eating Duration: §6%s Ticks
+gtlitecore.tooltip.food.eating_duration=Eating Duration: §6%s
+gtlitecore.tooltip.food.eating_duration.tick= Ticks
+gtlitecore.tooltip.food.eating_duration.second= Seconds
+gtlitecore.tooltip.food.eating_duration.minute= Minutes
 gtlitecore.tooltip.food.potion_effect=Additional Effects:
-gtlitecore.tooltip.food.potion_effect.type=- Effect: §d%1$s %2$s (§f%3$s§f Ticks, §f%4$s%%§f Chance)
+gtlitecore.tooltip.food.potion_effect.type.tick=- Effect: §d%1$s %2$s (§f%3$s§f Ticks, §f%4$s%%§f Chance)
+gtlitecore.tooltip.food.potion_effect.type.second=- Effect: §d%1$s %2$s (§f%3$s§f Seconds, §f%4$s%%§f Chance)
+gtlitecore.tooltip.food.potion_effect.type.minute=- Effect: §d%1$s %2$s (§f%3$s§f Minutes, §f%4$s%%§f Chance)
 
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
 gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t

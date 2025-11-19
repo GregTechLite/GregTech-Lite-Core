@@ -3802,9 +3802,14 @@ gtlitecore.veins.fluid.sea_water=主世界海水矿藏
 gtlitecore.veins.fluid.blaze=下界烈焰矿藏
 
 # Tooltips
-gtlitecore.tooltip.food.eating_duration=食用时间：§6%s刻
+gtlitecore.tooltip.food.eating_duration=食用时间：§6%s
+gtlitecore.tooltip.food.eating_duration.tick=刻
+gtlitecore.tooltip.food.eating_duration.second=秒
+gtlitecore.tooltip.food.eating_duration.minute=分
 gtlitecore.tooltip.food.potion_effect=附加效果：
-gtlitecore.tooltip.food.potion_effect.type=- 效果：§d%1$s %2$s（§f%3$s§f刻，§f%4$s%%§f概率）
+gtlitecore.tooltip.food.potion_effect.type.tick=- 效果：§d%1$s %2$s（§f%3$s§f刻，§f%4$s%%§f概率）
+gtlitecore.tooltip.food.potion_effect.type.second=- 效果：§d%1$s %2$s（§f%3$s§f秒，§f%4$s%%§f概率）
+gtlitecore.tooltip.food.potion_effect.type.minute=- 效果：§d%1$s %2$s（§f%3$s§f分，§f%4$s%%§f概率）
 
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
