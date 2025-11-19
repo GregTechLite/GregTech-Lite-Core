@@ -20,6 +20,7 @@ import gregtech.api.util.SmallDigits
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
+import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
 import gregtechlite.gtlitecore.client.event.TextAnimations
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
