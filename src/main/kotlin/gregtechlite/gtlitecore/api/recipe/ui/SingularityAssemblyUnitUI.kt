@@ -10,7 +10,7 @@ import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 import net.minecraftforge.items.IItemHandlerModifiable
 
 @Suppress("UnstableApiUsage")
-internal class AntiGravityAssemblyChamberUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap, true, true, true, true, false)
+internal class SingularityAssemblyUnitUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(recipeMap, true, true, true, true, false)
 {
 
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,

@@ -1586,7 +1586,7 @@ internal object MachineRecipeLoader
         ASSEMBLY_LINE_RECIPES.recipeBuilder()
             .input(SPACE_ASSEMBLER_MK3, 16)
             .input(COMPONENT_ASSEMBLY_LINE, 64)
-            .input(ASSEMBLY_LINE, 64)
+            .input(PCB_FACTORY, 64)
             .input(CIRCUIT_ASSEMBLY_LINE, 64)
             .input(ROBOT_ARM_UXV, 32)
             .input(CONVEYOR_MODULE_UXV, 32)
