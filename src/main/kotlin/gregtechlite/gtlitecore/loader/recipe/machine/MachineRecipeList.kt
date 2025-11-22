@@ -18,6 +18,7 @@ internal object MachineRecipeList
         CircuitAssemblerRecipes.init()
         CutterRecipes.init()
         DistilleryRecipes.init()
+        ElectricBlastFurnaceRecipes.init()
         ExtruderRecipes.init()
         FluidSolidifierRecipes.init()
         FormingPressRecipes.init()

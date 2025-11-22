@@ -53,18 +53,6 @@ internal object CutterRecipes
             .cleanroom(CleanroomType.CLEANROOM)
             .buildAndRegister()
 
-        // Hassium-doped Boule
-        BLAST_RECIPES.recipeBuilder()
-            .input(block, Silicon, 64)
-            .input(ingot, MetastableHassium, 8)
-            .input(dust, GalliumArsenide, 4)
-            .fluidInputs(Radon.getFluid(8000))
-            .output(HASSIUM_BOULE)
-            .EUt(VA[LuV])
-            .duration(17 * MINUTE + 30 * SECOND)
-            .blastFurnaceTemp(9400) // Tritanium
-            .buildAndRegister()
-
         // Hassium-doped Wafer
         CUTTER_RECIPES.recipeBuilder()
             .input(HASSIUM_BOULE)
