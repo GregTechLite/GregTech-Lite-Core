@@ -14,9 +14,9 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SINGULARITY_ASSEMBLY_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -32,8 +32,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 class MultiblockNanoAssemblyComplex(id: ResourceLocation) : MultiMapMultiblockController(id,
-                                                                                         arrayOf(NANO_ASSEMBLY_MATRIX_RECIPES, ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES,
-                                                                                                 COMPONENT_ASSEMBLY_LINE_RECIPES, ASSEMBLER_RECIPES))
+                                                                                         arrayOf(NANO_ASSEMBLY_MATRIX_RECIPES, SINGULARITY_ASSEMBLY_RECIPES, ASSEMBLER_RECIPES, PCB_FACTORY_RECIPES))
 {
 
     init
