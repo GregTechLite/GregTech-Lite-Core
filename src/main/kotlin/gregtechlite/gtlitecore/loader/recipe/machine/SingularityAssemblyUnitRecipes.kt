@@ -32,7 +32,7 @@ import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SINGULARITY_ASSEMBLY_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
@@ -116,18 +116,17 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_UHASOC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 
 // TODO: producer or recipe action.
-object AntiGravityAssemblyChamberRecipes
+object SingularityAssemblyUnitRecipes
 {
 
     // @formatter:off
 
     fun init()
     {
-
         // region T6: Crystal
 
         // UV Crystal Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, HSSE, 16)
             .input(CRYSTAL_COMPUTER_ZPM, 32)
@@ -143,7 +142,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, HSSE, 16 * 64)
             .input(CRYSTAL_COMPUTER_ZPM, 32 * 64)
@@ -159,7 +158,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, HSSE, 16)
             .input(CRYSTAL_COMPUTER_ZPM, 32)
@@ -175,7 +174,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, HSSE, 16 * 64)
             .input(CRYSTAL_COMPUTER_ZPM, 32 * 64)
@@ -191,7 +190,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, HSSE, 16)
             .input(CRYSTAL_COMPUTER_ZPM, 32)
@@ -207,7 +206,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, HSSE, 16 * 64)
             .input(CRYSTAL_COMPUTER_ZPM, 32 * 64)
@@ -228,7 +227,7 @@ object AntiGravityAssemblyChamberRecipes
         // region T7: Wetware
 
         // UHV Wetware Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Tritanium, 16)
             .input(WETWARE_SUPER_COMPUTER_UV, 32)
@@ -247,7 +246,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(12 * MINUTE) // Original: 60s, Wrapped: 60s * 16 = 960s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Tritanium, 16 * 64)
             .input(WETWARE_SUPER_COMPUTER_UV, 32 * 64)
@@ -266,7 +265,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(12 * MINUTE * 64) // Original: 60s, Wrapped: 60s * 16 = 960s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Tritanium, 16)
             .input(WETWARE_SUPER_COMPUTER_UV, 32)
@@ -285,7 +284,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Tritanium, 16 * 64)
             .input(WETWARE_SUPER_COMPUTER_UV, 32 * 64)
@@ -304,7 +303,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(6 * MINUTE * 64) // Original: 30s, Wrapped: 30s * 16 = 480s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Tritanium, 16)
             .input(WETWARE_SUPER_COMPUTER_UV, 32)
@@ -323,7 +322,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Tritanium, 16 * 64)
             .input(WETWARE_SUPER_COMPUTER_UV, 32 * 64)
@@ -347,7 +346,7 @@ object AntiGravityAssemblyChamberRecipes
         // region T8: Gooware
 
         // UHV Gooware Computer
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
             .input(GOOWARE_ASSEMBLY_UV, 48)
@@ -361,7 +360,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD, 64)
             .input(GOOWARE_ASSEMBLY_UV, 48 * 64)
@@ -375,7 +374,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD)
             .input(GOOWARE_ASSEMBLY_UV, 48)
@@ -389,7 +388,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_ULTIMATE_CIRCUIT_BOARD, 64)
             .input(GOOWARE_ASSEMBLY_UV, 48 * 64)
@@ -404,7 +403,7 @@ object AntiGravityAssemblyChamberRecipes
             .buildAndRegister()
 
         // UEV Gooware Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Darmstadtium, 64)
             .input(GOOWARE_COMPUTER_UHV, 48)
@@ -424,7 +423,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Darmstadtium, 64 * 64)
             .input(GOOWARE_COMPUTER_UHV, 48 * 64)
@@ -444,7 +443,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Darmstadtium, 64)
             .input(GOOWARE_COMPUTER_UHV, 48)
@@ -464,7 +463,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Darmstadtium, 64 * 64)
             .input(GOOWARE_COMPUTER_UHV, 48 * 64)
@@ -484,7 +483,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Darmstadtium, 64)
             .input(GOOWARE_COMPUTER_UHV, 48)
@@ -504,7 +503,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Darmstadtium, 64 * 64)
             .input(GOOWARE_COMPUTER_UHV, 48 * 64)
@@ -524,7 +523,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Darmstadtium, 64)
             .input(GOOWARE_COMPUTER_UHV, 48)
@@ -544,7 +543,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Darmstadtium, 64 * 64)
             .input(GOOWARE_COMPUTER_UHV, 48 * 64)
@@ -569,7 +568,7 @@ object AntiGravityAssemblyChamberRecipes
         // region T9: Optical
 
         // UEV Optical Supercomputer
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_PERFECT_CIRCUIT_BOARD)
             .input(OPTICAL_ASSEMBLY_UHV, 48)
@@ -586,7 +585,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_PERFECT_CIRCUIT_BOARD, 64)
             .input(OPTICAL_ASSEMBLY_UHV, 48 * 64)
@@ -603,7 +602,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_PERFECT_CIRCUIT_BOARD)
             .input(OPTICAL_ASSEMBLY_UHV, 48)
@@ -620,7 +619,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_PERFECT_CIRCUIT_BOARD, 64)
             .input(OPTICAL_ASSEMBLY_UHV, 48 * 64)
@@ -638,7 +637,7 @@ object AntiGravityAssemblyChamberRecipes
             .buildAndRegister()
 
         // UIV Optical Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Neutronium, 16)
             .input(OPTICAL_COMPUTER_UEV, 32)
@@ -658,7 +657,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Neutronium, 16 * 64)
             .input(OPTICAL_COMPUTER_UEV, 32 * 64)
@@ -678,7 +677,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Neutronium, 16)
             .input(OPTICAL_COMPUTER_UEV, 32)
@@ -698,7 +697,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Neutronium, 16 * 64)
             .input(OPTICAL_COMPUTER_UEV, 32 * 64)
@@ -718,7 +717,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Neutronium, 16)
             .input(OPTICAL_COMPUTER_UEV, 32)
@@ -738,7 +737,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Neutronium, 16 * 64)
             .input(OPTICAL_COMPUTER_UEV, 32 * 64)
@@ -758,7 +757,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Neutronium, 16)
             .input(OPTICAL_COMPUTER_UEV, 32)
@@ -778,7 +777,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Neutronium, 16 * 64)
             .input(OPTICAL_COMPUTER_UEV, 32 * 64)
@@ -807,7 +806,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64)
@@ -827,7 +826,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
@@ -847,7 +846,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64)
@@ -867,7 +866,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
@@ -887,7 +886,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64)
@@ -907,7 +906,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 16 * 64), // foil (36) * 32 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 16 * 64)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
                 .input(SPINTRONIC_PROCESSOR_UHV, 64 * 64)
@@ -924,7 +923,7 @@ object AntiGravityAssemblyChamberRecipes
         }
 
         // UIV Spintronic Computer
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_INFINITE_CIRCUIT_BOARD)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48)
@@ -942,7 +941,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
@@ -960,7 +959,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_INFINITE_CIRCUIT_BOARD)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48)
@@ -978,7 +977,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
@@ -996,7 +995,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_INFINITE_CIRCUIT_BOARD)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48)
@@ -1014,7 +1013,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_INFINITE_CIRCUIT_BOARD, 64)
             .input(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
@@ -1033,7 +1032,7 @@ object AntiGravityAssemblyChamberRecipes
             .buildAndRegister()
 
         // UXV Spintronic Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Vibranium, 16)
             .input(SPINTRONIC_COMPUTER_UIV, 32)
@@ -1054,7 +1053,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Vibranium, 16 * 64)
             .input(SPINTRONIC_COMPUTER_UIV, 32 * 64)
@@ -1075,7 +1074,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Vibranium, 16)
             .input(SPINTRONIC_COMPUTER_UIV, 32)
@@ -1096,7 +1095,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Vibranium, 16 * 64)
             .input(SPINTRONIC_COMPUTER_UIV, 32 * 64)
@@ -1117,7 +1116,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Vibranium, 16)
             .input(SPINTRONIC_COMPUTER_UIV, 32)
@@ -1138,7 +1137,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Vibranium, 16 * 64)
             .input(SPINTRONIC_COMPUTER_UIV, 32 * 64)
@@ -1168,7 +1167,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16), // foil (36) * 64 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(WRAP_COSMIC_INFORMATION_MODULE)
                 .input(COSMIC_PROCESSOR_UEV, 64)
@@ -1188,7 +1187,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16 * 64), // foil (36) * 64 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16 * 64)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
                 .input(COSMIC_PROCESSOR_UEV, 64 * 64)
@@ -1208,7 +1207,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16), // foil (36) * 64 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .input(WRAP_COSMIC_INFORMATION_MODULE)
                 .input(COSMIC_PROCESSOR_UEV, 64)
@@ -1228,7 +1227,7 @@ object AntiGravityAssemblyChamberRecipes
             PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 16 * 64), // foil (36) * 64 * 16
             PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 16 * 64)))
         {
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
                 .input(COSMIC_PROCESSOR_UEV, 64 * 64)
@@ -1245,7 +1244,7 @@ object AntiGravityAssemblyChamberRecipes
         }
 
         // UXV Cosmic Computer
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_COSMIC_INFORMATION_MODULE)
             .input(COSMIC_ASSEMBLY_UIV, 48)
@@ -1263,7 +1262,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
             .input(COSMIC_ASSEMBLY_UIV, 48 * 64)
@@ -1281,7 +1280,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(WRAP_COSMIC_INFORMATION_MODULE)
             .input(COSMIC_ASSEMBLY_UIV, 48)
@@ -1299,7 +1298,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(WRAP_COSMIC_INFORMATION_MODULE, 64)
             .input(COSMIC_ASSEMBLY_UIV, 48 * 64)
@@ -1318,7 +1317,7 @@ object AntiGravityAssemblyChamberRecipes
             .buildAndRegister()
 
         // OpV Cosmic Mainframe
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Shirabon, 16)
             .input(COSMIC_COMPUTER_UXV, 32)
@@ -1340,7 +1339,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Shirabon, 16 * 64)
             .input(COSMIC_COMPUTER_UXV, 32 * 64)
@@ -1362,7 +1361,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(frameGt, Shirabon, 16)
             .input(COSMIC_COMPUTER_UXV, 32)
@@ -1384,7 +1383,7 @@ object AntiGravityAssemblyChamberRecipes
             .duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
             .buildAndRegister()
 
-        ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+        SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(frameGt, Shirabon, 16 * 64)
             .input(COSMIC_COMPUTER_UXV, 32 * 64)

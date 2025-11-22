@@ -29,7 +29,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
-import gregtechlite.gtlitecore.api.recipe.ui.AntiGravityAssemblyChamberUI
+import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -550,7 +550,7 @@ object GTLiteRecipeMaps
         .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
 
             // Mode 1: Original CAL recipes.
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
                 .inputs(*builder.inputs.toTypedArray())
                 .fluidInputs(builder.fluidInputs)
@@ -580,7 +580,7 @@ object GTLiteRecipeMaps
                 .map { it.copyWithAmount(it.amount * 64) }
                 .toList()
 
-            ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES.recipeBuilder()
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(2)
                 .inputs(*inputs)
                 .fluidInputs(fluidInputs)
@@ -740,6 +740,21 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
+        .onBuild(GTLiteMod.id("coal_copy")) { builder ->
+            SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
+                .inputs(*builder.inputs.toTypedArray())
+                .fluidInputs(builder.fluidInputs)
+                .outputs(*builder.outputs.toTypedArray())
+                .chancedOutputs(builder.chancedOutputs)
+                .fluidOutputs(builder.fluidOutputs)
+                .chancedFluidOutputs(builder.chancedFluidOutputs)
+                .cleanroom(builder.cleanroom)
+                .duration(builder.duration)
+                .EUt(builder.eUt)
+                .buildAndRegister()
+
+            // TODO: 16x (1024 equivalence parallel) recipes
+        }
         .build()
 
     /**
@@ -879,17 +894,17 @@ object GTLiteRecipeMaps
         .build() // AssLine smallRecipeMap actual
 
     /**
-     * @zenProp anti_gravity_assembly_chamber
+     * @zenProp singularity_assembly_unit
      */
     @ZenProperty
     @JvmField
-    val ANTI_GRAVITY_ASSEMBLY_CHAMBER_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("anti_gravity_assembly_chamber", SimpleRecipeBuilder())
-        .ui { AntiGravityAssemblyChamberUI(it) }
+    val SINGULARITY_ASSEMBLY_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("singularity_assembly_unit", SimpleRecipeBuilder())
+        .ui { SingularityAssemblyUnitUI(it) }
         .itemInputs(16)
         .itemOutputs(4)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build() // CircAssLine smallRecipeMap actual
+        .build() // CAL and CoAL smallRecipeMap actual
 
     // endregion
 

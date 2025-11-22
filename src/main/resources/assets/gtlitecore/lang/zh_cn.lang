@@ -1624,7 +1624,7 @@ recipemap.space_assembler.name=太空组装模块
 recipemap.entrodynamically_phase_changer.name=拓扑序热破缺相变
 recipemap.plasma_arc_transmitter.name=等离子电弧发射器
 recipemap.nano_assembly_matrix.name=纳米装配矩阵
-recipemap.anti_gravity_assembly_chamber.name=反重力装配室
+recipemap.singularity_assembly_unit.name=奇点装配单元
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2603,7 +2603,7 @@ gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固
 gtlitecore.machine.nano_assembly_complex.name=纳米装配复合体
 gtlitecore.machine.nano_assembly_complex.tooltip.1=电路问题的最终解法
 gtlitecore.machine.nano_assembly_complex.tooltip.2=§f纳米装配矩阵§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
-gtlitecore.machine.nano_assembly_complex.tooltip.3=§f反重力装配室§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§f奇点组装单元§7模式兼容所有§f电路装配线§7与§f部件装配线§7配方，且具有特殊的初始倍率配方
 gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
 gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
 
