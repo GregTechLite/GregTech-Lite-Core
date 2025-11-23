@@ -15,22 +15,49 @@ import gregtechlite.gtlitecore.common.item.behavior.FlintAndSteelToolBehavior
 import net.minecraft.entity.monster.EntityGolem
 import net.minecraft.init.SoundEvents
 
+/**
+ * GTCEu format Tools Addition.
+ *
+ * We add some new tools for recipe ingredient or player interactions for QoL, consists of:
+ *
+ * - **Rolling Pin** is used for process soft material to plate or stick (sometimes with knife, for example: clay, wood),
+ *   macerate some plants or others to get pulp, or make dough.
+ * - **Combination Wrench** has many functions, consists of Hard Hammer and Wrench, the original idea of this tool is
+ *   from [GT5 Unofficial](https://github.com/GTNewHorizons/GT5-Unofficial).
+ * - **Universal Spade** has many functions, consists of Crowbar, Spade and Saw, the original idea of this tool is from
+ *   [GT6](https://github.com/GregTech6/gregtech6) and [GCYL](https://github.com/GregTechCEu/gregicality-legacy).
+ * - **Flint And Steel** is extended version of vanilla items, it is another choice with GTCEu lighter (for lighter, it
+ *   consumed some chemistry gases, but this is just vanilla usage).
+ * - **Club** is like Sword but has higher damage and lower durability (just like what elder did in the Stone Age), the
+ *   original idea of this tool is from [GT6](https://github.com/GregTech6/gregtech6).
+ *
+ * Here is the table for all tool characters which be usable in recipe characters,
+ * so all developers should avoid use these character.
+ *
+ * | Character | Tool Type             | Ore Dictionaries                                 |
+ * |-----------|-----------------------|--------------------------------------------------|
+ * | `s`       | Saw                   | `toolSaw`, `craftingToolSaw`                     |
+ * | `h`       | Hammer (Forge Hammer) | `toolHammer`, `craftingToolHardHammer`           |
+ * | `r`       | Mallet (Soft Hammer)  | `toolMallet`, `craftingToolSoftHammer`           |
+ * | `w`       | Wrench                | `toolWrench`, `craftingToolWrench`               |
+ * | `f`       | File                  | `toolFile`, `craftingToolFile`                   |
+ * | `c`       | Crowbar               | `toolCrowbar`, `craftingToolCrowbar`             |
+ * | `d`       | Screwdriver           | `toolScrewdriver`, `craftingToolScrewdriver`     |
+ * | `m`       | Mortar                | `toolMortar`, `craftingToolMortar`               |
+ * | `x`       | Wire Cutter           | `toolWireCutter`, `craftingToolWireCutter`       |
+ * | `k`       | Knife                 | `toolKnife`, `craftingKnife`                     |
+ * | `p`       | Rolling Pin           | `toolRollingPin`, `craftingToolRollingPin`       |
+ * | `i`       | Butchery Knife        | `toolButcheryKnife`, `craftingToolButcheryKnife` |
+ *
+ * For all tool ore dictionaries, if it required to use in recipe ingredients,
+ * used `toolX` at first to make it compatible with disposable tools (even for GrS).
+ *
+ * TODO: When add meat strips and bacon, used knife or butchery knife for those recipes (but why GTCEu add crafting()
+ *       mark to the butchery knife? Because of this feature, we add a tool character for it, so if this is unneeded,
+ *       then should remove the additional tool character register).
+ */
 object GTLiteToolItems
 {
-
-    // TOOL CHAR LIST
-    // 's' - toolSaw/craftingToolSaw
-    // 'h' - toolHammer/craftingToolHardHammer
-    // 'r' - toolMallet/craftingToolSoftHammer
-    // 'w' - toolWrench/craftingToolWrench
-    // 'f' - toolFile/craftingToolFile
-    // 'c' - toolCrowbar/craftingToolCrowbar
-    // 'd' - toolScrewdriver/craftingToolScrewdriver
-    // 'm' - toolMortar/craftingToolMortar
-    // 'x' - toolWireCutter/craftingToolWireCutter
-    // 'k' - toolKnife/craftingKnife
-    // 'p' - toolRollingPin/craftingToolRollingPin
-    // 'i' - toolButcheryKnife/craftingToolButcheryKnife
 
     lateinit var ROLLING_PIN: IGTTool
     lateinit var COMBINATION_WRENCH: IGTTool
@@ -40,8 +67,6 @@ object GTLiteToolItems
 
     internal fun registerTools()
     {
-        // Rolling pin is used for process soft material to plate or stick (with knife), macerate some
-        // plants or others to get pulp, or make dough.
         ROLLING_PIN = tool("rolling_pin") {
             toolDefinition {
                 crafting()
@@ -55,8 +80,6 @@ object GTLiteToolItems
             sound(GTSoundEvents.PLUNGER_TOOL)
         }
 
-        // Combination wrench has many functions, consists of hard hammer and wrench, the original idea
-        // of this tool is from GregTech 5 Unofficial.
         COMBINATION_WRENCH = tool("combination_wrench") {
             toolDefinition {
                 blockBreaking()
@@ -64,7 +87,8 @@ object GTLiteToolItems
                 sneakBypassUse()
                 attackDamage(1.0F)
                 attackSpeed(-2.8F)
-                behaviors(BlockRotatingBehavior.INSTANCE, EntityDamageBehavior(3.0F, EntityGolem::class.java))
+                behaviors(BlockRotatingBehavior.INSTANCE,
+                          EntityDamageBehavior(3.0F, EntityGolem::class.java))
             }
             oreDict("toolWrench")
             secondaryOreDicts("toolHammer", "craftingToolWrench", "craftingToolHardHammer")
@@ -72,8 +96,6 @@ object GTLiteToolItems
             sound(GTSoundEvents.WRENCH_TOOL, true)
         }
 
-        // Universal spade has many functions, consists of crowbar, spade and saw, the original idea
-        // of this tool is from GregTech 6 and Gregicality Legacy.
         UNIVERSAL_SPADE = tool("universal_spade") {
             toolDefinition {
                 blockBreaking()
@@ -89,8 +111,6 @@ object GTLiteToolItems
             sound(SoundEvents.ENTITY_ITEM_BREAK)
         }
 
-        // Flint And Steel is extended version of vanilla items, it is another choice with Gregtech
-        // lighter (for lighter, it consumed some chemistry gases, but this is just vanilla usage).
         FLINT_AND_STEEL = tool("flint_and_steel") {
             toolDefinition {
                 behaviors(FlintAndSteelToolBehavior.Companion.INSTANCE)
@@ -99,8 +119,6 @@ object GTLiteToolItems
             toolClasses("flint_and_steel")
         }
 
-        // Club is like sword but has higher damage and lower durability, the original idea of this
-        // tool is from Gregtech 6.
         CLUB = tool("club") {
             toolDefinition {
                 attacking()
@@ -117,7 +135,6 @@ object GTLiteToolItems
 
     }
 
-    // Add tool symbols to original tools.
     fun addToolSymbols()
     {
         ToolHelper.registerToolSymbol('i', ToolItems.BUTCHERY_KNIFE)
