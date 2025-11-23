@@ -1,10 +1,13 @@
 package gregtechlite.gtlitecore.loader.recipe.foodprocessing
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
@@ -16,20 +19,35 @@ import gregtech.api.unification.material.Materials.AquaRegia
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.NitricOxide
+import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyB
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlkaliEarthGroupAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroauricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX78
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA813
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumNiobate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOLDEN_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MOON_BERRY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RAINBOW_BERRY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_APPLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STRAWBERRY
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -67,6 +85,15 @@ internal object GoldenFruitsProcessing
             .duration(5 * SECOND)
             .buildAndRegister()
 
+        // Silver Apple
+        CHEMICAL_BATH_RECIPES.recipeBuilder()
+            .inputs(ItemStack(Items.APPLE))
+            .fluidInputs(Silver.getFluid(L))
+            .output(SILVER_APPLE)
+            .EUt(VA[LV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
         // Golden Apple
         ModHandler.removeRecipeByOutput(ItemStack(Items.GOLDEN_APPLE, 1, 0))
         GTLiteRecipeHandler.removeChemicalRecipes(
@@ -94,6 +121,15 @@ internal object GoldenFruitsProcessing
             .duration(5 * SECOND)
             .buildAndRegister()
 
+        // Silver Strawberry
+        CHEMICAL_BATH_RECIPES.recipeBuilder()
+            .input(STRAWBERRY)
+            .fluidInputs(Silver.getFluid(L))
+            .output(SILVER_STRAWBERRY)
+            .EUt(VA[EV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
         // Golden Strawberry
         CHEMICAL_BATH_RECIPES.recipeBuilder()
             .input(STRAWBERRY)
@@ -103,9 +139,58 @@ internal object GoldenFruitsProcessing
             .duration(5 * SECOND)
             .buildAndRegister()
 
+        // Rainbow Berry
+        STELLAR_FORGE_RECIPES.recipeBuilder()
+            .circuitMeta(1)
+            .input(GOLDEN_STRAWBERRY)
+            .input(springSmall, Infinity, 2)
+            .fluidInputs(TitanSteel.getFluid(L))
+            .fluidInputs(LithiumNiobate.getFluid(L))
+            .fluidInputs(HastelloyX78.getFluid(L))
+            .fluidInputs(IncoloyMA813.getFluid(L))
+            .fluidInputs(ActiniumGroupAlloyB.getFluid(L))
+            .fluidInputs(Pikyonium64B.getFluid(L))
+            .fluidInputs(AlkaliEarthGroupAlloy.getFluid(L))
+            .output(RAINBOW_BERRY)
+            .EUt(VA[UEV])
+            .duration(10 * SECOND)
+            .buildAndRegister()
+
+        STELLAR_FORGE_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(GOLDEN_STRAWBERRY, 16)
+            .input(springSmall, Infinity, 32)
+            .fluidInputs(TitanSteel.getFluid(L * 16))
+            .fluidInputs(LithiumNiobate.getFluid(L * 16))
+            .fluidInputs(HastelloyX78.getFluid(L * 16))
+            .fluidInputs(IncoloyMA813.getFluid(L * 16))
+            .fluidInputs(ActiniumGroupAlloyB.getFluid(L * 16))
+            .fluidInputs(Pikyonium64B.getFluid(L * 16))
+            .fluidInputs(AlkaliEarthGroupAlloy.getFluid(L * 16))
+            .output(RAINBOW_BERRY, 16)
+            .EUt(VA[UIV])
+            .duration(5 * SECOND)
+            .buildAndRegister()
+
+        STELLAR_FORGE_RECIPES.recipeBuilder()
+            .circuitMeta(3)
+            .input(GOLDEN_STRAWBERRY, 64)
+            .input(springSmall, Infinity, 64)
+            .fluidInputs(TitanSteel.getFluid(L * 64))
+            .fluidInputs(LithiumNiobate.getFluid(L * 64))
+            .fluidInputs(HastelloyX78.getFluid(L * 64))
+            .fluidInputs(IncoloyMA813.getFluid(L * 64))
+            .fluidInputs(ActiniumGroupAlloyB.getFluid(L * 64))
+            .fluidInputs(Pikyonium64B.getFluid(L * 64))
+            .fluidInputs(AlkaliEarthGroupAlloy.getFluid(L * 64))
+            .output(RAINBOW_BERRY, 64)
+            .EUt(VA[UXV])
+            .duration(1 * SECOND)
+            .buildAndRegister()
+
         // Moon Berry
         AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(GOLDEN_STRAWBERRY)
+            .input(RAINBOW_BERRY)
             .fluidInputs(Eternity.getFluid(L))
             .output(MOON_BERRY)
             .EUt(VA[UXV])

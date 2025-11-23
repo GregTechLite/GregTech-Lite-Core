@@ -6,9 +6,13 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
+import gregtech.api.recipes.ingredients.IntCircuitIngredient
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AnnealedCopper
@@ -17,6 +21,7 @@ import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
+import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.PolyvinylAcetate
@@ -83,6 +88,12 @@ object SolarPanelChain
             .cleanroom(CleanroomType.CLEANROOM)
             .buildAndRegister()
 
+        // Deleted Solar-Grade Silicon EBF gas protective recipe.
+        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+            arrayOf(IntCircuitIngredient.getIntegratedCircuit(2),
+                    OreDictUnifier.get(dust, SolarGradeSilicon)),
+                    arrayOf(Nitrogen.getFluid(1000)))
+
         // Solar Panel
         ModHandler.removeRecipeByName("gregtech:solar_panel_basic")
         CHEMICAL_PLANT_RECIPES.recipeBuilder()
@@ -123,8 +134,6 @@ object SolarPanelChain
         ModHandler.removeRecipeByName("gregtech:solar_panel_ulv")
         ModHandler.removeRecipeByName("gregtech:solar_panel_lv")
     }
-
-
 
     // @formatter:on
 
