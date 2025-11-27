@@ -928,6 +928,9 @@ metaitem.debug.structure_writer.rotate_along_y_axis=沿Y轴旋转
 metaitem.debug.structure_writer.empty=无
 metaitem.debug.structure_writer.structure_scale=大小：§e%s§fx§e%s§fx§e%s§f（长x高x宽）
 
+metaitem.debug.fuel_rod.creative.name=创造模式核燃料棒
+metaitem.debug.fuel_rod.creative.tooltip.1=仅用于在§f创造模式§7下调试核反应堆的辅助工具
+
 metaitem.board.gooware.name=聚酰亚胺电路基板
 metaitem.board.gooware.tooltip=杜邦™ Pyralux® TK层压薄膜
 metaitem.board.optical.name=氮化镓半导体电路基板
@@ -3895,6 +3898,8 @@ gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/稳定�
 gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/聚变线圈等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
+
+gtlitecore.tooltip.contributor_item=§d§l贡献者物品
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=配置界面

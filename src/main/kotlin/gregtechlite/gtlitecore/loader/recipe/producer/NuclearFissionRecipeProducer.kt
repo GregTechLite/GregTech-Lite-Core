@@ -71,6 +71,7 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnrich
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnrichedDepleted
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensityDepleted
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREATIVE_NUCLEAR_FUEL_ROD
 import net.minecraftforge.fluids.FluidStack
 
 internal object NuclearFissionRecipeProducer
@@ -174,6 +175,14 @@ internal object NuclearFissionRecipeProducer
         // Pu239 U235
         createFission(MOX, IV, 45 * SECOND, 1050)
         depletedRodRecycling(MOX, Uranium235, Plutonium239)
+
+        // Testing Fission
+        NUCLEAR_FUELS.recipeBuilder()
+            .input(CREATIVE_NUCLEAR_FUEL_ROD)
+            .output(CREATIVE_NUCLEAR_FUEL_ROD)
+            .EUt(VA[IV])
+            .duration(Int.MAX_VALUE)
+            .buildAndRegister()
     }
 
     /**

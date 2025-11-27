@@ -106,6 +106,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_DIODE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_INDUCTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COSMIC_SMD_TRANSISTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREATIVE_NUCLEAR_FUEL_ROD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_ADAMANTIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_COSMIC_NEUTRONIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_INFINITY
@@ -1048,6 +1049,12 @@ object GTLiteMetaItem1
                 }
             })
         .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
+
+        CREATIVE_NUCLEAR_FUEL_ROD = item(1002, "debug.fuel_rod.creative")
+            .addComponents(TooltipBehavior {
+                it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+                it.add(I18n.format("metaitem.debug.fuel_rod.creative.tooltip.1"))
+            })
 
         // endregion
 

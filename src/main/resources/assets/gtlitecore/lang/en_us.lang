@@ -928,6 +928,9 @@ metaitem.debug.structure_writer.rotate_along_y_axis=Rotate along Y-axis
 metaitem.debug.structure_writer.empty=Empty
 metaitem.debug.structure_writer.structure_scale=Scale: §e%s§fx§e%s§fx§e%s§f (LxHxW)
 
+metaitem.debug.fuel_rod.creative.name=Creative Nuclear Fuel Rod
+metaitem.debug.fuel_rod.creative.tooltip.1=§fCreative Mode Only§7 Nuclear Reactor Debug Tool
+
 metaitem.board.gooware.name=Kapton™ Board
 metaitem.board.gooware.tooltip=DuPont™ Pyralux® TK Laminate Film
 metaitem.board.optical.name=Gallium Nitride Semiconductor Board
@@ -3890,6 +3893,8 @@ gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/Stabiliz
 gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/Fusion Coil Tier
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
 gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Disabled
+
+gtlitecore.tooltip.contributor_item=§d§lContributor Item
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=Configuration Screen
