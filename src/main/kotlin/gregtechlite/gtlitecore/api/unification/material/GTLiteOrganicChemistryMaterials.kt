@@ -7,6 +7,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.fluids.attribute.FluidAttributes
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
+import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
@@ -239,6 +240,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhosphonitrilicCh
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phosphorene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhosphorylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PigmentRed
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyethyleneTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyisoprene
@@ -2348,6 +2350,15 @@ object GTLiteOrganicChemistryMaterials
             liquid()
             colorAverage(Ethylene, VinylAcetate)
             components(Ethylene, 3, VinylAcetate, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8235 Pigment Red
+        PigmentRed = addMaterial(8235, "pigment_red")
+        {
+            dust()
+            color(0xB73F5D)
+            components(Carbon, 40, Hydrogen, 26, Nitrogen, 4, Oxygen, 8, Sulfur, 2, Barium, 1)
             flags(DISABLE_DECOMPOSITION)
         }
 

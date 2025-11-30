@@ -19,6 +19,7 @@ import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barite
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.BariumSulfide
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
@@ -40,9 +41,11 @@ import gregtech.api.unification.material.Materials.Nitrobenzene
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.RockSalt
+import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
@@ -53,14 +56,18 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueVitriol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BurntSienna
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
@@ -70,6 +77,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperArsenite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyanIndigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiaminostilbenedisulfonicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diaminotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
@@ -91,6 +99,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Naphthylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nigrosin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PigmentRed
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumFerrocyanideTrihydrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumManganate
@@ -127,6 +136,7 @@ internal object DyesChain
         diketopyrrolopyrroleProcess() // Orange
         eosinYProcess() // Pink
         manganeseBlueProcess() // Light Blue
+        pigmentRedProcess() // Magenta
     }
 
     private fun siennaProcess()
@@ -499,6 +509,29 @@ internal object DyesChain
             .EUt(VA[LV])
             .duration(10 * SECOND)
             .buildAndRegister()
+    }
+
+    private fun pigmentRedProcess()
+    {
+
+        // 2BaS + H2SO4 + 2C6H3(NH2)2CH3 + 2C10H8 + 6CO2 -> C40H26N4O8S2Ba + 6H2O + BaO + S + O (drop)
+        CHEMICAL_PLANT_RECIPES.recipeBuilder()
+            .notConsumable(dust, Rutile)
+            .notConsumable(dust, AluminiumSulfate)
+            .input(dust, BariumSulfide, 4)
+            .fluidInputs(SulfuricAcid.getFluid(1000))
+            .fluidInputs(Diaminotoluene.getFluid(2000))
+            .fluidInputs(Naphthalene.getFluid(2000))
+            .fluidInputs(CarbonDioxide.getFluid(6000))
+            .output(dust, PigmentRed, 64)
+            .output(dust, PigmentRed, 17)
+            .output(dust, BariumOxide, 2)
+            .output(dust, Sulfur)
+            .fluidOutputs(Water.getFluid(6000))
+            .EUt(VA[IV])
+            .duration(45 * SECOND)
+            .buildAndRegister()
+
     }
 
     // @formatter:on

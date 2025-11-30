@@ -737,6 +737,7 @@ object GTLiteMaterials
     lateinit var Isophthaloylbisdiethylthiourea: Material
     lateinit var Silane: Material
     lateinit var EthyleneVinylAcetatePolymer: Material
+    lateinit var PigmentRed: Material
 
     // endregion
 
