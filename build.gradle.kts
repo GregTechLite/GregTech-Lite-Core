@@ -128,7 +128,7 @@ dependencies {
     api(libs.codeChickenLib)
     api(libs.ctm)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
-    implementation(deobf(files("libs/gregtech-1.12.2-master-#2874.jar")))
+    implementation(deobf(files("libs/gregtech-1.12.2-master-#2700.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
