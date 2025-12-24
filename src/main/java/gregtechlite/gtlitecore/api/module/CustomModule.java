@@ -1,5 +1,7 @@
 package gregtechlite.gtlitecore.api.module;
 
+import com.morphismmc.morphismlib.collection.ListOps;
+import com.morphismmc.morphismlib.collection.SetOps;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -21,18 +23,20 @@ import java.util.Set;
 
 public interface CustomModule
 {
+
     /**
      * What other modules this module depends on.
      * <p>
-     * For example, {@code new ResourceLocation("gtlitecore", "module_name")}
-     * represents a dependency on the module "module_name" in the container "gtlitecore".
+     * For example, {@code new ResourceLocation("gtlitecore", "module_name")} represents a dependency on the
+     * module <tt>module_name</tt> in the container <tt>gtlitecore"</tt>.
      */
     default Set<ResourceLocation> getDependencyUids()
     {
-        return Collections.emptySet();
+        return SetOps.of();
     }
 
-    /* -------------------------------- FML Life cycle Events -------------------------------- */
+    // region FML Life cycle Events
+
     // Construction Event means events will be loaded when Mod is starting to loaded.
     default void construction(FMLConstructionEvent event) {}
 
@@ -64,7 +68,8 @@ public interface CustomModule
 
     // Server Stopped Event means events will be loaded when Server is stopped.
     default void serverStopped(FMLServerStoppedEvent event) {}
-    /* --------------------------------------------------------------------------------------- */
+
+    // endregion
 
     /**
      * Register packets using packet handling API here.
@@ -80,7 +85,7 @@ public interface CustomModule
     @NotNull
     default List<Class<?>> getEventBusSubscribers()
     {
-        return Collections.emptyList();
+        return ListOps.of();
     }
 
     /**
@@ -92,7 +97,7 @@ public interface CustomModule
     @NotNull
     default List<Class<?>> getTerrainGenBusSubscribers()
     {
-        return Collections.emptyList();
+        return ListOps.of();
     }
 
     /**
@@ -104,7 +109,7 @@ public interface CustomModule
     @NotNull
     default List<Class<?>> getOreGenBusSubscribers()
     {
-        return Collections.emptyList();
+        return ListOps.of();
     }
 
     /**
