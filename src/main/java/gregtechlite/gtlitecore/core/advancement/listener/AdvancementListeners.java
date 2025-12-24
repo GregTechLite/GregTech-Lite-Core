@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.core.advancement.listener;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
+import com.morphismmc.morphismlib.collection.ListOps;
+import com.morphismmc.morphismlib.collection.SetOps;
 import gregtechlite.gtlitecore.api.advancement.AdvancementCriterion;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
@@ -16,7 +16,7 @@ public class AdvancementListeners<T extends AdvancementCriterion>
 {
 
     private final PlayerAdvancements advancements;
-    private final Set<ICriterionTrigger.Listener<T>> listeners = Sets.newHashSet();
+    private final Set<ICriterionTrigger.Listener<T>> listeners = SetOps.of();
 
     public AdvancementListeners(PlayerAdvancements advancementsIn)
     {
@@ -40,16 +40,20 @@ public class AdvancementListeners<T extends AdvancementCriterion>
 
     public void trigger(EntityPlayerMP player)
     {
-        List<ICriterionTrigger.Listener<T>> triggerListeners = Lists.newArrayList();
+        List<ICriterionTrigger.Listener<T>> triggerListeners = ListOps.ofMutable();
         for (ICriterionTrigger.Listener<T> listener : listeners)
         {
             if (listener.getCriterionInstance().test(player))
+            {
                 triggerListeners.add(listener);
+            }
         }
         if (!triggerListeners.isEmpty())
         {
             for (ICriterionTrigger.Listener<T> listener : triggerListeners)
+            {
                 listener.grantCriterion(advancements);
+            }
         }
     }
 
