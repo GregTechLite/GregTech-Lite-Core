@@ -56,7 +56,8 @@ public final class NetworkHandlerImpl implements NetworkHandler
     {
         if (GTLiteAPI.moduleManager.hasPassedStage(ModuleStage.PRE_INIT))
         {
-            CoreModule.logger.error("Could not register packet {} as packet registration has ended!", packetClass.getName());
+            CoreModule.logger.error("Could not register packet {} as packet registration has ended!",
+                    packetClass.getName());
             return;
         }
 
@@ -64,12 +65,14 @@ public final class NetworkHandlerImpl implements NetworkHandler
         boolean hasClientExecutor = ClientExecutor.class.isAssignableFrom(packetClass);
         if (hasServerExecutor && hasClientExecutor)
         {
-            CoreModule.logger.error("Could not register packet {}, as it is both a Server and Client executor! Only one allowed. Skipping...", packetClass.getName());
+            CoreModule.logger.error("Could not register packet {}, as it is both a Server and Client executor! Only one allowed. Skipping...",
+                    packetClass.getName());
             return;
         }
         if (!hasServerExecutor && !hasClientExecutor)
         {
-            CoreModule.logger.error("Could not register packet {}, as it does not have an executor! Must have either IServerExecutor OR IClientExecutor. Skipping...", packetClass.getName());
+            CoreModule.logger.error("Could not register packet {}, as it does not have an executor! Must have either IServerExecutor OR IClientExecutor. Skipping...",
+                    packetClass.getName());
             return;
         }
         packetHandler.registerPacket(packetClass);
@@ -128,9 +131,13 @@ public final class NetworkHandlerImpl implements NetworkHandler
             NetHandlerPlayClient handler = (NetHandlerPlayClient) event.getHandler();
             IThreadListener threadListener = FMLCommonHandler.instance().getWorldThread(handler);
             if (threadListener.isCallingFromMinecraftThread())
+            {
                 executor.executeClient(handler);
+            }
             else
+            {
                 threadListener.addScheduledTask(() -> executor.executeClient(handler));
+            }
         }
     }
 
@@ -144,9 +151,13 @@ public final class NetworkHandlerImpl implements NetworkHandler
             NetHandlerPlayServer handler = (NetHandlerPlayServer) event.getHandler();
             IThreadListener threadListener = FMLCommonHandler.instance().getWorldThread(handler);
             if (threadListener.isCallingFromMinecraftThread())
+            {
                 executor.executeServer(handler);
+            }
             else
+            {
                 threadListener.addScheduledTask(() -> executor.executeServer(handler));
+            }
         }
     }
 
@@ -160,15 +171,20 @@ public final class NetworkHandlerImpl implements NetworkHandler
     }
 
     @NotNull
-    private NetworkPacket toGTPacket(@NotNull FMLProxyPacket proxyPacket) throws NoSuchMethodException, InvocationTargetException,
-                                                                                           InstantiationException, IllegalAccessException
+    private NetworkPacket toGTPacket(@NotNull FMLProxyPacket proxyPacket) throws NoSuchMethodException,
+                                                                                 InvocationTargetException,
+                                                                                 InstantiationException,
+                                                                                 IllegalAccessException
     {
         PacketBuffer payload = (PacketBuffer) proxyPacket.payload();
         Class<? extends NetworkPacket> clazz = packetHandler.getPacketClass(payload.readVarInt());
         NetworkPacket packet = clazz.getConstructor().newInstance();
         packet.decode(payload);
         if (payload.readableBytes() != 0)
-            GTLiteLog.logger.error("NetworkHandler failed to finish reading packet with class {} and {} bytes remaining", clazz.getName(), payload.readableBytes());
+        {
+            GTLiteLog.logger.error("NetworkHandler failed to finish reading packet with class {} and {} bytes remaining",
+                    clazz.getName(), payload.readableBytes());
+        }
         return packet;
     }
 
