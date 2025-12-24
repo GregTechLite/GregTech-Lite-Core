@@ -34,7 +34,8 @@ public class AdvancementTriggerImpl<T extends AdvancementCriterion> implements A
                             @NotNull Listener<T> listener)
     {
         AdvancementListeners<T> advancementListener = listeners.get(advancementsIn);
-        if (advancementListener == null) {
+        if (advancementListener == null)
+        {
             advancementListener = new AdvancementListeners<>(advancementsIn);
             listeners.put(advancementsIn, advancementListener);
         }
@@ -46,10 +47,13 @@ public class AdvancementTriggerImpl<T extends AdvancementCriterion> implements A
                                @NotNull Listener<T> listener)
     {
         AdvancementListeners<T> advancementListener = listeners.get(advancementsIn);
-        if (advancementListener != null) {
+        if (advancementListener != null)
+        {
             advancementListener.remove(listener);
             if (advancementListener.isEmpty())
+            {
                 listeners.remove(advancementsIn);
+            }
         }
     }
 
@@ -72,7 +76,9 @@ public class AdvancementTriggerImpl<T extends AdvancementCriterion> implements A
     {
         AdvancementListeners<T> listener = listeners.get(player.getAdvancements());
         if (listener != null)
+        {
             listener.trigger(player);
+        }
     }
 
     @NotNull
