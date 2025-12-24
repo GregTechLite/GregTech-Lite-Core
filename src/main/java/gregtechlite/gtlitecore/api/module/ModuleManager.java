@@ -10,12 +10,12 @@ public interface ModuleManager
 
     default boolean isModuleEnabled(String moduleId)
     {
-        return this.isModuleEnabled(GTLiteMod.id(moduleId));
+        return isModuleEnabled(GTLiteMod.id(moduleId));
     }
 
     default boolean isModuleEnabled(String containerId, String moduleId)
     {
-        return this.isModuleEnabled(new ResourceLocation(containerId, moduleId));
+        return isModuleEnabled(new ResourceLocation(containerId, moduleId));
     }
 
     void registerContainer(CustomModuleContainer container);

@@ -314,7 +314,7 @@ public final class ModuleManagerImpl implements ModuleManager
     /**
      * Forward incoming IMC messages to each loaded module.
      *
-     * @param messages The messages to forwad.
+     * @param messages The messages to forward.
      */
     public void processIMC(@Unmodifiable @NotNull ImmutableList<FMLInterModComms.IMCMessage> messages)
     {
