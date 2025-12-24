@@ -1,10 +1,10 @@
 package gregtechlite.gtlitecore.core.sound;
 
+import com.morphismmc.morphismlib.client.Games;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import gregtechlite.gtlitecore.api.GTLiteAPI;
 import gregtechlite.gtlitecore.api.sound.SoundManager;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
@@ -51,24 +51,26 @@ public class SoundManagerImpl implements SoundManager
     @Override
     public SoundEvent registerSound(String soundName)
     {
-        String containerID = GTLiteAPI.moduleManager.getLoadedContainer().getId();
-        if (containerID == null)
-            containerID = MOD_ID;
-        return this.registerSound(containerID, soundName);
+        String containerId = GTLiteAPI.moduleManager.getLoadedContainer().getId();
+        if (containerId == null)
+        {
+            containerId = MOD_ID;
+        }
+        return registerSound(containerId, soundName);
     }
 
-    @Override
     @SideOnly(Side.CLIENT)
+    @Override
     public ISound startTileSound(ResourceLocation soundName, float volume, BlockPos pos)
     {
         ISound sound = sounds.get(pos);
-        if (sound == null || !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
+        if (sound == null || !Games.mc().getSoundHandler().isSoundPlaying(sound))
         {
             sound = new PositionedSoundRecord(soundName, SoundCategory.BLOCKS, volume, 1.0F,
                     true, 0, ISound.AttenuationType.LINEAR,
                     pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
             sounds.put(pos, sound);
-            Minecraft.getMinecraft().getSoundHandler().playSound(sound);
+            Games.mc().getSoundHandler().playSound(sound);
         }
         return sound;
     }
@@ -80,7 +82,7 @@ public class SoundManagerImpl implements SoundManager
         ISound sound = sounds.get(pos);
         if (sound != null)
         {
-            Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
+            Games.mc().getSoundHandler().stopSound(sound);
             sounds.remove(pos);
         }
     }
