@@ -162,7 +162,7 @@ internal object PistonRecipes
 
         // UV
         GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
-            ELECTRIC_MOTOR_ZPM.stackForm, TOOL_DATA_ORB.stackForm)
+            ELECTRIC_PISTON_ZPM.stackForm, TOOL_DATA_ORB.stackForm)
 
         GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
             arrayOf(ELECTRIC_MOTOR_UV.stackForm,
