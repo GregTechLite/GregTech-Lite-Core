@@ -11,6 +11,7 @@ import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Air
+import gregtech.api.unification.material.Materials.BlackSteel
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.EnderAir
 import gregtech.api.unification.material.Materials.Helium
@@ -99,7 +100,7 @@ internal object BathCondenserRecipes
                 .buildAndRegister()
         }
 
-        // Hot Silicon and Kanthal ingot coolant.
+        // Hot Silicon, Kanthal and Black Steel ingot coolant.
         GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES,
             arrayOf(OreDictUnifier.get(ingotHot, Silicon)),
             arrayOf(Water.getFluid(100)))
@@ -112,6 +113,13 @@ internal object BathCondenserRecipes
             arrayOf(Water.getFluid(100)))
         GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES,
             arrayOf(OreDictUnifier.get(ingotHot, Kanthal)),
+            arrayOf(DistilledWater.getFluid(100)))
+
+        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES,
+            arrayOf(OreDictUnifier.get(ingotHot, BlackSteel)),
+            arrayOf(Water.getFluid(100)))
+        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES,
+            arrayOf(OreDictUnifier.get(ingotHot, BlackSteel)),
             arrayOf(DistilledWater.getFluid(100)))
 
         for (fluidStack in arrayOf(
@@ -133,6 +141,14 @@ internal object BathCondenserRecipes
                 .input(ingotHot, Kanthal)
                 .fluidInputs(fluidStack)
                 .output(ingot, Kanthal)
+                .EUt(VA[MV])
+                .duration(10 * SECOND)
+                .buildAndRegister()
+
+            BATH_CONDENSER_RECIPES.recipeBuilder()
+                .input(ingotHot,BlackSteel)
+                .fluidInputs(fluidStack)
+                .output(ingot,BlackSteel)
                 .EUt(VA[MV])
                 .duration(10 * SECOND)
                 .buildAndRegister()
