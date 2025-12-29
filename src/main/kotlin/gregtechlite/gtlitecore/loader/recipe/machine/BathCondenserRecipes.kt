@@ -100,7 +100,7 @@ internal object BathCondenserRecipes
                 .buildAndRegister()
         }
 
-        // Hot Silicon, Kanthal and BlackSteel ingot coolant.
+        // Hot Silicon, Kanthal and Black Steel ingot coolant.
         GTRecipeHandler.removeRecipesByInputs(CHEMICAL_BATH_RECIPES,
             arrayOf(OreDictUnifier.get(ingotHot, Silicon)),
             arrayOf(Water.getFluid(100)))
