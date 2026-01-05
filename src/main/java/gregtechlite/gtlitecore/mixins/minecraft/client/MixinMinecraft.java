@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.mixins.minecraft.client;
 
-import com.morphismmc.morphismlib.util.I18nUtil;
 import gregtechlite.gtlitecore.GTLiteMod;
 import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.client.util.IconLoader;
+import gregtechlite.gtlitecore.mixins.Texts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.util.Util;
@@ -75,10 +75,10 @@ public abstract class MixinMinecraft
                 final ImageIcon imageIcon = resourceURL == null ? null : new ImageIcon(resourceURL);
 
                 final int result = JOptionPane.showConfirmDialog(frame,
-                        I18nUtil.format(
+                        Texts.translated(
                                 "gtlitecore.tooltip.quit_message",
                                 "Are you sure you want to exit the game?"),
-                        I18nUtil.format(
+                        Texts.translated(
                                 "gtlitecore.tooltip.modpack_name",
                                 "GregTech Lite"),
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, imageIcon);

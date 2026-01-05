@@ -9,7 +9,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.recipes.RecipeMap;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
-import gregtechlite.gtlitecore.api.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.spongepowered.asm.mixin.Mixin;

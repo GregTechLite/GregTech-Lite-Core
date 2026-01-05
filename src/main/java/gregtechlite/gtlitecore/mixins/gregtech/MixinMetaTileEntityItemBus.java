@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
-import gregtechlite.gtlitecore.api.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 

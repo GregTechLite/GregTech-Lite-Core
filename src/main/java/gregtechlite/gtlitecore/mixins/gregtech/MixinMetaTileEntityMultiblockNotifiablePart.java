@@ -10,7 +10,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
-import gregtechlite.gtlitecore.api.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
 import org.spongepowered.asm.mixin.Final;

@@ -5,7 +5,7 @@ import appeng.api.storage.data.IAEItemStack;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityAEHostablePart;
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityMEInputBus;
-import gregtechlite.gtlitecore.api.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 
