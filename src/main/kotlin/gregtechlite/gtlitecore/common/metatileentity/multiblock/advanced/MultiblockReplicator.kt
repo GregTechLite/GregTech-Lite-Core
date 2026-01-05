@@ -25,9 +25,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fieldGenCasing
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.processorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
-import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing

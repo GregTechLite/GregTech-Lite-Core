@@ -24,9 +24,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardSpacet
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardStabilizationFieldGens
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardTimeAccelerationFieldGens
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_ARC_TRANSMITTER_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
-import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import net.minecraft.client.resources.I18n

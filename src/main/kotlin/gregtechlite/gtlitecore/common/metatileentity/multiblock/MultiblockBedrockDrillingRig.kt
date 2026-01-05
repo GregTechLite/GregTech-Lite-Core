@@ -22,9 +22,9 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
-import gregtechlite.gtlitecore.api.translation.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
-import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
