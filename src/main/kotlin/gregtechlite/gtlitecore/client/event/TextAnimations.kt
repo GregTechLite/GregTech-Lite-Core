@@ -12,7 +12,7 @@
  */
 package gregtechlite.gtlitecore.client.event
 
-import gregtechlite.gtlitecore.api.translation.CommonI18n
+import com.morphismmc.morphismlib.util.I18nUtil
 import net.minecraft.util.text.TextFormatting
 import org.jetbrains.annotations.Range
 
@@ -84,7 +84,7 @@ class GradientAnimation (val step: @Range(from = 0, to = Int.MAX_VALUE.toLong())
     operator fun invoke(text: String, vararg args: Any) : String
     {
         if (text.isBlank() || formats.isEmpty()) return text
-        val translated = CommonI18n.format(text, *args)
+        val translated = I18nUtil.format(text, *args)
         val stringBuilder = StringBuilder(translated.length * 3)
         val offset = ((System.currentTimeMillis() / delay) % formats.size).toInt()
         for (i in 0..<translated.length)
