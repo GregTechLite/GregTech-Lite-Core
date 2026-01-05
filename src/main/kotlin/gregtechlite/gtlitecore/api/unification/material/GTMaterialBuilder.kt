@@ -1,11 +1,11 @@
 package gregtechlite.gtlitecore.api.unification.material
 
+import com.morphismmc.morphismlib.util.I18nUtil
 import gregtech.api.unification.Element
 import gregtech.api.unification.Elements
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.info.MaterialFlag
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.translation.CommonI18n
 import net.minecraft.util.ResourceLocation
 
 object GTMaterialBuilder
@@ -118,7 +118,7 @@ object GTMaterialBuilder
 
         fun description(translationKey: String, defaultKey: String = translationKey): ElementBuilder
         {
-            this.symbol = CommonI18n.format(translationKey, defaultKey)
+            this.symbol = I18nUtil.format(translationKey, defaultKey)
             return this
         }
 
