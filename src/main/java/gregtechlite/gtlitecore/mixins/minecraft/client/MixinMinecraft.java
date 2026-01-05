@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.mixins.minecraft.client;
 
+import com.morphismmc.morphismlib.util.I18nUtil;
 import gregtechlite.gtlitecore.GTLiteMod;
-import gregtechlite.gtlitecore.api.translation.CommonI18n;
 import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.client.util.IconLoader;
 import net.minecraft.client.Minecraft;
@@ -62,25 +62,34 @@ public abstract class MixinMinecraft
     {
         if (gtlitecore$isCloseRequested)
             return;
+
         if (!gtlitecore$waitingDialogQuit)
         {
             gtlitecore$waitingDialogQuit = true;
             new Thread(() -> {
                 final JFrame frame = new JFrame();
                 frame.setAlwaysOnTop(true);
+
                 final URL resourceURL = IconLoader.class.getClassLoader()
                         .getResource("assets/gtlitecore/textures/icons/logo.png");
                 final ImageIcon imageIcon = resourceURL == null ? null : new ImageIcon(resourceURL);
+
                 final int result = JOptionPane.showConfirmDialog(frame,
-                        CommonI18n.format("gtlitecore.tooltip.quit_message", "Are you sure you want to exit the game?"),
-                        CommonI18n.format("gtlitecore.tooltip.modpack_name", "GregTech Lite"),
+                        I18nUtil.format(
+                                "gtlitecore.tooltip.quit_message",
+                                "Are you sure you want to exit the game?"),
+                        I18nUtil.format(
+                                "gtlitecore.tooltip.modpack_name",
+                                "GregTech Lite"),
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, imageIcon);
+
                 if (result == JOptionPane.YES_OPTION)
                 {
                     gtlitecore$isCloseRequested = true;
                     running = false;
                 }
-                this.gtlitecore$waitingDialogQuit = false;
+
+                gtlitecore$waitingDialogQuit = false;
             }).start();
         }
     }

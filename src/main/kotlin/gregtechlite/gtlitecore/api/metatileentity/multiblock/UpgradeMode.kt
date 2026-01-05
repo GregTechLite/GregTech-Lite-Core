@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.translation.mode
+package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
 enum class UpgradeMode
 {
