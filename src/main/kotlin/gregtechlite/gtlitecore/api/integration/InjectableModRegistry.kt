@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api.integration
 
-import gregtechlite.gtlitecore.api.mixins.MixinExtension
+import gregtechlite.gtlitecore.mixins.MixinExtension
 import mezz.jei.api.IModRegistry
 
 @MixinExtension

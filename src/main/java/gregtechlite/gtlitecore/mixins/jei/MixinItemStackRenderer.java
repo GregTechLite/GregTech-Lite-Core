@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.mixins.jei;
 
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder;
+import gregtechlite.gtlitecore.mixins.Compat;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import mezz.jei.plugins.vanilla.ingredients.item.ItemStackRenderer;
 import net.minecraft.client.Minecraft;
@@ -16,6 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 /**
  * Feature: Let amount fontRenderer be scalable when it is too big.
  */
+@Compat(modId = { "jei", "gregtech" })
 @Mixin(value = ItemStackRenderer.class, remap = false)
 public class MixinItemStackRenderer implements IIngredientRenderer<ItemStack>
 {

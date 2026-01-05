@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import gregtech.api.capability.INotifiableHandler;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
-import gregtechlite.gtlitecore.api.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
