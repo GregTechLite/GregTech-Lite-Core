@@ -17,7 +17,6 @@ import gregtech.common.items.MetaItems.EMITTER_UXV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -49,7 +48,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RAW_TESSERACT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RELATIVISTIC_HEAT_CAPACITY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPERCONDUCTOR_COMPOSITE
-import gregtechlite.gtlitecore.loader.recipe.chain.MutatedLivingSolderChain
 
 object NanoAssemblyComplexCasingRecipes
 {
