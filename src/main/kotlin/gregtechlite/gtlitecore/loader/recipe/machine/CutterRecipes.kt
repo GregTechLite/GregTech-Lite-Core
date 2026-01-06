@@ -5,23 +5,15 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
-import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.unification.material.Materials.DistilledWater
-import gregtech.api.unification.material.Materials.GalliumArsenide
 import gregtech.api.unification.material.Materials.Lubricant
-import gregtech.api.unification.material.Materials.Radon
-import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Water
-import gregtech.api.unification.ore.OrePrefix.block
-import gregtech.api.unification.ore.OrePrefix.dust
-import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.common.items.MetaItems.NEUTRONIUM_BOULE
 import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_WAFER
 
