@@ -43,6 +43,7 @@ import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.mixins.Implemented
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -59,7 +60,7 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
-// TODO Remove it when GTCEu PR#2769 merged.
+@Implemented(at = ["https://github.com/GregTechCEu/GregTech/pull/2769"])
 class PartMachineDualHatch(id: ResourceLocation,
                            tier: Int,
                            isExportHatch: Boolean)
