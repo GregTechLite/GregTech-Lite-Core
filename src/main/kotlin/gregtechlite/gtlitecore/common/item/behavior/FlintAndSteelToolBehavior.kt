@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.item.behavior
 
+import appeng.block.misc.BlockTinyTNT
 import gregtech.api.GTValues
 import gregtech.api.items.toolitem.behavior.IToolBehavior
 import gregtech.common.blocks.explosive.BlockGTExplosive
@@ -38,25 +39,26 @@ class FlintAndSteelToolBehavior: IToolBehavior
                                      1.0F, GTValues.RNG.nextFloat() * 0.4F + 0.8F)
 
         val blockState = world.getBlockState(pos)
-        val block = blockState.block
-        if (block is BlockTNT)
-        {
-            block.explode(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true), player)
-            world.setBlockState(pos, Blocks.AIR.defaultState, 11)
-        }
-        else if (block is BlockGTExplosive)
-        {
-            block.explode(world, pos, player as EntityLivingBase)
-            world.setBlockState(pos, Blocks.AIR.defaultState, 11)
-        }
-        else // TODO Compatible with AE2 Tiny TNT?
-        {
-            val offset = pos.offset(facing)
-            if (world.isAirBlock(offset))
-            {
-                world.setBlockState(offset, Blocks.FIRE.defaultState, 11)
-                if (!world.isRemote)
-                    CriteriaTriggers.PLACED_BLOCK.trigger(player as EntityPlayerMP, offset, stack)
+        when (val block = blockState.block) {
+            is BlockTNT -> {
+                block.explode(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true), player)
+                world.setBlockState(pos, Blocks.AIR.defaultState, 11)
+            }
+            is BlockGTExplosive -> {
+                block.explode(world, pos, player as EntityLivingBase)
+                world.setBlockState(pos, Blocks.AIR.defaultState, 11)
+            }
+            is BlockTinyTNT -> {
+                block.startFuse(world, pos, player as EntityLivingBase)
+                world.setBlockState(pos, Blocks.AIR.defaultState, 11)
+            }
+            else -> {
+                val offset = pos.offset(facing)
+                if (world.isAirBlock(offset)) {
+                    world.setBlockState(offset, Blocks.FIRE.defaultState, 11)
+                    if (!world.isRemote) CriteriaTriggers.PLACED_BLOCK.trigger(player as EntityPlayerMP, offset, stack)
+                }
+
             }
         }
         stack.damageItem(1, player)
