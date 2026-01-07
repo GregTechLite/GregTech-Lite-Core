@@ -43,13 +43,11 @@ class FlintAndSteelToolBehavior: IToolBehavior
         {
             block.explode(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true), player)
             world.setBlockState(pos, Blocks.AIR.defaultState, 11)
-            return EnumActionResult.SUCCESS
         }
         else if (block is BlockGTExplosive)
         {
             block.explode(world, pos, player as EntityLivingBase)
             world.setBlockState(pos, Blocks.AIR.defaultState, 11)
-            return EnumActionResult.SUCCESS
         }
         else // TODO Compatible with AE2 Tiny TNT?
         {
@@ -60,8 +58,9 @@ class FlintAndSteelToolBehavior: IToolBehavior
                 if (!world.isRemote)
                     CriteriaTriggers.PLACED_BLOCK.trigger(player as EntityPlayerMP, offset, stack)
             }
-            return EnumActionResult.SUCCESS
         }
+        stack.damageItem(1, player)
+        return EnumActionResult.SUCCESS
     }
 
 }
