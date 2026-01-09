@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.api.gui
 
+import com.cleanroommc.modularui.drawable.ColorType
 import com.cleanroommc.modularui.drawable.UITexture
 import gregtech.api.util.Size
 import gregtechlite.gtlitecore.api.MOD_ID
@@ -71,8 +72,8 @@ object GTLiteMuiTextures
      * - 1: Enabled
      */
     @JvmField
-    val BUTTON_ELEVATOR_EXTENSION = slice("textures/gui/widget/button_elevator_extension.png",
-                                          18, 36, 18, 18, false)
+    val BUTTON_ELEVATOR_EXTENSION = sliceImage("textures/gui/widget/button_elevator_extension.png",
+                                          18, 36, 18, 18)
 
     /**
      * Multiblock Button for Space Elevator Modules to refreshed its structure pattern.
@@ -84,80 +85,39 @@ object GTLiteMuiTextures
 
     // region Helper Methods
 
-    private fun fullImage(path: String): UITexture
-    {
-        return fullImage(path, false)
-    }
+    private fun fullImage(path: String, colorType: ColorType? = null): UITexture = UITexture.fullImage(MOD_ID, path, colorType)
 
-    private fun fullImage(path: String, canApplyTheme: Boolean): UITexture
+    @Suppress("SameParameterValue")
+    private fun sliceImage(path: String, width: Int, height: Int, newWidth: Int, newHeight: Int, colorType: ColorType? = null): Array<UITexture?>
     {
-        return UITexture.fullImage(MOD_ID, path, canApplyTheme)
-    }
+        require((width % newWidth == 0) || (height % newHeight == 0))
 
-    private fun progressBar(path: String): UITexture
-    {
-        return progressBar(path, 20, 40)
-    }
+        val countX= width / newWidth
+        val countY= height / newHeight
+        val slices = arrayOfNulls<UITexture>(countX * countY)
 
-    private fun progressBar(path: String, canApplyTheme: Boolean): UITexture
-    {
-        return progressBar(path, 20, 40, false)
-    }
-
-    private fun progressBar(path: String, width: Int, height: Int): UITexture
-    {
-        return progressBar(path, width, height, false)
-    }
-
-    private fun progressBar(path: String, size: Size): UITexture
-    {
-        return progressBar(path, size, false)
-    }
-
-    private fun progressBar(path: String, width: Int, height: Int, canApplyTheme: Boolean): UITexture
-    {
-        val builder = UITexture.Builder()
-            .location(MOD_ID, path)
-            .imageSize(width, height)
-        if (canApplyTheme) builder.canApplyTheme()
-        return builder.build()
-    }
-
-    private fun progressBar(path: String, size: Size, canApplyTheme: Boolean): UITexture
-    {
-        return progressBar(path, size.width, size.height, canApplyTheme)
-    }
-
-    private fun slice(path: String, width: Int, height: Int, sliceWidth: Int, sliceHeight: Int,
-                      canApplyTheme: Boolean): Array<UITexture>
-    {
-        require(!(width % sliceWidth != 0 || height % sliceHeight != 0)) {
-            "Slice height and slice width must divide the image evenly!"
-        }
-        val countX = width / sliceWidth
-        val countY = height / sliceHeight
-
-        val slices = mutableListOf<UITexture>()
         for (indexX in 0 ..< countX)
         {
             for (indexY in 0 ..< countY)
             {
-                slices.add(UITexture.builder()
-                               .location(MOD_ID, path)
-                               .canApplyTheme(canApplyTheme)
-                               .imageSize(width, height)
-                               .uv(indexX * sliceWidth, indexY * sliceHeight, sliceWidth, sliceHeight)
-                               .build())
+                slices[(indexX * countX) + indexY] = uiTexture{
+                    location(MOD_ID, path)
+                    colorType(colorType)
+                    imageSize(width, height)
+                    xy(indexX * newWidth, indexY * newHeight, newWidth, newHeight)
+                }
             }
         }
-        return slices.toTypedArray()
+        return slices
     }
 
-    private fun slice(path: String, size: Size, sliceSize: Size, canApplyTheme: Boolean): Array<UITexture>
-    {
-        return slice(path, size.width, size.height,
-                     sliceSize.width, sliceSize.height, canApplyTheme)
+    private fun progressBar(path: String, width: Int = 20, height: Int = 40, colorType: ColorType? = null) = uiTexture {
+        location(MOD_ID, path)
+        imageSize(width, height)
+        colorType(colorType)
     }
+
+    private fun uiTexture(builder: UITexture.Builder.() -> Unit) = UITexture.builder().apply(builder).build()
 
     // endregion
 
