@@ -1,8 +1,8 @@
 package gregtechlite.gtlitecore.api.gui
 
 import com.cleanroommc.modularui.drawable.UITexture
-import gregtech.api.GTValues
 import gregtech.api.util.Size
+import gregtechlite.gtlitecore.api.MOD_ID
 
 @Suppress("SameParameterValue")
 object GTLiteMuiTextures
@@ -11,16 +11,14 @@ object GTLiteMuiTextures
     // region Slot Textures
 
     @JvmField
-    val PRIMITIVE_FLUID_SLOT: UITexture = fullImage(
-        "textures/gui/primitive/primitive_fluid_slot.png")
+    val PRIMITIVE_FLUID_SLOT = fullImage("textures/gui/primitive/primitive_fluid_slot.png")
 
     // endregion
 
     // region Progress Bar Textures
 
     @JvmField
-    val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR: UITexture = fullImage(
-        "textures/gui/primitive/progress_bar_primitive_blast_furnace.png")
+    val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR = fullImage("textures/gui/primitive/progress_bar_primitive_blast_furnace.png")
 
     /**
      * Multiblock Progress Bar for Large Naquadah Reactor (LNR).
@@ -55,19 +53,16 @@ object GTLiteMuiTextures
     // region Overlay Textures
 
     @JvmField
-    val PRIMITIVE_INT_CIRCUIT_OVERLAY: UITexture = fullImage(
-        "textures/gui/primitive/int_circuit_overlay_primitive.png")
+    val PRIMITIVE_INT_CIRCUIT_OVERLAY = fullImage("textures/gui/primitive/int_circuit_overlay_primitive.png")
 
     // endregion
 
     // region Widget Textures
     @JvmField
-    val FUSION_REACTOR_MK4_TITLE: UITexture = fullImage(
-        "textures/gui/widget/fusion_reactor_mk4_title")
+    val FUSION_REACTOR_MK4_TITLE = fullImage("textures/gui/widget/fusion_reactor_mk4_title")
 
     @JvmField
-    val FUSION_REACTOR_MK5_TITLE: UITexture = fullImage(
-        "textures/gui/widget/fusion_reactor_mk5_title")
+    val FUSION_REACTOR_MK5_TITLE = fullImage("textures/gui/widget/fusion_reactor_mk5_title")
 
     /**
      * Multiblock Button for Space Elevator to enabled/disabled extension structure.
@@ -83,12 +78,12 @@ object GTLiteMuiTextures
      * Multiblock Button for Space Elevator Modules to refreshed its structure pattern.
      */
     @JvmField
-    val BUTTON_REFRESH_STRUCTURE_PATTERN: UITexture = fullImage(
-        "textures/gui/widget/button_refresh_structure_pattern.png")
+    val BUTTON_REFRESH_STRUCTURE_PATTERN = fullImage("textures/gui/widget/button_refresh_structure_pattern.png")
 
     // endregion
 
     // region Helper Methods
+
     private fun fullImage(path: String): UITexture
     {
         return fullImage(path, false)
@@ -96,7 +91,7 @@ object GTLiteMuiTextures
 
     private fun fullImage(path: String, canApplyTheme: Boolean): UITexture
     {
-        return UITexture.fullImage(GTValues.MODID, path, canApplyTheme)
+        return UITexture.fullImage(MOD_ID, path, canApplyTheme)
     }
 
     private fun progressBar(path: String): UITexture
@@ -122,7 +117,7 @@ object GTLiteMuiTextures
     private fun progressBar(path: String, width: Int, height: Int, canApplyTheme: Boolean): UITexture
     {
         val builder = UITexture.Builder()
-            .location(GTValues.MODID, path)
+            .location(MOD_ID, path)
             .imageSize(width, height)
         if (canApplyTheme) builder.canApplyTheme()
         return builder.build()
@@ -148,7 +143,7 @@ object GTLiteMuiTextures
             for (indexY in 0 ..< countY)
             {
                 slices.add(UITexture.builder()
-                               .location(GTValues.MODID, path)
+                               .location(MOD_ID, path)
                                .canApplyTheme(canApplyTheme)
                                .imageSize(width, height)
                                .uv(indexX * sliceWidth, indexY * sliceHeight, sliceWidth, sliceHeight)
