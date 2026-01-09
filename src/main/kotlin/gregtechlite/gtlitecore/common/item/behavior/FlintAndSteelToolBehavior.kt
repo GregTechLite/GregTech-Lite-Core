@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.item.behavior
 
 import appeng.block.misc.BlockTinyTNT
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues
 import gregtech.api.items.toolitem.behavior.IToolBehavior
 import gregtech.common.blocks.explosive.BlockGTExplosive
@@ -39,16 +40,17 @@ class FlintAndSteelToolBehavior: IToolBehavior
                                      1.0F, GTValues.RNG.nextFloat() * 0.4F + 0.8F)
 
         val blockState = world.getBlockState(pos)
-        when (val block = blockState.block) {
-            is BlockTNT -> {
+        val block = blockState.block
+        when  {
+            block is BlockTNT -> {
                 block.explode(world, pos, blockState.withProperty(BlockTNT.EXPLODE, true), player)
                 world.setBlockState(pos, Blocks.AIR.defaultState, 11)
             }
-            is BlockGTExplosive -> {
+            block is BlockGTExplosive -> {
                 block.explode(world, pos, player as EntityLivingBase)
                 world.setBlockState(pos, Blocks.AIR.defaultState, 11)
             }
-            is BlockTinyTNT -> {
+            Mods.AppliedEnergistics2.isLoaded && block is BlockTinyTNT -> {
                 block.startFuse(world, pos, player as EntityLivingBase)
                 world.setBlockState(pos, Blocks.AIR.defaultState, 11)
             }
