@@ -135,6 +135,7 @@ dependencies {
     compileOnly(libs.craftTweaker2)
 
     runtimeOnly(deobf(libs.ctm))
+    runtimeOnly(deobf(files("libs/worldedit-forge-mc1.12.2-6.1.10-dist.jar")))
 
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
