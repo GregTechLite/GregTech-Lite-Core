@@ -28,7 +28,6 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE

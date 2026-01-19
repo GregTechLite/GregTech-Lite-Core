@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.recipe.property
 
+import com.morphismmc.morphismlib.util.I18nUtil
 import gregtech.api.recipes.properties.RecipeProperty
-import gregtechlite.gtlitecore.api.translation.CommonI18n
 import net.minecraft.client.Minecraft
 import net.minecraft.nbt.NBTBase
 import net.minecraft.nbt.NBTTagByte
@@ -83,7 +83,7 @@ class RecipePropertyBuilder<T : Any>(val key: String, val type: KClass<T>)
         fun tierProperty(location: ResourceLocation) = intProperty(location.path) {
             infoSupplier = {
                 val translationKey = "${location.namespace}.recipe.$key"
-                listOf(CommonI18n.format(CommonI18n.format("$translationKey.$it", translationKey)))
+                listOf(I18nUtil.format(I18nUtil.format("$translationKey.$it", translationKey)))
             }
         }
 

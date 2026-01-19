@@ -9,6 +9,7 @@ import java.util.List;
 
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 
+@MixinOnly
 public final class MixinUtil
 {
 

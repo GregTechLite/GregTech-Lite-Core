@@ -1,10 +1,10 @@
-package gregtechlite.gtlitecore.api.translation
+package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
 import gregtech.api.capability.IMultipleRecipeMaps
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
-import gregtechlite.gtlitecore.api.translation.mode.OverclockMode
-import gregtechlite.gtlitecore.api.translation.mode.UpgradeMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import net.minecraft.client.resources.I18n
 import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.fml.relauncher.Side

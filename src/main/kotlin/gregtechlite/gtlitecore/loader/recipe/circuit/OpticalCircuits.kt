@@ -12,7 +12,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.metatileentity.multiblock.CleanroomType
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
@@ -24,15 +23,11 @@ import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
-import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Americium
-import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Bohrium
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Caesium
-import gregtech.api.unification.material.Materials.Calcium
 import gregtech.api.unification.material.Materials.Chlorine
-import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Curium
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.DinitrogenTetroxide
@@ -55,6 +50,7 @@ import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Potash
+import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.Silicon
@@ -64,7 +60,6 @@ import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.SterlingSilver
 import gregtech.api.unification.material.Materials.Sulfur
-import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
@@ -100,6 +95,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -140,8 +136,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScandiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumPentoxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumBariumCalciumCuprate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WoodsGlass
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
@@ -346,24 +344,15 @@ internal object OpticalCircuits
             .duration(7 * SECOND + 15 * TICK)
             .buildAndRegister()
 
-        // Tl + 2Ba + 2Ca + 3Cu + 10O -> TlBa2Ca2Cu3O10
-        GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES,
-            OreDictUnifier.get(foil, Thallium))
-        GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES,
-            OreDictUnifier.get(foil, Barium))
-        GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES,
-            OreDictUnifier.get(foil, Calcium))
-        GTRecipeHandler.removeRecipesByInputs(ARC_FURNACE_RECIPES,
-            OreDictUnifier.get(foil, Copper))
-
-        // Tl + 2Ba + 2Ca + 3Cu + 10O -> TlBa2Ca2Cu3O10
+        // TlCl + 2BaO + 2CaO + 3CuO + 3O -> TlBa2Ca2Cu3O10 + Cl
         ARC_FURNACE_RECIPES.recipeBuilder()
-            .input(dust, Thallium)
-            .input(dust, Barium, 2)
-            .input(dust, Calcium, 2)
-            .input(dust, Copper, 3)
-            .fluidInputs(Oxygen.getFluid(5000))
-            .output(ingotHot, ThalliumBariumCalciumCuprate, 9)
+            .input(dust, ThalliumChloride, 2)
+            .input(dust, BariumOxide, 4)
+            .input(dust, Quicklime, 4)
+            .input(dust, Tenorite, 6)
+            .fluidInputs(Oxygen.getFluid(3000))
+            .output(ingotHot, ThalliumBariumCalciumCuprate, 18)
+            .fluidOutputs(Chlorine.getFluid(1000))
             .EUt(VA[ZPM])
             .duration(8 * SECOND)
             .buildAndRegister()

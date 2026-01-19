@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.api.extension
 
+import com.morphismmc.morphismlib.util.I18nUtil
 import gregtech.api.fluids.FluidBuilder
 import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.unification.material.Material
@@ -7,7 +8,6 @@ import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.FluidProperty
 import gregtech.api.unification.material.properties.IngotProperty
 import gregtech.api.unification.material.properties.PropertyKey
-import gregtechlite.gtlitecore.api.translation.CommonI18n
 import net.minecraftforge.fluids.FluidStack
 
 // region Regular Convert Methods
@@ -57,7 +57,7 @@ fun Material.addGasAndPlasma()
 
 fun Material.setFormula(formulaKey: String, defaultKey: String = formulaKey): Material
 {
-    setFormula(CommonI18n.format(formulaKey, defaultKey))
+    setFormula(I18nUtil.format(formulaKey, defaultKey))
     return this
 }
 
