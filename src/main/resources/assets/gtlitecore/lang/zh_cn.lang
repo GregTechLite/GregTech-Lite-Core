@@ -3899,7 +3899,10 @@ gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/聚变线圈等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
 
-gtlitecore.tooltip.contributor_item=§d§l贡献者物品
+gtlitecore.tooltip.contributor_item=§l贡献者物品
+gtlitecore.tooltip.contributor_item.owner=该物品专属于§l贡献者§r %s
+gtlitecore.tooltip.contributor_item.note=感谢你对本整合包做出的贡献，正因有你这个整合包才变得更好！
+gtlitecore.tooltip.contributor_item.line=+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=配置界面

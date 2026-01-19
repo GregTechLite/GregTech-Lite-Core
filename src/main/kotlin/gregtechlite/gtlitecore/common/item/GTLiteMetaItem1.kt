@@ -20,6 +20,7 @@ import gregtech.api.util.SmallDigits
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
+import gregtechlite.gtlitecore.api.item.Contributors
 import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
 import gregtechlite.gtlitecore.client.event.TextAnimations
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -1025,7 +1026,7 @@ object GTLiteMetaItem1
 
         // endregion
 
-        // region 1001-1100: Debug Tools
+        // region 1001-1100: Debug Tools & Contributor Items
         STRUCTURE_WRITER = item(1001, "debug.structure_writer")
             .addComponents(StructureWriterBehavior)
             .addComponents(TooltipBehavior {
@@ -1052,8 +1053,13 @@ object GTLiteMetaItem1
 
         CREATIVE_NUCLEAR_FUEL_ROD = item(1002, "debug.fuel_rod.creative")
             .addComponents(TooltipBehavior {
-                it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
                 it.add(I18n.format("metaitem.debug.fuel_rod.creative.tooltip.1"))
+
+                it.add(I18n.format("gtlitecore.tooltip.contributor_item.line"))
+                it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner",
+                    Contributors.LLAMA_WEI.contributorName))
+                it.add(I18n.format("gtlitecore.tooltip.contributor_item.note"))
+                it.add(I18n.format("gtlitecore.tooltip.contributor_item.line"))
             })
 
         // endregion

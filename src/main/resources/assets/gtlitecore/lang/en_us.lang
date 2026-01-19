@@ -3894,7 +3894,10 @@ gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/Fusion Coil Tier
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
 gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Disabled
 
-gtlitecore.tooltip.contributor_item=§d§lContributor Item
+gtlitecore.tooltip.contributor_item=§lContributor Item
+gtlitecore.tooltip.contributor_item.owner=This Item is exclusively owned by §lContributor§r %s
+gtlitecore.tooltip.contributor_item.note=Thank you for your contribution to the Modpack. The Modpack will becoming even better because of you!
+gtlitecore.tooltip.contributor_item.line=+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 # UI Elements
 gtlitecore.ui.configuration_screen.title=Configuration Screen
