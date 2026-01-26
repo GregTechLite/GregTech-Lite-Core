@@ -1648,11 +1648,11 @@ gtlitecore.recipe.accepted_entity=Required %s on Machine Top
 gtlitecore.recipe.entity_name.player=Player
 
 gtlitecore.recipe.advanced_fusion_tier=Tier: Error
-gtlitecore.recipe.advanced_fusion_tier.1=MK1
-gtlitecore.recipe.advanced_fusion_tier.2=MK2
-gtlitecore.recipe.advanced_fusion_tier.3=MK3
-gtlitecore.recipe.advanced_fusion_tier.4=MK4
-gtlitecore.recipe.advanced_fusion_tier.5=MK5
+gtlitecore.recipe.advanced_fusion_tier.1=Tier: MK1
+gtlitecore.recipe.advanced_fusion_tier.2=Tier: MK2
+gtlitecore.recipe.advanced_fusion_tier.3=Tier: MK3
+gtlitecore.recipe.advanced_fusion_tier.4=Tier: MK4
+gtlitecore.recipe.advanced_fusion_tier.5=Tier: MK5
 
 gtlitecore.recipe.component_assembly_line_tier=Component Assembly Casing Tier: Error
 gtlitecore.recipe.component_assembly_line_tier.1=Component Assembly Casing Tier: LV

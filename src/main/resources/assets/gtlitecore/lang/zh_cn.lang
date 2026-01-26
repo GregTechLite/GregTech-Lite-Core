@@ -1647,11 +1647,11 @@ gtlitecore.recipe.accepted_entity=需要顶部存在：%s
 gtlitecore.recipe.entity_name.player=玩家
 
 gtlitecore.recipe.advanced_fusion_tier=等级：错误
-gtlitecore.recipe.advanced_fusion_tier.1=MK1
-gtlitecore.recipe.advanced_fusion_tier.2=MK2
-gtlitecore.recipe.advanced_fusion_tier.3=MK3
-gtlitecore.recipe.advanced_fusion_tier.4=MK4
-gtlitecore.recipe.advanced_fusion_tier.5=MK5
+gtlitecore.recipe.advanced_fusion_tier.1=等级：MK1
+gtlitecore.recipe.advanced_fusion_tier.2=等级：MK2
+gtlitecore.recipe.advanced_fusion_tier.3=等级：MK3
+gtlitecore.recipe.advanced_fusion_tier.4=等级：MK4
+gtlitecore.recipe.advanced_fusion_tier.5=等级：MK5
 
 gtlitecore.recipe.component_assembly_line_tier=部件装配外壳等级：错误
 gtlitecore.recipe.component_assembly_line_tier.1=部件装配外壳等级：LV
