@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.client;
 
 import gregtechlite.gtlitecore.api.GTLiteLog;
+import gregtechlite.gtlitecore.client.event.CapesHandler;
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips;
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures;
@@ -28,6 +29,7 @@ public class ClientProxy extends CommonProxy
         GTLiteTextures.preInit();
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper.class);
         MinecraftForge.EVENT_BUS.register(GTLiteTooltips.class);
+        MinecraftForge.EVENT_BUS.register(CapesHandler.class);
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers.INSTANCE);
         CosmicShaderProgram.initShaders();
         GTLiteMetaEntities.initRenderers();
