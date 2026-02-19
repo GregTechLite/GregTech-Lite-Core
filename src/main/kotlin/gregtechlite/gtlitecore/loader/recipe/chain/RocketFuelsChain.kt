@@ -19,6 +19,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DenseHydrazineRocketFuel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerosene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RP1RocketFuel
