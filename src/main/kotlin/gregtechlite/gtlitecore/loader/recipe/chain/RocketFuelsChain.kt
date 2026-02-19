@@ -37,7 +37,7 @@ internal object RocketFuelsChain
 
         // RP-1 Rocket Fuel
         MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Kerosene.getFluid(1000))
+            .fluidInputs(CoalTar.getFluid(1000))
             .fluidInputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
             .fluidOutputs(RP1RocketFuel.getFluid(1000))
             .EUt(VA[MV])
