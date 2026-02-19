@@ -19,6 +19,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DenseHydrazineRocketFuel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerosene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RP1RocketFuel
@@ -36,7 +37,7 @@ internal object RocketFuelsChain
 
         // RP-1 Rocket Fuel
         MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(CoalTar.getFluid(1000))
+            .fluidInputs(Kerosene.getFluid(1000))
             .fluidInputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
             .fluidOutputs(RP1RocketFuel.getFluid(1000))
             .EUt(VA[MV])

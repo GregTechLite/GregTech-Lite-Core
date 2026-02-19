@@ -11,6 +11,8 @@ import gregtech.api.recipes.RecipeMaps.COMBUSTION_GENERATOR_FUELS
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
+import gregtech.api.recipes.RecipeMaps.GAS_TURBINE_FUELS
+import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.AluminiumSulfite
@@ -60,6 +62,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -68,6 +71,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbon5Fraction
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dicyclopentadiene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5Fraction
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerosene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ParaXylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pentane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZSM5
@@ -99,6 +103,15 @@ internal object OilsChain
             .fluidOutputs(Helium.getFluid(24))
             .EUt(VA[HV])
             .duration(5 * SECOND)
+            .buildAndRegister()
+
+        //Kerosene Mixing
+        MIXER_RECIPES.recipeBuilder()
+            .fluidInputs(Naphtha.getFluid(3000),
+                LightFuel.getFluid(2000))
+            .fluidOutputs(Kerosene.getFluid(5000))
+            .EUt(VA[MV])
+            .duration(16*TICK)
             .buildAndRegister()
     }
 
@@ -434,6 +447,12 @@ internal object OilsChain
             .duration(2 * TICK)
             .buildAndRegister()
 
+        //Kerosene(Jet Fuel)
+        GAS_TURBINE_FUELS.recipeBuilder()
+            .fluidInputs(Kerosene.getFluid(1))
+            .EUt(V[LV])
+            .duration(15*TICK)
+            .buildAndRegister()
     }
 
     private fun catalyticReforming()
