@@ -45,6 +45,7 @@ import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Lutetium
 import gregtech.api.unification.material.Materials.Magnesia
 import gregtech.api.unification.material.Materials.Magnesite
+import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pentlandite
@@ -96,6 +97,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LutetiumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeodymiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Orpiment
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumOxide
@@ -513,6 +515,17 @@ internal object OxidesChain
             .input(dust, Europium, 2)
             .fluidInputs(Oxygen.getFluid(3000))
             .output(dust, EuropiumOxide, 5)
+            .EUt(VA[MV])
+            .duration(2 * SECOND + 10 * TICK)
+            .buildAndRegister()
+
+        // Add another choice of Nd2O3, do not push player used REE distillation.
+        // 2Nd + 3O -> Nd2O3
+        ROASTER_RECIPES.recipeBuilder()
+            .circuitMeta(3)
+            .input(dust, Neodymium, 2)
+            .fluidInputs(Oxygen.getFluid(3000))
+            .output(dust, NeodymiumOxide, 5)
             .EUt(VA[MV])
             .duration(2 * SECOND + 10 * TICK)
             .buildAndRegister()

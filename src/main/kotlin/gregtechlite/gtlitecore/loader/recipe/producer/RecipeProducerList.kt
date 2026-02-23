@@ -26,6 +26,10 @@ internal object RecipeProducerList
         ComponentAssemblyLineRecipeProducer.produce()
         NuclearFissionRecipeProducer.produce()
         PCBFactoryRecipeProducer.produce()
+    }
+
+    fun postInit()
+    {
         AdvancedFusionRecipeProducer.produce()
     }
 

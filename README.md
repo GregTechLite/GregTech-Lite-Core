@@ -1,4 +1,4 @@
-# ![logo](logo.png "GregTech Lite Core Logo") GregTech Lite Core
+# GregTech Lite Core <img src="logo.png" alt="logo" width="160" align="right" style="margin-left: 16px; vertical-align: middle">
 
 The Spiritual Successor of **[Gregicality Legacy][GCYL]**.
 
