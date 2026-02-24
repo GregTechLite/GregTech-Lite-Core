@@ -24,8 +24,10 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Iodine
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.LightFuel
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Methanol
+import gregtech.api.unification.material.Materials.Naphtha
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phosphorus
@@ -40,6 +42,8 @@ import gregtech.api.unification.material.Materials.Tetranitromethane
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.VinylAcetate
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
+import gregtech.api.unification.material.info.MaterialFlags.EXPLOSIVE
+import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LENS
@@ -297,6 +301,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Truxene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylenol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Xylose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerosene
 import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMaterial
 
 object GTLiteOrganicChemistryMaterials
@@ -2349,6 +2354,13 @@ object GTLiteOrganicChemistryMaterials
             colorAverage(Ethylene, VinylAcetate)
             components(Ethylene, 3, VinylAcetate, 2)
             flags(DISABLE_DECOMPOSITION)
+        }
+        //8235 Kerosene
+        Kerosene = addMaterial(8235, "kerosene"){
+            liquid()
+            components(Naphtha, 3, LightFuel, 2)
+            colorAverage()
+            flags(DISABLE_DECOMPOSITION,FLAMMABLE,EXPLOSIVE)
         }
 
     }
