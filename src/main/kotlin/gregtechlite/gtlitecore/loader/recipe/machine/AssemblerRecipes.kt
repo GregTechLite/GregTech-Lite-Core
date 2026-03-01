@@ -21,6 +21,7 @@ import gregtech.api.items.OreDictNames
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Copper
@@ -28,6 +29,7 @@ import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Kanthal
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Platinum
@@ -43,6 +45,7 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
+import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
 import gregtech.api.unification.ore.OrePrefix.cableGtOctal
@@ -60,6 +63,7 @@ import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
@@ -77,6 +81,8 @@ import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HULL
@@ -96,6 +102,7 @@ import gregtech.common.metatileentities.MetaTileEntities.STEEL_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
@@ -412,7 +419,12 @@ internal object AssemblerRecipes
 
     private fun dynamoHatchesRecipes()
     {
-        // ...
+        // FIXME Delete this bugfix when [GTCEu PR#2910](https://github.com/GregTechCEu/GregTech/pull/2910) merged.
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            TRANSFORMER[ULV].stackForm,
+            ENERGY_OUTPUT_HATCH_4A[ULV].stackForm,
+            OreDictUnifier.get(wireGtOctal, Lead, 2),
+            OreDictUnifier.get(plate, WroughtIron, 4))
     }
 
     private fun hiAmpEnergyHatchesRecipes()
