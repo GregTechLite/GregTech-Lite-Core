@@ -1364,6 +1364,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(TOOL_DATA_STICK, 16)
             .EUt(1200) // EV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .circuitInfo(TOOL_DATA_STICK)
             .buildAndRegister()
 
         // Data Orb
@@ -1378,6 +1379,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(TOOL_DATA_ORB, 16)
             .EUt(9600) // LuV
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .circuitInfo(TOOL_DATA_ORB)
             .buildAndRegister()
 
         // Data Module
@@ -1392,6 +1394,7 @@ internal object CircuitAssemblyLineRecipeProducer
             .output(TOOL_DATA_MODULE, 16)
             .EUt(38400) // ZPM
             .duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            .circuitInfo(TOOL_DATA_MODULE)
             .buildAndRegister()
 
         // Diamond Modulator
@@ -1554,6 +1557,9 @@ internal object CircuitAssemblyLineRecipeProducer
         createCircuitPatternRecipe(RUBY_MODULATOR)
         createCircuitPatternRecipe(SAPPHIRE_MODULATOR)
         createCircuitPatternRecipe(CRYSTAL_SOC_SOCKET)
+        createCircuitPatternRecipe(TOOL_DATA_STICK)
+        createCircuitPatternRecipe(TOOL_DATA_ORB)
+        createCircuitPatternRecipe(TOOL_DATA_MODULE)
     }
 
     private fun createWrapItemMaps()

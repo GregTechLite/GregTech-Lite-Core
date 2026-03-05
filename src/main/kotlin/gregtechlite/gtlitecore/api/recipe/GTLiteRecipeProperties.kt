@@ -135,6 +135,9 @@ object GTLiteRecipeProperties
             CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.SAPPHIRE_MODULATOR))
             CircuitPatternProperty.registerCircuit(createDataItemWithTag(GTLiteMetaItems.CRYSTAL_SOC_SOCKET))
             CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.NEURO_PROCESSOR))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.TOOL_DATA_STICK))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.TOOL_DATA_ORB))
+            CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.TOOL_DATA_MODULE))
         }
 
     }
