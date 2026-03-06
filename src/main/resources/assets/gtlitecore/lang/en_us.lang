@@ -841,6 +841,9 @@ metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=Diamond M
 metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=Ruby Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=Sapphire Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_socket=Crystal SoC Socket
+metaitem.tool.circuit_pattern.type.tool.datastick=Data Stick
+metaitem.tool.circuit_pattern.type.tool.dataorb=Data Orb
+metaitem.tool.circuit_pattern.type.tool.datamodule=Data Module
 
 metaitem.tool.magnetron.name=Magnetron
 
