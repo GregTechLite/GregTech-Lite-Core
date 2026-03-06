@@ -844,6 +844,7 @@ metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_sock
 metaitem.tool.circuit_pattern.type.tool.datastick=闪存
 metaitem.tool.circuit_pattern.type.tool.dataorb=数据球
 metaitem.tool.circuit_pattern.type.tool.datamodule=数据模块
+metaitem.tool.circuit_pattern.type.processor.neuro=神经处理单元
 
 metaitem.tool.magnetron.name=磁控管
 
