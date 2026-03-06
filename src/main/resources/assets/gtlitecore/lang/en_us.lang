@@ -844,6 +844,7 @@ metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_sock
 metaitem.tool.circuit_pattern.type.tool.datastick=Data Stick
 metaitem.tool.circuit_pattern.type.tool.dataorb=Data Orb
 metaitem.tool.circuit_pattern.type.tool.datamodule=Data Module
+metaitem.tool.circuit_pattern.type.processor.neuro=Neuro Processing Unit
 
 metaitem.tool.magnetron.name=Magnetron
 

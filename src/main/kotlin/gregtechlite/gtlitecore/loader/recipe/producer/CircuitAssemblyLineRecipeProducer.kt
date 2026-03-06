@@ -1560,6 +1560,7 @@ internal object CircuitAssemblyLineRecipeProducer
         createCircuitPatternRecipe(TOOL_DATA_STICK)
         createCircuitPatternRecipe(TOOL_DATA_ORB)
         createCircuitPatternRecipe(TOOL_DATA_MODULE)
+        createCircuitPatternRecipe(NEURO_PROCESSOR)
     }
 
     private fun createWrapItemMaps()
