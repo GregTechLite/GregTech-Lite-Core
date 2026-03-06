@@ -841,6 +841,9 @@ metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=Diamond M
 metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=Ruby Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=Sapphire Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.crystal_system_on_chip_socket=Crystal SoC Socket
+metaitem.tool.circuit_pattern.type.tool.datastick=Data Stick
+metaitem.tool.circuit_pattern.type.tool.dataorb=Data Orb
+metaitem.tool.circuit_pattern.type.tool.datamodule=Data Module
 
 metaitem.tool.magnetron.name=Magnetron
 
@@ -3541,12 +3544,12 @@ gtlitecore.material.octene=1-Octene
 gtlitecore.material.carbon_nanotube=Carbon Nanotube (CNT)
 item.gtlitecore.material.carbon_nanotube.ingot=Carbon Nanotube (CNT) Bar
 item.gtlitecore.material.carbon_nanotube.nugget=Carbon Nanotube (CNT) Pellet
-item.gtlitecore.material.carbon_nanotube.dust=碳纳米管（CNT）末
-item.gtlitecore.material.carbon_nanotube.dustSmall=小堆碳纳米管（CNT）末
-item.gtlitecore.material.carbon_nanotube.dustTiny=小撮碳纳米管（CNT）末
-item.gtlitecore.material.carbon_nanotube.plate=碳纳米管（CNT）片
-item.gtlitecore.material.carbon_nanotube.foil=薄碳纳米管（CNT）片
-item.gtlitecore.material.carbon_nanotube.wireFine=碳纳米管（CNT）纤维
+item.gtlitecore.material.carbon_nanotube.dust=Carbon Nanotube (CNT) Pulp
+item.gtlitecore.material.carbon_nanotube.dustSmall=Small Carbon Nanotube (CNT) Pulp
+item.gtlitecore.material.carbon_nanotube.dustTiny=Tiny Carbon Nanotube (CNT) Pulp
+item.gtlitecore.material.carbon_nanotube.plate=Carbon Nanotube (CNT) Sheet
+item.gtlitecore.material.carbon_nanotube.foil=Thin Carbon Nanotube（CNT) Sheet
+item.gtlitecore.material.carbon_nanotube.wireFine=Carbon Nanotube (CNT) Fiber
 gtlitecore.material.sarcosine=Sarcosine
 gtlitecore.material.ferrocene=Ferrocene
 gtlitecore.material.ferrocenylfulleropyrddolidine=Ferrocenylfulleropyrddolidine
@@ -3885,7 +3888,7 @@ gtlitecore.tooltip.machine.energy_mode.emitter_casing=§6-%s%%/Emitter Casing Ti
 gtlitecore.tooltip.machine.energy_mode.sensor_casing=§6-%s%%/Sensor Casing Tier
 gtlitecore.tooltip.machine.energy_mode.field_gen_casing=§6-%s%%/Field Generator Casing Tier
 gtlitecore.tooltip.machine.energy_mode.processor_casing=§6-%s%%/Processor Casing Tier
-gtlitecore.tooltip.machine.energy_mode.borosilicate_glass§6-%s%%/Borosilicate Glass Tier
+gtlitecore.tooltip.machine.energy_mode.borosilicate_glass=§6-%s%%/Borosilicate Glass Tier
 gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/Stabilization Field Generator Tier
 gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/Fusion Coil Tier
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
