@@ -239,7 +239,7 @@ internal object BoronNitrideChain
             .explosives(MetaItems.DYNAMITE.getStackForm(16))
             .buildAndRegister()
 
-        // Electronic Impulsion for BCN + C -> c-BCN
+        // Electric Impulsion for BCN + C -> c-BCN
         ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
             .input(dust, CubicBoronNitride)
             .input(dust, Carbon)
