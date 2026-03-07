@@ -43,6 +43,27 @@ fun createCircuitPatternRecipe(circuitItem: MetaItem<*>.MetaValueItem,
 }
 
 /**
+ * Create a scanning recipe for circuit info.
+ * An overload method for [createCircuitPatternRecipe] with ItemStack parameter,
+ * which is more flexible for other modded items without MetaItem<*>.
+ *
+ * @param circuitItem The item which will be scanned into the circuit pattern.
+ * @param dataItem    The data container for the [circuitItem].
+ */
+fun createCircuitPatternRecipeFromItemStack(circuitItem: ItemStack,
+                                            dataItem: MetaItem<*>.MetaValueItem = CIRCUIT_PATTERN)
+{
+    val dataStack = createDataItemWithTagFromItemStack(circuitItem, dataItem)
+    SCANNER_RECIPES.recipeBuilder()
+        .input(dataItem)
+        .input(circuitItem.item,1, circuitItem.metadata)
+        .outputs(dataStack)
+        .EUt(VA[LV])
+        .duration(2 * SECOND + 10 * TICK)
+        .buildAndRegister()
+}
+
+/**
  * Make a circuit info to the recipe builder.
  *
  * @param circuitItem The item which will be scanned into the circuit pattern.
@@ -56,7 +77,22 @@ fun CircuitAssemblyLineRecipeBuilder.circuitInfo(circuitItem: MetaItem<*>.MetaVa
 }
 
 /**
- * Create a [dataItem] with correspondenced NBT data from [circuitItem].
+ * Make a circuit info to the recipe builder.
+ * An overload method for [circuitInfo] with ItemStack parameter,
+ * which is more flexible for other modded items without MetaItem<*>.
+ *
+ * @param circuitItem The item which will be scanned into the circuit pattern.
+ * @param dataItem    The data container for the [circuitItem].
+ */
+fun CircuitAssemblyLineRecipeBuilder.circuitInfo(circuitItem: ItemStack,
+                                                 dataItem: MetaItem<*>.MetaValueItem = CIRCUIT_PATTERN): CircuitAssemblyLineRecipeBuilder
+{
+    circuit(createDataItemWithTagFromItemStack(circuitItem, dataItem))
+    return this
+}
+
+/**
+ * Create a [dataItem] with corresponding NBT data from [circuitItem].
  *
  * @param circuitItem The item which will be scanned into the circuit pattern.
  * @param dataItem    The data container for the [circuitItem].
@@ -73,10 +109,29 @@ fun createDataItemWithTag(circuitItem: MetaItem<*>.MetaValueItem,
 }
 
 /**
+ * Create a [dataItem] with corresponding NBT data from [circuitItem].
+ * An overload method for [createDataItemWithTag] with ItemStack parameter,
+ * which is more flexible for other modded items without MetaItem<*>.
+ *
+ * @param circuitItem The item which will be scanned into the circuit pattern.
+ * @param dataItem    The data container for the [circuitItem].
+ */
+fun createDataItemWithTagFromItemStack(circuitItem: ItemStack,
+                                       dataItem: MetaItem<*>.MetaValueItem = CIRCUIT_PATTERN): ItemStack
+{
+    val nbtName = circuitItem.translationKey
+
+    val dataStack = dataItem.stack()
+    dataStack.setTagInfo(CIRCUIT_INFO_NBT, NBTTagString(nbtName))
+
+    return dataStack
+}
+
+/**
  * Create original item => wrapped item map for [wrapItems].
  *
  * @param item     The original item.
- * @param wrapItem The correspondenced item with wrapped format.
+ * @param wrapItem The corresponding item with wrapped format.
  */
 fun createWrapItemMap(item: MetaItem<*>.MetaValueItem, wrapItem: MetaItem<*>.MetaValueItem)
 {
