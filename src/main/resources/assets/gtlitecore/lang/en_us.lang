@@ -837,6 +837,7 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=Cosmic Planetary Mai
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Interstellar Supercomputer Complex
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
 
+metaitem.tool.circuit_pattern.type.energy.lapotronic_orb=Lapotronic Energy Orb
 metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=Diamond Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=Ruby Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=Sapphire Modulator
