@@ -846,6 +846,18 @@ metaitem.tool.circuit_pattern.type.tool.dataorb=Data Orb
 metaitem.tool.circuit_pattern.type.tool.datamodule=Data Module
 metaitem.tool.circuit_pattern.type.processor.neuro=Neuro Processing Unit
 
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.logic_processor=Logic Processor
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.calculation_processor=Calculation Processor
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.engineering_processor=Engineering Processor
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.cell1k_part=1k ME Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.cell4k_part=4k ME Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.cell16k_part=16k ME Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.cell64k_part=64k ME Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell1k_part=1k ME Fluid Cell Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell4k_part=4k ME Fluid Cell Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell16k_part=16k ME Fluid Cell Storage Component
+metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell64k_part=64k ME Fluid Cell Storage Component
+
 metaitem.tool.magnetron.name=Magnetron
 
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
