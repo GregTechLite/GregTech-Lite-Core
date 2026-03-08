@@ -116,6 +116,7 @@ internal object QuarksChain
 
         // Heavy Quarks + Light Quarks -> Heavy Quark Enriched Mixture
         MIXER_RECIPES.recipeBuilder() // 3:1
+            .circuitMeta(1)
             .fluidInputs(HeavyQuarks.getFluid(750))
             .fluidInputs(LightQuarks.getFluid(250))
             .fluidOutputs(HeavyQuarkEnrichedMixture.getFluid(1000))
