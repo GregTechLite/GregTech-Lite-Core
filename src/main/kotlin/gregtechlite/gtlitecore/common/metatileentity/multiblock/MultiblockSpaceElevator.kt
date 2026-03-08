@@ -3,6 +3,13 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.widget.IWidget
+import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
+import com.cleanroommc.modularui.widget.Widget
+import com.cleanroommc.modularui.widgets.ButtonWidget
+import com.cleanroommc.modularui.widgets.CycleButtonWidget
 import gregtech.api.block.VariantBlock
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.IOpticalComputationProvider
@@ -19,19 +26,24 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.RIGHT
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.GTLiteAPI.ACCELERATION_TRACK_TIER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.ModuleProvider
 import gregtechlite.gtlitecore.api.capability.ModuleReceiver
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.accelerationTracks
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -41,9 +53,11 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
 
 class MultiblockSpaceElevator(id: ResourceLocation)
@@ -78,7 +92,7 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         if (!isStructureFormed)
             moduleReceivers.forEach { it.sentWorkingDisabled() }
     }
-    
+
     override fun updateFormedValid()
     {
         if (!moduleReceivers.isEmpty())
@@ -90,14 +104,14 @@ class MultiblockSpaceElevator(id: ResourceLocation)
             moduleReceivers.removeIf { it.moduleProvider == null }
         }
     }
-    
+
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
         initializeAbilities()
         casingTier = context.getAttributeOrDefault(ACCELERATION_TRACK_TIER, 0)
     }
-    
+
     override fun invalidateStructure()
     {
         super.invalidateStructure()
@@ -106,7 +120,7 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         moduleReceivers.forEach { it.sentWorkingDisabled() }
         moduleReceivers.forEach { it.moduleProvider = null }
     }
-    
+
     override fun checkStructurePattern()
     {
         super.checkStructurePattern()
@@ -116,19 +130,19 @@ class MultiblockSpaceElevator(id: ResourceLocation)
             super.checkStructurePattern()
         }
     }
-    
+
     private fun initializeAbilities()
     {
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         this.energyContainer = EnergyContainerList(inputEnergy)
-        
+
         val inputComputation = getAbilities(COMPUTATION_DATA_RECEPTION)
         if (inputComputation != null && !inputComputation.isEmpty())
             computationProvider = inputComputation[0]
     }
-    
+
     private fun resetTileAbilities()
     {
         energyContainer = EnergyContainerList(ArrayList())
@@ -296,20 +310,21 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         //     if (casingType === BlockSpaceElevatorCasing.CasingType.BASE_CASING) return@Predicate true
         // }
 
-        if ((block as VariantBlock<*>).getState(state) === AerospaceCasing.ELEVATOR_BASE_CASING.state)
-        {
-            return@TraceabilityPredicate true
-        }
+        // TODO: Temporarily disable casing check.
+//        if ((block as VariantBlock<*>).getState(state) === AerospaceCasing.ELEVATOR_BASE_CASING.state)
+//        {
+//            return@TraceabilityPredicate true
+//        }
 
         // Module mtes.
         val te = blockWorldState.getTileEntity()
         if (te !is IGregTechTileEntity) return@TraceabilityPredicate false
-        
+
         val mte: MetaTileEntity? = (te as IGregTechTileEntity).metaTileEntity
         if (mte is ModuleProvider) return@TraceabilityPredicate false
         if (mte !is ModuleReceiver) return@TraceabilityPredicate false
-        
-        val moduleReceiver: ModuleReceiver = mte as ModuleReceiver
+
+        val moduleReceiver: ModuleReceiver = mte
         if (moduleReceiver.moduleProvider !== this)
         {
             moduleReceiver.moduleProvider = this
@@ -332,95 +347,105 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         this.frontOverlay.renderOrientedState(renderState, translation, pipeline,
             getFrontFacing(), true, true)
     }
-    
+
     override fun hasMaintenanceMechanics() = false
-    
+
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound?
     {
         data.setBoolean("isExtended", isExtended)
         return super.writeToNBT(data)
     }
-    
+
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
         this.isExtended = data.getBoolean("isExtended")
     }
-    
+
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
         buf.writeBoolean(this.isExtended)
     }
-    
+
     override fun receiveInitialSyncData(buf: PacketBuffer)
     {
         super.receiveInitialSyncData(buf)
         this.isExtended = buf.readBoolean()
     }
 
-    // TODO FIXME
-    // override fun createUITemplate(player: EntityPlayer): ModularUI.Builder? = ModularUI.builder(GuiTextures.BACKGROUND, 198, 208)
-    //     .image(4, 4, 190, 117, GuiTextures.DISPLAY)
-    //     .widget(IndicatorImageWidget(174, 101, 17, 17, this.logo)
-    //                 .setWarningStatus(this.warningLogo) { textList -> this.addWarningText(textList) }
-    //                 .setErrorStatus(this.errorLogo) { textList -> this.addErrorText(textList) })
-    //     .label(9, 9, metaFullName, 0xFFFFFF)
-//
-    //     .widget(AdvancedTextWidget(9, 20, { textList -> this.addDisplayText(textList) }, 0xFFFFFFF)
-    //     .setMaxWidthLimit(181)
-    //     .setClickHandler { componentData, clickData -> this.handleDisplayClick(componentData, clickData) })
-//
-    //     .widget(ClickButtonWidget(173, 125, 18, 18, "") { data ->
-    //         reinitializeStructurePattern()
-    //         }.setButtonTexture(GTLiteGuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-    //         .setTooltipText("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-    //     .widget(ImageCycleButtonWidget(173, 125 + 18, 18, 18, GTLiteGuiTextures.BUTTON_ELEVATOR_EXTENSION,
-    //          { this.isExtended() }, { extended: Boolean -> this.setExtended(extended) })
-    //     .setTooltipHoverString("gtlitecore.machine.space_elevator.extension_info"))
-    //     .widget(ClickButtonWidget(173, 125 + 18 * 2, 18, 18, "") { data ->
-    //         enabledAllModules() }
-    //         .setButtonTexture(GTLiteGuiTextures.BUTTON_ENABLE_MODULE)
-    //     .setTooltipText("gtlitecore.machine.space_elevator.enable_module"))
-    //     .widget(ClickButtonWidget(173, 125 + 18 * 3 + 4, 18, 18, "") { data ->
-    //         disabledAllModules() }
-    //         .setButtonTexture(GTLiteGuiTextures.BUTTON_DISABLE_MODULE)
-    //     .setTooltipText("gtlitecore.machine.space_elevator.disable_module"))
-    //     .bindPlayerInventory(player.inventory, 125)
-    //
-    // override fun addDisplayText(textList: MutableList<ITextComponent?>?)
-    // {
-    //     MultiblockDisplayText.builder(textList, isStructureFormed)
-    //     .addCustom { tl ->
-    //         // Add acceleration orbit infos and modules infos for debug.
-    //         if (isStructureFormed)
-    //         {
-    //             tl.add(translationWithColor(TextFormatting.GRAY,
-    //                 "gtlitecore.machine.space_elevator.acceleration_track_tier", this.casingTier))
-    //             tl.add(translationWithColor(TextFormatting.GRAY,
-    //                        "gtlitecore.machine.space_elevator.max_module_count", this.maxModules))
-//
-    //             // Only for debug mode to test extended structure pattern checking module and
-    //             // other module checking situation.
-    //             if (!this.moduleReceivers.isEmpty() && ConfigHolder.misc.debug)
-    //             {
-    //                 val moduleNames = ArrayList<String?>()
-    //                 val uniqueNames = ArrayList<String?>()
-    //                 this.moduleReceivers.forEach { moduleReceiver ->
-    //                     moduleNames.add(moduleReceiver.displayCountName)
-    //                     if (!uniqueNames.contains(moduleNames[moduleNames.indexOf(moduleReceiver.displayCountName)]))
-    //                     {
-    //                         uniqueNames.add(moduleReceiver.displayCountName)
-    //                     }
-    //                     uniqueNames.forEach{ receiverName ->
-    //                         tl.add(translationWithColor(TextFormatting.GRAY, receiverName, Collections.frequency(moduleNames, receiverName)))
-    //                     }
-    //                 }
-    //         }
-    //     }
-    //     }
-    // }
-    
+    override fun createUIFactory(): MultiblockUIFactory
+    {
+        // TODO: replace logo to space elevator logo and add warning/error indicators if necessary.
+        return SpaceElevatorUIFactory(this)
+                .configureDisplayText(::configureDisplayText)
+                .createFlexButton { guiData, guiSyncManager ->
+                    return@createFlexButton ButtonWidget()
+                            .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                            // TODO: add hover background texture for refresh button
+//                    .hoverBackground(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN_HOVER)
+                            .disableHoverBackground()
+                            .onMousePressed { i ->
+                                reinitializeStructurePattern()
+                                return@onMousePressed true
+                            }
+                            .tooltip { tooltip ->
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
+                            }
+                }
+    }
+
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(true, isActive)
+                .addEnergyUsageLine(energyContainer)
+                .addCustom { keyManager, syncer ->
+                    if (isStructureFormed)
+                    {
+                        val casingTier = syncer.syncInt(::casingTier)
+                        val isExtended = syncer.syncBoolean(::isExtended)
+                        val maxModules = syncer.syncInt(::maxModules)
+                        keyManager.add(
+                            KeyUtil.lang(
+                                TextFormatting.GRAY,
+                                "gtlitecore.machine.space_elevator.acceleration_track_tier", casingTier
+                            )
+                        )
+                        keyManager.add(
+                            KeyUtil.lang(
+                                TextFormatting.GRAY,
+                                "gtlitecore.machine.space_elevator.max_module_count", maxModules
+                            )
+                        )
+
+                        // Only for debug mode to test extended structure pattern checking module and
+                        // other module checking situation.
+                        if (!this.moduleReceivers.isEmpty() && ConfigHolder.misc.debug)
+                        {
+                            val moduleNames = ArrayList<String?>()
+                            val uniqueNames = ArrayList<String?>()
+                            this.moduleReceivers.forEach { moduleReceiver ->
+                                moduleNames.add(moduleReceiver.displayCountName)
+                                if (!uniqueNames.contains(moduleNames[moduleNames.indexOf(moduleReceiver.displayCountName)]))
+                                {
+                                    uniqueNames.add(moduleReceiver.displayCountName)
+                                }
+                                uniqueNames.forEach { receiverName ->
+                                    keyManager.add(
+                                        KeyUtil.lang(
+                                            TextFormatting.GRAY,
+                                            receiverName,
+                                            Collections.frequency(moduleNames, receiverName)
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                }
+    }
+
     override fun addInformation(stack: ItemStack?,
                                 world: World?,
                                 tooltip: MutableList<String?>,
@@ -437,22 +462,25 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.8"))
     }
 
-   //  override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
+    //  override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
 //
-   //  override fun getWarningLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_YELLOW
+    //  override fun getWarningLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_YELLOW
 //
-   //  override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
+    //  override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
 
+
+    // TODO: function is not working
     private fun disabledAllModules()
     {
-        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled()}
+        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
     }
-    
+
+    // TODO: function is not working
     private fun enabledAllModules()
     {
-        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingEnabled()}
+        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingEnabled() }
     }
-    
+
     private fun checkModules() = this.moduleCount <= this.maxModules
 
     private val moduleCount: Int
@@ -469,16 +497,71 @@ class MultiblockSpaceElevator(id: ResourceLocation)
             return 12
         }
 
-    private fun isExtended(): Boolean {
+    private fun getIsExtended(): Boolean
+    {
         return this.isExtended
     }
-    
-    private fun setExtended(extended: Boolean) {
+
+    private fun setExtended(extended: Boolean)
+    {
         this.isExtended = extended
         invalidateStructure()
         reinitializeStructurePattern()
     }
 
     override fun isModule(receiver: ModuleReceiver): Boolean = moduleReceivers.contains(receiver)
+
+    /**
+     * The UI Factory for Space Elevator
+     * Used to create buttons for enabling modules and disabling modules.
+     */
+    private class SpaceElevatorUIFactory(controller: MultiblockSpaceElevator) : MultiblockUIFactory(controller)
+    {
+        private val mte = controller
+        override fun createDistinctButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
+        {
+            return ButtonWidget()
+                    .background(GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
+                    // TODO: add hover background texture for enable button
+//                    .hoverBackground(GTLiteMuiTextures.BUTTON_ENABLE_MODULE_HOVER)
+                    .disableHoverBackground()
+                    .onMousePressed { i ->
+                        mte.enabledAllModules()
+                        return@onMousePressed true
+                    }
+                    .tooltip { tooltip ->
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.enable_module"))
+                    }
+        }
+
+        override fun createVoidingButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
+        {
+            return ButtonWidget()
+                    .background(GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
+                    // TODO: add hover background texture for disable button
+//                    .hoverBackground(GTLiteMuiTextures.BUTTON_DISABLE_MODULE_HOVER)
+                    .disableHoverBackground()
+                    .onMousePressed { i ->
+                        mte.disabledAllModules()
+                        return@onMousePressed true
+                    }
+                    .tooltip { tooltip ->
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.disable_module"))
+                    }
+        }
+
+        override fun createPowerButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): Widget<*>
+        {
+            val state = BooleanSyncValue(mte::getIsExtended, mte::setExtended)
+            return CycleButtonWidget()
+                    .stateBackground(0, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
+                    .stateBackground(1, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
+                    .disableHoverBackground()
+                    .value(state)
+                    .addTooltip(0, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.disabled"))
+                    .addTooltip(1, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
+        }
+
+    }
 
 }

@@ -80,6 +80,20 @@ object GTLiteMuiTextures
     @JvmField
     val BUTTON_REFRESH_STRUCTURE_PATTERN = fullImage("textures/gui/widget/button_refresh_structure_pattern.png")
 
+    /**
+     * Multiblock Button for Space Elevator Modules to enable modules.
+     *
+     */
+    @JvmField
+    val BUTTON_ENABLE_MODULE = fullImage("textures/gui/widget/button_enable_module.png")
+
+    /**
+     * Multiblock Button for Space Elevator Modules to disable modules.
+     *
+     */
+    @JvmField
+    val BUTTON_DISABLE_MODULE = fullImage("textures/gui/widget/button_disable_module.png")
+
     // endregion
 
     // region Helper Methods

@@ -2450,7 +2450,8 @@ gtlitecore.machine.space_elevator.tooltip.8=在太空电梯控制器中可以同
 gtlitecore.machine.space_elevator.acceleration_track_tier=Acceleration Track Tier: §eMK%s§f
 gtlitecore.machine.space_elevator.max_module_count=Maximum Module Count: §a%s§f
 
-gtlitecore.machine.space_elevator.extension_info=启用扩展结构
+gtlitecore.machine.space_elevator.extension_info.enabled=启用扩展结构
+gtlitecore.machine.space_elevator.extension_info.disabled=禁用扩展结构
 gtlitecore.machine.space_elevator.enable_module=启用所有模块
 gtlitecore.machine.space_elevator.disable_module=禁用所有模块
 gtlitecore.machine.space_elevator.refresh_structure_pattern=强制更新结构检测
