@@ -118,11 +118,9 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
                 {
                     if (getInputFluidInventory() != null)
                     {
-                        val coolantStack = getInputFluidInventory()
-                            .drain(GelidCryotheum.getFluid(Int.MAX_VALUE), false)
-                        val coolantAmount = coolantStack?.amount ?: 0
+                        val coolantAmount = syncer.syncLong(::getGelidCryotheumAmount)
                         val amountKey = KeyUtil.number(TextFormatting.GREEN,
-                            coolantAmount.toLong(), "L")
+                            coolantAmount, "L")
                         keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
                             "gtlitecore.machine.cryogenic_freezer.cryotheum_amount", amountKey))
                     }
@@ -140,12 +138,11 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
         builder.addCustom { keyManager, syncer ->
             if (isStructureFormed)
             {
-                val coolantStack = getInputFluidInventory()
-                    .drain(GelidCryotheum.getFluid(Int.MAX_VALUE), false)
-                if (coolantStack == null || coolantStack.amount == 0)
+                val coolantAmount = syncer.syncLong(::getGelidCryotheumAmount)
+                if (coolantAmount == 0L)
                 {
                     val warnKey = KeyUtil.lang(TextFormatting.YELLOW,
-                        "gtlitecore.machine.cryogenic_freezer_cryotheum_warning")
+                        "gtlitecore.machine.cryogenic_freezer.cryotheum_warning")
                     keyManager.add(warnKey)
                 }
             }
@@ -153,6 +150,27 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
     }
 
     override fun canBeDistinct() = true
+
+    private fun getGelidCryotheumAmount() : Long
+    {
+        val fluidStack = getInputFluidInventory()
+        if (fluidStack != null)
+        {
+            var fluidAmount = 0L
+
+            fluidStack.forEach { tank->
+                if (tank != null){
+                    val drainedStack = tank.drain(GelidCryotheum.getFluid(Int.MAX_VALUE), false)
+                    if (drainedStack != null && drainedStack.amount > 0)
+                    {
+                        fluidAmount += drainedStack.amount
+                    }
+                }
+            }
+            return fluidAmount
+        }
+        return 0
+    }
 
     private inner class CryogenicFreezerRecipeLogic(private val mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {

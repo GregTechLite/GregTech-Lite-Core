@@ -143,11 +143,9 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
 
                     if (getInputFluidInventory() != null)
                     {
-                        val promoterStack = getInputFluidInventory()
-                            .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
-                        val promoterAmount = promoterStack?.amount ?: 0
+                        val promoterAmount = syncer.syncLong(::getPryotheumAmount)
                         val amountKey = KeyUtil.number(TextFormatting.GREEN,
-                            promoterAmount.toLong(), "L")
+                            promoterAmount, "L")
                         keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
                             "gtlitecore.machine.volcanus.pyrotheum_amount", amountKey))
                     }
@@ -163,9 +161,8 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
     {
         super.configureWarningText(builder)
         builder.addCustom { keyManager, syncer ->
-            val promoterStack = getInputFluidInventory()
-                .drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
-            if (promoterStack == null || promoterStack.amount == 0)
+            val promoterAmount = syncer.syncLong(::getPryotheumAmount)
+            if (promoterAmount == 0L)
             {
                 val warnKey = KeyUtil.lang(TextFormatting.YELLOW,
                     "gtlitecore.machine.volcanus.pyrotheum_warning")
@@ -201,6 +198,27 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
 
     override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean =
         temperature >= recipe.getProperty(TemperatureProperty.getInstance(), 0)!!
+
+    private fun getPryotheumAmount() : Long
+    {
+        val inputTank = getInputFluidInventory()
+        if (inputTank != null)
+        {
+            var fluidAmount = 0L
+
+            inputTank.forEach { tank->
+                if (tank != null){
+                    val drainedStack = tank.drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
+                    if (drainedStack != null && drainedStack.amount > 0)
+                    {
+                        fluidAmount += drainedStack.amount
+                    }
+                }
+            }
+            return fluidAmount
+        }
+        return 0
+    }
 
     private inner class VolcanusRecipeLogic(private val mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
     {
