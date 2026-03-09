@@ -9,7 +9,7 @@ import com.cleanroommc.modularui.value.sync.BooleanSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widget.Widget
 import com.cleanroommc.modularui.widgets.ButtonWidget
-import com.cleanroommc.modularui.widgets.CycleButtonWidget
+import com.cleanroommc.modularui.widgets.ToggleButton
 import gregtech.api.block.VariantBlock
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.IOpticalComputationProvider
@@ -520,46 +520,47 @@ class MultiblockSpaceElevator(id: ResourceLocation)
         private val mte = controller
         override fun createDistinctButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            return ButtonWidget()
-                    .background(GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
-                    // TODO: add hover background texture for enable button
-//                    .hoverBackground(GTLiteMuiTextures.BUTTON_ENABLE_MODULE_HOVER)
+            // Use toggle button with the same textures for enabled and disabled state
+            // to make it look like a normal button.
+            // This is a temporary solution, consider using callSyncedAction when update the ModularUI to 3.0.6
+            val boolTrigger = BooleanSyncValue({true}, { b -> mte.enabledAllModules() })
+            return ToggleButton()
                     .disableHoverBackground()
-                    .onMousePressed { i ->
-                        mte.enabledAllModules()
-                        return@onMousePressed true
-                    }
+                    .overlay(true, GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
+                    .overlay(false, GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
                     .tooltip { tooltip ->
                         tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.enable_module"))
                     }
+                    .value(boolTrigger)
         }
 
         override fun createVoidingButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            return ButtonWidget()
-                    .background(GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
-                    // TODO: add hover background texture for disable button
-//                    .hoverBackground(GTLiteMuiTextures.BUTTON_DISABLE_MODULE_HOVER)
+            // Use toggle button with the same textures for enabled and disabled state
+            // to make it look like a normal button.
+            // This is a temporary solution, consider using callSyncedAction when update the ModularUI to 3.0.6
+            val boolTrigger = BooleanSyncValue({true}, { b -> mte.disabledAllModules() })
+
+            return ToggleButton()
                     .disableHoverBackground()
-                    .onMousePressed { i ->
-                        mte.disabledAllModules()
-                        return@onMousePressed true
-                    }
+                    .overlay(false, GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
+                    .overlay(true, GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
                     .tooltip { tooltip ->
                         tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.disable_module"))
                     }
+                    .value(boolTrigger)
         }
 
         override fun createPowerButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): Widget<*>
         {
             val state = BooleanSyncValue(mte::getIsExtended, mte::setExtended)
-            return CycleButtonWidget()
-                    .stateBackground(0, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
-                    .stateBackground(1, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
+            return ToggleButton()
                     .disableHoverBackground()
+                    .overlay(false, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
+                    .overlay(true, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
+                    .addTooltip(false, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.disabled"))
+                    .addTooltip(true, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
                     .value(state)
-                    .addTooltip(0, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.disabled"))
-                    .addTooltip(1, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
         }
 
     }
