@@ -139,6 +139,8 @@ dependencies {
 
     compileOnly(libs.craftTweaker2)
 
+    runtimeOnly(deobf(libs.catalogue))
+
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
 }

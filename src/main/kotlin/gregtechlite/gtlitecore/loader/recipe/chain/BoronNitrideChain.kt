@@ -48,6 +48,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Borazine
@@ -236,6 +237,15 @@ internal object BoronNitrideChain
             .EUt(VA[LV])
             .duration(1 * SECOND)
             .explosives(MetaItems.DYNAMITE.getStackForm(16))
+            .buildAndRegister()
+
+        // Electric Impulsion for BCN + C -> c-BCN
+        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
+            .input(dust, CubicBoronNitride)
+            .input(dust, Carbon)
+            .output(gem, Heterodiamond, 2)
+            .EUt(VA[LV])
+            .duration(1 * SECOND)
             .buildAndRegister()
 
         // BCN + C -> c-BC2N

@@ -2,7 +2,9 @@ package gregtechlite.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Calcite
@@ -11,6 +13,8 @@ import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Magnesite
+import gregtech.api.unification.material.Materials.OilHeavy
+import gregtech.api.unification.material.Materials.Oilsands
 import gregtech.api.unification.material.Materials.Olivine
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Quicklime
@@ -21,6 +25,7 @@ import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
+import gregtech.api.unification.ore.OrePrefix.ore
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -42,7 +47,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shale
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Slate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
+import net.minecraft.init.Blocks
+import net.minecraft.item.ItemStack
 
 internal object CentrifugeRecipes
 {
@@ -135,6 +143,20 @@ internal object CentrifugeRecipes
             .fluidOutputs(Air.getFluid(1000))
             .EUt(VA[LV])
             .duration(12 * SECOND)
+            .buildAndRegister()
+
+        // Oilsands decomposition.
+        GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES,
+            OreDictUnifier.get(ore, Oilsands))
+
+        CENTRIFUGE_RECIPES.recipeBuilder()
+            .input(ore, Oilsands)
+            .chancedOutput(ItemStack(Blocks.SAND), 5000, 1000)
+            .chancedOutput(MUD_BALL, 3250, 750)
+            .chancedOutput(dustSmall, Clay, 2, 1650, 500)
+            .fluidOutputs(OilHeavy.getFluid(2000))
+            .EUt(VA[LV])
+            .duration(10 * SECOND)
             .buildAndRegister()
 
     }
