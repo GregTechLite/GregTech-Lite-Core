@@ -11,7 +11,7 @@ public final class LateMixinLoader implements ILateMixinLoader
     @Override
     public List<String> getMixinConfigs()
     {
-        return MixinUtil.getMixinConfigs("gregtech", "jei");
+        return MixinUtil.getMixinConfigs("gregtech", "jei", "modularui");
     }
 
 }
