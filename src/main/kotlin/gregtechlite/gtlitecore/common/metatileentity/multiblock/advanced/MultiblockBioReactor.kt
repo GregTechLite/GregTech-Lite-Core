@@ -22,13 +22,13 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.CLEANROOM_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.SENSOR_CASING_TIER
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.cleanroomCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing

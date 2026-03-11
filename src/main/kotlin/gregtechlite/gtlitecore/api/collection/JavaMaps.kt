@@ -2,8 +2,8 @@
 
 package gregtechlite.gtlitecore.api.collection
 
+import java.util.*
 import com.google.gson.internal.LinkedTreeMap as MutableTreeMap
-import java.util.TreeMap
 
 // region Tree Map
 

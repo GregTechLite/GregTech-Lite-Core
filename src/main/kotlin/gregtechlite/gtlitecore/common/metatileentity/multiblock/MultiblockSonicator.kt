@@ -18,14 +18,14 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.BOROSILICATE_GLASS_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.borosilicateGlasses
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing

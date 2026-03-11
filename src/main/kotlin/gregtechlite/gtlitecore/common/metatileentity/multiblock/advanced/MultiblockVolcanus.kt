@@ -30,12 +30,12 @@ import gregtech.common.blocks.BlockWireCoil
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing

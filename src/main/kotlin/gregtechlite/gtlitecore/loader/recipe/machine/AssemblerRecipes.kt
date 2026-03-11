@@ -81,7 +81,6 @@ import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH

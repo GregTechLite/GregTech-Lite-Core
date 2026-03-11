@@ -1,10 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.VOC
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.EnergyContainerList
-import gregtech.api.capability.impl.HeatingCoilRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -23,7 +21,6 @@ import gregtech.api.recipes.logic.OCParams
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
-import gregtech.api.util.GTUtility.getFloorTierByVoltage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.api.util.TextFormattingUtil.formatNumbers
@@ -31,13 +28,13 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerHeatingCoilRecipeLogic
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing

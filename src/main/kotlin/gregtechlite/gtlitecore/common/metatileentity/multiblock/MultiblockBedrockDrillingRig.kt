@@ -18,13 +18,13 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PISTON_CASING_TIER
 import gregtechlite.gtlitecore.api.extension.toItem
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pistonCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing

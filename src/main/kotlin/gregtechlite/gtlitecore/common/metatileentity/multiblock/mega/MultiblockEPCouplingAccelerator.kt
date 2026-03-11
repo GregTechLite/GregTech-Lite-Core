@@ -23,11 +23,11 @@ import gregtech.common.metatileentities.multi.electric.MetaTileEntityMultiSmelte
 import gregtechlite.gtlitecore.api.GTLiteAPI.FUSION_COIL_TIER
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fusionCoils
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fusionCoils
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing

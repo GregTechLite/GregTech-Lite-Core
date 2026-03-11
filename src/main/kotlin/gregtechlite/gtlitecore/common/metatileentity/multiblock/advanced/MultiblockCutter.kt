@@ -20,14 +20,14 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.CONVEYOR_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.conveyorCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.motorCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack

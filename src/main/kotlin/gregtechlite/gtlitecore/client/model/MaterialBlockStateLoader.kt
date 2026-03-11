@@ -8,8 +8,8 @@ import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.hashTableOf
+import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats

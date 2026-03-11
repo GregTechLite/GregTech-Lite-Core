@@ -23,12 +23,12 @@ import gregtech.api.util.TextFormattingUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing

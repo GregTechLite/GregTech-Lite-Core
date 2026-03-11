@@ -24,6 +24,9 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.DIVERTOR_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FUSION_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.FUSION_COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.VACUUM_TIER
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.cryostats
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.divertors
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fusionCasings
@@ -32,9 +35,6 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.fusionVacuums
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ADVANCED_FUSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
