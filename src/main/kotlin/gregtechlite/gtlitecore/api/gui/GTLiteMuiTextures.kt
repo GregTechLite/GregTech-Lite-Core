@@ -11,14 +11,14 @@ object GTLiteMuiTextures
     // region Slot Textures
 
     @JvmField
-    val PRIMITIVE_FLUID_SLOT = fullImage("textures/gui/primitive/primitive_fluid_slot.png")
+    val PRIMITIVE_FLUID_SLOT = texture("textures/gui/primitive/primitive_fluid_slot.png")
 
     // endregion
 
     // region Progress Bar Textures
 
     @JvmField
-    val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR = fullImage("textures/gui/primitive/progress_bar_primitive_blast_furnace.png")
+    val PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR = texture("textures/gui/primitive/progress_bar_primitive_blast_furnace.png")
 
     /**
      * Multiblock Progress Bar for Large Naquadah Reactor (LNR).
@@ -53,16 +53,17 @@ object GTLiteMuiTextures
     // region Overlay Textures
 
     @JvmField
-    val PRIMITIVE_INT_CIRCUIT_OVERLAY = fullImage("textures/gui/primitive/int_circuit_overlay_primitive.png")
+    val PRIMITIVE_INT_CIRCUIT_OVERLAY = texture("textures/gui/primitive/int_circuit_overlay_primitive.png")
 
     // endregion
 
     // region Widget Textures
-    @JvmField
-    val FUSION_REACTOR_MK4_TITLE = fullImage("textures/gui/widget/fusion_reactor_mk4_title")
 
     @JvmField
-    val FUSION_REACTOR_MK5_TITLE = fullImage("textures/gui/widget/fusion_reactor_mk5_title")
+    val FUSION_REACTOR_MK4_TITLE = texture("textures/gui/widget/fusion_reactor_mk4_title")
+
+    @JvmField
+    val FUSION_REACTOR_MK5_TITLE = texture("textures/gui/widget/fusion_reactor_mk5_title")
 
     /**
      * Multiblock Button for Space Elevator to enabled/disabled extension structure.
@@ -71,35 +72,51 @@ object GTLiteMuiTextures
      * - 1: Enabled
      */
     @JvmField
-    val BUTTON_ELEVATOR_EXTENSION = sliceImage("textures/gui/widget/button_elevator_extension.png",
-                                          18, 36, 18, 18)
+    val BUTTON_ELEVATOR_EXTENSION = texture("textures/gui/widget/button_elevator_extension.png",
+                                            18, 36, 18, 18)
 
     /**
      * Multiblock Button for Space Elevator Modules to refreshed its structure pattern.
      */
     @JvmField
-    val BUTTON_REFRESH_STRUCTURE_PATTERN = fullImage("textures/gui/widget/button_refresh_structure_pattern.png")
+    val BUTTON_REFRESH_STRUCTURE_PATTERN = texture("textures/gui/widget/button_refresh_structure_pattern.png")
 
     // endregion
 
-    // region Helper Methods
+    /**
+     * Creates ui texture with its [path] and [colorType] as theme.
+     *
+     * @param path      The path in the mod specified namespace.
+     * @param colorType The color type (theme) of the texture.
+     */
+    @JvmStatic
+    fun texture(path: String, colorType: ColorType? = null): UITexture = UITexture.fullImage(MOD_ID, path, colorType)
 
-    private fun fullImage(path: String, colorType: ColorType? = null): UITexture = UITexture.fullImage(MOD_ID, path, colorType)
-
-    @Suppress("SameParameterValue")
-    private fun sliceImage(path: String, width: Int, height: Int, newWidth: Int, newHeight: Int, colorType: ColorType? = null): Array<UITexture?>
+    /**
+     * Creates sliced ui texture with its [path] and [colorType] as theme.
+     *
+     * @param path      The path in the mod specified namespace.
+     * @param width     The original width of the ui texture.
+     * @param height    The original height of the ui texture.
+     * @param newWidth  The sliced width for the ui texture, should satisfy [width] / [newWidth] % 0.
+     * @param newHeight The sliced height for the ui texture, should satisfy [height] / [newHeight] % 0.
+     * @param colorType The color type (theme) of the texture.
+     */
+    @JvmStatic
+    fun texture(path: String, width: Int, height: Int, newWidth: Int, newHeight: Int,
+                colorType: ColorType? = null): Array<UITexture>
     {
         require((width % newWidth == 0) || (height % newHeight == 0))
 
-        val countX= width / newWidth
-        val countY= height / newHeight
+        val countX = width / newWidth
+        val countY = height / newHeight
         val slices = arrayOfNulls<UITexture>(countX * countY)
 
         for (indexX in 0 ..< countX)
         {
             for (indexY in 0 ..< countY)
             {
-                slices[(indexX * countX) + indexY] = uiTexture{
+                slices[(indexX * countX) + indexY] = ui {
                     location(MOD_ID, path)
                     colorType(colorType)
                     imageSize(width, height)
@@ -107,17 +124,24 @@ object GTLiteMuiTextures
                 }
             }
         }
-        return slices
+        return slices.filterNotNull().toTypedArray()
     }
 
-    private fun progressBar(path: String, width: Int = 20, height: Int = 40, colorType: ColorType? = null) = uiTexture {
+    /**
+     * Creates a GT format progress bar ui texture.
+     *
+     * @param path      The path in the mod specified namespace.
+     * @param width     The original width of the progress bar texture.
+     * @param height    The original height of the progress bar texture.
+     * @param colorType The color type (theme) of the texture.
+     */
+    @JvmStatic
+    fun progressBar(path: String, width: Int = 20, height: Int = 40, colorType: ColorType? = null): UITexture = ui {
         location(MOD_ID, path)
         imageSize(width, height)
         colorType(colorType)
     }
 
-    private fun uiTexture(builder: UITexture.Builder.() -> Unit) = UITexture.builder().apply(builder).build()
-
-    // endregion
+    private fun ui(builder: UITexture.Builder.() -> Unit) = UITexture.builder().apply(builder).build()
 
 }
