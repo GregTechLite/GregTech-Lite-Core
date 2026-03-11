@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.api.gui
 
 import com.cleanroommc.modularui.drawable.ColorType
 import com.cleanroommc.modularui.drawable.UITexture
-import gregtech.api.util.Size
 import gregtechlite.gtlitecore.api.MOD_ID
 
 @Suppress("SameParameterValue")

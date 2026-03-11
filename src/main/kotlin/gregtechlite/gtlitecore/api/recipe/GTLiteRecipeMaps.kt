@@ -29,12 +29,12 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
-import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
+import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents

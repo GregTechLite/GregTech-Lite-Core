@@ -5,9 +5,9 @@ import gregtech.api.recipes.properties.RecipeProperty
 import gregtech.api.recipes.properties.impl.FusionEUToStartProperty
 import gregtech.common.items.MetaItems
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.recipe.util.createDataItemWithTag
 import gregtechlite.gtlitecore.api.recipe.property.CircuitPatternProperty
 import gregtechlite.gtlitecore.api.recipe.property.RecipePropertyBuilder
+import gregtechlite.gtlitecore.api.recipe.util.createDataItemWithTag
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.client.resources.I18n
 
