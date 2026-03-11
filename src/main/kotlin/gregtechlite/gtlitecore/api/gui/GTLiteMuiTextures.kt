@@ -142,6 +142,6 @@ object GTLiteMuiTextures
         colorType(colorType)
     }
 
-    private fun ui(builder: UITexture.Builder.() -> Unit) = UITexture.builder().apply(builder).build()
+    private fun ui(builder: UITexture.Builder.() -> Unit): UITexture = UITexture.builder().apply(builder).build()
 
 }

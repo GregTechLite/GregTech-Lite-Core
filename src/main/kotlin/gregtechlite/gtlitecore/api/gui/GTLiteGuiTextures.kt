@@ -304,18 +304,39 @@ object GTLiteGuiTextures
 
     // endregion
 
-    fun texture(path: String) = TextureArea(GTLiteMod.id(path), 0.0, 0.0, 1.0, 1.0)
+    /**
+     * Creates texture area with its [path].
+     *
+     * This method create internal Modular UI format [TextureArea] for legacy GTCEu API, if you want to create an ui
+     * texture for Modular UI 2 format, please use methods in [GTLiteMuiTextures] class.
+     *
+     * @param path The path in the mod specified namespace.
+     *
+     * @see GTLiteMuiTextures.texture
+     */
+    @JvmStatic
+    fun texture(path: String): TextureArea = TextureArea(GTLiteMod.id(path), 0.0, 0.0, 1.0, 1.0)
 
+    /**
+     * Creates steam textures with its [path].
+     *
+     * This method create internal Modular UI format [TextureArea] for legacy GTCEu API, if you want to create an ui
+     * texture for Modular UI 2 format, please use methods in [GTLiteMuiTextures] class.
+     *
+     * @param path The path in the mod specified namespace.
+     *
+     * @see GTLiteMuiTextures.texture
+     * @see gregtech.api.mui.GTGuiTheme.BRONZE
+     * @see gregtech.api.mui.GTGuiTheme.STEEL
+     */
+    @JvmStatic
     fun steamTexture(path: String): SteamTexture = runCatching {
         val constructor = SteamTexture::class.constructors
             .first { it.parameters.size == 2 }
             .also { it.isAccessible = true }
 
-        val bronzeTexture = TextureArea(GTLiteMod.id(String.format(path, "bronze")),
-                                        0.0, 0.0, 1.0, 1.0)
-
-        val steelTexture = TextureArea(GTLiteMod.id(String.format(path, "steel")),
-                                       0.0, 0.0, 1.0, 1.0)
+        val bronzeTexture = TextureArea(GTLiteMod.id(path.format("bronze")), 0.0, 0.0, 1.0, 1.0)
+        val steelTexture = TextureArea(GTLiteMod.id(path.format("steel")), 0.0, 0.0, 1.0, 1.0)
 
         return@runCatching constructor.call(bronzeTexture, steelTexture)
     }
