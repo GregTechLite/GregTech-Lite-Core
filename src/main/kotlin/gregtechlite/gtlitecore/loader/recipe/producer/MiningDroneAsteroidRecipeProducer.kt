@@ -41,6 +41,7 @@ import gregtech.api.unification.material.Materials.Chalcocite
 import gregtech.api.unification.material.Materials.Chalcopyrite
 import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Chromite
+import gregtech.api.unification.material.Materials.Cinnabar
 import gregtech.api.unification.material.Materials.Coal
 import gregtech.api.unification.material.Materials.Cobalt
 import gregtech.api.unification.material.Materials.CobaltBrass
@@ -56,6 +57,7 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.FullersEarth
 import gregtech.api.unification.material.Materials.Galena
 import gregtech.api.unification.material.Materials.GarnetRed
+import gregtech.api.unification.material.Materials.GarnetSand
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Garnierite
 import gregtech.api.unification.material.Materials.Gasoline
@@ -162,32 +164,40 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Anorthite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Augite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bytownite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Clinochlore
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cryolite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cuprite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DenseHydrazineRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dolomite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ferrosilite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorapatite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Forsterite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jasper
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kaolinite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Labradorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nephelite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oligoclase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Orpiment
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Phlogopite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Picotite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RP1RocketFuel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tenorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Wollastonite
@@ -204,6 +214,8 @@ internal object MiningDroneAsteroidRecipeProducer
 {
 
     // @formatter:off
+
+    // region Mining Drone Fuels
 
     // LV-HV
     private var fuelBasic = arrayOf(
@@ -257,9 +269,11 @@ internal object MiningDroneAsteroidRecipeProducer
         // HighOctaneGasoline.getFluid(46000), RocketFuel.getFluid(46000), RP1RocketFuel.getFluid(46000),
         DenseHydrazineRocketFuel.getFluid(40000), MethylhydrazineNitrateRocketFuel.getFluid(40000))
 
+    // endregion
+
     fun produce()
     {
-        // Basic Asteroids (5) LV-HV
+        // region Basic Asteroids (6) LV-HV
 
         // Carbon Group Asteroid (Coal-Lignite-Graphite-Diamond)
         addAsteroid(1, 0, Coal, Lignite, Graphite, Diamond)
@@ -271,85 +285,82 @@ internal object MiningDroneAsteroidRecipeProducer
         addAsteroid(1, 3, Cassiterite, CassiteriteSand, Tin, Lead, Galena, Silver, Stibnite, Zeolite, Realgar, FullersEarth, Gypsum)
         // Salt-Sulfur Asteroid (Salt-RockSalt-Saltpeter-Sulfur-Sphalerite-Lepidolite-Spodumene-Asbestos-Diatomite-OilSands)
         addAsteroid(1, 4, Salt, RockSalt, Saltpeter, Sulfur, Sphalerite, Lepidolite, Spodumene, Asbestos, Diatomite, Oilsands)
+        // Misc Gems Asteroid (Albite-Oligoclase-Prasiolite-Labradorite-Bytownite-Firestone-Cinnabar)
+        addAsteroid(1, 5, Albite, Oligoclase, Prasiolite, Labradorite, Bytownite, Firestone, Cinnabar)
 
-        // ---------------------------------------------------------------------------------------------------------
-        // Advanced Asteroids (8) MV-EV
+        // endregion
+
+        // region Advanced Asteroids (8) MV-EV
 
         // Mica Asteroid (Mica-Kyanite-Bauxite-Pollucite-Muscovite-Phlogopite-Biotite-Lepidolite)
-        addAsteroid(2, 5, Mica, Kyanite, Bauxite, Pollucite, Muscovite, Phlogopite, Biotite, Lepidolite)
+        addAsteroid(2, 6, Mica, Kyanite, Bauxite, Pollucite, Muscovite, Phlogopite, Biotite, Lepidolite)
         // Kaolinite-Dolomite Asteroid (Kaolinite-Bentonite-Augite-Ferrosilite-Spodumene-Dolomite-Wollastonite-Trona)
-        addAsteroid(2, 6, Kaolinite, Bentonite, Augite, Ferrosilite, Spodumene, Dolomite, Wollastonite, Trona)
+        addAsteroid(2, 7, Kaolinite, Bentonite, Augite, Ferrosilite, Spodumene, Dolomite, Wollastonite, Trona)
         // Nickel-Cobalt Asteroid (Nickel-Garnierite-Cobalt-Cobaltite-Pyrite-Pentlandite-Soapstone-Talc-GlauconiteSand)
-        addAsteroid(2, 7, Nickel, Garnierite, Cobalt, Cobaltite, Pyrite, Pentlandite, Soapstone, Talc, GlauconiteSand)
+        addAsteroid(2, 8, Nickel, Garnierite, Cobalt, Cobaltite, Pyrite, Pentlandite, Soapstone, Talc, GlauconiteSand)
         // Manganese-Tantalum Asteroid (Pyrolusite-Tantalite-Pyrochlore-Grossular-Spessartine-Forsterite)
-        addAsteroid(2, 8, Pyrolusite, Tantalite, Pyrochlore, Grossular, Spessartine, Forsterite)
+        addAsteroid(2, 9, Pyrolusite, Tantalite, Pyrochlore, Grossular, Spessartine, Forsterite)
         // Redstone-Garnet Asteroid (Redstone-Ruby-Realgar-Orpiment-GarnetRed-GarnetYellow-Amethyst-Opal)
-        addAsteroid(2, 9, Redstone, Ruby, Realgar, Orpiment, GarnetRed, GarnetYellow, Amethyst, Opal)
+        addAsteroid(2, 10, Redstone, Ruby, Realgar, Orpiment, GarnetRed, GarnetYellow, Amethyst, Opal)
         // Various Gems Asteroid (Diamond-Ruby-Emerald-Olivine-Sapphire-GreenSapphire-Lapis-Lazurite-Sodalite-CertusQuartz-Topaz-BlueTopaz-Amethyst-Opal)
-        addAsteroid(2, 10, Diamond, Ruby, Emerald, Olivine, Sapphire, GreenSapphire, Lapis, Lazurite, Sodalite, CertusQuartz, Topaz, BlueTopaz, Amethyst, Opal)
+        addAsteroid(2, 11, Diamond, Ruby, Emerald, Olivine, Sapphire, GreenSapphire, Lapis, Lazurite, Sodalite, CertusQuartz, Topaz, BlueTopaz, Amethyst, Opal)
         // Various Gems Asteroid (Almandine-Andradite-Grossular-Pyrope-Spessartine-Uvarovite-Tanzanite-Quartzite-Realgar-Orpiment-Apatite-GarnetRed-GarnetYellow-Zircon)
-        addAsteroid(2, 11, Almandine, Andradite, Grossular, Pyrope, Spessartine, Uvarovite, Tanzanite, Quartzite, Realgar, Orpiment, Apatite, GarnetRed, GarnetYellow, Zircon)
+        addAsteroid(2, 12, Almandine, Andradite, Grossular, Pyrope, Spessartine, Uvarovite, Tanzanite, Quartzite, Realgar, Orpiment, Apatite, GarnetRed, GarnetYellow, Zircon)
         // Aluminium-Chrome Asteroid (Aluminium-Bauxite-Ilmenite-Cryolite-Chromite-Picotite-Jade-Jasper-Anorthite-NetherQuartz-Barite)
-        addAsteroid(2, 12, Aluminium, Bauxite, Ilmenite, Cryolite, Chromite, Picotite, Jade, Jasper, Anorthite, NetherQuartz, Barite)
+        addAsteroid(2, 13, Aluminium, Bauxite, Ilmenite, Cryolite, Chromite, Picotite, Jade, Jasper, Anorthite, NetherQuartz, Barite)
 
-        // ---------------------------------------------------------------------------------------------------------
-        // Elite Asteroids (4) HV-IV
+        // endregion
+
+        // region Elite Asteroids (5) HV-IV
 
         // Platinum Group Asteroid (Platinum-Palladium-Cooperite-Chalcopyrite-Chalcocite-Bornite-Tetrahedrite-Pentlandite-Azurite-Tenorite-Cuprite)
-        addAsteroid(3, 13, Platinum, Palladium, Cooperite, Chalcopyrite, Chalcocite, Bornite, Tetrahedrite, Pentlandite, Azurite, Tenorite, Cuprite)
+        addAsteroid(3, 14, Platinum, Palladium, Cooperite, Chalcopyrite, Chalcocite, Bornite, Tetrahedrite, Pentlandite, Azurite, Tenorite, Cuprite)
         // Molybdenum-Tungsten Asteroid (Molybdenum-Molybdenite-Powellite-Wulfenite-Scheelite-Tungstate-Lithium)
-        addAsteroid(3, 14, Molybdenum, Molybdenite, Powellite, Wulfenite, Scheelite, Tungstate, Lithium)
+        addAsteroid(3, 15, Molybdenum, Molybdenite, Powellite, Wulfenite, Scheelite, Tungstate, Lithium)
         // Zircon Asteroid (Zircon-Baddeleyite-Nephelite-Aegirine-Lizardite-Calcite-Uvarovite-Clinochlore-Magnesite)
-        addAsteroid(3, 15, Zircon, Baddeleyite, Nephelite, Aegirine, Lizardite, Calcite, Uvarovite, Clinochlore, Magnesite)
+        addAsteroid(3, 16, Zircon, Baddeleyite, Nephelite, Aegirine, Lizardite, Calcite, Uvarovite, Clinochlore, Magnesite)
         // Radioactive Asteroid (Naquadah-Pitchblende-Uraninite-Thorium-Plutonium-239-Beryllium-Saltpeter-Diatomite-Electrotine-Alunite)
-        addAsteroid(3, 16, Naquadah, Pitchblende, Uraninite, Thorium, Plutonium239, Beryllium, Saltpeter, Diatomite, Electrotine, Alunite)
+        addAsteroid(3, 17, Naquadah, Pitchblende, Uraninite, Thorium, Plutonium239, Beryllium, Saltpeter, Diatomite, Electrotine, Alunite)
+        // Strontium Asteroid (Celestine-Strontianite-Calcite-Quartzite-GarnetSand)
+        addAsteroid(3, 18, Celestine, Strontianite, Calcite, Calcite, Quartzite, Quartzite, GarnetSand)
 
-        // ---------------------------------------------------------------------------------------------------------
-        // Ultimate Asteroids (4) EV-LuV
+        // endregion
+
+        // region Ultimate Asteroids (4) EV-LuV
 
         // Rare Earth Asteroid (Neodymium-Monazite-Bastnasite-Fluorite-Apatite-Fluorapatite-TricalciumPhosphate)
-        addAsteroid(4, 17, Neodymium, Monazite, Bastnasite, Fluorite, Apatite, Fluorapatite, TricalciumPhosphate)
+        addAsteroid(4, 19, Neodymium, Monazite, Bastnasite, Fluorite, Apatite, Fluorapatite, TricalciumPhosphate)
         // Various Advanced Metal Asteroid (Chrome-Molybdenum-Cadmium-Platinum-Palladium)
-        addAsteroid(4, 18, Chrome, Chrome, Molybdenum, Molybdenum, Cadmium, Cadmium, Platinum, Platinum, Palladium, Palladium)
+        addAsteroid(4, 20, Chrome, Chrome, Molybdenum, Molybdenum, Cadmium, Cadmium, Platinum, Platinum, Palladium, Palladium)
         // Various Radioactive Metal Asteroid (Uranium-Thorium-Plutonium239-Plutonium241)
-        addAsteroid(4, 19, Uranium, Uranium, Thorium, Thorium, Plutonium239, Plutonium239, Plutonium241, Plutonium241)
+        addAsteroid(4, 21, Uranium, Uranium, Thorium, Thorium, Plutonium239, Plutonium239, Plutonium241, Plutonium241)
         // Various Vanilla Ores Asteroid (Iron-Gold-Silver-Lead-Nickel-Diamond-Redstone-Emerald)
-        addAsteroid(4, 20, Iron, Iron, Gold, Gold, Silver, Silver, Lead, Lead, Nickel, Nickel, Diamond, Diamond, Redstone, Redstone, Emerald, Emerald)
+        addAsteroid(4, 22, Iron, Iron, Gold, Gold, Silver, Silver, Lead, Lead, Nickel, Nickel, Diamond, Diamond, Redstone, Redstone, Emerald, Emerald)
 
-        // ---------------------------------------------------------------------------------------------------------
-        // Epic Asteroid (.) IV-ZPM
+        // endregion
 
-        // ---------------------------------------------------------------------------------------------------------
-        // Legendary Asteroid (.) LuV-UV
+        // TODO: Epic Asteroid (.) IV-ZPM
 
-        // Rhenium?
-
-        // Advanced Platinum Group Asteroid?
+        // TODO: Legendary Asteroid (.) LuV-UV, Rhenium? Advanced Platinum Group Asteroid?
 
     }
 
     /**
-     * Add an asteroid to mining drone airport, it will add some grouped recipes,
-     * each asteroid has a tier which means its lowest mining drone tier requirement,
+     * Add an asteroid to mining drone airport.
+     *
+     * It will add some grouped recipes, each asteroid has a tier which means its lowest mining drone tier requirement,
      * and it will use its [tier] and ([tier]+1,[tier]+2) mining drone in recipes.
      *
-     * @param tier        The tier of asteroid, 1 means basic, 2 means advanced, e.t.c.
-     *                    For these tiers, basic used LV-HV mining drone, advanced used
-     *                    MV-HV mining drones, e.t.c.
-     * @param circuitMeta Used to declared asteroid types, different asteroids used
-     *                    different value.
+     * @param tier        The tier of asteroid, 1 means basic, 2 means advanced, e.t.c. For these tiers, basic used LV-HV
+     *                    mining drone, advanced used MV-HV mining drones, e.t.c.
+     * @param circuitMeta Used to declared asteroid types, different asteroids used different value.
      * @param outputs     Output ores, i.e. the components of this asteroid.
      *
-     * @throws IllegalArgumentException When [tier] is an incorrect value.
-     * @throws IndexOutOfBoundsException When [circuitMeta] is out bounds of int
-     *                                   circuit values (<0 or >32).
-     * @throws IndexOutOfBoundsException When [outputs] is out bounds of recipe output
-     *                                   slots (>16).
-     *
-     * @author Magic_Sweepy
+     * @throws IllegalArgumentException  When [tier] is an incorrect value.
+     * @throws IndexOutOfBoundsException When [circuitMeta] is out bounds of int circuit values (<0 or >32).
+     * @throws IndexOutOfBoundsException When [outputs] is out bounds of recipe output slots (>16).
      */
-    private fun addAsteroid(tier: Int, circuitMeta: Int,
-                            vararg outputs: Material)
+    private fun addAsteroid(tier: Int, circuitMeta: Int, vararg outputs: Material)
     {
         // 1: basic, 2: advanced, 3: elite, 4: ultimate, 5: epic, 6: legendary
         if (!arrayOf(1, 2, 3, 4, 5, 6).contains(tier))
