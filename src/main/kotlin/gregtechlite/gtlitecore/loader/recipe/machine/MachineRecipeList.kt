@@ -22,6 +22,7 @@ internal object MachineRecipeList
         ExtruderRecipes.init()
         FluidSolidifierRecipes.init()
         FormingPressRecipes.init()
+        FurnaceRecipes.init()
         FusionReactorRecipes.init()
         GasCollectorRecipes.init()
         LaserEngraverRecipes.init()
