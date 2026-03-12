@@ -94,6 +94,19 @@ object GTLiteMuiTextures
     @JvmField
     val BUTTON_DISABLE_MODULE = fullImage("textures/gui/widget/button_disable_module.png")
 
+    /**
+     * Space Elevator Logo
+     *
+     */
+    @JvmField
+    val SPACE_ELEVATOR_LOGO = fullImage("textures/gui/icon/space_elevator_logo.png")
+
+    /**
+     * Space Elevator Logo Dark
+     */
+    @JvmField
+    val SPACE_ELEVATOR_LOGO_DARK = fullImage("textures/gui/icon/space_elevator_logo_dark.png")
+
     // endregion
 
     // region Helper Methods
