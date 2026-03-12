@@ -1,10 +1,13 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
+import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.properties.OreProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.ConfigHolder;
 import gregtech.loaders.recipe.handlers.OreRecipeHandler;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -24,8 +27,8 @@ public abstract class MixinOreRecipeHandler
     private static void stopInit(CallbackInfo ci)
     {
         OrePrefix.ore.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-        OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-        OrePrefix.oreNetherrack.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
+        OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOreDouble);
+        OrePrefix.oreNetherrack.addProcessingHandler(PropertyKey.ORE, MixinOreRecipeHandler::gtlitecore$processOreQuadruple);
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
@@ -46,6 +49,12 @@ public abstract class MixinOreRecipeHandler
         OrePrefix.dustPure.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processPureDust);
 
         ci.cancel();
+    }
+
+    @Unique
+    private static void gtlitecore$processOreQuadruple(OrePrefix prefix, Material material, OreProperty property)
+    {
+        OreRecipeHandler.processOre(prefix, material, property, 4);
     }
 
 }
