@@ -1,12 +1,16 @@
 package gregtechlite.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
+import gregtech.api.unification.ore.OrePrefix.lens
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -36,6 +40,15 @@ internal object ChromaticGlassChain
             .output(dust, ChromaticGlass)
             .EUt(VA[LuV])
             .duration(5 * SECOND)
+            .buildAndRegister()
+
+        // ChromaticGlass lens polishing.
+        POLISHER_RECIPES.recipeBuilder()
+            .input(plate, ChromaticGlass)
+            .output(lens, ChromaticGlass)
+            .output(dustSmall, ChromaticGlass)
+            .EUt(VA[MV])
+            .duration(1 * MINUTE)
             .buildAndRegister()
     }
 
