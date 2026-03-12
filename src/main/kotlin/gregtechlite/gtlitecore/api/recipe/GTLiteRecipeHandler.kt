@@ -20,6 +20,7 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
+import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
@@ -27,7 +28,22 @@ import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.ingredients.GTRecipeInput
 import gregtech.api.recipes.ingredients.GTRecipeItemInput
 import gregtech.api.recipes.ingredients.GTRecipeOreInput
+import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.ore.OrePrefix
+import gregtech.api.unification.ore.OrePrefix.crushed
+import gregtech.api.unification.ore.OrePrefix.crushedCentrifuged
+import gregtech.api.unification.ore.OrePrefix.crushedPurified
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustImpure
+import gregtech.api.unification.ore.OrePrefix.dustPure
+import gregtech.api.unification.ore.OrePrefix.ore
+import gregtech.api.unification.ore.OrePrefix.oreEndstone
+import gregtech.api.unification.ore.OrePrefix.oreNetherrack
+import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.ConfigHolder
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -35,12 +51,26 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.getGTRecipeInput
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreGreenSchist
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKimberlite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKomatiite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreLimestone
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreQuartzite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreShale
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreSlate
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
 
 object GTLiteRecipeHandler
 {
 
+    /**
+     * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
+     *
+     * @param itemInputs  The item inputs of the recipe which will be removed.
+     * @param fluidInputs The fluid inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeChemicalRecipes(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
     {
@@ -48,6 +78,11 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, itemInputs, fluidInputs)
     }
 
+    /**
+     * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
+     *
+     * @param itemInputs The item inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeChemicalRecipes(itemInputs: Array<ItemStack>)
     {
@@ -55,6 +90,11 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, itemInputs, arrayOfNulls<FluidStack>(0))
     }
 
+    /**
+     * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
+     *
+     * @param fluidInputs The fluid inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeChemicalRecipes(fluidInputs: Array<FluidStack>)
     {
@@ -62,6 +102,12 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
     }
 
+    /**
+     * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
+     *
+     * @param itemInputs  The item inputs of the recipe which will be removed.
+     * @param fluidInputs The fluid inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeMixerRecipes(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
     {
@@ -69,6 +115,11 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(LARGE_MIXER_RECIPES, itemInputs, fluidInputs)
     }
 
+    /**
+     * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
+     *
+     * @param itemInputs The item inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeMixerRecipes(itemInputs: Array<ItemStack>)
     {
@@ -76,6 +127,11 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(LARGE_MIXER_RECIPES, itemInputs, arrayOfNulls<FluidStack>(0))
     }
 
+    /**
+     * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
+     *
+     * @param fluidInputs The fluid inputs of the recipe which will be removed.
+     */
     @JvmStatic
     fun removeMixerRecipes(fluidInputs: Array<FluidStack>)
     {
@@ -84,10 +140,17 @@ object GTLiteRecipeHandler
     }
 
     /**
-     * @param tier The tier of io bus/hatch, used voltage tier as default.
-     * @param input The input bus/hatch mte.
-     * @param output The output bus/hatch mte.
-     * @param extraInput Extra input object for recipes, checked via [getGTRecipeInput].
+     * Adds several assembling recipes for input and output hatches.
+     *
+     * This method is useful for add new IO buses or hatches and provide all tier recipes from LV to MAX.
+     *
+     * @param tier       The voltage tier of hatches.
+     * @param input      The [MetaTileEntity] of the input hatch.
+     * @param output     The [MetaTileEntity] of the output hatch.
+     * @param extraInput If those hatches need some additional input items, then should add it at there, used common GTCEu
+     *                   input format as default).
+     *
+     * @see getGTRecipeInput
      */
     @JvmStatic
     fun addIOHatchRecipes(tier: Int, input: MetaTileEntity, output: MetaTileEntity, extraInput: Any)
@@ -275,7 +338,9 @@ object GTLiteRecipeHandler
      * All allowed format of an inputs:
      * - Vanilla [ItemStack].
      * - Gregtech [gregtech.api.items.metaitem.MetaItem.MetaValueItem].
-     * - Ore Dictionary used [String].
+     * - Ore Dictionary [String].
+     *
+     * @param extraInput The additional input items, or just some input ingredients which should be checked.
      */
     @JvmStatic
     fun getGTRecipeInput(extraInput: Any): GTRecipeInput = when (extraInput)
@@ -287,7 +352,9 @@ object GTLiteRecipeHandler
     }
 
     /**
-     * Get fluid amount of io hatch consumed by its tier.
+     * Gets fluid amount of io hatch consumed by its tier.
+     *
+     * @param offsetTier The offset of voltage tier.
      */
     @JvmStatic
     fun getGTHatchFluidAmount(offsetTier: Int): Int = when (offsetTier) {
@@ -307,6 +374,78 @@ object GTLiteRecipeHandler
         OpV  -> L * 9  // 1296
         MAX  -> L * 10 // 1440
         else -> 1
+    }
+
+    /**
+     * Adds smelting recipes for all required ore variants and prefixes.
+     *
+     * @param oreType      The material of the ore which will be input in furnace.
+     * @param outputType   The output material of the ore which will be output in furnace.
+     * @param outputPrefix The format of [outputType], used [dust] as default.
+     * @param outputCount  The count of the output material as default, will be available to use multiplier.
+     */
+    @JvmStatic
+    fun addOreSmelting(oreType: Material,
+                       outputType: Material = oreType,
+                       outputPrefix: OrePrefix = dust,
+                       outputCount: Int = 1)
+    {
+        ModHandler.addSmeltingRecipe(UnificationEntry(ore, oreType),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+        ModHandler.addSmeltingRecipe(UnificationEntry(oreNetherrack, oreType),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount * 2))
+        ModHandler.addSmeltingRecipe(UnificationEntry(oreEndstone, oreType),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount * 4))
+
+        if (ConfigHolder.worldgen.allUniqueStoneTypes)
+        {
+            val oreVariants = arrayOf(oreLimestone, oreKomatiite, oreGreenSchist, oreBlueSchist, oreKimberlite,
+                                      oreQuartzite, oreSlate, oreShale)
+            for (oreVariant in oreVariants)
+            {
+                ModHandler.addSmeltingRecipe(UnificationEntry(oreVariant, oreType),
+                    OreDictUnifier.get(outputPrefix, outputType, outputCount))
+            }
+        }
+
+        ModHandler.addSmeltingRecipe(UnificationEntry(crushed, oreType),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+        ModHandler.addSmeltingRecipe(UnificationEntry(crushedCentrifuged, Sulfur),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+        ModHandler.addSmeltingRecipe(UnificationEntry(crushedPurified, Sulfur),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+        ModHandler.addSmeltingRecipe(UnificationEntry(dustImpure, Sulfur),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+        ModHandler.addSmeltingRecipe(UnificationEntry(dustPure, Sulfur),
+            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+    }
+
+    /**
+     * Removes smelting recipes for all required ore variants and prefixes.
+     *
+     * @param oreType      The material of the ore which will be input in furnace.
+     */
+    @JvmStatic
+    fun removeOreSmelting(oreType: Material)
+    {
+        val oreVariants = mutableListOf<OrePrefix>(ore, oreNetherrack, oreEndstone)
+        if (ConfigHolder.worldgen.allUniqueStoneTypes)
+        {
+            oreVariants.addAll(listOf(oreLimestone, oreKomatiite, oreGreenSchist, oreBlueSchist, oreKimberlite,
+                                      oreQuartzite, oreSlate, oreShale))
+        }
+
+        for (oreVariant in oreVariants)
+        {
+            ModHandler.removeFurnaceSmelting(UnificationEntry(oreVariant, oreType))
+        }
+
+        ModHandler.removeFurnaceSmelting(UnificationEntry(crushed, oreType))
+        ModHandler.removeFurnaceSmelting(UnificationEntry(crushedCentrifuged, oreType))
+        ModHandler.removeFurnaceSmelting(UnificationEntry(crushedPurified, oreType))
+
+        ModHandler.removeFurnaceSmelting(UnificationEntry(dustImpure, oreType))
+        ModHandler.removeFurnaceSmelting(UnificationEntry(dustPure, oreType))
     }
 
 }
