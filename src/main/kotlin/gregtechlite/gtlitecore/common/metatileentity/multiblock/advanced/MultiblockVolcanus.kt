@@ -206,7 +206,7 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
         {
             var fluidAmount = 0L
 
-            inputTank.forEach { tank->
+            inputTank.forEach { tank ->
                 if (tank != null){
                     val drainedStack = tank.drain(BlazingPyrotheum.getFluid(Int.MAX_VALUE), false)
                     if (drainedStack != null && drainedStack.amount > 0)

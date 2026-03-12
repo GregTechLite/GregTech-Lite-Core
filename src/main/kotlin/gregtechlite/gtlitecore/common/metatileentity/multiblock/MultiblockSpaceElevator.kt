@@ -405,8 +405,8 @@ class MultiblockSpaceElevator(id: ResourceLocation)
                         // other module checking situation.
                         if (!this.moduleReceivers.isEmpty() && ConfigHolder.misc.debug)
                         {
-                            val moduleNames = ArrayList<String?>()
-                            val uniqueNames = ArrayList<String?>()
+                            val moduleNames = arrayListOf<String>()
+                            val uniqueNames = arrayListOf<String>()
                             this.moduleReceivers.forEach { moduleReceiver ->
                                 moduleNames.add(moduleReceiver.displayCountName)
                                 if (!uniqueNames.contains(moduleNames[moduleNames.indexOf(moduleReceiver.displayCountName)]))

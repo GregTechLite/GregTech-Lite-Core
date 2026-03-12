@@ -65,7 +65,8 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) =
+        MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
 
     override fun initializeAbilities()
     {
@@ -97,7 +98,9 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
 //
     // override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
 
-    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    override fun renderMetaTileEntity(renderState: CCRenderState?,
+                                      translation: Matrix4?,
+                                      pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         for (renderSide in EnumFacing.HORIZONTALS)
@@ -171,20 +174,24 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
                             // hint since the tooltip for TextFieldWidget is currently not working
                             // in current ModularUI, need to be removed after the tooltip issue is fixed.
                             .tooltipDynamic { tooltip ->
-                                tooltip.add("流体输出${slowNumber + 1}\n")
-                                tooltip.add("在输入框中设置行星ID和流体ID，\n")
-                                tooltip.add("泵将从对应的行星抽取对应的流体。\n")
-                                tooltip.add("目前输出流体: ${
-                                    if (plantValue.value.isEmpty() ||
-                                        fluidValue.value.isEmpty() ||
-                                        !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
-                                            fluidValue.value.toInt()))
-                                    )
-                                        "无"
-                                    else
-                                        KeyUtil.fluid(SpacePumpRecipeFrontend.RECIPES
-                                            [Pair(plantValue.value.toInt(), fluidValue.value.toInt())]?.fluid)
-                                }")
+                                tooltip.addLine(KeyUtil.lang(
+                                    "gtlitecore.machine.space_pump_module.fluid_row.1",
+                                    slowNumber + 1
+                                ))
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.2"))
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.3"))
+                                tooltip.addLine(
+                                    KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.4",
+                                        if (plantValue.value.isEmpty() ||
+                                            fluidValue.value.isEmpty() ||
+                                            !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
+                                                fluidValue.value.toInt()))
+                                        )
+                                            KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.null")
+                                        else
+                                            KeyUtil.fluid(SpacePumpRecipeFrontend.RECIPES
+                                                [Pair(plantValue.value.toInt(), fluidValue.value.toInt())]?.fluid)
+                                    ))
                             }.tooltipAutoUpdate(true)
                 )
                 .child(
@@ -283,8 +290,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         if (progress == 0 && !checkRecipes())
         {
             setActive(false)
-        }
-        else
+        } else
         {
             drainEnergy(false)
             setActive(true)
@@ -317,8 +323,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
                 if (fluidStack != null)
                     return true
             }
-        }
-        else
+        } else
         {
             val fluidStack = SpacePumpRecipeFrontend.RECIPES[Pair(planets[0], fluids[0])]
             return fluidStack != null

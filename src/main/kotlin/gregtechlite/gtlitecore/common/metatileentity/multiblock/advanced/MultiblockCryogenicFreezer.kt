@@ -158,7 +158,7 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
         {
             var fluidAmount = 0L
 
-            fluidStack.forEach { tank->
+            fluidStack.forEach { tank ->
                 if (tank != null){
                     val drainedStack = tank.drain(GelidCryotheum.getFluid(Int.MAX_VALUE), false)
                     if (drainedStack != null && drainedStack.amount > 0)
