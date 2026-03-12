@@ -3,18 +3,29 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.module
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.drawable.DynamicDrawable
+import com.cleanroommc.modularui.utils.Alignment
+import com.cleanroommc.modularui.value.sync.IntSyncValue
+import com.cleanroommc.modularui.value.sync.StringSyncValue
+import com.cleanroommc.modularui.widgets.layout.Column
+import com.cleanroommc.modularui.widgets.layout.Flow
+import com.cleanroommc.modularui.widgets.layout.Row
+import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
 import gregtech.api.GTValues
 import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.ModuleMultiblockBase
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -25,6 +36,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.common.util.Constants
 import net.minecraftforge.fluids.FluidStack
@@ -53,7 +65,8 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) =
+        MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
 
     override fun initializeAbilities()
     {
@@ -85,7 +98,9 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
 //
     // override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
 
-    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    override fun renderMetaTileEntity(renderState: CCRenderState?,
+                                      translation: Matrix4?,
+                                      pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         for (renderSide in EnumFacing.HORIZONTALS)
@@ -127,157 +142,126 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         else -> "MK4"
     }
 
-    // TODO FIXME
-    /*
-    override fun createUITemplate(player: EntityPlayer): ModularUI.Builder
+    @Suppress("UnstableApiUsage")
+    private fun createFluidRow(slowNumber: Int): Flow
     {
-        val builder = ModularUI.builder(GTLiteGuiTextures.BACKGROUND_IRREGULAR, 311, 208)
-            .image(4, 4, 190, 117, GuiTextures.DISPLAY)
-            .widget(IndicatorImageWidget(174, 101, 17, 17, getLogo())
-                .setWarningStatus(getWarningLogo()) { textList -> this.addWarningText(textList) }
-                        .setErrorStatus(getErrorLogo()) { textList -> this.addErrorText(textList) })
-            .label(9, 9, metaFullName, 0xFFFFFF)
-            .widget(AdvancedTextWidget(9, 20, { textList -> this.addDisplayText(textList) }, 0xFFFFFF)
-                .setMaxWidthLimit(181)
-                .setClickHandler { componentData, clickData ->
-                    handleDisplayClick(componentData, clickData)
-                })
-        // Power Button
-        val controllable = getCapability(GregtechTileCapabilities.CAPABILITY_CONTROLLABLE, null)
-        if (controllable != null)
-        {
-            builder.widget(ImageCycleButtonWidget(173, 183, 18, 18,
-                GuiTextures.BUTTON_POWER, { controllable.isWorkingEnabled() },
-                { b: Boolean -> controllable.setWorkingEnabled(b) }))
-                .widget(ImageWidget(173, 201, 18, 6, GuiTextures.BUTTON_POWER_DETAIL))
-        }
+        val plantValue = StringSyncValue(
+            { this.getPlanetValue(slowNumber) },
+            { s -> setPlanetValue(slowNumber, s) })
 
-        // Voiding Mode Button
-        builder.widget(ImageCycleButtonWidget(173, 161, 18, 18, GuiTextures.BUTTON_VOID_MULTIBLOCK,
-                4, { getVoidingMode() }, { mode: Int -> setVoidingMode(mode) })
-            .setTooltipHoverString { mode -> getVoidingModeTooltip(mode!!) })
+        val fluidValue = StringSyncValue(
+            { this.getFluidValue(slowNumber) },
+            { s -> setFluidValue(slowNumber, s) }
+        )
 
-        // Sub Screen for setting (planet, fluid).
-        builder.label(198 + 62 - 18 * 2 - 18 - 9, 36 - 12, "gtlitecore.machine.space_pump_module.configuration", 0x1F1E33)
-            .widget(ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36, 20, 20, GTLiteGuiTextures.SPACE_PUMP_MODULE_1))
+        return Row()
+                .expanded()
+                .mainAxisAlignment(Alignment.MainAxis.SPACE_BETWEEN)
+                .size(76, 20)
+                .child(
+                    DynamicDrawable {
+                        if (plantValue.value.isEmpty() ||
+                            fluidValue.value.isEmpty() ||
+                            !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
+                                fluidValue.value.toInt()))
+                        )
+                            GTLiteMuiTextures.SPACE_ELEVATOR_LOGO_DARK
+                        else
+                            GTLiteMuiTextures.SPACE_ELEVATOR_LOGO
+                    }.asWidget()
+                            .size(20, 20)
+                            //TODO: Temporarily Solutions for distinguish fluid rows and show
+                            // hint since the tooltip for TextFieldWidget is currently not working
+                            // in current ModularUI, need to be removed after the tooltip issue is fixed.
+                            .tooltipDynamic { tooltip ->
+                                tooltip.addLine(KeyUtil.lang(
+                                    "gtlitecore.machine.space_pump_module.fluid_row.1",
+                                    slowNumber + 1
+                                ))
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.2"))
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.3"))
+                                tooltip.addLine(
+                                    KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.4",
+                                        if (plantValue.value.isEmpty() ||
+                                            fluidValue.value.isEmpty() ||
+                                            !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
+                                                fluidValue.value.toInt()))
+                                        )
+                                            KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.null")
+                                        else
+                                            KeyUtil.fluid(SpacePumpRecipeFrontend.RECIPES
+                                                [Pair(plantValue.value.toInt(), fluidValue.value.toInt())]?.fluid)
+                                    ))
+                            }.tooltipAutoUpdate(true)
+                )
+                .child(
+                    TextFieldWidget()
+                            .value(plantValue)
+                            .setNumbers(0, 999)
+                            .setMaxLength(3)
+                            .size(26, 16)
+                            // Tooltip support is in ModularUI 3.0.4, currently not displayed
+                            .addTooltipLine(KeyUtil.lang(
+                                "gtlitecore.machine.space_pump_module.planet_setter"
+                            ))
+                )
+                .child(
+                    TextFieldWidget()
+                            .value(fluidValue)
+                            .setNumbers(0, 999)
+                            .setMaxLength(3)
+                            .size(26, 16)
+                            // Tooltip support is in ModularUI 3.0.4, currently not displayed
+                            .addTooltipLine(KeyUtil.lang(
+                                "gtlitecore.machine.space_pump_module.fluid_setter"
+                            ))
+                )
 
-        if (moduleTier > 1)
-        {
-            builder.widget(ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22, 20, 20,
-                GTLiteGuiTextures.SPACE_PUMP_MODULE_2))
-                .widget(ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 2, 20, 20,
-                    GTLiteGuiTextures.SPACE_PUMP_MODULE_3))
-                .widget(ImageWidget(198 + 62 - 18 * 2 - 18 - 9, 36 + 22 * 3, 20, 20,
-                    GTLiteGuiTextures.SPACE_PUMP_MODULE_4))
-        }
-
-        val planetGroup1 = ServerWidgetGroup { true }
-        planetGroup1.addWidget(ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36, 53 / 2, 20, GuiTextures.DISPLAY)
-            .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"))
-
-        planetGroup1.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42, 51 / 2, 20,
-                { getPlanetValue(0) }, { s -> setPlanetValue(0, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-        val fluidGroup1 = ServerWidgetGroup { true }
-        fluidGroup1.addWidget(ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"))
-
-        fluidGroup1.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42, 51 / 2, 20,
-            { getFluidValue(0) }, { s -> setFluidValue(0, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-        builder.widget(planetGroup1).widget(fluidGroup1)
-
-        // For MK2/MK3, has more planetGroup to setting 2-4 planets and fluids.
-        if (moduleTier > 1)
-        {
-            val planetGroup2 = ServerWidgetGroup { true }
-            planetGroup2.addWidget(ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22, 53 / 2, 20, GuiTextures.DISPLAY)
-                    .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"))
-
-            planetGroup2.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22, 51 / 2, 20,
-                { getPlanetValue(1) }, { s -> setPlanetValue(1, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            val fluidGroup2 = ServerWidgetGroup { true }
-            fluidGroup2.addWidget(ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"))
-
-            fluidGroup2.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22, 51 / 2, 20,
-                { getFluidValue(1) }, { s -> setFluidValue(1, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            val planetGroup3 = ServerWidgetGroup { true }
-            planetGroup3.addWidget(ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22 * 2, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"))
-
-            planetGroup3.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22 * 2, 51 / 2, 20,
-                { getPlanetValue(2) }, { s -> setPlanetValue(2, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            val fluidGroup3 = ServerWidgetGroup { true }
-            fluidGroup3.addWidget(ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22 * 2, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"))
-
-            fluidGroup3.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22 * 2, 51 / 2, 20,
-                { getFluidValue(2) }, { s: String? -> setFluidValue(2, s!!) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            val planetGroup4 = ServerWidgetGroup { true }
-            planetGroup4.addWidget(ImageWidget(198 + 62 - 18 * 2 - 9 + 4, 36 + 22 * 3, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.planet_setter"))
-
-            planetGroup4.addWidget(TextFieldWidget2(198 + 63 - 18 * 2 - 9 + 4, 42 + 22 * 3, 51 / 2, 20,
-                { getPlanetValue(3) }, { s -> setPlanetValue(3, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            val fluidGroup4 = ServerWidgetGroup { true }
-            fluidGroup4.addWidget(ImageWidget(198 + 62 - 18 * 2 + 18 * 2 + 4, 36 + 22 * 3, 53 / 2, 20, GuiTextures.DISPLAY)
-                .setTooltip("gtlitecore.machine.space_pump_module.fluid_setter"))
-
-            fluidGroup4.addWidget(TextFieldWidget2(
-                198 + 63 - 18 * 2 + 18 * 2 + 4, 42 + 22 * 3, 51 / 2, 20,
-                { getFluidValue(3) }, { s -> setFluidValue(3, s) })
-                .setCentered(true)
-                .setAllowedChars(TextFieldWidget2.WHOLE_NUMS)
-                .setMaxLength(3))
-
-            builder.widget(planetGroup2).widget(fluidGroup2)
-                .widget(planetGroup3).widget(fluidGroup3)
-                .widget(planetGroup4).widget(fluidGroup4)
-        }
-
-        builder.widget(ClickButtonWidget(173, 125 + 18, 18, 18, "") { data: ClickData ->
-            reinitializeStructurePattern() }
-            .setButtonTexture(GTLiteGuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-            .setTooltipText("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-
-        builder.bindPlayerInventory(player.inventory, 125)
-        return builder
     }
 
-     */
+    @Suppress("UnstableApiUsage")
+    override fun createUIFactory(): MultiblockUIFactory
+    {
+        val moduleTier = IntSyncValue(::moduleTier)
+
+        return super.createUIFactory()
+                .setSize(284, 208)
+                .addScreenChildren { parent, syncManager ->
+                    parent.child(
+                        Column()
+                                .debugName("Configure Column")
+                                .size(80, 100)
+                                .top(4).left(194)
+                                .mainAxisAlignment(Alignment.MainAxis.START)
+                                .childPadding(3)
+                                .child(
+                                    KeyUtil.lang(
+                                        TextFormatting.BLACK,
+                                        "gtlitecore.machine.space_pump_module.configuration"
+                                    ).asWidget()
+                                )
+                                .child(
+                                    createFluidRow(0)
+                                )
+                                .childIf(moduleTier.value > 1) {
+                                    createFluidRow(1)
+                                }
+                                .childIf(moduleTier.value > 1) {
+                                    createFluidRow(2)
+                                }
+                                .childIf(moduleTier.value > 1) {
+                                    createFluidRow(3)
+                                }
+                    )
+                }
+    }
 
     private fun getPlanetValue(index: Int): String = planets[index].toString()
 
 
     private fun setPlanetValue(index: Int, value: String)
     {
+        if (value.isEmpty()) return
         planets[index] = value.toInt()
     }
 
@@ -285,6 +269,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
 
     private fun setFluidValue(index: Int, value: String)
     {
+        if (value.isEmpty()) return
         fluids[index] = value.toInt()
     }
 
@@ -305,8 +290,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         if (progress == 0 && !checkRecipes())
         {
             setActive(false)
-        }
-        else
+        } else
         {
             drainEnergy(false)
             setActive(true)
@@ -339,8 +323,7 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
                 if (fluidStack != null)
                     return true
             }
-        }
-        else
+        } else
         {
             val fluidStack = SpacePumpRecipeFrontend.RECIPES[Pair(planets[0], fluids[0])]
             return fluidStack != null

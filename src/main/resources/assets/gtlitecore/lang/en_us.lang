@@ -837,6 +837,7 @@ metaitem.tool.circuit_pattern.type.circuit.cosmic_mainframe=Cosmic Planetary Mai
 metaitem.tool.circuit_pattern.type.circuit.supracausal_computer=Supracausal Interstellar Supercomputer Complex
 metaitem.tool.circuit_pattern.type.circuit.supracausal_mainframe=Supracausal Interstellar Mainframe Complex
 
+metaitem.tool.circuit_pattern.type.energy.lapotronic_orb=Lapotronic Energy Orb
 metaitem.tool.circuit_pattern.type.circuit.component.diamond_modulator=Diamond Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.ruby_modulator=Ruby Modulator
 metaitem.tool.circuit_pattern.type.circuit.component.sapphire_modulator=Sapphire Modulator
@@ -1556,7 +1557,6 @@ metaitem.fruit.product.rainbow_berry.name=Rainbow Berry
 metaitem.fruit.product.rainbow_berry.tooltip=Chromatic
 metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
-
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal
@@ -2449,7 +2449,8 @@ gtlitecore.machine.space_elevator.tooltip.8=在太空电梯控制器中可以同
 gtlitecore.machine.space_elevator.acceleration_track_tier=Acceleration Track Tier: §eMK%s§f
 gtlitecore.machine.space_elevator.max_module_count=Maximum Module Count: §a%s§f
 
-gtlitecore.machine.space_elevator.extension_info=启用扩展结构
+gtlitecore.machine.space_elevator.extension_info.enabled=启用扩展结构
+gtlitecore.machine.space_elevator.extension_info.disabled=禁用扩展结构
 gtlitecore.machine.space_elevator.enable_module=启用所有模块
 gtlitecore.machine.space_elevator.disable_module=禁用所有模块
 gtlitecore.machine.space_elevator.refresh_structure_pattern=强制更新结构检测
@@ -2483,6 +2484,11 @@ gtlitecore.machine.space_pump_module.orbit_tier=需要§f%s§7或更高等级的
 gtlitecore.machine.space_pump_module.configuration=配置界面
 gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
 gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
+gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
+gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
+gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
+gtlitecore.machine.space_pump_module.fluid_row.4=目前输出流体: %s
+gtlitecore.machine.space_pump_module.fluid_row.null=无
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
