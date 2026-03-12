@@ -2484,10 +2484,10 @@ gtlitecore.machine.space_pump_module.orbit_tier=需要§f%s§7或更高等级的
 gtlitecore.machine.space_pump_module.configuration=配置界面
 gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
 gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
-gtlitecore.machine.space_pump_module.fluid_row.0=流体输出 #%s
-gtlitecore.machine.space_pump_module.fluid_row.1=在输入框中设置行星ID和流体ID，
-gtlitecore.machine.space_pump_module.fluid_row.2=泵将从对应的行星抽取对应的流体。
-gtlitecore.machine.space_pump_module.fluid_row.3=目前输出流体: %s
+gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
+gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
+gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
+gtlitecore.machine.space_pump_module.fluid_row.4=目前输出流体: %s
 gtlitecore.machine.space_pump_module.fluid_row.null=无
 
 gtlitecore.machine.energy_infuser.name=能量注入器
