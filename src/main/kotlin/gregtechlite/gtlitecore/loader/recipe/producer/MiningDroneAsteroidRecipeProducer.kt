@@ -346,27 +346,21 @@ internal object MiningDroneAsteroidRecipeProducer
     }
 
     /**
-     * Add an asteroid to mining drone airport, it will add some grouped recipes,
-     * each asteroid has a tier which means its lowest mining drone tier requirement,
+     * Add an asteroid to mining drone airport.
+     *
+     * It will add some grouped recipes, each asteroid has a tier which means its lowest mining drone tier requirement,
      * and it will use its [tier] and ([tier]+1,[tier]+2) mining drone in recipes.
      *
-     * @param tier        The tier of asteroid, 1 means basic, 2 means advanced, e.t.c.
-     *                    For these tiers, basic used LV-HV mining drone, advanced used
-     *                    MV-HV mining drones, e.t.c.
-     * @param circuitMeta Used to declared asteroid types, different asteroids used
-     *                    different value.
+     * @param tier        The tier of asteroid, 1 means basic, 2 means advanced, e.t.c. For these tiers, basic used LV-HV
+     *                    mining drone, advanced used MV-HV mining drones, e.t.c.
+     * @param circuitMeta Used to declared asteroid types, different asteroids used different value.
      * @param outputs     Output ores, i.e. the components of this asteroid.
      *
-     * @throws IllegalArgumentException When [tier] is an incorrect value.
-     * @throws IndexOutOfBoundsException When [circuitMeta] is out bounds of int
-     *                                   circuit values (<0 or >32).
-     * @throws IndexOutOfBoundsException When [outputs] is out bounds of recipe output
-     *                                   slots (>16).
-     *
-     * @author Magic_Sweepy
+     * @throws IllegalArgumentException  When [tier] is an incorrect value.
+     * @throws IndexOutOfBoundsException When [circuitMeta] is out bounds of int circuit values (<0 or >32).
+     * @throws IndexOutOfBoundsException When [outputs] is out bounds of recipe output slots (>16).
      */
-    private fun addAsteroid(tier: Int, circuitMeta: Int,
-                            vararg outputs: Material)
+    private fun addAsteroid(tier: Int, circuitMeta: Int, vararg outputs: Material)
     {
         // 1: basic, 2: advanced, 3: elite, 4: ultimate, 5: epic, 6: legendary
         if (!arrayOf(1, 2, 3, 4, 5, 6).contains(tier))
