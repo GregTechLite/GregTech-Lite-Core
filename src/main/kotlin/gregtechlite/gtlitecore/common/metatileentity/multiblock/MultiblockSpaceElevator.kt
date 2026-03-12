@@ -300,21 +300,6 @@ class MultiblockSpaceElevator(id: ResourceLocation)
 
     private fun modulePredicate(): TraceabilityPredicate = TraceabilityPredicate { blockWorldState ->
         val state = blockWorldState.blockState
-        val block = state.block
-
-        // Common blocks.
-
-        // if (block is BlockSpaceElevatorCasing)
-        // {
-        //     val casingType: BlockSpaceElevatorCasing.CasingType? = (state.getBlock() as BlockSpaceElevatorCasing).getState(state)
-        //     if (casingType === BlockSpaceElevatorCasing.CasingType.BASE_CASING) return@Predicate true
-        // }
-
-        // TODO: Temporarily disable casing check.
-//        if ((block as VariantBlock<*>).getState(state) === AerospaceCasing.ELEVATOR_BASE_CASING.state)
-//        {
-//            return@TraceabilityPredicate true
-//        }
 
         // Module mtes.
         val te = blockWorldState.getTileEntity()
@@ -382,8 +367,6 @@ class MultiblockSpaceElevator(id: ResourceLocation)
                 .createFlexButton { guiData, guiSyncManager ->
                     return@createFlexButton ButtonWidget()
                             .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                            // TODO: add hover background texture for refresh button
-//                    .hoverBackground(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN_HOVER)
                             .disableHoverBackground()
                             .onMousePressed { i ->
                                 reinitializeStructurePattern()
@@ -468,14 +451,11 @@ class MultiblockSpaceElevator(id: ResourceLocation)
 //
     //  override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
 
-
-    // TODO: function is not working
     private fun disabledAllModules()
     {
         this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
     }
 
-    // TODO: function is not working
     private fun enabledAllModules()
     {
         this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingEnabled() }
