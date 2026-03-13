@@ -120,10 +120,15 @@ dependencies {
     implementation(libs.forgelin) {
         exclude("net.minecraftforge")
     }
-    implementation(deobf(libs.modularui))
+
+    implementation(libs.modularui) {
+        isTransitive = false
+    }
+
     api(libs.codeChickenLib)
+    api(libs.ctm)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
-    implementation(deobf(files("libs/gregtech-1.12.2-master-#2851.jar")))
+    implementation(deobf(files("libs/gregtech-1.12.2-master-#2901.jar")))
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
@@ -134,7 +139,6 @@ dependencies {
 
     compileOnly(libs.craftTweaker2)
 
-    runtimeOnly(deobf(libs.ctm))
     runtimeOnly(deobf(libs.catalogue))
 
     compileOnlyApi(libs.jetbrainsAnnotations)

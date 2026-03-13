@@ -24,6 +24,8 @@ inline fun <reified T> VariantBlockFactory.makeMetalCutoutBlock() : VariantBlock
             this.setDefaultState(getState(VALUES[0]))
         }
 
+        override fun computeVariants(): Collection<T> = enumValues<T>().toList()
+
         @Deprecated("Deprecated in Java")
         override fun isOpaqueCube(state: IBlockState) = false
 

@@ -14,11 +14,11 @@ import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SINGULARITY_ASSEMBLY_RECIPES
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SINGULARITY_ASSEMBLY_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing

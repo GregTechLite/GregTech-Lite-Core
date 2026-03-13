@@ -11,7 +11,6 @@ import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItem2
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.behavior.CropSeedBehavior
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI

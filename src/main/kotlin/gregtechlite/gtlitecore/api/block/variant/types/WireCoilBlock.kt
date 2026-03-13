@@ -32,6 +32,8 @@ fun VariantBlockFactory.makeWireCoilBlock() : VariantActiveBlock<WireCoil>
             this.setDefaultState(getState(WireCoil.ADAMANTIUM))
         }
 
+        override fun computeVariants(): Collection<WireCoil> = enumValues<WireCoil>().toList()
+
         override fun canCreatureSpawn(state: IBlockState,
                                       world: IBlockAccess,
                                       pos: BlockPos,

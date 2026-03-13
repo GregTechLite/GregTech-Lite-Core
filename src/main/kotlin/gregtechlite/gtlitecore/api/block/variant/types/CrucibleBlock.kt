@@ -27,6 +27,8 @@ fun VariantBlockFactory.makeCrucibleBlock() : VariantBlock<Crucible>
             this.setDefaultState(getState(Crucible.BRONZE))
         }
 
+        override fun computeVariants(): Collection<Crucible> = enumValues<Crucible>().toList()
+
         override fun canCreatureSpawn(state: IBlockState,
                                       world: IBlockAccess,
                                       pos: BlockPos,

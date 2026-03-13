@@ -5,9 +5,9 @@ import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
 import com.cleanroommc.modularui.value.sync.DoubleSyncValue
 import com.cleanroommc.modularui.value.sync.SyncHandlers
-import com.cleanroommc.modularui.widgets.ItemSlot
 import com.cleanroommc.modularui.widgets.ProgressWidget
 import com.cleanroommc.modularui.widgets.SlotGroupWidget
+import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
@@ -195,7 +195,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     override fun getUITheme(): GTGuiTheme = GTGuiTheme.PRIMITIVE
 
     @Suppress("UnstableApiUsage")
-    override fun createUIFactory(): MultiblockUIFactory?
+    override fun createUIFactory(): MultiblockUIFactory
     {
         return MultiblockUIFactory(this)
             .setSize(176, 166)
@@ -214,8 +214,9 @@ class MultiblockCoagulationTank(id: ResourceLocation)
 
                 parent.child(KeyUtil.lang(metaFullName).asWidget()
                                  .pos(6, 6))
-                    .child(SlotGroupWidget.playerInventory()
-                               .left(7).bottom(7))
+                    .child(SlotGroupWidget.playerInventory(false)
+                               .left(7)
+                               .bottom(7))
                     .child(ItemSlot()
                                .slot(SyncHandlers.itemSlot(importItems, 0)
                                          .slotGroup("item_inv"))

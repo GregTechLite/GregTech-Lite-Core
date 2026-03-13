@@ -3,16 +3,16 @@ package gregtechlite.gtlitecore.common.metatileentity.part
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.screen.UISettings
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
 import com.cleanroommc.modularui.widget.Widget
-import com.cleanroommc.modularui.widgets.ItemSlot
 import com.cleanroommc.modularui.widgets.SlotGroupWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
 import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.layout.Grid
-import com.cleanroommc.modularui.widgets.slot.ModularSlot
+import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IGhostSlotConfigurable
@@ -293,7 +293,7 @@ class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
     }
 
     @Suppress("UnstableApiUsage")
-    override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager): ModularPanel
+    override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
         val rowSize = sqrt(getInventorySize().toDouble()).toInt()
         panelSyncManager.registerSlotGroup("item_inv", rowSize)
@@ -302,20 +302,23 @@ class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
                                   rowSize * 18 + 14) // Bus Inv width
         val backgroundHeight = 18 + 18 * rowSize + 94
 
-        val workingStateValue = BooleanSyncValue({ workingEnabled },
-                                                 { workingStatus -> workingEnabled = workingStatus })
+        val workingStateValue = BooleanSyncValue(
+            { workingEnabled },
+            { workingStatus -> workingEnabled = workingStatus })
 
-        val collapseStateValue = BooleanSyncValue({ autoCollapse },
-                                                  { collapseMode -> autoCollapse = collapseMode })
+        val collapseStateValue = BooleanSyncValue(
+            { autoCollapse },
+            { collapseMode: Boolean -> autoCollapse = collapseMode })
 
-        val handler = importItems
-        val hasGhostCircuit = hasGhostCircuitInventory() && this.circuitInventory != null
+        val handler = if (isExportHatch) exportItems else importItems
+        val hasGhostCircuit = hasGhostCircuitInventory() && circuitInventory != null
 
         return GTGuis.createPanel(this, backgroundWidth, backgroundHeight)
             .child(IKey.lang(metaFullName).asWidget()
                        .pos(5, 5))
-            .child(SlotGroupWidget.playerInventory()
-                       .left(7).bottom(7))
+            .child(SlotGroupWidget.playerInventory(false)
+                       .left(7)
+                       .bottom(7))
             .child(Grid()
                        .top(18)
                        .height(rowSize * 18)
@@ -323,18 +326,16 @@ class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
                        .minColWidth(18)
                        .minRowHeight(18)
                        .alignX(0.5f)
-                       .mapTo(rowSize, rowSize * rowSize) { index ->
+                       .mapTo(rowSize, rowSize * rowSize) { slotIdx: Int ->
                            ItemSlot()
-                               .slot(object : ModularSlot(handler, index) { override fun getSlotStackLimit(): Int = Int.MAX_VALUE }
-                                         .ignoreMaxStackSize(true)
+                               .slot(SyncHandlers.itemSlot(handler, slotIdx)
                                          .slotGroup("item_inv")
                                          .changeListener { newItem, onlyAmountChanged, client, init ->
                                              if (onlyAmountChanged && handler is GTItemStackHandler)
-                                             {
-                                                 handler.onContentsChanged(index)
-                                             }
+                                                 handler.onContentsChanged(slotIdx)
                                          }
-                                         .accessibility(!this.isExportHatch, true))
+                                         .ignoreMaxStackSize(true)
+                                         .accessibility(!isExportHatch, true))
                        })
             .child(Flow.column()
                        .pos(backgroundWidth - 7 - 18, backgroundHeight - 18 * 4 - 7 - 5)
@@ -348,40 +349,48 @@ class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
                                   .value(workingStateValue)
                                   .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                                   .tooltipAutoUpdate(true)
-                                  .tooltipBuilder { tooltip ->
-                                      tooltip.addLine(if (workingStateValue.boolValue)
-                                          IKey.lang("gregtech.gui.item_auto_input.tooltip.enabled")
+                                  .tooltipBuilder {
+                                      if (isExportHatch)
+                                      {
+                                          if (workingStateValue.boolValue)
+                                              it.addLine(IKey.lang("gregtech.gui.item_auto_output.tooltip.enabled"))
+                                          else
+                                              it.addLine(IKey.lang("gregtech.gui.item_auto_output.tooltip.disabled"))
+                                      }
                                       else
-                                          IKey.lang("gregtech.gui.item_auto_input.tooltip.disabled"))
+                                      {
+                                          if (workingStateValue.boolValue)
+                                              it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.enabled"))
+                                          else
+                                              it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.disabled"))
+                                      }
                                   })
-                       .child(ToggleButton()
-                                  .top(18)
-                                  .value(collapseStateValue)
-                                  .overlay(GTGuiTextures.BUTTON_AUTO_COLLAPSE)
-                                  .tooltipAutoUpdate(true)
-                                  .tooltipBuilder { tooltip ->
-                                      tooltip.addLine(if (collapseStateValue.boolValue)
-                                          IKey.lang("gregtech.gui.item_auto_collapse.tooltip.enabled")
-                                      else
-                                          IKey.lang("gregtech.gui.item_auto_collapse.tooltip.disabled"))
-                                  })
-                       .childIf(hasGhostCircuit, GhostCircuitSlotWidget()
-                           .slot(SyncHandlers.itemSlot(circuitInventory, 0))
-                           .background(GTGuiTextures.SLOT, GTGuiTextures.INT_CIRCUIT_OVERLAY))
-                              .childIf(!hasGhostCircuit, Widget()
-                                  .background(GTGuiTextures.SLOT, GTGuiTextures.BUTTON_X)
-                                  .tooltip { tooltip ->
-                                      tooltip.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
-                                  }))
+            .child(ToggleButton()
+                       .top(18)
+                       .value(collapseStateValue)
+                       .overlay(GTGuiTextures.BUTTON_AUTO_COLLAPSE)
+                       .tooltipAutoUpdate(true)
+                       .tooltipBuilder {
+
+                           if (collapseStateValue.boolValue)
+                               it.addLine( IKey.lang("gregtech.gui.item_auto_collapse.tooltip.enabled"))
+                           else
+                               it.addLine(IKey.lang("gregtech.gui.item_auto_collapse.tooltip.disabled"))
+                       })
+            .childIf(hasGhostCircuit, GhostCircuitSlotWidget()
+                .slot(circuitInventory, 0)
+                .background(GTGuiTextures.SLOT, GTGuiTextures.INT_CIRCUIT_OVERLAY))
+            .childIf(!hasGhostCircuit, Widget()
+                .background(GTGuiTextures.SLOT, GTGuiTextures.BUTTON_X)
+                .tooltip {
+                    it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
+                }))
     }
 
-    override fun getSubItems(creativeTab: CreativeTabs,
-                             subItems: NonNullList<ItemStack>)
+    override fun getSubItems(creativeTab: CreativeTabs, subItems: NonNullList<ItemStack>)
     {
         for (bus in GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS)
-        {
             subItems.add(bus.stackForm)
-        }
     }
 
 }

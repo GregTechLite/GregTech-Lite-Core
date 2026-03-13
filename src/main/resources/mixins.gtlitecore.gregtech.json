@@ -6,8 +6,10 @@
   "minVersion": "0.8.3",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "AccessorMultiblockUIFactory",
     "AccessorTraceabilityPredicate",
     "MixinBlockPattern",
+    "MixinMultiblockUIFactory",
     "MixinCoreModule",
     "MixinDualHandler",
     "MixinFuelRecipeLogic",

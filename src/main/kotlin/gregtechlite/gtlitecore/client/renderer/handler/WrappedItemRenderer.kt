@@ -3,20 +3,17 @@ package gregtechlite.gtlitecore.client.renderer.handler
 import codechicken.lib.model.ModelRegistryHelper
 import com.morphismmc.morphismlib.client.Games
 import gregtechlite.gtlitecore.client.model.WrappedModelGetter
-import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.EntityRenderer
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.block.model.BakedQuad
 import net.minecraft.client.renderer.block.model.IBakedModel
-import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.texture.TextureUtil
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumFacing
-import net.minecraft.util.registry.IRegistry
 import net.minecraftforge.client.model.pipeline.LightUtil
 import net.minecraftforge.common.model.IModelState
-import java.util.LinkedList
+import java.util.*
 
 abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
 {

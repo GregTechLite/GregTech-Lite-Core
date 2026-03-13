@@ -21,6 +21,8 @@ inline fun <reified T> VariantBlockFactory.makeMetalActiveBlock() : VariantActiv
             this.setDefaultState(getState(VALUES[0]))
         }
 
+        override fun computeVariants(): Collection<T> = enumValues<T>().toList()
+
         override fun canCreatureSpawn(state: IBlockState,
                                       world: IBlockAccess,
                                       pos: BlockPos,
