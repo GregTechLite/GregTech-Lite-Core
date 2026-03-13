@@ -83,30 +83,27 @@ object GTLiteMuiTextures
 
     /**
      * Multiblock Button for Space Elevator Modules to enable modules.
-     *
      */
     @JvmField
-    val BUTTON_ENABLE_MODULE = fullImage("textures/gui/widget/button_enable_module.png")
+    val BUTTON_ENABLE_MODULE = texture("textures/gui/widget/button_enable_module.png")
 
     /**
      * Multiblock Button for Space Elevator Modules to disable modules.
-     *
      */
     @JvmField
-    val BUTTON_DISABLE_MODULE = fullImage("textures/gui/widget/button_disable_module.png")
+    val BUTTON_DISABLE_MODULE = texture("textures/gui/widget/button_disable_module.png")
 
     /**
-     * Space Elevator Logo
-     *
+     * Space Elevator Logo.
      */
     @JvmField
-    val SPACE_ELEVATOR_LOGO = fullImage("textures/gui/icon/space_elevator_logo.png")
+    val SPACE_ELEVATOR_LOGO = texture("textures/gui/icon/space_elevator_logo.png")
 
     /**
-     * Space Elevator Logo Dark
+     * Space Elevator Logo Dark.
      */
     @JvmField
-    val SPACE_ELEVATOR_LOGO_DARK = fullImage("textures/gui/icon/space_elevator_logo_dark.png")
+    val SPACE_ELEVATOR_LOGO_DARK = texture("textures/gui/icon/space_elevator_logo_dark.png")
 
     // endregion
 
