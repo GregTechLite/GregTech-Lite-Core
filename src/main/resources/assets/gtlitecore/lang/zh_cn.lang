@@ -3919,10 +3919,6 @@ gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/聚变线圈等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
 
-# UI Elements
-gtlitecore.ui.configuration_screen.title=配置界面
-gtlitecore.ui.configuration_screen.button=打开配置界面
-
 # Creative Tabs
 itemGroup.gtlite.main=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器
