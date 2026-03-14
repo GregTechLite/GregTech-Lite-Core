@@ -132,17 +132,16 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         if (moduleTier == 3) tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.5"))
 
         tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.max_parallel", GTValues.VNF[tier]))
-        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.orbit_tier", getOrbitTier(moduleTier)))
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.track_tier", getTrackTier(moduleTier)))
     }
 
-    private fun getOrbitTier(moduleTier: Int) = when (moduleTier)
+    private fun getTrackTier(moduleTier: Int) = when (moduleTier)
     {
         1 -> "MK1"
         2 -> "MK2"
         else -> "MK4"
     }
 
-    @Suppress("UnstableApiUsage")
     private fun createFluidRow(slowNumber: Int): Flow
     {
         val plantValue = StringSyncValue(
@@ -257,7 +256,6 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
     }
 
     private fun getPlanetValue(index: Int): String = planets[index].toString()
-
 
     private fun setPlanetValue(index: Int, value: String)
     {

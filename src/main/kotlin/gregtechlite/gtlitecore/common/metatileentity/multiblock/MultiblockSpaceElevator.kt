@@ -10,7 +10,6 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widget.Widget
 import com.cleanroommc.modularui.widgets.ButtonWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
-import gregtech.api.block.VariantBlock
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.IOpticalComputationProvider
 import gregtech.api.capability.impl.EnergyContainerList
