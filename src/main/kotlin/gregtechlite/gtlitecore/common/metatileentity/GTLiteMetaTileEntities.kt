@@ -164,9 +164,8 @@ object GTLiteMetaTileEntities
         }
     }
 
-    /* -------------------------------------------------------------------------------------------------------------- */
+    // region Single Machines
 
-    // Single Machines
     lateinit var POLISHER: Array<SimpleMachineMetaTileEntity?>
     lateinit var SLICER: Array<SimpleMachineMetaTileEntity?>
     lateinit var TOOL_CASTER: Array<SimpleMachineMetaTileEntity>
@@ -196,7 +195,10 @@ object GTLiteMetaTileEntities
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
 
-    // Several single MTEs.
+    // endregion
+
+    // region Misc Single Machines
+
     lateinit var IRON_DRUM: MetaTileEntityDrum
     lateinit var COPPER_DRUM: MetaTileEntityDrum
     lateinit var LEAD_DRUM: MetaTileEntityDrum
@@ -227,7 +229,10 @@ object GTLiteMetaTileEntities
 
     lateinit var BUFFER: Array<MetaTileEntityBuffer>
 
-    // Multiblock Parts.
+    // endregion
+
+    // region Multiblock Parts
+
     lateinit var LASER_INPUT_HATCH_16384: Array<PartMachineAdvancedLaserHatch>
     lateinit var LASER_OUTPUT_HATCH_16384: Array<PartMachineAdvancedLaserHatch>
     lateinit var LASER_INPUT_HATCH_65536: Array<PartMachineAdvancedLaserHatch>
@@ -255,7 +260,10 @@ object GTLiteMetaTileEntities
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
 
-    // Multiblock Machines.
+    // endregion
+
+    // region Multiblock Machines
+
     lateinit var COAGULATION_TANK: MultiblockCoagulationTank
     lateinit var LARGE_STEAM_COMPRESSOR: SteamMultiblockCompressor
     lateinit var LARGE_STEAM_ALLOY_SMELTER: SteamMultiblockAlloySmelter
@@ -342,6 +350,8 @@ object GTLiteMetaTileEntities
     lateinit var EP_COUPLING_ACCELERATOR: MultiblockEPCouplingAccelerator
     lateinit var NANO_ASSEMBLY_COMPLEX: MultiblockNanoAssemblyComplex
 
+    // endregion
+
     fun preInit()
     {
         MachineItemBlock.addCreativeTab(GTLiteCreativeTabs.TAB_MACHINE)
@@ -350,7 +360,7 @@ object GTLiteMetaTileEntities
     @JvmStatic
     fun init()
     {
-        // 1-2000: Simple Machines
+        // region 1-2000: Simple Machines
 
         // 1-15: Polisher (LV-OpV)
         POLISHER = register(3, V.size - 1, "polisher",
@@ -525,8 +535,9 @@ object GTLiteMetaTileEntities
                                           genericGeneratorTankSizeFunction)
         }
 
-        // -------------------------------------------------------------------------------------------------------------
-        // 2001-4000: Miscellaneous Single MTEs
+        // endregion
+
+        // region 2001-4000: Miscellaneous Single Machines
 
         // 2001-2050: Drums and Crates
         IRON_DRUM = register(2001, MetaTileEntityDrum(GTLiteMod.id("drum.iron"),
@@ -620,8 +631,9 @@ object GTLiteMetaTileEntities
             MetaTileEntityBuffer(GTLiteMod.id("buffer.${VN[it + EV].lowercase()}"), it + EV)
         }
 
-        // -------------------------------------------------------------------------------------------------------------
-        // 4001-10000: Multiblock Parts
+        // endregion
+
+        // region 4001-10000: Multiblock Parts
 
         // 4031-4140: IV-OpV Hi-Amp Laser Target/Source Hatches.
         LASER_INPUT_HATCH_16384 = register(4031, 0..8) {
@@ -737,8 +749,10 @@ object GTLiteMetaTileEntities
             PartMachineDualHatch(GTLiteMod.id("dual_hatch.export.${VN[it].lowercase()}"), it, true)
         }
 
-        // -------------------------------------------------------------------------------------------------------------
-        // 10001-20000 Multiblock Machines
+        // endregion
+
+        // region 10001-20000 Multiblock Machines
+
         COAGULATION_TANK = register(10001, MultiblockCoagulationTank(GTLiteMod.id("coagulation_tank")))
         LARGE_STEAM_COMPRESSOR = register(10002, SteamMultiblockCompressor(GTLiteMod.id("steam_compressor")))
         LARGE_STEAM_ALLOY_SMELTER = register(10003, SteamMultiblockAlloySmelter(GTLiteMod.id("steam_alloy_smelter")))
@@ -845,6 +859,8 @@ object GTLiteMetaTileEntities
         PLASMA_ARC_TRANSMITTER = register(10202, MultiblockPlasmaArcTransmitter(GTLiteMod.id("plasma_arc_transmitter")))
         EP_COUPLING_ACCELERATOR = register(10203, MultiblockEPCouplingAccelerator(GTLiteMod.id("ep_coupling_accelerator")))
         NANO_ASSEMBLY_COMPLEX = register(10204, MultiblockNanoAssemblyComplex(GTLiteMod.id("nano_assembly_complex")))
+
+        // endregion
     }
 
     // @formatter:on
