@@ -2449,11 +2449,11 @@ gtlitecore.machine.space_elevator.tooltip.8=在太空电梯控制器中可以同
 gtlitecore.machine.space_elevator.acceleration_track_tier=Acceleration Track Tier: §eMK%s§f
 gtlitecore.machine.space_elevator.max_module_count=Maximum Module Count: §a%s§f
 
-gtlitecore.machine.space_elevator.extension_info.enabled=启用扩展结构
-gtlitecore.machine.space_elevator.extension_info.disabled=禁用扩展结构
-gtlitecore.machine.space_elevator.enable_module=启用所有模块
-gtlitecore.machine.space_elevator.disable_module=禁用所有模块
-gtlitecore.machine.space_elevator.refresh_structure_pattern=强制更新结构检测
+gtlitecore.machine.space_elevator.extension_info.enabled=Enable Extension Structure
+gtlitecore.machine.space_elevator.extension_info.disabled=Disable Extension Structure
+gtlitecore.machine.space_elevator.enable_module=Enable all modules
+gtlitecore.machine.space_elevator.disable_module=Disable all modules
+gtlitecore.machine.space_elevator.refresh_structure_pattern=Force refresh the structure
 
 gtlitecore.machine.space_assembler_module.mk1.name=Space Assembler MK1
 gtlitecore.machine.space_assembler_module.mk1.tooltip.1=§d§l为什么我又要在太空里组装东西啊？§7
@@ -2487,8 +2487,8 @@ gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参
 gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
 gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
 gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
-gtlitecore.machine.space_pump_module.fluid_row.4=目前输出流体: %s
-gtlitecore.machine.space_pump_module.fluid_row.null=无
+gtlitecore.machine.space_pump_module.fluid_row.4=Current Fluid Output: %s
+gtlitecore.machine.space_pump_module.fluid_row.null=Empty
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。

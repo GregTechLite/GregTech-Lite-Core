@@ -44,10 +44,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
-                          tier: Int,
-                          moduleTier: Int,
-                          minCasingTier: Int) : ModuleMultiblockBase(metaTileEntityId, tier, moduleTier, minCasingTier)
+class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minCasingTier: Int)
+    : ModuleMultiblockBase(id, tier, moduleTier, minCasingTier)
 {
 
     private var outputFluidInventory: IMultipleTankHandler? = null
@@ -91,12 +89,6 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
-
-    // override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
-//
-    // override fun getWarningLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_YELLOW
-//
-    // override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
 
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,

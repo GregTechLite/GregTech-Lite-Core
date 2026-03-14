@@ -59,8 +59,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
 
-class MultiblockSpaceElevator(id: ResourceLocation)
-    : MultiblockWithDisplayBase(id), ModuleProvider
+class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(id), ModuleProvider
 {
 
     private val moduleReceivers = ConcurrentHashMap.newKeySet<ModuleReceiver>()

@@ -29,11 +29,8 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
-                               tier: Int,
-                               moduleTier: Int,
-                               minCasingTier: Int)
-    : RecipeMapModuleMultiblockController(metaTileEntityId, SPACE_ASSEMBLER_RECIPES, tier, moduleTier, minCasingTier)
+class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int, minCasingTier: Int)
+    : RecipeMapModuleMultiblockController(id, SPACE_ASSEMBLER_RECIPES, tier, moduleTier, minCasingTier)
 {
 
     init
