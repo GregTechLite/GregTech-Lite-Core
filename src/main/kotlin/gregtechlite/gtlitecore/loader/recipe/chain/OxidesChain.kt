@@ -87,6 +87,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cuprite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EuropiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ferrosilite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GalliumDioxide
@@ -390,13 +391,23 @@ internal object OxidesChain
             .buildAndRegister()
 
         // Cu + O -> CuO
-        ROASTER_RECIPES.recipeBuilder() // TODO Oxidification for other copper ores?
+        ROASTER_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(dust, Copper)
             .fluidInputs(Oxygen.getFluid(1000))
             .output(dust, Tenorite, 2)
             .EUt(VA[LV])
             .duration(15 * TICK)
+            .buildAndRegister()
+
+        // 2Cu + O -> Cu2O
+        ROASTER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(dust, Copper, 2)
+            .fluidInputs(Oxygen.getFluid(1000))
+            .output(dust, Cuprite, 3)
+            .EUt(VA[LV])
+            .duration(1 * SECOND + 10 * TICK)
             .buildAndRegister()
 
         // 2Na + O -> Na2O
