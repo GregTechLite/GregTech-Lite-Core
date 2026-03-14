@@ -9,6 +9,6 @@ class GTLiteMetaItem() : StandardMetaItem(0)
 {
 
     override fun createItemModelPath(metaValueItem: MetaItem<*>.MetaValueItem, postfix: String): ResourceLocation
-        = GTLiteMod.Companion.id(formatModelPath(metaValueItem) + postfix)
+        = GTLiteMod.id(formatModelPath(metaValueItem) + postfix)
 
 }
