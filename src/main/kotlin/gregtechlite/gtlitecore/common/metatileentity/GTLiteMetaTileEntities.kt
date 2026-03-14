@@ -869,6 +869,13 @@ object GTLiteMetaTileEntities
 
 // @formatter:off
 
+/**
+ * Registers the single machine.
+ *
+ * @param id    The id of the machine, we will skip all empty tier machine id otherwise it register result, so each
+ *              machine has 15 reserved id (except steam and high pressure steam).
+ * @param mte   The GTCEu format [MetaTileEntity] class, it will add in the mod's creative tabs.
+ */
 private fun <T : MetaTileEntity> register(id: Int, mte: T) : T
 {
     return MetaTileEntities.registerMetaTileEntity(id, mte).apply {
@@ -876,11 +883,34 @@ private fun <T : MetaTileEntity> register(id: Int, mte: T) : T
     }
 }
 
+/**
+ * Registers several single machines with a tier range.
+ *
+ * @param id    The id of the machine, we will skip all empty tier machine id otherwise it register result, so each
+ *              machine has 15 reserved id (except steam and high pressure steam).
+ * @param range The tier range of the machine registration, used `(tier - 1)` by default (where `tier` is the voltage
+ *              tier of the machine). For example, `0..5` means from LV (1) to IV (6).
+ * @param mte   The GTCEu format [MetaTileEntity] class, it will add in the mod's creative tabs.
+ */
 private inline fun <reified T : MetaTileEntity> register(id: Int, range: IntRange, mte: (Int) -> T): Array<T>
 {
     return range.map { register(id + it, mte(it)) }.toTypedArray()
 }
 
+/**
+ * Registers the single machine with its [RecipeMap], texture and inventory.
+ *
+ * @param startId             The start id of the machine registration. We will skip all empty tier machine id otherwise
+ *                            it register result, so each machine has 15 reserved id (except steam and high pressure steam).
+ * @param length              The length of the tier range which will be registration, used `(tier - 1)` by default (which
+ *                            `tier` is the voltage tier of the machine). For example, `V.size - 1` means from LV (1) to
+ *                            OpV (14).
+ * @param name                The name of the machine, will use for translation key of the machine also.
+ * @param map                 The [RecipeMap] of the machine.
+ * @param texture             The texture of the machine, and optional front facing texture [hasFrontFacing].
+ * @param hasFrontFacing      If machine has front facing, then it will render a special texture for machine.
+ * @param tankScalingFunction The fluid inventory size and its size increasement with voltage tier of the machine.
+ */
 @Suppress("SameParameterValue")
 private fun register(startId: Int,
                      length: Int,
@@ -897,6 +927,17 @@ private fun register(startId: Int,
     return machines
 }
 
+/**
+ * Registers the steam and high pressure steam machines with its [RecipeMap], texture and inventory.
+ *
+ * @param startId   The start id of the machine registration. We will skip all empty tier machine id otherwise it register
+ *                  result, so each machine has 15 reserved id (except steam and high pressure steam).
+ * @param name      The name of the machine, will use for translation key of the machine also.
+ * @param map       The [RecipeMap] of the machine.
+ * @param texture   The texture of the machine, if machine is [isBricked], then render the brick bronze/steel casing,
+ *                  otherwise render the default bronze/steel casing for steam machine.
+ * @param isBricked The option for the steam machine texture renderer, please see [texture] for details.
+ */
 private fun register(startId: Int,
                      name: String,
                      recipeMap: RecipeMap<*>,
