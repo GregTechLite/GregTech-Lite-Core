@@ -23,9 +23,9 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 
-class SteamMachineSapCollector(metaTileEntityId: ResourceLocation,
+class SteamMachineSapCollector(id: ResourceLocation,
                                isHighPressure: Boolean)
-    : PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
+    : PseudoMultiSteamMachineMetaTileEntity(id, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
 {
     private val sapCollectionAmount: Long = if (isHighPressure) 6L else 3L
 

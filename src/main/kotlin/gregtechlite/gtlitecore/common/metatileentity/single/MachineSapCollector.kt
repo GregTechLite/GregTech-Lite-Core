@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemStackHandler
 
-class MachineSapCollector(metaTileEntityId: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(metaTileEntityId, SAP_COLLECTOR_RECIPES, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
+class MachineSapCollector(id: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(id, SAP_COLLECTOR_RECIPES, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
 {
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): PseudoMultiMachineMetaTileEntity = MachineSapCollector(metaTileEntityId, tier)

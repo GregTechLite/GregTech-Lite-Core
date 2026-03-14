@@ -11,10 +11,10 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.capabilities.Capability
 
-class MetaTileEntityBridge(metaTileEntityId: ResourceLocation,
+class MetaTileEntityBridge(id: ResourceLocation,
                            capabilityFilter: (Capability<*>) -> Boolean,
                            private val renderer: ICubeRenderer,
-                           baseColor: Int) : MetaTileEntityDelegator(metaTileEntityId, capabilityFilter, baseColor)
+                           baseColor: Int) : MetaTileEntityDelegator(id, capabilityFilter, baseColor)
 {
 
     constructor(metaTileEntityId: ResourceLocation,

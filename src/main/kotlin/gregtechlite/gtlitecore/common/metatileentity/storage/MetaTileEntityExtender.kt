@@ -25,10 +25,10 @@ import net.minecraftforge.common.capabilities.Capability
 import org.apache.commons.lang3.tuple.Pair
 import org.jetbrains.annotations.Nullable
 
-class MetaTileEntityExtender(metaTileEntityId: ResourceLocation,
+class MetaTileEntityExtender(id: ResourceLocation,
                              capabilityFilter: (Capability<*>) -> Boolean,
                              private val renderer: ExtenderRenderer,
-                             baseColor: Int) : MetaTileEntityDelegator(metaTileEntityId, capabilityFilter, baseColor)
+                             baseColor: Int) : MetaTileEntityDelegator(id, capabilityFilter, baseColor)
 {
 
     private var inputFacing: EnumFacing? = null
