@@ -2280,13 +2280,13 @@ gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 gtlitecore.machine.industrial_primitive_blast_furnace.name=Industrial Primitive Blast Furnace
 gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=Flash Steelmaking Kiln
 gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=Allowed to use §fItem Import Bus§7 and §fItem Export Bus§7 for automation
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=带有附属结构，每建造1座§6附属高炉§7，运行时间均会大幅缩减。
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=Can build auxiliary structures, for each additional §6Auxiliary Blast Furnace§7 built, the recipe duration will be reduced significantly.
 
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
 gtlitecore.machine.mining_drone_airport.tooltip.1=The Docking Point and Control Center of Mining Drones
-gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作
-gtlitecore.machine.mining_drone_airport.tooltip.3=提高采矿无人机的数量或等级将产出更多的矿石
-gtlitecore.machine.mining_drone_airport.tooltip.4=每次工作需要§c消耗§7燃料，但钻头与杆循环利用§f不会§7消耗。
+gtlitecore.machine.mining_drone_airport.tooltip.2=Dispatch §6Mining Drones§7 carrying drills for mining operations
+gtlitecore.machine.mining_drone_airport.tooltip.3=Increasing number or tier of Mining Drones will produce more ore
+gtlitecore.machine.mining_drone_airport.tooltip.4=Each work requires fuel §consumption§7, but drills and sticks §fdoes not§7consume.
 
 gtlitecore.machine.nuclear_reactor.name=Nuclear Reactor
 gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
@@ -2311,7 +2311,7 @@ gtlitecore.machine.cvd_unit.name=Chemical Vapor Deposition Unit
 gtlitecore.machine.cvd_unit.tooltip.1=Thin Film Evaporation Transmission
 
 gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
-gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
+gtlitecore.machine.crystallization_crucible.tooltip.1=Artificial Gemstone Technology
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
 gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
@@ -2325,7 +2325,7 @@ gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 gtlitecore.machine.sonicator.name=Sonicator
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
@@ -2335,10 +2335,10 @@ gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底
 gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
 
 gtlitecore.machine.fusion_reactor.uhv.name=Fusion Reactor Computer MK4
-gtlitecore.machine.fusion_reactor.uhv.tooltip=银河泻落九天
+gtlitecore.machine.fusion_reactor.uhv.tooltip=The Silver River pours down from the Highest Heaven
 
 gtlitecore.machine.fusion_reactor.uev.name=Fusion Reactor Computer MK5
-gtlitecore.machine.fusion_reactor.uev.tooltip=家用中子星
+gtlitecore.machine.fusion_reactor.uev.tooltip=Household Neutron Star
 
 gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
 gtlitecore.machine.fusion_reactor.recipe_request=当合成启动能量高于§e(能源仓数×容量)§7时，聚变将无法进行。
@@ -2357,11 +2357,11 @@ gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
-gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=Radio Radiation Reflective Detection Telescope
 gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
-gtlitecore.machine.stellar_forge.tooltip.1=驾驭恒星之力
+gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
 gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
@@ -2835,8 +2835,8 @@ gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f Huge Item Import Bus
 gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
 gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
 
-gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=自动无菌过滤维护仓
-gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=可以自动维护多方块结构，附带无菌清洁功能！
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
 
 gtlitecore.machine.air_intake_hatch.basic.name=Air Intake Hatch
 gtlitecore.machine.air_intake_hatch.extreme.name=Extreme Air Intake Hatch
