@@ -33,13 +33,10 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemB
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.client.resources.I18n
-import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
-import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.items.IItemHandlerModifiable
@@ -385,12 +382,6 @@ class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
                 .tooltip {
                     it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
                 }))
-    }
-
-    override fun getSubItems(creativeTab: CreativeTabs, subItems: NonNullList<ItemStack>)
-    {
-        for (bus in GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS)
-            subItems.add(bus.stackForm)
     }
 
 }
