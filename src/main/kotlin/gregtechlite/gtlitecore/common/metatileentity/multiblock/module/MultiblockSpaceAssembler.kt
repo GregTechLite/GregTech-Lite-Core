@@ -29,11 +29,8 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
-                               tier: Int,
-                               moduleTier: Int,
-                               minCasingTier: Int)
-    : RecipeMapModuleMultiblockController(metaTileEntityId, SPACE_ASSEMBLER_RECIPES, tier, moduleTier, minCasingTier)
+class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int, minCasingTier: Int)
+    : RecipeMapModuleMultiblockController(id, SPACE_ASSEMBLER_RECIPES, tier, moduleTier, minCasingTier)
 {
 
     init
@@ -46,7 +43,8 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSpaceAssembler(metaTileEntityId, tier, moduleTier, minCasingTier)
+    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity)
+        = MultiblockSpaceAssembler(metaTileEntityId, tier, moduleTier, minCasingTier)
 
     override fun initializeAbilities()
     {
@@ -75,7 +73,8 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
-    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
+                                      pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         for (renderSide in EnumFacing.HORIZONTALS)
@@ -103,10 +102,10 @@ class MultiblockSpaceAssembler(metaTileEntityId: ResourceLocation,
             else -> tooltip.add(I18n.format("gtlitecore.machine.space_assembler_module.mk3.tooltip.1"))
         }
         tooltip.add(I18n.format("gtlitecore.machine.space_assembler_module.max_parallel", VNF[tier], recipeMapWorkable.parallelLimit))
-        tooltip.add(I18n.format("gtlitecore.machine.space_assembler_module.orbit_tier", getOrbitTier(moduleTier)))
+        tooltip.add(I18n.format("gtlitecore.machine.space_assembler_module.track_tier", getTrackTier(moduleTier)))
     }
 
-    private fun getOrbitTier(moduleTier: Int) = when (moduleTier)
+    private fun getTrackTier(moduleTier: Int) = when (moduleTier)
     {
         1 -> "MK1"
         2 -> "MK2"

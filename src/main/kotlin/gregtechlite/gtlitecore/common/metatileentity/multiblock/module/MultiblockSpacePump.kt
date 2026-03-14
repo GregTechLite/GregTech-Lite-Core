@@ -44,10 +44,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
-                          tier: Int,
-                          moduleTier: Int,
-                          minCasingTier: Int) : ModuleMultiblockBase(metaTileEntityId, tier, moduleTier, minCasingTier)
+class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minCasingTier: Int)
+    : ModuleMultiblockBase(id, tier, moduleTier, minCasingTier)
 {
 
     private var outputFluidInventory: IMultipleTankHandler? = null
@@ -92,12 +90,6 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
-    // override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
-//
-    // override fun getWarningLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_YELLOW
-//
-    // override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
-
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -132,17 +124,16 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
         if (moduleTier == 3) tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.5"))
 
         tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.max_parallel", GTValues.VNF[tier]))
-        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.orbit_tier", getOrbitTier(moduleTier)))
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.track_tier", getTrackTier(moduleTier)))
     }
 
-    private fun getOrbitTier(moduleTier: Int) = when (moduleTier)
+    private fun getTrackTier(moduleTier: Int) = when (moduleTier)
     {
         1 -> "MK1"
         2 -> "MK2"
         else -> "MK4"
     }
 
-    @Suppress("UnstableApiUsage")
     private fun createFluidRow(slowNumber: Int): Flow
     {
         val plantValue = StringSyncValue(
@@ -257,7 +248,6 @@ class MultiblockSpacePump(metaTileEntityId: ResourceLocation,
     }
 
     private fun getPlanetValue(index: Int): String = planets[index].toString()
-
 
     private fun setPlanetValue(index: Int, value: String)
     {

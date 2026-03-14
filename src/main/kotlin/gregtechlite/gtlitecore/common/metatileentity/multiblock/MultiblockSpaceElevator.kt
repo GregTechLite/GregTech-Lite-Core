@@ -10,7 +10,6 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widget.Widget
 import com.cleanroommc.modularui.widgets.ButtonWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
-import gregtech.api.block.VariantBlock
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.IOpticalComputationProvider
 import gregtech.api.capability.impl.EnergyContainerList
@@ -60,8 +59,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.Collections
 import java.util.concurrent.ConcurrentHashMap
 
-class MultiblockSpaceElevator(id: ResourceLocation)
-    : MultiblockWithDisplayBase(id), ModuleProvider
+class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(id), ModuleProvider
 {
 
     private val moduleReceivers = ConcurrentHashMap.newKeySet<ModuleReceiver>()

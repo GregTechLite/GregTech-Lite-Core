@@ -2268,8 +2268,8 @@ gtlitecore.machine.acid_generator.ev.tooltip=Required Acid Matters
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your Latex!
-gtlitecore.machine.coagulation_tank.tooltip.2=可以放置§f输入仓§7与§f输出总线§7进行自动化
-gtlitecore.machine.coagulation_tank.tooltip.3=需要放置铁杆作为承载胶乳的框架，否则合成无法进行
+gtlitecore.machine.coagulation_tank.tooltip.2=Allowed to use §fFluid Import Hatch§7 and §fItem Export Bus§7 for automation
+gtlitecore.machine.coagulation_tank.tooltip.3=Needs to place a Iron Stick as a frame to support the latex, otherwise cannot proceed.
 
 gtlitecore.machine.steam_compressor.name=Large Steam Compressor
 
@@ -2278,15 +2278,15 @@ gtlitecore.machine.steam_alloy_smelter.name=Large Steam Alloy Smelter
 gtlitecore.machine.steam_engine.name=Industrial Steam Engine
 
 gtlitecore.machine.industrial_primitive_blast_furnace.name=Industrial Primitive Blast Furnace
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=闪速炼钢窑
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=可以放置§f输入总线§7与§f输出总线§7进行自动化
-gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=带有附属结构，每建造1座§6附属高炉§7，运行时间均会大幅缩减。
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.1=Flash Steelmaking Kiln
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.2=Allowed to use §fItem Import Bus§7 and §fItem Export Bus§7 for automation
+gtlitecore.machine.industrial_primitive_blast_furnace.tooltip.3=Can build auxiliary structures, for each additional §6Auxiliary Blast Furnace§7 built, the recipe duration will be reduced significantly.
 
 gtlitecore.machine.mining_drone_airport.name=Mining Drone Airport
-gtlitecore.machine.mining_drone_airport.tooltip.1=采矿无人机的停靠点与总控中心
-gtlitecore.machine.mining_drone_airport.tooltip.2=派出携带钻头的§6采矿无人机§7进行采掘工作
-gtlitecore.machine.mining_drone_airport.tooltip.3=提高采矿无人机的数量或等级将产出更多的矿石
-gtlitecore.machine.mining_drone_airport.tooltip.4=每次工作需要§c消耗§7燃料，但钻头与杆循环利用§f不会§7消耗。
+gtlitecore.machine.mining_drone_airport.tooltip.1=The Docking Point and Control Center of Mining Drones
+gtlitecore.machine.mining_drone_airport.tooltip.2=Dispatch §6Mining Drones§7 carrying drills for mining operations
+gtlitecore.machine.mining_drone_airport.tooltip.3=Increasing number or tier of Mining Drones will produce more ore
+gtlitecore.machine.mining_drone_airport.tooltip.4=Each work requires fuel §consumption§7, but drills and sticks §fdoes not§7consume.
 
 gtlitecore.machine.nuclear_reactor.name=Nuclear Reactor
 gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
@@ -2308,10 +2308,10 @@ gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
 gtlitecore.machine.cvd_unit.name=Chemical Vapor Deposition Unit
-gtlitecore.machine.cvd_unit.tooltip.1=薄膜蒸镀传输
+gtlitecore.machine.cvd_unit.tooltip.1=Thin Film Evaporation Transmission
 
 gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
-gtlitecore.machine.crystallization_crucible.tooltip.1=人造宝石技术
+gtlitecore.machine.crystallization_crucible.tooltip.1=Artificial Gemstone Technology
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
 gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
@@ -2325,7 +2325,7 @@ gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 gtlitecore.machine.sonicator.name=Sonicator
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
@@ -2335,10 +2335,10 @@ gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底
 gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
 
 gtlitecore.machine.fusion_reactor.uhv.name=Fusion Reactor Computer MK4
-gtlitecore.machine.fusion_reactor.uhv.tooltip=银河泻落九天
+gtlitecore.machine.fusion_reactor.uhv.tooltip=The Silver River pours down from the Highest Heaven
 
 gtlitecore.machine.fusion_reactor.uev.name=Fusion Reactor Computer MK5
-gtlitecore.machine.fusion_reactor.uev.tooltip=家用中子星
+gtlitecore.machine.fusion_reactor.uev.tooltip=Household Neutron Star
 
 gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
 gtlitecore.machine.fusion_reactor.recipe_request=当合成启动能量高于§e(能源仓数×容量)§7时，聚变将无法进行。
@@ -2357,11 +2357,11 @@ gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的
 gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
-gtlitecore.machine.cosmic_ray_detector.tooltip.1=射电辐射反射式探测望远镜
+gtlitecore.machine.cosmic_ray_detector.tooltip.1=Radio Radiation Reflective Detection Telescope
 gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
-gtlitecore.machine.stellar_forge.tooltip.1=驾驭恒星之力
+gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
 gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
@@ -2437,58 +2437,58 @@ gtlitecore.machine.antimatter_generator.tooltip.9=使用§f原始物质§7或§f
 gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量不会超过§e9.2e18EU§7，但机器将会尽可能尝试多地进行并行。
 
 gtlitecore.machine.space_elevator.name=Space Elevator
-gtlitecore.machine.space_elevator.tooltip.1=允许安装若干个各种类型的§a太空电梯模块§7并异步运行。
-gtlitecore.machine.space_elevator.tooltip.2=每个太空电梯模块都有独立的输入/输出空间，同种模块不会共用输入/输出空间。
-gtlitecore.machine.space_elevator.tooltip.3=默认情况下至多可以安装§f12§7个模块，提高加速轨道等级以提高可安装的模块数量。
-gtlitecore.machine.space_elevator.tooltip.4=加速轨道等级限制了可安装的模块等级与最大模块数量。
-gtlitecore.machine.space_elevator.tooltip.5=所有模块的能量都从太空电梯中抽取，其自身也具有一定能量缓存空间。
-gtlitecore.machine.space_elevator.tooltip.6=当加速轨道等级大于§eMK3§7时允许开启扩展模式，在控制器中点击按钮以开启对应的结构检测。
-gtlitecore.machine.space_elevator.tooltip.7=扩展模式会拓展太空电梯的整体结构，此时至多可安装§f24§7个模块。
-gtlitecore.machine.space_elevator.tooltip.8=在太空电梯控制器中可以同时开启/关闭所有模块，也可以在各个模块的控制器中单独控制。
+gtlitecore.machine.space_elevator.tooltip.1=Allowed to use several §aSpace Elevator Module§7 and asynchronous working.
+gtlitecore.machine.space_elevator.tooltip.2=Each Space Elevator Module has independent I/O inventory, same type module will not share I/O inventory.
+gtlitecore.machine.space_elevator.tooltip.3=Up to §f12§ module can be installed by default, increasing the Acceleration Track Tier to increase this number.
+gtlitecore.machine.space_elevator.tooltip.4=Acceleration Track Tier limits the number of module installed and its tier.
+gtlitecore.machine.space_elevator.tooltip.5=The energy of all modules will extracted from the Space Elevator, controller of the module also has a certain energy buff space.
+gtlitecore.machine.space_elevator.tooltip.6=When the Acceleration Track Tier is greater than §eMK3§7, allowed to enable the Extension Mode. Click button in controller to enable/disable the structure check.
+gtlitecore.machine.space_elevator.tooltip.7=The Extension Mode will expand the structure of the Space Elevator, up to §f24§7 modules can be installed at this time.
+gtlitecore.machine.space_elevator.tooltip.8=In the Space Elevator controller, all modules can be turned on/off simultaneously, or individually controlled in the controllers of each module.
 
 gtlitecore.machine.space_elevator.acceleration_track_tier=Acceleration Track Tier: §eMK%s§f
 gtlitecore.machine.space_elevator.max_module_count=Maximum Module Count: §a%s§f
 
-gtlitecore.machine.space_elevator.extension_info.enabled=启用扩展结构
-gtlitecore.machine.space_elevator.extension_info.disabled=禁用扩展结构
-gtlitecore.machine.space_elevator.enable_module=启用所有模块
-gtlitecore.machine.space_elevator.disable_module=禁用所有模块
-gtlitecore.machine.space_elevator.refresh_structure_pattern=强制更新结构检测
+gtlitecore.machine.space_elevator.extension_info.enabled=Enable Extension Structure
+gtlitecore.machine.space_elevator.extension_info.disabled=Disable Extension Structure
+gtlitecore.machine.space_elevator.enable_module=Enable all modules
+gtlitecore.machine.space_elevator.disable_module=Disable all modules
+gtlitecore.machine.space_elevator.refresh_structure_pattern=Force refresh the structure
 
 gtlitecore.machine.space_assembler_module.mk1.name=Space Assembler MK1
-gtlitecore.machine.space_assembler_module.mk1.tooltip.1=§d§l为什么我又要在太空里组装东西啊？§7
+gtlitecore.machine.space_assembler_module.mk1.tooltip.1=§d§lWhy do I have to assemble things in space again?§7
 gtlitecore.machine.space_assembler_module.mk2.name=Space Assembler MK2
-gtlitecore.machine.space_assembler_module.mk2.tooltip.1=§d§l这真的有必要吗？§7
+gtlitecore.machine.space_assembler_module.mk2.tooltip.1=§d§lIs this really necessary?§7
 gtlitecore.machine.space_assembler_module.mk3.name=Space Assembler MK3
-gtlitecore.machine.space_assembler_module.mk3.tooltip.1=§d§l我想我们永远也不会知道§7
+gtlitecore.machine.space_assembler_module.mk3.tooltip.1=§d§lI don't think we'll ever know§7
 
-gtlitecore.machine.space_assembler_module.tooltip=将太空组装功能添加到太空电梯。
-gtlitecore.machine.space_assembler_module.max_parallel=运行电压：%s§7，最大并行数：§e%s§7
-gtlitecore.machine.space_assembler_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
+gtlitecore.machine.space_assembler_module.tooltip=Add Space Assembly functionality to the Space Elevator.
+gtlitecore.machine.space_assembler_module.max_parallel=Workable Voltage: %s§7, Max Parallel: §e%s§7
+gtlitecore.machine.space_assembler_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
 gtlitecore.machine.space_pump_module.mk1.name=Space Pump MK1
-gtlitecore.machine.space_pump_module.mk1.tooltip.1=§d§l彻底吸干气态行星§7
+gtlitecore.machine.space_pump_module.mk1.tooltip.1=§d§lThoroughly absorb Gaseous Planets§7
 gtlitecore.machine.space_pump_module.mk2.name=Space Pump MK2
-gtlitecore.machine.space_pump_module.mk2.tooltip.1=§d§l疯狂吮吸§7
+gtlitecore.machine.space_pump_module.mk2.tooltip.1=§d§lCrazily absorb§7
 gtlitecore.machine.space_pump_module.mk3.name=Space Pump MK3
-gtlitecore.machine.space_pump_module.mk3.tooltip.1=§d§l吸干抹净§7
+gtlitecore.machine.space_pump_module.mk3.tooltip.1=§d§lAbsorb dry and wipe clean§7
 
-gtlitecore.machine.space_pump_module.tooltip.1=将太空钻井功能添加到太空电梯。
-gtlitecore.machine.space_pump_module.tooltip.2=设定行星与流体类型以决定输出流体
-gtlitecore.machine.space_pump_module.tooltip.3=升级钻井模块等级以解锁更多的流体输出
-gtlitecore.machine.space_pump_module.tooltip.4=可以同时设定4种输出流体类型
-gtlitecore.machine.space_pump_module.tooltip.5=工作速度提高4倍
-gtlitecore.machine.space_pump_module.max_parallel=运行电压：%s§7
-gtlitecore.machine.space_pump_module.orbit_tier=需要§f%s§7或更高等级的加速轨道。
+gtlitecore.machine.space_pump_module.tooltip.1=Add Space Pumping functionality to the Space Elevator.
+gtlitecore.machine.space_pump_module.tooltip.2=Set the Planet ID and Fluid ID to determine the output fluid
+gtlitecore.machine.space_pump_module.tooltip.3=Upgrade module tier to unlock more fluid output slot
+gtlitecore.machine.space_pump_module.tooltip.4=Allowed to set 4 slots of fluid output simultaneously
+gtlitecore.machine.space_pump_module.tooltip.5=Working speed increased by 4 times than original speed
+gtlitecore.machine.space_pump_module.max_parallel=Workable Voltage: %s§7
+gtlitecore.machine.space_pump_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
-gtlitecore.machine.space_pump_module.configuration=配置界面
-gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
-gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
-gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
-gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
-gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
-gtlitecore.machine.space_pump_module.fluid_row.4=目前输出流体: %s
-gtlitecore.machine.space_pump_module.fluid_row.null=无
+gtlitecore.machine.space_pump_module.configuration=Configurations
+gtlitecore.machine.space_pump_module.planet_setter=Set the target Planet ID for extracting fluids
+gtlitecore.machine.space_pump_module.fluid_setter=Set the target Fluid ID for extracting fluids
+gtlitecore.machine.space_pump_module.fluid_row.1=Fluid Output #%s
+gtlitecore.machine.space_pump_module.fluid_row.2=Set the Planet ID and Fluid ID in the box,
+gtlitecore.machine.space_pump_module.fluid_row.3=Space Pump will extract the fluid from the corresponding planet.
+gtlitecore.machine.space_pump_module.fluid_row.4=Current Fluid Output: %s
+gtlitecore.machine.space_pump_module.fluid_row.null=Empty
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
@@ -2835,8 +2835,8 @@ gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f Huge Item Import Bus
 gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
 gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
 
-gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=自动无菌过滤维护仓
-gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=可以自动维护多方块结构，附带无菌清洁功能！
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
+gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
 
 gtlitecore.machine.air_intake_hatch.basic.name=Air Intake Hatch
 gtlitecore.machine.air_intake_hatch.extreme.name=Extreme Air Intake Hatch
@@ -3912,10 +3912,6 @@ gtlitecore.tooltip.machine.energy_mode.stabilization_field_gen=§6-%s%%/Stabiliz
 gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/Fusion Coil Tier
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
 gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Disabled
-
-# UI Elements
-gtlitecore.ui.configuration_screen.title=Configuration Screen
-gtlitecore.ui.configuration_screen.button=Open the Configuration Screen
 
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite

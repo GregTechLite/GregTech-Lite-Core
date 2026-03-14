@@ -8,8 +8,12 @@ object GTLiteToolHelper
 {
 
     /**
-     * Get maximum durability of material from ToolProperty,
-     * this method is just a lazy method to change ToolProperty#getToolDurability().
+     * Gets maximum durability of the material from its `ToolProperty`.
+     *
+     * This method is just a short-circuit method about `ToolProperty.getToolDurability`, it avoid the situation which
+     * the material not has `ToolProperty`.
+     *
+     * @param material The material which has `ToolProperty`.
      */
     @JvmStatic
     fun getMaxDurability(material: Material): Int
@@ -20,8 +24,9 @@ object GTLiteToolHelper
     }
 
     /**
-     * Get maximum crafting durability of material from ToolProperty.
-     * This method is a choice to get crafting durability via material.
+     * Gets maximum crafting durability of the material from its `ToolProperty`.
+     *
+     * @param material The material which has `ToolProperty`.
      */
     @JvmStatic
     fun getMaxCraftingDurability(material: Material): Int
@@ -32,8 +37,11 @@ object GTLiteToolHelper
     }
 
     /**
-     * Check if the stack has full durability, means it is not damaged (first, it must be
-     * not repairable).
+     * Checks if the [ItemStack] has full durability (a.k.a. not damaged).
+     *
+     * The [ItemStack] must be not repairable at first for pending check, otherwise returns `false` directly.
+     *
+     * @param stack The [ItemStack] which will be checked.
      */
     @JvmStatic
     fun isItemHasFullDurability(stack: ItemStack): Boolean

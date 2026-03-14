@@ -43,9 +43,9 @@ import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.max
 import kotlin.math.sqrt
 
-class PartMachineHugeItemBus(metaTileEntityId: ResourceLocation, tier: Int)
-    : MetaTileEntityItemBus(metaTileEntityId, tier, false), IMultiblockAbilityPart<IItemHandlerModifiable>,
-                                                                             IControllable, IGhostSlotConfigurable
+class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
+    : MetaTileEntityItemBus(id, tier, false),
+      IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable, IGhostSlotConfigurable
 {
 
     private var slotItemInventory: ConfigurableItemStackHandler? = null

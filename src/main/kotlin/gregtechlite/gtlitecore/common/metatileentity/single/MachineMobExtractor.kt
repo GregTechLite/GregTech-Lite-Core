@@ -18,9 +18,9 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.AxisAlignedBB
 import java.util.function.Function
 
-class MachineMobExtractor(metaTileEntityId: ResourceLocation, recipeMap: RecipeMap<*>?,
+class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>?,
                           renderer: ICubeRenderer?, tier: Int, hasFrontFacing: Boolean,
-                          tankScalingFunction: Function<Int?, Int?>?) : SimpleMachineMetaTileEntity(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
+                          tankScalingFunction: Function<Int?, Int?>?) : SimpleMachineMetaTileEntity(id, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
 {
 
     private var boundingBox: AxisAlignedBB? = null

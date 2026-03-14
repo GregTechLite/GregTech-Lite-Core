@@ -6,7 +6,5 @@ import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityLaserHatch
 import net.minecraft.util.ResourceLocation
 
-class PartMachineAdvancedLaserHatch(metaTileEntityId: ResourceLocation?, tier: Int, amperage: Int, isExport: Boolean) : MetaTileEntityLaserHatch(metaTileEntityId, isExport, tier, amperage), IMultiblockAbilityPart<ILaserContainer>, IDataInfoProvider
-{
-
-}
+class PartMachineAdvancedLaserHatch(id: ResourceLocation, tier: Int, amperage: Int, isExport: Boolean)
+    : MetaTileEntityLaserHatch(id, isExport, tier, amperage), IMultiblockAbilityPart<ILaserContainer>, IDataInfoProvider
