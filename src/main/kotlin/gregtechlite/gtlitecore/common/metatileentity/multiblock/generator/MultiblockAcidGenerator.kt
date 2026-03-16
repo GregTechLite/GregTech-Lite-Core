@@ -22,8 +22,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockAcidGenerator(id: ResourceLocation)
-    : FuelMultiblockController(id, ACID_GENERATOR_FUELS, IV)
+class MultiblockAcidGenerator(id: ResourceLocation) : FuelMultiblockController(id, ACID_GENERATOR_FUELS, IV)
 {
 
     companion object
