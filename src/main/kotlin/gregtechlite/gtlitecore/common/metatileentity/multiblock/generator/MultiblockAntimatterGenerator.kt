@@ -29,8 +29,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockAntimatterGenerator(id: ResourceLocation)
-    : FuelMultiblockController(id, ANTIMATTER_GENERATOR_FUELS, MAX)
+class MultiblockAntimatterGenerator(id: ResourceLocation) : FuelMultiblockController(id, ANTIMATTER_GENERATOR_FUELS, MAX)
 {
 
     init

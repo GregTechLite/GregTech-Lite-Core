@@ -3,12 +3,14 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.V
+import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -46,8 +48,7 @@ import kotlin.math.max
  * - Fermium 3x
  * - Mendelevium 3.2x
  */
-class MultiblockNuclearReactor(id: ResourceLocation)
-    : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
+class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
 {
 
     private var coreTier = 0
@@ -66,6 +67,14 @@ class MultiblockNuclearReactor(id: ResourceLocation)
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNuclearReactor(metaTileEntityId)
+
+    override fun initializeAbilities()
+    {
+        super.initializeAbilities()
+        val outputEnergy = ArrayList(getAbilities(OUTPUT_ENERGY))
+        outputEnergy.addAll(getAbilities(SUBSTATION_OUTPUT_ENERGY))
+        energyContainer = EnergyContainerList(outputEnergy)
+    }
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -89,8 +98,9 @@ class MultiblockNuclearReactor(id: ResourceLocation)
         .where('C', states(casingState)
             .setMinGlobalLimited(30)
             .or(abilities(OUTPUT_ENERGY)
-                .setMinGlobalLimited(1)
                 .setPreviewCount(1))
+            .or(abilities(SUBSTATION_OUTPUT_ENERGY)
+                .setPreviewCount(0))
             .or(autoAbilities(false, true, true, true, true, true, false)))
         .where('D', states(secondCasingState))
         .where('G', states(glassState))
