@@ -1,33 +1,24 @@
-package gregtechlite.gtlitecore.common.metatileentity.multiblock
+package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
-import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.GTUtility
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.core.sound.GTSoundEvents
-import gregtechlite.gtlitecore.api.GTLiteAPI.MANIPULATOR_TIER
-import gregtechlite.gtlitecore.api.GTLiteAPI.SHIELDING_CORE_TIER
+import gregtechlite.gtlitecore.api.GTLiteAPI
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.manipulators
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.shieldingCores
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -45,7 +36,7 @@ import kotlin.math.min
 import kotlin.math.pow
 
 class MultiblockQuantumForceTransformer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES) // TODO IFastRenderMetaTileEntity, IBloomEffect
+    : RecipeMapMultiblockController(id, GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES) // TODO IFastRenderMetaTileEntity, IBloomEffect
 {
 
     private var manipulatorTier = 0
@@ -69,8 +60,8 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        manipulatorTier = context.getAttributeOrDefault(MANIPULATOR_TIER, 0)
-        shieldingCoreTier = context.getAttributeOrDefault(SHIELDING_CORE_TIER, 0)
+        manipulatorTier = context.getAttributeOrDefault(GTLiteAPI.MANIPULATOR_TIER, 0)
+        shieldingCoreTier = context.getAttributeOrDefault(GTLiteAPI.SHIELDING_CORE_TIER, 0)
         tier = minOf(manipulatorTier, shieldingCoreTier)
     }
 
@@ -84,9 +75,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
-        inputEnergy.addAll(getAbilities(INPUT_LASER))
-        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(MultiblockAbility.INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(MultiblockAbility.INPUT_LASER))
+        inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY))
         energyContainer = EnergyContainerList(inputEnergy)
     }
 
@@ -111,20 +102,20 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         .where('S', selfPredicate())
         .where('H', states(casingState)
             .setMinGlobalLimited(16)
-            .or(abilities(MAINTENANCE_HATCH)
+            .or(abilities(MultiblockAbility.MAINTENANCE_HATCH)
                     .setExactLimit(1))
-            .or(abilities(INPUT_ENERGY)
+            .or(abilities(MultiblockAbility.INPUT_ENERGY)
                     .setMaxGlobalLimited(2))
-            .or(abilities(INPUT_LASER)
+            .or(abilities(MultiblockAbility.INPUT_LASER)
                     .setMaxGlobalLimited(1))
-            .or(abilities(IMPORT_ITEMS, IMPORT_FLUIDS)
+            .or(abilities(MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.IMPORT_FLUIDS)
                     .setPreviewCount(1)))
         .where('F', states(casingState)
             .setMinGlobalLimited(16)
-            .or(abilities(EXPORT_ITEMS, EXPORT_FLUIDS)
+            .or(abilities(MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.EXPORT_FLUIDS)
                     .setPreviewCount(1)))
-        .where('A', manipulators())
-        .where('B', shieldingCores())
+        .where('A', TraceabilityPredicates.manipulators())
+        .where('B', TraceabilityPredicates.shieldingCores())
         .where('C', states(coilState))
         .where('D', states(casingState))
         .where('E', states(glassState))
@@ -159,7 +150,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     {
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
-            .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+            .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { keyManager, syncer ->
                 if (isStructureFormed)
                 {
