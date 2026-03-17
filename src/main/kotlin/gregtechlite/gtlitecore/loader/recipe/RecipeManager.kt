@@ -43,12 +43,12 @@ internal object RecipeManager
         // Circuit Recipes.
         CircuitRecipeList.init()
 
-        // Post Recipe Producers.
-        RecipeProducerList.postInit()
-
         // Override Recipes and Recipe Conflicts Resolver.
         OverrideRecipeLoader.init()
         RecipeConflicts.init()
+
+        // Post Recipe Producers.
+        RecipeProducerList.postInit()
 
         // Pseudo Recipes (Recipe Frontends).
         SpacePumpRecipeFrontend.init()
