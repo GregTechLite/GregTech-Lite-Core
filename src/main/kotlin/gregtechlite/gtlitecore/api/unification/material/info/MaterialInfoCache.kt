@@ -62,6 +62,9 @@ import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Moscovium
+import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahEnriched
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neptunium
@@ -120,9 +123,15 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BrevibacteriumFlavum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CupriavidusNecator
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 
 object MaterialInfoCache
 {
@@ -130,9 +139,12 @@ object MaterialInfoCache
     // @formatter:off
 
     val periodicTableMaterials = arrayListOf<Material>()
+    val radioactiveMaterials = arrayListOf<Material>()
+    val bacterialMaterials = arrayListOf<Material>()
 
     fun build()
     {
+        // All element materials (1-118) which consists in Periodic Table.
         periodicTableMaterials.addAll(listOf(Hydrogen, Helium, Lithium, Beryllium, Boron, Carbon,
                 Nitrogen, Oxygen, Fluorine, Neon, Sodium, Magnesium, Aluminium, Silicon, Phosphorus,
                 Sulfur, Chlorine, Argon, Potassium, Calcium, Scandium, Titanium, Vanadium, Chrome,
@@ -148,6 +160,18 @@ object MaterialInfoCache
                 Einsteinium, Fermium, Mendelevium, Nobelium, Lawrencium, Rutherfordium, Dubnium,
                 Seaborgium, Bohrium, MetastableHassium, Meitnerium, Darmstadtium, Roentgenium, Copernicium,
                 Nihonium, MetastableFlerovium, Moscovium, Livermorium, Tennessine, MetastableOganesson))
+
+        // All radioactive materials, consists of fantastic materials.
+        radioactiveMaterials.addAll(listOf(Technetium, Thorium, Protactinium, Uranium, Uranium235, Uranium238,
+                Neptunium, Plutonium239, Plutonium241, Plutonium244, Americium, Curium, Berkelium, Californium,
+                Einsteinium, Fermium, Mendelevium, Nobelium, Lawrencium, Rutherfordium, Dubnium, Seaborgium, Bohrium,
+                MetastableHassium, Meitnerium, Darmstadtium, Roentgenium, Copernicium, Nihonium, MetastableFlerovium,
+                Moscovium, Livermorium, Tennessine, MetastableOganesson, Naquadah, NaquadahEnriched, Naquadria,
+                Taranium))
+
+        // All biological materials for bacterial reactions.
+        bacterialMaterials.addAll(arrayListOf(BrevibacteriumFlavum, CupriavidusNecator, StreptococcusPyogenes,
+                EscherichiaColi))
     }
 
     // @formatter:on

@@ -15,7 +15,7 @@ import gregtechlite.gtlitecore.api.unification.material.info.MaterialInfoCache
 import gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastPropertyAdder
 import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteMaterialProperties
 import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteToolPropertyAdder
-import gregtechlite.gtlitecore.api.unification.material.properties.AmorphousLensAdder
+import gregtechlite.gtlitecore.api.unification.material.properties.AmorphousLensPropertyAdder
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems
 import gregtechlite.gtlitecore.loader.RecyclingDataLoader
@@ -54,9 +54,9 @@ object EventHandlers
     @SubscribeEvent
     fun registerPostMaterials(event: PostMaterialEvent)
     {
-        AlloyBlastPropertyAdder.preInitABSProperties()
-        AmorphousLensAdder.preInitAmorphousLensProperties()
-        AlloyBlastPropertyAdder.initABSProperties()
+        AlloyBlastPropertyAdder.preInit()
+        AmorphousLensPropertyAdder.preInit()
+        AlloyBlastPropertyAdder.init()
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
