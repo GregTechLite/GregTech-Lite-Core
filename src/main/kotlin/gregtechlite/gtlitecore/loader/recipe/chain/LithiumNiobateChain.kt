@@ -53,15 +53,6 @@ internal object LithiumNiobateChain
             .EUt(VA[IV])
             .duration(20 * SECOND)
             .buildAndRegister()
-
-        // LiNbO4 lens polishing.
-        POLISHER_RECIPES.recipeBuilder()
-            .input(plate, LithiumNiobate)
-            .output(lens, LithiumNiobate)
-            .output(dustSmall, LithiumNiobate)
-            .EUt(VA[MV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
     }
 
     // @formatter:on

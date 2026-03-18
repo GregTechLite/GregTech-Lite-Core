@@ -41,15 +41,6 @@ internal object ChromaticGlassChain
             .EUt(VA[LuV])
             .duration(5 * SECOND)
             .buildAndRegister()
-
-        // ChromaticGlass lens polishing.
-        POLISHER_RECIPES.recipeBuilder()
-            .input(plate, ChromaticGlass)
-            .output(lens, ChromaticGlass)
-            .output(dustSmall, ChromaticGlass)
-            .EUt(VA[MV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
     }
 
     // @formatter:on
