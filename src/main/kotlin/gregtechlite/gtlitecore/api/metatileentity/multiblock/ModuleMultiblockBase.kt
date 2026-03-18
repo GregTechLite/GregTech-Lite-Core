@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import kotlin.math.min
 import kotlin.math.pow
 
 abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
@@ -98,12 +99,14 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
         if (offsetTimer % SECOND == 0L && moduleProvider != null)
         {
             if (energyContainer.energyCapacity != energyContainer.energyStored
-                && moduleProvider!!.subEnergyContainer
-                    !!.energyStored > energyConsumed * SECOND
+                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * SECOND
             )
             {
-                val simulate = energyContainer.energyCapacity - energyContainer.energyStored
-                energyContainer.addEnergy(simulate)
+                val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
+                val energyDrained = min(moduleProvider!!.subEnergyContainer!!.energyStored, maxModuleReceive)
+
+                moduleProvider!!.subEnergyContainer!!.removeEnergy(energyDrained)
+                energyContainer.addEnergy(energyDrained)
             }
         }
         else if (moduleProvider == null)

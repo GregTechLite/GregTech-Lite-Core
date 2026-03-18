@@ -74,6 +74,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconN
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nephelite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
+import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
+import gregtechlite.gtlitecore.api.unification.material.properties.AmorphousLensProperty
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.sheetedFrame
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.wallGt
@@ -97,6 +99,7 @@ object PartsRecipeHandler
     {
         stick.addProcessingHandler(PropertyKey.DUST, ::processStick)
         lens.addProcessingHandler(PropertyKey.GEM, ::processLens)
+        lens.addProcessingHandler(GTLitePropertyKey.AMORPHOUS_LENS, ::processAmorphousLens)
 
         screw.addProcessingHandler(PropertyKey.DUST, ::processScrew)
         round.addProcessingHandler(PropertyKey.INGOT, ::processRound)
@@ -306,6 +309,23 @@ object PartsRecipeHandler
                 val colorMaterial = Color.COLORS[dyeColor]
                 OreDictUnifier.registerOre(lensStack, craftingLens, colorMaterial)
             }
+        }
+    }
+
+    private fun processAmorphousLens(lensPrefix: OrePrefix, material: Material, property: AmorphousLensProperty)
+    {
+        val workingTier = material.workingTier
+
+        // plateX -> craftingLensX
+        if (!(OreDictUnifier.get(plate, material))!!.isEmpty)
+        {
+            POLISHER_RECIPES.recipeBuilder()
+                .input(plate, material)
+                .output(lensPrefix, material)
+                .output(dustSmall, material)
+                .EUt(scaleVoltage(VA[MV], workingTier))
+                .duration(1 * MINUTE)
+                .buildAndRegister()
         }
     }
 

@@ -17,6 +17,7 @@ import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import kotlin.math.min
 import kotlin.math.pow
 
 /**
@@ -95,9 +96,11 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
                     && it.subEnergyContainer!!.energyStored > this.energyConsumed * SECOND
                 )
                 {
-                    val simulate = this.energyContainer.energyCapacity - this.energyContainer.energyStored
-                    it.subEnergyContainer!!.removeEnergy(simulate)
-                    this.energyContainer.addEnergy(simulate)
+                    val maxModuleReceive = this.energyContainer.energyCapacity - this.energyContainer.energyStored
+                    val energyDrained = min(it.subEnergyContainer!!.energyStored, maxModuleReceive)
+
+                    it.subEnergyContainer!!.removeEnergy(energyDrained)
+                    this.energyContainer.addEnergy(energyDrained)
                 }
             }
         }
