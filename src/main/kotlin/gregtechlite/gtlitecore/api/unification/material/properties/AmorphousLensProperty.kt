@@ -14,7 +14,7 @@ class AmorphousLensProperty : IMaterialProperty
         // Lens must have PLATE and cannot have GEM
         if (!properties.material.hasFlag(GENERATE_PLATE))
         {
-            throw IllegalStateException("Material ${properties.material} with AmorphousLensProperty must have either PLATE flag or GEM property.")
+            throw IllegalStateException("Material ${properties.material} with AmorphousLensProperty must have GENERATE_PLATE flag.")
         } else if (properties.hasProperty(PropertyKey.GEM))
         {
             throw IllegalStateException("Material ${properties.material} with AmorphousLensProperty cannot have GEM property.")
