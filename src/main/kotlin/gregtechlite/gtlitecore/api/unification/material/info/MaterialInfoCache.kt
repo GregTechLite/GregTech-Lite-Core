@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.api.unification.material.info
 
 import gregtech.api.unification.material.Material
-import gregtech.api.unification.material.Materials
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -124,7 +123,6 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BrevibacteriumFlavum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CupriavidusNecator
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
