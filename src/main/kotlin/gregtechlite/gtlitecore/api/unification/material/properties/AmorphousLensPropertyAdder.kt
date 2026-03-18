@@ -10,7 +10,7 @@ object AmorphousLensPropertyAdder
 
     // add property for those require lens but not have gem property,
     // this is for some special materials like Plastic Lens.
-    fun preInitAmorphousLensProperties()
+    fun preInit()
     {
         GregTechAPI.materialManager.registeredMaterials
                 .filter { it.hasFlag(MaterialFlags.GENERATE_LENS) && !it.hasProperty(GEM) }

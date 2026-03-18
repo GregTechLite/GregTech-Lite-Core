@@ -12,7 +12,7 @@ object AlloyBlastPropertyAdder
 {
 
     // The first start point of ABS property adder.
-    fun preInitABSProperties()
+    fun preInit()
     {
         GregTechAPI.materialManager.registeredMaterials
             .filter { !it.hasFlag(GTLiteMaterialFlags.DISABLE_ALLOY_PROPERTY) }
@@ -20,7 +20,7 @@ object AlloyBlastPropertyAdder
     }
 
     // Used to process special recipes to resolve conflicts of ABS recipes.
-    fun initABSProperties()
+    fun init()
     {
         // NbN
         var property = Materials.NiobiumNitride.getProperty(GTLitePropertyKey.ALLOY_BLAST)
