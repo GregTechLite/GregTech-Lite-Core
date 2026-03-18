@@ -1,11 +1,11 @@
-package gregtechlite.gtlitecore.api.unification.material.properties;
+package gregtechlite.gtlitecore.api.unification.material.properties
 
 import gregtech.api.GregTechAPI
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.properties.PropertyKey.GEM
 
-object AmorphousLensAdder
+object AmorphousLensPropertyAdder
 {
 
     // add property for those require lens but not have gem property,

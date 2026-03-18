@@ -16,6 +16,6 @@ object GTLitePropertyKey
     // In common situation, all materials with LENS flag but without GEM property will auto
     // added this key, and generate correspondence Lens recipe via AmorphousLensAdder.
     @JvmField
-    val AMORPHOUS_LENS = PropertyKey("lens", AmorphousLensProperty::class.java)
+    val AMORPHOUS_LENS = PropertyKey("amorphous_lens", AmorphousLensProperty::class.java)
 
 }
