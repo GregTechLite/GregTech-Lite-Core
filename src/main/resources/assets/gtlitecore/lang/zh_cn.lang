@@ -2487,8 +2487,8 @@ gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参
 gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
 gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
 gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
-gtlitecore.machine.space_pump_module.fluid_row.4=目前输出流体: %s
-gtlitecore.machine.space_pump_module.fluid_row.null=无
+gtlitecore.machine.space_pump_module.fluid=输出流体 %d:
+gtlitecore.machine.space_pump_module.noFluidTooltip=无效的行星ID或流体ID！请检查JEI以获取正确的ID。
 
 gtlitecore.machine.energy_infuser.name=能量注入器
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
