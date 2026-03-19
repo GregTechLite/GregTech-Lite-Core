@@ -70,7 +70,7 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             .outputs(MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.getStack(64))
             .EUt(VA[UIV])
             .duration(5 * SECOND)
-            .tier(4)
+            .tier(3)
             .buildAndRegister()
 
         // Hamilton-Killing Flow Control Casing
