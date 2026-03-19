@@ -36,8 +36,7 @@ public abstract class MixinMultiblockUIBuilder
      */
     @WrapOperation(method = "addRecipeOutputLine(Lgregtech/api/capability/impl/AbstractRecipeLogic;I)Lgregtech/api/metatileentity/multiblock/ui/MultiblockUIBuilder;",
                    at = @At(value = "INVOKE",
-                            target = "Lgregtech/api/metatileentity/multiblock/ui/MultiblockUIBuilder;addFluidOutputLine(Lnet/minecraftforge/fluids/FluidStack;JI)V"),
-                   remap = false)
+                            target = "Lgregtech/api/metatileentity/multiblock/ui/MultiblockUIBuilder;addFluidOutputLine(Lnet/minecraftforge/fluids/FluidStack;JI)V"))
     private void makeFluidOutputParallel(MultiblockUIBuilder instance,
                                          FluidStack stack,
                                          long count,
