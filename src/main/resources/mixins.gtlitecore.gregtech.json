@@ -9,6 +9,7 @@
     "AccessorMultiblockUIFactory",
     "AccessorTraceabilityPredicate",
     "MixinBlockPattern",
+    "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",
     "MixinCoreModule",
     "MixinDualHandler",

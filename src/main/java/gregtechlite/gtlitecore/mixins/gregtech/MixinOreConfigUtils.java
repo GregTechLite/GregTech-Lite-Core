@@ -1,42 +1,45 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import gregtech.api.GregTechAPI;
 import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.PropertyKey;
+import gregtech.api.unification.material.registry.IMaterialRegistryManager;
 import gregtech.api.worldgen.config.OreConfigUtils;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-
-import java.util.stream.Collectors;
-
-import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
+import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(value = OreConfigUtils.class, remap = false)
 public abstract class MixinOreConfigUtils
 {
 
     /**
-     * @author Magic_Sweepy
-     * @reason Allowed WorldGenRegistry scanning material in different MaterialRegistry.
+     * Adds fallback material searching from <tt>gtlitecore</tt> namespace.
+     *
+     * @param instance The target class which be mixined.
+     * @param name     The name of the material.
+     * @param methodOp The original method {@code getMaterial} call in {@code getMaterialByName} method.
+     * @return         The searching material in <tt>gregtech</tt> namespace, or the fallback material (if existed)
+     *                 in <tt>gtlitecore</tt> namespace.
      */
-    @Overwrite
-    public static Material getMaterialByName(String name)
+    @WrapOperation(method = "getMaterialByName",
+                   at = @At(value = "INVOKE",
+                            target = "Lgregtech/api/unification/material/registry/IMaterialRegistryManager;getMaterial(Ljava/lang/String;)Lgregtech/api/unification/material/Material;"))
+    private static Material fallbackMaterialSearching(IMaterialRegistryManager instance,
+                                                      String name,
+                                                      Operation<Material> methodOp)
     {
-        Material material = GregTechAPI.materialManager.getMaterial(name);
-        if (material != null && material.hasProperty(PropertyKey.ORE))
+        Material material = methodOp.call(instance, name);
+        if (material != null)
         {
             return material;
         }
-        else if (material == null)
-        {
-            return GregTechAPI.materialManager.getRegistry(MOD_ID).getAllMaterials().stream()
-                    .filter(mat -> mat.getName().equals(name))
-                    .collect(Collectors.toList()).get(0);
-        }
-        else
-        {
-            throw new IllegalArgumentException("Material with name " + name + " not found!");
-        }
+
+        // If material is empty in gregtech namespace, then searching fallback material in gtlitecore namespace.
+        return GregTechAPI.materialManager.getRegistry(GTLiteValues.MOD_ID).getAllMaterials().stream()
+                .filter(mat -> mat.getName().equals(name))
+                .findAny().orElse(null);
     }
 
 }
