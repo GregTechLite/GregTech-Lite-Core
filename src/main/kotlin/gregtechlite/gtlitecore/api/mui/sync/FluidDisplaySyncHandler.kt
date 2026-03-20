@@ -5,23 +5,21 @@ import com.cleanroommc.modularui.value.sync.FluidSlotSyncHandler.copyFluid
 import com.cleanroommc.modularui.value.sync.ValueSyncHandler
 import net.minecraft.network.PacketBuffer
 import net.minecraftforge.fluids.FluidStack
-import java.util.function.Consumer
-import java.util.function.Supplier
 
 class FluidDisplaySyncHandler(
-    val getter: Supplier<FluidStack?>?,
-    val setter: Consumer<FluidStack?>?) : ValueSyncHandler<FluidStack>()
+    val getter: (() -> FluidStack?)?,
+    val setter: ((FluidStack?) -> Unit)?) : ValueSyncHandler<FluidStack>()
 {
     private var cache: FluidStack? = null
 
-    constructor(getter: Supplier<FluidStack?>?) : this(getter, null)
+    constructor(getter: (() -> FluidStack?)?) : this(getter, null)
 
     override fun setValue(value: FluidStack?, setSource: Boolean, sync: Boolean)
     {
         this.cache = copyFluid(value)
         if (setSource && this.setter != null)
         {
-            this.setter.accept(copyFluid(value))
+            this.setter.invoke(copyFluid(value))
         }
         if (sync)
         {
@@ -38,7 +36,7 @@ class FluidDisplaySyncHandler(
 
     fun needsSync(): Boolean
     {
-        val current: FluidStack? = this.getter?.get()
+        val current: FluidStack? = this.getter?.invoke()
         if (current == this.cache) return false
         if (current == null || this.cache == null) return true
         return current.amount != this.cache!!.amount || !current.isFluidEqual(this.cache)
@@ -48,7 +46,7 @@ class FluidDisplaySyncHandler(
     {
         if (isFirstSync || needsSync())
         {
-            setValue(this.getter?.get(), setSource = false, sync = false)
+            setValue(this.getter?.invoke(), setSource = false, sync = false)
             return true
         }
         return false
@@ -56,7 +54,7 @@ class FluidDisplaySyncHandler(
 
     override fun notifyUpdate()
     {
-        setValue(getter?.get(), setSource = false, sync = true)
+        setValue(getter?.invoke(), setSource = false, sync = true)
     }
 
     override fun write(buffer: PacketBuffer?)
