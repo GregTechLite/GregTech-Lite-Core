@@ -2487,8 +2487,8 @@ gtlitecore.machine.space_pump_module.fluid_setter=Set the target Fluid ID for ex
 gtlitecore.machine.space_pump_module.fluid_row.1=Fluid Output #%s
 gtlitecore.machine.space_pump_module.fluid_row.2=Set the Planet ID and Fluid ID in the box,
 gtlitecore.machine.space_pump_module.fluid_row.3=Space Pump will extract the fluid from the corresponding planet.
-gtlitecore.machine.space_pump_module.fluid_row.4=Current Fluid Output: %s
-gtlitecore.machine.space_pump_module.fluid_row.null=Empty
+gtlitecore.machine.space_pump_module.fluid=Fluid %d:
+gtlitecore.machine.space_pump_module.fluid.empty=Invalid Planet ID or Fluid ID! please check JEI for correct IDs.
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
