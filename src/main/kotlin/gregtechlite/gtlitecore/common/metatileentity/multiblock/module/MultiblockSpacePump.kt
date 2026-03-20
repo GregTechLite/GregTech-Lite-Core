@@ -34,7 +34,7 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.gui.widget.FluidSlotDisplayOnly
+import gregtechlite.gtlitecore.api.gui.widget.DisplayOnlyFluidSlot
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.ModuleMultiblockBase
 import gregtechlite.gtlitecore.api.mui.sync.FluidDisplaySyncHandler
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
@@ -230,8 +230,8 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
 
                     // Add machine information display
                     val uiBuilder = MultiblockUIBuilder()
-                    uiBuilder.setAction { builder ->
-                        builder.title(this.metaFullName).structureFormed(this.isStructureFormed)
+                    uiBuilder.setAction {
+                        it.title(this.metaFullName).structureFormed(this.isStructureFormed)
                     }
 
                     uiBuilder.sync("display", syncManager)
@@ -277,25 +277,24 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                                                 .marginRight(5)
                                                 .color(Color.WHITE.main))
                                     .child(
-                                        FluidSlotDisplayOnly()
+                                        DisplayOnlyFluidSlot()
                                                 .syncHandler(curOutput)
                                                 .tooltipBuilder { t ->
                                                     val fluidStack: FluidStack? = curOutput.value
                                                     if (fluidStack == null)
                                                     {
                                                         t.clearText()
-                                                                .addLine(IKey.lang("gtlitecore.machine.space_pump_module.noFluidTooltip"))
+                                                                .addLine(IKey.lang("gtlitecore.machine.space_pump_module.fluid.empty"))
                                                     } else
                                                     {
                                                         t.clearText()
                                                                 .addLine(KeyUtil.fluid(fluidStack))
                                                                 .add(
                                                                     IKey.str(
-                                                                        "§a"
+                                                                        TextFormatting.GREEN.toString()
                                                                                 + NumberFormat.format(fluidStack.amount.toDouble(),
                                                                             NumberFormat.DEFAULT)
-                                                                                + "L/s "
-                                                                                + "§7"))
+                                                                                + "L/s "))
                                                     }
                                                 }.tooltipAutoUpdate(true)
                                     )
@@ -341,8 +340,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                         screenView
                                 .sizeRel(1F)
                                 .margin(4)
-                                .crossAxisAlignment(Alignment.CrossAxis.START)
-                        , 1)
+                                .crossAxisAlignment(Alignment.CrossAxis.START), 1)
                 }
     }
 

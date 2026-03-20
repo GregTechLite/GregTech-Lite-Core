@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.integration.justenoughitems.info
 
+import gregtech.api.util.GTStringUtils.drawCenteredStringWithCutoff
 import mezz.jei.api.ingredients.IIngredients
 import mezz.jei.api.ingredients.VanillaTypes
 import mezz.jei.api.recipe.IRecipeWrapper
@@ -19,7 +20,7 @@ class SpacePumpRecipeWrapper(@JvmField val planetId: Int, @JvmField val fluidId:
 
     private val textStartX = 5
     private val startPosY = 40
-    private val fontHeight = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT;
+    private val fontHeight = Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT
 
     val fluids = ArrayList<MutableList<FluidStack>>()
 
@@ -44,7 +45,7 @@ class SpacePumpRecipeWrapper(@JvmField val planetId: Int, @JvmField val fluidId:
         val font = minecraft.fontRenderer
          font.getWordWrappedHeight(fluid.localizedName, recipeWidth)
 
-        gregtech.api.util.GTStringUtils.drawCenteredStringWithCutoff(
+        drawCenteredStringWithCutoff(
             fluid.localizedName,
             font,
             recipeWidth

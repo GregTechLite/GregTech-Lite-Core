@@ -14,7 +14,7 @@ import gregtech.client.utils.RenderUtil
 import gregtechlite.gtlitecore.api.mui.sync.FluidDisplaySyncHandler
 import net.minecraftforge.fluids.FluidStack
 
-class FluidSlotDisplayOnly : Widget<FluidSlotDisplayOnly>(),
+class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(),
     Interactable, RecipeViewerGhostIngredientSlot<FluidStack>, RecipeViewerIngredientProvider
 {
     private var syncHandler: FluidDisplaySyncHandler? = null
@@ -50,7 +50,7 @@ class FluidSlotDisplayOnly : Widget<FluidSlotDisplayOnly>(),
         RenderUtil.handleJEIGhostSlotOverlay(this, widgetTheme)
     }
 
-    fun syncHandler(handler: FluidDisplaySyncHandler?): FluidSlotDisplayOnly
+    fun syncHandler(handler: FluidDisplaySyncHandler?): DisplayOnlyFluidSlot
     {
         this.syncHandler = handler
         return this
