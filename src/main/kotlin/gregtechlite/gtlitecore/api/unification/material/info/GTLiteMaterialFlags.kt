@@ -148,6 +148,7 @@ import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Uvarovite
 import gregtech.api.unification.material.Materials.Vanadium
+import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
@@ -252,6 +253,7 @@ object GTLiteMaterialFlags
         Nihonium.addFlags(GENERATE_BOLT_SCREW)
         Seaborgium.addFlags(GENERATE_BOLT_SCREW)
         Mendelevium.addFlags(GENERATE_BOLT_SCREW)
+        VanadiumGallium.addFlags(GENERATE_BOLT_SCREW)
 
         // boule
         Diamond.addFlags(GENERATE_BOULE)
