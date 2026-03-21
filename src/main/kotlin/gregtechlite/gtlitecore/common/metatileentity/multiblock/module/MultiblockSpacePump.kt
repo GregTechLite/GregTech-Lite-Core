@@ -34,9 +34,9 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
+import gregtechlite.gtlitecore.api.gui.sync.FluidDisplaySyncHandler
 import gregtechlite.gtlitecore.api.gui.widget.DisplayOnlyFluidSlot
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.ModuleMultiblockBase
-import gregtechlite.gtlitecore.api.mui.sync.FluidDisplaySyncHandler
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
@@ -144,72 +144,6 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         else -> "MK4"
     }
 
-    private fun getFluidParallels() = when (moduleTier)
-    {
-        1 -> 1
-        else -> 4
-    }
-
-    private fun createFluidRow(slotNumber: Int): Flow
-    {
-        val plantValue = StringSyncValue(
-            { this.getPlanetValue(slotNumber) },
-            { s -> setPlanetValue(slotNumber, s) })
-
-        val fluidValue = StringSyncValue(
-            { this.getFluidValue(slotNumber) },
-            { s -> setFluidValue(slotNumber, s) }
-        )
-
-        return Row()
-                .expanded()
-                .mainAxisAlignment(Alignment.MainAxis.SPACE_BETWEEN)
-                .size(76, 20)
-                .child(
-                    DynamicDrawable {
-                        if (plantValue.value.isEmpty() ||
-                            fluidValue.value.isEmpty() ||
-                            !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
-                                fluidValue.value.toInt()))
-                        )
-                            GTLiteMuiTextures.SPACE_ELEVATOR_LOGO_DARK
-                        else
-                            GTLiteMuiTextures.SPACE_ELEVATOR_LOGO
-                    }.asWidget()
-                            .size(20, 20)
-                            .tooltipBuilder { tooltip ->
-                                tooltip.addLine(KeyUtil.lang(
-                                    "gtlitecore.machine.space_pump_module.fluid_row.1",
-                                    slotNumber + 1
-                                ))
-                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.2"))
-                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.3"))
-                            }.tooltipAutoUpdate(true)
-                )
-                .child(
-                    TextFieldWidget()
-                            .value(plantValue)
-                            .setNumbers(0, 999)
-                            .setMaxLength(3)
-                            .size(26, 16)
-                            .addTooltipLine(KeyUtil.lang(
-                                "gtlitecore.machine.space_pump_module.planet_setter"
-                            ))
-                )
-                .child(
-                    TextFieldWidget()
-                            .value(fluidValue)
-                            .setNumbers(0, 999)
-                            .setMaxLength(3)
-                            .size(26, 16)
-                            .addTooltipLine(KeyUtil.lang(
-                                "gtlitecore.machine.space_pump_module.fluid_setter"
-                            ))
-                )
-
-    }
-
-
     override fun createUIFactory(): MultiblockUIFactory
     {
         return super.createUIFactory()
@@ -262,8 +196,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
 
                         val curOutput = FluidDisplaySyncHandler {
                             if (SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(planets[index], fluids[index])))
-                                return@FluidDisplaySyncHandler SpacePumpRecipeFrontend.RECIPES[Pair(planets[index],
-                                    fluids[index])]
+                                return@FluidDisplaySyncHandler SpacePumpRecipeFrontend.RECIPES[Pair(planets[index], fluids[index])]
                             else return@FluidDisplaySyncHandler null
                         }
 
@@ -342,6 +275,71 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                                 .margin(4)
                                 .crossAxisAlignment(Alignment.CrossAxis.START), 1)
                 }
+    }
+
+    private fun createFluidRow(slotNumber: Int): Flow
+    {
+        val plantValue = StringSyncValue(
+            { this.getPlanetValue(slotNumber) },
+            { s -> setPlanetValue(slotNumber, s) })
+
+        val fluidValue = StringSyncValue(
+            { this.getFluidValue(slotNumber) },
+            { s -> setFluidValue(slotNumber, s) }
+        )
+
+        return Row()
+            .expanded()
+            .mainAxisAlignment(Alignment.MainAxis.SPACE_BETWEEN)
+            .size(76, 20)
+            .child(
+                DynamicDrawable {
+                    if (plantValue.value.isEmpty() ||
+                        fluidValue.value.isEmpty() ||
+                        !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
+                                                                          fluidValue.value.toInt()))
+                    )
+                        GTLiteMuiTextures.SPACE_ELEVATOR_LOGO_DARK
+                    else
+                        GTLiteMuiTextures.SPACE_ELEVATOR_LOGO
+                }.asWidget()
+                    .size(20, 20)
+                    .tooltipBuilder { tooltip ->
+                        tooltip.addLine(KeyUtil.lang(
+                            "gtlitecore.machine.space_pump_module.fluid_row.1",
+                            slotNumber + 1
+                        ))
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.2"))
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_pump_module.fluid_row.3"))
+                    }.tooltipAutoUpdate(true)
+            )
+            .child(
+                TextFieldWidget()
+                    .value(plantValue)
+                    .setNumbers(0, 999)
+                    .setMaxLength(3)
+                    .size(26, 16)
+                    .addTooltipLine(KeyUtil.lang(
+                        "gtlitecore.machine.space_pump_module.planet_setter"
+                    ))
+            )
+            .child(
+                TextFieldWidget()
+                    .value(fluidValue)
+                    .setNumbers(0, 999)
+                    .setMaxLength(3)
+                    .size(26, 16)
+                    .addTooltipLine(KeyUtil.lang(
+                        "gtlitecore.machine.space_pump_module.fluid_setter"
+                    ))
+            )
+
+    }
+
+    private fun getFluidParallels() = when (moduleTier)
+    {
+        1 -> 1
+        else -> 4
     }
 
     private fun getPlanetValue(index: Int): String = planets[index].toString()
