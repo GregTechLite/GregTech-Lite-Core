@@ -21,8 +21,10 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
+import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Bronze
@@ -30,6 +32,7 @@ import gregtech.api.unification.material.Materials.Chrome
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Glass
@@ -74,8 +77,10 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.pipeHugeItem
+import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
+import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -125,11 +130,14 @@ import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
 import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
@@ -156,6 +164,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
@@ -164,6 +173,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumCarbide
@@ -2056,8 +2066,113 @@ internal object GTMetaTileEntityLoader
             .duration(20 * SECOND)
             .buildAndRegister()
 
+
+        // modify UHV Quadruple/Nonuple Import/Export Hatch to use Kevlar to align the plastic requirement
+        // remove original UHV Quadruple/Nonuple Import/Export Hatch recipe
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(4)),
+            arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(4)),
+            arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(9)),
+            arrayOf(Polybenzimidazole.getFluid(L * 9)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(9)),
+            arrayOf(Polybenzimidazole.getFluid(L * 9)))
+
+        // UHV with Europium
+        addQuadNonupleFluidHatch(UHV, Europium)
+
+        // UEV with Duranium
+        addQuadNonupleFluidHatch(UEV, Duranium)
+
+        // UIV with Neutronium
+        addQuadNonupleFluidHatch(UIV, Neutronium)
+
+        // UXV with HeavyQuarkDegenerateMatter(HQDM)
+        addQuadNonupleFluidHatch(UXV, HeavyQuarkDegenerateMatter)
+
+        // OpV with QuantumchromodynamicallyConfinedMatter(QCM)
+        addQuadNonupleFluidHatch(OpV, QuantumchromodynamicallyConfinedMatter)
+
+        // MAX with TranscendentMetal
     }
 
     // @formatter:on
+
+    /**
+     * Adds several assembling recipes for quadruple/nonuple input and output hatches.
+     *
+     * This method is used for add missing fluid hatches recipes from UHV to OpV.
+     *
+     * @param tier          The voltage tier of hatches.
+     * @param pipeMaterial  The material of the pipes used in the recipes.
+     *
+     */
+    private fun addQuadNonupleFluidHatch(tier: Int, pipeMaterial: Material)
+    {
+        val adhesiveFluid = when
+        {
+            tier <= UEV -> Kevlar
+            tier <= UXV -> FullerenePolymerMatrix
+            tier <= MAX -> CosmicFabric
+            else -> throw IllegalArgumentException("Unsupported tier: $tier")
+        }
+
+        // add Quadruple Import Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_IMPORT_HATCH[tier])
+                .input(pipeQuadrupleFluid, pipeMaterial)
+                .fluidInputs(adhesiveFluid.getFluid(L * 4))
+                .output(QUADRUPLE_IMPORT_HATCH[tier])
+                .EUt(VA[tier])
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+        // add Quadruple Export Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(4)
+                .input(FLUID_EXPORT_HATCH[tier])
+                .input(pipeQuadrupleFluid, pipeMaterial)
+                .fluidInputs(adhesiveFluid.getFluid(L * 4))
+                .output(QUADRUPLE_EXPORT_HATCH[tier])
+                .EUt(VA[tier])
+                .duration(15 * SECOND)
+                .buildAndRegister()
+
+        // add Nonuple Import Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_IMPORT_HATCH[tier])
+                .input(pipeNonupleFluid, pipeMaterial)
+                .fluidInputs(adhesiveFluid.getFluid(L * 9))
+                .output(NONUPLE_IMPORT_HATCH[tier])
+                .EUt(VA[tier])
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+        // add Nonuple Export Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(9)
+                .input(FLUID_EXPORT_HATCH[tier])
+                .input(pipeNonupleFluid, pipeMaterial)
+                .fluidInputs(adhesiveFluid.getFluid(L * 9))
+                .output(NONUPLE_EXPORT_HATCH[tier])
+                .EUt(VA[tier])
+                .duration(30 * SECOND)
+                .buildAndRegister()
+
+    }
+
 
 }
