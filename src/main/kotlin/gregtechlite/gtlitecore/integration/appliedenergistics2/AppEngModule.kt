@@ -7,6 +7,7 @@ import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_AE2
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
 import org.apache.logging.log4j.Logger
 
+@Suppress("unused")
 @Module(moduleId = MODULE_AE2,
         containerId = MOD_ID,
         modDependencies = [ "appliedenergistics2" ],
