@@ -33,7 +33,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PHENOLIC_BOARD
 import net.minecraft.item.ItemStack
 
 /**
- * @see [magicbook.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer]
+ * @see [gregtechlite.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer]
  */
 object AppEngCALRecipeProducer
 {
