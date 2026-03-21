@@ -362,13 +362,14 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         // TODO: replace logo to space elevator logo and add warning/error indicators if necessary.
         return SpaceElevatorUIFactory(this)
                 .configureDisplayText(::configureDisplayText)
-                .createFlexButton { guiData, guiSyncManager ->
+                .createFlexButton { _, guiSyncManager ->
+                    guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
                     return@createFlexButton ButtonWidget()
                             .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
                             .disableHoverBackground()
-                            .onMousePressed { i ->
-                                reinitializeStructurePattern()
-                                return@onMousePressed true
+                            .onMousePressed {
+                                guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                                true
                             }
                             .tooltip { tooltip ->
                                 tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
@@ -381,6 +382,8 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         builder.setWorkingStatus(true, isActive)
                 .addEnergyUsageLine(energyContainer)
                 .addCustom { keyManager, syncer ->
+                    // TODO: Space Elevator UI is unsynced the second time we open the panel
+                    //  due to isStructureFormed in client being False value.
                     if (isStructureFormed)
                     {
                         val casingTier = syncer.syncInt(::casingTier)
@@ -443,12 +446,6 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.8"))
     }
 
-    //  override fun getLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_DARK
-//
-    //  override fun getWarningLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_YELLOW
-//
-    //  override fun getErrorLogo(): TextureArea = GTLiteGuiTextures.SPACE_ELEVATOR_LOGO_BLINKING_RED
-
     private fun disabledAllModules()
     {
         this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
@@ -498,35 +495,34 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         private val mte = controller
         override fun createDistinctButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            // Use toggle button with the same textures for enabled and disabled state
-            // to make it look like a normal button.
-            // This is a temporary solution, consider using callSyncedAction when update the ModularUI to 3.0.6
-            val boolTrigger = BooleanSyncValue({true}, { b -> mte.enabledAllModules() })
-            return ToggleButton()
+            panelSyncManager.registerSyncedAction("enable_modules") { mte.enabledAllModules() }
+
+            return ButtonWidget()
                     .disableHoverBackground()
-                    .overlay(true, GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
-                    .overlay(false, GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
+                    .overlay(GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
                     .tooltip { tooltip ->
                         tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.enable_module"))
                     }
-                    .value(boolTrigger)
+                    .onMousePressed {
+                        panelSyncManager.callSyncedAction("enable_modules")
+                        true
+                    }
         }
 
         override fun createVoidingButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            // Use toggle button with the same textures for enabled and disabled state
-            // to make it look like a normal button.
-            // This is a temporary solution, consider using callSyncedAction when update the ModularUI to 3.0.6
-            val boolTrigger = BooleanSyncValue({true}, { b -> mte.disabledAllModules() })
+            panelSyncManager.registerSyncedAction("disable_modules") { mte.disabledAllModules() }
 
-            return ToggleButton()
+            return ButtonWidget()
                     .disableHoverBackground()
-                    .overlay(false, GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
-                    .overlay(true, GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
+                    .overlay(GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
                     .tooltip { tooltip ->
                         tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.disable_module"))
+                    }.onMousePressed {
+                        panelSyncManager.callSyncedAction("disable_modules")
+                        true
                     }
-                    .value(boolTrigger)
+
         }
 
         override fun createPowerButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): Widget<*>

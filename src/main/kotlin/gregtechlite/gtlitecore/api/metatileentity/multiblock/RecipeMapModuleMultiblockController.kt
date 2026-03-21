@@ -29,7 +29,8 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
                                                    recipeMap: RecipeMap<*>,
                                                    protected val tier: Int,
                                                    protected val moduleTier: Int,
-                                                   protected val minCasingTier: Int) : RecipeMapMultiblockController(metaTileEntityId, recipeMap), ModuleReceiver
+                                                   protected val minCasingTier: Int) :
+    RecipeMapMultiblockController(metaTileEntityId, recipeMap), ModuleReceiver
 {
 
     override var moduleProvider: ModuleProvider? = null
@@ -69,8 +70,7 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
         return if (moduleProvider?.subEnergyContainer == null)
         {
             EnergyContainerHandler(this, 0, 0, 0, 0, 0)
-        }
-        else
+        } else
         {
             this.energyContainer
         }
@@ -115,17 +115,19 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
     override fun createUIFactory(): MultiblockUIFactory?
     {
         return super.createUIFactory() // TODO Disabled Indicator and add Space Elevator Logo?
-            .createFlexButton { guiData, guiSyncManager ->
-                return@createFlexButton ButtonWidget()
-                    .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                    .onMousePressed { i ->
-                        reinitializeStructurePattern()
-                        return@onMousePressed true
-                    }
-                    .tooltip { tooltip ->
-                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-                    }
-            }
+                .createFlexButton { _, guiSyncManager ->
+                    guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
+
+                    return@createFlexButton ButtonWidget()
+                            .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                            .onMousePressed {
+                                guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                                true
+                            }
+                            .tooltip { tooltip ->
+                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
+                            }
+                }
     }
 
     override fun hasMaintenanceMechanics() = false
