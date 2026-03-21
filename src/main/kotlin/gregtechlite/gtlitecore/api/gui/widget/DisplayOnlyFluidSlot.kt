@@ -11,12 +11,13 @@ import com.cleanroommc.modularui.theme.WidgetThemeEntry
 import com.cleanroommc.modularui.utils.Color
 import com.cleanroommc.modularui.widget.Widget
 import gregtech.client.utils.RenderUtil
-import gregtechlite.gtlitecore.api.mui.sync.FluidDisplaySyncHandler
+import gregtechlite.gtlitecore.api.gui.sync.FluidDisplaySyncHandler
 import net.minecraftforge.fluids.FluidStack
 
 class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(),
     Interactable, RecipeViewerGhostIngredientSlot<FluidStack>, RecipeViewerIngredientProvider
 {
+
     private var syncHandler: FluidDisplaySyncHandler? = null
     private var textRenderer: TextRenderer = TextRenderer()
 
@@ -27,51 +28,30 @@ class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(),
         this.textRenderer.setColor(Color.WHITE.main)
     }
 
-    fun getFluidStack(): FluidStack?
-    {
-        return if (this.syncHandler == null) null else this.syncHandler!!.value
-    }
+    fun getFluidStack(): FluidStack? = if (syncHandler == null) null else syncHandler!!.value
 
     override fun draw(context: ModularGuiContext, widgetTheme: WidgetThemeEntry<*>)
     {
         val content = getFluidStack()
         if (content != null)
         {
-            GuiDraw.drawFluidTexture(
-                content,
-                1.0F,
-                1.0F,
-                area.width - 2F,
-                area.height - 2F,
-                0F
-            )
+            GuiDraw.drawFluidTexture(content, 1.0F, 1.0F, area.width - 2F, area.height - 2F, 0F)
         }
-
         RenderUtil.handleJEIGhostSlotOverlay(this, widgetTheme)
     }
 
-    fun syncHandler(handler: FluidDisplaySyncHandler?): DisplayOnlyFluidSlot
+    fun syncHandler(syncHandler: FluidDisplaySyncHandler?): DisplayOnlyFluidSlot
     {
-        this.syncHandler = handler
+        this.syncHandler = syncHandler
         return this
     }
 
-    override fun getWidgetThemeInternal(theme: ITheme): WidgetThemeEntry<*>
-    {
-        return theme.fluidSlotTheme
-    }
+    override fun getWidgetThemeInternal(theme: ITheme): WidgetThemeEntry<*> = theme.fluidSlotTheme
 
-    override fun setGhostIngredient(ingredient: FluidStack)
-    {
-    }
+    override fun setGhostIngredient(ingredient: FluidStack) {}
 
-    override fun castGhostIngredientIfValid(ingredient: Any): FluidStack?
-    {
-        return null
-    }
+    override fun castGhostIngredientIfValid(ingredient: Any): FluidStack? = null
 
-    override fun getIngredient(): Any?
-    {
-        return this.getFluidStack()
-    }
+    override fun getIngredient(): Any? = getFluidStack()
+
 }

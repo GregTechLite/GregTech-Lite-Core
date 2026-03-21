@@ -1,32 +1,33 @@
-package gregtechlite.gtlitecore.api.mui.sync
+package gregtechlite.gtlitecore.api.gui.sync
 
 import com.cleanroommc.modularui.network.NetworkUtils
-import com.cleanroommc.modularui.value.sync.FluidSlotSyncHandler.copyFluid
+import com.cleanroommc.modularui.value.sync.FluidSlotSyncHandler
 import com.cleanroommc.modularui.value.sync.ValueSyncHandler
 import net.minecraft.network.PacketBuffer
 import net.minecraftforge.fluids.FluidStack
 
-class FluidDisplaySyncHandler(
-    val getter: (() -> FluidStack?)?,
-    val setter: ((FluidStack?) -> Unit)?) : ValueSyncHandler<FluidStack>()
+class FluidDisplaySyncHandler(val getter: (() -> FluidStack?)?,
+                              val setter: ((FluidStack?) -> Unit)?) : ValueSyncHandler<FluidStack>()
 {
+
     private var cache: FluidStack? = null
 
     constructor(getter: (() -> FluidStack?)?) : this(getter, null)
 
     override fun setValue(value: FluidStack?, setSource: Boolean, sync: Boolean)
     {
-        this.cache = copyFluid(value)
+        this.cache = FluidSlotSyncHandler.copyFluid(value)
         if (setSource && this.setter != null)
         {
-            this.setter.invoke(copyFluid(value))
+            this.setter.invoke(FluidSlotSyncHandler.copyFluid(value))
         }
         if (sync)
         {
             if (NetworkUtils.isClient())
             {
                 syncToServer(0, this::write)
-            } else
+            }
+            else
             {
                 syncToClient(0, this::write)
             }
@@ -69,11 +70,9 @@ class FluidDisplaySyncHandler(
 
     override fun getValue(): FluidStack?
     {
-        return if (this.cache == null) null else copyFluid(this.cache)
+        return if (this.cache == null) null else FluidSlotSyncHandler.copyFluid(this.cache)
     }
 
-    override fun getValueType(): Class<FluidStack>
-    {
-        return FluidStack::class.java
-    }
+    override fun getValueType(): Class<FluidStack> = FluidStack::class.java
+
 }

@@ -11,6 +11,7 @@ import mcjty.theoneprobe.api.ITheOneProbe
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import org.apache.logging.log4j.Logger
 
+@Suppress("unused")
 @Module(moduleId = MODULE_TOP,
         containerId = MOD_ID,
         modDependencies = [ "theoneprobe" ],
