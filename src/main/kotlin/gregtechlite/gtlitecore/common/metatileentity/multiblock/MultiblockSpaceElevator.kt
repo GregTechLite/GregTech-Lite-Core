@@ -297,8 +297,6 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     // @formatter:on
 
     private fun modulePredicate(): TraceabilityPredicate = TraceabilityPredicate { blockWorldState ->
-        val state = blockWorldState.blockState
-
         // Module mtes.
         val te = blockWorldState.getTileEntity()
         if (te !is IGregTechTileEntity) return@TraceabilityPredicate false
