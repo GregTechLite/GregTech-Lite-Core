@@ -1,8 +1,8 @@
 package gregtechlite.gtlitecore.api.recipe.util
 
 import gregtech.api.GTValues
-import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.MarkerMaterials.Tier
+import gregtech.api.unification.material.Material
 
 /**
  * Bridges GregTech voltage tier indexes and tier marker materials.
@@ -12,6 +12,23 @@ import gregtech.api.unification.material.MarkerMaterials.Tier
  *
  * Intended for recipe generation and other tier-based logic where code needs to
  * traverse voltage tiers while also accessing the corresponding tier [Material].
+ *
+ * Usage examples:
+ *
+ *      for (entry in TierBridge.fromIndex(GTValues.UEV)) {
+ *          val tier = entry.index
+ *          val tierMaterial = entry.material
+ *
+ *          MY_RECIPES.recipeBuilder()
+ *              .input(...)
+ *              .input(SomeTieredOreDict, tierMaterial)
+ *              .EUt(GTValues.VA[tier])
+ *              .duration(200)
+ *              .buildAndRegister()
+ *      }
+ *      val material = TierBridge.materialOf(GTValues.UHV)
+ *      val tier = TierBridge.indexOf(Tier.UEV)
+ *      val next = TierBridge.next(GTValues.IV)
  */
 object TierBridge
 {
@@ -19,9 +36,8 @@ object TierBridge
     /**
      * One bijective tier mapping entry.
      *
-     * @property index the integer voltage tier, usually one of the constants from [GTValues]
-     * @property material the corresponding tier marker [Material], usually one of the constants
-     * from [Tier]
+     * @property index     The integer voltage tier, usually one of the constants from [GTValues]
+     * @property material  The corresponding tier marker [Material], usually one of the constants from [Tier]
      */
     data class Entry(
         val index: Int,
@@ -59,9 +75,9 @@ object TierBridge
     /**
      * Returns the mapping entry for the given integer voltage tier.
      *
-     * @param index a GregTech voltage tier index such as [GTValues.IV] or [GTValues.UEV]
-     * @return the matching [Entry]
-     * @throws IllegalStateException if the given tier index is not part of this bridge
+     * @param index   A GregTech voltage tier index such as [GTValues.IV] or [GTValues.UEV]
+     * @return        The matching [Entry]
+     * @throws IllegalStateException If the given tier index is not part of this bridge
      */
     @JvmStatic
     fun of(index: Int): Entry
@@ -72,9 +88,9 @@ object TierBridge
     /**
      * Returns the mapping entry for the given tier marker material.
      *
-     * @param material a tier marker material such as [Tier.IV] or [Tier.UEV]
-     * @return the matching [Entry]
-     * @throws IllegalStateException if the given material is not part of this bridge
+     * @param material  A tier marker material such as [Tier.IV] or [Tier.UEV]
+     * @return          The matching [Entry]
+     * @throws IllegalStateException If the given material is not part of this bridge
      */
     @JvmStatic
     fun of(material: Material): Entry
@@ -88,8 +104,8 @@ object TierBridge
      * Example:
      * `materialOf(GTValues.UEV) == Tier.UEV`
      *
-     * @param index a GregTech voltage tier index
-     * @return the corresponding tier marker [Material]
+     * @param index   A GregTech voltage tier index
+     * @return        The corresponding tier marker [Material]
      */
     @JvmStatic
     fun materialOf(index: Int): Material
@@ -103,8 +119,8 @@ object TierBridge
      * Example:
      * `indexOf(Tier.UEV) == GTValues.UEV`
      *
-     * @param material a tier marker [Material]
-     * @return the corresponding GregTech voltage tier index
+     * @param material  A tier marker [Material]
+     * @return          The corresponding GregTech voltage tier index
      */
     @JvmStatic
     fun indexOf(material: Material): Int
@@ -118,8 +134,8 @@ object TierBridge
      * This is useful when handling external or computed tier values that may not be part of the
      * supported tier range.
      *
-     * @param index a voltage tier index
-     * @return `true` if this bridge contains a mapping for [index], otherwise `false`
+     * @param index   A voltage tier index
+     * @return        `true` if this bridge contains a mapping for [index], otherwise `false`
      */
     @JvmStatic
     fun contains(index: Int): Boolean
@@ -130,8 +146,8 @@ object TierBridge
     /**
      * Checks whether the given tier material exists in this bridge.
      *
-     * @param material a tier marker material
-     * @return `true` if this bridge contains a mapping for [material], otherwise `false`
+     * @param material  A tier marker material
+     * @return          `true` if this bridge contains a mapping for [material], otherwise `false`
      */
     @JvmStatic
     fun contains(material: Material): Boolean
@@ -150,9 +166,9 @@ object TierBridge
      * Example:
      * `fromIndex(GTValues.UEV)` returns entries for UEV, UIV, UXV, OpV, and MAX.
      *
-     * @param startIndex the first tier to include
-     * @return an ordered list of [Entry] values from [startIndex] upward
-     * @throws IllegalArgumentException if [startIndex] is not part of this bridge
+     * @param startIndex  The first tier to include
+     * @return            An ordered list of [Entry] values from [startIndex] upward
+     * @throws IllegalArgumentException If [startIndex] is not part of this bridge
      */
     @JvmStatic
     fun fromIndex(startIndex: Int): List<Entry>
@@ -170,9 +186,9 @@ object TierBridge
      * Example:
      * `fromMaterial(Tier.UEV)` returns entries for UEV, UIV, UXV, OpV, and MAX.
      *
-     * @param startMaterial the first tier material to include
-     * @return an ordered list of [Entry] values from [startMaterial] upward
-     * @throws IllegalArgumentException if [startMaterial] is not part of this bridge
+     * @param startMaterial  The first tier material to include
+     * @return               An ordered list of [Entry] values from [startMaterial] upward
+     * @throws IllegalArgumentException If [startMaterial] is not part of this bridge
      */
     @JvmStatic
     fun fromMaterial(startMaterial: Material): List<Entry>
@@ -188,9 +204,9 @@ object TierBridge
      * Example:
      * `next(GTValues.IV)` returns the LuV entry.
      *
-     * @param index the current tier index
-     * @return the next higher [Entry], or `null` if [index] is already the highest tier
-     * @throws IllegalArgumentException if [index] is not part of this bridge
+     * @param index   The current tier index
+     * @return        The next higher [Entry], or `null` if [index] is already the highest tier
+     * @throws IllegalArgumentException If [index] is not part of this bridge
      */
     @JvmStatic
     fun next(index: Int): Entry?
@@ -206,9 +222,9 @@ object TierBridge
      * Example:
      * `next(Tier.IV)` returns the LuV entry.
      *
-     * @param material the current tier material
-     * @return the next higher [Entry], or `null` if [material] is already the highest tier
-     * @throws IllegalArgumentException if [material] is not part of this bridge
+     * @param material  The current tier material
+     * @return          The next higher [Entry], or `null` if [material] is already the highest tier
+     * @throws IllegalArgumentException If [material] is not part of this bridge
      */
     @JvmStatic
     fun next(material: Material): Entry?
@@ -224,9 +240,9 @@ object TierBridge
      * Example:
      * `previous(GTValues.UEV)` returns the UHV entry.
      *
-     * @param index the current tier index
-     * @return the previous lower [Entry], or `null` if [index] is already the lowest tier
-     * @throws IllegalArgumentException if [index] is not part of this bridge
+     * @param index   The current tier index
+     * @return        The previous lower [Entry], or `null` if [index] is already the lowest tier
+     * @throws IllegalArgumentException If [index] is not part of this bridge
      */
     @JvmStatic
     fun previous(index: Int): Entry?
@@ -242,9 +258,9 @@ object TierBridge
      * Example:
      * `previous(Tier.UEV)` returns the UHV entry.
      *
-     * @param material the current tier material
-     * @return the previous lower [Entry], or `null` if [material] is already the lowest tier
-     * @throws IllegalArgumentException if [material] is not part of this bridge
+     * @param material  The current tier material
+     * @return          The previous lower [Entry], or `null` if [material] is already the lowest tier
+     * @throws IllegalArgumentException If [material] is not part of this bridge
      */
     @JvmStatic
     fun previous(material: Material): Entry?
@@ -272,23 +288,3 @@ object TierBridge
         fromMaterial(startMaterial).forEach(action)
     }
 }
-
-/*
-Usage examples:
-
-for (entry in TierBridge.fromIndex(GTValues.UEV)) {
-    val tier = entry.index
-    val tierMaterial = entry.material
-
-    MY_RECIPES.recipeBuilder()
-        .input(...)
-        .recipeProperty(SomeTierProperty.getInstance(), tierMaterial)
-        .EUt(GTValues.VA[tier])
-        .duration(200)
-        .buildAndRegister()
-}
-
-val material = TierBridge.materialOf(GTValues.UHV)
-val tier = TierBridge.indexOf(Tier.UEV)
-val next = TierBridge.next(GTValues.IV)
-*/

@@ -22,6 +22,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.getGTRecipeInput
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreGreenSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKimberlite
@@ -128,7 +129,7 @@ object GTLiteRecipeHandler
     {
         val extra = getGTRecipeInput(extraInput)
 
-        GTLiteTieredAdhesiveFluid.generateRecipeFluidStacks(tier)
+        TieredAdhesiveFluid.generateRecipeFluidStacks(tier)
             .forEach {
                 ASSEMBLER_RECIPES.recipeBuilder()
                     .circuitMeta(1)
@@ -164,7 +165,7 @@ object GTLiteRecipeHandler
     @JvmStatic
     fun addMultiFluidHatchRecipes(tier: Int, pipeMaterial: Material)
     {
-        val adhesiveFluid = GTLiteTieredAdhesiveFluid.materialFromTier(tier)
+        val adhesiveFluid = TieredAdhesiveFluid.materialFromTier(tier)
 
         // add Quadruple Import Hatch recipe
         ASSEMBLER_RECIPES.recipeBuilder()

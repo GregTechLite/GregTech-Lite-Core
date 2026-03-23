@@ -20,8 +20,8 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
-import gregtechlite.gtlitecore.api.recipe.GTLiteTieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
+import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -1537,7 +1537,7 @@ internal object GTMetaTileEntityLoader
         }
 
         val tieredDualHatchRecipeInputs = mapOf(
-                ULV to Pair(BRONZE_DRUM,WroughtIron),
+                ULV to Pair(BRONZE_DRUM, WroughtIron),
                 LV  to Pair(STEEL_DRUM, Steel),
                 MV  to Pair(ALUMINIUM_DRUM, Aluminium),
                 HV  to Pair(STAINLESS_STEEL_DRUM, StainlessSteel),
@@ -1557,7 +1557,7 @@ internal object GTMetaTileEntityLoader
         {
             val (container, plateMaterial) = tieredDualHatchRecipeInputs.getValue(voltage)
             val nextTierCircuit = TierBridge.next(voltage)?.material
-            val adhesiveFluidStack = GTLiteTieredAdhesiveFluid.fluidStackFromTier(voltage+1)
+            val adhesiveFluidStack = TieredAdhesiveFluid.fluidStackFromTier(voltage+1)
 
             // Dual Import Hatch
             ASSEMBLER_RECIPES.recipeBuilder()

@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.recipe
+package gregtechlite.gtlitecore.api.recipe.util
 
 import gregtech.api.GTValues.*
 import gregtech.api.unification.material.Material
@@ -6,7 +6,7 @@ import gregtech.api.unification.material.Materials
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import net.minecraftforge.fluids.FluidStack
 
-enum class GTLiteTieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
+enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
 {
     // Glue recipes for ULV-LV.
     LV_OR_BELOW(Materials.Glue),
@@ -32,12 +32,12 @@ enum class GTLiteTieredAdhesiveFluid(val material: Material, val costOffset: Int
     companion object
     {
         /**
-         * Determines the appropriate [GTLiteTieredAdhesiveFluid] based on the given voltage tier.
+         * Determines the appropriate [TieredAdhesiveFluid] based on the given voltage tier.
          *
          * @param tier Voltage tier.
          */
         @JvmStatic
-        fun fromTier(tier: Int): GTLiteTieredAdhesiveFluid = when
+        fun fromTier(tier: Int): TieredAdhesiveFluid = when
         {
             tier <= LV  -> LV_OR_BELOW
             tier <= HV  -> HV_OR_BELOW
@@ -50,7 +50,7 @@ enum class GTLiteTieredAdhesiveFluid(val material: Material, val costOffset: Int
         }
 
         /**
-         * Determines the appropriate [Material] for adhesive fluid recipes based on the given voltage tier.
+         * Determines the appropriate [gregtech.api.unification.material.Material] for adhesive fluid recipes based on the given voltage tier.
          *
          * @param tier Voltage tier.
          */
@@ -58,7 +58,7 @@ enum class GTLiteTieredAdhesiveFluid(val material: Material, val costOffset: Int
         fun materialFromTier(tier: Int): Material = fromTier(tier).material
 
         /**
-         * Determines the appropriate [FluidStack] for adhesive fluid recipes based on the given voltage tier.
+         * Determines the appropriate [net.minecraftforge.fluids.FluidStack] for adhesive fluid recipes based on the given voltage tier.
          *
          * The fluid amount is determined by the voltage tier.
          *
