@@ -1557,7 +1557,7 @@ internal object GTMetaTileEntityLoader
         {
             val (container, plateMaterial) = tieredDualHatchRecipeInputs.getValue(voltage)
             val nextTierCircuit = TierBridge.next(voltage)?.material
-            val adhesiveFluidStack = GTLiteTieredAdhesiveFluid.fluidStackFromTier(voltage)
+            val adhesiveFluidStack = GTLiteTieredAdhesiveFluid.fluidStackFromTier(voltage+1)
 
             // Dual Import Hatch
             ASSEMBLER_RECIPES.recipeBuilder()
