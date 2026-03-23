@@ -14,21 +14,22 @@ import gregtech.api.unification.material.Material
  * traverse voltage tiers while also accessing the corresponding tier [Material].
  *
  * Usage examples:
+ * ```
+ *  for (entry in TierBridge.fromIndex(GTValues.UEV)) {
+ *      val tier = entry.index
+ *      val tierMaterial = entry.material
  *
- *      for (entry in TierBridge.fromIndex(GTValues.UEV)) {
- *          val tier = entry.index
- *          val tierMaterial = entry.material
- *
- *          MY_RECIPES.recipeBuilder()
- *              .input(...)
- *              .input(SomeTieredOreDict, tierMaterial)
- *              .EUt(GTValues.VA[tier])
- *              .duration(200)
- *              .buildAndRegister()
- *      }
- *      val material = TierBridge.materialOf(GTValues.UHV)
- *      val tier = TierBridge.indexOf(Tier.UEV)
- *      val next = TierBridge.next(GTValues.IV)
+ *      MY_RECIPES.recipeBuilder()
+ *          .input(...)
+ *          .input(SomeTieredOreDict, tierMaterial)
+ *          .EUt(GTValues.VA[tier])
+ *          .duration(200)
+ *          .buildAndRegister()
+ *  }
+ *  val material = TierBridge.materialOf(GTValues.UHV)
+ *  val tier = TierBridge.indexOf(Tier.UEV)
+ *  val next = TierBridge.next(GTValues.IV)
+ * ```
  */
 object TierBridge
 {
