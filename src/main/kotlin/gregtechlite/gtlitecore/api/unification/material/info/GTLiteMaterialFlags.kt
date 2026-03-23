@@ -329,6 +329,7 @@ object GTLiteMaterialFlags
         Rutherfordium.addFlags(GENERATE_FRAME)
         Dubnium.addFlags(GENERATE_FRAME)
         Curium.addFlags(GENERATE_FRAME)
+        VanadiumGallium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
