@@ -42,9 +42,17 @@ import gregtech.api.unification.ore.OrePrefix.dustPure
 import gregtech.api.unification.ore.OrePrefix.ore
 import gregtech.api.unification.ore.OrePrefix.oreEndstone
 import gregtech.api.unification.ore.OrePrefix.oreNetherrack
+import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
+import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.metatileentities.MetaTileEntities
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.getGTRecipeInput
@@ -333,6 +341,71 @@ object GTLiteRecipeHandler
     }
 
     /**
+     * Adds several assembling recipes for quadruple/nonuple input and output hatches.
+     *
+     * This method is used for add missing fluid hatches recipes from UHV to OpV.
+     *
+     * @param tier          The voltage tier of hatches.
+     * @param pipeMaterial  The material of the pipes used in the recipes.
+     *
+     */
+    @JvmStatic
+    fun addMultiFluidHatchRecipes(tier: Int, pipeMaterial: Material)
+    {
+        val adhesiveFluid = when
+        {
+            tier <= UEV -> GTLiteMaterials.Kevlar
+            tier <= UXV -> GTLiteMaterials.FullerenePolymerMatrix
+            tier <= MAX -> CosmicFabric
+            else        -> throw IllegalArgumentException("Unsupported tier: $tier")
+        }
+
+        // add Quadruple Import Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(4)
+            .input(FLUID_IMPORT_HATCH[tier])
+            .input(pipeQuadrupleFluid, pipeMaterial)
+            .fluidInputs(adhesiveFluid.getFluid(L * 4))
+            .output(QUADRUPLE_IMPORT_HATCH[tier])
+            .EUt(VA[tier])
+            .duration(15 * SECOND)
+            .buildAndRegister()
+
+        // add Quadruple Export Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(4)
+            .input(FLUID_EXPORT_HATCH[tier])
+            .input(pipeQuadrupleFluid, pipeMaterial)
+            .fluidInputs(adhesiveFluid.getFluid(L * 4))
+            .output(QUADRUPLE_EXPORT_HATCH[tier])
+            .EUt(VA[tier])
+            .duration(15 * SECOND)
+            .buildAndRegister()
+
+        // add Nonuple Import Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(9)
+            .input(FLUID_IMPORT_HATCH[tier])
+            .input(pipeNonupleFluid, pipeMaterial)
+            .fluidInputs(adhesiveFluid.getFluid(L * 9))
+            .output(NONUPLE_IMPORT_HATCH[tier])
+            .EUt(VA[tier])
+            .duration(30 * SECOND)
+            .buildAndRegister()
+
+        // add Nonuple Export Hatch recipe
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(9)
+            .input(FLUID_EXPORT_HATCH[tier])
+            .input(pipeNonupleFluid, pipeMaterial)
+            .fluidInputs(adhesiveFluid.getFluid(L * 9))
+            .output(NONUPLE_EXPORT_HATCH[tier])
+            .EUt(VA[tier])
+            .duration(30 * SECOND)
+            .buildAndRegister()
+    }
+
+    /**
      * Check if the input is compatible with GT format.
      *
      * All allowed format of an inputs:
@@ -345,10 +418,10 @@ object GTLiteRecipeHandler
     @JvmStatic
     fun getGTRecipeInput(extraInput: Any): GTRecipeInput = when (extraInput)
     {
-        is ItemStack -> GTRecipeItemInput(extraInput) // Common item stack.
+        is ItemStack                 -> GTRecipeItemInput(extraInput) // Common item stack.
         is MetaItem<*>.MetaValueItem -> GTRecipeItemInput(extraInput.stackForm) // GT meta item.
-        is String -> GTRecipeOreInput(extraInput) // Ore dictionary.
-        else -> throw IllegalArgumentException()
+        is String                    -> GTRecipeOreInput(extraInput) // Ore dictionary.
+        else                         -> throw IllegalArgumentException()
     }
 
     /**
@@ -357,7 +430,8 @@ object GTLiteRecipeHandler
      * @param offsetTier The offset of voltage tier.
      */
     @JvmStatic
-    fun getGTHatchFluidAmount(offsetTier: Int): Int = when (offsetTier) {
+    fun getGTHatchFluidAmount(offsetTier: Int): Int = when (offsetTier)
+    {
         ULV  -> 4
         LV   -> L / 16  // 9
         MV   -> L / 8   // 18
@@ -391,11 +465,11 @@ object GTLiteRecipeHandler
                        outputCount: Int = 1)
     {
         ModHandler.addSmeltingRecipe(UnificationEntry(ore, oreType),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
         ModHandler.addSmeltingRecipe(UnificationEntry(oreNetherrack, oreType),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount * 2))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount * 2))
         ModHandler.addSmeltingRecipe(UnificationEntry(oreEndstone, oreType),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount * 4))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount * 4))
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
@@ -404,20 +478,20 @@ object GTLiteRecipeHandler
             for (oreVariant in oreVariants)
             {
                 ModHandler.addSmeltingRecipe(UnificationEntry(oreVariant, oreType),
-                    OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                             OreDictUnifier.get(outputPrefix, outputType, outputCount))
             }
         }
 
         ModHandler.addSmeltingRecipe(UnificationEntry(crushed, oreType),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
         ModHandler.addSmeltingRecipe(UnificationEntry(crushedCentrifuged, Sulfur),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
         ModHandler.addSmeltingRecipe(UnificationEntry(crushedPurified, Sulfur),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
         ModHandler.addSmeltingRecipe(UnificationEntry(dustImpure, Sulfur),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
         ModHandler.addSmeltingRecipe(UnificationEntry(dustPure, Sulfur),
-            OreDictUnifier.get(outputPrefix, outputType, outputCount))
+                                     OreDictUnifier.get(outputPrefix, outputType, outputCount))
     }
 
     /**

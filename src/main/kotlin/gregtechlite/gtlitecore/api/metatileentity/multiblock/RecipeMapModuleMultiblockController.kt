@@ -29,7 +29,8 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
                                                    recipeMap: RecipeMap<*>,
                                                    protected val tier: Int,
                                                    protected val moduleTier: Int,
-                                                   protected val minCasingTier: Int) : RecipeMapMultiblockController(metaTileEntityId, recipeMap), ModuleReceiver
+                                                   protected val minCasingTier: Int) :
+    RecipeMapMultiblockController(metaTileEntityId, recipeMap), ModuleReceiver
 {
 
     override var moduleProvider: ModuleProvider? = null
@@ -41,9 +42,10 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
 
     init
     {
-        this.energyContainer = EnergyContainerHandler(this,
-            (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(), this.energyConsumed,
-            1, 0, 0)
+        this.energyContainer =
+            EnergyContainerHandler(this,
+                                   (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(),
+                                   this.energyConsumed, 1, 0, 0)
     }
 
     override fun checkStructurePattern()
@@ -115,12 +117,14 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
     override fun createUIFactory(): MultiblockUIFactory?
     {
         return super.createUIFactory() // TODO Disabled Indicator and add Space Elevator Logo?
-            .createFlexButton { guiData, guiSyncManager ->
+            .createFlexButton { _, guiSyncManager ->
+                guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
+
                 return@createFlexButton ButtonWidget()
                     .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                    .onMousePressed { i ->
-                        reinitializeStructurePattern()
-                        return@onMousePressed true
+                    .onMousePressed {
+                        guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                        true
                     }
                     .tooltip { tooltip ->
                         tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))

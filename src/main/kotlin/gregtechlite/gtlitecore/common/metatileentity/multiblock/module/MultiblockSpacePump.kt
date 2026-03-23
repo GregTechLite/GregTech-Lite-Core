@@ -3,13 +3,16 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.module
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.IPanelHandler
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.api.widget.IWidget
 import com.cleanroommc.modularui.drawable.DynamicDrawable
+import com.cleanroommc.modularui.screen.ModularPanel
 import com.cleanroommc.modularui.utils.Alignment
 import com.cleanroommc.modularui.utils.Color
 import com.cleanroommc.modularui.utils.NumberFormat
 import com.cleanroommc.modularui.value.sync.IntSyncValue
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.StringSyncValue
 import com.cleanroommc.modularui.widgets.ListWidget
 import com.cleanroommc.modularui.widgets.RichTextWidget
@@ -144,6 +147,18 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         else -> "MK4"
     }
 
+    // TODO: create Fluid Configuration Panel
+    private fun getFluidConfigurationPanel(parent: ModularPanel, syncManager: PanelSyncManager,
+                                           thisPanel: IPanelHandler)
+    {
+    }
+
+    // TODO: create Parallel Configuration Panel
+    private fun getParallelConfigurationPanel(parent: ModularPanel, syncManager: PanelSyncManager)
+    {
+    }
+
+
     override fun createUIFactory(): MultiblockUIFactory
     {
         return super.createUIFactory()
@@ -163,35 +178,41 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                     val screenView: ListWidget<IWidget, PumpScreenList> = PumpScreenList()
 
                     // Add machine information display
-                    val uiBuilder = MultiblockUIBuilder()
-                    uiBuilder.setAction {
+                    val headInfoBuilder = MultiblockUIBuilder()
+                    headInfoBuilder.setAction {
                         it.title(this.metaFullName).structureFormed(this.isStructureFormed)
+                        it.setWorkingStatus(isWorkingEnabled, isActive)
+                        it.addWorkingStatusLine()
+                        it.addEnergyUsageLine(this.energyContainer)
                     }
 
-                    uiBuilder.sync("display", syncManager)
+                    headInfoBuilder.sync("display", syncManager)
 
-                    screenView.addChild(
+                    screenView.child(
                         RichTextWidget()
                                 .fullWidth()
                                 .alignment(Alignment.TopLeft)
                                 .autoUpdate(true)
-                                .textBuilder(uiBuilder::build), 0
+                                .textBuilder(headInfoBuilder::build)
+                                .height(32)
+                                .marginBottom(4)
                     )
 
                     // add fluid rows
-
-                    for (index in 0 until getFluidParallels())
+                    if (isStructureFormed)
                     {
-                        val curPlanet = IntSyncValue(
-                            { this.planets[index] },
-                            { s -> this.planets[index] = s })
+                        for (index in 0 until getFluidParallels())
+                        {
+                            val curPlanet = IntSyncValue(
+                                { this.planets[index] },
+                                { s -> this.planets[index] = s })
 
-                        val curFluid = IntSyncValue(
-                            { this.fluids[index] },
-                            { s -> this.fluids[index] = s })
+                            val curFluid = IntSyncValue(
+                                { this.fluids[index] },
+                                { s -> this.fluids[index] = s })
 
-                        syncManager.syncValue("Planet_${index}", curPlanet)
-                        syncManager.syncValue("Fluid_${index}", curFluid)
+                            syncManager.syncValue("Planet_${index}", curPlanet)
+                            syncManager.syncValue("Fluid_${index}", curFluid)
 
 
                         val curOutput = FluidDisplaySyncHandler {
@@ -200,49 +221,52 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                             else return@FluidDisplaySyncHandler null
                         }
 
-                        syncManager.syncValue("Output_${index}", curOutput)
+                            syncManager.syncValue("Output_${index}", curOutput)
 
-                        screenView.addChild(
-                            Row()
-                                    .coverChildren()
-                                    .child(
-                                        TextWidget(IKey.lang("gtlitecore.machine.space_pump_module.fluid", index + 1))
-                                                .marginRight(5)
-                                                .color(Color.WHITE.main))
-                                    .child(
-                                        DisplayOnlyFluidSlot()
-                                                .syncHandler(curOutput)
-                                                .tooltipBuilder { t ->
-                                                    val fluidStack: FluidStack? = curOutput.value
-                                                    if (fluidStack == null)
-                                                    {
-                                                        t.clearText()
-                                                                .addLine(IKey.lang("gtlitecore.machine.space_pump_module.fluid.empty"))
-                                                    } else
-                                                    {
-                                                        t.clearText()
-                                                                .addLine(KeyUtil.fluid(fluidStack))
-                                                                .add(
-                                                                    IKey.str(
-                                                                        TextFormatting.GREEN.toString()
-                                                                                + NumberFormat.format(fluidStack.amount.toDouble(),
-                                                                            NumberFormat.DEFAULT)
-                                                                                + "L/s "))
-                                                    }
-                                                }.tooltipAutoUpdate(true)
-                                    )
-                                    .child(
-                                        IKey.dynamic {
-                                            val fluidStack: FluidStack = curOutput.value ?: return@dynamic ""
-                                            return@dynamic NumberFormat.format(fluidStack.amount.toDouble(),
-                                                NumberFormat.DEFAULT) + "L/s"
-                                        }.asWidget()
-                                                .marginLeft(5)
-                                                .color(Color.ORANGE.main))
-                                    .marginBottom(5)
-                                    .marginLeft(5), index + 1)
+                            screenView.child(
+                                Row()
+                                        .coverChildren()
+                                        .child(
+                                            TextWidget(IKey.lang("gtlitecore.machine.space_pump_module.fluid",
+                                                index + 1))
+                                                    .marginRight(5)
+                                                    .color(Color.WHITE.main))
+                                        .child(
+                                            DisplayOnlyFluidSlot()
+                                                    .syncHandler(curOutput)
+                                                    .tooltipBuilder { t ->
+                                                        val fluidStack: FluidStack? = curOutput.value
+                                                        if (fluidStack == null)
+                                                        {
+                                                            t.clearText()
+                                                                    .addLine(IKey.lang("gtlitecore.machine.space_pump_module.fluid.empty"))
+                                                        } else
+                                                        {
+                                                            t.clearText()
+                                                                    .addLine(KeyUtil.fluid(fluidStack))
+                                                                    .add(
+                                                                        IKey.str(
+                                                                            TextFormatting.GREEN.toString()
+                                                                                    + NumberFormat.format(fluidStack.amount.toDouble(),
+                                                                                NumberFormat.DEFAULT)
+                                                                                    + "L/s "))
+                                                        }
+                                                    }.tooltipAutoUpdate(true)
+                                        )
+                                        .child(
+                                            IKey.dynamic {
+                                                val fluidStack: FluidStack = curOutput.value ?: return@dynamic ""
+                                                return@dynamic NumberFormat.format(fluidStack.amount.toDouble(),
+                                                    NumberFormat.DEFAULT) + "L/s"
+                                            }.asWidget()
+                                                    .marginLeft(5)
+                                                    .color(Color.ORANGE.main))
+                                        .marginBottom(5)
+                                        .marginLeft(5))
+                        }
                     }
 
+                    // TODO: move configuration logic to individual panel
                     parent.child(
                         Column()
                                 .name("Configure Column")
@@ -289,7 +313,6 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         )
 
         return Row()
-            .expanded()
             .mainAxisAlignment(Alignment.MainAxis.SPACE_BETWEEN)
             .size(76, 20)
             .child(
@@ -340,6 +363,13 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
     {
         1 -> 1
         else -> 4
+    }
+
+    fun getParallelLimit() = when (moduleTier)
+    {
+        1 -> 1
+        2 -> 4
+        else -> 16
     }
 
     private fun getPlanetValue(index: Int): String = planets[index].toString()

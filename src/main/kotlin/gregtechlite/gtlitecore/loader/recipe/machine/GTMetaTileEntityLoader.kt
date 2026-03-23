@@ -1,153 +1,26 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
-import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.HV
-import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.L
-import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.LuV
-import gregtech.api.GTValues.MAX
-import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.OpV
-import gregtech.api.GTValues.UEV
-import gregtech.api.GTValues.UHV
-import gregtech.api.GTValues.UIV
-import gregtech.api.GTValues.ULV
-import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.UXV
-import gregtech.api.GTValues.VA
-import gregtech.api.GTValues.VH
-import gregtech.api.GTValues.ZPM
+import gregtech.api.GTValues.*
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
-import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.Americium
-import gregtech.api.unification.material.Materials.Bronze
-import gregtech.api.unification.material.Materials.Chrome
-import gregtech.api.unification.material.Materials.Copper
-import gregtech.api.unification.material.Materials.Darmstadtium
-import gregtech.api.unification.material.Materials.Diamond
-import gregtech.api.unification.material.Materials.Electrum
-import gregtech.api.unification.material.Materials.Europium
-import gregtech.api.unification.material.Materials.Glass
-import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.HSSG
-import gregtech.api.unification.material.Materials.HSSS
-import gregtech.api.unification.material.Materials.Iridium
-import gregtech.api.unification.material.Materials.Iron
-import gregtech.api.unification.material.Materials.Kanthal
-import gregtech.api.unification.material.Materials.Lead
-import gregtech.api.unification.material.Materials.Lubricant
-import gregtech.api.unification.material.Materials.NaquadahAlloy
-import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.unification.material.Materials.Nichrome
-import gregtech.api.unification.material.Materials.Nickel
-import gregtech.api.unification.material.Materials.Osmiridium
-import gregtech.api.unification.material.Materials.Osmium
-import gregtech.api.unification.material.Materials.Polybenzimidazole
-import gregtech.api.unification.material.Materials.Polyethylene
-import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
-import gregtech.api.unification.material.Materials.RTMAlloy
-import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
-import gregtech.api.unification.material.Materials.Seaborgium
-import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.unification.material.Materials.StainlessSteel
-import gregtech.api.unification.material.Materials.Steel
-import gregtech.api.unification.material.Materials.SterlingSilver
-import gregtech.api.unification.material.Materials.Sulfur
-import gregtech.api.unification.material.Materials.TinAlloy
-import gregtech.api.unification.material.Materials.Titanium
-import gregtech.api.unification.material.Materials.Tritanium
-import gregtech.api.unification.material.Materials.Tungsten
-import gregtech.api.unification.material.Materials.TungstenSteel
-import gregtech.api.unification.material.Materials.Ultimet
-import gregtech.api.unification.material.Materials.WroughtIron
-import gregtech.api.unification.material.Materials.YttriumBariumCuprate
-import gregtech.api.unification.ore.OrePrefix.cableGtOctal
-import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
-import gregtech.api.unification.ore.OrePrefix.cableGtSingle
-import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtech.api.unification.ore.OrePrefix.gear
-import gregtech.api.unification.ore.OrePrefix.gearSmall
-import gregtech.api.unification.ore.OrePrefix.gem
-import gregtech.api.unification.ore.OrePrefix.pipeHugeItem
-import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
-import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
-import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
-import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
-import gregtech.api.unification.ore.OrePrefix.plate
-import gregtech.api.unification.ore.OrePrefix.plateDense
-import gregtech.api.unification.ore.OrePrefix.plateDouble
-import gregtech.api.unification.ore.OrePrefix.rotor
-import gregtech.api.unification.ore.OrePrefix.spring
-import gregtech.api.unification.ore.OrePrefix.springSmall
-import gregtech.api.unification.ore.OrePrefix.stick
-import gregtech.api.unification.ore.OrePrefix.stickLong
-import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
-import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import gregtech.api.unification.ore.OrePrefix.wireGtOctal
-import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.material.Materials.*
+import gregtech.api.unification.ore.OrePrefix.*
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
-import gregtech.common.items.MetaItems.BLACKLIGHT
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_EV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_HV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_LV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_MV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_OpV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
-import gregtech.common.items.MetaItems.ROBOT_ARM_UV
-import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_16A
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
-import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
-import gregtech.common.metatileentities.MetaTileEntities.HULL
-import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
-import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
-import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
-import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
-import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
-import gregtech.common.metatileentities.MetaTileEntities.ROTOR_HOLDER
-import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
-import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
-import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
+import gregtech.common.items.MetaItems.*
+import gregtech.common.metatileentities.MetaTileEntities.*
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -164,6 +37,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumCarbide
@@ -2056,8 +1930,40 @@ internal object GTMetaTileEntityLoader
             .duration(20 * SECOND)
             .buildAndRegister()
 
+
+        // modify UHV Quadruple/Nonuple Import/Export Hatch to use Kevlar to align the plastic requirement
+        // remove original UHV Quadruple/Nonuple Import/Export Hatch recipe
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(4)),
+            arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(4)),
+            arrayOf(Polybenzimidazole.getFluid(L * 5)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(9)),
+            arrayOf(Polybenzimidazole.getFluid(L * 9)))
+
+        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
+                IntCircuitIngredient.getIntegratedCircuit(9)),
+            arrayOf(Polybenzimidazole.getFluid(L * 9)))
+
+        addMultiFluidHatchRecipes(UHV, Europium)
+        addMultiFluidHatchRecipes(UEV, Duranium)
+        addMultiFluidHatchRecipes(UIV, Neutronium)
+        addMultiFluidHatchRecipes(UXV, HeavyQuarkDegenerateMatter)
+        addMultiFluidHatchRecipes(OpV, QuantumchromodynamicallyConfinedMatter)
+
     }
 
     // @formatter:on
+
+
+
 
 }
