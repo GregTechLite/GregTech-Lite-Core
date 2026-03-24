@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.client.renderer.texture
 
 import codechicken.lib.texture.TextureUtils
 import gregtechlite.gtlitecore.api.extension.registerSprite
+import gregtechlite.gtlitecore.client.renderer.texture.custom.OreProcessorRenderer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.renderer.texture.TextureMap
 
@@ -9,6 +10,7 @@ object GTLiteTextures : TextureUtils.IIconRegister
 {
 
     // region Atlas Sprite Textures
+
     lateinit var HALO: TextureAtlasSprite
     lateinit var HALO_NOISE: TextureAtlasSprite
     lateinit var COSMIC: Array<TextureAtlasSprite>
@@ -24,6 +26,13 @@ object GTLiteTextures : TextureUtils.IIconRegister
     lateinit var COSMIC_9: TextureAtlasSprite
 
     lateinit var FORCE_FIELD: TextureAtlasSprite
+
+    // endregion
+
+    // region Custom Renderer
+
+    @JvmStatic
+    val ORE_PROCESSOR_CONTROLLER: OreProcessorRenderer = OreProcessorRenderer()
 
     // endregion
 
@@ -51,8 +60,7 @@ object GTLiteTextures : TextureUtils.IIconRegister
 
         COSMIC = arrayOf(
             COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4,
-            COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9
-        )
+            COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9)
     }
 
 }

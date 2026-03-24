@@ -69,6 +69,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockCrysta
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockEnergyInfuser
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockFusionReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockHydraulicFracker
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockIntegratedOreProcessor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockLaserInducedCVDUnit
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockMiningDroneAirport
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockNanoForge
@@ -303,6 +304,7 @@ object GTLiteMetaTileEntities
     lateinit var SPACE_PUMP_MK3: MultiblockSpacePump
 
     lateinit var ENERGY_INFUSER: MultiblockEnergyInfuser
+    lateinit var INTEGRATED_ORE_PROCESSOR: MultiblockIntegratedOreProcessor
 
     lateinit var LARGE_FORGE_HAMMER: MultiblockForgeHammer
     lateinit var LARGE_BENDER: MultiblockBender
@@ -809,6 +811,7 @@ object GTLiteMetaTileEntities
         // 10040 TODO DYSON_SWARM_GROUND_UNIT
 
         ENERGY_INFUSER = register(10041, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
+        INTEGRATED_ORE_PROCESSOR = register(10042, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
 
         // ...
 

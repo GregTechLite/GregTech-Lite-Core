@@ -26,6 +26,7 @@ internal object RecipeProducerList
         ComponentAssemblyLineRecipeProducer.produce()
         NuclearFissionRecipeProducer.produce()
         PCBFactoryRecipeProducer.produce()
+        IntegratedOreProcessorRecipeProducer.produce()
     }
 
     fun postInit()

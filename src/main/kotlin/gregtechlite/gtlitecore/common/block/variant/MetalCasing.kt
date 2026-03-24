@@ -93,6 +93,8 @@ object MetalCasing
     val NITINOL_60 = Enum03.NITINOL_60
     @JvmField
     val LAFIUM = Enum03.LAFIUM
+    @JvmField
+    val VANADIUM_GALLIUM = Enum03.VANADIUM_GALLIUM
 
     enum class Enum01(private val serializedName: String,
                       private val harvestLevel: Int = 2) : BlockVariant, IStringSerializable, IStateHarvestLevel
@@ -172,7 +174,8 @@ object MetalCasing
         QUANTUM_ALLOY("quantum_alloy"),
         INCONEL_718("inconel_718"),
         NITINOL_60("nitinol_60"),
-        LAFIUM("lafium");
+        LAFIUM("lafium"),
+        VANADIUM_GALLIUM("vanadium_gallium");
 
         override val state: IBlockState
             get() = GTLiteBlocks.METAL_CASING_03.getState(this)

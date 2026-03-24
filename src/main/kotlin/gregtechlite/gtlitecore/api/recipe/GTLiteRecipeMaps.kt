@@ -31,6 +31,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeB
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
+import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
@@ -905,6 +906,19 @@ object GTLiteRecipeMaps
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
         .build() // CAL and CoAL smallRecipeMap actual
+
+    /**
+     * @ZenProp integrated_ore_processor
+     */
+    @ZenProperty
+    @JvmField
+    val INTEGRATED_ORE_PROCESSOR_RECIPES = RecipeMapBuilder("integrated_ore_processor", SimpleRecipeBuilder())
+        .ui { IntegratedOreProcessorUI(it) }
+        .itemInputs(4)
+        .itemOutputs(12)
+        .fluidInputs(4)
+        .sound(GTSoundEvents.CENTRIFUGE)
+        .build()
 
     // endregion
 

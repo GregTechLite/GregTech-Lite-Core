@@ -55,6 +55,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/lafium"
         }
+      },
+      "vanadium_gallium": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/vanadium_gallium"
+        }
       }
     }
   }

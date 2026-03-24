@@ -119,6 +119,8 @@ object GTLiteOverlays
     val EP_COUPLING_ACCELERATOR_OVERLAY = multiId("ep_coupling_accelerator")
     @JvmField
     val NANO_ASSEMBLY_COMPLEX_OVERLAY = multiId("nano_assembly_complex")
+    @JvmField
+    val INTEGRATED_ORE_PROCESSOR_OVERLAY = multiId("integrated_ore_processor")
 
     // endregion
 
@@ -237,6 +239,8 @@ object GTLiteOverlays
     val ULTIMATE_MOLECULAR_CASING = casingId("science/ultimate_molecular_casing")
     @JvmField
     val LAFIUM_CASING = casingId("metal/lafium")
+    @JvmField
+    val VANADIUM_GALLIUM_CASING = casingId("metal/vanadium_gallium")
 
     // endregion
 

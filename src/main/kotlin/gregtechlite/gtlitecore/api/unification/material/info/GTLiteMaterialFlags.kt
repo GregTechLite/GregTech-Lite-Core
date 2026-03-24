@@ -329,6 +329,7 @@ object GTLiteMaterialFlags
         Rutherfordium.addFlags(GENERATE_FRAME)
         Dubnium.addFlags(GENERATE_FRAME)
         Curium.addFlags(GENERATE_FRAME)
+        VanadiumGallium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -539,6 +540,7 @@ object GTLiteMaterialFlags
 
         // ring
         Duranium.addFlags(GENERATE_RING)
+        VanadiumGallium.addFlags(GENERATE_RING)
 
         // rotor
         WroughtIron.addFlags(GENERATE_ROTOR)
@@ -548,6 +550,7 @@ object GTLiteMaterialFlags
         Tritanium.addFlags(GENERATE_ROTOR)
         Neutronium.addFlags(GENERATE_ROTOR)
         Duranium.addFlags(GENERATE_ROTOR)
+        VanadiumGallium.addFlags(GENERATE_ROTOR)
 
         // round
         Steel.addFlags(GENERATE_ROUND)
