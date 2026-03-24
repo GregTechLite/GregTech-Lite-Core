@@ -17,6 +17,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidStack
 import kotlin.math.ceil
 import kotlin.math.floor
+import kotlin.math.min
 import kotlin.math.pow
 
 open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockIntegratedOreProcessor)
@@ -150,21 +151,20 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
 
         for (itemStack in consumedItemStacks)
         {
-            var countToBeExtracted = itemStack.count
+            var remainingToExtract = itemStack.count
             for (i in 0 until inputInventory.slots)
             {
-                if (inputInventory.getStackInSlot(i).isItemEqual(itemStack))
+                val inputStack = inputInventory.getStackInSlot(i)
+                if (inputStack.isEmpty || !inputStack.isItemEqual(itemStack))
+                    continue
+
+                val countToExtract = min(remainingToExtract, inputStack.count)
+                if (countToExtract > 0)
                 {
-                    if (countToBeExtracted < inputInventory.getStackInSlot(i).count)
-                    {
-                        inputInventory.getStackInSlot(i).shrink(countToBeExtracted)
-                        countToBeExtracted = 0
-                    }
-                    else
-                    {
-                        countToBeExtracted -= inputInventory.getStackInSlot(i).count
-                        inputInventory.extractItem(i, countToBeExtracted, false)
-                    }
+                    inputInventory.extractItem(i, countToExtract, false)
+                    remainingToExtract -= countToExtract
+                    if (remainingToExtract == 0)
+                        break
                 }
             }
         }
