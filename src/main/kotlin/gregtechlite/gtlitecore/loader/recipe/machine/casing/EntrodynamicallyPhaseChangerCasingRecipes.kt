@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
@@ -68,7 +69,7 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             .fluidInputs(CosmicNeutronium.getFluid(L * 40))
             .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 20))
             .outputs(MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.getStack(64))
-            .EUt(VA[UIV])
+            .EUt(VA[UEV])
             .duration(5 * SECOND)
             .tier(3)
             .buildAndRegister()
