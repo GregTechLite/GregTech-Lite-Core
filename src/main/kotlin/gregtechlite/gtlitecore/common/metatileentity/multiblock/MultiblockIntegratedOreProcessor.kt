@@ -56,12 +56,12 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         private val secondCasingState = MetalCasing.HASTELLOY_N.state
         private val thirdCasingState = MetalCasing.STELLITE.state
         private val fourthCasingState = GTMultiblockCasing.GRATE_CASING.state
+        private val fifthCasingState = GTMultiblockCasing.EXTREME_ENGINE_INTAKE_CASING.state
 
         private val gearboxCasingState = GTTurbineCasing.TUNGSTENSTEEL_GEARBOX.state
         private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
         private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
 
-        private val coilState = ScienceCasing.MOLECULAR_COIL.state
         private val glassState = GlassCasing.SILICON_CARBIDE.state
     }
 
@@ -108,7 +108,7 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         .where('F', states(secondCasingState))
         .where('G', frames(VanadiumGallium))
         .where('H', states(uniqueCasingState))
-        .where('I', states(coilState))
+        .where('I', states(fifthCasingState))
         .where('J', states(thirdCasingState))
         .where(' ', any())
         .build()
