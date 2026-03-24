@@ -596,7 +596,7 @@ object GTLiteSecondDegreeMaterials
             color(0xDDDDDD).iconSet(METALLIC)
             components(Yttrium, 2, Molybdenum, 4, Chrome, 2, Titanium, 2, Nickel, 15)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
-                  GENERATE_SPRING_SMALL)
+                  GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE)
             blastProp(4625, GasTier.HIGH, // HSS-G
                       VA[IV], 50 * SECOND,
                       VA[EV], 15 * SECOND)

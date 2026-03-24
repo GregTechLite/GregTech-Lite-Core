@@ -103,6 +103,7 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.pipeHugeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeLargeFluid
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
 import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
@@ -117,6 +118,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
+import gregtech.common.items.MetaItems.COMPONENT_GRINDER_TUNGSTEN
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
@@ -195,6 +197,7 @@ import gregtech.common.metatileentities.MetaTileEntities.BENDER
 import gregtech.common.metatileentities.MetaTileEntities.BREWERY
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.CHARGER
+import gregtech.common.metatileentities.MetaTileEntities.CHEMICAL_BATH
 import gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
@@ -351,6 +354,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HOT_
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HYDRAULIC_FRACKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_COKE_OVEN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INDUSTRIAL_PRIMITIVE_BLAST_FURNACE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INTEGRATED_ORE_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ACID_GENERATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ARC_FURNACE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ASSEMBLER
@@ -1611,6 +1615,33 @@ internal object MachineRecipeLoader
                 it.researchStack(COMPONENT_ASSEMBLY_LINE)
                     .EUt(VA[UXV])
                     .CWUt(128)
+            }
+            .buildAndRegister()
+
+        // Integrated Ore Processor
+        ASSEMBLY_LINE_RECIPES.recipeBuilder()
+            .input(MACERATOR[ZPM], 4)
+            .input(ORE_WASHER[ZPM], 4)
+            .input(CENTRIFUGE[ZPM], 4)
+            .input(THERMAL_CENTRIFUGE[ZPM], 4)
+            .input(SIFTER[ZPM], 4)
+            .input(CHEMICAL_BATH[ZPM], 4)
+            .input(circuit, Tier.UV, 2)
+            .input(ROBOT_ARM_ZPM, 8)
+            .input(plateDouble, HastelloyN, 16)
+            .input(rotor, VanadiumGallium, 32)
+            .input(pipeNormalItem, Osmiridium, 8)
+            .fluidInputs(SolderingAlloy.getFluid(L * 40))
+            .fluidInputs(WatertightSteel.getFluid(L * 20))
+            .fluidInputs(Grisium.getFluid(L * 20))
+            .fluidInputs(Trinium.getFluid(L * 4))
+            .output(INTEGRATED_ORE_PROCESSOR)
+            .EUt(VA[ZPM])
+            .duration(1 * MINUTE)
+            .stationResearch {
+                it.researchStack(COMPONENT_GRINDER_TUNGSTEN)
+                    .EUt(VA[ZPM])
+                    .CWUt(16)
             }
             .buildAndRegister()
 
