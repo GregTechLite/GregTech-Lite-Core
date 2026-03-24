@@ -20,8 +20,8 @@ internal class AntimatterForgeUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R
     override fun createJeiUITemplate(importItems: IItemHandlerModifiable, exportItems: IItemHandlerModifiable,
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
-        val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 176 + 18 * 3)
-            .widget(RecipeProgressWidget(200, 176 / 2 - 14 + 18, 18 * 2 + 7 , 22, 22, progressBarTexture(), progressBarMoveType(), recipeMap()))
+        val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 230)
+            .widget(RecipeProgressWidget(200, 92, 43, 22, 22, progressBarTexture(), progressBarMoveType(), recipeMap()))
         addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
@@ -31,27 +31,33 @@ internal class AntimatterForgeUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R
                                        itemHandler: IItemHandlerModifiable, fluidHandler: FluidTankList,
                                        isOutputs: Boolean, yOffset: Int)
     {
+        val startInputsX = 14
+        val startInputsY1 = 9
+        val startInputsY2 = startInputsY1 + 18
+        val startOutputsX = startInputsX + 107
+        val startOutputsY = startInputsY2 + 18
         if (!isOutputs)
         {
-            addSlot(builder, 14 + 18 * 3, 9, 0, itemHandler, fluidHandler, false, false)
-            addSlot(builder, 14 + 18 * 2, 9, 0, itemHandler, fluidHandler, true, false)
+            // Circuit (item) input slot.
+            addSlot(builder, startInputsX + 18 * 3, startInputsY1, 0, itemHandler, fluidHandler, false, false)
 
-            val startInputsX1 = 14
-            val startInputsY1 = 9 + 18
-            for (i in 0..4) // Height
+            // Antimatter (fluid) input slot.
+            addSlot(builder, startInputsX + 18 * 2, startInputsY1, 0, itemHandler, fluidHandler, true, false)
+
+            // Fluid input slots.
+            for (h in 0..4)
             {
-                for (j in 0..3) // Width
+                for (w in 0..3)
                 {
-                    val slotIndex = i * 4 + j + 1 // for antimatter slots.
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY1 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
+                    val slotIdx = h * 4 + w + 1
+                    addSlot(builder, startInputsX + 18 * w, startInputsY2 + 18 * h, slotIdx, itemHandler, fluidHandler, true, false)
                 }
             }
         }
         else
         {
-            val startInputsX2 = 14 + 18 * 4 + 35
-            val startInputsY2 = 9 + 18 * 2
-            addSlot(builder, startInputsX2, startInputsY2, 0, itemHandler, fluidHandler, true, true)
+            // Fluid output slot.
+            addSlot(builder, startOutputsX, startOutputsY, 0, itemHandler, fluidHandler, true, true)
         }
     }
 

@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.recipe.ui
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.gui.GuiTextures
 import gregtech.api.gui.ModularUI
+import gregtech.api.gui.resources.TextureArea
 import gregtech.api.gui.widgets.ProgressWidget
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.ui.RecipeMapUI
@@ -17,8 +18,8 @@ internal class ComponentAssemblyLineUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMa
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
         val builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 176)
-            .widget(ProgressWidget(200, 70, 12, 72, 40, GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_1, ProgressWidget.MoveType.HORIZONTAL))
-            .widget(ProgressWidget(200, 131, 15, 3, 12, GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_2, ProgressWidget.MoveType.VERTICAL))
+            .widget(ProgressWidget(200, 70, 12, 72, 40, progressBarTexture1(), progressBarMoveType1()))
+            .widget(ProgressWidget(200, 131, 15, 3, 12, progressBarTexture2(), progressBarMoveType2()))
         addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
@@ -28,35 +29,45 @@ internal class ComponentAssemblyLineUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMa
                                        itemHandler: IItemHandlerModifiable, fluidHandler: FluidTankList,
                                        isOutputs: Boolean, yOffset: Int)
     {
-        val startInputsX1 = 70 - 3 * 18
-        val startInputsY = 45 - 2 * 18
+        val startInputsX1 = 16
+        val startInputsX2 = startInputsX1 + 72
+        val startInputsY1 = 9
+        val startInputsY2 = startInputsY1 + 18
+        val startOutputsX = startInputsX2 + 54
         if (!isOutputs)
         {
             // Item input slots.
-            for (i in 0..3)
+            for (h in 0..3)
             {
-                for (j in 0..2)
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY + 18 * i, slotIndex, itemHandler, fluidHandler, false, false)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startInputsX1 + 18 * w, startInputsY1 + 18 * h, slotIdx, itemHandler, fluidHandler, false, false)
                 }
             }
-            // fluid input slots
-            val startInputsX2 = startInputsX1 + 18 * 4
-            for (i in 0..2)
+            // Fluid input slots.
+            for (h in 0..2)
             {
-                for (j in 0..3)
+                for (w in 0..3)
                 {
-                    val slotIndex = i * 4 + j
-                    addSlot(builder, startInputsX2 + 18 * j, startInputsY + 18 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
+                    val slotIdx = h * 4 + w
+                    addSlot(builder, startInputsX2 + 18 * w, startInputsY2 + 18 * h, slotIdx, itemHandler, fluidHandler, true, false)
                 }
             }
         }
         else
         {
-            // Output slots.
-            addSlot(builder, startInputsX1 + 18 * 7, 9, 0, itemHandler, fluidHandler, false, true)
+            // Item output slot.
+            addSlot(builder, startOutputsX, startInputsY1, 0, itemHandler, fluidHandler, false, true)
         }
     }
+
+    private fun progressBarTexture1(): TextureArea = GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_1
+
+    private fun progressBarMoveType1(): ProgressWidget.MoveType = ProgressWidget.MoveType.HORIZONTAL
+
+    private fun progressBarTexture2(): TextureArea = GTLiteGuiTextures.PROGRESS_BAR_COMPONENT_ASSEMBLY_LINE_2
+
+    private fun progressBarMoveType2(): ProgressWidget.MoveType = ProgressWidget.MoveType.VERTICAL
 
 }

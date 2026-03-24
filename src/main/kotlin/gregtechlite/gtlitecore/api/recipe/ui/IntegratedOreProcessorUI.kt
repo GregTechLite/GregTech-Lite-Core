@@ -46,6 +46,7 @@ internal class IntegratedOreProcessorUI<R: RecipeMap<*>>(recipeMap: R) : RecipeM
                     addSlot(builder, startInputsX + w * 18, h * 18, slotIdx, itemHandler, fluidHandler, false, false)
                 }
             }
+
             // Fluid input slots.
             for (h in 0..1)
             {

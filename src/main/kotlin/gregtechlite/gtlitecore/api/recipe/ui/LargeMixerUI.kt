@@ -32,36 +32,38 @@ internal class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(rec
                                        itemHandler: IItemHandlerModifiable, fluidHandler: FluidTankList,
                                        isOutputs: Boolean, yOffset: Int)
     {
-        val startInputsX1 = 14
+        val startInputsX = 14
         val startInputsY1 = 9
+        val startInputsY2 = startInputsY1 + 54
+        val startOutputsX = startInputsX + 88
+        val startOutputsY = startInputsY2 - 18
         if (!isOutputs)
         {
             // Item input slots.
-            for (i in 0..2) // Height.
+            for (h in 0..2)
             {
-                for (j in 0..2) // Width.
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY1 + 18 * i, slotIndex, itemHandler, fluidHandler, false, false)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startInputsX + 18 * w, startInputsY1 + 18 * h, slotIdx, itemHandler, fluidHandler, false, false)
                 }
             }
             // Fluid input slots.
-            val startInputsY2 = startInputsY1 + 18 * 3
-            for (i in 0..1) // Height.
+            for (h in 0..1)
             {
-                for (j in 0..2) // Width.
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY2 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startInputsX + 18 * w, startInputsY2 + 18 * h, slotIdx, itemHandler, fluidHandler, true, false)
                 }
             }
         }
         else
         {
-            val startInputsX2 = startInputsX1 + 18 * 3 + 34
-            val startInputsY3 = startInputsY1 + 18 * 2
-            addSlot(builder, startInputsX2, startInputsY3, 0, itemHandler, fluidHandler, false, true)
-            addSlot(builder, startInputsX2 + 18, startInputsY3, 0, itemHandler, fluidHandler, true, true)
+            // Item output slot.
+            addSlot(builder, startOutputsX, startOutputsY, 0, itemHandler, fluidHandler, false, true)
+            // Fluid output slot.
+            addSlot(builder, startOutputsX + 18, startOutputsY, 0, itemHandler, fluidHandler, true, true)
         }
     }
 

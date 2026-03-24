@@ -27,7 +27,7 @@ internal class StellarForgeUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(re
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
         val builder = ModularUI.Builder(GuiTextures.BACKGROUND, 176, 176 + 18 * 2 + 18)
-            .widget(RecipeProgressWidget(200, 176 / 2 - 18 + 4, 18 * 3 - 4, 21, 21, progressBarTexture(), progressBarMoveType(), recipeMap()))
+            .widget(RecipeProgressWidget(200, 74, 50, 21, 21, progressBarTexture(), progressBarMoveType(), recipeMap()))
         addInventorySlotGroup(builder, importItems, importFluids, false, yOffset)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, yOffset)
         return builder
@@ -37,50 +37,51 @@ internal class StellarForgeUI<R: RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(re
                                        itemHandler: IItemHandlerModifiable, fluidHandler: FluidTankList,
                                        isOutputs: Boolean, yOffset: Int)
     {
-        val startInputsX1 = 14
+        val startInputsX = 14
         val startInputsY1 = 9
+        val startInputsY2 = startInputsY1 + 18 * 3
+        val startOutputsX = startInputsX + 3 * 18 + 34
+        val startOutputsY = startInputsY1 + 3 * 18
         if (!isOutputs)
         {
-            // Item inputs slots
-            for (i in 0..2) // Height
+            // Item inputs slots.
+            for (h in 0..2)
             {
-                for (j in 0..2) // Width
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY1 + 18 * i, slotIndex, itemHandler, fluidHandler, false, false)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startInputsX + 18 * w, startInputsY1 + 18 * h, slotIdx, itemHandler, fluidHandler, false, false)
                 }
             }
-            // Fluid inputs slots
-            val startInputsY2 = startInputsY1 + 18 * 3
-            for (i in 0..2) // Height
+
+            // Fluid inputs slots.
+            for (h in 0..2)
             {
-                for (j in 0..2) // Width
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX1 + 18 * j, startInputsY2 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startInputsX + 18 * w, startInputsY2 + 18 * h, slotIdx, itemHandler, fluidHandler, true, false)
                 }
             }
         }
         else
         {
-            // Item outputs slots
-            val startInputsX2 = startInputsX1 + 3 * 18 + 34
-            for (i in 0..2) // Height
+            // Item outputs slots.
+            for (h in 0..2)
             {
-                for (j in 0..2) // Width
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX2 + 18 * j, startInputsY1 + 18 * i, slotIndex, itemHandler, fluidHandler, false, true)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startOutputsX + 18 * w, startInputsY1 + 18 * h, slotIdx, itemHandler, fluidHandler, false, true)
                 }
             }
-            // Fluid outputs slots
-            val startInputsY3 = startInputsY1 + 3 * 18
-            for (i in 0..2) // Height
+            // Fluid outputs slots.
+            for (h in 0..2)
             {
-                for (j in 0..2) // Width
+                for (w in 0..2)
                 {
-                    val slotIndex = i * 3 + j
-                    addSlot(builder, startInputsX2 + 18 * j, startInputsY3 + 18 * i, slotIndex, itemHandler, fluidHandler, true, true)
+                    val slotIdx = h * 3 + w
+                    addSlot(builder, startOutputsX + 18 * w, startOutputsY + 18 * h, slotIdx, itemHandler, fluidHandler, true, true)
                 }
             }
         }
