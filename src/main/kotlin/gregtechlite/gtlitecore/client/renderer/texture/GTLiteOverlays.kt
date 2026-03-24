@@ -237,6 +237,8 @@ object GTLiteOverlays
     val ULTIMATE_MOLECULAR_CASING = casingId("science/ultimate_molecular_casing")
     @JvmField
     val LAFIUM_CASING = casingId("metal/lafium")
+    @JvmField
+    val VANADIUM_GALLIUM_CASING = casingId("metal/vanadium_gallium")
 
     // endregion
 
