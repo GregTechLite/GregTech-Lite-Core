@@ -21,7 +21,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-// TODO: FIXME When use ME Advanced Stocking Item Import Bus, item can insert to IOP but not consumed.
 class MultiblockIntegratedOreProcessor(id: ResourceLocation)
     : RecipeMapMultiblockController(id, INTEGRATED_ORE_PROCESSOR_RECIPES)
 {

@@ -163,7 +163,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
                     else
                     {
                         countToBeExtracted -= inputInventory.getStackInSlot(i).count
-                        inputInventory.getStackInSlot(i).count = 0
+                        inputInventory.extractItem(i, countToBeExtracted, false)
                     }
                 }
             }
