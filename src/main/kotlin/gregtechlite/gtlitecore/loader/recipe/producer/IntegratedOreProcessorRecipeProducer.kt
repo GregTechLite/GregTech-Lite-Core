@@ -34,8 +34,11 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.INTEGRATED_ORE_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.OreProcessorRecipeWrapper
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreGreenSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKimberlite
@@ -68,43 +71,76 @@ internal object IntegratedOreProcessorRecipeProducer
 
     fun produce()
     {
-        // Macerator -> Ore Washer -> Thermal Centrifuge -> Macerator
+        // Macerator -> Ore Washer (Distilled Water) -> Thermal Centrifuge -> Macerator
         initRecipe(1, listOf(
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(ORE_WASHER_RECIPES, listOf(DistilledWater.getFluid(Int.MAX_VALUE))),
             OreProcessorOps(THERMAL_CENTRIFUGE_RECIPES),
             OreProcessorOps(MACERATOR_RECIPES)))
 
-        // Macerator -> Ore Washer -> Macerator -> Centrifuge
+        // Macerator -> Ore Washer (Tectonic Petrotheum) -> Thermal Centrifuge -> Macerator
         initRecipe(2, listOf(
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(ORE_WASHER_RECIPES, listOf(TectonicPetrotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(3))),
+            OreProcessorOps(THERMAL_CENTRIFUGE_RECIPES),
+            OreProcessorOps(MACERATOR_RECIPES)), listOf(TectonicPetrotheum.getFluid(100)))
+
+        // Macerator -> Ore Washer (Distilled Water) -> Macerator -> Centrifuge
+        initRecipe(3, listOf(
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(ORE_WASHER_RECIPES, listOf(DistilledWater.getFluid(Int.MAX_VALUE))),
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(CENTRIFUGE_RECIPES)))
 
+        // Macerator -> Ore Washer (Tectonic Petrotheum) -> Macerator -> Centrifuge
+        initRecipe(4, listOf(
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(ORE_WASHER_RECIPES, listOf(TectonicPetrotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(3))),
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(CENTRIFUGE_RECIPES)), listOf(TectonicPetrotheum.getFluid(100)))
+
         // Macerator -> Macerator -> Centrifuge
-        initRecipe(3, listOf(
+        initRecipe(5, listOf(
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(CENTRIFUGE_RECIPES)))
 
-        // Macerator -> Ore Washer -> Sifter
-        initRecipe(4, listOf(
+        // Macerator -> Ore Washer (Distilled Water) -> Sifter (None)
+        initRecipe(6, listOf(
             OreProcessorOps(MACERATOR_RECIPES),
             OreProcessorOps(ORE_WASHER_RECIPES, listOf(DistilledWater.getFluid(Int.MAX_VALUE))),
             OreProcessorOps(SIFTER_RECIPES, extraItems = listOf(IntCircuitIngredient.getIntegratedCircuit(1)))))
 
+        // Macerator -> Ore Washer (Tectonic Petrotheum) -> Sifter (None)
+        initRecipe(7, listOf(
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(ORE_WASHER_RECIPES, listOf(TectonicPetrotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(3))),
+            OreProcessorOps(SIFTER_RECIPES, extraItems = listOf(IntCircuitIngredient.getIntegratedCircuit(1)))),
+                   listOf(TectonicPetrotheum.getFluid(100)))
+
+        // Macerator -> Ore Washer (Distilled Water) -> Sifter (Zephyrean Aerotheum)
+        initRecipe(8, listOf(
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(ORE_WASHER_RECIPES, listOf(DistilledWater.getFluid(Int.MAX_VALUE))),
+            OreProcessorOps(SIFTER_RECIPES, listOf(ZephyreanAerotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(2)))),
+                   listOf(ZephyreanAerotheum.getFluid(250)))
+
+        // Macerator -> Ore Washer (Tectonic Petrotheum) -> Sifter (Zephyrean Aerotheum)
+        initRecipe(9, listOf(
+            OreProcessorOps(MACERATOR_RECIPES),
+            OreProcessorOps(ORE_WASHER_RECIPES, listOf(TectonicPetrotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(3))),
+            OreProcessorOps(SIFTER_RECIPES, listOf(ZephyreanAerotheum.getFluid(Int.MAX_VALUE)), listOf(IntCircuitIngredient.getIntegratedCircuit(2)))),
+                   listOf(TectonicPetrotheum.getFluid(100), ZephyreanAerotheum.getFluid(250)))
+
         // Macerator -> Chemical Bath -> Macerator -> Centrifuge
-        for (fluidMaterial in listOf(DistilledWater, Mercury, SodiumPersulfate)) {
-            initRecipe(5, listOf(
+        for (fluid in listOf(DistilledWater, Mercury, SodiumPersulfate)) {
+            initRecipe(10, listOf(
                     OreProcessorOps(MACERATOR_RECIPES),
-                    OreProcessorOps(CHEMICAL_BATH_RECIPES, listOf(fluidMaterial.getFluid(Int.MAX_VALUE))),
+                    OreProcessorOps(CHEMICAL_BATH_RECIPES, listOf(fluid.getFluid(Int.MAX_VALUE))),
                     OreProcessorOps(MACERATOR_RECIPES),
-                    OreProcessorOps(CENTRIFUGE_RECIPES)
-            ), listOf(fluidMaterial.getFluid(100)))
+                    OreProcessorOps(CENTRIFUGE_RECIPES)), listOf(fluid.getFluid(100)))
         }
 
-        // TODO: Should we need some useless cycle?
     }
 
     private fun <T : RecipeBuilder<T>> initRecipe(circuit: Int, ops: List<OreProcessorOps<T>>, extraFluids: List<FluidStack>? = null)
