@@ -59,7 +59,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
         if (inputInventory == null)
             return
 
-        for (i in 0..(inputInventory.slots - 1))
+        for (i in 0 until inputInventory.slots)
         {
             val stack = inputInventory.getStackInSlot(i)
             if (stack.isEmpty)
@@ -76,7 +76,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
             return
 
         val inputStacks = mutableListOf<ItemStack>()
-        for (i in 0..(inputInventory.slots - 1))
+        for (i in 0 until inputInventory.slots)
         {
             val stack = inputInventory.getStackInSlot(i)
             if (!stack.isEmpty)
@@ -151,7 +151,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
         for (itemStack in consumedItemStacks)
         {
             var countToBeExtracted = itemStack.count
-            for (i in 0..(inputInventory.slots - 1))
+            for (i in 0 until inputInventory.slots)
             {
                 if (inputInventory.getStackInSlot(i).isItemEqual(itemStack))
                 {
@@ -225,27 +225,6 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
             maxMultiplier = maxMultiplier.coerceAtMost(remainingCount / fluidStack.amount)
         }
         return maxMultiplier.toInt()
-    }
-
-    private fun itemStackListToString(stacks: List<ItemStack>) : String
-    {
-        var s = "["
-        for (stack in stacks)
-        {
-            s += stack.serializeNBT().toString() + ", "
-        }
-        s += ']'
-        return s
-    }
-    private fun fluidStackListToString(stacks: List<FluidStack>) : String
-    {
-        var s = "["
-        for (stack in stacks)
-        {
-            s += stack.localizedName + "x" + stack.amount + ", "
-        }
-        s += ']'
-        return s
     }
 
     private fun shouldProcessRecipe() : Boolean = true

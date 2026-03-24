@@ -104,11 +104,7 @@ internal object IntegratedOreProcessorRecipeProducer
             ), listOf(fluidMaterial.getFluid(100)))
         }
 
-        // Forge Hammer -> Forge Hammer -> Ore Washer
-        initRecipe(6, listOf(
-            OreProcessorOps(FORGE_HAMMER_RECIPES),
-            OreProcessorOps(FORGE_HAMMER_RECIPES),
-            OreProcessorOps(ORE_WASHER_RECIPES)))
+        // TODO: Should we need some useless cycle?
     }
 
     private fun <T : RecipeBuilder<T>> initRecipe(circuit: Int, ops: List<OreProcessorOps<T>>, extraFluids: List<FluidStack>? = null)
