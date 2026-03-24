@@ -12,7 +12,6 @@ import gregtech.api.unification.ore.OrePrefix.*
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
-import gregtech.common.items.MetaItems
 import gregtech.common.items.MetaItems.*
 import gregtech.common.metatileentities.MetaTileEntities.*
 import gregtech.loaders.recipe.CraftingComponent
@@ -21,16 +20,15 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge
+import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
@@ -171,7 +169,7 @@ internal object GTMetaTileEntityLoader
             'S', CraftingComponents.STICK_LONG,
             'C', CraftingComponent.CONVEYOR,
             'M', CraftingComponent.MOTOR,
-            'I', MetaItems.ITEM_FILTER.stackForm)
+            'I', ITEM_FILTER.stackForm)
 
         // Laminator
         MetaTileEntityLoader.registerMachineRecipe(true, LAMINATOR,
@@ -1538,398 +1536,57 @@ internal object GTMetaTileEntityLoader
                 'B', DUAL_IMPORT_HATCH[voltage].stackForm)
         }
 
-        // ULV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[ULV])
-            .input(QUADRUPLE_FLUID_IMPORT_HATCH[ULV])
-            .input(BRONZE_DRUM)
-            .input(circuit, Tier.LV, 2)
-            .input(plate, WroughtIron, 4)
-            .fluidInputs(Glass.getFluid(L))
-            .output(DUAL_IMPORT_HATCH[ULV])
-            .EUt(VA[ULV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        val tieredDualHatchRecipeInputs = mapOf(
+                ULV to Pair(BRONZE_DRUM, WroughtIron),
+                LV  to Pair(STEEL_DRUM, Steel),
+                MV  to Pair(ALUMINIUM_DRUM, Aluminium),
+                HV  to Pair(STAINLESS_STEEL_DRUM, StainlessSteel),
+                EV  to Pair(TITANIUM_DRUM, Titanium),
+                IV  to Pair(TUNGSTENSTEEL_DRUM, TungstenSteel),
+                LuV to Pair(IRIDIUM_DRUM, RhodiumPlatedPalladium),
+                ZPM to Pair(QUANTUM_TANK[ULV], NaquadahAlloy),      // Super Tank I
+                UV  to Pair(QUANTUM_TANK[LV], Darmstadtium),        // Super Tank II
+                UHV to Pair(QUANTUM_TANK[MV], Neutronium),          // Super Tank III
+                UEV to Pair(QUANTUM_TANK[HV], Vibranium),           // Super Tank IV
+                UIV to Pair(QUANTUM_TANK[EV], Shirabon),            // Super Tank V
+                UXV to Pair(QUANTUM_TANK[IV], Creon),               // Quantum Tank I
+                OpV to Pair(QUANTUM_TANK[LuV], BlackDwarfMatter)    // Quantum Tank II
+        )
 
-        // ULV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[ULV])
-            .input(QUADRUPLE_FLUID_EXPORT_HATCH[ULV])
-            .input(BRONZE_DRUM)
-            .input(circuit, Tier.LV, 2)
-            .input(plate, WroughtIron, 4)
-            .fluidInputs(Glass.getFluid(L))
-            .output(DUAL_EXPORT_HATCH[ULV])
-            .EUt(VA[ULV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        for (voltage in ULV..OpV)
+        {
+            val (container, plateMaterial) = tieredDualHatchRecipeInputs.getValue(voltage)
+            val nextTierCircuit = TierBridge.next(voltage)?.material
+            val adhesiveFluidStack = TieredAdhesiveFluid.fluidStackFromTier(voltage+1)
 
-        // LV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[LV])
-            .input(QUADRUPLE_FLUID_IMPORT_HATCH[LV])
-            .input(STEEL_DRUM)
-            .input(circuit, Tier.MV, 2)
-            .input(plate, Steel, 4)
-            .fluidInputs(Glass.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[LV])
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+            // Dual Import Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(18)
+                .input(ITEM_IMPORT_BUS[voltage])
+                .input(if (voltage <= HV) QUADRUPLE_FLUID_IMPORT_HATCH[voltage] else QUADRUPLE_IMPORT_HATCH[voltage])
+                .input(container)
+                .input(circuit, nextTierCircuit, 2)
+                .input(plate, plateMaterial, 4)
+                .fluidInputs(adhesiveFluidStack)
+                .output(DUAL_IMPORT_HATCH[voltage])
+                .EUt(VA[voltage])
+                .duration(20 * SECOND)
+                .buildAndRegister()
 
-        // LV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[LV])
-            .input(QUADRUPLE_FLUID_EXPORT_HATCH[LV])
-            .input(STEEL_DRUM)
-            .input(circuit, Tier.MV, 2)
-            .input(plate, Steel, 4)
-            .fluidInputs(Glass.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[LV])
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // MV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[MV])
-            .input(QUADRUPLE_FLUID_IMPORT_HATCH[MV])
-            .input(ALUMINIUM_DRUM)
-            .input(circuit, Tier.HV, 2)
-            .input(plate, Aluminium, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(DUAL_IMPORT_HATCH[MV])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // MV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[MV])
-            .input(QUADRUPLE_FLUID_EXPORT_HATCH[MV])
-            .input(ALUMINIUM_DRUM)
-            .input(circuit, Tier.HV, 2)
-            .input(plate, Aluminium, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(DUAL_EXPORT_HATCH[MV])
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // HV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[HV])
-            .input(QUADRUPLE_FLUID_IMPORT_HATCH[HV])
-            .input(STAINLESS_STEEL_DRUM)
-            .input(circuit, Tier.EV, 2)
-            .input(plate, StainlessSteel, 4)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[HV])
-            .EUt(VA[HV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // HV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[HV])
-            .input(QUADRUPLE_FLUID_EXPORT_HATCH[HV])
-            .input(STAINLESS_STEEL_DRUM)
-            .input(circuit, Tier.EV, 2)
-            .input(plate, StainlessSteel, 4)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[HV])
-            .EUt(VA[HV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // EV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[EV])
-            .input(QUADRUPLE_IMPORT_HATCH[EV])
-            .input(TITANIUM_DRUM)
-            .input(circuit, Tier.IV, 2)
-            .input(plate, Titanium, 4)
-            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[EV])
-            .EUt(VA[EV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // EV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[EV])
-            .input(QUADRUPLE_EXPORT_HATCH[EV])
-            .input(TITANIUM_DRUM)
-            .input(circuit, Tier.IV, 2)
-            .input(plate, Titanium, 4)
-            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[EV])
-            .EUt(VA[EV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // IV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[IV])
-            .input(QUADRUPLE_IMPORT_HATCH[IV])
-            .input(TUNGSTENSTEEL_DRUM)
-            .input(circuit, Tier.LuV, 2)
-            .input(plate, TungstenSteel, 4)
-            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[IV])
-            .EUt(VA[IV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // IV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[IV])
-            .input(QUADRUPLE_EXPORT_HATCH[IV])
-            .input(TUNGSTENSTEEL_DRUM)
-            .input(circuit, Tier.LuV, 2)
-            .input(plate, TungstenSteel, 4)
-            .fluidInputs(Polytetrafluoroethylene.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[IV])
-            .EUt(VA[IV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // LuV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[LuV])
-            .input(QUADRUPLE_IMPORT_HATCH[LuV])
-            .input(IRIDIUM_DRUM)
-            .input(circuit, Tier.ZPM, 2)
-            .input(plate, RhodiumPlatedPalladium, 4)
-            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[LuV])
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // LuV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[LuV])
-            .input(QUADRUPLE_EXPORT_HATCH[LuV])
-            .input(IRIDIUM_DRUM)
-            .input(circuit, Tier.ZPM, 2)
-            .input(plate, RhodiumPlatedPalladium, 4)
-            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[LuV])
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // ZPM Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[ZPM])
-            .input(QUADRUPLE_IMPORT_HATCH[ZPM])
-            .input(QUANTUM_TANK[ULV]) // Super Tank I
-            .input(circuit, Tier.UV, 2)
-            .input(plate, NaquadahAlloy, 4)
-            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[ZPM])
-            .EUt(VA[ZPM])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // ZPM Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[ZPM])
-            .input(QUADRUPLE_EXPORT_HATCH[ZPM])
-            .input(QUANTUM_TANK[ULV]) // Super Tank I
-            .input(circuit, Tier.UV, 2)
-            .input(plate, NaquadahAlloy, 4)
-            .fluidInputs(Polybenzimidazole.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[ZPM])
-            .EUt(VA[ZPM])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[UV])
-            .input(QUADRUPLE_IMPORT_HATCH[UV])
-            .input(QUANTUM_TANK[LV]) // Super Tank II
-            .input(circuit, Tier.UHV, 2)
-            .input(plate, Darmstadtium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 2))
-            .output(DUAL_IMPORT_HATCH[UV])
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[UV])
-            .input(QUADRUPLE_EXPORT_HATCH[UV])
-            .input(QUANTUM_TANK[LV]) // Super Tank II
-            .input(circuit, Tier.UHV, 2)
-            .input(plate, Darmstadtium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 2))
-            .output(DUAL_EXPORT_HATCH[UV])
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UHV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[UHV])
-            .input(QUADRUPLE_IMPORT_HATCH[UHV])
-            .input(QUANTUM_TANK[MV]) // Super Tank III
-            .input(circuit, Tier.UEV, 2)
-            .input(plate, Neutronium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[UHV])
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UHV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[UHV])
-            .input(QUADRUPLE_EXPORT_HATCH[UHV])
-            .input(QUANTUM_TANK[MV]) // Super Tank III
-            .input(circuit, Tier.UEV, 2)
-            .input(plate, Neutronium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[UHV])
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UEV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[UEV])
-            .input(QUADRUPLE_IMPORT_HATCH[UEV])
-            .input(QUANTUM_TANK[HV]) // Super Tank IV
-            .input(circuit, Tier.UIV, 2)
-            .input(plate, Vibranium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[UEV])
-            .EUt(VA[UEV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UEV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[UEV])
-            .input(QUADRUPLE_EXPORT_HATCH[UEV])
-            .input(QUANTUM_TANK[HV]) // Super Tank IV
-            .input(circuit, Tier.UIV, 2)
-            .input(plate, Vibranium, 4)
-            .fluidInputs(Kevlar.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[UEV])
-            .EUt(VA[UEV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UIV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[UIV])
-            .input(QUADRUPLE_IMPORT_HATCH[UIV])
-            .input(QUANTUM_TANK[EV]) // Super Tank V
-            .input(circuit, Tier.UXV, 2)
-            .input(plate, Shirabon, 4)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[UIV])
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UIV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[UIV])
-            .input(QUADRUPLE_EXPORT_HATCH[UIV])
-            .input(QUANTUM_TANK[EV]) // Super Tank V
-            .input(circuit, Tier.UXV, 2)
-            .input(plate, Shirabon, 4)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[UIV])
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UXV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[UXV])
-            .input(QUADRUPLE_IMPORT_HATCH[UXV])
-            .input(QUANTUM_TANK[IV]) // Quantum Tank I
-            .input(circuit, Tier.OpV, 2)
-            .input(plate, Creon, 4)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[UXV])
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // UXV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[UXV])
-            .input(QUADRUPLE_EXPORT_HATCH[UXV])
-            .input(QUANTUM_TANK[IV]) // Quantum Tank I
-            .input(circuit, Tier.OpV, 2)
-            .input(plate, Creon, 4)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[UXV])
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // OpV Dual Import Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(18)
-            .input(ITEM_IMPORT_BUS[OpV])
-            .input(QUADRUPLE_IMPORT_HATCH[OpV])
-            .input(QUANTUM_TANK[LuV]) // Quantum Tank II
-            .input(circuit, Tier.MAX, 2)
-            .input(plate, BlackDwarfMatter, 4)
-            .fluidInputs(CosmicFabric.getFluid(L * 4))
-            .output(DUAL_IMPORT_HATCH[OpV])
-            .EUt(VA[OpV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
-        // OpV Dual Export Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(19)
-            .input(ITEM_EXPORT_BUS[OpV])
-            .input(QUADRUPLE_EXPORT_HATCH[OpV])
-            .input(QUANTUM_TANK[LuV]) // Quantum Tank II
-            .input(circuit, Tier.MAX, 2)
-            .input(plate, BlackDwarfMatter, 4)
-            .fluidInputs(CosmicFabric.getFluid(L * 4))
-            .output(DUAL_EXPORT_HATCH[OpV])
-            .EUt(VA[OpV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
+            // Dual Export Hatch
+            ASSEMBLER_RECIPES.recipeBuilder()
+                .circuitMeta(19)
+                .input(ITEM_EXPORT_BUS[voltage])
+                .input(if (voltage <= HV) QUADRUPLE_FLUID_EXPORT_HATCH[voltage] else QUADRUPLE_EXPORT_HATCH[voltage])
+                .input(container)
+                .input(circuit, nextTierCircuit, 2)
+                .input(plate, plateMaterial, 4)
+                .fluidInputs(adhesiveFluidStack)
+                .output(DUAL_EXPORT_HATCH[voltage])
+                .EUt(VA[voltage])
+                .duration(20 * SECOND)
+                .buildAndRegister()
+        }
 
         // modify UHV Quadruple/Nonuple Import/Export Hatch to use Kevlar to align the plastic requirement
         // remove original UHV Quadruple/Nonuple Import/Export Hatch recipe
@@ -1962,8 +1619,5 @@ internal object GTMetaTileEntityLoader
     }
 
     // @formatter:on
-
-
-
 
 }
