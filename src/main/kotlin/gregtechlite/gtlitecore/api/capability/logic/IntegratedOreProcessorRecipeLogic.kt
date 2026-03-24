@@ -217,7 +217,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
             var remainingCount : Long = 0
             for (existingFluidStack in GTUtility.fluidHandlerToList(metaTileEntity.inputFluidInventory))
             {
-                if (existingFluidStack.isFluidEqual(fluidStack))
+                if (existingFluidStack != null && existingFluidStack.isFluidEqual(fluidStack))
                 {
                     remainingCount += existingFluidStack.amount
                 }
