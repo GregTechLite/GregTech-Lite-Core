@@ -33,7 +33,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
             {
                 if (progressTime > 0)
                 {
-                    setActiveState(true)
+                    setActive(true)
                     updateRecipeProgress()
                 }
                 if (progressTime == 0 && shouldProcessRecipe())
@@ -44,7 +44,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
             if (wasActiveAndNeedsUpdate)
             {
                 this.wasActiveAndNeedsUpdate = false
-                setActiveState(false)
+                setActive(false)
             }
         }
     }
@@ -228,12 +228,6 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
     }
 
     private fun shouldProcessRecipe() : Boolean = true
-
-    fun setActiveState(active: Boolean)
-    {
-        if (isActive() != active)
-            isActive = active
-    }
 
     override fun getProgressPercent(): Double = if (maxProgress == 0) 0.0 else progress / (maxProgress * 1.0)
 

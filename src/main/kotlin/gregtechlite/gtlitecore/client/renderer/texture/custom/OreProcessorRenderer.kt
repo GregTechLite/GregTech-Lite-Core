@@ -36,27 +36,27 @@ class OreProcessorRenderer : IconRegistrar
     }
 
     @SideOnly(Side.CLIENT)
-    fun renderSided(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?,
-                    side: EnumFacing, hasBase: Boolean, isActive: Boolean, )
+    fun renderSided(renderState: CCRenderState?, translation: Matrix4, pipeline: Array<IVertexOperation?>?,
+                    side: EnumFacing, hasBase: Boolean, isActive: Boolean)
     {
         var cornerOffset: Matrix4
         when (side.axis)
         {
             EnumFacing.Axis.X ->
             {
-                cornerOffset = translation!!.copy().translate(0.01 * side.xOffset, -1.0, -1.0)
+                cornerOffset = translation.copy().translate(0.01 * side.xOffset, -1.0, -1.0)
                 cornerOffset.scale(1.0, 3.0, 3.0)
             }
 
             EnumFacing.Axis.Z ->
             {
-                cornerOffset = translation!!.copy().translate(-1.0, -1.0, 0.01 * side.zOffset)
+                cornerOffset = translation.copy().translate(-1.0, -1.0, 0.01 * side.zOffset)
                 cornerOffset.scale(3.0, 3.0, 1.0)
             }
 
             EnumFacing.Axis.Y ->
             {
-                cornerOffset = translation!!.copy().translate(-1.0, 0.01 * side.yOffset, -1.0)
+                cornerOffset = translation.copy().translate(-1.0, 0.01 * side.yOffset, -1.0)
                 cornerOffset.scale(3.0, 1.0, 3.0)
             }
         }
@@ -65,6 +65,7 @@ class OreProcessorRenderer : IconRegistrar
             Textures.renderFace(renderState, cornerOffset, pipeline, side, Cuboid6.full,
                                 baseBackgroundSprite, BlockRenderLayer.CUTOUT_MIPPED)
         }
+
         if (isActive)
         {
             Textures.renderFace(renderState, cornerOffset, pipeline, side, Cuboid6.full,

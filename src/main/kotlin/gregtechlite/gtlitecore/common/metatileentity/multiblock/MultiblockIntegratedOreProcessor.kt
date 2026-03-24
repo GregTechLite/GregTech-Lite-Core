@@ -29,7 +29,6 @@ import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
-import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -119,11 +118,15 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.INTEGRATED_ORE_PROCESSOR_OVERLAY
 
-    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    override fun update()
+    {
+        super.update()
+    }
+
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4, pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
-        GTLiteTextures.ORE_PROCESSOR_CONTROLLER.renderSided(renderState, translation, pipeline, frontFacing,
-            isStructureFormed, recipeLogic!!.isActive)
+        GTLiteTextures.ORE_PROCESSOR_CONTROLLER.renderSided(renderState, translation, pipeline, frontFacing, isStructureFormed, recipeMapWorkable.isActive)
     }
 
     @SideOnly(Side.CLIENT)
