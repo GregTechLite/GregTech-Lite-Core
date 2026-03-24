@@ -30,6 +30,7 @@ import gregtech.api.unification.ore.OrePrefix.oreNetherrack
 import gregtech.api.unification.ore.OrePrefix.oreRedSand
 import gregtech.api.unification.ore.OrePrefix.oreRedgranite
 import gregtech.api.unification.ore.OrePrefix.oreSand
+import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
@@ -52,9 +53,18 @@ internal object IntegratedOreProcessorRecipeProducer
 
     // @formatter:off
 
-    val orePrefixes = listOf(ore, oreGranite, oreDiorite, oreAndesite, oreBlackgranite, oreRedgranite, oreMarble,
-                             oreBasalt, oreSand, oreRedSand, oreLimestone, oreKomatiite, oreGreenSchist, oreBlueSchist,
-                             oreKimberlite, oreQuartzite, oreSlate, oreShale, oreNetherrack, oreEndstone)
+    val orePrefixes = mutableListOf(ore, oreNetherrack, oreEndstone)
+
+    init
+    {
+        // Only register stoneTypes ore processing when the unique stoneTypes config enabled.
+        if (ConfigHolder.worldgen.allUniqueStoneTypes)
+        {
+            orePrefixes.addAll(listOf(oreGranite, oreDiorite, oreAndesite, oreBlackgranite, oreRedgranite, oreMarble,
+                                      oreBasalt, oreSand, oreRedSand, oreLimestone, oreKomatiite, oreGreenSchist,
+                                      oreBlueSchist, oreKimberlite, oreQuartzite, oreSlate, oreShale))
+        }
+    }
 
     fun produce()
     {
