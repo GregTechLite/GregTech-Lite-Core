@@ -906,6 +906,19 @@ object GTLiteRecipeMaps
         .sound(GTSoundEvents.ASSEMBLER)
         .build() // CAL and CoAL smallRecipeMap actual
 
+    /**
+     * @ZenProp integrated_ore_processor
+     */
+    @ZenProperty
+    @JvmField
+    val INTEGRATED_ORE_PROCESSOR_RECIPES = RecipeMapBuilder("integrated_ore_processor", SimpleRecipeBuilder())
+        .fluidInputs(2)
+        .sound(GTSoundEvents.CENTRIFUGE)
+        .itemInputs(3)
+        .itemOutputs(12)
+        .fluidInputs(3)
+        .build()
+
     // endregion
 
     // region Generator Fuel RecipeMaps

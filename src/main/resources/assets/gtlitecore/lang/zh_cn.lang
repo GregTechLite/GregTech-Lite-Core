@@ -1643,6 +1643,7 @@ recipemap.entrodynamically_phase_changer.name=拓扑序热破缺相变
 recipemap.plasma_arc_transmitter.name=等离子电弧发射器
 recipemap.nano_assembly_matrix.name=纳米装配矩阵
 recipemap.singularity_assembly_unit.name=奇点装配单元
+recipemap.integrated_ore_processor.name=集成矿石处理厂
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2495,6 +2496,8 @@ gtlitecore.machine.energy_infuser.name=能量注入器
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
 gtlitecore.machine.energy_infuser.tooltip.2=可以使用§dUU物质§7来修复已损失耐久度的物品。
 gtlitecore.machine.energy_infuser.tooltip.3=§4嘿！如果你不想丢掉你的物品和装备的话，不要使用ME输入总线！§7
+
+gtlitecore.machine.integrated_ore_processor.name=集成矿石处理厂
 
 gtlitecore.machine.large_forge_hammer.name=大型锻造锤
 gtlitecore.machine.large_bender.name=大型辊压机
