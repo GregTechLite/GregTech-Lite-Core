@@ -1,6 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import codechicken.lib.raytracer.CuboidRayTraceResult
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.damagesources.DamageSources
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -12,12 +17,12 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.capability.logic.IntegratedOreProcessorRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.INTEGRATED_ORE_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
@@ -26,7 +31,10 @@ import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import net.minecraft.client.resources.I18n
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
 import net.minecraft.world.World
@@ -102,11 +110,21 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         .where('H', states(uniqueCasingState))
         .where('I', states(coilState))
         .where('J', states(thirdCasingState))
-        .where(' ', air())
+        .where(' ', any())
         .build()
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.VANADIUM_GALLIUM_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.INTEGRATED_ORE_PROCESSOR_OVERLAY
+
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    {
+        super.renderMetaTileEntity(renderState, translation, pipeline)
+        GTLiteTextures.ORE_PROCESSOR_CONTROLLER.renderSided(renderState, translation, pipeline, frontFacing,
+            isStructureFormed, recipeLogic!!.isActive)
+    }
 
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack?,
@@ -134,9 +152,45 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
     }
 
-    @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = Textures.DISTILLATION_TOWER_OVERLAY
+    override fun hasMaintenanceMechanics(): Boolean = false
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
+
+    override fun onRightClick(playerIn: EntityPlayer, hand: EnumHand?, facing: EnumFacing?, hitResult: CuboidRayTraceResult?): Boolean
+    {
+        return onControllerInteract(playerIn) || super.onRightClick(playerIn, hand, facing, hitResult)
+    }
+
+    override fun onLeftClick(player: EntityPlayer, facing: EnumFacing?, hitResult: CuboidRayTraceResult?)
+    {
+        onControllerInteract(player)
+    }
+
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand?, wrenchSide: EnumFacing?, hitResult: CuboidRayTraceResult?): Boolean
+    {
+        return onControllerInteract(playerIn) || super.onWrenchClick(playerIn, hand, wrenchSide, hitResult)
+    }
+
+    override fun onScrewdriverClick(playerIn: EntityPlayer, hand: EnumHand?, facing: EnumFacing?, hitResult: CuboidRayTraceResult?): Boolean
+    {
+        return onControllerInteract(playerIn)
+    }
+
+    private fun onControllerInteract(player: EntityPlayer): Boolean
+    {
+        if (player.isCreative)
+            return false
+
+        if (!world.isRemote && isActive)
+        {
+            // TODO: New damage sources and advancement trigger?
+            player.attackEntityFrom(DamageSources.getTurbineDamage(), 7.0F)
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
 
 }
