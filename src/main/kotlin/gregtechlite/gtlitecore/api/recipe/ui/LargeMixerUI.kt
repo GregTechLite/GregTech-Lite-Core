@@ -42,8 +42,7 @@ internal class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(rec
                 for (j in 0..2) // Width.
                 {
                     val slotIndex = i * 3 + j
-                    this.addSlot(builder, startInputsX1 + 18 * j, startInputsY1 + 18 * i,
-                        slotIndex, itemHandler, fluidHandler, false, false)
+                    addSlot(builder, startInputsX1 + 18 * j, startInputsY1 + 18 * i, slotIndex, itemHandler, fluidHandler, false, false)
                 }
             }
             // Fluid input slots.
@@ -53,8 +52,7 @@ internal class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(rec
                 for (j in 0..2) // Width.
                 {
                     val slotIndex = i * 3 + j
-                    this.addSlot(builder, startInputsX1 + 18 * j, startInputsY2 + 18 * i,
-                        slotIndex, itemHandler, fluidHandler, true, false)
+                    addSlot(builder, startInputsX1 + 18 * j, startInputsY2 + 18 * i, slotIndex, itemHandler, fluidHandler, true, false)
                 }
             }
         }
@@ -62,10 +60,8 @@ internal class LargeMixerUI<R : RecipeMap<*>>(recipeMap: R) : RecipeMapUI<R>(rec
         {
             val startInputsX2 = startInputsX1 + 18 * 3 + 34
             val startInputsY3 = startInputsY1 + 18 * 2
-            this.addSlot(builder, startInputsX2, startInputsY3, 0,
-                itemHandler, fluidHandler, false, true)
-            this.addSlot(builder, startInputsX2 + 18, startInputsY3, 0,
-                itemHandler, fluidHandler, true, true)
+            addSlot(builder, startInputsX2, startInputsY3, 0, itemHandler, fluidHandler, false, true)
+            addSlot(builder, startInputsX2 + 18, startInputsY3, 0, itemHandler, fluidHandler, true, true)
         }
     }
 
