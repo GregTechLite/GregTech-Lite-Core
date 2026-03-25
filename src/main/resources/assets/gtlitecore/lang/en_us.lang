@@ -3953,6 +3953,8 @@ gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion
 # Messages
 gtlitecore.message.berry_bush_blocked=Will cause Berry Bush unable to grow at %s
 
+death.attack.ore_crushing=%s was crushed as ore
+
 # Enchantment Levels
 enchantment.level.0=I
 enchantment.level.7=VII
