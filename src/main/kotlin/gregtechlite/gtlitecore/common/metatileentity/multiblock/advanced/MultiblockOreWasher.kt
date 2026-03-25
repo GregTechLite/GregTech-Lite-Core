@@ -115,28 +115,24 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
     override fun update()
     {
         super.update()
-
-        var backFacing = frontFacing.opposite
-
         // We disable rotation of the controller by override allowsExtendedFacing,
         // this is a fallback for some edge case.
-        if (!backFacing.axis.isHorizontal)
-            backFacing = EnumFacing.NORTH
+        val backFacing = frontFacing.opposite.takeIf { it.axis.isHorizontal } ?: EnumFacing.NORTH
 
-        val offsets = arrayListOf<BlockPos>()
-
-        // y = 0 | x = 2, z ∈ [1, 5]
-        for (z in 1..5)
-        {
-            offsets.add(BlockPos(0, 0, z))
-        }
-
-        // y = 1 | x ∈ [1, 3], z ∈ [1, 5]
-        for (z in 1..5)
-        {
-            for (x in 1..3)
+        val offsets = buildList {
+            // y = 0 | x = 2, z ∈ [1, 5]
+            for (z in 1..5)
             {
-                offsets.add(BlockPos(x - 2, 1, z))
+                add(BlockPos(0, 0, z))
+            }
+
+            // y = 1 | x ∈ [1, 3], z ∈ [1, 5]
+            for (z in 1..5)
+            {
+                for (x in 1..3)
+                {
+                    add(BlockPos(x - 2, 1, z))
+                }
             }
         }
 
@@ -159,15 +155,18 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
             val checkPos = pos.add(relX, relY, relZ)
             val checkBlock = world.getBlockState(checkPos).block
 
+            val isWater = checkBlock == Blocks.WATER
+            val isAirOrFlowingWater = checkBlock == Blocks.AIR || checkBlock == Blocks.FLOWING_WATER
+
             if (isStructureFormed)
             {
-                if (block == Blocks.WATER)
+                if (isWater)
                 {
                     waterCount++
                     continue
                 }
 
-                if (checkBlock == Blocks.AIR || checkBlock == Blocks.FLOWING_WATER)
+                if (isAirOrFlowingWater)
                 {
                     world.setBlockState(checkPos, Blocks.WATER.defaultState)
                     waterCount++
@@ -175,7 +174,7 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
             }
             else
             {
-                if (checkBlock == Blocks.WATER || checkBlock == Blocks.AIR || checkBlock == Blocks.FLOWING_WATER)
+                if (isWater || isAirOrFlowingWater)
                 {
                     world.setBlockState(checkPos, Blocks.AIR.defaultState)
                 }
