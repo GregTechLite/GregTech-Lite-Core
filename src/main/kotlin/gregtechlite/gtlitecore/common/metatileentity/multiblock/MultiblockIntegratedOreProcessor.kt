@@ -5,7 +5,6 @@ import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
 import gregtech.api.capability.impl.EnergyContainerList
-import gregtech.api.damagesources.DamageSources
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -20,6 +19,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.utils.TooltipHelper
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.capability.logic.IntegratedOreProcessorRecipeLogic
+import gregtechlite.gtlitecore.api.entity.GTLiteDamageSources
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.INTEGRATED_ORE_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -118,11 +118,6 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.INTEGRATED_ORE_PROCESSOR_OVERLAY
 
-    override fun update()
-    {
-        super.update()
-    }
-
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4, pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
@@ -186,8 +181,7 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
 
         if (!world.isRemote && isActive)
         {
-            // TODO: New damage sources and advancement trigger?
-            player.attackEntityFrom(DamageSources.getTurbineDamage(), 7.0F)
+            player.attackEntityFrom(GTLiteDamageSources.ORE_CRUSHING, 7.0F)
             return true
         }
         else

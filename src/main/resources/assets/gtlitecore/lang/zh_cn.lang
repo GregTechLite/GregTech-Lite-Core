@@ -3957,6 +3957,8 @@ gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
 # Messages
 gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长
 
+death.attack.ore_crushing=%s被当作矿石粉碎了
+
 # Enchantment Levels
 enchantment.level.0=I
 enchantment.level.7=VII

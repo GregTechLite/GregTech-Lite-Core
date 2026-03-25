@@ -4,6 +4,7 @@ import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.MOD_NAME
+import gregtechlite.gtlitecore.api.entity.GTLiteDamageSources
 import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
@@ -87,6 +88,9 @@ internal class CoreModule : CustomModule
         logger.debug("Loading SoundEvents and Sound files")
         GTLiteAPI.soundManager = SoundManagerImpl.getInstance()
         GTLiteSoundEvents.register()
+
+        logger.debug("Loading custom Damage Sources for Entity Interactions")
+        GTLiteDamageSources.init()
 
         logger.debug("Loading all MetaItems and MetaOreDictItems")
         GTLiteMetaItems.init()
