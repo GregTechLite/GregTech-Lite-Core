@@ -152,7 +152,7 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * min(emitterCasingTier, sensorCasingTier) - 1.0)).toInt()))
         }
 
-        override fun getParallelLimit() = 16 * min(emitterCasingTier, sensorCasingTier)
+        override fun getParallelLimit() = 16 * min(processorCasingTier, fieldGenCasingTier)
 
     }
 
