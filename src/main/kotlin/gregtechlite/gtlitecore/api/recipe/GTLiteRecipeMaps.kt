@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.api.recipe
 import com.morphismmc.morphismlib.integration.Mods
 import crafttweaker.annotations.ZenRegister
 import gregtech.api.gui.GuiTextures
-import gregtech.api.gui.widgets.ProgressWidget
+import gregtech.api.gui.widgets.ProgressWidget.MoveType
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMapBuilder
 import gregtech.api.recipes.RecipeMaps
@@ -29,7 +29,6 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
-import gregtechlite.gtlitecore.api.recipe.map.PseudoQuadrupleRecipeMap
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
@@ -71,7 +70,7 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CUTTER_OVERLAY, true, false)
         .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true, true)
         .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
-        .progressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.CIRCULAR)
+        .progressBar(GuiTextures.PROGRESS_BAR_BATH, MoveType.CIRCULAR)
         .sound(GTSoundEvents.CUT)
         .onBuild(GTLiteMod.id("polisher_fluid")) { recipeBuilder ->
             // Same like cutting machine logic, but polisher used more water as coolant, confirm three cutting function
@@ -171,7 +170,7 @@ object GTLiteRecipeMaps
         .fluidOutputs(0)
         .itemSlotOverlay(GuiTextures.STRING_SLOT_OVERLAY, false)
         .fluidSlotOverlay(GTLiteGuiTextures.STRING_SLOT_OVERLAY_2, false)
-        .progressBar(GuiTextures.PROGRESS_BAR_MAGNET, ProgressWidget.MoveType.HORIZONTAL)
+        .progressBar(GuiTextures.PROGRESS_BAR_MAGNET, MoveType.HORIZONTAL)
         .sound(GTSoundEvents.COMPRESSOR)
         .build()
 
@@ -186,7 +185,7 @@ object GTLiteRecipeMaps
         .fluidInputs(2)
         .fluidOutputs(0)
         .itemSlotOverlay(GTLiteGuiTextures.CHOPPING_BLOCK_OVERLAY, false)
-        .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL)
+        .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, MoveType.HORIZONTAL)
         .sound(GTSoundEvents.COOLING)
         .build()
 
@@ -247,7 +246,7 @@ object GTLiteRecipeMaps
         .itemOutputs(2)
         .fluidInputs(1)
         .fluidOutputs(2)
-        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_EXTRACTION, ProgressWidget.MoveType.VERTICAL_DOWNWARDS)
+        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_EXTRACTION, MoveType.VERTICAL_DOWNWARDS)
         .sound(GTSoundEvents.DRILL_TOOL)
         .build()
 
@@ -381,7 +380,7 @@ object GTLiteRecipeMaps
         .fluidOutputs(2)
         .itemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
         .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
-        .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
+        .progressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
         .sound(GTSoundEvents.MIXER)
         .build()
 
@@ -439,7 +438,7 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(6)
         .fluidOutputs(1)
-        .progressBar(GuiTextures.PROGRESS_BAR_MIXER, ProgressWidget.MoveType.CIRCULAR)
+        .progressBar(GuiTextures.PROGRESS_BAR_MIXER, MoveType.CIRCULAR)
         .sound(GTSoundEvents.MIXER)
         .build()
         .setSmallRecipeMap(RecipeMaps.MIXER_RECIPES)
@@ -533,7 +532,7 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.VIAL_OVERLAY_1, true)
         .fluidSlotOverlay(GuiTextures.MOLECULAR_OVERLAY_3, false)
         .fluidSlotOverlay(GuiTextures.VIAL_OVERLAY_2, true)
-        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_REACTION, ProgressWidget.MoveType.CIRCULAR)
+        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_REACTION, MoveType.CIRCULAR)
         .sound(GTSoundEvents.CHEMICAL_REACTOR)
         .build()
 
@@ -547,7 +546,7 @@ object GTLiteRecipeMaps
         .itemOutputs(6)
         .fluidInputs(1)
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
-        .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, ProgressWidget.MoveType.HORIZONTAL)
+        .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
         .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
 
@@ -931,6 +930,9 @@ object GTLiteRecipeMaps
         .fluidInputs(2)
         .itemOutputs(4)
         .fluidOutputs(2)
+        .itemSlotOverlay(GuiTextures.HAMMER_OVERLAY, false)
+        .specialTexture(GuiTextures.PROGRESS_BAR_HAMMER_BASE, 78, 42, 20, 6)
+        .progressBar(GuiTextures.PROGRESS_BAR_HAMMER, MoveType.VERTICAL_DOWNWARDS)
         .build()
         .setSmallRecipeMap(RecipeMaps.FORGE_HAMMER_RECIPES)
 
