@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.recipe
 import gregtechlite.gtlitecore.api.recipe.backend.BlastFurnaceRecipeBackend
 import gregtechlite.gtlitecore.api.recipe.backend.CVDRecipeBackend
 import gregtechlite.gtlitecore.api.recipe.backend.LargeMixerRecipeBackend
+import gregtechlite.gtlitecore.api.recipe.backend.MatterReshapingFrameworkBackend
 import gregtechlite.gtlitecore.api.recipe.backend.NanoAssemblyMatrixRecipeBackend
 
 object GTLiteRecipeBackends
@@ -13,6 +14,7 @@ object GTLiteRecipeBackends
     {
         LargeMixerRecipeBackend.init()
         CVDRecipeBackend.init()
+        MatterReshapingFrameworkBackend.init()
     }
 
     @JvmStatic

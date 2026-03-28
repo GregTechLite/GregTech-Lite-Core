@@ -312,13 +312,37 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
     {
         if (Loader.isModLoaded(GTLiteValues.MOD_ID))
         {
+            // Plasma Arc Transmitter: Arc Furnace + Alloy Smelter
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER.getStackForm(),
-                    GTValues.MODID + "." + RecipeMaps.ARC_FURNACE_RECIPES.unlocalizedName);
+                    gtlitecore$getRecipeMapName(RecipeMaps.ARC_FURNACE_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.PLASMA_ARC_TRANSMITTER.getStackForm(),
-                    GTValues.MODID + "." + RecipeMaps.ALLOY_SMELTER_RECIPES.unlocalizedName);
+                    gtlitecore$getRecipeMapName(RecipeMaps.ALLOY_SMELTER_RECIPES));
 
+            // Nano Assembly Complex: Space Assembler
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANO_ASSEMBLY_COMPLEX.getStackForm(),
-                    GTValues.MODID + "." + GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES.unlocalizedName);
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES));
+
+            // Matter Reshaping Framework: (1) Fluid Solidifier + Forge Hammer + Compressor + Tool Caster
+            //                             (2) Extractor + Canner + Laminator + Vulcanizer
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.FORGE_HAMMER_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.FLUID_SOLIDFICATION_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.COMPRESSOR_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.TOOL_CASTER_RECIPES));
+
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.EXTRACTOR_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.CANNER_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.LAMINATOR_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.VULCANIZATION_RECIPES));
         }
     }
 
@@ -352,6 +376,12 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
             return a.metaTileEntityId.getNamespace().compareTo(b.metaTileEntityId.getNamespace());
         });
         return sortedMTEs;
+    }
+
+    @Unique
+    private String gtlitecore$getRecipeMapName(RecipeMap<?> recipeMap)
+    {
+        return GTValues.MODID + "." + recipeMap.unlocalizedName;
     }
 
     @Shadow

@@ -9,7 +9,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
@@ -31,6 +30,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -249,7 +249,7 @@ internal object TesseractsChain
     private fun primordialMatterProcess()
     {
         // Spatially Enlarged Fluid/Tachyon Rich Temporal Fluid
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(RAW_TESSERACT)
             .input(QUANTUM_ANOMALY)
             .fluidInputs(SpaceTime.getFluid(L * 20))

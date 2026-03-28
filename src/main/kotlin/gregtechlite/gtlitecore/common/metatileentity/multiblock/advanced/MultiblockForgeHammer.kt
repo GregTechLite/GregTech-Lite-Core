@@ -68,7 +68,7 @@ class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController
         .where('S', selfPredicate())
         .where('C', states(casingState)
             .setMinGlobalLimited(2)
-            .or(autoAbilities(true, true, true, true, true, true, false)))
+            .or(autoAbilities(true, true, true, true, false, false, false)))
         .where('P', pistonCasings())
         .where('#', air())
         .build()

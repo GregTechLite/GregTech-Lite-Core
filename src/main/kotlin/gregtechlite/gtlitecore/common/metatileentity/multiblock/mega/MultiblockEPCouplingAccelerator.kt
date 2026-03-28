@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -51,12 +52,14 @@ class MultiblockEPCouplingAccelerator(id: ResourceLocation) : RecipeMapMultibloc
     companion object
     {
         private val casingState = ScienceCasing.MOLECULAR_CASING.state
-        private val secondCasingState = ScienceCasing.HOLLOW_CASING.state // TODO Change to Containment Field Casing (UHV) to locked wireless mode?
+        // TODO: Allow to change this block to Containment Field Casing (at UHV tier) to locked wireless mode?
+        private val secondCasingState = ScienceCasing.HOLLOW_CASING.state
         private val thirdCasingState = GTComputerCasing.HIGH_POWER_CASING.state
         private val coilState = ScienceCasing.MOLECULAR_COIL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockEPCouplingAccelerator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockEPCouplingAccelerator(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -130,6 +133,7 @@ class MultiblockEPCouplingAccelerator(id: ResourceLocation) : RecipeMapMultibloc
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.EP_COUPLING_ACCELERATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -149,12 +153,13 @@ class MultiblockEPCouplingAccelerator(id: ResourceLocation) : RecipeMapMultibloc
 
     override fun canBeDistinct(): Boolean = true
 
-    private inner class EPCouplingAcceleratorRecipeLogic(mte: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(mte)
+    private inner class EPCouplingAcceleratorRecipeLogic(mte: RecipeMapMultiblockController)
+        : ExtendedPowerMultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+        override fun getOverclockingDurationFactor(): Double = PERFECT_DURATION_FACTOR / 2
 
-        override fun getParallelLogicType() = ParallelLogicType.APPEND_ITEMS
+        override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.APPEND_ITEMS
 
         override fun getParallelLimit(): Int = Int.MAX_VALUE
 
