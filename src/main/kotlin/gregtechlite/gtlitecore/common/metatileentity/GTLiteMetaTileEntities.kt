@@ -125,6 +125,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.Multib
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockSteamEngine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEPCouplingAccelerator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockEntrodynamicallyPhaseChanger
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockMatterReshapingFramework
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockNanoAssemblyComplex
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
@@ -351,6 +352,7 @@ object GTLiteMetaTileEntities
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
     lateinit var EP_COUPLING_ACCELERATOR: MultiblockEPCouplingAccelerator
     lateinit var NANO_ASSEMBLY_COMPLEX: MultiblockNanoAssemblyComplex
+    lateinit var MATTER_RESHAPING_FRAMEWORK: MultiblockMatterReshapingFramework
 
     // endregion
 
@@ -862,6 +864,7 @@ object GTLiteMetaTileEntities
         PLASMA_ARC_TRANSMITTER = register(10202, MultiblockPlasmaArcTransmitter(GTLiteMod.id("plasma_arc_transmitter")))
         EP_COUPLING_ACCELERATOR = register(10203, MultiblockEPCouplingAccelerator(GTLiteMod.id("ep_coupling_accelerator")))
         NANO_ASSEMBLY_COMPLEX = register(10204, MultiblockNanoAssemblyComplex(GTLiteMod.id("nano_assembly_complex")))
+        MATTER_RESHAPING_FRAMEWORK = register(10205, MultiblockMatterReshapingFramework(GTLiteMod.id("matter_reshaping_framework")))
 
         // endregion
     }

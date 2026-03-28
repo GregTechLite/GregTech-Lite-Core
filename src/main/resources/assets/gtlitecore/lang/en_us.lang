@@ -1644,6 +1644,8 @@ recipemap.plasma_arc_transmitter.name=Plasma Arc Transmitter
 recipemap.nano_assembly_matrix.name=Nano Assembly Matrix
 recipemap.singularity_assembly_unit.name=Singularity Assembly Unit
 recipemap.integrated_ore_processor.name=Integrated Ore Processor
+recipemap.solidification_submodule.name=Forging Solidification Submodule
+recipemap.recombination_submodule.name=Separating Recombination Submodule
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2650,6 +2652,13 @@ gtlitecore.machine.nano_assembly_complex.tooltip.2=§fNano Assembly Complex§7�
 gtlitecore.machine.nano_assembly_complex.tooltip.3=§fSingularity Assembly Unit§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
 gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
 gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
+
+gtlitecore.machine.matter_reshaping_framework.name=Matter Reshaping Framework
+gtlitecore.machine.matter_reshaping_framework.tooltip.1=在§f输入总线§7内指定不同的§f编程电路§7以运行不同机器配方
+gtlitecore.machine.matter_reshaping_framework.tooltip.2=- §f20号§7 -> §e流体固化机§7 / §e提取机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.3=- §f21号§7 -> §e锻造锤§7 / §e装罐机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.4=- §f22号§7 -> §e压缩机§7 / §e过胶机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f23号§7 -> §e工具铸造机§7 / §e硫化机§7
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

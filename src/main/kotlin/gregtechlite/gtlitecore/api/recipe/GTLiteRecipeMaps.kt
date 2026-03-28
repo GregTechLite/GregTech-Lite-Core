@@ -29,6 +29,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
+import gregtechlite.gtlitecore.api.recipe.map.PseudoQuadrupleRecipeMap
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
@@ -908,7 +909,7 @@ object GTLiteRecipeMaps
         .build() // CAL and CoAL smallRecipeMap actual
 
     /**
-     * @ZenProp integrated_ore_processor
+     * @zenProp integrated_ore_processor
      */
     @ZenProperty
     @JvmField
@@ -918,6 +919,33 @@ object GTLiteRecipeMaps
         .itemOutputs(12)
         .fluidInputs(4)
         .sound(GTSoundEvents.CENTRIFUGE)
+        .build()
+
+    /**
+     * @zenProp solidification_submodule
+     */
+    @ZenProperty
+    @JvmField
+    val SOLIDIFICATION_SUBMODULE_RECIPES = PseudoGroupRecipeMapBuilder("solidification_submodule", SimpleRecipeBuilder())
+        .group(RecipeMaps.FLUID_SOLIDFICATION_RECIPES, RecipeMaps.FORGE_HAMMER_RECIPES,
+               RecipeMaps.COMPRESSOR_RECIPES, TOOL_CASTER_RECIPES)
+        .itemInputs(2)
+        .itemOutputs(9)
+        .fluidInputs(2)
+        .fluidOutputs(2)
+        .build()
+
+    /**
+     * @zenProp recombination_submodule
+     */
+    @ZenProperty
+    @JvmField
+    val RECOMBINATION_SUBMODULE_RECIPES = PseudoGroupRecipeMapBuilder("recombination_submodule", SimpleRecipeBuilder())
+        .group(RecipeMaps.EXTRACTOR_RECIPES, RecipeMaps.CANNER_RECIPES, LAMINATOR_RECIPES, VULCANIZATION_RECIPES)
+        .itemInputs(6)
+        .itemOutputs(2)
+        .fluidInputs(2)
+        .fluidOutputs(1)
         .build()
 
     // endregion
