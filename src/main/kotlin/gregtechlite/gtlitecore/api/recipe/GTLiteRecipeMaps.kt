@@ -1064,6 +1064,8 @@ object GTLiteRecipeMaps
     {
         RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
 
+        RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2
+
         RecipeMaps.SIFTER_RECIPES.maxInputs = 2
         RecipeMaps.SIFTER_RECIPES.maxFluidInputs = 2
         RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
