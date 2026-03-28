@@ -12,6 +12,7 @@ import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.PrimitiveRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -69,7 +70,8 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         private val casingState = PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCoagulationTank(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCoagulationTank(metaTileEntityId)
 
     override fun initializeInventory()
     {
@@ -106,6 +108,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.COAGULATION_TANK_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<out IVertexOperation>?)
@@ -257,6 +260,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
             }
     }
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -266,7 +270,8 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         tooltip.add(I18n.format("gregtech.universal.tooltip.parallel", 8))
     }
 
-    private inner class CoagulationTankRecipeLogic(metaTileEntity: RecipeMapPrimitiveMultiblockController, recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(metaTileEntity, recipeMap)
+    private inner class CoagulationTankRecipeLogic(mte: RecipeMapPrimitiveMultiblockController,
+                                                   recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(mte, recipeMap)
     {
 
         override fun getParallelLimit(): Int = 8

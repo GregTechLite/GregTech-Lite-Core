@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.capability.impl.NotifiableItemStackHandler
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -64,7 +65,8 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
         private val fourthCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBedrockDrillingRig(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockBedrockDrillingRig(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -137,6 +139,7 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -156,7 +159,8 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
 
     override fun hasMufflerMechanics() = true
 
-    private inner class BedrockDrillingRigWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class BedrockDrillingRigWorkableHandler(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun getMetaTileEntity() = super.getMetaTileEntity() as MultiblockBedrockDrillingRig

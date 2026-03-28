@@ -4,6 +4,7 @@ import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
 import gregtech.api.GTValues.ULV
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -54,7 +55,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
         private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAdvancedPrimitiveBlastFurnace(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAdvancedPrimitiveBlastFurnace(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -101,6 +103,7 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
 
     override fun getUITheme(): GTGuiTheme = GTGuiTheme.STEEL
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<out IVertexOperation>?, )
@@ -144,6 +147,7 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
 
     override fun hasMaintenanceMechanics() = false
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -160,7 +164,8 @@ class MultiblockAdvancedPrimitiveBlastFurnace(id: ResourceLocation)
             .addRecipeOutputLine(recipeMapWorkable)
     }
 
-    private inner class IndustrialPBFRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : NoEnergyMultiblockRecipeLogic(metaTileEntity)
+    private inner class IndustrialPBFRecipeLogic(mte: RecipeMapMultiblockController)
+        : NoEnergyMultiblockRecipeLogic(mte)
     {
 
         override fun setMaxProgress(maxProgress: Int)

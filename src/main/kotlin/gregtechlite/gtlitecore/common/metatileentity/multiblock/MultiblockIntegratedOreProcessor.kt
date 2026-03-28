@@ -64,7 +64,7 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         private val glassState = GlassCasing.SILICON_CARBIDE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): MetaTileEntity
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = MultiblockIntegratedOreProcessor(metaTileEntityId)
 
     override fun initializeAbilities()
@@ -75,6 +75,8 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle(" JJJG     GJJJ " ,"  J G     G J  " ,"    G     G    " ,"    GG   GG    " ,"     DDDDD     " ,"               " ,"               " ,"               " ,"               ")
@@ -112,12 +114,15 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.VANADIUM_GALLIUM_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.INTEGRATED_ORE_PROCESSOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4, pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
@@ -125,10 +130,7 @@ class MultiblockIntegratedOreProcessor(id: ResourceLocation)
     }
 
     @SideOnly(Side.CLIENT)
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.integrated_ore_processor.tooltip.1"))

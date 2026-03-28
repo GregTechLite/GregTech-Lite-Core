@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -39,7 +40,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockBurnerReactor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(BURNER_REACTOR_RECIPES, ROASTER_RECIPES))
+class MultiblockBurnerReactor(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(BURNER_REACTOR_RECIPES, ROASTER_RECIPES))
 {
 
     private var casingTier = 0
@@ -56,7 +58,8 @@ class MultiblockBurnerReactor(id: ResourceLocation) : MultiMapMultiblockControll
         private val fireboxCasingState = GTFireboxCasing.TITANIUM_FIREBOX.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockBurnerReactor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockBurnerReactor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {

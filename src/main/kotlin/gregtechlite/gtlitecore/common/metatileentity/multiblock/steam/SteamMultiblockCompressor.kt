@@ -42,7 +42,7 @@ class SteamMultiblockCompressor(id: ResourceLocation)
             GTBoilerCasing.STEEL_PIPE.state else GTBoilerCasing.BRONZE_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = SteamMultiblockCompressor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity) = SteamMultiblockCompressor(metaTileEntityId)
 
     // @formatter:off
 
@@ -61,7 +61,8 @@ class SteamMultiblockCompressor(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
+        = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_STEAM_COMPRESSOR_OVERLAY
@@ -70,6 +71,7 @@ class SteamMultiblockCompressor(id: ResourceLocation)
 
     override fun getItemOutputLimit() = 1
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)

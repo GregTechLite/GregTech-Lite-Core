@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -35,7 +36,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockBender(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(BENDER_RECIPES, FORMING_PRESS_RECIPES))
+class MultiblockBender(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(BENDER_RECIPES, FORMING_PRESS_RECIPES))
 {
 
     private var pistonCasingTier = 0
@@ -53,7 +55,7 @@ class MultiblockBender(id: ResourceLocation) : MultiMapMultiblockController(id, 
         private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockBender(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockBender(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -94,6 +96,7 @@ class MultiblockBender(id: ResourceLocation) : MultiMapMultiblockController(id, 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.BENDER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -108,7 +111,7 @@ class MultiblockBender(id: ResourceLocation) : MultiMapMultiblockController(id, 
 
     override fun canBeDistinct() = true
 
-    private inner class LargeBenderRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class LargeBenderRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor(): Double

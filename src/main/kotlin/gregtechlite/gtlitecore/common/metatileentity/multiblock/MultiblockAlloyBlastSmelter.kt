@@ -1,8 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
@@ -13,7 +16,8 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.logic.OCResult
-import gregtech.api.recipes.logic.OverclockingLogic
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.TemperatureProperty
 import gregtech.api.util.GTUtility
@@ -28,7 +32,7 @@ import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -42,9 +46,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockController(id,
-                                                                                        GTLiteRecipeMaps.ALLOY_BLAST_RECIPES),
-    IHeatingCoil
+class MultiblockAlloyBlastSmelter(id: ResourceLocation)
+    : RecipeMapMultiblockController(id, ALLOY_BLAST_RECIPES), IHeatingCoil
 {
 
     private var pumpCasingTier = 0
@@ -65,7 +68,8 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
         private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAlloyBlastSmelter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAlloyBlastSmelter(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -114,6 +118,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ALLOY_BLAST_SMELTER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -175,7 +180,7 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation) : RecipeMapMultiblockCon
     {
 
         override fun getOverclockingDurationFactor(): Double
-            = if (maxVoltage >= GTValues.V[GTValues.UV]) OverclockingLogic.PERFECT_DURATION_FACTOR else OverclockingLogic.STD_DURATION_FACTOR
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {

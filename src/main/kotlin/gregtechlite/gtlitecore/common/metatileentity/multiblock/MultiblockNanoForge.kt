@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.ULV
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -24,7 +25,6 @@ import gregtech.api.util.RelativeDirection.DOWN
 import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.common.blocks.BlockMultiblockCasing
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
@@ -33,6 +33,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.client.resources.I18n
@@ -62,10 +63,10 @@ class MultiblockNanoForge(id: ResourceLocation) : RecipeMapMultiblockController(
         private val casingState = MetalCasing.NAQUADAH_ALLOY.state
         private val secondCasingState = MetalCasing.TRINAQUADALLOY.state
         private val thirdCasingState = MetalCasing.QUANTUM_ALLOY.state
-        private val fourthCasingState = MetaBlocks.MULTIBLOCK_CASING.getState(BlockMultiblockCasing.MultiblockCasingType.ASSEMBLY_LINE_CASING)
+        private val fourthCasingState = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNanoForge(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockNanoForge(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -144,7 +145,6 @@ class MultiblockNanoForge(id: ResourceLocation) : RecipeMapMultiblockController(
 
     // @formatter:off
 
-    @SideOnly(Side.CLIENT)
     override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
     {
         val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
@@ -191,6 +191,7 @@ class MultiblockNanoForge(id: ResourceLocation) : RecipeMapMultiblockController(
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -234,7 +235,8 @@ class MultiblockNanoForge(id: ResourceLocation) : RecipeMapMultiblockController(
                 && recipe.getProperty(GTLiteRecipeProperties.NANO_FORGE_TIER, 0)!! <= mainUpgradeNumber
     }
 
-    private inner class NanoForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(metaTileEntity)
+    private inner class NanoForgeRecipeLogic(mte: RecipeMapMultiblockController)
+        : ExtendedPowerMultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor() = if (forcePerfectOC) 0.25 else 0.5

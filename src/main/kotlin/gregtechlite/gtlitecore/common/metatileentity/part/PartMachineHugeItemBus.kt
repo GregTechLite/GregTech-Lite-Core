@@ -21,6 +21,7 @@ import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.items.itemhandlers.GTItemStackHandler
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
@@ -39,13 +40,16 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.max
 import kotlin.math.sqrt
 
+// TODO: FIXME: Seems cannot notify mte.
 class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
-    : MetaTileEntityItemBus(id, tier, false),
-      IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable, IGhostSlotConfigurable
+    : MetaTileEntityItemBus(id, tier, false), IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable,
+      IGhostSlotConfigurable
 {
 
     private var slotItemInventory: ConfigurableItemStackHandler? = null
@@ -54,7 +58,8 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
     private var workingEnabled: Boolean = true
     private var autoCollapse: Boolean = false
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = PartMachineHugeItemBus(metaTileEntityId, tier)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = PartMachineHugeItemBus(metaTileEntityId, tier)
 
     override fun initializeInventory()
     {
@@ -127,25 +132,25 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
-        buf.writeBoolean(this.workingEnabled)
-        buf.writeBoolean(this.autoCollapse)
+        buf.writeBoolean(workingEnabled)
+        buf.writeBoolean(autoCollapse)
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
     {
         super.receiveInitialSyncData(buf)
-        this.workingEnabled = buf.readBoolean()
-        this.autoCollapse = buf.readBoolean()
+        workingEnabled = buf.readBoolean()
+        autoCollapse = buf.readBoolean()
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
-        data.setBoolean("workingEnabled", this.workingEnabled)
-        data.setBoolean("autoCollapse", this.autoCollapse)
-        if (this.circuitInventory != null)
+        data.setBoolean("workingEnabled", workingEnabled)
+        data.setBoolean("autoCollapse", autoCollapse)
+        if (circuitInventory != null)
         {
-            this.circuitInventory!!.write(data)
+            circuitInventory!!.write(data)
         }
         return data
     }
@@ -155,15 +160,15 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
         super.readFromNBT(data)
         if (data.hasKey("workingEnabled"))
         {
-            this.workingEnabled = data.getBoolean("workingEnabled")
+            workingEnabled = data.getBoolean("workingEnabled")
         }
         if (data.hasKey("autoCollapse"))
         {
-            this.autoCollapse = data.getBoolean("autoCollapse")
+            autoCollapse = data.getBoolean("autoCollapse")
         }
-        if (this.circuitInventory != null)
+        if (circuitInventory != null)
         {
-            this.circuitInventory!!.read(data)
+            circuitInventory!!.read(data)
         }
     }
 
@@ -280,7 +285,8 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
         }
     }
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gregtech.machine.item_bus.import.tooltip"))
         tooltip.add(I18n.format("gtlitecore.machine.huge_item_bus.import.tooltip"))

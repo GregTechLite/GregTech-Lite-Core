@@ -7,6 +7,7 @@ import gregtech.api.GTValues.VNF
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -43,7 +44,7 @@ class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int,
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = MultiblockSpaceAssembler(metaTileEntityId, tier, moduleTier, minCasingTier)
 
     override fun initializeAbilities()
@@ -73,6 +74,7 @@ class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int,
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
     {
@@ -91,6 +93,7 @@ class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int,
         }
     }
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -114,15 +117,15 @@ class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int,
 
     override fun canBeDistinct() = true
 
-    private inner class SpaceAssemblerRecipeLogic(metaTileEntity: RecipeMapModuleMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class SpaceAssemblerRecipeLogic(mte: RecipeMapModuleMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
         override fun checkRecipe(recipe: Recipe): Boolean
         {
             if (moduleProvider != null)
             {
-                return super.checkRecipe(recipe)
-                        && recipe.getProperty(GTLiteRecipeProperties.ACCELERATION_TRACK_TIER, 0)!! <= moduleProvider!!.casingTier
+                return super.checkRecipe(recipe) && recipe.getProperty(
+                    GTLiteRecipeProperties.ACCELERATION_TRACK_TIER, 0)!! <= moduleProvider!!.casingTier
             }
             return false
         }

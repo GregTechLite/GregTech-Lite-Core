@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -34,7 +35,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockElectromagnet(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
+class MultiblockElectromagnet(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(ELECTROMAGNETIC_SEPARATOR_RECIPES, POLARIZER_RECIPES))
 {
 
     private var casingTier = 0
@@ -50,7 +52,8 @@ class MultiblockElectromagnet(id: ResourceLocation) : MultiMapMultiblockControll
         private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockElectromagnet(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockElectromagnet(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -90,6 +93,7 @@ class MultiblockElectromagnet(id: ResourceLocation) : MultiMapMultiblockControll
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ELECTROMAGNET_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

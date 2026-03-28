@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -42,8 +43,9 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 import kotlin.math.min
 
-class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(LASER_CVD_RECIPES, CRYSTALLIZATION_RECIPES,
-                                                                                                     MOLECULAR_BEAM_RECIPES, SONICATION_RECIPES))
+class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(LASER_CVD_RECIPES, CRYSTALLIZATION_RECIPES, MOLECULAR_BEAM_RECIPES,
+                                               SONICATION_RECIPES))
 {
 
     private var emitterCasingTier = 0
@@ -63,7 +65,8 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
         private val glassState = GlassCasing.ZBLAN.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockLaserInducedCVDUnit(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockLaserInducedCVDUnit(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -112,6 +115,7 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation) : MultiMapMultiblockCo
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.CVD_UNIT_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

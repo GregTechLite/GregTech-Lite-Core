@@ -76,10 +76,8 @@ class MetaTileEntityPlasticCan : MetaTileEntity
         this.initializeInventory()
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): MetaTileEntity
-    {
-        return MetaTileEntityPlasticCan(this.metaTileEntityId, this.fluidFilter!!, this.color, this.tankSize)
-    }
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MetaTileEntityPlasticCan(metaTileEntityId, fluidFilter!!, color, tankSize)
 
     override fun getHarvestTool(): String = "wrench"
 
@@ -240,6 +238,7 @@ class MetaTileEntityPlasticCan : MetaTileEntity
         return Pair.of(GTLiteOverlays.PLASTIC_CAN.particleTexture, color)
     }
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)

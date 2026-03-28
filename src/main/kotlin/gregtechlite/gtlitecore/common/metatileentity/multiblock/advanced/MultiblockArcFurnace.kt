@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -37,7 +38,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ARC_FURNACE_RECIPES, ALLOY_SMELTER_RECIPES))
+class MultiblockArcFurnace(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(ARC_FURNACE_RECIPES, ALLOY_SMELTER_RECIPES))
 {
 
     private var pumpCasingTier = 0
@@ -56,7 +58,7 @@ class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(
         private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockArcFurnace(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockArcFurnace(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -100,6 +102,7 @@ class MultiblockArcFurnace(id: ResourceLocation) : MultiMapMultiblockController(
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ARC_FURNACE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

@@ -1,11 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.GTValues.ULV
-import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.gui.Widget
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -56,14 +56,15 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.floor
 
 /**
  * TODO Redo structure pattern checking with Mui2 and patterning structures when GTCEu merged related
  *      pull (patterning MTEs and Mui2 rework).
  */
-class MultiblockPCBFactory(id: ResourceLocation?)
-    : RecipeMapMultiblockController(id, PCB_FACTORY_RECIPES)
+class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController(id, PCB_FACTORY_RECIPES)
 {
 
     /**
@@ -95,8 +96,7 @@ class MultiblockPCBFactory(id: ResourceLocation?)
     {
         private val casingState = MetalCasing.IRIDIUM.state
         private val secondCasingState = GTCleanroomCasing.PLASCRETE.state
-        private val thirdCasingState
-        = GTMultiblockCasing.GRATE_CASING.state
+        private val thirdCasingState = GTMultiblockCasing.GRATE_CASING.state
         private val fourthCasingState = MultiblockCasing.SUBSTRATE_CASING.state
         private val fifthCasingState = MetalCasing.OSMIRIDIUM.state
         private val sixthCasingState = MetalCasing.NAQUADAH_ALLOY.state
@@ -112,7 +112,7 @@ class MultiblockPCBFactory(id: ResourceLocation?)
         private val glassState= GTGlassCasing.LAMINATED_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockPCBFactory(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockPCBFactory(metaTileEntityId)
 
     /**
      * PCB Factory has an asynchronous upgrade system, which used 3 params to control it:
@@ -150,7 +150,7 @@ class MultiblockPCBFactory(id: ResourceLocation?)
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
@@ -342,6 +342,7 @@ class MultiblockPCBFactory(id: ResourceLocation?)
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -417,7 +418,7 @@ class MultiblockPCBFactory(id: ResourceLocation?)
                 && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0)!! <= auxiliaryUpgradeNumber
     }
 
-    private inner class PCBFactoryRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    private inner class PCBFactoryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor() = when (coolingUpgradeNumber)

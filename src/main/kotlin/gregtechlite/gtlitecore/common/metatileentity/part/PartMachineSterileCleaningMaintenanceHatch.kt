@@ -5,6 +5,7 @@ import codechicken.lib.render.pipeline.ColourMultiplier
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
 import gregtech.api.GTValues
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.metatileentity.multiblock.DummyCleanroom
@@ -21,6 +22,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTileEntityAutoMaintenanceHatch(id)
 {
@@ -36,7 +39,8 @@ class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTil
         private val dummyCleanroom = DummyCleanroom.createForTypes(cleanedTypes)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = PartMachineSterileCleaningMaintenanceHatch(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = PartMachineSterileCleaningMaintenanceHatch(metaTileEntityId)
 
     override fun addToMultiBlock(controllerBase: MultiblockControllerBase)
     {
@@ -69,6 +73,7 @@ class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTil
         }
     }
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -79,7 +84,8 @@ class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTil
             GTLiteOverlays.STERILE_CLEANING_MAINTENANCE_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline)
     }
 
-    override fun addInformation(stack: ItemStack?, player: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1"))

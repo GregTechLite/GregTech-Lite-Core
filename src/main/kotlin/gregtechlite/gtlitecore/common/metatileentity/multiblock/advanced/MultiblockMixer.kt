@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -28,8 +29,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockMixer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, LARGE_MIXER_RECIPES)
+class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, LARGE_MIXER_RECIPES)
 {
 
     private var casingTier = 0
@@ -45,7 +45,7 @@ class MultiblockMixer(id: ResourceLocation)
         private val gearboxCasingState = GTTurbineCasing.TITANIUM_GEARBOX.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockMixer(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockMixer(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -85,6 +85,7 @@ class MultiblockMixer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

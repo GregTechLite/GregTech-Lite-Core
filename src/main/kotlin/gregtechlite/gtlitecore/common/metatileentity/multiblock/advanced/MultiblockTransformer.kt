@@ -9,6 +9,7 @@ import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
@@ -54,15 +55,15 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
         private val casingState = GTMetalCasing.ALUMINIUM_FROSTPROOF.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockTransformer(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockTransformer(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        val inputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
 
-        val outputEnergy: MutableList<IEnergyContainer> = ArrayList(getAbilities(OUTPUT_ENERGY))
+        val outputEnergy = ArrayList(getAbilities(OUTPUT_ENERGY))
         outputEnergy.addAll(getAbilities(SUBSTATION_OUTPUT_ENERGY))
 
         if (inputEnergy.isEmpty() || outputEnergy.isEmpty())
@@ -120,6 +121,7 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.FROST_PROOF_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<out IVertexOperation?>?)
@@ -235,10 +237,8 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
         return super.getCapability(capability, side)
     }
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.2"))

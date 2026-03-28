@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -37,7 +38,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockElectricImplosionCompressor(id: ResourceLocation) : RecipeMapMultiblockController(id, ELECTRIC_IMPLOSION_RECIPES)
+class MultiblockElectricImplosionCompressor(id: ResourceLocation)
+    : RecipeMapMultiblockController(id, ELECTRIC_IMPLOSION_RECIPES)
 {
 
     private var pistonCasingTier = 0
@@ -56,7 +58,8 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation) : RecipeMapMul
         private val glassState = GlassCasing.SILICON_CARBIDE.state
     }
 
-    override fun createMetaTileEntity(mte: IGregTechTileEntity) = MultiblockElectricImplosionCompressor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockElectricImplosionCompressor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -102,6 +105,7 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation) : RecipeMapMul
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.IMPLOSION_COMPRESSOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -117,7 +121,8 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation) : RecipeMapMul
 
     override fun canBeDistinct() = true
 
-    private inner class ElectricImplosionCompressorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
+    private inner class ElectricImplosionCompressorRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte)
     {
         override fun getOverclockingDurationFactor(): Double
             = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR

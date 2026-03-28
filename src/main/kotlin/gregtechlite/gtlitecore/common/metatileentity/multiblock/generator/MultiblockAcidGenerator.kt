@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.V
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -31,7 +32,8 @@ class MultiblockAcidGenerator(id: ResourceLocation) : FuelMultiblockController(i
         private val glassState = GTGlassCasing.CLEANROOM_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAcidGenerator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAcidGenerator(metaTileEntityId)
 
     // @formatter:off
 
@@ -54,6 +56,7 @@ class MultiblockAcidGenerator(id: ResourceLocation) : FuelMultiblockController(i
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)

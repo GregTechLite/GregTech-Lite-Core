@@ -6,5 +6,5 @@ import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMulti
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fluids.IFluidTank
 
-class PartMachineAdvancedMultiFluidHatch(id: ResourceLocation?, tier: Int, numSlots: Int, isExportHatch: Boolean)
+class PartMachineAdvancedMultiFluidHatch(id: ResourceLocation, tier: Int, numSlots: Int, isExportHatch: Boolean)
     : MetaTileEntityMultiFluidHatch(id, tier, numSlots, isExportHatch), IMultiblockAbilityPart<IFluidTank>, IControllable

@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
@@ -45,7 +46,8 @@ class MultiblockMiningDroneAirport(id: ResourceLocation) : RecipeMapMultiblockCo
         private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockMiningDroneAirport(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockMiningDroneAirport(metaTileEntityId)
 
     // @formatter:off
 
@@ -113,6 +115,7 @@ class MultiblockMiningDroneAirport(id: ResourceLocation) : RecipeMapMultiblockCo
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
