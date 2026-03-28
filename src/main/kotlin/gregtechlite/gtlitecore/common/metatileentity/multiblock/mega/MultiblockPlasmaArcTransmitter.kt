@@ -1,12 +1,14 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
@@ -57,7 +59,8 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
         private val secondCasingState = ScienceCasing.HOLLOW_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockPlasmaArcTransmitter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockPlasmaArcTransmitter(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -84,6 +87,8 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
         inputEnergy.addAll(getAbilities(INPUT_LASER))
         energyContainer = EnergyContainerList(inputEnergy)
     }
+
+    // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("  DDDDD  ", " DDAAADD ", "DDA   ADD", "DA     AD", "DA     AD", "DA     AD", "DDA   ADD", " DDAAADD ", "  DDDDD  ")
@@ -115,12 +120,15 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
             .or(autoAbilities(false, false, true, true, false, false, false)))
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.ULTIMATE_MOLECULAR_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.PLASMA_ARC_TRANSMITTER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -140,14 +148,25 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
         }
     }
 
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+            .addEnergyUsageLine(energyContainer) // Deleted energy tier line because this machine not used those logic.
+            .addParallelsLine(recipeMapWorkable.parallelLimit)
+            .addWorkingStatusLine()
+            .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
+            .addRecipeOutputLine(recipeMapWorkable)
+    }
+
     override fun canBeDistinct(): Boolean = true
 
     override fun hasMaintenanceMechanics(): Boolean = false
 
-    private inner class PlasmaArcTransmitterRecipeLogic(mte: RecipeMapMultiblockController) : ExtendedPowerMultiblockRecipeLogic(mte)
+    private inner class PlasmaArcTransmitterRecipeLogic(mte: RecipeMapMultiblockController)
+        : ExtendedPowerMultiblockRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+        override fun getOverclockingDurationFactor(): Double = PERFECT_DURATION_FACTOR / 2
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {

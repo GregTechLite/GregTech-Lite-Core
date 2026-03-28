@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -32,8 +33,9 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockFluidSolidifier(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FLUID_SOLIDFICATION_RECIPES, TOOL_CASTER_RECIPES,
-                                                                                                 LAMINATOR_RECIPES, VULCANIZATION_RECIPES))
+class MultiblockFluidSolidifier(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(FLUID_SOLIDFICATION_RECIPES, TOOL_CASTER_RECIPES, LAMINATOR_RECIPES,
+                                               VULCANIZATION_RECIPES))
 {
 
     private var casingTier = 0
@@ -49,7 +51,8 @@ class MultiblockFluidSolidifier(id: ResourceLocation) : MultiMapMultiblockContro
         private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockFluidSolidifier(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockFluidSolidifier(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -86,6 +89,7 @@ class MultiblockFluidSolidifier(id: ResourceLocation) : MultiMapMultiblockContro
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.FLUID_SOLIDIFIER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -100,7 +104,8 @@ class MultiblockFluidSolidifier(id: ResourceLocation) : MultiMapMultiblockContro
 
     override fun canBeDistinct() = true
 
-    private inner class LargeFluidSolidifierRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class LargeFluidSolidifierRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)

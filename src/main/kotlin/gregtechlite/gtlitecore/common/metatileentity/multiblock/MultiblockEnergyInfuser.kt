@@ -15,6 +15,7 @@ import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.capability.impl.ItemHandlerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -76,7 +77,8 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
         private val coilState = ScienceCasing.MOLECULAR_COIL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockEnergyInfuser(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockEnergyInfuser(metaTileEntityId)
     
     override fun formStructure(context: PatternMatchContext?)
     {
@@ -130,6 +132,7 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.DATA_BANK_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -161,7 +164,8 @@ class MultiblockEnergyInfuser(id: ResourceLocation) : MultiblockWithDisplayBase(
     }
 
     // @formatter:on
-    
+
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)

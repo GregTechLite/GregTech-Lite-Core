@@ -67,7 +67,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     private var energyContainer: IEnergyContainer? = null
     override var computationProvider: IOpticalComputationProvider? = null
     override val subEnergyContainer: IEnergyContainer?
-        get() = this.energyContainer
+        get() = energyContainer
 
     override var casingTier: Int = 0
         private set
@@ -82,7 +82,8 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         private val fourthCasingState = AerospaceCasing.HIGH_STRENGTH_CONCRETE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSpaceElevator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockSpaceElevator(metaTileEntityId)
 
     override fun update()
     {
@@ -114,7 +115,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     {
         super.invalidateStructure()
         resetTileAbilities()
-        this.casingTier = 0
+        casingTier = 0
         moduleReceivers.forEach { it.sentWorkingDisabled() }
         moduleReceivers.forEach { it.moduleProvider = null }
     }
@@ -134,7 +135,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         inputEnergy.addAll(getAbilities(INPUT_LASER))
-        this.energyContainer = EnergyContainerList(inputEnergy)
+        energyContainer = EnergyContainerList(inputEnergy)
 
         val inputComputation = getAbilities(COMPUTATION_DATA_RECEPTION)
         if (inputComputation != null && !inputComputation.isEmpty())
@@ -212,7 +213,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                     .or(modulePredicate()))
                 .where(' ', any())
                 .where('-', air())
-                .where('B', air()) // TODO A renderer block (space elevator cable)?
+                .where('B', air()) // TODO: A renderer block (space elevator cable)?
                 .build()
         }
         else
@@ -320,6 +321,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -428,10 +430,8 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                 }
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.1"))
@@ -446,15 +446,15 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
     private fun disabledAllModules()
     {
-        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingDisabled() }
+        moduleReceivers.forEach { it.sentWorkingDisabled() }
     }
 
     private fun enabledAllModules()
     {
-        this.moduleReceivers.forEach { moduleReceiver -> moduleReceiver.sentWorkingEnabled() }
+        moduleReceivers.forEach { it.sentWorkingEnabled() }
     }
 
-    private fun checkModules() = this.moduleCount <= this.maxModules
+    private fun checkModules() = moduleCount <= maxModules
 
     private val moduleCount: Int
         get() = moduleReceivers.size
@@ -462,22 +462,22 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     private val maxModules: Int
         get()
         {
-            if (this.casingTier == 1) return 6
-            if (this.casingTier == 2) return 12
-            if (this.casingTier == 3 && isExtended) return 15
-            if (this.casingTier == 4 && isExtended) return 18
-            if (this.casingTier == 5 && isExtended) return 24
+            if (casingTier == 1) return 6
+            if (casingTier == 2) return 12
+            if (casingTier == 3 && isExtended) return 15
+            if (casingTier == 4 && isExtended) return 18
+            if (casingTier == 5 && isExtended) return 24
             return 12
         }
 
     private fun getIsExtended(): Boolean
     {
-        return this.isExtended
+        return isExtended
     }
 
     private fun setExtended(extended: Boolean)
     {
-        this.isExtended = extended
+        isExtended = extended
         invalidateStructure()
         reinitializeStructurePattern()
     }

@@ -1,8 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.VOC
 import gregtech.api.capability.impl.EnergyContainerList
-import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -12,10 +11,11 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.util.GTUtility.getFloorTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
+import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -27,7 +27,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.max
 
 class MultiblockAntimatterForge(id: ResourceLocation)
     : RecipeMapMultiblockController(id, ANTIMATTER_FORGE_RECIPES)
@@ -46,7 +45,8 @@ class MultiblockAntimatterForge(id: ResourceLocation)
         private val glassState = GlassCasing.ANTIMATTER_CONTAINMENT.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAntimatterForge(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAntimatterForge(metaTileEntityId)
 
     override fun initializeAbilities()
     {
@@ -139,12 +139,13 @@ class MultiblockAntimatterForge(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
-        = if (recipeMapWorkable.isActive) GTLiteOverlays.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteOverlays.ANTIMATTER_FORGE_TEXTURE
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (recipeMapWorkable.isActive)
+        GTLiteOverlays.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteOverlays.ANTIMATTER_FORGE_TEXTURE
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ANTIMATTER_FORGE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -162,56 +163,19 @@ class MultiblockAntimatterForge(id: ResourceLocation)
 
     override fun hasMaintenanceMechanics() = false
 
-    private inner class AntimatterForgeRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity)
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+            .addEnergyUsageLine(energyContainer) // Deleted energy tier line because this machine not used those logic.
+            .addParallelsLine(recipeMapWorkable.parallelLimit)
+            .addWorkingStatusLine()
+            .addProgressLine(recipeMapWorkable.progress, recipeMapWorkable.maxProgress)
+            .addRecipeOutputLine(recipeMapWorkable)
+    }
 
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaximumOverclockVoltage() = maxVoltage
-
-        /**
-         * Ignored maximum overclock voltage of energy hatches limit, let it be the maximum voltage
-         * of the MTE because we need to consume huge energies for Nano Forge. This is a revert of
-         * GTCEu pull request <a href="https://github.com/GregTechCEu/GregTech/pull/2139">#2139</a>.
-         */
-        override fun getMaxVoltage(): Long
-        {
-            val energyContainer = energyContainer
-            if (energyContainer is EnergyContainerList)
-            {
-                val voltage: Long
-                val amperage: Long
-                if (energyContainer.inputVoltage > energyContainer.outputVoltage)
-                {
-                    voltage = energyContainer.inputVoltage
-                    amperage = energyContainer.inputAmperage
-                }
-                else
-                {
-                    voltage = energyContainer.outputVoltage
-                    amperage = energyContainer.outputAmperage
-                }
-
-                return if (amperage == 1L)
-                {
-                    // amperage is 1 when the energy is not exactly on a tier
-                    // the voltage for recipe search is always on tier, so take the closest lower tier
-                    VOC[getFloorTierByVoltage(voltage).toInt()]
-                }
-                else
-                {
-                    // amperage != 1 means the voltage is exactly on a tier
-                    // ignore amperage, since only the voltage is relevant for recipe search
-                    // amps are never > 3 in an EnergyContainerList
-                    voltage
-                }
-            }
-            return max(energyContainer.inputVoltage.toDouble(),
-                energyContainer.outputVoltage.toDouble()).toLong()
-        }
+    private inner class AntimatterForgeRecipeLogic(mte: RecipeMapMultiblockController)
+        : ExtendedPowerMultiblockRecipeLogic(mte)
+    {
 
         override fun getParallelLimit() = Int.MAX_VALUE
 

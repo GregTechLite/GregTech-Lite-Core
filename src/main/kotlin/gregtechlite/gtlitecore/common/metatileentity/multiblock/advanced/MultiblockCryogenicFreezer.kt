@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -55,7 +56,8 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
         private val casingState = MetalCasing.HASTELLOY_X.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCryogenicFreezer(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCryogenicFreezer(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -68,8 +70,8 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
     override fun invalidateStructure()
     {
         super.invalidateStructure()
-        this.pumpCasingTier = 0
-        this.motorCasingTier = 0
+        pumpCasingTier = 0
+        motorCasingTier = 0
     }
 
     // @formatter:off
@@ -94,6 +96,7 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.VACUUM_FREEZER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -172,7 +175,8 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
         return 0
     }
 
-    private inner class CryogenicFreezerRecipeLogic(private val mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
+    private inner class CryogenicFreezerRecipeLogic(private val mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte)
     {
 
         override fun updateRecipeProgress()

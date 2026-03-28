@@ -6,6 +6,7 @@ import gregtech.api.capability.IDistillationTower
 import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.DistillationTowerLogicHandler
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -53,7 +54,8 @@ import kotlin.math.max
 //  (1) When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
 //  recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
 //  (2) Seems will crash when switch mode of the machine.
-class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
+class MultiblockDistillery(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
 {
 
     private var workableHandler: DistillationTowerLogicHandler?
@@ -72,7 +74,7 @@ class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(
         workableHandler = DistillationTowerLogicHandler(this)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockDistillery(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockDistillery(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -168,6 +170,7 @@ class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(
      */
     private fun usesAdvancedHatchLogic() = currentRecipeMap === DISTILLATION_RECIPES
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -222,8 +225,8 @@ class MultiblockDistillery(id: ResourceLocation) : MultiMapMultiblockController(
             return super.getOutputTank()
         }
 
-        override fun getOverclockingDurationFactor(): Double
-            = if ((maxVoltage >= V[UV] && usesAdvancedHatchLogic()) || !usesAdvancedHatchLogic()) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
+        override fun getOverclockingDurationFactor(): Double = if ((maxVoltage >= V[UV] && usesAdvancedHatchLogic())
+            || !usesAdvancedHatchLogic()) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {

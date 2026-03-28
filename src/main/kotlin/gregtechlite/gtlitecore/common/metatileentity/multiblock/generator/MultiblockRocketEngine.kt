@@ -7,6 +7,7 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -45,6 +46,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.UnaryOperator
 
+// TODO: FIXME: Seems counter not effect and then the LRE cannot overclocking.
 class MultiblockRocketEngine(id: ResourceLocation?)
     : FuelMultiblockController(id, ROCKET_ENGINE_FUELS, IV), ProgressBarMultiblock
 {
@@ -62,7 +64,8 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         private val casingState = MetalCasing.NITINOL_60.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockRocketEngine(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockRocketEngine(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -135,6 +138,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         return energyContainer.energyCanBeInserted < recipeMapWorkable.recipeEUt
     }
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -296,7 +300,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
         return IntArray(2)
     }
 
-    inner class LargeRocketEngineWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
+    inner class LargeRocketEngineWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockFuelRecipeLogic(mte)
     {
 
         private var rocketEngine: MultiblockRocketEngine? = null
@@ -309,7 +313,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         init
         {
-            rocketEngine = metaTileEntity as MultiblockRocketEngine
+            rocketEngine = mte as MultiblockRocketEngine
         }
 
         override fun updateRecipeProgress()
@@ -328,8 +332,8 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun checkHydrogen()
         {
-            isHydrogenBoosted = hydrogenStack.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
-                .drain(hydrogenStack, false))
+            isHydrogenBoosted = hydrogenStack.isFluidStackIdentical(
+                (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(hydrogenStack, false))
         }
 
         private fun drainHydrogen()
@@ -342,8 +346,8 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun checkLiquidAir(): Boolean
         {
-            if (liquidAirStack.isFluidStackIdentical((rocketEngine!!.inputFluidInventory as IFluidHandler)
-                    .drain(liquidAirStack, false)))
+            if (liquidAirStack.isFluidStackIdentical(
+                    (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(liquidAirStack, false)))
             {
                 return true
             }

@@ -5,6 +5,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
@@ -48,7 +49,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
+class MultiblockCrystallizationCrucible(id: ResourceLocation)
+    : RecipeMapMultiblockController(id, CRYSTALLIZATION_RECIPES), IHeatingCoil
 {
 
     private var motorCasingTier = 0
@@ -67,7 +69,8 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultibl
         private val uniqueCasingState = ActiveUniqueCasing.HEAT_VENT.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCrystallizationCrucible(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCrystallizationCrucible(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -115,6 +118,7 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultibl
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.CRYSTALLIZATION_CRUCIBLE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -170,7 +174,8 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation) : RecipeMapMultibl
 
     override fun getCurrentTemperature() = temperature
 
-    private inner class CrystallizationCrucibleRecipeLogic(mte: RecipeMapMultiblockController?) : HeatingCoilRecipeLogic(mte)
+    private inner class CrystallizationCrucibleRecipeLogic(mte: RecipeMapMultiblockController)
+        : HeatingCoilRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor(): Double

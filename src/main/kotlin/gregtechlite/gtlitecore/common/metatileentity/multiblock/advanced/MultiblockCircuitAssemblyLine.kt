@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -43,7 +44,7 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
 
     init
     {
-        this.recipeMapWorkable = CircuitAssemblyLineRecipeLogic(this)
+        recipeMapWorkable = CircuitAssemblyLineRecipeLogic(this)
     }
 
     companion object
@@ -54,7 +55,8 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
         private val glassState = GTGlassCasing.LAMINATED_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCircuitAssemblyLine(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCircuitAssemblyLine(metaTileEntityId)
 
     // @formatter:off
 
@@ -141,7 +143,8 @@ class MultiblockCircuitAssemblyLine(id: ResourceLocation) :
 
     fun getInputInventorySize() = getAbilities(IMPORT_ITEMS).size
 
-    private inner class CircuitAssemblyLineRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class CircuitAssemblyLineRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun setMaxProgress(maxProgress: Int)

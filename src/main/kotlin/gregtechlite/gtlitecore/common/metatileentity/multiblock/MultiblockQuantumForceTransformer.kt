@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -64,7 +65,8 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         private val glassState = GlassCasing.FORCE_FIELD.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockQuantumForceTransformer(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockQuantumForceTransformer(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -140,10 +142,8 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.QUANTUM_FORCE_TRANSFORMER_OVERLAY
 
-    override fun addInformation(stack: ItemStack,
-                                world: World?,
-                                tooltip: MutableList<String>,
-                                advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.1"))

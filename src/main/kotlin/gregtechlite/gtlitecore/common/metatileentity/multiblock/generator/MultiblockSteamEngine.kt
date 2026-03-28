@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -31,7 +32,8 @@ class MultiblockSteamEngine(id: ResourceLocation) : FuelMultiblockController(id,
         private val gearboxCasingState = GTTurbineCasing.BRONZE_GEARBOX.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSteamEngine(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockSteamEngine(metaTileEntityId)
 
     // @formatter:off
 
@@ -52,6 +54,7 @@ class MultiblockSteamEngine(id: ResourceLocation) : FuelMultiblockController(id,
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)

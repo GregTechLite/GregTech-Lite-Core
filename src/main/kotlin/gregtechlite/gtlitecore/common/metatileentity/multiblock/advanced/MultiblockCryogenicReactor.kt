@@ -4,6 +4,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.IMufflerHatch
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -40,7 +41,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockCryogenicReactor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES))
+class MultiblockCryogenicReactor(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES))
 {
 
     private var casingTier = 0
@@ -58,7 +60,8 @@ class MultiblockCryogenicReactor(id: ResourceLocation) : MultiMapMultiblockContr
         private val pipeCasingState = GTBoilerCasing.STEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCryogenicReactor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCryogenicReactor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -103,6 +106,7 @@ class MultiblockCryogenicReactor(id: ResourceLocation) : MultiMapMultiblockContr
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_CRYOGENIC_REACTOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -117,7 +121,8 @@ class MultiblockCryogenicReactor(id: ResourceLocation) : MultiMapMultiblockContr
 
     override fun canBeDistinct() = true
 
-    private inner class LargeCryogenicReactorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
+    private inner class LargeCryogenicReactorRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor(): Double

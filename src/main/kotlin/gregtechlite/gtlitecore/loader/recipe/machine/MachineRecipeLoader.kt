@@ -39,6 +39,7 @@ import gregtech.api.unification.material.Materials.Dubnium
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Einsteinium
 import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
@@ -393,6 +394,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INDUCED_CVD_UNIT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_1048576
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MINING_DRONE_AIRPORT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANOSCALE_FABRICATOR
@@ -1643,6 +1645,22 @@ internal object MachineRecipeLoader
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
+            .buildAndRegister()
+
+        // Matter Reshaping Framework
+        ASSEMBLER_RECIPES.recipeBuilder()
+            .circuitMeta(24)
+            .input(FORGE_HAMMER[UV], 16)
+            .input(COMPRESSOR[UV], 16)
+            .input(LARGE_FLUID_SOLIDIFIER, 64)
+            .input(LARGE_EXTRACTOR, 64)
+            .input(circuit, Tier.UV, 16)
+            .input(spring, Bedrockium, 4)
+            .input(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8)
+            .fluidInputs(PreciousMetalAlloy.getFluid(L * 20))
+            .output(MATTER_RESHAPING_FRAMEWORK)
+            .EUt(VA[UV])
+            .duration(1 * MINUTE + 30 * SECOND)
             .buildAndRegister()
 
     }

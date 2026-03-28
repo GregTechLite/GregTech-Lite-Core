@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -43,7 +44,8 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation) : RecipeMapMultiblockCo
         private val casingState = MetalCasing.ALUMINIUM_BRONZE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockIndustrialCokeOven(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockIndustrialCokeOven(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -79,6 +81,7 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation) : RecipeMapMultiblockCo
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.INDUSTRIAL_COKE_OVEN_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -95,7 +98,8 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation) : RecipeMapMultiblockCo
 
     override fun hasMufflerMechanics() = true
 
-    private inner class IndustrialCokeOvenRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class IndustrialCokeOvenRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)

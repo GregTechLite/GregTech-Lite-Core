@@ -121,6 +121,8 @@ object GTLiteOverlays
     val NANO_ASSEMBLY_COMPLEX_OVERLAY = multiId("nano_assembly_complex")
     @JvmField
     val INTEGRATED_ORE_PROCESSOR_OVERLAY = multiId("integrated_ore_processor")
+    @JvmField
+    val MATTER_RESHAPING_FRAMEWORK_OVERLAY = multiId("matter_reshaping_framework")
 
     // endregion
 
@@ -241,6 +243,8 @@ object GTLiteOverlays
     val LAFIUM_CASING = casingId("metal/lafium")
     @JvmField
     val VANADIUM_GALLIUM_CASING = casingId("metal/vanadium_gallium")
+    @JvmField
+    val NEUTRONIUM_CASING = casingId("metal/neutronium")
 
     // endregion
 

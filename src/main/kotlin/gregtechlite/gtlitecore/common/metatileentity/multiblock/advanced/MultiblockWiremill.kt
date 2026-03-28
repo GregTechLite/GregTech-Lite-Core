@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -35,7 +36,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(WIREMILL_RECIPES, LOOM_RECIPES))
+class MultiblockWiremill(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(WIREMILL_RECIPES, LOOM_RECIPES))
 {
 
     private var casingTier = 0
@@ -51,7 +53,7 @@ class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id
         private val gearboxCasingState = GTTurbineCasing.TITANIUM_GEARBOX.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockWiremill(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockWiremill(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -89,6 +91,7 @@ class MultiblockWiremill(id: ResourceLocation) : MultiMapMultiblockController(id
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

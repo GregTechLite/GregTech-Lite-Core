@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -40,8 +41,9 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(ORE_WASHER_RECIPES, CHEMICAL_BATH_RECIPES,
-                                                                                           CRACKING_RECIPES, CATALYTIC_REFORMER_RECIPES))
+class MultiblockOreWasher(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(ORE_WASHER_RECIPES, CHEMICAL_BATH_RECIPES, CRACKING_RECIPES,
+                                               CATALYTIC_REFORMER_RECIPES))
 {
 
     private var casingTier = 0
@@ -57,7 +59,7 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
         private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockOreWasher(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockOreWasher(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -98,6 +100,7 @@ class MultiblockOreWasher(id: ResourceLocation) : MultiMapMultiblockController(i
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ORE_WASHER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

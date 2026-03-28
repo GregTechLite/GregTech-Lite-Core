@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -32,7 +33,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
+class MultiblockForgeHammer(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(FORGE_HAMMER_RECIPES, COMPRESSOR_RECIPES))
 {
 
     private var casingTier = 0
@@ -47,7 +49,7 @@ class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController
         private val casingState = GTMetalCasing.STEEL_SOLID.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockForgeHammer(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockForgeHammer(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -68,7 +70,7 @@ class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController
         .where('S', selfPredicate())
         .where('C', states(casingState)
             .setMinGlobalLimited(2)
-            .or(autoAbilities(true, true, true, true, true, true, false)))
+            .or(autoAbilities(true, true, true, true, false, false, false)))
         .where('P', pistonCasings())
         .where('#', air())
         .build()
@@ -81,6 +83,7 @@ class MultiblockForgeHammer(id: ResourceLocation) : MultiMapMultiblockController
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.FORGE_HAMMER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

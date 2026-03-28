@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -65,7 +66,8 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
         private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockMassFabricator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockMassFabricator(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -120,6 +122,7 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.MASS_FABRICATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -152,7 +155,7 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
             ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * min(emitterCasingTier, sensorCasingTier) - 1.0)).toInt()))
         }
 
-        override fun getParallelLimit() = 16 * min(emitterCasingTier, sensorCasingTier)
+        override fun getParallelLimit() = 16 * min(processorCasingTier, fieldGenCasingTier)
 
     }
 

@@ -22,6 +22,8 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import org.apache.commons.lang3.tuple.Pair
 import org.jetbrains.annotations.Nullable
 
@@ -43,6 +45,7 @@ class MetaTileEntityExtender(id: ResourceLocation,
     override fun getDelegatingFacing(facing: EnumFacing?): EnumFacing?
         = if (facing === getFrontFacing()) inputFacing else getFrontFacing()
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)

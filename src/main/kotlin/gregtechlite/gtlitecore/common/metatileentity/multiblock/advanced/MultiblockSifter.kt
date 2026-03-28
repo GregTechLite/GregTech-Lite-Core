@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -44,7 +45,7 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
         private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSifter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockSifter(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -83,6 +84,7 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_SIFTER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

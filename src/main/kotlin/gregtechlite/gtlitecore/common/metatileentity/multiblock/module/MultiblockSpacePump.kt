@@ -24,6 +24,7 @@ import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
 import gregtech.api.GTValues
 import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.FluidTankList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -76,7 +77,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) =
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity =
         MultiblockSpacePump(metaTileEntityId, tier, moduleTier, minCasingTier)
 
     override fun initializeAbilities()
@@ -103,6 +104,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -121,7 +123,8 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         }
     }
 
-    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.1"))

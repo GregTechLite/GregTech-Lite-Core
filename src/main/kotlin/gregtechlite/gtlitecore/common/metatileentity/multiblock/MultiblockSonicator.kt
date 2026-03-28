@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -57,7 +58,7 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
     }
 
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockSonicator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockSonicator(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -106,6 +107,7 @@ class MultiblockSonicator(id: ResourceLocation) : RecipeMapMultiblockController(
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer =  GTLiteOverlays.SONICATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

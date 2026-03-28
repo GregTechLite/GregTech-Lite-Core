@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
@@ -46,7 +47,7 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
 
     init
     {
-        this.recipeMapWorkable = MultiblockRecipeLogic(this, true)
+        recipeMapWorkable = MultiblockRecipeLogic(this, true)
     }
 
     companion object
@@ -57,7 +58,8 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
         private val pipeCasingState = GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockComponentAssemblyLine(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockComponentAssemblyLine(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -167,6 +169,7 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.IRIDIUM_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)

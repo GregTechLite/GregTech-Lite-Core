@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -37,8 +38,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockCutter(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(CUTTER_RECIPES, LATHE_RECIPES,
-                                                                                        POLISHER_RECIPES, SLICER_RECIPES))
+class MultiblockCutter(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(CUTTER_RECIPES, LATHE_RECIPES, POLISHER_RECIPES, SLICER_RECIPES))
 {
 
     private var motorCasingTier = 0
@@ -55,7 +56,7 @@ class MultiblockCutter(id: ResourceLocation) : MultiMapMultiblockController(id, 
         private val casingState = MetalCasing.MARAGING_STEEL_250.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCutter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockCutter(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -96,6 +97,7 @@ class MultiblockCutter(id: ResourceLocation) : MultiMapMultiblockController(id, 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.CUTTER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

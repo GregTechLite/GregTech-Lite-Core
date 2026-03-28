@@ -65,6 +65,7 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
         return te.getCapability(capability, delegatingFacing.opposite)
     }
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
