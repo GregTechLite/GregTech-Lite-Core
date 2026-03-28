@@ -922,12 +922,25 @@ object GTLiteRecipeMaps
         .build()
 
     /**
+     * @zenProp matter_reshaping_framework
+     */
+    @ZenProperty
+    @JvmField
+    val MATTER_RESHAPING_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("matter_reshaping_framework", SimpleRecipeBuilder())
+        .itemInputs(4)
+        .fluidInputs(2)
+        .itemOutputs(4)
+        .fluidOutputs(2)
+        .build()
+        .setSmallRecipeMap(RecipeMaps.FORGE_HAMMER_RECIPES)
+
+    /**
      * @zenProp solidification_submodule
      */
     @ZenProperty
     @JvmField
     val SOLIDIFICATION_SUBMODULE_RECIPES = PseudoGroupRecipeMapBuilder("solidification_submodule", SimpleRecipeBuilder())
-        .group(RecipeMaps.FLUID_SOLIDFICATION_RECIPES, RecipeMaps.FORGE_HAMMER_RECIPES,
+        .group(MATTER_RESHAPING_RECIPES, RecipeMaps.FLUID_SOLIDFICATION_RECIPES,
                RecipeMaps.COMPRESSOR_RECIPES, TOOL_CASTER_RECIPES)
         .itemInputs(2)
         .itemOutputs(9)
@@ -1056,11 +1069,6 @@ object GTLiteRecipeMaps
         RecipeMaps.SIFTER_RECIPES.maxOutputs = 9
         RecipeMaps.SIFTER_RECIPES.maxFluidOutputs = 2
         RecipeMaps.SIFTER_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
-
-        RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2
-        RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidInputs = 2
-        RecipeMaps.FORGE_HAMMER_RECIPES.maxOutputs = 2
-        RecipeMaps.FORGE_HAMMER_RECIPES.maxFluidOutputs = 2
 
         RecipeMaps.MASS_FABRICATOR_RECIPES.recipeMapUI.setItemSlotOverlay(GuiTextures.DUST_OVERLAY, false)
 

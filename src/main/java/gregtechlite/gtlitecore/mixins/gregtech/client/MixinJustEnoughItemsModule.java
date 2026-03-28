@@ -325,9 +325,11 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
             // Matter Reshaping Framework: (1) Fluid Solidifier + Forge Hammer + Compressor + Tool Caster
             //                             (2) Extractor + Canner + Laminator + Vulcanizer
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
-                    gtlitecore$getRecipeMapName(RecipeMaps.FLUID_SOLIDFICATION_RECIPES));
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
                     gtlitecore$getRecipeMapName(RecipeMaps.FORGE_HAMMER_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
+                    gtlitecore$getRecipeMapName(RecipeMaps.FLUID_SOLIDFICATION_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
                     gtlitecore$getRecipeMapName(RecipeMaps.COMPRESSOR_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),

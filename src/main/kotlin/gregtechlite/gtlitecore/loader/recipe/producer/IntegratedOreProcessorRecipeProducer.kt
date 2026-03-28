@@ -6,7 +6,6 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.ORE_WASHER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES

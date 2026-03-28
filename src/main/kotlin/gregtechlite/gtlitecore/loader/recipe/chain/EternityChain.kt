@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
@@ -26,7 +27,7 @@ internal object EternityChain
     fun init()
     {
         // The first recipes to get Graviton Shard, and then should use Graviton Shard in QFT.
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(block, SpaceTime, 8)
             .input(TIMEPIECE)
             .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))

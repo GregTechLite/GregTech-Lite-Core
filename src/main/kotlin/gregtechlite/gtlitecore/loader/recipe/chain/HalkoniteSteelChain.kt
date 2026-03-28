@@ -5,7 +5,6 @@ import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
@@ -35,6 +34,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
@@ -52,7 +52,7 @@ internal object HalkoniteSteelChain
     {
 
         // Bedrockium Ingot -> Halkonite Steel Ingot
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(11)
             .input(ingot, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L))
@@ -62,7 +62,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Block -> Halkonite Steel Block
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(block, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 9))
             .output(block, HalkoniteSteel)
@@ -71,7 +71,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Plate -> Halkonite Steel Plate
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(plate, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L))
             .output(plate, HalkoniteSteel)
@@ -80,7 +80,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Double Plate -> Halkonite Steel Double Plate
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(plateDouble, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 2))
             .output(plateDouble, HalkoniteSteel)
@@ -89,7 +89,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Dense Plate -> Halkonite Steel Dense Plate
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(plateDense, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 9))
             .output(plateDense, HalkoniteSteel)
@@ -98,7 +98,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Stick -> Halkonite Steel Stick
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(stick, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 2))
@@ -108,7 +108,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Long Stick -> Halkonite Steel Long Stick
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(stickLong, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L))
             .output(stickLong, HalkoniteSteel)
@@ -117,7 +117,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Spring -> Halkonite Steel Spring
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(spring, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L))
             .output(spring, HalkoniteSteel)
@@ -126,7 +126,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Small Spring -> Halkonite Steel Small Spring
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(springSmall, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 2))
             .output(springSmall, HalkoniteSteel)
@@ -135,7 +135,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Foil -> Halkonite Steel Foil
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(foil, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 4))
             .output(foil, HalkoniteSteel)
@@ -144,7 +144,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Bolt -> Halkonite Steel Bolt
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(bolt, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 8))
             .output(bolt, HalkoniteSteel)
@@ -153,7 +153,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // Bedrockium Screw -> Halkonite Steel Screw
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(screw, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 8))
             .output(screw, HalkoniteSteel)
@@ -162,7 +162,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // 1x Bedrockium Wire -> 1x Halkonite Steel Wire
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(1)
             .input(wireGtSingle, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L / 2))
@@ -172,7 +172,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // 2x Bedrockium Wire -> 2x Halkonite Steel Wire
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(2)
             .input(wireGtDouble, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L))
@@ -182,7 +182,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // 4x Bedrockium Wire -> 4x Halkonite Steel Wire
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(4)
             .input(wireGtQuadruple, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 2))
@@ -192,7 +192,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // 8x Bedrockium Wire -> 8x Halkonite Steel Wire
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(8)
             .input(wireGtOctal, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 4))
@@ -202,7 +202,7 @@ internal object HalkoniteSteelChain
             .buildAndRegister()
 
         // 16x Bedrockium Wire -> 16x Halkonite Steel Wire
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .circuitMeta(16)
             .input(wireGtHex, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 8))
@@ -215,7 +215,7 @@ internal object HalkoniteSteelChain
         for (fluid in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L / 2),
             PolyphosphonitrileFluoroRubber.getFluid(L / 2)))
         {
-            FORGE_HAMMER_RECIPES.recipeBuilder()
+            MATTER_RESHAPING_RECIPES.recipeBuilder()
                 .circuitMeta(11)
                 .input(wireGtSingle, Bedrockium)
                 .fluidInputs(HalkoniteSteel.getFluid(L / 2))
@@ -230,7 +230,7 @@ internal object HalkoniteSteelChain
         for (fluid in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L),
             PolyphosphonitrileFluoroRubber.getFluid(L)))
         {
-            FORGE_HAMMER_RECIPES.recipeBuilder()
+            MATTER_RESHAPING_RECIPES.recipeBuilder()
                 .circuitMeta(12)
                 .input(wireGtDouble, Bedrockium)
                 .fluidInputs(HalkoniteSteel.getFluid(L))
@@ -245,7 +245,7 @@ internal object HalkoniteSteelChain
         for (fluid in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L * 2),
             PolyphosphonitrileFluoroRubber.getFluid(L * 2)))
         {
-            FORGE_HAMMER_RECIPES.recipeBuilder()
+            MATTER_RESHAPING_RECIPES.recipeBuilder()
                 .circuitMeta(14)
                 .input(wireGtQuadruple, Bedrockium)
                 .fluidInputs(HalkoniteSteel.getFluid(L * 2))
@@ -260,7 +260,7 @@ internal object HalkoniteSteelChain
         for (fluid in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L * 4),
             PolyphosphonitrileFluoroRubber.getFluid(L * 4)))
         {
-            FORGE_HAMMER_RECIPES.recipeBuilder()
+            MATTER_RESHAPING_RECIPES.recipeBuilder()
                 .circuitMeta(18)
                 .input(wireGtOctal, Bedrockium)
                 .fluidInputs(HalkoniteSteel.getFluid(L * 4))
@@ -275,7 +275,7 @@ internal object HalkoniteSteelChain
         for (fluid in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L * 8),
             PolyphosphonitrileFluoroRubber.getFluid(L * 8)))
         {
-            FORGE_HAMMER_RECIPES.recipeBuilder()
+            MATTER_RESHAPING_RECIPES.recipeBuilder()
                 .circuitMeta(26)
                 .input(wireGtHex, Bedrockium, 1)
                 .fluidInputs(HalkoniteSteel.getFluid(L * 8))
@@ -287,7 +287,7 @@ internal object HalkoniteSteelChain
         }
 
         // Bedrockium Frame -> Halkonite Steel Frame
-        FORGE_HAMMER_RECIPES.recipeBuilder()
+        MATTER_RESHAPING_RECIPES.recipeBuilder()
             .input(frameGt, Bedrockium)
             .fluidInputs(HalkoniteSteel.getFluid(L * 4))
             .output(frameGt, HalkoniteSteel)
