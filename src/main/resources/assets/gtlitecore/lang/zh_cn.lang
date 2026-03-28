@@ -2660,6 +2660,7 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.4=- §f20号§7 -> §e锻�
 gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21号§7 -> §e流体固化机§7 / §e装罐机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22号§7 -> §e压缩机§7 / §e过胶机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23号§7 -> §e工具铸造机§7 / §e硫化机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((聚变线圈等级 + 1) * 电压等级)
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

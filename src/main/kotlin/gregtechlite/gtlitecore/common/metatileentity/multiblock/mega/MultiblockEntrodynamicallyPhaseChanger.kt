@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 import gregtech.api.GTValues.LV
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -74,21 +75,18 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         private val glassState = GlassCasing.NANO_SHIELDING_FRAME.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) =
-        MultiblockEntrodynamicallyPhaseChanger(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockEntrodynamicallyPhaseChanger(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-
         tier = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).tier
         level = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).level
 
-        val baseTemperature =
-            context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL).coilTemperature +
-                    1000 * max(0, getTierByVoltage(energyContainer.inputVoltage) - LV)
+        val baseTemperature = context.getAttributeOrDefault(COIL_TIER, BlockWireCoil.CoilType.CUPRONICKEL)
+            .coilTemperature + 1000 * max(0, getTierByVoltage(energyContainer.inputVoltage) - LV)
 
-        // max for temperature from nbt and coil
         temperature = max(temperature, baseTemperature)
     }
 
@@ -153,12 +151,13 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer =
-        GTLiteOverlays.LATTICE_QCD_THERMAL_SHIELDING_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
+        = GTLiteOverlays.LATTICE_QCD_THERMAL_SHIELDING_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ENTRODYNAMICALLY_PHASE_CHANGER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -193,8 +192,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         {
             val heatKey = KeyUtil.number(TextFormatting.RED, syncer.syncInt(currentTemperature).toLong(), "K")
             keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
-                                        "gregtech.multiblock.blast_furnace.max_temperature",
-                                        heatKey))
+                                        "gregtech.multiblock.blast_furnace.max_temperature", heatKey))
         }
     }
 
@@ -213,7 +211,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
     {
         val components = super.getDataInfo()
         components.add(TextComponentTranslation("gregtech.multiblock.blast_furnace.max_temperature",
-                                                TextComponentTranslation(formatNumbers(this.temperature) + "K")
+                                                TextComponentTranslation(formatNumbers(temperature) + "K")
                                                     .setStyle(Style().setColor(TextFormatting.RED))))
         return components
     }
@@ -234,17 +232,16 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
         temperature = temperatureNBT.getInteger("temperature")
     }
 
-    private inner class EntrodynamicallyPhaseChangerRecipeLogic(mte: RecipeMapMultiblockController) :
-        ExtendedPowerHeatingCoilRecipeLogic(mte)
+    private inner class EntrodynamicallyPhaseChangerRecipeLogic(mte: RecipeMapMultiblockController)
+        : ExtendedPowerHeatingCoilRecipeLogic(mte)
     {
 
-        override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2
+        override fun getOverclockingDurationFactor(): Double = PERFECT_DURATION_FACTOR / 2
 
         override fun modifyOverclockPre(ocParams: OCParams, storage: RecipePropertyStorage)
         {
             super.modifyOverclockPre(ocParams, storage)
-            ocParams.setEut(applyCoilEUtDiscount(ocParams.eut(),
-                                                 (this.metaTileEntity as IHeatingCoil).currentTemperature,
+            ocParams.setEut(applyCoilEUtDiscount(ocParams.eut(), (metaTileEntity as IHeatingCoil).currentTemperature,
                                                  storage.get(TemperatureProperty.getInstance(), 0)!!))
         }
 

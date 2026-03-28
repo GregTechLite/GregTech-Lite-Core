@@ -2662,6 +2662,7 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.4=- §f20号§7 -> §e流�
 gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21号§7 -> §e锻造锤§7 / §e装罐机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22号§7 -> §e压缩机§7 / §e过胶机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23号§7 -> §e工具铸造机§7 / §e硫化机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((Fusion Coil Tier + 1) * Voltage Tier)
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
