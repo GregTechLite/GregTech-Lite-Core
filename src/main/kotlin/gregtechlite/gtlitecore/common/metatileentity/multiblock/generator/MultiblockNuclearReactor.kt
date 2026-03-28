@@ -5,6 +5,7 @@ import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -47,6 +48,8 @@ import kotlin.math.max
  * - Einsteinium 2.5x
  * - Fermium 3x
  * - Mendelevium 3.2x
+ *
+ * TODO: FIXME: Seems reactor core buff not effect.
  */
 class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
 {
@@ -66,7 +69,8 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         private val glassState = GlassCasing.LEAD_SILICON.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNuclearReactor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockNuclearReactor(metaTileEntityId)
 
     override fun initializeAbilities()
     {
@@ -116,6 +120,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NUCLEAR_REACTOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -154,10 +159,12 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         else -> 0.0 // Ensure it not cause problem for workableHandler progress max value.
     }
 
-    private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockFuelRecipeLogic(mte)
+    private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController)
+        : MultiblockFuelRecipeLogic(mte)
     {
 
-        override fun getMaxVoltage() = max(super.getMaxVoltage().toDouble(), super.getMaxVoltage() * getBoostedFromCoreTier(coreTier)).toLong()
+        override fun getMaxVoltage(): Long = max(super.getMaxVoltage().toDouble(),
+                                                 super.getMaxVoltage() * getBoostedFromCoreTier(coreTier)).toLong()
 
         override fun getParallelLimit() = Int.MAX_VALUE
 

@@ -14,6 +14,7 @@ import gregtech.api.capability.IWorkable
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.metatileentity.ITieredMetaTileEntity
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
@@ -46,8 +47,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockHydraulicFracker(id: ResourceLocation,
-                                 private val tier: Int) : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity
+class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
+    : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity
 {
 
     companion object
@@ -70,7 +71,8 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
     private var wasActiveAndNeedsUpdate: Boolean = false
     private var hasNotEnoughEnergy: Boolean = false
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockHydraulicFracker(metaTileEntityId, this.tier)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockHydraulicFracker(metaTileEntityId, tier)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -96,6 +98,8 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
         this.energyContainer = EnergyContainerList(arrayListOf())
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("F    F", "F    F", "F  CCC", "F  CCC", "F  CCC", "FFFCCC", "   CCC", "   CCC")
         .aisle("    P ", "    P ", "   CPC", "   CPC", "   CPC", "F  CPC", " PPPPC", "   CCC")
@@ -117,12 +121,15 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.WATERTIGHT_STEEL_CASING
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_BREWERY_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<out IVertexOperation?>?)
@@ -136,9 +143,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
         if (!world.isRemote)
         {
             updateLogic()
-            if (this.wasActiveAndNeedsUpdate)
+            if (wasActiveAndNeedsUpdate)
             {
-                this.wasActiveAndNeedsUpdate = false
+                wasActiveAndNeedsUpdate = false
                 setActive(false)
             }
         }
@@ -176,7 +183,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
     }
 
     /**
-     * @return true if the fracker is able to drain, else false
+     * @return Returns `true` if the fracker is able to drain, otherwise returns `false`.
      */
     private fun checkCanDrain(): Boolean
     {
@@ -185,11 +192,11 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
             if (progressTime >= (2 * TICK))
             {
                 if (ConfigHolder.machines.recipeProgressLowEnergy)
-                    this.progressTime = 1 * TICK
+                    progressTime = 1 * TICK
                 else
-                    this.progressTime = max(1 * TICK, progressTime - 2 * TICK)
+                    progressTime = max(1 * TICK, progressTime - 2 * TICK)
 
-                this.hasNotEnoughEnergy = true
+                hasNotEnoughEnergy = true
             }
             return false
         }
@@ -198,15 +205,15 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
             return true
         }
 
-        if (this.hasNotEnoughEnergy && getEnergyInputPerSecond() > 19L * VA[tier])
+        if (hasNotEnoughEnergy && getEnergyInputPerSecond() > 19L * VA[tier])
         {
-            this.hasNotEnoughEnergy = false
+            hasNotEnoughEnergy = false
         }
 
         if (isActive())
         {
             setActive(false)
-            this.wasActiveAndNeedsUpdate = true
+            wasActiveAndNeedsUpdate = true
         }
         return false
     }
@@ -229,8 +236,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
     @Suppress("SameParameterValue")
     private fun drainTanks(amount: Int, simulate: Boolean): Boolean
     {
-        val stack = this.inputFluidInventory!!.drain(amount, !simulate)
-        return stack != null && stack.isFluidEqual(GTLiteMaterials.FracturingFluid.getFluid(1)) && stack.amount == FLUID_USE_AMOUNT
+        val stack = inputFluidInventory!!.drain(amount, !simulate)
+        return stack != null && stack.isFluidEqual(GTLiteMaterials.FracturingFluid.getFluid(1))
+                && stack.amount == FLUID_USE_AMOUNT
     }
 
     private fun replenishVein(simulate: Boolean): Boolean
@@ -253,58 +261,56 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
-        builder.addEnergyUsageLine(this.energyContainer)
+        builder.addEnergyUsageLine(energyContainer)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
-            .addLowPowerLine(this.hasNotEnoughEnergy)
+            .addLowPowerLine(hasNotEnoughEnergy)
     }
 
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.2", formatNumbers(VA[tier])))
     }
 
-    override fun getProgress(): Int = this.progressTime
+    override fun getProgress(): Int = progressTime
 
     override fun getMaxProgress(): Int = MAX_PROGRESS
 
-    override fun isWorkingEnabled(): Boolean = this.isWorkingEnabled
+    override fun isWorkingEnabled(): Boolean = isWorkingEnabled
 
     override fun setWorkingEnabled(workingStatus: Boolean)
     {
-        if (this.isWorkingEnabled != workingStatus)
+        if (isWorkingEnabled != workingStatus)
         {
-            this.isWorkingEnabled = workingStatus
+            isWorkingEnabled = workingStatus
             markDirty()
             if (world != null && !world.isRemote)
-                writeCustomData(WORKING_ENABLED) { it.writeBoolean(this.isWorkingEnabled) }
+                writeCustomData(WORKING_ENABLED) { it.writeBoolean(isWorkingEnabled) }
         }
     }
 
-    override fun isActive(): Boolean = super.isActive() && this.isActive
+    override fun isActive(): Boolean = super.isActive() && isActive
 
     fun setActive(active: Boolean)
     {
-        if (this.isActive != active)
+        if (isActive != active)
         {
-            this.isActive = active
+            isActive = active
             markDirty()
             if (world != null && !world.isRemote)
-                writeCustomData(WORKABLE_ACTIVE) { it.writeBoolean(this.isActive) }
+                writeCustomData(WORKABLE_ACTIVE) { it.writeBoolean(isActive) }
         }
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound?
     {
         super.writeToNBT(data)
-        data.setBoolean("isActive", this.isActive)
-        data.setBoolean("isWorkingEnabled", this.isWorkingEnabled)
-        data.setBoolean("wasActiveAndNeedsUpdate", this.wasActiveAndNeedsUpdate)
+        data.setBoolean("isActive", isActive)
+        data.setBoolean("isWorkingEnabled", isWorkingEnabled)
+        data.setBoolean("wasActiveAndNeedsUpdate", wasActiveAndNeedsUpdate)
         data.setInteger("progressTime", progressTime)
         return data
     }
@@ -312,28 +318,28 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        this.isActive = data.getBoolean("isActive")
-        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled")
-        this.wasActiveAndNeedsUpdate = data.getBoolean("wasActiveAndNeedsUpdate")
-        this.progressTime = data.getInteger("progressTime")
+        isActive = data.getBoolean("isActive")
+        isWorkingEnabled = data.getBoolean("isWorkingEnabled")
+        wasActiveAndNeedsUpdate = data.getBoolean("wasActiveAndNeedsUpdate")
+        progressTime = data.getInteger("progressTime")
     }
 
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
-        buf.writeBoolean(this.isActive)
-        buf.writeBoolean(this.isWorkingEnabled)
-        buf.writeBoolean(this.wasActiveAndNeedsUpdate)
-        buf.writeInt(this.progressTime)
+        buf.writeBoolean(isActive)
+        buf.writeBoolean(isWorkingEnabled)
+        buf.writeBoolean(wasActiveAndNeedsUpdate)
+        buf.writeInt(progressTime)
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
     {
         super.receiveInitialSyncData(buf)
-        this.isActive = buf.readBoolean()
-        this.isWorkingEnabled = buf.readBoolean()
-        this.wasActiveAndNeedsUpdate = buf.readBoolean()
-        this.progressTime = buf.readInt()
+        isActive = buf.readBoolean()
+        isWorkingEnabled = buf.readBoolean()
+        wasActiveAndNeedsUpdate = buf.readBoolean()
+        progressTime = buf.readInt()
     }
 
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
@@ -341,12 +347,12 @@ class MultiblockHydraulicFracker(id: ResourceLocation,
         super.receiveCustomData(dataId, buf)
         if (dataId == WORKABLE_ACTIVE)
         {
-            this.isActive = buf.readBoolean()
+            isActive = buf.readBoolean()
             scheduleRenderUpdate()
         }
         else if (dataId == WORKING_ENABLED)
         {
-            this.isWorkingEnabled = buf.readBoolean()
+            isWorkingEnabled = buf.readBoolean()
             scheduleRenderUpdate()
         }
     }

@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiMapMultiblockController
@@ -34,7 +35,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockFoodProcessor(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(FOOD_PROCESSOR_RECIPES, MULTICOOKER_RECIPES))
+class MultiblockFoodProcessor(id: ResourceLocation)
+    : MultiMapMultiblockController(id, arrayOf(FOOD_PROCESSOR_RECIPES, MULTICOOKER_RECIPES))
 {
 
     private var robotArmCasingTier = 0
@@ -54,7 +56,8 @@ class MultiblockFoodProcessor(id: ResourceLocation) : MultiMapMultiblockControll
         private val glassState = GTGlassCasing.CLEANROOM_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockFoodProcessor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockFoodProcessor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -101,6 +104,7 @@ class MultiblockFoodProcessor(id: ResourceLocation) : MultiMapMultiblockControll
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.MULTICOOKER_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -117,7 +121,8 @@ class MultiblockFoodProcessor(id: ResourceLocation) : MultiMapMultiblockControll
 
     override fun hasMufflerMechanics() = true
 
-    private inner class LargeFoodProcessorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class LargeFoodProcessorRecipeLogic(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)

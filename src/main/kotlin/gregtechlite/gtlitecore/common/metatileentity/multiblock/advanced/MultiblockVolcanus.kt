@@ -5,6 +5,7 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.IHeatingCoil
 import gregtech.api.capability.impl.HeatingCoilRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
@@ -67,7 +68,7 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
         private val casingState = MetalCasing.HASTELLOY_C276.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockVolcanus(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockVolcanus(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -111,6 +112,7 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.BLAST_FURNACE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -220,7 +222,8 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
         return 0
     }
 
-    private inner class VolcanusRecipeLogic(private val mte: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(mte)
+    private inner class VolcanusRecipeLogic(private val mte: RecipeMapMultiblockController)
+        : HeatingCoilRecipeLogic(mte)
     {
 
         override fun updateRecipeProgress()

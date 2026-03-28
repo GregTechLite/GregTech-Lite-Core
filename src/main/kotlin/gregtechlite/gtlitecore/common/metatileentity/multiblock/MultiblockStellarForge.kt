@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -32,6 +33,8 @@ import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
 class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockController(id, STELLAR_FORGE_RECIPES)
@@ -54,7 +57,8 @@ class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockControll
         private val coilState = MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockStellarForge(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockStellarForge(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -115,10 +119,13 @@ class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockControll
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun getBaseTexture(texture: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.QUANTUM_ALLOY_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.STELLAR_FORGE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

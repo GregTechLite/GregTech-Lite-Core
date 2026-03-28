@@ -30,6 +30,7 @@ import gregtech.api.capability.impl.ItemHandlerList
 import gregtech.api.capability.impl.NotifiableFluidTank
 import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.items.itemhandlers.GTItemStackHandler
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
@@ -56,17 +57,17 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 import net.minecraftforge.fluids.IFluidTank
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
 @Implemented(at = ["https://github.com/GregTechCEu/GregTech/pull/2769"])
-class PartMachineDualHatch(id: ResourceLocation,
-                           tier: Int,
-                           isExportHatch: Boolean)
-    : MetaTileEntityMultiblockNotifiablePart(id, tier, isExportHatch),
-      IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable, IGhostSlotConfigurable
+class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boolean)
+    : MetaTileEntityMultiblockNotifiablePart(id, tier, isExportHatch), IMultiblockAbilityPart<IItemHandlerModifiable>,
+      IControllable, IGhostSlotConfigurable
 {
 
     private var circuitInventory: GhostCircuitItemStackHandler? = null
@@ -81,7 +82,8 @@ class PartMachineDualHatch(id: ResourceLocation,
         initializeInventory()
     }
     
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = PartMachineDualHatch(metaTileEntityId, tier, isExportHatch)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = PartMachineDualHatch(metaTileEntityId, tier, isExportHatch)
 
     override fun initializeInventory()
     {
@@ -332,7 +334,8 @@ class PartMachineDualHatch(id: ResourceLocation,
                 it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
             }))
     }
-    
+
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
@@ -453,11 +456,9 @@ class PartMachineDualHatch(id: ResourceLocation,
             circuitInventory!!.read(data)
         }
     }
-    
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         if (isExportHatch)
         {
@@ -471,11 +472,9 @@ class PartMachineDualHatch(id: ResourceLocation,
         tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", getTankSize()))
         tooltip.add(I18n.format("gregtech.universal.enabled"))
     }
-    
-    override fun addToolUsages(stack: ItemStack?,
-                               world: World?,
-                               tooltip: MutableList<String?>,
-                               advanced: Boolean)
+
+    @SideOnly(Side.CLIENT)
+    override fun addToolUsages(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gregtech.tool_action.screwdriver.access_covers"))
         tooltip.add(I18n.format("gregtech.tool_action.screwdriver.auto_collapse"))
@@ -483,7 +482,7 @@ class PartMachineDualHatch(id: ResourceLocation,
         super.addToolUsages(stack, world, tooltip, advanced)
     }
 
-    fun collapseInventorySlotContents(inventory: IItemHandlerModifiable)
+    private fun collapseInventorySlotContents(inventory: IItemHandlerModifiable)
     {
         // Gather a snapshot of the provided inventory
         val inventoryContents = GTHashMaps.fromItemHandler(inventory, true)

@@ -16,6 +16,7 @@ import gregtech.api.capability.impl.EnergyContainerHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -121,7 +122,8 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockFusionReactor(metaTileEntityId, tier)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockFusionReactor(metaTileEntityId, tier)
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("               ", "      OGO      ", "               ")
@@ -144,7 +146,7 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
         .where('E', states(casingState, glassState)
             .or(metaTileEntities(*MetaTileEntities.ENERGY_INPUT_HATCH
                                      .filterNotNull()
-                                     .filter { mte -> tier <= mte.tier && mte.tier <= UEV }
+                                     .filter { tier <= it.tier && it.tier <= UEV }
                                      .toTypedArray())
                     .setMinGlobalLimited(1)
                     .setMaxGlobalLimited(16)))
@@ -302,6 +304,7 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
         }
     }
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -317,8 +320,8 @@ class MultiblockFusionReactor(id: ResourceLocation, private val tier: Int)
     {
         val titleTexture = when (tier)
         {
-            UHV -> GTLiteMuiTextures.FUSION_REACTOR_MK4_TITLE
-            UEV -> GTLiteMuiTextures.FUSION_REACTOR_MK5_TITLE
+            UHV  -> GTLiteMuiTextures.FUSION_REACTOR_MK4_TITLE
+            UEV  -> GTLiteMuiTextures.FUSION_REACTOR_MK5_TITLE
             else -> GTGuiTextures.FUSION_REACTOR_MK1_TITLE
         }
 

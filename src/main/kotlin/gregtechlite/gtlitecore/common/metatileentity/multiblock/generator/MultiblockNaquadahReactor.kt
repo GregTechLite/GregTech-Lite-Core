@@ -9,6 +9,7 @@ import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VOC
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -69,7 +70,8 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
         private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MultiblockNaquadahReactor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockNaquadahReactor(metaTileEntityId)
 
     override fun initializeAbilities()
     {
@@ -149,6 +151,7 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
         return energyContainer.energyCanBeInserted < recipeMapWorkable.recipeEUt
     }
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -243,18 +246,19 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
         return IntArray(2)
     }
 
-    private inner class LargeNaquadahReactorWorkableHandler(metaTileEntity: RecipeMapMultiblockController?) : MultiblockFuelRecipeLogic(metaTileEntity)
+    private inner class LargeNaquadahReactorWorkableHandler(mte: RecipeMapMultiblockController)
+        : MultiblockFuelRecipeLogic(mte)
     {
 
         private var naquadahReactor: MultiblockNaquadahReactor? = null
 
         var isPlasmaOxygenBoosted = false
 
-        private val PLASMA_OXYGEN_STACK: FluidStack = Oxygen.getPlasma(50)
+        private val plasmaOxygenStack: FluidStack = Oxygen.getPlasma(50)
 
         init
         {
-            naquadahReactor = metaTileEntity as MultiblockNaquadahReactor
+            naquadahReactor = mte as MultiblockNaquadahReactor
         }
 
         override fun updateRecipeProgress()
@@ -271,15 +275,15 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
 
         private fun checkPlasmaOxygen()
         {
-            isPlasmaOxygenBoosted = PLASMA_OXYGEN_STACK.isFluidStackIdentical((naquadahReactor!!.inputFluidInventory as IFluidHandler)
-                .drain(PLASMA_OXYGEN_STACK, false))
+            isPlasmaOxygenBoosted = plasmaOxygenStack.isFluidStackIdentical(
+                (naquadahReactor!!.inputFluidInventory as IFluidHandler).drain(plasmaOxygenStack, false))
         }
 
         private fun drainPlasmaOxygen()
         {
             if (isPlasmaOxygenBoosted && totalContinuousRunningTime % SECOND == 0L)
             {
-                (naquadahReactor!!.inputFluidInventory as IFluidHandler).drain(PLASMA_OXYGEN_STACK, true)
+                (naquadahReactor!!.inputFluidInventory as IFluidHandler).drain(plasmaOxygenStack, true)
             }
         }
 

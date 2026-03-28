@@ -5,6 +5,7 @@ import gregtech.api.GTValues.MAX_TRUE
 import gregtech.api.GTValues.VOC
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockFuelRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -29,7 +30,8 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockAntimatterGenerator(id: ResourceLocation) : FuelMultiblockController(id, ANTIMATTER_GENERATOR_FUELS, MAX)
+class MultiblockAntimatterGenerator(id: ResourceLocation)
+    : FuelMultiblockController(id, ANTIMATTER_GENERATOR_FUELS, MAX)
 {
 
     init
@@ -48,7 +50,8 @@ class MultiblockAntimatterGenerator(id: ResourceLocation) : FuelMultiblockContro
         private val glassState = GlassCasing.ANTIMATTER_CONTAINMENT.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAntimatterGenerator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAntimatterGenerator(metaTileEntityId)
 
     override fun initializeAbilities()
     {
@@ -125,6 +128,7 @@ class MultiblockAntimatterGenerator(id: ResourceLocation) : FuelMultiblockContro
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ANTIMATTER_FORGE_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_generator.tooltip.1"))

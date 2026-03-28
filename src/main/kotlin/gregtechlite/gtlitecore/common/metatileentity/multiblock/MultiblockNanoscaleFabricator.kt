@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import gregtech.api.GTValues.ULV
 import gregtech.api.block.VariantBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -74,7 +75,8 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
         private val glassState = GTGlassCasing.LAMINATED_GLASS.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockNanoscaleFabricator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockNanoscaleFabricator(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -160,6 +162,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANOSCALE_FABRICATOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -209,7 +212,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    private inner class NanoscaleFabricatorRecipeLogic(metaTileEntity: RecipeMapMultiblockController?) : MultiblockRecipeLogic(metaTileEntity, true)
+    private inner class NanoscaleFabricatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
 
         override fun checkRecipe(recipe: Recipe): Boolean

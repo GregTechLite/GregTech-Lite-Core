@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.steam
 
 import gregtech.api.capability.impl.SteamMultiWorkable
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.ParallelLogicType
@@ -47,7 +48,8 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
             GTFireboxCasing.STEEL_FIREBOX.state else GTFireboxCasing.BRONZE_FIREBOX.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = SteamMultiblockAlloySmelter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = SteamMultiblockAlloySmelter(metaTileEntityId)
 
     // @formatter:off
 
@@ -66,7 +68,8 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
+        = if (ConfigHolder.machines.steelSteamMultiblocks) Textures.SOLID_STEEL_CASING else Textures.BRONZE_PLATED_BRICKS
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = Textures.ALLOY_SMELTER_OVERLAY
@@ -75,6 +78,7 @@ class SteamMultiblockAlloySmelter(id: ResourceLocation)
 
     override fun getItemOutputLimit() = 1
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, player, tooltip, advanced)

@@ -54,10 +54,7 @@ import java.util.*
 import kotlin.math.cos
 import kotlin.math.sin
 
-class PartMachineAirIntakeHatch(id: ResourceLocation,
-                                tier: Int,
-                                private val capacity: Int,
-                                private val transferRate: Int, )
+class PartMachineAirIntakeHatch(id: ResourceLocation, tier: Int, private val capacity: Int, private val transferRate: Int)
     : MetaTileEntityMultiblockNotifiablePart(id, tier, false), IMultiblockAbilityPart<IFluidTank>
 {
 
@@ -292,10 +289,8 @@ class PartMachineAirIntakeHatch(id: ResourceLocation,
     @Suppress("UnstableApiUsage")
     override fun usesMui2(): Boolean = true
 
-    override fun addInformation(stack: ItemStack?,
-                                player: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gtlitecore.machine.air_intake_hatch.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.air_intake_hatch.tooltip.2", transferRate))
@@ -303,10 +298,8 @@ class PartMachineAirIntakeHatch(id: ResourceLocation,
         tooltip.add(I18n.format("gregtech.universal.enabled"))
     }
 
-    override fun addToolUsages(stack: ItemStack?,
-                               world: World?,
-                               tooltip: MutableList<String?>,
-                               advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addToolUsages(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gregtech.tool_action.screwdriver.access_covers"))
         super.addToolUsages(stack, world, tooltip, advanced)

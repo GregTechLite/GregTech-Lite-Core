@@ -10,6 +10,8 @@ import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntityDelegator
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.capabilities.Capability
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 class MetaTileEntityBridge(id: ResourceLocation,
                            capabilityFilter: (Capability<*>) -> Boolean,
@@ -28,6 +30,7 @@ class MetaTileEntityBridge(id: ResourceLocation,
 
     override fun hasFrontFacing() = false
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
                                       translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)

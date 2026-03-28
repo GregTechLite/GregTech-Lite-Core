@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -60,7 +61,8 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
         recipeMapWorkable = AdvancedFusionRecipeLogic(this)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockAdvancedFusionReactor(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockAdvancedFusionReactor(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -131,7 +133,6 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
         .where('v', fusionVacuums())
         .where('#', air())
         .where(' ', any())
-
         .build()
 
     // @formatter:on
@@ -143,6 +144,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ADVANCED_FUSION_REACTOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
@@ -178,7 +180,7 @@ class MultiblockAdvancedFusionReactor(id: ResourceLocation) : RecipeMapMultibloc
 
     override fun getBreakdownSound(): SoundEvent = GTSoundEvents.BREAKDOWN_ELECTRICAL
 
-    private inner class AdvancedFusionRecipeLogic(mte: RecipeMapMultiblockController?) : MultiblockRecipeLogic(mte)
+    private inner class AdvancedFusionRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
         override fun getOverclockingDurationFactor() = PERFECT_DURATION_FACTOR / 2

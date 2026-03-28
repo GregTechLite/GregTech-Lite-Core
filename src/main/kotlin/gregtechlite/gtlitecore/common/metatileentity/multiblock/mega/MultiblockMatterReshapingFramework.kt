@@ -151,6 +151,9 @@ class MultiblockMatterReshapingFramework(id: ResourceLocation)
     }
 
     @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.MATTER_RESHAPING_FRAMEWORK_OVERLAY
+
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)

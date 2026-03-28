@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
@@ -46,7 +47,8 @@ import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 
-class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockController(id, COSMIC_RAY_DETECTING_RECIPES)
+class MultiblockCosmicRayDetector(id: ResourceLocation)
+    : RecipeMapMultiblockController(id, COSMIC_RAY_DETECTING_RECIPES)
 {
 
     private var emitterCasingTier = 0
@@ -70,7 +72,8 @@ class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockCon
         private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MultiblockCosmicRayDetector(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockCosmicRayDetector(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -143,6 +146,7 @@ class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockCon
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.COSMIC_RAY_DETECTOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         addTooltip(tooltip)
@@ -159,7 +163,8 @@ class MultiblockCosmicRayDetector(id: ResourceLocation) : RecipeMapMultiblockCon
 
     override fun canBeDistinct() = false
 
-    private inner class CosmicRayDetectorWorkableHandler(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class CosmicRayDetectorWorkableHandler(mte: RecipeMapMultiblockController)
+        : MultiblockRecipeLogic(mte, true)
     {
 
         override fun checkRecipe(recipe: Recipe): Boolean
