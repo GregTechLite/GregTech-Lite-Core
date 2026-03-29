@@ -21,6 +21,7 @@ import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumOxide
@@ -35,48 +36,48 @@ internal object LithiumTitanateChain
     fun init()
     {
         // Li2O + CO2 -> Li2CO3
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, LithiumOxide, 3)
-            .fluidInputs(CarbonDioxide.getFluid(1000))
-            .output(dust, LithiumCarbonate, 6)
-            .EUt(VA[MV])
-            .duration(7 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, LithiumOxide, 3)
+            fluidInputs(CarbonDioxide.getFluid(1000))
+            output(dust, LithiumCarbonate, 6)
+            EUt(VA[MV])
+            duration(7 * SECOND)
+        }
 
         // TiCl4 + 2N2O4 + 2O -> Ti(NO3)4 + 4Cl
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(TitaniumTetrachloride.getFluid(1000))
-            .fluidInputs(DinitrogenTetroxide.getFluid(2000))
-            .fluidInputs(Oxygen.getFluid(2000))
-            .output(dust, TitaniumNitrate, 17)
-            .fluidOutputs(Chlorine.getFluid(4000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(TitaniumTetrachloride.getFluid(1000))
+            fluidInputs(DinitrogenTetroxide.getFluid(2000))
+            fluidInputs(Oxygen.getFluid(2000))
+            output(dust, TitaniumNitrate, 17)
+            fluidOutputs(Chlorine.getFluid(4000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Ti + 4HNO3 -> Ti(NO3)4 + 4H (this recipe with Li2TiO3 reaction can
         // produce 4H each cycling, it is a higher buff recipe).
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Titanium)
-            .fluidInputs(NitricAcid.getFluid(4000))
-            .output(dust, TitaniumNitrate, 17)
-            .fluidOutputs(Hydrogen.getFluid(4000))
-            .EUt(VA[EV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Titanium)
+            fluidInputs(NitricAcid.getFluid(4000))
+            output(dust, TitaniumNitrate, 17)
+            fluidOutputs(Hydrogen.getFluid(4000))
+            EUt(VA[EV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Ti(NO3)4 + 2NaOH + Li2CO3 -> Li2TiO3 + Na2CO3 + 4HNO3 (cycle)
-        BLAST_RECIPES.recipeBuilder()
-            .input(dust, TitaniumNitrate, 17)
-            .input(dust, SodiumHydroxide, 6)
-            .input(dust, LithiumCarbonate, 6)
-            .output(ingotHot, LithiumTitanate, 6)
-            .output(dust, SodaAsh, 6)
-            .fluidOutputs(NitricAcid.getFluid(4000))
-            .EUt(VA[EV])
-            .duration(16 * SECOND)
-            .blastFurnaceTemp(3100)
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(dust, TitaniumNitrate, 17)
+            input(dust, SodiumHydroxide, 6)
+            input(dust, LithiumCarbonate, 6)
+            output(ingotHot, LithiumTitanate, 6)
+            output(dust, SodaAsh, 6)
+            fluidOutputs(NitricAcid.getFluid(4000))
+            EUt(VA[EV])
+            duration(16 * SECOND)
+            blastFurnaceTemp(3100)
+        }
     }
 
     // @formatter:on

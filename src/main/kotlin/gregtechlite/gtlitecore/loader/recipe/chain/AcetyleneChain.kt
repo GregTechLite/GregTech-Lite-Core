@@ -17,7 +17,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
@@ -34,7 +34,7 @@ internal object AcetyleneChain
     fun init()
     {
         // CaO + 3C -> CaC2 + CO
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             input(dust, Carbon, 3)
             output(dust, CalciumCarbide, 3)
@@ -43,7 +43,7 @@ internal object AcetyleneChain
             duration(25 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             inputs(COAL, 3) // Coal
             output(dust, CalciumCarbide, 3)
@@ -53,7 +53,7 @@ internal object AcetyleneChain
             duration(50 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             inputs(COAL, 3, 1) // Charcoal
             output(dust, CalciumCarbide, 3)
@@ -63,7 +63,7 @@ internal object AcetyleneChain
             duration(50 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             input(gem, Lignite, 3)
             output(dust, CalciumCarbide, 3)
@@ -73,7 +73,7 @@ internal object AcetyleneChain
             duration(50 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             input(dust, Charcoal, 3)
             output(dust, CalciumCarbide, 3)
@@ -83,7 +83,7 @@ internal object AcetyleneChain
             duration(50 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             input(dust, Coal, 3)
             output(dust, CalciumCarbide, 3)
@@ -93,7 +93,7 @@ internal object AcetyleneChain
             duration(50 * SECOND)
         }
 
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, Quicklime, 2)
             input(dust, Lignite, 3)
             output(dust, CalciumCarbide, 3)
@@ -104,7 +104,7 @@ internal object AcetyleneChain
         }
 
         // CaC2 + 2H2O -> Ca(OH)2 + C2H2
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, CalciumCarbide, 3)
             fluidInputs(Water.getFluid(2000))
             output(dust, CalciumHydroxide, 5)
@@ -114,7 +114,7 @@ internal object AcetyleneChain
         }
 
         // Ca(OH)2 + CO2 -> CaCO3 + H2O
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, CalciumHydroxide, 5)
             fluidInputs(CarbonDioxide.getFluid(1000))
             output(dust, Calcite, 5)

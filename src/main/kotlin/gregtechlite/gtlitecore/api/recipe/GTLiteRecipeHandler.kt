@@ -37,6 +37,8 @@ import net.minecraftforge.fluids.FluidStack
 object GTLiteRecipeHandler
 {
 
+    // region Chemical Reactor Recipe Removal
+
     /**
      * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
      *
@@ -58,8 +60,20 @@ object GTLiteRecipeHandler
     @JvmStatic
     fun removeChemicalRecipes(itemInputs: Array<ItemStack>)
     {
-        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_RECIPES, itemInputs, arrayOfNulls<FluidStack>(0))
-        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, itemInputs, arrayOfNulls<FluidStack>(0))
+        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_RECIPES, itemInputs, arrayOf())
+        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, itemInputs, arrayOf())
+    }
+
+    /**
+     * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
+     *
+     * @param itemInputs The item inputs of the recipe which will be removed.
+     */
+    @JvmName("_removeChemicalRecipes")
+    @JvmStatic
+    fun removeChemicalRecipes(vararg itemInputs: ItemStack)
+    {
+        return removeChemicalRecipes(arrayOf(*itemInputs))
     }
 
     /**
@@ -70,9 +84,25 @@ object GTLiteRecipeHandler
     @JvmStatic
     fun removeChemicalRecipes(fluidInputs: Array<FluidStack>)
     {
-        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
-        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
+        GTRecipeHandler.removeRecipesByInputs(CHEMICAL_RECIPES, arrayOf(), fluidInputs)
+        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, arrayOf(), fluidInputs)
     }
+
+    /**
+     * Removes a Chemical Reactor recipe and its corresponding recipe in Large Chemical Reactor (LCR).
+     *
+     * @param fluidInputs The fluid inputs of the recipe which will be removed.
+     */
+    @JvmName("_removeChemicalRecipes")
+    @JvmStatic
+    fun removeChemicalRecipes(vararg fluidInputs: FluidStack)
+    {
+        return removeChemicalRecipes(arrayOf(*fluidInputs))
+    }
+
+    // endregion
+
+    // region Mixer Recipe Removal
 
     /**
      * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
@@ -122,6 +152,15 @@ object GTLiteRecipeHandler
         GTRecipeHandler.removeRecipesByInputs(MIXER_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
         GTRecipeHandler.removeRecipesByInputs(LARGE_MIXER_RECIPES, arrayOfNulls<ItemStack>(0), fluidInputs)
     }
+
+    @JvmName("_removeMixerRecipes")
+    @JvmStatic
+    fun removeMixerRecipes(vararg fluidInputs: FluidStack)
+    {
+        return removeMixerRecipes(arrayOf(*fluidInputs))
+    }
+
+    // endregion
 
     /**
      * Adds several assembling recipes for input and output hatches.

@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack
 enum class GTPlankBlock : BlockVariant
 {
 
-    RUBBER,
-    TREATED;
+    RUBBER_PLANK,
+    TREATED_PLANK;
 
     override val state: IBlockState
         get() = MetaBlocks.PLANKS.getStateFromMeta(this.ordinal)

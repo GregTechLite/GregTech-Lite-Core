@@ -25,7 +25,7 @@ import gregtech.common.items.MetaItems.CARBON_MESH
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
@@ -47,7 +47,7 @@ internal object AlgaeChain
     fun init()
     {
         // Algae Mixture
-        BIO_REACTOR_RECIPES.buildRecipe {
+        BIO_REACTOR_RECIPES.addRecipe {
             circuitMeta(4)
             fluidInputs(Biomass.getFluid(1000))
             fluidInputs(SaltWater.getFluid(1000))
@@ -57,7 +57,7 @@ internal object AlgaeChain
         }
 
         // Algae Mixture -> Green/Brown/Red Algae
-        SIFTER_RECIPES.buildRecipe {
+        SIFTER_RECIPES.addRecipe {
             notConsumable(CARBON_MESH)
             fluidInputs(AlgaeMixture.getFluid(1000))
             chancedOutput(dust, GreenAlgae, 6500, 250)
@@ -69,7 +69,7 @@ internal object AlgaeChain
         }
 
         // 6(Na2CO3)(H2O)-> 2C5H7O4COONa + C5H10O5 + C6H10O5
-        BURNER_REACTOR_RECIPES.buildRecipe {
+        BURNER_REACTOR_RECIPES.addRecipe {
             notConsumable(dust, Diatomite)
             input(dust, BrownAlgae, 10)
             fluidInputs(SodiumCarbonateSolution.getFluid(6000))
@@ -83,7 +83,7 @@ internal object AlgaeChain
         }
 
         // 2C5H7O4COONa + CaCl2 -> (C5H7O4COO)2Ca + 2NaCl
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, SodiumAlginate, 40)
             input(dust, CalciumChloride, 3)
             output(dust, CalciumAlginate, 39)
@@ -95,7 +95,7 @@ internal object AlgaeChain
         // region Algae Application
 
         // Green Algae + H2O -> CH4
-        FERMENTING_RECIPES.buildRecipe {
+        FERMENTING_RECIPES.addRecipe {
             input(dust, GreenAlgae, 10)
             fluidInputs(DistilledWater.getFluid(500))
             fluidOutputs(Methane.getFluid(500))
@@ -104,7 +104,7 @@ internal object AlgaeChain
         }
 
         // Green Algae + Brown Algae + 5H2O -> 5H2SO4
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, GreenAlgae, 10)
             input(dust, BrownAlgae, 5)
             fluidInputs(DistilledWater.getFluid(5000))
@@ -114,7 +114,7 @@ internal object AlgaeChain
         }
 
         // Brown Algae + 2H2O -> 3Li2CO3
-        FERMENTING_RECIPES.buildRecipe {
+        FERMENTING_RECIPES.addRecipe {
             input(dust, BrownAlgae, 40)
             fluidInputs(DistilledWater.getFluid(2000))
             output(dust, LithiumCarbonate, 18)

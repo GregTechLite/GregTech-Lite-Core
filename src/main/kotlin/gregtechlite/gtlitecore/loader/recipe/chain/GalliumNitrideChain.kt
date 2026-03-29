@@ -27,6 +27,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -47,88 +48,88 @@ internal object GalliumNitrideChain
     fun init()
     {
         // Ga + 3Cl -> GaCl3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Gallium)
-            .fluidInputs(Chlorine.getFluid(3000))
-            .output(dust, GalliumTrichloride, 4)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Gallium)
+            fluidInputs(Chlorine.getFluid(3000))
+            output(dust, GalliumTrichloride, 4)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
         // GaO2 + 3Cl -> GaCl3 + 2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, GalliumDioxide, 3)
-            .fluidInputs(Chlorine.getFluid(3000))
-            .output(dust, GalliumTrichloride, 4)
-            .fluidOutputs(Oxygen.getFluid(2000))
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, GalliumDioxide, 3)
+            fluidInputs(Chlorine.getFluid(3000))
+            output(dust, GalliumTrichloride, 4)
+            fluidOutputs(Oxygen.getFluid(2000))
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
         // Al + 3Na + 3CH3Cl -> 0.5Al2(CH3)6 + 3NaCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Aluminium)
-            .input(dust, Sodium, 3)
-            .fluidInputs(Chloromethane.getFluid(3000))
-            .fluidOutputs(Trimethylaluminium.getFluid(500))
-            .output(dust, Salt, 6)
-            .EUt(VA[EV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Aluminium)
+            input(dust, Sodium, 3)
+            fluidInputs(Chloromethane.getFluid(3000))
+            fluidOutputs(Trimethylaluminium.getFluid(500))
+            output(dust, Salt, 6)
+            EUt(VA[EV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
         // GaCl3 + 0.5Al2(CH3)6 -> Ga(CH3)3 + AlCl3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, GalliumTrichloride, 4)
-            .fluidInputs(Trimethylaluminium.getFluid(500))
-            .output(dust, AluminiumTrichloride, 4)
-            .fluidOutputs(Trimethylgallium.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, GalliumTrichloride, 4)
+            fluidInputs(Trimethylaluminium.getFluid(500))
+            output(dust, AluminiumTrichloride, 4)
+            fluidOutputs(Trimethylgallium.getFluid(1000))
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // AlCl3 + 3H2O -> Al(OH)3 + 3HCl
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, AluminiumTrichloride, 4)
-            .fluidInputs(Water.getFluid(3000))
-            .output(dust, AluminiumHydroxide, 7)
-            .fluidOutputs(HydrochloricAcid.getFluid(3000))
-            .EUt(VA[LV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, AluminiumTrichloride, 4)
+            fluidInputs(Water.getFluid(3000))
+            output(dust, AluminiumHydroxide, 7)
+            fluidOutputs(HydrochloricAcid.getFluid(3000))
+            EUt(VA[LV])
+            duration(3 * SECOND)
+        }
 
         // 2Al(OH)3 -> Al2O3 + 3H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, AluminiumHydroxide, 14)
-            .output(dust, Alumina, 5)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VH[LV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, AluminiumHydroxide, 14)
+            output(dust, Alumina, 5)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VH[LV])
+            duration(3 * SECOND)
+        }
 
         // 2Ga(CH3)3 + 3H2O -> Ga2O3 + 3CH4 + 3H (drop)
-        CVD_RECIPES.recipeBuilder()
-            .input(plate, Sapphire)
-            .fluidInputs(Trimethylgallium.getFluid(2000))
-            .fluidInputs(Water.getFluid(3000))
-            .output(dust, GalliumTrioxide, 5)
-            .fluidOutputs(Methane.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .temperature(923)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(plate, Sapphire)
+            fluidInputs(Trimethylgallium.getFluid(2000))
+            fluidInputs(Water.getFluid(3000))
+            output(dust, GalliumTrioxide, 5)
+            fluidOutputs(Methane.getFluid(3000))
+            EUt(VA[HV])
+            duration(8 * SECOND)
+            temperature(923)
+        }
 
         // Ga2O3 + 2NH3 -> 2GaN + 3H2O
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, GalliumTrioxide, 5)
-            .fluidInputs(Ammonia.getFluid(2000))
-            .output(dust, GalliumNitride, 4)
-            .fluidOutputs(Steam.getFluid(3 * SU))
-            .EUt(VA[LuV])
-            .duration(12 * SECOND + 10 * TICK)
-            .temperature(1023)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(dust, GalliumTrioxide, 5)
+            fluidInputs(Ammonia.getFluid(2000))
+            output(dust, GalliumNitride, 4)
+            fluidOutputs(Steam.getFluid(3 * SU))
+            EUt(VA[LuV])
+            duration(12 * SECOND + 10 * TICK)
+            temperature(1023)
+        }
     }
 
     // @formatter:on

@@ -33,6 +33,7 @@ import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -77,12 +78,13 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TOPOLOGICAL_INSULATOR_TUBE
 
 /**
- * Nanites recipes for Nano Forge.
+ * Nanites recipes for Nano Forge
  *
  * Here's all nanites recipes for several recipes which used nanites as components, it is based on the
  * same name ore prefix in [GT5u](https://github.com/GTNewHorizons/GT5-Unofficial). The original author
  * of Nano Forge and PCB Factory is [BlueWeabo](https://github.com/BlueWeabo), here's the general rules
  * for all nanites recipes (the presenter is also BlueWeabo):
+ *
  * - Nanites meant to be consumed should either have a short duration or a big output;
  * - Nanites which aren't consumed should have a long duration and output less than 16;
  * - Nanites always take UU Matter as a fluid and a lot of power to make;
@@ -103,259 +105,258 @@ internal object NanitesChain
     fun init()
     {
         // The first recipe for Carbon Nanite, used to assemble Nano Forge.
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(circuit, Tier.UV, 4)
-            .input(ROBOT_ARM_ZPM, 8)
-            .input(STEM_CELLS, 32)
-            .input(ring, NaquadahAlloy, 16)
-            .input(stick, NaquadahAlloy, 8)
-            .input(dust, Carbon, 64)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(UUMatter.getFluid(16000))
-            .output(nanite, Carbon, 2)
-            .EUt(VA[UV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(circuit, Tier.UV, 4)
+            input(ROBOT_ARM_ZPM, 8)
+            input(STEM_CELLS, 32)
+            input(ring, NaquadahAlloy, 16)
+            input(stick, NaquadahAlloy, 8)
+            input(dust, Carbon, 64)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(UUMatter.getFluid(16000))
+            output(nanite, Carbon, 2)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(block, Carbon)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // Carbon Nanite (for Nano Forge controller, some QFT catalysts)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, NetherStar)
-            .input(block, Carbon, 8)
-            .input(SYSTEM_ON_CHIP, 64)
-            .fluidInputs(UUMatter.getFluid(200_000))
-            .output(nanite, Carbon, 64)
-            .EUt(10_000_000) // UIV
-            .duration(20 * SECOND)
-            .tier(1)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, NetherStar)
+            input(block, Carbon, 8)
+            input(SYSTEM_ON_CHIP, 64)
+            fluidInputs(UUMatter.getFluid(200_000))
+            output(nanite, Carbon, 64)
+            EUt(10_000_000) // UIV
+            duration(20 * SECOND)
+            tier(1)
+        }
 
         // Silver Nanite (for PCB Factory T2 recipes, some QFT Catalysts)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, HexagonalBoronNitride)
-            .input(block, Silver, 8)
-            .input(ADVANCED_SYSTEM_ON_CHIP, 64)
-            .fluidInputs(UUMatter.getFluid(200_000))
-            .output(nanite, Silver)
-            .EUt(10_000_000) // UIV
-            .duration(40 * SECOND)
-            .tier(2)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, HexagonalBoronNitride)
+            input(block, Silver, 8)
+            input(ADVANCED_SYSTEM_ON_CHIP, 64)
+            fluidInputs(UUMatter.getFluid(200_000))
+            output(nanite, Silver)
+            EUt(10_000_000) // UIV
+            duration(40 * SECOND)
+            tier(2)
+        }
 
         // Gold Nanite (for PCB Factory T3 recipes)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, HexagonalSiliconNitride)
-            .input(block, Gold, 8)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .fluidInputs(UUMatter.getFluid(300_000))
-            .output(nanite, Gold)
-            .EUt(100_000_000) // UXV
-            .duration(1 * MINUTE)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, HexagonalSiliconNitride)
+            input(block, Gold, 8)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            fluidInputs(UUMatter.getFluid(300_000))
+            output(nanite, Gold)
+            EUt(100_000_000) // UXV
+            duration(1 * MINUTE)
+            tier(3)
+        }
 
         // Glowstone Nanite (for Optoelectronic SoC for Optical Circuits and some QFT Catalysts)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, LithiumNiobate)
-            .input(block, Glowstone, 16)
-            .input(ADVANCED_SYSTEM_ON_CHIP, 64)
-            .fluidInputs(UUMatter.getFluid(50_000))
-            .output(nanite, Glowstone, 64)
-            .EUt(50_000_000) // UXV
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(2)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, LithiumNiobate)
+            input(block, Glowstone, 16)
+            input(ADVANCED_SYSTEM_ON_CHIP, 64)
+            fluidInputs(UUMatter.getFluid(50_000))
+            output(nanite, Glowstone, 64)
+            EUt(50_000_000) // UXV
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(2)
+        }
 
         // Neutronium Nanite (for some QFT Catalysts and UXV+ component recipes)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, ChromaticGlass)
-            .input(block, Neutronium, 8)
-            .input(ADVANCED_SYSTEM_ON_CHIP, 64)
-            .input(ADVANCED_SYSTEM_ON_CHIP, 32)
-            .fluidInputs(UUMatter.getFluid(200_000))
-            .output(nanite, Neutronium)
-            .EUt(100_000_000) // UIV
-            .duration(50 * SECOND)
-            .tier(1)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, ChromaticGlass)
+            input(block, Neutronium, 8)
+            input(ADVANCED_SYSTEM_ON_CHIP, 64)
+            input(ADVANCED_SYSTEM_ON_CHIP, 32)
+            fluidInputs(UUMatter.getFluid(200_000))
+            output(nanite, Neutronium)
+            EUt(100_000_000) // UIV
+            duration(50 * SECOND)
+            tier(1)
+        }
 
         // Copper Nanite (for some QFT Catalysts and Mag Matter)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, Topaz)
-            .input(block, Copper, 8)
-            .input(SYSTEM_ON_CHIP, 64)
-            .input(SYSTEM_ON_CHIP, 64)
-            .fluidInputs(UUMatter.getFluid(120_000))
-            .output(nanite, Copper, 16)
-            .EUt(10_000_000) // UIV
-            .duration(30 * SECOND)
-            .tier(1)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, Topaz)
+            input(block, Copper, 8)
+            input(SYSTEM_ON_CHIP, 64)
+            input(SYSTEM_ON_CHIP, 64)
+            fluidInputs(UUMatter.getFluid(120_000))
+            output(nanite, Copper, 16)
+            EUt(10_000_000) // UIV
+            duration(30 * SECOND)
+            tier(1)
+        }
 
         // Iron Nanite (for Harmonic Phonon Matter blasting and Nano Shielding Frame)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, CubicBoronNitride)
-            .input(block, Iron, 8)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .fluidInputs(UUMatter.getFluid(400_000))
-            .output(nanite, Iron, 4)
-            .EUt(50_000_000) // UXV
-            .duration(30 * SECOND)
-            .tier(2)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, CubicBoronNitride)
+            input(block, Iron, 8)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            fluidInputs(UUMatter.getFluid(400_000))
+            output(nanite, Iron, 4)
+            EUt(50_000_000) // UXV
+            duration(30 * SECOND)
+            tier(2)
+        }
 
         // Transcendent Metal Nanite (for some QFT Catalysts and Phonon Crystal Seed)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(ENERGISED_TESSERACT)
-            .input(block, TranscendentMetal, 8)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .fluidInputs(UUMatter.getFluid(2_000_000))
-            .output(nanite, TranscendentMetal)
-            .EUt(1_000_000_000) // MAX
-            .duration(2 * MINUTE + 30 * SECOND)
-            .tier(2)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(ENERGISED_TESSERACT)
+            input(block, TranscendentMetal, 8)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            fluidInputs(UUMatter.getFluid(2_000_000))
+            output(nanite, TranscendentMetal)
+            EUt(1_000_000_000) // MAX
+            duration(2 * MINUTE + 30 * SECOND)
+            tier(2)
+        }
 
         // Chrome Nanite (for Lattice QCD Shielding Casing)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, GSTGlass)
-            .input(block, Chrome, 8)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .input(HIGHLY_ADVANCED_SOC, 64)
-            .fluidInputs(UUMatter.getFluid(2_500_000))
-            .output(nanite, Chrome, 2)
-            .EUt(1_500_000_000) // MAX
-            .duration(2 * MINUTE)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, GSTGlass)
+            input(block, Chrome, 8)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            input(HIGHLY_ADVANCED_SOC, 64)
+            fluidInputs(UUMatter.getFluid(2_500_000))
+            output(nanite, Chrome, 2)
+            EUt(1_500_000_000) // MAX
+            duration(2 * MINUTE)
+            tier(3)
+        }
 
         // White Dwarf Matter Nanite (for MHDCSM recipe)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, NdYAG)
-            .notConsumable(lens, MagnetoResonatic)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(block, WhiteDwarfMatter, 8)
-            .input(ATTO_PIC_CHIP, 64)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(UUMatter.getFluid(500_000))
-            .fluidInputs(RawStarMatter.getFluid(50_000))
-            .fluidInputs(TachyonRichTemporalFluid.getFluid(L * 5))
-            .output(nanite, WhiteDwarfMatter, 16)
-            .EUt(2_000_000_000) // MAX
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, NdYAG)
+            notConsumable(lens, MagnetoResonatic)
+            notConsumable(QUANTUM_ANOMALY)
+            input(block, WhiteDwarfMatter, 8)
+            input(ATTO_PIC_CHIP, 64)
+            input(circuit, Tier.UHV)
+            fluidInputs(UUMatter.getFluid(500_000))
+            fluidInputs(RawStarMatter.getFluid(50_000))
+            fluidInputs(TachyonRichTemporalFluid.getFluid(L * 5))
+            output(nanite, WhiteDwarfMatter, 16)
+            EUt(2_000_000_000) // MAX
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
 
         // Black Dwarf Matter Nanite (for MHDCSM recipe)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, CubicHeterodiamond)
-            .notConsumable(lens, MagnetoResonatic)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(block, BlackDwarfMatter, 8)
-            .input(ATTO_PIC_CHIP, 64)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(UUMatter.getFluid(500_000))
-            .fluidInputs(RawStarMatter.getFluid(50_000))
-            .fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 5))
-            .output(nanite, BlackDwarfMatter, 16)
-            .EUt(2_000_000_000) // MAX
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, CubicHeterodiamond)
+            notConsumable(lens, MagnetoResonatic)
+            notConsumable(QUANTUM_ANOMALY)
+            input(block, BlackDwarfMatter, 8)
+            input(ATTO_PIC_CHIP, 64)
+            input(circuit, Tier.UHV)
+            fluidInputs(UUMatter.getFluid(500_000))
+            fluidInputs(RawStarMatter.getFluid(50_000))
+            fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 5))
+            output(nanite, BlackDwarfMatter, 16)
+            EUt(2_000_000_000) // MAX
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
 
         // Universium Nanite (for MHDCSM recipe)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, PrHoYLF)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(block, Universium, 8)
-            .input(TOPOLOGICAL_INSULATOR_TUBE, 16)
-            .input(OPTICAL_IMC_UNIT, 16)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(SpaceTime.getFluid(L))
-            .fluidInputs(Infinity.getFluid(L * 4))
-            .fluidInputs(PrimordialMatter.getFluid(64_000))
-            .output(nanite, Universium, 16)
-            .EUt(2_000_000_000) // MAX
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, PrHoYLF)
+            notConsumable(QUANTUM_ANOMALY)
+            input(block, Universium, 8)
+            input(TOPOLOGICAL_INSULATOR_TUBE, 16)
+            input(OPTICAL_IMC_UNIT, 16)
+            input(circuit, Tier.UHV)
+            fluidInputs(SpaceTime.getFluid(L))
+            fluidInputs(Infinity.getFluid(L * 4))
+            fluidInputs(PrimordialMatter.getFluid(64_000))
+            output(nanite, Universium, 16)
+            EUt(2_000_000_000) // MAX
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
 
         // Eternity Nanite (for MHDCSM advanced recipe)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, CubicSiliconNitride)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(nanite, TranscendentMetal)
-            .input(block, Eternity, 8)
-            .input(ATTO_PIC_CHIP, 64)
-            .input(TIMEPIECE, 4)
-            .fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 8))
-            .fluidInputs(Antimatter.getFluid(50_000))
-            .fluidInputs(PrimordialMatter.getFluid(64_000))
-            .output(nanite, Eternity, 16)
-            .EUt(2_000_000_000) // MAX
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, CubicSiliconNitride)
+            notConsumable(QUANTUM_ANOMALY)
+            input(nanite, TranscendentMetal)
+            input(block, Eternity, 8)
+            input(ATTO_PIC_CHIP, 64)
+            input(TIMEPIECE, 4)
+            fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 8))
+            fluidInputs(Antimatter.getFluid(50_000))
+            fluidInputs(PrimordialMatter.getFluid(64_000))
+            output(nanite, Eternity, 16)
+            EUt(2_000_000_000) // MAX
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
 
         // Mag Matter Nanite (for Supracausal Circuit recipes)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, CubicZirconia)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(nanite, Iron)
-            .input(block, MagMatter, 8)
-            .input(ATTO_PIC_CHIP, 64)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(HarmonicPhononMatter.getFluid(L * 16))
-            .fluidInputs(HighEnergyQuarkGluonPlasma.getPlasma(50_000))
-            .fluidInputs(PrimordialMatter.getFluid(64_000))
-            .output(nanite, MagMatter, 4)
-            .EUt(2_000_000_000) // MAX
-            .duration(2 * MINUTE)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, CubicZirconia)
+            notConsumable(QUANTUM_ANOMALY)
+            input(nanite, Iron)
+            input(block, MagMatter, 8)
+            input(ATTO_PIC_CHIP, 64)
+            input(circuit, Tier.UHV)
+            fluidInputs(HarmonicPhononMatter.getFluid(L * 16))
+            fluidInputs(HighEnergyQuarkGluonPlasma.getPlasma(50_000))
+            fluidInputs(PrimordialMatter.getFluid(64_000))
+            output(nanite, MagMatter, 4)
+            EUt(2_000_000_000) // MAX
+            duration(2 * MINUTE)
+            tier(3)
+        }
 
         // Shirabon Nanite (for Supracausal Circuit Component recipes)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, LanthanumHexaboride)
-            .notConsumable(QUANTUM_ANOMALY)
-            .input(nanite, Neutronium)
-            .input(block, Shirabon, 8)
-            .input(GRAVITON_SHARD)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(Creon.getPlasma(L * 16))
-            .fluidInputs(WhiteDwarfMatter.getFluid(L * 64))
-            .fluidInputs(BlackDwarfMatter.getFluid(L * 64))
-            .output(nanite, Shirabon, 16)
-            .EUt(4_800_000_000) // MAX+
-            .duration(2 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, LanthanumHexaboride)
+            notConsumable(QUANTUM_ANOMALY)
+            input(nanite, Neutronium)
+            input(block, Shirabon, 8)
+            input(GRAVITON_SHARD)
+            input(circuit, Tier.UHV)
+            fluidInputs(Creon.getPlasma(L * 16))
+            fluidInputs(WhiteDwarfMatter.getFluid(L * 64))
+            fluidInputs(BlackDwarfMatter.getFluid(L * 64))
+            output(nanite, Shirabon, 16)
+            EUt(4_800_000_000) // MAX+
+            duration(2 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
 
         // Mellion Nanite (for Supracausal Circuit Component recipes)
-        NANO_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, LuTmYVO)
-            .notConsumable(ENERGISED_TESSERACT)
-            .input(nanite, Copper)
-            .input(block, Mellion, 8)
-            .input(GRAVITON_SHARD)
-            .input(circuit, Tier.UHV)
-            .fluidInputs(ActiniumSuperhydride.getPlasma(50_000))
-            .fluidInputs(RawStarMatter.getPlasma(50_000))
-            .fluidInputs(Universium.getFluid(L * 16))
-            .output(nanite, Mellion, 16)
-            .EUt(4_800_000_000) // MAX+
-            .duration(2 * MINUTE + 30 * SECOND)
-            .tier(3)
-            .buildAndRegister()
-
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, LuTmYVO)
+            notConsumable(ENERGISED_TESSERACT)
+            input(nanite, Copper)
+            input(block, Mellion, 8)
+            input(GRAVITON_SHARD)
+            input(circuit, Tier.UHV)
+            fluidInputs(ActiniumSuperhydride.getPlasma(50_000))
+            fluidInputs(RawStarMatter.getPlasma(50_000))
+            fluidInputs(Universium.getFluid(L * 16))
+            output(nanite, Mellion, 16)
+            EUt(4_800_000_000) // MAX+
+            duration(2 * MINUTE + 30 * SECOND)
+            tier(3)
+        }
     }
 
     // @formatter:on

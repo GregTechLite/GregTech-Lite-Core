@@ -25,7 +25,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
@@ -72,7 +72,7 @@ internal object BlackHolesChain
     fun init()
     {
         // Time Dilation Containment Cell
-        AUTOCLAVE_RECIPES.buildRecipe {
+        AUTOCLAVE_RECIPES.addRecipe {
             input(BOSE_EINSTEIN_CONDENSATE)
             input(nanite, MagMatter)
             fluidInputs(SpaceTime.getFluid(L * 4))
@@ -83,7 +83,7 @@ internal object BlackHolesChain
         }
 
         // Neutronium Sphere
-        FLUID_SOLIDFICATION_RECIPES.buildRecipe {
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
             notConsumable(SHAPE_MOLD_BALL)
             fluidInputs(Neutronium.getFluid(L))
             output(NEUTRONIUM_SPHERE)
@@ -92,7 +92,7 @@ internal object BlackHolesChain
         }
 
         // High Density Protonic Matter Containment Cell
-        ELECTRIC_IMPLOSION_RECIPES.buildRecipe {
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
             input(TIME_DILATION_CONTAINMENT_CELL)
             input(NEUTRONIUM_SPHERE, 8)
             fluidInputs(NeutronProtonFermiSuperfluid.getFluid(16000))
@@ -102,7 +102,7 @@ internal object BlackHolesChain
         }
 
         // Exotic Matter Containment Cell
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             input(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER, 2)
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(CONTAINED_EXOTIC_MATTER)
@@ -112,7 +112,7 @@ internal object BlackHolesChain
         }
 
         // Triplet Neutronium Sphere
-        POLARIZER_RECIPES.buildRecipe {
+        POLARIZER_RECIPES.addRecipe {
             input(NEUTRONIUM_SPHERE)
             fluidInputs(Magnetium.getFluid(L * 4))
             output(TRIPLET_NEUTRONIUM_SPHERE)
@@ -121,7 +121,7 @@ internal object BlackHolesChain
         }
 
         // Contained RN (Reissner-Nordstrom) Black Hole Singularity
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             input(TIME_DILATION_CONTAINMENT_CELL)
             input(TRIPLET_NEUTRONIUM_SPHERE, 16)
             inputs(LEPTONIC_CHARGE)
@@ -131,7 +131,7 @@ internal object BlackHolesChain
         }
 
         // Contained KN (Kerr-Newmann) Black Hole Singularity
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             input(CONTAINED_RN_SINGULARITY, 2)
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(CONTAINED_KN_SINGULARITY)
@@ -141,7 +141,7 @@ internal object BlackHolesChain
         }
 
         // Contained Kerr Singularity
-        CHEMICAL_BATH_RECIPES.buildRecipe {
+        CHEMICAL_BATH_RECIPES.addRecipe {
             input(CONTAINED_KN_SINGULARITY)
             fluidInputs(Mellion.getFluid(L / 8))
             output(CONTAINED_KERR_SINGULARITY)
@@ -151,7 +151,7 @@ internal object BlackHolesChain
         }
 
         // Microwormhole Generator
-        SPACE_ASSEMBLER_RECIPES.buildRecipe {
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
             input(CONTAINED_KERR_SINGULARITY)
             input(FIELD_GENERATOR_UHV)
             input(plate, CosmicNeutronium, 2)
@@ -164,7 +164,7 @@ internal object BlackHolesChain
         }
 
         // Macrowormhole Generator
-        SPACE_ASSEMBLER_RECIPES.buildRecipe {
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
             input(CONTAINED_KERR_SINGULARITY)
             input(FIELD_GENERATOR_UEV)
             input(plate, Infinity, 4)
@@ -180,7 +180,7 @@ internal object BlackHolesChain
         }
 
         // Stabilized Wormhole Generator
-        SPACE_ASSEMBLER_RECIPES.buildRecipe {
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
             input(MACROWORMHOLE_GENERATOR)
             input(CONTAINED_KN_SINGULARITY, 2)
             input(FIELD_GENERATOR_UIV)
@@ -199,14 +199,14 @@ internal object BlackHolesChain
         }
 
         // Recursively Folded Negative Space
-        FORMING_PRESS_RECIPES.buildRecipe {
+        FORMING_PRESS_RECIPES.addRecipe {
             input(MICROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 2)
             EUt(VA[UXV])
             duration(1 * SECOND)
         }
 
-        FORMING_PRESS_RECIPES.buildRecipe {
+        FORMING_PRESS_RECIPES.addRecipe {
             input(MACROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 16)
             EUt(VA[UXV])
@@ -214,7 +214,7 @@ internal object BlackHolesChain
         }
 
         // Eigenfolded Spacetime Manifold
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             input(STABILIZED_WORMHOLE_GENERATOR)
             input(RECURSIVELY_FOLDED_NEGATIVE_SPACE)
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)

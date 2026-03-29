@@ -21,6 +21,7 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
@@ -51,76 +52,79 @@ internal object NanoparticlesChain
 
     fun init()
     {
-        // Palladium Loaded Rutile Nanoparticles
+        // region Palladium Loaded Rutile Nanoparticles
 
         // Pd(CH3COOH)2 + 3Li2TiO3 + 2HCl + H2O -> Pd(TiO2) + C4H6O4 + 2LiCl
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, PalladiumAcetate, 15)
-            .input(wireFine, LithiumTitanate, 24)
-            .fluidInputs(HydrochloricAcid.getFluid(2000))
-            .output(dust, PalladiumLoadedRutileNanoparticles, 4)
-            .output(dust, SuccinicAcid, 14)
-            .output(dust, LithiumChloride, 4)
-            .EUt(VA[EV])
-            .duration(10 * TICK)
-            .temperature(684)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(dust, PalladiumAcetate, 15)
+            input(wireFine, LithiumTitanate, 24)
+            fluidInputs(HydrochloricAcid.getFluid(2000))
+            output(dust, PalladiumLoadedRutileNanoparticles, 4)
+            output(dust, SuccinicAcid, 14)
+            output(dust, LithiumChloride, 4)
+            EUt(VA[EV])
+            duration(10 * TICK)
+            temperature(684)
+        }
 
-        // Silicon Nanoparticles
+        // endregion
+
+        // region Silicon Nanoparticles
 
         // Add another recipes for C8H16, the original produce is CPP byproducts.
         // 2C4H8 -> C8H16
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(Butene.getFluid(200))
-            .fluidOutputs(Octene.getFluid(100))
-            .EUt(VA[MV])
-            .duration(14 * TICK)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(Butene.getFluid(200))
+            fluidOutputs(Octene.getFluid(100))
+            EUt(VA[MV])
+            duration(14 * TICK)
+        }
 
         // (CH3)3N + C8H18 + C8H16 + Br -> C19H42BrN + H
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Trimethylamine.getFluid(1000))
-            .fluidInputs(Octane.getFluid(1000))
-            .fluidInputs(Octene.getFluid(1000))
-            .fluidInputs(Bromine.getFluid(1000))
-            .fluidOutputs(CetaneTrimethylAmmoniumBromide.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Trimethylamine.getFluid(1000))
+            fluidInputs(Octane.getFluid(1000))
+            fluidInputs(Octene.getFluid(1000))
+            fluidInputs(Bromine.getFluid(1000))
+            fluidOutputs(CetaneTrimethylAmmoniumBromide.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // Si(CH3)Cl3 + C19H42BrN + C6H8O7 + 2Na -> Si + 4C + 7C2H4O + 3HCl + N(CH2CH3)4Br + 2NaH
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, Sodium, 2)
-            .fluidInputs(Methyltrichlorosilane.getFluid(1000))
-            .fluidInputs(CetaneTrimethylAmmoniumBromide.getFluid(1000))
-            .fluidInputs(CitricAcid.getFluid(1000))
-            .output(dust, SiliconNanoparticles)
-            .output(dust, SodiumHydride, 4)
-            .output(dust, Carbon, 4)
-            .fluidOutputs(Acetaldehyde.getFluid(7000))
-            .fluidOutputs(HydrochloricAcid.getFluid(3000))
-            .fluidOutputs(TetraethylammoniumBromide.getFluid(1000))
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .temperature(1342)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(dust, Sodium, 2)
+            fluidInputs(Methyltrichlorosilane.getFluid(1000))
+            fluidInputs(CetaneTrimethylAmmoniumBromide.getFluid(1000))
+            fluidInputs(CitricAcid.getFluid(1000))
+            output(dust, SiliconNanoparticles)
+            output(dust, SodiumHydride, 4)
+            output(dust, Carbon, 4)
+            fluidOutputs(Acetaldehyde.getFluid(7000))
+            fluidOutputs(HydrochloricAcid.getFluid(3000))
+            fluidOutputs(TetraethylammoniumBromide.getFluid(1000))
+            EUt(VA[UV])
+            duration(20 * SECOND)
+            temperature(1342)
+        }
+
+        // endregion
 
         // Nanosilicon Cathode
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .input(dust, SiliconNanoparticles)
-            .input(dust, GrapheneOxide)
-            .input(dust, CalciumAlginate)
-            .input(dust, CarbonNanotube)
-            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
-            .fluidInputs(AscorbicAcid.getFluid(1000))
-            .output(NANOSILICON_CATHODE)
-            .fluidOutputs(DehydroascorbicAcid.getFluid(1000))
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            input(dust, SiliconNanoparticles)
+            input(dust, GrapheneOxide)
+            input(dust, CalciumAlginate)
+            input(dust, CarbonNanotube)
+            fluidInputs(SodiumCarbonateSolution.getFluid(1000))
+            fluidInputs(AscorbicAcid.getFluid(1000))
+            output(NANOSILICON_CATHODE)
+            fluidOutputs(DehydroascorbicAcid.getFluid(1000))
+            EUt(VA[UHV])
+            duration(20 * SECOND)
+        }
     }
 
     // @formatter:on

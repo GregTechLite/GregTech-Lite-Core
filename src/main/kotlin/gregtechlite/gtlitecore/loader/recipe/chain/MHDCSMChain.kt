@@ -30,6 +30,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -49,196 +50,196 @@ internal object MHDCSMChain
     fun init()
     {
         // Basic recipes for Raw Star Matter.
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, WhiteDwarfMatter)
-            .input(nanite, BlackDwarfMatter)
-            .input(nanite, Universium)
-            .fluidInputs(RawStarMatter.getFluid(L * 128))
-            .fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 32))
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, WhiteDwarfMatter)
+            input(nanite, BlackDwarfMatter)
+            input(nanite, Universium)
+            fluidInputs(RawStarMatter.getFluid(L * 128))
+            fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 32))
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
 
         // Advanced recipes for Raw Star Matter.
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Eternity)
-            .input(nanite, Universium)
-            .fluidInputs(RawStarMatter.getFluid(L * 512))
-            .fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 128))
-            .EUt(VA[OpV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Eternity)
+            input(nanite, Universium)
+            fluidInputs(RawStarMatter.getFluid(L * 512))
+            fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 128))
+            EUt(VA[OpV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // ingot
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(ingot, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(ingot, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Ingot
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(ingot, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(ingot, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // plate
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(plate, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(plate, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Plate
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(plate, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(plate, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // plateDouble
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(plateDouble, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
-            .output(plateDouble, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        // Double Plate
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(plateDouble, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
+            output(plateDouble, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(2 * SECOND)
+        }
 
-        // plateDense
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(plateDense, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
-            .output(plateDense, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(9 * SECOND)
-            .buildAndRegister()
+        // Dense Plate
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(plateDense, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
+            output(plateDense, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(9 * SECOND)
+        }
 
-        // foil
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(foil, Eternity, 4)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(foil, MagnetohydrodynamicallyConstrainedStarMatter, 4)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Foil
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(foil, Eternity, 4)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(foil, MagnetohydrodynamicallyConstrainedStarMatter, 4)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // stick
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(stick, Eternity, 2)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(stick, MagnetohydrodynamicallyConstrainedStarMatter, 2)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Stick
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(stick, Eternity, 2)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(stick, MagnetohydrodynamicallyConstrainedStarMatter, 2)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // stickLong
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(stickLong, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(stickLong, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Long Stick
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(stickLong, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(stickLong, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // bolt
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(bolt, Eternity, 8)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(bolt, MagnetohydrodynamicallyConstrainedStarMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Bolt
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(bolt, Eternity, 8)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(bolt, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // screw
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(screw, Eternity, 8)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(screw, MagnetohydrodynamicallyConstrainedStarMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Screw
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(screw, Eternity, 8)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(screw, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // ring
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(ring, Eternity, 4)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(ring, MagnetohydrodynamicallyConstrainedStarMatter, 4)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Ring
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(ring, Eternity, 4)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(ring, MagnetohydrodynamicallyConstrainedStarMatter, 4)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // round
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(round, Eternity, 8)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(round, MagnetohydrodynamicallyConstrainedStarMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Round
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(round, Eternity, 8)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(round, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // spring
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(spring, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(spring, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Spring
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(spring, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(spring, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // springSmall
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(springSmall, Eternity, 4)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(springSmall, MagnetohydrodynamicallyConstrainedStarMatter, 4)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Small Spring
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(springSmall, Eternity, 4)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(springSmall, MagnetohydrodynamicallyConstrainedStarMatter, 4)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // gear
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(gear, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
-            .output(gear, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        // Gear
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(gear, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
+            output(gear, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(4 * SECOND)
+        }
 
-        // gearSmall
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(gearSmall, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(gearSmall, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Small Gear
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(gearSmall, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(gearSmall, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireFine
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(wireFine, Eternity, 8)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
-            .output(wireFine, MagnetohydrodynamicallyConstrainedStarMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Fine Wire
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(wireFine, Eternity, 8)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
+            output(wireFine, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // rotor
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(rotor, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
-            .output(rotor, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        // Rotor
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(rotor, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
+            output(rotor, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(4 * SECOND)
+        }
 
-        // block
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(block, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
-            .output(block, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(9 * SECOND)
-            .buildAndRegister()
+        // Block
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(block, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
+            output(block, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(9 * SECOND)
+        }
 
-        // frameGt
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(frameGt, Eternity)
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
-            .output(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
-            .EUt(VA[UXV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        // Frame
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(frameGt, Eternity)
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
+            output(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
+            EUt(VA[UXV])
+            duration(2 * SECOND)
+        }
 
         // sheetedFrame
         ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(12),
@@ -246,14 +247,14 @@ internal object MHDCSMChain
             'P', UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
             'F', UnificationEntry(frameGt, MagnetohydrodynamicallyConstrainedStarMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(10)
-            .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 3)
-            .input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
-            .outputs(GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6))
-            .EUt(7) // ULV
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(10)
+            input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 3)
+            input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
+            outputs(GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6))
+            EUt(7) // ULV
+            duration(2 * SECOND + 5 * TICK)
+        }
 
         // wallGt
         ModHandler.addShapedRecipe(true, "magnetohydrodynamically_constrained_star_matter_wall_gt", GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6),
@@ -261,15 +262,14 @@ internal object MHDCSMChain
             'P', UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
             'S', UnificationEntry(screw, MagnetohydrodynamicallyConstrainedStarMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(11)
-            .input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 2)
-            .input(screw, MagnetohydrodynamicallyConstrainedStarMatter)
-            .outputs(GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(3))
-            .EUt(7)
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(11)
+            input(plate, MagnetohydrodynamicallyConstrainedStarMatter, 2)
+            input(screw, MagnetohydrodynamicallyConstrainedStarMatter)
+            outputs(GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(3))
+            EUt(7)
+            duration(2 * SECOND + 5 * TICK)
+        }
     }
 
     // @formatter:on

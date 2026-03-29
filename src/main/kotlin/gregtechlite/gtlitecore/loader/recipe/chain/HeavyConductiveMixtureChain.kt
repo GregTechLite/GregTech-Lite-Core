@@ -22,6 +22,7 @@ import gregtech.api.unification.ore.OrePrefix.gem
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
@@ -41,59 +42,58 @@ internal object HeavyConductiveMixtureChain
     fun init()
     {
         // 2Fr + C2H2 -> Fr2C2 + 2H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Francium, 2)
-            .fluidInputs(Acetylene.getFluid(1000))
-            .output(dust, FranciumCarbide, 4)
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[EV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Francium, 2)
+            fluidInputs(Acetylene.getFluid(1000))
+            output(dust, FranciumCarbide, 4)
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[EV])
+            duration(2 * SECOND)
+        }
 
         // 2B2O3 + CH4 -> B4C + 2H2O + 4O (drop)
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, BoronTrioxide, 10)
-            .fluidInputs(Methane.getFluid(1000))
-            .output(gem, BoronCarbide)
-            .fluidOutputs(Water.getFluid(2000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .temperature(922)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(dust, BoronTrioxide, 10)
+            fluidInputs(Methane.getFluid(1000))
+            output(gem, BoronCarbide)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+            temperature(922)
+        }
 
         // NaN3 + At + HCl -> AtN3 + NaCl + H
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, SodiumAzide, 4)
-            .input(dust, Astatine)
-            .fluidInputs(HydrochloricAcid.getFluid(1000))
-            .output(dust, AstatineAzide, 4)
-            .output(dust, Salt, 2)
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[UV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, SodiumAzide, 4)
+            input(dust, Astatine)
+            fluidInputs(HydrochloricAcid.getFluid(1000))
+            output(dust, AstatineAzide, 4)
+            output(dust, Salt, 2)
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[UV])
+            duration(5 * SECOND)
+        }
 
         // Ho + 3I -> HoI3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Holmium)
-            .input(dust, Iodine, 3)
-            .output(dust, HolmiumIodide, 4)
-            .EUt(VA[HV])
-            .duration(4 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Holmium)
+            input(dust, Iodine, 3)
+            output(dust, HolmiumIodide, 4)
+            EUt(VA[HV])
+            duration(4 * SECOND + 5 * TICK)
+        }
 
         // Fr2C2 + B4C + AtN3 + HoI3 -> (Fr2C2)(B4C)(AtN3)(HoI3)
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, FranciumCarbide, 4)
-            .input(dust, BoronCarbide, 5)
-            .input(dust, AstatineAzide, 4)
-            .input(dust, HolmiumIodide, 4)
-            .output(dust, HeavyConductiveMixture, 17)
-            .EUt(VA[UHV])
-            .duration(25 * SECOND)
-            .buildAndRegister()
-
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, FranciumCarbide, 4)
+            input(dust, BoronCarbide, 5)
+            input(dust, AstatineAzide, 4)
+            input(dust, HolmiumIodide, 4)
+            output(dust, HeavyConductiveMixture, 17)
+            EUt(VA[UHV])
+            duration(25 * SECOND)
+        }
     }
 
     // @formatter:on

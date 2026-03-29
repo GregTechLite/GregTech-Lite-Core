@@ -28,7 +28,7 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_GENERATOR_FUELS
@@ -50,7 +50,7 @@ internal object AntimatterChain
     fun init()
     {
         // Protomatter
-        LASER_ENGRAVER_RECIPES.buildRecipe {
+        LASER_ENGRAVER_RECIPES.addRecipe {
             notConsumable(QUANTUM_ANOMALY)
             fluidInputs(QuarkGluonPlasma.getFluid(1000))
             fluidOutputs(Protomatter.getFluid(1000))
@@ -59,7 +59,7 @@ internal object AntimatterChain
             cleanroom()
         }
 
-        LASER_ENGRAVER_RECIPES.buildRecipe {
+        LASER_ENGRAVER_RECIPES.addRecipe {
             notConsumable(QUANTUM_ANOMALY)
             fluidInputs(HighEnergyQuarkGluonPlasma.getFluid(1000))
             fluidOutputs(Protomatter.getFluid(10000))
@@ -69,7 +69,7 @@ internal object AntimatterChain
         }
 
         // Protomatter -> Semistable Antimatter
-        ANTIMATTER_FORGE_RECIPES.buildRecipe {
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
             circuitMeta(1)
             fluidInputs(Protomatter.getFluid(1000)) // 100 : 1
             fluidInputs(Helium.getPlasma(1000))
@@ -81,7 +81,7 @@ internal object AntimatterChain
             duration(5 * SECOND)
         }
 
-        ANTIMATTER_FORGE_RECIPES.buildRecipe {
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
             circuitMeta(2)
             fluidInputs(Protomatter.getFluid(10000)) // 10 : 1
             fluidInputs(Helium.getPlasma(1000))
@@ -97,7 +97,7 @@ internal object AntimatterChain
             duration(5 * SECOND)
         }
 
-        ANTIMATTER_FORGE_RECIPES.buildRecipe {
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
             circuitMeta(3)
             fluidInputs(Protomatter.getFluid(100_000)) // 1 : 1
             fluidInputs(Helium.getPlasma(1000))
@@ -117,7 +117,7 @@ internal object AntimatterChain
             duration(5 * SECOND)
         }
 
-        ANTIMATTER_FORGE_RECIPES.buildRecipe {
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
             circuitMeta(4)
             fluidInputs(Protomatter.getFluid(1_000_000)) // 1 : 10
             fluidInputs(Helium.getPlasma(1000))
@@ -141,7 +141,7 @@ internal object AntimatterChain
             duration(5 * SECOND)
         }
 
-        ANTIMATTER_FORGE_RECIPES.buildRecipe {
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
             circuitMeta(5)
             fluidInputs(Protomatter.getFluid(10_000_000)) // 1 : 100
             fluidInputs(Helium.getPlasma(1000))
@@ -170,7 +170,7 @@ internal object AntimatterChain
         }
 
         // Semistable Antimatter -> Antimatter
-        COMPRESSOR_RECIPES.buildRecipe {
+        COMPRESSOR_RECIPES.addRecipe {
             fluidInputs(SemistableAntimatter.getFluid(1000))
             fluidOutputs(Antimatter.getFluid(100))
             EUt(VA[UEV])
@@ -180,7 +180,7 @@ internal object AntimatterChain
         // region Antimatter Annihilation
 
         // 1.0
-        ANTIMATTER_GENERATOR_FUELS.buildRecipe {
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Lead.getPlasma(1000))
             EUt(1_000_000_000_000)
@@ -188,7 +188,7 @@ internal object AntimatterChain
         }
 
         // 1.5
-        ANTIMATTER_GENERATOR_FUELS.buildRecipe {
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Infinity.getFluid(L * 4))
             EUt(1_500_000_000_000)
@@ -196,7 +196,7 @@ internal object AntimatterChain
         }
 
         // 2.0
-        ANTIMATTER_GENERATOR_FUELS.buildRecipe {
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Shirabon.getFluid(L * 4))
             EUt(2_000_000_000_000)
@@ -204,7 +204,7 @@ internal object AntimatterChain
         }
 
         // 4.0
-        ANTIMATTER_GENERATOR_FUELS.buildRecipe {
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(RawStarMatter.getFluid(L * 4))
             EUt(4_000_000_000_000)

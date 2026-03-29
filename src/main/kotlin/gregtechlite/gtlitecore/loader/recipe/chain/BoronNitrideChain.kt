@@ -45,7 +45,7 @@ import gregtech.common.items.MetaItems.DYNAMITE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
@@ -83,7 +83,7 @@ internal object BoronNitrideChain
     private fun boronTrioxideProcess()
     {
         // Na2B4O7·10H2O + 2HCl -> 4H3BO3 + 2NaCl + 5H2O
-        CHEMICAL_BATH_RECIPES.buildRecipe {
+        CHEMICAL_BATH_RECIPES.addRecipe {
             input(dust, Borax, 23)
             fluidInputs(HydrochloricAcid.getFluid(2000))
             output(dust, BoricAcid, 16)
@@ -94,7 +94,7 @@ internal object BoronNitrideChain
         }
 
         // 2H3BO3 -> B2O3 + 3H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.buildRecipe {
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
             input(dust, BoricAcid, 8)
             output(dust, BoronTrioxide, 5)
             fluidOutputs(Water.getFluid(3000))
@@ -106,7 +106,7 @@ internal object BoronNitrideChain
     private fun borazineProcess()
     {
         // B2O3 + 6HF -> 2BF3 + 3H2O
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, BoricAcid, 5)
             fluidInputs(HydrofluoricAcid.getFluid(6000))
             fluidOutputs(BoronTrifluoride.getFluid(2000))
@@ -116,7 +116,7 @@ internal object BoronNitrideChain
         }
 
         // Li + H -> LiH
-        BURNER_REACTOR_RECIPES.buildRecipe {
+        BURNER_REACTOR_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, Lithium)
             fluidInputs(Hydrogen.getFluid(1000))
@@ -126,7 +126,7 @@ internal object BoronNitrideChain
         }
 
         // 8BF3 + 6LiH -> B2H6 + 6LiBF4
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, LithiumHydride, 12)
             fluidInputs(BoronTrifluoride.getFluid(8000))
             output(dust, LithiumTetrafluoroborate, 36)
@@ -139,7 +139,7 @@ internal object BoronNitrideChain
         // This reaction cycle both BF3 and LiH with above reactions,
         // we can see that 8BF3 + 6LiH -> 6LiBF4 -> 6BF3 + 6LiH, and 2BF3 to be B2H6,
         // it means LiH is cycle and BF3 is part cycle.
-        CHEMICAL_DEHYDRATOR_RECIPES.buildRecipe {
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
             input(dust, LithiumTetrafluoroborate, 6)
             output(dust, LithiumHydride, 2)
             fluidOutputs(BoronTrifluoride.getFluid(1000))
@@ -148,7 +148,7 @@ internal object BoronNitrideChain
         }
 
         // 3B2H6 + 6NH3 -> 2B3H6N3 + 24H
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             fluidInputs(Diborane.getFluid(3000))
             fluidInputs(Ammonia.getFluid(6000))
             fluidOutputs(Borazine.getFluid(2000))
@@ -161,7 +161,7 @@ internal object BoronNitrideChain
     private fun boronNitrideProcess()
     {
         // 2B2O3 + 3CCl4 -> 4BCl3 + 3CO2
-        BURNER_REACTOR_RECIPES.buildRecipe {
+        BURNER_REACTOR_RECIPES.addRecipe {
             input(dust, BoronTrioxide, 10)
             fluidInputs(CarbonTetrachloride.getFluid(3000))
             fluidOutputs(BoronTrichloride.getFluid(4000))
@@ -171,7 +171,7 @@ internal object BoronNitrideChain
         }
 
         // 3BCl3 + 3NH4Cl -> B3Cl3H3N3 + 9HCl
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, AmmoniumChloride, 6)
             fluidInputs(BoronTrichloride.getFluid(3000))
             fluidOutputs(Trichloroborazine.getFluid(1000))
@@ -181,7 +181,7 @@ internal object BoronNitrideChain
         }
 
         // B3H6N3 + 3O -> 3h-BN + 3H2O
-        CVD_RECIPES.buildRecipe {
+        CVD_RECIPES.addRecipe {
             fluidInputs(Borazine.getFluid(1000))
             fluidInputs(Oxygen.getFluid(3000))
             output(gem, HexagonalBoronNitride, 6)
@@ -193,7 +193,7 @@ internal object BoronNitrideChain
 
         // Advanced recipes for h-BN, used Nickel foil as catalyst bed,
         // and B + N -> h-BN via molecular beaming.
-        MOLECULAR_BEAM_RECIPES.buildRecipe {
+        MOLECULAR_BEAM_RECIPES.addRecipe {
             input(foil, Nickel, 8)
             input(dust, Boron)
             fluidInputs(Nitrogen.getFluid(1000))
@@ -204,7 +204,7 @@ internal object BoronNitrideChain
         }
 
         // h-BN -> c-BN
-        CVD_RECIPES.buildRecipe {
+        CVD_RECIPES.addRecipe {
             input(dust, HexagonalBoronNitride, 1)
             output(gem, CubicBoronNitride, 1)
             EUt(VA[UV])
@@ -213,7 +213,7 @@ internal object BoronNitrideChain
         }
 
         // B3Cl3H3N3 -> 3a-BN + 3HCl
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, Caesium)
             fluidInputs(Trichloroborazine.getFluid(1000))
             output(dust, AmorphousBoronNitride, 6)
@@ -223,7 +223,7 @@ internal object BoronNitrideChain
         }
 
         // c-BN + C -> BCN
-        IMPLOSION_RECIPES.buildRecipe {
+        IMPLOSION_RECIPES.addRecipe {
             input(dust, CubicBoronNitride)
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
@@ -232,7 +232,7 @@ internal object BoronNitrideChain
             explosives(32)
         }
 
-        IMPLOSION_RECIPES.buildRecipe {
+        IMPLOSION_RECIPES.addRecipe {
             input(dust, CubicBoronNitride)
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
@@ -241,7 +241,7 @@ internal object BoronNitrideChain
             explosives(DYNAMITE.getStack(16))
         }
 
-        ELECTRIC_IMPLOSION_RECIPES.buildRecipe {
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
             input(dust, CubicBoronNitride)
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
@@ -250,7 +250,7 @@ internal object BoronNitrideChain
         }
 
         // BCN + C -> c-BC2N
-        CVD_RECIPES.buildRecipe {
+        CVD_RECIPES.addRecipe {
             input(dust, Heterodiamond)
             input(dust, Carbon)
             output(gem, CubicHeterodiamond)
@@ -263,7 +263,7 @@ internal object BoronNitrideChain
         // the compatibility with its material parts and tool parts.
 
         // Allowed gemExquisite lathing to c-BN buzz saw.
-        LATHE_RECIPES.buildRecipe {
+        LATHE_RECIPES.addRecipe {
             input(gemExquisite, CubicBoronNitride)
             output(toolHeadBuzzSaw, CubicBoronNitride)
             EUt(56) // MV
@@ -271,7 +271,7 @@ internal object BoronNitrideChain
         }
 
         // Crystallized stick and plate gluing to gear.
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(1)
             input(plate, CubicBoronNitride, 4)
             input(stick, CubicBoronNitride, 4)

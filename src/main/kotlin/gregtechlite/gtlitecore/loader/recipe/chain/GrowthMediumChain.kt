@@ -12,8 +12,6 @@ import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.metatileentity.multiblock.CleanroomType
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -54,6 +52,11 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.extension.sterileCleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
@@ -85,9 +88,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DIRTY_PETRI_DISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ESCHERICHIA_COLI_PETRI_DISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STREPTOCOCCUS_PYOGENES_PETRI_DISH
-import net.minecraft.init.Blocks
-import net.minecraft.init.Items
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Blocks.DIRT
+import net.minecraft.init.Items.ROTTEN_FLESH
 
 internal object GrowthMediumChain
 {
@@ -105,359 +107,354 @@ internal object GrowthMediumChain
     private fun bloodProcess()
     {
         // Blood -> Blood Cells + Blood Plasma
-        SONICATION_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Blood.getFluid(1000))
-            .fluidOutputs(BloodCells.getFluid(500))
-            .fluidOutputs(BloodPlasma.getFluid(500))
-            .EUt(VA[HV])
-            .duration(40 * SECOND)
-            .buildAndRegister()
+        SONICATION_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Blood.getFluid(1000))
+            fluidOutputs(BloodCells.getFluid(500))
+            fluidOutputs(BloodPlasma.getFluid(500))
+            EUt(VA[HV])
+            duration(40 * SECOND)
+        }
 
         // Blood Plasma -> bFGF, EGF, CAT
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(BloodPlasma.getFluid(1000))
-            .fluidOutputs(BFGF.getFluid(200))
-            .fluidOutputs(EGF.getFluid(200))
-            .fluidOutputs(CAT.getFluid(200))
-            .EUt(VA[HV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(BloodPlasma.getFluid(1000))
+            fluidOutputs(BFGF.getFluid(200))
+            fluidOutputs(EGF.getFluid(200))
+            fluidOutputs(CAT.getFluid(200))
+            EUt(VA[HV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Blood and Meat convert.
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_BALL)
-            .fluidInputs(Blood.getFluid(L))
-            .output(dust, Meat)
-            .EUt(VA[ULV])
-            .duration(4 * TICK)
-            .buildAndRegister()
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_BALL)
+            fluidInputs(Blood.getFluid(L))
+            output(dust, Meat)
+            EUt(VA[ULV])
+            duration(4 * TICK)
+        }
 
-        EXTRACTOR_RECIPES.recipeBuilder()
-            .input(dust, Meat)
-            .fluidOutputs(Blood.getFluid(L))
-            .EUt(V[ULV])
-            .duration(8 * TICK)
-            .buildAndRegister()
-
+        EXTRACTOR_RECIPES.addRecipe {
+            input(dust, Meat)
+            fluidOutputs(Blood.getFluid(L))
+            EUt(V[ULV])
+            duration(8 * TICK)
+        }
     }
 
     private fun bacterialGrowthMediumProcess()
     {
-        // Deleted original BacterialSludge -> EnrichedBacterialSludge brewing recipe.
-        GTRecipeHandler.removeRecipesByInputs(BREWING_RECIPES,
+        // Deleted original Bacterial Sludge -> Enriched Bacterial Sludge brewing recipe.
+        BREWING_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Uranium238)),
             arrayOf(BacterialSludge.getFluid(1000)))
 
-        GTRecipeHandler.removeRecipesByInputs(BREWING_RECIPES,
+        BREWING_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dustTiny, Uranium235)),
             arrayOf(BacterialSludge.getFluid(1000)))
 
-        GTRecipeHandler.removeRecipesByInputs(BREWING_RECIPES,
+        BREWING_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dustTiny, Naquadria)),
             arrayOf(BacterialSludge.getFluid(1000)))
 
         // 2x BacterialSludge -> 1x EnrichedBacterialSludge
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(BacterialSludge.getFluid(200))
-            .fluidOutputs(EnrichedBacterialSludge.getFluid(100))
-            .EUt(VA[EV])
-            .duration(6 * SECOND + 8 * TICK)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(BacterialSludge.getFluid(200))
+            fluidOutputs(EnrichedBacterialSludge.getFluid(100))
+            EUt(VA[EV])
+            duration(6 * SECOND + 8 * TICK)
+            sterileCleanroom()
+        }
 
         // Deleted original EnrichedBacterialSludge -> Mutagen distillation recipe.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(EnrichedBacterialSludge.getFluid(1000)))
 
         // 1x EnrichedBacterialSludge -> 1x Mutagen
-        BREWING_RECIPES.recipeBuilder()
-                .input("dustTinyRadioactive")
-                .fluidInputs(EnrichedBacterialSludge.getFluid(1000))
-                .fluidOutputs(Mutagen.getFluid(1000))
-                .EUt(VHA[HV])
-                .duration(20 * SECOND)
-                .cleanroom(CleanroomType.STERILE_CLEANROOM)
-                .buildAndRegister()
+        BREWING_RECIPES.addRecipe {
+            input("dustTinyRadioactive")
+            fluidInputs(EnrichedBacterialSludge.getFluid(1000))
+            fluidOutputs(Mutagen.getFluid(1000))
+            EUt(VHA[HV])
+            duration(20 * SECOND)
+            sterileCleanroom()
+        }
 
         // Gelatin Mixture
         GTLiteRecipeHandler.removeMixerRecipes(
             arrayOf(OreDictUnifier.get(dust, Collagen, 4)),
             arrayOf(PhosphoricAcid.getFluid(1000),
-                Water.getFluid(3000)))
+                    Water.getFluid(3000)))
 
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, Collagen, 4)
-            .input(dust, RedAlgae, 2)
-            .fluidInputs(PhosphoricAcid.getFluid(1000))
-            .fluidInputs(DistilledWater.getFluid(2000))
-            .fluidOutputs(GelatinMixture.getFluid(6000))
-            .EUt(VA[HV])
-            .duration(1 * MINUTE + 20 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
-
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, Collagen, 4)
+            input(dust, RedAlgae, 2)
+            fluidInputs(PhosphoricAcid.getFluid(1000))
+            fluidInputs(DistilledWater.getFluid(2000))
+            fluidOutputs(GelatinMixture.getFluid(6000))
+            EUt(VA[HV])
+            duration(1 * MINUTE + 20 * SECOND)
+            sterileCleanroom()
+        }
     }
 
     private fun bacteriasProcess()
     {
         // Mud Ball
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Blocks.DIRT))
-            .fluidInputs(Water.getFluid(1000))
-            .output(MUD_BALL, 4)
-            .EUt(VA[ULV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            inputs(DIRT)
+            fluidInputs(Water.getFluid(1000))
+            output(MUD_BALL, 4)
+            EUt(VA[ULV])
+            duration(10 * TICK)
+        }
 
         // Yeast
-        BREWING_RECIPES.recipeBuilder()
-            .input(dust, Wheat)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Yeast, 2)
-            .EUt(VA[LV])
-            .duration(4 * TICK)
-            .buildAndRegister()
+        BREWING_RECIPES.addRecipe {
+            input(dust, Wheat)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Yeast, 2)
+            EUt(VA[LV])
+            duration(4 * TICK)
+        }
 
         // H2SO4 + H2O2 -> (H2SO4)(H2O2)
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .fluidInputs(HydrogenPeroxide.getFluid(1000))
-            .fluidOutputs(PiranhaSolution.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            fluidInputs(HydrogenPeroxide.getFluid(1000))
+            fluidOutputs(PiranhaSolution.getFluid(2000))
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Dirty Petri Dish -> Petri Dish convert
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(DIRTY_PETRI_DISH)
-            .fluidInputs(PiranhaSolution.getFluid(100))
-            .output(PETRI_DISH)
-            .EUt(VA[LV])
-            .duration(1 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(DIRTY_PETRI_DISH)
+            fluidInputs(PiranhaSolution.getFluid(100))
+            output(PETRI_DISH)
+            EUt(VA[LV])
+            duration(1 * SECOND + 5 * TICK)
+        }
 
         // Brevibacterium Flavum Petri Dish
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .input(PETRI_DISH)
-            .input(MUD_BALL)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .output(BREVIBACTERIUM_FLAVUM_PETRI_DISH)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            input(PETRI_DISH)
+            input(MUD_BALL)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            output(BREVIBACTERIUM_FLAVUM_PETRI_DISH)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
-        PACKER_RECIPES.recipeBuilder()
-            .input(BREVIBACTERIUM_FLAVUM_PETRI_DISH)
-            .output(dust, BrevibacteriumFlavum)
-            .output(DIRTY_PETRI_DISH)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        PACKER_RECIPES.addRecipe {
+            input(BREVIBACTERIUM_FLAVUM_PETRI_DISH)
+            output(dust, BrevibacteriumFlavum)
+            output(DIRTY_PETRI_DISH)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // Cupriavidus Necator Petri Dish
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .input(PETRI_DISH)
-            .input(dust, Clay)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .output(CUPRIAVIDUS_NECATOR_PETRI_DISH)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            input(PETRI_DISH)
+            input(dust, Clay)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            output(CUPRIAVIDUS_NECATOR_PETRI_DISH)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
-        PACKER_RECIPES.recipeBuilder()
-            .input(CUPRIAVIDUS_NECATOR_PETRI_DISH)
-            .output(dust, CupriavidusNecator)
-            .output(DIRTY_PETRI_DISH)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        PACKER_RECIPES.addRecipe {
+            input(CUPRIAVIDUS_NECATOR_PETRI_DISH)
+            output(dust, CupriavidusNecator)
+            output(DIRTY_PETRI_DISH)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // Streptococcus Pyogenes Petri Dish (for Sugar processing, it is not required in this chain).
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .input(PETRI_DISH)
-            .inputs(ItemStack(Items.ROTTEN_FLESH))
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .output(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            input(PETRI_DISH)
+            inputs(ROTTEN_FLESH)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            output(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
-        PACKER_RECIPES.recipeBuilder()
-            .input(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
-            .output(dust, StreptococcusPyogenes)
-            .output(DIRTY_PETRI_DISH)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        PACKER_RECIPES.addRecipe {
+            input(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
+            output(dust, StreptococcusPyogenes)
+            output(DIRTY_PETRI_DISH)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // Escherichia Coli Petri Dish (for Succinic Acid processing, it is not required in this chain).
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .input(PETRI_DISH)
-            .input(dust, Meat)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .output(ESCHERICHIA_COLI_PETRI_DISH)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            input(PETRI_DISH)
+            input(dust, Meat)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            output(ESCHERICHIA_COLI_PETRI_DISH)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
-        PACKER_RECIPES.recipeBuilder()
-            .input(ESCHERICHIA_COLI_PETRI_DISH)
-            .output(dust, EscherichiaColi)
-            .output(DIRTY_PETRI_DISH)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
-
+        PACKER_RECIPES.addRecipe {
+            input(ESCHERICHIA_COLI_PETRI_DISH)
+            output(dust, EscherichiaColi)
+            output(DIRTY_PETRI_DISH)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
     }
 
     private fun sterilizedGrowthMediumProcess()
     {
-
         // Brevibacterium Flavum + Sugar -> 2C5H10N2O3
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, BrevibacteriumFlavum)
-            .input(dust, Sugar)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .output(dust, Glutamine, 40)
-            .EUt(VA[IV])
-            .duration(25 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, BrevibacteriumFlavum)
+            input(dust, Sugar)
+            fluidInputs(DistilledWater.getFluid(1000))
+            output(dust, Glutamine, 40)
+            EUt(VA[IV])
+            duration(25 * SECOND)
+            sterileCleanroom()
+        }
 
-        // Shallow copying of Brevibacterium Flavum
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, BrevibacteriumFlavum)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .output(dust, BrevibacteriumFlavum, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        // Shallow copying of Brevibacterium Flavum.
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, BrevibacteriumFlavum)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            fluidInputs(DistilledWater.getFluid(1000))
+            output(dust, BrevibacteriumFlavum, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
         // Linoleic Acid
-        BREWING_RECIPES.recipeBuilder()
-            .input(dust, Yeast)
-            .fluidInputs(Biomass.getFluid(1000))
-            .fluidOutputs(LinoleicAcid.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        BREWING_RECIPES.addRecipe {
+            input(dust, Yeast)
+            fluidInputs(Biomass.getFluid(1000))
+            fluidOutputs(LinoleicAcid.getFluid(1000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
 
         // Vitamin-H
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, CupriavidusNecator)
-            .input(dust, Sugar)
-            .fluidInputs(Nitrogen.getFluid(1000))
-            .fluidInputs(Hydrogen.getFluid(1000))
-            .output(dust, Biotin, 64) // 2x
-            .EUt(VA[IV])
-            .duration(25 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, CupriavidusNecator)
+            input(dust, Sugar)
+            fluidInputs(Nitrogen.getFluid(1000))
+            fluidInputs(Hydrogen.getFluid(1000))
+            output(dust, Biotin, 64)
+            EUt(VA[IV])
+            duration(25 * SECOND)
+            sterileCleanroom()
+        }
 
         // Shallow copying of Cupriavidus Necator
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, CupriavidusNecator)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .output(dust, CupriavidusNecator, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, CupriavidusNecator)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            fluidInputs(DistilledWater.getFluid(1000))
+            output(dust, CupriavidusNecator, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
         // Deleted original RawGrowthMedium -> SterileGrowthMedium fluid heating recipes.
-        GTRecipeHandler.removeRecipesByInputs(FLUID_HEATER_RECIPES,
+        FLUID_HEATER_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(RawGrowthMedium.getFluid(100)))
 
-        LARGE_MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(dust, Glutamine, 20)
-            .input(dust, Biotin, 32)
-            .fluidInputs(Biomass.getFluid(16000))
-            .fluidInputs(BloodCells.getFluid(4000))
-            .fluidInputs(LinoleicAcid.getFluid(2000))
-            .fluidInputs(BFGF.getFluid(500))
-            .fluidInputs(EGF.getFluid(250))
-            .fluidInputs(CAT.getFluid(100))
-            .fluidOutputs(SterileGrowthMedium.getFluid(64000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        LARGE_MIXER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(dust, Glutamine, 20)
+            input(dust, Biotin, 32)
+            fluidInputs(Biomass.getFluid(16000))
+            fluidInputs(BloodCells.getFluid(4000))
+            fluidInputs(LinoleicAcid.getFluid(2000))
+            fluidInputs(BFGF.getFluid(500))
+            fluidInputs(EGF.getFluid(250))
+            fluidInputs(CAT.getFluid(100))
+            fluidOutputs(SterileGrowthMedium.getFluid(64000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
         // Sorbose
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, StreptococcusPyogenes)
-            .input(dust, Glucose, 24)
-            .output(dust, Sorbose, 24)
-            .EUt(VA[IV])
-            .duration(25 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, StreptococcusPyogenes)
+            input(dust, Glucose, 24)
+            output(dust, Sorbose, 24)
+            EUt(VA[IV])
+            duration(25 * SECOND)
+            sterileCleanroom()
+        }
 
         // Shallow copying of Streptococcus Pyogenes.
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, StreptococcusPyogenes)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .output(dust, StreptococcusPyogenes, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, StreptococcusPyogenes)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            fluidInputs(DistilledWater.getFluid(1000))
+            output(dust, StreptococcusPyogenes, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
         // Succinic Acid
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, EscherichiaColi)
-            .input(dust, Sugar)
-            .output(dust, SuccinicAcid, 14)
-            .EUt(VA[IV])
-            .duration(25 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, EscherichiaColi)
+            input(dust, Sugar)
+            output(dust, SuccinicAcid, 14)
+            EUt(VA[IV])
+            duration(25 * SECOND)
+            sterileCleanroom()
+        }
 
         // Shallow copying of Escherichia Coli.
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, EscherichiaColi)
-            .fluidInputs(RawGrowthMedium.getFluid(100))
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .output(dust, EscherichiaColi, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, EscherichiaColi)
+            fluidInputs(RawGrowthMedium.getFluid(100))
+            fluidInputs(DistilledWater.getFluid(1000))
+            output(dust, EscherichiaColi, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+            sterileCleanroom()
+        }
 
         // Glucose
-        BIO_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, EscherichiaColi)
-            .input(dust, Cellulose, 21)
-            .output(dust, Glucose, 24)
-            .EUt(VA[IV])
-            .duration(25 * SECOND)
-            .cleanroom(CleanroomType.STERILE_CLEANROOM)
-            .buildAndRegister()
-
+        BIO_REACTOR_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, EscherichiaColi)
+            input(dust, Cellulose, 21)
+            output(dust, Glucose, 24)
+            EUt(VA[IV])
+            duration(25 * SECOND)
+            sterileCleanroom()
+        }
     }
 
     // @formatter:on

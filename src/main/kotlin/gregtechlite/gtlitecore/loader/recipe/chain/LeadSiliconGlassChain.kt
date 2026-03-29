@@ -10,6 +10,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 
@@ -21,16 +22,15 @@ internal object LeadSiliconGlassChain
     fun init()
     {
         // PbO + SiO2 -> Pb-Si Glass
-        ROASTER_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_BLOCK)
-            .input(dust, Massicot, 2)
-            .input(dust, SiliconDioxide, 3)
-            .fluidInputs(Glass.getFluid(L))
-            .outputs(GlassCasing.LEAD_SILICON.stack)
-            .EUt(VA[EV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
-
+        ROASTER_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_BLOCK)
+            input(dust, Massicot, 2)
+            input(dust, SiliconDioxide, 3)
+            fluidInputs(Glass.getFluid(L))
+            outputs(GlassCasing.LEAD_SILICON.stack)
+            EUt(VA[EV])
+            duration(30 * SECOND)
+        }
     }
 
     // @formatter:on

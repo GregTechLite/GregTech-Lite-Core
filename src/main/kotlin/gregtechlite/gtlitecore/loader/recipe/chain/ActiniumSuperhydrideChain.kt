@@ -25,7 +25,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumOxalate
@@ -47,7 +47,7 @@ internal object ActiniumSuperhydrideChain
     fun init()
     {
         // Na + H -> NaH
-        BURNER_REACTOR_RECIPES.buildRecipe {
+        BURNER_REACTOR_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, Sodium)
             fluidInputs(Hydrogen.getFluid(1000))
@@ -57,7 +57,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Ac + 2C2H2O4 + 2O -> Ac(CO2)4 + 2H2O
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, Actinium)
             fluidInputs(OxalicAcid.getFluid(2000))
             fluidInputs(Oxygen.getFluid(2000))
@@ -68,7 +68,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Ac(CO2)4 + 13Na + 3NaH + 4CCl4 -> AcH3 + 16NaCl + 8CO2
-        BURNER_REACTOR_RECIPES.buildRecipe {
+        BURNER_REACTOR_RECIPES.addRecipe {
             input(dust, ActiniumOxalate, 13)
             input(dust, Sodium, 13)
             input(dust, SodiumHydride, 6)
@@ -81,7 +81,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Tier 1: 16AcH3 + 144H -> 16AcH12
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, ActiniumTrihydride, 64)
             inputs(ItemStack(TARANIUM_CHARGE))
@@ -92,7 +92,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Tier 2: 64AcH3 + 576H -> 64AcH12
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             circuitMeta(2)
             input(dust, ActiniumTrihydride, 64)
             input(dust, ActiniumTrihydride, 64)
@@ -106,7 +106,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Tier 3: 576AcH3 + 19008H -> 576AcH12
-        STELLAR_FORGE_RECIPES.buildRecipe {
+        STELLAR_FORGE_RECIPES.addRecipe {
             input(block, ActiniumTrihydride, 64)
             inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
             fluidInputs(Hydrogen.getFluid(19008000))
@@ -116,7 +116,7 @@ internal object ActiniumSuperhydrideChain
         }
 
         // Solidification of AcH12.
-        VACUUM_RECIPES.buildRecipe {
+        VACUUM_RECIPES.addRecipe {
             fluidInputs(ActiniumSuperhydride.getPlasma(1000))
             fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 500))
             output(dust, ActiniumSuperhydride, 13)

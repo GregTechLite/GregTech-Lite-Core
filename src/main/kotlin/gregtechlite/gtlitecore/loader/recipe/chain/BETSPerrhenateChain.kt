@@ -24,7 +24,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
@@ -48,7 +48,7 @@ internal object BETSPerrhenateChain
     fun init()
     {
         // NaOH + CO -> HCOONa
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, SodiumHydroxide, 3)
             fluidInputs(CarbonMonoxide.getFluid(1000))
             output(dust, SodiumFormate, 5)
@@ -57,7 +57,7 @@ internal object BETSPerrhenateChain
         }
 
         // HCOONa + H2SO4 -> Na2S2O3 + 2HCOOH (cycle)
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, SodiumFormate, 5)
             fluidInputs(SulfuricAcid.getFluid(1000))
             output(dust, SodiumThiosulfate, 7)
@@ -67,7 +67,7 @@ internal object BETSPerrhenateChain
         }
 
         // 4Na + 2HCOOH + 2Br + 2H2O -> 4NaOH + C2H2Br2O2 + 2H
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, Sodium, 4)
             fluidInputs(FormicAcid.getFluid(2000))
             fluidInputs(Bromine.getFluid(2000))
@@ -80,7 +80,7 @@ internal object BETSPerrhenateChain
         }
 
         // 2Na2S2O3 + C2H2Br2O2 + C2H4Cl2 -> 2NaCl + 2NaHSO4 + C4H4S2Br2
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, SodiumThiosulfate, 14)
             fluidInputs(Dibromoacrolein.getFluid(1000))
             fluidInputs(Dichloroethane.getFluid(1000))
@@ -92,7 +92,7 @@ internal object BETSPerrhenateChain
         }
 
         // 2Se + C4H4S2Br2 + 2C4H9Li -> C4H4S2Li2Se2 + 2C4H9Br
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, Selenium, 2)
             fluidInputs(Bromodihydrothiine.getFluid(1000))
             fluidInputs(Butyllithium.getFluid(2000))
@@ -103,7 +103,7 @@ internal object BETSPerrhenateChain
         }
 
         // 2C4H4S2Li2Se2 + C2F4 -> C10H8S4Se4 + 4LiF
-        CHEMICAL_RECIPES.buildRecipe {
+        CHEMICAL_RECIPES.addRecipe {
             input(dust, LithiumThiinediselenide, 28)
             fluidInputs(Tetrafluoroethylene.getFluid(1000))
             notConsumable(TitaniumTetrachloride.getFluid(1))
@@ -114,7 +114,7 @@ internal object BETSPerrhenateChain
         }
 
         // C10H8S4Se4 + NH4ReO4 -> (C10H8S4Se4)ReO4
-        ROASTER_RECIPES.buildRecipe {
+        ROASTER_RECIPES.addRecipe {
             input(dust, BETS, 26)
             input(dust, AmmoniumPerrhenate, 10)
             output(dust, BETSPerrhenate, 31)

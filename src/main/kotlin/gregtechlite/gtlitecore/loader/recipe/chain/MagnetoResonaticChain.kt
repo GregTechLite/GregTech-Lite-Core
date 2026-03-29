@@ -15,6 +15,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTelluride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
@@ -29,35 +30,35 @@ internal object MagnetoResonaticChain
     fun init()
     {
         // Zr + 2O -> c-ZrO2
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, Zirconium)
-            .fluidInputs(Oxygen.getFluid(2000))
-            .output(gem, CubicZirconia)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .temperature(1132)
-            .buildAndRegister()
+        CVD_RECIPES.addRecipe {
+            input(dust, Zirconium)
+            fluidInputs(Oxygen.getFluid(2000))
+            output(gem, CubicZirconia)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            temperature(1132)
+        }
 
         // 2Bi + 3Te -> Bi2Te3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Tellurium, 3)
-            .input(dust, Bismuth, 2)
-            .output(dust, BismuthTelluride, 5)
-            .EUt(VA[MV])
-            .duration(8 * SECOND)
-            .buildAndRegister();
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Tellurium, 3)
+            input(dust, Bismuth, 2)
+            output(dust, BismuthTelluride, 5)
+            EUt(VA[MV])
+            duration(8 * SECOND)
+        }
 
         // 4Bi2Te3 + 3(SiO2)5Fe + c-ZrO2 + Fe -> (Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, BismuthTelluride, 4)
-            .input(dust, Prasiolite, 3)
-            .input(dust, CubicZirconia, 1)
-            .input(dust, SteelMagnetic, 1)
-            .output(dust, MagnetoResonatic, 9)
-            .EUt(VA[EV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, BismuthTelluride, 4)
+            input(dust, Prasiolite, 3)
+            input(dust, CubicZirconia, 1)
+            input(dust, SteelMagnetic, 1)
+            output(dust, MagnetoResonatic, 9)
+            EUt(VA[EV])
+            duration(4 * SECOND)
+        }
     }
 
     // @formatter:on

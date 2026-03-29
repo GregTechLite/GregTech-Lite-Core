@@ -23,7 +23,7 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
@@ -56,7 +56,7 @@ internal object BatteriesChain
         // region Battery Hulls
 
         // Small Neutronium Battery Hull (UHV)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, Europium, 2)
             input(plate, Tritanium, 2)
             fluidInputs(Kevlar.getFluid(L))
@@ -66,7 +66,7 @@ internal object BatteriesChain
         }
 
         // Medium Neutronium Battery Hull (UEV)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, Seaborgium, 2)
             input(plate, Tritanium, 6)
             fluidInputs(Kevlar.getFluid(L * 2))
@@ -76,7 +76,7 @@ internal object BatteriesChain
         }
 
         // Large Neutronium Battery Hull (UIV)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, SuperheavyAlloyA, 2)
             input(plate, Tritanium, 18)
             input(NANOSILICON_CATHODE, 4)
@@ -87,7 +87,7 @@ internal object BatteriesChain
         }
 
         // Small Infinity Battery Hull (UXV)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, SuperheavyAlloyB, 2)
             input(plate, Shirabon, 2)
             input(NANOSILICON_CATHODE, 8)
@@ -98,7 +98,7 @@ internal object BatteriesChain
         }
 
         // Medium Infinity Battery Hull (OpV)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, Periodicium, 2)
             input(plate, Shirabon, 6)
             input(NANOSILICON_CATHODE, 16)
@@ -109,7 +109,7 @@ internal object BatteriesChain
         }
 
         // Large Infinity Battery Hull (MAX)
-        ASSEMBLER_RECIPES.buildRecipe {
+        ASSEMBLER_RECIPES.addRecipe {
             input(cableGtSingle, RealizedQuantumFoamShard, 2)
             input(plate, Shirabon, 18)
             input(NANOSILICON_CATHODE, 32)
@@ -124,7 +124,7 @@ internal object BatteriesChain
         // region Batteries
 
         // Small Neutronium Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_SMALL_NEUTRONIUM)
             input(dust, Neutronium, 2)
             output(BATTERY_UHV_NEUTRONIUM)
@@ -133,7 +133,7 @@ internal object BatteriesChain
         }
 
         // Medium Neutronium Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_MEDIUM_NEUTRONIUM)
             input(dust, Neutronium, 8)
             output(BATTERY_UEV_NEUTRONIUM)
@@ -142,7 +142,7 @@ internal object BatteriesChain
         }
 
         // Large Neutronium Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_LARGE_NEUTRONIUM)
             input(dust, Neutronium, 16)
             output(BATTERY_UIV_NEUTRONIUM)
@@ -151,7 +151,7 @@ internal object BatteriesChain
         }
 
         // Small Infinity Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_SMALL_INFINITY)
             input(dust, Infinity, 2)
             output(BATTERY_UXV_INFINITY)
@@ -160,7 +160,7 @@ internal object BatteriesChain
         }
 
         // Medium Infinity Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_MEDIUM_INFINITY)
             input(dust, Infinity, 8)
             output(BATTERY_OpV_INFINITY)
@@ -169,7 +169,7 @@ internal object BatteriesChain
         }
 
         // Large Infinity Battery
-        CANNER_RECIPES.buildRecipe {
+        CANNER_RECIPES.addRecipe {
             input(BATTERY_HULL_LARGE_INFINITY)
             input(dust, Infinity, 16)
             output(BATTERY_MAX_INFINITY)

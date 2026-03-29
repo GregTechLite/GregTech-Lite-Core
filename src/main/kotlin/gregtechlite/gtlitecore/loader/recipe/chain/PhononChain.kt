@@ -50,7 +50,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
@@ -122,7 +122,7 @@ internal object PhononChain
             OreDictUnifier.get(dust, HarmonicPhononMatter),
             IntCircuitIngredient.getIntegratedCircuit(2))
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.buildRecipe {
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
             circuitMeta(1)
             input(PHONONIC_SEED_CRYSTAL)
             input(nanite, Iron)

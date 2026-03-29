@@ -9,7 +9,6 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -47,6 +46,8 @@ import gregtech.api.unification.ore.OrePrefix.foil
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
@@ -97,184 +98,184 @@ internal object FullereneChain
     private fun truxeneProcess()
     {
         // Na + ? -> Na(C6H4C3H4)?
-        BREWING_RECIPES.recipeBuilder()
-            .input(dust, Sodium)
-            .fluidInputs(CoalTar.getFluid(1000))
-            .fluidOutputs(SodioIndene.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        BREWING_RECIPES.addRecipe {
+            input(dust, Sodium)
+            fluidInputs(CoalTar.getFluid(1000))
+            fluidOutputs(SodioIndene.getFluid(1000))
+            EUt(VA[IV])
+            duration(5 * SECOND)
+        }
 
         // Na(C6H4C3H4)? + H2O -> Na(C6H4C3H4)·H2O
-        CRACKING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(SodioIndene.getFluid(1000))
-            .fluidInputs(Steam.getFluid(1000))
-            .fluidOutputs(SteamCrackedSodioIndene.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CRACKING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(SodioIndene.getFluid(1000))
+            fluidInputs(Steam.getFluid(1000))
+            fluidOutputs(SteamCrackedSodioIndene.getFluid(1000))
+            EUt(VA[IV])
+            duration(8 * SECOND)
+        }
 
         // Distilled Na(C6H4C3H4)·H2O to split Na and C6H4C3H4
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedSodioIndene.getFluid(1000))
-            .output(dust, Sodium)
-            .fluidOutputs(Indene.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedSodioIndene.getFluid(1000))
+            output(dust, Sodium)
+            fluidOutputs(Indene.getFluid(1000))
+            EUt(VA[IV])
+            duration(12 * SECOND)
+        }
 
         // C6H4C3H4 + O -> C6H4C3H4O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Indene.getFluid(1000))
-            .fluidInputs(Oxygen.getFluid(1000))
-            .output(dust, Indanone, 18)
-            .EUt(VA[IV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Indene.getFluid(1000))
+            fluidInputs(Oxygen.getFluid(1000))
+            output(dust, Indanone, 18)
+            EUt(VA[IV])
+            duration(4 * SECOND)
+        }
 
         // 3C9H8O -> C27H18 + 3H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, Indanone, 54)
-            .fluidOutputs(Truxene.getFluid(1000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[EV])
-            .duration(24 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, Indanone, 54)
+            fluidOutputs(Truxene.getFluid(1000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[EV])
+            duration(24 * SECOND)
+        }
     }
 
     private fun bromoBromomethylNaphthaleneProcess()
     {
         // CH3OH + HBr -> CH3Br + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Methanol.getFluid(1000))
-            .fluidInputs(HydrobromicAcid.getFluid(1000))
-            .fluidOutputs(Bromomethane.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Methanol.getFluid(1000))
+            fluidInputs(HydrobromicAcid.getFluid(1000))
+            fluidOutputs(Bromomethane.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[LV])
+            duration(8 * SECOND)
+        }
 
         // C10H8 + 2CH3Br -> C11H8Br2 + CH4 + 2H (lost)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Naphthalene.getFluid(1000))
-            .fluidInputs(Bromomethane.getFluid(2000))
-            .fluidOutputs(BromoBromomethylNaphthalene.getFluid(1000))
-            .fluidOutputs(Methane.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Naphthalene.getFluid(1000))
+            fluidInputs(Bromomethane.getFluid(2000))
+            fluidOutputs(BromoBromomethylNaphthalene.getFluid(1000))
+            fluidOutputs(Methane.getFluid(1000))
+            EUt(VA[IV])
+            duration(16 * SECOND)
+        }
     }
 
     private fun btabProcess()
     {
         // C7H8 (C6H5CH3) + Br -> C6H5CH2Br
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(Toluene.getFluid(1000))
-            .fluidInputs(Bromine.getFluid(1000))
-            .fluidOutputs(BenzylBromide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(Toluene.getFluid(1000))
+            fluidInputs(Bromine.getFluid(1000))
+            fluidOutputs(BenzylBromide.getFluid(1000))
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
 
         // C6H5CH2Br + (CH3)3N -> C6H5CH2N(CH3)3Br
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(BenzylBromide.getFluid(1000))
-            .fluidInputs(Trimethylamine.getFluid(1000))
-            .output(dust, BenzyltrimethylammoniumBromide, 28)
-            .EUt(VA[LuV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(BenzylBromide.getFluid(1000))
+            fluidInputs(Trimethylamine.getFluid(1000))
+            output(dust, BenzyltrimethylammoniumBromide, 28)
+            EUt(VA[LuV])
+            duration(4 * SECOND)
+        }
 
         // C6H5CH2N(CH3)3Br decomposition.
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(dust, BenzyltrimethylammoniumBromide, 28)
-            .fluidOutputs(BenzylBromide.getFluid(1000))
-            .fluidOutputs(Trimethylamine.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            input(dust, BenzyltrimethylammoniumBromide, 28)
+            fluidOutputs(BenzylBromide.getFluid(1000))
+            fluidOutputs(Trimethylamine.getFluid(1000))
+            EUt(VA[MV])
+            duration(8 * SECOND)
+        }
     }
 
     private fun potassiumTertbutoxideProcess()
     {
         // C4H10 + 2Cl -> C4H9Cl + HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Butane.getFluid(1000))
-            .fluidInputs(Chlorine.getFluid(2000))
-            .fluidOutputs(Chlorobutane.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Butane.getFluid(1000))
+            fluidInputs(Chlorine.getFluid(2000))
+            fluidOutputs(Chlorobutane.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // C4H9Cl + H2O -> C4H10O + HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Chlorobutane.getFluid(1000))
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(TertbutylAlcohol.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Chlorobutane.getFluid(1000))
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(TertbutylAlcohol.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[EV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // KOH + C4H10O -> C4H9OK + H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, PotassiumHydroxide, 3)
-            .fluidInputs(TertbutylAlcohol.getFluid(1000))
-            .output(dust, PotassiumTertbutoxide, 15)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, PotassiumHydroxide, 3)
+            fluidInputs(TertbutylAlcohol.getFluid(1000))
+            output(dust, PotassiumTertbutoxide, 15)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
     }
 
     private fun caesiumCarbonateProcess()
     {
         // 2Cs + H2O2 -> 2CsOH
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Caesium, 2)
-            .fluidInputs(HydrogenPeroxide.getFluid(1000))
-            .output(dust, CaesiumHydroxide, 6)
-            .EUt(VA[HV])
-            .duration(9 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Caesium, 2)
+            fluidInputs(HydrogenPeroxide.getFluid(1000))
+            output(dust, CaesiumHydroxide, 6)
+            EUt(VA[HV])
+            duration(9 * SECOND)
+        }
 
         // CsOH + CO2 -> Cs2CO3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, CaesiumHydroxide, 3)
-            .fluidInputs(CarbonDioxide.getFluid(1000))
-            .output(dust, CaesiumCarbonate, 6)
-            .EUt(VA[EV])
-            .duration(4 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, CaesiumHydroxide, 3)
+            fluidInputs(CarbonDioxide.getFluid(1000))
+            output(dust, CaesiumCarbonate, 6)
+            EUt(VA[EV])
+            duration(4 * SECOND + 10 * TICK)
+        }
     }
 
     private fun dimethylacetamideProcess()
     {
         // SOCl2 + CH3COOH -> CH3COCl + SO2 + HCl
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(ThionylChloride.getFluid(1000))
-            .fluidInputs(AceticAcid.getFluid(1000))
-            .fluidOutputs(AcetylChloride.getFluid(1000))
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(ThionylChloride.getFluid(1000))
+            fluidInputs(AceticAcid.getFluid(1000))
+            fluidOutputs(AcetylChloride.getFluid(1000))
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[MV])
+            duration(15 * SECOND)
+        }
 
         // NaOH + CH3COCl + (CH3)2NH -> (CH3)2NC(O)CH3 + NaCl + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(AcetylChloride.getFluid(1000))
-            .fluidInputs(Dimethylamine.getFluid(1000))
-            .output(dust, Salt, 2)
-            .fluidOutputs(Dimethylacetamide.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(AcetylChloride.getFluid(1000))
+            fluidInputs(Dimethylamine.getFluid(1000))
+            output(dust, Salt, 2)
+            fluidOutputs(Dimethylacetamide.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[IV])
+            duration(6 * SECOND)
+        }
     }
 
     /**
@@ -290,54 +291,53 @@ internal object FullereneChain
     private fun fullereneProcess()
     {
         // C27H18 + 3C11H8Br2 -> C60H30 + 2HBr + 10H
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .notConsumable(dust, BenzyltrimethylammoniumBromide)
-            .notConsumable(dust, PotassiumTertbutoxide)
-            .notConsumable(dust, CaesiumCarbonate)
-            .input(dust, PalladiumAcetate)
-            .fluidInputs(Truxene.getFluid(1000))
-            .fluidInputs(BromoBromomethylNaphthalene.getFluid(3000))
-            .fluidInputs(Butyllithium.getFluid(10))
-            .notConsumable(TertbutylAlcohol.getFluid(1))
-            .notConsumable(Dimethylacetamide.getFluid(1))
-            .output(dust, GeodesicPolyarene, 60)
-            .fluidOutputs(HydrobromicAcid.getFluid(2000))
-            .fluidOutputs(Hydrogen.getFluid(10000))
-            .EUt(VA[UHV])
-            .duration(30 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            notConsumable(dust, BenzyltrimethylammoniumBromide)
+            notConsumable(dust, PotassiumTertbutoxide)
+            notConsumable(dust, CaesiumCarbonate)
+            input(dust, PalladiumAcetate)
+            fluidInputs(Truxene.getFluid(1000))
+            fluidInputs(BromoBromomethylNaphthalene.getFluid(3000))
+            fluidInputs(Butyllithium.getFluid(10))
+            notConsumable(TertbutylAlcohol.getFluid(1))
+            notConsumable(Dimethylacetamide.getFluid(1))
+            output(dust, GeodesicPolyarene, 60)
+            fluidOutputs(HydrobromicAcid.getFluid(2000))
+            fluidOutputs(Hydrogen.getFluid(10000))
+            EUt(VA[UHV])
+            duration(30 * SECOND)
+            cleanroom()
+        }
 
         // C60H30 -> C60 + 30H
-        PYROLYSE_RECIPES.recipeBuilder()
-            .input(dust, GeodesicPolyarene)
-            .input(foil, Platinum)
-            .output(dust, Fullerene)
-            .fluidOutputs(Hydrogen.getFluid(500))
-            .EUt(VA[UHV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        PYROLYSE_RECIPES.addRecipe {
+            input(dust, GeodesicPolyarene)
+            input(foil, Platinum)
+            output(dust, Fullerene)
+            fluidOutputs(Hydrogen.getFluid(500))
+            EUt(VA[UHV])
+            duration(10 * TICK)
+        }
 
         // Advanced recipes for C60H30.
         // 10C8H10 + 10C10H8 -> 3C60H30 + 90H
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .notConsumable(dust, Triphenylphosphine)
-            .notConsumable(dust, SuccinimidylAcetate)
-            .notConsumable(dust, BenzyltrimethylammoniumBromide)
-            .notConsumable(dust, Iodine)
-            .notConsumable(Butyllithium.getFluid(1))
-            .notConsumable(Bromine.getFluid(1))
-            .fluidInputs(Ethylbenzene.getFluid(10000))
-            .fluidInputs(Naphthalene.getFluid(10000))
-            .output(dust, GeodesicPolyarene, 64)
-            .output(dust, GeodesicPolyarene, 64)
-            .output(dust, GeodesicPolyarene, 52)
-            .fluidOutputs(Hydrogen.getFluid(90000))
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
-
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            notConsumable(dust, Triphenylphosphine)
+            notConsumable(dust, SuccinimidylAcetate)
+            notConsumable(dust, BenzyltrimethylammoniumBromide)
+            notConsumable(dust, Iodine)
+            notConsumable(Butyllithium.getFluid(1))
+            notConsumable(Bromine.getFluid(1))
+            fluidInputs(Ethylbenzene.getFluid(10000))
+            fluidInputs(Naphthalene.getFluid(10000))
+            output(dust, GeodesicPolyarene, 64)
+            output(dust, GeodesicPolyarene, 64)
+            output(dust, GeodesicPolyarene, 52)
+            fluidOutputs(Hydrogen.getFluid(90000))
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+            cleanroom()
+        }
     }
 
     // @formatter:on

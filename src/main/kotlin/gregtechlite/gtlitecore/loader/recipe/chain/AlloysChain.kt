@@ -25,7 +25,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
@@ -47,7 +47,7 @@ internal object AlloysChain
         ELECTROLYZER_RECIPES.removeRecipe(OreDictUnifier.get(dust, SiliconDioxide, 3))
 
         // SiO2 -> Si + 2O
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, SiliconDioxide, 3)
             notConsumable(Air.getFluid(1000))
@@ -57,7 +57,7 @@ internal object AlloysChain
             duration(3 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, Quartzite, 3)
             notConsumable(Air.getFluid(1000))
@@ -67,7 +67,7 @@ internal object AlloysChain
             duration(3 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, NetherQuartz, 3)
             notConsumable(Air.getFluid(1000))
@@ -77,7 +77,7 @@ internal object AlloysChain
             duration(3 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(1)
             input(dust, CertusQuartz, 3)
             notConsumable(Air.getFluid(1000))
@@ -88,7 +88,7 @@ internal object AlloysChain
         }
 
         // SiO2 + 2C -> Si + 2CO
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(2)
             input(dust, SiliconDioxide, 3)
             input(dust, Carbon, 2)
@@ -98,7 +98,7 @@ internal object AlloysChain
             duration(15 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(2)
             input(dust, Quartzite, 3)
             input(dust, Carbon, 2)
@@ -108,7 +108,7 @@ internal object AlloysChain
             duration(15 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(2)
             input(dust, CertusQuartz, 3)
             input(dust, Carbon, 2)
@@ -118,7 +118,7 @@ internal object AlloysChain
             duration(15 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(2)
             input(dust, NetherQuartz, 3)
             input(dust, Carbon, 2)
@@ -129,7 +129,7 @@ internal object AlloysChain
         }
 
         // SiO2 + 3C -> SiC + 2CO
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(3)
             input(dust, SiliconDioxide, 3)
             input(dust, Carbon, 3)
@@ -139,7 +139,7 @@ internal object AlloysChain
             duration(20 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(3)
             input(dust, Quartzite, 3)
             input(dust, Carbon, 3)
@@ -149,7 +149,7 @@ internal object AlloysChain
             duration(20 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(3)
             input(dust, CertusQuartz, 3)
             input(dust, Carbon, 3)
@@ -159,7 +159,7 @@ internal object AlloysChain
             duration(20 * SECOND)
         }
 
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             circuitMeta(3)
             input(dust, NetherQuartz, 3)
             input(dust, Carbon, 3)
@@ -180,7 +180,7 @@ internal object AlloysChain
             IntCircuitIngredient.getIntegratedCircuit(1))
 
         // 3Pd + Rh -> Pd3Rh
-        ARC_FURNACE_RECIPES.buildRecipe {
+        ARC_FURNACE_RECIPES.addRecipe {
             input(dust, Palladium, 3)
             fluidInputs(Rhodium.getFluid(L))
             fluidInputs(Oxygen.getFluid(600))
