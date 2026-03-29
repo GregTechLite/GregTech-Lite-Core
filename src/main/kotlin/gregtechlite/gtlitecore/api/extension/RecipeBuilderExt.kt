@@ -1,10 +1,12 @@
 @file:Suppress("FunctionName")
 package gregtechlite.gtlitecore.api.extension
 
+import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.builders.ResearchRecipeBuilder
+import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
@@ -25,14 +27,11 @@ fun <T: RecipeBuilder<T>> RecipeMap<T>.buildRecipe(builder: T.() -> Unit)
 
 // region Recipe Input Shortcut
 
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item): T
-    = inputs(item, 1)
-
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int): T
-    = inputs(item, amount, 0)
-
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int, metadata: Int): T
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int = 1, metadata: Int = 0): T
     = inputs(ItemStack(item, amount, metadata))
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(block: Block, amount: Int = 1): T
+    = inputs(ItemStack(block, amount))
 
 // endregion
 
@@ -51,6 +50,16 @@ fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Long): T
 
 fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Double): T
     = duration(duration.toInt())
+
+// endregion
+
+// region Recipe Condition Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.cleanroom(): T
+    = cleanroom(CleanroomType.CLEANROOM)
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.sterileCleanroom(): T
+    = cleanroom(CleanroomType.STERILE_CLEANROOM)
 
 // endregion
 
