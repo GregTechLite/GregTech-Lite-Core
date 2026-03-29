@@ -65,13 +65,13 @@ fun <T: RecipeBuilder<T>> RecipeBuilder<T>.sterileCleanroom(): T
 
 // region Recipe Removal Shortcut
 
-fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(vararg itemInputs: ItemStack)
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg itemInputs: ItemStack)
     = GTRecipeHandler.removeRecipesByInputs(this, *itemInputs)
 
-fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(vararg fluidInputs: FluidStack)
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg fluidInputs: FluidStack)
     = GTRecipeHandler.removeRecipesByInputs(this, *fluidInputs)
 
-fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
     = GTRecipeHandler.removeRecipesByInputs(this, itemInputs, fluidInputs)
 
 // endregion

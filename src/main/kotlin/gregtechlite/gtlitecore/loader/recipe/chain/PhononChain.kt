@@ -50,6 +50,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
@@ -121,18 +122,18 @@ internal object PhononChain
             OreDictUnifier.get(dust, HarmonicPhononMatter),
             IntCircuitIngredient.getIntegratedCircuit(2))
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(PHONONIC_SEED_CRYSTAL)
-            .input(nanite, Iron)
-            .input(dust, NetherStar, 16)
-            .fluidInputs(Mellion.getFluid(L * 16))
-            .output(ingot, HarmonicPhononMatter, 4)
-            .fluidOutputs(StableBaryonicMatter.getFluid(800))
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .blastFurnaceTemp(26000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.buildRecipe {
+            circuitMeta(1)
+            input(PHONONIC_SEED_CRYSTAL)
+            input(nanite, Iron)
+            input(dust, NetherStar, 16)
+            fluidInputs(Mellion.getFluid(L * 16))
+            output(ingot, HarmonicPhononMatter, 4)
+            fluidOutputs(StableBaryonicMatter.getFluid(800))
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+            blastFurnaceTemp(26000)
+        }
 
         // MagMatter liquid.
         LARGE_MIXER_RECIPES.recipeBuilder()

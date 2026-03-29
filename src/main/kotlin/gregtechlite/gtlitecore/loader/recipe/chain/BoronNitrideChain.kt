@@ -41,10 +41,12 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
-import gregtech.common.items.MetaItems
+import gregtech.common.items.MetaItems.DYNAMITE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
+import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
@@ -81,205 +83,203 @@ internal object BoronNitrideChain
     private fun boronTrioxideProcess()
     {
         // Na2B4O7·10H2O + 2HCl -> 4H3BO3 + 2NaCl + 5H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Borax, 23)
-            .fluidInputs(HydrochloricAcid.getFluid(2000))
-            .output(dust, BoricAcid, 16)
-            .output(dust, Salt, 4)
-            .fluidOutputs(Water.getFluid(5000))
-            .EUt(VA[MV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.buildRecipe {
+            input(dust, Borax, 23)
+            fluidInputs(HydrochloricAcid.getFluid(2000))
+            output(dust, BoricAcid, 16)
+            output(dust, Salt, 4)
+            fluidOutputs(Water.getFluid(5000))
+            EUt(VA[MV])
+            duration(15 * SECOND)
+        }
 
         // 2H3BO3 -> B2O3 + 3H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, BoricAcid, 8)
-            .output(dust, BoronTrioxide, 5)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.buildRecipe {
+            input(dust, BoricAcid, 8)
+            output(dust, BoronTrioxide, 5)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun borazineProcess()
     {
         // B2O3 + 6HF -> 2BF3 + 3H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, BoricAcid, 5)
-            .fluidInputs(HydrofluoricAcid.getFluid(6000))
-            .fluidOutputs(BoronTrifluoride.getFluid(2000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, BoricAcid, 5)
+            fluidInputs(HydrofluoricAcid.getFluid(6000))
+            fluidOutputs(BoronTrifluoride.getFluid(2000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
         // Li + H -> LiH
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Lithium)
-            .fluidInputs(Hydrogen.getFluid(1000))
-            .output(ingot, LithiumHydride, 2)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.buildRecipe {
+            circuitMeta(1)
+            input(dust, Lithium)
+            fluidInputs(Hydrogen.getFluid(1000))
+            output(ingot, LithiumHydride, 2)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // 8BF3 + 6LiH -> B2H6 + 6LiBF4
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, LithiumHydride, 12)
-            .fluidInputs(BoronTrifluoride.getFluid(8000))
-            .output(dust, LithiumTetrafluoroborate, 36)
-            .fluidOutputs(Diborane.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(32 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, LithiumHydride, 12)
+            fluidInputs(BoronTrifluoride.getFluid(8000))
+            output(dust, LithiumTetrafluoroborate, 36)
+            fluidOutputs(Diborane.getFluid(1000))
+            EUt(VA[HV])
+            duration(32 * SECOND)
+        }
 
         // LiBF4 -> BF3 + LiH (cycle)
         // This reaction cycle both BF3 and LiH with above reactions,
         // we can see that 8BF3 + 6LiH -> 6LiBF4 -> 6BF3 + 6LiH, and 2BF3 to be B2H6,
         // it means LiH is cycle and BF3 is part cycle.
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, LithiumTetrafluoroborate, 6)
-            .output(dust, LithiumHydride, 2)
-            .fluidOutputs(BoronTrifluoride.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.buildRecipe {
+            input(dust, LithiumTetrafluoroborate, 6)
+            output(dust, LithiumHydride, 2)
+            fluidOutputs(BoronTrifluoride.getFluid(1000))
+            EUt(VA[LV])
+            duration(4 * SECOND)
+        }
 
         // 3B2H6 + 6NH3 -> 2B3H6N3 + 24H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Diborane.getFluid(3000))
-            .fluidInputs(Ammonia.getFluid(6000))
-            .fluidOutputs(Borazine.getFluid(2000))
-            .fluidOutputs(Hydrogen.getFluid(24000))
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            fluidInputs(Diborane.getFluid(3000))
+            fluidInputs(Ammonia.getFluid(6000))
+            fluidOutputs(Borazine.getFluid(2000))
+            fluidOutputs(Hydrogen.getFluid(24000))
+            EUt(VA[LuV])
+            duration(20 * SECOND)
+        }
     }
 
     private fun boronNitrideProcess()
     {
         // 2B2O3 + 3CCl4 -> 4BCl3 + 3CO2
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, BoronTrioxide, 10)
-            .fluidInputs(CarbonTetrachloride.getFluid(3000))
-            .fluidOutputs(BoronTrichloride.getFluid(4000))
-            .fluidOutputs(CarbonDioxide.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(4 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.buildRecipe {
+            input(dust, BoronTrioxide, 10)
+            fluidInputs(CarbonTetrachloride.getFluid(3000))
+            fluidOutputs(BoronTrichloride.getFluid(4000))
+            fluidOutputs(CarbonDioxide.getFluid(3000))
+            EUt(VA[HV])
+            duration(4 * SECOND + 10 * TICK)
+        }
 
         // 3BCl3 + 3NH4Cl -> B3Cl3H3N3 + 9HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, AmmoniumChloride, 6) // Special amount.
-            .fluidInputs(BoronTrichloride.getFluid(3000))
-            .fluidOutputs(Trichloroborazine.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(9000))
-            .EUt(VA[IV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, AmmoniumChloride, 6)
+            fluidInputs(BoronTrichloride.getFluid(3000))
+            fluidOutputs(Trichloroborazine.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(9000))
+            EUt(VA[IV])
+            duration(20 * SECOND)
+        }
 
         // B3H6N3 + 3O -> 3h-BN + 3H2O
-        CVD_RECIPES.recipeBuilder()
-            .fluidInputs(Borazine.getFluid(1000))
-            .fluidInputs(Oxygen.getFluid(3000))
-            .output(gem, HexagonalBoronNitride, 6)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .temperature(1300)
-            .buildAndRegister()
+        CVD_RECIPES.buildRecipe {
+            fluidInputs(Borazine.getFluid(1000))
+            fluidInputs(Oxygen.getFluid(3000))
+            output(gem, HexagonalBoronNitride, 6)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[UV])
+            duration(20 * SECOND)
+            temperature(1300)
+        }
 
         // Advanced recipes for h-BN, used Nickel foil as catalyst bed,
         // and B + N -> h-BN via molecular beaming.
-        MOLECULAR_BEAM_RECIPES.recipeBuilder()
-            .input(foil, Nickel, 8)
-            .input(dust, Boron)
-            .fluidInputs(Nitrogen.getFluid(1000))
-            .output(gem, HexagonalBoronNitride, 2)
-            .EUt(VA[UEV])
-            .duration(4 * SECOND)
-            .temperature(2900)
-            .buildAndRegister()
+        MOLECULAR_BEAM_RECIPES.buildRecipe {
+            input(foil, Nickel, 8)
+            input(dust, Boron)
+            fluidInputs(Nitrogen.getFluid(1000))
+            output(gem, HexagonalBoronNitride, 2)
+            EUt(VA[UEV])
+            duration(4 * SECOND)
+            temperature(2900)
+        }
 
         // h-BN -> c-BN
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, HexagonalBoronNitride, 1)
-            .output(gem, CubicBoronNitride, 1)
-            .EUt(VA[UV])
-            .duration(5 * SECOND)
-            .temperature(3501)
-            .buildAndRegister()
+        CVD_RECIPES.buildRecipe {
+            input(dust, HexagonalBoronNitride, 1)
+            output(gem, CubicBoronNitride, 1)
+            EUt(VA[UV])
+            duration(5 * SECOND)
+            temperature(3501)
+        }
 
         // B3Cl3H3N3 -> 3a-BN + 3HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Caesium)
-            .fluidInputs(Trichloroborazine.getFluid(1000))
-            .output(dust, AmorphousBoronNitride, 6)
-            .fluidOutputs(HydrochloricAcid.getFluid(3000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, Caesium)
+            fluidInputs(Trichloroborazine.getFluid(1000))
+            output(dust, AmorphousBoronNitride, 6)
+            fluidOutputs(HydrochloricAcid.getFluid(3000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+        }
 
         // c-BN + C -> BCN
-        IMPLOSION_RECIPES.recipeBuilder()
-            .input(dust, CubicBoronNitride)
-            .input(dust, Carbon)
-            .output(gem, Heterodiamond, 2)
-            .EUt(VA[LV])
-            .duration(1 * SECOND)
-            .explosives(32)
-            .buildAndRegister()
+        IMPLOSION_RECIPES.buildRecipe {
+            input(dust, CubicBoronNitride)
+            input(dust, Carbon)
+            output(gem, Heterodiamond, 2)
+            EUt(VA[LV])
+            duration(1 * SECOND)
+            explosives(32)
+        }
 
-        IMPLOSION_RECIPES.recipeBuilder()
-            .input(dust, CubicBoronNitride)
-            .input(dust, Carbon)
-            .output(gem, Heterodiamond, 2)
-            .EUt(VA[LV])
-            .duration(1 * SECOND)
-            .explosives(MetaItems.DYNAMITE.getStackForm(16))
-            .buildAndRegister()
+        IMPLOSION_RECIPES.buildRecipe {
+            input(dust, CubicBoronNitride)
+            input(dust, Carbon)
+            output(gem, Heterodiamond, 2)
+            EUt(VA[LV])
+            duration(1 * SECOND)
+            explosives(DYNAMITE.getStack(16))
+        }
 
-        // Electric Impulsion for BCN + C -> c-BCN
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(dust, CubicBoronNitride)
-            .input(dust, Carbon)
-            .output(gem, Heterodiamond, 2)
-            .EUt(VA[LV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        ELECTRIC_IMPLOSION_RECIPES.buildRecipe {
+            input(dust, CubicBoronNitride)
+            input(dust, Carbon)
+            output(gem, Heterodiamond, 2)
+            EUt(VA[LV])
+            duration(1 * SECOND)
+        }
 
         // BCN + C -> c-BC2N
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, Heterodiamond)
-            .input(dust, Carbon)
-            .output(gem, CubicHeterodiamond)
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .temperature(2200)
-            .buildAndRegister()
+        CVD_RECIPES.buildRecipe {
+            input(dust, Heterodiamond)
+            input(dust, Carbon)
+            output(gem, CubicHeterodiamond)
+            EUt(VA[UHV])
+            duration(20 * SECOND)
+            temperature(2200)
+        }
 
         // Because c-BN is a gem material, but it has tool properties, we should ensure
         // the compatibility with its material parts and tool parts.
 
         // Allowed gemExquisite lathing to c-BN buzz saw.
-        LATHE_RECIPES.recipeBuilder()
-            .input(gemExquisite, CubicBoronNitride)
-            .output(toolHeadBuzzSaw, CubicBoronNitride)
-            .EUt(56) // MV
-            .duration(2 * SECOND + 8 * TICK) // same as gear lathing to buzz saw.
-            .buildAndRegister()
+        LATHE_RECIPES.buildRecipe {
+            input(gemExquisite, CubicBoronNitride)
+            output(toolHeadBuzzSaw, CubicBoronNitride)
+            EUt(56) // MV
+            duration(2 * SECOND + 8 * TICK) // same as gear lathing to buzz saw.
+        }
 
         // Crystallized stick and plate gluing to gear.
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, CubicBoronNitride, 4)
-            .input(stick, CubicBoronNitride, 4)
-            .fluidInputs(Glue.getFluid(250))
-            .output(gear, CubicBoronNitride)
-            .EUt(VA[LV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.buildRecipe {
+            circuitMeta(1)
+            input(plate, CubicBoronNitride, 4)
+            input(stick, CubicBoronNitride, 4)
+            fluidInputs(Glue.getFluid(250))
+            output(gear, CubicBoronNitride)
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
     }
 
     // @formatter:on

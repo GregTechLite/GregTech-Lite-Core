@@ -122,7 +122,6 @@ internal object AcetyleneChain
             EUt(VA[LV])
             duration(4 * SECOND)
         }
-
     }
 
     // @formatter:on

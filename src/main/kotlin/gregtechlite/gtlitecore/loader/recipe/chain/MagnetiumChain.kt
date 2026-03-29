@@ -1,11 +1,17 @@
 package gregtechlite.gtlitecore.loader.recipe.chain
 
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
+import gregtech.api.recipes.category.RecipeCategories.EXTRACTOR_RECYCLING
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -30,7 +36,9 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -42,207 +50,365 @@ internal object MagnetiumChain
 
     fun init()
     {
-        // ingotDuranium -> ingotMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(ingot, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(ingot, Magnetium)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Ingot
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(ingot, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(ingot, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(ingot, Magnetium)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // plateDuranium -> plateMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(plate, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(plate, Magnetium)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(ingot, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // plateDoubleDuranium -> plateDoubleMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(plateDouble, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 2))
-            .output(plateDouble, Magnetium)
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        // Plate
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(plate, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(plate, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(plate, Magnetium)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // plateDenseDuranium -> plateDenseMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(plateDense, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 9))
-            .output(plateDense, Magnetium)
-            .EUt(VA[UIV])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(plate, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // foilDuranium -> foilMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(foil, Duranium, 4)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(foil, Magnetium, 4)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Double Plate
+        POLARIZER_RECIPES.buildRecipe {
+            input(plateDouble, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(500))
+            output(plateDouble, Magnetium)
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+        }
 
-        // stickDuranium -> stickMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(stick, Duranium, 2)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(stick, Magnetium, 2)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(plateDouble, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 2))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // stickLongDuranium -> stickLongMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(stickLong, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(stickLong, Magnetium)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Dense Plate
+        POLARIZER_RECIPES.buildRecipe {
+            input(plateDense, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(2250))
+            output(plateDense, Magnetium)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+        }
 
-        // boltDuranium -> boltMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(bolt, Duranium, 8)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(bolt, Magnetium, 8)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(plateDense, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 9))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // screwDuranium -> screwMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(screw, Duranium, 8)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(screw, Magnetium, 8)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Foil
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(foil, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(foil, Duranium, 4)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(foil, Magnetium, 4)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // ringDuranium -> ringMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(ring, Duranium, 4)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(ring, Magnetium, 4)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(foil, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 4))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // roundDuranium -> roundMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(round, Duranium, 8)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(round, Magnetium, 8)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Stick
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(stick, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(stick, Duranium, 2)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(stick, Magnetium, 2)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // springDuranium -> springMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(spring, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(spring, Magnetium)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(stick, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 2))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // springSmallDuranium -> springSmallMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(springSmall, Duranium, 4)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(springSmall, Magnetium, 4)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Long Stick
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(stickLong, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(stickLong, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(stickLong, Magnetium)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // gearDuranium -> gearMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(gear, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 4))
-            .output(gear, Magnetium)
-            .EUt(VA[UIV])
-            .duration(40 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(stickLong, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // gearSmallDuranium -> gearSmallMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(gearSmall, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(gearSmall, Magnetium)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        // Bolt
+        POLARIZER_RECIPES.buildRecipe {
+            input(bolt, Duranium, 8)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(bolt, Magnetium, 8)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // wireFineDuranium -> wireFineMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(wireFine, Duranium, 8)
-            .fluidInputs(HadronicResonantGas.getFluid(250))
-            .output(wireFine, Magnetium, 8)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(bolt, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 8))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // rotorDuranium -> rotorMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(rotor, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 4))
-            .output(rotor, Magnetium)
-            .EUt(VA[UIV])
-            .duration(40 * SECOND)
-            .buildAndRegister()
+        // Screw
+        POLARIZER_RECIPES.buildRecipe {
+            input(screw, Duranium, 8)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(screw, Magnetium, 8)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // blockDuranium -> blockMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(block, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 9))
-            .output(block, Magnetium)
-            .EUt(VA[UIV])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(screw, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 8))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
 
-        // frameGtDuranium -> frameGtMagnetium
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(frameGt, Duranium)
-            .fluidInputs(HadronicResonantGas.getFluid(250 * 2))
-            .output(frameGt, Magnetium)
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        // Ring
+        POLARIZER_RECIPES.buildRecipe {
+            input(ring, Duranium, 4)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(ring, Magnetium, 4)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
-        // sheetedFrameMagnetium
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(ring, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 4))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Round
+        POLARIZER_RECIPES.buildRecipe {
+            input(round, Duranium, 8)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(round, Magnetium, 8)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(round, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 8))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Spring
+        POLARIZER_RECIPES.buildRecipe {
+            input(spring, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(spring, Magnetium)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(spring, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Small Spring
+        POLARIZER_RECIPES.buildRecipe {
+            input(springSmall, Duranium, 4)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(springSmall, Magnetium, 4)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(springSmall, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 4))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Gear
+        POLARIZER_RECIPES.buildRecipe {
+            input(gear, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(1000))
+            output(gear, Magnetium)
+            EUt(VA[UIV])
+            duration(40 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(gear, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 4))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Small Gear
+        POLARIZER_RECIPES.buildRecipe {
+            input(gearSmall, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(gearSmall, Magnetium)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(gearSmall, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Fine Wire
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(wireFine, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(wireFine, Duranium, 8)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(wireFine, Magnetium, 8)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(wireFine, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L / 8))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Rotor
+        POLARIZER_RECIPES.buildRecipe {
+            input(rotor, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(1000))
+            output(rotor, Magnetium)
+            EUt(VA[UIV])
+            duration(40 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(rotor, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 4))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Block
+        POLARIZER_RECIPES.removeRecipe(OreDictUnifier.get(block, Europium))
+        POLARIZER_RECIPES.buildRecipe {
+            input(block, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(2250))
+            output(block, Magnetium)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(block, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 9))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Frame
+        POLARIZER_RECIPES.buildRecipe {
+            input(frameGt, Duranium)
+            fluidInputs(HadronicResonantGas.getFluid(500))
+            output(frameGt, Magnetium)
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+        }
+
+        EXTRACTOR_RECIPES.buildRecipe {
+            input(frameGt, Magnetium)
+            fluidOutputs(Magnetium.getFluid(L * 2))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            category(EXTRACTOR_RECYCLING)
+        }
+
+        // Sheeted Frame
         ModHandler.addShapedRecipe(true, "magnetium_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, Magnetium),
             'F', UnificationEntry(frameGt, Magnetium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(10)
-            .input(plate, Magnetium, 3)
-            .input(frameGt, Magnetium)
-            .outputs(GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(6))
-            .EUt(7) // ULV
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            circuitMeta(10)
+            input(plate, Magnetium, 3)
+            input(frameGt, Magnetium)
+            outputs(GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(6))
+            EUt(7) // ULV
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        // wallGtMagnetium
+        // Wall
         ModHandler.addShapedRecipe(true, "magnetium_wall_gt", GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, Magnetium),
             'S', UnificationEntry(screw, Magnetium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(11)
-            .input(plate, Magnetium, 2)
-            .input(screw, Magnetium)
-            .outputs(GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(3))
-            .EUt(7)
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.buildRecipe {
+            circuitMeta(11)
+            input(plate, Magnetium, 2)
+            input(screw, Magnetium)
+            outputs(GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(3))
+            EUt(7)
+            duration(2 * SECOND + 5 * TICK)
+        }
     }
 
     // @formatter:on

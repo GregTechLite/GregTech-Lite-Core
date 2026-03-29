@@ -23,6 +23,7 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
@@ -52,124 +53,131 @@ internal object BatteriesChain
 
     fun init()
     {
+        // region Battery Hulls
+
         // Small Neutronium Battery Hull (UHV)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, Europium, 2)
-            .input(plate, Tritanium, 2)
-            .fluidInputs(Kevlar.getFluid(L))
-            .output(BATTERY_HULL_SMALL_NEUTRONIUM)
-            .EUt(VA[UV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, Europium, 2)
+            input(plate, Tritanium, 2)
+            fluidInputs(Kevlar.getFluid(L))
+            output(BATTERY_HULL_SMALL_NEUTRONIUM)
+            EUt(VA[UV])
+            duration(5 * SECOND)
+        }
 
         // Medium Neutronium Battery Hull (UEV)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, Seaborgium, 2)
-            .input(plate, Tritanium, 6)
-            .fluidInputs(Kevlar.getFluid(L * 2))
-            .output(BATTERY_HULL_MEDIUM_NEUTRONIUM)
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, Seaborgium, 2)
+            input(plate, Tritanium, 6)
+            fluidInputs(Kevlar.getFluid(L * 2))
+            output(BATTERY_HULL_MEDIUM_NEUTRONIUM)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // Large Neutronium Battery Hull (UIV)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, SuperheavyAlloyA, 2)
-            .input(plate, Tritanium, 18)
-            .input(NANOSILICON_CATHODE, 4)
-            .fluidInputs(Kevlar.getFluid(L * 4))
-            .output(BATTERY_HULL_LARGE_NEUTRONIUM)
-            .EUt(VA[UEV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, SuperheavyAlloyA, 2)
+            input(plate, Tritanium, 18)
+            input(NANOSILICON_CATHODE, 4)
+            fluidInputs(Kevlar.getFluid(L * 4))
+            output(BATTERY_HULL_LARGE_NEUTRONIUM)
+            EUt(VA[UEV])
+            duration(20 * SECOND)
+        }
 
         // Small Infinity Battery Hull (UXV)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, SuperheavyAlloyB, 2)
-            .input(plate, Shirabon, 2)
-            .input(NANOSILICON_CATHODE, 8)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L))
-            .output(BATTERY_HULL_SMALL_INFINITY)
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, SuperheavyAlloyB, 2)
+            input(plate, Shirabon, 2)
+            input(NANOSILICON_CATHODE, 8)
+            fluidInputs(FullerenePolymerMatrix.getFluid(L))
+            output(BATTERY_HULL_SMALL_INFINITY)
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+        }
 
         // Medium Infinity Battery Hull (OpV)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, Periodicium, 2)
-            .input(plate, Shirabon, 6)
-            .input(NANOSILICON_CATHODE, 16)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
-            .output(BATTERY_HULL_MEDIUM_INFINITY)
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, Periodicium, 2)
+            input(plate, Shirabon, 6)
+            input(NANOSILICON_CATHODE, 16)
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
+            output(BATTERY_HULL_MEDIUM_INFINITY)
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // Large Infinity Battery Hull (MAX)
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, RealizedQuantumFoamShard, 2)
-            .input(plate, Shirabon, 18)
-            .input(NANOSILICON_CATHODE, 32)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(BATTERY_HULL_LARGE_INFINITY)
-            .EUt(VA[OpV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.buildRecipe {
+            input(cableGtSingle, RealizedQuantumFoamShard, 2)
+            input(plate, Shirabon, 18)
+            input(NANOSILICON_CATHODE, 32)
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            output(BATTERY_HULL_LARGE_INFINITY)
+            EUt(VA[OpV])
+            duration(20 * SECOND)
+        }
+
+        // endregion
+
+        // region Batteries
 
         // Small Neutronium Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_SMALL_NEUTRONIUM)
-            .input(dust, Neutronium, 2)
-            .output(BATTERY_UHV_NEUTRONIUM)
-            .EUt(VH[LuV])
-            .duration(17 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_SMALL_NEUTRONIUM)
+            input(dust, Neutronium, 2)
+            output(BATTERY_UHV_NEUTRONIUM)
+            EUt(VH[LuV])
+            duration(17 * SECOND + 10 * TICK)
+        }
 
         // Medium Neutronium Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_MEDIUM_NEUTRONIUM)
-            .input(dust, Neutronium, 8)
-            .output(BATTERY_UEV_NEUTRONIUM)
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_MEDIUM_NEUTRONIUM)
+            input(dust, Neutronium, 8)
+            output(BATTERY_UEV_NEUTRONIUM)
+            EUt(VA[LuV])
+            duration(20 * SECOND)
+        }
 
         // Large Neutronium Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_LARGE_NEUTRONIUM)
-            .input(dust, Neutronium, 16)
-            .output(BATTERY_UIV_NEUTRONIUM)
-            .EUt(VH[ZPM])
-            .duration(22 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_LARGE_NEUTRONIUM)
+            input(dust, Neutronium, 16)
+            output(BATTERY_UIV_NEUTRONIUM)
+            EUt(VH[ZPM])
+            duration(22 * SECOND + 10 * TICK)
+        }
 
         // Small Infinity Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_SMALL_INFINITY)
-            .input(dust, Infinity, 2)
-            .output(BATTERY_UXV_INFINITY)
-            .EUt(VA[ZPM])
-            .duration(25 * SECOND)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_SMALL_INFINITY)
+            input(dust, Infinity, 2)
+            output(BATTERY_UXV_INFINITY)
+            EUt(VA[ZPM])
+            duration(25 * SECOND)
+        }
 
         // Medium Infinity Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_MEDIUM_INFINITY)
-            .input(dust, Infinity, 8)
-            .output(BATTERY_OpV_INFINITY)
-            .EUt(VH[UV])
-            .duration(27 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_MEDIUM_INFINITY)
+            input(dust, Infinity, 8)
+            output(BATTERY_OpV_INFINITY)
+            EUt(VH[UV])
+            duration(27 * SECOND + 10 * TICK)
+        }
 
         // Large Infinity Battery
-        CANNER_RECIPES.recipeBuilder()
-            .input(BATTERY_HULL_LARGE_INFINITY)
-            .input(dust, Infinity, 16)
-            .output(BATTERY_MAX_INFINITY)
-            .EUt(VA[UV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        CANNER_RECIPES.buildRecipe {
+            input(BATTERY_HULL_LARGE_INFINITY)
+            input(dust, Infinity, 16)
+            output(BATTERY_MAX_INFINITY)
+            EUt(VA[UV])
+            duration(30 * SECOND)
+        }
 
+        // endregion
     }
 
     // @formatter:on

@@ -24,6 +24,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
@@ -47,79 +48,79 @@ internal object BETSPerrhenateChain
     fun init()
     {
         // NaOH + CO -> HCOONa
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(CarbonMonoxide.getFluid(1000))
-            .output(dust, SodiumFormate, 5)
-            .EUt(VA[LV])
-            .duration(4 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ROASTER_RECIPES.buildRecipe {
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(CarbonMonoxide.getFluid(1000))
+            output(dust, SodiumFormate, 5)
+            EUt(VA[LV])
+            duration(4 * SECOND + 10 * TICK)
+        }
 
         // HCOONa + H2SO4 -> Na2S2O3 + 2HCOOH (cycle)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumFormate, 5)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .output(dust, SodiumThiosulfate, 7)
-            .fluidOutputs(FormicAcid.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, SodiumFormate, 5)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            output(dust, SodiumThiosulfate, 7)
+            fluidOutputs(FormicAcid.getFluid(1000))
+            EUt(VA[LV])
+            duration(6 * SECOND)
+        }
 
         // 4Na + 2HCOOH + 2Br + 2H2O -> 4NaOH + C2H2Br2O2 + 2H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Sodium, 4)
-            .fluidInputs(FormicAcid.getFluid(2000))
-            .fluidInputs(Bromine.getFluid(2000))
-            .fluidInputs(Water.getFluid(2000))
-            .output(dust, SodiumHydroxide, 12)
-            .fluidOutputs(Dibromoacrolein.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[EV])
-            .duration(18 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, Sodium, 4)
+            fluidInputs(FormicAcid.getFluid(2000))
+            fluidInputs(Bromine.getFluid(2000))
+            fluidInputs(Water.getFluid(2000))
+            output(dust, SodiumHydroxide, 12)
+            fluidOutputs(Dibromoacrolein.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[EV])
+            duration(18 * SECOND)
+        }
 
         // 2Na2S2O3 + C2H2Br2O2 + C2H4Cl2 -> 2NaCl + 2NaHSO4 + C4H4S2Br2
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumThiosulfate, 14)
-            .fluidInputs(Dibromoacrolein.getFluid(1000))
-            .fluidInputs(Dichloroethane.getFluid(1000))
-            .output(dust, Salt, 4)
-            .output(dust, SodiumBisulfate, 14)
-            .fluidOutputs(Bromodihydrothiine.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, SodiumThiosulfate, 14)
+            fluidInputs(Dibromoacrolein.getFluid(1000))
+            fluidInputs(Dichloroethane.getFluid(1000))
+            output(dust, Salt, 4)
+            output(dust, SodiumBisulfate, 14)
+            fluidOutputs(Bromodihydrothiine.getFluid(1000))
+            EUt(VA[IV])
+            duration(16 * SECOND)
+        }
 
         // 2Se + C4H4S2Br2 + 2C4H9Li -> C4H4S2Li2Se2 + 2C4H9Br
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Selenium, 2)
-            .fluidInputs(Bromodihydrothiine.getFluid(1000))
-            .fluidInputs(Butyllithium.getFluid(2000))
-            .output(dust, LithiumThiinediselenide, 14)
-            .fluidOutputs(Bromobutane.getFluid(2000))
-            .EUt(VA[LuV])
-            .duration(17 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, Selenium, 2)
+            fluidInputs(Bromodihydrothiine.getFluid(1000))
+            fluidInputs(Butyllithium.getFluid(2000))
+            output(dust, LithiumThiinediselenide, 14)
+            fluidOutputs(Bromobutane.getFluid(2000))
+            EUt(VA[LuV])
+            duration(17 * SECOND)
+        }
 
         // 2C4H4S2Li2Se2 + C2F4 -> C10H8S4Se4 + 4LiF
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, LithiumThiinediselenide, 28)
-            .fluidInputs(Tetrafluoroethylene.getFluid(1000))
-            .notConsumable(TitaniumTetrachloride.getFluid(1))
-            .output(dust, BETS, 26)
-            .output(dust, LithiumFluoride, 8)
-            .EUt(VA[UHV])
-            .duration(40 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            input(dust, LithiumThiinediselenide, 28)
+            fluidInputs(Tetrafluoroethylene.getFluid(1000))
+            notConsumable(TitaniumTetrachloride.getFluid(1))
+            output(dust, BETS, 26)
+            output(dust, LithiumFluoride, 8)
+            EUt(VA[UHV])
+            duration(40 * SECOND)
+        }
 
         // C10H8S4Se4 + NH4ReO4 -> (C10H8S4Se4)ReO4
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, BETS, 26)
-            .input(dust, AmmoniumPerrhenate, 10)
-            .output(dust, BETSPerrhenate, 31)
-            .EUt(VA[ZPM])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.buildRecipe {
+            input(dust, BETS, 26)
+            input(dust, AmmoniumPerrhenate, 10)
+            output(dust, BETSPerrhenate, 31)
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

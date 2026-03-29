@@ -108,7 +108,7 @@ object GTLiteRecipeHandler
     @JvmStatic
     fun removeMixerRecipes(vararg itemInputs: ItemStack)
     {
-        return removeMixerRecipes(*itemInputs)
+        return removeMixerRecipes(arrayOf(*itemInputs))
     }
 
     /**

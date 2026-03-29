@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.buildRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichAmmoniaMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNitrogenMixture
 
@@ -27,42 +28,41 @@ internal object AmmoniaChain
     fun init()
     {
         // CH4 + N -> CH4N
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Methane.getFluid(1000))
-            .fluidInputs(Air.getFluid(1500))
-            .fluidOutputs(RichNitrogenMixture.getFluid(2500))
-            .EUt(VA[MV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.buildRecipe {
+            fluidInputs(Methane.getFluid(1000))
+            fluidInputs(Air.getFluid(1500))
+            fluidOutputs(RichNitrogenMixture.getFluid(2500))
+            EUt(VA[MV])
+            duration(8 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Methane.getFluid(1000))
-            .fluidInputs(Nitrogen.getFluid(1000))
-            .fluidOutputs(RichNitrogenMixture.getFluid(2500))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.buildRecipe {
+            fluidInputs(Methane.getFluid(1000))
+            fluidInputs(Nitrogen.getFluid(1000))
+            fluidOutputs(RichNitrogenMixture.getFluid(2500))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // CH4N + 2H2O -> NH4 + CH4 (cycle) + O2 (lost)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(dust, Chrome)
-            .fluidInputs(RichNitrogenMixture.getFluid(2500))
-            .fluidInputs(Water.getFluid(2000))
-            .fluidOutputs(RichAmmoniaMixture.getFluid(1000))
-            .fluidOutputs(Methane.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.buildRecipe {
+            notConsumable(dust, Chrome)
+            fluidInputs(RichNitrogenMixture.getFluid(2500))
+            fluidInputs(Water.getFluid(2000))
+            fluidOutputs(RichAmmoniaMixture.getFluid(1000))
+            fluidOutputs(Methane.getFluid(1000))
+            EUt(VA[MV])
+            duration(4 * SECOND)
+        }
 
         // NH4 -> NH3 + H (lost)
-        BREWING_RECIPES.recipeBuilder()
-            .notConsumable(dust, Magnetite)
-            .fluidInputs(RichAmmoniaMixture.getFluid(1000))
-            .fluidOutputs(Ammonia.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
-
+        BREWING_RECIPES.buildRecipe {
+            notConsumable(dust, Magnetite)
+            fluidInputs(RichAmmoniaMixture.getFluid(1000))
+            fluidOutputs(Ammonia.getFluid(1000))
+            EUt(VA[LV])
+            duration(8 * SECOND)
+        }
     }
 
     // @formatter:on
