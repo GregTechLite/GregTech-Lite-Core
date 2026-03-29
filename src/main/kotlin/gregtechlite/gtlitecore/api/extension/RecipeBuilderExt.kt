@@ -20,7 +20,7 @@ import net.minecraftforge.fluids.FluidStack
  *
  * @param builder The corresponding [RecipeBuilder] of the [RecipeMap].
  */
-fun <T: RecipeBuilder<T>> RecipeMap<T>.buildRecipe(builder: T.() -> Unit)
+fun <T: RecipeBuilder<T>> RecipeMap<T>.addRecipe(builder: T.() -> Unit)
     = recipeBuilder().apply(builder).buildAndRegister()
 
 // endregion
@@ -32,6 +32,16 @@ fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int = 1, m
 
 fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(block: Block, amount: Int = 1): T
     = inputs(ItemStack(block, amount))
+
+// endregion
+
+// region Recipe Output Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(item: Item, amount: Int = 1, metadata: Int = 0): T
+    = outputs(ItemStack(item, amount, metadata))
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(block: Block, amount: Int = 1): T
+    = outputs(ItemStack(block, amount))
 
 // endregion
 
