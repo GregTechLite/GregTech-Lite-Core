@@ -102,6 +102,18 @@ object GTLiteRecipeHandler
     /**
      * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
      *
+     * @param itemInputs The item inputs of the recipe which will be removed.
+     */
+    @JvmName("_removeMixerRecipes")
+    @JvmStatic
+    fun removeMixerRecipes(vararg itemInputs: ItemStack)
+    {
+        return removeMixerRecipes(*itemInputs)
+    }
+
+    /**
+     * Removes a Mixer recipe and its corresponding recipe in Large Mixer (LM).
+     *
      * @param fluidInputs The fluid inputs of the recipe which will be removed.
      */
     @JvmStatic

@@ -1,11 +1,13 @@
 @file:Suppress("FunctionName")
 package gregtechlite.gtlitecore.api.extension
 
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.builders.ResearchRecipeBuilder
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraftforge.fluids.FluidStack
 
 // region DSL Context
 
@@ -49,5 +51,18 @@ fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Long): T
 
 fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Double): T
     = duration(duration.toInt())
+
+// endregion
+
+// region Recipe Removal Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(vararg itemInputs: ItemStack)
+    = GTRecipeHandler.removeRecipesByInputs(this, *itemInputs)
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(vararg fluidInputs: FluidStack)
+    = GTRecipeHandler.removeRecipesByInputs(this, *fluidInputs)
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeByInputs(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
+    = GTRecipeHandler.removeRecipesByInputs(this, itemInputs, fluidInputs)
 
 // endregion
