@@ -25,7 +25,9 @@ import gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -40,9 +42,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Promethazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PurpleDrink
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.HARD_APPLE_CANDY_DUST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.POPPY_DUST
-import net.minecraft.init.Blocks
-import net.minecraft.init.Items
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Blocks.RED_FLOWER
+import net.minecraft.init.Items.GLASS_BOTTLE
 
 internal object PurpleDrinkProcessing
 {
@@ -52,102 +53,101 @@ internal object PurpleDrinkProcessing
     fun init()
     {
         // C6H5NH2 + H2S + 6O -> C12H9NS + 6CO
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(Aniline.getFluid(1000))
-            .fluidInputs(HydrogenSulfide.getFluid(1000))
-            .fluidInputs(Oxygen.getFluid(6000))
-            .output(dust, Phenothiazine, 23)
-            .fluidOutputs(CarbonMonoxide.getFluid(6000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(Aniline.getFluid(1000))
+            fluidInputs(HydrogenSulfide.getFluid(1000))
+            fluidInputs(Oxygen.getFluid(6000))
+            output(dust, Phenothiazine, 23)
+            fluidOutputs(CarbonMonoxide.getFluid(6000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // C3H6 + HCl -> (CH3)2CHCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Propene.getFluid(1000))
-            .fluidInputs(HydrochloricAcid.getFluid(1000))
-            .fluidOutputs(IsopropylChloride.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Propene.getFluid(1000))
+            fluidInputs(HydrochloricAcid.getFluid(1000))
+            fluidOutputs(IsopropylChloride.getFluid(1000))
+            EUt(VA[LV])
+            duration(8 * SECOND)
+        }
 
         // C12H9NS + (CH3)2CHCl -> C15H14NSCl + 2H
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, Phenothiazine, 23)
-            .fluidInputs(IsopropylChloride.getFluid(1000))
-            .fluidOutputs(PhenothiazinePropylChloride.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VH[HV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, Phenothiazine, 23)
+            fluidInputs(IsopropylChloride.getFluid(1000))
+            fluidOutputs(PhenothiazinePropylChloride.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VH[HV])
+            duration(6 * SECOND)
+        }
 
         // C15H14HSCl + C2H7N -> C17H20N2S + HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(dust, Copper)
-            .fluidInputs(PhenothiazinePropylChloride.getFluid(1000))
-            .fluidInputs(Dimethylamine.getFluid(1000))
-            .output(dust, Promethazine, 40)
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(dust, Copper)
+            fluidInputs(PhenothiazinePropylChloride.getFluid(1000))
+            fluidInputs(Dimethylamine.getFluid(1000))
+            output(dust, Promethazine, 40)
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(12 * SECOND)
+        }
 
         // Poppy dust.
-        MACERATOR_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Blocks.RED_FLOWER))
-            .outputs(POPPY_DUST.stack())
-            .EUt(4) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        MACERATOR_RECIPES.addRecipe {
+            inputs(RED_FLOWER)
+            outputs(POPPY_DUST.stack())
+            EUt(4) // ULV
+            duration(1 * SECOND)
+        }
 
         // Poppy dust -> C18H21NO3
-        EXTRACTOR_RECIPES.recipeBuilder()
-            .inputs(POPPY_DUST.getStack(64))
-            .output(dust, Codeine, 43)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.addRecipe {
+            inputs(POPPY_DUST.getStack(64))
+            output(dust, Codeine, 43)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // C17H20N2S + C18H21NO3 + H2O -> (C17H20N2S)(C18H21NO3)(H2O)
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Promethazine, 40)
-            .input(dust, Codeine, 43)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(CoughSyrup.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Promethazine, 40)
+            input(dust, Codeine, 43)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(CoughSyrup.getFluid(1000))
+            EUt(VA[MV])
+            duration(3 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Promethazine, 40)
-            .input(dust, Codeine, 43)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(CoughSyrup.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Promethazine, 40)
+            input(dust, Codeine, 43)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(CoughSyrup.getFluid(1000))
+            EUt(VA[MV])
+            duration(3 * SECOND)
+        }
 
         // Purple Drink
-        MIXER_RECIPES.recipeBuilder()
-            .inputs(HARD_APPLE_CANDY_DUST.stack())
-            .fluidInputs(CoughSyrup.getFluid(500))
-            .fluidInputs(Etirps.getFluid(1000))
-            .fluidOutputs(PurpleDrink.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            inputs(HARD_APPLE_CANDY_DUST.stack())
+            fluidInputs(CoughSyrup.getFluid(500))
+            fluidInputs(Etirps.getFluid(1000))
+            fluidOutputs(PurpleDrink.getFluid(1000))
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
 
-        CANNER_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Items.GLASS_BOTTLE))
-            .fluidInputs(PurpleDrink.getFluid(250))
-            .output(BOTTLE_PURPLE_DRINK)
-            .EUt(4) // ULV
-            .duration(10 * TICK)
-            .buildAndRegister()
-
+        CANNER_RECIPES.addRecipe {
+            inputs(GLASS_BOTTLE)
+            fluidInputs(PurpleDrink.getFluid(250))
+            output(BOTTLE_PURPLE_DRINK)
+            EUt(4) // ULV
+            duration(10 * TICK)
+        }
     }
 
     // @formatter:on

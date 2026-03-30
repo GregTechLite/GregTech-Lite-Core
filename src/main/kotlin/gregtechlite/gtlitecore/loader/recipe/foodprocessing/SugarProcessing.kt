@@ -21,7 +21,9 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
@@ -40,8 +42,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.APPLE_PULP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.HARD_APPLE_CANDY_CHUNK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.HARD_APPLE_CANDY_DUST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.HARD_APPLE_CANDY_PLATE
-import net.minecraft.init.Items
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Items.APPLE
+import net.minecraft.init.Items.REEDS
 
 internal object SugarProcessing
 {
@@ -51,141 +53,142 @@ internal object SugarProcessing
     fun init()
     {
         // Sugar (C2(H2O)5O25) -> Glucose (C6H12O6) + Fructose (C6H12O6)
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Sugar, 48)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Glucose, 24)
-            .output(dust, Fructose, 24)
-            .EUt(VA[HV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Sugar, 48)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Glucose, 24)
+            output(dust, Fructose, 24)
+            EUt(VA[HV])
+            duration(15 * SECOND)
+        }
 
         // C6H12O6 + 9O -> 3C2H2O4 + 3H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Glucose, 24)
-            .fluidInputs(Oxygen.getFluid(9000))
-            .fluidOutputs(OxalicAcid.getFluid(3000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Glucose, 24)
+            fluidInputs(Oxygen.getFluid(9000))
+            fluidOutputs(OxalicAcid.getFluid(3000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // C6H12O6 + 3O -> C6H10O8 + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Glucose, 24)
-            .fluidInputs(Oxygen.getFluid(3000))
-            .output(dust, SacchariaAcid, 24)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Glucose, 24)
+            fluidInputs(Oxygen.getFluid(3000))
+            output(dust, SacchariaAcid, 24)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // C6H12O6 + H2O -> C6H14O2 + 5O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Fructose, 24)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(Hexanediol.getFluid(1000))
-            .fluidOutputs(Oxygen.getFluid(5000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Fructose, 24)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(Hexanediol.getFluid(1000))
+            fluidOutputs(Oxygen.getFluid(5000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
-        // Apple sugar chain.
+        // region Apple Sugar Processing
 
         // Apple -> Apple Pulp
-        MACERATOR_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Items.APPLE))
-            .outputs(APPLE_PULP.getStack(2))
-            .chancedOutput(APPLE_PULP.stack(), 3000, 0)
-            .chancedOutput(APPLE_PULP.stack(), 1500, 0)
-            .EUt(4) // ULV
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        MACERATOR_RECIPES.addRecipe {
+            inputs(APPLE)
+            outputs(APPLE_PULP.getStack(2))
+            chancedOutput(APPLE_PULP.stack(), 3000, 0)
+            chancedOutput(APPLE_PULP.stack(), 1500, 0)
+            EUt(4) // ULV
+            duration(4 * SECOND)
+        }
 
         // Apple Pulp -> Apple Syrup
-        MIXER_RECIPES.recipeBuilder()
-            .inputs(APPLE_PULP.getStack(4))
-            .input(dust, Sugar, 9)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(AppleSyrup.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            inputs(APPLE_PULP.getStack(4))
+            input(dust, Sugar, 9)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(AppleSyrup.getFluid(2000))
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .inputs(APPLE_PULP.getStack(4))
-            .input(dust, Sugar, 9)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(AppleSyrup.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            inputs(APPLE_PULP.getStack(4))
+            input(dust, Sugar, 9)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(AppleSyrup.getFluid(2000))
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
         // Cane Syrup
-        FERMENTING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .inputs(ItemStack(Items.REEDS))
-            .fluidInputs(Water.getFluid(250))
-            .fluidOutputs(CaneSyrup.getFluid(100))
-            .EUt(VA[LV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        FERMENTING_RECIPES.addRecipe {
+            circuitMeta(1)
+            inputs(REEDS)
+            fluidInputs(Water.getFluid(250))
+            fluidOutputs(CaneSyrup.getFluid(100))
+            EUt(VA[LV])
+            duration(8 * SECOND)
+        }
 
         // Apple-Cane Syrup
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(AppleSyrup.getFluid(500))
-            .fluidInputs(CaneSyrup.getFluid(500))
-            .fluidOutputs(AppleCaneSyrup.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(AppleSyrup.getFluid(500))
+            fluidInputs(CaneSyrup.getFluid(500))
+            fluidOutputs(AppleCaneSyrup.getFluid(1000))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Apple-Cane Syrup -> Hard Apple Candy Syrup
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(AppleCaneSyrup.getFluid(200))
-            .fluidOutputs(HardAppleCandySyrup.getFluid(100))
-            .EUt(VA[LV])
-            .duration(4 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(AppleCaneSyrup.getFluid(200))
+            fluidOutputs(HardAppleCandySyrup.getFluid(100))
+            EUt(VA[LV])
+            duration(4 * SECOND + 10 * TICK)
+        }
 
         // Hard Apple Candy Syrup -> Hard Apple Candy Chunk
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_PLATE)
-            .fluidInputs(HardAppleCandySyrup.getFluid(1000))
-            .outputs(HARD_APPLE_CANDY_CHUNK.stack())
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_PLATE)
+            fluidInputs(HardAppleCandySyrup.getFluid(1000))
+            outputs(HARD_APPLE_CANDY_CHUNK.stack())
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
         // Hard Apple Candy Chunk -> Hard Apple Candy Plate
-        SLICER_RECIPES.recipeBuilder()
-            .notConsumable(SLICER_BLADE_FLAT)
-            .inputs(HARD_APPLE_CANDY_CHUNK.stack())
-            .outputs(HARD_APPLE_CANDY_PLATE.getStack(9))
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        SLICER_RECIPES.addRecipe {
+            notConsumable(SLICER_BLADE_FLAT)
+            inputs(HARD_APPLE_CANDY_CHUNK.stack())
+            outputs(HARD_APPLE_CANDY_PLATE.getStack(9))
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Hard Apple Candy Plate -> Hard Apple Candy
-        ROASTER_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_BALL)
-            .inputs(HARD_APPLE_CANDY_PLATE.stack())
-            .output(HARD_APPLE_CANDY)
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_BALL)
+            inputs(HARD_APPLE_CANDY_PLATE.stack())
+            output(HARD_APPLE_CANDY)
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
         // Hard Apple Candy -> Hard Apple Candy Dust
-        MACERATOR_RECIPES.recipeBuilder()
-            .input(HARD_APPLE_CANDY)
-            .outputs(HARD_APPLE_CANDY_DUST.getStack(2))
-            .EUt(4) // ULV
-            .duration(12 * TICK)
-            .buildAndRegister()
+        MACERATOR_RECIPES.addRecipe {
+            input(HARD_APPLE_CANDY)
+            outputs(HARD_APPLE_CANDY_DUST.getStack(2))
+            EUt(4) // ULV
+            duration(12 * TICK)
+        }
 
+        // endregion
     }
 
     // @formatter:on

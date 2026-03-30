@@ -8,6 +8,7 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 
 internal object AdditivesProcessing
@@ -23,14 +24,14 @@ internal object AdditivesProcessing
     private fun aminooxyaceticAcidProcess()
     {
         // C2H4O2 + HNO3 -> C2H5NO3 + 2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(AceticAcid.getFluid(1000))
-            .fluidInputs(NitricAcid.getFluid(1000))
-            .fluidOutputs(AminooxyaceticAcid.getFluid(1000))
-            .fluidOutputs(Oxygen.getFluid(2000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(AceticAcid.getFluid(1000))
+            fluidInputs(NitricAcid.getFluid(1000))
+            fluidOutputs(AminooxyaceticAcid.getFluid(1000))
+            fluidOutputs(Oxygen.getFluid(2000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

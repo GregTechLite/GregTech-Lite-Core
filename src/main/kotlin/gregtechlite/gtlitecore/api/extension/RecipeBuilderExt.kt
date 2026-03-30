@@ -84,4 +84,12 @@ fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg fluidInputs: FluidSta
 fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
     = GTRecipeHandler.removeRecipesByInputs(this, itemInputs, fluidInputs)
 
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg itemInputs: Item): Boolean
+{
+    val items = mutableListOf<ItemStack>()
+    for (itemInput in itemInputs)
+        items.add(ItemStack(itemInput))
+    return removeRecipe(*items.toTypedArray())
+}
+
 // endregion

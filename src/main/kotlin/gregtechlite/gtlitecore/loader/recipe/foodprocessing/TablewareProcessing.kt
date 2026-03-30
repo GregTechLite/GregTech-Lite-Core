@@ -18,6 +18,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BOTTLE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CLAY_BOWL
@@ -52,31 +53,30 @@ internal object TablewareProcessing
         ModHandler.addSmeltingRecipe(CLAY_CUP.stackForm, CERAMIC_CUP.stackForm)
 
         // Dirty Ceramic Bowl -> Ceramic Bowl
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(DIRTY_CERAMIC_BOWL)
-            .fluidInputs(Water.getFluid(100))
-            .output(CERAMIC_BOWL)
-            .EUt(VA[LV])
-            .duration(1 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(DIRTY_CERAMIC_BOWL)
+            fluidInputs(Water.getFluid(100))
+            output(CERAMIC_BOWL)
+            EUt(VA[LV])
+            duration(1 * SECOND + 5 * TICK)
+        }
 
         // Plastic Bottle
-        EXTRUDER_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_EXTRUDER_BOTTLE)
-            .input(ingot, Polyethylene)
-            .output(PLASTIC_BOTTLE)
-            .EUt(VA[LV])
-            .duration(1 * SECOND + 12 * TICK)
-            .buildAndRegister()
+        EXTRUDER_RECIPES.addRecipe {
+            notConsumable(SHAPE_EXTRUDER_BOTTLE)
+            input(ingot, Polyethylene)
+            output(PLASTIC_BOTTLE)
+            EUt(VA[LV])
+            duration(1 * SECOND + 12 * TICK)
+        }
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_BOTTLE)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(PLASTIC_BOTTLE)
-            .EUt(4) // ULV
-            .duration(12 * TICK)
-            .buildAndRegister()
-
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_BOTTLE)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(PLASTIC_BOTTLE)
+            EUt(4) // ULV
+            duration(12 * TICK)
+        }
     }
 
     // @formatter:on
