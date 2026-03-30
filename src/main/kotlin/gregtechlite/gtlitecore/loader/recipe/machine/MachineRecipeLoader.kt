@@ -242,6 +242,8 @@ import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
@@ -433,7 +435,7 @@ internal object MachineRecipeLoader
     {
 
         // Coagulation Tank
-        ModHandler.addShapedRecipe(true, "coagulation_tank", COAGULATION_TANK.stackForm,
+        ModHandler.addShapedRecipe(true, "coagulation_tank", COAGULATION_TANK.stack(),
             "PRP", "sQh", "PSP",
             'P', UnificationEntry(plate, TreatedWood),
             'Q', UnificationEntry(pipeLargeFluid, TreatedWood),
@@ -441,23 +443,23 @@ internal object MachineRecipeLoader
             'S', UnificationEntry(screw, Steel))
 
         // Large Steam Compressor
-        ModHandler.addShapedRecipe(true, "large_steam_compressor", LARGE_STEAM_COMPRESSOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_steam_compressor", LARGE_STEAM_COMPRESSOR.stack(),
             "CPC", "GFG", "CPC",
             'C', GTMetalCasing.BRONZE_BRICKS.stack,
             'P', OreDictNames.craftingPiston,
-            'F', STEAM_COMPRESSOR_BRONZE.stackForm,
+            'F', STEAM_COMPRESSOR_BRONZE.stack(),
             'G', UnificationEntry(gear, Potin))
 
         // Large Steam Alloy Smelter
-        ModHandler.addShapedRecipe(true, "large_steam_alloy_smelter", LARGE_STEAM_ALLOY_SMELTER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_steam_alloy_smelter", LARGE_STEAM_ALLOY_SMELTER.stack(),
             "PGP", "CFC", "PGP",
-            'F', STEAM_ALLOY_SMELTER_BRONZE.stackForm,
+            'F', STEAM_ALLOY_SMELTER_BRONZE.stack(),
             'G', UnificationEntry(gear, Brass),
             'P', UnificationEntry(pipeNormalFluid, Bronze),
             'C', GTMetalCasing.BRONZE_BRICKS.stack)
 
         // Steam Engine
-        ModHandler.addShapedRecipe(true, "steam_engine", STEAM_ENGINE.stackForm,
+        ModHandler.addShapedRecipe(true, "steam_engine", STEAM_ENGINE.stack(),
             "FPF", "PCP", "SGS",
             'C', MetalCasing.BRASS.stack,
             'S', UnificationEntry(gearSmall, Bronze),
@@ -466,16 +468,16 @@ internal object MachineRecipeLoader
             'P', UnificationEntry(plate, Brass))
 
         // Industrial Primitive Blast Furnace
-        ModHandler.addShapedRecipe(true, "industrial_primitive_blast_furnace", INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.stackForm,
+        ModHandler.addShapedRecipe(true, "industrial_primitive_blast_furnace", INDUSTRIAL_PRIMITIVE_BLAST_FURNACE.stack(),
             "FBF", "BAB", "FBF",
-            'F', PRIMITIVE_BLAST_FURNACE.stackForm,
+            'F', PRIMITIVE_BLAST_FURNACE.stack(),
             'B', GTFireboxCasing.STEEL_FIREBOX.stack,
             'A', OreDictUnifier.get(frameGt, Steel))
 
         // Mining Drone Airport
-        ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stackForm,
+        ModHandler.addShapedRecipe(true, "mining_drone_airport", MINING_DRONE_AIRPORT.stack(),
             "RDE", "CHC", "XWX",
-            'H', HULL[LV].stackForm,
+            'H', HULL[LV].stack(),
             'D', MINING_DRONE_LV,
             'R', ROBOT_ARM_LV,
             'E', EMITTER_LV,
@@ -484,85 +486,85 @@ internal object MachineRecipeLoader
             'W', UnificationEntry(cableGtSingle, Tin))
 
         // Catalytic Reformer
-        ModHandler.addShapedRecipe(true, "catalytic_reformer", CATALYTIC_REFORMER.stackForm,
+        ModHandler.addShapedRecipe(true, "catalytic_reformer", CATALYTIC_REFORMER.stack(),
             "MCM", "PHP", "MKM",
             'M', UnificationEntry(pipeNormalFluid, StainlessSteel),
             'C', UnificationEntry(circuit, Tier.HV),
             'P', ELECTRIC_PUMP_HV,
-            'H', HULL[HV].stackForm,
+            'H', HULL[HV].stack(),
             'K', UnificationEntry(cableGtDouble, Gold))
 
         // Large Forge Hammer
-        ModHandler.addShapedRecipe(true, "large_forge_hammer", LARGE_FORGE_HAMMER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_forge_hammer", LARGE_FORGE_HAMMER.stack(),
             "PXP", "FHC", "PXP",
-            'C', COMPRESSOR[LV].stackForm,
-            'F', FORGE_HAMMER[LV].stackForm,
-            'H', HULL[LV].stackForm,
+            'C', COMPRESSOR[LV].stack(),
+            'F', FORGE_HAMMER[LV].stack(),
+            'H', HULL[LV].stack(),
             'P', ELECTRIC_PISTON_LV,
             'X', UnificationEntry(circuit, Tier.MV))
 
         // Large Bender
-        ModHandler.addShapedRecipe(true, "large_bender", LARGE_BENDER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_bender", LARGE_BENDER.stack(),
             "GXG", "BHF", "PWP",
-            'B', BENDER[EV].stackForm,
-            'F', FORMING_PRESS[EV].stackForm,
+            'B', BENDER[EV].stack(),
+            'F', FORMING_PRESS[EV].stack(),
             'G', UnificationEntry(gear, Titanium),
-            'H', HULL[EV].stackForm,
+            'H', HULL[EV].stack(),
             'P', UnificationEntry(plate, Titanium),
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.EV))
 
         // Large Cutter
-        ModHandler.addShapedRecipe(true, "large_cutter", LARGE_CUTTER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_cutter", LARGE_CUTTER.stack(),
             "WGW", "CHL", "WXW",
-            'C', CUTTER[EV].stackForm,
+            'C', CUTTER[EV].stack(),
             'G', UnificationEntry(gear, MaragingSteel250),
-            'H', HULL[EV].stackForm,
-            'L', LATHE[EV].stackForm,
+            'H', HULL[EV].stack(),
+            'L', LATHE[EV].stack(),
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Extruder
-        ModHandler.addShapedRecipe(true, "large_extruder", LARGE_EXTRUDER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_extruder", LARGE_EXTRUDER.stack(),
             "AXA", "PEP", "AXA",
             'A', UnificationEntry(plate, Inconel625),
-            'E', EXTRUDER[IV].stackForm,
+            'E', EXTRUDER[IV].stack(),
             'P', ELECTRIC_PISTON_IV,
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Wiremill
-        ModHandler.addShapedRecipe(true, "large_wiremill", LARGE_WIREMILL.stackForm,
+        ModHandler.addShapedRecipe(true, "large_wiremill", LARGE_WIREMILL.stack(),
             "MGM", "XWX", "MCM",
             'C', UnificationEntry(cableGtSingle, Platinum),
             'G', UnificationEntry(gear, BlueSteel),
             'M', ELECTRIC_MOTOR_IV,
-            'W', WIREMILL[IV].stackForm,
+            'W', WIREMILL[IV].stack(),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Mixer
-        ModHandler.addShapedRecipe(true, "large_mixer", LARGE_MIXER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_mixer", LARGE_MIXER.stack(),
             "PGP", "MHM", "WXW",
             'G', UnificationEntry(gear, Staballoy),
-            'H', HULL[EV].stackForm,
-            'M', MIXER[EV].stackForm,
+            'H', HULL[EV].stack(),
+            'M', MIXER[EV].stack(),
             'P', UnificationEntry(plate, Staballoy),
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Extractor
-        ModHandler.addShapedRecipe(true, "large_extractor", LARGE_EXTRACTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_extractor", LARGE_EXTRACTOR.stack(),
             "GXG", "PHI", "GEG",
-            'E', EXTRACTOR[IV].stackForm,
+            'E', EXTRACTOR[IV].stack(),
             'G', UnificationEntry(gear, Talonite),
-            'H', HULL[IV].stackForm,
+            'H', HULL[IV].stack(),
             'I', ELECTRIC_PUMP_IV,
             'P', ELECTRIC_PISTON_IV,
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Assembler
-        ModHandler.addShapedRecipe(true, "large_assembler", LARGE_ASSEMBLER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_assembler", LARGE_ASSEMBLER.stack(),
             "EXS", "RAR", "CXC",
-            'A', ASSEMBLER[IV].stackForm,
+            'A', ASSEMBLER[IV].stack(),
             'C', CONVEYOR_MODULE_IV,
             'E', EMITTER_IV,
             'R', ROBOT_ARM_IV,
@@ -570,89 +572,89 @@ internal object MachineRecipeLoader
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Laser Engraver
-        ModHandler.addShapedRecipe(true, "large_laser_engraver", LARGE_LASER_ENGRAVER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_laser_engraver", LARGE_LASER_ENGRAVER.stack(),
             "EXE", "LHL", "WXW",
             'E', EMITTER_IV,
-            'H', HULL[IV].stackForm,
-            'L', LASER_ENGRAVER[IV].stackForm,
+            'H', HULL[IV].stack(),
+            'L', LASER_ENGRAVER[IV].stack(),
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Fluid Solidifier
-        ModHandler.addShapedRecipe(true, "large_fluid_solidifier", LARGE_FLUID_SOLIDIFIER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_fluid_solidifier", LARGE_FLUID_SOLIDIFIER.stack(),
             "AXA", "PFP", "GXG",
             'A', UnificationEntry(plate, Steel),
-            'F', FLUID_SOLIDIFIER[MV].stackForm,
+            'F', FLUID_SOLIDIFIER[MV].stack(),
             'G', UnificationEntry(gear, Steel),
             'P', ELECTRIC_PUMP_MV,
             'X', UnificationEntry(circuit, Tier.MV))
 
         // Large Brewery
-        ModHandler.addShapedRecipe(true, "large_brewery", LARGE_BREWERY.stackForm,
+        ModHandler.addShapedRecipe(true, "large_brewery", LARGE_BREWERY.stack(),
             "PXP", "BHF", "MWM",
-            'B', BREWERY[EV].stackForm,
-            'F', FERMENTER[EV].stackForm,
-            'H', HULL[EV].stackForm,
+            'B', BREWERY[EV].stack(),
+            'F', FERMENTER[EV].stack(),
+            'H', HULL[EV].stack(),
             'M', ELECTRIC_MOTOR_EV,
             'P', ELECTRIC_PUMP_EV,
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Autoclave
-        ModHandler.addShapedRecipe(true, "large_autoclave", LARGE_AUTOCLAVE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_autoclave", LARGE_AUTOCLAVE.stack(),
             "GXG", "PAP", "WVW",
-            'A', AUTOCLAVE[IV].stackForm,
+            'A', AUTOCLAVE[IV].stack(),
             'G', UnificationEntry(gear, WatertightSteel),
             'P', ELECTRIC_PUMP_IV,
-            'V', VACUUM_CHAMBER[IV]!!.stackForm,
+            'V', VACUUM_CHAMBER[IV]!!.stack(),
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV))
 
         // Large Arc Furnace
-        ModHandler.addShapedRecipe(true, "large_arc_furnace", LARGE_ARC_FURNACE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_arc_furnace", LARGE_ARC_FURNACE.stack(),
             "PXP", "FUA", "GWG",
             'P', UnificationEntry(plateDense, Invar),
             'G', UnificationEntry(plate, Graphite),
-            'F', ARC_FURNACE[HV].stackForm,
-            'A', ALLOY_SMELTER[HV].stackForm,
+            'F', ARC_FURNACE[HV].stack(),
+            'A', ALLOY_SMELTER[HV].stack(),
             'U', ELECTRIC_PUMP_HV,
             'W', UnificationEntry(cableGtSingle, Gold),
             'X', UnificationEntry(circuit, Tier.EV))
 
         // Large Macerator
-        ModHandler.addShapedRecipe(true, "large_macerator", LARGE_MACERATOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_macerator", LARGE_MACERATOR.stack(),
             "PXP", "CMC", "DWD",
             'C', ELECTRIC_MOTOR_EV,
             'D', UnificationEntry(plate, TungstenCarbide),
-            'M', MACERATOR[EV].stackForm,
+            'M', MACERATOR[EV].stack(),
             'P', ELECTRIC_PISTON_EV,
             'W', UnificationEntry(cableGtSingle, Aluminium),
             'X', UnificationEntry(circuit, Tier.EV))
 
         // Large Centrifuge
-        ModHandler.addShapedRecipe(true, "large_centrifuge", LARGE_CENTRIFUGE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_centrifuge", LARGE_CENTRIFUGE.stack(),
             "DXD", "CHT", "WGW",
-            'C', CENTRIFUGE[HV].stackForm,
-            'T', THERMAL_CENTRIFUGE[HV].stackForm,
-            'H', HULL[HV].stackForm,
+            'C', CENTRIFUGE[HV].stack(),
+            'T', THERMAL_CENTRIFUGE[HV].stack(),
+            'H', HULL[HV].stack(),
             'G', UnificationEntry(gear, RedSteel),
             'W', UnificationEntry(cableGtSingle, Gold),
             'D', UnificationEntry(plateDense, Tumbaga),
             'X', UnificationEntry(circuit, Tier.HV))
 
         // Large Sifter
-        ModHandler.addShapedRecipe(true, "large_sifter", LARGE_SIFTER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_sifter", LARGE_SIFTER.stack(),
             "PXP", "WSW", "GXG",
-            'S', SIFTER[HV].stackForm,
+            'S', SIFTER[HV].stack(),
             'W', UnificationEntry(cableGtSingle, Gold),
             'P', UnificationEntry(plate, EglinSteel),
             'G', UnificationEntry(gear, EglinSteel),
             'X', UnificationEntry(circuit, Tier.HV))
 
         // Large Electrolyzer
-        ModHandler.addShapedRecipe(true, "large_electrolyzer", LARGE_ELECTROLYZER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_electrolyzer", LARGE_ELECTROLYZER.stack(),
             "DXD", "PEP", "WHW",
-            'E', ELECTROLYZER[HV].stackForm,
+            'E', ELECTROLYZER[HV].stack(),
             'H', UnificationEntry(pipeHugeFluid, Potin),
             'W', UnificationEntry(cableGtSingle, Gold),
             'P', ELECTRIC_PUMP_HV,
@@ -660,9 +662,9 @@ internal object MachineRecipeLoader
             'D', UnificationEntry(plateDense, Potin))
 
         // Large Ore Washer
-        ModHandler.addShapedRecipe(true, "large_ore_washer", LARGE_ORE_WASHER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_ore_washer", LARGE_ORE_WASHER.stack(),
             "GXG", "POP", "WRW",
-            'O', ORE_WASHER[EV].stackForm,
+            'O', ORE_WASHER[EV].stack(),
             'P', ELECTRIC_PUMP_EV,
             'R', UnificationEntry(rotor, Talonite),
             'W', UnificationEntry(cableGtSingle, Aluminium),
@@ -670,29 +672,29 @@ internal object MachineRecipeLoader
             'G', GTGlassCasing.TEMPERED_GLASS.stack)
 
         // Large Electromagnet
-        ModHandler.addShapedRecipe(true, "large_electromagnet", LARGE_ELECTROMAGNET.stackForm,
+        ModHandler.addShapedRecipe(true, "large_electromagnet", LARGE_ELECTROMAGNET.stack(),
             "AGA", "PHE", "WMW",
-            'P', POLARIZER[MV].stackForm,
-            'E', ELECTROMAGNETIC_SEPARATOR[MV].stackForm,
-            'H', HULL[MV].stackForm,
+            'P', POLARIZER[MV].stack(),
+            'E', ELECTROMAGNETIC_SEPARATOR[MV].stack(),
+            'H', HULL[MV].stack(),
             'M', CONVEYOR_MODULE_MV,
             'W', UnificationEntry(cableGtSingle, Copper),
             'A', UnificationEntry(plate, BabbitAlloy),
             'G', UnificationEntry(gear, BabbitAlloy))
 
         // Large Distillery
-        ModHandler.addShapedRecipe(true, "large_distillery", LARGE_DISTILLERY.stackForm,
+        ModHandler.addShapedRecipe(true, "large_distillery", LARGE_DISTILLERY.stack(),
             "PXP", "DRD", "WXW",
-            'R', DISTILLERY[IV].stackForm,
-            'D', DISTILLATION_TOWER.stackForm,
+            'R', DISTILLERY[IV].stack(),
+            'D', DISTILLATION_TOWER.stack(),
             'X', UnificationEntry(circuit, Tier.IV),
             'W', UnificationEntry(cableGtSingle, Platinum),
             'P', ELECTRIC_PUMP_IV)
 
         // Large Bio Reactor
-        ModHandler.addShapedRecipe(true, "large_bio_reactor", LARGE_BIO_REACTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_bio_reactor", LARGE_BIO_REACTOR.stack(),
             "UGU", "XRX", "WPW",
-            'R', BIO_REACTOR[IV]!!.stackForm,
+            'R', BIO_REACTOR[IV]!!.stack(),
             'X', UnificationEntry(circuit, Tier.IV),
             'P', UnificationEntry(pipeLargeFluid, TungstenSteel),
             'W', UnificationEntry(cableGtSingle, Platinum),
@@ -700,38 +702,38 @@ internal object MachineRecipeLoader
             'G', UnificationEntry(gear, Grisium))
 
         // Large Packer
-        ModHandler.addShapedRecipe(true, "large_packer", LARGE_PACKER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_packer", LARGE_PACKER.stack(),
             "RCR", "PHP", "WXW",
-            'P', PACKER[HV].stackForm,
-            'H', HULL[HV].stackForm,
+            'P', PACKER[HV].stack(),
+            'H', HULL[HV].stack(),
             'W', UnificationEntry(cableGtSingle, Gold),
             'X', UnificationEntry(circuit, Tier.HV),
             'C', CONVEYOR_MODULE_HV,
             'R', ROBOT_ARM_HV)
 
         // Large Gas Collector
-        ModHandler.addShapedRecipe(true, "large_gas_collector", LARGE_GAS_COLLECTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_gas_collector", LARGE_GAS_COLLECTOR.stack(),
             "SXS", "PGP", "WXW",
-            'G', GAS_COLLECTOR[EV].stackForm,
+            'G', GAS_COLLECTOR[EV].stack(),
             'P', ELECTRIC_PUMP_EV,
             'X', UnificationEntry(circuit, Tier.IV),
             'S', UnificationEntry(spring, Tungsten),
             'W', UnificationEntry(cableGtSingle, Aluminium))
 
         // Large Rock Breaker
-        ModHandler.addShapedRecipe(true, "large_rock_breaker", LARGE_ROCK_BREAKER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_rock_breaker", LARGE_ROCK_BREAKER.stack(),
             "PXP", "RHR", "WXW",
             'P', ELECTRIC_PISTON_HV,
-            'R', ROCK_BREAKER[HV].stackForm,
-            'H', HULL[HV].stackForm,
+            'R', ROCK_BREAKER[HV].stack(),
+            'H', HULL[HV].stack(),
             'X', UnificationEntry(circuit, Tier.HV),
             'W', UnificationEntry(cableGtDouble, Electrum))
 
         // Large Burner Reactor
-        ModHandler.addShapedRecipe(true, "large_burner_reactor", LARGE_BURNER_REACTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_burner_reactor", LARGE_BURNER_REACTOR.stack(),
             "PUP", "BXR", "WDW",
-            'B', BURNER_REACTOR[IV]!!.stackForm,
-            'R', ROASTER[IV]!!.stackForm,
+            'B', BURNER_REACTOR[IV]!!.stack(),
+            'R', ROASTER[IV]!!.stack(),
             'D', UnificationEntry(plateDense, EglinSteel),
             'P', ELECTRIC_PISTON_IV,
             'U', ELECTRIC_PUMP_IV,
@@ -739,10 +741,10 @@ internal object MachineRecipeLoader
             'W', UnificationEntry(cableGtSingle, Platinum))
 
         // Large Cryogenic Reactor
-        ModHandler.addShapedRecipe(true, "large_cryogenic_reactor", LARGE_CRYOGENIC_REACTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_cryogenic_reactor", LARGE_CRYOGENIC_REACTOR.stack(),
             "UPU", "CXA", "WDW",
-            'C', CRYOGENIC_REACTOR[IV]!!.stackForm,
-            'A', BATH_CONDENSER[IV]!!.stackForm,
+            'C', CRYOGENIC_REACTOR[IV]!!.stack(),
+            'A', BATH_CONDENSER[IV]!!.stack(),
             'D', UnificationEntry(plateDense, StainlessSteel),
             'P', ELECTRIC_PISTON_IV,
             'U', ELECTRIC_PUMP_IV,
@@ -750,9 +752,9 @@ internal object MachineRecipeLoader
             'W', UnificationEntry(cableGtSingle, Platinum))
 
         // Electric Implosion Compressor
-        ModHandler.addShapedRecipe(true, "electric_implosion_compressor", ELECTRIC_IMPLOSION_COMPRESSOR.stackForm,
+        ModHandler.addShapedRecipe(true, "electric_implosion_compressor", ELECTRIC_IMPLOSION_COMPRESSOR.stack(),
             "DXD", "PCP", "WSW",
-            'C', IMPLOSION_COMPRESSOR.stackForm,
+            'C', IMPLOSION_COMPRESSOR.stack(),
             'D', UnificationEntry(plateDense, Osmium),
             'S', UnificationEntry(screw, Rhodium),
             'P', ELECTRIC_PISTON_IV,
@@ -760,9 +762,9 @@ internal object MachineRecipeLoader
             'W', UnificationEntry(cableGtSingle, TungstenSteel))
 
         // Alloy Blast Smelter
-        ModHandler.addShapedRecipe(true, "alloy_blast_smelter", ALLOY_BLAST_SMELTER.stackForm,
+        ModHandler.addShapedRecipe(true, "alloy_blast_smelter", ALLOY_BLAST_SMELTER.stack(),
             "DBD", "XAX", "GWG",
-            'A', ALLOY_SMELTER[IV].stackForm,
+            'A', ALLOY_SMELTER[IV].stack(),
             'B', UnificationEntry(rotor, TantalumCarbide),
             'X', UnificationEntry(circuit, Tier.IV),
             'G', UnificationEntry(gear, TungstenCarbide),
@@ -770,770 +772,770 @@ internal object MachineRecipeLoader
             'W', UnificationEntry(cableGtSingle, Platinum))
 
         // Volcanus
-        ModHandler.addShapedRecipe(true, "volcanus", VOLCANUS.stackForm,
+        ModHandler.addShapedRecipe(true, "volcanus", VOLCANUS.stack(),
             "GXG", "ECE", "WXW",
-            'E', ELECTRIC_BLAST_FURNACE.stackForm,
+            'E', ELECTRIC_BLAST_FURNACE.stack(),
             'C', MetalCasing.HASTELLOY_C276.stack,
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV),
             'G', UnificationEntry(gear, HastelloyN))
 
         // Cryogenic Freezer
-        ModHandler.addShapedRecipe(true, "cryogenic_freezer", CRYOGENIC_FREEZER.stackForm,
+        ModHandler.addShapedRecipe(true, "cryogenic_freezer", CRYOGENIC_FREEZER.stack(),
             "GXG", "VBV", "WXW",
-            'V', VACUUM_FREEZER.stackForm,
+            'V', VACUUM_FREEZER.stack(),
             'B', MetalCasing.HASTELLOY_X.stack,
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV),
             'G', UnificationEntry(gear, IncoloyMA956))
 
         // Chemical Plant
-        ModHandler.addShapedRecipe(true, "chemical_plant", CHEMICAL_PLANT.stackForm,
+        ModHandler.addShapedRecipe(true, "chemical_plant", CHEMICAL_PLANT.stack(),
             "PXP", "CFC", "PWP",
             'F', UnificationEntry(frameGt, Polybenzimidazole),
-            'C', LARGE_CHEMICAL_REACTOR.stackForm,
+            'C', LARGE_CHEMICAL_REACTOR.stack(),
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.LuV),
             'P', ELECTRIC_PUMP_IV)
 
         // Industrial Coke Oven
-        ModHandler.addShapedRecipe(true, "industrial_coke_oven", INDUSTRIAL_COKE_OVEN.stackForm,
+        ModHandler.addShapedRecipe(true, "industrial_coke_oven", INDUSTRIAL_COKE_OVEN.stack(),
             "DXW", "PCQ", "WXS",
             'P', ELECTRIC_PISTON_HV,
             'Q', ELECTRIC_PUMP_HV,
             'X', UnificationEntry(circuit, Tier.HV),
-            'C', PYROLYSE_OVEN.stackForm,
+            'C', PYROLYSE_OVEN.stack(),
             'S', UnificationEntry(spring, MolybdenumDisilicide),
             'D', UnificationEntry(plateDouble, AluminiumBronze),
             'W', UnificationEntry(cableGtDouble, Silver))
 
         // Large Mass Fabricator
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(MASS_FABRICATOR[LuV], 16)
-            .input(plateDouble, Californium, 8)
-            .input(plateDouble, Tritanium, 8)
-            .input(ENERGY_LAPOTRONIC_ORB, 4)
-            .input(EMITTER_LuV, 16)
-            .input(SENSOR_LuV, 16)
-            .input(ELECTRIC_PUMP_LuV, 16)
-            .input(gear, Berkelium, 3)
-            .input(gearSmall, Einsteinium, 6)
-            .input(foil, Plutonium244, 24)
-            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(UUMatter.getFluid(64000))
-            .fluidInputs(VanadiumGallium.getFluid(L * 16))
-            .fluidInputs(Thulium.getFluid(L * 4))
-            .output(LARGE_MASS_FABRICATOR)
-            .EUt(VA[ZPM])
-            .duration(2 * MINUTE)
-            .scannerResearch {
-                it.researchStack(MASS_FABRICATOR[LuV]!!.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(MASS_FABRICATOR[LuV], 16)
+            input(plateDouble, Californium, 8)
+            input(plateDouble, Tritanium, 8)
+            input(ENERGY_LAPOTRONIC_ORB, 4)
+            input(EMITTER_LuV, 16)
+            input(SENSOR_LuV, 16)
+            input(ELECTRIC_PUMP_LuV, 16)
+            input(gear, Berkelium, 3)
+            input(gearSmall, Einsteinium, 6)
+            input(foil, Plutonium244, 24)
+            input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(UUMatter.getFluid(64000))
+            fluidInputs(VanadiumGallium.getFluid(L * 16))
+            fluidInputs(Thulium.getFluid(L * 4))
+            output(LARGE_MASS_FABRICATOR)
+            EUt(VA[ZPM])
+            duration(2 * MINUTE)
+            scannerResearch {
+                it.researchStack(MASS_FABRICATOR[LuV]!!.stack())
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
-            .buildAndRegister()
+        }
 
         // Large Replicator
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(REPLICATOR[ZPM], 16)
-            .input(plateDouble, Nobelium, 32)
-            .input(plateDouble, Darmstadtium, 32)
-            .input(TOOL_DATA_MODULE, 4)
-            .input(EMITTER_ZPM, 16)
-            .input(SENSOR_ZPM, 16)
-            .input(FIELD_GENERATOR_ZPM, 16)
-            .input(spring, Mendelevium, 12)
-            .input(NANO_PIC_CHIP, 48)
-            .input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
-            .input(bolt, Neptunium, 24)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(UUMatter.getFluid(64000))
-            .fluidInputs(YttriumBariumCuprate.getFluid(L * 16))
-            .fluidInputs(Promethium.getFluid(L * 4))
-            .output(LARGE_REPLICATOR)
-            .EUt(VA[UV])
-            .duration(2 * MINUTE)
-            .stationResearch {
-                it.researchStack(REPLICATOR[ZPM]!!.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(REPLICATOR[ZPM], 16)
+            input(plateDouble, Nobelium, 32)
+            input(plateDouble, Darmstadtium, 32)
+            input(TOOL_DATA_MODULE, 4)
+            input(EMITTER_ZPM, 16)
+            input(SENSOR_ZPM, 16)
+            input(FIELD_GENERATOR_ZPM, 16)
+            input(spring, Mendelevium, 12)
+            input(NANO_PIC_CHIP, 48)
+            input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
+            input(bolt, Neptunium, 24)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(UUMatter.getFluid(64000))
+            fluidInputs(YttriumBariumCuprate.getFluid(L * 16))
+            fluidInputs(Promethium.getFluid(L * 4))
+            output(LARGE_REPLICATOR)
+            EUt(VA[UV])
+            duration(2 * MINUTE)
+            stationResearch {
+                it.researchStack(REPLICATOR[ZPM]!!.stack())
                     .EUt(VA[ZPM])
                     .CWUt(8)
             }
-            .buildAndRegister()
+        }
 
         // Circuit Assembly Line
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(CIRCUIT_ASSEMBLER[LuV])
-            .input(ROBOT_ARM_LuV, 4)
-            .input(ELECTRIC_MOTOR_LuV, 4)
-            .input(FIELD_GENERATOR_LuV, 1)
-            .input(EMITTER_LuV, 1)
-            .input(SENSOR_LuV, 1)
-            .input(plate, RhodiumPlatedPalladium, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 10))
-            .output(CIRCUIT_ASSEMBLY_LINE)
-            .EUt(VA[LuV])
-            .duration(MINUTE)
-            .scannerResearch {
-                it.researchStack(CIRCUIT_ASSEMBLER[LuV].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(CIRCUIT_ASSEMBLER[LuV])
+            input(ROBOT_ARM_LuV, 4)
+            input(ELECTRIC_MOTOR_LuV, 4)
+            input(FIELD_GENERATOR_LuV, 1)
+            input(EMITTER_LuV, 1)
+            input(SENSOR_LuV, 1)
+            input(plate, RhodiumPlatedPalladium, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 10))
+            output(CIRCUIT_ASSEMBLY_LINE)
+            EUt(VA[LuV])
+            duration(MINUTE)
+            scannerResearch {
+                it.researchStack(CIRCUIT_ASSEMBLER[LuV].stack())
                     .EUt(VA[IV])
                     .duration(30 * SECOND)
             }
-            .buildAndRegister()
+        }
 
         // Large Food Processor
-        ModHandler.addShapedRecipe(true, "large_food_processor", LARGE_FOOD_PROCESSOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_food_processor", LARGE_FOOD_PROCESSOR.stack(),
             "RPS", "AHB", "WXW",
-            'H', HULL[MV].stackForm,
-            'A', FOOD_PROCESSOR[MV]!!.stackForm,
-            'B', MULTICOOKER[MV]!!.stackForm,
-            'R', ROBOT_ARM_MV.stackForm,
-            'S', SENSOR_MV.stackForm,
-            'P', ELECTRIC_PUMP_MV.stackForm,
+            'H', HULL[MV].stack(),
+            'A', FOOD_PROCESSOR[MV]!!.stack(),
+            'B', MULTICOOKER[MV]!!.stack(),
+            'R', ROBOT_ARM_MV.stack(),
+            'S', SENSOR_MV.stack(),
+            'P', ELECTRIC_PUMP_MV.stack(),
             'W', UnificationEntry(cableGtSingle, Cupronickel),
             'X', UnificationEntry(circuit, Tier.MV))
 
         // CVD Unit
-        ModHandler.addShapedRecipe(true, "cvd_unit", CVD_UNIT.stackForm,
+        ModHandler.addShapedRecipe(true, "cvd_unit", CVD_UNIT.stack(),
             "PKP", "CHC", "ESE",
             'P', UnificationEntry(plate, BlueSteel),
             'K', UnificationEntry(cableGtSingle, Aluminium),
             'C', UnificationEntry(circuit, Tier.EV),
-            'H', HULL[EV].stackForm,
-            'S', SENSOR_EV.stackForm,
-            'E', EMITTER_EV.stackForm)
+            'H', HULL[EV].stack(),
+            'S', SENSOR_EV.stack(),
+            'E', EMITTER_EV.stack())
 
         // Crystallization Crucible
-        ModHandler.addShapedRecipe(true, "crystallization_crucible", CRYSTALLIZATION_CRUCIBLE.stackForm,
+        ModHandler.addShapedRecipe(true, "crystallization_crucible", CRYSTALLIZATION_CRUCIBLE.stack(),
             "CMC", "LHL", "PCP",
             'C', UnificationEntry(circuit, Tier.IV),
             'M', UnificationEntry(plateDouble, MolybdenumDisilicide),
             'L', UnificationEntry(pipeNormalFluid, Titanium),
-            'H', HULL[EV].stackForm,
+            'H', HULL[EV].stack(),
             'P', UnificationEntry(plate, Titanium))
 
         // Nanoscale Fabricator
-        ModHandler.addShapedRecipe(true, "nanoscale_fabricator", NANOSCALE_FABRICATOR.stackForm,
+        ModHandler.addShapedRecipe(true, "nanoscale_fabricator", NANOSCALE_FABRICATOR.stack(),
             "KSK", "EHE", "CFC",
             'K', UnificationEntry(cableGtSingle, Platinum),
-            'S', SENSOR_IV.stackForm,
-            'E', EMITTER_IV.stackForm,
-            'H', HULL[IV].stackForm,
+            'S', SENSOR_IV.stack(),
+            'E', EMITTER_IV.stack(),
+            'H', HULL[IV].stack(),
             'C', UnificationEntry(circuit, Tier.IV),
             'F', UnificationEntry(plate, TitaniumCarbide))
 
         // Sonicator
-        ModHandler.addShapedRecipe(true, "sonicator", SONICATOR.stackForm,
+        ModHandler.addShapedRecipe(true, "sonicator", SONICATOR.stack(),
             "LFL", "PHP", "CPC",
             'L', UnificationEntry(pipeLargeFluid, Naquadah),
-            'F', FIELD_GENERATOR_LuV.stackForm,
-            'P', ELECTRIC_PUMP_LuV.stackForm,
-            'H', HULL[LuV].stackForm,
+            'F', FIELD_GENERATOR_LuV.stack(),
+            'P', ELECTRIC_PUMP_LuV.stack(),
+            'H', HULL[LuV].stack(),
             'C', UnificationEntry(circuit, Tier.ZPM))
 
         // Laser-Induced CVD Unit
-        ModHandler.addShapedRecipe(true, "laser_induced_cvd_unit", LASER_INDUCED_CVD_UNIT.stackForm,
+        ModHandler.addShapedRecipe(true, "laser_induced_cvd_unit", LASER_INDUCED_CVD_UNIT.stack(),
             "EAE", "XHX", "PPP",
-            'E', EMITTER_ZPM.stackForm,
+            'E', EMITTER_ZPM.stack(),
             'A', UnificationEntry(plate, GSTGlass),
-            'H', HULL[ZPM].stackForm,
+            'H', HULL[ZPM].stack(),
             'X', UnificationEntry(circuit, Tier.UV),
             'P', UnificationEntry(plate, Darmstadtium))
 
         // Plasma-Enhanced CVD Unit
-        ModHandler.addShapedRecipe(true, "plasma_enhanced_cvd_unit", PLASMA_ENHANCED_CVD_UNIT.stackForm,
+        ModHandler.addShapedRecipe(true, "plasma_enhanced_cvd_unit", PLASMA_ENHANCED_CVD_UNIT.stack(),
             "PKP", "CHC", "ESE",
             'P', UnificationEntry(plate, Vibranium),
             'K', UnificationEntry(cableGtSingle, Europium),
             'C', UnificationEntry(circuit, Tier.UEV),
-            'H', HULL[UHV].stackForm,
+            'H', HULL[UHV].stack(),
             'E', EMITTER_UHV,
             'S', SENSOR_UHV)
 
         // Bedrock Drilling Rig
-        ModHandler.addShapedRecipe(true, "bedrock_drilling_rig", BEDROCK_DRILLING_RIG.stackForm,
+        ModHandler.addShapedRecipe(true, "bedrock_drilling_rig", BEDROCK_DRILLING_RIG.stack(),
             "PKP", "CHC", "MMM",
-            'P', ELECTRIC_PISTON_UV.stackForm,
+            'P', ELECTRIC_PISTON_UV.stack(),
             'K', UnificationEntry(cableGtQuadruple, YttriumBariumCuprate),
             'C', UnificationEntry(circuit, Tier.UHV),
-            'H', HULL[UV].stackForm,
-            'M', ELECTRIC_MOTOR_UV.stackForm)
+            'H', HULL[UV].stack(),
+            'M', ELECTRIC_MOTOR_UV.stack())
 
         // Fusion Reactor Computer MK4
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(FusionCoil.ADVANCED.stack)
-            .input(circuit, Tier.UEV, 4)
-            .input(plateDouble, MetastableFlerovium)
-            .input(plateDouble, Dubnium)
-            .input(FIELD_GENERATOR_UV, 2)
-            .input(FEMTO_PIC_CHIP, 64)
-            .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 8))
-            .fluidInputs(Europium.getFluid(L * 8))
-            .output(FUSION_REACTOR_MK4)
-            .EUt(VA[UV])
-            .duration(2 * MINUTE)
-            .stationResearch {
-                it.researchStack(FUSION_REACTOR[2].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(FusionCoil.ADVANCED.stack)
+            input(circuit, Tier.UEV, 4)
+            input(plateDouble, MetastableFlerovium)
+            input(plateDouble, Dubnium)
+            input(FIELD_GENERATOR_UV, 2)
+            input(FEMTO_PIC_CHIP, 64)
+            input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 8))
+            fluidInputs(Europium.getFluid(L * 8))
+            output(FUSION_REACTOR_MK4)
+            EUt(VA[UV])
+            duration(2 * MINUTE)
+            stationResearch {
+                it.researchStack(FUSION_REACTOR[2].stack())
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
-            .buildAndRegister()
+        }
 
         // Fusion Reactor Computer MK5
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(FusionCoil.ULTIMATE.stack)
-            .input(circuit, Tier.UIV, 4)
-            .input(plateDouble, MetastableHassium)
-            .input(plateDouble, Meitnerium)
-            .input(FIELD_GENERATOR_UHV, 2)
-            .input(ATTO_PIC_CHIP, 64)
-            .input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 32)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 8))
-            .fluidInputs(Seaborgium.getFluid(L * 8))
-            .output(FUSION_REACTOR_MK5)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch {
-                it.researchStack(FUSION_REACTOR_MK4.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(FusionCoil.ULTIMATE.stack)
+            input(circuit, Tier.UIV, 4)
+            input(plateDouble, MetastableHassium)
+            input(plateDouble, Meitnerium)
+            input(FIELD_GENERATOR_UHV, 2)
+            input(ATTO_PIC_CHIP, 64)
+            input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 32)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 8))
+            fluidInputs(Seaborgium.getFluid(L * 8))
+            output(FUSION_REACTOR_MK5)
+            EUt(VA[UHV])
+            duration(2 * MINUTE + 30 * SECOND)
+            stationResearch {
+                it.researchStack(FUSION_REACTOR_MK4.stack())
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // Advanced Fusion Reactor
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(FUSION_REACTOR[0], 32)
-            .input(circuit, Tier.ZPM, 16)
-            .input(plateDouble, Duranium, 8)
-            .input(plateDouble, Europium, 8)
-            .input(ELECTRIC_PUMP_LuV, 4)
-            .input(FIELD_GENERATOR_LuV, 4)
-            .input(VOLTAGE_COIL_LuV, 8)
-            .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER, 16)
-            .input(gear, LithiumTitanate, 4)
-            .input(wireGtDouble, IndiumTinBariumTitaniumCuprate, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 16))
-            .fluidInputs(Trinaquadalloy.getFluid(L * 4))
-            .fluidInputs(ReneN5.getFluid(L * 4))
-            .output(ADVANCED_FUSION_REACTOR)
-            .EUt(VA[LuV])
-            .duration(2 * MINUTE)
-            .scannerResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(FUSION_REACTOR[0], 32)
+            input(circuit, Tier.ZPM, 16)
+            input(plateDouble, Duranium, 8)
+            input(plateDouble, Europium, 8)
+            input(ELECTRIC_PUMP_LuV, 4)
+            input(FIELD_GENERATOR_LuV, 4)
+            input(VOLTAGE_COIL_LuV, 8)
+            input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER, 16)
+            input(gear, LithiumTitanate, 4)
+            input(wireGtDouble, IndiumTinBariumTitaniumCuprate, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 16))
+            fluidInputs(Trinaquadalloy.getFluid(L * 4))
+            fluidInputs(ReneN5.getFluid(L * 4))
+            output(ADVANCED_FUSION_REACTOR)
+            EUt(VA[LuV])
+            duration(2 * MINUTE)
+            scannerResearch {
                 it.researchStack(OreDictUnifier.get(block, Duranium))
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
-            .buildAndRegister()
+        }
 
         // Component Assembly Line (CoAL)
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ASSEMBLY_LINE, 4)
-            .inputs(GTMultiblockCasing.ASSEMBLY_LINE_CASING.getStack(8))
-            .inputs(GTMultiblockCasing.ASSEMBLY_CONTROL.getStack(16))
-            .input(ROBOT_ARM_UV, 8)
-            .input(CONVEYOR_MODULE_UV, 8)
-            .input(plateDouble, EnrichedNaquadahAlloy, 6)
-            .input(plateDouble, Taranium, 12)
-            .input(gear, Bedrockium, 3)
-            .input(gearSmall, Bedrockium, 6)
-            .input(TOOL_CASTER[EV], 8)
-            .input(foil, BariumStrontiumTitanate, 12)
-            .input(foil, FranciumCaesiumCadmiumBromide, 12)
-            .input(circuit, Tier.UHV, 4)
-            .input(wireGtQuadruple, EnrichedNaquadahAlloy, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 12))
-            .fluidInputs(Lubricant.getFluid(5000))
-            .fluidInputs(Naquadria.getFluid(L * 8))
-            .fluidInputs(Trinaquadalloy.getFluid(L * 4))
-            .output(COMPONENT_ASSEMBLY_LINE)
-            .EUt(VA[UV])
-            .duration(5 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ASSEMBLY_LINE, 4)
+            inputs(GTMultiblockCasing.ASSEMBLY_LINE_CASING.getStack(8))
+            inputs(GTMultiblockCasing.ASSEMBLY_CONTROL.getStack(16))
+            input(ROBOT_ARM_UV, 8)
+            input(CONVEYOR_MODULE_UV, 8)
+            input(plateDouble, EnrichedNaquadahAlloy, 6)
+            input(plateDouble, Taranium, 12)
+            input(gear, Bedrockium, 3)
+            input(gearSmall, Bedrockium, 6)
+            input(TOOL_CASTER[EV], 8)
+            input(foil, BariumStrontiumTitanate, 12)
+            input(foil, FranciumCaesiumCadmiumBromide, 12)
+            input(circuit, Tier.UHV, 4)
+            input(wireGtQuadruple, EnrichedNaquadahAlloy, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 12))
+            fluidInputs(Lubricant.getFluid(5000))
+            fluidInputs(Naquadria.getFluid(L * 8))
+            fluidInputs(Trinaquadalloy.getFluid(L * 4))
+            output(COMPONENT_ASSEMBLY_LINE)
+            EUt(VA[UV])
+            duration(5 * MINUTE)
+            stationResearch {
                 it.researchStack(GTMultiblockCasing.ASSEMBLY_LINE_CASING.stack)
                     .EUt(VA[ZPM])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Cosmic Ray Detector (CRD)
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(SCANNER[UHV], 4)
-            .inputs(MultiblockCasing.REFLECTIVE_SURFACE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft * 4))
-            .input(EMITTER_UHV, 6)
-            .input(SENSOR_UHV, 6)
-            .input(plateDouble, TitanSteel, 8)
-            .input(circuit, Tier.UEV, 2)
-            .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 18))
-            .fluidInputs(UUMatter.getFluid(16000))
-            .fluidInputs(FreeElectronGas.getFluid(8000))
-            .fluidInputs(Trinaquadalloy.getFluid(L * 8))
-            .output(COSMIC_RAY_DETECTOR)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch {
-                it.researchStack(SCANNER[UHV].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(SCANNER[UHV], 4)
+            inputs(MultiblockCasing.REFLECTIVE_SURFACE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft * 4))
+            input(EMITTER_UHV, 6)
+            input(SENSOR_UHV, 6)
+            input(plateDouble, TitanSteel, 8)
+            input(circuit, Tier.UEV, 2)
+            input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 18))
+            fluidInputs(UUMatter.getFluid(16000))
+            fluidInputs(FreeElectronGas.getFluid(8000))
+            fluidInputs(Trinaquadalloy.getFluid(L * 8))
+            output(COSMIC_RAY_DETECTOR)
+            EUt(VA[UHV])
+            duration(2 * MINUTE + 30 * SECOND)
+            stationResearch {
+                it.researchStack(SCANNER[UHV].stack())
                     .EUt(VA[UV])
                     .CWUt(24)
             }
-            .buildAndRegister()
+        }
 
         // Stellar Forge
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(NANO_FORGE, 16)
-            .inputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
-            .inputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(16))
-            .input(ELECTRIC_PUMP_UHV, 8)
-            .input(ROBOT_ARM_UHV, 8)
-            .input(FIELD_GENERATOR_UHV, 8)
-            .input(plateDouble, Tairitsium, 4)
-            .input(circuit, Tier.UEV, 12)
-            .input(foil, EnrichedNaquadahAlloy, 24)
-            .input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 36))
-            .fluidInputs(UUMatter.getFluid(64000))
-            .fluidInputs(TitanSteel.getFluid(L * 8))
-            .fluidInputs(HDCS.getFluid(L * 4))
-            .output(STELLAR_FORGE)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch {
-                it.researchStack(VOLCANUS.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(NANO_FORGE, 16)
+            inputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
+            inputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(16))
+            input(ELECTRIC_PUMP_UHV, 8)
+            input(ROBOT_ARM_UHV, 8)
+            input(FIELD_GENERATOR_UHV, 8)
+            input(plateDouble, Tairitsium, 4)
+            input(circuit, Tier.UEV, 12)
+            input(foil, EnrichedNaquadahAlloy, 24)
+            input(wireGtSingle, RutheniumTriniumAmericiumNeutronate, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 36))
+            fluidInputs(UUMatter.getFluid(64000))
+            fluidInputs(TitanSteel.getFluid(L * 8))
+            fluidInputs(HDCS.getFluid(L * 4))
+            output(STELLAR_FORGE)
+            EUt(VA[UHV])
+            duration(2 * MINUTE + 30 * SECOND)
+            stationResearch {
+                it.researchStack(VOLCANUS.stack())
                     .EUt(VA[UV])
                     .CWUt(36)
             }
-            .buildAndRegister()
+        }
 
         // Nuclear Reactor
-        ModHandler.addShapedRecipe(true, "nuclear_reactor", NUCLEAR_REACTOR.stackForm,
+        ModHandler.addShapedRecipe(true, "nuclear_reactor", NUCLEAR_REACTOR.stack(),
             "QBQ", "RHR", "PBP",
-            'H', HULL[EV].stackForm,
+            'H', HULL[EV].stack(),
             'R', ROBOT_ARM_EV,
             'Q', ELECTRIC_PUMP_EV,
             'P', UnificationEntry(plate, Zircaloy4),
             'B', UnificationEntry(block, Thorium))
 
         // Large Hot Coolant Turbine
-        ModHandler.addShapedRecipe(true, "large_hot_coolant_turbine", HOT_COOLANT_TURBINE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_hot_coolant_turbine", HOT_COOLANT_TURBINE.stack(),
             "XGX", "GHG", "PGP",
             'X', UnificationEntry(circuit, Tier.IV),
             'G', UnificationEntry(gear, Titanium),
-            'H', HULL[EV].stackForm,
+            'H', HULL[EV].stack(),
             'P', UnificationEntry(pipeLargeFluid, Titanium))
 
         // Large Supercritical Fluid Turbine
-        ModHandler.addShapedRecipe(true, "large_supercritical_fluid_turbine", SUPERCRITICAL_FLUID_TURBINE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_supercritical_fluid_turbine", SUPERCRITICAL_FLUID_TURBINE.stack(),
             "XGX", "GHG", "PGP",
             'X', UnificationEntry(circuit, Tier.ZPM),
             'G', UnificationEntry(gear, RhodiumPlatedPalladium),
-            'H', HULL[LuV].stackForm,
+            'H', HULL[LuV].stack(),
             'P', UnificationEntry(pipeLargeFluid, RhodiumPlatedPalladium))
 
         // Large Rocket Engine
-        ModHandler.addShapedRecipe(true, "large_rocket_engine", LARGE_ROCKET_ENGINE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_rocket_engine", LARGE_ROCKET_ENGINE.stack(),
             "SXS", "RHR", "WXW",
-            'R', ROCKET_ENGINE[2].stackForm,
-            'H', HULL[IV].stackForm,
+            'R', ROCKET_ENGINE[2].stack(),
+            'H', HULL[IV].stack(),
             'S', UnificationEntry(spring, Nitinol60),
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.LuV))
 
         // Large Naquadah Reactor
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(NUCLEAR_REACTOR, 64)
-            .input(NUCLEAR_REACTOR, 64)
-            .input(NUCLEAR_REACTOR, 64)
-            .input(NUCLEAR_REACTOR, 64)
-            .input(NAQUADAH_REACTOR[3], 16)
-            .input(ELECTRIC_PUMP_UV, 8)
-            .input(ROBOT_ARM_UV, 8)
-            .input(circuit, Tier.UHV, 16)
-            .input(plateDense, Pikyonium64B, 6)
-            .input(plateDense, Naquadria, 6)
-            .input(screw, Trinaquadalloy, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 160))
-            .fluidInputs(Bedrockium.getFluid(L * 40))
-            .fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 20))
-            .fluidInputs(PreciousMetalAlloy.getFluid(L * 10))
-            .output(LARGE_NAQUADAH_REACTOR)
-            .EUt(VA[UHV])
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(NAQUADAH_REACTOR[3].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(NUCLEAR_REACTOR, 64)
+            input(NUCLEAR_REACTOR, 64)
+            input(NUCLEAR_REACTOR, 64)
+            input(NUCLEAR_REACTOR, 64)
+            input(NAQUADAH_REACTOR[3], 16)
+            input(ELECTRIC_PUMP_UV, 8)
+            input(ROBOT_ARM_UV, 8)
+            input(circuit, Tier.UHV, 16)
+            input(plateDense, Pikyonium64B, 6)
+            input(plateDense, Naquadria, 6)
+            input(screw, Trinaquadalloy, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 160))
+            fluidInputs(Bedrockium.getFluid(L * 40))
+            fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 20))
+            fluidInputs(PreciousMetalAlloy.getFluid(L * 10))
+            output(LARGE_NAQUADAH_REACTOR)
+            EUt(VA[UHV])
+            duration(5 * MINUTE)
+            stationResearch {
+                it.researchStack(NAQUADAH_REACTOR[3].stack())
                     .EUt(VA[UV])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // Nano Forge
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(VOLCANUS, 8)
-            .input(nanite, Carbon, 16)
-            .input(circuit, Tier.UV, 4)
-            .input(ROBOT_ARM_ZPM, 8)
-            .input(CONVEYOR_MODULE_ZPM, 8)
-            .input(plateDense, Duranium, 6)
-            .input(plateDense, Trinium, 6)
-            .input(gear, Naquadria, 4)
-            .input(gearSmall, EnrichedNaquadahAlloy, 12)
-            .input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 64))
-            .fluidInputs(UUMatter.getFluid(64000))
-            .fluidInputs(Osmiridium.getFluid(L * 16))
-            .output(NANO_FORGE)
-            .EUt(VA[ZPM])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(VOLCANUS, 8)
+            input(nanite, Carbon, 16)
+            input(circuit, Tier.UV, 4)
+            input(ROBOT_ARM_ZPM, 8)
+            input(CONVEYOR_MODULE_ZPM, 8)
+            input(plateDense, Duranium, 6)
+            input(plateDense, Trinium, 6)
+            input(gear, Naquadria, 4)
+            input(gearSmall, EnrichedNaquadahAlloy, 12)
+            input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 64))
+            fluidInputs(UUMatter.getFluid(64000))
+            fluidInputs(Osmiridium.getFluid(L * 16))
+            output(NANO_FORGE)
+            EUt(VA[ZPM])
+            duration(2 * MINUTE + 30 * SECOND)
+            stationResearch {
                 it.researchStack(OreDictUnifier.get(nanite, Carbon))
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // PCB Factory
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, RhodiumPlatedPalladium, 4)
-            .input(CIRCUIT_ASSEMBLER[LuV], 4)
-            .input(plate, Osmiridium, 4)
-            .input(circuit, Tier.LuV, 16)
-            .input(gear, Ruridit, 2)
-            .input(ROBOT_ARM_LuV, 8)
-            .input(cableGtSingle, NiobiumTitanium, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .output(PCB_FACTORY)
-            .EUt(VA[LuV])
-            .duration(1 * MINUTE)
-            .scannerResearch {
-                it.researchStack(WETWARE_CIRCUIT_BOARD.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, RhodiumPlatedPalladium, 4)
+            input(CIRCUIT_ASSEMBLER[LuV], 4)
+            input(plate, Osmiridium, 4)
+            input(circuit, Tier.LuV, 16)
+            input(gear, Ruridit, 2)
+            input(ROBOT_ARM_LuV, 8)
+            input(cableGtSingle, NiobiumTitanium, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            output(PCB_FACTORY)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            scannerResearch {
+                it.researchStack(WETWARE_CIRCUIT_BOARD.stack())
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
-            .buildAndRegister()
+        }
 
         // Quantum Force Transformer
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(LARGE_MASS_FABRICATOR)
-            .inputs(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
-            .input(circuit, Tier.UEV, 8)
-            .input(ELECTRIC_PUMP_UEV, 4)
-            .input(FIELD_GENERATOR_UEV, 4)
-            .input(QUANTUM_ANOMALY)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 10))
-            .fluidInputs(Pikyonium64B.getFluid(L * 32))
-            .output(QUANTUM_FORCE_TRANSFORMER)
-            .EUt(VA[UEV])
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(LARGE_MASS_FABRICATOR)
+            inputs(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
+            input(circuit, Tier.UEV, 8)
+            input(ELECTRIC_PUMP_UEV, 4)
+            input(FIELD_GENERATOR_UEV, 4)
+            input(QUANTUM_ANOMALY)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 10))
+            fluidInputs(Pikyonium64B.getFluid(L * 32))
+            output(QUANTUM_FORCE_TRANSFORMER)
+            EUt(VA[UEV])
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
-            .buildAndRegister()
+        }
 
         // Antimatter Forge
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(FUSION_REACTOR_MK5)
-            .input(frameGt, Infinity, 16)
-            .inputs(Manipulator.COSMIC_FABRIC.getStack(16))
-            .inputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
-            .input(wireFine, Hypogen, 64)
-            .input(wireFine, Infinity, 64)
-            .input(circuit, Tier.UIV, 16)
-            .input(ELECTRIC_PUMP_UEV, 16)
-            .input(plateDense, CosmicNeutronium, 4)
-            .input(plateDense, MetastableHassium, 4)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000))
-            .fluidInputs(Bedrockium.getFluid(L * 64))
-            .fluidInputs(Protomatter.getFluid(16000))
-            .output(ANTIMATTER_FORGE)
-            .EUt(VA[UEV])
-            .duration(10 * MINUTE)
-            .stationResearch {
-                it.researchStack(ADVANCED_FUSION_REACTOR.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(FUSION_REACTOR_MK5)
+            input(frameGt, Infinity, 16)
+            inputs(Manipulator.COSMIC_FABRIC.getStack(16))
+            inputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
+            input(wireFine, Hypogen, 64)
+            input(wireFine, Infinity, 64)
+            input(circuit, Tier.UIV, 16)
+            input(ELECTRIC_PUMP_UEV, 16)
+            input(plateDense, CosmicNeutronium, 4)
+            input(plateDense, MetastableHassium, 4)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000))
+            fluidInputs(Bedrockium.getFluid(L * 64))
+            fluidInputs(Protomatter.getFluid(16000))
+            output(ANTIMATTER_FORGE)
+            EUt(VA[UEV])
+            duration(10 * MINUTE)
+            stationResearch {
+                it.researchStack(ADVANCED_FUSION_REACTOR.stack())
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // Antimatter Generator
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(LARGE_NAQUADAH_REACTOR)
-            .input(LASER_OUTPUT_HATCH_1048576[UEV - IV], 4)
-            .inputs(MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.getStack(16))
-            .input(circuit, Tier.UIV, 16)
-            .input(EMITTER_UEV, 32)
-            .input(plateDense, Livermorium, 4)
-            .input(rotor, Infinity, 16)
-            .input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 64)
-            .input(wireFine, Hypogen, 64)
-            .input(wireFine, Rhugnor, 64)
-            .input(wireFine, CosmicNeutronium, 64)
-            .fluidInputs(HalkoniteSteel.getFluid(L * 40))
-            .fluidInputs(UUMatter.getFluid(64000))
-            .fluidInputs(ResonantStrangeMeson.getFluid(8000))
-            .fluidInputs(Antimatter.getFluid(16000))
-            .output(ANTIMATTER_GENERATOR)
-            .EUt(VA[UEV])
-            .duration(10 * MINUTE)
-            .stationResearch {
-                it.researchStack(LARGE_NAQUADAH_REACTOR.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(LARGE_NAQUADAH_REACTOR)
+            input(LASER_OUTPUT_HATCH_1048576[UEV - IV], 4)
+            inputs(MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.getStack(16))
+            input(circuit, Tier.UIV, 16)
+            input(EMITTER_UEV, 32)
+            input(plateDense, Livermorium, 4)
+            input(rotor, Infinity, 16)
+            input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 64)
+            input(wireFine, Hypogen, 64)
+            input(wireFine, Rhugnor, 64)
+            input(wireFine, CosmicNeutronium, 64)
+            fluidInputs(HalkoniteSteel.getFluid(L * 40))
+            fluidInputs(UUMatter.getFluid(64000))
+            fluidInputs(ResonantStrangeMeson.getFluid(8000))
+            fluidInputs(Antimatter.getFluid(16000))
+            output(ANTIMATTER_GENERATOR)
+            EUt(VA[UEV])
+            duration(10 * MINUTE)
+            stationResearch {
+                it.researchStack(LARGE_NAQUADAH_REACTOR.stack())
                     .EUt(VA[UEV])
                     .CWUt(128)
             }
-            .buildAndRegister()
+        }
 
         // Space Elevator
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(AerospaceCasing.ELEVATOR_BASE_CASING.getStack(8))
-            .input(frameGt, Neutronium, 16)
-            .input(FIELD_GENERATOR_UV, 4)
-            .input(circuit, Tier.UHV, 8)
-            .input(circuit, Tier.UV, 16)
-            .input(plateDouble, Vibranium, 32)
-            .input(plateDouble, Bedrockium, 32)
-            .input(PICO_PIC_CHIP, 64)
-            .input(ELECTRIC_MOTOR_UV, 8)
-            .input(screw, Adamantium, 24)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(UUMatter.getFluid(16000))
-            .fluidInputs(Lubricant.getFluid(32000))
-            .fluidInputs(Iridium.getFluid(L * 10))
-            .output(SPACE_ELEVATOR)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE)
-            .stationResearch {
-                it.researchStack(MINING_DRONE_AIRPORT.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(AerospaceCasing.ELEVATOR_BASE_CASING.getStack(8))
+            input(frameGt, Neutronium, 16)
+            input(FIELD_GENERATOR_UV, 4)
+            input(circuit, Tier.UHV, 8)
+            input(circuit, Tier.UV, 16)
+            input(plateDouble, Vibranium, 32)
+            input(plateDouble, Bedrockium, 32)
+            input(PICO_PIC_CHIP, 64)
+            input(ELECTRIC_MOTOR_UV, 8)
+            input(screw, Adamantium, 24)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(UUMatter.getFluid(16000))
+            fluidInputs(Lubricant.getFluid(32000))
+            fluidInputs(Iridium.getFluid(L * 10))
+            output(SPACE_ELEVATOR)
+            EUt(VA[UHV])
+            duration(2 * MINUTE)
+            stationResearch {
+                it.researchStack(MINING_DRONE_AIRPORT.stack())
                     .EUt(VA[UV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Space Assembler Module MK1
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
-            .input(ASSEMBLER[UHV], 4)
-            .input(CIRCUIT_ASSEMBLER[UHV], 4)
-            .input(gear, CosmicNeutronium, 8)
-            .input(gearSmall, CosmicNeutronium, 16)
-            .input(ROBOT_ARM_UHV, 8)
-            .input(CONVEYOR_MODULE_UHV, 16)
-            .input(circuit, Tier.UHV, 8)
-            .input(circuit, Tier.UV, 16)
-            .input(frameGt, Neutronium, 8)
-            .input(screw, Neutronium, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 9))
-            .fluidInputs(Naquadria.getFluid(L * 9))
-            .fluidInputs(Lubricant.getFluid(16000))
-            .output(SPACE_ASSEMBLER_MK1)
-            .EUt(VA[UHV])
-            .duration(1 * MINUTE)
-            .stationResearch {
-                it.researchStack(ASSEMBLER[UHV].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
+            input(ASSEMBLER[UHV], 4)
+            input(CIRCUIT_ASSEMBLER[UHV], 4)
+            input(gear, CosmicNeutronium, 8)
+            input(gearSmall, CosmicNeutronium, 16)
+            input(ROBOT_ARM_UHV, 8)
+            input(CONVEYOR_MODULE_UHV, 16)
+            input(circuit, Tier.UHV, 8)
+            input(circuit, Tier.UV, 16)
+            input(frameGt, Neutronium, 8)
+            input(screw, Neutronium, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 9))
+            fluidInputs(Naquadria.getFluid(L * 9))
+            fluidInputs(Lubricant.getFluid(16000))
+            output(SPACE_ASSEMBLER_MK1)
+            EUt(VA[UHV])
+            duration(1 * MINUTE)
+            stationResearch {
+                it.researchStack(ASSEMBLER[UHV].stack())
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Space Assembler Module MK2
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
-            .input(ASSEMBLER[UEV], 4)
-            .input(CIRCUIT_ASSEMBLER[UEV], 4)
-            .input(gear, Infinity, 8)
-            .input(gearSmall, Infinity, 16)
-            .input(ROBOT_ARM_UEV, 8)
-            .input(CONVEYOR_MODULE_UEV, 16)
-            .input(circuit, Tier.UEV, 8)
-            .input(circuit, Tier.UHV, 16)
-            .input(frameGt, Vibranium, 8)
-            .input(screw, Vibranium, 32)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 9))
-            .fluidInputs(Taranium.getFluid(L * 9))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            .output(SPACE_ASSEMBLER_MK2)
-            .EUt(VA[UEV])
-            .duration(2 * MINUTE)
-            .stationResearch {
-                it.researchStack(SPACE_ASSEMBLER_MK1.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
+            input(ASSEMBLER[UEV], 4)
+            input(CIRCUIT_ASSEMBLER[UEV], 4)
+            input(gear, Infinity, 8)
+            input(gearSmall, Infinity, 16)
+            input(ROBOT_ARM_UEV, 8)
+            input(CONVEYOR_MODULE_UEV, 16)
+            input(circuit, Tier.UEV, 8)
+            input(circuit, Tier.UHV, 16)
+            input(frameGt, Vibranium, 8)
+            input(screw, Vibranium, 32)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 9))
+            fluidInputs(Taranium.getFluid(L * 9))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            output(SPACE_ASSEMBLER_MK2)
+            EUt(VA[UEV])
+            duration(2 * MINUTE)
+            stationResearch {
+                it.researchStack(SPACE_ASSEMBLER_MK1.stack())
                     .EUt(VA[UEV])
                     .CWUt(48)
             }
-            .buildAndRegister()
+        }
 
         // Space Assembler Module MK3
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
-            .input(ASSEMBLER[UIV], 4)
-            .input(CIRCUIT_ASSEMBLER[UIV], 4)
-            .input(gear, SpaceTime, 8)
-            .input(gearSmall, SpaceTime, 16)
-            .input(ROBOT_ARM_UIV, 8)
-            .input(CONVEYOR_MODULE_UIV, 16)
-            .input(circuit, Tier.UIV, 8)
-            .input(circuit, Tier.UEV, 16)
-            .input(frameGt, Shirabon, 8)
-            .input(screw, Shirabon, 32)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 9))
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 9))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            .output(SPACE_ASSEMBLER_MK3)
-            .EUt(VA[UIV])
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(SPACE_ASSEMBLER_MK2.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
+            input(ASSEMBLER[UIV], 4)
+            input(CIRCUIT_ASSEMBLER[UIV], 4)
+            input(gear, SpaceTime, 8)
+            input(gearSmall, SpaceTime, 16)
+            input(ROBOT_ARM_UIV, 8)
+            input(CONVEYOR_MODULE_UIV, 16)
+            input(circuit, Tier.UIV, 8)
+            input(circuit, Tier.UEV, 16)
+            input(frameGt, Shirabon, 8)
+            input(screw, Shirabon, 32)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 9))
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 9))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            output(SPACE_ASSEMBLER_MK3)
+            EUt(VA[UIV])
+            duration(5 * MINUTE)
+            stationResearch {
+                it.researchStack(SPACE_ASSEMBLER_MK2.stack())
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // Space Pump Module MK1
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ADVANCED_FLUID_DRILLING_RIG)
-            .input(COVER_ENDER_FLUID_LINK, 2)
-            .input(frameGt, Neutronium, 4)
-            .input(circuit, Tier.UHV, 4)
-            .input(ELECTRIC_PUMP_UV, 2)
-            .input(gear, Neutronium, 4)
-            .input(screw, Bedrockium, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 9))
-            .fluidInputs(Adamantium.getFluid(L * 4))
-            .output(SPACE_PUMP_MK1)
-            .EUt(VA[UV])
-            .duration(1 * MINUTE)
-            .stationResearch {
-                it.researchStack(ADVANCED_FLUID_DRILLING_RIG.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_FLUID_DRILLING_RIG)
+            input(COVER_ENDER_FLUID_LINK, 2)
+            input(frameGt, Neutronium, 4)
+            input(circuit, Tier.UHV, 4)
+            input(ELECTRIC_PUMP_UV, 2)
+            input(gear, Neutronium, 4)
+            input(screw, Bedrockium, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 9))
+            fluidInputs(Adamantium.getFluid(L * 4))
+            output(SPACE_PUMP_MK1)
+            EUt(VA[UV])
+            duration(1 * MINUTE)
+            stationResearch {
+                it.researchStack(ADVANCED_FLUID_DRILLING_RIG.stack())
                     .EUt(VA[UV])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // Space Pump Module MK2
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(SPACE_PUMP_MK1, 4)
-            .input(frameGt, Vibranium, 8)
-            .input(circuit, Tier.UEV, 16)
-            .input(ELECTRIC_PUMP_UHV, 8)
-            .input(gear, Vibranium, 8)
-            .input(screw, Taranium, 64)
-            .input(plateDouble, CosmicNeutronium, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 32))
-            .output(SPACE_PUMP_MK2)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(SPACE_PUMP_MK1, 4)
+            input(frameGt, Vibranium, 8)
+            input(circuit, Tier.UEV, 16)
+            input(ELECTRIC_PUMP_UHV, 8)
+            input(gear, Vibranium, 8)
+            input(screw, Taranium, 64)
+            input(plateDouble, CosmicNeutronium, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 32))
+            output(SPACE_PUMP_MK2)
+            EUt(VA[UHV])
+            duration(2 * MINUTE)
+        }
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ADVANCED_FLUID_DRILLING_RIG, 4)
-            .input(COVER_ENDER_FLUID_LINK, 8)
-            .input(frameGt, Vibranium, 4)
-            .input(circuit, Tier.UEV, 16)
-            .input(ELECTRIC_PUMP_UHV, 8)
-            .input(gear, Vibranium, 4)
-            .input(screw, Taranium, 64)
-            .fluidInputs(SolderingAlloy.getFluid(L * 32))
-            .fluidInputs(CosmicNeutronium.getFluid(L * 16))
-            .output(SPACE_PUMP_MK2)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE)
-            .stationResearch {
-                it.researchStack(SPACE_PUMP_MK1.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_FLUID_DRILLING_RIG, 4)
+            input(COVER_ENDER_FLUID_LINK, 8)
+            input(frameGt, Vibranium, 4)
+            input(circuit, Tier.UEV, 16)
+            input(ELECTRIC_PUMP_UHV, 8)
+            input(gear, Vibranium, 4)
+            input(screw, Taranium, 64)
+            fluidInputs(SolderingAlloy.getFluid(L * 32))
+            fluidInputs(CosmicNeutronium.getFluid(L * 16))
+            output(SPACE_PUMP_MK2)
+            EUt(VA[UHV])
+            duration(2 * MINUTE)
+            stationResearch {
+                it.researchStack(SPACE_PUMP_MK1.stack())
                     .EUt(VA[UV])
                     .CWUt(24)
             }
-            .buildAndRegister()
+        }
 
         // Space Pump Module MK3
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(SPACE_PUMP_MK2, 4)
-            .input(frameGt, Infinity, 8)
-            .input(circuit, Tier.UIV, 16)
-            .input(ELECTRIC_PUMP_UEV, 8)
-            .input(gear, Infinity, 8)
-            .input(screw, Magnetium, 64)
-            .input(plateDouble, Rhugnor, 16)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
-            .output(SPACE_PUMP_MK3)
-            .EUt(VA[UEV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(SPACE_PUMP_MK2, 4)
+            input(frameGt, Infinity, 8)
+            input(circuit, Tier.UIV, 16)
+            input(ELECTRIC_PUMP_UEV, 8)
+            input(gear, Infinity, 8)
+            input(screw, Magnetium, 64)
+            input(plateDouble, Rhugnor, 16)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+            output(SPACE_PUMP_MK3)
+            EUt(VA[UEV])
+            duration(5 * MINUTE)
+        }
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ADVANCED_FLUID_DRILLING_RIG, 16)
-            .input(COVER_ENDER_FLUID_LINK, 32)
-            .input(frameGt, Infinity, 4)
-            .input(circuit, Tier.UIV, 16)
-            .input(ELECTRIC_PUMP_UEV, 8)
-            .input(gear, Infinity, 4)
-            .input(screw, Magnetium, 64)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
-            .fluidInputs(Rhugnor.getFluid(L * 32))
-            .output(SPACE_PUMP_MK3)
-            .EUt(VA[UEV])
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(SPACE_PUMP_MK2.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_FLUID_DRILLING_RIG, 16)
+            input(COVER_ENDER_FLUID_LINK, 32)
+            input(frameGt, Infinity, 4)
+            input(circuit, Tier.UIV, 16)
+            input(ELECTRIC_PUMP_UEV, 8)
+            input(gear, Infinity, 4)
+            input(screw, Magnetium, 64)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+            fluidInputs(Rhugnor.getFluid(L * 32))
+            output(SPACE_PUMP_MK3)
+            EUt(VA[UEV])
+            duration(5 * MINUTE)
+            stationResearch {
+                it.researchStack(SPACE_PUMP_MK2.stack())
                     .EUt(VA[UEV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Energy Infuser
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ACTIVE_TRANSFORMER)
-            .inputs(ScienceCasing.MOLECULAR_COIL.getStack(8))
-            .inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(8))
-            .input(screw, NeodymiumMagnetic, 16)
-            .fluidInputs(Electrum.getFluid(L * 18))
-            .fluidInputs(Europium.getFluid(L * 13))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(ENERGY_INFUSER)
-            .EUt(100_000) // ZPM
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(CHARGER[ZPM].stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ACTIVE_TRANSFORMER)
+            inputs(ScienceCasing.MOLECULAR_COIL.getStack(8))
+            inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(8))
+            input(screw, NeodymiumMagnetic, 16)
+            fluidInputs(Electrum.getFluid(L * 18))
+            fluidInputs(Europium.getFluid(L * 13))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(ENERGY_INFUSER)
+            EUt(100_000) // ZPM
+            duration(5 * MINUTE)
+            stationResearch {
+                it.researchStack(CHARGER[ZPM].stack())
                     .EUt(VA[ZPM])
                     .CWUt(12)
             }
-            .buildAndRegister()
+        }
 
         // Entrodynamically Phase Changer
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(VOLCANUS, 64)
-            .input(VOLCANUS, 64)
-            .input(ALLOY_BLAST_SMELTER, 64)
-            .input(ALLOY_BLAST_SMELTER, 64)
-            .input(plateDense, SuperheavyAlloyA, 4)
-            .input(plateDense, SuperheavyAlloyB, 4)
-            .input(plateDense, Abyssalloy, 4)
-            .input(plateDense, CinobiteA243, 4)
-            .input(ELECTRIC_PUMP_UIV, 16)
-            .input(ELECTRIC_PISTON_UIV, 16)
-            .input(SUBSTATION_ENERGY_INPUT_HATCH[UIV], 8)
-            .input(POWER_TRANSFORMER[UIV], 8)
-            .input(circuit, Tier.UIV, 16)
-            .input(block, ArceusAlloy2B, 64)
-            .input(wireGtHex, QuantumchromodynamicallyConfinedMatter, 16)
-            .input(wireGtHex, FullereneSuperconductor, 16)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 100))
-            .fluidInputs(CosmicNeutronium.getFluid(L * 400))
-            .fluidInputs(HalkoniteSteel.getFluid(L * 80))
-            .fluidInputs(Shirabon.getFluid(L * 40))
-            .output(ENTRODYNAMICALLY_PHASE_CHANGER)
-            .EUt(VA[UIV])
-            .duration(5 * MINUTE)
-            .stationResearch {
-                it.researchStack(ANTIMATTER_GENERATOR.stackForm)
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(VOLCANUS, 64)
+            input(VOLCANUS, 64)
+            input(ALLOY_BLAST_SMELTER, 64)
+            input(ALLOY_BLAST_SMELTER, 64)
+            input(plateDense, SuperheavyAlloyA, 4)
+            input(plateDense, SuperheavyAlloyB, 4)
+            input(plateDense, Abyssalloy, 4)
+            input(plateDense, CinobiteA243, 4)
+            input(ELECTRIC_PUMP_UIV, 16)
+            input(ELECTRIC_PISTON_UIV, 16)
+            input(SUBSTATION_ENERGY_INPUT_HATCH[UIV], 8)
+            input(POWER_TRANSFORMER[UIV], 8)
+            input(circuit, Tier.UIV, 16)
+            input(block, ArceusAlloy2B, 64)
+            input(wireGtHex, QuantumchromodynamicallyConfinedMatter, 16)
+            input(wireGtHex, FullereneSuperconductor, 16)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 100))
+            fluidInputs(CosmicNeutronium.getFluid(L * 400))
+            fluidInputs(HalkoniteSteel.getFluid(L * 80))
+            fluidInputs(Shirabon.getFluid(L * 40))
+            output(ENTRODYNAMICALLY_PHASE_CHANGER)
+            EUt(VA[UIV])
+            duration(5 * MINUTE)
+            stationResearch {
+                it.researchStack(ANTIMATTER_GENERATOR.stack())
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // Large Acid Generator
-        ModHandler.addShapedRecipe(true, "large_acid_generator", LARGE_ACID_GENERATOR.stackForm,
+        ModHandler.addShapedRecipe(true, "large_acid_generator", LARGE_ACID_GENERATOR.stack(),
             "SDS", "PAP", "WQW",
-            'A', ACID_GENERATOR[MV].stackForm,
+            'A', ACID_GENERATOR[MV].stack(),
             'D', UnificationEntry(plateDense, CobaltBrass),
             'W', UnificationEntry(cableGtSingle, BlackSteel),
             'S', UnificationEntry(spring, BlackBronze),
@@ -1541,127 +1543,127 @@ internal object MachineRecipeLoader
             'Q', UnificationEntry(pipeNormalFluid, Tungsten))
 
         // Large Transformer
-        ModHandler.addShapedRecipe(true, "large_transformer", LARGE_TRANSFORMER.stackForm,
+        ModHandler.addShapedRecipe(true, "large_transformer", LARGE_TRANSFORMER.stack(),
             "VXV", "VTV", "VXV",
-            'T', POWER_TRANSFORMER[HV].stackForm,
+            'T', POWER_TRANSFORMER[HV].stack(),
             'V', VOLTAGE_COIL_HV,
             'X', UnificationEntry(circuit, Tier.HV))
 
         // Hydraulic Fracker
-        ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stackForm,
+        ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stack(),
             "CLC", "GHG", "PPP",
             'C', UnificationEntry(circuit, Tier.EV),
             'L', UnificationEntry(pipeLargeFluid, Titanium),
             'G', UnificationEntry(gear, TantalumCarbide),
-            'H', HULL[EV].stackForm,
+            'H', HULL[EV].stack(),
             'P', ELECTRIC_PUMP_EV)
 
         // Plasma Arc Transmitter
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(ARC_FURNACE[UHV], 16)
-            .input(ALLOY_SMELTER[UHV], 16)
-            .input(LARGE_ARC_FURNACE, 64)
-            .input(plateDense, MetastableFlerovium, 4)
-            .input(ELECTRIC_PUMP_UHV, 16)
-            .input(circuit, Tier.UEV, 16)
-            .input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
-            .fluidInputs(Oxygen.getPlasma(256_000))
-            .output(PLASMA_ARC_TRANSMITTER)
-            .EUt(VA[UHV])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(ARC_FURNACE[UHV], 16)
+            input(ALLOY_SMELTER[UHV], 16)
+            input(LARGE_ARC_FURNACE, 64)
+            input(plateDense, MetastableFlerovium, 4)
+            input(ELECTRIC_PUMP_UHV, 16)
+            input(circuit, Tier.UEV, 16)
+            input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
+            fluidInputs(Oxygen.getPlasma(256_000))
+            output(PLASMA_ARC_TRANSMITTER)
+            EUt(VA[UHV])
+            duration(2 * MINUTE + 30 * SECOND)
+        }
 
         // Electron-Phonon Coupling Accelerator
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(ELECTRIC_FURNACE[ZPM], 16)
-            .input(MULTI_FURNACE, 64)
-            .input(plateDense, NaquadahEnriched, 4)
-            .input(block, Firestone, 32)
-            .input(block, Coke, 32)
-            .input(circuit, Tier.ZPM, 8)
-            .input(wireGtDouble, UraniumRhodiumDinaquadide, 4)
-            .fluidInputs(Trinium.getFluid(L * 40))
-            .output(EP_COUPLING_ACCELERATOR)
-            .EUt(VA[ZPM])
-            .duration(2 * MINUTE + 30 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(ELECTRIC_FURNACE[ZPM], 16)
+            input(MULTI_FURNACE, 64)
+            input(plateDense, NaquadahEnriched, 4)
+            input(block, Firestone, 32)
+            input(block, Coke, 32)
+            input(circuit, Tier.ZPM, 8)
+            input(wireGtDouble, UraniumRhodiumDinaquadide, 4)
+            fluidInputs(Trinium.getFluid(L * 40))
+            output(EP_COUPLING_ACCELERATOR)
+            EUt(VA[ZPM])
+            duration(2 * MINUTE + 30 * SECOND)
+        }
 
         // Nano Assembly Complex
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(SPACE_ASSEMBLER_MK3, 16)
-            .input(COMPONENT_ASSEMBLY_LINE, 64)
-            .input(PCB_FACTORY, 64)
-            .input(CIRCUIT_ASSEMBLY_LINE, 64)
-            .input(ROBOT_ARM_UXV, 32)
-            .input(CONVEYOR_MODULE_UXV, 32)
-            .input(EMITTER_UXV, 32)
-            .input(circuit, Tier.OpV, 64)
-            .input(plateDense, MagMatter, 6)
-            .input(plateDense, Mellion, 6)
-            .input(gear, HarmonicPhononMatter, 16)
-            .input(gear, Legendarium, 16)
-            .input(gearSmall, SuperheavyAlloyA, 48)
-            .input(gearSmall, SuperheavyAlloyB, 48)
-            .input(nanite, TranscendentMetal, 64)
-            .input(wireGtHex, BoronFranciumCarbideSuperconductor, 16)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 400))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(512000))
-            .fluidInputs(Shirabon.getFluid(L * 200))
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 200))
-            .output(NANO_ASSEMBLY_COMPLEX)
-            .EUt(VA[UXV])
-            .duration(10 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(SPACE_ASSEMBLER_MK3, 16)
+            input(COMPONENT_ASSEMBLY_LINE, 64)
+            input(PCB_FACTORY, 64)
+            input(CIRCUIT_ASSEMBLY_LINE, 64)
+            input(ROBOT_ARM_UXV, 32)
+            input(CONVEYOR_MODULE_UXV, 32)
+            input(EMITTER_UXV, 32)
+            input(circuit, Tier.OpV, 64)
+            input(plateDense, MagMatter, 6)
+            input(plateDense, Mellion, 6)
+            input(gear, HarmonicPhononMatter, 16)
+            input(gear, Legendarium, 16)
+            input(gearSmall, SuperheavyAlloyA, 48)
+            input(gearSmall, SuperheavyAlloyB, 48)
+            input(nanite, TranscendentMetal, 64)
+            input(wireGtHex, BoronFranciumCarbideSuperconductor, 16)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 400))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(512000))
+            fluidInputs(Shirabon.getFluid(L * 200))
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 200))
+            output(NANO_ASSEMBLY_COMPLEX)
+            EUt(VA[UXV])
+            duration(10 * MINUTE)
+            stationResearch {
                 it.researchStack(COMPONENT_ASSEMBLY_LINE)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
-            .buildAndRegister()
+        }
 
         // Integrated Ore Processor
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(MACERATOR[ZPM], 4)
-            .input(ORE_WASHER[ZPM], 4)
-            .input(CENTRIFUGE[ZPM], 4)
-            .input(THERMAL_CENTRIFUGE[ZPM], 4)
-            .input(SIFTER[ZPM], 4)
-            .input(CHEMICAL_BATH[ZPM], 4)
-            .input(circuit, Tier.UV, 2)
-            .input(ROBOT_ARM_ZPM, 8)
-            .input(plateDouble, HastelloyN, 16)
-            .input(rotor, VanadiumGallium, 32)
-            .input(pipeNormalItem, Osmiridium, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(WatertightSteel.getFluid(L * 20))
-            .fluidInputs(Grisium.getFluid(L * 20))
-            .fluidInputs(Trinium.getFluid(L * 4))
-            .output(INTEGRATED_ORE_PROCESSOR)
-            .EUt(VA[ZPM])
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(MACERATOR[ZPM], 4)
+            input(ORE_WASHER[ZPM], 4)
+            input(CENTRIFUGE[ZPM], 4)
+            input(THERMAL_CENTRIFUGE[ZPM], 4)
+            input(SIFTER[ZPM], 4)
+            input(CHEMICAL_BATH[ZPM], 4)
+            input(circuit, Tier.UV, 2)
+            input(ROBOT_ARM_ZPM, 8)
+            input(plateDouble, HastelloyN, 16)
+            input(rotor, VanadiumGallium, 32)
+            input(pipeNormalItem, Osmiridium, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(WatertightSteel.getFluid(L * 20))
+            fluidInputs(Grisium.getFluid(L * 20))
+            fluidInputs(Trinium.getFluid(L * 4))
+            output(INTEGRATED_ORE_PROCESSOR)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(COMPONENT_GRINDER_TUNGSTEN)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // Matter Reshaping Framework
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(FORGE_HAMMER[UV], 16)
-            .input(COMPRESSOR[UV], 16)
-            .input(LARGE_FLUID_SOLIDIFIER, 64)
-            .input(LARGE_EXTRACTOR, 64)
-            .input(circuit, Tier.UV, 16)
-            .input(spring, Bedrockium, 4)
-            .input(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8)
-            .fluidInputs(PreciousMetalAlloy.getFluid(L * 20))
-            .output(MATTER_RESHAPING_FRAMEWORK)
-            .EUt(VA[UV])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(FORGE_HAMMER[UV], 16)
+            input(COMPRESSOR[UV], 16)
+            input(LARGE_FLUID_SOLIDIFIER, 64)
+            input(LARGE_EXTRACTOR, 64)
+            input(circuit, Tier.UV, 16)
+            input(spring, Bedrockium, 4)
+            input(wireGtDouble, EnrichedNaquadahTriniumEuropiumDuranide, 8)
+            fluidInputs(PreciousMetalAlloy.getFluid(L * 20))
+            output(MATTER_RESHAPING_FRAMEWORK)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 30 * SECOND)
+        }
 
     }
 

@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.extension
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.metatileentity.MetaTileEntity
+import net.minecraft.block.state.IBlockState
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 
@@ -74,5 +75,15 @@ fun MetaOreDictItem.OreDictValueItem.getStack(count: Int): ItemStack = getItemSt
 fun MetaTileEntity.stack(): ItemStack = getStack()
 
 fun MetaTileEntity.getStack(count: Int = 1) = stackForm.copy(count)
+
+// endregion
+
+// region Item Stack Convert
+
+/**
+ * Transformed a [IBlockState] to [ItemStack] with [amount].
+ */
+fun IBlockState.toItem(amount: Int = 1): ItemStack
+    = ItemStack(block, amount, block.getMetaFromState(this))
 
 // endregion
